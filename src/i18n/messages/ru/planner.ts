@@ -283,7 +283,7 @@ export default {
   'slope.pctRun': '{pct}% (примерно 1 фт на {run} фт)',
   'slope.flat': 'Участок практически ровный: высота земли меняется меньше чем на {amount}.',
   'slope.varies': 'Высота земли на участке меняется примерно на {amount} — средний уклон {slope}.',
-  'slope.falls': 'Земля понижается примерно на {amount} от {from} к {to} — средний уклон {slope}.',
+  'slope.falls': 'Земля понижается примерно на {amount} от {from} в сторону {to} — средний уклон {slope}.',
   'slope.rain': 'Дождь стекает к {where}, то есть на {compass}.',
   'slope.rainStreet': 'Дождь стекает к {where} ({street}), то есть на {compass}.',
   'slope.rainTheStreet': 'Дождь стекает к {where} (к улице), то есть на {compass}.',
@@ -298,8 +298,7 @@ export default {
   'slope.towardFrontRight': 'переднему правому углу',
   'slope.towardBackLeft': 'заднему левому углу',
   'slope.towardBackRight': 'заднему правому углу',
-  // used after «от», «к» and «около»; the genitive fits «от» and «около»; «к» takes the dative,
-  // so these are phrased to read after both («от переднего левого угла к …»)
+  // genitive: used after «от», «в сторону» and «около»
   'slope.placeFrontLeft': 'переднего левого угла',
   'slope.placeFrontRight': 'переднего правого угла',
   'slope.placeBackLeft': 'заднего левого угла',
