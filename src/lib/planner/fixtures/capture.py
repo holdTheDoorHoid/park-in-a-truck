@@ -8,6 +8,11 @@ Writes one JSON per site next to this file. Each file is a `SiteFixture` (see ..
 the LotRecord for the parcel plus its surroundings (buildings with City heights, neighbouring
 parcels, street trees, street centrelines). Owner names of private parcels are NOT stored.
 Be polite: this is meant to be run by hand, rarely.
+
+Afterwards, add the taller buildings farther out whose shadow can reach each lot (they are
+picked with the planner's own TypeScript code, so they are captured there):
+
+    PIAT_CAPTURE=1 npx vitest run src/lib/planner/fixtures/capture_far.test.ts
 """
 
 import json
@@ -174,6 +179,7 @@ def capture(site):
     with open(path, "w") as fh:
         json.dump(out, fh, separators=(",", ":"))
     print(path, len(buildings), "buildings", len(trees), "trees", len(streets), "streets", len(parcels), "parcels")
+    print("  now re-run capture_far.test.ts (see the top of this file) to add the far buildings")
 
 
 if __name__ == "__main__":

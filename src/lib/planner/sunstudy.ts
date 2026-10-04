@@ -23,6 +23,7 @@ import {
   summarise,
   type Crown,
   type GridSpec,
+  type Prism,
   type SunGrid,
 } from './sunhours';
 import type { SunJob } from './sun.worker';
@@ -85,6 +86,46 @@ export function crownsKey(crowns: Crown[]): string {
   return `${crowns.length}:${(h >>> 0).toString(36)}`;
 }
 
+/**
+ * Every building that shades the lot: the neighbours within SURROUNDINGS_RADIUS_FT plus the
+ * taller ones farther out whose shadow can reach it (LocalSite.farBuildings). The maps, the
+ * spot chart, "in sun now" and the saved growing-season study all use this.
+ */
+export function shadeBuildings(site: LocalSite): Prism[] {
+  return site.farBuildings?.length ? [...site.buildings, ...site.farBuildings] : site.buildings;
+}
+
+/**
+ * A short fingerprint of the City buildings around the lot (to tell when a saved study is out
+ * of date). Built from the City's outlines and heights, not the ground under them, so it
+ * doesn't change when ground heights arrive after the lot; order doesn't matter.
+ */
+export function buildingsKey(site: LocalSite): string {
+  const all = [...site.ctx.buildings, ...(site.ctx.farBuildings ?? [])];
+  let h = 0;
+  for (const b of all) {
+    const p = b.polygon[0];
+    if (!p) continue;
+    let v = 0;
+    for (const n of [p[0] * 1e6, p[1] * 1e6, b.heightFt * 2]) v = (Math.imul(v, 31) + Math.round(n)) | 0;
+    h = (h + v) | 0;
+  }
+  return `${all.length}:${(h >>> 0).toString(36)}`;
+}
+
+/**
+ * Is a saved study older than the buildings it should count? A study saved before far
+ * buildings were counted (no buildingsKey) is out of date when the lot now has some. When
+ * the far buildings could not be loaded this time, it says nothing (it can't tell).
+ */
+export function buildingsChanged(grid: SunGrid | null | undefined, site: LocalSite | null | undefined): 'far-added' | 'changed' | null {
+  if (!grid || !site || !site.ctx.farBuildings) return null;
+  if (!grid.inputs.buildingsKey) return site.ctx.farBuildings.length ? 'far-added' : null;
+  if (grid.inputs.buildingsKey === buildingsKey(site)) return null;
+  // worked out while the far buildings could not be loaded, and now they are here
+  return !grid.inputs.farBuildings && site.ctx.farBuildings.length ? 'far-added' : 'changed';
+}
+
 export interface SunStudyResult {
   grid: SunGrid;
   hours: Float32Array;
@@ -129,7 +170,7 @@ function runJob(job: SunJob, onProgress: (f: number) => void): { promise: Promis
 
 /** Buildings as the sun maths needs them (plain data that can go to the worker). */
 function prisms(site: LocalSite) {
-  return site.buildings.map((b) => ({ ring: b.ring, heightFt: b.heightFt, ...(b.baseFt ? { baseFt: b.baseFt } : {}) }));
+  return shadeBuildings(site).map((b) => ({ ring: b.ring, heightFt: b.heightFt, ...(b.baseFt ? { baseFt: b.baseFt } : {}) }));
 }
 
 /** The growing-season study: it is saved (project.extra.sunGrid) and feeds the counts. */
@@ -160,7 +201,13 @@ export function runSunStudy(
       summary,
       sunClass: lotSunClass(summary),
       computedAt: new Date().toISOString(),
-      inputs: { buildings: site.buildings.length, trees: crowns.length, treesKey: crownsKey(crowns) },
+      inputs: {
+        buildings: site.buildings.length + (site.farBuildings?.length ?? 0),
+        trees: crowns.length,
+        treesKey: crownsKey(crowns),
+        buildingsKey: buildingsKey(site),
+        ...(site.farBuildings?.length ? { farBuildings: site.farBuildings.length } : {}),
+      },
     };
     return { grid, hours };
   });
@@ -197,7 +244,7 @@ export function spotMonthlyFor(site: LocalSite, existing: ExistingItem[] | undef
   return spotMonthly({
     point,
     groundFt: groundOf(site)(point[0], point[1]),
-    buildings: site.buildings,
+    buildings: shadeBuildings(site),
     crowns: shadeCrowns(site, existing),
     lat: site.lf.origin[1],
     lng: site.lf.origin[0],
@@ -230,7 +277,7 @@ export function litFractionAt(site: LocalSite, existing: ExistingItem[] | undefi
   }
   const lit = computeSunHours({
     grid: spec,
-    buildings: site.buildings,
+    buildings: shadeBuildings(site),
     crowns: shadeCrowns(site, existing),
     samples: [{ altitudeDeg, azimuthDeg, weight: 1, leaf }],
     days: 1,

@@ -281,8 +281,13 @@ export interface SunGrid {
   summary: { sun: number; part: number; shade: number };
   sunClass: NonNullable<SiteFacts['sunClass']>;
   computedAt: string;
-  /** what went in; `treesKey` changes when trees on the lot are added, moved, resized or removed */
-  inputs: { buildings: number; trees: number; treesKey?: string };
+  /**
+   * what went in; `treesKey` changes when trees on the lot are added, moved, resized or removed;
+   * `buildingsKey` when the City's buildings around it change (studies saved before far
+   * buildings were counted have none); `farBuildings` = how many of `buildings` are taller
+   * buildings farther out (beyond the neighbours) whose shadow can reach the lot
+   */
+  inputs: { buildings: number; trees: number; treesKey?: string; buildingsKey?: string; farBuildings?: number };
   /** the lot the grid was computed for (see design.ts lotRef) */
   lotRef?: string;
 }
