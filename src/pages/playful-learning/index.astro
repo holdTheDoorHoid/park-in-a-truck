@@ -10,148 +10,115 @@ import Download from '../../components/workbook/Download.astro';
 import { THEMES } from '../../data/themes';
 import type { ThemeId } from '../../lib/types';
 import { u } from '../../lib/url';
+import playfulMsgs from '../../i18n/messages/en/playful.ts';
+import { getT, localizeRecord } from '../../i18n/astro.ts';
 
-const PRINCIPLES = [
-  { name: 'Actively Engaging', text: 'Children learn most effectively when they are physically and mentally engaged. Activities that involve movement, manipulation or experimentation promote deeper understanding.' },
-  { name: 'Meaningful', text: "Learning sticks when it connects to a child's life experiences, interests and cultural background." },
-  { name: 'Socially Interactive', text: 'Peer and caregiver interactions are critical to learning — conversation, shared tasks and collaborative exploration help children reflect, clarify and expand their thinking.' },
-  { name: 'Iterative', text: 'Children benefit from trying things out, making mistakes and trying again. Environments that allow repeated use and flexible problem-solving promote persistence and adaptive thinking.' },
-  { name: 'Joyful', text: 'Joy is not just nice — it’s necessary. When children are curious, delighted and emotionally invested, they are more likely to stay engaged and motivated to learn.' },
+const t = getT(Astro, playfulMsgs);
+const themes = localizeRecord(THEMES, 'themes', t.locale);
+
+const PRINCIPLE_IDS = ['activelyEngaging', 'meaningful', 'sociallyInteractive', 'iterative', 'joyful'] as const;
+const SIXC_IDS = ['collaboration', 'communication', 'content', 'criticalThinking', 'creativeInnovation', 'confidence'] as const;
+
+const ELEMENTS = [
+  { id: 'shapeGames', skills: ['content', 'criticalThinking', 'confidence'] as const },
+  { id: 'iconStorytelling', skills: ['collaboration', 'communication', 'creativeInnovation'] as const },
+  { id: 'colorTheoryTrellis', skills: ['content', 'criticalThinking', 'communication'] as const },
+  { id: 'sortingTables', skills: ['content', 'criticalThinking', 'communication'] as const },
+  { id: 'iSpyKeyMural', skills: ['content', 'collaboration', 'criticalThinking'] as const },
+  { id: 'puzzleWall', skills: ['collaboration', 'criticalThinking', 'confidence'] as const },
+  { id: 'giantRuler', skills: ['content', 'confidence', 'communication'] as const },
+  { id: 'colorFlowerSculpture', skills: ['creativeInnovation', 'content', 'collaboration'] as const },
+  { id: 'jumpingFeet', skills: ['confidence', 'criticalThinking', 'collaboration'] as const },
+  { id: 'storyWheel', skills: ['communication', 'creativeInnovation', 'collaboration'] as const },
+] as const;
+
+const BY_THEME: { theme: ThemeId; features: (typeof ELEMENTS)[number]['id'][] }[] = [
+  { theme: 'edible', features: ['sortingTables', 'storyWheel', 'giantRuler', 'iconStorytelling'] },
+  { theme: 'sanctuary', features: ['puzzleWall', 'colorTheoryTrellis', 'iconStorytelling', 'colorFlowerSculpture'] },
+  { theme: 'nature', features: ['iSpyKeyMural', 'jumpingFeet', 'sortingTables', 'shapeGames'] },
+  { theme: 'event', features: ['storyWheel', 'shapeGames', 'jumpingFeet', 'iconStorytelling'] },
 ];
 
-const SIXCS = [
-  { name: 'Collaboration', text: 'Working and playing well with others — sharing, turn-taking, negotiating, resolving conflict.' },
-  { name: 'Communication', text: 'Expressing ideas and understanding others, through storytelling, questions, listening and explaining.' },
-  { name: 'Content', text: 'Acquiring knowledge in academic and everyday domains — math, science, reading, social studies.' },
-  { name: 'Critical Thinking', text: 'Analyzing, comparing, predicting and solving problems — sorting, multi-step prompts, puzzles.' },
-  { name: 'Creative Innovation', text: 'Thinking outside the box — flexible thinking, imagination and invention.' },
-  { name: 'Confidence', text: 'The belief in one’s ability to try, fail and try again — building resilience and curiosity.' },
-];
-
-const ELEMENTS_TABLE = [
-  { name: 'Shape Games', text: 'Painted shapes encourage children to jump between colors and forms, fostering movement and logic.', skills: 'Content, Critical Thinking, Confidence' },
-  { name: 'Icon Storytelling', text: 'Children choose etched icons on gabion baskets to build stories, promoting narrative play.', skills: 'Collaboration, Communication, Creative Innovation' },
-  { name: 'Color-Theory Trellis', text: 'Overlapping transparent panels show how colors blend, encouraging visual experimentation.', skills: 'Content, Critical Thinking, Communication' },
-  { name: 'Sorting Tables', text: 'Tables with gridded surfaces prompt sorting by shape, size or texture.', skills: 'Content, Critical Thinking, Communication' },
-  { name: 'I-Spy Key Mural', text: 'A mural encourages children to search for objects around the park, boosting observation skills.', skills: 'Content, Collaboration, Critical Thinking' },
-  { name: 'Puzzle Wall', text: 'Children complete a puzzle of a meaningful community image, promoting problem-solving.', skills: 'Collaboration, Critical Thinking, Confidence' },
-  { name: 'Giant Ruler', text: 'A painted ruler invites children to measure themselves or objects, linking math to real-world context.', skills: 'Content, Confidence, Communication' },
-  { name: 'Color Flower Sculpture', text: 'Moveable colored petals let children mix colors through play.', skills: 'Creative Innovation, Content, Collaboration' },
-  { name: 'Jumping Feet', text: 'A twist on hopscotch that challenges children to switch jumping styles.', skills: 'Confidence, Critical Thinking, Collaboration' },
-  { name: 'Story Wheel', text: 'A spinning wheel provides prompts for children to invent stories, solo or with peers.', skills: 'Communication, Creative Innovation, Collaboration' },
-];
-
-const BY_THEME: { theme: ThemeId; features: string }[] = [
-  { theme: 'edible', features: 'Sorting Tables, Story Wheel, Giant Ruler, Icon Storytelling' },
-  { theme: 'sanctuary', features: 'Puzzle Wall, Color-Theory Trellis, Icon Storytelling, Color Flower Sculpture' },
-  { theme: 'nature', features: 'I-Spy Mural, Jumping Feet, Sorting Tables, Shape Games' },
-  { theme: 'event', features: 'Story Wheel, Shape Games, Jumping Feet, Icon Storytelling' },
-];
+const elementName = (id: (typeof ELEMENTS)[number]['id']) => t(`elements.${id}.name`);
 ---
-<Base title="Playful Learning Landscapes" description="An appendix for integrating Playful Learning into Park in a Truck projects — the science of how children learn best, built into everyday park design.">
+<Base title={t('title')} description={t('description')}>
   <header class="chapter-head">
     <div class="wrap">
-      <h1 class="ruled">Playful Learning Landscapes</h1>
-      <p class="lede">An appendix for integrating Playful Learning into Park in a Truck projects.</p>
+      <h1 class="ruled">{t('title')}</h1>
+      <p class="lede">{t('lede')}</p>
       <div class="head-actions no-print">
-        <a class="btn btn-small" href={u('downloads/playful-learning-landscapes.pdf')} target="_blank" rel="noopener">📄 Original expansion pack (PDF)</a>
+        <a class="btn btn-small" href={u('downloads/playful-learning-landscapes.pdf')} target="_blank" rel="noopener">{t('originalPdf')}</a>
       </div>
     </div>
   </header>
 
   <div class="wrap chapter">
     <article class="prose chapter-body">
-      <p>
-        Playful Learning brings together the science of how children learn best with the design of everyday
-        spaces. It combines the joy of play with meaningful, interactive opportunities to support child
-        development — turning sidewalks, parks and community spaces into places where learning naturally unfolds.
-        Grounded in developmental science, Playful Learning experiences are active, engaging, socially interactive
-        and joyful.
-      </p>
-      <p>
-        This approach supports whole-child development: children strengthen language through storytelling, develop
-        critical thinking through hands-on problem solving, grow confidence by exploring new ideas, and build social
-        skills through collaboration and communication with peers and caregivers. Since children spend nearly 80% of
-        their waking hours outside of formal classroom settings, public spaces like parks, sidewalks and plazas hold
-        tremendous potential as platforms for learning.
-      </p>
+      <p>{t('intro1')}</p>
+      <p>{t('intro2')}</p>
 
-      <Figure
-        src="img/playful-learning/formula.webp"
-        alt="Playful Learning Landscapes' three-part design formula: a flower diagram of five principles for how children learn, a ring of six circles for the 6Cs of what children learn, and an illustration of a child and caregiver together in a park, for community engagement"
-      />
+      <Figure src="img/playful-learning/formula.webp" alt={t('formulaAlt')} />
 
-      <h2>5 principles of learning (the how)</h2>
-      <p>Playful Learning spaces are grounded in decades of research from developmental psychology and education.</p>
+      <h2>{t('principlesHeading')}</h2>
+      <p>{t('principlesIntro')}</p>
       <dl class="definition-grid">
-        {PRINCIPLES.map((p) => (
+        {PRINCIPLE_IDS.map((id) => (
           <>
-            <dt>{p.name}</dt>
-            <dd>{p.text}</dd>
+            <dt>{t(`principles.${id}.name`)}</dt>
+            <dd>{t(`principles.${id}.text`)}</dd>
           </>
         ))}
       </dl>
 
-      <h2>The 6Cs framework (the what)</h2>
-      <p>Six interconnected skills children need to thrive in school, work and life — especially in the early years.</p>
+      <h2>{t('sixCsHeading')}</h2>
+      <p>{t('sixCsIntro')}</p>
       <dl class="definition-grid">
-        {SIXCS.map((c) => (
+        {SIXC_IDS.map((id) => (
           <>
-            <dt>{c.name}</dt>
-            <dd>{c.text}</dd>
+            <dt>{t(`sixCs.${id}.name`)}</dt>
+            <dd>{t(`sixCs.${id}.text`)}</dd>
           </>
         ))}
       </dl>
 
-      <h2>Community engagement</h2>
-      <p>
-        Community members are involved in every step of the design process — from concept to implementation. Inviting
-        local families, youth and educators to share their ideas and values makes Playful Learning installations more
-        relevant, reflective and inclusive, and co-design fosters local pride and long-term stewardship.
-      </p>
-      <p>
-        Playful Learning Landscapes (PLL) is a natural partner for Park in a Truck: both initiatives center equity,
-        accessibility and community voice. PiaT turns vacant lots into parks that are easy to build, easy to
-        maintain and rooted in local leadership; PLL adds another layer, infusing those parks with educational value
-        and joyful experiences.
-      </p>
+      <h2>{t('communityHeading')}</h2>
+      <p>{t('community1')}</p>
+      <p>{t('community2')}</p>
 
-      <h2>Playful learning designs for PiaT projects</h2>
+      <h2>{t('elementsHeading')}</h2>
       <table class="pll-table">
-        <thead><tr><th>Element</th><th>Description</th><th>Key skills (6Cs)</th></tr></thead>
+        <thead><tr><th>{t('elements.col.element')}</th><th>{t('elements.col.description')}</th><th>{t('elements.col.skills')}</th></tr></thead>
         <tbody>
-          {ELEMENTS_TABLE.map((e) => (
-            <tr><td><strong>{e.name}</strong></td><td>{e.text}</td><td>{e.skills}</td></tr>
-          ))}
-        </tbody>
-      </table>
-
-      <h2>Playful learning by park type</h2>
-      <p>These elements adapt to fit any of PiaT's four modular park themes:</p>
-      <table class="pll-table">
-        <thead><tr><th>Park type</th><th>Recommended playful learning features</th></tr></thead>
-        <tbody>
-          {BY_THEME.map((t) => (
+          {ELEMENTS.map((e) => (
             <tr>
-              <td><strong style={`color:${THEMES[t.theme].frame}`}>{THEMES[t.theme].name}</strong></td>
-              <td>{t.features}</td>
+              <td><strong>{t(`elements.${e.id}.name`)}</strong></td>
+              <td>{t(`elements.${e.id}.text`)}</td>
+              <td>{e.skills.map((s) => t(`sixCs.${s}.name`)).join(', ')}</td>
             </tr>
           ))}
         </tbody>
       </table>
-      <p class="muted">
-        These elements are intentionally low-cost, low-maintenance and customizable — whether activating a garden
-        corner, a mural wall or a flexible seating area.
-      </p>
 
-      <Download href="downloads/playful-learning-landscapes.pdf" label="Playful Learning Landscapes expansion pack" />
+      <h2>{t('byThemeHeading')}</h2>
+      <p>{t('byThemeIntro')}</p>
+      <table class="pll-table">
+        <thead><tr><th>{t('byTheme.col.parkType')}</th><th>{t('byTheme.col.features')}</th></tr></thead>
+        <tbody>
+          {BY_THEME.map((row) => (
+            <tr>
+              <td><strong style={`color:${THEMES[row.theme].frame}`}>{themes[row.theme].name}</strong></td>
+              <td>{row.features.map(elementName).join(', ')}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p class="muted">{t('byThemeNote')}</p>
 
-      <p class="muted">
-        Learn more at <a href="https://www.playfullearninglandscapes.com" target="_blank" rel="noopener">playfullearninglandscapes.com ↗</a>,
-        or contact the PLL team at <a href="mailto:admin@playfullearninglandscapes.fun">admin@playfullearninglandscapes.fun</a>.
-      </p>
+      <Download href="downloads/playful-learning-landscapes.pdf" label={t('downloadLabel')} />
 
-      <p><a class="btn" href={u('steps/dream/')}>← Back to Dream</a></p>
+      <p class="muted"><Fragment set:html={t.html('learnMore')} /></p>
+
+      <p><a class="btn" href={u('steps/dream/')}>{t('backToDream')}</a></p>
     </article>
   </div>
 </Base>
@@ -168,5 +135,5 @@ const BY_THEME: { theme: ThemeId; features: string }[] = [
     .definition-grid dd { margin-bottom: 1em; }
   }
   .pll-table { width: 100%; border-collapse: collapse; margin: 1em 0 1.6em; font-size: 0.92rem; }
-  .pll-table th, .pll-table td { border: 1px solid var(--line); padding: 0.55em 0.7em; text-align: left; vertical-align: top; }
+  .pll-table th, .pll-table td { border: 1px solid var(--line); padding: 0.55em 0.7em; text-align: start; vertical-align: top; }
 </style>

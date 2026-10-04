@@ -2,9 +2,12 @@
 // a simple shape and a palette group. Names and ids come from src/data/elements.ts
 // (owned by the pieces workstream); the numbers here are planner defaults used when an
 // element has no footprint of its own. Plain words — the people using this are
-// neighbours, not designers.
+// neighbours, not designers. Names are shown in the page's language: element names from the
+// `elements` data overlay (src/i18n/datasets.ts), the rest from the planner catalog (words.ts).
 
-import { ELEMENTS } from '../../data/elements';
+import { ELEMENTS, type ElementMeta } from '../../data/elements';
+import { localizeRecord } from '../../i18n/data';
+import { pt, type PlannerKey } from './words';
 
 export type Shape = 'box' | 'bench' | 'table' | 'tree-small' | 'tree-large' | 'shrub' | 'square' | 'flat' | 'post' | 'barrel' | 'canopy';
 
@@ -24,6 +27,24 @@ export interface CatalogEntry {
 export type PaletteGroup = 'Seating' | 'Tables' | 'Plants' | 'Planting & play' | 'Shade & stage' | 'Water & wildlife' | 'Garden tools';
 
 export const PALETTE_GROUPS: PaletteGroup[] = ['Seating', 'Tables', 'Plants', 'Planting & play', 'Shade & stage', 'Water & wildlife', 'Garden tools'];
+
+/** What each palette group is called on screen (the group ids above stay English). */
+const GROUP_LABEL: Record<PaletteGroup, PlannerKey> = {
+  Seating: 'palette.seating',
+  Tables: 'palette.tables',
+  Plants: 'palette.plants',
+  'Planting & play': 'palette.plantingPlay',
+  'Shade & stage': 'palette.shadeStage',
+  'Water & wildlife': 'palette.waterWildlife',
+  'Garden tools': 'palette.gardenTools',
+};
+
+let named: Record<string, ElementMeta> | undefined;
+/** Element names in the page's language (English where there is no translation). */
+function localName(id: string): string | undefined {
+  named ??= localizeRecord(ELEMENTS, 'elements', pt().locale);
+  return named[id]?.name;
+}
 
 const WOOD = '#b98a5a';
 const GABION = '#8d8f91';
@@ -69,17 +90,18 @@ export function catalogEntry(id: string): CatalogEntry {
   const fp = meta?.footprintFt;
   return {
     id,
-    name: meta?.name ?? id.replace(/-/g, ' '),
+    name: localName(id) ?? id.replace(/-/g, ' '),
     ...d,
     ...(fp ? { w: fp[0], h: fp[1] } : {}),
     ...(meta?.heightFt ? { heightFt: meta.heightFt } : {}),
   };
 }
 
-/** Elements a person can add from the palette, grouped. */
-export function palette(): { group: PaletteGroup; items: CatalogEntry[] }[] {
+/** Elements a person can add from the palette, grouped; `label` is the group's name on screen. */
+export function palette(): { group: PaletteGroup; label: string; items: CatalogEntry[] }[] {
   const ids = Object.keys(D);
-  return PALETTE_GROUPS.map((group) => ({ group, items: ids.map(catalogEntry).filter((e) => e.group === group) })).filter(
+  const t = pt();
+  return PALETTE_GROUPS.map((group) => ({ group, label: t(GROUP_LABEL[group]), items: ids.map(catalogEntry).filter((e) => e.group === group) })).filter(
     (g) => g.items.length,
   );
 }
@@ -90,6 +112,7 @@ export type ExistingKind = 'existing-tree' | 'downspout' | 'wet-area' | 'hydrant
 
 export interface ExistingMeta {
   id: ExistingKind;
+  /** in the page's language */
   name: string;
   hint: string;
   /** what size control to show */
@@ -98,18 +121,28 @@ export interface ExistingMeta {
   color: string;
 }
 
-export const EXISTING: ExistingMeta[] = [
-  { id: 'existing-tree', name: 'Tree already there', hint: 'Set how wide its branches spread.', size: 'canopy', defaults: { radiusFt: 8 }, color: '#2e8a45' },
-  { id: 'downspout', name: "Neighbor's downspout", hint: 'Where roof water comes out onto the lot.', size: 'none', defaults: {}, color: '#2f6f8f' },
-  { id: 'wet-area', name: 'Area that gets wet', hint: 'Puddles or soggy ground after rain.', size: 'radius', defaults: { radiusFt: 5 }, color: '#3a8fd1' },
-  { id: 'hydrant', name: 'Fire hydrant', hint: 'Keep it clear.', size: 'none', defaults: {}, color: '#d0342c' },
-  { id: 'utility-pole', name: 'Utility pole', hint: 'Electric or phone pole.', size: 'none', defaults: {}, color: '#6b5a4a' },
-  { id: 'utility-line', name: 'Overhead wires', hint: 'Wires crossing over the lot — no tall trees under them.', size: 'length', defaults: { lengthFt: 30 }, color: '#333333' },
-  { id: 'old-pavement', name: 'Old pavement', hint: 'Concrete or asphalt still on the ground.', size: 'rect', defaults: { lengthFt: 10, widthFt: 8 }, color: '#9b9b95' },
+type ExistingBase = Omit<ExistingMeta, 'name' | 'hint'> & { name: PlannerKey; hint: PlannerKey };
+
+const EXISTING_BASE: ExistingBase[] = [
+  { id: 'existing-tree', name: 'existing.tree', hint: 'existing.treeHint', size: 'canopy', defaults: { radiusFt: 8 }, color: '#2e8a45' },
+  { id: 'downspout', name: 'existing.downspout', hint: 'existing.downspoutHint', size: 'none', defaults: {}, color: '#2f6f8f' },
+  { id: 'wet-area', name: 'existing.wetArea', hint: 'existing.wetAreaHint', size: 'radius', defaults: { radiusFt: 5 }, color: '#3a8fd1' },
+  { id: 'hydrant', name: 'existing.hydrant', hint: 'existing.hydrantHint', size: 'none', defaults: {}, color: '#d0342c' },
+  { id: 'utility-pole', name: 'existing.pole', hint: 'existing.poleHint', size: 'none', defaults: {}, color: '#6b5a4a' },
+  { id: 'utility-line', name: 'existing.wires', hint: 'existing.wiresHint', size: 'length', defaults: { lengthFt: 30 }, color: '#333333' },
+  { id: 'old-pavement', name: 'existing.pavement', hint: 'existing.pavementHint', size: 'rect', defaults: { lengthFt: 10, widthFt: 8 }, color: '#9b9b95' },
 ];
 
+let existing: ExistingMeta[] | undefined;
+/** The things a person can mark as already on the lot, named in the page's language. */
+export function existingList(): ExistingMeta[] {
+  const t = pt();
+  return (existing ??= EXISTING_BASE.map((b) => ({ ...b, name: t(b.name), hint: t(b.hint) })));
+}
+
 export function existingMeta(id: string): ExistingMeta {
-  return EXISTING.find((e) => e.id === id) ?? EXISTING[0]!;
+  const list = existingList();
+  return list.find((e) => e.id === id) ?? list[0]!;
 }
 
 /** Rough crown size from trunk diameter (DBH, inches) for City trees. */

@@ -1,49 +1,52 @@
 ---
 import Base from '../../layouts/Base.astro';
 import StepPath from '../../components/site/StepPath.astro';
+import pages from '../../i18n/messages/en/pages.ts';
+import workbook from '../../i18n/messages/en/workbook.ts';
+import { getT, urlFor } from '../../i18n/astro.ts';
+
+const t = getT(Astro, pages);
+const tw = getT(Astro, workbook);
+const u = urlFor(t.locale);
 ---
-<Base title="My park">
+<Base title={t('myPark.title')}>
   <section class="wrap" style="padding-top:40px">
-    <p class="eyebrow">Saved in this browser</p>
-    <h1 class="ruled"><span data-project-name>My park</span></h1>
-    <p class="lede">
-      Everything you fill in on this site is saved here, on this device only — no account, nothing sent anywhere. To
-      work with your committee, save a project file and send it to them; they can open it here on their own device.
-    </p>
+    <p class="eyebrow">{t('myPark.eyebrow')}</p>
+    <h1 class="ruled"><span data-project-name>{tw('project.default')}</span></h1>
+    <p class="lede">{t('myPark.lede')}</p>
     <p class="storage-warning callout callout-warning" hidden data-storage-warning>
-      This browser is not letting the site save anything (private window or blocked site data). Save a project file
-      before you leave, or your answers will be lost.
+      {t('myPark.storageWarning')}
     </p>
 
     <div class="tools no-print">
       <div class="card">
-        <h3>This project</h3>
-        <label class="field"><span class="field-label">Name</span><input type="text" data-rename /></label>
+        <h3>{t('myPark.thisProject')}</h3>
+        <label class="field"><span class="field-label">{t('myPark.nameLabel')}</span><input type="text" data-rename /></label>
         <div class="row">
-          <button class="btn" type="button" data-export>⬇ Save project file</button>
-          <label class="btn">⬆ Open a project file<input type="file" accept=".json,application/json" data-import hidden /></label>
-          <button class="btn" type="button" onclick="window.print()">🖨 Print everything</button>
+          <button class="btn" type="button" data-export>{t('myPark.saveFile')}</button>
+          <label class="btn">{t('myPark.openFile')}<input type="file" accept=".json,application/json" data-import hidden /></label>
+          <button class="btn" type="button" onclick="window.print()">{t('myPark.printEverything')}</button>
         </div>
         <p class="muted small" data-import-msg></p>
       </div>
       <div class="card">
-        <h3>All projects</h3>
+        <h3>{t('myPark.allProjects')}</h3>
         <ul class="projects" data-project-list></ul>
         <div class="row">
-          <input type="text" placeholder="New project name" data-new-name />
-          <button class="btn" type="button" data-new>+ New project</button>
+          <input type="text" placeholder={t('myPark.newProjectPlaceholder')} data-new-name />
+          <button class="btn" type="button" data-new>{t('myPark.newProject')}</button>
         </div>
       </div>
     </div>
 
-    <h2 class="ruled" style="margin-top:40px">Progress</h2>
+    <h2 class="ruled" style="margin-top:40px">{t('myPark.progress')}</h2>
     <StepPath compact />
 
-    <h2 class="ruled" style="margin-top:40px">Your lot</h2>
-    <div data-lot-summary><p class="muted">No lot chosen yet. Look one up in <a href="../steps/acquire/">Step 1: Acquire</a>.</p></div>
+    <h2 class="ruled" style="margin-top:40px">{t('myPark.yourLot')}</h2>
+    <div data-lot-summary><p class="muted" set:html={t.html('myPark.noLotYet', { href: u('steps/acquire/') })} /></div>
 
-    <h2 class="ruled" style="margin-top:40px">Your answers</h2>
-    <div data-answers><p class="muted">Nothing filled in yet.</p></div>
+    <h2 class="ruled" style="margin-top:40px">{t('myPark.yourAnswers')}</h2>
+    <div data-answers><p class="muted">{t('myPark.nothingFilledIn')}</p></div>
   </section>
 </Base>
 <style>

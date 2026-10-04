@@ -1,0 +1,263 @@
+---
+title: 评估
+intro: 了解您的地块——阳光、土壤、周边环境和大小——并把您的发现画成一张底图。
+sources:
+  - 工具包第35–37页（评估、评价公园用地、用地特点）
+  - 评估工作手册第3–11页（概述、实地察看、测量地块、画出地块图、核对地块图、记录物体、评估物体、底图、准备好了吗？）
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import Download from '../../../../components/workbook/Download.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import SiteReport from '../../../../components/widgets/SiteReport.astro';
+import BaseMap from '../../../../components/widgets/BaseMap.astro';
+import Planner from '../../../../components/widgets/Planner.astro';
+import SunStudy from '../../../../components/widgets/SunStudy.astro';
+import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
+
+{/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — reminds a reader who hasn't recorded a lot agreement yet, before they sink time into site visits and soil work on a lot they may not have permission for. */}
+<LotAgreementNotice />
+
+您的地块有什么特别之处？怎样才能把这些特点用好？这一步介绍怎样评估您的地块，确保您的公园充分利用这块地的条件。
+
+一块地不是孤立存在的——它是您社区的一部分。所以评估也要把您的社区包括进去。有没有独特的历史或文化应该在设计中体现出来？一座尊重社区自身认同的公园，会让人觉得它像一位老邻居，而不是新来的陌生人。
+
+我们用几个示例项目用地来说明这个过程中的关键步骤。当然，您的情况会有所不同，取决于您自己公园用地的位置、形状和周边环境——但这是一个很好的起点。
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={3} label="概述" />
+
+## 用地特点 {/* #site-characteristics */}
+
+在这一步，您要记录公园用地的实际特点。这块地是向阳还是背阴？是平地还是斜坡，有没有现有的树？或者它就在一座教堂的街对面？这些特点都会影响您能在这块地上做什么。比如，假设您想种番茄——那这块地就需要全天都有阳光。
+
+到您的公园用地去看一看，仔细记录可能影响公园设计的情况。在设计公园设施之前先评估用地的特点，就能确保设计适合这块地的独特条件。
+
+<Figure
+  src="img/assess/site-characteristics.webp"
+  alt="一个示例项目用地的等轴测示意图，位于住宅区的街角，用蓝色标出：带编号的标注依次指出它位于繁忙的街角、在公交线路上、有一面很大的空白墙、沿街边有架空电线，以及沿人行道有一片向阳的区域。"
+  caption="一个示例项目用地，以及让它与众不同的特点"
+/>
+
+这块示例地块的独特之处在于：<strong>（1）</strong>位于繁忙的街角，<strong>（2）</strong>在公交线路上，<strong>（3）</strong>尽头有一栋带大面空白墙的建筑，<strong>（4）</strong>沿街边有架空电线，以及<strong>（5）</strong>沿人行道有一片向阳的区域。您的地块会有自己的一份清单。也要记录这块地和相邻街区的文化或历史特点——这块地以前有没有开过什么有意思的店？附近发生过历史事件吗？在盖房子之前，这里是什么样子？这是让老居民和学生参与进来的好办法，学生有研究能力，可以去查阅城市档案。
+
+<Checklist
+  id="assess.conditions"
+  label="需要记录的情况"
+  items={[
+    { value: 'sidewalks', label: '人行道和其他硬化地面' },
+    { value: 'utilities', label: '看得见的公用设施（架空的和地面上的）' },
+    { value: 'sun-direction', label: '日出／日落的大致方向' },
+    { value: 'sun-shade-areas', label: '向阳和／或背阴的区域' },
+    { value: 'ground-cover', label: '碎石、硬化地面或裸露泥土的区域' },
+    { value: 'water-collection', label: '下雨后积水的区域' },
+    { value: 'adjacent-buildings', label: '相邻的建筑' },
+    { value: 'plants', label: '灌木和树木（如果知道的话，还有它们的种类）' },
+    { value: 'structures', label: '现有的独立构筑物（棚子、围栏）' },
+    { value: 'building-remains', label: '建筑遗留物（地基、旧墙等）' },
+    { value: 'terrain', label: '倾斜的地面、土堆和／或大的洼地' },
+    { value: 'views', label: '好的和／或不好看的景观' },
+    { value: 'wind', label: '有风／风大的区域' },
+    { value: 'sounds', label: '主要的声音／可能有干扰的区域' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={3} label="用地特点" />
+
+## 实地察看 {/* #site-visit */}
+
+到公园用地察看时，下面这些活动可以大家一起做，也可以各自做：
+
+1. **采集土壤样本**。了解土壤的养分，对判断您的公园里种什么长得最好很有帮助。做一个简单的铅检测，也能帮助确保您的公园是安全的。宾州州立大学推广服务处（Penn State Extension）提供简单的土壤检测流程：[agsci.psu.edu/aasl/soil-testing](https://agsci.psu.edu/aasl/soil-testing/fertility/soil-fertility-submission-forms)（英文）。
+2. **拍照**。每个人看风景的眼光都不一样，拍照是和别人分享自己所见的一种方式。留出30分钟，四处走走，拍下公园用地和周围环境的照片。然后互相分享照片，说说您为什么拍下每一张。
+3. **坐下来听**。安静地坐在公园用地里，用所有的感官去感受。您能听到、闻到、摸到什么？30分钟后，把您感受到的记下来。有没有好的感受可以融入公园设计，或者有没有不好的感受可以通过设计来减轻？换成一周中的另一天，或者一天中的另一个时段或夜晚，会有什么不同？
+4. **测量和评估**。测量公园用地，是更详细地了解它的一种方式——接下来几个小步骤会一步步带您完成。
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — Penn State's standard fertility test has no lead in it; facts checked 2026-10-04 on agsci.psu.edu and phila.gov. */}
+<Callout kind="site">
+  宾州州立大学的标准土壤肥力检测（pH 值和养分）不检测铅。铅需要另外检测，用该实验室的[环境土壤检测表格（英文）↗](https://agsci.psu.edu/aasl/soil-testing/environmental)申请，也可以找任何一家经美国环保署（EPA）认可的实验室检测。市政府的[铅问题指南（英文）↗](https://www.phila.gov/guides/lead-guide/where-is-lead/)介绍了花园土壤中的铅：覆盖裸露的泥土、用高架种植床种食物，以及检测。
+</Callout>
+
+<Field id="assess.soil-notes" label="土壤检测结果" type="textarea" hint="养分、pH 值、铅——检测结果有什么就写什么。" />
+<Field id="assess.listen-notes" label="您听到、闻到、摸到的东西" type="textarea" />
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={4} label="实地察看" />
+
+## 测量地块 {/* #measure-your-lot */}
+
+按照下面的步骤，开始画出现有公园用地的示意图。这张“底图”可以打印出来，带到现场，用来记录各种物体的位置和重要特点。
+
+<Callout kind="auto" title="已替您测量好">
+  您在“获取”这一步选定地块后，网站就会根据市政府自己的登记地块地图来测量它——下面的各边长度和面积，以及一张可打印的底图，都不用您去 Google Maps 上量。
+</Callout>
+
+<SiteReport />
+<BaseMap />
+
+<details>
+  <summary>改为手工测量</summary>
+  <ol>
+    <li>打开 <a href="https://maps.google.com" target="_blank" rel="noopener">maps.google.com</a>。这个网站有航拍照片，还有测量地块的工具。</li>
+    <li>输入这处房地产的地址，或者离它最近、地址已知的房地产的地址。放大到这个地址，留意现有人行道和地块四角的位置。如果不知道确切的角在哪里，先估计一下。</li>
+    <li>查看航拍照片，定一个开始测量的起点——公园地块的一个角。在起点上点击右键（Mac 上按住 Control 键点击），选择“Measure distance”（测量距离）。</li>
+    <li>找到下一个最近的角，移动光标，点击左键。两点之间的距离就会显示出来。把这个数字记下来。</li>
+    <li>把起点拖到下一个角。把这个数字记下来。</li>
+    <li>对公园的每个角重复这一步，直到量完每一条边。最后一次测量应该回到起点。</li>
+  </ol>
+</details>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={5} label="测量地块" />
+
+## 画出地块图 {/* #diagram-your-lot */}
+
+现在您要画一张公园现有边界的示意图。这张图用来记录您用地上各种物体（比如树等）的尺寸。这张图是“平面图”，从正上方往下看，就像 Google Maps 的航拍图一样。
+
+边界图用方格纸（也叫坐标纸）来代表地面，每一小格代表实际长度1英尺：先画长边（公园最长的那条边，从起点开始），再在它的末端画短边，然后对另一条长边和短边重复同样的做法。
+
+<BaseMap />
+
+<Download href="downloads/forms/assess-grid-sheets.pdf" label="下载方格纸" note={`1/4" = 1'-0"——地块较大时，把几张纸粘在一起`} />
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={6} label="画出地块图" />
+
+## 核对地块图 {/* #verify-your-diagram */}
+
+下一步是到公园用地去，用手工测量并记录每条地块边界的长度。**在现场实际测得的尺寸，比网上的数字更可靠。**
+
+1. 找到项目起点——就是您在 Google Maps 上开始测量的同一个位置（或网站替您标出的位置）。
+2. 用100英尺长的卷尺，沿着公园外侧的长边从一个角量到另一个角，记下距离。
+3. 用100英尺长的卷尺，沿着外侧的短边从一个角量到另一个角，记下距离。
+4. 对另一条长边重复同样的做法。
+5. 对另一条短边重复同样的做法。
+
+<Checklist
+  id="assess.what-to-bring"
+  label="要带到现场的东西"
+  items={[
+    { value: 'pens', label: '笔和记事本' },
+    { value: 'clipboards', label: '写字夹板' },
+    { value: 'camera', label: '相机（用手机拍也可以）' },
+    { value: 'tape-100', label: '100英尺卷尺' },
+    { value: 'tape-long', label: '长卷尺（25英尺或更长）' },
+    { value: 'survey-plat', label: '地块测量图（survey plat）' },
+    { value: 'boundary-diagram', label: '边界图' },
+    { value: 'flags', label: '测量小旗或竹制园艺桩' },
+  ]}
+/>
+
+<Field id="assess.field-long-edge" label="现场测得的长边" type="number" unit="英尺" />
+<Field id="assess.field-short-edge" label="现场测得的短边" type="number" unit="英尺" />
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={7} label="核对地块图" />
+
+## 记录和评估物体 {/* #record-assess-objects */}
+
+下一步是记录项目用地上所有物体的位置，再评估它们的状况，以及对未来公园可能有什么价值。每个物体的位置要测两个数据：沿边线到项目起点的距离，以及到公园边线的距离。这也是一个好机会，可以记下紧挨着项目用地、但在用地之外的物体——比如可能影响公园规划的电线杆、消防栓或人行道边缘。
+
+物体的位置确定之后，可以从许多方面来评估它：美观／特色、预计还能用多久、稳不稳固、可能带来的责任风险、能不能再利用、作为栖息地的价值等等。对每个物体，决定要不要保留。
+
+{/* site-added: the planner places kept objects on the real lot and uses them in the sun study. */}
+<Callout kind="auto" title="把物体放到您真实的地块上">
+  <Planner mode="site" />这个工具让您把每个物体放到地块的实际形状上，不用在方格纸上手工标坐标。
+</Callout>
+
+<ListField
+  id="assess.objects"
+  label="用地上的物体"
+  rowName="物体"
+  min={4}
+  columns={[
+    { key: 'object', label: '物体', placeholder: '树、围栏、棚子、电线杆…' },
+    { key: 'fromStart', label: '到起点的距离', type: 'number' },
+    { key: 'fromEdge', label: '到边线的距离', type: 'number' },
+    { key: 'keep', label: '保留吗？', placeholder: '是／否' },
+    { key: 'notes', label: '备注' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={8} label="记录物体" />
+
+## 阳光和阴影／底图 {/* #sun-shade-base-plan */}
+
+把您想保留的物体画到底图上，方法和测量时一样：像画藏宝图一样，用一个点或一个“X”标出位置，再按它占地的大小在周围画一个圆（如果是树或灌木，圆圈就是树冠的大致边缘，树干的位置画一个点）。
+
+然后在同一张图上描述这块地的情况：
+
+- 建筑的阴影：画出阴影区域的大致外边缘，再在里面画上斜线。
+- 建筑：画出轮廓，再在里面画上斜线。
+- 架空的公用设施：在用地上方标出位置。
+- 地面情况特殊的区域（比如潮湿的地方）：在大致位置画一个不规则的圈。
+- 树木：如果知道种类，就标上树的种类（例如“枫树”）。
+
+{/* site-added: real sun and shade from the neighboring buildings' actual heights, any date and time. */}
+<Callout kind="auto" title="根据真实建筑计算阳光和阴影">
+  <SunStudy />这个工具根据邻居房屋的实际高度，逐小时计算一年中任何日期和时间的阳光和阴影——不用在方格纸上手工画阴影线。
+</Callout>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={10} label="底图" />
+
+## 小结：准备好了吗？ {/* #summary-are-you-ready */}
+
+总结一下您用地的主要特点。下一步设计公园时会用到这些信息。
+
+<Field
+  id="assess.existing-trees"
+  label="现有的树？"
+  type="select"
+  hint="目前用地上有几棵树（如果有的话）。不要算上将要移走的树。"
+  options={[{ value: 'No trees', label: '没有树' }, { value: 'One or two trees', label: '一两棵树' }, { value: 'Several trees', label: '好几棵树' }, { value: 'Mostly trees', label: '大部分是树' }]}
+  auto="extra.site.treesKept|treeCount"
+/>
+
+<Field
+  id="assess.sunlight"
+  label="日照有多少？"
+  type="select"
+  hint="这块地一天中能晒到多少太阳。"
+  options={[{ value: 'Full sun all day', label: '全天全日照' }, { value: 'Mostly sun', label: '大部分时间有阳光' }, { value: 'Mostly shade', label: '大部分时间背阴' }, { value: 'Deep shade all day', label: '全天深度背阴' }]}
+  auto="extra.site.sunClass|sunClass"
+/>
+
+<Field
+  id="assess.lot-location"
+  label="地块位置"
+  type="select"
+  hint="这块地在街区中间，还是在街角？如果在街角，街道在长边的哪一侧？"
+  options={[{ value: 'Mid-block lot', label: '街区中段地块' }, { value: 'Corner lot (street right)', label: '街角地块（街道在右侧）' }, { value: 'Corner lot (street left)', label: '街角地块（街道在左侧）' }]}
+  auto="extra.site.lotKind|lotKind"
+/>
+
+<Field id="assess.long-edge" label="长边" type="number" unit="英尺" auto="extra.site.lengthFt" />
+<Field id="assess.short-edge" label="短边" type="number" unit="英尺" auto="extra.site.widthFt" />
+
+<p>每条边有多长，以及总面积有多少平方英尺，决定了您的地块属于尺寸 A–E 中的哪一种：</p>
+
+<table>
+  <caption class="visually-hidden">按长边和短边划分的公园尺寸，单位为英尺</caption>
+  <thead>
+    <tr>
+      <th scope="col">尺寸</th>
+      <th scope="col">长边</th>
+      <th scope="col">短边</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">A</th><td>44–64英尺</td><td>12–16英尺</td></tr>
+    <tr><th scope="row">B</th><td>64–76英尺</td><td>16–28英尺</td></tr>
+    <tr><th scope="row">C</th><td>76–88英尺</td><td>28–40英尺</td></tr>
+    <tr><th scope="row">D</th><td>88–96英尺</td><td>32–48英尺</td></tr>
+    <tr><th scope="row">E</th><td>80–120英尺</td><td>44–60英尺</td></tr>
+  </tbody>
+</table>
+
+<Field
+  id="assess.lot-size"
+  label="您的地块尺寸是……"
+  type="select"
+  options={['A', 'B', 'C', 'D', 'E']}
+  auto="extra.site.sizeId"
+/>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={11} label="准备好了吗？" />

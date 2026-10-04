@@ -19,6 +19,7 @@ import { bbox, type Vec2 } from './geo';
 import type { SnapStep } from './interact';
 import { createSunView } from './sunview';
 import { inscribedRect, type FitArea } from './lotfit';
+import { pt } from './words';
 
 export type PlannerMode = 'full' | 'design' | 'site' | 'sun';
 export type Selection = { kind: 'item' | 'existing'; id: string } | null;
@@ -246,7 +247,7 @@ export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = nu
       if (token !== loadToken) return;
       lot = ctx.lot;
       if (!ctx.lot.polygon || ctx.lot.polygon.length < 3) {
-        $note.set(ctx.note ?? 'This lot has no outline in City records.');
+        $note.set(ctx.note ?? pt()('note.noOutlineShort'));
         $status.set('error');
         return;
       }
@@ -283,7 +284,7 @@ export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = nu
     } catch (e) {
       if (token !== loadToken) return;
       console.error(e);
-      $note.set('Something went wrong loading this lot. Try reloading the page.');
+      $note.set(pt()('note.loadFailed'));
       $status.set('error');
     }
   }
@@ -341,7 +342,7 @@ export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = nu
       .catch((e) => {
         if (String(e?.message) !== 'cancelled') {
           console.error(e);
-          $note.set('The sun study could not finish. Try again.');
+          $note.set(pt()('note.sunFailed'));
         }
       })
       .finally(() => {

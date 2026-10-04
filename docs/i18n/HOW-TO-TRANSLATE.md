@@ -40,6 +40,7 @@ language from the URL. Saved progress is shared: same browser storage, same fiel
 | `workbook` | `src/components/workbook/*`, the chapter page, `src/scripts/bind.ts`, autofill words (`src/lib/autofill.ts`) |
 | `philly` | `src/components/philly/*`, words from `src/lib/philly/plain.ts` (zoning explanations, owner kinds) |
 | `planner` | `src/components/planner/*` and user-facing text in `src/lib/planner/*` |
+| `shade` | The shade calendar in the planner's Sun and shade step (`ShadeCalendar.tsx`, `src/lib/planner/shadewords.ts`); month names and clock times come from Intl |
 | `cost` | `src/components/cost/*`, line names in `src/lib/cost/*` |
 | `plants` | `src/components/plants/*`, `/plants/` page chrome |
 | `parks` | `src/components/parks/*`, `/parks/` |

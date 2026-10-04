@@ -1,0 +1,472 @@
+{
+  "partners": [
+    {
+      "description": "与 PiaT 合作，丰富公园设计的选择。"
+    },
+    {
+      "description": "费城城市规划委员会（Philadelphia City Planning Commission）的教育和外展部门；开设一门为期八周的课程，讲解城市规划和开发是怎样运作的。"
+    },
+    {
+      "description": "资助了第一座 Park in a Truck 公园的本地非营利组织。（工具包里这条致谢的超链接实际指向 communityprogress.org，那是一个全国性的土地银行非营利组织——很可能是原 PDF 里链接和说明对不上，所以在得到确认之前，这里不提供网址。）"
+    },
+    {
+      "description": "服务费城西区的本地房地产经纪公司。"
+    },
+    {
+      "description": "在绿色基础设施方面与 PiaT 合作——如需帮助断开落水管，或在公园里加建雨水花园，可以联系他们。"
+    },
+    {
+      "description": "城市土地保护的领导者；一个为花园和其他开放空间服务的社区土地信托。"
+    },
+    {
+      "description": "社区发展公司合作伙伴（Linktree 上的“PARTNERS”一组）。该网站目前打开是一个损坏的页面——已确认失效，并非拦截了自动检查。"
+    },
+    {
+      "description": "资助方。"
+    },
+    {
+      "description": "许可证、土地和市政府数据方面的合作伙伴。"
+    },
+    {
+      "description": "栖息地和种植方面的合作伙伴。"
+    },
+    {
+      "description": "在几座已建成的公园里，负责栖息地和传粉者花园的合作伙伴。"
+    },
+    {
+      "description": "资助方。"
+    },
+    {
+      "description": "Playful Learning Landscapes 工作手册的合作伙伴。"
+    },
+    {
+      "description": "资助方。"
+    },
+    {
+      "description": "市政府用来改造空置房地产的工具。"
+    }
+  ],
+  "press": [
+    {
+      "title": "Jefferson 通过 Park in a Truck 项目，帮助改变资源匮乏的社区（英文）"
+    },
+    {
+      "title": "Park in a Truck 计划获得 Fast Company 杂志“社会公益”表彰（英文）"
+    },
+    {
+      "title": "Park in a Truck 获得 Green Building United 2020年 Groundbreaker 奖（英文）"
+    },
+    {
+      "title": "“Park in a Truck”就像宜家，只不过是用来建社区公园的（英文）"
+    },
+    {
+      "title": "费城各社区的空地变成了美丽的公园（英文）"
+    },
+    {
+      "title": "Park in a Truck 项目在社区年轻人的帮助下，改变费城的城市绿地（英文）"
+    },
+    {
+      "title": "ASLA 焦点——2025年春季（英文）"
+    },
+    null,
+    {
+      "title": "改变社区，一次一座公园——由社区建设，为社区服务（英文）"
+    },
+    {
+      "title": "Jefferson Park in a Truck 组装说明 #1（英文）"
+    },
+    {
+      "title": "Jefferson Park in a Truck 组装说明 #2（英文）"
+    }
+  ],
+  "supplierGroups": [
+    {
+      "label": "工具租借",
+      "items": [
+        {
+          "note": "手动工具；与 Philadelphia Orchard Project 合作，也开设技能课程。"
+        },
+        {
+          "title": "Diamond Tool（电动工具租借）",
+          "note": "似乎已并入 White Cap；会拦截自动检查。"
+        },
+        {
+          "note": "PiaT 为这家位于宾州 Darby 的租借店列过的两个网址（okrentalsaleservice.com、okrental1.com）现在都打不开了。"
+        }
+      ]
+    },
+    {
+      "label": "废物和回收",
+      "items": [
+        {
+          "note": "3850 W Ford Rd——堆肥、木屑、覆盖物、粪肥，收费很低。"
+        },
+        {
+          "title": "Richard S. Burns & Co.（回收材料）",
+          "note": "4300 Rising Sun Ave——可倾倒废物，也出售回收材料制品。"
+        }
+      ]
+    },
+    {
+      "label": "苗圃和植物",
+      "items": [
+        null,
+        {
+          "note": "本地传粉植物专家。"
+        },
+        {
+          "note": "高品质观赏植物和本土品种；在新泽西州，送货最低消费 $1,250。"
+        },
+        {
+          "note": "本地生态区的生态修复苗木；网站对自动检查返回非标准的响应，但很可能仍在运营。"
+        },
+        {
+          "note": "本地生态区的生态修复苗木。"
+        },
+        null,
+        {
+          "note": "该网站的 TLS 证书目前已过期——浏览器可能会弹出警告。"
+        },
+        {
+          "title": "Burpee——果树"
+        },
+        {
+          "title": "Stark Bro's——果树"
+        },
+        {
+          "title": "Gurney's——水果和浆果"
+        },
+        {
+          "title": "Willis Orchards——果树"
+        },
+        null,
+        {
+          "title": "Philly Orchard Project——资源"
+        }
+      ]
+    },
+    {
+      "label": "木料和建材",
+      "items": [
+        {
+          "note": "4260 Macalester St——园林用品、覆盖物和工具。"
+        },
+        {
+          "note": "701 Washington St, Conshohocken——表土、覆盖物、堆肥。"
+        },
+        null,
+        {
+          "note": "4701 Woodland Ave, Phila."
+        },
+        {
+          "note": "1601 S 49th St, Phila."
+        },
+        {
+          "note": "供应柏木，宾州 Avondale。"
+        },
+        null,
+        {
+          "note": "3301 S 61st St——碎石、表土，可送货。"
+        },
+        {
+          "title": "Rockler——怎样为户外项目选择最好的表面处理（英文）"
+        },
+        {
+          "title": "Real Milk Paint（RMP Finishes）——户外木材最好的表面处理（英文）"
+        },
+        {
+          "title": "Vermont Natural Coatings——户外涂料"
+        },
+        {
+          "title": "Hairpin Legs——床架支架／靠背五金件"
+        }
+      ]
+    },
+    {
+      "label": "石笼和石料",
+      "items": [
+        null,
+        {
+          "note": "会拦截自动检查；域名已注册，网站仍在运营。"
+        },
+        {
+          "title": "怎样建石笼墙（Gardendrum，英文）"
+        }
+      ]
+    },
+    {
+      "label": "操作视频",
+      "items": [
+        {
+          "title": "怎样修剪树木（英文）"
+        },
+        {
+          "title": "怎样种树（英文）"
+        },
+        {
+          "title": "怎样种灌木（英文）"
+        },
+        {
+          "title": "木镶边（英文）"
+        },
+        {
+          "title": "建造石笼墙（英文）"
+        },
+        {
+          "title": "制作公共长桌（英文）"
+        },
+        {
+          "title": "制作冷床（英文）"
+        },
+        {
+          "title": "制作高架种植床（英文）"
+        },
+        {
+          "title": "像专业人士一样修剪（英文）"
+        },
+        {
+          "title": "浇水和雨量计指南（英文）"
+        }
+      ]
+    },
+    {
+      "label": "学习资源",
+      "items": [
+        {
+          "title": "Penn State Extension——土壤检测（英文）"
+        },
+        {
+          "title": "Penn State Extension——土壤肥力检测送样表格（英文）"
+        },
+        {
+          "title": "Penn State Extension——病虫害（英文）"
+        },
+        {
+          "title": "Penn State Extension——园艺大师（Master Gardener）计划（英文）"
+        },
+        {
+          "title": "Missouri Botanical Garden——植物查询（英文）"
+        },
+        null,
+        {
+          "title": "Arbor Day——怎样种容器苗树木（英文）"
+        },
+        {
+          "title": "Arbor Day——果树（英文）"
+        },
+        {
+          "title": "宾夕法尼亚园艺协会（PHS）",
+          "note": "工作坊、社区花园信息、雨水桶计划。"
+        },
+        {
+          "note": "获取和保住地块方面的法律援助、数据和指南。"
+        },
+        null,
+        {
+          "note": "由黑人和棕色人种主导的联盟，致力于让社区掌握土地和食物。"
+        },
+        {
+          "title": "Park Advocate Handbook（NRPA，英文）"
+        },
+        {
+          "title": "The PHS City Parks Handbook（Temple University Press，英文）"
+        },
+        {
+          "title": "Vacant Lot Activation Toolkit（Trust South LA，英文）"
+        },
+        {
+          "title": "Green2015：最初500英亩的行动计划（英文）",
+          "note": "PennPraxis 为费城公园及休闲局（Philadelphia Parks & Recreation）制定的计划。"
+        },
+        {
+          "title": "PlantSnap（识别植物和杂草的应用程序）"
+        },
+        {
+          "title": "Gardener's Path——怎样使用雨量计（英文）"
+        },
+        {
+          "title": "怎样铺覆盖物（SKH，英文）"
+        },
+        {
+          "title": "醋基除草剂（产品示例）",
+          "note": "这是找到的唯一一个介绍这种产品的来源；链接仅作中立参考。"
+        }
+      ]
+    },
+    {
+      "label": "费城市政府项目",
+      "items": [
+        {
+          "title": "Atlas Philadelphia（房地产查询）"
+        },
+        {
+          "title": "费城登记地块业主地图（ArcGIS）"
+        },
+        {
+          "title": "注册社区组织（RCO）"
+        },
+        {
+          "title": "临时禁止停车许可"
+        },
+        {
+          "title": "Green City, Clean Waters——雨水管理／雨水花园补助"
+        }
+      ]
+    }
+  ],
+  "toolkitLibrary": {
+    "intro": "欢迎来到工具包资料库！下面几页按章节整理了许多资源和链接，供您进一步了解。",
+    "sections": [
+      {
+        "title": "简介",
+        "entries": [
+          {
+            "title": "要减少贫困，市议会的工作应当包括更多绿地（The Inquirer，英文）"
+          },
+          {
+            "title": "让我们一次改造一块空地，推动健康和绿地（The Inquirer，英文）"
+          },
+          null,
+          {
+            "title": "只有蜜蜂、各种小东西和花：黑人女性园丁如何在新冠疫情危机中坚持下去（Essence，英文）"
+          },
+          null,
+          null
+        ]
+      },
+      {
+        "title": "01 获取",
+        "entries": [
+          {
+            "title": "The PHS City Parks Handbook（$13.95，英文）"
+          },
+          {
+            "title": "Park Advocate Handbook（免费，英文）"
+          },
+          null,
+          null,
+          {
+            "title": "Green2015：最初500英亩的行动计划（英文）"
+          },
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "title": "02 组织",
+        "entries": [
+          {
+            "title": "The PHS City Parks Handbook（英文）"
+          },
+          {
+            "title": "Vacant Lot Activation Toolkit（Free Lots Angeles，英文）"
+          }
+        ]
+      },
+      {
+        "title": "03 评估",
+        "entries": [
+          {
+            "title": "Penn State Extension——土壤检测（英文）"
+          }
+        ]
+      },
+      {
+        "title": "04 畅想",
+        "entries": [
+          null,
+          null,
+          {
+            "title": "Missouri Botanical Garden 植物查询（英文）"
+          },
+          {
+            "title": "Longwood Gardens 植物搜索（英文）"
+          },
+          null,
+          {
+            "title": "Penn State Master Gardeners——费城种植指南（英文）"
+          }
+        ]
+      },
+      {
+        "title": "05 建造",
+        "entries": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          {
+            "title": "Burpee——果树"
+          },
+          {
+            "title": "Stark Bro's——果树"
+          },
+          {
+            "title": "Gurney's——水果和浆果"
+          },
+          {
+            "title": "Willis Orchards——果树"
+          },
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "title": "06 维护",
+        "entries": [
+          null,
+          null,
+          null,
+          {
+            "title": "Brandywine Conservancy——入侵植物（英文）"
+          },
+          {
+            "title": "怎样种容器苗树木（Arbor Day，英文）"
+          },
+          {
+            "title": "怎样种灌木（视频，英文）"
+          },
+          {
+            "title": "怎样修剪树木（视频，英文）"
+          },
+          {
+            "title": "怎样修剪灌木（Gardeners' World，英文）"
+          },
+          {
+            "title": "Arbor Day Foundation——果树（英文）"
+          },
+          null,
+          {
+            "title": "堆肥基础知识（视频，英文）"
+          },
+          {
+            "title": "施肥（Penn State Extension，英文）"
+          },
+          {
+            "title": "怎样给花园铺覆盖物（Good Housekeeping，英文）"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgments": {
+    "lead": "Thomas Jefferson University 景观建筑项目和社会与城市创新实验室",
+    "note": "本网站经 Park in a Truck／Thomas Jefferson University 许可，把 Park in a Truck 自己的工具包、工作手册和植物清单做成了一个有引导的互动版本。所有原始文字、插图和照片都归他们所有。"
+  },
+  "legal": {
+    "title": "法律声明",
+    "text": "本文中的建议，以制作和施工的标准做法为依据。对于因使用这些建议而造成的任何损害、人身伤害或财产损失，Thomas Jefferson University（TJU）、TJU 社会创新实验室（Lab For Social Innovation）、Park-in-a-Truck，和／或其教职员工或相关人员，在任何情况下均不承担责任。Thomas Jefferson University（TJU）、TJU 社会创新实验室、Park-in-a-Truck，或其教职员工和／或相关人员，不作任何明示或默示的保证，并在此否认和排除所有其他保证，包括但不限于对适销性、特定用途适用性、不侵犯知识产权或不侵犯其他权利的默示保证或条件。此外，Thomas Jefferson University（TJU）、TJU 社会创新实验室、Park-in-a-Truck，和／或其教职员工或相关人员，对使用这些建议的准确性、可能的结果或可靠性，不作任何保证或陈述。使用这些建议，即表示您认可以上内容。"
+  }
+}

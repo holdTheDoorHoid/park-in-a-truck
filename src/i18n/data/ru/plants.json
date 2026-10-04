@@ -1,0 +1,457 @@
+{
+  "edible-small-tree-both-serviceberry": {
+    "common": "Ирга",
+    "notes": "Съедобные части: плоды",
+    "matureSize": "20–30 фт"
+  },
+  "edible-small-tree-both-redbud": {
+    "common": "Церцис канадский",
+    "notes": "Съедобные части: цветки; Сорт: Forest Pansy",
+    "matureSize": "20–25 фт"
+  },
+  "edible-small-tree-both-apple": {
+    "common": "Яблоня",
+    "notes": "Съедобные части: плоды; Сорт: Enterprise",
+    "matureSize": "10–20 фт"
+  },
+  "edible-small-tree-both-peach": {
+    "common": "Персик",
+    "notes": "Съедобные части: плоды; Сорт: Contender",
+    "matureSize": "10–20 фт"
+  },
+  "edible-small-tree-both-pear": {
+    "common": "Груша",
+    "notes": "Съедобные части: плоды; Сорт: Golden Russet bosc",
+    "matureSize": "10–20 фт"
+  },
+  "edible-small-tree-both-plum": {
+    "common": "Слива",
+    "notes": "Съедобные части: плоды; Сорт: Methly",
+    "matureSize": "10–20 фт"
+  },
+  "edible-shrub-sun-red-currant": {
+    "common": "Красная смородина",
+    "notes": "Съедобные части: плоды; Сорт: Red Lake",
+    "matureSize": "3–4 фт"
+  },
+  "edible-shrub-sun-gooseberry": {
+    "common": "Крыжовник",
+    "notes": "Съедобные части: плоды; Сорт: Black Velvet",
+    "matureSize": "3–4 фт"
+  },
+  "edible-shrub-sun-pasture-rose": {
+    "common": "Шиповник каролинский",
+    "notes": "Съедобные части: плоды шиповника, лепестки",
+    "matureSize": "3–4 фт"
+  },
+  "edible-shrub-sun-low-bush-blueberry": {
+    "common": "Голубика узколистная",
+    "notes": "Съедобные части: плоды; Сорт: Chippewa",
+    "matureSize": "2–3 фт"
+  },
+  "edible-perennial-sun-strawberries": {
+    "common": "Садовая земляника (клубника)",
+    "notes": "Съедобные части: плоды; Сорт: Sweet Kiss",
+    "matureSize": "6 дюйм."
+  },
+  "edible-perennial-sun-virginia-strawberry": {
+    "common": "Земляника виргинская",
+    "notes": "Съедобные части: цветки",
+    "matureSize": "1–2 фт"
+  },
+  "edible-perennial-sun-rudbeckia": {
+    "common": "Рудбекия"
+  },
+  "edible-perennial-sun-prairie-dropseed": {
+    "common": "Спороболус разночешуйный"
+  },
+  "edible-perennial-sun-hairy-field-aster": {
+    "common": "Астра волосистая"
+  },
+  "edible-perennial-sun-sedum": {
+    "common": "Очиток",
+    "notes": "Сорт: Larinem Park"
+  },
+  "edible-shrub-shade-red-twig-dogwood": {
+    "common": "Дёрен отпрысковый (красный)",
+    "notes": "Сорт: Arctic Fire"
+  },
+  "edible-shrub-shade-arrowwood-viburnum": {
+    "common": "Калина зубчатая"
+  },
+  "edible-shrub-shade-lowbush-blueberry": {
+    "common": "Голубика узколистная"
+  },
+  "edible-shrub-shade-mountain-laurel": {
+    "common": "Кальмия широколистная",
+    "notes": "Сорт: Pink Charm"
+  },
+  "edible-perennial-shade-lady-fern": {
+    "common": "Кочедыжник женский"
+  },
+  "edible-perennial-shade-wild-geranium": {
+    "common": "Герань пятнистая"
+  },
+  "edible-perennial-shade-cinnamon-fern": {
+    "common": "Осмунда коричная"
+  },
+  "edible-perennial-shade-jacobs-ladder": {
+    "common": "Синюха ползучая"
+  },
+  "edible-perennial-shade-pennsylvania-sedge": {
+    "common": "Осока пенсильванская"
+  },
+  "edible-perennial-shade-hayscented-fern": {
+    "common": "Деннштедтия (папоротник с запахом сена)"
+  },
+  "edible-perennial-shade-coral-bells": {
+    "common": "Гейхера американская"
+  },
+  "sanctuary-large-tree-both-burr-oak": {
+    "common": "Дуб крупноплодный",
+    "notes": "Для чувств: красивое ветвление",
+    "matureSize": "50–70 фт"
+  },
+  "sanctuary-large-tree-both-sweet-birch": {
+    "common": "Берёза вишнёвая",
+    "notes": "Для чувств: чудесные душистые цветки",
+    "matureSize": "30–50 фт"
+  },
+  "sanctuary-small-tree-sun-washington-hawthorne": {
+    "common": "Боярышник вашингтонский",
+    "notes": "Для чувств: ярко-красные плоды",
+    "matureSize": "15–20 фт"
+  },
+  "sanctuary-small-tree-sun-sourwood": {
+    "common": "Оксидендрум древовидный",
+    "notes": "Для чувств: рано окрашивается осенью",
+    "matureSize": "15–20 фт"
+  },
+  "sanctuary-small-tree-sun-fringetree": {
+    "common": "Снежноцвет виргинский",
+    "notes": "Для чувств: цветёт в июне, душистые цветки",
+    "matureSize": "15–20 фт"
+  },
+  "sanctuary-shrub-sun-summersweet": {
+    "common": "Клетра ольхолистная",
+    "notes": "Для чувств: душистые цветки",
+    "matureSize": "3–4 фт"
+  },
+  "sanctuary-shrub-sun-sweetfern": {
+    "common": "Комптония",
+    "notes": "Для чувств: душистые листья",
+    "matureSize": "1–2 фт"
+  },
+  "sanctuary-shrub-sun-sweetspire": {
+    "common": "Итея виргинская",
+    "notes": "Для чувств: душистые цветки",
+    "matureSize": "3–4 фт"
+  },
+  "sanctuary-shrub-sun-swamp-azalea": {
+    "common": "Азалия клейкая (болотная)",
+    "notes": "Для чувств: душистые цветки",
+    "matureSize": "3–4 фт"
+  },
+  "sanctuary-perennial-sun-blue-false-indigo": {
+    "common": "Баптизия южная",
+    "notes": "Для чувств: гремящие коробочки с семенами",
+    "matureSize": "2–3 фт"
+  },
+  "sanctuary-perennial-sun-wild-bergamot": {
+    "common": "Монарда дудчатая",
+    "notes": "Для чувств: душистые листья",
+    "matureSize": "2–3 фт"
+  },
+  "sanctuary-perennial-sun-sideoats-grama": {
+    "common": "Бутелоуа повислая",
+    "notes": "Для чувств: успокаивающее движение и шелест",
+    "matureSize": "2–3 фт"
+  },
+  "sanctuary-perennial-sun-prairie-dropseed": {
+    "common": "Спороболус разночешуйный",
+    "notes": "Для чувств: душистые листья, мягкие на ощупь",
+    "matureSize": "1–2 фт"
+  },
+  "sanctuary-perennial-sun-aster": {
+    "common": "Астра новоанглийская",
+    "notes": "Для чувств: цветёт осенью",
+    "matureSize": "2–3 фт"
+  },
+  "sanctuary-perennial-sun-moonbeam-tickseed": {
+    "common": "Кореопсис мутовчатый Moonbeam",
+    "notes": "Для чувств: долго цветёт",
+    "matureSize": "2–3 фт"
+  },
+  "sanctuary-perennial-sun-blazing-star": {
+    "common": "Лиатрис колосковый",
+    "notes": "Для чувств: привлекает опылителей",
+    "matureSize": "2–3 фт"
+  },
+  "sanctuary-perennial-sun-tufted-hairgrass": {
+    "common": "Щучка дернистая",
+    "notes": "Для чувств: успокаивающее движение",
+    "matureSize": "1–2 фт"
+  },
+  "sanctuary-small-tree-shade-american-hornbeam": {
+    "common": "Граб каролинский",
+    "notes": "Для чувств: «мускулистая» кора",
+    "matureSize": "15–20 фт"
+  },
+  "sanctuary-small-tree-shade-alternate-leaf-dogwood": {
+    "common": "Дёрен очереднолистный",
+    "notes": "Для чувств: душистые цветки",
+    "matureSize": "15–20 фт"
+  },
+  "sanctuary-small-tree-shade-redbud": {
+    "common": "Церцис канадский",
+    "notes": "Для чувств: цветёт ранней весной",
+    "matureSize": "15–20 фт"
+  },
+  "sanctuary-small-tree-shade-witchhazel": {
+    "common": "Гамамелис виргинский",
+    "notes": "Для чувств: причудливые душистые цветки",
+    "matureSize": "10–15 фт"
+  },
+  "sanctuary-shrub-shade-mountain-laurel": {
+    "common": "Кальмия широколистная",
+    "notes": "Для чувств: вечнозелёный",
+    "matureSize": "2–3 фт"
+  },
+  "sanctuary-shrub-shade-witch-alder": {
+    "common": "Фотергилла Гардена",
+    "notes": "Для чувств: рано цветёт",
+    "matureSize": "3–4 фт"
+  },
+  "sanctuary-shrub-shade-new-jersey-tea": {
+    "common": "Краснокоренник американский",
+    "notes": "Для чувств: мягкий на ощупь",
+    "matureSize": "2–3 фт"
+  },
+  "sanctuary-shrub-shade-virginia-sweetspire": {
+    "common": "Итея виргинская",
+    "notes": "Для чувств: красиво цветёт и красиво окрашивается осенью",
+    "matureSize": "1–2 фт"
+  },
+  "sanctuary-perennial-shade-lady-fern": {
+    "common": "Кочедыжник женский",
+    "notes": "Для чувств: мягкий на ощупь",
+    "matureSize": "2–3 фт"
+  },
+  "sanctuary-perennial-shade-pennsylvania-sedge": {
+    "common": "Осока пенсильванская",
+    "notes": "Для чувств: мягкий на ощупь",
+    "matureSize": "6 дюйм. – 1 фт"
+  },
+  "sanctuary-perennial-shade-cinnamon-fern": {
+    "common": "Осмунда коричная",
+    "notes": "Для чувств: мягкий на ощупь",
+    "matureSize": "2–3 фт"
+  },
+  "sanctuary-perennial-shade-fragrant-golden-rod": {
+    "common": "Золотарник душистый",
+    "notes": "Для чувств: душистые листья",
+    "matureSize": "2–3 фт"
+  },
+  "sanctuary-perennial-shade-shorts-aster": {
+    "common": "Астра Шорта",
+    "notes": "Для чувств: поздно цветёт",
+    "matureSize": "3 фт"
+  },
+  "sanctuary-perennial-shade-columbine": {
+    "common": "Водосбор канадский",
+    "notes": "Для чувств: рано цветёт",
+    "matureSize": "2–3 фт"
+  },
+  "sanctuary-perennial-shade-celadine-poppy": {
+    "common": "Стилофорум двулистный (лесной мак)",
+    "notes": "Для чувств: рано цветёт",
+    "matureSize": "1–2 фт"
+  },
+  "nature-large-tree-both-shingle-oak": {
+    "common": "Дуб черепитчатый"
+  },
+  "nature-large-tree-both-blackgum": {
+    "common": "Нисса лесная"
+  },
+  "nature-large-tree-both-basswood": {
+    "common": "Липа американская"
+  },
+  "nature-small-tree-both-american-hornbeam": {
+    "common": "Граб каролинский"
+  },
+  "nature-small-tree-both-serviceberry": {
+    "common": "Ирга"
+  },
+  "nature-small-tree-both-pagoda-dogwood": {
+    "common": "Дёрен очереднолистный (пагодный)"
+  },
+  "nature-small-tree-both-witchhazel": {
+    "common": "Гамамелис виргинский"
+  },
+  "nature-small-tree-both-blackhaw-viburnum": {
+    "common": "Калина сливолистная"
+  },
+  "nature-shrub-sun-dwarf-summersweet": {
+    "common": "Клетра ольхолистная (карликовая)"
+  },
+  "nature-shrub-sun-sweetfern": {
+    "common": "Комптония"
+  },
+  "nature-shrub-sun-sweetspire": {
+    "common": "Итея виргинская",
+    "notes": "Сорт: Little Henry"
+  },
+  "nature-shrub-sun-eastern-ninebark": {
+    "common": "Пузыреплодник калинолистный"
+  },
+  "nature-shrub-sun-swamp-azalea": {
+    "common": "Азалия клейкая (болотная)"
+  },
+  "nature-perennial-sun-bluestar": {
+    "common": "Амсония",
+    "notes": "Сорт: Storm Cloud"
+  },
+  "nature-perennial-sun-sideoats-grama": {
+    "common": "Бутелоуа повислая"
+  },
+  "nature-perennial-sun-wild-bergamot": {
+    "common": "Монарда дудчатая"
+  },
+  "nature-perennial-sun-narrow-leaf-mountainmint": {
+    "common": "Пикнантемум тонколистный (горная мята)"
+  },
+  "nature-perennial-sun-rudbeckia": {
+    "common": "Рудбекия"
+  },
+  "nature-perennial-sun-prairie-dropseed": {
+    "common": "Спороболус разночешуйный"
+  },
+  "nature-perennial-sun-hairy-field-aster": {
+    "common": "Астра волосистая"
+  },
+  "nature-perennial-sun-sedum": {
+    "common": "Очиток",
+    "notes": "Сорт: Larinem Park"
+  },
+  "nature-shrub-shade-red-twig-dogwood": {
+    "common": "Дёрен отпрысковый (красный)",
+    "notes": "Сорт: Arctic Fire"
+  },
+  "nature-shrub-shade-arrowwood-viburnum": {
+    "common": "Калина зубчатая"
+  },
+  "nature-shrub-shade-lowbush-blueberry": {
+    "common": "Голубика узколистная"
+  },
+  "nature-shrub-shade-mountain-laurel": {
+    "common": "Кальмия широколистная",
+    "notes": "Сорт: Pink Charm"
+  },
+  "nature-perennial-shade-lady-fern": {
+    "common": "Кочедыжник женский"
+  },
+  "nature-perennial-shade-wild-geranium": {
+    "common": "Герань пятнистая"
+  },
+  "nature-perennial-shade-cinnamon-fern": {
+    "common": "Осмунда коричная"
+  },
+  "nature-perennial-shade-jacobs-ladder": {
+    "common": "Синюха ползучая"
+  },
+  "nature-perennial-shade-pennsylvania-sedge": {
+    "common": "Осока пенсильванская"
+  },
+  "nature-perennial-shade-hayscented-fern": {
+    "common": "Деннштедтия (папоротник с запахом сена)"
+  },
+  "nature-perennial-shade-coral-bells": {
+    "common": "Гейхера американская"
+  },
+  "event-large-tree-both-scarlet-oak": {
+    "common": "Дуб шарлаховый",
+    "matureSize": "40–50 фт"
+  },
+  "event-large-tree-both-american-elm": {
+    "common": "Вяз американский",
+    "notes": "Сорт: Princeton",
+    "matureSize": "50–70 фт"
+  },
+  "event-small-tree-both-serviceberry": {
+    "common": "Ирга",
+    "matureSize": "15–20 фт"
+  },
+  "event-small-tree-both-alternate-leaf-dogwood": {
+    "common": "Дёрен очереднолистный",
+    "matureSize": "15–20 фт"
+  },
+  "event-small-tree-both-american-hophornbeam": {
+    "common": "Хмелеграб виргинский",
+    "matureSize": "15–20 фт"
+  },
+  "event-small-tree-both-sassafras": {
+    "common": "Сассафрас беловатый",
+    "matureSize": "25–35 фт"
+  },
+  "event-small-tree-both-redbud": {
+    "common": "Церцис канадский",
+    "notes": "Сорт: Lavender twist",
+    "matureSize": "15–20 фт"
+  },
+  "event-perennial-sun-butterflyweed": {
+    "common": "Ваточник клубневый",
+    "matureSize": "2–3 фт"
+  },
+  "event-perennial-sun-blue-false-indigo": {
+    "common": "Баптизия южная",
+    "matureSize": "2–3 фт"
+  },
+  "event-perennial-sun-plains-coreopsis": {
+    "common": "Кореопсис прерийный",
+    "matureSize": "1–2 фт"
+  },
+  "event-perennial-sun-love-grass": {
+    "common": "Эрагростис замечательный",
+    "matureSize": "2–3 фт"
+  },
+  "event-perennial-sun-black-eyed-susan": {
+    "common": "Рудбекия («черноглазая Сюзанна»)",
+    "matureSize": "2–3 фт"
+  },
+  "event-perennial-sun-wild-pinks": {
+    "common": "Смолёвка каролинская",
+    "matureSize": "1–2 фт"
+  },
+  "event-perennial-sun-fragrant-goldenrod": {
+    "common": "Золотарник душистый",
+    "matureSize": "1–2 фт"
+  },
+  "event-perennial-sun-shorts-aster": {
+    "common": "Астра Шорта",
+    "matureSize": "2–3 фт"
+  },
+  "event-perennial-shade-prairie-onion": {
+    "common": "Лук прерийный",
+    "matureSize": "1–2 фт"
+  },
+  "event-perennial-shade-lady-fern": {
+    "common": "Кочедыжник женский",
+    "matureSize": "1–2 фт"
+  },
+  "event-perennial-shade-bunny-blue-sedge": {
+    "common": "Осока Bunny Blue",
+    "matureSize": "6–12 дюйм."
+  },
+  "event-perennial-shade-allen-bush-green-and-gold": {
+    "common": "Хризогонум виргинский Allen Bush",
+    "matureSize": "6–12 дюйм."
+  },
+  "event-perennial-shade-wood-fern": {
+    "common": "Щитовник краевой",
+    "matureSize": "1–2 фт"
+  },
+  "event-perennial-shade-wild-geranium": {
+    "common": "Герань пятнистая",
+    "matureSize": "1–2 фт"
+  }
+}

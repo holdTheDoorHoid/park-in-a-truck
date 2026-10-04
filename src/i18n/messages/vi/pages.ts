@@ -1,0 +1,115 @@
+// Tiếng Việt — nội dung các trang riêng (trang chủ, danh sách các bước…). Bảng thuật ngữ: docs/i18n/glossary.md
+import type en from '../en/pages.ts';
+import type { Translation } from '../../define.ts';
+
+export default {
+  'home.eyebrow': 'Cẩm nang tự làm công viên khu phố',
+  'home.title': 'Biến một lô đất trống thành công viên của khu phố bạn.',
+  'home.lede':
+    'Park in a Truck đi cùng bạn và hàng xóm qua từng bước — tìm lô đất, lập nhóm, thiết kế công viên, xây dựng và giữ cho nó luôn đẹp. Trang web này biến cẩm nang thành một sổ tay thực hành có hướng dẫn, có tương tác, và tự tra cứu thông tin giúp bạn.',
+  'home.start': 'Bắt đầu từ đây →',
+  'home.allSteps': 'Xem cả sáu bước',
+  'home.heroAlt':
+    'Hàng xóm đang dỡ đồ từ một chiếc xe bán tải có chữ Park in a Truck, khiêng một chiếc ghế dài, trồng cây và làm vườn, phía sau là dãy nhà liền kề.',
+  'home.path': 'Con đường của bạn',
+  'home.lotTitle': 'Bạn đã để ý một lô đất?',
+  'home.lotLede':
+    'Hãy gõ một địa chỉ ở Philadelphia. Chúng tôi sẽ tìm chủ sở hữu, diện tích, phân vùng (zoning) và đường ranh của lô đất — bạn không cần lục tìm trên atlas.phila.gov.',
+  'home.tools': 'Công cụ làm giúp bạn việc tra cứu',
+  'home.tool.lot': 'Tìm lô đất',
+  'home.tool.lot.text': 'Bản đồ đất trống gần bạn, có chủ sở hữu, diện tích và phân vùng.',
+  'home.tool.planner': 'Thiết kế 3D',
+  'home.tool.planner.text': 'Đặt các mảnh ghép công viên của Park in a Truck vào lô đất thật của bạn và xem nắng, bóng râm.',
+  'home.tool.build': 'Hướng dẫn lắp ráp',
+  'home.tool.build.text': 'Hướng dẫn từng bước để đóng ghế dài, bàn, bồn trồng cây, mái che nắng và nhiều thứ khác.',
+  'home.tool.plants': 'Cây trồng',
+  'home.tool.plants.text': 'Danh sách cây bản địa cho từng chủ đề công viên, cho chỗ có nắng và chỗ có bóng râm.',
+  'home.tool.parks': 'Các công viên đã làm',
+  'home.tool.parks.text': 'Xem những gì hàng xóm khắp Philadelphia đã làm được.',
+  'home.tool.myPark': 'Công viên của tôi',
+  'home.tool.myPark.text': 'Câu trả lời của bạn, lưu trong trình duyệt này. Chia sẻ một bản với ban công viên.',
+
+  'steps.title': 'Các bước',
+  'steps.eyebrow': 'Quy trình Park in a Truck',
+  'steps.h1': 'Sáu bước để có một công viên',
+  'steps.lede':
+    'Mọi công viên Park in a Truck đều đi qua sáu bước giống nhau. Hãy làm theo thứ tự — mỗi bước dựa trên bước trước. Đánh dấu các bước nhỏ đã xong khi bạn làm; tiến độ của bạn được lưu trong trình duyệt này.',
+
+  'lot.title': 'Tìm lô đất',
+  'lot.description': 'Tra chủ sở hữu, diện tích, phân vùng (zoning) và tình trạng bỏ trống của bất kỳ lô đất nào ở Philadelphia, và xem đất trống trên bản đồ.',
+  'lot.eyebrow': 'Bước 1 · Có được đất',
+  'lot.h1': 'Tìm lô đất',
+  'lot.lede':
+    'Hãy gõ một địa chỉ, hoặc xem bản đồ đất trống. Trang web kiểm tra cùng hồ sơ của Thành phố mà atlas.phila.gov hiển thị — chủ sở hữu, diện tích, phân vùng, tình trạng bỏ trống — và cho bạn biết cỡ Park in a Truck nào vừa.',
+  'lot.lookupH2': 'Tra một địa chỉ',
+  'lot.mapH2': 'Đất trống gần bạn',
+  'lot.mapText':
+    'Những lô đất mà Thành phố ghi là đất trống, tô màu theo chủ sở hữu. Bấm vào một lô để xem chủ sở hữu và diện tích, rồi lưu làm lô đất công viên của bạn hoặc thêm vào danh sách. Bạn cũng nên đi bộ quanh dãy phố — danh sách của Thành phố bỏ sót một số lô và có cả những lô đã đang được dùng.',
+  'lot.compareH2': 'So sánh các lô đất có thể dùng',
+  'lot.nextH2': 'Các bước tiếp theo',
+  'lot.next.owner.title': 'Ai là chủ lô đất đó?',
+  'lot.next.owner.text': 'Chủ sở hữu công hay tư nhân — những cách để có quyền làm công viên.',
+  'lot.next.organize.title': 'Tổ chức',
+  'lot.next.organize.text': 'Các tổ chức cộng đồng, trường học, vườn và những điểm mạnh khác gần lô đất của bạn.',
+  'lot.next.assess.title': 'Khảo sát',
+  'lot.next.assess.text': 'Chiều dài các cạnh đã đo, bản đồ nền để in, cây xanh và các tòa nhà kế bên.',
+  'lot.next.planner.title': 'Thiết kế 3D',
+  'lot.next.planner.text': 'Đặt các mảnh ghép công viên vào lô đất của bạn và xem nắng, bóng râm.',
+
+  'myPark.title': 'Công viên của tôi',
+  'myPark.eyebrow': 'Lưu trong trình duyệt này',
+  'myPark.lede':
+    'Mọi thứ bạn điền trên trang web này được lưu ở đây, chỉ trên thiết bị này — không cần tài khoản, không gửi đi đâu cả. Để làm việc cùng ban công viên, hãy lưu một tệp dự án và gửi cho họ; họ có thể mở tệp ở đây trên thiết bị của mình.',
+  'myPark.storageWarning':
+    'Trình duyệt này không cho trang web lưu gì cả (cửa sổ ẩn danh hoặc dữ liệu trang web bị chặn). Hãy lưu một tệp dự án trước khi rời trang, nếu không câu trả lời của bạn sẽ bị mất.',
+  'myPark.thisProject': 'Dự án này',
+  'myPark.nameLabel': 'Tên',
+  'myPark.saveFile': '⬇ Lưu tệp dự án',
+  'myPark.openFile': '⬆ Mở một tệp dự án',
+  'myPark.printEverything': '🖨 In tất cả',
+  'myPark.allProjects': 'Tất cả dự án',
+  'myPark.newProjectPlaceholder': 'Tên dự án mới',
+  'myPark.newProject': '+ Dự án mới',
+  'myPark.progress': 'Tiến độ',
+  'myPark.yourLot': 'Lô đất của bạn',
+  'myPark.noLotYet': 'Chưa chọn lô đất nào. Hãy tra một lô ở <a href="{href}">Bước 1: Có được đất</a>.',
+  'myPark.yourAnswers': 'Câu trả lời của bạn',
+  'myPark.nothingFilledIn': 'Chưa điền gì cả.',
+
+  'planner.title': 'Thiết kế 3D',
+  'planner.description':
+    'Đặt các mảnh ghép công viên của Park in a Truck vào lô đất thật của bạn ở Philadelphia, xem nắng và bóng râm, và đếm mọi thứ cho bảng ước tính chi phí và danh sách cây.',
+  'planner.h1': 'Thiết kế công viên của bạn bằng 3D',
+  'planner.loading': 'Đang tải công cụ thiết kế…',
+  'planner.noscript': 'Công cụ thiết kế 3D cần bật JavaScript.',
+
+  'resources.title': 'Tài liệu, đối tác & báo chí',
+  'resources.description':
+    'Đối tác, báo chí viết về Park in a Truck, nhà cung cấp, toàn bộ Thư viện của cẩm nang, thông tin liên lạc và thông báo pháp lý.',
+  'resources.eyebrow': 'Ngoài các sổ tay thực hành',
+  'resources.lede':
+    'Ai giúp làm nên những công viên này, ai đã viết về chúng, mua vật liệu và cây ở đâu, và cách liên lạc với nhóm Park in a Truck.',
+  'resources.sectionsNav': 'Các mục trên trang này',
+  'resources.sections.partners': 'Đối tác',
+  'resources.sections.press': 'Báo chí & video nổi bật',
+  'resources.sections.suppliers': 'Nhà cung cấp & liên kết hữu ích',
+  'resources.sections.toolkitLibrary': 'Thư viện của cẩm nang',
+  'resources.sections.contact': 'Liên lạc',
+  'resources.sections.acknowledgments': 'Lời cảm tạ',
+  'resources.sections.legal': 'Thông báo pháp lý',
+  'resources.deadHeadsUp': 'Lưu ý',
+  'resources.deadLinks': {
+    other: 'Có {count} liên kết trên trang này hiện không vào được (kiểm tra ngày {date}) — vẫn giữ lại ở đây thay vì lặng lẽ bỏ đi, và có đánh dấu bên dưới.',
+  },
+  'resources.status.dead': 'liên kết hiện không vào được',
+  'resources.status.unverified': 'chưa kiểm tra tự động được',
+  'resources.status.unconfirmed': 'chưa xác nhận',
+  'resources.partnersIntro': 'Những tổ chức góp phần làm nên các công viên Park in a Truck.',
+  'resources.videoAlt': 'Video: {title}',
+  'resources.suppliersIntro': 'Lấy từ các liên kết trong chính các sổ tay thực hành, xếp nhóm theo công dụng (phần lớn bằng tiếng Anh).',
+  'resources.contact.email': 'Email:',
+  'resources.contact.founder': 'Người sáng lập:',
+  'resources.contact.phone': 'Điện thoại:',
+  'resources.contact.instagram': 'Instagram:',
+  'resources.contact.facebook': 'Facebook:',
+} satisfies Translation<typeof en>;

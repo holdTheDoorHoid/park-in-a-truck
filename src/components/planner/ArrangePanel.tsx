@@ -7,6 +7,7 @@ import { addItem, resetTemplate } from '../../lib/planner/design';
 import { addPlacement } from '../../lib/planner/interact';
 import { deleteSelected, duplicateSelected, nudgeSelected, rotateSelected } from './keyboard';
 import { itemWhere, uniqueLabels } from '../../lib/planner/where';
+import { plannerLang, pt, type PlannerKey } from '../../lib/planner/words';
 
 /** A touch screen (no mouse, usually no keyboard): touch wording instead of keys and Shift. */
 const touchFirst = () => typeof matchMedia !== 'undefined' && matchMedia('(pointer: coarse)').matches;
@@ -18,6 +19,7 @@ const touchFirst = () => typeof matchMedia !== 'undefined' && matchMedia('(point
  */
 function startPaletteDrag(store: PlannerStore, e: PointerEvent, element: string, label: string, suppressClick: { current: boolean }) {
   if (e.pointerType === 'touch' || e.button !== 0) return;
+  const t = pt();
   const sx = e.clientX;
   const sy = e.clientY;
   let dragging = false;
@@ -28,7 +30,10 @@ function startPaletteDrag(store: PlannerStore, e: PointerEvent, element: string,
       dragging = true;
       tag = document.createElement('div');
       tag.className = 'pl-drag-tag';
-      tag.textContent = `+ ${label}`;
+      const ld = plannerLang(t);
+      tag.lang = ld.lang;
+      tag.dir = ld.dir;
+      tag.textContent = t('common.add', { name: label });
       document.body.appendChild(tag);
       document.documentElement.classList.add('pl-palette-dragging');
     }
@@ -36,7 +41,7 @@ function startPaletteDrag(store: PlannerStore, e: PointerEvent, element: string,
     const over = store.bridge.viewport?.dropPreview(element, ev.clientX, ev.clientY) ?? false;
     if (tag) {
       tag.classList.toggle('is-over', over);
-      tag.textContent = over ? 'Let go to put it here · Esc cancels' : `+ ${label}`;
+      tag.textContent = over ? t('arrange.dropHere') : t('common.add', { name: label });
       // keep the label on screen: flip it to the left of the pointer near the right edge
       const left = ev.clientX + 14 + tag.offsetWidth > window.innerWidth - 8 ? ev.clientX - 14 - tag.offsetWidth : ev.clientX + 14;
       tag.style.transform = `translate(${Math.max(4, left)}px, ${ev.clientY + 12}px)`;
@@ -70,7 +75,13 @@ function startPaletteDrag(store: PlannerStore, e: PointerEvent, element: string,
   window.addEventListener('keydown', key, true);
 }
 
-const SOURCE: Record<string, string> = { frame: 'frame', front: 'front', back: 'back', added: 'added by you' };
+const SOURCE: Record<string, PlannerKey> = { frame: 'arrange.sourceFrame', front: 'arrange.sourceFront', back: 'arrange.sourceBack', added: 'arrange.sourceAdded' };
+const GROUP: Record<'frame' | 'front' | 'back' | 'added', PlannerKey> = {
+  frame: 'arrange.groupFrame',
+  front: 'arrange.groupFront',
+  back: 'arrange.groupBack',
+  added: 'arrange.groupAdded',
+};
 
 export function ArrangePanel({ store }: { store: PlannerStore }) {
   const d = useStore(store.$design);
@@ -81,6 +92,7 @@ export function ArrangePanel({ store }: { store: PlannerStore }) {
   const overhang = useStore(store.$overhang);
   const suppressClick = useRef(false);
   if (!d || !layout) return null;
+  const t = pt();
   const item = sel?.kind === 'item' ? layout.items.find((i) => i.id === sel.id) : undefined;
   const step = snap || 1;
   const changes = d.added.length + d.removed.length + Object.keys(d.moved).length;
@@ -100,22 +112,22 @@ export function ArrangePanel({ store }: { store: PlannerStore }) {
   return (
     <section class="pl-section">
       <div class="pl-row pl-tools-row">
-        <button type="button" class="btn btn-small" disabled={!hist.canUndo} onClick={store.undo} title="Undo (Ctrl+Z)">
-          ↶ Undo
+        <button type="button" class="btn btn-small" disabled={!hist.canUndo} onClick={store.undo} title={t('arrange.undoTitle')}>
+          {t('arrange.undo')}
         </button>
-        <button type="button" class="btn btn-small" disabled={!hist.canRedo} onClick={store.redo} title="Redo (Ctrl+Shift+Z)">
-          ↷ Redo
+        <button type="button" class="btn btn-small" disabled={!hist.canRedo} onClick={store.redo} title={t('arrange.redoTitle')}>
+          {t('arrange.redo')}
         </button>
-        <div class="pl-seg pl-seg-small" role="group" aria-label="Snap to grid">
-          <span class="pl-small">Snap</span>
+        <div class="pl-seg pl-seg-small" role="group" aria-label={t('arrange.snapGroup')}>
+          <span class="pl-small">{t('arrange.snap')}</span>
           <button type="button" aria-pressed={snap === 1} onClick={() => store.$snap.set(1)}>
-            1 ft
+            {t('common.ft', { ft: 1 })}
           </button>
           <button type="button" aria-pressed={snap === 4} onClick={() => store.$snap.set(4)}>
-            4 ft
+            {t('common.ft', { ft: 4 })}
           </button>
-          <button type="button" aria-pressed={snap === 0} onClick={() => store.$snap.set(0)} title="Move freely, not on the grid">
-            Off
+          <button type="button" aria-pressed={snap === 0} onClick={() => store.$snap.set(0)} title={t('arrange.snapOffTitle')}>
+            {t('arrange.snapOff')}
           </button>
         </div>
       </div>
@@ -124,53 +136,47 @@ export function ArrangePanel({ store }: { store: PlannerStore }) {
         <div class="pl-card pl-selected">
           <h3 class="pl-h">{catalogEntry(item.element).name}</h3>
           <p class="pl-small muted">
-            {Math.round(item.w * 10) / 10} × {Math.round(item.h * 10) / 10} ft · {SOURCE[item.source ?? ''] ?? item.source} · {where(item)}
+            {t('arrange.itemFacts', {
+              dims: t('common.dims', { length: Math.round(item.w * 10) / 10, width: Math.round(item.h * 10) / 10 }),
+              source: SOURCE[item.source ?? ''] ? t(SOURCE[item.source ?? '']!) : item.source,
+              where: where(item),
+            })}
           </p>
-          {overhang?.items.includes(item.id) && <p class="pl-warn">This sticks out past the lot line.</p>}
+          {overhang?.items.includes(item.id) && <p class="pl-warn">{t('arrange.sticksOut')}</p>}
           <div class="pl-row">
-            <div class="pl-pad" role="group" aria-label="Move">
-              <button type="button" class="pl-tool" aria-label="Move toward the entrance" onClick={() => nudgeSelected(store, -step, 0)}>
+            {/* the arrows point the way the item moves on a plan with the entrance on the left: they stay left to right in every language */}
+            <div class="pl-pad" role="group" aria-label={t('arrange.move')} dir="ltr">
+              <button type="button" class="pl-tool" aria-label={t('arrange.moveFront')} onClick={() => nudgeSelected(store, -step, 0)}>
                 ←
               </button>
-              <button type="button" class="pl-tool" aria-label="Move left" onClick={() => nudgeSelected(store, 0, step)}>
+              <button type="button" class="pl-tool" aria-label={t('arrange.moveLeft')} onClick={() => nudgeSelected(store, 0, step)}>
                 ↑
               </button>
-              <button type="button" class="pl-tool" aria-label="Move right" onClick={() => nudgeSelected(store, 0, -step)}>
+              <button type="button" class="pl-tool" aria-label={t('arrange.moveRight')} onClick={() => nudgeSelected(store, 0, -step)}>
                 ↓
               </button>
-              <button type="button" class="pl-tool" aria-label="Move toward the back" onClick={() => nudgeSelected(store, step, 0)}>
+              <button type="button" class="pl-tool" aria-label={t('arrange.moveBack')} onClick={() => nudgeSelected(store, step, 0)}>
                 →
               </button>
             </div>
             <button type="button" class="btn btn-small" onClick={() => rotateSelected(store)}>
-              ↻ Turn
+              {t('action.turn')}
             </button>
-            <button type="button" class="btn btn-small" onClick={() => duplicateSelected(store)} title="Put a copy right next to it (Ctrl+D)">
-              ⧉ Duplicate
+            <button type="button" class="btn btn-small" onClick={() => duplicateSelected(store)} title={t('action.duplicateTitle')}>
+              {t('action.duplicate')}
             </button>
             <button type="button" class="btn btn-small pl-danger" onClick={() => deleteSelected(store)}>
-              Remove
+              {t('arrange.remove')}
             </button>
           </div>
-          {touch ? (
-            <p class="pl-small muted">Drag it to move it, or drag the round handle to turn it (it turns a quarter at a time). Hold your finger on it for more.</p>
-          ) : (
-            <p class="pl-small muted">
-              Drag it to move it, or drag the round handle to turn it (it turns in steps; hold Shift to turn freely). Keys: arrows move, R
-              turns, Ctrl+D duplicates, Delete removes, Esc lets go.
-            </p>
-          )}
+          <p class="pl-small muted">{t(touch ? 'arrange.helpTouch' : 'arrange.helpMouse')}</p>
         </div>
       ) : (
-        <p class="pl-small">
-          <strong>Drag</strong> anything in the park to move it. {touch ? 'Tap' : 'Click'} it to pick it, then drag its <strong>round handle</strong> to turn it.
-          {touch ? ' Hold your finger on it for more.' : ' Right-click it (or hold your finger on it) for more.'} Switch to <em>Plan</em> view to see it like the paper
-          pieces.
-        </p>
+        <p class="pl-small" dangerouslySetInnerHTML={{ __html: t.html(touch ? 'arrange.introTouch' : 'arrange.introMouse') }} />
       )}
 
       <label class="pl-field">
-        <span class="pl-small">Or pick from the list</span>
+        <span class="pl-small">{t('arrange.pickList')}</span>
         <select
           data-pl-items=""
           data-pl-after-remove=""
@@ -180,13 +186,13 @@ export function ArrangePanel({ store }: { store: PlannerStore }) {
             store.$selection.set(v ? { kind: 'item', id: v } : null);
           }}
         >
-          <option value="">— nothing picked —</option>
+          <option value="">{t('arrange.nothingPicked')}</option>
           {(['frame', 'front', 'back', 'added'] as const).map((src) => {
             const its = layout.items.filter((i) => (i.source ?? 'added') === src);
             if (!its.length) return null;
-            const labels = uniqueLabels(its.map((i) => `${catalogEntry(i.element).name} — ${where(i)}`));
+            const labels = uniqueLabels(its.map((i) => t('arrange.itemOption', { name: catalogEntry(i.element).name, where: where(i) })));
             return (
-              <optgroup label={src === 'added' ? 'Added by you' : `${src[0]!.toUpperCase()}${src.slice(1)} piece`}>
+              <optgroup label={t(GROUP[src])}>
                 {its.map((i, k) => (
                   <option value={i.id}>{labels[k]}</option>
                 ))}
@@ -196,13 +202,11 @@ export function ArrangePanel({ store }: { store: PlannerStore }) {
         </select>
       </label>
 
-      <h3 class="pl-h">Add to your park</h3>
-      <p class="pl-small muted">
-        {touch ? 'Tap one to add it in the middle of the park, then drag it into place.' : 'Drag one onto the park to put it where you want, or click it to add it in the middle.'}
-      </p>
+      <h3 class="pl-h">{t('arrange.addTitle')}</h3>
+      <p class="pl-small muted">{t(touch ? 'arrange.addTouch' : 'arrange.addMouse')}</p>
       {palette().map((g, i) => (
         <details class="pl-palette" open={i === 0}>
-          <summary>{g.group}</summary>
+          <summary>{g.label}</summary>
           <div class="pl-chips">
             {g.items.map((e) => (
               <button
@@ -211,7 +215,7 @@ export function ArrangePanel({ store }: { store: PlannerStore }) {
                 onClick={() => add(e.id)}
                 onPointerDown={(ev) => startPaletteDrag(store, ev as PointerEvent, e.id, e.name, suppressClick)}
               >
-                + {e.name} <span class="pl-dim">{e.w} × {e.h} ft</span>
+                {t('common.add', { name: e.name })} <span class="pl-dim">{t('common.dims', { length: e.w, width: e.h })}</span>
               </button>
             ))}
           </div>
@@ -219,7 +223,8 @@ export function ArrangePanel({ store }: { store: PlannerStore }) {
       ))}
 
       <p class="pl-small" style={{ marginTop: '14px' }}>
-        {changes ? `${changes} change${changes > 1 ? 's' : ''} from the Park in a Truck design. ` : 'This is the starting Park in a Truck layout. '}
+        {changes ? t('arrange.changes', { count: changes }) : t('arrange.noChanges')}
+        {changes > 0 && ' '}
         {changes > 0 && (
           <button
             type="button"
@@ -230,7 +235,7 @@ export function ArrangePanel({ store }: { store: PlannerStore }) {
               store.$selection.set(null);
             }}
           >
-            Start over from the Park in a Truck layout (Undo brings your changes back)
+            {t('arrange.startOver')}
           </button>
         )}
       </p>

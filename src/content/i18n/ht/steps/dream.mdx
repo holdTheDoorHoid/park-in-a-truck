@@ -1,0 +1,398 @@
+---
+title: Reve
+intro: Fè desen pak ou a ak moso Park in a Truck yo, ou ka melanje epi konbine jan ou vle.
+sources:
+  - Gid la (Toolkit), paj 39–55 (Reve, Desen pa tèm, Moso pak yo, Melanje epi konbine)
+  - Kaye travay Reve, paj 1–20
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Choice from '../../../../components/workbook/Choice.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import Download from '../../../../components/workbook/Download.astro';
+import Planner from '../../../../components/widgets/Planner.astro';
+import CostEstimator from '../../../../components/widgets/CostEstimator.astro';
+import PlantPicker from '../../../../components/widgets/PlantPicker.astro';
+import { ELEMENTS } from '../../../../data/elements';
+import { THEMES, THEME_ORDER } from '../../../../data/themes';
+import { SIZES } from '../../../../lib/sizing';
+import { urlFor } from '../../../../i18n/url.ts';
+export const u = urlFor('ht');
+import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
+
+export const THEME_REQUIREMENTS = {
+  edible: { trees: 'Pa anpil oswa pa gen pyebwa', sun: 'Plen solèy oswa plis solèy', lot: 'Bon pou yon teren nan kwen', volunteers: 'Volontè ki patisipe souvan' },
+  sanctuary: { trees: 'Nenpòt kantite pyebwa', sun: 'Nenpòt kantite solèy', lot: 'Teren nan mitan blòk oswa nan kwen', volunteers: 'Pa bezwen anpil volontè' },
+  nature: { trees: 'Bon pou teren ki gen pyebwa', sun: 'Nenpòt kantite solèy', lot: 'Teren nan mitan blòk oswa nan kwen', volunteers: 'Pa bezwen anpil patisipasyon' },
+  event: { trees: 'Youn/de pyebwa oswa plizyè pyebwa', sun: 'Nenpòt kantite solèy', lot: 'Bon pou yon teren nan kwen', volunteers: 'Yon kantite volontè mwayen' },
+};
+
+{/* Translation only: the English chapter reads theme and element names from the English data; these are the same words as src/i18n/data/ht/themes.json and elements.json, with the English as fallback. */}
+export const THEME_TEXT = {
+  edible: { name: 'Manje', blurb: 'Pataje manje epi fè lyen ak vwazen — fwi, legim ak yon gwo tab pou tout moun.' },
+  sanctuary: { name: 'Refij', blurb: 'Yon kote ki kalm pou w poze poukont ou, li liv epi fè ti rankont.' },
+  nature: { name: 'Lanati', blurb: 'Plant natif, kote pou bèt viv, ak jwèt pou timoun ak polinizatè.' },
+  event: { name: 'Evènman', blurb: 'Espas pou spektak, mache ak fèt nan katye a.' },
+};
+export const ELEMENT_NAMES = {
+  'gabion-wall': 'Mi gabyon', 'gabion-bench': 'Ban gabyon ak tèt an bwa', 'gabion-bench-8': "Ban gabyon 8' ak tèt an bwa",
+  'bench-back': 'Ban ak do', 'bench-4': "Ban 4' (san do)", stool: 'Tabourè', 'table-2': "Tab 2'", 'table-4': "Tab 4'", 'table-6': "Tab 6'",
+  'planter-18': 'Bwat plant 18" (piti)', 'planter-24': 'Bwat plant 24" (gwo)', 'shade-canopy': 'Abri lonbraj', stage: 'Sèn',
+  workbench: 'Tab travay / tab pou kanpe', 'rain-barrel': 'Barik dlo lapli', 'compost-bin': 'Bwat konpòs', 'raised-bed': 'Kabann jaden wo',
+  'cold-frame': 'Bwat vit pou plant (cold frame)', 'communal-table': 'Gwo tab pou tout moun', 'event-tent': 'Tant pou evènman',
+  'flexible-seating': 'Chèz ou ka deplase', 'outdoor-classroom': 'Klas deyò', 'nature-play': 'Jwèt nan lanati', birdbath: 'Basen dlo pou zwazo',
+  'bird-accessories': 'Kay zwazo ak manjwa zwazo', shed: 'Ti depo zouti',
+};
+
+{/* The Assemble grid below skips surfaces, plants and existing-conditions markers — only built/bought elements get an assembly link. */}
+export const NOT_BUILT = new Set(['planting-square', 'perennial', 'shrub', 'small-tree', 'large-tree', 'gravel', 'existing-tree', 'downspout', 'wet-area', 'hydrant', 'utility-line']);
+export const ICON_FALLBACK = { 'table-6': 'table-4', 'bench-4': 'bench-back', 'gabion-bench-8': 'gabion-bench' };
+// The workbook's Assemble page shows these elements; newer vocabulary (e.g. cafe-table) has no icon there.
+export const ASSEMBLE_ICONS = new Set(['bench-back','bird-accessories','birdbath','cold-frame','communal-table','compost-bin','event-tent','flexible-seating','gabion-bench','gabion-wall','nature-play','outdoor-classroom','planter-18','planter-24','rain-barrel','raised-bed','shade-canopy','shed','stage','stool','table-2','table-4','workbench']);
+
+{/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — reminds a reader who hasn't recorded a lot agreement yet, before they design and budget for a lot they may not have permission for. */}
+<LotAgreementNotice />
+
+Fè desen yon pak Park in a Truck se tankou achte yon nouvo rad oswa yon kostim. Anvan, ou ale nan magazen an epi ou
+gade manken yo pou chwazi yon estil, yon koulè oswa yon desen ou renmen. Natirèlman, sa ki sanble bèl pandye sou
+etajè a ka pa bon pou ou. Kidonk ou dwe jwenn rad la oswa kostim nan nan yon gwosè ki bon pou ou ak fòm kò w, epi ou
+eseye l. Si li pa bon, ou ka ajiste l. Finalman, ou ajoute akseswa pou fè l vin pa w toutbon.
+
+Menm jan ak lè w ap achte rad, pak ou a dwe mache ak estil ou ak jan ou vle sèvi avè l. Pak ki fèt avèk Park in a Truck yo gen
+kat estil diferan — nou rele yo **tèm**: Manje, Refij, Lanati ak Evènman. Chak tèm pi bon pou yon okazyon oswa yon
+sitiyasyon espesyal.
+
+Kounye a, vrè plezi a kòmanse — imajine pak ou a! Etap sa a kòmanse ak chwazi youn nan kat desen pa tèm yo. Men se
+sèlman kòmansman an: chak tèm gen yon seri **moso pak** ou ka melanje epi konbine, ki pèmèt ou bati yon **pak sou
+mezi**, ki gen gwosè pwòp teren pa w.
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={3} />
+
+## Kat tèm yo {/* #the-four-themes */}
+
+Chak tèm mete aksan sou diferan fason ou ka sèvi ak pak ou a: gen kèk ki bon pou rasanbleman nan katye a, pandan lòt
+yo pi bon pou moun ki vle rete trankil poukont yo. Konpare kantite pyebwa, kantite solèy ak kote teren an ye ou te
+note nan Rezime Evalye a ak kondisyon jeneral ki anba yo.
+
+Kòm chak pak gen twa pati — yon **kad**, yon **moso devan** ak yon **moso dèyè** — ou ka sèvi ak yon sèl tèm pou tout
+pak la, oswa **melanje epi konbine** diferan tèm, menm jan ou ta mete yon chemiz ak yon vès sou yon pantalon.
+
+### Eleman debaz desen an (nan tout tèm)
+
+Kèk eleman kle parèt nan tout kat tèm yo:
+
+- **Mi gabyon.** Kalòj fil fè plen wòch bay pak la yon bòdi ki klè — ou ka plen yo ak materyèl ou jwenn, tankou brik
+  ak moso beton kraze, pou konstriksyon an koute mwens epi li pi dirab.
+- **Ban.** Yon kote pou chita, kominote a ka adapte l fasil. Pentire yo oswa kite tan an fè yo vin gri — tou de bon.
+- **Barik dlo lapli.** Chak pak bezwen dlo. Barik dlo lapli ranmase dlo lapli pou wouze pyebwa ak flè.
+- **Plant.** Plant natif ki atire bèt sovaj, ki ogmante kantite kalite plant ak bèt, epi ki ede konsève lanati.
+
+{THEME_ORDER.map((id) => (
+  <div style={`margin:2.5em 0; border-left: 8px solid ${THEMES[id].frame}; padding-left: 1.2em;`}>
+    <h3 style={`color:${THEMES[id].frame}`}>{THEME_TEXT[id]?.name ?? THEMES[id].name}</h3>
+    <p>{THEME_TEXT[id]?.blurb ?? THEMES[id].blurb}</p>
+    <Figure
+      src={`img/dream/theme-${id}.webp`}
+      alt={`Tèm ${THEME_TEXT[id]?.name ?? THEMES[id].name}: desen pak la an 3D ak an vi anlè, ak moso kad/devan/dèyè yo nan koulè tèm nan`}
+    />
+    <ul class="theme-reqs">
+      <li><strong>Pyebwa:</strong> {THEME_REQUIREMENTS[id].trees}</li>
+      <li><strong>Solèy:</strong> {THEME_REQUIREMENTS[id].sun}</li>
+      <li><strong>Teren:</strong> {THEME_REQUIREMENTS[id].lot}</li>
+      <li><strong>Volontè:</strong> {THEME_REQUIREMENTS[id].volunteers}</li>
+    </ul>
+  </div>
+))}
+
+{/* site-added: Playful Learning is the toolkit's own appendix (linked from its Dream chapter); cross-linking it here matches where the toolkit itself introduces it. */}
+<Callout kind="note" title="W ap fè desen pou timoun tou?">
+  Park in a Truck ap travay ansanm ak **Playful Learning Landscapes**, yon inisyativ ki melanje syans sou jan timoun
+  aprann ak desen pak chak jou — tab pou klase bagay, wou istwa, rakonte istwa ak imaj ak plis ankò, ki mache ak chak
+  nan kat tèm ki anwo yo.
+  [Gade gid Playful Learning lan ↗](/playful-learning/)
+</Callout>
+
+<Field
+  id="dream.theme-reasons"
+  label="Èske gen rezon espesyal ki fè ou pi renmen yon tèm pak pase lòt yo?"
+  type="textarea"
+/>
+<Field
+  id="dream.theme-qualities"
+  label="Èske gen kalite espesyal nan tèm yo ou pi renmen?"
+  type="textarea"
+/>
+<Choice
+  id="dream.preferred-theme"
+  label="Ki tèm pak ou pi renmen?"
+  options={[
+    { value: 'edible', label: 'Manje', color: THEMES.edible.frame },
+    { value: 'sanctuary', label: 'Refij', color: THEMES.sanctuary.frame },
+    { value: 'nature', label: 'Lanati', color: THEMES.nature.frame },
+    { value: 'event', label: 'Evènman', color: THEMES.event.frame },
+    { value: 'mix', label: 'Yon melanj tèm', desc: 'Yon tèm diferan pou kad la, moso devan an ak moso dèyè a' },
+  ]}
+/>
+<Choice
+  id="dream.theme-fits-site"
+  label="Èske tèm ou chwazi a mache ak karakteristik teren an ki sou fèy Rezime Evalye ou a?"
+  options={[
+    { value: 'yes', label: 'Wi', desc: 'Li bon — kontinye' },
+    { value: 'no', label: 'Non', desc: 'Egzamine tèm pak ou a ankò' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={5} />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={6} label="Tèm Manje (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={7} label="Tèm Refij (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={8} label="Tèm Lanati (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={9} label="Tèm Evènman (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={10} label="Ki tèm ki bon pou ou? (PDF)" />
+
+## Moso pak yo ak kijan pou sèvi ak yo {/* #park-pieces-how-to-use-them */}
+
+Modèl desen pak ou a fèt ak diferan eleman — **moso pak** yo. Gen moso DEVAN ak moso DÈYÈ pou anndan pak la, ak yon
+KAD pou mete yo ladan l. Chak moso egziste nan youn nan kat tèm yo, epi ou ka chanje nenpòt moso pou yon lòt, kidonk
+ou ka melanje epi konbine tèm yo oswa chwazi yon sèl tèm pou tout pak la.
+
+Tankou kad ki antoure yon foto fanmi, **kad** la fè bòdi ki antoure anndan pak la — yon bon kote pou antre, pou
+pyebwa ak lòt eleman. Anndan an divize an **moso devan** (ki pi pre antre pak la, kote gwo eleman fiks yo ye) ak
+**moso dèyè** (ki souvan pi louvri, pou itilizasyon ki ka chanje).
+
+Imaj ki nan gid la parèt an vi **akso** 3D, tankou yon foto, pou li fasil pou imajine yo. Pou ou ranje pak ou a
+toutbon, w ap sèvi ak yon vi **plan** plat ki sanble ak yon kat senp — tou de vi yo montre menm bagay yo.
+
+<Figure
+  src="img/dream/park-pieces-frame-front-back.webp"
+  alt="Dyagram ki konpare vi akso (3D) pak la ak vi plan li: yon moso kad mache ansanm ak yon moso devan ak yon moso dèyè pou fè tout pak la, montre kòm blòk 3D youn sou lòt ak kòm yon plan plat"
+/>
+
+<Figure
+  src="img/dream/mix-and-match.webp"
+  alt="Kat pak egzanp, chak youn mete ansanm yon kad, yon moso devan ak yon moso dèyè ki soti nan diferan tèm — evènman, refij, manje ak lanati — pou montre kijan moso yo ka melanje nan yon pakèt konbinezon"
+/>
+
+<Callout kind="auto">
+  Sou papye, melanje epi konbine vle di enprime, koupe epi kole moso yo ansanm ak men. Zouti plan ki anba a fè pati sa
+  a pou ou — chwazi yon tèm pou kad la, moso devan an ak moso dèyè a epi li mete yo ansanm touswit, nan gwosè egzak
+  vrè teren ou an.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={4} />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={13} label="Jwe ak moso yo (PDF)" />
+
+## Fè desen pak ou a {/* #design-your-park */}
+
+{/* site-added: mode prop for the planner workstream; placement and surrounding copy are ours. */}
+<Planner mode="design" />
+
+<Callout kind="auto" title="Li adapte ak vrè teren ou an poukont li">
+  Zouti plan an adapte moso pak Park in a Truck yo ak vrè teren ou an — li ba yo bon gwosè ak bann ralonj egzakteman
+  jan kaye travay la fè l ak men — epi li konte tout bagay pou ou pandan w ap avanse, pare pou estimasyon pri a ak lis
+  plant ki anba yo.
+</Callout>
+
+<details>
+  <summary>Ou pi renmen papye? Enprime moso pak yo</summary>
+
+  Apre ou fin gade tèm yo, note lèt ou te make nan paj Rezime Evalye a (gwosè A–E) ak kote teren ou an ye (anndan
+  blòk la, oswa nan kwen ak lari a sou bò dwat oswa sou bò gòch ou). Klike sou bon lyen telechajman an anba a — chak
+  lyen louvri yon dosye Google Drive ak moso pak ou ka enprime pou gwosè sa a ak kalite teren sa a.
+
+  <table class="pieces-table">
+    <thead>
+      <tr><th>Gwosè</th><th>Teren anndan blòk</th><th>Teren nan kwen — lari a sou bò dwat</th><th>Teren nan kwen — lari a sou bò gòch</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>A</strong></td><td><a href="https://drive.google.com/open?id=1e3j5d8ZsIxVxsJsdtoosKgMAuCpQwBKo" target="_blank" rel="noopener">Telechaje ↗</a></td><td><a href="https://drive.google.com/open?id=1Txw_BMZlvseeyCetUYbGfVSIu2_eq7HW" target="_blank" rel="noopener">Telechaje ↗</a></td><td><a href="https://drive.google.com/open?id=1LBQG4r2z1geA6rIEyK_GFYGzV4IBQFua" target="_blank" rel="noopener">Telechaje ↗</a></td></tr>
+      <tr><td><strong>B</strong></td><td><a href="https://drive.google.com/open?id=1LC6QvBJ2D-LyhbFGYXsjByiWQaFk06AF" target="_blank" rel="noopener">Telechaje ↗</a></td><td><a href="https://drive.google.com/open?id=1LKVUm28LhzKNqmMPPsufWrxt-xqTyJrk" target="_blank" rel="noopener">Telechaje ↗</a></td><td><a href="https://drive.google.com/open?id=1LQmrAsZd7Aw0M6F2iwFUUWjoUm-uAIFA" target="_blank" rel="noopener">Telechaje ↗</a></td></tr>
+      <tr><td><strong>C</strong></td><td><a href="https://drive.google.com/open?id=1LR04NYM7Ii2srwf4E5tl2t26R8jxdWQr" target="_blank" rel="noopener">Telechaje ↗</a></td><td><a href="https://drive.google.com/open?id=1LSWINYM72UNHj6hGjrsn0S51h2hJL47s" target="_blank" rel="noopener">Telechaje ↗</a></td><td><a href="https://drive.google.com/open?id=1LJCzWBkOh_hG8205xt1sJ17s4jQFD-H-" target="_blank" rel="noopener">Telechaje ↗</a></td></tr>
+      <tr><td><strong>D</strong></td><td><a href="https://drive.google.com/open?id=1LfpisFCCWZwitjJJ2_vpFfv_Pv_pnhMf" target="_blank" rel="noopener">Telechaje ↗</a></td><td><a href="https://drive.google.com/open?id=1LSqUwvHJQd5riQI56GgMO6GgN9LK7-Or" target="_blank" rel="noopener">Telechaje ↗</a></td><td><a href="https://drive.google.com/open?id=1LejWNaZ9sQFiy1P3er03OuwRURV7LNQI" target="_blank" rel="noopener">Telechaje ↗</a></td></tr>
+      <tr><td><strong>E</strong></td><td><a href="https://drive.google.com/open?id=1L-pqs-CuyMjeHE7UgEIDLawzv4ErTA6h" target="_blank" rel="noopener">Telechaje ↗</a></td><td><a href="https://drive.google.com/open?id=1LlyI3QGglqZw5f92aR1WLES7Nuz0gkOC" target="_blank" rel="noopener">Telechaje ↗</a></td><td><a href="https://drive.google.com/open?id=1LiE8uy8Uc-6R55t8cQr2Eg4CGdifcC8J" target="_blank" rel="noopener">Telechaje ↗</a></td></tr>
+    </tbody>
+  </table>
+  <p class="muted">Non kalite teren yo swiv pwòp paj telechajman kaye travay la — si yon seri moso pa mache ak kwen ou a, eseye lòt la.</p>
+
+  Louvri moso ou telechaje yo epi enprime yo sou yon sèl bò papye 8.5"×11", apre sa koupe sou liv pwentiye yo. Ranje
+  moso yo dapre senbòl aliyman ki enprime sou chak fèy, epi kole yo ansanm ak tep. Kontinye nan pwochen ti etap la
+  pou bay pak ou kole ansanm nan bon gwosè vrè teren ou an.
+
+  <PdfPage doc="downloads/workbooks/04-dream.pdf" page={11} label="Telechaje moso pak yo (PDF)" />
+  <PdfPage doc="downloads/workbooks/04-dream.pdf" page={12} label="Enprime + koupe moso yo (PDF)" />
+</details>
+
+## Bay pak ou a bon gwosè {/* #right-size-your-park */}
+
+Si moso ou yo antre egzakteman nan teren ou an, sote al ajoute kondisyon ki deja la yo. Si gen plas ki rete, fè pak ou
+a pi gwo lè ou ajoute bann ralonj — kèk pye an plis nan kad la, nan moso devan an oswa nan moso dèyè a — pou ou sèvi
+ak tout espas ki disponib.
+
+<table class="size-table">
+  <thead><tr><th>Gwosè</th><th>Bò long</th><th>Bò kout</th></tr></thead>
+  <tbody>
+    {SIZES.map((s) => (
+      <tr><td><strong>{s.id}</strong></td><td>{s.long[0]}–{s.long[1]} pye</td><td>{s.short[0]}–{s.short[1]} pye</td></tr>
+    ))}
+  </tbody>
+</table>
+
+{/* site-added: sizing.ts also flags lots below size A; call that out here since it's the natural place a reader learns their lot doesn't fit the smallest set. */}
+<Callout kind="note" title="Pi piti pase gwosè A?">
+  Gwosè a pa enpòtan. Yon ti kare 4×4, yon lakou devan kay oswa menm yon bwat flè nan fenèt ka toujou tounen yon kote
+  ak plant pou polinizatè — sèvi ak [gid Park Patch la](/park-patch/) olye de tout moso pak ki anba yo.
+</Callout>
+
+Gen de kalite bann ralonj: yon **bann ralonj longè**, ou mete ant moso devan an ak moso dèyè a, ajoute kèk pye sou bò
+long pak la; yon **bann ralonj lajè**, ou taye sou longè a, ajoute kèk pye sou bò kout la. Tou de kalite bann yo gen
+liy pwentiye nwa ki make chak 4 pye ak liy pwentiye gri ki make chak 1 pye, konsa ou ka konte egzakteman konbyen ou
+bezwen.
+
+<Figure
+  src="img/dream/length-seam.webp"
+  alt="Dyagram bann ralonj longè: konte liy pwentiye yo sou bann ki ant moso devan ak moso dèyè pak la, koupe l, apre sa kole bann ralonj lajè a nan mitan pak la epi kole l ankò ak tep"
+/>
+<Figure
+  src="img/dream/width-seam.webp"
+  alt="Dyagram bann ralonj lajè: konte liy pwentiye yo sou bann ki pase sou longè pak la, koupe l nan bon gwosè, apre sa mete bann ralonj lajè a nan mitan epi kole de bò yo ankò ak tep"
+/>
+
+<Callout kind="auto">
+  Zouti plan an lonje moso ou chwazi yo pou yo gen mezi egzak teren ou an poukont li — ou pa bezwen koupe ni kole
+  anyen.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={14} />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={15} label="Bann ralonj longè (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={16} label="Bann ralonj lajè (PDF)" />
+
+## Ajoute kondisyon ki deja la yo {/* #add-existing-conditions */}
+
+Mete kondisyon ki deja la yo, ki sou plan teren ou te desen nan kaye travay Evalye a, sou plan desen ou a. Mete de plan
+yo youn bò lòt epi kopye chak eleman — kadriyaj yo menm, kidonk ou jis konte kare yo pou w konnen ki kote bagay yo
+tonbe. Si yon pyebwa ki deja la tonbe nan yon zòn pou plante, se bon bagay; si li tonbe nan gravye, sa bon tou (etap
+Kreye a esplike kijan pou jere sa). Si kondisyon ki deja la yo pa mache ak desen ou a — yon pyebwa sou yon ban, pa
+egzanp — ou ka retire ban an lè ou bare l, oswa deplase tout moso devan an oswa moso dèyè a. Desen an se yon modèl:
+li yon ti jan rèd, men ou ka toujou ajoute oswa retire bagay pou fè l mache pou ou.
+
+<Callout kind="auto">
+  Pyebwa ki deja la, tiyo goutyè, zòn ki mouye, bouch dlo ponpye ak fil kouran ou te make nan Evalye deja sou zouti
+  plan an — trennen nenpòt bagay ki pa nan bon plas.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={17} />
+
+## Konte moso ou yo ak pri a {/* #count-your-pieces-cost */}
+
+Se lè pou konte tout sa ki nan plan teren ou an. Chak moso devan, moso dèyè ak moso kad gen yon kont tout eleman ki
+ladan l, konsa ou ka kalkile pri a epi kòmande materyèl yo. Kaye travay la mande: konbyen pye bò long teren ou an
+genyen (longè)? Bò kout la (lajè)? Konbyen kare vèt pou plante ou genyen? Epi, ak lejand ki sou moso pak ou yo,
+konbyen nan chak mèb?
+
+<CostEstimator />
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — the order list's "fire hydrant opener" items; facts checked 2026-10-04 on water.phila.gov. */}
+<Callout kind="site" title="Nòt sit sa a, se pa nòt Park in a Truck: bouch dlo ponpye">
+  Lis kòmand lan konseye yon zouti pou louvri bouch dlo ponpye. Pou louvri yon bouch dlo ponpye nan Filadèlfi, ou
+  bezwen yon [pèmi bouch dlo Philadelphia Water Department ↗](https://water.phila.gov/development/connections/hydrant-permits/)
+  (an anglè) ak yon aparèy anti-retou dlo (backflow preventer) yo apwouve (jaden kominotè pa peye frè pèmi an).
+  [Gid jaden nan vil PWD a ↗](https://water.phila.gov/urban-garden-guide/) (an anglè) bay lòt fason pou mennen dlo nan
+  yon jaden.
+</Callout>
+
+<Download href="downloads/templates/cost-estimator.xlsx" label="Kalkilatè pri" note="Fèy kalkil orijinal la — fè pwòp kopi pa w pou chanje l" />
+
+<details>
+  <summary>W ap konte sou papye? Antre total ou yo isit la</summary>
+  <Field id="dream.diy-length" label="Longè (bò long teren ou an)" type="number" unit="pye" />
+  <Field id="dream.diy-width" label="Lajè (bò kout teren ou an)" type="number" unit="pye" />
+  <Field id="dream.diy-planting-squares" label="Kare pou plante (kare vèt ki sou plan ou a)" type="number" />
+  <p class="muted">Konte mèb yo ak lejand ki enprime sou moso pak ou yo, apre sa antre tout bagay nan fèy kalkil pri ki anwo a.</p>
+</details>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={18} />
+
+## Konte epi chwazi plant ou yo {/* #count-choose-your-plants */}
+
+Tout kote ki vèt sou plan ou a se yon zòn pou plante, epi chak senbòl plant gen yon gwosè. Konte plant ki dire
+plizyè ane yo, touf bwa yo, ti pyebwa yo ak gwo pyebwa yo nan desen ou a — solèy ak lonbraj apa pou plant ki dire
+plizyè ane yo ak touf bwa yo. W ap chwazi ki kalite plant toutbon apre sa.
+
+{/* site-added: the six counts show your design's numbers (project.extra.tally) until you type your own; the plant picker below uses the same numbers */}
+<Field id="dream.perennials-sun" label="Plant ki dire plizyè ane — kare vèt nan solèy" type="number" unit="kare" auto="extra.tally.plantingSquares.sun" autoNote="✓ Ranpli dapre desen ou a — ekri pou chanje l" />
+<Field id="dream.perennials-shade" label="Plant ki dire plizyè ane — kare vèt nan lonbraj" type="number" unit="kare" auto="extra.tally.plantingSquares.shade" autoNote="✓ Ranpli dapre desen ou a — ekri pou chanje l" />
+<Field id="dream.shrubs-sun" label="Touf bwa — solèy" type="number" auto="extra.tally.shrubs.sun" autoNote="✓ Ranpli dapre desen ou a — ekri pou chanje l" />
+<Field id="dream.shrubs-shade" label="Touf bwa — lonbraj" type="number" auto="extra.tally.shrubs.shade" autoNote="✓ Ranpli dapre desen ou a — ekri pou chanje l" />
+<Field id="dream.small-trees" label="Ti pyebwa" type="number" auto="extra.tally.smallTrees" autoNote="✓ Ranpli dapre desen ou a — ekri pou chanje l" />
+<Field id="dream.large-trees" label="Gwo pyebwa" type="number" auto="extra.tally.largeTrees" autoNote="✓ Ranpli dapre desen ou a — ekri pou chanje l" />
+
+<PlantPicker />
+
+Chak tèm gen pwòp lis plant yo konseye — se yon pwen depa, se pa yon obligasyon. Si w ap melanje de tèm, chwazi plant
+nan tou de lis yo.
+
+<div class="plant-list-links">
+  <Download href="https://docs.google.com/spreadsheets/d/1QsoQ6KYBT5tVrlAtTxoD5q0yP2YS5Wyt/copy" label="Lis plant tèm Manje" />
+  <Download href="https://docs.google.com/spreadsheets/d/1RhCdaiCLbEJD8KXiX7uJMD7xJFRNCERy/copy" label="Lis plant tèm Refij" />
+  <Download href="https://docs.google.com/spreadsheets/d/1eEVK3dpBy1-xBFDaACIOTMB2Dd9COGvz/copy" label="Lis plant tèm Lanati" />
+  <Download href="https://docs.google.com/spreadsheets/d/1oy_aLqP7RoBcHngZ_uFMl_YBvzJ271MR/copy" label="Lis plant tèm Evènman" />
+</div>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={20} label="Chwazi plant ou yo (PDF)" />
+
+## Monte eleman yo {/* #assemble */}
+
+Kounye a se lè pou w wè kijan pou bati eleman pak yo. Gen kèk eleman ki gen pwòp enstriksyon montaj etap pa etap,
+tankou liv enstriksyon Ikea; gen lòt ki vini ak yon desen yo konseye ki soti nan enstriksyon moun deja teste; epi gen
+kèk ki se jis pwodui ou achte tou fèt. Klike sou nenpòt eleman anba a — si ou genyen l nan pak ou a, men kijan pou
+bati l (oswa achte l).
+
+<div class="elements-grid">
+  {Object.values(ELEMENTS)
+    .filter((el) => !NOT_BUILT.has(el.id) && ASSEMBLE_ICONS.has(ICON_FALLBACK[el.id] ?? el.id))
+    .map((el) => {
+      const icon = ICON_FALLBACK[el.id] ?? el.id;
+      const href = el.guide ? u(`build/${el.guide}/`) : el.link;
+      const external = !el.guide;
+      return (
+        <a class="element-card" href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
+          <img src={u(`img/dream/elements/${icon}.webp`)} alt="" width="96" height="72" loading="lazy" />
+          <span>{ELEMENT_NAMES[el.id] ?? el.name}</span>
+        </a>
+      );
+    })}
+</div>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={19} />
+
+## Èske ou pare? {/* #are-you-ready */}
+
+Konpliman paske ou fini kaye travay Reve a! Make chak etap ki anba a anvan ou pase nan Kreye.
+
+<Checklist
+  id="dream.ready-checklist"
+  items={[
+    { value: 'theme-review', label: 'Revizyon desen tèm yo', hint: 'Ou gade tèm yo epi ou deside kiyès ki pi bon pou bezwen ou' },
+    { value: 'custom-design', label: 'Desen sou mezi', hint: 'Ou jwe ak moso pak yo pou chwazi desen final pak la' },
+    { value: 'custom-size', label: 'Gwosè sou mezi', hint: 'Ou bay pak ou a bon gwosè dapre mezi teren ou an ak eleman ki deja la yo' },
+    { value: 'cost-estimate', label: 'Estimasyon pri', hint: 'Ou konte moso ou yo epi ou antre yo nan kalkilatè pri a' },
+    { value: 'plant-choice', label: 'Chwa plant', hint: 'Ou chwazi plant dapre kantite plant ou te konte' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={20} label="Èske ou pare? (PDF)" />
+
+<style>
+  {`
+  .theme-reqs { list-style: none; padding: 0; margin: 0.8em 0 0; font-size: 0.92rem; color: var(--ink-2); display: grid; gap: 0.2em; }
+  .size-table, .pieces-table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.95rem; }
+  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: left; }
+  .elements-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; margin: 1.2em 0; }
+  .element-card { display: flex; flex-direction: column; align-items: center; gap: 0.4em; text-align: center; padding: 10px; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); font-size: 0.85rem; background: #fff; }
+  .element-card:hover { border-color: var(--cyan); box-shadow: var(--shadow); }
+  .element-card img { max-width: 96px; max-height: 72px; width: auto; }
+  .plant-list-links { display: flex; flex-wrap: wrap; gap: 10px; }
+  `}
+</style>

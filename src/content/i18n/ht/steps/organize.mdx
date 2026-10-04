@@ -1,0 +1,214 @@
+---
+title: Òganize
+intro: Mete yon komite pak sou pye, chèche richès katye ou, epi rasanble moun ki pral fè pak la rive fèt.
+sources:
+  - Gid la (Toolkit), paj 29–33 (Òganize, Mete yon komite pak sou pye, Idantifye richès katye a)
+  - Kaye travay Òganize, paj 3–6 (Apèsi, Idantifye richès kominote a, Richès katye a, Òganize yon reyinyon, Èske ou pare?)
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import NeighborhoodAssets from '../../../../components/widgets/NeighborhoodAssets.astro';
+import MeetingFlyer from '../../../../components/widgets/MeetingFlyer.astro';
+
+Pak pa fèt poukont yo. Se travay an ekip, epi li bay bèl rezilta. Yon kominote k ap travay ansanm sou yon pwojè pak
+bati plis pase yon pak — l ap bati lyen ki pi solid nan kominote a, l ap kreye travay ki enteresan pou jèn nan zòn
+nan, epi l ap fè tout moun fyè. Bati yon pak rasanble moun pou yon menm kòz. Epi lè l fini, y ap di: "nou reyisi
+l!"
+
+Nan kè chak pwojè pak ki reyisi, gen yon gwoup moun nan katye a ki angaje, ki gen talan, ki diferan youn ak lòt, epi
+k ap travay ansanm tankou yon ekip. Komite pak sa a ap dirije efò pou kreye pak ou a. Pi bon an se si volontè sa yo
+reprezante divès gwoup ki pral sèvi ak pak la — jèn, granmoun, moun diferan ras ak orijin, moun ki gen pwofesyon,
+travayè, moun ki gen kay ak moun k ap lwe. Yo ta dwe sanble ak kominote ou a. Anplis, panse ak talan yo. Lè ou gen
+moun ki gen talan ak eksperyans diferan — moun ki konn bati, moun ki konn lalwa, moun ki gen relasyon nan politik,
+òganizatè kominotè, pastè ak lòt lidè relijye, moun ki renmen sosyalize, elatriye — sa ap ogmante chans ou pou reyisi.
+
+<Callout kind="note">
+  Pou plis enfòmasyon sou kijan pou òganize yon gwoup kominotè, gade{' '}
+  <a href="http://tupress.temple.edu/book/0872" target="_blank" rel="noopener"><em>City Parks Handbook</em></a> Pennsylvania
+  Horticultural Society a (an anglè) ak{' '}
+  <a href="https://www.nrpa.org/uploadedFiles/Americas_Backyard/park-advocate-handbook-100711.pdf" target="_blank" rel="noopener"><em>Park Advocate Handbook</em></a> National
+  Recreation and Park Association lan (an anglè).
+</Callout>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={3} label="Apèsi" />
+
+## Mete yon komite pak sou pye {/* #create-a-park-committee */}
+
+Lè komite a fin fòme, premye travay li se idantifye epi note sa ki fè katye ou ak teren pak la espesyal. Mete non manm
+komite ou yo anba a — kiyès yo ye, kijan pou jwenn yo, ak sa yo pote nan ekip la.
+
+<ListField
+  id="organize.committee-members"
+  label="Manm komite pak la"
+  rowName="manm"
+  min={3}
+  columns={[
+    { key: 'name', label: 'Non' },
+    { key: 'phone', label: 'Telefòn', type: 'tel' },
+    { key: 'email', label: 'Imèl', type: 'email' },
+    { key: 'role', label: 'Wòl / konpetans', placeholder: 'òganize, chapant, ranmase lajan…' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={3} label="Apèsi" />
+
+## Idantifye richès kominote a {/* #identify-community-assets */}
+
+Kounye a, ann panse ak moun ki nan katye ou ak konpetans espesyal yo genyen — èske yo renmen fè manje? Òganize
+evènman? Fè jaden? Èske yo renmen istwa epi yo ta ka fè rechèch sou katye a? Tout bagay sa yo ka vin tounen
+konpetans ki gen valè epi ki itil pou ede fè desen pak la, bati l epi kenbe l. Ou jis bezwen fè lis yo pou w konnen ki
+moun ou ka mande èd pou diferan travay nan pwosesis pak la.
+
+Nan premye reyinyon kominote a, mande moun yo ekri konpetans yo genyen sou yon fèy enskripsyon. Make konpetans
+komite ou a deja genyen:
+
+<Checklist
+  id="organize.individual-skills"
+  label="Lis konpetans chak moun"
+  items={[
+    { value: 'project-manager', label: 'Responsab pwojè pou veye sou konstriksyon pak la' },
+    { value: 'organizing', label: 'Òganize pwosesis pak la / desen ak konstriksyon' },
+    { value: 'carpentry', label: 'Chapant (travay bwa)' },
+    { value: 'masonry', label: 'Mason' },
+    { value: 'gardening', label: 'Jaden / antretyen pak la' },
+    { value: 'planting', label: 'Plante pyebwa, touf bwa, flè' },
+    { value: 'building', label: 'Ede bati pak la' },
+    { value: 'fundraising', label: 'Ranmase lajan' },
+    { value: 'bookkeeping', label: 'Kenbe kont' },
+    { value: 'babysitting', label: 'Gade timoun' },
+    { value: 'food', label: 'Manje pou reyinyon yo / jou konstriksyon yo' },
+    { value: 'artist', label: 'Atis' },
+    { value: 'photography', label: 'Foto' },
+    { value: 'music', label: 'Mizik pou jou konstriksyon yo — DJ' },
+    { value: 'media', label: 'Fè piblisite sou rezo sosyal — Facebook, Instagram, Twitter' },
+    { value: 'history', label: 'Moun ki renmen istwa' },
+    { value: 'other', label: 'Lòt bagay' },
+  ]}
+/>
+
+{/* site-added: a printable version of the same list, for a paper sign-up sheet at an in-person meeting. */}
+<Callout kind="tip" title="Enprime yon fèy enskripsyon">
+  Ou bezwen yon fèy papye pou moun enskri nan yon reyinyon? Enprime paj sa a — lis ki anwo a ap enprime ak ti kare
+  vid vwazen yo ka make ak men yo, bò kote non yo ak enfòmasyon pou kontakte yo.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={3} label="Idantifye richès kominote a" />
+
+## Richès katye a {/* #neighborhood-assets */}
+
+Yon lòt etap enpòtan nan wout pou bati pak ou a se idantifye sa ki fè katye ou ak teren pak la espesyal. Pran tan
+pou w kanpe epi chèche tout ti siy ki fè katye ou espesyal nan pwòp fason pa l. Chak katye gen yon valè ki soti nan
+pwòp istwa l ak kilti l. Lè ou idantifye richès sa yo epi ou sèvi ak yo, sa ap fè pwojè pak ou a pi solid epi l ap fè
+kominote a santi pak la se pa l.
+
+Kidonk, kijan pou nou idantifye richès ak fòs yo? Panse ak katye ou, istwa l ak kilti l — ki kote ki espesyal? Ki
+kote moun renmen rasanble? Èske te gen evènman enpòtan ki te pase nan katye ou? Kisa ki te la anvan, kote pak ou a ye
+kounye a?
+
+<Callout kind="auto" title="Òganizasyon ki toupre, nou jwenn yo pou ou">
+  Antre adrès teren ou an epi sit la ap jwenn òganizasyon kominotè ki anrejistre (RCO) ki toupre, lekòl, bibliyotèk,
+  pak, jaden ak lòt richès katye Vil la gen nan lis li — konsa ou kòmanse lis ou a ak moun ki deja la.
+</Callout>
+
+<NeighborhoodAssets />
+
+Apre sa, fè lis tout asosyasyon sitwayen ak asosyasyon lokal ki ta ka vin patnè epi bay sipò — lajan, sipò an nati,
+oswa yon kote pou achte materyèl pak la nan zòn nan:
+
+<ListField
+  id="organize.citizens-associations"
+  label="Lis asosyasyon sitwayen yo"
+  rowName="gwoup"
+  min={2}
+  columns={[
+    { key: 'type', label: 'Kalite', placeholder: 'legliz, chèf blòk, RCO, gwoup kiltirèl…' },
+    { key: 'name', label: 'Non' },
+    { key: 'contact', label: 'Kontak' },
+  ]}
+/>
+
+<ListField
+  id="organize.physical-assets"
+  label="Richès fizik katye a"
+  rowName="richès"
+  min={2}
+  columns={[
+    { key: 'type', label: 'Kalite', placeholder: 'moniman, penti sou mi (miral), aparans lari a, kote moun rasanble…' },
+    { key: 'description', label: 'Deskripsyon' },
+  ]}
+/>
+
+<ListField
+  id="organize.local-institutions"
+  label="Enstitisyon lokal yo"
+  rowName="enstitisyon"
+  min={2}
+  columns={[
+    { key: 'type', label: 'Kalite', placeholder: 'biznis, lekòl, bibliyotèk, lopital, inivèsite…' },
+    { key: 'name', label: 'Non' },
+    { key: 'contact', label: 'Kontak' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={4} label="Richès katye a" />
+
+## Òganize yon reyinyon {/* #organize-a-meeting */}
+
+Fè yon reyinyon piblik ka yon trè bon fason pou bati yon kanpay oswa pou fè plis moun antre nan gwoup ou a. Men kèk
+lide pou ede gwoup kominotè ou a òganize yon reyinyon ki enteresan, ki fasil pou tout moun vini, epi ki mache byen.
+
+- **Fè l senp.** Pa eseye mete twòp bagay ladan l. Sèvi ak reyinyon an pou pataje enfòmasyon debaz sou sa nou vle
+  fè, ankouraje lòt moun pataje opinyon ak lide yo, epi pran enfòmasyon pou kontakte moun ki ta renmen patisipe pita.
+- **Fè anpil moun konnen.** Asire w dat, lè ak kote a parèt klè sou fèy envitasyon an, epi moun konprann sou kisa
+  reyinyon an ye. Fèy envitasyon, afich, mesaj sou rezo sosyal, ak jounal kominote a, tout ede.
+- **Bay yon ti rezon an plis pou vini.** Rafrechisman gratis, yon videyo oswa yon moun k ap pale, oswa elèv
+  volontè k ap gade timoun yo, ka ede moun jwenn tan pou yo vini.
+- **Panse ak lòd jou a.** Akèy ak prezantasyon; esplike kiyès ki rele reyinyon an ak poukisa; bay rezon reyinyon an;
+  petèt mande yon moun ki deja bati yon pak pou pataje sa l aprann (fè l kout — premye reyinyon sa a pa dwe tounen
+  yon kou); mande ekip Park in a Truck nan Jefferson pou voye yon moun vin pale.
+- **Bay moun chans pou yo pale.** Gen moun ki ka pa dakò ak yon pak — kite yo di sa yo panse epi chèche tout moun
+  tonbe dakò sou kote pak la ta ka ye, san nou pa bloke nan detay yo.
+- **Di sa k ap pase apre.** Rezime lide moun yo bay, epi si reyinyon an piti, pran desizyon sou ki aksyon nou pral fè
+  toutbon — ak kiyès ki pral fè l.
+- **Prezide reyinyon an.** Tonbe dakò davans sou kiyès ki pral prezide. Travay li: kenbe reyinyon an sou sijè a,
+  asire tout moun jwenn chans pou di sa yo genyen pou yo di, epi kenbe yon atmosfè ki akeyan epi ki louvri.
+- **Pran nòt (pwosè vèbal).** Deside anvan reyinyon an kiyès ki pral pran nòt (pa menm moun ki prezide a). Nòt yo
+  dwe gen ladan yo yon rapò klè sou tout desizyon nou pran, ak kiyès ki dakò pran ki travay.
+- **Ranmase non ak adrès.** Prepare yon fèy enskripsyon davans pou w ka rete an kontak ak tout moun ki vle kontinye
+  patisipe.
+- **Planifye pwochen reyinyon an.** Fikse yon dat ak yon kote pou pwochen reyinyon gwoup la anvan reyinyon sa a fini,
+  epi fè moun konnen l pou yo ka tounen.
+
+<Field id="organize.meeting-date" label="Dat reyinyon an" type="date" />
+<Field id="organize.meeting-time" label="Lè reyinyon an" type="text" placeholder="pa egzanp 6:30 PM" />
+<Field id="organize.meeting-place" label="Kote reyinyon an ap fèt" type="text" placeholder="adrès oswa non kote a" />
+<Field id="organize.meeting-purpose" label="Rezon reyinyon an" type="textarea" hint="Sa nou vle fè, ak sa n ap mande vwazen yo." />
+
+<MeetingFlyer />
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={5} label="Òganize yon reyinyon" />
+
+## Èske ou pare? {/* #are-you-ready */}
+
+Kijan ou fè konnen si ou kreye yon komite pak ki konplè? Li lis ki anba a epi make kare a lè ou jwenn moun sa yo
+oswa kapasite sa yo nan komite ou a. Sa ki pi enpòtan nan òganizasyon an se pwouve tèt ou ke ou kapab òganize tout sa
+yon pak katye bezwen — lè ou make chak kare, ou asire òganizasyon ou a pare pou pase nan pwochen chapit la.
+
+<Checklist
+  id="organize.readiness"
+  label="Lis pou wè si òganizasyon an pare"
+  items={[
+    { value: 'committee-formed', label: 'Èske ou fòme yon komite vwazen ki angaje pou gide tout efò plan pak la?' },
+    { value: 'financial-standing', label: 'Èske òganizasyon ou a gen yon sitiyasyon finansye oswa yon liy kredi pou peye depans pak la, tankou achte pwopriyete a, antretyen, evènman, elatriye?' },
+    { value: 'fundraising', label: 'Èske òganizasyon ou a kapab ranmase lajan ki nesesè pou kontinye sipòte pak la finansyèman?' },
+    { value: 'community-engagement', label: 'Èske òganizasyon ou a kapab fè moun nan katye a enterese, òganize evènman ak lòt aktivite pou fè kominote a patisipe?' },
+    { value: 'skilled-trades', label: 'Èske òganizasyon ou a gen aksè a moun ki gen divès konpetans ak eksperyans — chapantye, mason oswa lòt metye — ki ka pataje konesans yo pandan konstriksyon ak antretyen pak la?' },
+    { value: 'initial-meetings', label: 'Èske òganizasyon ou a fè premye reyinyon ak evènman kominotè pou jwenn sipò epi pou moun tonbe dakò sou yon pak ki ka fèt?' },
+    { value: 'social-media', label: 'Èske òganizasyon ou a kreye yon paj sou entènèt pou mesaj, anons ak lòt bagay (Facebook, Instagram, elatriye), ak yon hashtag espesyal pou idantifye pwojè pak ou a epi ba l yon imaj?' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={6} label="Èske ou pare?" />
