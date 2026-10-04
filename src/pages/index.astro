@@ -6,23 +6,26 @@ import { u } from '../lib/url';
 ---
 <Base title="Park in a Truck">
   <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <p class="eyebrow">A do-it-yourself toolkit for neighborhood parks</p>
-        <h1 class="display hero-title">Turn a vacant lot into your neighborhood's park.</h1>
-        <p class="lede">
-          Park in a Truck walks you and your neighbors through every step — finding a lot, organizing a team, designing
-          the park, building it, and keeping it beautiful. This site turns the toolkit into a guided, interactive
-          workbook that does the lookups for you.
-        </p>
-        <div class="cta">
-          <a class="btn btn-primary" href={u('steps/start/')}>Start here →</a>
-          <a class="btn" href={u('steps/')}>See all six steps</a>
-        </div>
+    <div class="wrap">
+      <p class="eyebrow">A do-it-yourself toolkit for neighborhood parks</p>
+      <h1 class="display hero-title">Turn a vacant lot into your neighborhood's park.</h1>
+      <p class="lede">
+        Park in a Truck walks you and your neighbors through every step — finding a lot, organizing a team, designing
+        the park, building it, and keeping it beautiful. This site turns the toolkit into a guided, interactive
+        workbook that does the lookups for you.
+      </p>
+      <div class="cta">
+        <a class="btn btn-primary" href={u('steps/start/')}>Start here →</a>
+        <a class="btn" href={u('steps/')}>See all six steps</a>
       </div>
-      <div class="hero-art" aria-hidden="true">
-        <img src={u('img/brand/cover-silhouette.webp')} alt="" width="1600" height="343" />
-      </div>
+    </div>
+    <div class="hero-art">
+      <img
+        src={u('img/brand/cover-silhouette.webp')}
+        alt="Neighbors unloading a pickup truck labelled Park in a Truck, carrying a bench, planting trees and gardening, with rowhouses behind."
+        width="1600"
+        height="343"
+      />
     </div>
   </section>
 
@@ -52,19 +55,16 @@ import { u } from '../lib/url';
 </Base>
 <style>
   .hero {
-    padding: 56px 0 32px;
-    border-bottom: 1px solid var(--line);
+    padding-top: 56px;
   }
-  .hero-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-    gap: 40px;
-    align-items: center;
+  .hero .lede {
+    max-width: 44rem;
   }
   .hero-title {
-    font-size: clamp(2.2rem, 5.4vw, 4rem);
+    font-size: clamp(2.2rem, 5.4vw, 4.2rem);
     line-height: 1.05;
     margin-bottom: 0.4em;
+    max-width: 14em;
   }
   .cta {
     display: flex;
@@ -72,17 +72,16 @@ import { u } from '../lib/url';
     flex-wrap: wrap;
     margin-top: 20px;
   }
+  /* The toolkit cover: silhouettes standing on a heavy black ground line. */
   .hero-art {
-    display: grid;
-    place-items: center;
-    min-height: 220px;
-    padding: 24px;
-    background: var(--cyan-wash);
-    border-radius: var(--radius);
+    max-width: var(--max);
+    margin: 24px auto 0;
+    padding-inline: var(--gutter);
   }
   .hero-art img {
     width: 100%;
     height: auto;
+    border-bottom: 10px solid var(--ink);
   }
   .block {
     padding-top: 48px;
@@ -90,13 +89,5 @@ import { u } from '../lib/url';
   .total {
     margin: -4px 0 16px;
     color: var(--muted);
-  }
-  @media (max-width: 760px) {
-    .hero-grid {
-      grid-template-columns: 1fr;
-    }
-    .hero-art {
-      display: none;
-    }
   }
 </style>
