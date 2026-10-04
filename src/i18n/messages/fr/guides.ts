@@ -8,7 +8,7 @@ export default {
   'cat.planters': 'Bacs à plantes',
   'cat.structures': 'Structures',
 
-  'crumb': 'Guides de construction',
+  'crumb': 'Guides de montage',
   'heroAlt': '{title}, assemblage terminé',
   'dims': 'L {length} × l {width} × H {height}',
   'glance.size': 'Dimensions',

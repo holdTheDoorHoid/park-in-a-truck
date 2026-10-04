@@ -445,7 +445,7 @@ Money as « 20 $ ». Plurals: French uses `one` for 0 and 1, `other` for the res
 | theme: Edible · Sanctuary · Nature · Event | Comestible · Refuge · Nature · Événements | « le thème Refuge », « liste de plantes : Comestible ». |
 | size A–E | taille A–E | |
 | gabion (wall, bench) | gabion (mur en gabions, banc en gabions) | The wire basket: cage de gabion. |
-| build guide | guide de construction | Inside a guide: monter, assemblage, étapes. |
+| build guide | guide de montage | Shorter than « guide de construction » (keeps the header menu on one line); PiaT calls them assembly instructions. Inside a guide: monter, construire, étapes. |
 | cut list / materials & hardware / tools | liste de coupe / matériaux et quincaillerie / outils | |
 | 2x4, 2x4x8', BB-1 | 2x4, 2x4x8', BB-1 | Marks ' and " stay as printed in sizes. |
 | full sun / part sun / shade | plein soleil / soleil partiel / ombre | |
@@ -454,7 +454,7 @@ Money as « 20 $ ». Plurals: French uses `one` for 0 and 1, `other` for the res
 | stewardship / sustain | entretien du parc / entretenir | Survive · Thrive · Socialize = Survivre · S'épanouir · Se retrouver. |
 | My park | Mon parc | |
 | project file | fichier du projet | |
-| Plan in 3D / the planner | Concevoir en 3D / le planificateur 3D | |
+| Plan in 3D / the planner | Plan en 3D / le planificateur 3D | « Plan en 3D » in menus and titles (short enough for the header); « concevoir en 3D » in sentences. |
 | Note from this site, not Park in a Truck | Note de ce site, et non de Park in a Truck | |
 | in English | en anglais | |
 | ft, in, sq ft, $ | pieds (pi), pouces (po), pieds carrés (pi²), $ | Words in sentences; pi / po / pi² in short labels. |

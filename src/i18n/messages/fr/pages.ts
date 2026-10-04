@@ -18,9 +18,9 @@ export default {
   'home.tools': 'Des outils qui font le travail pour vous',
   'home.tool.lot': 'Trouver un terrain',
   'home.tool.lot.text': 'Une carte des terrains vacants près de chez vous, avec le propriétaire, la taille et le zonage.',
-  'home.tool.planner': 'Concevoir en 3D',
+  'home.tool.planner': 'Plan en 3D',
   'home.tool.planner.text': 'Placez les pièces du parc Park in a Truck sur votre vrai terrain et voyez le soleil et l’ombre.',
-  'home.tool.build': 'Guides de construction',
+  'home.tool.build': 'Guides de montage',
   'home.tool.build.text': 'Des instructions étape par étape pour les bancs, les tables, les bacs à plantes, l’ombrage et plus encore.',
   'home.tool.plants': 'Plantes',
   'home.tool.plants.text': 'Des listes de plantes indigènes pour chaque thème de parc, au soleil et à l’ombre.',
@@ -53,7 +53,7 @@ export default {
   'lot.next.organize.text': 'Les organisations de quartier, les écoles, les jardins et les autres atouts près de votre terrain.',
   'lot.next.assess.title': 'Évaluer',
   'lot.next.assess.text': 'Les côtés mesurés, une carte de base à imprimer, les arbres et les bâtiments voisins.',
-  'lot.next.planner.title': 'Concevoir en 3D',
+  'lot.next.planner.title': 'Plan en 3D',
   'lot.next.planner.text': 'Placez les pièces du parc sur votre terrain et voyez le soleil et l’ombre.',
 
   'myPark.title': 'Mon parc',
@@ -76,7 +76,7 @@ export default {
   'myPark.yourAnswers': 'Vos réponses',
   'myPark.nothingFilledIn': 'Rien n’a encore été rempli.',
 
-  'planner.title': 'Concevoir en 3D',
+  'planner.title': 'Plan en 3D',
   'planner.description':
     'Placez les pièces du parc de Park in a Truck sur votre vrai terrain à Philadelphie, voyez son soleil et son ombre, et comptez tout pour l’estimation des coûts et les listes de plantes.',
   'planner.h1': 'Concevez votre parc en 3D',
