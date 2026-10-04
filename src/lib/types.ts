@@ -139,6 +139,11 @@ export interface ExistingItem extends PlacedItem {
   species?: string | null;
   dbhIn?: number | null;
   note?: string;
+  /**
+   * Trees only: loses its leaves in winter or keeps them (shadows workstream, 2026-10-04).
+   * Absent = decided from the City's species name, else deciduous (older saved trees).
+   */
+  leafHabit?: 'deciduous' | 'evergreen';
 }
 
 /**

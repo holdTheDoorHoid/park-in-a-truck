@@ -2,6 +2,7 @@
 // growing-season sampling used by the sun-hours study.
 
 import { getPosition, getTimes } from 'suncalc';
+import { leafFraction } from './treemodel';
 
 export const PHILLY_TZ = 'America/New_York';
 
@@ -59,6 +60,12 @@ export function phillyMinutes(at: Date, timeZone = PHILLY_TZ): number {
   return local.getUTCHours() * 60 + local.getUTCMinutes();
 }
 
+/** The Philadelphia calendar date of an instant (month 1–12). */
+export function phillyDate(at: Date, timeZone = PHILLY_TZ): { month: number; day: number } {
+  const local = new Date(at.getTime() + tzOffsetMinutes(at, timeZone) * 60000);
+  return { month: local.getUTCMonth() + 1, day: local.getUTCDate() };
+}
+
 export function sunTimes(year: number, month: number, day: number, lat: number, lng: number) {
   const noonLocal = phillyTime(year, month, day, 12 * 60);
   const t = getTimes(noonLocal, lat, lng);
@@ -81,32 +88,44 @@ export interface SunSample {
   altitudeDeg: number;
   /** hours this sample stands for */
   weight: number;
+  /** how far into leaf deciduous trees are on this sample's day (0 bare … 1 full leaf); absent = full leaf */
+  leaf?: number;
+  /** month of the sample's day, 1–12 */
+  month?: number;
 }
 
 /**
  * Sun positions across the growing season: every `everyDays` days from `from` to `to`,
  * every `everyMinutes` minutes between sunrise and sunset (sampled at the middle of each
  * step). Returns the samples and the number of days, so hours can be averaged per day.
+ * A span that runs past the new year (`from` later than `to`, e.g. winter) wraps around.
+ * Each sample carries the deciduous trees' leaf state on its day (treemodel.ts).
  */
 export function seasonSamples(lat: number, lng: number, opts: SeasonOptions = DEFAULT_SEASON): { samples: SunSample[]; days: number } {
   const year = opts.year ?? 2026;
   const [fm, fd] = opts.from.split('-').map(Number) as [number, number];
   const [tm, td] = opts.to.split('-').map(Number) as [number, number];
   const start = Date.UTC(year, fm - 1, fd);
-  const end = Date.UTC(year, tm - 1, td);
+  let end = Date.UTC(year, tm - 1, td);
+  if (end < start) end = Date.UTC(year + 1, tm - 1, td);
   const samples: SunSample[] = [];
   let days = 0;
   for (let t = start; t <= end; t += opts.everyDays * 86400000) {
     const d = new Date(t);
-    const { sunrise, sunset } = sunTimes(year, d.getUTCMonth() + 1, d.getUTCDate(), lat, lng);
+    // the solar geometry of a calendar day barely changes between years: keep `year`
+    const month = d.getUTCMonth() + 1;
+    const day = d.getUTCDate();
+    if (month === 2 && day === 29) continue;
+    const { sunrise, sunset } = sunTimes(year, month, day, lat, lng);
     days++;
     if (!sunrise || !sunset) continue;
+    const leaf = leafFraction(month, day);
     const step = opts.everyMinutes * 60000;
     for (let s = sunrise.getTime(); s < sunset.getTime(); s += step) {
       const span = Math.min(step, sunset.getTime() - s);
       const p = getPosition(new Date(s + span / 2), lat, lng);
       if (p.altitude <= 0) continue;
-      samples.push({ azimuthDeg: p.azimuth, altitudeDeg: p.altitude, weight: span / 3600000 });
+      samples.push({ azimuthDeg: p.azimuth, altitudeDeg: p.altitude, weight: span / 3600000, leaf, month });
     }
   }
   return { samples, days };
