@@ -155,6 +155,15 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
   for any date/time and growing-season sun-hours per 4×4 ft square → sun/shade classes that feed the tally.
   Sun classes: ≥6 h direct sun = sun, 3–6 h = part, <3 h = shade; the workbook's two-way count treats part as shade
   unless the plant list says otherwise.
+- **Build-guide 3D models** (`src/data/guides/models/<slug>.json`, format `src/lib/guides3d/schema.ts`, checked by
+  `validate.ts`): on `/build/<slug>/` a 3D model sits beside the steps (sticky column ≥ 1000 px, collapsible sticky
+  strip above the steps below that) and builds itself as you scroll — the step at the upper-middle of the readable
+  area is current; its parts fly in and glow cyan; step 1 ("mark, label and cut") lays every board out flat and
+  labelled. Replay / play all / exploded / reset buttons; drag to spin, zoom only once the model is clicked.
+  Pure logic in `src/lib/guides3d/{scroll,timeline,layout,framing,labels}.ts` (tested); three.js drawing in
+  `viewer.ts` (`buildModelGroup(model)` is reusable, e.g. by the planner), loaded lazily; island
+  `src/components/guides3d/`. No model, no WebGL or no JS → the page is the plain step list. Modellers check their
+  work at `/dev/model-check/?slug=&step=`.
 
 ## 6. Automation map (what the workbooks ask → what the site does)
 

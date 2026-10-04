@@ -1,7 +1,12 @@
 ---
 // /build/<slug>/ — one assembly guide: hero, at-a-glance, materials + tools
 // checklists, cut list, numbered steps with enlargeable diagrams, finishing &
-// safety notes, supplier links, PDF download, prev/next. Owner: guides workstream.
+// safety notes, supplier links, PDF download, prev/next. Owner: guides workstream
+// (content); the page layout and the 3D viewer beside the steps: guide3d-viewer.
+//
+// When src/data/guides/models/<slug>.json exists, the steps get a 3D model beside
+// them (sticky column on desktop, sticky strip on phones) that builds itself as
+// you scroll. Without a model — or without WebGL/JS — the page is unchanged.
 import Base from '../../layouts/Base.astro';
 import Checklist from '../../components/workbook/Checklist.astro';
 import Download from '../../components/workbook/Download.astro';
@@ -9,8 +14,13 @@ import Callout from '../../components/workbook/Callout.astro';
 import CutListTable from '../../components/guides/CutListTable.astro';
 import StepBlock from '../../components/guides/StepBlock.astro';
 import { getGuides, getGuide, CATEGORY_LABELS } from '../../data/guides';
-import { dimsText } from '../../components/guides/format';
+import GuideViewer from '../../components/guides3d/GuideViewer.astro';
+import { asBuiltText, dimsText } from '../../components/guides/format';
+import { imageSize } from '../../components/guides/imageSize';
 import { u } from '../../lib/url';
+import type { GuideModel } from '../../lib/guides3d/schema';
+
+const models = import.meta.glob<GuideModel>('../../data/guides/models/*.json', { eager: true, import: 'default' });
 
 export function getStaticPaths() {
   return getGuides().map((guide) => ({ params: { slug: guide.slug } }));
@@ -30,6 +40,11 @@ const materialItems = [...guide.materials, ...guide.hardware].map((m, idx) => ({
   hint: m.notes,
 }));
 
+const model = Object.values(models).find((m) => m.slug === guide.slug);
+// site-added: where PiaT's stated size is nominal, say what the parts actually build
+const asBuilt = model?.asBuilt ? asBuiltText(guide.dimensionsIn, model.asBuilt) : '';
+const asBuiltReason = model?.asBuilt?.reason?.trim().replace(/([^.!?])$/, '$1.') ?? '';
+
 const glance: { label: string; value: string }[] = [{ label: 'Size', value: dimsText(guide.dimensionsIn) }];
 if (guide.time) glance.push({ label: 'Time', value: guide.time });
 if (guide.people) glance.push({ label: 'People', value: guide.people });
@@ -44,7 +59,7 @@ if (guide.cost) glance.push({ label: 'Cost', value: guide.cost });
     </p>
     <div class="hero-grid">
       <div class="hero-media">
-        <img src={u(`img/guides/${guide.slug}/hero.webp`)} alt={`${guide.title}, assembled`} />
+        <img src={u(`img/guides/${guide.slug}/hero.webp`)} alt={`${guide.title}, assembled`} {...(imageSize(`img/guides/${guide.slug}/hero.webp`) ?? {})} />
       </div>
       <div class="hero-copy">
         <h1 class="ruled">{guide.title}</h1>
@@ -57,6 +72,12 @@ if (guide.cost) glance.push({ label: 'Cost', value: guide.cost });
             </div>
           ))}
         </dl>
+        {asBuilt && (
+          <p class="as-built">
+            {/* site-added: from the 3D model's asBuilt note */}
+            Built from these parts it comes out {asBuilt}. {asBuiltReason}
+          </p>
+        )}
         <div class="hero-actions no-print">
           <Download href={guide.pdf} label="Original PDF" />
           <button class="btn btn-small" type="button" onclick="window.print()">🖨 Print</button>
@@ -84,10 +105,31 @@ if (guide.cost) glance.push({ label: 'Cost', value: guide.cost });
 
   <section class="wrap section">
     <h2 class="ruled">Steps</h2>
-    <ol class="steps">
-      {guide.steps.map((step) => <StepBlock step={step} />)}
-    </ol>
+    {model ? (
+      <div class="steps-layout" data-g3d="pending">
+        <aside class="g3d-col no-print" aria-label={`3D model of the ${guide.title}`}>
+          <GuideViewer guide={guide} />
+        </aside>
+        <ol class="steps">
+          {guide.steps.map((step) => <StepBlock step={step} />)}
+        </ol>
+      </div>
+    ) : (
+      <ol class="steps">
+        {guide.steps.map((step) => <StepBlock step={step} />)}
+      </ol>
+    )}
   </section>
+  {model && (
+    <script is:inline>
+      // Switch to the two-column layout before first paint when WebGL looks
+      // available; the viewer island confirms it (or turns it off) once loaded.
+      (function () {
+        var l = document.querySelector('.steps-layout');
+        if (l && window.WebGLRenderingContext && window.matchMedia) l.setAttribute('data-g3d', 'on');
+      })();
+    </script>
+  )}
 
   {(guide.finishing || (guide.safety && guide.safety.length > 0)) && (
     <section class="wrap section finishing-safety">
@@ -226,6 +268,67 @@ if (guide.cost) glance.push({ label: 'Cost', value: guide.cost });
     list-style: none;
     margin: 0;
     padding: 0;
+  }
+  .as-built {
+    margin: 10px 0 0;
+    font-size: 0.88rem;
+    color: var(--ink-2);
+  }
+
+  /* ---- 3D model beside the steps (only when the viewer is on) ---------------- */
+  .steps-layout:not([data-g3d='on']) .g3d-col {
+    display: none;
+  }
+  @media (min-width: 1000px) {
+    .steps-layout[data-g3d='on'] {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 0.82fr);
+      gap: 40px;
+      align-items: start;
+    }
+    .steps-layout[data-g3d='on'] .steps {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .steps-layout[data-g3d='on'] .g3d-col {
+      grid-column: 2;
+      grid-row: 1;
+      position: sticky;
+      top: calc(var(--g3d-top, 65px) + 20px);
+      height: min(calc(100vh - var(--g3d-top, 65px) - 40px), 860px);
+      padding-top: 28px;
+    }
+    /* the steps column is narrower now: text above its drawing */
+    .steps-layout[data-g3d='on'] :global(.step-body) {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 18px;
+    }
+  }
+  @media (max-width: 999.98px) {
+    /* phones & tablets: a sticky strip above the steps; the text scrolls below it */
+    .steps-layout[data-g3d='on'] .g3d-col {
+      position: sticky;
+      top: var(--g3d-top, 65px);
+      z-index: 20;
+      margin-inline: calc(-1 * var(--gutter));
+      padding-inline: var(--gutter);
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 6px 12px -10px rgb(0 0 0 / 0.35);
+      height: clamp(230px, 42vh, 440px);
+      height: clamp(230px, 42svh, 440px);
+    }
+    .steps-layout[data-g3d='on'][data-g3d-collapsed='1'] .g3d-col {
+      height: auto;
+    }
+    .steps-layout[data-g3d='on'] :global(.step) {
+      scroll-margin-top: calc(var(--g3d-top, 65px) + var(--g3d-h, 0px) + 12px);
+    }
+  }
+  @media print {
+    .steps-layout {
+      display: block !important;
+    }
   }
   .finishing-safety {
     display: grid;

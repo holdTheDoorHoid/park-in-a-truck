@@ -57,6 +57,13 @@ export interface GuideModel {
    * within 4" of the stated size. Always give the reason.
    */
   asBuilt?: { length: number; width: number; height: number; reason: string };
+  /**
+   * Which guide step the viewer shows as the "cut pile" (every board laid flat
+   * in rows and labelled). Default: detected — step 1 or 2 when its title reads
+   * like "Mark, label and cut the lumber" and the model adds no parts in it.
+   * Set 0 to never show a cut pile. (Added by the guide3d viewer; optional.)
+   */
+  cutPileStep?: number;
 }
 
 /** Actual cross-sections of nominal lumber, inches [thickness, width]. */
