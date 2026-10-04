@@ -9,16 +9,18 @@ import LotLookupIsland from '../philly/LotLookup.tsx';
 import '../philly/philly.css';
 import LangFallback from '../site/LangFallback.astro';
 import phillyMsgs from '../../i18n/messages/en/philly.ts';
+import { getT } from '../../i18n/astro.ts';
 interface Props {
   mode?: 'primary' | 'candidates';
   [key: string]: unknown;
 }
 const { mode = 'primary' } = Astro.props;
+const t = getT(Astro, phillyMsgs);
 ---
 <div class="ph-widget" data-widget="LotLookup">
   <LangFallback area={phillyMsgs}>
     <LotLookupIsland client:only="preact" mode={mode}>
-      <div slot="fallback" class="ph-fallback">Loading the address lookup… (it needs JavaScript)</div>
+      <div slot="fallback" class="ph-fallback">{t('loading.lookup')}</div>
     </LotLookupIsland>
   </LangFallback>
 </div>

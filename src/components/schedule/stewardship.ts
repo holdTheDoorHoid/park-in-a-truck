@@ -5,6 +5,9 @@
 
 import type { IcsEvent } from './ics';
 import { addDaysISO } from './dates';
+import schedule from '../../i18n/messages/en/schedule.ts';
+import { getT } from '../../i18n/t.ts';
+import type { Locale } from '../../i18n/locales.ts';
 
 export type StewardCategory = 'survive' | 'thrive' | 'socialize';
 
@@ -18,11 +21,23 @@ export interface StewardTask {
   day?: number;
 }
 
+/** English names of the three calendars (categoryLabel() gives them in the reader's language). */
 export const CATEGORY_LABEL: Record<StewardCategory, string> = {
   survive: 'Survive',
   thrive: 'Thrive',
   socialize: 'Socialize',
 };
+
+type ScheduleKey = keyof typeof schedule.messages;
+
+/** "Survive" / "Thrive" / "Socialize" in the reader's language (default: the page's). */
+export const categoryLabel = (c: StewardCategory, locale?: Locale | string) => getT(locale, schedule)(`category.${c}`);
+
+/** A task's words in the reader's language (TASKS keep the English; keys "task.<id>"). */
+export function taskLabel(task: { taskId?: string; id?: string; label: string }, locale?: Locale | string): string {
+  const key = `task.${task.taskId ?? task.id}` as ScheduleKey;
+  return key in schedule.messages ? getT(locale, schedule)(key) : task.label;
+}
 
 export const TASKS: StewardTask[] = [
   // ---- Survive (critical) -------------------------------------------------
@@ -115,12 +130,14 @@ function pad2(n: number): string {
   return String(n).padStart(2, '0');
 }
 
-export function stewardshipToIcsEvents(year: number): IcsEvent[] {
+/** Yearly reminders, worded in `locale` (default: the page's language). */
+export function stewardshipToIcsEvents(year: number, locale?: Locale | string): IcsEvent[] {
+  const t = getT(locale, schedule);
   return allInstances().map((inst) => {
     const start = `${year}-${pad2(inst.month + 1)}-${pad2(inst.day)}`;
     return {
       uid: `steward-${inst.key}`,
-      summary: `${CATEGORY_LABEL[inst.category]}: ${inst.label}`,
+      summary: t('ics.stewardEvent', { category: categoryLabel(inst.category, t.locale), task: taskLabel(inst, t.locale) }),
       start,
       endExclusive: addDaysISO(start, 1),
       yearly: true,

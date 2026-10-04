@@ -1,29 +1,34 @@
 // Plain-language names for City codes (zoning districts, flood zones) and the
 // current City Council roster. Names follow the Philadelphia Zoning Code
-// (Title 14, §14-400 base districts).
+// (Title 14, §14-400 base districts). The words come from the "philly" catalog
+// (src/i18n/messages/<lang>/philly.ts); every function takes an optional language
+// (default: the page's language in the browser, English in Node).
 
-const ZONING: [RegExp, string][] = [
-  [/^RSD/, 'Residential — single-family detached houses'],
-  [/^RSA/, 'Residential — single-family attached houses (rowhouses and twins)'],
-  [/^RTA/, 'Residential — two-family attached houses'],
-  [/^RMX/, 'Residential mixed-use'],
-  [/^RM/, 'Residential — multi-family (apartments)'],
-  [/^CMX-?(4|5)/, 'Center City commercial mixed-use'],
-  [/^CMX-?3/, 'Community commercial mixed-use'],
-  [/^CMX/, 'Neighborhood commercial mixed-use (shops with homes above)'],
-  [/^CA/, 'Auto-oriented commercial'],
-  [/^IRMX/, 'Industrial-residential mixed-use'],
-  [/^ICMX/, 'Industrial-commercial mixed-use'],
-  [/^I-?P/, 'Port industrial'],
-  [/^I-?1/, 'Light industrial'],
-  [/^I-?2/, 'Medium industrial'],
-  [/^I-?3/, 'Heavy industrial'],
-  [/^SP-?PO-?A/, 'Parks and open space (active)'],
-  [/^SP-?PO-?P/, 'Parks and open space (passive)'],
-  [/^SP-?ENT/, 'Entertainment (casinos)'],
-  [/^SP-?INS/, 'Institutional (campuses, hospitals)'],
-  [/^SP-?STA/, 'Stadium'],
-  [/^SP-?AIR/, 'Airport'],
+import type { Locale } from '../../i18n/locales.ts';
+import { retranslate, words, type PhillyKey } from './words';
+
+const ZONING: [RegExp, PhillyKey][] = [
+  [/^RSD/, 'zoning.rsd'],
+  [/^RSA/, 'zoning.rsa'],
+  [/^RTA/, 'zoning.rta'],
+  [/^RMX/, 'zoning.rmx'],
+  [/^RM/, 'zoning.rm'],
+  [/^CMX-?(4|5)/, 'zoning.cmxCenter'],
+  [/^CMX-?3/, 'zoning.cmx3'],
+  [/^CMX/, 'zoning.cmx'],
+  [/^CA/, 'zoning.ca'],
+  [/^IRMX/, 'zoning.irmx'],
+  [/^ICMX/, 'zoning.icmx'],
+  [/^I-?P/, 'zoning.ip'],
+  [/^I-?1/, 'zoning.i1'],
+  [/^I-?2/, 'zoning.i2'],
+  [/^I-?3/, 'zoning.i3'],
+  [/^SP-?PO-?A/, 'zoning.spPoA'],
+  [/^SP-?PO-?P/, 'zoning.spPoP'],
+  [/^SP-?ENT/, 'zoning.spEnt'],
+  [/^SP-?INS/, 'zoning.spIns'],
+  [/^SP-?STA/, 'zoning.spSta'],
+  [/^SP-?AIR/, 'zoning.spAir'],
 ];
 
 /** "RSA5" / "RSA-5" → "RSA-5" (the way the Zoning Code writes it). */
@@ -40,23 +45,32 @@ export function normaliseZoning(code: string | null | undefined): string | null 
 }
 
 /** "RSA-5" → "RSA-5 · Residential — single-family attached houses (rowhouses and twins)" */
-export function zoningPlain(code: string | null | undefined): string | null {
+export function zoningPlain(code: string | null | undefined, locale?: Locale | string): string | null {
   const c = normaliseZoning(code);
   if (!c) return null;
   const hit = ZONING.find(([re]) => re.test(c));
-  return hit ? `${c} · ${hit[1]}` : c;
+  if (!hit) return c;
+  const t = words(locale);
+  return t('zoning.line', { code: c, meaning: t(hit[1]) });
 }
 
-/** FEMA flood zone code → plain words. */
-export function floodPlain(zone: string | null | undefined, subtype?: string | null): string {
-  if (!zone) return 'Not in a FEMA flood zone';
+const FLOOD_KEYS: PhillyKey[] = ['flood.none', 'flood.xShaded', 'flood.x', 'flood.high', 'flood.waves', 'flood.other'];
+
+/** FEMA flood zone code → plain words. (lookupLot saves it in English: floodPlain(z, s, 'en').) */
+export function floodPlain(zone: string | null | undefined, subtype?: string | null, locale?: Locale | string): string {
+  const t = words(locale);
+  if (!zone) return t('flood.none');
   const z = zone.toUpperCase();
-  if (z === 'X' && /0\.2/.test(subtype ?? '')) return 'Zone X (shaded) — moderate flood risk (0.2% chance a year, the "500-year" floodplain)';
-  if (z === 'X') return 'Zone X — minimal flood risk';
-  if (z.startsWith('AE') || z === 'A' || z.startsWith('AO') || z.startsWith('AH'))
-    return `Zone ${z} — high flood risk (1% chance a year, the "100-year" floodplain)`;
-  if (z.startsWith('V')) return `Zone ${z} — high flood risk with waves`;
-  return `Zone ${z}`;
+  if (z === 'X' && /0\.2/.test(subtype ?? '')) return t('flood.xShaded');
+  if (z === 'X') return t('flood.x');
+  if (z.startsWith('AE') || z === 'A' || z.startsWith('AO') || z.startsWith('AH')) return t('flood.high', { zone: z });
+  if (z.startsWith('V')) return t('flood.waves', { zone: z });
+  return t('flood.other', { zone: z });
+}
+
+/** A saved flood-zone label (LotExtra.floodZoneLabel, English) in the reader's language. */
+export function floodText(saved: string, locale?: Locale | string): string {
+  return retranslate(saved, FLOOD_KEYS, words(locale));
 }
 
 /**
@@ -114,16 +128,22 @@ export function phone(p: string | null | undefined): string {
   return d.length === 10 ? `(${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6)}` : p.trim();
 }
 
-/** 1234.5 → "1,235 sq ft" */
-export const sqft = (n: number | null | undefined) => (n == null ? '—' : `${Math.round(n).toLocaleString('en-US')} sq ft`);
-/** 13.96 → "14.0 ft" */
-export const feet = (n: number | null | undefined, d = 1) => (n == null ? '—' : `${(Math.round(n * 10 ** d) / 10 ** d).toFixed(d)} ft`);
+/** 1234.5 → "1,235 sq ft" (written the local way: "1 235 sq ft") */
+export const sqft = (n: number | null | undefined, locale?: Locale | string) => (n == null ? '—' : words(locale)('unit.sqft', { n: Math.round(n) }));
+/** 13.96 → "14.0 ft" (always `d` decimals; "14,0 ft" where a comma is the decimal mark) */
+export const feet = (n: number | null | undefined, d = 1, locale?: Locale | string) => {
+  if (n == null) return '—';
+  const t = words(locale);
+  const v = Math.round(n * 10 ** d) / 10 ** d;
+  return t('unit.ft', { n: t.num(v, { minimumFractionDigits: d, maximumFractionDigits: d, useGrouping: false }) });
+};
 /** distance for lists: 180 → "180 ft", 2400 → "0.5 mi" */
-export function distance(ft: number | null | undefined): string {
+export function distance(ft: number | null | undefined, locale?: Locale | string): string {
   if (ft == null) return '';
-  if (ft < 30) return 'next door';
-  if (ft < 1000) return `${Math.round(ft / 10) * 10} ft`;
+  const t = words(locale);
+  if (ft < 30) return t('distance.nextDoor');
+  if (ft < 1000) return t('unit.ft', { n: Math.round(ft / 10) * 10 });
   // 0.25 mi, 0.5 mi, 1 mi, 1.3 mi — never "1." or "1.0"
   const mi = Math.round((ft / 5280) * (ft < 5280 ? 100 : 10)) / (ft < 5280 ? 100 : 10);
-  return `${mi} mi`;
+  return t('unit.mi', { n: mi });
 }

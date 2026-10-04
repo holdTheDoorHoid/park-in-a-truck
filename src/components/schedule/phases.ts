@@ -1,5 +1,11 @@
 // The eight Create-step phases, in order — each roughly a weekend's work.
 // Ids are permanent (used as keys in project.extra.buildSchedule.overrides).
+// `title`/`blurb` are the English words; phaseText() gives them in the reader's language
+// (keys "phase.<id>.title" / "phase.<id>.blurb" in src/i18n/messages/<lang>/schedule.ts).
+
+import schedule from '../../i18n/messages/en/schedule.ts';
+import { getT } from '../../i18n/t.ts';
+import type { Locale } from '../../i18n/locales.ts';
 
 export interface PhaseDef {
   id: string;
@@ -17,3 +23,16 @@ export const PHASES: PhaseDef[] = [
   { id: 'install-gravel', title: 'Phase 7: Install the gravel surface', blurb: 'Finish gravel, tamped and level' },
   { id: 'install-elements', title: 'Phase 8: Install park elements', blurb: 'Benches, tables and structures' },
 ];
+
+type ScheduleKey = keyof typeof schedule.messages;
+
+/** A phase's title and blurb in the reader's language (default: the page's). */
+export function phaseText(phase: PhaseDef, locale?: Locale | string): { title: string; blurb: string } {
+  const t = getT(locale, schedule);
+  const title = `phase.${phase.id}.title` as ScheduleKey;
+  const blurb = `phase.${phase.id}.blurb` as ScheduleKey;
+  return {
+    title: title in schedule.messages ? t(title) : phase.title,
+    blurb: blurb in schedule.messages ? t(blurb) : phase.blurb,
+  };
+}

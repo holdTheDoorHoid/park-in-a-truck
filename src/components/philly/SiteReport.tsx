@@ -11,22 +11,25 @@ import { fetchSurroundings } from '../../lib/philly/surroundings';
 import { distToRing, makeProjector } from '../../lib/philly/geo';
 import { SIZES } from '../../lib/sizing';
 import { sizeOf } from '../../lib/philly/choose';
-import { titleCase, zoningPlain, sqft } from '../../lib/philly/plain';
-import { u } from '../../lib/url';
+import { floodText, titleCase, zoningPlain, sqft } from '../../lib/philly/plain';
+import { lotTypeReasonText } from '../../lib/philly/saved';
+import { words, type PhillyKey } from '../../lib/philly/words';
+import { urlFor } from '../../i18n/url.ts';
 import AerialThumb from './AerialThumb';
 import { lotDrawing, fmtFt, textAngle } from './drawing';
 import { useProject } from './hooks';
+import { LOT_TYPE_KEY } from './LotCard';
 
-const LOT_TYPE: Record<string, string> = { 'mid-block': 'Mid-block lot', corner: 'Corner lot', alley: 'Breezeway / alley', unknown: 'Not sure' };
-const SIDE_NAME: Record<string, string> = {
-  x0: 'entrance side',
-  x1: 'back',
-  y0: 'right side as you stand at the entrance',
-  y1: 'left side as you stand at the entrance',
+const SIDE_NAME: Record<string, PhillyKey> = {
+  x0: 'side.x0',
+  x1: 'side.x1',
+  y0: 'side.y0',
+  y1: 'side.y1',
 };
 
 /** Numbered sketch of the lot (edge numbers match the list). */
 function Sketch({ lot }: { lot: LotRecord }) {
+  const t = words();
   const d = lotDrawing(lot);
   if (!d) return null;
   const { maxX, maxY } = d.bounds;
@@ -51,8 +54,8 @@ function Sketch({ lot }: { lot: LotRecord }) {
       class="ph-outline"
       viewBox={vb}
       role="img"
-      aria-label={`Sketch of the lot with its sides numbered to match the list of measurements, drawn as you stand at the entrance${d.g.streets[0] ? ` on ${titleCase(d.g.streets[0].name)}` : ''}; the arrow points north`}
-      style="max-height:260px"
+      aria-label={d.g.streets[0] ? t('report.sketchStreet', { street: titleCase(d.g.streets[0].name) }) : t('report.sketch')}
+      style="max-height:260px;direction:ltr"
     >
       <polygon points={d.polygon.map((p) => p.join(',')).join(' ')} fill="#e3f5fc" stroke="#111" stroke-width={fs / 6} stroke-linejoin="round" />
       {d.edges
@@ -92,7 +95,7 @@ function Sketch({ lot }: { lot: LotRecord }) {
       <g transform={`translate(${maxX + pad * 0.55},${-pad * 0.45}) rotate(${d.northDeg})`} aria-hidden="true">
         <path d={`M0,${-fs * 1.2} L${fs * 0.5},${fs * 0.5} L0,${fs * 0.15} L${-fs * 0.5},${fs * 0.5}Z`} fill="#111" />
         <text y={-fs * 1.45} text-anchor="middle" font-size={fs * 0.85} font-weight="700" fill="#111" transform={`rotate(${-d.northDeg},0,${-fs * 1.75})`}>
-          N
+          {t('map.north')}
         </text>
       </g>
     </svg>
@@ -100,6 +103,8 @@ function Sketch({ lot }: { lot: LotRecord }) {
 }
 
 export default function SiteReport() {
+  const t = words();
+  const u = urlFor(t.locale);
   const project = useProject();
   const lot = project.lot;
   const [around, setAround] = useState<Surroundings | null>(null);
@@ -112,16 +117,16 @@ export default function SiteReport() {
     const ctrl = new AbortController();
     fetchSurroundings(lot, 150, { signal: ctrl.signal })
       .then(setAround)
-      .catch((e) => e?.code !== 'aborted' && setAroundErr(e?.message ?? "Couldn't load nearby buildings and trees."));
+      .catch((e) => e?.code !== 'aborted' && setAroundErr(e?.message ?? t('report.aroundFailed')));
     return () => ctrl.abort();
   }, [lot?.address]);
 
   if (!lot)
     return (
-      <div class="ph ph-fallback">
-        Choose your lot first — look it up in <a href={u('steps/acquire/#who-owns-that-lot')}>Step 1: Acquire</a> or on the{' '}
-        <a href={u('lot/')}>Find a lot</a> page. This report then fills itself in from City records.
-      </div>
+      <div
+        class="ph ph-fallback"
+        dangerouslySetInnerHTML={{ __html: t.html('report.noLot', { acquire: u('steps/acquire/#who-owns-that-lot'), lot: u('lot/') }) }}
+      />
     );
 
   const x = (lot.extra ?? {}) as LotExtra;
@@ -148,10 +153,10 @@ export default function SiteReport() {
       tallest = Math.max(tallest ?? 0, b.heightFt);
     }
     nextDoor.sort((a, b) => a - b);
-    for (const t of around.trees) {
-      const d = distToRing(pr.toXY(t.lngLat), ring);
+    for (const tree of around.trees) {
+      const d = distToRing(pr.toXY(tree.lngLat), ring);
       if (d === 0) treesOn++;
-      else if (d <= 30) treesNear.push(t.species ? titleCase(t.species.split(' - ')[1] ?? t.species) : 'tree');
+      else if (d <= 30) treesNear.push(tree.species ? titleCase(tree.species.split(' - ')[1] ?? tree.species) : t('report.tree'));
     }
   }
   const storeys = (h: number) => Math.max(1, Math.round(h / 11));
@@ -159,111 +164,118 @@ export default function SiteReport() {
 
   return (
     <div class="ph ph-site-report">
-      <p class="ph-small">
-        From City of Philadelphia records for <strong>{titleCase(lot.address)}</strong> (looked up{' '}
-        {new Date(lot.fetchedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}). Measurements
-        come from the City's parcel outline — check them with a tape measure on site; field measurements win.
-      </p>
+      <p
+        class="ph-small"
+        dangerouslySetInnerHTML={{ __html: t.html('report.from', { address: titleCase(lot.address), date: t.date(new Date(lot.fetchedAt), 'long') }) }}
+      />
       <div class="ph-report">
         <div>
-          <h3>Measured edges</h3>
+          <h3>{t('report.edges')}</h3>
           {g ? (
             <>
               <ol class="ph-edges">
-                {g.edges.map((e, i) => (
-                  <li>
-                    <strong>{fmtFt(e.lengthFt)}</strong>
-                    {e.side ? ` — ${SIDE_NAME[e.side]}` : ''}
-                    {e.street ? `, along ${titleCase(e.street)}` : ''}
-                    {i === 0 ? ' (from the starting point, blue dot)' : ''}
-                  </li>
-                ))}
+                {g.edges.map((e, i) => {
+                  const side = e.side ? t(SIDE_NAME[e.side]!) : null;
+                  const street = e.street ? titleCase(e.street) : null;
+                  return (
+                    <li>
+                      <strong>{fmtFt(e.lengthFt)}</strong>
+                      {side && street
+                        ? ` ${t('report.edgeSideStreet', { side, street })}`
+                        : side
+                          ? ` ${t('report.edgeSide', { side })}`
+                          : street
+                            ? t('report.edgeStreet', { street })
+                            : ''}
+                      {i === 0 ? ` ${t('report.edgeStart')}` : ''}
+                    </li>
+                  );
+                })}
               </ol>
               <dl class="ph-facts" style="margin-top:12px">
-                <dt>Long × short edge</dt>
+                <dt>{t('report.longShort')}</dt>
                 <dd>
-                  {fmtFt(g.lengthFt)} × {fmtFt(g.widthFt)}
+                  {t('report.longShortValue', { long: fmtFt(g.lengthFt), short: fmtFt(g.widthFt) })}
                   <br />
-                  <small>
-                    The smallest rectangle the lot fits in — what the park sizes below are measured against. It can be a few inches longer
-                    than the sides above when the lot isn't quite square.
-                  </small>
+                  <small>{t('report.rectNote')}</small>
                 </dd>
-                <dt>Area</dt>
+                <dt>{t('report.area')}</dt>
                 <dd>
-                  {sqft(g.areaSqFt)} <small>(from the parcel outline)</small>
-                  {assessed && Math.abs(assessed - g.areaSqFt) > 50 ? <small> · the City's tax assessment says {sqft(assessed)}</small> : null}
+                  {sqft(g.areaSqFt)} <small>{t('report.fromOutline')}</small>
+                  {assessed && Math.abs(assessed - g.areaSqFt) > 50 ? <small> · {t('report.assessed', { area: sqft(assessed) })}</small> : null}
                 </dd>
                 {g.irregular && (
                   <>
-                    <dt>Shape</dt>
-                    <dd>Irregular — long and short edge are the rectangle around it.</dd>
+                    <dt>{t('report.shape')}</dt>
+                    <dd>{t('report.irregular')}</dd>
                   </>
                 )}
               </dl>
             </>
           ) : (
-            <p>
-              The City has no outline for this lot. Its property record says {lot.frontageFt ?? '?'} × {lot.depthFt ?? '?'} ft — measure it
-              on site.
-            </p>
+            <p>{t('report.noOutline', { frontage: String(lot.frontageFt ?? '?'), depth: String(lot.depthFt ?? '?') })}</p>
           )}
 
-          <h3>Park size</h3>
+          <h3>{t('card.parkSize')}</h3>
           <table class="ph-sizes">
-            <caption class="visually-hidden">Park in a Truck sizes A to E</caption>
+            <caption class="visually-hidden">{t('sizes.caption')}</caption>
             <thead>
               <tr>
-                <th scope="col">Size</th>
-                <th scope="col">Long edge</th>
-                <th scope="col">Short edge</th>
+                <th scope="col">{t('sizes.size')}</th>
+                <th scope="col">{t('sizes.long')}</th>
+                <th scope="col">{t('sizes.short')}</th>
               </tr>
             </thead>
             <tbody>
               {SIZES.map((s) => (
                 <tr data-this={size && size.id === s.id && !size.tooSmall && !size.tooBig ? '' : undefined}>
                   <th scope="row">{s.id}</th>
-                  <td>
-                    {s.long[0]}–{s.long[1]} ft
-                  </td>
-                  <td>
-                    {s.short[0]}–{s.short[1]} ft
-                  </td>
+                  <td>{t('sizes.range', { min: s.long[0], max: s.long[1] })}</td>
+                  <td>{t('sizes.range', { min: s.short[0], max: s.short[1] })}</td>
                 </tr>
               ))}
             </tbody>
           </table>
           {g && size && (
-            <p class="ph-small">
-              {size.tooSmall
-                ? <>Your lot ({fmtFt(g.lengthFt)} × {fmtFt(g.widthFt)}) is smaller than size A — the <a href={u('park-patch/')}>Park Patch workbook</a> is made for spaces like this.</>
-                : size.tooBig
-                  ? `Your lot (${fmtFt(g.lengthFt)} × ${fmtFt(g.widthFt)}) is bigger than size E — start from E and expand.`
-                  : `Your lot (${fmtFt(g.lengthFt)} × ${fmtFt(g.widthFt)}) is size ${size.id}${size.exact ? '' : ' (closest fit — the biggest set whose pieces fit inside the lot)'}.`}
-            </p>
+            <p
+              class="ph-small"
+              dangerouslySetInnerHTML={{
+                __html: size.tooSmall
+                  ? t.html('report.tooSmall', { long: fmtFt(g.lengthFt), short: fmtFt(g.widthFt), href: u('park-patch/') })
+                  : t.html(size.tooBig ? 'report.tooBig' : size.exact ? 'report.fits' : 'report.fitsClosest', {
+                      long: fmtFt(g.lengthFt),
+                      short: fmtFt(g.widthFt),
+                      size: size.id,
+                    }),
+              }}
+            />
           )}
 
-          <h3>Lot location</h3>
+          <h3>{t('report.location')}</h3>
           <dl class="ph-facts">
-            <dt>Lot type</dt>
+            <dt>{t('card.lotType')}</dt>
             <dd>
-              {LOT_TYPE[lot.lotType ?? 'unknown']}
+              {t(LOT_TYPE_KEY[lot.lotType ?? 'unknown'] ?? 'lotType.unknown')}
               {g && (
                 <>
                   <br />
-                  <small>{g.lotTypeReason}</small>
+                  <small>{lotTypeReasonText(g)}</small>
                 </>
               )}
             </dd>
-            <dt>Street sides</dt>
-            <dd>{g && g.streets.length ? g.streets.map((s) => `${titleCase(s.name)} — ${SIDE_NAME[s.side]}`).join('; ') : '—'}</dd>
-            <dt>Zoning</dt>
+            <dt>{t('report.streetSides')}</dt>
+            <dd>
+              {g && g.streets.length
+                ? g.streets.map((s) => t('report.streetSide', { street: titleCase(s.name), side: t(SIDE_NAME[s.side]!) })).join('; ')
+                : '—'}
+            </dd>
+            <dt>{t('card.zoning')}</dt>
             <dd>{zoningPlain(lot.zoning) ?? '—'}</dd>
-            <dt>Flooding</dt>
-            <dd>{x.floodZoneLabel ?? '—'}</dd>
+            <dt>{t('report.flooding')}</dt>
+            <dd>{x.floodZoneLabel ? floodText(x.floodZoneLabel) : '—'}</dd>
             {x.historicDistrict && (
               <>
-                <dt>Historic district</dt>
+                <dt>{t('report.historic')}</dt>
                 <dd>{x.historicDistrict}</dd>
               </>
             )}
@@ -276,39 +288,44 @@ export default function SiteReport() {
             <AerialThumb
               polygon={lot.polygon}
               rotateDeg={drawing?.northDeg}
-              label={`Aerial photo of ${titleCase(lot.address)} with the lot outlined, turned to match the sketch above`}
+              label={t('report.aerial', { address: titleCase(lot.address) })}
             />
           </div>
-          {drawing && (
-            <p class="ph-small">The photo is turned to match the sketch, as you stand at the entrance. The arrows point north.</p>
-          )}
-          <h3>Around the lot</h3>
+          {drawing && <p class="ph-small">{t('report.photoNote')}</p>}
+          <h3>{t('report.around')}</h3>
           {aroundErr && <p class="ph-small">{aroundErr}</p>}
           {!around && !aroundErr && (
             <p class="ph-status">
               <span class="ph-spinner" aria-hidden="true" />
-              Loading buildings and trees…
+              {t('report.loadingAround')}
             </p>
           )}
           {around && (
             <dl class="ph-facts">
-              <dt>Buildings next door</dt>
+              <dt>{t('report.nextDoor')}</dt>
               <dd>
                 {nextDoor.length
-                  ? `${nextDoor.length} touching your lot — ${nextDoor[0] !== nextDoor[nextDoor.length - 1] ? `${nextDoor[0]}–${nextDoor[nextDoor.length - 1]}` : nextDoor[0]} ft tall (about ${storeys(nextDoor[nextDoor.length - 1]!)} ${storeys(nextDoor[nextDoor.length - 1]!) === 1 ? 'storey' : 'storeys'})`
-                  : 'None touching the lot'}
-                {estimated ? <small> (some heights estimated)</small> : null}
+                  ? t('report.nextDoorValue', {
+                      count: nextDoor.length,
+                      height:
+                        nextDoor[0] !== nextDoor[nextDoor.length - 1]
+                          ? `${t.num(nextDoor[0]!)}–${t.num(nextDoor[nextDoor.length - 1]!)}`
+                          : t.num(nextDoor[0]!),
+                      storeys: t('report.storeys', { count: storeys(nextDoor[nextDoor.length - 1]!) }),
+                    })
+                  : t('report.noneTouching')}
+                {estimated ? <small> {t('report.estimated')}</small> : null}
               </dd>
-              <dt>Tallest nearby</dt>
-              <dd>{tallest ? `${Math.round(tallest)} ft (within 150 ft)` : '—'}</dd>
-              <dt>City trees</dt>
+              <dt>{t('report.tallest')}</dt>
+              <dd>{tallest ? t('report.tallestValue', { height: String(Math.round(tallest)) }) : '—'}</dd>
+              <dt>{t('report.trees')}</dt>
               <dd>
-                {treesOn} on the lot · {treesNear.length} within 30 ft
+                {t('report.treesValue', { on: treesOn, near: treesNear.length })}
                 {treesNear.length ? <small> ({[...new Set(treesNear)].slice(0, 4).join(', ')})</small> : null}
               </dd>
             </dl>
           )}
-          <p class="ph-small">Building heights: City LiDAR (LI building footprints). Trees: Parks &amp; Recreation tree inventory 2025.</p>
+          <p class="ph-small">{t('report.sources')}</p>
         </div>
       </div>
     </div>

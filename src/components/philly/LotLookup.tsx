@@ -10,16 +10,17 @@ import { lookupLot, type LotQuery } from '../../lib/philly/lookup';
 import { chooseLot } from '../../lib/philly/choose';
 import { PhillyError, type AddressSuggestion } from '../../lib/philly/types';
 import { titleCase } from '../../lib/philly/plain';
-import { u } from '../../lib/url';
+import { words } from '../../lib/philly/words';
+import { urlFor } from '../../i18n/url.ts';
 import AddressSearch from './AddressSearch';
 import LotCard from './LotCard';
 import CandidatesTable from './CandidatesTable';
 import SaveToggle from './SaveToggle';
 import { useProject } from './hooks';
 
-/** Where the vacant-land map is: on this page if it has one, else the Find a lot page. */
+/** Where the vacant-land map is: on this page if it has one, else the Find a lot page (in the page's language). */
 export function mapHref(): string {
-  return typeof document !== 'undefined' && document.getElementById('vacant-map') ? '#vacant-map' : u('lot/#vacant-map');
+  return typeof document !== 'undefined' && document.getElementById('vacant-map') ? '#vacant-map' : urlFor(words().locale)('lot/#vacant-map');
 }
 
 /** Does this page have workbook fields that fill themselves from the chosen lot? */
@@ -32,6 +33,8 @@ interface Props {
 }
 
 export default function LotLookup({ mode = 'primary' }: Props) {
+  const t = words();
+  const u = urlFor(t.locale);
   const project = useProject();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<PhillyError | null>(null);
@@ -55,19 +58,19 @@ export default function LotLookup({ mode = 'primary' }: Props) {
       if (opts.refresh && project.lot && project.lot.address === r.address) {
         // "Refresh from City records": update the saved lot in place
         chooseLot(r);
-        setFlash('Updated from City records.');
+        setFlash(t('lookup.updated'));
       } else {
         setResult(r);
         // "Add a possible lot by address" adds it: no second step to miss (veteran S10)
         if (mode === 'candidates' && !project.candidates.some((c) => c.address === r.address)) {
           addCandidate(r);
-          setFlash(`Added ${titleCase(r.address)} to your list of possible lots — it's in the table below.`);
+          setFlash(t('lookup.addedBelow', { address: titleCase(r.address) }));
         }
       }
     } catch (e) {
       if (c.signal.aborted) return;
       setResult(null);
-      setError(e instanceof PhillyError ? e : new PhillyError('city-down', 'Something went wrong looking that up. Try again in a minute.'));
+      setError(e instanceof PhillyError ? e : new PhillyError('city-down', t('error.generic')));
     } finally {
       if (!c.signal.aborted) setBusy(false);
     }
@@ -81,23 +84,21 @@ export default function LotLookup({ mode = 'primary' }: Props) {
 
   const use = (l: LotRecord) => {
     chooseLot(l);
-    setFlash(
-      `${titleCase(l.address)} is now your park lot.${pageHasLotFields() ? ' The owner and address fields on this page are filled in from City records.' : ''}`,
-    );
+    setFlash(t(pageHasLotFields() ? 'lookup.nowYourLotFilled' : 'lookup.nowYourLot', { address: titleCase(l.address) }));
     setSearching(false);
   };
   const list = (l: LotRecord) => {
     addCandidate(l);
-    setFlash(`Added ${titleCase(l.address)} to your list of possible lots.`);
+    setFlash(t('lookup.added', { address: titleCase(l.address) }));
   };
 
   const actionsFor = (l: LotRecord) => (
     <>
-      <SaveToggle primary done={isChosen(l)} doneText="✓ This is your park lot" onClick={() => use(l)}>
-        Use this as my park lot
+      <SaveToggle primary done={isChosen(l)} doneText={t('action.isYourLot')} onClick={() => use(l)}>
+        {t('action.use')}
       </SaveToggle>
-      <SaveToggle done={isListed(l)} doneText="✓ On your list" onClick={() => list(l)}>
-        + Add to my list
+      <SaveToggle done={isListed(l)} doneText={t('action.onList')} onClick={() => list(l)}>
+        {t('action.add')}
       </SaveToggle>
     </>
   );
@@ -111,17 +112,17 @@ export default function LotLookup({ mode = 'primary' }: Props) {
         <>
           <LotCard
             lot={chosen!}
-            badge={<span class="ph-badge ph-badge-ok">Your park lot</span>}
+            badge={<span class="ph-badge ph-badge-ok">{t('badge.yourLot')}</span>}
             actions={
               <>
                 <button class="btn" type="button" onClick={() => setSearching(true)}>
-                  Look up a different lot
+                  {t('lookup.different')}
                 </button>
                 <button class="btn" type="button" onClick={() => run({ opa: chosen!.opa! }, { refresh: true })} disabled={!chosen!.opa}>
-                  Refresh from City records
+                  {t('lookup.refresh')}
                 </button>
                 <a class="btn" href={u('lot/')}>
-                  Find lots on the map
+                  {t('lookup.findOnMap')}
                 </a>
               </>
             }
@@ -129,14 +130,10 @@ export default function LotLookup({ mode = 'primary' }: Props) {
         </>
       ) : (
         <AddressSearch
-          label={mode === 'candidates' ? 'Add a possible lot by address' : 'Address of the lot'}
-          placeholder={mode === 'candidates' ? 'Address to add, e.g. 2424 N Mole St' : 'e.g. 1322 N Dover St'}
-          hint={
-            mode === 'candidates'
-              ? 'Looks the lot up and adds it to your list of possible lots below.'
-              : 'A Philadelphia street address, a corner like "60th & Greenway", or a 9-digit OPA number.'
-          }
-          buttonLabel={mode === 'candidates' ? 'Add' : 'Look up'}
+          label={t(mode === 'candidates' ? 'lookup.labelCandidate' : 'lookup.label')}
+          placeholder={t(mode === 'candidates' ? 'lookup.placeholderCandidate' : 'search.placeholder')}
+          hint={t(mode === 'candidates' ? 'lookup.hintCandidate' : 'search.hint')}
+          buttonLabel={t(mode === 'candidates' ? 'lookup.add' : 'search.button')}
           busy={busy}
           onPick={pick}
         />
@@ -146,7 +143,7 @@ export default function LotLookup({ mode = 'primary' }: Props) {
         {busy && (
           <p class="ph-status">
             <span class="ph-spinner" aria-hidden="true" />
-            Checking City records (owner, size, zoning, vacancy)…
+            {t('lookup.checking')}
           </p>
         )}
         {flash && <p class="ph-status ph-saved">✓ {flash}</p>}
@@ -165,21 +162,11 @@ export default function LotLookup({ mode = 'primary' }: Props) {
             )}
             {error.code === 'city-down' && lastQuery && (
               <button class="btn btn-small" type="button" onClick={() => run(lastQuery)}>
-                Try again
+                {t('lookup.tryAgain')}
               </button>
             )}
-            {error.code === 'intersection' && (
-              <p class="ph-small">
-                Or <a href={mapHref()}>browse the vacant-land map</a>.
-              </p>
-            )}
-            {error.code === 'not-found' && (
-              <p class="ph-small">
-                Only know the street, not the house number? Type the street name into the{' '}
-                <a href={mapHref()}>vacant-land map's "Go to an address or corner" box</a> and pick your block — the map shows the vacant
-                lots on it.
-              </p>
-            )}
+            {error.code === 'intersection' && <p class="ph-small" dangerouslySetInnerHTML={{ __html: t.html('lookup.orBrowse', { href: mapHref() }) }} />}
+            {error.code === 'not-found' && <p class="ph-small" dangerouslySetInnerHTML={{ __html: t.html('lookup.onlyStreet', { href: mapHref() }) }} />}
           </div>
         )}
       </div>

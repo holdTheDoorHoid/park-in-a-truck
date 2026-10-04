@@ -9,6 +9,10 @@
 // 2026-10-04; the test file lists them.
 
 import type { OwnerType } from './types';
+import type { Locale } from '../../i18n/locales.ts';
+import workbook from '../../i18n/messages/en/workbook.ts';
+import { getT } from '../../i18n/t.ts';
+import { EN, words, type PhillyKey } from './words';
 
 export interface OwnerClass {
   type: OwnerType;
@@ -16,54 +20,71 @@ export interface OwnerClass {
   label: string;
 }
 
-const PUBLIC_RULES: { re: RegExp; type: OwnerType; label: string }[] = [
+/** The public agencies the site knows by name: their words are "agency.<id>" in the philly catalog. */
+export type AgencyId =
+  | 'landbank'
+  | 'redevelopment'
+  | 'pha'
+  | 'phdc'
+  | 'city'
+  | 'schools'
+  | 'septa'
+  | 'commonwealth'
+  | 'usa'
+  | 'pidc'
+  | 'parking'
+  | 'port'
+  | 'pgw'
+  | 'amtrak';
+
+const PUBLIC_RULES: { re: RegExp; type: OwnerType; id: AgencyId }[] = [
   // Land Bank first: "PHILADELPHIA LAND BANK" (but not "PHILADELPHIA LAND INVESTM…")
-  { re: /^PHI[A-Z]* LAND BANK\b/, type: 'landbank', label: 'Philadelphia Land Bank' },
+  { re: /^PHI[A-Z]* LAND BANK\b/, type: 'landbank', id: 'landbank' },
   // Redevelopment Authority, every spelling seen
   {
     re: /^(REDEVELOPMENT AUTH|REDEV(EL)? AUTH|PHI[A-Z]* REDEVELOPMENT? AUTH|PHI[A-Z]* REDEVELOPMENT?$)/,
     type: 'redevelopment',
-    label: 'Philadelphia Redevelopment Authority',
+    id: 'redevelopment',
   },
   // Housing Authority (not the Housing Development Corporation)
-  { re: /^PHI[A-Z]* HOUSING AUTH/, type: 'pha', label: 'Philadelphia Housing Authority (PHA)' },
+  { re: /^PHI[A-Z]* HOUSING AUTH/, type: 'pha', id: 'pha' },
   // PHDC
   {
     re: /^(PHI[A-Z]* HOUSING DEV|PHDC\b)/,
     type: 'other-public',
-    label: 'Philadelphia Housing Development Corporation (PHDC)',
+    id: 'phdc',
   },
   // The City itself, its departments, and Fairmount Park (City parkland)
   {
     re: /^(CITY OF PHILA(DELPHIA)?\b|PHILA(DELPHIA)? CITY OF\b|FAIRMOUNT PARK( COMM(ISSION)?)?\b|DEPARTMENT OF PARKS & RECREATION|DEPT OF PUBLIC PROPERTY)/,
     type: 'city',
-    label: 'City of Philadelphia',
+    id: 'city',
   },
-  { re: /^SCHOOL DIST(RICT)?\b/, type: 'other-public', label: 'School District of Philadelphia' },
-  { re: /^(SEPTA\b|SOUTHEASTERN PENNSYLVANIA( TRANSPORT)?)/, type: 'other-public', label: 'SEPTA (regional transit)' },
+  { re: /^SCHOOL DIST(RICT)?\b/, type: 'other-public', id: 'schools' },
+  { re: /^(SEPTA\b|SOUTHEASTERN PENNSYLVANIA( TRANSPORT)?)/, type: 'other-public', id: 'septa' },
   {
     re: /^(COMMONWEALTH (OF )?(PENNA|PENNSYLVA|PENN|PA)\b|COMMONWEALTH OF PENNSYLVANIA|PENNDOT\b|GENERAL STATE AUTH)/,
     type: 'other-public',
-    label: 'Commonwealth of Pennsylvania',
+    id: 'commonwealth',
   },
   {
     re: /^(UNITED STATES( OF)?( AMER(ICA)?)?\b|U ?S (OF )?A(MERICA)?\b|U ?S GOV|US GOVT|USA DEPT|U ?S POSTAL|UNITED STATES POSTAL|SECRETARY OF HOUSING)/,
     type: 'other-public',
-    label: 'United States government',
+    id: 'usa',
   },
   {
     re: /^((PHILA|PHILADELPHIA) AUTH(ORITY)?( FOR| F\/| &)? ?(IND|INDUSTRIAL)|PHILADELPHIA AUTHORITY FO|PHILA AUTH FOR\b|PHILADELPHIA AUTHORITY FOR IND|PIDC\b)/,
     type: 'other-public',
-    label: 'Philadelphia Authority for Industrial Development (PIDC)',
+    id: 'pidc',
   },
-  { re: /^(PHILA|PHILADELPHIA) PARKING AUTH/, type: 'other-public', label: 'Philadelphia Parking Authority' },
+  { re: /^(PHILA|PHILADELPHIA) PARKING AUTH/, type: 'other-public', id: 'parking' },
   {
     re: /^((THE )?DELAWARE RIVER (PORT|JOINT)|DEL RIVER PORT AUTH|PHILADELPHIA REGIONAL PORT)/,
     type: 'other-public',
-    label: 'Port / bridge authority',
+    id: 'port',
   },
-  { re: /^(PHILA|PHILADELPHIA) GAS WORKS\b/, type: 'other-public', label: 'Philadelphia Gas Works (City-owned utility)' },
-  { re: /^(AMTRAK\b|DEPT AMTRAK\b|NATIONAL RAILROAD( PASSENG)?)/, type: 'other-public', label: 'Amtrak (federal railroad)' },
+  { re: /^(PHILA|PHILADELPHIA) GAS WORKS\b/, type: 'other-public', id: 'pgw' },
+  { re: /^(AMTRAK\b|DEPT AMTRAK\b|NATIONAL RAILROAD( PASSENG)?)/, type: 'other-public', id: 'amtrak' },
 ];
 
 /** Things that look public at a glance but aren't. Checked before the rules above. */
@@ -85,7 +106,8 @@ export function classifyOwner(owners: (string | null | undefined)[]): OwnerClass
   const joined = list.join(' ');
   for (const candidate of [joined, list[0]!]) {
     if (PRIVATE_LOOKALIKES.test(candidate)) continue;
-    for (const r of PUBLIC_RULES) if (r.re.test(candidate)) return { type: r.type, label: r.label };
+    // the label is saved with the lot (LotExtra.ownerLabel), so it is English; agencyName() shows it translated
+    for (const r of PUBLIC_RULES) if (r.re.test(candidate)) return { type: r.type, label: EN(`agency.${r.id}`) };
   }
   return { type: 'private', label: list.join(' & ') };
 }
@@ -94,7 +116,27 @@ export function isPublic(t: OwnerType): boolean {
   return t !== 'private' && t !== 'unknown';
 }
 
-/** Short plain-language name for an owner type (matches autofill.ts `ownerType`). */
+/** The agency a saved owner label (English, from classifyOwner) names, if the site knows it. */
+export function agencyOf(label: string | null | undefined): AgencyId | null {
+  if (!label) return null;
+  return PUBLIC_RULES.find((r) => EN(`agency.${r.id}`) === label)?.id ?? null;
+}
+
+/** A saved owner label in the reader's language: agencies translated, owner names as the City lists them. */
+export function agencyName(label: string, locale?: Locale | string): string {
+  const id = agencyOf(label);
+  return id ? words(locale)(`agency.${id}`) : label;
+}
+
+/**
+ * Short plain-language name for an owner type, in the reader's language. Same words as the
+ * workbook's "Filled in from City records" (autofill.ts `ownerType`).
+ */
+export function ownerTypeLabel(type: OwnerType, locale?: Locale | string): string {
+  return getT(locale, workbook)(`auto.owner.${type}`);
+}
+
+/** Short plain-language name for an owner type, in English (see ownerTypeLabel). */
 export const OWNER_TYPE_LABEL: Record<OwnerType, string> = {
   city: 'City of Philadelphia (public)',
   landbank: 'Philadelphia Land Bank (public)',
@@ -161,12 +203,14 @@ const AGENCY_SITES: [RegExp, string][] = [
   [/Gas Works/, 'https://www.pgworks.com/'],
 ];
 
-/** "Philadelphia Housing Authority (PHA)" → "the Philadelphia Housing Authority (PHA)" */
-function theAgency(label: string): string {
-  const plain = label.replace(/ \((regional transit|federal railroad|City-owned utility)\)$/, '');
-  if (/^(SEPTA|Amtrak)\b/.test(plain)) return plain;
-  if (/^Port \/ bridge/.test(plain)) return 'a port or bridge authority';
-  return `the ${plain}`;
+/** Agencies with their own words for "inside a sentence" (agencyIn.<id>). */
+const IN_SENTENCE = new Set<AgencyId>(['pha', 'schools', 'septa', 'commonwealth', 'usa', 'pidc', 'parking', 'port', 'pgw', 'amtrak']);
+
+/** The agency inside a sentence: "the Philadelphia Housing Authority (PHA)", "SEPTA", "a port or bridge authority". */
+function theAgency(label: string, t: ReturnType<typeof words>): string {
+  const id = agencyOf(label);
+  if (id && IN_SENTENCE.has(id)) return t(`agencyIn.${id}` as PhillyKey);
+  return t('agencyIn.named', { name: label.replace(/ \((regional transit|federal railroad|City-owned utility)\)$/, '') });
 }
 
 /**
@@ -175,19 +219,22 @@ function theAgency(label: string): string {
  * potential purchase through PHDC / the Land Bank; another public agency → it is
  * a separate owner the Land Bank can't sell for; private → donation, sale (incl.
  * Sheriff Sale), purchase agreement, in-kind.
- * @param agencyLabel the agency in plain words (LotExtra.ownerLabel), for public owners
+ * @param agencyLabel the agency in plain words (LotExtra.ownerLabel, English), for public owners
+ * @param locale the language of the text (default: the page's)
  */
-export function acquirePaths(t: OwnerType, agencyLabel?: string | null): AcquirePath[] {
+export function acquirePaths(t: OwnerType, agencyLabel?: string | null, locale?: Locale | string): AcquirePath[] {
+  const w = words(locale);
   if (isPublic(t) && !landBankHandles(t, agencyLabel)) {
-    const label = agencyLabel && agencyLabel !== 'Unknown' ? agencyLabel : t === 'pha' ? 'Philadelphia Housing Authority (PHA)' : 'this public agency';
-    const site = AGENCY_SITES.find(([re]) => re.test(label))?.[1];
-    const who = label === 'this public agency' ? label : theAgency(label);
+    const label = agencyLabel && agencyLabel !== 'Unknown' ? agencyLabel : t === 'pha' ? EN('agency.pha') : null;
+    const site = label ? AGENCY_SITES.find(([re]) => re.test(label))?.[1] : undefined;
+    const who = label ? theAgency(label, w) : w('agencyIn.unknown');
     return [
       {
         id: 'other-agency',
-        title: 'Owned by another public agency',
-        text: `This lot belongs to ${who}, a public agency separate from the City. Its land is not sold or leased through PHDC or the Philadelphia Land Bank, and the Land Bank's map won't list it. Contact the landowner — ${who} — about the lot.`,
-        ...(site ? { link: { label: `${label.replace(/ \(.*\)$/, '')} website`, url: site } } : {}),
+        title: w('paths.otherAgency.title'),
+        text: w('paths.otherAgency.text', { agency: who }),
+        // agency names are names: the link keeps the English one ("SEPTA website")
+        ...(site && label ? { link: { label: w('paths.otherAgency.link', { agency: label.replace(/ \(.*\)$/, '') }), url: site } } : {}),
       },
     ];
   }
@@ -195,35 +242,21 @@ export function acquirePaths(t: OwnerType, agencyLabel?: string | null): Acquire
     return [
       {
         id: 'purchase-public',
-        title: 'Potential purchase',
-        text:
-          'Publicly owned land in Philadelphia is sold or leased through the Philadelphia Housing Development Corporation (PHDC) and the Philadelphia Land Bank. Do a property search to find out if public land is available for purchase.',
-        link: { label: 'Land Bank Community Use map', url: 'https://phillylandbank.org/community-use-map/' },
+        title: w('paths.purchasePublic.title'),
+        text: w('paths.purchasePublic.text'),
+        link: { label: w('paths.purchasePublic.link'), url: 'https://phillylandbank.org/community-use-map/' },
       },
     ];
   }
   return [
-    {
-      id: 'donation',
-      title: 'Potential donation',
-      text: 'Contact the landowner about permanently donating the property to the neighborhood for use as a park.',
-    },
+    { id: 'donation', title: w('paths.donation.title'), text: w('paths.donation.text') },
     {
       id: 'sale',
-      title: 'Potential sale',
-      text: 'Watch for a public sale listing or auction of the property. In Philadelphia this may also include a Sheriff Sale.',
-      link: { label: 'Sheriff Sale listings (Bid4Assets)', url: 'https://www.bid4assets.com/philadelphia' },
+      title: w('paths.sale.title'),
+      text: w('paths.sale.text'),
+      link: { label: w('paths.sale.link'), url: 'https://www.bid4assets.com/philadelphia' },
     },
-    {
-      id: 'purchase',
-      title: 'Negotiate a purchase agreement',
-      text: 'Contact the landowner and negotiate a sale of the underutilized property for neighborhood use.',
-    },
-    {
-      id: 'in-kind',
-      title: 'In-kind agreement',
-      text:
-        'Contact the landowner and discuss the mutual benefits of granting the neighborhood "in-kind" use of the lot as a park, while the owner keeps ownership.',
-    },
+    { id: 'purchase', title: w('paths.purchase.title'), text: w('paths.purchase.text') },
+    { id: 'in-kind', title: w('paths.inKind.title'), text: w('paths.inKind.text') },
   ];
 }

@@ -21,28 +21,45 @@ import type { LngLat, LotRecord } from '../types';
 import { queryAttrs, queryGeo, type GeoFeature } from './arcgis';
 import { LAYERS, links, type LayerName } from './endpoints';
 import { distToRing, makeProjector, roundTo, type Projector } from './geo';
-import { COUNCIL_AS_OF, COUNCIL_MEMBERS, COUNCIL_PAGES, phone as fmtPhone, titleCase } from './plain';
+import { COUNCIL_MEMBERS, COUNCIL_PAGES, phone as fmtPhone, titleCase } from './plain';
 import type { Asset, AssetCategoryId, AssetGroup } from './types';
+import { EN, words, type PhillyKey } from './words';
 
 type LotLike = Pick<LotRecord, 'lat' | 'lng'> & Partial<Pick<LotRecord, 'polygon' | 'councilDistrict' | 'rcos' | 'address'>>;
 
-export const ASSET_CATEGORIES: { id: AssetCategoryId; label: string; workbookList: AssetGroup['workbookList'] }[] = [
-  { id: 'rcos', label: 'Registered Community Organizations', workbookList: 'Citizens associations' },
-  { id: 'council', label: 'City Council district', workbookList: 'Citizens associations' },
-  { id: 'friends', label: 'Park friends groups', workbookList: 'Citizens associations' },
-  { id: 'schools', label: 'Schools', workbookList: 'Local institutions' },
-  { id: 'libraries', label: 'Libraries', workbookList: 'Local institutions' },
-  { id: 'parks', label: 'Recreation centers & parks', workbookList: 'Local institutions' },
-  { id: 'hospitals', label: 'Hospitals', workbookList: 'Local institutions' },
-  { id: 'universities', label: 'Universities & colleges', workbookList: 'Local institutions' },
-  { id: 'gardens', label: 'Community gardens & farms', workbookList: 'Neighborhood physical assets' },
-  { id: 'art', label: 'Murals & public art', workbookList: 'Neighborhood physical assets' },
-  { id: 'historic', label: 'Historic places', workbookList: 'Neighborhood physical assets' },
+const CATEGORY_LISTS: [AssetCategoryId, AssetGroup['workbookList']][] = [
+  ['rcos', 'Citizens associations'],
+  ['council', 'Citizens associations'],
+  ['friends', 'Citizens associations'],
+  ['schools', 'Local institutions'],
+  ['libraries', 'Local institutions'],
+  ['parks', 'Local institutions'],
+  ['hospitals', 'Local institutions'],
+  ['universities', 'Local institutions'],
+  ['gardens', 'Neighborhood physical assets'],
+  ['art', 'Neighborhood physical assets'],
+  ['historic', 'Neighborhood physical assets'],
 ];
+
+/** The categories in the workbook's order. `label` is English; nearbyAssets() labels groups in the page's language. */
+export const ASSET_CATEGORIES: { id: AssetCategoryId; label: string; workbookList: AssetGroup['workbookList'] }[] = CATEGORY_LISTS.map(
+  ([id, workbookList]) => ({ id, label: EN(`assets.cat.${id}`), workbookList }),
+);
+
+/** The Organize workbook's list names (AssetGroup.workbookList is the English one, used as an id). */
+export const WORKBOOK_LIST_KEY: Record<AssetGroup['workbookList'], PhillyKey> = {
+  'Citizens associations': 'assets.list.citizens',
+  'Local institutions': 'assets.list.institutions',
+  'Neighborhood physical assets': 'assets.list.physical',
+};
 
 /** The field id an asset list is saved under ("organize.assets-schools"). */
 export const assetFieldId = (c: AssetCategoryId) => `organize.assets-${c}`;
-/** How a chosen asset is written into the saved list (and printed on My park). */
+/**
+ * How a chosen asset is written into the saved list (and printed on My park). Uses the saved
+ * `name` (City data, or English words where the City gives none), never the shown `label`, so
+ * the same place stays ticked in every language.
+ */
 export const assetLine = (a: Asset) => (a.address && !a.name.includes(a.address) ? `${a.name} — ${a.address}` : a.name);
 
 const MAX_PER_GROUP = 25;
@@ -80,6 +97,10 @@ function placeOf(f: GeoFeature, pr: Projector): { lngLat: LngLat | null; distanc
 }
 
 const s = (v: unknown) => (typeof v === 'string' && v.trim() ? v.trim() : undefined);
+/** A place the City lists without a name: saved under the English words, shown in the page's language. */
+const unnamed = (key: PhillyKey) => ({ name: EN(key), label: words()(key) });
+/** `name` from City data, or the words for an unnamed place. */
+const named = (name: string | undefined, key: PhillyKey) => (name ? { name } : unnamed(key));
 const url = (v: unknown) => {
   const t = s(v);
   if (!t) return undefined;
@@ -135,8 +156,11 @@ const SPECS: Partial<Record<AssetCategoryId, LayerSpec[]>> = {
       layer: LAYERS.friends,
       fields: ['objectid', 'friends_group_name', 'public_name', 'address', 'contact_email', 'contact_website'],
       map: (p) => ({
-        name: s(p.friends_group_name) ?? 'Friends group',
-        detail: s(p.public_name) && s(p.public_name) !== s(p.friends_group_name) ? `Cares for ${s(p.public_name)}` : 'Park friends group',
+        ...named(s(p.friends_group_name), 'assets.unnamed.friends'),
+        detail:
+          s(p.public_name) && s(p.public_name) !== s(p.friends_group_name)
+            ? words()('assets.detail.caresFor', { park: s(p.public_name)! })
+            : words()('assets.detail.friends'),
         address: s(p.address),
         email: s(p.contact_email),
         url: url(p.contact_website),
@@ -148,7 +172,7 @@ const SPECS: Partial<Record<AssetCategoryId, LayerSpec[]>> = {
       layer: LAYERS.schools,
       fields: ['objectid', 'school_name_label', 'school_name', 'street_address', 'grade_level', 'type_specific', 'phone_number'],
       map: (p) => ({
-        name: titleCase(s(p.school_name_label) ?? s(p.school_name) ?? 'School'),
+        ...named(s(p.school_name_label) ?? s(p.school_name) ? titleCase(s(p.school_name_label) ?? s(p.school_name)) : undefined, 'assets.unnamed.school'),
         detail: [s(p.type_specific) && titleCase(s(p.type_specific)), s(p.grade_level) && titleCase(s(p.grade_level))].filter(Boolean).join(' · ') || undefined,
         address: s(p.street_address) && titleCase(s(p.street_address)),
         phone: fmtPhone(s(p.phone_number)) || undefined,
@@ -160,7 +184,8 @@ const SPECS: Partial<Record<AssetCategoryId, LayerSpec[]>> = {
       layer: LAYERS.libraries,
       fields: ['objectid', 'building', 'address', 'phone_number', 'library_url'],
       map: (p) => ({
-        name: s(p.building) ?? 'Library',
+        ...named(s(p.building), 'assets.unnamed.library'),
+        // a name: stays as it is in every language
         detail: 'Free Library of Philadelphia',
         address: s(p.address),
         phone: fmtPhone(s(p.phone_number)) || undefined,
@@ -174,7 +199,7 @@ const SPECS: Partial<Record<AssetCategoryId, LayerSpec[]>> = {
       fields: ['objectid', 'label', 'official_name', 'park_name', 'address_911', 'ppr_use', 'property_classification'],
       where: "property_classification NOT IN ('TRAFFIC_ISLAND_MEDIAN','OPERATIONAL_INTERNAL')",
       map: (p) => ({
-        name: s(p.official_name) ?? s(p.park_name) ?? s(p.label) ?? 'Park',
+        ...named(s(p.official_name) ?? s(p.park_name) ?? s(p.label), 'assets.unnamed.park'),
         detail: s(p.ppr_use) ? titleCase(String(p.ppr_use).replace(/_/g, ' ')) : undefined,
         address: s(p.address_911) && titleCase(s(p.address_911)),
       }),
@@ -186,7 +211,7 @@ const SPECS: Partial<Record<AssetCategoryId, LayerSpec[]>> = {
       wholeLayer: true,
       fields: ['objectid', 'hospital_name', 'street_address', 'hospital_type', 'phone_number'],
       map: (p) => ({
-        name: s(p.hospital_name) ?? 'Hospital',
+        ...named(s(p.hospital_name), 'assets.unnamed.hospital'),
         detail: s(p.hospital_type),
         address: s(p.street_address),
         phone: fmtPhone(s(p.phone_number)) || undefined,
@@ -199,7 +224,7 @@ const SPECS: Partial<Record<AssetCategoryId, LayerSpec[]>> = {
       limit: 1000,
       fields: ['objectid', 'university_name', 'building_name', 'address', 'type'],
       map: (p) => ({
-        name: s(p.university_name) ?? 'College',
+        ...named(s(p.university_name), 'assets.unnamed.college'),
         detail: s(p.building_name),
         address: s(p.address) && titleCase(s(p.address)),
       }),
@@ -210,8 +235,8 @@ const SPECS: Partial<Record<AssetCategoryId, LayerSpec[]>> = {
       layer: LAYERS.gardens,
       fields: ['objectid', 'garden_name', 'address', 'contact_email', 'contact_website', 'garden_status'],
       map: (p) => ({
-        name: s(p.garden_name) ?? 'Community garden',
-        detail: 'Registered community garden',
+        ...named(s(p.garden_name), 'assets.unnamed.garden'),
+        detail: words()('assets.detail.garden'),
         address: s(p.address),
         email: s(p.contact_email),
         url: url(p.contact_website),
@@ -221,8 +246,10 @@ const SPECS: Partial<Record<AssetCategoryId, LayerSpec[]>> = {
       layer: LAYERS.urbanAg,
       fields: ['objectid', 'project_name', 'address', 'contact_email', 'contact_website', 'program', 'project_status'],
       map: (p) => ({
-        name: s(p.project_name) ?? 'Urban farm',
-        detail: s(p.program) ? `Parks & Rec urban agriculture · ${titleCase(s(p.program))}` : 'Parks & Rec urban agriculture',
+        ...named(s(p.project_name), 'assets.unnamed.farm'),
+        detail: s(p.program)
+          ? words()('assets.detail.urbanAgProgram', { program: titleCase(s(p.program)) })
+          : words()('assets.detail.urbanAg'),
         address: s(p.address),
         email: s(p.contact_email),
         url: url(p.contact_website),
@@ -234,7 +261,7 @@ const SPECS: Partial<Record<AssetCategoryId, LayerSpec[]>> = {
       layer: LAYERS.publicArt,
       fields: ['objectid', 'title', 'artist', 'location_name', 'address', 'medium', 'status'],
       map: (p) => ({
-        name: s(p.title) ?? 'Public artwork',
+        ...named(s(p.title), 'assets.unnamed.artwork'),
         detail: [s(p.artist), s(p.medium)].filter(Boolean).join(' · ') || undefined,
         address: s(p.address) ?? s(p.location_name),
       }),
@@ -243,8 +270,10 @@ const SPECS: Partial<Record<AssetCategoryId, LayerSpec[]>> = {
       layer: LAYERS.parkArt,
       fields: ['objectid', 'name', 'address', 'type', 'firstnamea', 'lastname'],
       map: (p) => ({
-        name: s(p.name) ?? 'Monument',
-        detail: [s(p.type) && titleCase(s(p.type)), [s(p.firstnamea), s(p.lastname)].filter(Boolean).join(' ')].filter(Boolean).join(' · ') || 'In a City park',
+        ...named(s(p.name), 'assets.unnamed.monument'),
+        detail:
+          [s(p.type) && titleCase(s(p.type)), [s(p.firstnamea), s(p.lastname)].filter(Boolean).join(' ')].filter(Boolean).join(' · ') ||
+          words()('assets.detail.inPark'),
         address: s(p.address),
       }),
     },
@@ -254,41 +283,43 @@ const SPECS: Partial<Record<AssetCategoryId, LayerSpec[]>> = {
       layer: LAYERS.historicSites,
       fields: ['objectid', 'loc', 'idesigdate1', 'district'],
       map: (p) => ({
-        name: titleCase(s(p.loc) ?? 'Historic building'),
-        detail: `Philadelphia Register of Historic Places${/\d{4}/.test(String(p.idesigdate1 ?? '')) ? ` · listed ${String(p.idesigdate1).match(/\d{4}/)![0]}` : ''}`,
+        ...named(s(p.loc) ? titleCase(s(p.loc)) : undefined, 'assets.unnamed.building'),
+        detail: /\d{4}/.test(String(p.idesigdate1 ?? ''))
+          ? words()('assets.detail.registerListed', { year: String(p.idesigdate1).match(/\d{4}/)![0] })
+          : words()('assets.detail.register'),
       }),
     },
     {
       layer: LAYERS.historicDistricts,
       fields: ['objectid', 'name', 'designated'],
       map: (p) => ({
-        name: `${s(p.name) ?? 'Historic district'}`,
-        detail: 'Local historic district',
+        ...named(s(p.name), 'assets.unnamed.district'),
+        detail: words()('assets.detail.localDistrict'),
       }),
     },
   ],
 };
 
-const SOURCES: Record<AssetCategoryId, { label: string; url: string }> = {
-  rcos: { label: 'City of Philadelphia — RCOs', url: links.rcos },
-  council: { label: 'Philadelphia City Council', url: links.council },
-  friends: { label: 'Philadelphia Parks & Recreation', url: links.parks },
-  schools: { label: 'OpenDataPhilly — Schools', url: links.openData },
-  libraries: { label: 'Free Library of Philadelphia', url: 'https://www.freelibrary.org/' },
-  parks: { label: 'Philadelphia Parks & Recreation', url: links.parks },
-  hospitals: { label: 'OpenDataPhilly — Hospitals', url: links.openData },
-  universities: { label: 'OpenDataPhilly — Universities & colleges', url: links.openData },
-  gardens: { label: 'Philadelphia Parks & Recreation', url: links.parks },
-  art: { label: 'Mural Arts Philadelphia — mural map', url: links.murals },
-  historic: { label: 'Philadelphia Historical Commission', url: links.historic },
+const SOURCES: Record<AssetCategoryId, { label: PhillyKey; url: string }> = {
+  rcos: { label: 'assets.source.rcos', url: links.rcos },
+  council: { label: 'assets.source.council', url: links.council },
+  friends: { label: 'assets.source.parks', url: links.parks },
+  schools: { label: 'assets.source.schools', url: links.openData },
+  libraries: { label: 'assets.source.libraries', url: 'https://www.freelibrary.org/' },
+  parks: { label: 'assets.source.parks', url: links.parks },
+  hospitals: { label: 'assets.source.hospitals', url: links.openData },
+  universities: { label: 'assets.source.universities', url: links.openData },
+  gardens: { label: 'assets.source.parks', url: links.parks },
+  art: { label: 'assets.source.murals', url: links.murals },
+  historic: { label: 'assets.source.historic', url: links.historic },
 };
 
-const NOTES: Partial<Record<AssetCategoryId, string>> = {
-  rcos: 'Groups registered with the City for this address. Developers must notify them about zoning changes — good partners to know.',
-  art: "City-commissioned art and park monuments. Mural Arts' murals aren't in the City's open data — check their map too.",
-  universities: 'Within two miles.',
-  hospitals: 'Within two miles.',
-  libraries: 'Within a mile.',
+const NOTES: Partial<Record<AssetCategoryId, PhillyKey>> = {
+  rcos: 'assets.note.rcos',
+  art: 'assets.note.art',
+  universities: 'assets.note.twoMiles',
+  hospitals: 'assets.note.twoMiles',
+  libraries: 'assets.note.oneMile',
 };
 
 /** Larger search areas for things that are sparse. */
@@ -311,11 +342,14 @@ async function groupItems(
     const d = lot.councilDistrict;
     if (!d) return [];
     const who = COUNCIL_MEMBERS[d];
+    const vars = { district: String(d), member: who ?? '' };
     return [
       {
         id: `council:${d}`,
-        name: `Council District ${d}${who ? ` — Councilmember ${who}` : ''}`,
-        detail: who ? `Council member for the ${COUNCIL_AS_OF}` : undefined,
+        // saved (assetLine) in English; shown in the page's language
+        name: EN(who ? 'assets.council' : 'assets.councilOnly', vars),
+        label: words()(who ? 'assets.council' : 'assets.councilOnly', vars),
+        detail: who ? words()('assets.detail.council') : undefined,
         url: COUNCIL_PAGES[d] ?? links.council,
         distanceFt: 0,
       },
@@ -338,7 +372,7 @@ async function groupItems(
       phone: fmtPhone(r.phone) || undefined,
       url: url(r.website),
       distanceFt: 0,
-      detail: 'Covers your lot',
+      detail: words()('assets.detail.coversLot'),
     }));
   }
   const specs = SPECS[id] ?? [];
@@ -356,7 +390,8 @@ async function groupItems(
     for (const a of items) {
       const k = a.name;
       const cur = best.get(k);
-      if (!cur || (a.distanceFt ?? Infinity) < (cur.distanceFt ?? Infinity)) best.set(k, { ...a, detail: a.detail ? `Nearest building: ${a.detail}` : undefined });
+      if (!cur || (a.distanceFt ?? Infinity) < (cur.distanceFt ?? Infinity))
+        best.set(k, { ...a, detail: a.detail ? words()('assets.detail.nearestBuilding', { name: a.detail }) : undefined });
     }
     items = [...best.values()];
   }
@@ -383,14 +418,23 @@ export async function nearbyAssets(lot: LotLike, radiusFt = 1320, opts: { signal
   return Promise.all(
     cats.map(async (c) => {
       const r = radiusFor(c.id, radiusFt);
-      const group: AssetGroup = { ...c, items: [], radiusFt: r, source: SOURCES[c.id], ...(NOTES[c.id] ? { note: NOTES[c.id] } : {}) };
+      const t = words();
+      const note = NOTES[c.id];
+      const group: AssetGroup = {
+        ...c,
+        label: t(`assets.cat.${c.id}`),
+        items: [],
+        radiusFt: r,
+        source: { label: t(SOURCES[c.id].label), url: SOURCES[c.id].url },
+        ...(note ? { note: t(note) } : {}),
+      };
       try {
         group.items = await groupItems(c.id, lot, center, r, pr, opts.signal, () => {
-          group.warning = "Part of this list couldn't load from the City right now, so it may be missing some places.";
+          group.warning = t('assets.partial');
         });
       } catch (e) {
         if ((e as { code?: string })?.code === 'aborted') throw e;
-        group.error = "Couldn't load this list from the City right now.";
+        group.error = t('assets.failed');
       }
       return group;
     }),

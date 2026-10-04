@@ -109,19 +109,37 @@ import StepPath from '../../components/site/StepPath.astro';
   import { formatAuto } from '../../lib/autofill';
   import { ownerNames } from '../../lib/philly/owner';
   import { lotGeometry } from '../../lib/philly/choose';
+  import { feet } from '../../lib/philly/plain';
   import type { LotRecord } from '../../lib/types';
+  import mypark from '../../i18n/messages/en/mypark.ts';
+  import workbook from '../../i18n/messages/en/workbook.ts';
+  import { getT } from '../../i18n/t.ts';
+  import { urlFor } from '../../i18n/url.ts';
+  import { localizedSteps } from '../../i18n/data.ts';
+
+  // Words in the page's language (<html data-locale>); saved names and answers are shown as they are.
+  const t = getT(undefined, mypark);
+  const tw = getT(t.locale, workbook);
+  const u = urlFor(t.locale);
+  const sqft = (n: number) => formatAuto(n, 'sqft', t.locale) ?? '';
+  /** A project's name: the starting name is saved in English and shown in the page's language until renamed. */
+  const shown = (name: string) => (name === 'My park' ? tw('project.default') : name);
+  /** The heading of each step's answers: "Acquire" (English keeps its old headings, from the step ids). */
+  const stepTitles = new Map(localizedSteps(t.locale).map((st) => [st.slug, st.title]));
+  const stepHeading = (g: string) => (t.locale === 'en' ? g[0]!.toUpperCase() + g.slice(1) : (stepTitles.get(g) ?? g));
 
   /** The same lot size every other page shows: measured from the City's parcel outline. */
   function lotSizeText(lot: LotRecord): string {
     const g = lotGeometry(lot);
-    if (g) {
-      const ft = (n: number) => (Math.round(n * 10) / 10).toFixed(1);
-      return `${ft(g.widthFt)} ft × ${ft(g.lengthFt)} ft · ${formatAuto(g.areaSqFt, 'sqft')} (measured from the City's parcel outline)`;
+    if (g)
+      return t('lot.measured', { width: feet(g.widthFt, 1, t.locale), length: feet(g.lengthFt, 1, t.locale), area: sqft(g.areaSqFt) });
+    if (lot.frontageFt && lot.depthFt) {
+      const v = { frontage: String(lot.frontageFt), depth: String(lot.depthFt) };
+      return lot.areaSqFt ? t('lot.record', { ...v, area: sqft(lot.areaSqFt) }) : t('lot.recordNoArea', v);
     }
-    if (lot.frontageFt && lot.depthFt)
-      return `${lot.frontageFt} × ${lot.depthFt} ft${lot.areaSqFt ? ` · ${formatAuto(lot.areaSqFt, 'sqft')}` : ''} (City property record)`;
-    return lot.areaSqFt ? `${formatAuto(lot.areaSqFt, 'sqft')}` : '—';
+    return lot.areaSqFt ? sqft(lot.areaSqFt) : '—';
   }
+  const noLot = () => `<p class="muted">${t.html('lot.none', { href: u('steps/acquire/') })}</p>`;
 
   const $ = <T extends Element>(s: string) => document.querySelector<T>(s)!;
   const esc = (s: unknown) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
@@ -168,14 +186,15 @@ import StepPath from '../../components/site/StepPath.astro';
     const msg = $('[data-import-msg]');
     try {
       const p = importProject(await f.text());
-      msg.textContent = `Opened “${p.name}”. It is now your active project.`;
+      msg.textContent = t('import.opened', { name: shown(p.name) });
     } catch (err) {
-      msg.textContent = (err as Error).message;
+      // English shows the reason as it comes; other languages say it in their words
+      msg.textContent = t.locale === 'en' ? (err as Error).message : t('import.notProject');
     }
   });
   $('[data-new]').addEventListener('click', () => {
     const inp = $<HTMLInputElement>('[data-new-name]');
-    newProject(inp.value || 'New park');
+    newProject(inp.value || t('project.newDefault'));
     inp.value = '';
   });
 
@@ -184,9 +203,9 @@ import StepPath from '../../components/site/StepPath.astro';
     const active = $project.get().id;
     ul.innerHTML = list
       .map(
-        (p) => `<li><span>${esc(p.name)}${p.id === active ? ' <strong>(open)</strong>' : ''}</span>
-        ${p.id === active ? '' : `<button class="btn btn-small" data-open="${p.id}">Open</button>`}
-        <button class="btn btn-small" data-del="${p.id}" aria-label="Delete ${esc(p.name)}">Delete</button></li>`,
+        (p) => `<li><span>${esc(shown(p.name))}${p.id === active ? ` <strong>${esc(t('list.openNow'))}</strong>` : ''}</span>
+        ${p.id === active ? '' : `<button class="btn btn-small" data-open="${p.id}">${esc(t('list.open'))}</button>`}
+        <button class="btn btn-small" data-del="${p.id}" aria-label="${esc(t('list.deleteLabel', { name: shown(p.name) }))}">${esc(t('list.delete'))}</button></li>`,
       )
       .join('');
     // Both buttons below disappear from their own row once clicked (switching
@@ -202,7 +221,7 @@ import StepPath from '../../components/site/StepPath.astro';
     ul.querySelectorAll<HTMLButtonElement>('[data-del]').forEach((b, idx) =>
       b.addEventListener('click', () => {
         const p = list.find((x) => x.id === b.dataset.del);
-        if (!p || !confirm(`Delete “${p.name}” from this browser? This cannot be undone unless you saved a project file.`)) return;
+        if (!p || !confirm(t('delete.confirm', { name: shown(p.name) }))) return;
         deleteProject(p.id);
         const freshItems = ul.querySelectorAll('li');
         const target =
@@ -210,20 +229,20 @@ import StepPath from '../../components/site/StepPath.astro';
           freshItems[idx - 1]?.querySelector<HTMLElement>('button') ??
           $<HTMLElement>('[data-new-name]');
         target?.focus();
-        announce(`${p.name} deleted.`);
+        announce(t('delete.done', { name: shown(p.name) }));
       }),
     );
   });
 
   $project.subscribe((p) => {
-    if (document.activeElement !== rename) rename.value = p.name;
+    if (document.activeElement !== rename) rename.value = shown(p.name);
     const lot = p.lot;
     $('[data-lot-summary]').innerHTML = lot
-      ? `<dl class="lot"><dt>Address</dt><dd>${esc(lot.address)}</dd>
-         <dt>Owner</dt><dd>${esc(ownerNames(lot.owners))} — ${esc(formatAuto(lot.ownerType, 'ownerType'))}</dd>
-         <dt>Lot size</dt><dd>${esc(lotSizeText(lot))}</dd>
-         <dt>Zoning</dt><dd>${esc(lot.zoning ?? '—')}</dd></dl>`
-      : '<p class="muted">No lot chosen yet. Look one up in <a href="../steps/acquire/">Step 1: Acquire</a>.</p>';
+      ? `<dl class="lot"><dt>${esc(t('lot.address'))}</dt><dd>${esc(lot.address)}</dd>
+         <dt>${esc(t('lot.owner'))}</dt><dd>${esc(t('lot.ownerLine', { owner: ownerNames(lot.owners), kind: formatAuto(lot.ownerType, 'ownerType', t.locale) }))}</dd>
+         <dt>${esc(t('lot.size'))}</dt><dd>${esc(lotSizeText(lot))}</dd>
+         <dt>${esc(t('lot.zoning'))}</dt><dd>${esc(lot.zoning ?? '—')}</dd></dl>`
+      : noLot();
 
     const groups: Record<string, [string, unknown][]> = {};
     for (const [k, v] of Object.entries(p.fields)) (groups[k.split('.')[0]!] ??= []).push([k, v]);
@@ -237,9 +256,9 @@ import StepPath from '../../components/site/StepPath.astro';
             : v;
           return `<dt>${esc(label(k))}</dt><dd>${esc(val)}</dd>`;
         }).join('');
-        return `<h3>${esc(g[0]!.toUpperCase() + g.slice(1))}</h3><dl>${rows}</dl>`;
+        return `<h3>${esc(stepHeading(g))}</h3><dl>${rows}</dl>`;
       })
       .join('');
-    $('[data-answers]').innerHTML = html || '<p class="muted">Nothing filled in yet.</p>';
+    $('[data-answers]').innerHTML = html || `<p class="muted">${esc(t('answers.none'))}</p>`;
   });
 </script>

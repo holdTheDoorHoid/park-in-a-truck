@@ -9,10 +9,11 @@ import { useEffect, useRef, useState } from 'preact/hooks';
 import type { GeoJSONSource, Map as MLMap } from 'maplibre-gl';
 import type { FeatureCollection } from 'geojson';
 import { getField, setField } from '../../lib/project';
-import { nearbyAssets, assetFieldId, assetLine } from '../../lib/philly/assets';
+import { nearbyAssets, assetFieldId, assetLine, WORKBOOK_LIST_KEY } from '../../lib/philly/assets';
 import type { Asset, AssetCategoryId, AssetGroup } from '../../lib/philly/types';
 import { distance, titleCase } from '../../lib/philly/plain';
-import { u } from '../../lib/url';
+import { words } from '../../lib/philly/words';
+import { urlFor } from '../../i18n/url.ts';
 import LotLookup from './LotLookup';
 import { useNearViewport, useProject } from './hooks';
 import { createMap } from './maplibre';
@@ -34,6 +35,7 @@ const COLORS: Record<AssetCategoryId, string> = {
 const LISTS: AssetGroup['workbookList'][] = ['Citizens associations', 'Local institutions', 'Neighborhood physical assets'];
 
 function AssetsMap({ lot, groups, radiusFt }: { lot: { lng: number; lat: number; polygon: [number, number][] }; groups: AssetGroup[]; radiusFt: number }) {
+  const t = words();
   const [ref, near] = useNearViewport<HTMLDivElement>();
   const el = useRef<HTMLDivElement>(null);
   const map = useRef<MLMap | null>(null);
@@ -43,7 +45,11 @@ function AssetsMap({ lot, groups, radiusFt }: { lot: { lng: number; lat: number;
     features: groups.flatMap((g) =>
       g.items
         .filter((a) => a.lngLat && (a.distanceFt ?? 0) > 0)
-        .map((a) => ({ type: 'Feature' as const, properties: { color: COLORS[g.id], name: a.name }, geometry: { type: 'Point' as const, coordinates: a.lngLat! } })),
+        .map((a) => ({
+          type: 'Feature' as const,
+          properties: { color: COLORS[g.id], name: a.label ?? a.name },
+          geometry: { type: 'Point' as const, coordinates: a.lngLat! },
+        })),
     ),
   });
   useEffect(() => {
@@ -89,13 +95,19 @@ function AssetsMap({ lot, groups, radiusFt }: { lot: { lng: number; lat: number;
   useEffect(() => () => map.current?.remove(), []);
   return (
     <div ref={ref} class="ph-map-wrap">
-      <div ref={el} class="ph-map ph-map-small" role="region" aria-label="Map of the assets listed below; your lot is the blue dot" />
-      {failed && <p class="ph-small" style="padding:8px">The map couldn't load; the lists below still work.</p>}
+      <div ref={el} class="ph-map ph-map-small" role="region" aria-label={t('assets.mapLabel')} />
+      {failed && (
+        <p class="ph-small" style="padding:8px">
+          {t('assets.mapFailed')}
+        </p>
+      )}
     </div>
   );
 }
 
 export default function NeighborhoodAssets() {
+  const t = words();
+  const u = urlFor(t.locale);
   const project = useProject();
   const lot = project.lot;
   const [radius, setRadius] = useState(1320);
@@ -112,17 +124,14 @@ export default function NeighborhoodAssets() {
     const ctrl = new AbortController();
     nearbyAssets(lot, radius, { signal: ctrl.signal })
       .then(setGroups)
-      .catch((e) => e?.code !== 'aborted' && setError(e?.message ?? "Couldn't load the City's lists right now."));
+      .catch((e) => e?.code !== 'aborted' && setError(e?.message ?? t('assets.loadFailed')));
     return () => ctrl.abort();
   }, [lot?.address, radius, tick]);
 
   if (!lot)
     return (
       <div class="ph ph-assets-empty">
-        <p>
-          Look up your lot first — then this lists the community organizations, schools, libraries, parks, gardens, public art and
-          historic places around it.
-        </p>
+        <p>{t('assets.noLot')}</p>
         <LotLookup mode="primary" />
       </div>
     );
@@ -150,29 +159,27 @@ export default function NeighborhoodAssets() {
     <div class="ph ph-assets-widget" ref={rootRef}>
       <div class="ph-basemap-controls">
         <label>
-          Search within{' '}
+          {t('assets.within')}{' '}
           <select value={String(radius)} onChange={(e) => setRadius(Number((e.target as HTMLSelectElement).value))}>
-            <option value="1320">¼ mile (a 5-minute walk)</option>
-            <option value="2640">½ mile (a 10-minute walk)</option>
+            <option value="1320">{t('assets.quarterMile')}</option>
+            <option value="2640">{t('assets.halfMile')}</option>
           </select>
         </label>
-        <span class="ph-small">
-          Around <strong>{titleCase(lot.address)}</strong> · <a href={u('lot/')}>change lot</a>
-        </span>
+        <span class="ph-small" dangerouslySetInnerHTML={{ __html: t.html('assets.around', { address: titleCase(lot.address), href: u('lot/') }) }} />
       </div>
 
       {error && (
         <div class="ph-error" role="alert">
           <p>{error}</p>
           <button class="btn btn-small" type="button" onClick={() => setTick(tick + 1)}>
-            Try again
+            {t('lookup.tryAgain')}
           </button>
         </div>
       )}
       {!groups && !error && (
         <p class="ph-status">
           <span class="ph-spinner" aria-hidden="true" />
-          Looking up what's around your lot…
+          {t('assets.loading')}
         </p>
       )}
 
@@ -180,8 +187,8 @@ export default function NeighborhoodAssets() {
         <>
           <AssetsMap lot={lot} groups={groups} radiusFt={radius} />
           {LISTS.map((list) => (
-            <section aria-label={list}>
-              <p class="ph-workbook-list">{list}</p>
+            <section aria-label={t(WORKBOOK_LIST_KEY[list])}>
+              <p class="ph-workbook-list">{t(WORKBOOK_LIST_KEY[list])}</p>
               <div class="ph-assets" style="margin-top:12px">
                 {groups
                   .filter((g) => g.workbookList === list)
@@ -192,7 +199,11 @@ export default function NeighborhoodAssets() {
                         <h4>
                           <span class="ph-dot" style={`background:${COLORS[g.id]}`} aria-hidden="true" />
                           {g.label}
-                          {chosen.length > 0 && <span class="ph-small" style="margin-left:auto;text-transform:none;letter-spacing:0">{chosen.length} on your list</span>}
+                          {chosen.length > 0 && (
+                            <span class="ph-small" style="margin-inline-start:auto;text-transform:none;letter-spacing:0">
+                              {t('assets.onList', { count: chosen.length })}
+                            </span>
+                          )}
                         </h4>
                         {g.note && <p class="ph-small" style="margin:0 0 6px">{g.note}</p>}
                         {g.warning && <p class="ph-small" style="margin:0 0 6px">{g.warning}</p>}
@@ -200,11 +211,11 @@ export default function NeighborhoodAssets() {
                           <p class="ph-small">
                             {g.error}{' '}
                             <button class="btn btn-small" type="button" disabled={retrying.includes(g.id)} onClick={() => retry(g.id)}>
-                              {retrying.includes(g.id) ? 'Trying…' : 'Try again'}
+                              {t(retrying.includes(g.id) ? 'assets.trying' : 'lookup.tryAgain')}
                             </button>
                           </p>
                         ) : g.items.length === 0 ? (
-                          <p class="ph-small">None found nearby in City data.</p>
+                          <p class="ph-small">{t('assets.none')}</p>
                         ) : (
                           <ul>
                             {g.items.map((a) => {
@@ -214,7 +225,7 @@ export default function NeighborhoodAssets() {
                                   <label>
                                     <input type="checkbox" checked={on} onChange={(e) => toggle(g.id, a, (e.target as HTMLInputElement).checked)} />
                                     <span>
-                                      <strong>{a.name}</strong>
+                                      <strong>{a.label ?? a.name}</strong>
                                       {a.address ? ` — ${a.address}` : ''}
                                       {a.detail && (
                                         <>
@@ -232,14 +243,16 @@ export default function NeighborhoodAssets() {
                                             {a.phone && a.url ? ' · ' : ''}
                                             {a.url && (
                                               <a href={a.url} target="_blank" rel="noopener">
-                                                website ↗
+                                                {t('assets.website')} ↗
                                               </a>
                                             )}
                                           </small>
                                         </>
                                       )}
                                     </span>
-                                    <span class="ph-asset-dist">{a.distanceFt === 0 ? (g.id === 'rcos' || g.id === 'council' ? '' : 'here') : distance(a.distanceFt)}</span>
+                                    <span class="ph-asset-dist">
+                                      {a.distanceFt === 0 ? (g.id === 'rcos' || g.id === 'council' ? '' : t('assets.here')) : distance(a.distanceFt)}
+                                    </span>
                                   </label>
                                 </li>
                               );
@@ -247,7 +260,7 @@ export default function NeighborhoodAssets() {
                           </ul>
                         )}
                         <p class="ph-small" style="margin:4px 0 0">
-                          Source:{' '}
+                          {t('assets.source')}{' '}
                           <a href={g.source.url} target="_blank" rel="noopener">
                             {g.source.label} ↗
                           </a>
@@ -258,10 +271,7 @@ export default function NeighborhoodAssets() {
               </div>
             </section>
           ))}
-          <p class="ph-small">
-            The workbook also asks about churches, block captains, cultural groups, businesses and the places people like to meet — the
-            City's data doesn't list those, so add them yourself.
-          </p>
+          <p class="ph-small">{t('assets.more')}</p>
         </>
       )}
     </div>

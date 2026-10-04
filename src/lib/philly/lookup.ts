@@ -34,6 +34,7 @@ import { COUNCIL_MEMBERS, floodPlain, normaliseZoning } from './plain';
 import { normaliseAddress, prefixSearch, searchAddresses } from './search';
 import { PhillyError, type AddressSuggestion, type LandBankStatus, type LotExtra } from './types';
 import { vacantLotsNear } from './vacant';
+import { EN, words } from './words';
 
 export type LotQuery = string | { opa: string } | { lngLat: LngLat } | AddressSuggestion;
 
@@ -87,11 +88,10 @@ async function aisFirst(q: string, signal?: AbortSignal): Promise<AisFeature | n
 
 async function intersectionError(label: string, at: LngLat | null, signal?: AbortSignal): Promise<PhillyError> {
   const suggestions = at ? await vacantLotsNear(at, 300, 8, { signal }).catch(() => []) : [];
-  return new PhillyError(
-    'intersection',
-    `"${label}" is a street corner, not a property. ${suggestions.length ? 'Here are vacant lots near it — pick one:' : 'Type the address of a lot near it instead.'}`,
-    { suggestions, lngLat: at ?? undefined },
-  );
+  return new PhillyError('intersection', words()(suggestions.length ? 'error.cornerPick' : 'error.cornerType', { place: label }), {
+    suggestions,
+    lngLat: at ?? undefined,
+  });
 }
 
 /** Find the AIS address record for whatever the person gave us. */
@@ -104,13 +104,13 @@ async function resolve(query: LotQuery, signal?: AbortSignal): Promise<{ ais: Ai
       { signal },
     );
     const hit = attrs[0];
-    if (!hit) throw new PhillyError('no-parcel', "There's no property at that spot — it may be a street or sidewalk. Tap inside a lot.");
+    if (!hit) throw new PhillyError('no-parcel', words()('error.noParcel'));
     const ais = (hit.brt_id ? await aisFirst(hit.brt_id, signal) : null) ?? (hit.address ? await aisFirst(hit.address, signal) : null);
     return { ais, opa: hit.brt_id || ais?.properties.opa_account_num || null, typed };
   }
   if (typeof query === 'object' && 'opa' in query && !('label' in query)) {
     const opa = String(query.opa).trim();
-    if (!isOpaNumber(opa)) throw new PhillyError('bad-input', 'An OPA account number has 9 digits.');
+    if (!isOpaNumber(opa)) throw new PhillyError('bad-input', words()('error.opaDigits'));
     return { ais: await aisFirst(opa, signal), opa, typed: opa };
   }
   if (typeof query === 'object' && 'label' in query) {
@@ -120,7 +120,7 @@ async function resolve(query: LotQuery, signal?: AbortSignal): Promise<{ ais: Ai
   }
 
   const typed = String(query).trim();
-  if (typed.length < 3) throw new PhillyError('bad-input', 'Type a street address, like "1322 N Dover St".');
+  if (typed.length < 3) throw new PhillyError('bad-input', words()('error.tooShort'));
   if (isOpaNumber(typed.replace(/\s/g, ''))) {
     const opa = typed.replace(/\s/g, '');
     return { ais: await aisFirst(opa, signal), opa, typed };
@@ -136,13 +136,7 @@ async function resolve(query: LotQuery, signal?: AbortSignal): Promise<{ ais: Ai
   if (!ais) {
     const suggestions = await searchAddresses(typed, { signal }).catch(() => []);
     if (suggestions.length === 1 && suggestions[0]!.opa) return resolve(suggestions[0]!, signal);
-    throw new PhillyError(
-      'not-found',
-      suggestions.length
-        ? `We couldn't find "${typed}" exactly. Did you mean one of these?`
-        : `We couldn't find "${typed}" in the City's address list. Check the house number and street name (for example "1322 N Dover St").`,
-      { suggestions },
-    );
+    throw new PhillyError('not-found', words()(suggestions.length ? 'error.didYouMean' : 'error.notFound', { typed }), { suggestions });
   }
   return { ais, opa: ais.properties.opa_account_num || null, typed };
 }
@@ -184,7 +178,7 @@ export async function lookupLot(query: LotQuery, opts: LookupOpts = {}): Promise
       }
     }
   }
-  if (!opa && !ais) throw new PhillyError('not-found', `We couldn't find "${typed}" in the City's property records.`);
+  if (!opa && !ais) throw new PhillyError('not-found', words()('error.notInRecords', { typed }));
 
   const point: LngLat | null = ais ? aisPoint(ais) : null;
   const pwdId = p?.pwd_parcel_id ? Number(p.pwd_parcel_id) : null;
@@ -198,7 +192,7 @@ export async function lookupLot(query: LotQuery, opts: LookupOpts = {}): Promise
         queryAttrs<{ land_rank: number | null }>(LAYERS.vacantLand, { where: `opa_id=${sqlString(opa)}`, outFields: ['land_rank'] }, { signal }),
         [],
         warnings,
-        "the City's vacant-land list",
+        'warn.vacantList',
       )
     : Promise.resolve([]);
   const rcoP = point
@@ -217,18 +211,18 @@ export async function lookupLot(query: LotQuery, opts: LookupOpts = {}): Promise
         ),
         [],
         warnings,
-        'community organizations (RCOs)',
+        'warn.rcos',
       )
     : Promise.resolve([]);
   const landBankP = opa
-    ? soft<LandBankStatus | null | undefined>(landBankStatus(opa, { signal }), undefined, warnings, "the Land Bank's status for this lot")
+    ? soft<LandBankStatus | null | undefined>(landBankStatus(opa, { signal }), undefined, warnings, 'warn.landBank')
     : Promise.resolve(undefined);
   const floodP = point
     ? soft(
         queryAttrs<{ fld_zone: string | null; zone_subty: string | null }>(LAYERS.flood, { point, outFields: ['fld_zone', 'zone_subty'] }, { signal }),
         [],
         warnings,
-        'FEMA flood zones',
+        'warn.flood',
       )
     : Promise.resolve([]);
 
@@ -238,16 +232,16 @@ export async function lookupLot(query: LotQuery, opts: LookupOpts = {}): Promise
   } catch (e) {
     if ((e as PhillyError).code === 'aborted') throw e;
     row = null;
-    warnings.push("Couldn't load the City's property record (owner, size) right now.");
+    warnings.push(EN('warn.record'));
   }
 
   let polygon: LngLat[] = row?.pwd_geom ? largestOuterRing(JSON.parse(row.pwd_geom)) : [];
   let parcelSource: LotExtra['parcelSource'] = polygon.length ? 'pwd' : null;
   if (!polygon.length) {
     const dor = p?.dor_parcel_id
-      ? await soft(queryGeo(LAYERS.dorParcels, { where: `mapreg=${sqlString(p.dor_parcel_id)}`, outFields: ['mapreg'] }, { signal }), { features: [], truncated: false }, warnings, 'the deed parcel outline')
+      ? await soft(queryGeo(LAYERS.dorParcels, { where: `mapreg=${sqlString(p.dor_parcel_id)}`, outFields: ['mapreg'] }, { signal }), { features: [], truncated: false }, warnings, 'warn.deedOutline')
       : point
-        ? await soft(queryGeo(LAYERS.dorParcels, { point, outFields: ['mapreg'], resultRecordCount: 1 }, { signal }), { features: [], truncated: false }, warnings, 'the deed parcel outline')
+        ? await soft(queryGeo(LAYERS.dorParcels, { point, outFields: ['mapreg'], resultRecordCount: 1 }, { signal }), { features: [], truncated: false }, warnings, 'warn.deedOutline')
         : { features: [] };
     polygon = largestOuterRing(dor.features[0]?.geometry as never);
     if (polygon.length) parcelSource = 'dor';
@@ -257,14 +251,14 @@ export async function lookupLot(query: LotQuery, opts: LookupOpts = {}): Promise
     point ??
     (row?.lng != null && row?.lat != null ? [row.lng, row.lat] : null) ??
     (polygon.length ? [polygon.reduce((s, q) => s + q[0], 0) / polygon.length, polygon.reduce((s, q) => s + q[1], 0) / polygon.length] : null);
-  if (!center) throw new PhillyError('not-found', `We found "${typed}" but the City has no location for it.`);
+  if (!center) throw new PhillyError('not-found', words()('error.noLocation', { typed }));
 
   // --- shape: neighbours + street centerlines around the parcel ----------------------------
   let geometry = null;
   if (polygon.length >= 3) {
     const [neighbours, streets] = await Promise.all([
-      soft(fetchNeighbourRings(polygon, { signal }), null, warnings, 'neighbouring parcels'),
-      soft(fetchStreetLines(polygon, { signal }), [] as ShapeStreet[], warnings, 'street centerlines'),
+      soft(fetchNeighbourRings(polygon, { signal }), null, warnings, 'warn.neighbours'),
+      soft(fetchStreetLines(polygon, { signal }), [] as ShapeStreet[], warnings, 'warn.streets'),
     ]);
     const own = neighbours?.filter((n) => !(n.opa && n.opa === opa)).map((n) => n.ring) ?? null;
     geometry = analyseLot({
@@ -292,7 +286,8 @@ export async function lookupLot(query: LotQuery, opts: LookupOpts = {}): Promise
     councilMember: district ? COUNCIL_MEMBERS[district] ?? null : null,
     historicSite: p?.historic_site ? /^y/i.test(String(p.historic_site)) : undefined,
     historicDistrict: p?.historic_district || null,
-    floodZoneLabel: floodPlain(zoneRow?.fld_zone ?? null, zoneRow?.zone_subty ?? null),
+    // saved in English, shown translated (floodText)
+    floodZoneLabel: floodPlain(zoneRow?.fld_zone ?? null, zoneRow?.zone_subty ?? null, 'en'),
     parcelSource,
     zip: row?.zip_code ?? p?.zip_code ?? null,
     // Not AIS's philly_rising_area: those areas are named after playgrounds (2537 N 11th St
@@ -303,14 +298,13 @@ export async function lookupLot(query: LotQuery, opts: LookupOpts = {}): Promise
     warnings: warnings.length ? warnings : undefined,
   };
 
+  // saved in English, shown translated (sourceLabel)
   const sources: SourceRef[] = [
-    { label: 'This property on atlas.phila.gov', url: links.atlas(address) },
-    ...(opa ? [{ label: 'Property assessment (property.phila.gov)', url: links.property(opa) }] : []),
-    { label: 'Zoning on atlas.phila.gov', url: links.atlasZoning(address) },
-    ...(landBank || (isPublic(cls.type) && landBankHandles(cls.type, cls.label))
-      ? [{ label: "Philadelphia Land Bank's property map", url: links.landBankMap }]
-      : []),
-    ...(rcos.length ? [{ label: 'Registered Community Organizations (City of Philadelphia)', url: links.rcos }] : []),
+    { label: EN('source.atlas'), url: links.atlas(address) },
+    ...(opa ? [{ label: EN('source.property'), url: links.property(opa) }] : []),
+    { label: EN('source.zoning'), url: links.atlasZoning(address) },
+    ...(landBank || (isPublic(cls.type) && landBankHandles(cls.type, cls.label)) ? [{ label: EN('source.landBank'), url: links.landBankMap }] : []),
+    ...(rcos.length ? [{ label: EN('source.rcos'), url: links.rcos }] : []),
   ];
 
   return {

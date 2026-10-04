@@ -4,8 +4,10 @@
 import type { LotRecord } from '../../lib/types';
 import type { LotExtra } from '../../lib/philly/types';
 import { makeProjector } from '../../lib/philly/geo';
+import { words } from '../../lib/philly/words';
 
 export default function LotOutline({ lot, size = 150 }: { lot: LotRecord; size?: number }) {
+  const t = words();
   const poly = lot.polygon;
   const g = (lot.extra as LotExtra | undefined)?.geometry;
   const pr = makeProjector(poly[0]!);
@@ -25,7 +27,13 @@ export default function LotOutline({ lot, size = 150 }: { lot: LotRecord; size?:
   const d = pts.map((p, i) => `${i ? 'L' : 'M'}${tx(p).join(',')}`).join(' ') + 'Z';
   const streetEdges = (g?.edges ?? []).filter((e) => e.street);
   return (
-    <svg class="ph-outline" viewBox={`0 0 ${size} ${size}`} role="img" aria-label={`Outline of the lot${g ? `, about ${Math.round(g.widthFt)} by ${Math.round(g.lengthFt)} feet` : ''}. North is up; street sides are drawn thick.`}>
+    <svg
+      class="ph-outline"
+      viewBox={`0 0 ${size} ${size}`}
+      role="img"
+      style="direction:ltr"
+      aria-label={g ? t('outline.label', { width: Math.round(g.widthFt), length: Math.round(g.lengthFt) }) : t('outline.labelNoSize')}
+    >
       <path d={d} fill="#bfe9f9" stroke="#111" stroke-width="1.5" stroke-linejoin="round" />
       {streetEdges.map((e) => {
         const a = tx(pr.toXY(e.from));
@@ -35,7 +43,7 @@ export default function LotOutline({ lot, size = 150 }: { lot: LotRecord; size?:
       <g transform={`translate(${size - 12},14)`} aria-hidden="true">
         <path d="M0,-9 L4,4 L0,1 L-4,4Z" fill="#111" />
         <text y="13" text-anchor="middle" font-size="8" font-weight="700" fill="#111">
-          N
+          {t('map.north')}
         </text>
       </g>
     </svg>
