@@ -1,0 +1,124 @@
+{
+  "title": "Banca con respaldo",
+  "summary": "Una banca de 4 pies de cedro, abeto o pino tratado a presión, con asiento de tablillas y respaldo inclinado, hecha con madera de 2x4 y un soporte de respaldo atornillado. Mide 25\" hasta la parte de arriba de los brazos; el respaldo llega a unas 34\".",
+  "materials": [
+    {
+      "item": "Madera de 2x4: cedro rojo del oeste, abeto Douglas o pino tratado a presión",
+      "notes": "Cedro: resiste de forma natural la intemperie y la pudrición, tiene un bonito tono rojizo, es fácil de trabajar y no necesita sellador (con el tiempo se vuelve gris); cuesta más. Pida el grado «con nudos» (STK), mucho más barato que el grado sin nudos. Abeto Douglas: resiste la pudrición de forma moderada, es fuerte y fácil de trabajar, más barato que el cedro, pero no dura tanto; es buena opción si piensa pintar. Tratado a presión: resiste la pudrición y es la opción más barata, pero la calidad de la madera suele ser mala y desigual, necesita de 1 a 4 meses secándose al aire antes de pintarla, y no se recomienda donde se cultivan alimentos. Pida un 5 % más de lo que indica la lista de cortes, por si la madera viene con defectos o se equivoca en un corte."
+    }
+  ],
+  "hardware": [
+    { "item": "Tornillos autoperforantes para madera de exterior" },
+    { "item": "Tirafondos para madera de exterior" },
+    { "item": "Pernos de carruaje de exterior, con tuercas y arandelas" },
+    { "item": "Soportes de respaldo" }
+  ],
+  "cutList": [
+    { "notes": "Fondo y asiento de la banca" },
+    { "notes": "Respaldo de la banca" },
+    { "notes": "Lado de la banca" },
+    { "notes": "Lado de la banca" },
+    { "notes": "Lado de la banca" },
+    { "notes": "Lado de la banca" },
+    { "notes": "Lado de la banca" }
+  ],
+  "tools": [
+    "Sierra ingletadora de 10\" o 12\" (o un serrucho adecuado)",
+    "Atornillador de impacto para los tornillos autoperforantes de exterior",
+    "Taladro con brocas de 1/8\" y 1/4\" para hacer agujeros guía",
+    "Papel de lija, grano 120",
+    "Escuadra de carpintero",
+    "Gafas de seguridad y guantes",
+    "Llave de dados (para los pernos de carruaje y los tirafondos)"
+  ],
+  "steps": [
+    {
+      "title": "Marque, rotule y corte la madera",
+      "text": "Marque, rotule y corte la madera en orden, de BB-1 a BB-7, a los largos de la lista de cortes.\n\nRevise cada pieza de madera por si tiene defectos como rajaduras, deformaciones o un cepillado desparejo, y descarte esas partes.",
+      "imageAlts": [
+        "Diagrama isométrico de las siete piezas cortadas de la BANCA CON RESPALDO, de BB-1 a BB-7, con sus largos rotulados, desde tablas de 45\" hasta bloques de 4\"."
+      ],
+      "tips": [
+        "Rotule cada pieza de madera a medida que la mide y la corta.",
+        "Haga una pila aparte para cada pieza, de BB-1 a BB-7.",
+        "Lijar un poco los bordes cortados quita las astillas y ayuda al armar.",
+        "¿Va a hacer más de una banca? Un tope en la sierra ingletadora hace que todas las piezas salgan del mismo largo."
+      ]
+    },
+    {
+      "title": "Arme los dos marcos de los extremos",
+      "text": "Ponga dos piezas BB-3 sobre una superficie plana. Ponga dos piezas BB-5 del lado derecho de las piezas BB-3, alineando los bordes como se ve en la imagen. Repita para armar un segundo marco igual.",
+      "imageAlts": [
+        "Diagrama de dos tablas BB-3 y dos BB-5 armadas en un marco cuadrado para un extremo, con un segundo marco terminado detrás."
+      ],
+      "tips": [
+        "Use una escuadra de carpintero para comprobar que cada esquina forma un ángulo recto; si está muy desviada, vuelva a revisar los largos de las tablas.",
+        "Hacer una plantilla de 90 grados le ayudará mucho a armar este paso y el siguiente."
+      ]
+    },
+    {
+      "title": "Agregue las tablillas del asiento y las patas delanteras a cada marco",
+      "text": "Ponga cuatro piezas BB-6 y una pieza BB-4 encima de cada marco, como se muestra, dejando un espacio de 1.5\" entre las dos piezas BB-6 (use un 2x4 sobrante de canto como separador). Use la guía para agujeros al final del paquete para hacer los agujeros guía de los tornillos, y luego fije la madera con un atornillador de impacto y 30 tornillos autoperforantes de exterior de 2.5\".\n\nPonga una pieza BB-4 al ras de la pieza BB-5 que está debajo, con dos piezas BB-7 en ángulo recto al lado, como se muestra (otra vez con el separador de 2x4 para dejar un espacio de 1.5\"), y luego fíjelas con 14 tornillos más de 2.5\".\n\nRepita en la otra pata y luego ponga las dos patas de pie para el siguiente paso.",
+      "imageAlts": [
+        "Diagrama de las tablas BB-6, BB-4 y BB-7 atornilladas encima y al costado de cada marco, con el espacio de 1.5\" del separador señalado."
+      ]
+    },
+    {
+      "title": "Una los dos marcos con las tablillas de abajo",
+      "text": "Ponga tres piezas BB-1 en las ranuras de la base y los costados de los dos marcos que armó en el paso 3, como se muestra.\n\nFije las piezas BB-1, de los lados izquierdo y derecho, a las piezas de los marcos con un atornillador de impacto y 12 tornillos autoperforantes de exterior de 2.5\" en total: 6 tornillos por lado.",
+      "imageAlts": [
+        "Diagrama de tres tablas BB-1 que unen los dos marcos por la base, con un ángulo de 90 grados señalado en la esquina."
+      ],
+      "tips": ["Compruebe con una escuadra de carpintero que el costado se mantenga a 90 grados."]
+    },
+    {
+      "title": "Agregue el asiento",
+      "text": "Ponga tres piezas BB-1 encima del armazón que hizo en el paso 4, alineando todos los bordes y dejando un espacio igual de 1\" entre las piezas.\n\nFije las piezas BB-1 con un atornillador de impacto y 12 tornillos autoperforantes de exterior de 2.5\". Estos tornillos se tienen que meter un poco inclinados.",
+      "imageAlts": [
+        "Diagrama de otras tres tablas BB-1 que forman el asiento de la banca, atornilladas en ángulo, con un espacio igual de 1\" entre tablas."
+      ]
+    },
+    {
+      "title": "Atornille los soportes del respaldo",
+      "text": "Ponga los dos soportes del respaldo a cada lado de las piezas BB-1, a 5\" hacia adentro de los extremos, como se muestra.\n\nMarque y haga agujeros guía que atraviesen las piezas BB-1, alineados con los soportes, y luego fije los soportes del respaldo a la parte de abajo de las piezas BB-1 con una llave de dados y cuatro pernos de carruaje de exterior de 1/4\" x 2-1/2\", con tuercas y arandelas.",
+      "imageAlts": [
+        "Diagrama de dos soportes de respaldo atornillados por debajo de las tablas del asiento, a 5\" de cada extremo."
+      ],
+      "tips": ["Este paso es más fácil si acuesta la banca sobre su frente."]
+    },
+    {
+      "title": "Ponga las tablillas del respaldo y termine",
+      "text": "Ponga tres piezas BB-2 sobre los soportes del respaldo que fijó en el paso 6. Empiece por la pieza de arriba, colocada 1/2\" por encima del borde superior del soporte, y luego deje un espacio de 1/4\" entre cada pieza de abajo, con todos los bordes alineados.\n\nFije las piezas BB-2 a los soportes del respaldo con una llave de dados y seis tirafondos de 1/4\" x 1-1/4\".\n\nLije un poco los bordes ásperos de la banca con respaldo.",
+      "imageAlts": [
+        "Diagrama de tres tablillas BB-2 del respaldo atornilladas a los soportes, con un espacio de 1/4\" entre cada tabla."
+      ],
+      "tips": [
+        "Use su escuadra de carpintero como separador para los espacios.",
+        "Use una broca de 1/4\" para hacer agujeros guía poco profundos para los tirafondos; tenga cuidado de no atravesar la madera BB-6 que está debajo."
+      ]
+    },
+    {
+      "title": "Guía para hacer agujeros (plantilla)",
+      "text": "Recorte la guía para agujeros por las líneas punteadas. Al taladrar, alinee el borde de la plantilla con el borde de afuera de la madera antes de hacer el agujero guía.\n\nNo se usan todos los agujeros, y no todos los patrones usan la plantilla. Guíese por los pasos de armado de arriba para saber dónde van los agujeros. Haga todos los agujeros a más o menos el ancho de un pulgar del borde (alrededor de 1\"), incluso los que no usan esta plantilla.",
+      "imageAlts": [
+        "Una plantilla imprimible para hacer agujeros guía, con cinco posiciones marcadas y líneas de corte, y un acercamiento que muestra la distancia de los agujeros al borde de la tabla."
+      ]
+    }
+  ],
+  "finishing": "Un tratamiento para madera de exterior puede alargar la vida de los elementos de su parque, pero no hace falta: estas piezas están pensadas para ser baratas, duraderas y fáciles de construir, así que puede ser más práctico dejar que la próxima generación las vuelva a construir cuando llegue el momento. Si quiere teñir, pintar o sellar la madera, vea los recursos sobre acabados más abajo.",
+  "safety": [
+    "Estas son solo recomendaciones para hacerlo usted mismo: adapte los materiales, el armado y la construcción a su propio proyecto y terreno.",
+    "Construir esto supone que sabe usar herramientas manuales y eléctricas, herrajes, tornillería, madera y técnicas básicas de armado.",
+    "Antes de usar cualquier equipo eléctrico, lea y siga los requisitos de seguridad del fabricante, y no deje que use herramientas eléctricas nadie que no haya hecho lo mismo.",
+    "Usted (el dueño) es responsable de cumplir los códigos de construcción y de seguridad, y de conseguir los permisos y aprobaciones que esto necesite.",
+    "Primero limpie el terreno de basura, peligros y estructuras que no quiera, y averigüe si hay servicios públicos (cables o tuberías) que puedan estorbar antes de excavar.",
+    "Todas las personas que ayuden a construir deben firmar una exención de responsabilidad para voluntarios."
+  ],
+  "links": [
+    { "label": "Soportes de respaldo (Hairpin Legs, en inglés)" },
+    { "label": "Cómo elegir el mejor acabado para proyectos al aire libre (Rockler, en inglés)" },
+    { "label": "El mejor acabado para madera de exterior (Real Milk Paint, en inglés)" },
+    { "label": "Recubrimientos para madera de exterior (Vermont Natural Coatings, en inglés)" }
+  ],
+  "sourcePages": "Instrucciones de armado de BENCH_BACK, págs. 1–11 (portada; antes de empezar; maderas comunes; pasos 1–7; guía para hacer agujeros)"
+}

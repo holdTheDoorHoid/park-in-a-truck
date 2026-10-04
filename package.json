@@ -11,7 +11,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "test": "vitest run",
-    "check": "astro check"
+    "check": "astro check",
+    "i18n:check": "node --no-warnings scripts/i18n-check.ts",
+    "i18n:scaffold": "node --no-warnings scripts/i18n-scaffold.ts"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.3.1",
@@ -37,6 +39,9 @@
     "@types/node": "^26.6.4",
     "@types/suncalc": "^1.9.2",
     "@types/three": "^0.186.0",
+    "mdast-util-from-markdown": "^2.1.0",
+    "mdast-util-mdx": "^3.0.0",
+    "micromark-extension-mdxjs": "^3.0.0",
     "typescript": "^6.0.3",
     "vitest": "^5.0.3"
   }

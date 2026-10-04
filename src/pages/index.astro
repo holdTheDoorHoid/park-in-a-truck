@@ -3,8 +3,10 @@ import Base from '../layouts/Base.astro';
 import StepPath from '../components/site/StepPath.astro';
 import LotLookup from '../components/widgets/LotLookup.astro';
 import pages from '../i18n/messages/en/pages.ts';
+import site from '../i18n/messages/en/site.ts';
 import { getT, urlFor } from '../i18n/astro.ts';
 const t = getT(Astro, pages);
+const ts = getT(Astro, site);
 const u = urlFor(t.locale);
 const tools = (['lot', 'planner', 'build', 'plants', 'parks', 'myPark'] as const).map((k) => ({
   href: k === 'myPark' ? 'my-park/' : `${k}/`,
@@ -35,10 +37,10 @@ const tools = (['lot', 'planner', 'build', 'plants', 'parks', 'myPark'] as const
 
   <section class="wrap welcome-back" hidden data-welcome-back>
     <div class="card welcome-card">
-      <p class="eyebrow">Welcome back</p>
+      <p class="eyebrow">{ts('welcome.eyebrow')}</p>
       <p data-welcome-text></p>
       <div class="cta">
-        <a class="btn btn-primary" data-welcome-continue href={u('my-park/')}>See My park →</a>
+        <a class="btn btn-primary" data-welcome-continue href={u('my-park/')}>{ts('welcome.myPark')}</a>
       </div>
     </div>
   </section>
@@ -126,9 +128,15 @@ const tools = (['lot', 'planner', 'build', 'plants', 'parks', 'myPark'] as const
   // here instead, above "Your path", linking straight to the next
   // unfinished sub-step. Nothing shows for a first-time, empty project.
   import { $project } from '../lib/project';
-  import { STEPS } from '../data/steps';
-  import { u } from '../lib/url';
   import type { Project } from '../lib/types';
+  import site from '../i18n/messages/en/site.ts';
+  import { getT } from '../i18n/t.ts';
+  import { urlFor } from '../i18n/url.ts';
+  import { localizedSteps } from '../i18n/data.ts';
+
+  const t = getT(undefined, site);
+  const u = urlFor(t.locale);
+  const STEPS = localizedSteps(t.locale);
 
   function nextUnfinished(p: Project) {
     const outline: Record<string, string[]> = (window as any).__PIAT_OUTLINE__ ?? {};
@@ -148,16 +156,15 @@ const tools = (['lot', 'planner', 'build', 'plants', 'parks', 'myPark'] as const
     if (!hasProgress) return;
 
     const text = section.querySelector('[data-welcome-text]')!;
-    const where = p.lot?.address ? `your lot at ${p.lot.address}` : 'your project';
-    text.textContent = `Continue with ${where}.`;
+    text.textContent = p.lot?.address ? t('welcome.lot', { address: p.lot.address }) : t('welcome.project');
 
     const link = section.querySelector<HTMLAnchorElement>('[data-welcome-continue]')!;
     const next = nextUnfinished(p);
     if (next) {
-      link.textContent = `Continue: ${next.title} →`;
+      link.textContent = t('welcome.continue', { title: next.title });
       link.href = next.href;
     } else {
-      link.textContent = 'See My park →';
+      link.textContent = t('welcome.myPark');
       link.href = u('my-park/');
     }
   });

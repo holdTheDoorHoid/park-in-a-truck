@@ -41,6 +41,13 @@ export default defineMessages('site', {
   'footer.resources': 'Resources, partners & press',
   'footer.legal': 'Legal notice',
 
+  /** Home page, for someone who has already started (the script under src/pages/index.astro) */
+  'welcome.eyebrow': 'Welcome back',
+  'welcome.lot': 'Continue with your lot at {address}.',
+  'welcome.project': 'Continue with your project.',
+  'welcome.continue': 'Continue: {title} →',
+  'welcome.myPark': 'See My park →',
+
   /** After "3 of 7" on each step card, read by screen readers only */
   'path.subDone': 'sub-steps done',
 });

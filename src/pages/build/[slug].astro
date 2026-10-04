@@ -27,6 +27,8 @@ const models = import.meta.glob<GuideModel>('../../data/guides/models/*.json', {
 export function getStaticPaths() {
   return getGuides().map((guide) => ({ params: { slug: guide.slug } }));
 }
+// No props: the page is found by its slug. (Declared so the /<lang>/ twin can render it.)
+type Props = Record<string, never>;
 
 const { slug } = Astro.params;
 const t = getT(Astro, guidesMsgs);

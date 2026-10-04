@@ -1,0 +1,31 @@
+{
+  "start": {
+    "title": "Empiece aquí",
+    "tagline": "Por qué importan los parques y cómo funciona Park in a Truck."
+  },
+  "acquire": {
+    "title": "Adquirir",
+    "tagline": "Busque un lote y consiga permiso para usarlo.",
+    "assumes": "Usted ya leyó la guía y todavía no tiene un lote que pueda usar."
+  },
+  "organize": {
+    "title": "Organizar",
+    "tagline": "Forme un comité del parque y reúna a sus vecinos."
+  },
+  "assess": {
+    "title": "Evaluar",
+    "tagline": "Conozca su lote: el sol, la tierra y lo que lo rodea."
+  },
+  "dream": {
+    "title": "Soñar",
+    "tagline": "Diseñe su parque con las piezas del parque."
+  },
+  "create": {
+    "title": "Crear",
+    "tagline": "Constrúyalo por etapas, un fin de semana a la vez."
+  },
+  "sustain": {
+    "title": "Mantener",
+    "tagline": "Cuide su parque, temporada tras temporada."
+  }
+}
