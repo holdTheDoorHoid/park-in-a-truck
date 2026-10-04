@@ -562,7 +562,7 @@ word); the place is "a cidade da Filadélfia". A native reviewer should still re
 | project file | arquivo do projeto | |
 | Plan in 3D / the planner | Planejar em 3D / o planejador 3D | |
 | Plan view / 3D view | vista de cima (planta) / vista 3D | Button: "Planta", as in an architect's floor plan. |
-| sun hours / growing season | horas de sol / época de plantio (15 abr – 15 out) | |
+| sun hours / growing season | horas de sol / época de crescimento (15 abr – 15 out) | |
 | wet area | área encharcada | Where puddles or soggy ground form after rain. |
 | lidar | lidar | Explain once: alturas medidas com laser a partir de um avião. |
 | Note from this site, not Park in a Truck | Nota deste site, não do Park in a Truck | |
