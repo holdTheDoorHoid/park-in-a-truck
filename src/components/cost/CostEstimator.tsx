@@ -8,6 +8,7 @@ import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import { $project, setExtra } from '../../lib/project';
 import type { DesignTally, SiteFacts } from '../../lib/types';
 import { FIELD_GROUPS } from '../../lib/cost/fields';
+import { PERENNIALS_PER_SQUARE } from '../../lib/cost/corrections';
 import { estimate, fmtN, money, type CostInputKey } from '../../lib/cost/model';
 import { COST_INPUTS_KEY, readSaved, resolveInputs, withOverride, withUnitPrice, type SavedCostInputs } from '../../lib/cost/state';
 import { estimateCsv } from '../../lib/cost/csv';
@@ -150,7 +151,10 @@ export default function CostEstimator({ title = 'Your cost estimate', focus = 'e
               {g.intro && <p class="ce-intro">{g.intro}</p>}
               {g.id === 'plants' && (
                 <p class="ce-computed">
-                  Perennials: <strong>{fmtN(e.summary.perennials)}</strong> <span class="muted">(4 × {fmtN(r.values.plantingSquares)} planting squares)</span>
+                  Perennials: <strong>{fmtN(e.summary.perennials)}</strong>{' '}
+                  <span class="muted">
+                    ({PERENNIALS_PER_SQUARE} × {fmtN(r.values.plantingSquares)} planting squares, the same as the plant picker)
+                  </span>
                 </p>
               )}
               {g.fields.map((f) => (

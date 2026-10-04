@@ -3,8 +3,10 @@
 
 import { useState } from 'preact/hooks';
 import { KEPT_ASSUMPTIONS } from '../../lib/cost/corrections';
+import { GUIDES } from '../../lib/cost/guides';
 import { CATEGORIES, fmtN, money, type CostLine, type Estimate } from '../../lib/cost/model';
 import type { OrderListRow } from '../../lib/cost/orderList';
+import { u } from '../../lib/url';
 
 const PRICE_NOTE = 'Prices from the Park in a Truck estimator — check current prices with suppliers.';
 
@@ -82,12 +84,19 @@ function CategoryTable({ e, id, open, bare }: { e: Estimate; id: (typeof CATEGOR
           </th>
         </tr>
       </thead>
-      {groups.map((g) => (
+      {groups.map((g) => {
+        const guide = lines.find((l) => l.group === g)?.guide;
+        return (
         <tbody key={g ?? '-'}>
           {g && (
             <tr class="ce-group-row">
               <th colSpan={4} scope="rowgroup">
                 {g}
+                {guide && (
+                  <a class="ce-guide-link" href={u(`build/${guide}/`)}>
+                    From the {GUIDES[guide].title} build guide
+                  </a>
+                )}
               </th>
             </tr>
           )}
@@ -97,7 +106,8 @@ function CategoryTable({ e, id, open, bare }: { e: Estimate; id: (typeof CATEGOR
               <LineRow key={k} l={l} />
             ))}
         </tbody>
-      ))}
+        );
+      })}
     </table>
   );
   if (bare) return table;
@@ -285,6 +295,16 @@ export function OrderListView({ e }: { e: Estimate }) {
                     t.item
                   )}
                   {t.note && <span class="muted"> — {t.note}</span>}
+                  {t.linkFlag && <span class="ce-note ce-flag">⚠ {t.linkFlag}</span>}
+                  {t.siteNote && (
+                    <span class="ce-note ce-site-note">
+                      {t.siteNote.text}{' '}
+                      <a href={t.siteNote.link} target="_blank" rel="noopener noreferrer">
+                        {t.siteNote.link.replace(/^https:\/\//, '')}
+                        <span class="visually-hidden"> (opens in a new tab)</span>
+                      </a>
+                    </span>
+                  )}
                 </li>
               ))}
           </ul>

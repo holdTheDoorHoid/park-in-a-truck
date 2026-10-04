@@ -106,6 +106,18 @@ export interface OrderListRow {
   usedFor?: string[];
 }
 
+export interface OrderListTool {
+  section: string;
+  item: string;
+  link?: string;
+  /** PiaT's note */
+  note?: string;
+  /** A short note clearly marked as from this site (legal or health trouble; DESIGN.md §2), with its official source */
+  siteNote?: { text: string; link: string };
+  /** Where the spreadsheet's link no longer goes to the product */
+  linkFlag?: string;
+}
+
 export interface OrderListResult {
   rows: OrderListRow[];
   /** Section name -> PiaT's tip for it */
@@ -123,7 +135,7 @@ export interface OrderListResult {
   /** Notes about the whole list */
   notes: string[];
   /** Tool and equipment suggestions at the bottom of the tab (no quantities) */
-  tools: { section: string; item: string; link?: string; note?: string }[];
+  tools: OrderListTool[];
 }
 
 const S = {
@@ -145,13 +157,21 @@ const TIP_QTY = 'This is a suggested quantity; you can always talk to the suppli
 const DARBY = 'https://catalog.darbywiremesh.com/category/plain-steel-mesh-by-mesh-count';
 const HD = 'https://www.homedepot.com/p/';
 
+// site-added safety note (owner's decision 2026-10-04, DESIGN.md §2): legal trouble without a permit
+const HYDRANT_NOTE = {
+  text: 'Note from this site: opening a fire hydrant in Philadelphia needs a Philadelphia Water Department permit and a backflow preventer —',
+  link: 'https://water.phila.gov/development/connections/hydrant-permits/',
+};
+// checked 2026-10-04: both Diamond Tool product links redirect to whitecap.com/our-companies/diamond-tool
+const DIAMOND_GONE = 'This link from the spreadsheet now opens a general White Cap (Diamond Tool) page, not the product.';
+
 const TOOLS: OrderListResult['tools'] = [
   { section: 'Tools', item: 'Impact driver' },
   { section: 'Tools', item: 'Impact driver adaptor', link: 'https://www.amazon.com/DEWALT-DW2055B-6-Inch-Magnetic-Drive/dp/B000HNFKHS' },
   { section: 'Highly recommended tools', item: 'Auger bit', link: 'https://www.amazon.com/dp/B087D38RH7' },
   { section: 'Highly recommended tools', item: 'Impact driver adaptor sizes', link: 'https://www.amazon.com/DEWALT-DWAIND-5-COMPACT-NUT-DRIVER/dp/B07SNGL2GX' },
-  { section: 'Additional elements', item: 'Fire hydrant opener — hose adapter', link: 'https://www.diamondtool.net/philadelphia-fire-hydrant-hose-adapter-34/product/0/hydrant%20r-34' },
-  { section: 'Additional elements', item: 'Fire hydrant opener — gear puller to open', link: 'https://www.diamondtool.net/proto-j4035-2-jaw-gear-puller-7-5-ton-rating/product/0/proto%20j4035' },
+  { section: 'Additional elements', item: 'Fire hydrant opener — hose adapter', link: 'https://www.diamondtool.net/philadelphia-fire-hydrant-hose-adapter-34/product/0/hydrant%20r-34', siteNote: HYDRANT_NOTE, linkFlag: DIAMOND_GONE },
+  { section: 'Additional elements', item: 'Fire hydrant opener — gear puller to open', link: 'https://www.diamondtool.net/proto-j4035-2-jaw-gear-puller-7-5-ton-rating/product/0/proto%20j4035', siteNote: HYDRANT_NOTE, linkFlag: DIAMOND_GONE },
   { section: 'Additional elements', item: 'Skid steer', note: 'Machine for a week.' },
 ];
 
@@ -374,7 +394,7 @@ export function buildOrderList(q: QpiQuantities, i: CostInputs): OrderListResult
 
 // ---- corrected order list: the estimate's own lines, merged by material ----
 
-const SECTIONS = ['Layout + protection', 'Soil', 'Gravel', 'Gabion baskets', 'Lumber', 'Wire', 'Hardware', 'Plants', 'Additional furnishings', 'Off-the-shelf'];
+const SECTIONS = ['Layout + protection', 'Soil', 'Gravel', 'Gabion baskets', 'Lumber', 'Wire', 'Hardware', 'Other materials', 'Plants', 'Additional furnishings', 'Off-the-shelf'];
 
 interface Meta {
   label?: string;
@@ -411,13 +431,23 @@ const META: Record<string, Meta> = {
   'welded-mesh': { section: 'Wire', note: 'Gabion wire, to be cut by the distributor into the panels below.' },
   'panel:22x24': { section: 'Wire', label: 'Side panels 22"x24"', note: 'Cut from the mesh (included in its price).' },
   'panel:22x22': { section: 'Wire', label: 'Bottom panels 22"x22"', note: 'Cut from the mesh (included in its price).' },
-  'wood-screw': { section: 'Hardware', label: '2.5" wood screws', lead: '2-3 days' },
+  'wood-screw': { section: 'Hardware', label: '2.5" wood screws', lead: '2-3 days', note: 'For furniture (the build guides’ self-driving exterior wood screws).' },
   'carriage-bolt': { section: 'Hardware', label: '1/4" x 2 1/2" exterior carriage bolts + nuts + washers', lead: '2-3 days' },
   'backrest-bracket': { section: 'Hardware', label: 'Backrest brackets', lead: '1-3 weeks', note: 'Must be ordered online.' },
   'corner-brace': { section: 'Hardware', label: 'Corner braces', lead: '1-3 weeks' },
   'lag-screw': { section: 'Hardware', label: '1/4" x 1 1/2" lag screws', lead: '2-3 days' },
-  'l-bracket': { section: 'Hardware', label: 'L-brackets' },
-  'self-driving-screw': { section: 'Hardware', label: '2 1/2" self-driving screws' },
+  // the spreadsheet calls both "L-BRACKET" but links two different products at the same price
+  'l-bracket-2in': { section: 'Hardware', label: 'L-brackets (2" double-wide corner brace)', note: 'For the wood edge around gravel.' },
+  'l-bracket-5in': { section: 'Hardware', label: 'L-brackets (5" corner brace)', note: 'For the outer edges.' },
+  'self-driving-screw': {
+    section: 'Hardware',
+    label: '2 1/2" self-driving screws (washer head)',
+    note: 'For the wood edges. A different screw from the 2.5″ wood screws for furniture: the spreadsheet links a washer-head screw here, at $0.75 each.',
+  },
+  'lumber:1x4x12': { section: 'Lumber', lead: '1-3 weeks', note: 'The spreadsheet gives no supplier or link for this board.' },
+  'gabion-basket-18x18x48': { section: 'Gabion baskets', label: 'Gabion baskets 18"x18"x48" (welded-wire mesh)', lead: '2-3 weeks', phase: 1 },
+  'guide:gabion-basket-18x18x96': { section: 'Gabion baskets', label: 'Gabion baskets 18"x18"x96" (welded-wire mesh)', lead: '2-3 weeks', phase: 1 },
+  'guide:deck-blocks': { section: 'Other materials', note: 'Only if needed (Shade guide, step 8).' },
   'concrete-screw': { section: 'Hardware', label: '2" concrete screws' },
   'bird-bath': { label: 'Bird bath' },
   'cafe-set': { label: 'Cafe tables + chairs' },
@@ -462,7 +492,9 @@ export function buildMergedOrderList(lines: CostLine[], _i: CostInputs): OrderLi
     if (!l.inTotal && !l.needsPrice) continue;
     const material = l.material ?? `${l.category}:${l.item}`;
     const lumber = material.startsWith('lumber:');
-    const meta: Meta = META[material] ?? (lumber ? { lead: '1-3 weeks' } : material.startsWith('panel:') ? { section: 'Wire' } : {});
+    const meta: Meta =
+      META[material] ??
+      (lumber ? { lead: '1-3 weeks' } : material.startsWith('panel:') ? { section: 'Wire' } : material.startsWith('guide:fabric') ? { section: 'Other materials' } : {});
     const key = `${material}@${l.needsPrice ? 'np' : l.unitPrice}`;
     const usedFor = l.group ?? CATEGORY_LABEL[l.category];
     let row = rows.get(key);
@@ -483,7 +515,12 @@ export function buildMergedOrderList(lines: CostLine[], _i: CostInputs): OrderLi
         leadTime: meta.lead ?? (CATEGORY_SECTION[l.category] === 'Off-the-shelf' ? '2-3 Days' : undefined),
         phase: meta.phase ?? (CATEGORY_SECTION[l.category] === 'Off-the-shelf' ? 6 : undefined),
         note: meta.note,
-        flags: l.needsPrice ? ['Price needed — the spreadsheet has none. Enter it with the estimate.'] : [],
+        flags: [
+          ...(l.needsPrice ? ['Price needed — the spreadsheet has none. Enter it with the estimate.'] : []),
+          ...(lumber && LUMBER[material.slice(7)]?.wrongSize && link === LUMBER[material.slice(7)]!.link
+            ? [`The spreadsheet’s link for this is a ${LUMBER[material.slice(7)]!.wrongSize} — check the size when you order.`]
+            : []),
+        ],
         needsPrice: l.needsPrice,
         usedFor: [],
       };
