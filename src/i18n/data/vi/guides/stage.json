@@ -1,0 +1,154 @@
+{
+  "title": "Sân khấu",
+  "summary": "Một sàn biểu diễn thấp cỡ 12x8 feet bằng gỗ 2x4, gồm bốn khung góc giống hệt nhau nối quanh một khung giữa, lát ván 2x4 ghép thanh nan và đặt trên một lớp sỏi nền đã san phẳng.",
+  "cost": "$300–400",
+  "materials": [
+    {
+      "item": "Gỗ xẻ 2x4 — gỗ tuyết tùng đỏ miền tây (western red cedar), gỗ thông Douglas (Douglas fir) hoặc gỗ thông xử lý áp lực",
+      "notes": "Gỗ tuyết tùng: tự nhiên chịu được thời tiết và mục, màu đỏ đẹp, không cần phủ lớp bảo vệ; giá cao hơn — hãy hỏi loại 'có mắt gỗ' (STK). Gỗ thông Douglas: chịu mục ở mức vừa phải, chắc, rẻ hơn gỗ tuyết tùng; tốt nếu bạn định sơn. Gỗ xử lý áp lực: rẻ nhất và chịu mục, nhưng chất lượng thường kém/không đều, cần phơi khô ngoài không khí 1–4 tháng trước khi sơn, không nên dùng ở chỗ trồng thực phẩm. Hãy đặt nhiều hơn ít nhất 5% so với danh sách cắt gỗ để phòng gỗ không đều và cắt sai.",
+      "siteNote": "Danh sách cắt gỗ cần khoảng 25 tấm, không phải 16. Mỗi thanh ST-2 dài 93″ (11 thanh) và ST-3 dài 86″ (12 thanh) cần một tấm ván riêng (23 tấm), tám thanh ST-4 dài 14.75″ cần thêm 2 tấm, và mười hai thanh ST-5 dài 7.75″ lấy từ phần gỗ thừa của ST-3. Phần chữ của các bước khớp với danh sách cắt gỗ."
+    },
+    {
+      "item": "Gỗ xẻ 2x4 (thanh dài 12')"
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Vít gỗ tự khoan dùng ngoài trời"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Mặt trước & mặt sàn sân khấu"
+    },
+    {
+      "notes": "Khung sân khấu"
+    },
+    {
+      "notes": "Khung sân khấu"
+    },
+    {
+      "notes": "Khung sân khấu"
+    },
+    {
+      "notes": "Khung sân khấu"
+    }
+  ],
+  "tools": [
+    "Máy cưa góc (miter saw) 10\" hoặc 12\" (hoặc cưa tay phù hợp)",
+    "Máy bắt vít động lực (impact driver) cho vít gỗ tự khoan dùng ngoài trời",
+    "Mũi khoan 1/4\"",
+    "Giấy nhám, độ nhám 120",
+    "Thước vuông thợ mộc (ê-ke)",
+    "Kính bảo hộ + khẩu trang"
+  ],
+  "steps": [
+    {
+      "title": "Đánh dấu, ghi nhãn và cắt gỗ",
+      "text": "Đánh dấu, ghi nhãn và cắt gỗ theo thứ tự từ ST-1 đến ST-5, theo chiều dài trong danh sách cắt gỗ.\n\nKiểm tra từng thanh gỗ xem có khuyết điểm như nứt, cong vênh hay bào không đều không, và bỏ những đoạn gỗ đó đi.",
+      "imageAlts": [
+        "Sơ đồ ba chiều năm thanh gỗ đã cắt của sân khấu, từ ST-1 đến ST-5, có ghi chiều dài, từ ván sàn 144\" đến khối gỗ 7.75\"."
+      ],
+      "tips": [
+        "Ghi nhãn từng thanh gỗ khi bạn đo và cắt.",
+        "Xếp gỗ của mỗi phần thành một đống riêng, từ ST-1 đến ST-5.",
+        "Chà nhám nhẹ các mép cắt giúp bỏ dằm gỗ và dễ lắp ráp hơn.",
+        "Làm nhiều hơn một sân khấu? Một khối chặn trên máy cưa góc giúp mọi thanh cắt ra đều dài bằng nhau."
+      ]
+    },
+    {
+      "title": "Đóng bốn khung góc nhỏ",
+      "text": "Đặt hai thanh ST-4 trên một mặt phẳng. Đặt hai thanh ST-3 vào giữa hai thanh ST-4, canh các mép như trong hình. Làm lại thêm ba lần nữa, để có tổng cộng bốn khung nhỏ giống hệt nhau.",
+      "imageAlts": [
+        "Sơ đồ hai thanh ST-4 và hai thanh ST-3 ghép thành một khung chữ nhật nhỏ, lặp lại bốn lần."
+      ],
+      "tips": [
+        "Mặt sỏi bên dưới sân khấu nên được san phẳng hết mức có thể trước khi đặt vào vị trí cuối cùng; khối bê tông có thể giúp kê những chỗ trũng.",
+        "Làm một đồ gá (jig) 90 độ có thể giúp khi lắp ráp."
+      ]
+    },
+    {
+      "title": "Đóng bốn khung phần",
+      "text": "Đặt hai thanh ST-2 lên trên khung đã đóng ở bước 2. Đặt hai thanh ST-5 vào giữa hai thanh ST-2, canh các mép như trong hình, và bắt chặt tất cả bằng máy bắt vít động lực và 44 vít gỗ tự khoan dùng ngoài trời dài 2.5\".\n\nLàm lại thêm ba lần nữa, để có tổng cộng bốn khung phần. Cả bốn khung này đều phải quay vào phía giữa sân khấu.",
+      "imageAlts": [
+        "Sơ đồ các thanh ST-2 và ST-5 được gắn lên trên mỗi khung góc nhỏ để đóng một trong bốn khung phần của sân khấu."
+      ]
+    },
+    {
+      "title": "Ốp mặt cho mỗi khung phần",
+      "text": "Bắt đầu từ trên xuống, đặt bốn thanh ST-1 ở mặt trước và mặt sau của khung đã đóng ở bước 3. Giữ gỗ bằng mặt với mép trên, chừa khe 1/4\" giữa các thanh ST-1.\n\nBắt chặt các thanh ST-1 bằng máy bắt vít động lực và 42 vít gỗ tự khoan dùng ngoài trời dài 2.5\", rồi làm lại như vậy ở mặt bên kia.",
+      "imageAlts": [
+        "Sơ đồ các tấm ván mặt ST-1 được bắt vít lên mặt trước và mặt sau của một khung phần, với khe 1/4\" giữa các tấm ván."
+      ],
+      "tips": [
+        "Dùng thước vuông thợ mộc làm miếng chêm cho khe.",
+        "Dùng thước vuông thợ mộc kiểm tra thành bên vẫn giữ góc 90 độ."
+      ]
+    },
+    {
+      "title": "Gắn các thanh giằng giữa",
+      "text": "Đặt hai thanh ST-5 ở hai đầu, phần giữa của khung đã đóng ở bước 3. Đặt thêm hai thanh ST-5 ở giữa khung đã đóng ở bước 2 và 3.\n\nBắt chặt các thanh ST-5 bằng máy bắt vít động lực và 8 vít gỗ tự khoan dùng ngoài trời dài 2.5\" bắt xiên góc 45 độ.",
+      "imageAlts": [
+        "Sơ đồ các thanh giằng ST-5 được bắt vít xiên góc 45 độ ở giữa và hai đầu khung."
+      ],
+      "tips": [
+        "Khoan mồi sẽ giúp bắt vít xiên góc 45 độ dễ hơn."
+      ]
+    },
+    {
+      "title": "Nối hai khung phần",
+      "text": "Đặt hai thanh ST-3 ở một đầu của khung đã đóng ở bước 2, chừa khe 1/4\" giữa các thanh ST-3.\n\nBắt chặt các thanh ST-3 từ phía trong bằng máy bắt vít động lực và 8 vít gỗ tự khoan dùng ngoài trời dài 2.5\" bắt xiên góc 45 độ. Theo kiểu bắt vít đã định để bắt chặt các tấm ván vào thanh ST-5 ở giữa bằng thêm 6 vít.\n\nLàm lại như vậy ở bên kia với thêm hai thanh ST-3.",
+      "imageAlts": [
+        "Sơ đồ các thanh ST-3 nối hai khung phần với nhau với khe 1/4\", bắt vít xiên góc 45 độ."
+      ],
+      "tips": [
+        "Khoan mồi sẽ giúp bắt vít xiên góc 45 độ dễ hơn."
+      ]
+    },
+    {
+      "title": "Nối cả bốn phần",
+      "text": "Đặt ba thanh ST-2 vào giữa bốn khung phần, bằng mặt với mép trên của các thanh ST-1 đã đặt ở bước 4.\n\nBắt chặt các thanh ST-2 vào các thanh ST-1 bằng máy bắt vít động lực và 12 vít gỗ tự khoan dùng ngoài trời dài 2.5\".",
+      "imageAlts": [
+        "Sơ đồ ba thanh ST-2 nối cả bốn phần sân khấu với nhau, bằng mặt với mép trên của khung."
+      ]
+    },
+    {
+      "title": "Lát sàn sân khấu và chà nhám",
+      "text": "Đặt 26 thanh ST-1 lên trên khung đã đóng ở bước 7, canh thẳng các mép, bằng mặt và cách đều nhau.\n\nBắt chặt ván sàn ST-1 vào mỗi thanh dầm theo kiểu bắt 3 lỗ vít — tổng cộng 78 vít gỗ tự khoan dùng ngoài trời dài 2.5\".\n\nChà nhám nhẹ các mép thô của sân khấu.",
+      "imageAlts": [
+        "Sơ đồ các tấm ván sàn ST-1 được đặt cách đều ngang qua đỉnh khung sân khấu và bắt vít vào mỗi thanh dầm."
+      ],
+      "tips": [
+        "Dùng thước vuông thợ mộc làm miếng chêm."
+      ]
+    },
+    {
+      "title": "Mẫu khoan mồi (khuôn mẫu)",
+      "text": "Cắt mẫu khoan mồi theo đường chấm. Khi khoan, canh mép của khuôn mẫu trùng với mép ngoài của thanh gỗ trước khi khoan mồi.\n\nKhông phải lỗ nào cũng dùng đến — không phải kiểu bắt vít nào cũng dùng khuôn mẫu. Hãy theo các bước lắp ráp ở trên để biết vị trí lỗ. Giữ mọi lỗ cách mép khoảng một bề ngang ngón tay cái (khoảng 1\"), kể cả những lỗ không dùng khuôn mẫu này.",
+      "imageAlts": [
+        "Khuôn mẫu khoan mồi để in, có năm vị trí lỗ được đánh dấu và đường cắt, kèm hình phóng to cho thấy khoảng cách lỗ đến mép ván."
+      ]
+    }
+  ],
+  "finishing": "Xử lý gỗ ngoài trời có thể kéo dài tuổi thọ các món đồ công viên, nhưng không bắt buộc — những món này được thiết kế để rẻ, bền và dễ làm, nên có khi thực tế hơn là cứ để thế hệ sau làm lại khi đến lúc. Nếu bạn muốn nhuộm màu, sơn hay phủ lớp bảo vệ cho gỗ, hãy xem các tài liệu về hoàn thiện bên dưới.",
+  "safety": [
+    "Đây chỉ là những khuyến nghị cho việc tự làm — hãy điều chỉnh vật liệu, cách lắp ráp và cách xây dựng cho phù hợp với dự án và khu đất của bạn.",
+    "Làm món này cần có chút hiểu biết về dụng cụ cầm tay và dụng cụ chạy điện, đồ ngũ kim, vít bu-lông, gỗ xẻ và kỹ thuật lắp ráp cơ bản.",
+    "Trước khi dùng bất kỳ thiết bị chạy điện nào, hãy đọc và làm theo yêu cầu an toàn của nhà sản xuất, và đừng để ai chưa làm như vậy dùng dụng cụ chạy điện.",
+    "Bạn (chủ sở hữu) chịu trách nhiệm về mọi quy chuẩn xây dựng và an toàn, giấy phép và sự chấp thuận của cơ quan quản lý mà việc này cần.",
+    "Trước tiên hãy dọn sạch rác, những thứ nguy hiểm và công trình không cần thiết khỏi khu đất, và xác định mọi đường ống, đường dây có thể bị ảnh hưởng trước khi đào.",
+    "Mọi người phụ giúp xây đều nên ký giấy miễn trách nhiệm cho tình nguyện viên."
+  ],
+  "links": [
+    {
+      "label": "Chọn lớp hoàn thiện tốt nhất cho đồ ngoài trời (Rockler)"
+    },
+    {
+      "label": "Lớp hoàn thiện tốt nhất cho gỗ ngoài trời (Real Milk Paint)"
+    },
+    {
+      "label": "Lớp phủ gỗ ngoài trời (Vermont Natural Coatings)"
+    }
+  ],
+  "sourcePages": "Hướng dẫn lắp ráp STAGE (nằm trong các liên kết ở tr. 19 của sổ tay thực hành Mơ ước — bản trên Linktree không còn mở được), tr. 1–12 (bìa; trước khi bắt đầu; các loại gỗ thường dùng + chi phí; bước 1–7; mẫu khoan mồi)"
+}
