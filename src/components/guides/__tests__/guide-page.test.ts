@@ -2,6 +2,10 @@ import { describe, expect, it } from 'vitest';
 import { imageSize } from '../imageSize';
 import { asBuiltText, friendlyIn } from '../format';
 import { getGuides } from '../../../data/guides';
+import guidesMsgs from '../../../i18n/messages/en/guides.ts';
+import { getT } from '../../../i18n/t.ts';
+
+const t = getT('en', guidesMsgs);
 
 describe('imageSize', () => {
   it('reads the size of every step drawing, so the page does not shift as they load', () => {
@@ -28,8 +32,8 @@ describe('as-built note', () => {
     expect(friendlyIn(96)).toBe('8′');
   });
   it('names only the dimensions that differ', () => {
-    expect(asBuiltText({ length: 48, width: 18, height: 18 }, { length: 48, width: 18, height: 19.5 })).toBe('about 19½″ tall');
-    expect(asBuiltText({ length: 96, width: 96, height: 96 }, { length: 96, width: 99, height: 97.5 })).toBe('about 8′-3″ deep and 8′-1½″ tall');
-    expect(asBuiltText({ length: 48, width: 18, height: 18 }, { length: 48.1, width: 18, height: 18 })).toBe('');
+    expect(asBuiltText({ length: 48, width: 18, height: 18 }, { length: 48, width: 18, height: 19.5 }, t)).toBe('about 19½″ tall');
+    expect(asBuiltText({ length: 96, width: 96, height: 96 }, { length: 96, width: 99, height: 97.5 }, t)).toBe('about 8′-3″ deep and 8′-1½″ tall');
+    expect(asBuiltText({ length: 48, width: 18, height: 18 }, { length: 48.1, width: 18, height: 18 }, t)).toBe('');
   });
 });

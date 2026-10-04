@@ -1,0 +1,123 @@
+{
+  "title": "Mesa de 4'",
+  "summary": "Una mesa de 4 pies de 2x4, a la altura de una mesa de pícnic, la mediana de los tres tamaños de mesa.",
+  "materials": [
+    {
+      "item": "Madera de 2x4: cedro rojo del oeste, abeto Douglas o pino tratado a presión",
+      "notes": "Cedro: resiste de forma natural la intemperie y la pudrición, tiene un bonito tono rojizo, es fácil de trabajar y no necesita sellador (con el tiempo se vuelve gris); cuesta más. Pida el grado «con nudos» (STK), mucho más barato que el grado sin nudos. Abeto Douglas: resiste la pudrición de forma moderada, es fuerte y fácil de trabajar, más barato que el cedro, pero no dura tanto; es buena opción si piensa pintar. Tratado a presión: resiste la pudrición y es la opción más barata, pero la calidad de la madera suele ser mala y desigual, necesita de 1 a 4 meses secándose al aire antes de pintarla, y no se recomienda donde se cultivan alimentos."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Tornillos autoperforantes para madera de exterior"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Tablero de la mesa"
+    },
+    {
+      "notes": "Frente de la mesa"
+    },
+    {
+      "notes": "Lado de la mesa"
+    },
+    {
+      "notes": "Lado de la mesa"
+    },
+    {
+      "notes": "Lado de la mesa"
+    },
+    {
+      "notes": "Lado de la mesa"
+    },
+    {
+      "notes": "Lado de la mesa"
+    }
+  ],
+  "tools": [
+    "Sierra ingletadora de 10\" o 12\" (o un serrucho adecuado)",
+    "Atornillador de impacto para los tornillos autoperforantes de exterior",
+    "Papel de lija, grano 120",
+    "Escuadra de carpintero",
+    "Gafas de seguridad y mascarilla"
+  ],
+  "steps": [
+    {
+      "title": "Marque, rotule y corte la madera",
+      "text": "Marque, rotule y corte la madera en orden, de T-1 a T-7, a los largos de la lista de cortes.\n\nRevise cada pieza de madera por si tiene defectos como rajaduras, deformaciones o un cepillado desparejo, y descarte esas partes.",
+      "imageAlts": [
+        "Diagrama isométrico de las siete piezas cortadas de la mesa de 4', de T-1 a T-7, con sus largos rotulados, desde tablas de tablero de 48\" hasta bloques de 12\"."
+      ],
+      "tips": [
+        "Rotule cada pieza de madera a medida que la mide y la corta.",
+        "Haga una pila aparte para cada pieza, de T-1 a T-7.",
+        "Lijar un poco los bordes cortados quita las astillas y ayuda al armar.",
+        "¿Va a hacer más de una mesa? Un tope en la sierra ingletadora hace que todas las piezas salgan del mismo largo."
+      ]
+    },
+    {
+      "title": "Arme los dos marcos de los extremos",
+      "text": "Ponga dos piezas T-6 sobre una superficie plana. Ponga dos piezas T-3 a cada lado de las piezas T-6, alineando los bordes como se ve en la imagen. Repita para armar un segundo marco igual.",
+      "imageAlts": [
+        "Diagrama de dos tablas T-3 y dos T-6 armadas en un marco cuadrado para un extremo."
+      ],
+      "tips": [
+        "Use una escuadra de carpintero para comprobar que cada esquina forma un ángulo recto; si está muy desviada, vuelva a revisar los largos de las tablas.",
+        "Hacer una plantilla de 90 grados le ayudará mucho a armar este paso y el siguiente."
+      ]
+    },
+    {
+      "title": "Agregue los refuerzos de las patas a cada marco",
+      "text": "Ponga una pieza T-4, dos T-5 y dos T-7 encima del marco que armó en el paso 2. Para asegurar un espacio de 1.5\" entre las dos piezas T-7, use un 2x4 sobrante de canto como separador.\n\nUse la guía para agujeros al final del paquete para hacer los agujeros guía de los tornillos, y luego fije la madera a las piezas T-6 y T-3 con un atornillador de impacto y 30 tornillos autoperforantes de exterior de 2.5\".\n\nRepita en la otra pata y luego ponga las dos patas de pie para el siguiente paso.",
+      "imageAlts": [
+        "Diagrama de las tablas T-4, T-5 y T-7 atornilladas encima del marco del extremo, con el espacio de 1.5\" del separador señalado."
+      ]
+    },
+    {
+      "title": "Una los dos marcos de los extremos",
+      "text": "Ponga una pieza T-2 en la ranura de la base de los dos marcos que armó en el paso 3.\n\nPonga dos piezas T-1 encima de la mesa, en los dos bordes, como se muestra —asegúrese de que queden al ras del borde de las patas, para que la mesa quede derecha— y fíjelas con 12 tornillos autoperforantes de exterior de 2.5\".\n\nFije la pieza T-2 de los dos lados con un atornillador de impacto y 4 tornillos autoperforantes de exterior de 2.5\".",
+      "imageAlts": [
+        "Diagrama de una tabla T-2 que une los dos marcos de los extremos por la base, con las tablas T-1 del tablero alineadas al ras de las patas."
+      ],
+      "tips": [
+        "Compruebe con una escuadra de carpintero que el costado se mantenga a 90 grados."
+      ]
+    },
+    {
+      "title": "Agregue el tablero y lije",
+      "text": "Ponga cinco piezas T-1 encima del armazón que hizo en el paso 4, alineando todos los bordes y dejando un espacio igual entre todas las piezas.\n\nFije las piezas T-1 con un atornillador de impacto y 20 tornillos autoperforantes de exterior de 2.5\".\n\nLije un poco los bordes ásperos de la mesa.",
+      "imageAlts": [
+        "Diagrama de las demás tablas T-1 del tablero, con espacios iguales, atornilladas a lo ancho del armazón de la mesa."
+      ]
+    },
+    {
+      "title": "Guía para hacer agujeros (plantilla)",
+      "text": "Recorte la guía para agujeros por las líneas punteadas. Al taladrar, alinee el borde de la plantilla con el borde de afuera de la madera antes de hacer el agujero guía.\n\nNo se usan todos los agujeros, y no todos los patrones usan la plantilla. Guíese por los pasos de armado de arriba para saber dónde van los agujeros. Haga todos los agujeros a más o menos el ancho de un pulgar del borde (alrededor de 1\"), incluso los que no usan esta plantilla.",
+      "imageAlts": [
+        "Una plantilla imprimible para hacer agujeros guía, con cinco posiciones marcadas y líneas de corte, y un acercamiento que muestra la distancia de los agujeros al borde de la tabla."
+      ]
+    }
+  ],
+  "finishing": "Un tratamiento para madera de exterior puede alargar la vida de los elementos de su parque, pero no hace falta: estas piezas están pensadas para ser baratas, duraderas y fáciles de construir, así que puede ser más práctico dejar que la próxima generación las vuelva a construir cuando llegue el momento. Si quiere teñir, pintar o sellar la madera, vea los recursos sobre acabados más abajo.",
+  "safety": [
+    "Estas son solo recomendaciones para hacerlo usted mismo: adapte los materiales, el armado y la construcción a su propio proyecto y terreno.",
+    "Construir esto supone que sabe usar herramientas manuales y eléctricas, herrajes, tornillería, madera y técnicas básicas de armado.",
+    "Antes de usar cualquier equipo eléctrico, lea y siga los requisitos de seguridad del fabricante, y no deje que use herramientas eléctricas nadie que no haya hecho lo mismo.",
+    "Usted (el dueño) es responsable de cumplir los códigos de construcción y de seguridad, y de conseguir los permisos y aprobaciones que esto necesite.",
+    "Primero limpie el terreno de basura, peligros y estructuras que no quiera, y averigüe si hay servicios públicos (cables o tuberías) que puedan estorbar antes de excavar.",
+    "Todas las personas que ayuden a construir deben firmar una exención de responsabilidad para voluntarios."
+  ],
+  "links": [
+    {
+      "label": "Cómo elegir el mejor acabado para proyectos al aire libre (Rockler, en inglés)"
+    },
+    {
+      "label": "El mejor acabado para madera de exterior (Real Milk Paint, en inglés)"
+    },
+    {
+      "label": "Recubrimientos para madera de exterior (Vermont Natural Coatings, en inglés)"
+    }
+  ],
+  "sourcePages": "Instrucciones de armado de 4_Table, págs. 1–9 (portada; antes de empezar; maderas comunes; pasos 1–5; guía para hacer agujeros)"
+}

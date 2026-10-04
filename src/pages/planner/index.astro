@@ -5,20 +5,24 @@ import Base from '../../layouts/Base.astro';
 import PlannerApp from '../../components/planner/PlannerApp';
 import LangFallback from '../../components/site/LangFallback.astro';
 import plannerMsgs from '../../i18n/messages/en/planner.ts';
+import pages from '../../i18n/messages/en/pages.ts';
+import { getT } from '../../i18n/astro.ts';
+
+const t = getT(Astro, pages);
 ---
-<Base title="Plan in 3D" description="Fit Park in a Truck's park pieces to your real Philadelphia lot, see its sun and shade, and count everything for the cost estimate and plant lists." bare>
-  <h1 class="visually-hidden">Plan your park in 3D</h1>
+<Base title={t('planner.title')} description={t('planner.description')} bare>
+  <h1 class="visually-hidden">{t('planner.h1')}</h1>
   <LangFallback area={plannerMsgs}>
     <PlannerApp client:only="preact" mode="full" page>
       <div slot="fallback" class="wrap" style="padding:40px 16px">
-        <p class="eyebrow">Plan in 3D</p>
-        <p>Loading the planner…</p>
+        <p class="eyebrow">{t('planner.title')}</p>
+        <p>{t('planner.loading')}</p>
       </div>
     </PlannerApp>
   </LangFallback>
   <noscript>
     <div class="wrap" style="padding:40px 16px">
-      <p>The 3D planner needs JavaScript turned on.</p>
+      <p>{t('planner.noscript')}</p>
     </div>
   </noscript>
 </Base>
