@@ -567,9 +567,10 @@ Tone: Standard (East African) Swahili, plain. **wewe** for one reader, **ninyi**
 
 *Status: filled in by t-sw (2026-10-04).* Kiswahili sanifu that readers from Kenya, Tanzania, Uganda and the DRC
 all read; short sentences, everyday words. **The reader is always "wewe"** (singular: *Tafuta kiwanja*, *kamati
-yako*), also when PiaT's "you" means the whole group — mixing *wewe* and *ninyi* in one page reads as two different
-people. Where English clearly means the group, name it (*wewe na majirani zako*, *kamati yenu*) rather than switching
-the verb forms; standard spelling *ninyi* (not *nyinyi*). Numbers follow the noun: *futi 10*, *inchi 2*, *hatua 3
+yako*), also when PiaT's "you" means the whole group; where it helps, name the group (*wewe na majirani zako*).
+Plural forms (*ninyi*: *Kubalianeni*, *Pangeni*, *mtahitaji*) only where the action can only be done together, as in
+the meeting tips in Organize, and on the meeting flyer, which speaks to the whole street (*Mnaalikwa*). Standard
+spelling *ninyi* (not *nyinyi*). Numbers follow the noun: *futi 10*, *inchi 2*, *hatua 3
 kati ya 7*. Lumber sizes and measurements copied from PiaT's drawings stay as printed (2x4x8', 2.5") so they match
 the pictures. Philadelphia stays *Philadelphia*. A technical word with no common Swahili equivalent gets a short
 Swahili explanation and the English in brackets the first time on a page: *matandazo (mulch)*, *gabioni (gabion)*.
@@ -605,7 +606,7 @@ Swahili explanation and the English in brackets the first time on a page: *matan
 | theme: Edible · Sanctuary · Nature · Event | Chakula · Utulivu · Mazingira asilia · Matukio | "theme" = *mtindo* (pl. *mitindo*): "mtindo wa Chakula", "Orodha ya mimea: Utulivu". *Kimbilio* (refuge) sounds like a shelter for refugees, so *Utulivu* (calm). |
 | size A–E | ukubwa A–E | Latin letters. |
 | gabion (wall, bench) | gabioni (ukuta wa gabioni, benchi ya gabioni) | Explain once: kikapu cha waya kilichojazwa mawe. |
-| build guide | mwongozo wa ujenzi (pl. miongozo ya ujenzi) | |
+| build guide | mwongozo wa ujenzi (pl. miongozo ya ujenzi) | Header menu only: *Ujenzi* (the full term pushes *Bustani yangu* to a second row at 1366 px). |
 | cut list / materials & hardware / tools | orodha ya vipande vya kukata / vifaa na vyuma vidogo / zana | *vyuma vidogo* = screws, bolts, brackets (hardware). |
 | 2x4, 2x4x8', BB-1 | 2x4, 2x4x8', BB-1 | Lumber sizes are said in English in US stores. "ubao wa 2x4" where a noun is needed. |
 | full sun / part sun / shade | jua kamili / jua kiasi / kivuli | |
@@ -645,6 +646,11 @@ Swahili explanation and the English in brackets the first time on a page: *matan
 | *(sw only)* councilperson · meeting · flyer | diwani · mkutano · kipeperushi | |
 | *(sw only)* cost estimate | makadirio ya gharama | |
 | *(sw only)* Park Patch | Park Patch | Program name, kept; explain once: kipande kidogo cha bustani nyumbani. |
+| *(sw only)* the cost spreadsheet ("the sheet") · contingency | jedwali (la gharama) · akiba ya dharura | Tab names (INSERT HERE, ORDER LIST) stay. |
+| *(sw only)* hardscape · softscape | sakafu ngumu (zege, lami) · ardhi laini (udongo) | |
+| *(sw only)* block (the 2200 block of a street) | sehemu ya mtaa ("Sehemu ya 2200") | |
+| *(sw only)* fern · sedge | kangaga · nyasi (sedge) | Plant names: Swahili description + English name in brackets for the nursery ("Kangaga (lady fern)"). Needs a native check. |
+| *(sw only)* clock times | 12-hour "3:30 PM" in the planner (as on US clocks); the shade calendar gets Intl's 24-hour "15:30" | Never "saa 3" with a 12-hour clock: East African readers would read it as Swahili time (= 9 o'clock). |
 
 ### ko — 한국어
 
