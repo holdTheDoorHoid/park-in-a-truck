@@ -1,0 +1,154 @@
+{
+  "title": "Palco",
+  "summary": "Um palco baixo de 12x8 pés feito de 2x4, montado com quatro estruturas de canto iguais ligadas em volta de uma estrutura central, coberto com tábuas de 2x4 em ripas e colocado sobre uma base de brita nivelada.",
+  "cost": "US$ 300–400",
+  "finishing": "Tratar a madeira para área externa pode aumentar a vida dos elementos do seu parque, mas não é necessário — estas peças foram pensadas para ser baratas, resistentes e fáceis de construir, então pode ser mais prático simplesmente deixar a próxima geração reconstruí-las quando chegar a hora. Se você quiser tingir, pintar ou selar a madeira, veja os recursos sobre acabamento abaixo.",
+  "sourcePages": "Instruções de montagem STAGE (encontradas nos links da p. 19 do caderno de trabalho Sonhar — a cópia do Linktree não funciona mais), pp. 1–12 (capa; antes de começar; madeiras mais usadas + custo; etapas 1–7; guia de furos)",
+  "materials": [
+    {
+      "item": "Madeira serrada 2x4 — cedro-vermelho (western red cedar), pinho Douglas (Douglas fir) ou pinus tratado em autoclave",
+      "notes": "Cedro: resiste naturalmente ao tempo e ao apodrecimento, bonito tom avermelhado, não precisa de selador; custa mais — peça a classe \"com nós\" ('knotty', STK). Pinho Douglas: resiste razoavelmente ao apodrecimento, é forte, mais barato que o cedro; bom se você pretende pintar. Tratada em autoclave: a mais barata e resistente ao apodrecimento, mas a qualidade costuma ser ruim ou irregular, precisa secar ao ar de 1 a 4 meses antes de pintar, não é recomendada onde se plantam alimentos. Compre pelo menos 5% a mais do que a lista de cortes, para compensar a qualidade variável da madeira e os cortes errados.",
+      "siteNote": "A lista de cortes precisa de cerca de 25, e não 16. Cada ST-2 de 93″ (11) e cada ST-3 de 86″ (12) ocupa uma tábua inteira (23 tábuas), as oito ST-4 de 14.75″ levam mais 2, e as doze ST-5 de 7.75″ saem das sobras das ST-3. O texto das etapas concorda com a lista de cortes."
+    },
+    {
+      "item": "Madeira serrada 2x4 (peças de 12')"
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Parafusos autoatarraxantes para madeira, uso externo"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Frente e piso do palco"
+    },
+    {
+      "notes": "Estrutura do palco"
+    },
+    {
+      "notes": "Estrutura do palco"
+    },
+    {
+      "notes": "Estrutura do palco"
+    },
+    {
+      "notes": "Estrutura do palco"
+    }
+  ],
+  "tools": [
+    "Serra de esquadria de 10\" ou 12\" (ou um serrote adequado)",
+    "Parafusadeira de impacto para os parafusos autoatarraxantes para madeira",
+    "Broca de 1/4\"",
+    "Lixa, grão 120",
+    "Esquadro de carpinteiro",
+    "Óculos de proteção + máscara"
+  ],
+  "safety": [
+    "Estas são apenas recomendações para quem faz por conta própria — adapte o material, a montagem e a construção ao seu projeto e ao seu terreno.",
+    "Construir isto exige algum conhecimento prático de ferramentas manuais e elétricas, ferragens, parafusos e fixadores, madeira e técnicas básicas de montagem.",
+    "Antes de usar qualquer equipamento elétrico, leia e siga as regras de segurança do fabricante, e não deixe ninguém usar ferramentas elétricas sem ter feito o mesmo.",
+    "Você (o dono) é responsável por cumprir todas as normas de construção e de segurança, licenças e aprovações oficiais que isto exigir.",
+    "Primeiro, limpe o terreno de lixo, perigos e estruturas indesejadas, e descubra se há redes de serviços (água, gás, luz) que possam atrapalhar antes de cavar.",
+    "Todos que ajudarem na construção devem assinar um termo de responsabilidade para voluntários."
+  ],
+  "steps": [
+    {
+      "title": "Marque, identifique e corte a madeira",
+      "text": "Marque, identifique e corte a madeira na ordem de ST-1 a ST-5, nos comprimentos da lista de cortes.\n\nConfira cada pedaço de madeira procurando defeitos, como rachaduras, empenamento ou corte irregular, e descarte essas partes da madeira.",
+      "imageAlts": [
+        "Desenho isométrico das cinco peças cortadas do palco, de ST-1 a ST-5, com os comprimentos indicados, das tábuas de piso de 144\" até os tocos de 7.75\"."
+      ],
+      "tips": [
+        "Identifique cada pedaço de madeira à medida que mede e corta.",
+        "Deixe uma pilha de madeira separada para cada peça, de ST-1 a ST-5.",
+        "Lixar de leve as bordas cortadas tira as farpas e ajuda na montagem.",
+        "Vai fazer mais de um palco? Um batente na serra de esquadria deixa todas as peças com o mesmo comprimento."
+      ]
+    },
+    {
+      "title": "Monte quatro estruturas pequenas de canto",
+      "text": "Coloque duas peças ST-4 sobre uma superfície plana. Coloque duas peças ST-3 entre as peças ST-4, alinhando as bordas como mostra o desenho. Repita mais três vezes, para ter quatro estruturas pequenas iguais no total.",
+      "imageAlts": [
+        "Desenho de duas tábuas ST-4 e duas ST-3 montadas em uma estrutura retangular pequena, repetida quatro vezes."
+      ],
+      "tips": [
+        "O chão de brita embaixo do palco deve ser nivelado o máximo possível antes de colocar o palco no lugar final; blocos de concreto podem ajudar a nivelar os pontos mais baixos.",
+        "Fazer um gabarito de 90 graus pode ajudar na montagem."
+      ]
+    },
+    {
+      "title": "Monte as quatro estruturas das seções",
+      "text": "Coloque duas peças ST-2 em cima da estrutura feita na etapa 2. Coloque duas peças ST-5 entre as peças ST-2, alinhando as bordas como mostra o desenho, e prenda tudo com uma parafusadeira de impacto e 44 parafusos autoatarraxantes para madeira, uso externo, de 2.5\".\n\nRepita mais três vezes, para ter quatro estruturas de seção no total. Estas quatro estruturas devem ficar todas viradas para o meio do palco.",
+      "imageAlts": [
+        "Desenho das tábuas ST-2 e ST-5 colocadas em cima de cada estrutura pequena de canto para montar uma das quatro estruturas de seção do palco."
+      ]
+    },
+    {
+      "title": "Cubra a frente de cada estrutura de seção",
+      "text": "Começando por cima, coloque quatro peças ST-1 na frente e atrás da estrutura feita na etapa 3. Mantenha a madeira rente ao topo, com um espaço de 1/4\" entre cada peça ST-1.\n\nPrenda a madeira ST-1 com uma parafusadeira de impacto e 42 parafusos autoatarraxantes para madeira, uso externo, de 2.5\", depois repita do outro lado.",
+      "imageAlts": [
+        "Desenho das tábuas de frente ST-1 sendo parafusadas na frente e atrás de uma estrutura de seção, com um espaço de 1/4\" entre as tábuas."
+      ],
+      "tips": [
+        "Use o esquadro de carpinteiro como espaçador para o vão.",
+        "Confira com um esquadro de carpinteiro se a lateral continua a 90 graus."
+      ]
+    },
+    {
+      "title": "Coloque as travessas do centro",
+      "text": "Coloque duas peças ST-5 nas pontas, no meio da estrutura feita na etapa 3. Coloque mais duas peças ST-5 no meio da estrutura montada nas etapas 2 e 3.\n\nPrenda a madeira ST-5 com uma parafusadeira de impacto e 8 parafusos autoatarraxantes para madeira, uso externo, de 2.5\", colocados num ângulo de 45 graus.",
+      "imageAlts": [
+        "Desenho das travessas ST-5 sendo parafusadas no centro e nas pontas da estrutura num ângulo de 45 graus."
+      ],
+      "tips": [
+        "Fazer os furos-guia ajuda a colocar os parafusos num ângulo de 45 graus."
+      ]
+    },
+    {
+      "title": "Junte duas estruturas de seção",
+      "text": "Coloque duas peças ST-3 numa ponta da estrutura montada na etapa 2, com um espaço de 1/4\" entre cada peça ST-3.\n\nPrenda a madeira ST-3 por dentro com uma parafusadeira de impacto e 8 parafusos autoatarraxantes para madeira, uso externo, de 2.5\", num ângulo de 45 graus. Siga o padrão de parafusos para prender as tábuas na madeira ST-5 do centro com mais 6 parafusos.\n\nRepita do outro lado com mais duas peças ST-3.",
+      "imageAlts": [
+        "Desenho das tábuas ST-3 juntando duas estruturas de seção, com um espaço de 1/4\", parafusadas num ângulo de 45 graus."
+      ],
+      "tips": [
+        "Fazer os furos-guia ajuda a colocar os parafusos num ângulo de 45 graus."
+      ]
+    },
+    {
+      "title": "Ligue as quatro seções",
+      "text": "Coloque três peças ST-2 entre as quatro seções da estrutura, rentes ao topo da madeira ST-1 colocada na etapa 4.\n\nPrenda a madeira ST-2 nas peças ST-1 com uma parafusadeira de impacto e 12 parafusos autoatarraxantes para madeira, uso externo, de 2.5\".",
+      "imageAlts": [
+        "Desenho de três tábuas ST-2 ligando as quatro seções do palco, rentes ao topo da estrutura."
+      ]
+    },
+    {
+      "title": "Coloque o piso do palco e lixe",
+      "text": "Coloque 26 peças ST-1 em cima da estrutura feita na etapa 7, alinhando as bordas, rentes e com espaços iguais.\n\nPrenda as tábuas do piso ST-1 em cada viga usando o seu padrão de 3 furos — 78 parafusos autoatarraxantes para madeira, uso externo, de 2.5\" no total.\n\nLixe de leve as bordas ásperas do palco.",
+      "imageAlts": [
+        "Desenho das tábuas do piso ST-1 sendo colocadas com espaços iguais em cima da estrutura do palco e parafusadas em cada viga."
+      ],
+      "tips": [
+        "Use o esquadro de carpinteiro como espaçador."
+      ]
+    },
+    {
+      "title": "Guia de furos (molde)",
+      "text": "Recorte o guia de furos pelas linhas pontilhadas. Na hora de furar, alinhe a borda do molde com a borda de fora da madeira antes de fazer o furo-guia.\n\nNem todos os furos são usados — nem todos os desenhos usam o molde. Siga as etapas de montagem acima para saber onde furar. Deixe todos os furos a mais ou menos a largura de um polegar da borda (cerca de 1\"), mesmo os furos que não usam este molde.",
+      "imageAlts": [
+        "Um molde de guia de furos para imprimir, com cinco posições de furo marcadas e linhas de corte, mais um detalhe mostrando a distância dos furos até a borda da tábua."
+      ]
+    }
+  ],
+  "links": [
+    {
+      "label": "Como escolher o melhor acabamento para projetos ao ar livre (Rockler, em inglês)"
+    },
+    {
+      "label": "O melhor acabamento para madeira ao ar livre (Real Milk Paint, em inglês)"
+    },
+    {
+      "label": "Acabamentos para madeira em área externa (Vermont Natural Coatings, em inglês)"
+    }
+  ]
+}

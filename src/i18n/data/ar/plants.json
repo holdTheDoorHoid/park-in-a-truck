@@ -1,0 +1,457 @@
+{
+  "edible-small-tree-both-serviceberry": {
+    "common": "أملانشير",
+    "notes": "الأجزاء الصالحة للأكل: الثمار",
+    "matureSize": "20–30 قدمًا"
+  },
+  "edible-small-tree-both-redbud": {
+    "common": "أرجوان كندي",
+    "notes": "الأجزاء الصالحة للأكل: الأزهار؛ الصنف: Forest Pansy",
+    "matureSize": "20–25 قدمًا"
+  },
+  "edible-small-tree-both-apple": {
+    "common": "تفاح",
+    "notes": "الأجزاء الصالحة للأكل: الثمار؛ الصنف: Enterprise",
+    "matureSize": "10–20 قدمًا"
+  },
+  "edible-small-tree-both-peach": {
+    "common": "خوخ (دُرّاق)",
+    "notes": "الأجزاء الصالحة للأكل: الثمار؛ الصنف: Contender",
+    "matureSize": "10–20 قدمًا"
+  },
+  "edible-small-tree-both-pear": {
+    "common": "كمثرى (إجاص)",
+    "notes": "الأجزاء الصالحة للأكل: الثمار؛ الصنف: Golden Russet bosc",
+    "matureSize": "10–20 قدمًا"
+  },
+  "edible-small-tree-both-plum": {
+    "common": "برقوق",
+    "notes": "الأجزاء الصالحة للأكل: الثمار؛ الصنف: Methly",
+    "matureSize": "10–20 قدمًا"
+  },
+  "edible-shrub-sun-red-currant": {
+    "common": "كشمش أحمر",
+    "notes": "الأجزاء الصالحة للأكل: الثمار؛ الصنف: Red Lake",
+    "matureSize": "3–4 أقدام"
+  },
+  "edible-shrub-sun-gooseberry": {
+    "common": "عنب الثعلب",
+    "notes": "الأجزاء الصالحة للأكل: الثمار؛ الصنف: Black Velvet",
+    "matureSize": "3–4 أقدام"
+  },
+  "edible-shrub-sun-pasture-rose": {
+    "common": "ورد المراعي",
+    "notes": "الأجزاء الصالحة للأكل: ثمار الورد والبتلات",
+    "matureSize": "3–4 أقدام"
+  },
+  "edible-shrub-sun-low-bush-blueberry": {
+    "common": "توت أزرق قصير",
+    "notes": "الأجزاء الصالحة للأكل: الثمار؛ الصنف: Chippewa",
+    "matureSize": "2–3 أقدام"
+  },
+  "edible-perennial-sun-strawberries": {
+    "common": "فراولة",
+    "notes": "الأجزاء الصالحة للأكل: الثمار؛ الصنف: Sweet Kiss",
+    "matureSize": "6 بوصات"
+  },
+  "edible-perennial-sun-virginia-strawberry": {
+    "common": "فراولة فرجينيا",
+    "notes": "الأجزاء الصالحة للأكل: الأزهار",
+    "matureSize": "1–2 قدم"
+  },
+  "edible-perennial-sun-rudbeckia": {
+    "common": "رودبيكيا"
+  },
+  "edible-perennial-sun-prairie-dropseed": {
+    "common": "عشب البراري (دروبسيد)"
+  },
+  "edible-perennial-sun-hairy-field-aster": {
+    "common": "أستر الحقول الوبري"
+  },
+  "edible-perennial-sun-sedum": {
+    "common": "سيدوم",
+    "notes": "الصنف: Larinem Park"
+  },
+  "edible-shrub-shade-red-twig-dogwood": {
+    "common": "قرانيا حمراء الأغصان",
+    "notes": "الصنف: Arctic Fire"
+  },
+  "edible-shrub-shade-arrowwood-viburnum": {
+    "common": "ويبرنوم خشب السهام"
+  },
+  "edible-shrub-shade-lowbush-blueberry": {
+    "common": "توت أزرق قصير"
+  },
+  "edible-shrub-shade-mountain-laurel": {
+    "common": "غار الجبل (كالميا)",
+    "notes": "الصنف: Pink Charm"
+  },
+  "edible-perennial-shade-lady-fern": {
+    "common": "سرخس السيدة"
+  },
+  "edible-perennial-shade-wild-geranium": {
+    "common": "إبرة الراعي البرية"
+  },
+  "edible-perennial-shade-cinnamon-fern": {
+    "common": "سرخس القرفة"
+  },
+  "edible-perennial-shade-jacobs-ladder": {
+    "common": "سُلَّم يعقوب"
+  },
+  "edible-perennial-shade-pennsylvania-sedge": {
+    "common": "سُعادى بنسلفانيا (كاريكس)"
+  },
+  "edible-perennial-shade-hayscented-fern": {
+    "common": "سرخس برائحة القش"
+  },
+  "edible-perennial-shade-coral-bells": {
+    "common": "أجراس المرجان"
+  },
+  "sanctuary-large-tree-both-burr-oak": {
+    "common": "بلوط كبير الثمار",
+    "notes": "الصفات الحسية: تفرُّع أغصان جميل",
+    "matureSize": "50–70 قدمًا"
+  },
+  "sanctuary-large-tree-both-sweet-birch": {
+    "common": "بتولا حلوة",
+    "notes": "الصفات الحسية: أزهار ساحرة / عطرة",
+    "matureSize": "30–50 قدمًا"
+  },
+  "sanctuary-small-tree-sun-washington-hawthorne": {
+    "common": "زعرور واشنطن",
+    "notes": "الصفات الحسية: ثمار حمراء زاهية",
+    "matureSize": "15–20 قدمًا"
+  },
+  "sanctuary-small-tree-sun-sourwood": {
+    "common": "الخشب الحامض (أوكسيدندرون)",
+    "notes": "الصفات الحسية: ألوان الخريف تأتي مبكرًا",
+    "matureSize": "15–20 قدمًا"
+  },
+  "sanctuary-small-tree-sun-fringetree": {
+    "common": "شجرة الهُدب",
+    "notes": "الصفات الحسية: تُزهر في يونيو — أزهار عطرة",
+    "matureSize": "15–20 قدمًا"
+  },
+  "sanctuary-shrub-sun-summersweet": {
+    "common": "كليثرا (حلوة الصيف)",
+    "notes": "الصفات الحسية: أزهار عطرة",
+    "matureSize": "3–4 أقدام"
+  },
+  "sanctuary-shrub-sun-sweetfern": {
+    "common": "السرخس الحلو (كومبتونيا)",
+    "notes": "الصفات الحسية: أوراق عطرة",
+    "matureSize": "1–2 قدم"
+  },
+  "sanctuary-shrub-sun-sweetspire": {
+    "common": "إيتيا",
+    "notes": "الصفات الحسية: أزهار عطرة",
+    "matureSize": "3–4 أقدام"
+  },
+  "sanctuary-shrub-sun-swamp-azalea": {
+    "common": "أزاليا المستنقعات",
+    "notes": "الصفات الحسية: أزهار عطرة",
+    "matureSize": "3–4 أقدام"
+  },
+  "sanctuary-perennial-sun-blue-false-indigo": {
+    "common": "النيلة الزرقاء الكاذبة",
+    "notes": "الصفات الحسية: قرون بذور تُخشخش",
+    "matureSize": "2–3 أقدام"
+  },
+  "sanctuary-perennial-sun-wild-bergamot": {
+    "common": "البرغموت البري (موناردا)",
+    "notes": "الصفات الحسية: أوراق عطرة",
+    "matureSize": "2–3 أقدام"
+  },
+  "sanctuary-perennial-sun-sideoats-grama": {
+    "common": "عشب الغراما",
+    "notes": "الصفات الحسية: حركة وصوت يبعثان على الهدوء",
+    "matureSize": "2–3 أقدام"
+  },
+  "sanctuary-perennial-sun-prairie-dropseed": {
+    "common": "عشب البراري (دروبسيد)",
+    "notes": "الصفات الحسية: أوراق عطرة / ملمس ناعم",
+    "matureSize": "1–2 قدم"
+  },
+  "sanctuary-perennial-sun-aster": {
+    "common": "أستر",
+    "notes": "الصفات الحسية: تُزهر في الخريف",
+    "matureSize": "2–3 أقدام"
+  },
+  "sanctuary-perennial-sun-moonbeam-tickseed": {
+    "common": "كوريوبسيس Moonbeam",
+    "notes": "الصفات الحسية: تُزهر مدة طويلة",
+    "matureSize": "2–3 أقدام"
+  },
+  "sanctuary-perennial-sun-blazing-star": {
+    "common": "النجمة المتوهجة (لياتريس)",
+    "notes": "الصفات الحسية: تجذب المُلقِّحات",
+    "matureSize": "2–3 أقدام"
+  },
+  "sanctuary-perennial-sun-tufted-hairgrass": {
+    "common": "عشب الشعر المعنقد",
+    "notes": "الصفات الحسية: حركة تبعث على الهدوء",
+    "matureSize": "1–2 قدم"
+  },
+  "sanctuary-small-tree-shade-american-hornbeam": {
+    "common": "كاربينوس أمريكي",
+    "notes": "الصفات الحسية: لحاء يشبه العضلات",
+    "matureSize": "15–20"
+  },
+  "sanctuary-small-tree-shade-alternate-leaf-dogwood": {
+    "common": "قرانيا متبادلة الأوراق",
+    "notes": "الصفات الحسية: أزهار عطرة",
+    "matureSize": "15–20"
+  },
+  "sanctuary-small-tree-shade-redbud": {
+    "common": "أرجوان كندي",
+    "notes": "الصفات الحسية: تُزهر في أول الربيع",
+    "matureSize": "15–20"
+  },
+  "sanctuary-small-tree-shade-witchhazel": {
+    "common": "بندق الساحرة",
+    "notes": "الصفات الحسية: زهرة عطرة غريبة الشكل",
+    "matureSize": "10–15 قدمًا"
+  },
+  "sanctuary-shrub-shade-mountain-laurel": {
+    "common": "غار الجبل (كالميا)",
+    "notes": "الصفات الحسية: دائمة الخضرة",
+    "matureSize": "2–3 أقدام"
+  },
+  "sanctuary-shrub-shade-witch-alder": {
+    "common": "فوذرجيلا",
+    "notes": "الصفات الحسية: تُزهر مبكرًا",
+    "matureSize": "3–4 أقدام"
+  },
+  "sanctuary-shrub-shade-new-jersey-tea": {
+    "common": "شاي نيوجيرسي",
+    "notes": "الصفات الحسية: ملمس ناعم",
+    "matureSize": "2–3 أقدام"
+  },
+  "sanctuary-shrub-shade-virginia-sweetspire": {
+    "common": "إيتيا فرجينيا",
+    "notes": "الصفات الحسية: أزهار جميلة وألوان خريفية",
+    "matureSize": "1–2 قدم"
+  },
+  "sanctuary-perennial-shade-lady-fern": {
+    "common": "سرخس السيدة",
+    "notes": "الصفات الحسية: ملمس ناعم",
+    "matureSize": "2–3 أقدام"
+  },
+  "sanctuary-perennial-shade-pennsylvania-sedge": {
+    "common": "سُعادى بنسلفانيا (كاريكس)",
+    "notes": "الصفات الحسية: ملمس ناعم",
+    "matureSize": "6 بوصات – قدم واحدة"
+  },
+  "sanctuary-perennial-shade-cinnamon-fern": {
+    "common": "سرخس القرفة",
+    "notes": "الصفات الحسية: ملمس ناعم",
+    "matureSize": "2–3 أقدام"
+  },
+  "sanctuary-perennial-shade-fragrant-golden-rod": {
+    "common": "العصا الذهبية العطرة",
+    "notes": "الصفات الحسية: أوراق عطرة",
+    "matureSize": "2–3 أقدام"
+  },
+  "sanctuary-perennial-shade-shorts-aster": {
+    "common": "أستر شورت",
+    "notes": "الصفات الحسية: تُزهر متأخرًا",
+    "matureSize": "3 أقدام"
+  },
+  "sanctuary-perennial-shade-columbine": {
+    "common": "أكويليجيا",
+    "notes": "الصفات الحسية: تُزهر مبكرًا",
+    "matureSize": "2–3 أقدام"
+  },
+  "sanctuary-perennial-shade-celadine-poppy": {
+    "common": "خشخاش الغابات",
+    "notes": "الصفات الحسية: تُزهر مبكرًا",
+    "matureSize": "1–2 قدم"
+  },
+  "nature-large-tree-both-shingle-oak": {
+    "common": "بلوط القرميد"
+  },
+  "nature-large-tree-both-blackgum": {
+    "common": "نيسا (الصمغ الأسود)"
+  },
+  "nature-large-tree-both-basswood": {
+    "common": "زيزفون أمريكي"
+  },
+  "nature-small-tree-both-american-hornbeam": {
+    "common": "كاربينوس أمريكي"
+  },
+  "nature-small-tree-both-serviceberry": {
+    "common": "أملانشير"
+  },
+  "nature-small-tree-both-pagoda-dogwood": {
+    "common": "قرانيا الباغودا"
+  },
+  "nature-small-tree-both-witchhazel": {
+    "common": "بندق الساحرة"
+  },
+  "nature-small-tree-both-blackhaw-viburnum": {
+    "common": "ويبرنوم الزعرور الأسود"
+  },
+  "nature-shrub-sun-dwarf-summersweet": {
+    "common": "كليثرا قزمة"
+  },
+  "nature-shrub-sun-sweetfern": {
+    "common": "السرخس الحلو (كومبتونيا)"
+  },
+  "nature-shrub-sun-sweetspire": {
+    "common": "إيتيا",
+    "notes": "الصنف: Little Henry"
+  },
+  "nature-shrub-sun-eastern-ninebark": {
+    "common": "فيزوكاربس (اللحاء التسعي)"
+  },
+  "nature-shrub-sun-swamp-azalea": {
+    "common": "أزاليا المستنقعات"
+  },
+  "nature-perennial-sun-bluestar": {
+    "common": "النجمة الزرقاء (أمسونيا)",
+    "notes": "الصنف: Storm Cloud"
+  },
+  "nature-perennial-sun-sideoats-grama": {
+    "common": "عشب الغراما"
+  },
+  "nature-perennial-sun-wild-bergamot": {
+    "common": "البرغموت البري (موناردا)"
+  },
+  "nature-perennial-sun-narrow-leaf-mountainmint": {
+    "common": "نعناع الجبل ضيق الأوراق"
+  },
+  "nature-perennial-sun-rudbeckia": {
+    "common": "رودبيكيا"
+  },
+  "nature-perennial-sun-prairie-dropseed": {
+    "common": "عشب البراري (دروبسيد)"
+  },
+  "nature-perennial-sun-hairy-field-aster": {
+    "common": "أستر الحقول الوبري"
+  },
+  "nature-perennial-sun-sedum": {
+    "common": "سيدوم",
+    "notes": "الصنف: Larinem Park"
+  },
+  "nature-shrub-shade-red-twig-dogwood": {
+    "common": "قرانيا حمراء الأغصان",
+    "notes": "الصنف: Arctic Fire"
+  },
+  "nature-shrub-shade-arrowwood-viburnum": {
+    "common": "ويبرنوم خشب السهام"
+  },
+  "nature-shrub-shade-lowbush-blueberry": {
+    "common": "توت أزرق قصير"
+  },
+  "nature-shrub-shade-mountain-laurel": {
+    "common": "غار الجبل (كالميا)",
+    "notes": "الصنف: Pink Charm"
+  },
+  "nature-perennial-shade-lady-fern": {
+    "common": "سرخس السيدة"
+  },
+  "nature-perennial-shade-wild-geranium": {
+    "common": "إبرة الراعي البرية"
+  },
+  "nature-perennial-shade-cinnamon-fern": {
+    "common": "سرخس القرفة"
+  },
+  "nature-perennial-shade-jacobs-ladder": {
+    "common": "سُلَّم يعقوب"
+  },
+  "nature-perennial-shade-pennsylvania-sedge": {
+    "common": "سُعادى بنسلفانيا (كاريكس)"
+  },
+  "nature-perennial-shade-hayscented-fern": {
+    "common": "سرخس برائحة القش"
+  },
+  "nature-perennial-shade-coral-bells": {
+    "common": "أجراس المرجان"
+  },
+  "event-large-tree-both-scarlet-oak": {
+    "common": "بلوط قرمزي",
+    "matureSize": "40–50 قدمًا"
+  },
+  "event-large-tree-both-american-elm": {
+    "common": "دردار أمريكي",
+    "notes": "الصنف: Princeton",
+    "matureSize": "50–70"
+  },
+  "event-small-tree-both-serviceberry": {
+    "common": "أملانشير",
+    "matureSize": "15–20 قدمًا"
+  },
+  "event-small-tree-both-alternate-leaf-dogwood": {
+    "common": "قرانيا متبادلة الأوراق",
+    "matureSize": "15–20 قدمًا"
+  },
+  "event-small-tree-both-american-hophornbeam": {
+    "common": "أوستريا أمريكية",
+    "matureSize": "15–20 قدمًا"
+  },
+  "event-small-tree-both-sassafras": {
+    "common": "ساسافراس",
+    "matureSize": "25–35 قدمًا"
+  },
+  "event-small-tree-both-redbud": {
+    "common": "أرجوان كندي",
+    "notes": "الصنف: Lavender twist",
+    "matureSize": "15–20 قدمًا"
+  },
+  "event-perennial-sun-butterflyweed": {
+    "common": "عشبة الفراشات",
+    "matureSize": "2–3 أقدام"
+  },
+  "event-perennial-sun-blue-false-indigo": {
+    "common": "النيلة الزرقاء الكاذبة",
+    "matureSize": "2–3 أقدام"
+  },
+  "event-perennial-sun-plains-coreopsis": {
+    "common": "كوريوبسيس السهول",
+    "matureSize": "1–2 قدم"
+  },
+  "event-perennial-sun-love-grass": {
+    "common": "عشب الحب",
+    "matureSize": "2–3 أقدام"
+  },
+  "event-perennial-sun-black-eyed-susan": {
+    "common": "سوزان سوداء العينين",
+    "matureSize": "2–3 أقدام"
+  },
+  "event-perennial-sun-wild-pinks": {
+    "common": "قرنفل بري",
+    "matureSize": "1–2 قدم"
+  },
+  "event-perennial-sun-fragrant-goldenrod": {
+    "common": "العصا الذهبية العطرة",
+    "matureSize": "1–2 قدم"
+  },
+  "event-perennial-sun-shorts-aster": {
+    "common": "أستر شورت",
+    "matureSize": "2–3 أقدام"
+  },
+  "event-perennial-shade-prairie-onion": {
+    "common": "بصل البراري",
+    "matureSize": "1–2 قدم"
+  },
+  "event-perennial-shade-lady-fern": {
+    "common": "سرخس السيدة",
+    "matureSize": "1–2 قدم"
+  },
+  "event-perennial-shade-bunny-blue-sedge": {
+    "common": "سُعادى Bunny Blue (كاريكس)",
+    "matureSize": "6–12 بوصة"
+  },
+  "event-perennial-shade-allen-bush-green-and-gold": {
+    "common": "الأخضر والذهبي Allen Bush",
+    "matureSize": "6–12 بوصة"
+  },
+  "event-perennial-shade-wood-fern": {
+    "common": "سرخس الغابات",
+    "matureSize": "1–2 قدم"
+  },
+  "event-perennial-shade-wild-geranium": {
+    "common": "إبرة الراعي البرية",
+    "matureSize": "1–2 قدم"
+  }
+}

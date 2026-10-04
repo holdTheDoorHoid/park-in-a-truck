@@ -1,0 +1,242 @@
+---
+title: Adquirir
+intro: Ache um terreno no seu bairro e consiga o direito legal de transformá-lo num parque.
+sources:
+  - Guia (Toolkit), pp. 24–27 (Ache um terreno, Qual terreno?, Descubra o dono do terreno)
+  - Caderno de trabalho Adquirir, pp. 1–7
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Choice from '../../../../components/workbook/Choice.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import LotLookup from '../../../../components/widgets/LotLookup.astro';
+import LotFinderMap from '../../../../components/widgets/LotFinderMap.astro';
+
+Quem cria um parque e ainda não tem acesso legal a um terreno vago precisa encontrar alguém disposto a vender ou
+alugar o(s) terreno(s) para o parque que está sendo planejado. Esse trabalho pode ser complicado e demorado. Não
+existe um processo perfeito, nem um único jeito de fazer, nem resultado garantido. Esta etapa vai ajudar você a
+encontrar um jeito de conseguir o terreno do seu futuro parque.
+
+## Ache um terreno {/* #find-a-lot */}
+
+Os grandes parques urbanos trazem muitos benefícios sociais, ecológicos e econômicos para os moradores e os
+visitantes de uma cidade. Mas, se o parque não for fácil de alcançar, as pessoas talvez só o visitem de vez em
+quando. Nem todo mundo tem carro ou transporte público por perto, nem consegue andar ou pedalar longas distâncias.
+
+Por isso é importante achar um terreno ou um espaço perto de casa para transformar num pequeno parque de bairro. Ele
+tem muitos dos benefícios do parque grande **e**, por estar perto, é fácil de alcançar. Quanto mais um parque de
+bairro é visitado, mais ele se torna conhecido — e valorizado. Um parque bem usado vira um ponto central da "vida
+social" que fortalece o sentimento de comunidade do bairro!
+
+Existem imóveis sem uso no seu bairro que estejam disponíveis legalmente, que sejam seguros e que sirvam para um
+parque? Você consegue apontar terrenos possíveis no seu bairro onde gostaria de ver o seu parque?
+
+<Callout kind="auto" title="Deixe o mapa andar por você">
+  O mapa abaixo mostra os terrenos que a Prefeitura registra como baldios. Clique em um para ver o dono, o tamanho e
+  o zoneamento, e adicione-o à sua lista. Mesmo assim, ande pelo seu quarteirão — a lista da Prefeitura deixa passar
+  alguns terrenos e inclui outros que já estão em uso.
+</Callout>
+
+<LotFinderMap />
+
+<Figure
+  src="img/acquire/west-kensington-site.webp"
+  alt="Um terreno baldio gramado em West Kensington, Filadélfia, com a grama cortada e os cantos marcados com bandeirinhas verde-azuladas de medição, com um muro rebocado, uma cerca viva e carros estacionados atrás."
+  caption="Local do parque PiaT de West Kensington, antes da construção"
+  duo
+/>
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={3} />
+
+## Qual terreno? {/* #which-lot */}
+
+Veja os três tipos diferentes de lugar possível para um parque de bairro. Ande pelo seu bairro e anote quais imóveis
+pouco usados podem servir para o seu parque.
+
+<div class="lot-types">
+  <div>
+    <Figure
+      src="img/acquire/lot-midblock.webp"
+      alt="Ilustração isométrica de um terreno baldio no meio do quarteirão: um vão retangular estreito entre dois prédios de casas geminadas num quarteirão residencial, em verde, com uma árvore."
+    />
+    <p class="lot-caption">
+      <strong>Terreno no meio do quarteirão (terreno baldio).</strong> Tem forma retangular e fica no meio de um
+      quarteirão residencial. Pode ter prédios de cada lado e/ou no fundo. A maior parte dos terrenos "baldios"
+      disponíveis na Filadélfia é deste tipo. Pode ter limitações para alguns usos de parque por ser estreito e/ou
+      pegar pouco sol.
+    </p>
+  </div>
+  <div>
+    <Figure
+      src="img/acquire/lot-corner.webp"
+      alt="Ilustração isométrica de um terreno baldio de esquina: um vão retangular na ponta de um quarteirão residencial, de frente para duas ruas, em verde, com uma árvore."
+    />
+    <p class="lot-caption">
+      <strong>Terreno de esquina (terreno baldio).</strong> Tem forma retangular e fica na ponta de um quarteirão
+      residencial. Pode ter prédios do lado e/ou no fundo. Estes terrenos são bem visíveis e costumam pegar mais sol.
+    </p>
+  </div>
+  <div>
+    <Figure
+      src="img/acquire/lot-alley.webp"
+      alt="Ilustração isométrica de uma passagem ou beco (servidão de passagem): um vão verde comprido e bem estreito cortando entre prédios de casas geminadas, atravessando o quarteirão."
+    />
+    <p class="lot-caption">
+      <strong>Passagem / beco (servidão de passagem).</strong> Fáceis de reconhecer pela forma comprida e bem
+      estreita, estes lugares muitas vezes atravessam o quarteirão. Foram reservados, no início, para a passagem de
+      pedestres entre as ruas e/ou para redes de serviços (água, luz, esgoto).
+    </p>
+  </div>
+</div>
+
+Anote o endereço de cada terreno possível. Quando você busca um endereço, o site preenche para você o dono, o
+tamanho e o tipo de terreno.
+
+<LotLookup mode="candidates" />
+
+<ListField
+  id="acquire.candidate-notes"
+  label="Anotações da sua caminhada pelo bairro"
+  rowName="terreno"
+  min={3}
+  columns={[
+    { key: 'address', label: 'Endereço ou local' },
+    { key: 'type', label: 'Tipo de terreno', placeholder: 'meio do quarteirão, esquina, beco' },
+    { key: 'notes', label: 'O que você reparou', placeholder: 'lixo, sol, vizinhos, uso…' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={3} />
+
+## Quem é o dono desse terreno? {/* #who-owns-that-lot */}
+
+Depois de apontar alguns imóveis pouco usados que podem virar o seu novo parque de bairro, o próximo passo é
+descobrir quem é o dono do imóvel. O dono pode ser uma pessoa, uma empresa ou uma organização sem fins lucrativos.
+O dono também pode ser a Prefeitura. O jeito mais confiável de saber quem é o dono de um terreno é consultar os
+registros da Prefeitura da Filadélfia.
+
+Este fluxograma mostra como descobrir quem é o dono de um terreno e os passos possíveis para conseguir os direitos
+legais — ou "autorizações" — de usar o imóvel como parque de bairro.
+
+{/* site-added: the workbook's flowchart reproduced as HTML (not an image of text), steps 1–4 then the public/private branch. */}
+<ol class="flow-steps">
+  <li>
+    <span class="flow-num">1</span>
+    <div><strong>Confirme o endereço.</strong> Confira o endereço do terreno ou dos terrenos possíveis que você anotou.</div>
+  </li>
+  <li>
+    <span class="flow-num">2</span>
+    <div><strong>Pesquise o imóvel.</strong> Entre no <a href="https://atlas.phila.gov/" target="_blank" rel="noopener">atlas.phila.gov</a> (em inglês) e digite o endereço. Você também pode achar o terreno aproximando o mapa numa rua perto.</div>
+  </li>
+  <li>
+    <span class="flow-num">3</span>
+    <div><strong>Descubra o dono.</strong> Veja o dono do imóvel na seção "Property Assessment" (avaliação do imóvel) do site.</div>
+  </li>
+</ol>
+
+<div class="owner-branch">
+  <div class="owner-branch-col">
+    <h4>4a. O dono é… a Prefeitura da Filadélfia <span class="muted">(dono público)</span></h4>
+    <p>
+      <strong>Possível compra.</strong> Faça uma busca de imóveis para saber se o terreno público está disponível para
+      compra pela Philadelphia Housing Development Corporation (PHDC) e pelo Philadelphia Land Bank.
+    </p>
+  </div>
+  <div class="owner-branch-col">
+    <h4>4b. O dono é… uma pessoa, organização ou empresa <span class="muted">(dono particular)</span></h4>
+    <ul>
+      <li><strong>Possível doação.</strong> Fale com o dono do terreno sobre doar o imóvel para sempre.</li>
+      <li><strong>Possível venda.</strong> Fique de olho em anúncios de venda pública ou leilão — na Filadélfia, isso pode incluir um leilão do xerife (Sheriff Sale).</li>
+      <li><strong>Negociar um acordo de compra.</strong> Fale com o dono do terreno e negocie uma venda para uso do bairro.</li>
+      <li><strong>Acordo de cessão de uso.</strong> Converse sobre deixar o bairro usar o terreno sem pagamento, enquanto o dono continua sendo o dono.</li>
+    </ul>
+  </div>
+</div>
+
+<Callout kind="auto" title="Passos 1–3 já feitos para você">
+  Escolha o terreno que vocês querem conseguir. O site consulta os registros de endereços e de imóveis da Prefeitura
+  (os mesmos dados que o atlas.phila.gov mostra) e preenche o dono abaixo.
+</Callout>
+
+<LotLookup mode="primary" />
+
+<Field id="acquire.address" label="Endereço do seu terreno" auto="lot.address" />
+<Field id="acquire.owner" label="Nome do dono" auto="lot.owners|owners" />
+<Field id="acquire.owner-type" label="O dono é…" auto="lot.ownerType|ownerType" />
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={4} />
+
+## Se a Prefeitura for a dona {/* #if-the-city-owns-it */}
+
+**Possível compra.** Na Filadélfia, os terrenos públicos são vendidos ou alugados pela Philadelphia Housing
+Development Corporation (PHDC) e pelo Philadelphia Land Bank. Faça uma busca de imóveis para saber se o terreno
+público está disponível para compra.
+
+<p><a class="btn" href="https://phillylandbank.org/community-use-map/" target="_blank" rel="noopener">Pesquise no mapa de Uso Comunitário do Land Bank (em inglês) ↗</a></p>
+
+{/* site-added: the workbook's PHDC link (phdcphila.org/land/buy-land/property-search-map/) is dead; PHDC's search now lives on the Land Bank site. */}
+<p class="muted" style="font-size:0.9rem">A página de busca da PHDC citada no caderno de trabalho mudou de lugar: agora a PHDC e o Philadelphia Land Bank usam o mesmo mapa. Um terreno que aparece colorido está disponível; o mapa de Uso Comunitário (Community Use) é o de hortas, jardins e espaços abertos.</p>
+
+<Checklist
+  id="acquire.public-steps"
+  items={[
+    { value: 'searched-phdc', label: 'Procurei o terreno no mapa de busca de imóveis da PHDC' },
+    { value: 'contacted-phdc', label: 'Falei com a PHDC / o Land Bank sobre comprar ou alugar o terreno para um parque' },
+  ]}
+/>
+
+<Field id="acquire.public-notes" label="A resposta que vocês receberam" type="textarea" />
+
+## Se outra pessoa for a dona {/* #if-someone-else-owns-it */}
+
+Quando o dono é uma pessoa, organização ou empresa, há quatro caminhos possíveis:
+
+- **Possível doação.** Fale com o dono do terreno sobre doar o imóvel para sempre ao bairro, para ser usado como
+  parque.
+- **Possível venda.** Fique de olho em anúncios de venda pública ou leilão do imóvel. Na Filadélfia, isso também pode
+  incluir um leilão do xerife (Sheriff Sale).
+- **Negociar um acordo de compra.** Fale com o dono do terreno e negocie a venda do imóvel pouco usado para uso do
+  bairro.
+- **Acordo de cessão de uso.** Fale com o dono do terreno e converse sobre as vantagens para os dois lados de deixar
+  o bairro usar o terreno como parque, sem pagamento, enquanto o dono continua sendo o dono.
+
+<Choice
+  id="acquire.private-path"
+  label="Qual caminho vocês vão tentar primeiro?"
+  options={[
+    { value: 'donation', label: 'Doação', desc: 'O dono dá o terreno para o bairro' },
+    { value: 'sale', label: 'Venda pública / leilão do xerife', desc: 'Acompanhar anúncios e leilões' },
+    { value: 'purchase', label: 'Acordo de compra', desc: 'Negociar a venda com o dono' },
+    { value: 'in-kind', label: 'Acordo de cessão de uso', desc: 'O dono fica com o terreno; os vizinhos usam como parque' },
+  ]}
+/>
+
+<ListField
+  id="acquire.owner-contacts"
+  label="Registro de contatos"
+  rowName="contato"
+  min={2}
+  columns={[
+    { key: 'date', label: 'Data', type: 'date' },
+    { key: 'who', label: 'Com quem vocês falaram' },
+    { key: 'outcome', label: 'O que aconteceu / próximo passo' },
+  ]}
+/>
+
+<Callout kind="contact">
+  Empacou? A equipe do Park in a Truck pode ajudar a pensar nas suas opções (em inglês):
+  [ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu).
+</Callout>
+
+{/* site-added: a place to record the outcome; no new advice. */}
+## Garanta o seu terreno {/* #secure-your-lot */}
+
+Registre o acordo que dá ao seu grupo o direito de construir um parque aqui. Guarde uma cópia com os documentos da
+sua comissão — vocês vão precisar dele antes de qualquer pessoa começar a mexer na terra, na etapa Criar.
+
+<Field id="acquire.agreement" label="Tipo de acordo" type="select" options={[{ value: 'Purchase', label: 'Compra' }, { value: 'Donation', label: 'Doação' }, { value: 'Lease', label: 'Aluguel (arrendamento)' }, { value: 'In-kind use agreement', label: 'Acordo de cessão de uso' }, { value: 'Other', label: 'Outro' }]} />
+<Field id="acquire.agreement-date" label="Data da assinatura" type="date" />
+<Field id="acquire.agreement-notes" label="Condições para lembrar" type="textarea" hint="Duração do acordo, quem cuida do terreno, seguro, data de renovação…" />

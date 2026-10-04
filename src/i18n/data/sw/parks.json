@@ -1,0 +1,56 @@
+{
+  "cecil-street-garden": {
+    "neighborhood": "Kingsessing, kusini-magharibi mwa Philadelphia",
+    "description": "Bustani ya jamii kwenye kiwanja cha kona kilichorejeshwa huko Kingsessing, iliyoorodheshwa katika mwongozo wa Park in a Truck kama \"Cecil Street Park\" na kutumiwa kama eneo la majaribio ya upandaji pamoja na LandHealth Nursery. Tangu hapo imekuwa sehemu ya mtandao wa makazi ya wachavushaji unaofadhiliwa na serikali kuu, unaounganisha maeneo kadhaa ya Park in a Truck kusini-magharibi mwa Philadelphia, na imepandwa miti asilia na maua ya echinacea. Mkazi Victoria Miles-Chambliss: \"Mtaa wetu umebadilika kweli tangu tulipoweka bustani. Ni kama oasisi katikati ya kusini-magharibi mwa Philadelphia.\"",
+    "links": [
+      { "label": "Mtandao wa makazi ya ndege na nyuki unachanua kusini-magharibi mwa Philadelphia (Grid Magazine, Aprili 2024, kwa Kiingereza)" },
+      { "label": "Ukurasa wa programu ya Park in a Truck (Jefferson, kwa Kiingereza)" }
+    ]
+  },
+  "melon-street-park": {
+    "neighborhood": "Mantua, magharibi mwa Philadelphia",
+    "description": "Bustani ya kwanza kabisa ya Park in a Truck, iliyofunguliwa Oktoba 2019 kwenye kiwanja kitupu huko Mantua (takriban futi za mraba 2,400). Rais wa Mantua Civic Association, DeWayne Drummond: \"Ardhi tunayoisimamia sasa hivi ilikuwa kiwanja kitupu. Sasa imepambwa na wanajamii na vijana.\" Mwanzilishi Kim Douglas anaieleza kama bustani \"inayoweza kupitisha maji ya mvua, kukuza mimea, kutoa makazi kwa wanyamapori, na kuandaa burudani.\"",
+    "links": [
+      { "label": "Kupitia programu ya Park in a Truck, Jefferson inalenga kusaidia kubadilisha jamii zisizohudumiwa vya kutosha (Jefferson, Agosti 2019, kwa Kiingereza)" },
+      { "label": "Viwanja vitupu vinageuka kuwa bustani nzuri katika mitaa ya Philadelphia (6abc, Julai 2021, kwa Kiingereza)" },
+      { "label": "Mwongozo wa Park in a Truck unawawezesha wanajamii kubadilisha viwanja vitupu (Jefferson, Agosti 2022, kwa Kiingereza)" }
+    ],
+    "photos": [
+      {
+        "alt": "Matuta ya bustani yaliyoinuliwa na mimea yenye maua katika Melon Street Park, na nyumba za safu za Mantua nyuma",
+        "caption": "Melon Street Park, bustani ya jamii"
+      },
+      {
+        "alt": "Kikundi cha watoto na watu wazima wakiwa wamekusanyika kuzunguka mfano wa vipande vya bustani siku ya ujenzi katika Melon Street Park",
+        "caption": "Siku ya ujenzi wa Park in a Truck huko Mantua"
+      }
+    ]
+  },
+  "glenda-anne-memorial-park": {
+    "neighborhood": "Kingsessing, kusini-magharibi mwa Philadelphia",
+    "description": "Ilizinduliwa tarehe 3 Agosti 2019 kwenye kiwanja ambacho zamani watu walitupa takataka, huku majirani zaidi ya 200 na viongozi waliochaguliwa wakihudhuria; familia ya Glenda Ann Christopher ilikubali bustani hiyo kama kumbukumbu yake (habari za vyombo vya habari zinaiandika \"Glenda Ann Christopher Memorial Park\"). Bustani ya wachavushaji iliongezwa majira ya kuchipua 2023 — mwandaaji Greg Thompson: \"Wiki moja au mbili baada ya kupandwa, walikuwa wameshafika — nyuki, ndege, vipepeo na wadudu wengi zaidi kuliko tuliowahi kuona.\" Uzinduzi wa pili mwezi Juni 2024 ulisherehekea nyongeza hiyo; kijana wa kujitolea Semaj Flores: \"Tulijiunga na hili kwa ajili ya mazingira, na ili vijana wawasaidie watoto wadogo wanaokabiliwa na vurugu za bunduki.\"",
+    "links": [
+      { "label": "Programu ya Park in a Truck inabadilisha maeneo ya kijani ya mjini huko Philadelphia (CBS News Philadelphia, Juni 2024, kwa Kiingereza)" },
+      { "label": "Mtandao wa makazi ya ndege na nyuki unachanua kusini-magharibi mwa Philadelphia (Grid Magazine, Aprili 2024, kwa Kiingereza)" }
+    ]
+  },
+  "s-60th-greenway": {
+    "neighborhood": "Kingsessing, kusini-magharibi mwa Philadelphia",
+    "description": "Eneo la Park in a Truck lililo umbali wa mtaa mmoja kutoka Glenda Anne Memorial Park, katika ukanda uleule wa kijani wa Kingsessing — limeorodheshwa katika shukrani za mwongozo (kwa heshima ya Ted Behr, Southwest Globe Times) kama mstari tofauti na Glenda Anne. Hakuna habari za vyombo vya habari zinazokitaja kiwanja hiki tofauti na Glenda Anne Memorial Park; yachukulie maeneo haya mawili kuwa yanahusiana lakini ni tofauti hadi itakapothibitishwa vinginevyo."
+  },
+  "dover-street-pocket-park": {
+    "neighborhood": "Brewerytown, kaskazini mwa Philadelphia",
+    "description": "Imeorodheshwa kwenye orodha ya maeneo ya tovuti ya Park in a Truck yenyewe. Ni ya baada ya mwongozo uliochapishwa (haimo katika shukrani zake) na hakuna habari huru za vyombo vya habari zilizopatikana — maelezo zaidi ya anwani bado hayajathibitishwa."
+  },
+  "tilden-middle-school": {
+    "neighborhood": "Elmwood Park, kusini-magharibi mwa Philadelphia",
+    "description": "Wanafunzi walijenga bustani ya wachavushaji/makazi ya viumbe katika Tilden Middle School kama sehemu ya mtandao uleule wa wachavushaji wa kusini-magharibi mwa Philadelphia unaojumuisha Cecil Street Garden, unaofadhiliwa kwa sehemu na Pew Charitable Trusts kupitia Audubon Mid-Atlantic, huku Park in a Truck ikiwa mshirika. Vijana wanalipwa kupitia programu ya Mabalozi wa Bustani (Park Ambassadors) ya PiaT ili kuitunza na kufuatilia wachavushaji.",
+    "links": [
+      { "label": "Mtandao wa makazi ya ndege na nyuki unachanua kusini-magharibi mwa Philadelphia (Grid Magazine, Aprili 2024, kwa Kiingereza)" }
+    ]
+  },
+  "streetscape-of-brewerytown-garden": {
+    "neighborhood": "Brewerytown, kaskazini mwa Philadelphia",
+    "description": "Imeorodheshwa kwenye orodha ya maeneo ya tovuti ya Park in a Truck yenyewe, karibu na Dover Street Pocket Park huko Brewerytown. Huu ni mradi tofauti na \"Brewerytown Garden\" ya Neighborhood Gardens Trust iliyoko 27th & Master St, ambayo haihusiani nayo. Hakuna habari huru za vyombo vya habari zilizopatikana — maelezo zaidi ya mahali takriban bado hayajathibitishwa."
+  }
+}

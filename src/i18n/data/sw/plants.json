@@ -1,0 +1,457 @@
+{
+  "edible-small-tree-both-serviceberry": {
+    "common": "Mti wa beri ndogo (serviceberry)",
+    "notes": "Sehemu zinazoliwa: tunda",
+    "matureSize": "futi 20–30"
+  },
+  "edible-small-tree-both-redbud": {
+    "common": "Mti wa maua ya zambarau (redbud)",
+    "notes": "Sehemu zinazoliwa: maua; Aina: Forest Pansy",
+    "matureSize": "futi 20–25"
+  },
+  "edible-small-tree-both-apple": {
+    "common": "Mtufaha (apple)",
+    "notes": "Sehemu zinazoliwa: tunda; Aina: Enterprise",
+    "matureSize": "futi 10–20"
+  },
+  "edible-small-tree-both-peach": {
+    "common": "Mpichi (peach)",
+    "notes": "Sehemu zinazoliwa: tunda; Aina: Contender",
+    "matureSize": "futi 10–20"
+  },
+  "edible-small-tree-both-pear": {
+    "common": "Mpea (pear)",
+    "notes": "Sehemu zinazoliwa: tunda; Aina: Golden Russet bosc",
+    "matureSize": "futi 10–20"
+  },
+  "edible-small-tree-both-plum": {
+    "common": "Mplamu (plum)",
+    "notes": "Sehemu zinazoliwa: tunda; Aina: Methly",
+    "matureSize": "futi 10–20"
+  },
+  "edible-shrub-sun-red-currant": {
+    "common": "Beri nyekundu (red currant)",
+    "notes": "Sehemu zinazoliwa: tunda; Aina: Red Lake",
+    "matureSize": "futi 3–4"
+  },
+  "edible-shrub-sun-gooseberry": {
+    "common": "Kichaka cha beri (gooseberry)",
+    "notes": "Sehemu zinazoliwa: tunda; Aina: Black Velvet",
+    "matureSize": "futi 3–4"
+  },
+  "edible-shrub-sun-pasture-rose": {
+    "common": "Waridi la malishoni (pasture rose)",
+    "notes": "Sehemu zinazoliwa: matunda ya waridi, petali",
+    "matureSize": "futi 3–4"
+  },
+  "edible-shrub-sun-low-bush-blueberry": {
+    "common": "Bluuberi fupi (lowbush blueberry)",
+    "notes": "Sehemu zinazoliwa: tunda; Aina: Chippewa",
+    "matureSize": "futi 2–3"
+  },
+  "edible-perennial-sun-strawberries": {
+    "common": "Stroberi",
+    "notes": "Sehemu zinazoliwa: tunda; Aina: Sweet Kiss",
+    "matureSize": "inchi 6"
+  },
+  "edible-perennial-sun-virginia-strawberry": {
+    "common": "Stroberi pori ya Virginia (Virginia strawberry)",
+    "notes": "Sehemu zinazoliwa: maua",
+    "matureSize": "futi 1–2"
+  },
+  "edible-perennial-sun-rudbeckia": {
+    "common": "Rudbeckia"
+  },
+  "edible-perennial-sun-prairie-dropseed": {
+    "common": "Nyasi ya mbugani (prairie dropseed)"
+  },
+  "edible-perennial-sun-hairy-field-aster": {
+    "common": "Aster yenye manyoya (hairy field aster)"
+  },
+  "edible-perennial-sun-sedum": {
+    "common": "Sedum (mmea wa majani manene)",
+    "notes": "Aina: Larinem Park"
+  },
+  "edible-shrub-shade-red-twig-dogwood": {
+    "common": "Dogwood yenye matawi mekundu (red-twig dogwood)",
+    "notes": "Aina: Arctic Fire"
+  },
+  "edible-shrub-shade-arrowwood-viburnum": {
+    "common": "Viburnum (arrowwood viburnum)"
+  },
+  "edible-shrub-shade-lowbush-blueberry": {
+    "common": "Bluuberi fupi (lowbush blueberry)"
+  },
+  "edible-shrub-shade-mountain-laurel": {
+    "common": "Kichaka cha mountain laurel (mountain laurel)",
+    "notes": "Aina: Pink Charm"
+  },
+  "edible-perennial-shade-lady-fern": {
+    "common": "Kangaga (lady fern)"
+  },
+  "edible-perennial-shade-wild-geranium": {
+    "common": "Geranium pori (wild geranium)"
+  },
+  "edible-perennial-shade-cinnamon-fern": {
+    "common": "Kangaga ya mdalasini (cinnamon fern)"
+  },
+  "edible-perennial-shade-jacobs-ladder": {
+    "common": "Ngazi ya Yakobo (Jacobs Ladder)"
+  },
+  "edible-perennial-shade-pennsylvania-sedge": {
+    "common": "Nyasi ya Pennsylvania (Pennsylvania sedge)"
+  },
+  "edible-perennial-shade-hayscented-fern": {
+    "common": "Kangaga yenye harufu ya nyasi kavu (hayscented fern)"
+  },
+  "edible-perennial-shade-coral-bells": {
+    "common": "Kengele za matumbawe (coral bells)"
+  },
+  "sanctuary-large-tree-both-burr-oak": {
+    "common": "Mwaloni wa burr (burr oak)",
+    "notes": "Sifa za kuhisi: umbo zuri la matawi",
+    "matureSize": "futi 50–70"
+  },
+  "sanctuary-large-tree-both-sweet-birch": {
+    "common": "Birch tamu (sweet birch)",
+    "notes": "Sifa za kuhisi: maua ya kuvutia/ yenye harufu nzuri",
+    "matureSize": "futi 30–50"
+  },
+  "sanctuary-small-tree-sun-washington-hawthorne": {
+    "common": "Hawthorn ya Washington (Washington hawthorne)",
+    "notes": "Sifa za kuhisi: matunda mekundu angavu",
+    "matureSize": "futi 15–20"
+  },
+  "sanctuary-small-tree-sun-sourwood": {
+    "common": "Mti wa majani machachu (sourwood)",
+    "notes": "Sifa za kuhisi: rangi ya mapema ya majira ya kupukutika majani",
+    "matureSize": "futi 15–20"
+  },
+  "sanctuary-small-tree-sun-fringetree": {
+    "common": "Mti wa pindo (fringetree)",
+    "notes": "Sifa za kuhisi: huchanua Juni — maua yenye harufu nzuri",
+    "matureSize": "futi 15–20"
+  },
+  "sanctuary-shrub-sun-summersweet": {
+    "common": "Kichaka cha maua matamu (summersweet)",
+    "notes": "Sifa za kuhisi: maua yenye harufu nzuri",
+    "matureSize": "futi 3–4"
+  },
+  "sanctuary-shrub-sun-sweetfern": {
+    "common": "Kichaka chenye majani ya harufu nzuri (sweetfern)",
+    "notes": "Sifa za kuhisi: majani yenye harufu nzuri",
+    "matureSize": "futi 1–2"
+  },
+  "sanctuary-shrub-sun-sweetspire": {
+    "common": "Kichaka cha mashada ya maua (sweetspire)",
+    "notes": "Sifa za kuhisi: maua yenye harufu nzuri",
+    "matureSize": "futi 3–4"
+  },
+  "sanctuary-shrub-sun-swamp-azalea": {
+    "common": "Azalea ya kinamasi (swamp azalea)",
+    "notes": "Sifa za kuhisi: maua yenye harufu nzuri",
+    "matureSize": "futi 3–4"
+  },
+  "sanctuary-perennial-sun-blue-false-indigo": {
+    "common": "Indigo bandia ya bluu (blue false indigo)",
+    "notes": "Sifa za kuhisi: maganda ya mbegu yanayotoa sauti",
+    "matureSize": "futi 2–3"
+  },
+  "sanctuary-perennial-sun-wild-bergamot": {
+    "common": "Bergamot pori (wild bergamot)",
+    "notes": "Sifa za kuhisi: majani yenye harufu nzuri",
+    "matureSize": "futi 2–3"
+  },
+  "sanctuary-perennial-sun-sideoats-grama": {
+    "common": "Nyasi ya sideoats grama (sideoats grama)",
+    "notes": "Sifa za kuhisi: mwendo/sauti ya kutuliza",
+    "matureSize": "futi 2–3"
+  },
+  "sanctuary-perennial-sun-prairie-dropseed": {
+    "common": "Nyasi ya mbugani (prairie dropseed)",
+    "notes": "Sifa za kuhisi: majani yenye harufu nzuri/ laini kuguswa",
+    "matureSize": "futi 1–2"
+  },
+  "sanctuary-perennial-sun-aster": {
+    "common": "Aster",
+    "notes": "Sifa za kuhisi: huchanua majira ya kupukutika majani",
+    "matureSize": "futi 2–3"
+  },
+  "sanctuary-perennial-sun-moonbeam-tickseed": {
+    "common": "Coreopsis ya Moonbeam (moonbeam tickseed)",
+    "notes": "Sifa za kuhisi: huchanua kwa muda mrefu",
+    "matureSize": "futi 2–3"
+  },
+  "sanctuary-perennial-sun-blazing-star": {
+    "common": "Nyota inayowaka (blazing star)",
+    "notes": "Sifa za kuhisi: huvutia wachavushaji",
+    "matureSize": "futi 2–3"
+  },
+  "sanctuary-perennial-sun-tufted-hairgrass": {
+    "common": "Nyasi ya vishungi (tufted hairgrass)",
+    "notes": "Sifa za kuhisi: mwendo wa kutuliza",
+    "matureSize": "futi 1–2"
+  },
+  "sanctuary-small-tree-shade-american-hornbeam": {
+    "common": "Hornbeam ya Marekani (American hornbeam)",
+    "notes": "Sifa za kuhisi: gome lenye umbo kama misuli",
+    "matureSize": "futi 15–20"
+  },
+  "sanctuary-small-tree-shade-alternate-leaf-dogwood": {
+    "common": "Dogwood yenye majani ya kupishana (alternate-leaf dogwood)",
+    "notes": "Sifa za kuhisi: maua yenye harufu nzuri",
+    "matureSize": "futi 15–20"
+  },
+  "sanctuary-small-tree-shade-redbud": {
+    "common": "Mti wa maua ya zambarau (redbud)",
+    "notes": "Sifa za kuhisi: huchanua mapema majira ya kuchipua",
+    "matureSize": "futi 15–20"
+  },
+  "sanctuary-small-tree-shade-witchhazel": {
+    "common": "Witch hazel (witchhazel)",
+    "notes": "Sifa za kuhisi: ua la ajabu lenye harufu nzuri",
+    "matureSize": "futi 10–15"
+  },
+  "sanctuary-shrub-shade-mountain-laurel": {
+    "common": "Kichaka cha mountain laurel (mountain laurel)",
+    "notes": "Sifa za kuhisi: haipukutishi majani",
+    "matureSize": "futi 2–3"
+  },
+  "sanctuary-shrub-shade-witch-alder": {
+    "common": "Witch alder (Fothergilla)",
+    "notes": "Sifa za kuhisi: huchanua mapema",
+    "matureSize": "futi 3–4"
+  },
+  "sanctuary-shrub-shade-new-jersey-tea": {
+    "common": "Chai ya New Jersey (New Jersey tea)",
+    "notes": "Sifa za kuhisi: laini kuguswa",
+    "matureSize": "futi 2–3"
+  },
+  "sanctuary-shrub-shade-virginia-sweetspire": {
+    "common": "Kichaka cha mashada ya maua cha Virginia (Virginia sweetspire)",
+    "notes": "Sifa za kuhisi: maua mazuri na rangi ya majira ya kupukutika majani",
+    "matureSize": "futi 1–2"
+  },
+  "sanctuary-perennial-shade-lady-fern": {
+    "common": "Kangaga (lady fern)",
+    "notes": "Sifa za kuhisi: laini kuguswa",
+    "matureSize": "futi 2–3"
+  },
+  "sanctuary-perennial-shade-pennsylvania-sedge": {
+    "common": "Nyasi ya Pennsylvania (Pennsylvania sedge)",
+    "notes": "Sifa za kuhisi: laini kuguswa",
+    "matureSize": "inchi 6 – futi 1"
+  },
+  "sanctuary-perennial-shade-cinnamon-fern": {
+    "common": "Kangaga ya mdalasini (cinnamon fern)",
+    "notes": "Sifa za kuhisi: laini kuguswa",
+    "matureSize": "futi 2–3"
+  },
+  "sanctuary-perennial-shade-fragrant-golden-rod": {
+    "common": "Goldenrod yenye harufu nzuri (fragrant goldenrod)",
+    "notes": "Sifa za kuhisi: majani yenye harufu nzuri",
+    "matureSize": "futi 2–3"
+  },
+  "sanctuary-perennial-shade-shorts-aster": {
+    "common": "Aster ya Short (Shorts aster)",
+    "notes": "Sifa za kuhisi: huchanua kwa kuchelewa",
+    "matureSize": "futi 3"
+  },
+  "sanctuary-perennial-shade-columbine": {
+    "common": "Columbine",
+    "notes": "Sifa za kuhisi: huchanua mapema",
+    "matureSize": "futi 2–3"
+  },
+  "sanctuary-perennial-shade-celadine-poppy": {
+    "common": "Popi ya msituni (celandine poppy)",
+    "notes": "Sifa za kuhisi: huchanua mapema",
+    "matureSize": "futi 1–2"
+  },
+  "nature-large-tree-both-shingle-oak": {
+    "common": "Mwaloni wa shingle (shingle oak)"
+  },
+  "nature-large-tree-both-blackgum": {
+    "common": "Blackgum (Nyssa)"
+  },
+  "nature-large-tree-both-basswood": {
+    "common": "Basswood (linden ya Marekani)"
+  },
+  "nature-small-tree-both-american-hornbeam": {
+    "common": "Hornbeam ya Marekani (American hornbeam)"
+  },
+  "nature-small-tree-both-serviceberry": {
+    "common": "Mti wa beri ndogo (serviceberry)"
+  },
+  "nature-small-tree-both-pagoda-dogwood": {
+    "common": "Dogwood ya pagoda (pagoda dogwood)"
+  },
+  "nature-small-tree-both-witchhazel": {
+    "common": "Witch hazel (witchhazel)"
+  },
+  "nature-small-tree-both-blackhaw-viburnum": {
+    "common": "Viburnum ya blackhaw (blackhaw viburnum)"
+  },
+  "nature-shrub-sun-dwarf-summersweet": {
+    "common": "Kichaka kifupi cha maua matamu (dwarf summersweet)"
+  },
+  "nature-shrub-sun-sweetfern": {
+    "common": "Kichaka chenye majani ya harufu nzuri (sweetfern)"
+  },
+  "nature-shrub-sun-sweetspire": {
+    "common": "Kichaka cha mashada ya maua (sweetspire)",
+    "notes": "Aina: Little Henry"
+  },
+  "nature-shrub-sun-eastern-ninebark": {
+    "common": "Ninebark ya mashariki (eastern ninebark)"
+  },
+  "nature-shrub-sun-swamp-azalea": {
+    "common": "Azalea ya kinamasi (swamp azalea)"
+  },
+  "nature-perennial-sun-bluestar": {
+    "common": "Nyota ya bluu (bluestar)",
+    "notes": "Aina: Storm Cloud"
+  },
+  "nature-perennial-sun-sideoats-grama": {
+    "common": "Nyasi ya sideoats grama (sideoats grama)"
+  },
+  "nature-perennial-sun-wild-bergamot": {
+    "common": "Bergamot pori (wild bergamot)"
+  },
+  "nature-perennial-sun-narrow-leaf-mountainmint": {
+    "common": "Mnanaa wa mlimani wenye majani membamba (narrow-leaf mountain mint)"
+  },
+  "nature-perennial-sun-rudbeckia": {
+    "common": "Rudbeckia"
+  },
+  "nature-perennial-sun-prairie-dropseed": {
+    "common": "Nyasi ya mbugani (prairie dropseed)"
+  },
+  "nature-perennial-sun-hairy-field-aster": {
+    "common": "Aster yenye manyoya (hairy field aster)"
+  },
+  "nature-perennial-sun-sedum": {
+    "common": "Sedum (mmea wa majani manene)",
+    "notes": "Aina: Larinem Park"
+  },
+  "nature-shrub-shade-red-twig-dogwood": {
+    "common": "Dogwood yenye matawi mekundu (red-twig dogwood)",
+    "notes": "Aina: Arctic Fire"
+  },
+  "nature-shrub-shade-arrowwood-viburnum": {
+    "common": "Viburnum (arrowwood viburnum)"
+  },
+  "nature-shrub-shade-lowbush-blueberry": {
+    "common": "Bluuberi fupi (lowbush blueberry)"
+  },
+  "nature-shrub-shade-mountain-laurel": {
+    "common": "Kichaka cha mountain laurel (mountain laurel)",
+    "notes": "Aina: Pink Charm"
+  },
+  "nature-perennial-shade-lady-fern": {
+    "common": "Kangaga (lady fern)"
+  },
+  "nature-perennial-shade-wild-geranium": {
+    "common": "Geranium pori (wild geranium)"
+  },
+  "nature-perennial-shade-cinnamon-fern": {
+    "common": "Kangaga ya mdalasini (cinnamon fern)"
+  },
+  "nature-perennial-shade-jacobs-ladder": {
+    "common": "Ngazi ya Yakobo (Jacobs Ladder)"
+  },
+  "nature-perennial-shade-pennsylvania-sedge": {
+    "common": "Nyasi ya Pennsylvania (Pennsylvania sedge)"
+  },
+  "nature-perennial-shade-hayscented-fern": {
+    "common": "Kangaga yenye harufu ya nyasi kavu (hayscented fern)"
+  },
+  "nature-perennial-shade-coral-bells": {
+    "common": "Kengele za matumbawe (coral bells)"
+  },
+  "event-large-tree-both-scarlet-oak": {
+    "common": "Mwaloni mwekundu (scarlet oak)",
+    "matureSize": "futi 40–50"
+  },
+  "event-large-tree-both-american-elm": {
+    "common": "Elm ya Marekani (American elm)",
+    "notes": "Aina: Princeton",
+    "matureSize": "futi 50–70"
+  },
+  "event-small-tree-both-serviceberry": {
+    "common": "Mti wa beri ndogo (serviceberry)",
+    "matureSize": "futi 15–20"
+  },
+  "event-small-tree-both-alternate-leaf-dogwood": {
+    "common": "Dogwood yenye majani ya kupishana (alternate-leaf dogwood)",
+    "matureSize": "futi 15–20"
+  },
+  "event-small-tree-both-american-hophornbeam": {
+    "common": "Hophornbeam ya Marekani (American hophornbeam)",
+    "matureSize": "futi 15–20"
+  },
+  "event-small-tree-both-sassafras": {
+    "common": "Sassafras",
+    "matureSize": "futi 25–35"
+  },
+  "event-small-tree-both-redbud": {
+    "common": "Mti wa maua ya zambarau (redbud)",
+    "notes": "Aina: Lavender twist",
+    "matureSize": "futi 15–20"
+  },
+  "event-perennial-sun-butterflyweed": {
+    "common": "Ua la vipepeo (butterflyweed)",
+    "matureSize": "futi 2–3"
+  },
+  "event-perennial-sun-blue-false-indigo": {
+    "common": "Indigo bandia ya bluu (blue false indigo)",
+    "matureSize": "futi 2–3"
+  },
+  "event-perennial-sun-plains-coreopsis": {
+    "common": "Coreopsis ya nyanda (plains coreopsis)",
+    "matureSize": "futi 1–2"
+  },
+  "event-perennial-sun-love-grass": {
+    "common": "Nyasi ya mapambo (love grass)",
+    "matureSize": "futi 2–3"
+  },
+  "event-perennial-sun-black-eyed-susan": {
+    "common": "Black-eyed Susan (ua la manjano lenye kitovu cheusi)",
+    "matureSize": "futi 2–3"
+  },
+  "event-perennial-sun-wild-pinks": {
+    "common": "Maua pori ya waridi (wild pinks)",
+    "matureSize": "futi 1–2"
+  },
+  "event-perennial-sun-fragrant-goldenrod": {
+    "common": "Goldenrod yenye harufu nzuri (fragrant goldenrod)",
+    "matureSize": "futi 1–2"
+  },
+  "event-perennial-sun-shorts-aster": {
+    "common": "Aster ya Short (Shorts aster)",
+    "matureSize": "futi 2–3"
+  },
+  "event-perennial-shade-prairie-onion": {
+    "common": "Kitunguu cha mbugani (prairie onion)",
+    "matureSize": "futi 1–2"
+  },
+  "event-perennial-shade-lady-fern": {
+    "common": "Kangaga (lady fern)",
+    "matureSize": "futi 1–2"
+  },
+  "event-perennial-shade-bunny-blue-sedge": {
+    "common": "Nyasi ya 'Bunny Blue' (Bunny Blue sedge)",
+    "matureSize": "inchi 6–12"
+  },
+  "event-perennial-shade-allen-bush-green-and-gold": {
+    "common": "Green and gold 'Allen Bush' (maua ya manjano ya kufunika ardhi)",
+    "matureSize": "inchi 6–12"
+  },
+  "event-perennial-shade-wood-fern": {
+    "common": "Kangaga ya msituni (wood fern)",
+    "matureSize": "futi 1–2"
+  },
+  "event-perennial-shade-wild-geranium": {
+    "common": "Geranium pori (wild geranium)",
+    "matureSize": "futi 1–2"
+  }
+}

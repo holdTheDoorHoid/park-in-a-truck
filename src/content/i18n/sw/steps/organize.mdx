@@ -1,0 +1,219 @@
+---
+title: Jipange
+intro: Unda kamati ya bustani, tambua mali na nguvu za mtaa wako, na uwakusanye watu watakaoifanya bustani itokee.
+sources:
+  - Mwongozo (Toolkit), uk. 29–33 (Jipange, Unda kamati ya bustani, Tambua mali za mtaa)
+  - Kitabu cha kazi cha Jipange, uk. 3–6 (Muhtasari, Kutambua mali za jamii, Mali za mtaa, Andaa mkutano, Uko tayari?)
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import NeighborhoodAssets from '../../../../components/widgets/NeighborhoodAssets.astro';
+import MeetingFlyer from '../../../../components/widgets/MeetingFlyer.astro';
+
+Bustani hazitokei zenyewe tu. Ni kazi ya timu, yenye faida kubwa. Jamii inayoshirikiana katika mradi wa bustani
+hujenga zaidi ya bustani — inajenga mahusiano imara zaidi ya jamii, inaunda nafasi za kazi zenye kuvutia kwa vijana
+wa eneo, na inamfanya kila mtu ajivunie. Kujenga bustani huwaleta watu pamoja kwa lengo moja. Na kazi ikiisha,
+watasema, "tumeweza!"
+
+Kiini cha kila mradi wa bustani uliofanikiwa ni kikundi cha wakazi waliojitolea, wa aina mbalimbali na wenye vipaji,
+wanaofanya kazi pamoja kama timu. Kamati hii ya bustani itaongoza juhudi zenu za kuunda bustani. Kwa hakika, watu hawa
+wa kujitolea wanapaswa kuwakilisha makundi mbalimbali yatakayotumia bustani — vijana, wazee, watu wa rangi na asili
+mbalimbali, wataalamu, wafanyakazi, wenye nyumba na wapangaji. Wanapaswa kufanana na jamii yenu. Zaidi ya hapo,
+fikiria vipaji vyao. Kuwa na watu wenye vipaji na uzoefu tofauti — mafundi wa ujenzi, wenye ujuzi wa sheria, wenye
+uhusiano na wanasiasa, waandaaji wa jamii, viongozi wa dini, watu wanaopenda kujumuika na wengine, n.k. — kutaongeza
+nafasi yenu ya kufanikiwa.
+
+<Callout kind="note">
+  Kwa maelezo zaidi kuhusu kuandaa kikundi cha jamii, angalia kitabu cha Pennsylvania Horticultural Society,{' '}
+  <a href="http://tupress.temple.edu/book/0872" target="_blank" rel="noopener"><em>City Parks Handbook</em></a> (kwa Kiingereza), na
+  kitabu cha National Recreation and Park Association,{' '}
+  <a href="https://www.nrpa.org/uploadedFiles/Americas_Backyard/park-advocate-handbook-100711.pdf" target="_blank" rel="noopener"><em>Park Advocate Handbook</em></a> (kwa Kiingereza).
+</Callout>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={3} label="Muhtasari" />
+
+## Unda kamati ya bustani {/* #create-a-park-committee */}
+
+Kamati ikishaundwa, kazi yake ya kwanza ni kutambua na kuandika kile kilicho cha kipekee kuhusu mtaa wenu na eneo la
+bustani. Orodhesha wanakamati wako hapa chini — ni akina nani, jinsi ya kuwafikia, na kile wanacholeta kwenye timu.
+
+<ListField
+  id="organize.committee-members"
+  label="Wanakamati wa bustani"
+  rowName="mwanakamati"
+  min={3}
+  columns={[
+    { key: 'name', label: 'Jina' },
+    { key: 'phone', label: 'Simu', type: 'tel' },
+    { key: 'email', label: 'Barua pepe', type: 'email' },
+    { key: 'role', label: 'Kazi / ujuzi', placeholder: 'kuandaa, useremala, kuchangisha fedha…' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={3} label="Muhtasari" />
+
+## Tambua mali na nguvu za jamii {/* #identify-community-assets */}
+
+Sasa tufikirie watu wa mtaa wako na ujuzi wao wa kipekee — wanapenda kupika? Kuandaa matukio? Kulima bustani?
+Wanapenda historia na wanaweza kufanya utafiti kuhusu mtaa? Yote haya yanaweza kuwa ujuzi wa thamani na wenye manufaa
+katika kusaidia bustani ibuniwe, ijengwe na itunzwe. Unahitaji tu kuyaorodhesha ili ujue ni nani unayeweza kumwomba
+msaada katika kazi mbalimbali za mchakato wa bustani.
+
+Katika mkutano wako wa kwanza wa jamii, waombe watu waandike ujuzi wao unaohusika kwenye karatasi ya kujiandikisha.
+Weka alama kwenye ujuzi ambao kamati yako tayari inao:
+
+<Checklist
+  id="organize.individual-skills"
+  label="Orodha ya ujuzi wa watu binafsi"
+  items={[
+    { value: 'project-manager', label: 'Msimamizi wa mradi wa kusimamia ujenzi wa bustani' },
+    { value: 'organizing', label: 'Kupanga bustani / mchakato wa kubuni na kujenga' },
+    { value: 'carpentry', label: 'Useremala' },
+    { value: 'masonry', label: 'Uashi (kazi ya matofali na mawe)' },
+    { value: 'gardening', label: 'Kulima bustani / kutunza bustani' },
+    { value: 'planting', label: 'Kupanda miti, vichaka, maua' },
+    { value: 'building', label: 'Kusaidia kujenga bustani' },
+    { value: 'fundraising', label: 'Kuchangisha fedha' },
+    { value: 'bookkeeping', label: 'Utunzaji wa hesabu' },
+    { value: 'babysitting', label: 'Kulea watoto wakati wa shughuli' },
+    { value: 'food', label: 'Chakula kwa mikutano / siku za ujenzi' },
+    { value: 'artist', label: 'Msanii' },
+    { value: 'photography', label: 'Upigaji picha' },
+    { value: 'music', label: 'Muziki kwa siku za ujenzi — DJ' },
+    { value: 'media', label: 'Kutangaza kwenye mitandao — Facebook, Instagram, Twitter' },
+    { value: 'history', label: 'Mpenzi wa historia' },
+    { value: 'other', label: 'Mengineyo' },
+  ]}
+/>
+
+{/* site-added: a printable version of the same list, for a paper sign-up sheet at an in-person meeting. */}
+<Callout kind="tip" title="Kuchapisha karatasi ya kujiandikisha">
+  Unahitaji karatasi ya kujiandikisha kwa ajili ya mkutano? Chapisha ukurasa huu — orodha iliyo hapo juu huchapishwa
+  na visanduku vitupu ambavyo majirani wanaweza kuweka alama kwa mkono, kando ya jina lao na namna ya kuwasiliana nao.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={3} label="Kutambua mali za jamii" />
+
+## Mali na nguvu za mtaa {/* #neighborhood-assets */}
+
+Hatua nyingine muhimu katika safari yako ya kujenga bustani ni kutambua sifa za kipekee za mtaa wako na za eneo la
+bustani. Chukua muda wa kusimama na kutafuta ishara nyingi zinazofanya mtaa wako uwe maalum kwa njia yake. Kila mtaa
+una thamani yake inayotokana na historia na utamaduni wake. Kutambua na kutumia mali hizi kutaimarisha mradi wako wa
+bustani na kuwatia watu moyo wa kuiona bustani kuwa yao.
+
+Kwa hiyo tunatambuaje mali na nguvu za mtaa? Fikiria mtaa wako na historia na utamaduni wake — ni mahali gani
+maalum? Watu hupenda kukusanyika wapi? Je, kuna matukio muhimu yaliyotokea katika mtaa wako? Ni nini kilichokuwa
+mahali ambapo bustani yako iko sasa?
+
+<Callout kind="auto" title="Mashirika ya karibu, yametafutwa kwa ajili yako">
+  Andika anwani ya kiwanja chako, na tovuti hii italeta mashirika ya jamii yaliyosajiliwa (RCO) yaliyo karibu, shule,
+  maktaba, bustani za umma, bustani za jamii na mali nyingine za mtaa zilizoorodheshwa na Jiji — ili uanze orodha yako
+  ukijua nani tayari yupo.
+</Callout>
+
+<NeighborhoodAssets />
+
+Kisha, orodhesha vyama vyote vya wananchi na vya eneo ambavyo vinaweza kuwa washirika na kutoa msaada — wa fedha, wa
+vitu au huduma (in-kind), au mahali pa kununua vifaa vya bustani karibu:
+
+<ListField
+  id="organize.citizens-associations"
+  label="Orodha ya vyama vya wananchi"
+  rowName="kikundi"
+  min={2}
+  columns={[
+    { key: 'type', label: 'Aina', placeholder: 'kanisa, kiongozi wa mtaa (block captain), RCO, kikundi cha utamaduni…' },
+    { key: 'name', label: 'Jina' },
+    { key: 'contact', label: 'Mawasiliano' },
+  ]}
+/>
+
+<ListField
+  id="organize.physical-assets"
+  label="Mali zinazoonekana za mtaa"
+  rowName="mali"
+  min={2}
+  columns={[
+    { key: 'type', label: 'Aina', placeholder: 'alama maarufu, mchoro wa ukutani, mandhari ya barabara, mahali pa kukutania…' },
+    { key: 'description', label: 'Maelezo' },
+  ]}
+/>
+
+<ListField
+  id="organize.local-institutions"
+  label="Taasisi za eneo"
+  rowName="taasisi"
+  min={2}
+  columns={[
+    { key: 'type', label: 'Aina', placeholder: 'biashara, shule, maktaba, hospitali, chuo kikuu…' },
+    { key: 'name', label: 'Jina' },
+    { key: 'contact', label: 'Mawasiliano' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={4} label="Mali za mtaa" />
+
+## Andaa mkutano {/* #organize-a-meeting */}
+
+Kufanya mkutano wa wazi kunaweza kuwa njia nzuri sana ya kuanzisha kampeni au kuwashirikisha watu zaidi katika kikundi
+chako. Haya ni mawazo machache ya kusaidia kikundi chako cha jamii kuandaa mkutano wenye kuvutia, unaofikika kwa wote
+na unaoendeshwa vizuri.
+
+- **Ufanye uwe rahisi.** Usijaribu kujaza mambo mengi mno. Tumia mkutano kueleza taarifa za msingi kuhusu kile
+  mnachotaka kufanya, kuwahimiza wengine kutoa maoni na mawazo yao, na kupata namna ya kuwasiliana na watu ambao
+  huenda wakataka kushiriki baadaye.
+- **Utangaze vizuri.** Hakikisha tarehe, saa na mahali vimeonyeshwa wazi kwenye kipeperushi, na kwamba ni wazi
+  mkutano unahusu nini. Vipeperushi, mabango, machapisho kwenye mitandao ya kijamii, na jarida la jamii la eneo lako
+  vyote husaidia.
+- **Toa kivutio.** Viburudisho vya bure, video au mzungumzaji, au huduma ya kulea watoto inayotolewa na wanafunzi wa
+  kujitolea vinaweza kuwasaidia watu kupata muda wa kuja.
+- **Fikiria ajenda.** Makaribisho na kujitambulisha; eleza nani aliitisha mkutano na kwa nini; eleza kwa ufupi kwa nini
+  mkutano umeitishwa; fikiria kumwomba mtu aliyewahi kujenga bustani aeleze uzoefu wake (kwa ufupi — mkutano huu wa
+  kwanza usiwe hotuba ndefu); iombe timu ya Park in a Truck ya Jefferson ikuletee mzungumzaji.
+- **Wape watu nafasi ya kuchangia.** Huenda kukawa na upinzani dhidi ya bustani — waache watu waeleze maoni yao na
+  mjenge makubaliano kuhusu mahali bustani inapoweza kuwa, bila kukwama kwenye mambo madogo madogo.
+- **Eleza kinachofuata.** Toa muhtasari wa mawazo yaliyotolewa, na kama mkutano ni mdogo, fikieni maamuzi kuhusu hatua
+  zitakazochukuliwa kweli — pamoja na nani atazichukua.
+- **Ongoza mkutano.** Kubalianeni kabla ni nani atakayekuwa mwenyekiti. Kazi yake: kuweka mkutano kwenye mada,
+  kuhakikisha watu wanapata nafasi ya kusema, na kudumisha hali ya ukaribisho na uwazi.
+- **Andika kumbukumbu za mkutano.** Amueni kabla ya mkutano ni nani atakayeandika kumbukumbu (asiwe mtu yuleyule
+  aliye mwenyekiti). Kumbukumbu zinapaswa kuonyesha wazi maamuzi yaliyofanywa, na nani amekubali kufanya kazi zipi.
+- **Kusanya majina na anwani.** Andaa karatasi ya kujiandikisha mapema ili uweze kuwasiliana na kila mtu anayetaka
+  kuendelea kushiriki.
+- **Panga mkutano wenu unaofuata.** Pangeni tarehe na mahali pa mkutano unaofuata wa kikundi chenu kabla mkutano huu
+  haujaisha, na wajulisheni watu ili waweze kurudi.
+
+<Field id="organize.meeting-date" label="Tarehe ya mkutano" type="date" />
+<Field id="organize.meeting-time" label="Saa ya mkutano" type="text" placeholder="mfano: 6:30 PM (saa 12:30 jioni)" />
+<Field id="organize.meeting-place" label="Mahali pa mkutano" type="text" placeholder="anwani au jina la mahali" />
+<Field id="organize.meeting-purpose" label="Lengo la mkutano" type="textarea" hint="Mnachotaka kufanya, na mnachowaomba majirani." />
+
+<MeetingFlyer />
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={5} label="Andaa mkutano" />
+
+## Uko tayari? {/* #are-you-ready */}
+
+Utajuaje kama umeunda kamati ya bustani iliyokamilika vizuri? Soma orodha iliyo hapa chini na uweke alama kwenye
+kisanduku unapowatambua watu hao au uwezo huo katika kamati yako. Jambo muhimu zaidi katika kujipanga ni kujithibitishia
+kwamba unaweza kuratibu kila kinachohitajika kwa bustani ya mtaa — kuweka alama kwenye kila kisanduku kunahakikisha
+kikundi chako kiko tayari kuendelea na sura inayofuata.
+
+<Checklist
+  id="organize.readiness"
+  label="Orodha ya utayari wa kikundi"
+  items={[
+    { value: 'committee-formed', label: 'Je, mmeunda kamati ya majirani waliojitolea kuongoza juhudi zote za kupanga bustani?' },
+    { value: 'financial-standing', label: 'Je, kikundi chenu kina uwezo wa kifedha au mkopo wa kugharamia mambo ya bustani, kama kununua ardhi, utunzaji, matukio, n.k.?' },
+    { value: 'fundraising', label: 'Je, kikundi chenu kina uwezo wa kuchangisha fedha zinazohitajika ili kuendelea kuisaidia bustani kifedha?' },
+    { value: 'community-engagement', label: 'Je, kikundi chenu kina uwezo wa kuamsha hamu ya mtaa, kuandaa matukio na shughuli nyingine za kuishirikisha jamii?' },
+    { value: 'skilled-trades', label: 'Je, kikundi chenu kinaweza kupata watu wenye ujuzi na uzoefu wa aina mbalimbali — maseremala, waashi au mafundi wengine — wanaoweza kutoa ujuzi wao wakati wa kujenga na kutunza bustani?' },
+    { value: 'initial-meetings', label: 'Je, kikundi chenu kimefanya mikutano ya kwanza na matukio ya jamii ili kupata uungwaji mkono na makubaliano kuhusu bustani inayowezekana?' },
+    { value: 'social-media', label: 'Je, kikundi chenu kimeunda ukurasa mtandaoni kwa ujumbe, matangazo na mengineyo (Facebook, Instagram, n.k.), wenye hashtag ya kipekee ya kutambulisha mradi wenu wa bustani?' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={6} label="Uko tayari?" />

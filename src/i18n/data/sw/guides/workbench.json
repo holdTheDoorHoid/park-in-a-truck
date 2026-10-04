@@ -1,0 +1,132 @@
+{
+  "title": "Meza ya kazi / meza ya kusimama",
+  "summary": "Meza ya kimo cha kusimama ya kuhamishia miche kwenye vyungu, yenye miguu ya 4x4, ngazi tatu za rafu chini yake na sehemu ya juu ya mbao tano. Mchoro wa asili hauna mchoro wa vipimo, kwa hiyo vipimo hivi vya jumla vimetokana na orodha yake ya vipande vya kukata na hatua za kuunganisha badala ya kusomwa kwenye jalada.",
+  "materials": [
+    {
+      "item": "Mbao za 4x4 — mwerezi, mbao zilizotiwa dawa kwa shinikizo, au msonobari, S4S daraja #1"
+    },
+    {
+      "item": "Mbao za 2x4 — mwerezi, mbao zilizotiwa dawa kwa shinikizo, au msonobari, S4S daraja #1"
+    },
+    {
+      "item": "Mbao za 2x4 — mwerezi, mbao zilizotiwa dawa kwa shinikizo, au msonobari, S4S daraja #1"
+    },
+    {
+      "item": "Mbao za 2x4 — mwerezi, mbao zilizotiwa dawa kwa shinikizo, au msonobari, S4S daraja #1"
+    },
+    {
+      "item": "Mbao za 2x6 — mwerezi, mbao zilizotiwa dawa kwa shinikizo, au msonobari, S4S daraja #1"
+    },
+    {
+      "item": "Mbao za 1x6 — mwerezi, mbao zilizotiwa dawa kwa shinikizo, au msonobari, S4S daraja #1"
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Skrubu za mbao za nje zinazojitoboa"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Kishikizo cha pembeni"
+    },
+    {
+      "notes": "Kishikizo cha nyuma"
+    },
+    {
+      "notes": "Kishikizo cha mbele"
+    },
+    {
+      "notes": "Rafu za meza (mbao 2 kwa kila rafu, ngazi 3 za rafu)"
+    },
+    {
+      "notes": "Miguu ya meza"
+    },
+    {
+      "notes": "Juu ya meza, mbao pana (kingo za nje na katikati)"
+    },
+    {
+      "notes": "Juu ya meza, mbao nyembamba (kati ya mbao pana)"
+    }
+  ],
+  "tools": [
+    "Msumeno wa umeme (wa meza au wa mkono)",
+    "Bisibisi ya umeme ya kugonga (impact driver) kwa skrubu za mbao za nje zinazojitoboa",
+    "Skwea ya seremala",
+    "Miwani ya kinga + barakoa"
+  ],
+  "steps": [
+    {
+      "title": "Weka alama, andika majina na ukate mbao",
+      "text": "Weka alama, andika majina na ukate mbao kwa urefu ulio kwenye orodha ya vipande vya kukata: vishikizo vya pembeni A-1, vishikizo vya nyuma A-2, kishikizo cha mbele A-3, rafu za meza A-4, miguu ya meza A-5, mbao pana za juu B-1 na mbao nyembamba za juu B-2.",
+      "imageAlts": [
+        "Mchoro wa pembe tatu wa vipande saba vilivyokatwa vya meza ya kazi, A-1 hadi A-5 na B-1, B-2, vikiwa na urefu wake."
+      ],
+      "tips": [
+        "Inasaidia kuandika herufi za vipande kwenye kila kipande cha mbao unapokiwekea alama, ili uweze kuhakikisha una kila kipande.",
+        "Weka rundo tofauti la mbao kwa kila herufi."
+      ]
+    },
+    {
+      "title": "Jenga fremu kuu",
+      "text": "Weka 2\"x4\"x20\" moja (A-1) juu ya sehemu iliyo sawa. Kwa pembe mraba kutoka ukingo wake mrefu, pima 41\" na uweke 2\"x4\"x20\" ya pili (A-1). Weka 2\"x4\"x41\" moja (A-2) kati ya ukingo wa nyuma wa vipande vyote viwili vya A-1, na ufunge kwa bisibisi ya kugonga na skrubu nne za mbao za nje zinazojitoboa za 3\".\n\nWeka 2\"x4\"x44\" moja (A-3) mbele ya vipande viwili vya A-1 — itatokeza nje kidogo — na ufunge kwa skrubu nyingine nne za 3\".",
+      "imageAlts": [
+        "Mchoro wa vishikizo viwili vya pembeni vya A-1 vilivyounganishwa kwa kishikizo cha nyuma cha A-2 na kishikizo cha mbele cha A-3 kuwa fremu ya mstatili."
+      ],
+      "tips": [
+        "Tumia skwea ya seremala kuhakikisha fremu ni mraba kabla ya kufunga vishikizo vya nyuma na vya mbele."
+      ]
+    },
+    {
+      "title": "Simamisha miguu",
+      "text": "Weka mguu mmoja wa 4\"x4\"x34\" (A-5) kwenye kila pembe nne za fremu ya meza ya kusimama iliyojengwa katika hatua ya 2.\n\nFunga miguu kwa bisibisi ya kugonga na skrubu kumi na sita za mbao za nje zinazojitoboa za 3\" — mbele, nyuma, kushoto na kulia kwa kila mguu.",
+      "imageAlts": [
+        "Mchoro wa miguu minne ya A-5 ikifungwa kwa skrubu kwenye pembe za fremu kutoka mbele, nyuma na pande zote mbili."
+      ],
+      "tips": [
+        "Tumia skwea ya seremala kuhakikisha kila mguu uko mraba dhidi ya fremu kabla ya kuufunga."
+      ]
+    },
+    {
+      "title": "Jenga vipande vingine vitano vya fremu na uweke cha kwanza",
+      "text": "Jenga vipande vingine vitano vya fremu kwa njia ileile kama hatua ya 2 — kishikizo kimoja cha nyuma cha A-2 kati ya vishikizo viwili vya pembeni vya A-1, kila kimoja kikifungwa kwa skrubu nne za 3\" (hivi havipati kishikizo cha mbele).\n\nWeka kimoja cha vipande hivi vya fremu chini ya fremu ya meza ya kusimama, 2\" juu ya ardhi, na ukifunge kwa bisibisi ya kugonga na skrubu kumi na mbili za mbao za nje zinazojitoboa za 3\".",
+      "imageAlts": [
+        "Mchoro wa kipande cha pili cha fremu, kisicho na kishikizo cha mbele, kikifungwa kwa skrubu kwenye miguu karibu na ardhi."
+      ],
+      "tips": [
+        "Tumia kipande kilichobaki cha 2x4 kama kitenganishi unapoweka kila fremu ya kushikilia rafu dhidi ya miguu."
+      ]
+    },
+    {
+      "title": "Ongeza rafu ya kwanza",
+      "text": "Weka kimoja cha vipande vya fremu vilivyobaki 2\" juu ya kile ulichoweka katika hatua iliyotangulia, na ukifunge kwa bisibisi ya kugonga na skrubu kumi na mbili za mbao za nje zinazojitoboa za 3\".\n\nWeka mbao mbili za 1\"x6\"x48\" (A-4) kando kwa kando juu ya fremu iliyofungwa, na uzifunge kwa bisibisi ya kugonga na skrubu nane za mbao za nje zinazojitoboa za 3\".",
+      "imageAlts": [
+        "Mchoro wa kipande kingine cha fremu kilichowekwa 2\" juu ya kile kilichotangulia, na mbao mbili za rafu za A-4 zikifungwa kwa skrubu juu yake."
+      ]
+    },
+    {
+      "title": "Ongeza rafu ya pili na ya tatu",
+      "text": "Weka kipande kingine cha fremu 2\" juu ya kile kilichotangulia na ukifunge kwa skrubu kumi na mbili za 3\". Weka mbao nyingine mbili za A-4 juu yake na uzifunge kwa skrubu nane za 3\" — hiyo ni rafu ya pili.\n\nRudia mara moja zaidi kwa rafu ya tatu: kipande kingine cha fremu, skrubu kumi na mbili, mbao nyingine mbili za A-4, skrubu nane.\n\nMwishowe, weka kipande cha mwisho cha fremu 2\" juu ya rafu ya mwisho na ukifunge kwa skrubu kumi na mbili za mbao za nje zinazojitoboa za 3\" — hiki kinashikilia sehemu ya juu ya meza na hakipati mbao zake za rafu.",
+      "imageAlts": [
+        "Mchoro unaoonyesha ngazi mbili zaidi za rafu zikiongezwa juu ya ile ya kwanza, kila moja ikijengwa kwa njia ileile, na kipande cha mwisho cha fremu kisicho na rafu juu kabisa."
+      ]
+    },
+    {
+      "title": "Weka sehemu ya juu ya meza",
+      "text": "Weka ubao mmoja wa 2\"x6\"x48\" (B-1) katikati ya meza ya kusimama, ukitokeza nje 2\" upande wa kushoto na wa kulia, na uufunge kwa bisibisi ya kugonga na skrubu nne za mbao za nje zinazojitoboa za 3\".\n\nWeka ubao mmoja wa 2\"x4\"x48\" (B-2) kila upande wa ubao wa katikati na uufunge kwa skrubu nyingine nne za 3\".\n\nWeka ubao mwingine mmoja wa 2\"x6\"x48\" (B-1) kila upande wa vipande vya B-2 na uufunge kwa skrubu nyingine nne za 3\", ili kukamilisha sehemu ya juu ya mbao tano.",
+      "imageAlts": [
+        "Mchoro wa sehemu ya juu ya meza ya mbao tano ikiunganishwa: ubao mpana wa B-1 katikati, mbao nyembamba za B-2 kila upande, na mbao pana za B-1 kwenye kingo za nje."
+      ]
+    }
+  ],
+  "finishing": "Kingo na nyuso zote zinapaswa kusuguliwa kidogo ili kuondoa vibanzi au kingo ngumu.\n\nMwerezi (cedar): hauhitaji kupakwa chochote — utabadilika kuwa kijivu hafifu kwa hali ya hewa. Kama unataka kubakiza rangi uliyoiweka, tumia rangi ya mbao isiyo na rangi inayopenya ndani ya mbao, ya maji (water-based alkyd stain), au paka rangi kwa mfumo wa primer/rangi/dawa ya kuziba.\n\nMbao zilizotiwa dawa kwa shinikizo (pressure-treated): hazihitaji kupakwa chochote. Kama unataka rangi, ziache zikauke hewani kwa miezi kadhaa hadi maji yasiweze tena kukaa kama matone juu yake; zisugue ukiwa umevaa barakoa ili usivute vumbi la mbao zilizotiwa dawa. Tumia primer ya nje + rangi na uzibe kwa spar urethane ya maji.\n\nFir au msonobari uliokaushwa kwenye tanuru (kiln-dried): unahitaji rangi ya mbao yenye dawa ya kuziba, au mfumo wa primer/rangi/dawa ya kuziba, ili usiharibike haraka kwa hali ya hewa. Unaweza pia kupakwa rangi kufuata hatua za mbao zilizotiwa dawa kwa shinikizo zilizo hapo juu.",
+  "safety": [
+    "Haya ni mapendekezo ya kujifanyia mwenyewe tu — rekebisha vifaa, uunganishaji na ujenzi ili viendane na mradi wako na eneo lako.",
+    "Kujenga kitu hiki kunadhani una ujuzi fulani wa kutumia zana za mkono na za umeme, vyuma vidogo, vifungio, mbao na mbinu za msingi za kuunganisha.",
+    "Kabla ya kutumia mashine yoyote ya umeme, pitia na ufuate masharti ya usalama ya mtengenezaji, na usimruhusu mtu yeyote kutumia zana za umeme kama hajafanya hivyo pia.",
+    "Wewe (mmiliki) unawajibika kwa kanuni zozote za ujenzi na usalama, vibali na idhini za mamlaka ambazo kazi hii inahitaji.",
+    "Kwanza safisha eneo kwa kuondoa takataka, hatari na vitu visivyotakiwa vilivyojengwa, na utambue huduma zozote za chini ya ardhi (mabomba, nyaya) zinazoweza kuingilia kabla ya kuchimba.",
+    "Kila mtu anayesaidia kujenga anapaswa kusaini fomu ya msamaha wa dhima kwa watu wa kujitolea."
+  ],
+  "sourcePages": "Maelekezo ya kuunganisha WORKBENCH/STANDING TABLE (yamepatikana ndani ya viungo vya ukurasa wa 19 wa kitabu cha kazi cha Ota ndoto), uk. 1–11 (jalada; kabla ya kuanza; mbao + vyuma vidogo + zana; hatua 1–6; umaliziaji + upakaji)"
+}

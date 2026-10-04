@@ -1,0 +1,168 @@
+{
+  "title": "Paa la kivuli la 8'",
+  "summary": "Kiunzi cha mbao za 2x4 kinachojisimamia chenye ukubwa wa futi 8x8x8 na paa la mbao za vipande, kinachofungwa ardhini (au kwenye kitalu cha kupanda) kwa mabano ya L na ndoano za J, au kufungwa kwa boliti kwenye benchi ya gabioni iliyo kando yake.",
+  "materials": [
+    {
+      "item": "Mbao za 2x4 — mwerezi mwekundu wa magharibi (western red cedar) au Douglas fir",
+      "notes": "Mwerezi (cedar): kwa asili hustahimili hali ya hewa na kuoza, una rangi nzuri nyekundu, hauhitaji dawa ya kuziba; ni ghali zaidi — omba daraja la 'knotty' (STK). Fir: hustahimili kuoza kwa kiasi, ni imara, ni nafuu kuliko mwerezi; ni mzuri kama unapanga kupaka rangi. Mbao bado zinaweza kupasuka kwa sababu ya jua. Agiza mbao asilimia 5–10 zaidi ya orodha ya vipande vya kukata, ili kukabiliana na ubora usio sawa wa mbao na mikato isiyo sahihi."
+    },
+    {
+      "item": "Matofali ya zege ya kukalisha nguzo (deck blocks)",
+      "notes": "Pale tu yanapohitajika — angalia hatua ya 8. Yatumie mahali nguzo inapoangukia kwenye kitalu cha kupanda, ili nguzo ikae juu ya udongo na ibaki imara huku ikipunguza kuoza. Chimbia matofali inavyohitajika ili nguzo zote ziwe sawa kimo."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Skrubu za mbao za nje zinazojitoboa"
+    },
+    {
+      "item": "Mabano ya L"
+    },
+    {
+      "item": "Skrubu kubwa (lag screws)"
+    },
+    {
+      "item": "Ndoano za J"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Mguu (mrefu), kishikizo cha pembeni, kishikizo cha juu, na mbao za paa",
+      "siteNote": "Orodha ya vipande vya kukata ya mwongozo inasema 14, lakini hatua zinatumia 32: miguu 4, mihimili 2 ya juu, vishikizo 4, mihimili 2 ya kukingama, vishikizo 4 virefu, kishikizo 1 cha juu na mbao 15 za paa. 2x4x8 47 zilizo kwenye orodha ya vifaa zinatosha zote hizi pamoja na SS-2 hadi SS-4."
+    },
+    {
+      "notes": "Mguu (mfupi)"
+    },
+    {
+      "notes": "Kishikizo cha ndani, upande B — kikatwe kwa ukubwa wake wa mwisho kwenye eneo kwa kukipima dhidi ya fremu iliyojengwa"
+    },
+    {
+      "notes": "Kishikizo cha ndani, upande A — ni makadirio tu; usikikate kwa urefu wa mwisho hadi umepima fremu katika hatua ya 5"
+    }
+  ],
+  "tools": [
+    "Msumeno wa pembe (miter saw) wa 10\" au 12\" (au msumeno wa mkono unaofaa)",
+    "Bisibisi ya umeme ya kugonga (impact driver) kwa skrubu za mbao za nje zinazojitoboa",
+    "Drili yenye kitobo cha 1/8\" kwa kutoboa matundu mapema",
+    "Nyundo ya pauni 5, kwa ndoano za J",
+    "Sandpaper (karatasi ya kusugua), grit 120",
+    "Skwea ya seremala",
+    "Miwani ya kinga + glavu",
+    "Ngazi ya futi 6",
+    "Vibano 2 vya mbao (si lazima)"
+  ],
+  "steps": [
+    {
+      "title": "Weka alama, andika majina na ukate mbao",
+      "text": "Weka alama, andika majina na ukate mbao kwa mpangilio wa SS-1 hadi SS-4 kwa urefu ulio kwenye orodha ya vipande vya kukata. SS-3 na SS-4 zinakatwa kwa urefu wa kukadiria hapa na kupunguzwa hadi ukubwa wake kamili wa mwisho kwenye eneo katika hatua ya 5 — usizipunguze zaidi hadi wakati huo.\n\nKagua kila kipande cha mbao kuona kasoro kama nyufa, kupinda au kurandwa vibaya, na utupe sehemu hizo za mbao.",
+      "imageAlts": [
+        "Mchoro wa pembe tatu wa vipande vinne vilivyokatwa vya paa la kivuli, SS-1 hadi SS-4, vikiwa na urefu wake, kuanzia ubao wa 96\" hadi vishikizo vya ndani vya takriban 87\"."
+      ],
+      "tips": [
+        "Andika jina la kila kipande cha mbao unapokipima na kukikata.",
+        "Weka rundo tofauti la mbao kwa SS-1 hadi SS-4.",
+        "Kusugua kidogo kingo zilizokatwa kunaondoa vibanzi na kunasaidia kuunganisha.",
+        "Unajenga paa la kivuli zaidi ya moja? Kizuizi (stop block) kwenye msumeno wako wa pembe kinafanya kila kipande kiwe na urefu uleule."
+      ]
+    },
+    {
+      "title": "Jenga miguu minne na uiunganishe kuwa jozi mbili",
+      "text": "Weka SS-2 moja juu ya SS-1 moja, ukilinganisha upande mmoja sawasawa (flush) na kuacha nafasi ya 3.5\" upande mwingine. Huu unakuwa mguu wa kwanza wa kiunzi.\n\nTumia kiolezo cha kutoboa mapema kilicho mwishoni mwa kijitabu kutoboa matundu ya skrubu mapema, kisha funga vipande viwili kwa skrubu 2 kwenye mwisho mmoja, 2 kwenye mwisho mwingine, 2 katikati, na 2 zaidi kwa nafasi sawa kati ya mwisho na katikati — skrubu 10 kwa kila mguu.\n\nRudia mara 3 zaidi, kwa vipande vingine 3 vya SS-2 na SS-1 na skrubu nyingine 30, ili kujenga miguu yote minne.\n\nKuunganisha miguu kuwa jozi: funga SS-1 moja juu ya miguu miwili, ikiingia kwenye nafasi ya 3.5\", kwa skrubu 8 (4 kwa kila mguu). Rudia kwa miguu mingine miwili.",
+      "imageAlts": [
+        "Mchoro wa ubao wa SS-2 na wa SS-1 vilivyopangwa juu ya kingine na nafasi ya 3.5\" ili kuunda mguu mmoja wa kiunzi, na kipande cha juu cha SS-1 kikiunganisha miguu miwili kuwa jozi."
+      ],
+      "tips": [
+        "Hatua mbili za kwanza zinaweza kufanywa kwenye ardhi iliyo sawa kabla ya kusimamisha chochote.",
+        "Hakikisha kila upande unabaki kwenye nyuzi 90 kwa skwea ya seremala."
+      ]
+    },
+    {
+      "title": "Ongeza vishikizo vya chini vya pembeni na usimamishe miguu",
+      "text": "Pindua jozi za miguu. Ukitumia SS-1 mbili upande mmoja wa kiunzi, ongeza vishikizo, ukitumia kipande cha ziada cha 2x4 kuweka nafasi sawa ya 3.5\" kati ya kishikizo cha juu cha mguu na vishikizo vipya vilivyo chini yake — skrubu 4 kwa kila kishikizo, skrubu 8 kwa jumla kwa upande huu.\n\nRudia kwenye jozi nyingine ya miguu kwa SS-1 nyingine mbili na skrubu nyingine 8.\n\nSimamisha miguu.",
+      "imageAlts": [
+        "Mchoro wa vishikizo vya pembeni vya SS-1 vikiongezwa chini ya kipande cha juu cha kukingama kwenye kila jozi ya miguu, vikiwa na nafasi ya kitenganishi ya 3.5\", kisha jozi za miguu zikisimamishwa wima."
+      ],
+      "tips": [
+        "Hakikisha kila upande unabaki kwenye nyuzi 90 kwa skwea ya seremala."
+      ]
+    },
+    {
+      "title": "Ongeza mihimili ya juu ya kukingama na vishikizo virefu",
+      "text": "Miguu ikiwa imesimama, unganisha jozi mbili za miguu kwa mihimili miwili ya juu ya kukingama ya SS-1, ukihakikisha pande zote ziko kwenye nyuzi 90, na ufunge kila pembe kwa skrubu 4 (skrubu 8 kwa hatua hii).\n\nOngeza vishikizo virefu kando ya upande mmoja ukitumia SS-1 mbili, tena ukitumia kipande cha ziada cha 2x4 kupata nafasi sawa ya 3.5\" chini ya mhimili wa juu wa kukingama (skrubu 4 kwa kila kishikizo). Rudia upande mwingine.",
+      "imageAlts": [
+        "Mchoro wa mihimili ya juu ya kukingama ya SS-1 ikiunganisha jozi mbili za miguu juu, na vishikizo virefu vya SS-1 vikipita kando ya pande chini yake."
+      ],
+      "tips": [
+        "Hatua zilizobaki zinahitaji ngazi ili kufikia juu ya fremu.",
+        "Hakikisha kila upande unabaki kwenye nyuzi 90 kwa skwea ya seremala."
+      ]
+    },
+    {
+      "title": "Pima na ufunge vishikizo vya ndani",
+      "text": "Pima umbali kati ya nguzo zako mbili mahali kila kishikizo cha ndani cha SS-4 kinapotakiwa kukaa, kata kipande cha SS-4 kwa ukubwa huo hasa ili kitoshee vizuri, na ukifunge kwenye kipande cha SS-1 kilicho nyuma yake. Rudia kwa vipande vyote 4 vya vishikizo vya ndani vya upande mrefu, ukifunga kila kimoja kwa skrubu 8 za 2.5\" zilizowekwa jozi jozi kwa nafasi sawa (skrubu 32 kwa jumla).\n\nFanya hivyo hivyo kwa vishikizo vya ndani vya SS-3 vya pande fupi: pima, kata kila kimoja kitoshee vizuri, kifunge kwenye kipande cha SS-1 kilicho nyuma yake, kwa vipande 4 vya vishikizo vya ndani vya upande mfupi na skrubu nyingine 32.",
+      "imageAlts": [
+        "Mchoro unaoonyesha vishikizo vya ndani vya SS-4 na SS-3 vikipimwa na kukatwa ili vitoshee vizuri kati ya nguzo, kisha vikifungwa kwa skrubu jozi jozi kwa nafasi sawa."
+      ],
+      "tips": [
+        "Tumia vibano kushikilia mbao mahali pake wakati unaifunga."
+      ]
+    },
+    {
+      "title": "Ongeza vishikizo vya juu",
+      "text": "Tumia kipande kimoja cha SS-1 kuunda kishikizo cha juu, kikiwa katikati ya fremu kwa nafasi sawa.\n\nKifunge kwa skrubu 4 za mbao za nje zinazojitoboa.",
+      "imageAlts": [
+        "Mchoro wa kishikizo kimoja cha juu cha SS-1 kilichowekwa katikati ya fremu."
+      ],
+      "tips": [
+        "Tumia vibano kushikilia mbao mahali pake wakati unaifunga."
+      ]
+    },
+    {
+      "title": "Jenga paa na usugue",
+      "text": "Tumia vipande vya SS-1 kwa paa. Ukitumia kipande cha ziada cha 2x4 kama kitenganishi, funga kila ubao wa paa wa SS-1 kutoka upande mmoja wa fremu hadi mwingine (kulia kwenda kushoto).\n\nFunga mbao kwa bisibisi ya kugonga na skrubu 75 za mbao za nje zinazojitoboa za 2.5\", kisha funga vipande vya paa vya SS-1 vilivyobaki kwa skrubu nyingine 70.\n\nLinganisha kipande cha mwisho na fremu ili kisitokeze nje — ni sawa kama kipande cha mwisho kitakuwa chembamba kuliko 3.5\" ikihitajika ili kitoshee.\n\nSugua kidogo kingo zilizo ngumu za paa la kivuli.",
+      "imageAlts": [
+        "Mchoro wa mbao za paa za SS-1 zikipangwa kando kwa kando juu ya fremu kwa kitenganishi cha 2x4, na kufungwa kwa skrubu kutoka upande mmoja hadi mwingine."
+      ]
+    },
+    {
+      "title": "Funga nguzo ardhini",
+      "text": "Weka bano la L upande wa ndani wa kila nguzo na ulifunge kwa skrubu kubwa ya 1/2\" x 2\".\n\nPitisha ndoano ya J ya 18\" kwenye tundu la chini la kila bano la L na uipigilie ardhini kwa nyundo ya pauni 5.",
+      "imageAlts": [
+        "Mchoro wa bano la L na ndoano ya J vikifunga chini ya nguzo ya kiunzi ardhini, pamoja na chaguo la tofali la zege la kukalisha nguzo kwa vitalu vya kupanda."
+      ],
+      "tips": [
+        "Kama paa la kivuli liko kando ya benchi ya gabioni yenye kiti cha mbao, ni bora kutumia mabano ya L na skrubu kubwa kufunga miguu ya kiunzi moja kwa moja kwenye benchi badala yake.",
+        "Kama nguzo inaangukia kwenye kitalu cha kupanda, iweke juu ya tofali la zege la kukalisha nguzo juu ya udongo ili iwe imara na kupunguza kuoza kwa mbao — chimbia tofali ili liwe sawa kimo na nguzo nyingine."
+      ]
+    },
+    {
+      "title": "Kiolezo cha kutoboa matundu mapema",
+      "text": "Kata kiolezo cha kutoboa matundu mapema kufuata mistari ya nukta. Unapotoboa, linganisha ukingo wa kiolezo na ukingo wa nje wa mbao kabla ya kutoboa.\n\nSi matundu yote yanatumika — si mipangilio yote inayotumia kiolezo. Tumia hatua za kuunganisha zilizo hapo juu kama mwongozo wako wa matundu. Weka matundu yote umbali wa upana wa kidole gumba hivi kutoka ukingoni (takriban 1\"), hata matundu yasiyotumia kiolezo hiki.",
+      "imageAlts": [
+        "Kiolezo cha kuchapisha cha kutoboa matundu mapema chenye nafasi tano za matundu zilizowekwa alama na mistari ya kukata, pamoja na picha ya karibu inayoonyesha umbali wa matundu kutoka ukingo wa ubao."
+      ]
+    }
+  ],
+  "finishing": "Kupaka mbao dawa ya nje kunaweza kurefusha maisha ya vitu vya bustani yako, lakini si lazima — vitu hivi vimebuniwa kwa makusudi viwe vya gharama ndogo, vya kudumu na rahisi kujenga, kwa hiyo huenda ikawa rahisi zaidi kuacha kizazi kijacho vivijenge upya wakati wake ukifika. Kama unataka kupaka rangi ya mbao, rangi au dawa ya kuziba mbao, angalia viungo vya umaliziaji hapa chini.",
+  "safety": [
+    "Haya ni mapendekezo ya kujifanyia mwenyewe tu — rekebisha vifaa, uunganishaji na ujenzi ili viendane na mradi wako na eneo lako.",
+    "Kujenga kitu hiki kunadhani una ujuzi fulani wa kutumia zana za mkono na za umeme, vyuma vidogo, vifungio, mbao na mbinu za msingi za kuunganisha.",
+    "Kabla ya kutumia mashine yoyote ya umeme, pitia na ufuate masharti ya usalama ya mtengenezaji, na usimruhusu mtu yeyote kutumia zana za umeme kama hajafanya hivyo pia.",
+    "Wewe (mmiliki) unawajibika kwa kanuni zozote za ujenzi na usalama, vibali na idhini za mamlaka ambazo kazi hii inahitaji.",
+    "Kwanza safisha eneo kwa kuondoa takataka, hatari na vitu visivyotakiwa vilivyojengwa, na utambue huduma zozote za chini ya ardhi (mabomba, nyaya) zinazoweza kuingilia kabla ya kuchimba.",
+    "Kila mtu anayesaidia kujenga anapaswa kusaini fomu ya msamaha wa dhima kwa watu wa kujitolea.",
+    "Hiki ni kitu chenye kimo cha futi 8 kinachojengwa juu kwa kutumia ngazi — mwombe msaidizi ashikilie fremu na ngazi imara wakati unafanya kazi juu."
+  ],
+  "links": [
+    {
+      "label": "Kuchagua umaliziaji bora kwa kazi za nje (Rockler, kwa Kiingereza)"
+    },
+    {
+      "label": "Umaliziaji bora kwa mbao za nje (Real Milk Paint, kwa Kiingereza)"
+    },
+    {
+      "label": "Rangi na dawa za mbao za nje (Vermont Natural Coatings, kwa Kiingereza)"
+    }
+  ],
+  "sourcePages": "Maelekezo ya SHADE_Assembly, uk. 1–12 (jalada; kabla ya kuanza; mbao zinazochaguliwa mara nyingi; hatua 1–7; kufunga ardhini; kiolezo cha kutoboa matundu mapema)"
+}
