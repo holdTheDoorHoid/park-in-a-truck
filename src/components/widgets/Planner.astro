@@ -7,6 +7,7 @@
 import PlannerApp from '../planner/PlannerApp';
 import LangFallback from '../site/LangFallback.astro';
 import plannerMsgs from '../../i18n/messages/en/planner.ts';
+import { getT } from '../../i18n/astro.ts';
 
 interface Props {
   mode?: 'design' | 'site' | 'full' | 'sun';
@@ -15,18 +16,16 @@ interface Props {
   [key: string]: unknown;
 }
 const { mode = 'design', demo } = Astro.props;
-const label =
-  mode === 'site'
-    ? 'Your lot in 3D: mark what is already there and see its sun and shade'
-    : 'The 3D park planner: Park in a Truck pieces fitted to your real lot';
+const t = getT(Astro, plannerMsgs);
+const label = t(mode === 'site' ? 'widget.siteLabel' : 'widget.designLabel');
 ---
 <section class="planner-widget no-print" aria-label={label}>
   <LangFallback area={plannerMsgs}>
     <PlannerApp client:only="preact" mode={mode} demo={demo}>
-      <div slot="fallback" class="widget-placeholder">Loading the 3D planner…</div>
+      <div slot="fallback" class="widget-placeholder">{t('widget.loading')}</div>
     </PlannerApp>
   </LangFallback>
   <noscript>
-    <p class="widget-placeholder">The 3D planner needs JavaScript. Everything else in this workbook works without it.</p>
+    <p class="widget-placeholder">{t('widget.noscript')}</p>
   </noscript>
 </section>

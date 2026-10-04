@@ -7,11 +7,19 @@ import { THEMES, THEME_ORDER } from '../../data/themes';
 import { parkDims, setLotKind, setSize, setThemes } from '../../lib/planner/design';
 import { getExtra } from '../../lib/project';
 import type { SiteFacts } from '../../lib/types';
+import { localizeRecord } from '../../i18n/data';
+import { pt, type PlannerKey } from '../../lib/planner/words';
 
-const PIECES: { key: 'frame' | 'front' | 'back'; label: string; hint: string }[] = [
-  { key: 'frame', label: 'Frame', hint: 'the planted border around the edge' },
-  { key: 'front', label: 'Front', hint: 'the part by the entrance' },
-  { key: 'back', label: 'Back', hint: 'the far end' },
+const PIECES: { key: 'frame' | 'front' | 'back'; label: PlannerKey; hint: PlannerKey }[] = [
+  { key: 'frame', label: 'size.frame', hint: 'size.frameHint' },
+  { key: 'front', label: 'size.front', hint: 'size.frontHint' },
+  { key: 'back', label: 'size.back', hint: 'size.backHint' },
+];
+
+const KINDS: [LotKind, PlannerKey][] = [
+  ['interior', 'size.kindMid'],
+  ['corner-left', 'size.kindLeft'],
+  ['corner-right', 'size.kindRight'],
 ];
 
 export function SizePanel({ store }: { store: PlannerStore }) {
@@ -20,25 +28,28 @@ export function SizePanel({ store }: { store: PlannerStore }) {
   const set = useStore(store.$set);
   const fitArea = useStore(store.$fit);
   if (!site || !d) return null;
+  const t = pt();
+  // theme names and blurbs in the page's language (the theme ids stay as they are)
+  const themes = localizeRecord(THEMES, 'themes', t.locale);
   // the largest rectangle that fits inside the lot (build-lead A6)
   const stretch = parkDims(true, { lengthFt: 0, widthFt: 0 }, fitArea ?? site.frame);
   const facts = store.$demo.get() ? undefined : getExtra<SiteFacts>('site');
   const fit = fitSize(site.frame.lengthFt, site.frame.widthFt);
   const one = d.frame === d.front && d.front === d.back ? d.frame : null;
   const pickTheme = (patch: Partial<Record<'frame' | 'front' | 'back', ThemeId>>) => store.commit(setThemes(d, patch));
+  const cur = SIZES.find((s) => s.id === d.size)!;
+  const lotDims = { length: Math.round(site.frame.lengthFt), width: Math.round(site.frame.widthFt), size: fit.size };
 
   return (
     <section class="pl-section">
-      <h3 class="pl-h">Park size</h3>
-      <p class="pl-small">
-        Park in a Truck's pieces come in five sizes. Your lot is about {Math.round(site.frame.lengthFt)} × {Math.round(site.frame.widthFt)} ft,
-        which fits <strong>size {fit.size}</strong>
-        {fit.tooSmall ? ' — it is smaller than size A, so the Park Patch workbook may suit it better' : ''}
-        {fit.tooBig ? ' — it is bigger than size E, so use E and add more, or make two parks' : ''}.
-      </p>
-      <div class="pl-chips" role="radiogroup" aria-label="Park size">
+      <h3 class="pl-h">{t('size.title')}</h3>
+      <p
+        class="pl-small"
+        dangerouslySetInnerHTML={{ __html: t.html(fit.tooSmall ? 'size.introTooSmall' : fit.tooBig ? 'size.introTooBig' : 'size.intro', lotDims) }}
+      />
+      <div class="pl-chips" role="radiogroup" aria-label={t('size.title')}>
         <button type="button" role="radio" aria-checked={Boolean(d.sizeAuto)} class="pl-chip" onClick={() => store.commit(setSize(d, 'auto', site, facts))}>
-          Fit my lot ({fit.size})
+          {t('size.fitMine', { size: fit.size })}
         </button>
         {SIZES.map((s) => (
           <button
@@ -46,7 +57,7 @@ export function SizePanel({ store }: { store: PlannerStore }) {
             role="radio"
             aria-checked={!d.sizeAuto && d.size === s.id}
             class="pl-chip"
-            title={`${s.long[0]}–${s.long[1]} ft long, ${s.short[0]}–${s.short[1]} ft wide`}
+            title={t('size.range', { longMin: s.long[0], longMax: s.long[1], shortMin: s.short[0], shortMax: s.short[1] })}
             onClick={() => store.commit(setSize(d, s.id as SizeId, site, facts))}
           >
             {s.id}
@@ -54,31 +65,28 @@ export function SizePanel({ store }: { store: PlannerStore }) {
         ))}
       </div>
       <p class="pl-small muted">
-        Size {d.size}: lots {SIZES.find((s) => s.id === d.size)!.long.join('–')} ft long and {SIZES.find((s) => s.id === d.size)!.short.join('–')} ft
-        wide.
+        {t('size.note', { size: d.size, longMin: cur.long[0], longMax: cur.long[1], shortMin: cur.short[0], shortMax: cur.short[1] })}
       </p>
 
       <fieldset class="pl-fieldset">
-        <legend>Stretch to the lot?</legend>
+        <legend>{t('size.stretchLegend')}</legend>
         <label class="pl-radio">
           <input type="radio" name="pl-fit" checked={d.fitToLot !== false} onChange={() => store.commit({ ...d, fitToLot: true, updatedAt: new Date().toISOString() })} />
-          Stretch the pieces to fill my lot ({stretch.lengthFt} × {stretch.widthFt} ft — like adding the seams)
+          {t('size.stretch', { length: stretch.lengthFt, width: stretch.widthFt })}
         </label>
         <label class="pl-radio">
           <input type="radio" name="pl-fit" checked={d.fitToLot === false} onChange={() => store.commit({ ...d, fitToLot: false, updatedAt: new Date().toISOString() })} />
-          Keep the printed size{set ? ` (${set.nominal.lengthFt} × ${set.nominal.widthFt} ft)` : ''}
+          {set ? t('size.keepWith', { length: set.nominal.lengthFt, width: set.nominal.widthFt }) : t('size.keep')}
         </label>
       </fieldset>
 
       <fieldset class="pl-fieldset">
-        <legend>Kind of lot</legend>
+        <legend>{t('lot.kind')}</legend>
         {(
-          [
-            ['auto', `As found on the map (${site.frame.lotKind === 'interior' ? 'mid-block' : 'corner'})`],
-            ['interior', 'Mid-block'],
-            ['corner-left', 'Corner — side street on the left'],
-            ['corner-right', 'Corner — side street on the right'],
-          ] as [LotKind | 'auto', string][]
+          [['auto', t(site.frame.lotKind === 'interior' ? 'size.kindAutoMid' : 'size.kindAutoCorner')], ...KINDS.map(([k, key]) => [k, t(key)])] as [
+            LotKind | 'auto',
+            string,
+          ][]
         ).map(([k, label]) => (
           <label class="pl-radio">
             <input
@@ -92,39 +100,39 @@ export function SizePanel({ store }: { store: PlannerStore }) {
         ))}
       </fieldset>
 
-      <h3 class="pl-h">Themes</h3>
-      <p class="pl-small">Use one theme for everything, or mix and match the frame, front and back.</p>
-      <div class="pl-onetheme" role="group" aria-label="One theme for everything">
-        {THEME_ORDER.map((t) => (
+      <h3 class="pl-h">{t('size.themes')}</h3>
+      <p class="pl-small">{t('size.themesHelp')}</p>
+      <div class="pl-onetheme" role="group" aria-label={t('size.oneTheme')}>
+        {THEME_ORDER.map((th) => (
           <button
             type="button"
             class="pl-theme-btn"
-            aria-pressed={one === t}
-            style={{ '--c1': THEMES[t].frame, '--c2': THEMES[t].front, '--c3': THEMES[t].back }}
-            onClick={() => pickTheme({ frame: t, front: t, back: t })}
+            aria-pressed={one === th}
+            style={{ '--c1': THEMES[th].frame, '--c2': THEMES[th].front, '--c3': THEMES[th].back }}
+            onClick={() => pickTheme({ frame: th, front: th, back: th })}
           >
             <span class="pl-swatch" aria-hidden="true" />
-            {THEMES[t].name}
+            {themes[th].name}
           </button>
         ))}
       </div>
       {PIECES.map((p) => (
         <fieldset class="pl-fieldset pl-piece">
           <legend>
-            {p.label} <span class="muted">— {p.hint}</span>
+            {t(p.label)} <span class="muted">{t(p.hint)}</span>
           </legend>
           <div class="pl-chips">
-            {THEME_ORDER.map((t) => (
-              <label class="pl-theme-chip" style={{ '--c': THEMES[t][p.key] }}>
-                <input type="radio" name={`pl-theme-${p.key}`} checked={d[p.key] === t} onChange={() => pickTheme({ [p.key]: t })} />
+            {THEME_ORDER.map((th) => (
+              <label class="pl-theme-chip" style={{ '--c': THEMES[th][p.key] }}>
+                <input type="radio" name={`pl-theme-${p.key}`} checked={d[p.key] === th} onChange={() => pickTheme({ [p.key]: th })} />
                 <span class="pl-dot" aria-hidden="true" />
-                {THEMES[t].name}
+                {themes[th].name}
               </label>
             ))}
           </div>
         </fieldset>
       ))}
-      <p class="pl-small muted">{THEMES[d.front].blurb}</p>
+      <p class="pl-small muted">{themes[d.front].blurb}</p>
     </section>
   );
 }

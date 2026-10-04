@@ -2,17 +2,19 @@
 import { useStore } from '@nanostores/preact';
 import type { PlannerStore } from '../../lib/planner/store';
 import type { ExistingItem } from '../../lib/types';
-import { EXISTING, existingMeta } from '../../lib/planner/catalog';
+import { existingList, existingMeta } from '../../lib/planner/catalog';
 import { addExisting, deleteExisting, treesKept, updateExisting } from '../../lib/planner/design';
 import { siteToLocal } from '../../lib/planner/rect';
 import { rotateSelected } from './keyboard';
 import { SlopeCard } from './SlopeCard';
 import { TreeHabitChoice } from './TreeHabitChoice';
+import { isolate, pt } from '../../lib/planner/words';
 
-function label(e: ExistingItem) {
-  const m = existingMeta(e.element);
-  if (e.element === 'existing-tree' && e.species) return `${e.species}${e.dbhIn ? ` (${e.dbhIn}" trunk)` : ''}`;
-  return m.name;
+/** A City tree by its species (as the City lists it) and trunk width; anything else by what it is. */
+function label(e: Pick<ExistingItem, 'element' | 'species' | 'dbhIn'>): string {
+  const t = pt();
+  if (e.element === 'existing-tree' && e.species) return e.dbhIn ? t('existing.treeSpecies', { species: isolate(e.species, t), dbh: e.dbhIn }) : isolate(e.species, t);
+  return existingMeta(e.element).name;
 }
 
 export function ExistingPanel({ store, compact = false }: { store: PlannerStore; compact?: boolean }) {
@@ -21,9 +23,10 @@ export function ExistingPanel({ store, compact = false }: { store: PlannerStore;
   const sel = useStore(store.$selection);
   const drawing = useStore(store.$drawing);
   if (!site || !d) return null;
+  const t = pt();
   const items = d.existing ?? [];
   const selected = sel?.kind === 'existing' ? items.find((e) => e.id === sel.id) : undefined;
-  const cityNear = site.trees.filter((t) => !t.onLot).length;
+  const cityNear = site.trees.filter((tr) => !tr.onLot).length;
 
   // terrain: a wet area is drawn as an outline on the map, point by point
   const draw = (replaceId?: string) => {
@@ -50,30 +53,25 @@ export function ExistingPanel({ store, compact = false }: { store: PlannerStore;
 
   return (
     <section class={`pl-section${compact ? ' pl-compact' : ''}`}>
-      <h3 class="pl-h">{compact ? 'Already on the lot' : "What's on the lot now"}</h3>
+      <h3 class="pl-h">{t(compact ? 'existing.titleCompact' : 'existing.title')}</h3>
       <p class="pl-small">
-        Mark what's already there: trees, a neighbor's downspout, spots that get wet, hydrants, poles and wires, old pavement.
-        {cityNear ? ` The ${cityNear} street tree${cityNear > 1 ? 's' : ''} nearby come from the City's tree inventory.` : ''} Add a thing, then drag it to
-        where it really is; an area that gets wet you draw around on the map.
+        {[t('existing.intro'), cityNear ? t('existing.cityTrees', { count: cityNear }) : '', t('existing.intro2')].filter(Boolean).join(' ')}
       </p>
       <SlopeCard store={store} compact={compact} />
       <div class="pl-chips">
-        {EXISTING.map((m) => (
+        {existingList().map((m) => (
           <button type="button" class="pl-chip" onClick={() => add(m.id)} aria-pressed={m.id === 'wet-area' && drawing ? true : undefined}>
-            + {m.name}
+            {t('common.add', { name: m.name })}
           </button>
         ))}
       </div>
       {drawing && (
         <div class="pl-card pl-selected pl-drawing" role="status">
-          <h4 class="pl-h4">{drawing.replaceId ? 'Redraw the wet area' : 'Draw the area that gets wet'}</h4>
-          <p class="pl-small">
-            Click (or tap) on the map around the spot that gets wet, point by point. To finish, click the first point again, double-click, or
-            press Enter — or use “Finish” on the map. Esc cancels.
-          </p>
+          <h4 class="pl-h4">{t(drawing.replaceId ? 'existing.redrawTitle' : 'existing.drawTitle')}</h4>
+          <p class="pl-small">{t('existing.drawHelp')}</p>
           <div class="pl-row">
             <button type="button" class="btn btn-small" onClick={() => store.$drawing.set(null)}>
-              Cancel
+              {t('common.cancel')}
             </button>
           </div>
         </div>
@@ -86,7 +84,7 @@ export function ExistingPanel({ store, compact = false }: { store: PlannerStore;
           {selected.element === 'existing-tree' && (
             <>
               <label class="pl-field">
-                <span class="pl-small">Branches spread {Math.round((selected.radiusFt ?? 8) * 2)} ft across</span>
+                <span class="pl-small">{t('existing.spread', { ft: Math.round((selected.radiusFt ?? 8) * 2) })}</span>
                 <input
                   type="range"
                   min={2}
@@ -102,14 +100,11 @@ export function ExistingPanel({ store, compact = false }: { store: PlannerStore;
           )}
           {selected.element === 'wet-area' && selected.outline && selected.outline.length >= 3 && (
             <>
-              <p class="pl-small">
-                About {Math.round(Math.PI * (selected.radiusFt ?? 5) ** 2)} sq ft. Drag the area to move it; drag a corner to reshape it, or the
-                small + between two corners to add one.
-              </p>
+              <p class="pl-small">{t('existing.wetSize', { area: Math.round(Math.PI * (selected.radiusFt ?? 5) ** 2) })}</p>
               {store.editable && (
                 <div class="pl-row">
                   <button type="button" class="btn btn-small" onClick={() => draw(selected.id)}>
-                    Redraw its outline
+                    {t('existing.redraw')}
                   </button>
                 </div>
               )}
@@ -119,13 +114,13 @@ export function ExistingPanel({ store, compact = false }: { store: PlannerStore;
             <>
               {/* older saves: a circle */}
               <label class="pl-field">
-                <span class="pl-small">About {Math.round((selected.radiusFt ?? 5) * 2)} ft across</span>
+                <span class="pl-small">{t('existing.across', { ft: Math.round((selected.radiusFt ?? 5) * 2) })}</span>
                 <input type="range" min={1} max={20} step={0.5} value={selected.radiusFt ?? 5} onInput={(e) => patch(selected.id, { radiusFt: Number((e.target as HTMLInputElement).value) }, `radiusFt:${selected.id}`)} />
               </label>
               {store.editable && (
                 <div class="pl-row">
                   <button type="button" class="btn btn-small" onClick={() => draw(selected.id)}>
-                    Draw its outline instead
+                    {t('existing.drawInstead')}
                   </button>
                 </div>
               )}
@@ -133,13 +128,13 @@ export function ExistingPanel({ store, compact = false }: { store: PlannerStore;
           )}
           {(selected.element === 'utility-line' || selected.element === 'old-pavement') && (
             <label class="pl-field">
-              <span class="pl-small">{Math.round(selected.lengthFt ?? 10)} ft long</span>
+              <span class="pl-small">{t('existing.long', { ft: Math.round(selected.lengthFt ?? 10) })}</span>
               <input type="range" min={2} max={120} step={1} value={selected.lengthFt ?? 10} onInput={(e) => patch(selected.id, { lengthFt: Number((e.target as HTMLInputElement).value) }, `lengthFt:${selected.id}`)} />
             </label>
           )}
           {selected.element === 'old-pavement' && (
             <label class="pl-field">
-              <span class="pl-small">{Math.round(selected.widthFt ?? 8)} ft wide</span>
+              <span class="pl-small">{t('existing.wide', { ft: Math.round(selected.widthFt ?? 8) })}</span>
               <input type="range" min={1} max={60} step={1} value={selected.widthFt ?? 8} onInput={(e) => patch(selected.id, { widthFt: Number((e.target as HTMLInputElement).value) }, `widthFt:${selected.id}`)} />
             </label>
           )}
@@ -147,10 +142,10 @@ export function ExistingPanel({ store, compact = false }: { store: PlannerStore;
             {(selected.element === 'utility-line' || selected.element === 'old-pavement' || selected.element === 'utility-pole') && (
               <>
                 <button type="button" class="btn btn-small" onClick={() => rotateSelected(store, 15)}>
-                  ↻ Turn 15°
+                  {t('existing.turn15')}
                 </button>
                 <button type="button" class="btn btn-small" onClick={() => rotateSelected(store, 90)}>
-                  ↻ 90°
+                  {t('existing.turn90')}
                 </button>
               </>
             )}
@@ -163,7 +158,7 @@ export function ExistingPanel({ store, compact = false }: { store: PlannerStore;
                   store.$selection.set(null);
                 }}
               >
-                Take off the map
+                {t('existing.takeOff')}
               </button>
             )}
           </div>
@@ -177,14 +172,14 @@ export function ExistingPanel({ store, compact = false }: { store: PlannerStore;
               <button type="button" class="pl-link" onClick={() => store.$selection.set({ kind: 'existing', id: e.id })}>
                 {label(e)}
               </button>
-              {e.origin === 'city' && <span class="pl-tag">City record</span>}
+              {e.origin === 'city' && <span class="pl-tag">{t('existing.cityRecord')}</span>}
               {e.element === 'existing-tree' && (
-                <span class="pl-keep" role="group" aria-label={`Keep or remove ${label(e)}`}>
+                <span class="pl-keep" role="group" aria-label={t('existing.keepGroup', { name: label(e) })}>
                   <button type="button" aria-pressed={e.keep !== false} onClick={() => patch(e.id, { keep: true })}>
-                    Keep
+                    {t('existing.keep')}
                   </button>
                   <button type="button" aria-pressed={e.keep === false} onClick={() => patch(e.id, { keep: false })}>
-                    Remove
+                    {t('existing.remove')}
                   </button>
                 </span>
               )}
@@ -192,9 +187,7 @@ export function ExistingPanel({ store, compact = false }: { store: PlannerStore;
           ))}
         </ul>
       )}
-      <p class="pl-small muted">
-        Trees you're keeping: <strong>{treesKept(d)}</strong>. Kept trees shade the lot in the sun study.
-      </p>
+      <p class="pl-small muted" dangerouslySetInnerHTML={{ __html: t.html('existing.kept', { count: treesKept(d) }) }} />
     </section>
   );
 }

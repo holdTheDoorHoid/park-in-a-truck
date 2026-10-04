@@ -16,6 +16,7 @@ import { siteToLocal } from '../rect';
 import { groundFromGrid, type ElevationGrid, type ElevationSource } from './grid';
 import { fetchElevation, fetchSteepSlope, lotCenter } from './fetch';
 import { describeSlope, slopeSummary, type SlopeSummary, type SlopeWords } from './slope';
+import { pt, ptEnglish, type PlannerT } from '../words';
 
 export type { ElevationGrid } from './grid';
 
@@ -33,7 +34,10 @@ export interface SiteTerrain {
   /** feet above sea level at a local point */
   elev: GroundFn;
   slope: SlopeSummary;
+  /** the summary in the page's language */
   words: SlopeWords;
+  /** the same in English: the summary saved with the project (extra.site.slope) */
+  summaryEn: string;
   steepSlope?: boolean | null;
 }
 
@@ -79,19 +83,24 @@ export function siteTerrain(
   streets: { name?: string | null; line: Vec2[] }[],
 ): SiteTerrain {
   const slope = slopeSummary(g.ground, parcel, frame);
+  const named = streetsByEdge(frame, streets);
+  const en = describeSlope(slope, frame, named, ptEnglish());
+  const words = pt().locale === 'en' ? en : describeSlope(slope, frame, named, pt());
   return {
     source: t.grid.source,
     datumElevFt: g.datumElevFt,
     elev: g.elev,
     slope,
-    words: describeSlope(slope, frame, streetsByEdge(frame, streets)),
+    words,
+    summaryEn: [en.headline, ...en.more].join(' '),
     steepSlope: t.steepSlope,
   };
 }
 
 /** The line people read about where these numbers come from and how far to trust them. */
-export function accuracyNote(src: ElevationSource): string {
-  return `Ground heights from ${src.name}${src.year ? ` flown in ${src.year}` : ''} on a ${src.cellM}-metre grid — usually within about 4 inches on open ground. Piles, regrading or anything built since then won't show.`;
+export function accuracyNote(src: ElevationSource, t: PlannerT = pt()): string {
+  const vars = { source: src.name, year: src.year ? String(src.year) : '', cell: src.cellM };
+  return src.year ? t('slope.accuracy', vars) : t('slope.accuracyNoYear', vars);
 }
 
 /** What other pages may use (project.extra.site.slope). */
@@ -111,7 +120,8 @@ export function slopeFacts(t: SiteTerrain, lf: LocalFrame, lotRef: string): Site
     ...(s.dip ? { dip: { lngLat: ll(s.dip.p), depthFt: r1(s.dip.depthFt) } } : {}),
     ...(t.steepSlope != null ? { steepSlopeArea: t.steepSlope } : {}),
     datumElevFt: r1(t.datumElevFt),
-    summary: [t.words.headline, ...t.words.more].join(' '),
+    // saved data: English in every language (other pages can build their own words from the facts)
+    summary: t.summaryEn,
     source: `${t.source.name}${t.source.year ? ` (${t.source.year})` : ''}, ${t.source.cellM} m grid`,
   };
 }

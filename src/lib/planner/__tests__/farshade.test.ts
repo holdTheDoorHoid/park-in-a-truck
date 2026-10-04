@@ -14,7 +14,7 @@ import {
 } from '../../philly/surroundings';
 import type { SurroundingBuilding } from '../../philly/types';
 import type { LngLat, LotRecord } from '../../types';
-import { FAR_SHADE_FAILED_NOTE, SURROUNDINGS_RADIUS_FT, loadSiteContext, type SiteContext } from '../site';
+import { farShadeFailedNote, SURROUNDINGS_RADIUS_FT, loadSiteContext, type SiteContext } from '../site';
 import { buildLocalSite } from '../localsite';
 import { buildingsChanged, buildingsKey, litFractionAt, shadeBuildings, spotMonthlyFor } from '../sunstudy';
 import { computeSunHours, type GridSpec, type Prism, type SunGrid } from '../sunhours';
@@ -141,7 +141,8 @@ describe('the far query', () => {
     const ctx2 = await loadSiteContext(lot2);
     expect(ctx2.buildings).toHaveLength(1);
     expect(ctx2.farBuildings).toBeUndefined();
-    expect(ctx2.note).toBe(FAR_SHADE_FAILED_NOTE);
+    expect(ctx2.note).toBe(farShadeFailedNote());
+    expect(ctx2.note).toMatch(/^Couldn't load the taller buildings farther from your lot/);
   });
 });
 
