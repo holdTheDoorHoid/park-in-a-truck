@@ -396,49 +396,53 @@ Tone: Modern Standard Arabic kept simple. Address one reader with the masculine-
 
 Tone: Standard Kreyòl orthography. **ou** for the reader. Prefer everyday Kreyòl words over French ones.
 
+*Status: filled in by t-ht. Orthography of the IPN / Akademi Kreyòl Ayisyen (è, ò, an/en/on, ch, j, y; `sa a`, short
+forms `m`, `l`, `n` where natural). Plain imperatives ("Chèche yon teren."). Philadelphia = **Filadèlfi**. A native
+reviewer should still read the whole language once.*
+
 | English | Translation | Note |
 |---|---|---|
-| Park in a Truck / PiaT |  | |
-| toolkit |  | |
-| workbook |  | |
-| step |  | |
-| sub-step |  | |
-| Mark this step done / done |  | |
-| Start here · Acquire · Organize · Assess · Dream · Create · Sustain |  | |
-| vacant lot |  | |
-| lot |  | |
-| parcel |  | |
-| mid-block lot / corner lot / breezeway, alley |  | |
-| owner (public / private) |  | |
-| zoning |  | |
-| City records / Filled in from City records |  | |
-| City (of Philadelphia) |  | |
-| RCO (Registered Community Organization) |  | |
-| Philadelphia Land Bank |  | |
-| PHDC |  | |
-| Sheriff Sale |  | |
-| purchase / donation / lease / in-kind (use) agreement |  | |
-| park committee |  | |
-| neighbors / neighborhood |  | |
-| park pieces |  | |
-| frame / front / back (pieces) |  | |
-| seam (length seam, width seam) |  | |
-| theme: Edible · Sanctuary · Nature · Event |  | |
-| size A–E |  | |
-| gabion (wall, bench) |  | |
-| build guide |  | |
-| cut list / materials & hardware / tools |  | |
-| 2x4, 2x4x8', BB-1 |  | |
-| full sun / part sun / shade |  | |
-| native plant · perennial · shrub · small tree · large tree |  | |
-| pollinator |  | |
-| stewardship / sustain |  | |
-| My park |  | |
-| project file |  | |
-| Plan in 3D / the planner |  | |
-| Note from this site, not Park in a Truck |  | |
-| in English |  | |
-| ft, in, sq ft, $ |  | |
+| Park in a Truck / PiaT | Park in a Truck / PiaT | |
+| toolkit | gid la (*Toolkit* la) | "gid Park in a Truck la". A build guide is "gid konstriksyon", so context tells them apart (same choice as Spanish). |
+| workbook | kaye travay | |
+| step | etap | |
+| sub-step | ti etap | |
+| Mark this step done / done | Make etap sa a fini / fini | |
+| Start here · Acquire · Organize · Assess · Dream · Create · Sustain | Kòmanse isit la · Jwenn teren · Òganize · Evalye · Reve · Kreye · Pran swen | "Jwenn teren" (get land): "Jwenn" alone is too vague. "Pran swen" (take care) rather than "Kenbe" (hold). |
+| vacant lot | teren vid | |
+| lot | teren | "teren" = a plot of land; "tè" = soil/ground. |
+| parcel | pasèl (parcel) | |
+| mid-block lot / corner lot / breezeway, alley | teren nan mitan blòk / teren nan kwen / koridò, ti ri | "koridò" is the usual Haitian word for a narrow passage between houses. Easement = "dwa pasaj". |
+| owner (public / private) | mèt teren an (piblik / prive) | "mèt" over French "pwopriyetè". |
+| zoning | zonaj | Explain once: règ Vil la sou kisa yon teren ka sèvi. Codes like RSA-5 stay. |
+| City records / Filled in from City records | dosye Vil la / Ranpli ak dosye Vil la | |
+| City (of Philadelphia) | Vil la (Vil Filadèlfi) | Capital V when it means the city government. |
+| RCO (Registered Community Organization) | òganizasyon kominotè ki anrejistre (RCO) | |
+| Philadelphia Land Bank | Philadelphia Land Bank (ajans Vil la ki vann oswa lwe tè piblik) | |
+| PHDC | PHDC | |
+| Sheriff Sale | vant ozanchè Cherif la (Sheriff Sale) | |
+| purchase / donation / lease / in-kind (use) agreement | acha / don / kontra lwaye / akò itilizasyon an nati | "an nati" as in "peye an nati": the owner keeps the lot, neighbours use it. |
+| park committee | komite pak la | |
+| neighbors / neighborhood | vwazen / katye | |
+| park pieces | moso pak yo | |
+| frame / front / back (pieces) | kad / moso devan / moso dèyè | |
+| seam (length seam, width seam) | bann ralonj (bann ralonj longè, bann ralonj lajè) | "ralonj" = extension, as in an extension cord. |
+| theme: Edible · Sanctuary · Nature · Event | Manje · Refij · Lanati · Evènman | "Manje" (food) is clearer than a word for "edible". |
+| size A–E | gwosè A–E | |
+| gabion (wall, bench) | gabyon (mi gabyon, ban gabyon) | Known in Haiti from river walls. Explain once: kalòj fil fè plen wòch. |
+| build guide | gid konstriksyon | |
+| cut list / materials & hardware / tools | lis koupe / materyèl ak pyès metal / zouti | "pyès metal" (screws, bolts, brackets) rather than "kenkay", which not everyone reads as hardware. |
+| 2x4, 2x4x8', BB-1 | 2x4, 2x4x8', BB-1 | Lumber sizes are said in English in US hardware stores. |
+| full sun / part sun / shade | plen solèy / mwatye solèy / lonbraj | |
+| native plant · perennial · shrub · small tree · large tree | plant natif · plant ki dire plizyè ane · touf bwa · ti pyebwa · gwo pyebwa | "plant natif" = plant that comes from this region. |
+| pollinator | polinizatè | Explain once: myèl, papiyon, zwazo, chòvsourit… ki pote polèn. |
+| stewardship / sustain | pran swen pak la / pran swen | |
+| My park | Pak mwen | |
+| project file | fichye pwojè a | |
+| Plan in 3D / the planner | Fè plan an 3D / zouti plan 3D a | Header menu uses short forms so it fits on one line beside "Kreyòl ayisyen": Etap · Chèche teren · Fè plan an 3D · Gid konstriksyon · Plant · Pak. |
+| Note from this site, not Park in a Truck | Nòt sit sa a, se pa nòt Park in a Truck | |
+| in English | an anglè | |
+| ft, in, sq ft, $ | pye, pous, pye kare, $ | |
 
 ### fr — Français
 

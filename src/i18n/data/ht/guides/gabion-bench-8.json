@@ -1,0 +1,192 @@
+{
+  "title": "Ban gabyon 8' ak tèt an bwa",
+  "summary": "Yon kalòj gabyon 8 pye an fil fè plen wòch, ak planch bwa 2x4 sou tèt li — gran frè ban gabyon 4' la, ak twa ranfò travè an plis sou longè li.",
+  "materials": [
+    {
+      "item": "Griyaj fil fè soude 2x2 (metal)",
+      "notes": "Kote ki ka fabrike l: Darby and Sons (darbywiremesh.com) oswa Gabion1.com. Lè w ap kòmande moso koupe sou mezi, mande pou yo koupe moso yo nan bon gwosè, moso fèmen, epi galvanize apre."
+    },
+    {
+      "item": "Bwa 2x4 (dimensional lumber) — sèd wouj (western red cedar), sapen Douglas (Douglas fir), oswa bwa pen trete anba presyon (pressure-treated)",
+      "notes": "Sèd: natirèlman li reziste ak move tan ak pouriti, bèl koulè wouj, li pa bezwen vèni; li koute pi chè — mande kalite \"knotty\" (STK, ak ne). Sapen Douglas: li reziste yon ti jan ak pouriti, li solid, li pi bon mache pase sèd; bon si ou gen lide pentire l. Bwa trete anba presyon: se li ki pi bon mache epi li reziste ak pouriti, men kalite l souvan pa bon/pa menm, li bezwen 1–4 mwa pou l seche nan lè a anvan ou pentire l, yo pa rekòmande l kote w ap plante manje. Kòmande 5–10% plis pase lis koupe a, pou kalite bwa ki pa menm ak koupe ki pa bon."
+    },
+    {
+      "item": "Materyèl pou plen gabyon an",
+      "notes": "Materyèl ki gen kwen, ki di, ki pa reyaji, epi ki p ap kraze avèk tan — wòch karyè, ansyen pavaj resikle (beton/asfalt), oswa brik/blòk beton resikle. Pa sèvi ak bout pyebwa koupe oswa lòt materyèl òganik. Melanje gwosè, depi 2\" minimòm rive 12\" maksimòm; moso ki sou figi deyò a dwe pi gwo pase 3\"."
+    },
+    {
+      "item": "Materyèl pou ranfòse (pou sipò mitan yo, anba moso kad mitan yo)",
+      "notes": "Swa yon woulo fil fè galvanize lis, gwosè 14 oswa 16, swa moso griyaj fil fè 2x2 ki rete, koupe an de ak gwo pens koupe boulon (ki travèse tout lajè kalòj la, omwen 2 kare / 4\" wotè)."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Vis bwa pou deyò ki antre poukont yo (self-driving)"
+    },
+    {
+      "item": "Bag metal (hog rings)"
+    },
+    {
+      "item": "Agraf pou kab (cable staples)"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Tèt + bò kad ban gabyon an (2 sèvi kòm ray long kad la, rès yo vin tèt an bwa a)"
+    },
+    {
+      "notes": "Kad ban gabyon an — moso bout yo ak ranfò travè yo"
+    },
+    {
+      "notes": "Panno anba gabyon an, 96\" x 18\""
+    },
+    {
+      "notes": "Bò gabyon an (long), 96\" x 18\" chak"
+    },
+    {
+      "notes": "Bò gabyon an (kout), 18\" x 18\" chak"
+    }
+  ],
+  "tools": [
+    "Si onglè 10\" oswa 12\" (miter saw), oswa yon bon si a men",
+    "Machin vis a enpak (impact driver) pou vis bwa ki antre poukont yo",
+    "Dril ak mèch 1/8\"",
+    "Papye sab, gren 120",
+    "Ekè chapantye",
+    "Linèt pwoteksyon + gan",
+    "Pens pou bag metal (hog ring pliers)",
+    "Gwo pens koupe boulon (bolt cutters)",
+    "Mato",
+    "Grinder (machin pou limen metal), pou limen bout fil fè ki file"
+  ],
+  "steps": [
+    {
+      "title": "Make, mete non sou bwa a ak griyaj fil fè a epi koupe yo",
+      "text": "Make, mete non sou bwa a epi koupe l nan lòd, depi GB-1 rive GB-6, nan longè ki nan lis koupe a.\n\nSepare griyaj fil fè 2x2 ou a an pil ki gen menm gwosè epi mete non sou yo: 18-8a (anba gabyon an), 18-8b (bò gabyon an, long) ak 18-8c (bò gabyon an, kout).",
+      "imageAlts": [
+        "Dyagram izometrik moso bwa GB-1 ak GB-2 yo ak panno griyaj fil fè 18-8a, 18-8b ak 18-8c yo, ak longè yo ak yon dyagram ki montre ki panno ki kole ak kiyès."
+      ],
+      "tips": [
+        "Ekri non chak moso bwa pandan w ap mezire l epi koupe l.",
+        "Fè yon pil bwa apa pou GB-1 ak GB-2.",
+        "Lè ou pase papye sab dousman sou bò ou koupe yo, sa retire ti pikan bwa yo epi sa ede pou monte l.",
+        "W ap bati plis pase yon ban gabyon? Yon ti blòk kanpe (stop block) sou si onglè a fè tout moso yo soti menm longè."
+      ]
+    },
+    {
+      "title": "Bati kad la",
+      "text": "Mete de moso GB-1 ak de moso GB-2 sou yon sifas plat, epi aliyen bò yo jan sa montre a.\n\nSèvi ak gid twou ki nan fen pakèt la pou fè ti twou davans pou vis yo, apre sa fikse bwa GB-1 yo nan moso GB-2 yo ak yon machin vis a enpak ak 8 vis bwa pou deyò 2.5\" ki antre poukont yo.",
+      "siteNote": "Ou bati kalòj sa a tèt anba: kad bwa a kòmanse atè a epi li vin tounen bò anwo a lè ou vire kalòj la nan etap 7. Modèl 3D a montre ban an kanpe dwat pandan tout tan an, kidonk kad bwa li toujou anwo.",
+      "imageAlts": [
+        "Dyagram de ray long GB-1 ak de moso bout kout GB-2 ki vise ansanm pou fè yon kad rektang."
+      ],
+      "tips": [
+        "Sèvi ak yon ekè chapantye pou verifye chak kwen fè yon ang dwat."
+      ]
+    },
+    {
+      "title": "Ajoute ranfò travè yo",
+      "text": "Mete yon moso GB-2 nan mitan kad ou te fè nan etap 2 a, epi fikse l ak yon machin vis a enpak ak 4 vis bwa pou deyò 2.5\" ki antre poukont yo.\n\nRefè sa ak de lòt moso GB-2, mete yo nan menm distans ant moso GB-2 mitan an ak chak moso GB-2 nan bout yo. Fikse tou de ak yon machin vis a enpak ak 8 lòt vis bwa pou deyò 2.5\" ki antre poukont yo.",
+      "imageAlts": [
+        "Dyagram twa lòt ranfò travè GB-2 k ap ajoute nan mitan ak nan ka longè kad long lan."
+      ]
+    },
+    {
+      "title": "Agrafe epi fèmen bò griyaj fil fè yo",
+      "text": "Fikse de moso griyaj 18-8c ak de moso griyaj 18-8b toutotou kad GB-2 ak GB-1 ou te fè nan etap 3 a, ak yon mato ak 32 agraf kab galvanize 1.5\" — 2 agraf pou chak fil, yon bò apre lòt.\n\nFikse moso 18-8c ak 18-8b yo ansanm nan kwen yo ak bag metal, yon bag metal chak de twou, ak bag nan tout kwen ak tout bò.",
+      "imageAlts": [
+        "Dyagram panno griyaj 18-8c ak 18-8b k ap agrafe toutotou kad bwa a epi k ap mare ansanm ak bag metal nan kwen yo."
+      ]
+    },
+    {
+      "title": "Ranfòse mitan an",
+      "text": "Nan mitan kalòj gabyon an, anba moso GB-2 mitan an, ajoute materyèl pou ranfòse; ou gen de chwa: bout griyaj 2x2 ki rete, koupe an de ak gwo pens koupe boulon, oswa nenpòt rès griyaj 2x2 ki travèse tout lajè kalòj la (omwen 2 kare, oswa 4\"+, wotè).\n\nFikse moso sipò mitan an ak bag metal.",
+      "imageAlts": [
+        "Dyagram yon ranfò an griyaj fil fè k ap mare ak bag metal anba moso kad mitan an."
+      ]
+    },
+    {
+      "title": "Fèmen panno anba a",
+      "text": "Mete panno griyaj 18-8a a sou tèt kalòj gabyon ou te fikse nan etap 5 la — li vin tounen anba kalòj la lè ou vire l nan pwochen etap la.\n\nFikse l ak bag metal sou kat bò yo ak sou ranfò mitan yo: yon bag metal chak de twou griyaj, ak de nan chak kwen. Kalòj gabyon an pare kounye a pou ou pote l sou teren an.",
+      "imageAlts": [
+        "Dyagram panno griyaj 18-8a k ap mare ak bag metal sou kalòj la, ak yon gwo plan sou yon bag metal nan kwen ki kenbe tout twa moso griyaj yo."
+      ]
+    },
+    {
+      "title": "Mete kalòj la sou teren an",
+      "text": "Vire kalòj gabyon an 180°. Mete l sou teren an ak yon kouch gravye anba l.\n\nAsire kalòj gabyon an dwat ak yon nivo.",
+      "imageAlts": [
+        "Dyagram ki montre kalòj gabyon an vire epi nivle sou yon kabann gravye."
+      ],
+      "tips": [
+        "Si li bò kote lòt gabyon, sèvi ak fisèl ak nivo fisèl pou kenbe ranje a dwat."
+      ]
+    },
+    {
+      "title": "Plen kalòj la",
+      "text": "Mete gabyon an nan plas li dapre desen pak ou a. Mete gravye anba l pou ajiste l byen.\n\nKòmanse ak moso materyèl ki pi gwo e ki pi plat ou genyen yo, kòmanse plen gabyon an sou bò yo, epi kontinye jiskaske ou fin monte bò yo.\n\nPlen kad la ak rès materyèl la jiskaske li rive nivo tèt bò bwa a.",
+      "imageAlts": [
+        "Dyagram ak foto referans yon kalòj gabyon k ap plen ak wòch, kòmanse ak gwo moso plat sou bò yo."
+      ],
+      "tips": [
+        "Mete materyèl la avèk atansyon pou kalòj la pa defòme, epi asire tout twou yo plen pou l solid.",
+        "Gade kaye travay Kreye ou a, faz kat, pou plis enfòmasyon sou etap sa a."
+      ]
+    },
+    {
+      "title": "Ajoute planch bout tèt an bwa a",
+      "text": "Mete de moso GB-1 sou tèt kad ou te fè nan etap 3 a, epi sèvi ak gid twou ki nan fen pakèt la pou fè ti twou davans nan bwa a. Fikse de planch bout yo an premye ak yon machin vis a enpak ak 12 vis bwa pou deyò 2.5\" ki antre poukont yo, epi kenbe bò a aliyen nèt ak bwa ki anba a.",
+      "imageAlts": [
+        "Dyagram de premye planch tèt GB-1 yo k ap vise aliyen nèt sou chak bout kalòj gabyon ki plen an."
+      ],
+      "tips": [
+        "Lè ou fè ti twou davans nan etap sa a, sa ede vis yo pa fann planch yo."
+      ]
+    },
+    {
+      "title": "Fini tèt an bwa a epi pase papye sab",
+      "text": "Mete 3 lòt planch yo ak espas egal ant de planch bout yo. Fikse bwa GB-1 yo ak yon machin vis a enpak ak 20 vis bwa pou deyò 2.5\" ki antre poukont yo.\n\nPase papye sab dousman sou bò ki graje yo sou ban gabyon an, epi asire pa gen bout fil fè gabyon ki file — limen yo ak yon grinder si gen youn ki twò file.",
+      "imageAlts": [
+        "Dyagram rès planch tèt GB-1 an bwa yo, ak espas egal ant yo, k ap vise sou kalòj gabyon ki plen an."
+      ],
+      "tips": [
+        "Kenbe tout vis yo lajè yon pous dwèt depi bò bwa a."
+      ]
+    },
+    {
+      "title": "Gid twou pou fè davans (gabari)",
+      "text": "Koupe gid twou a sou liy pwentiye yo. Lè w ap fè twou, aliyen bò gabari a ak bò deyò bwa a anvan ou fè ti twou davans lan.\n\nSe pa tout twou yo ou sèvi — se pa tout modèl ki sèvi ak gabari a. Swiv etap montaj ki anwo yo pou konnen ki kote pou fè twou yo. Kenbe tout twou yo apeprè lajè yon pous dwèt (apeprè 1\") depi bò a, menm twou ki pa sèvi ak gabari sa a.",
+      "imageAlts": [
+        "Yon gabari gid twou ou ka enprime, ak senk plas twou make ak liy pou koupe, plis yon gwo plan ki montre distans twou yo depi bò planch lan."
+      ]
+    }
+  ],
+  "finishing": "Yon tretman pou bwa deyò ka fè eleman pak ou yo dire pi lontan, men li pa nesesè — moso sa yo fèt espre pou yo pa koute chè, pou yo dire epi pou yo fasil pou bati, kidonk li ka pi pratik pou kite pwochen jenerasyon an rebati yo lè lè a rive. Si ou vle tenti, pentire oswa vèni tèt an bwa a, gade resous pou fini ki anba yo.",
+  "safety": [
+    "Sa yo se sèlman rekòmandasyon pou moun ki fè l ak pwòp men yo — adapte materyèl la, montaj la ak konstriksyon an ak pwòp pwojè pa w ak teren pa w.",
+    "Pou bati sa a, ou bezwen konn kèk bagay sou zouti men ak zouti elektrik, pyès metal, vis ak boulon, bwa ak teknik montaj debaz.",
+    "Anvan ou sèvi ak nenpòt zouti elektrik, li epi swiv kondisyon sekirite fabrikan an mande, epi pa kite pèsonn sèvi ak zouti elektrik si yo pa fè menm bagay la.",
+    "Ou menm (mèt la) responsab pou tout règ konstriksyon ak sekirite, pèmi ak otorizasyon ofisyèl sa a bezwen.",
+    "Anvan, netwaye teren an: retire fatra, danje ak estrikti ou pa vle, epi chèche konnen kote fil ak tiyo sèvis piblik ki ta ka jennen yo pase anvan ou fouye.",
+    "Tout moun k ap ede bati dwe siyen yon fòm egzonerasyon pou volontè.",
+    "Griyaj fil fè ou koupe ak materyèl pou plen gabyon an ka kite bò ki file — mete gan ak linèt pwoteksyon, epi limen tout fil ki file ak yon grinder."
+  ],
+  "links": [
+    {
+      "label": "Griyaj fil fè Darby and Sons (an anglè)"
+    },
+    {
+      "label": "Gabion1.com — kalòj gabyon 18\" x 18\" (an anglè)"
+    },
+    {
+      "label": "Chwazi pi bon fini pou pwojè deyò (Rockler, an anglè)"
+    },
+    {
+      "label": "Pi bon fini pou bwa deyò (Real Milk Paint, an anglè)"
+    },
+    {
+      "label": "Kouch pwoteksyon pou bwa deyò (Vermont Natural Coatings, an anglè)"
+    }
+  ],
+  "sourcePages": "Enstriksyon 8_GABION_BENCH_ASSEMBLY, paj 1–15 (kouvèti; anvan ou kòmanse; chwa materyèl + bwa ki pi kouran; etap 1–10; gid twou pou fè davans). PDF orijinal la make dènye planch tèt an bwa yo \"GB-2\" pa erè nan tèks etap 10–11 li yo (non ki sou dyagram paj la, ak lis koupe a, tou de konfime se GB-1), epi li bay dènye panno fil fè a yon non \"BM-3\" ki pa kòrèk olye de 18-8a — nou korije tou de isit la."
+}

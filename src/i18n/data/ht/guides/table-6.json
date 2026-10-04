@@ -1,0 +1,129 @@
+{
+  "title": "Tab 6'",
+  "summary": "Pi gwo nan twa gwosè tab yo: yon tab 6 pye an 2x4, wotè yon tab piknik, ak tèt tab la ki depase kad la yon pye nan chak bout.",
+  "materials": [
+    {
+      "item": "Bwa 2x4 (dimensional lumber) — sèd wouj (western red cedar), sapen Douglas (Douglas fir), oswa bwa pen trete anba presyon (pressure-treated)",
+      "notes": "Sèd: natirèlman li reziste ak move tan ak pouriti, li gen yon bèl koulè wouj, li fasil pou travay, li pa bezwen vèni (avèk tan li vin gri); li koute pi chè — mande kalite \"knotty\" (STK, ak ne), ki pi bon mache anpil pase kalite san ne a (clear). Sapen Douglas: li reziste yon ti jan ak pouriti, li solid epi li fasil pou travay, li pi bon mache pase sèd, men li p ap dire otan — se yon bon chwa si ou gen lide pentire l. Bwa trete anba presyon: li reziste ak pouriti epi se chwa ki pi bon mache a, men kalite bwa a souvan pa bon epi li pa menm, li bezwen 1–4 mwa pou l seche nan lè a anvan ou pentire l, epi yo pa rekòmande l kote w ap plante manje. Kòmande 5–10% plis pase lis koupe a, pou kalite bwa ki pa menm ak koupe ki pa bon."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Vis bwa pou deyò ki antre poukont yo (self-driving)",
+      "siteNote": "Jan etap yo ekri a, yo sèvi ak 104 vis, pa 92: 30 pou chak kad bout (etap 3), 16 nan etap 4 ak 28 nan etap 5."
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Tèt tab la"
+    },
+    {
+      "notes": "Anba tab la"
+    },
+    {
+      "notes": "Bò tab la"
+    },
+    {
+      "notes": "Bò tab la"
+    },
+    {
+      "notes": "Bò tab la"
+    },
+    {
+      "notes": "Bò tab la"
+    },
+    {
+      "notes": "Bò tab la"
+    }
+  ],
+  "tools": [
+    "Si onglè 10\" oswa 12\" (miter saw), oswa yon bon si a men",
+    "Machin vis a enpak (impact driver) pou vis bwa ki antre poukont yo",
+    "Dril ak mèch 1/8\" pou fè ti twou davans",
+    "Papye sab, gren 120",
+    "Ekè chapantye",
+    "Linèt pwoteksyon + gan"
+  ],
+  "steps": [
+    {
+      "title": "Make, mete non sou bwa a epi koupe l",
+      "text": "Make, mete non sou bwa a epi koupe l nan lòd, depi T-1 rive T-7, nan longè ki nan lis koupe a.\n\nVerifye chak moso bwa pou wè si li gen defo tankou fant, bwa ki tòde oswa ki pa rabote egal, epi jete pati sa yo.",
+      "imageAlts": [
+        "Dyagram izometrik sèt moso koupe tab 6' la, T-1 rive T-7, ak longè yo make, depi yon planch tèt 72\" rive nan ti blòk 12\"."
+      ],
+      "tips": [
+        "Ekri non chak moso bwa pandan w ap mezire l epi koupe l.",
+        "Fè yon pil apa pou chak pyès, T-1 rive T-7.",
+        "Lè ou pase papye sab dousman sou bò ou koupe yo, sa retire ti pikan bwa yo epi sa ede pou monte l.",
+        "W ap bati plis pase yon tab? Yon ti blòk kanpe (stop block) sou si onglè a fè tout moso yo soti menm longè."
+      ]
+    },
+    {
+      "title": "Bati de kad bout yo",
+      "text": "Mete de moso T-6 sou yon sifas plat. Mete de moso T-3 sou chak bò moso T-6 yo, epi aliyen bò yo jan sa montre a. Refè sa pou bati yon dezyèm kad ki menm jan.",
+      "imageAlts": [
+        "Dyagram ki montre de planch T-3 ak de planch T-6 ki monte an yon kad kare pou bout la."
+      ],
+      "tips": [
+        "Sèvi ak yon ekè chapantye pou verifye chak kwen fè yon ang dwat — si li byen lwen, verifye longè planch ou yo ankò.",
+        "Si ou fè yon gabari 90 degre, sa ka ede w pou monte etap sa a ak pwochen an."
+      ]
+    },
+    {
+      "title": "Ajoute ranfò pye yo sou chak kad bout",
+      "text": "Mete yon moso T-4, de moso T-5 ak de moso T-7 sou tèt kad ou te bati nan etap 2 a. Pou asire yon espas 1.5\" ant de moso T-7 yo, sèvi ak yon moso 2x4 ki rete, kanpe sou bout li, kòm kal.\n\nSèvi ak gid twou ki nan fen pakèt la pou fè ti twou davans pou vis yo, apre sa fikse bwa a nan moso T-6 ak T-3 yo ak yon machin vis a enpak ak 30 vis bwa pou deyò 2.5\" ki antre poukont yo.\n\nRefè sa sou lòt pye a.",
+      "imageAlts": [
+        "Dyagram planch T-4, T-5 ak T-7 k ap vise sou tèt kad bout la, ak espas 1.5\" kal la make."
+      ]
+    },
+    {
+      "title": "Konekte de kad bout yo",
+      "text": "Mete yon moso T-2 nan espas ki nan baz de kad ou te fè nan etap 3 yo.\n\nMete de moso T-1 sou tèt tab la sou de bò yo, jan sa montre a — asire yo aliyen nèt ak bò pye yo, sa kenbe tab la kare — epi fikse yo ak 12 vis bwa pou deyò 2.5\" ki antre poukont yo.\n\nFikse bwa T-2 a sou tou de bò yo ak yon machin vis a enpak ak 4 vis bwa pou deyò 2.5\" ki antre poukont yo.",
+      "imageAlts": [
+        "Dyagram yon planch T-2 ki konekte de kad bout yo nan baz la, ak planch tèt T-1 yo aliyen nèt ak pye yo."
+      ],
+      "tips": [
+        "Verifye bò a rete a 90 degre ak yon ekè chapantye."
+      ]
+    },
+    {
+      "title": "Ajoute tèt tab la epi pase papye sab",
+      "text": "Mete kat lòt moso T-1 sou tèt kad ou te fè nan etap 4 la, ak tou de bout yo ki depase kad la 12\".\n\nFikse bwa T-1 yo ak yon machin vis a enpak ak 28 vis bwa pou deyò 2.5\" ki antre poukont yo.\n\nPase papye sab dousman sou bò ki graje yo sou tab la.",
+      "siteNote": "7 moso T-1 ki nan lis koupe a fè yon tèt ak 7 planch: 2 nan etap 4 plis 5 lòt isit la, jan desen kouvèti a ak modèl 3D a montre l (sèt planch 3.5″ ak ti espas egal ranpli lajè 26″ la). Tèks etap sa a di kat lòt (6 an tout, jan pwòp desen li montre l) epi konsèy li a di twa moso nan mitan (5 an tout).",
+      "imageAlts": [
+        "Dyagram rès planch tèt T-1 yo ki depase kad tab la 12\" nan chak bout, ak espas egal ant yo, vise."
+      ],
+      "tips": [
+        "Fikse de moso bout yo an premye, aliyen nèt ak bò yo, apre sa mete twa moso nan mitan yo ak espas egal ant yo."
+      ]
+    },
+    {
+      "title": "Gid twou pou fè davans (gabari)",
+      "text": "Koupe gid twou a sou liy pwentiye yo. Lè w ap fè twou, aliyen bò gabari a ak bò deyò bwa a anvan ou fè ti twou davans lan.\n\nSe pa tout twou yo ou sèvi — se pa tout modèl ki sèvi ak gabari a. Swiv etap montaj ki anwo yo pou konnen ki kote pou fè twou yo. Kenbe tout twou yo apeprè lajè yon pous dwèt (apeprè 1\") depi bò a, menm twou ki pa sèvi ak gabari sa a.",
+      "imageAlts": [
+        "Yon gabari gid twou ou ka enprime, ak senk plas twou make ak liy pou koupe, plis yon gwo plan ki montre distans twou yo depi bò planch lan."
+      ]
+    }
+  ],
+  "finishing": "Yon tretman pou bwa deyò ka fè eleman pak ou yo dire pi lontan, men li pa nesesè — moso sa yo fèt espre pou yo pa koute chè, pou yo dire epi pou yo fasil pou bati, kidonk li ka pi pratik pou kite pwochen jenerasyon an rebati yo lè lè a rive. Si ou vle tenti, pentire oswa vèni bwa a, gade resous pou fini ki anba yo.",
+  "safety": [
+    "Sa yo se sèlman rekòmandasyon pou moun ki fè l ak pwòp men yo — adapte materyèl la, montaj la ak konstriksyon an ak pwòp pwojè pa w ak teren pa w.",
+    "Pou bati sa a, ou bezwen konn kèk bagay sou zouti men ak zouti elektrik, pyès metal, vis ak boulon, bwa ak teknik montaj debaz.",
+    "Anvan ou sèvi ak nenpòt zouti elektrik, li epi swiv kondisyon sekirite fabrikan an mande, epi pa kite pèsonn sèvi ak zouti elektrik si yo pa fè menm bagay la.",
+    "Ou menm (mèt la) responsab pou tout règ konstriksyon ak sekirite, pèmi ak otorizasyon ofisyèl sa a bezwen.",
+    "Anvan, netwaye teren an: retire fatra, danje ak estrikti ou pa vle, epi chèche konnen kote fil ak tiyo sèvis piblik ki ta ka jennen yo pase anvan ou fouye.",
+    "Tout moun k ap ede bati dwe siyen yon fòm egzonerasyon pou volontè."
+  ],
+  "links": [
+    {
+      "label": "Chwazi pi bon fini pou pwojè deyò (Rockler, an anglè)"
+    },
+    {
+      "label": "Pi bon fini pou bwa deyò (Real Milk Paint, an anglè)"
+    },
+    {
+      "label": "Kouch pwoteksyon pou bwa deyò (Vermont Natural Coatings, an anglè)"
+    }
+  ],
+  "sourcePages": "Enstriksyon montaj 6_TABLE, paj 1–9 (kouvèti; anvan ou kòmanse; chwa bwa ki pi kouran; etap 1–5; gid twou pou fè davans)"
+}
