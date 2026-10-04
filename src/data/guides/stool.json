@@ -1,0 +1,104 @@
+{
+  "slug": "stool",
+  "title": "Stool",
+  "element": "stool",
+  "summary": "A square 2x4 stool with a slatted top, sized to match the bench and table family so they can be mixed and matched.",
+  "category": "seating",
+  "dimensionsIn": { "length": 18.5, "width": 18.5, "height": 17 },
+  "materials": [
+    {
+      "item": "2x4 dimensional lumber — western red cedar, Douglas fir, or pressure-treated pine",
+      "qty": 3.5,
+      "size": "2x4x8'",
+      "notes": "Cedar: naturally weather/rot resistant with a nice red tone, easy to work, needs no sealant (it weathers to gray); costs more — ask for 'knotty' (STK) grade, much cheaper than clear grade. Douglas fir: moderately rot resistant, strong and easy to work, cheaper than cedar, but won't last as long — a good choice if you plan to paint. Pressure-treated: rot resistant and the cheapest option, but lumber quality is often poor and inconsistent, needs 1–4 months of air-drying before painting, and isn't recommended where food is grown. Order 5% more than the cut list to allow for variable lumber quality and incorrect cuts."
+    }
+  ],
+  "hardware": [
+    { "item": "Self-driving exterior wood screws", "qty": 88, "size": "2.5\"" }
+  ],
+  "cutList": [
+    { "part": "S-1", "qty": 7, "stock": "2x4", "lengthIn": 18.5, "notes": "Stool side & top" },
+    { "part": "S-2", "qty": 5, "stock": "2x4", "lengthIn": 15.5, "notes": "Stool side" },
+    { "part": "S-3", "qty": 4, "stock": "2x4", "lengthIn": 11.5, "notes": "Stool side & bottom" },
+    { "part": "S-4", "qty": 8, "stock": "2x4", "lengthIn": 8.5, "notes": "Stool side" }
+  ],
+  "tools": [
+    "10\" or 12\" miter saw (or appropriate hand saw)",
+    "Impact driver for self-driving exterior wood screws",
+    "Drill with 1/8\" bit for pre-drilling holes",
+    "Sandpaper, 120 grit",
+    "Carpenter's square",
+    "Safety goggles + gloves"
+  ],
+  "steps": [
+    {
+      "n": 1,
+      "title": "Mark, label and cut the lumber",
+      "text": "Mark, label and cut lumber in order of S-1 to S-4 to the lengths in the cut list.\n\nCheck each piece of lumber for imperfections such as cracks, warping or uneven milling, and discard those portions of lumber.",
+      "images": ["img/guides/stool/step-01.webp"],
+      "imageAlts": ["Isometric diagram of the stool's four cut pieces S-1 through S-4 with their lengths labeled, from 18.5\" boards down to 8.5\" blocks."],
+      "tips": [
+        "Label each piece of lumber as you measure and cut it.",
+        "Keep a separate pile of lumber for each part, S-1 to S-4.",
+        "Lightly sanding the cut edges removes splinters and helps with assembly.",
+        "Building more than one stool? A stop block on your miter saw keeps every piece the same length."
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Build the frame",
+      "text": "Place two S-3 pieces on a flat surface. Place two S-2 pieces on either side of the S-3 pieces, aligning the edges as shown in the image. Repeat to build a second, matching frame.",
+      "images": ["img/guides/stool/step-02.webp"],
+      "imageAlts": ["Diagram showing two S-2 and two S-3 boards assembled into a square frame, with a second frame shown complete behind it."],
+      "tips": [
+        "Use a carpenter's square to check each corner forms a right angle — if it's far off, re-check your board lengths.",
+        "Building a 90-degree jig can help with assembly of this and the next step."
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Add the top slats to each frame",
+      "text": "Place one S-1 and four S-4 pieces on top of the frame built in step 2. To ensure a 1.5\" gap between the two S-4 pieces, use a spare 2x4 on end as a spacer.\n\nUse the pre-drilling guide at the end of the packet to pre-drill your screw holes, then secure the lumber into the S-3 and S-2 pieces with an impact driver and 30 2.5\" self-driving exterior wood screws.\n\nRepeat on the other leg.",
+      "images": ["img/guides/stool/step-03.webp"],
+      "imageAlts": ["Diagram of S-1 and S-4 boards being screwed onto the top of the frame, with a 1.5\" spacer gap called out."]
+    },
+    {
+      "n": 4,
+      "title": "Connect the two frames",
+      "text": "Place one S-2 piece in the slot at the base of the two frames created in step 3.\n\nSecure the S-2 lumber on both the left and right sides into the S-3 pieces with an impact driver and 4 2.5\" self-driving exterior wood screws.\n\nPlace two S-1 end pieces on top of the frame, aligning all edges so the piece is square at the top, and secure with an impact driver and 12 2.5\" self-driving exterior wood screws.",
+      "images": ["img/guides/stool/step-04.webp"],
+      "imageAlts": ["Diagram of an S-2 board connecting the two frames at the base, and S-1 end pieces being added on top."],
+      "tips": ["Ensure the side stays at 90 degrees by using a carpenter's square."]
+    },
+    {
+      "n": 5,
+      "title": "Add the remaining top slats and sand",
+      "text": "Place three S-1 pieces on top of the frame created in step 4, aligning all edges and leaving an equal gap between each piece.\n\nSecure the S-1 lumber with an impact driver and 12 2.5\" self-driving exterior wood screws.\n\nLightly sand the rough edges of the stool.",
+      "images": ["img/guides/stool/step-05.webp"],
+      "imageAlts": ["Diagram of the remaining S-1 top boards being spaced equally and screwed down across the stool frame."]
+    },
+    {
+      "n": 6,
+      "title": "Pre-drilling hole guide (template)",
+      "text": "Cut out the pre-drilling hole guide along the dotted lines. When drilling, align the edge of the template with the outside edge of the lumber before pre-drilling.\n\nNot all holes are used — not all patterns use the template. Use the assembly steps above for your hole guide. Keep all holes about a thumb's width from the edge (about 1\"), even holes that don't use this template.",
+      "images": ["img/guides/stool/step-06.webp"],
+      "imageAlts": ["A printable pre-drilling hole guide template with five marked hole positions and cut lines, plus a close-up showing hole spacing from the board edge."]
+    }
+  ],
+  "finishing": "Exterior wood treatment can prolong the life of your park elements, but it isn't necessary — these pieces are built to be low-cost, durable and easy to build by design, so it may be more practical to just let the next generation rebuild them when the time comes. If you do want to stain, paint or seal the wood, see the finish resources below.",
+  "safety": [
+    "These are DIY recommendations only — tailor the material, assembly and construction to your own project and site.",
+    "Building this assumes some working knowledge of hand and power tools, hardware, fasteners, lumber and basic assembly technique.",
+    "Before using any power equipment, review and follow the manufacturer's safety requirements, and don't let anyone use power tools who hasn't done the same.",
+    "You (the owner) are responsible for any building and safety codes, permits and regulatory approvals this needs.",
+    "Clear the site of trash, hazards and unwanted structures first, and identify any utilities that could interfere before you dig.",
+    "Everyone helping build should sign a volunteer waiver."
+  ],
+  "links": [
+    { "label": "Choosing the best finish for outdoor projects (Rockler)", "url": "https://www.rockler.com/learn/choosing-the-best-finish-for-outdoor-projects" },
+    { "label": "Best finish for outdoor wood (Real Milk Paint)", "url": "https://www.realmilkpaint.com/blog/tips/best-finish-outdoor-wood/" },
+    { "label": "Exterior wood coatings (Vermont Natural Coatings)", "url": "https://vermontnaturalcoatings.com/product-category/exterior/" }
+  ],
+  "pdf": "downloads/guides/stool.pdf",
+  "sourcePages": "STOOL_ASSEMBLY instructions, pp. 1–9 (cover; before you begin; common lumber selections; steps 1–5; pre-drilling hole guide)"
+}

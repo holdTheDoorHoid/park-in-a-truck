@@ -1,0 +1,170 @@
+{
+  "slug": "gabion-bench",
+  "title": "4' Wood-Topped Gabion Bench",
+  "element": "gabion-bench",
+  "summary": "A 4-foot wire gabion basket filled with stone and topped with a 2x4 wood seat — built and filled on site, or off site and filled last.",
+  "category": "seating",
+  "dimensionsIn": { "length": 48, "width": 18, "height": 18 },
+  "materials": [
+    {
+      "item": "Metal 2x2 welded-wire mesh",
+      "qty": 1,
+      "size": "8 gauge (3/16\" dia.), galvanized, 2\" openings",
+      "notes": "Fabrication suggestions: Darby and Sons (darbywiremesh.com) or Gabion1.com. When ordering custom-cut pieces, ask for the pieces to be cut to size, closed pieces, galvanized after.",
+      "link": "https://gabion1.com/product/18-high-x-18-thick-1/"
+    },
+    {
+      "item": "2x4 dimensional lumber — western red cedar, Douglas fir, or pressure-treated pine",
+      "qty": 4.5,
+      "size": "2x4x8'",
+      "notes": "Cedar: naturally weather/rot resistant, nice red tone, needs no sealant; costs more — ask for 'knotty' (STK) grade. Douglas fir: moderately rot resistant, strong, cheaper than cedar; good if you plan to paint. Pressure-treated: cheapest and rot resistant, but often poor/inconsistent quality, needs 1–4 months of air-drying before painting, not recommended where food is grown. Order 5–10% more than the cut list to allow for variable lumber quality and incorrect cuts."
+    },
+    {
+      "item": "Gabion fill material",
+      "qty": 1,
+      "notes": "Angular, hard, inert material that won't break down over time — quarried rock, recycled pavement (concrete/asphalt), or recycled brick/concrete masonry units. Cut logs or other organic material should not be used. Mix of sizes from 2\" minimum to 12\" maximum; pieces on the exterior face should be larger than 3\"."
+    },
+    {
+      "item": "Bracing material (for the center support, below the middle frame piece)",
+      "qty": 1,
+      "notes": "Either a roll of 14 or 16 gauge smooth galvanized wire, or excess pieces of the 2x2 wire mesh cut in half with bolt cutters (spanning the full width of the basket, at least 2 boxes / 4\" tall)."
+    }
+  ],
+  "hardware": [
+    { "item": "Self-driving exterior wood screws", "qty": 36, "size": "2.5\"" },
+    { "item": "Hog rings", "qty": 50, "size": "3/4\"" },
+    { "item": "Cable staples", "qty": 32, "size": "1.5\"" }
+  ],
+  "cutList": [
+    { "part": "GB-1", "qty": 3, "stock": "2x4", "lengthIn": 15, "notes": "Gabion bench frame" },
+    { "part": "GB-2", "qty": 7, "stock": "2x4", "lengthIn": 48, "notes": "Gabion bench top + frame" },
+    { "part": "18-4a", "qty": 1, "stock": "2x2 welded-wire mesh", "lengthIn": 48, "notes": "Gabion bottom panel, 48\" x 18\"" },
+    { "part": "18-4b", "qty": 2, "stock": "2x2 welded-wire mesh", "lengthIn": 48, "notes": "Gabion side (long), 48\" x 18\" each" },
+    { "part": "18-4c", "qty": 2, "stock": "2x2 welded-wire mesh", "lengthIn": 18, "notes": "Gabion side (short), 18\" x 18\" each" }
+  ],
+  "tools": [
+    "10\" or 12\" miter saw (or appropriate hand saw)",
+    "Impact driver for self-driving exterior wood screws",
+    "Drill with 1/8\" bit",
+    "Sandpaper, 120 grit",
+    "Carpenter's square",
+    "Safety goggles + gloves",
+    "Hog ring pliers",
+    "Bolt cutters",
+    "Hammer",
+    "4 lb sledgehammer",
+    "Grinder (to buff any sharp wire edges)"
+  ],
+  "steps": [
+    {
+      "n": 1,
+      "title": "Mark, label and cut the lumber and wire mesh",
+      "text": "Mark, label and cut lumber in order of GB-1 to GB-2 to the lengths in the cut list.\n\nSort your 2x2 wire mesh into equal-sized piles and label them 18-4a (gabion bottom), 18-4b (gabion side, long) and 18-4c (gabion side, short).",
+      "images": ["img/guides/gabion-bench/step-01.webp"],
+      "imageAlts": ["Isometric diagram of the GB-1 and GB-2 lumber pieces and the 18-4a, 18-4b and 18-4c wire mesh panels, with lengths and a mesh adjacency diagram."],
+      "tips": [
+        "Label each piece of lumber as you measure and cut it.",
+        "Keep a separate pile of lumber for GB-1 and GB-2.",
+        "Lightly sanding the cut edges removes splinters and helps with assembly.",
+        "Building more than one gabion? A stop block on your miter saw keeps every piece the same length."
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Staple the wire mesh sides to the frame ends",
+      "text": "Place two GB-2 pieces and two GB-1 pieces on a flat surface, aligning the edges as shown.\n\nMake sure the verticals on the gabion wire mesh are touching the wood, and the cross pieces (smooth edges) that run the same way as the board are on the outside, to keep sharp edges off the outside of the gabion.\n\nCenter the two 18-4c wire mesh pieces on the GB-1 piece of wood — there should be 1.5\" from the edge of the wood to the edge of the wire mesh.\n\nSecure the two 18-4c and two 18-4b wire mesh pieces onto the GB-1 and GB-2 lumber using a hammer and 32 1.5\" galvanized cable staples — 2 staples per piece of wire.",
+      "images": ["img/guides/gabion-bench/step-02.webp"],
+      "imageAlts": ["Diagram of 18-4c and 18-4b wire mesh panels being stapled onto GB-1 and GB-2 lumber, with a close-up of staple placement and the 1.5\" mesh offset."],
+      "tips": ["If you're connecting many gabions in a row, only staple the metal mesh to one GB-1 piece."]
+    },
+    {
+      "n": 3,
+      "title": "Build the frame",
+      "text": "Place two GB-2 pieces on a flat surface. Place two GB-1 pieces in between the GB-2 pieces at either end, aligning the edges as shown.\n\nUse the pre-drilling guide at the end of the packet to pre-drill your screw holes, then secure the GB-2 lumber into the GB-1 pieces with an impact driver and 8 2.5\" self-driving exterior wood screws.",
+      "images": ["img/guides/gabion-bench/step-03.webp"],
+      "imageAlts": ["Diagram of two GB-1 end pieces and two GB-2 side pieces screwed together into a rectangular frame."],
+      "tips": [
+        "Use a carpenter's square to check each corner forms a right angle.",
+        "If you're connecting many gabions together, leave one end open — see the Build chapter for the layout."
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Add the center support",
+      "text": "Place one GB-1 piece in the middle of the frame created in step 3.\n\nSecure it with an impact driver and 4 2.5\" self-driving exterior wood screws.",
+      "images": ["img/guides/gabion-bench/step-04.webp"],
+      "imageAlts": ["Diagram of a GB-1 piece centered in the middle of the frame, equally spaced from both ends."]
+    },
+    {
+      "n": 5,
+      "title": "Close up the basket's corners",
+      "text": "Secure the 2x2 wire sheet — the two 18-4c and two 18-4b pieces — together at the corners using hog rings and hog ring pliers, one hog ring every other opening. Make sure hog rings are at all corners and edges so the basket holds its shape.",
+      "images": ["img/guides/gabion-bench/step-05.webp"],
+      "imageAlts": ["Diagram of hog rings closing the corner seams of the wire mesh basket, with a close-up of a hog ring joining two mesh edges."]
+    },
+    {
+      "n": 6,
+      "title": "Brace the center",
+      "text": "In the center of the gabion basket, below the middle GB-1 piece, add bracing material using one of two options: excess end pieces of 2x2 wire mesh cut in half with bolt cutters, or any excess 2x2 mesh that spans the entire width of the basket (at least 2 boxes, or 4\"+, tall).\n\nSecure the middle support piece with hog rings.",
+      "images": ["img/guides/gabion-bench/step-06.webp"],
+      "imageAlts": ["Diagram of a wire mesh brace being hog-ringed in place below the center frame piece."]
+    },
+    {
+      "n": 7,
+      "title": "Close the top",
+      "text": "Place the 18-4a wire mesh top piece on top of the gabion basket secured in step 5.\n\nSecure the top piece with hog rings on the four sides and the center brace — one hog ring every other mesh opening, and two at each corner. The gabion basket is now ready to transport to the site.",
+      "images": ["img/guides/gabion-bench/step-07.webp"],
+      "imageAlts": ["Diagram of the 18-4a top wire mesh panel being hog-ringed onto the basket, with a close-up of a corner hog ring securing all three mesh pieces."]
+    },
+    {
+      "n": 8,
+      "title": "Set the basket on site",
+      "text": "Rotate the gabion basket 180°. Place it on site with a gravel underlay.\n\nEnsure the gabion basket is straight using a level.",
+      "images": ["img/guides/gabion-bench/step-08.webp"],
+      "imageAlts": ["Diagram showing the gabion basket rotated and leveled on a gravel bed."],
+      "tips": ["If it's next to other gabions, use string and line levels to keep the row straight."]
+    },
+    {
+      "n": 9,
+      "title": "Fill the basket",
+      "text": "Place the gabion in its location per your park's design. Apply gravel underneath to fine-tune adjustments.\n\nStarting with the largest, flattest pieces of gabion fill you have, begin filling the gabion starting at the edges, and continue until you've built up the sides.\n\nFill the frame with leftover gabion fill until it's level with the top of the wood edge.",
+      "images": ["img/guides/gabion-bench/step-09.webp"],
+      "imageAlts": ["Diagram and reference photos of a gabion basket being filled with stone, starting with large flat pieces along the edges."],
+      "tips": ["Place fill carefully to avoid warping the basket, and make sure all gaps are filled for stability.", "See your Create workbook, phase four, for more on this step."]
+    },
+    {
+      "n": 10,
+      "title": "Add the wood top and sand",
+      "text": "Place two GB-2 pieces on top of the frame created in step 3, using the pre-drilling guide at the end of the packet to pre-drill the wood. Secure the two end boards first with an impact driver and 12 2.5\" self-driving exterior wood screws, keeping the edge flush with the wood below.\n\nEqually space the remaining three GB-2 boards between the two end boards and secure with an impact driver and 12 more 2.5\" self-driving exterior wood screws.\n\nLightly sand the rough edges of the gabion bench, and make sure there are no sharp edges of gabion wire — buff with a grinder if any are too sharp.",
+      "images": ["img/guides/gabion-bench/step-10.webp"],
+      "imageAlts": ["Diagram of five GB-2 wood top boards being screwed onto the filled gabion basket, evenly spaced."],
+      "tips": ["Pre-drilling at this step helps the screws not split the boards.", "Keep all screws a thumb's width from the edge of the wood."]
+    },
+    {
+      "n": 11,
+      "title": "Pre-drilling hole guide (template)",
+      "text": "Cut out the pre-drilling hole guide along the dotted lines. When drilling, align the edge of the template with the outside edge of the lumber before pre-drilling.\n\nNot all holes are used — not all patterns use the template. Use the assembly steps above for your hole guide. Keep all holes about a thumb's width from the edge (about 1\"), even holes that don't use this template.",
+      "images": ["img/guides/gabion-bench/step-11.webp"],
+      "imageAlts": ["A printable pre-drilling hole guide template with five marked hole positions and cut lines, plus a close-up showing hole spacing from the board edge."]
+    }
+  ],
+  "finishing": "Exterior wood treatment can prolong the life of your park elements, but it isn't necessary — these pieces are built to be low-cost, durable and easy to build by design, so it may be more practical to just let the next generation rebuild them when the time comes. If you do want to stain, paint or seal the wood top, see the finish resources below.",
+  "safety": [
+    "These are DIY recommendations only — tailor the material, assembly and construction to your own project and site.",
+    "Building this assumes some working knowledge of hand and power tools, hardware, fasteners, lumber and basic assembly technique.",
+    "Before using any power equipment, review and follow the manufacturer's safety requirements, and don't let anyone use power tools who hasn't done the same.",
+    "You (the owner) are responsible for any building and safety codes, permits and regulatory approvals this needs.",
+    "Clear the site of trash, hazards and unwanted structures first, and identify any utilities that could interfere before you dig.",
+    "Everyone helping build should sign a volunteer waiver.",
+    "Cut wire mesh and gabion fill can leave sharp edges — wear gloves and safety goggles, and buff any sharp wire with a grinder."
+  ],
+  "links": [
+    { "label": "Darby and Sons wire mesh", "url": "http://www.darbywiremesh.com" },
+    { "label": "Gabion1.com — 18\" x 18\" gabion basket", "url": "https://gabion1.com/product/18-high-x-18-thick-1/" },
+    { "label": "Choosing the best finish for outdoor projects (Rockler)", "url": "https://www.rockler.com/learn/choosing-the-best-finish-for-outdoor-projects" },
+    { "label": "Best finish for outdoor wood (Real Milk Paint)", "url": "https://www.realmilkpaint.com/blog/tips/best-finish-outdoor-wood/" },
+    { "label": "Exterior wood coatings (Vermont Natural Coatings)", "url": "https://vermontnaturalcoatings.com/product-category/exterior/" }
+  ],
+  "pdf": "downloads/guides/gabion-bench.pdf",
+  "sourcePages": "GABION_BENCH_ASSEMBLY instructions, pp. 1–15 (cover; before you begin; common material + lumber selections; steps 1–10; pre-drilling hole guide)"
+}

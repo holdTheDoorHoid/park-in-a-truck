@@ -1,0 +1,299 @@
+---
+// /build/<slug>/ — one assembly guide: hero, at-a-glance, materials + tools
+// checklists, cut list, numbered steps with enlargeable diagrams, finishing &
+// safety notes, supplier links, PDF download, prev/next. Owner: guides workstream.
+import Base from '../../layouts/Base.astro';
+import Checklist from '../../components/workbook/Checklist.astro';
+import Download from '../../components/workbook/Download.astro';
+import Callout from '../../components/workbook/Callout.astro';
+import CutListTable from '../../components/guides/CutListTable.astro';
+import StepBlock from '../../components/guides/StepBlock.astro';
+import { getGuides, getGuide, CATEGORY_LABELS } from '../../data/guides';
+import { dimsText } from '../../components/guides/format';
+import { u } from '../../lib/url';
+
+export function getStaticPaths() {
+  return getGuides().map((guide) => ({ params: { slug: guide.slug } }));
+}
+
+const { slug } = Astro.params;
+const guide = getGuide(slug!)!;
+
+const all = getGuides();
+const i = all.findIndex((g) => g.slug === guide.slug);
+const prev = all[i - 1];
+const next = all[i + 1];
+
+const materialItems = [...guide.materials, ...guide.hardware].map((m, idx) => ({
+  value: `${idx}-${m.item}`,
+  label: `${m.qty}× ${m.item}${m.size ? ` (${m.size})` : ''}`,
+  hint: m.notes,
+}));
+
+const glance: { label: string; value: string }[] = [{ label: 'Size', value: dimsText(guide.dimensionsIn) }];
+if (guide.time) glance.push({ label: 'Time', value: guide.time });
+if (guide.people) glance.push({ label: 'People', value: guide.people });
+if (guide.skill) glance.push({ label: 'Skill', value: guide.skill });
+if (guide.cost) glance.push({ label: 'Cost', value: guide.cost });
+---
+
+<Base title={guide.title} description={guide.summary}>
+  <header class="hero wrap">
+    <p class="eyebrow no-print">
+      <a href={u('build/')}>Build guides</a> · {CATEGORY_LABELS[guide.category]}
+    </p>
+    <div class="hero-grid">
+      <div class="hero-media">
+        <img src={u(`img/guides/${guide.slug}/hero.webp`)} alt={`${guide.title}, assembled`} />
+      </div>
+      <div class="hero-copy">
+        <h1 class="ruled">{guide.title}</h1>
+        <p class="lede">{guide.summary}</p>
+        <dl class="glance">
+          {glance.map((g) => (
+            <div>
+              <dt>{g.label}</dt>
+              <dd>{g.value}</dd>
+            </div>
+          ))}
+        </dl>
+        <div class="hero-actions no-print">
+          <Download href={guide.pdf} label="Original PDF" />
+          <button class="btn btn-small" type="button" onclick="window.print()">🖨 Print</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="wrap section">
+    <h2 class="ruled">What you need</h2>
+    <div class="need-grid">
+      <div>
+        <Checklist id={`build.${guide.slug}.materials`} label="Materials & hardware" items={materialItems} />
+      </div>
+      <div>
+        <Checklist id={`build.${guide.slug}.tools`} label="Tools" items={guide.tools} />
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section">
+    <h2 class="ruled">Cut list</h2>
+    <CutListTable items={guide.cutList} />
+  </section>
+
+  <section class="wrap section">
+    <h2 class="ruled">Steps</h2>
+    <ol class="steps">
+      {guide.steps.map((step) => <StepBlock step={step} />)}
+    </ol>
+  </section>
+
+  {(guide.finishing || (guide.safety && guide.safety.length > 0)) && (
+    <section class="wrap section finishing-safety">
+      {guide.finishing && (
+        <div>
+          <h2 class="ruled">Finishing</h2>
+          <div class="prose">
+            {guide.finishing.split('\n\n').map((p) => <p>{p}</p>)}
+          </div>
+        </div>
+      )}
+      {guide.safety && guide.safety.length > 0 && (
+        <Callout kind="warning" title="Before you begin">
+          <ul>
+            {guide.safety.map((s) => <li>{s}</li>)}
+          </ul>
+        </Callout>
+      )}
+    </section>
+  )}
+
+  {guide.links.length > 0 && (
+    <section class="wrap section no-print">
+      <h2 class="ruled">Supplier & resource links</h2>
+      <ul class="links">
+        {guide.links.map((l) => (
+          <li><a href={l.url} target="_blank" rel="noopener">{l.label}</a></li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  <section class="wrap section no-print">
+    <p class="muted source">Source: {guide.sourcePages}</p>
+    <Download href={guide.pdf} label={`Download the ${guide.title} PDF`} />
+  </section>
+
+  <nav class="wrap pager no-print" aria-label="Guides">
+    {prev ? <a class="btn" href={u(`build/${prev.slug}/`)}>← {prev.title}</a> : <span></span>}
+    {next ? <a class="btn btn-primary" href={u(`build/${next.slug}/`)}>{next.title} →</a> : <span></span>}
+  </nav>
+
+  <dialog id="lightbox" class="lightbox no-print">
+    <button type="button" class="lightbox-close" data-close aria-label="Close">✕</button>
+    <img data-lightbox-img alt="" />
+  </dialog>
+</Base>
+
+<script>
+  function setup() {
+    const dlg = document.getElementById('lightbox') as HTMLDialogElement | null;
+    if (!dlg) return;
+    const img = dlg.querySelector('[data-lightbox-img]') as HTMLImageElement | null;
+    document.querySelectorAll<HTMLButtonElement>('[data-enlarge]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (!img) return;
+        img.src = btn.dataset.src || '';
+        img.alt = btn.dataset.alt || '';
+        dlg.showModal();
+      });
+    });
+    dlg.querySelector('[data-close]')?.addEventListener('click', () => dlg.close());
+    dlg.addEventListener('click', (e) => {
+      if (e.target === dlg) dlg.close();
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup);
+  else setup();
+</script>
+
+<style>
+  .hero {
+    padding-top: 32px;
+  }
+  .eyebrow a {
+    color: inherit;
+    text-decoration: underline;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: 32px;
+    align-items: center;
+    margin-top: 14px;
+  }
+  .hero-media {
+    border-radius: var(--radius);
+    display: grid;
+    place-items: center;
+    padding: 12px;
+    background: var(--paper-2);
+  }
+  .hero-media img {
+    width: 100%;
+  }
+  .glance {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 14px;
+    margin: 20px 0 0;
+    padding: 14px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .glance dt {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+  }
+  .glance dd {
+    margin: 0.2em 0 0;
+    font-weight: 700;
+  }
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+  .hero-actions :global(.download) {
+    margin: 0;
+  }
+  .section {
+    padding: 36px 0;
+    border-top: 1px solid var(--line);
+  }
+  .need-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: 40px;
+    align-items: start;
+  }
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .finishing-safety {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 32px;
+    align-items: start;
+  }
+  .links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 8px;
+  }
+  .source {
+    font-size: 0.85rem;
+    margin-bottom: 14px;
+  }
+  .pager {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 24px 0 48px;
+  }
+  .lightbox {
+    border: 0;
+    border-radius: var(--radius);
+    padding: 0;
+    max-width: min(92vw, 1200px);
+    max-height: 90vh;
+    background: #000;
+  }
+  .lightbox::backdrop {
+    background: rgb(0 0 0 / 0.78);
+  }
+  .lightbox img {
+    display: block;
+    max-width: min(92vw, 1200px);
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+    background: #fff;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    width: 2.2em;
+    height: 2.2em;
+    border-radius: 50%;
+    border: 0;
+    background: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  @media (max-width: 860px) {
+    .hero-grid,
+    .need-grid,
+    .finishing-safety {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media print {
+    .hero-media {
+      padding: 0;
+    }
+  }
+</style>

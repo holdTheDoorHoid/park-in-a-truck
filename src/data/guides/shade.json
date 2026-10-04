@@ -1,0 +1,241 @@
+{
+  "slug": "shade",
+  "title": "8' Shade Structure",
+  "element": "shade-canopy",
+  "summary": "A freestanding 8x8x8-foot 2x4 trellis with a slatted canopy roof, staked into the ground (or a planting bed) with L-brackets and J-hooks, or bolted to an adjacent gabion bench.",
+  "category": "structures",
+  "dimensionsIn": {
+    "length": 96,
+    "width": 96,
+    "height": 96
+  },
+  "materials": [
+    {
+      "item": "2x4 dimensional lumber — western red cedar or Douglas fir",
+      "qty": 47,
+      "size": "2x4x8'-0\"",
+      "notes": "Cedar: naturally weather/rot resistant, nice red tone, needs no sealant; costs more — ask for 'knotty' (STK) grade. Fir: moderately rot resistant, strong, cheaper than cedar; good if you plan to paint. Lumber is still susceptible to cracking from sun exposure. Order 5–10% more than the cut list to allow for variable lumber quality and incorrect cuts."
+    },
+    {
+      "item": "Concrete deck blocks",
+      "qty": 4,
+      "notes": "Only if needed — see step 8. Use where a post lands in a planting bed, to set the post above the soil and keep it stable while minimizing rot. Dig blocks in as needed so all posts are level with each other."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Self-driving exterior wood screws",
+      "qty": 268,
+      "size": "2.5\""
+    },
+    {
+      "item": "L brackets",
+      "qty": 4
+    },
+    {
+      "item": "Lag screws",
+      "qty": 4,
+      "size": "1/2\" x 2\""
+    },
+    {
+      "item": "J hooks",
+      "qty": 4,
+      "size": "18\""
+    }
+  ],
+  "cutList": [
+    {
+      "part": "SS-1",
+      "qty": 14,
+      "stock": "2x4",
+      "lengthIn": 96,
+      "notes": "Leg (long), side brace, top brace, and canopy top boards — the PDF's own cut list total (14) is well short of what the step-by-step instructions actually call for across the legs, bracing and canopy decking (the canopy alone uses 15+ boards). Buy extra 2x4x96\" stock and count against the steps below, not just this line."
+    },
+    {
+      "part": "SS-2",
+      "qty": 4,
+      "stock": "2x4",
+      "lengthIn": 92.5,
+      "notes": "Leg (short)"
+    },
+    {
+      "part": "SS-3",
+      "qty": 4,
+      "stock": "2x4",
+      "lengthIn": 89,
+      "notes": "Interior brace, side B — cut to its final size on site against the built frame"
+    },
+    {
+      "part": "SS-4",
+      "qty": 4,
+      "stock": "2x4",
+      "lengthIn": 87,
+      "notes": "Interior brace, side A — only a rough estimate; do not cut to final length until you've measured the frame in step 5"
+    }
+  ],
+  "tools": [
+    "10\" or 12\" miter saw (or appropriate hand saw)",
+    "Impact driver for self-driving exterior wood screws",
+    "Drill with 1/8\" bit for pre-drilling holes",
+    "5 lb hammer, for the J hooks",
+    "Sandpaper, 120 grit",
+    "Carpenter's square",
+    "Safety goggles + gloves",
+    "6' step ladder",
+    "2 wood clamps (optional)"
+  ],
+  "steps": [
+    {
+      "n": 1,
+      "title": "Mark, label and cut the lumber",
+      "text": "Mark, label and cut lumber in order of SS-1 to SS-4 to the lengths in the cut list. SS-3 and SS-4 are cut to a rough length here and trimmed to their final, exact size on site in step 5 — don't cut them down further until then.\n\nCheck each piece of lumber for imperfections such as cracks, warping or uneven milling, and discard those portions of lumber.",
+      "images": [
+        "img/guides/shade/step-01.webp"
+      ],
+      "imageAlts": [
+        "Isometric diagram of the shade structure's four cut pieces SS-1 through SS-4 with their lengths labeled, from a 96\" board down to the roughly 87\" interior braces."
+      ],
+      "tips": [
+        "Label each piece of lumber as you measure and cut it.",
+        "Keep a separate pile of lumber for SS-1 to SS-4.",
+        "Lightly sanding the cut edges removes splinters and helps with assembly.",
+        "Building more than one shade structure? A stop block on your miter saw keeps every piece the same length."
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Build the four legs and connect them into two sets",
+      "text": "Stack one SS-2 on one SS-1, aligning one side flush and leaving a 3.5\" gap on the other side. This forms the first leg of the trellis.\n\nUse the pre-drilling guide at the end of the packet to pre-drill your screw holes, then secure the two pieces with 2 screws at one end, 2 at the other end, 2 in the middle, and 2 more equally spaced between an end and the middle — 10 screws per leg.\n\nRepeat 3 more times, with 3 more SS-2 and SS-1 pieces and 30 more screws, to build all four legs.\n\nTo connect legs into pairs: secure one SS-1 across the top of two legs, slotted into the 3.5\" gap, with 8 screws (4 per leg). Repeat with the other two legs.",
+      "images": [
+        "img/guides/shade/step-02.webp"
+      ],
+      "imageAlts": [
+        "Diagram of an SS-2 and SS-1 board stacked with a 3.5\" gap to form one trellis leg, with a top SS-1 cross-piece connecting two legs into a pair."
+      ],
+      "tips": [
+        "The first two steps can be done on level ground before standing anything up.",
+        "Check each side stays at 90 degrees with a carpenter's square."
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Add the lower side braces and stand up the legs",
+      "text": "Flip the leg pairs over. Using two SS-1s on one side of the trellis, add braces, using a spare 2x4 to set an even 3.5\" gap between the top leg brace and the new braces below it — 4 screws per brace, 8 screws total for this side.\n\nRepeat on the other set of legs with two more SS-1s and 8 more screws.\n\nStand the legs up.",
+      "images": [
+        "img/guides/shade/step-03.webp"
+      ],
+      "imageAlts": [
+        "Diagram of SS-1 side braces being added below the top cross-piece on each leg pair, with a 3.5\" spacer gap, then the leg pairs stood upright."
+      ],
+      "tips": [
+        "Check each side stays at 90 degrees with a carpenter's square."
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Add the top cross beams and long braces",
+      "text": "With the legs standing, connect the two leg pairs with two SS-1 top cross beams, checking all sides are at 90 degrees, and secure each corner with 4 screws (8 screws for this step).\n\nAdd long braces along one side using two SS-1s, again using a spare 2x4 for an even 3.5\" gap below the top cross beam (4 screws per brace). Repeat on the other side.",
+      "images": [
+        "img/guides/shade/step-04.webp"
+      ],
+      "imageAlts": [
+        "Diagram of SS-1 top cross beams connecting the two leg pairs at the top, and long SS-1 braces running along the sides below them."
+      ],
+      "tips": [
+        "The remaining steps need a ladder to reach the top of the frame.",
+        "Check each side stays at 90 degrees with a carpenter's square."
+      ]
+    },
+    {
+      "n": 5,
+      "title": "Fit and secure the interior braces",
+      "text": "Measure the distance between your two posts where each SS-4 interior brace should go, cut the SS-4 piece to that exact size for a snug fit, and secure it to the SS-1 piece behind it. Repeat for all 4 interior long-side brace pieces, securing each with 8 2.5\" screws placed in pairs at equal intervals (32 screws total).\n\nDo the same for the SS-3 interior braces on the short sides: measure, cut each to a snug fit, secure to the SS-1 piece behind it, for 4 interior short-side brace pieces and 32 more screws.",
+      "images": [
+        "img/guides/shade/step-05.webp"
+      ],
+      "imageAlts": [
+        "Diagram showing the SS-4 and SS-3 interior braces measured and cut to fit snugly between the posts, then screwed in pairs at equal intervals."
+      ],
+      "tips": [
+        "Use clamps to hold the wood in place while you secure it."
+      ]
+    },
+    {
+      "n": 6,
+      "title": "Add the top brace supports",
+      "text": "Use one SS-1 piece to create a top brace support, equally spaced in the center of the frame.\n\nSecure it with 4 self-driving exterior wood screws.",
+      "images": [
+        "img/guides/shade/step-06.webp"
+      ],
+      "imageAlts": [
+        "Diagram of a single SS-1 top brace support centered across the middle of the frame."
+      ],
+      "tips": [
+        "Use clamps to hold the wood in place while you secure it."
+      ]
+    },
+    {
+      "n": 7,
+      "title": "Build the canopy and sand",
+      "text": "Use SS-1 pieces for the canopy. Using a spare 2x4 as a spacer, secure each SS-1 canopy board from one side of the frame to the other (right to left).\n\nSecure the lumber with an impact driver and 75 2.5\" self-driving exterior wood screws, then secure the remaining SS-1 canopy pieces with 70 more screws.\n\nAlign the last piece with the frame so there's no overhang — it's fine for the last piece to be narrower than 3.5\" if needed to fit.\n\nLightly sand the rough edges of the shade structure.",
+      "images": [
+        "img/guides/shade/step-07.webp"
+      ],
+      "imageAlts": [
+        "Diagram of SS-1 canopy boards being laid side by side across the top of the frame with a 2x4 spacer, screwed down from one side to the other."
+      ]
+    },
+    {
+      "n": 8,
+      "title": "Anchor the posts",
+      "text": "Place an L bracket on the inside of each post and secure it with a 1/2\" x 2\" lag screw.\n\nPlace an 18\" J hook through the bottom hole of each L bracket and hammer it into the ground with a 5 lb hammer.",
+      "images": [
+        "img/guides/shade/step-08.webp"
+      ],
+      "imageAlts": [
+        "Diagram of an L bracket and J hook anchoring the base of a trellis post into the ground, with a concrete deck block option for planting beds."
+      ],
+      "tips": [
+        "If the shade structure sits next to a wood-topped gabion bench, it's best to use the L brackets and lag screws to bolt the trellis legs directly to the bench instead.",
+        "If a post lands in a planting bed, set it on a concrete deck block above the soil for stability and to reduce wood rot — dig the block in so it's level with the other posts."
+      ]
+    },
+    {
+      "n": 9,
+      "title": "Pre-drilling hole guide (template)",
+      "text": "Cut out the pre-drilling hole guide along the dotted lines. When drilling, align the edge of the template with the outside edge of the lumber before pre-drilling.\n\nNot all holes are used — not all patterns use the template. Use the assembly steps above for your hole guide. Keep all holes about a thumb's width from the edge (about 1\"), even holes that don't use this template.",
+      "images": [
+        "img/guides/shade/step-09.webp"
+      ],
+      "imageAlts": [
+        "A printable pre-drilling hole guide template with five marked hole positions and cut lines, plus a close-up showing hole spacing from the board edge."
+      ]
+    }
+  ],
+  "finishing": "Exterior wood treatment can prolong the life of your park elements, but it isn't necessary — these pieces are built to be low-cost, durable and easy to build by design, so it may be more practical to just let the next generation rebuild them when the time comes. If you do want to stain, paint or seal the wood, see the finish resources below.",
+  "safety": [
+    "These are DIY recommendations only — tailor the material, assembly and construction to your own project and site.",
+    "Building this assumes some working knowledge of hand and power tools, hardware, fasteners, lumber and basic assembly technique.",
+    "Before using any power equipment, review and follow the manufacturer's safety requirements, and don't let anyone use power tools who hasn't done the same.",
+    "You (the owner) are responsible for any building and safety codes, permits and regulatory approvals this needs.",
+    "Clear the site of trash, hazards and unwanted structures first, and identify any utilities that could interfere before you dig.",
+    "Everyone helping build should sign a volunteer waiver.",
+    "This is an 8-foot structure built overhead on a ladder — have a helper steady the frame and ladder while you work up high."
+  ],
+  "links": [
+    {
+      "label": "Choosing the best finish for outdoor projects (Rockler)",
+      "url": "https://www.rockler.com/learn/choosing-the-best-finish-for-outdoor-projects"
+    },
+    {
+      "label": "Best finish for outdoor wood (Real Milk Paint)",
+      "url": "https://www.realmilkpaint.com/blog/tips/best-finish-outdoor-wood/"
+    },
+    {
+      "label": "Exterior wood coatings (Vermont Natural Coatings)",
+      "url": "https://vermontnaturalcoatings.com/product-category/exterior/"
+    }
+  ],
+  "pdf": "downloads/guides/shade.pdf",
+  "sourcePages": "SHADE_Assembly instructions, pp. 1–12 (cover; before you begin; common lumber selections; steps 1–7; anchoring; pre-drilling hole guide)"
+}
