@@ -1,0 +1,158 @@
+{
+  "title": "Ghế dài có tựa lưng",
+  "summary": "Một chiếc ghế dài 4 feet bằng gỗ tuyết tùng, gỗ thông Douglas hoặc gỗ xử lý áp lực, mặt ngồi ghép thanh nan và tựa lưng nghiêng, làm từ gỗ 2x4 với giá đỡ tựa lưng bắt bằng bu-lông. Ghế cao 25\" tính đến đỉnh tay vịn; tựa lưng cao đến khoảng 34\".",
+  "materials": [
+    {
+      "item": "Gỗ xẻ 2x4 — gỗ tuyết tùng đỏ miền tây (western red cedar), gỗ thông Douglas (Douglas fir) hoặc gỗ thông xử lý áp lực",
+      "notes": "Gỗ tuyết tùng: tự nhiên chịu được thời tiết và mục, màu đỏ đẹp, dễ làm, không cần phủ lớp bảo vệ (để lâu sẽ ngả màu xám); giá cao hơn — hãy hỏi loại 'có mắt gỗ' (STK), rẻ hơn nhiều so với loại không mắt (clear). Gỗ thông Douglas: chịu mục ở mức vừa phải, chắc và dễ làm, rẻ hơn gỗ tuyết tùng, nhưng không bền bằng — là lựa chọn tốt nếu bạn định sơn. Gỗ xử lý áp lực: chịu mục và rẻ nhất, nhưng chất lượng gỗ thường kém và không đều, cần phơi khô ngoài không khí 1–4 tháng trước khi sơn, và không nên dùng ở chỗ trồng thực phẩm. Hãy đặt nhiều hơn 5% so với danh sách cắt gỗ để phòng gỗ không đều và cắt sai."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Vít gỗ tự khoan dùng ngoài trời"
+    },
+    {
+      "item": "Vít đầu lục giác bắt gỗ (lag screw) dùng ngoài trời"
+    },
+    {
+      "item": "Bu-lông đầu tròn cổ vuông (carriage bolt) dùng ngoài trời, đai ốc & long đền"
+    },
+    {
+      "item": "Giá đỡ tựa lưng"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Đáy + mặt ghế"
+    },
+    {
+      "notes": "Tựa lưng ghế"
+    },
+    {
+      "notes": "Thành bên ghế"
+    },
+    {
+      "notes": "Thành bên ghế"
+    },
+    {
+      "notes": "Thành bên ghế"
+    },
+    {
+      "notes": "Thành bên ghế"
+    },
+    {
+      "notes": "Thành bên ghế"
+    }
+  ],
+  "tools": [
+    "Máy cưa góc (miter saw) 10\" hoặc 12\" (hoặc cưa tay phù hợp)",
+    "Máy bắt vít động lực (impact driver) cho vít gỗ tự khoan dùng ngoài trời",
+    "Máy khoan với mũi khoan 1/8\" và 1/4\" để khoan mồi",
+    "Giấy nhám, độ nhám 120",
+    "Thước vuông thợ mộc (ê-ke)",
+    "Kính bảo hộ + găng tay",
+    "Cần siết đầu tuýp (cho bu-lông đầu tròn và vít đầu lục giác)"
+  ],
+  "steps": [
+    {
+      "title": "Đánh dấu, ghi nhãn và cắt gỗ",
+      "text": "Đánh dấu, ghi nhãn và cắt gỗ theo thứ tự từ BB-1 đến BB-7, theo chiều dài trong danh sách cắt gỗ.\n\nKiểm tra từng thanh gỗ xem có khuyết điểm như nứt, cong vênh hay bào không đều không, và bỏ những đoạn gỗ đó đi.",
+      "imageAlts": [
+        "Sơ đồ ba chiều bảy thanh gỗ đã cắt của GHẾ DÀI CÓ TỰA LƯNG, từ BB-1 đến BB-7, có ghi chiều dài, từ tấm ván 45\" đến khối gỗ 4\"."
+      ],
+      "tips": [
+        "Ghi nhãn từng thanh gỗ khi bạn đo và cắt.",
+        "Xếp gỗ của mỗi phần thành một đống riêng, từ BB-1 đến BB-7.",
+        "Chà nhám nhẹ các mép cắt giúp bỏ dằm gỗ và dễ lắp ráp hơn.",
+        "Làm nhiều hơn một ghế? Một khối chặn trên máy cưa góc giúp mọi thanh cắt ra đều dài bằng nhau."
+      ]
+    },
+    {
+      "title": "Đóng hai khung đầu ghế",
+      "text": "Đặt hai thanh BB-3 trên một mặt phẳng. Đặt hai thanh BB-5 ở phía bên phải của hai thanh BB-3, canh các mép như trong hình. Làm lại như vậy để đóng một khung thứ hai giống hệt.",
+      "imageAlts": [
+        "Sơ đồ cho thấy hai thanh BB-3 và hai thanh BB-5 ghép thành một khung đầu ghế hình vuông, với khung thứ hai đã đóng xong ở phía sau."
+      ],
+      "tips": [
+        "Dùng thước vuông thợ mộc để kiểm tra mỗi góc có vuông không — nếu lệch nhiều, hãy kiểm tra lại chiều dài các thanh.",
+        "Làm một đồ gá (jig) 90 độ sẽ giúp ích rất nhiều khi lắp bước này và bước tiếp theo."
+      ]
+    },
+    {
+      "title": "Gắn thanh nan mặt ngồi và chân trước vào mỗi khung đầu",
+      "text": "Đặt bốn thanh BB-6 và một thanh BB-4 lên trên mỗi khung, như trong hình, chừa khe 1.5\" giữa hai thanh BB-6 (dùng một khúc 2x4 dư dựng đứng làm miếng chêm). Dùng mẫu khoan mồi ở cuối tập hướng dẫn để khoan mồi các lỗ vít, rồi bắt chặt gỗ bằng máy bắt vít động lực và 30 vít gỗ tự khoan dùng ngoài trời dài 2.5\".\n\nĐặt một thanh BB-4 bằng mặt với thanh BB-5 bên dưới, với hai thanh BB-7 vuông góc đặt cạnh nó, như trong hình — lại dùng miếng chêm 2x4 để chừa khe 1.5\" — rồi bắt chặt bằng thêm 14 vít 2.5\".\n\nLàm lại như vậy với chân bên kia, rồi dựng cả hai chân đứng lên cho bước tiếp theo.",
+      "imageAlts": [
+        "Sơ đồ các thanh BB-6, BB-4 và BB-7 được bắt vít lên mặt trên và mặt bên của mỗi khung đầu, có chú thích khe chêm 1.5\"."
+      ]
+    },
+    {
+      "title": "Nối hai khung đầu bằng các thanh đáy",
+      "text": "Đặt ba thanh BB-1 vào các khe ở chân và hai bên của hai khung đã đóng ở bước 3, như trong hình.\n\nBắt chặt các thanh BB-1 ở cả bên trái lẫn bên phải vào các thanh khung bằng máy bắt vít động lực và tổng cộng 12 vít gỗ tự khoan dùng ngoài trời dài 2.5\" — mỗi bên 6 vít.",
+      "imageAlts": [
+        "Sơ đồ ba thanh BB-1 nối hai khung đầu ở chân ghế, có chú thích góc 90 độ ở góc."
+      ],
+      "tips": [
+        "Dùng thước vuông thợ mộc kiểm tra thành bên vẫn giữ góc 90 độ."
+      ]
+    },
+    {
+      "title": "Gắn mặt ghế",
+      "text": "Đặt ba thanh BB-1 lên trên khung đã đóng ở bước 4, canh thẳng mọi mép và chừa khe đều 1\" giữa các thanh.\n\nBắt chặt các thanh BB-1 bằng máy bắt vít động lực và 12 vít gỗ tự khoan dùng ngoài trời dài 2.5\". Những vít này cần bắt hơi xiên một chút.",
+      "imageAlts": [
+        "Sơ đồ thêm ba thanh BB-1 tạo thành mặt ngồi của ghế, bắt vít xiên với khe đều 1\" giữa các thanh."
+      ]
+    },
+    {
+      "title": "Bắt giá đỡ tựa lưng bằng bu-lông",
+      "text": "Đặt hai giá đỡ tựa lưng ở hai bên các thanh BB-1, cách hai đầu 5\" vào trong, như trong hình.\n\nĐánh dấu và khoan mồi lỗ xuyên thẳng qua các thanh BB-1 cho khớp với giá đỡ, rồi bắt chặt giá đỡ tựa lưng vào mặt dưới các thanh BB-1 bằng cần siết đầu tuýp và bốn bu-lông đầu tròn dùng ngoài trời 1/4\" x 2-1/2\", kèm đai ốc và long đền.",
+      "imageAlts": [
+        "Sơ đồ hai giá đỡ tựa lưng bắt bu-lông vào mặt dưới các thanh mặt ngồi, cách mỗi đầu 5\" vào trong."
+      ],
+      "tips": [
+        "Nghiêng ghế úp mặt trước xuống sẽ giúp làm bước này dễ hơn."
+      ]
+    },
+    {
+      "title": "Gắn các thanh tựa lưng và hoàn thiện",
+      "text": "Đặt ba thanh BB-2 lên các giá đỡ tựa lưng đã bắt ở bước 6. Bắt đầu với thanh trên cùng, đặt cao hơn đỉnh giá đỡ 1/2\", rồi chừa khe 1/4\" giữa mỗi thanh bên dưới, giữ mọi mép thẳng hàng.\n\nBắt chặt các thanh BB-2 vào giá đỡ tựa lưng bằng cần siết đầu tuýp và sáu vít đầu lục giác 1/4\" x 1-1/4\".\n\nChà nhám nhẹ các mép thô của ghế và tựa lưng.",
+      "imageAlts": [
+        "Sơ đồ ba thanh tựa lưng BB-2 bắt bu-lông vào giá đỡ tựa lưng, với khe 1/4\" giữa mỗi thanh."
+      ],
+      "tips": [
+        "Dùng thước vuông thợ mộc làm miếng chêm cho các khe.",
+        "Dùng mũi khoan 1/4\" để khoan mồi lỗ mồi nông cho vít đầu lục giác — cẩn thận đừng khoan xuyên qua thanh BB-6 bên dưới."
+      ]
+    },
+    {
+      "title": "Mẫu khoan mồi (khuôn mẫu)",
+      "text": "Cắt mẫu khoan mồi theo đường chấm. Khi khoan, canh mép của khuôn mẫu trùng với mép ngoài của thanh gỗ trước khi khoan mồi.\n\nKhông phải lỗ nào cũng dùng đến — không phải kiểu bắt vít nào cũng dùng khuôn mẫu. Hãy theo các bước lắp ráp ở trên để biết vị trí lỗ. Giữ mọi lỗ cách mép khoảng một bề ngang ngón tay cái (khoảng 1\"), kể cả những lỗ không dùng khuôn mẫu này.",
+      "imageAlts": [
+        "Khuôn mẫu khoan mồi để in, có năm vị trí lỗ được đánh dấu và đường cắt, kèm hình phóng to cho thấy khoảng cách lỗ đến mép ván."
+      ]
+    }
+  ],
+  "finishing": "Xử lý gỗ ngoài trời có thể kéo dài tuổi thọ các món đồ công viên, nhưng không bắt buộc — những món này được thiết kế để rẻ, bền và dễ làm, nên có khi thực tế hơn là cứ để thế hệ sau làm lại khi đến lúc. Nếu bạn muốn nhuộm màu, sơn hay phủ lớp bảo vệ cho gỗ, hãy xem các tài liệu về hoàn thiện bên dưới.",
+  "safety": [
+    "Đây chỉ là những khuyến nghị cho việc tự làm — hãy điều chỉnh vật liệu, cách lắp ráp và cách xây dựng cho phù hợp với dự án và khu đất của bạn.",
+    "Làm món này cần có chút hiểu biết về dụng cụ cầm tay và dụng cụ chạy điện, đồ ngũ kim, vít bu-lông, gỗ xẻ và kỹ thuật lắp ráp cơ bản.",
+    "Trước khi dùng bất kỳ thiết bị chạy điện nào, hãy đọc và làm theo yêu cầu an toàn của nhà sản xuất, và đừng để ai chưa làm như vậy dùng dụng cụ chạy điện.",
+    "Bạn (chủ sở hữu) chịu trách nhiệm về mọi quy chuẩn xây dựng và an toàn, giấy phép và sự chấp thuận của cơ quan quản lý mà việc này cần.",
+    "Trước tiên hãy dọn sạch rác, những thứ nguy hiểm và công trình không cần thiết khỏi khu đất, và xác định mọi đường ống, đường dây có thể bị ảnh hưởng trước khi đào.",
+    "Mọi người phụ giúp xây đều nên ký giấy miễn trách nhiệm cho tình nguyện viên."
+  ],
+  "links": [
+    {
+      "label": "Giá đỡ tựa lưng (Hairpin Legs)"
+    },
+    {
+      "label": "Chọn lớp hoàn thiện tốt nhất cho đồ ngoài trời (Rockler)"
+    },
+    {
+      "label": "Lớp hoàn thiện tốt nhất cho gỗ ngoài trời (Real Milk Paint)"
+    },
+    {
+      "label": "Lớp phủ gỗ ngoài trời (Vermont Natural Coatings)"
+    }
+  ],
+  "sourcePages": "Hướng dẫn lắp ráp BENCH_BACK, tr. 1–11 (bìa; trước khi bắt đầu; các loại gỗ thường dùng; bước 1–7; mẫu khoan mồi)"
+}

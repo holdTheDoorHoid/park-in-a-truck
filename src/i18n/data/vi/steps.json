@@ -1,0 +1,31 @@
+{
+  "start": {
+    "title": "Bắt đầu từ đây",
+    "tagline": "Vì sao công viên quan trọng và Park in a Truck hoạt động ra sao."
+  },
+  "acquire": {
+    "title": "Có được đất",
+    "tagline": "Tìm một lô đất và xin phép được sử dụng.",
+    "assumes": "Bạn đã đọc cẩm nang và chưa có lô đất nào dùng được."
+  },
+  "organize": {
+    "title": "Tổ chức",
+    "tagline": "Lập ban công viên và vận động hàng xóm cùng tham gia."
+  },
+  "assess": {
+    "title": "Khảo sát",
+    "tagline": "Tìm hiểu lô đất của bạn: nắng, đất và những gì xung quanh."
+  },
+  "dream": {
+    "title": "Mơ ước",
+    "tagline": "Thiết kế công viên bằng các mảnh ghép công viên."
+  },
+  "create": {
+    "title": "Xây dựng",
+    "tagline": "Xây từng giai đoạn, mỗi giai đoạn một cuối tuần."
+  },
+  "sustain": {
+    "title": "Duy trì",
+    "tagline": "Chăm sóc công viên của bạn, mùa này qua mùa khác."
+  }
+}

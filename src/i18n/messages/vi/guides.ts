@@ -1,0 +1,83 @@
+// Tiếng Việt — các trang hướng dẫn lắp ráp. Nội dung từng hướng dẫn nằm ở
+// src/i18n/data/vi/guides/<slug>.json. Bảng thuật ngữ: docs/i18n/glossary.md
+import type en from '../en/guides.ts';
+import type { Translation } from '../../define.ts';
+
+export default {
+  'cat.seating': 'Chỗ ngồi',
+  'cat.tables': 'Bàn & mặt bàn làm việc',
+  'cat.planters': 'Bồn trồng cây',
+  'cat.structures': 'Công trình',
+
+  'crumb': 'Hướng dẫn lắp ráp',
+  'heroAlt': '{title}, đã lắp xong',
+  'dims': 'dài {length} × rộng {width} × cao {height}',
+  'glance.size': 'Kích thước',
+  'glance.time': 'Thời gian',
+  'glance.people': 'Số người',
+  'glance.skill': 'Tay nghề',
+  'glance.cost': 'Chi phí',
+  'asBuilt': 'Lắp từ các phần này, thành phẩm {size}.',
+  // Ghép bằng t.list(): "sâu khoảng 20¾″", "dài khoảng 8′ và sâu khoảng 3′" — "khoảng" đi liền với từng số đo
+  'asBuilt.long': 'dài khoảng {n}',
+  'asBuilt.deep': 'sâu khoảng {n}',
+  'asBuilt.tall': 'cao khoảng {n}',
+  'asBuilt.about': '{list}',
+  'pdf': 'PDF gốc',
+  'print': '🖨 In',
+
+  'need': 'Những thứ bạn cần',
+  'materials': 'Vật liệu & đồ ngũ kim',
+  'tools': 'Dụng cụ',
+  'cut': 'Danh sách cắt gỗ',
+  'cut.part': 'Phần',
+  'cut.qty': 'SL',
+  'cut.stock': 'Gỗ',
+  'cut.length': 'Chiều dài',
+  'cut.notes': 'Ghi chú',
+  'siteNote': 'Ghi chú của trang web này, không phải của Park in a Truck:',
+  'steps': 'Các bước',
+  'step': 'Bước {n}',
+  'model': 'Mô hình 3D: {title}',
+  'finishing': 'Hoàn thiện',
+  'safety': 'Trước khi bắt đầu',
+  'links': 'Nhà cung cấp & liên kết hữu ích',
+  'source': 'Nguồn: {pages}',
+  'download': 'Tải PDF {title}',
+  'pager': 'Hướng dẫn',
+  'close': 'Đóng',
+  'notTranslated': 'Hướng dẫn này chưa được dịch, nên đang hiện bằng tiếng Anh.',
+
+  // Trình xem 3D bên cạnh các bước của hướng dẫn lắp ráp
+  'g3d.placeholder': 'Mô hình 3D',
+  'g3d.loading': 'Đang tải mô hình 3D…',
+  'g3d.stepOf': 'Bước {n} / {total}',
+  'g3d.playingAll': 'Đang chạy tất cả các bước',
+  'g3d.starting': 'Đang bắt đầu…',
+  'g3d.finishedPiece': 'Thành phẩm',
+  'g3d.scrollPrompt': 'Cuộn qua các bước để xem món đồ được lắp ráp',
+  'g3d.stateFlat': 'Mọi thanh gỗ đã cắt được bày phẳng và ghi nhãn.',
+  'g3d.stateAdds': 'Bước {n} thêm {adds}.',
+  'g3d.stateWhole': 'Toàn bộ món đồ.',
+  'g3d.describe': '{model}. {state} Kéo hoặc dùng các phím mũi tên để xoay; phím cộng và trừ để phóng to, thu nhỏ.',
+  'g3d.show': 'Hiện 3D',
+  'g3d.hide': 'Ẩn 3D',
+  'g3d.replayLong': 'Xem lại bước',
+  'g3d.replayShort': 'Xem lại',
+  'g3d.stop': 'Dừng',
+  'g3d.playAll': 'Chạy tất cả',
+  'g3d.explodedLong': 'Xem tách rời',
+  'g3d.explodeShort': 'Tách rời',
+  'g3d.resetLong': 'Đặt lại góc nhìn',
+  'g3d.resetShort': 'Đặt lại',
+  'g3d.controls': 'Nút điều khiển mô hình 3D',
+  'g3d.helpMouse': 'Kéo để xoay. Bấm vào mô hình, rồi cuộn chuột để phóng to. Trỏ vào một thanh gỗ để xem kích thước.',
+  'g3d.helpTouch': 'Kéo để xoay. Chạm vào mô hình, rồi chụm hai ngón để phóng to. Chạm vào một thanh gỗ để xem kích thước.',
+
+  'index.description':
+    'Hướng dẫn lắp ráp từng bước, kiểu Ikea, cho ghế dài, bàn, bồn trồng cây, ghế rọ đá (gabion), mái che nắng và sân khấu của Park in a Truck.',
+  'index.lede':
+    'Giờ là lúc xem các món đồ trong công viên được làm ra sao. Một số món có hướng dẫn riêng, hay bản lắp ráp — hướng dẫn từng bước giúp bạn tự làm. Ví dụ, một chiếc ghế dài đi kèm một bộ hướng dẫn lắp ráp kiểu Ikea. Những món khác đi kèm một bản thiết kế hoặc một cách làm được gợi ý từ những hướng dẫn đã được thử trước. Còn một số món chỉ đơn giản là hàng mua sẵn.',
+  'index.prose':
+    'Dưới đây là mười ba món mà Park in a Truck có hướng dẫn lắp ráp riêng. Chọn một món để xem đầy đủ danh sách vật liệu, danh sách cắt gỗ và các bước có đánh số kèm hình vẽ gốc — hoặc tải PDF gốc. Đánh dấu vật liệu và dụng cụ khi bạn gom đủ; dấu đánh của bạn được lưu trong trình duyệt này.',
+} satisfies Translation<typeof en>;

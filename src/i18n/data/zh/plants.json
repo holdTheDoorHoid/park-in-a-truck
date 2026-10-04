@@ -1,0 +1,453 @@
+{
+  "edible-small-tree-both-serviceberry": {
+    "common": "唐棣",
+    "notes": "可食部分：果实",
+    "matureSize": "20–30英尺"
+  },
+  "edible-small-tree-both-redbud": {
+    "common": "北美紫荆",
+    "notes": "可食部分：花；品种：Forest Pansy",
+    "matureSize": "20–25英尺"
+  },
+  "edible-small-tree-both-apple": {
+    "common": "苹果",
+    "notes": "可食部分：果实；品种：Enterprise",
+    "matureSize": "10–20英尺"
+  },
+  "edible-small-tree-both-peach": {
+    "common": "桃",
+    "notes": "可食部分：果实；品种：Contender",
+    "matureSize": "10–20英尺"
+  },
+  "edible-small-tree-both-pear": {
+    "common": "梨",
+    "notes": "可食部分：果实；品种：Golden Russet bosc",
+    "matureSize": "10–20英尺"
+  },
+  "edible-small-tree-both-plum": {
+    "common": "李子",
+    "notes": "可食部分：果实；品种：Methly",
+    "matureSize": "10–20英尺"
+  },
+  "edible-shrub-sun-red-currant": {
+    "common": "红醋栗",
+    "notes": "可食部分：果实；品种：Red Lake",
+    "matureSize": "3–4英尺"
+  },
+  "edible-shrub-sun-gooseberry": {
+    "common": "鹅莓（醋栗）",
+    "notes": "可食部分：果实；品种：Black Velvet",
+    "matureSize": "3–4英尺"
+  },
+  "edible-shrub-sun-pasture-rose": {
+    "common": "卡罗来纳蔷薇",
+    "notes": "可食部分：蔷薇果、花瓣",
+    "matureSize": "3–4英尺"
+  },
+  "edible-shrub-sun-low-bush-blueberry": {
+    "common": "矮丛蓝莓",
+    "notes": "可食部分：果实；品种：Chippewa",
+    "matureSize": "2–3英尺"
+  },
+  "edible-perennial-sun-strawberries": {
+    "common": "草莓",
+    "notes": "可食部分：果实；品种：Sweet Kiss",
+    "matureSize": "6英寸"
+  },
+  "edible-perennial-sun-virginia-strawberry": {
+    "common": "弗吉尼亚草莓",
+    "notes": "可食部分：花",
+    "matureSize": "1–2英尺"
+  },
+  "edible-perennial-sun-rudbeckia": {
+    "common": "金光菊"
+  },
+  "edible-perennial-sun-prairie-dropseed": {
+    "common": "草原鼠尾粟"
+  },
+  "edible-perennial-sun-hairy-field-aster": {
+    "common": "毛紫菀"
+  },
+  "edible-perennial-sun-sedum": {
+    "common": "景天",
+    "notes": "品种：Larinem Park"
+  },
+  "edible-shrub-shade-red-twig-dogwood": {
+    "common": "红瑞木",
+    "notes": "品种：Arctic Fire"
+  },
+  "edible-shrub-shade-arrowwood-viburnum": {
+    "common": "齿叶荚蒾"
+  },
+  "edible-shrub-shade-lowbush-blueberry": {
+    "common": "矮丛蓝莓"
+  },
+  "edible-shrub-shade-mountain-laurel": {
+    "common": "山月桂",
+    "notes": "品种：Pink Charm"
+  },
+  "edible-perennial-shade-lady-fern": {
+    "common": "蹄盖蕨"
+  },
+  "edible-perennial-shade-wild-geranium": {
+    "common": "野生老鹳草"
+  },
+  "edible-perennial-shade-cinnamon-fern": {
+    "common": "桂皮紫萁"
+  },
+  "edible-perennial-shade-jacobs-ladder": {
+    "common": "匍匐花荵"
+  },
+  "edible-perennial-shade-pennsylvania-sedge": {
+    "common": "宾州苔草"
+  },
+  "edible-perennial-shade-hayscented-fern": {
+    "common": "干草香碗蕨"
+  },
+  "edible-perennial-shade-coral-bells": {
+    "common": "矾根"
+  },
+  "sanctuary-large-tree-both-burr-oak": {
+    "common": "大果栎",
+    "notes": "感官特点：枝条形态优美",
+    "matureSize": "50–70英尺"
+  },
+  "sanctuary-large-tree-both-sweet-birch": {
+    "common": "甜桦",
+    "notes": "感官特点：花朵迷人／芳香",
+    "matureSize": "30–50英尺"
+  },
+  "sanctuary-small-tree-sun-washington-hawthorne": {
+    "common": "华盛顿山楂",
+    "notes": "感官特点：鲜红的果实",
+    "matureSize": "15–20英尺"
+  },
+  "sanctuary-small-tree-sun-sourwood": {
+    "common": "酸木",
+    "notes": "感官特点：入秋早早变色",
+    "matureSize": "15–20英尺"
+  },
+  "sanctuary-small-tree-sun-fringetree": {
+    "common": "美国流苏树",
+    "notes": "感官特点：六月开花——花朵芳香",
+    "matureSize": "15–20英尺"
+  },
+  "sanctuary-shrub-sun-summersweet": {
+    "common": "桤叶山柳",
+    "notes": "感官特点：花朵芳香",
+    "matureSize": "3–4英尺"
+  },
+  "sanctuary-shrub-sun-sweetfern": {
+    "common": "香蕨木",
+    "notes": "感官特点：叶子芳香",
+    "matureSize": "1–2英尺"
+  },
+  "sanctuary-shrub-sun-sweetspire": {
+    "common": "北美鼠刺",
+    "notes": "感官特点：花朵芳香",
+    "matureSize": "3–4英尺"
+  },
+  "sanctuary-shrub-sun-swamp-azalea": {
+    "common": "沼泽杜鹃",
+    "notes": "感官特点：花朵芳香",
+    "matureSize": "3–4英尺"
+  },
+  "sanctuary-perennial-sun-blue-false-indigo": {
+    "common": "蓝花赝靛",
+    "notes": "感官特点：种荚会沙沙作响",
+    "matureSize": "2–3英尺"
+  },
+  "sanctuary-perennial-sun-wild-bergamot": {
+    "common": "拟美国薄荷",
+    "notes": "感官特点：叶子芳香",
+    "matureSize": "2–3英尺"
+  },
+  "sanctuary-perennial-sun-sideoats-grama": {
+    "common": "垂穗草",
+    "notes": "感官特点：随风摇曳，声音令人放松",
+    "matureSize": "2–3英尺"
+  },
+  "sanctuary-perennial-sun-prairie-dropseed": {
+    "common": "草原鼠尾粟",
+    "notes": "感官特点：叶子芳香／质感柔软",
+    "matureSize": "1–2英尺"
+  },
+  "sanctuary-perennial-sun-aster": {
+    "common": "紫菀",
+    "notes": "感官特点：秋季开花",
+    "matureSize": "2–3英尺"
+  },
+  "sanctuary-perennial-sun-moonbeam-tickseed": {
+    "common": "“月光”轮叶金鸡菊",
+    "notes": "感官特点：花期长",
+    "matureSize": "2–3英尺"
+  },
+  "sanctuary-perennial-sun-blazing-star": {
+    "common": "蛇鞭菊",
+    "notes": "感官特点：吸引传粉者",
+    "matureSize": "2–3英尺"
+  },
+  "sanctuary-perennial-sun-tufted-hairgrass": {
+    "common": "丛生发草",
+    "notes": "感官特点：随风摇曳，令人放松",
+    "matureSize": "1–2英尺"
+  },
+  "sanctuary-small-tree-shade-american-hornbeam": {
+    "common": "美洲鹅耳枥",
+    "notes": "感官特点：树皮像肌肉一样起伏"
+  },
+  "sanctuary-small-tree-shade-alternate-leaf-dogwood": {
+    "common": "互叶山茱萸",
+    "notes": "感官特点：花朵芳香"
+  },
+  "sanctuary-small-tree-shade-redbud": {
+    "common": "北美紫荆",
+    "notes": "感官特点：早春开花"
+  },
+  "sanctuary-small-tree-shade-witchhazel": {
+    "common": "北美金缕梅",
+    "notes": "感官特点：花形奇特、芳香",
+    "matureSize": "10–15英尺"
+  },
+  "sanctuary-shrub-shade-mountain-laurel": {
+    "common": "山月桂",
+    "notes": "感官特点：常绿",
+    "matureSize": "2–3英尺"
+  },
+  "sanctuary-shrub-shade-witch-alder": {
+    "common": "矮北美瑞香",
+    "notes": "感官特点：开花早",
+    "matureSize": "3–4英尺"
+  },
+  "sanctuary-shrub-shade-new-jersey-tea": {
+    "common": "新泽西茶",
+    "notes": "感官特点：质感柔软",
+    "matureSize": "2–3英尺"
+  },
+  "sanctuary-shrub-shade-virginia-sweetspire": {
+    "common": "北美鼠刺",
+    "notes": "感官特点：花美，秋色也美",
+    "matureSize": "1–2英尺"
+  },
+  "sanctuary-perennial-shade-lady-fern": {
+    "common": "蹄盖蕨",
+    "notes": "感官特点：质感柔软",
+    "matureSize": "2–3英尺"
+  },
+  "sanctuary-perennial-shade-pennsylvania-sedge": {
+    "common": "宾州苔草",
+    "notes": "感官特点：质感柔软",
+    "matureSize": "6英寸–1英尺"
+  },
+  "sanctuary-perennial-shade-cinnamon-fern": {
+    "common": "桂皮紫萁",
+    "notes": "感官特点：质感柔软",
+    "matureSize": "2–3英尺"
+  },
+  "sanctuary-perennial-shade-fragrant-golden-rod": {
+    "common": "香一枝黄花",
+    "notes": "感官特点：叶子芳香",
+    "matureSize": "2–3英尺"
+  },
+  "sanctuary-perennial-shade-shorts-aster": {
+    "common": "肖氏紫菀",
+    "notes": "感官特点：开花晚",
+    "matureSize": "3英尺"
+  },
+  "sanctuary-perennial-shade-columbine": {
+    "common": "加拿大耧斗菜",
+    "notes": "感官特点：开花早",
+    "matureSize": "2–3英尺"
+  },
+  "sanctuary-perennial-shade-celadine-poppy": {
+    "common": "林地金罂粟",
+    "notes": "感官特点：开花早",
+    "matureSize": "1–2英尺"
+  },
+  "nature-large-tree-both-shingle-oak": {
+    "common": "覆瓦栎"
+  },
+  "nature-large-tree-both-blackgum": {
+    "common": "多花蓝果树"
+  },
+  "nature-large-tree-both-basswood": {
+    "common": "美洲椴"
+  },
+  "nature-small-tree-both-american-hornbeam": {
+    "common": "美洲鹅耳枥"
+  },
+  "nature-small-tree-both-serviceberry": {
+    "common": "唐棣"
+  },
+  "nature-small-tree-both-pagoda-dogwood": {
+    "common": "宝塔山茱萸"
+  },
+  "nature-small-tree-both-witchhazel": {
+    "common": "北美金缕梅"
+  },
+  "nature-small-tree-both-blackhaw-viburnum": {
+    "common": "李叶荚蒾"
+  },
+  "nature-shrub-sun-dwarf-summersweet": {
+    "common": "矮生桤叶山柳"
+  },
+  "nature-shrub-sun-sweetfern": {
+    "common": "香蕨木"
+  },
+  "nature-shrub-sun-sweetspire": {
+    "common": "北美鼠刺",
+    "notes": "品种：Little Henry"
+  },
+  "nature-shrub-sun-eastern-ninebark": {
+    "common": "风箱果"
+  },
+  "nature-shrub-sun-swamp-azalea": {
+    "common": "沼泽杜鹃"
+  },
+  "nature-perennial-sun-bluestar": {
+    "common": "细叶水甘草",
+    "notes": "品种：Storm Cloud"
+  },
+  "nature-perennial-sun-sideoats-grama": {
+    "common": "垂穗草"
+  },
+  "nature-perennial-sun-wild-bergamot": {
+    "common": "拟美国薄荷"
+  },
+  "nature-perennial-sun-narrow-leaf-mountainmint": {
+    "common": "细叶山薄荷"
+  },
+  "nature-perennial-sun-rudbeckia": {
+    "common": "金光菊"
+  },
+  "nature-perennial-sun-prairie-dropseed": {
+    "common": "草原鼠尾粟"
+  },
+  "nature-perennial-sun-hairy-field-aster": {
+    "common": "毛紫菀"
+  },
+  "nature-perennial-sun-sedum": {
+    "common": "景天",
+    "notes": "品种：Larinem Park"
+  },
+  "nature-shrub-shade-red-twig-dogwood": {
+    "common": "红瑞木",
+    "notes": "品种：Arctic Fire"
+  },
+  "nature-shrub-shade-arrowwood-viburnum": {
+    "common": "齿叶荚蒾"
+  },
+  "nature-shrub-shade-lowbush-blueberry": {
+    "common": "矮丛蓝莓"
+  },
+  "nature-shrub-shade-mountain-laurel": {
+    "common": "山月桂",
+    "notes": "品种：Pink Charm"
+  },
+  "nature-perennial-shade-lady-fern": {
+    "common": "蹄盖蕨"
+  },
+  "nature-perennial-shade-wild-geranium": {
+    "common": "野生老鹳草"
+  },
+  "nature-perennial-shade-cinnamon-fern": {
+    "common": "桂皮紫萁"
+  },
+  "nature-perennial-shade-jacobs-ladder": {
+    "common": "匍匐花荵"
+  },
+  "nature-perennial-shade-pennsylvania-sedge": {
+    "common": "宾州苔草"
+  },
+  "nature-perennial-shade-hayscented-fern": {
+    "common": "干草香碗蕨"
+  },
+  "nature-perennial-shade-coral-bells": {
+    "common": "矾根"
+  },
+  "event-large-tree-both-scarlet-oak": {
+    "common": "猩红栎",
+    "matureSize": "40–50英尺"
+  },
+  "event-large-tree-both-american-elm": {
+    "common": "美国榆",
+    "notes": "品种：Princeton"
+  },
+  "event-small-tree-both-serviceberry": {
+    "common": "唐棣",
+    "matureSize": "15–20英尺"
+  },
+  "event-small-tree-both-alternate-leaf-dogwood": {
+    "common": "互叶山茱萸",
+    "matureSize": "15–20英尺"
+  },
+  "event-small-tree-both-american-hophornbeam": {
+    "common": "美洲铁木",
+    "matureSize": "15–20英尺"
+  },
+  "event-small-tree-both-sassafras": {
+    "common": "北美檫木",
+    "matureSize": "25–35英尺"
+  },
+  "event-small-tree-both-redbud": {
+    "common": "北美紫荆",
+    "notes": "品种：Lavender twist",
+    "matureSize": "15–20英尺"
+  },
+  "event-perennial-sun-butterflyweed": {
+    "common": "块根马利筋",
+    "matureSize": "2–3英尺"
+  },
+  "event-perennial-sun-blue-false-indigo": {
+    "common": "蓝花赝靛",
+    "matureSize": "2–3英尺"
+  },
+  "event-perennial-sun-plains-coreopsis": {
+    "common": "两色金鸡菊",
+    "matureSize": "1–2英尺"
+  },
+  "event-perennial-sun-love-grass": {
+    "common": "紫画眉草",
+    "matureSize": "2–3英尺"
+  },
+  "event-perennial-sun-black-eyed-susan": {
+    "common": "黑心金光菊",
+    "matureSize": "2–3英尺"
+  },
+  "event-perennial-sun-wild-pinks": {
+    "common": "野石竹",
+    "matureSize": "1–2英尺"
+  },
+  "event-perennial-sun-fragrant-goldenrod": {
+    "common": "香一枝黄花",
+    "matureSize": "1–2英尺"
+  },
+  "event-perennial-sun-shorts-aster": {
+    "common": "肖氏紫菀",
+    "matureSize": "2–3英尺"
+  },
+  "event-perennial-shade-prairie-onion": {
+    "common": "垂花葱",
+    "matureSize": "1–2英尺"
+  },
+  "event-perennial-shade-lady-fern": {
+    "common": "蹄盖蕨",
+    "matureSize": "1–2英尺"
+  },
+  "event-perennial-shade-bunny-blue-sedge": {
+    "common": "“兔子蓝”苔草",
+    "matureSize": "6–12英寸"
+  },
+  "event-perennial-shade-allen-bush-green-and-gold": {
+    "common": "“Allen Bush”绿金菊",
+    "matureSize": "6–12英寸"
+  },
+  "event-perennial-shade-wood-fern": {
+    "common": "边缘鳞毛蕨",
+    "matureSize": "1–2英尺"
+  },
+  "event-perennial-shade-wild-geranium": {
+    "common": "野生老鹳草",
+    "matureSize": "1–2英尺"
+  }
+}

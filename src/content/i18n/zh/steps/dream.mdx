@@ -1,0 +1,345 @@
+---
+title: 畅想
+intro: 用 Park in a Truck 自己的可自由搭配的图块来设计您的公园。
+sources:
+  - 工具包第39–55页（畅想、主题设计、公园图块、自由搭配）
+  - 畅想工作手册第1–20页
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Choice from '../../../../components/workbook/Choice.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import Download from '../../../../components/workbook/Download.astro';
+import Planner from '../../../../components/widgets/Planner.astro';
+import CostEstimator from '../../../../components/widgets/CostEstimator.astro';
+import PlantPicker from '../../../../components/widgets/PlantPicker.astro';
+import { ELEMENTS } from '../../../../data/elements';
+import { THEMES, THEME_ORDER } from '../../../../data/themes';
+import { SIZES } from '../../../../lib/sizing';
+import { urlFor } from '../../../../i18n/url.ts';
+export const u = urlFor('zh');
+import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
+
+export const THEME_REQUIREMENTS = {
+  edible: { trees: '树很少或没有树', sun: '全日照或大部分时间有阳光', lot: '很适合街角地块', volunteers: '需要志愿者经常参与' },
+  sanctuary: { trees: '树多树少都可以', sun: '日照多少都可以', lot: '街区中段或街角地块', volunteers: '只需志愿者少量参与' },
+  nature: { trees: '很适合有树的地块', sun: '日照多少都可以', lot: '街区中段或街角地块', volunteers: '所需参与很少' },
+  event: { trees: '一两棵树或好几棵树', sun: '日照多少都可以', lot: '很适合街角地块', volunteers: '需要志愿者适度参与' },
+};
+
+{/* zh: theme names/blurbs and element names, kept the same as src/i18n/data/zh/themes.json and elements.json (a chapter cannot import the overlays). */}
+export const THEME_TEXT = {
+  edible: { name: '可食', blurb: '分享食物，与邻居多交流——种水果、种蔬菜，再摆一张大家共用的长桌。' },
+  sanctuary: { name: '宁静', blurb: '一处安静的小天地，适合独处、读书和小型聚会。' },
+  nature: { name: '自然', blurb: '本土植物、栖息地，还有给孩子和传粉者玩耍的地方。' },
+  event: { name: '活动', blurb: '可以表演、摆集市、举办社区庆祝活动的空间。' },
+};
+export const ELEMENT_NAMES = {
+  'gabion-wall': '石笼墙', 'gabion-bench': '木面石笼长椅', 'gabion-bench-8': "8' 木面石笼长椅", 'gabion-table': '木面石笼桌',
+  'bench-back': '带靠背长椅', 'bench-4': "4' 长椅（无靠背）", stool: '凳子', 'table-2': "2' 桌子", 'table-4': "4' 桌子", 'table-6': "6' 桌子",
+  'planter-18': '18" 种植箱（小）', 'planter-24': '24" 种植箱（大）', 'shade-canopy': '遮阳棚', stage: '舞台', workbench: '工作台 / 站立式桌子',
+  'rain-barrel': '雨水桶', 'compost-bin': '堆肥箱', 'raised-bed': '高架种植床', 'keyhole-garden': '钥匙孔花园（圆形高架种植床）', 'cold-frame': '冷床',
+  'communal-table': '公共长桌', 'cafe-table': '咖啡桌 + 椅子', 'event-tent': '活动帐篷', 'flexible-seating': '可移动座椅', 'outdoor-classroom': '户外教室',
+  'nature-play': '自然游乐区', birdbath: '鸟浴盆', 'bird-accessories': '鸟屋和喂鸟器', shed: '工具棚', hammock: '独立式吊床', 'porch-swing': '独立式秋千椅',
+  'solar-fountain': '太阳能喷泉',
+};
+
+{/* The Assemble grid below skips surfaces, plants and existing-conditions markers — only built/bought elements get an assembly link. */}
+export const NOT_BUILT = new Set(['planting-square', 'perennial', 'shrub', 'small-tree', 'large-tree', 'gravel', 'existing-tree', 'downspout', 'wet-area', 'hydrant', 'utility-line']);
+export const ICON_FALLBACK = { 'table-6': 'table-4', 'bench-4': 'bench-back', 'gabion-bench-8': 'gabion-bench' };
+// The workbook's Assemble page shows these elements; newer vocabulary (e.g. cafe-table) has no icon there.
+export const ASSEMBLE_ICONS = new Set(['bench-back','bird-accessories','birdbath','cold-frame','communal-table','compost-bin','event-tent','flexible-seating','gabion-bench','gabion-wall','nature-play','outdoor-classroom','planter-18','planter-24','rain-barrel','raised-bed','shade-canopy','shed','stage','stool','table-2','table-4','workbench']);
+
+{/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — reminds a reader who hasn't recorded a lot agreement yet, before they design and budget for a lot they may not have permission for. */}
+<LotAgreementNotice />
+
+设计一座 Park in a Truck 公园，就像买一件新连衣裙或一套新西装。首先，您去商店看看模特身上的衣服，挑出自己喜欢的款式、颜色或花样。当然，挂在衣架上好看的，不一定适合您。所以您得找到合您身材和体型的尺码，然后试穿。如果不合身，可以修改。最后，再配上饰品，让它真正成为您自己的。
+
+就像买衣服一样，您的公园也要符合您的风格和打算的用途。Park in a Truck 公园有四种不同的风格——我们叫它们**主题**：可食、宁静、自然和活动。每一种都最适合某种特定的场合或情况。
+
+现在，真正好玩的部分开始了——为您的公园描绘蓝图！这一步从四种主题设计中选一种开始。不过，这只是开始：每个主题都包括一套可以自由搭配的**公园图块**，让您按照自己地块的大小，建一座**量身定做的公园**。
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={3} />
+
+## 四种主题 {/* #the-four-themes */}
+
+每个主题侧重公园的不同用法：有的很适合邻里聚会，有的更适合独处。把您在评估小结中记录的树木数量、日照多少和地块位置，与下面的一般要求对比一下。
+
+每座公园都有三个部分——**边框**、**前部**和**后部**——所以您可以整座公园用同一个主题，也可以把不同主题**自由搭配**，就像把上衣、外套和下装搭成一套衣服一样。
+
+### 基本设计元素（每个主题都有）
+
+有几样关键元素在四个主题里都有：
+
+- **石笼墙**。装满石头的铁丝笼，给公园一道鲜明的边界——用砖块、碎混凝土这类现成的材料来填，造价更低，也更环保。
+- **长椅**。可以坐的地方，社区可以很容易地按自己的喜好改造。可以刷漆，也可以让它自然风化——都行。
+- **雨水桶**。每座公园都需要水。雨水桶收集雨水，用来浇灌树木和花草。
+- **植物**。能吸引野生动物、增加生物多样性、促进自然保护的本土植物。
+
+{THEME_ORDER.map((id) => (
+  <div style={`margin:2.5em 0; border-left: 8px solid ${THEMES[id].frame}; padding-left: 1.2em;`}>
+    <h3 style={`color:${THEMES[id].frame}`}>{THEME_TEXT[id].name}</h3>
+    <p>{THEME_TEXT[id].blurb}</p>
+    <Figure
+      src={`img/dream/theme-${id}.webp`}
+      alt={`${THEME_TEXT[id].name}主题：公园的 3D 图和平面图，边框、前部和后部图块用该主题的颜色表示`}
+    />
+    <ul class="theme-reqs">
+      <li><strong>树木：</strong>{THEME_REQUIREMENTS[id].trees}</li>
+      <li><strong>日照：</strong>{THEME_REQUIREMENTS[id].sun}</li>
+      <li><strong>地块：</strong>{THEME_REQUIREMENTS[id].lot}</li>
+      <li><strong>志愿者：</strong>{THEME_REQUIREMENTS[id].volunteers}</li>
+    </ul>
+  </div>
+))}
+
+{/* site-added: Playful Learning is the toolkit's own appendix (linked from its Dream chapter); cross-linking it here matches where the toolkit itself introduces it. */}
+<Callout kind="note" title="也想为孩子们设计？">
+  Park in a Truck 与 **Playful Learning Landscapes** 合作。这项计划把儿童如何学习的科学融入日常的公园设计——分类桌、故事转盘、图标讲故事等等，并与上面四个主题一一对应。[查看 Playful Learning 指南 ↗](/playful-learning/)
+</Callout>
+
+<Field
+  id="dream.theme-reasons"
+  label="您更喜欢某一个公园主题，有什么特别的原因吗？"
+  type="textarea"
+/>
+<Field
+  id="dream.theme-qualities"
+  label="这些主题里有没有您最想要的某些公园特点？"
+  type="textarea"
+/>
+<Choice
+  id="dream.preferred-theme"
+  label="您最喜欢哪个公园主题？"
+  options={[
+    { value: 'edible', label: '可食', color: THEMES.edible.frame },
+    { value: 'sanctuary', label: '宁静', color: THEMES.sanctuary.frame },
+    { value: 'nature', label: '自然', color: THEMES.nature.frame },
+    { value: 'event', label: '活动', color: THEMES.event.frame },
+    { value: 'mix', label: '多个主题搭配', desc: '边框、前部和后部用不同的主题' },
+  ]}
+/>
+<Choice
+  id="dream.theme-fits-site"
+  label="您选的主题和评估小结表上的用地特点相符吗？"
+  options={[
+    { value: 'yes', label: '相符', desc: '很合适——继续往下走' },
+    { value: 'no', label: '不相符', desc: '重新考虑您的公园主题' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={5} />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={6} label="可食主题" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={7} label="宁静主题" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={8} label="自然主题" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={9} label="活动主题" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={10} label="哪个主题适合您？" />
+
+## 公园图块及用法 {/* #park-pieces-how-to-use-them */}
+
+您的公园设计模板是由不同的部件——**公园图块**——组成的。公园内部有前部（FRONT）和后部（BACK）图块，外面还有一个把它们装进去的边框（FRAME）。每个图块都有四种主题可选，而且所有图块都可以互换，所以您可以在不同主题之间自由搭配，也可以整座公园只选一个主题。
+
+就像全家福照片外面的相框一样，**边框**围出公园内部的边界——是设置入口、种树和放置其他设施的好地方。公园内部分为**前部**（离公园入口最近，放主要的固定设施）和**后部**（通常更开阔，可以灵活使用）。
+
+工具包里的图片用 3D **轴测**视图表示，就像照片一样，方便您想象。真正布置公园时，您要用平面的**平面图**视图，看起来像一张简单的地图——两种视图表示的是同样的东西。
+
+<Figure
+  src="img/dream/park-pieces-frame-front-back.webp"
+  alt="对比公园轴测（3D）视图和平面图的示意图：一个边框图块与一个前部图块、一个后部图块组合成完整的公园，分别以叠放的 3D 方块和平面图表示"
+/>
+
+<Figure
+  src="img/dream/mix-and-match.webp"
+  alt="四个示例公园，每个都把来自不同主题（活动、宁静、可食和自然）的边框、前部和后部图块组合在一起，说明图块可以自由搭配出无穷无尽的组合"
+/>
+
+<Callout kind="auto">
+  在纸上，自由搭配意味着要手工打印、剪裁，再把图块粘在一起。下面的规划工具替您完成这部分工作——选好边框、前部和后部的主题，它就会立刻按照您真实地块的确切大小把它们拼好。
+</Callout>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={4} />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={13} label="摆弄图块" />
+
+## 设计您的公园 {/* #design-your-park */}
+
+{/* site-added: mode prop for the planner workstream; placement and surrounding copy are ours. */}
+<Planner mode="design" />
+
+<Callout kind="auto" title="自动适应您真实的地块">
+  规划工具会把 Park in a Truck 自己的公园图块放到您真实的地块上——完全按照工作手册手工操作的方法，用接缝条调整到合适的大小——并且边做边替您清点所有东西，为下面的费用估算和植物清单做好准备。
+</Callout>
+
+<details>
+  <summary>更喜欢用纸？打印公园图块</summary>
+
+  看完各个主题后，记下您在评估小结页上勾选的字母（尺寸 A–E）和地块位置（街区中段，或街道在您右侧或左侧的街角）。点击下面对应的下载链接——每个链接都会打开一个 Google Drive 文件夹，里面是这个尺寸和地块类型可打印的公园图块。
+
+  <table class="pieces-table">
+    <thead>
+      <tr><th>尺寸</th><th>街区中段地块</th><th>街角地块——街道在右侧</th><th>街角地块——街道在左侧</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>A</strong></td><td><a href="https://drive.google.com/open?id=1e3j5d8ZsIxVxsJsdtoosKgMAuCpQwBKo" target="_blank" rel="noopener">下载 ↗</a></td><td><a href="https://drive.google.com/open?id=1Txw_BMZlvseeyCetUYbGfVSIu2_eq7HW" target="_blank" rel="noopener">下载 ↗</a></td><td><a href="https://drive.google.com/open?id=1LBQG4r2z1geA6rIEyK_GFYGzV4IBQFua" target="_blank" rel="noopener">下载 ↗</a></td></tr>
+      <tr><td><strong>B</strong></td><td><a href="https://drive.google.com/open?id=1LC6QvBJ2D-LyhbFGYXsjByiWQaFk06AF" target="_blank" rel="noopener">下载 ↗</a></td><td><a href="https://drive.google.com/open?id=1LKVUm28LhzKNqmMPPsufWrxt-xqTyJrk" target="_blank" rel="noopener">下载 ↗</a></td><td><a href="https://drive.google.com/open?id=1LQmrAsZd7Aw0M6F2iwFUUWjoUm-uAIFA" target="_blank" rel="noopener">下载 ↗</a></td></tr>
+      <tr><td><strong>C</strong></td><td><a href="https://drive.google.com/open?id=1LR04NYM7Ii2srwf4E5tl2t26R8jxdWQr" target="_blank" rel="noopener">下载 ↗</a></td><td><a href="https://drive.google.com/open?id=1LSWINYM72UNHj6hGjrsn0S51h2hJL47s" target="_blank" rel="noopener">下载 ↗</a></td><td><a href="https://drive.google.com/open?id=1LJCzWBkOh_hG8205xt1sJ17s4jQFD-H-" target="_blank" rel="noopener">下载 ↗</a></td></tr>
+      <tr><td><strong>D</strong></td><td><a href="https://drive.google.com/open?id=1LfpisFCCWZwitjJJ2_vpFfv_Pv_pnhMf" target="_blank" rel="noopener">下载 ↗</a></td><td><a href="https://drive.google.com/open?id=1LSqUwvHJQd5riQI56GgMO6GgN9LK7-Or" target="_blank" rel="noopener">下载 ↗</a></td><td><a href="https://drive.google.com/open?id=1LejWNaZ9sQFiy1P3er03OuwRURV7LNQI" target="_blank" rel="noopener">下载 ↗</a></td></tr>
+      <tr><td><strong>E</strong></td><td><a href="https://drive.google.com/open?id=1L-pqs-CuyMjeHE7UgEIDLawzv4ErTA6h" target="_blank" rel="noopener">下载 ↗</a></td><td><a href="https://drive.google.com/open?id=1LlyI3QGglqZw5f92aR1WLES7Nuz0gkOC" target="_blank" rel="noopener">下载 ↗</a></td><td><a href="https://drive.google.com/open?id=1LiE8uy8Uc-6R55t8cQr2Eg4CGdifcC8J" target="_blank" rel="noopener">下载 ↗</a></td></tr>
+    </tbody>
+  </table>
+  <p class="muted">地块类型的名称沿用工作手册自己的下载页面——如果一套图块和您的街角对不上，就试试另一套。</p>
+
+  打开您下载的图块，用8.5"×11"的纸单面打印，然后沿虚线剪下。用每张纸上印的对齐符号把图块对齐，再用胶带粘在一起。接着进入下一个小步骤，把粘好的公园调整到适合您实际地块的大小。
+
+  <PdfPage doc="downloads/workbooks/04-dream.pdf" page={11} label="下载公园图块" />
+  <PdfPage doc="downloads/workbooks/04-dream.pdf" page={12} label="打印和剪裁图块" />
+</details>
+
+## 把公园调整到合适的大小 {/* #right-size-your-park */}
+
+如果您的地块和图块正好相符，就直接跳到添加现有情况。如果还有多余的空间，就加上接缝条——多几英尺的边框、前部或后部——来扩大您的公园，把所有可用的空间都用上。
+
+<table class="size-table">
+  <thead><tr><th>尺寸</th><th>长边</th><th>短边</th></tr></thead>
+  <tbody>
+    {SIZES.map((s) => (
+      <tr><td><strong>{s.id}</strong></td><td>{s.long[0]}–{s.long[1]}英尺</td><td>{s.short[0]}–{s.short[1]}英尺</td></tr>
+    ))}
+  </tbody>
+</table>
+
+{/* site-added: sizing.ts also flags lots below size A; call that out here since it's the natural place a reader learns their lot doesn't fit the smallest set. */}
+<Callout kind="note" title="比尺寸 A 还小？">
+  大小不重要。一块4×4的小地、一个前院，甚至一个窗台花箱，都可以种上吸引传粉者的植物——请改用[公园小块地指南](/park-patch/)，而不是下面完整的公园图块。
+</Callout>
+
+接缝条有两种：**长度接缝条**剪在前部和后部图块之间，沿公园的长边增加长度；**宽度接缝条**沿长度方向修剪，沿短边增加宽度。两种接缝条上都有每4英尺一条的黑色虚线和每1英尺一条的灰色虚线，这样您就能准确数出需要多少。
+
+<Figure
+  src="img/dream/length-seam.webp"
+  alt="长度接缝条示意图：数一数公园前部和后部图块之间接缝条上的虚线，剪下来，然后把接缝条粘到公园中间，再粘合回去"
+/>
+<Figure
+  src="img/dream/width-seam.webp"
+  alt="宽度接缝条示意图：数一数沿公园长度方向的接缝条上的虚线，剪到合适的大小，然后在中间加上宽度接缝条，再把两边粘合回去"
+/>
+
+<Callout kind="auto">
+  规划工具会自动把您选的图块拉伸到地块的确切尺寸——不用剪，也不用粘。
+</Callout>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={14} />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={15} label="长度接缝条" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={16} label="宽度接缝条" />
+
+## 添加现有情况 {/* #add-existing-conditions */}
+
+把您在评估工作手册里画的用地图上的现有情况，转画到您的设计图上。把两张图并排放好，把每个物体照着画过去——两张图的方格是一样的，只要数格子就能找到每样东西落在哪里。如果一棵现有的树落在种植区里，那很好；如果落在碎石地面上，也没关系（“建造”这一步会说明怎么处理）。如果现有情况和您的设计冲突——比如一棵树正好压在一张长椅上——您可以把长椅划掉不要，或者把整个前部或后部图块挪一挪。设计只是一个模板：它有一定的固定格式，但您随时可以增减东西，让它适合您。
+
+<Callout kind="auto">
+  您在评估时标出的现有树木、落水管、潮湿区域、消防栓和公用设施线路，已经放在规划工具上了——位置不对的，拖动一下就行。
+</Callout>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={17} />
+
+## 清点图块和费用 {/* #count-your-pieces-cost */}
+
+该清点您的用地规划了。每个前部、后部和边框图块都列有它所含全部物品的数量，这样您就能计算费用、订购材料。工作手册会问：您地块的长边（长度）是多少英尺？短边（宽度）呢？您有多少个绿色的种植方格？还有，按照公园图块上的图例，每种设施各有多少？
+
+<CostEstimator />
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — the order list's "fire hydrant opener" items; facts checked 2026-10-04 on water.phila.gov. */}
+<Callout kind="site" title="本网站的说明，并非来自 Park in a Truck：消防栓">
+  订货清单里建议买一个消防栓扳手。在费城打开消防栓，需要[费城水务局（Philadelphia Water Department）的消防栓许可（英文）↗](https://water.phila.gov/development/connections/hydrant-permits/)，还要装一个经批准的防回流装置（社区花园免交许可费）。水务局的[城市花园指南（英文）↗](https://water.phila.gov/urban-garden-guide/)列出了给花园取水的其他办法。
+</Callout>
+
+<Download href="downloads/templates/cost-estimator.xlsx" label="费用估算表" note="原版电子表格——请另存一份副本再编辑" />
+
+<details>
+  <summary>在纸上清点？请在这里填写总数</summary>
+  <Field id="dream.diy-length" label="长度（地块的长边）" type="number" unit="英尺" />
+  <Field id="dream.diy-width" label="宽度（地块的短边）" type="number" unit="英尺" />
+  <Field id="dream.diy-planting-squares" label="种植方格（设计图上的绿色方格）" type="number" />
+  <p class="muted">按照公园图块上印的图例清点各种设施，然后把所有数字填进上面的费用估算电子表格。</p>
+</details>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={18} />
+
+## 清点和挑选植物 {/* #count-choose-your-plants */}
+
+设计图上凡是绿色的地方都是种植区，每个种植符号都有一个大小。数一数您的设计里有多少多年生植物、灌木、小型树和大型树——多年生植物和灌木要分开数向阳的和背阴的。接下来您再挑选具体的植物品种。
+
+{/* site-added: the six counts show your design's numbers (project.extra.tally) until you type your own; the plant picker below uses the same numbers */}
+<Field id="dream.perennials-sun" label="多年生植物——向阳处的绿色方格" type="number" unit="格" auto="extra.tally.plantingSquares.sun" autoNote="✓ 已根据您的设计填写，可直接输入修改" />
+<Field id="dream.perennials-shade" label="多年生植物——背阴处的绿色方格" type="number" unit="格" auto="extra.tally.plantingSquares.shade" autoNote="✓ 已根据您的设计填写，可直接输入修改" />
+<Field id="dream.shrubs-sun" label="灌木——向阳" type="number" auto="extra.tally.shrubs.sun" autoNote="✓ 已根据您的设计填写，可直接输入修改" />
+<Field id="dream.shrubs-shade" label="灌木——背阴" type="number" auto="extra.tally.shrubs.shade" autoNote="✓ 已根据您的设计填写，可直接输入修改" />
+<Field id="dream.small-trees" label="小型树" type="number" auto="extra.tally.smallTrees" autoNote="✓ 已根据您的设计填写，可直接输入修改" />
+<Field id="dream.large-trees" label="大型树" type="number" auto="extra.tally.largeTrees" autoNote="✓ 已根据您的设计填写，可直接输入修改" />
+
+<PlantPicker />
+
+每个主题都有自己的建议植物清单——这只是一个起点，不是硬性要求。如果您搭配了两个主题，就从两份清单里挑选植物。
+
+<div class="plant-list-links">
+  <Download href="https://docs.google.com/spreadsheets/d/1QsoQ6KYBT5tVrlAtTxoD5q0yP2YS5Wyt/copy" label="可食主题植物清单" />
+  <Download href="https://docs.google.com/spreadsheets/d/1RhCdaiCLbEJD8KXiX7uJMD7xJFRNCERy/copy" label="宁静主题植物清单" />
+  <Download href="https://docs.google.com/spreadsheets/d/1eEVK3dpBy1-xBFDaACIOTMB2Dd9COGvz/copy" label="自然主题植物清单" />
+  <Download href="https://docs.google.com/spreadsheets/d/1oy_aLqP7RoBcHngZ_uFMl_YBvzJ271MR/copy" label="活动主题植物清单" />
+</div>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={20} label="挑选植物" />
+
+## 组装 {/* #assemble */}
+
+现在来看看公园里的各种设施是怎么做出来的。有些设施有专门的分步组装说明，就像宜家的说明书；有些提供一个根据已验证过的说明制定的建议设计；还有一些直接买现成的产品就行。点击下面任何一种设施——如果您的公园里有它，这里会告诉您怎么做（或怎么买）。
+
+<div class="elements-grid">
+  {Object.values(ELEMENTS)
+    .filter((el) => !NOT_BUILT.has(el.id) && ASSEMBLE_ICONS.has(ICON_FALLBACK[el.id] ?? el.id))
+    .map((el) => {
+      const icon = ICON_FALLBACK[el.id] ?? el.id;
+      const href = el.guide ? u(`build/${el.guide}/`) : el.link;
+      const external = !el.guide;
+      return (
+        <a class="element-card" href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
+          <img src={u(`img/dream/elements/${icon}.webp`)} alt="" width="96" height="72" loading="lazy" />
+          <span>{ELEMENT_NAMES[el.id] ?? el.name}</span>
+        </a>
+      );
+    })}
+</div>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={19} />
+
+## 准备好了吗？ {/* #are-you-ready */}
+
+恭喜您完成了畅想工作手册！进入“建造”之前，请把下面每一步都勾选上。
+
+<Checklist
+  id="dream.ready-checklist"
+  items={[
+    { value: 'theme-review', label: '查看主题设计', hint: '您已经看过各个主题，决定了哪一个最符合您的需要' },
+    { value: 'custom-design', label: '定制设计', hint: '您已经摆弄过公园图块，选定了最终的公园设计' },
+    { value: 'custom-size', label: '定制尺寸', hint: '您已经按照地块的尺寸和现有设施，把公园调整到合适的大小' },
+    { value: 'cost-estimate', label: '费用估算', hint: '您已经清点好图块，并填进了费用估算表' },
+    { value: 'plant-choice', label: '挑选植物', hint: '您已经根据植物数量挑选好了植物' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={20} label="准备好了吗？" />
+
+<style>
+  {`
+  .theme-reqs { list-style: none; padding: 0; margin: 0.8em 0 0; font-size: 0.92rem; color: var(--ink-2); display: grid; gap: 0.2em; }
+  .size-table, .pieces-table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.95rem; }
+  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: left; }
+  .elements-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; margin: 1.2em 0; }
+  .element-card { display: flex; flex-direction: column; align-items: center; gap: 0.4em; text-align: center; padding: 10px; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); font-size: 0.85rem; background: #fff; }
+  .element-card:hover { border-color: var(--cyan); box-shadow: var(--shadow); }
+  .element-card img { max-width: 96px; max-height: 72px; width: auto; }
+  .plant-list-links { display: flex; flex-wrap: wrap; gap: 10px; }
+  `}
+</style>

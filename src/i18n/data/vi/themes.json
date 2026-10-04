@@ -1,0 +1,18 @@
+{
+  "edible": {
+    "name": "Vườn ăn được",
+    "blurb": "Chia sẻ thức ăn và gắn bó với hàng xóm — trái cây, rau và một chiếc bàn chung."
+  },
+  "sanctuary": {
+    "name": "Chốn an yên",
+    "blurb": "Một nơi trú yên tĩnh để ngồi một mình, đọc sách và họp mặt nhỏ."
+  },
+  "nature": {
+    "name": "Thiên nhiên",
+    "blurb": "Cây bản địa, nơi sống cho sinh vật, và chỗ chơi cho trẻ em và các loài thụ phấn."
+  },
+  "event": {
+    "name": "Sự kiện",
+    "blurb": "Không gian cho biểu diễn, chợ phiên và lễ hội của khu phố."
+  }
+}

@@ -1,0 +1,192 @@
+{
+  "title": "Ghế rọ đá mặt gỗ 8'",
+  "summary": "Một rọ đá lưới thép dài 8 feet chứa đầy đá, bên trên có mặt ván gỗ 2x4 — bản dài hơn của ghế rọ đá 4', với thêm ba thanh giằng ngang dọc theo chiều dài.",
+  "materials": [
+    {
+      "item": "Lưới thép hàn 2x2",
+      "notes": "Gợi ý nơi gia công: Darby and Sons (darbywiremesh.com) hoặc Gabion1.com. Khi đặt các tấm cắt theo yêu cầu, hãy yêu cầu cắt đúng kích thước, tấm kín mép, mạ kẽm sau khi cắt."
+    },
+    {
+      "item": "Gỗ xẻ 2x4 — gỗ tuyết tùng đỏ miền tây (western red cedar), gỗ thông Douglas (Douglas fir) hoặc gỗ thông xử lý áp lực",
+      "notes": "Gỗ tuyết tùng: tự nhiên chịu được thời tiết và mục, màu đỏ đẹp, không cần phủ lớp bảo vệ; giá cao hơn — hãy hỏi loại 'có mắt gỗ' (STK). Gỗ thông Douglas: chịu mục ở mức vừa phải, chắc, rẻ hơn gỗ tuyết tùng; tốt nếu bạn định sơn. Gỗ xử lý áp lực: rẻ nhất và chịu mục, nhưng chất lượng thường kém/không đều, cần phơi khô ngoài không khí 1–4 tháng trước khi sơn, không nên dùng ở chỗ trồng thực phẩm. Hãy đặt nhiều hơn 5–10% so với danh sách cắt gỗ để phòng gỗ không đều và cắt sai."
+    },
+    {
+      "item": "Đá nhồi rọ",
+      "notes": "Vật liệu có góc cạnh, cứng, trơ, không bị phân hủy theo thời gian — đá khai thác từ mỏ, mặt đường tái chế (bê tông/nhựa đường), hoặc gạch/khối bê tông tái chế. Không được dùng khúc gỗ hay vật liệu hữu cơ khác. Trộn nhiều cỡ, nhỏ nhất 2\" và lớn nhất 12\"; các viên ở mặt ngoài nên lớn hơn 3\"."
+    },
+    {
+      "item": "Vật liệu giằng (cho các thanh đỡ ở giữa, bên dưới các thanh khung giữa)",
+      "notes": "Hoặc một cuộn dây thép mạ kẽm trơn cỡ 14 hoặc 16, hoặc những tấm lưới thép 2x2 dư cắt đôi bằng kìm cộng lực (trải hết bề rộng của rọ, cao ít nhất 2 ô / 4\")."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Vít gỗ tự khoan dùng ngoài trời"
+    },
+    {
+      "item": "Khoen bấm (hog ring)"
+    },
+    {
+      "item": "Đinh ghim cáp (cable staple)"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Mặt ghế rọ đá + thành khung (2 thanh dùng làm thanh ray dài của khung, số còn lại làm mặt gỗ)"
+    },
+    {
+      "notes": "Khung ghế rọ đá — thanh bịt đầu và thanh giằng ngang"
+    },
+    {
+      "notes": "Tấm đáy rọ, 96\" x 18\""
+    },
+    {
+      "notes": "Thành rọ (dài), mỗi tấm 96\" x 18\""
+    },
+    {
+      "notes": "Thành rọ (ngắn), mỗi tấm 18\" x 18\""
+    }
+  ],
+  "tools": [
+    "Máy cưa góc (miter saw) 10\" hoặc 12\" (hoặc cưa tay phù hợp)",
+    "Máy bắt vít động lực (impact driver) cho vít gỗ tự khoan dùng ngoài trời",
+    "Máy khoan với mũi khoan 1/8\"",
+    "Giấy nhám, độ nhám 120",
+    "Thước vuông thợ mộc (ê-ke)",
+    "Kính bảo hộ + găng tay",
+    "Kìm bấm khoen (hog ring pliers)",
+    "Kìm cộng lực",
+    "Búa",
+    "Máy mài (để mài nhẵn các đầu dây thép sắc)"
+  ],
+  "steps": [
+    {
+      "title": "Đánh dấu, ghi nhãn và cắt gỗ và lưới thép",
+      "text": "Đánh dấu, ghi nhãn và cắt gỗ theo thứ tự từ GB-1 đến GB-6, theo chiều dài trong danh sách cắt gỗ.\n\nXếp lưới thép 2x2 thành các chồng bằng nhau và ghi nhãn 18-8a (đáy rọ), 18-8b (thành rọ, dài) và 18-8c (thành rọ, ngắn).",
+      "imageAlts": [
+        "Sơ đồ ba chiều các thanh gỗ GB-1 và GB-2 và các tấm lưới thép 18-8a, 18-8b và 18-8c, có ghi chiều dài và sơ đồ các tấm lưới nằm cạnh nhau."
+      ],
+      "tips": [
+        "Ghi nhãn từng thanh gỗ khi bạn đo và cắt.",
+        "Xếp gỗ GB-1 và GB-2 thành từng đống riêng.",
+        "Chà nhám nhẹ các mép cắt giúp bỏ dằm gỗ và dễ lắp ráp hơn.",
+        "Làm nhiều hơn một ghế rọ đá? Một khối chặn trên máy cưa góc giúp mọi thanh cắt ra đều dài bằng nhau."
+      ]
+    },
+    {
+      "title": "Đóng khung",
+      "text": "Đặt hai thanh GB-1 và hai thanh GB-2 trên một mặt phẳng, canh các mép như trong hình.\n\nDùng mẫu khoan mồi ở cuối tập hướng dẫn để khoan mồi các lỗ vít, rồi bắt chặt các thanh GB-1 vào các thanh GB-2 bằng máy bắt vít động lực và 8 vít gỗ tự khoan dùng ngoài trời dài 2.5\".",
+      "imageAlts": [
+        "Sơ đồ hai thanh ray dài GB-1 và hai thanh bịt đầu ngắn GB-2 bắt vít với nhau thành một khung chữ nhật."
+      ],
+      "tips": [
+        "Dùng thước vuông thợ mộc để kiểm tra mỗi góc có vuông không."
+      ],
+      "siteNote": "Bạn đóng rọ này úp ngược: khung gỗ lúc đầu nằm dưới đất và trở thành viền trên khi bạn lật rọ lại ở bước 7. Mô hình 3D luôn vẽ ghế ở tư thế đứng đúng chiều, nên khung gỗ lúc nào cũng nằm ở trên."
+    },
+    {
+      "title": "Gắn các thanh giằng ngang",
+      "text": "Đặt một thanh GB-2 vào giữa khung đã đóng ở bước 2, và bắt chặt bằng máy bắt vít động lực và 4 vít gỗ tự khoan dùng ngoài trời dài 2.5\".\n\nLàm lại như vậy với thêm hai thanh GB-2, đặt cách đều giữa thanh GB-2 ở giữa và mỗi thanh GB-2 ở đầu. Bắt chặt cả hai bằng máy bắt vít động lực và thêm 8 vít gỗ tự khoan dùng ngoài trời dài 2.5\".",
+      "imageAlts": [
+        "Sơ đồ thêm ba thanh giằng ngang GB-2 được gắn ở điểm giữa và các điểm một phần tư của khung dài."
+      ]
+    },
+    {
+      "title": "Ghim và khép kín các tấm lưới thép thành bên",
+      "text": "Ghim chặt hai tấm lưới thép 18-8c và hai tấm 18-8b quanh khung GB-2 và GB-1 đã đóng ở bước 3, bằng búa và 32 đinh ghim cáp mạ kẽm 1.5\" — mỗi tấm lưới 2 đinh ghim, làm từng mặt một.\n\nNối chặt các tấm 18-8c và 18-8b với nhau ở các góc bằng khoen bấm, cứ cách một ô lưới thì bấm một khoen, có khoen ở mọi góc và mép.",
+      "imageAlts": [
+        "Sơ đồ các tấm lưới thép 18-8c và 18-8b được ghim quanh khung gỗ và bấm khoen với nhau ở các góc."
+      ]
+    },
+    {
+      "title": "Giằng phần giữa",
+      "text": "Ở giữa rọ, bên dưới thanh GB-2 ở giữa, hãy thêm vật liệu giằng theo một trong hai cách: những đoạn đầu dư của lưới thép 2x2 cắt đôi bằng kìm cộng lực, hoặc bất kỳ tấm lưới 2x2 dư nào trải hết bề rộng của rọ (cao ít nhất 2 ô, tức từ 4\" trở lên).\n\nBắt chặt thanh đỡ ở giữa bằng khoen bấm.",
+      "imageAlts": [
+        "Sơ đồ một thanh giằng bằng lưới thép được bấm khoen vào chỗ, bên dưới thanh khung giữa."
+      ]
+    },
+    {
+      "title": "Khép tấm đáy",
+      "text": "Đặt tấm lưới thép 18-8a lên trên rọ đã nối chặt ở bước 5 — tấm này sẽ thành đáy rọ khi bạn lật rọ lại ở bước tiếp theo.\n\nBắt chặt bằng khoen bấm ở bốn cạnh và các thanh giằng giữa: cứ cách một ô lưới thì bấm một khoen, và hai khoen ở mỗi góc. Giờ rọ đã sẵn sàng để chở đến khu đất.",
+      "imageAlts": [
+        "Sơ đồ tấm lưới thép 18-8a được bấm khoen vào rọ, kèm hình phóng to một khoen bấm ở góc giữ chặt cả ba tấm lưới."
+      ]
+    },
+    {
+      "title": "Đặt rọ tại khu đất",
+      "text": "Xoay rọ 180°. Đặt rọ tại khu đất trên một lớp sỏi lót.\n\nDùng thước thủy để bảo đảm rọ nằm thẳng.",
+      "imageAlts": [
+        "Sơ đồ cho thấy rọ đã được xoay lại và đặt cân bằng trên một lớp sỏi."
+      ],
+      "tips": [
+        "Nếu rọ nằm cạnh những rọ khác, hãy dùng dây căng và thước thủy treo dây để giữ hàng rọ thẳng."
+      ]
+    },
+    {
+      "title": "Đổ đá vào rọ",
+      "text": "Đặt rọ vào đúng vị trí theo thiết kế công viên. Rải sỏi bên dưới để tinh chỉnh.\n\nBắt đầu với những viên đá nhồi lớn nhất, phẳng nhất bạn có, đổ đá vào rọ bắt đầu từ các mép, và tiếp tục cho đến khi xếp xong các mặt bên.\n\nĐổ phần đá nhồi còn lại vào khung cho đến khi ngang bằng với mép gỗ ở trên.",
+      "imageAlts": [
+        "Sơ đồ và ảnh tham khảo một rọ đang được đổ đá, bắt đầu với những viên lớn, phẳng dọc theo các mép."
+      ],
+      "tips": [
+        "Đổ đá cẩn thận để rọ không bị méo, và bảo đảm mọi khe hở đều được lấp kín cho vững.",
+        "Xem sổ tay thực hành Xây dựng, giai đoạn bốn, để biết thêm về bước này."
+      ]
+    },
+    {
+      "title": "Gắn hai tấm ván đầu của mặt gỗ",
+      "text": "Đặt hai thanh GB-1 lên trên khung đã đóng ở bước 3, dùng mẫu khoan mồi ở cuối tập hướng dẫn để khoan mồi gỗ. Bắt chặt hai tấm ván đầu trước bằng máy bắt vít động lực và 12 vít gỗ tự khoan dùng ngoài trời dài 2.5\", giữ mép bằng mặt với gỗ bên dưới.",
+      "imageAlts": [
+        "Sơ đồ hai tấm ván mặt GB-1 đầu tiên được bắt vít bằng mặt ở mỗi đầu của rọ đã đổ đầy đá."
+      ],
+      "tips": [
+        "Khoan mồi ở bước này giúp vít không làm nứt ván."
+      ]
+    },
+    {
+      "title": "Hoàn thiện mặt gỗ và chà nhám",
+      "text": "Đặt 3 tấm ván còn lại cách đều nhau giữa hai tấm ván đầu. Bắt chặt các thanh GB-1 bằng máy bắt vít động lực và 20 vít gỗ tự khoan dùng ngoài trời dài 2.5\".\n\nChà nhám nhẹ các mép thô của ghế rọ đá, và bảo đảm không còn đầu dây thép rọ nào sắc — mài nhẵn bằng máy mài nếu có chỗ quá sắc.",
+      "imageAlts": [
+        "Sơ đồ các tấm ván mặt gỗ GB-1 còn lại được đặt cách đều và bắt vít lên rọ đã đổ đầy đá."
+      ],
+      "tips": [
+        "Giữ mọi con vít cách mép gỗ một bề ngang ngón tay cái."
+      ]
+    },
+    {
+      "title": "Mẫu khoan mồi (khuôn mẫu)",
+      "text": "Cắt mẫu khoan mồi theo đường chấm. Khi khoan, canh mép của khuôn mẫu trùng với mép ngoài của thanh gỗ trước khi khoan mồi.\n\nKhông phải lỗ nào cũng dùng đến — không phải kiểu bắt vít nào cũng dùng khuôn mẫu. Hãy theo các bước lắp ráp ở trên để biết vị trí lỗ. Giữ mọi lỗ cách mép khoảng một bề ngang ngón tay cái (khoảng 1\"), kể cả những lỗ không dùng khuôn mẫu này.",
+      "imageAlts": [
+        "Khuôn mẫu khoan mồi để in, có năm vị trí lỗ được đánh dấu và đường cắt, kèm hình phóng to cho thấy khoảng cách lỗ đến mép ván."
+      ]
+    }
+  ],
+  "finishing": "Xử lý gỗ ngoài trời có thể kéo dài tuổi thọ các món đồ công viên, nhưng không bắt buộc — những món này được thiết kế để rẻ, bền và dễ làm, nên có khi thực tế hơn là cứ để thế hệ sau làm lại khi đến lúc. Nếu bạn muốn nhuộm màu, sơn hay phủ lớp bảo vệ cho mặt gỗ, hãy xem các tài liệu về hoàn thiện bên dưới.",
+  "safety": [
+    "Đây chỉ là những khuyến nghị cho việc tự làm — hãy điều chỉnh vật liệu, cách lắp ráp và cách xây dựng cho phù hợp với dự án và khu đất của bạn.",
+    "Làm món này cần có chút hiểu biết về dụng cụ cầm tay và dụng cụ chạy điện, đồ ngũ kim, vít bu-lông, gỗ xẻ và kỹ thuật lắp ráp cơ bản.",
+    "Trước khi dùng bất kỳ thiết bị chạy điện nào, hãy đọc và làm theo yêu cầu an toàn của nhà sản xuất, và đừng để ai chưa làm như vậy dùng dụng cụ chạy điện.",
+    "Bạn (chủ sở hữu) chịu trách nhiệm về mọi quy chuẩn xây dựng và an toàn, giấy phép và sự chấp thuận của cơ quan quản lý mà việc này cần.",
+    "Trước tiên hãy dọn sạch rác, những thứ nguy hiểm và công trình không cần thiết khỏi khu đất, và xác định mọi đường ống, đường dây có thể bị ảnh hưởng trước khi đào.",
+    "Mọi người phụ giúp xây đều nên ký giấy miễn trách nhiệm cho tình nguyện viên.",
+    "Lưới thép đã cắt và đá nhồi rọ có thể có cạnh sắc — hãy đeo găng tay và kính bảo hộ, và mài nhẵn mọi đầu dây sắc bằng máy mài."
+  ],
+  "links": [
+    {
+      "label": "Lưới thép Darby and Sons"
+    },
+    {
+      "label": "Gabion1.com — rọ đá 18\" x 18\""
+    },
+    {
+      "label": "Chọn lớp hoàn thiện tốt nhất cho đồ ngoài trời (Rockler)"
+    },
+    {
+      "label": "Lớp hoàn thiện tốt nhất cho gỗ ngoài trời (Real Milk Paint)"
+    },
+    {
+      "label": "Lớp phủ gỗ ngoài trời (Vermont Natural Coatings)"
+    }
+  ],
+  "sourcePages": "Hướng dẫn 8_GABION_BENCH_ASSEMBLY, tr. 1–15 (bìa; trước khi bắt đầu; các loại vật liệu + gỗ thường dùng; bước 1–10; mẫu khoan mồi). Ở phần chữ của bước 10–11, PDF gốc ghi nhầm các tấm ván mặt gỗ cuối cùng là \"GB-2\" (chú thích trên hình vẽ cùng trang và danh sách cắt gỗ đều xác nhận đó là GB-1), và ghi nhầm tấm lưới khép cuối là \"BM-3\" thay vì 18-8a — cả hai đã được sửa ở đây."
+}
