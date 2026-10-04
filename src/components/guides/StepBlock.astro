@@ -2,6 +2,7 @@
 // One numbered assembly step: instructions, tips, and large click-to-enlarge
 // diagrams. The enlarge <dialog> itself lives once per page — see
 // src/pages/build/[slug].astro — this just marks images with data-enlarge.
+// `data-guide-step` is what the 3D viewer watches to know which step is being read.
 import { u } from '../../lib/url';
 import type { GuideStep } from '../../data/guides';
 
@@ -12,7 +13,7 @@ const { step } = Astro.props;
 const paragraphs = step.text.split('\n\n');
 ---
 
-<li class="step substep" id={`step-${step.n}`}>
+<li class="step substep" id={`step-${step.n}`} data-guide-step={step.n}>
   <div class="step-head">
     <span class="step-num" aria-hidden="true">{step.n}</span>
     <h3>{step.title ?? `Step ${step.n}`}</h3>

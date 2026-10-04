@@ -1,86 +1,222 @@
 ---
-// Dev-only: render a guide's 3D assembly model as plain boxes so modellers can
-// check their work. /dev/model-check/?slug=bench-back&step=4  (step = show parts up to that step)
-// The real, animated viewer lives in src/components/guides3d/.
+// Dev-only: check a guide's 3D assembly model in the real viewer.
+//   /dev/model-check/?slug=bench-back&step=4     (step: a guide step number, or "complete")
+//   &explode=1                                    start in the exploded view
+// Shows the model's validation problems (same checks as the tests), the parts
+// each step adds, and the viewer itself: hover a part for its label and size.
 import Base from '../../layouts/Base.astro';
+import { getGuides } from '../../data/guides';
+import '../../components/guides3d/guide3d.css';
+
+const guides = getGuides().map((g) => ({
+  slug: g.slug,
+  title: g.title,
+  dimensionsIn: g.dimensionsIn,
+  cutList: g.cutList,
+  steps: g.steps.map((s) => ({ n: s.n, title: s.title })),
+}));
 ---
 <Base title="Model check" bare>
   <meta name="robots" content="noindex" />
-  <div style="padding:8px 16px;font-size:14px" id="mc-info">Loading…</div>
-  <canvas id="mc" style="width:100%;height:calc(100vh - 110px);display:block;background:#f6f6f4"></canvas>
+  <script type="application/json" id="mc-guides" set:html={JSON.stringify(guides)} />
+  <div class="mc">
+    <div class="mc-side">
+      <label class="mc-pick">Model
+        <select id="mc-slug"></select>
+      </label>
+      <p id="mc-info" class="mc-info">Loading…</p>
+      <div id="mc-steps" class="mc-steps" role="group" aria-label="Show step"></div>
+      <div class="mc-row">
+        <button class="g3d-btn" type="button" id="mc-replay">Replay step</button>
+        <button class="g3d-btn" type="button" id="mc-explode" aria-pressed="false">Exploded view</button>
+        <button class="g3d-btn" type="button" id="mc-reset">Reset view</button>
+      </div>
+      <h2 class="mc-h">Validation</h2>
+      <ul id="mc-problems" class="mc-problems"></ul>
+      <h2 class="mc-h">Parts by step</h2>
+      <ul id="mc-bystep" class="mc-bystep"></ul>
+      <h2 class="mc-h">Modeller's notes</h2>
+      <ul id="mc-notes" class="mc-notes"></ul>
+    </div>
+    <div class="mc-view">
+      <div class="g3d-stage-wrap"><div class="g3d-stage" id="mc-stage" tabindex="0" aria-label="3D model"></div></div>
+    </div>
+  </div>
 </Base>
-<script>
-  import * as THREE from 'three';
-  import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-  import type { GuideModel } from '../../lib/guides3d/schema';
 
+<script>
+  import type { GuideModel } from '../../lib/guides3d/schema';
+  import { validateModel } from '../../lib/guides3d/validate';
+  import type { View } from '../../lib/guides3d/timeline';
+
+  type G = { slug: string; title: string; dimensionsIn: { length: number; width: number; height: number }; cutList: { part: string; qty: number; stock: string; lengthIn: number; notes?: string }[]; steps: { n: number; title?: string }[] };
+  const guides: G[] = JSON.parse(document.getElementById('mc-guides')!.textContent || '[]');
   const models = import.meta.glob<GuideModel>('../../data/guides/models/*.json', { import: 'default' });
+  const slugs = Object.keys(models).map((k) => k.split('/').pop()!.replace('.json', '')).sort();
+
   const q = new URLSearchParams(location.search);
   const slug = q.get('slug') ?? 'bench-4';
-  const upTo = Number(q.get('step') ?? 99);
-  const loader = models[`../../data/guides/models/${slug}.json`];
-  const info = document.getElementById('mc-info')!;
-  const canvas = document.getElementById('mc') as HTMLCanvasElement;
+  const stepParam = q.get('step');
+  const $ = (id: string) => document.getElementById(id)!;
+  const info = $('mc-info');
 
-  if (!loader) {
-    info.textContent = `No model for "${slug}". Available: ${Object.keys(models).map((k) => k.split('/').pop()!.replace('.json', '')).join(', ') || 'none'}`;
+  const sel = $('mc-slug') as HTMLSelectElement;
+  for (const s of slugs) sel.add(new Option(s, s, false, s === slug));
+  if (!slugs.includes(slug)) sel.add(new Option(`${slug} (no model)`, slug, true, true));
+  sel.addEventListener('change', () => {
+    const u = new URL(location.href);
+    u.searchParams.set('slug', sel.value);
+    u.searchParams.delete('step');
+    location.href = u.toString();
+  });
+
+  const loader = models[`../../data/guides/models/${slug}.json`];
+  const guide = guides.find((g) => g.slug === slug);
+  if (!loader || !guide) {
+    info.textContent = `No model for "${slug}" yet. Models: ${slugs.join(', ') || 'none'}.`;
   } else {
-    loader().then((m) => {
-      const steps = [...new Set(m.parts.map((p) => p.step))].sort((a, b) => a - b);
-      info.textContent = `${m.slug}: ${m.parts.length} parts · steps ${steps.join(', ')} · showing up to step ${upTo} (cyan = that step)`;
-      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
-      renderer.setPixelRatio(Math.min(2, devicePixelRatio));
-      const scene = new THREE.Scene();
-      scene.background = new THREE.Color('#f6f6f4');
-      scene.add(new THREE.HemisphereLight(0xffffff, 0x888888, 2.2));
-      const sun = new THREE.DirectionalLight(0xffffff, 1.5);
-      sun.position.set(60, 120, 80);
-      scene.add(sun);
-      const size = Math.max(m.bounds.length, m.bounds.width, m.bounds.height);
-      const cam = new THREE.PerspectiveCamera(35, 1, 0.5, size * 20);
-      const az = ((m.view?.azimuthDeg ?? 35) * Math.PI) / 180;
-      const el = ((m.view?.elevationDeg ?? 28) * Math.PI) / 180;
-      const dist = size * 2.4;
-      cam.position.set(Math.sin(az) * Math.cos(el) * dist, Math.sin(el) * dist + m.bounds.height / 2, Math.cos(az) * Math.cos(el) * dist);
-      const controls = new OrbitControls(cam, canvas);
-      controls.target.set(0, m.bounds.height / 2, 0);
-      const grid = new THREE.GridHelper(size * 3, Math.round((size * 3) / 6), 0xcccccc, 0xe4e4e4);
-      scene.add(grid);
-      for (const p of m.parts) {
-        if (p.step > upTo) continue;
-        const geo =
-          p.shape === 'cylinder'
-            ? new THREE.CylinderGeometry(p.size[0] / 2, p.size[0] / 2, p.size[1], 16)
-            : new THREE.BoxGeometry(p.size[0], p.size[1], p.size[2]);
-        const current = p.step === upTo;
-        const color = current ? '#00a8e8' : p.color ?? (p.kind === 'lumber' ? '#e9d3b0' : p.kind === 'stone-fill' ? '#9a948c' : '#b8b8b8');
-        const mesh = new THREE.Mesh(
-          geo,
-          new THREE.MeshStandardMaterial({ color, roughness: 0.85, wireframe: p.shape === 'mesh-box', transparent: p.kind === 'stone-fill', opacity: 0.85 }),
-        );
-        mesh.position.set(...p.position);
-        if (p.rotation) mesh.rotation.set(...(p.rotation.map((d) => (d * Math.PI) / 180) as [number, number, number]));
-        scene.add(mesh);
-        if (p.shape !== 'mesh-box') {
-          const edges = new THREE.LineSegments(new THREE.EdgesGeometry(geo), new THREE.LineBasicMaterial({ color: '#333' }));
-          edges.position.copy(mesh.position);
-          edges.rotation.copy(mesh.rotation);
-          scene.add(edges);
-        }
+    Promise.all([loader(), import('../../lib/guides3d/viewer')]).then(([model, m]) => {
+      // validation, like the tests
+      const problems = validateModel(model, guide);
+      const pl = $('mc-problems');
+      if (!problems.length) pl.innerHTML = '<li class="ok">✓ Matches the guide (counts, lumber sizes, overall size, steps, no parts passing through each other)</li>';
+      for (const p of problems) {
+        const li = document.createElement('li');
+        li.textContent = p;
+        pl.appendChild(li);
       }
-      const resize = () => {
-        const w = canvas.clientWidth;
-        const h = canvas.clientHeight;
-        renderer.setSize(w, h, false);
-        cam.aspect = w / h;
-        cam.updateProjectionMatrix();
-      };
-      resize();
-      addEventListener('resize', resize);
-      renderer.setAnimationLoop(() => {
-        controls.update();
-        renderer.render(scene, cam);
+      const notes = $('mc-notes');
+      for (const n of model.notes ?? ['—']) {
+        const li = document.createElement('li');
+        li.textContent = n;
+        notes.appendChild(li);
+      }
+
+      const initial: View =
+        stepParam === null || stepParam === 'complete' || stepParam === '0' ? { kind: 'complete' } : { kind: 'step', n: Number(stepParam) };
+      const viewer = new m.AssemblyViewer({
+        container: $('mc-stage'),
+        model,
+        steps: guide.steps,
+        cutList: guide.cutList,
+        view: initial,
+        onError: (e) => (info.textContent = `Viewer failed: ${e}`),
       });
+      const prep = viewer.prepared;
+      info.textContent = `${guide.title}: ${model.parts.length} parts · cut pile at step ${prep.pileStep ?? '—'} · hover a part for its label`;
+
+      const bystep = $('mc-bystep');
+      for (const s of guide.steps) {
+        const li = document.createElement('li');
+        const adds = m.stepPartsSummary(prep, s.n);
+        li.innerHTML = `<b>${s.n}.</b> `;
+        li.append(`${s.title ?? ''} — ${s.n === prep.pileStep ? 'cut pile' : adds || 'nothing added'}`);
+        bystep.appendChild(li);
+      }
+
+      // step buttons
+      const steps = $('mc-steps');
+      const buttons: HTMLButtonElement[] = [];
+      const go = (v: View, animate = true) => {
+        void viewer.show(v, { animate });
+        for (const b of buttons) b.setAttribute('aria-pressed', String(b.dataset.v === key(v)));
+        const u = new URL(location.href);
+        u.searchParams.set('step', v.kind === 'step' ? String(v.n) : 'complete');
+        history.replaceState(null, '', u);
+      };
+      const key = (v: View) => (v.kind === 'step' ? String(v.n) : v.kind);
+      const add = (label: string, v: View, title: string) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'g3d-btn';
+        b.textContent = label;
+        b.title = title;
+        b.dataset.v = key(v);
+        b.addEventListener('click', () => go(v));
+        steps.appendChild(b);
+        buttons.push(b);
+      };
+      for (const s of guide.steps) add(String(s.n), { kind: 'step', n: s.n }, s.title ?? '');
+      add('Finished', { kind: 'complete' }, 'The whole piece');
+      go(initial, false);
+
+      $('mc-replay').addEventListener('click', () => void viewer.replay());
+      const ex = $('mc-explode');
+      const setEx = (on: boolean) => {
+        viewer.setExploded(on);
+        ex.setAttribute('aria-pressed', String(on));
+      };
+      ex.addEventListener('click', () => setEx(!viewer.isExploded));
+      if (q.get('explode') === '1') setEx(true);
+      $('mc-reset').addEventListener('click', () => viewer.resetView());
     });
   }
 </script>
+
+<style>
+  .mc {
+    display: grid;
+    grid-template-columns: minmax(260px, 340px) 1fr;
+    height: calc(100vh - 66px);
+  }
+  .mc-side {
+    padding: 14px 16px;
+    overflow: auto;
+    border-right: 1px solid var(--line);
+    font-size: 0.9rem;
+  }
+  .mc-view {
+    position: relative;
+    padding: 12px;
+  }
+  .mc-view .g3d-stage-wrap {
+    position: absolute;
+    inset: 12px;
+  }
+  .mc-pick {
+    display: grid;
+    gap: 4px;
+    font-weight: 700;
+  }
+  .mc-pick select {
+    font: inherit;
+    padding: 0.4em;
+  }
+  .mc-info {
+    color: var(--muted);
+  }
+  .mc-steps,
+  .mc-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 10px 0;
+  }
+  .mc-h {
+    font-size: 0.85rem;
+    margin: 18px 0 6px;
+  }
+  .mc-problems,
+  .mc-bystep,
+  .mc-notes {
+    margin: 0;
+    padding-left: 1.1em;
+  }
+  .mc-problems li {
+    color: var(--danger);
+  }
+  .mc-problems li.ok {
+    color: var(--ok);
+    list-style: none;
+    margin-left: -1.1em;
+  }
+  @media (max-width: 760px) {
+    .mc {
+      grid-template-columns: 1fr;
+      height: auto;
+    }
+    .mc-view {
+      height: 70vh;
+    }
+  }
+</style>

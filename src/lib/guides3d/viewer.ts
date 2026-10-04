@@ -297,6 +297,10 @@ export function buildPart(p: ModelPart, opts: BuildOptions = {}): PartHandle {
       opacity: baseOpacity,
       side: p.kind === 'fabric' ? DoubleSide : undefined,
       depthWrite: !isMesh,
+      // push faces back a little so the outlines on their edges draw cleanly
+      polygonOffset: true,
+      polygonOffsetFactor: 1,
+      polygonOffsetUnits: 1,
     });
     if (isStone) {
       const t = rubbleTexture();
@@ -474,8 +478,8 @@ export class AssemblyViewer {
 
     // scene: white paper, soft light from the upper left, a faint floor and shadow
     this.scene.background = new Color('#ffffff');
-    this.scene.add(new HemisphereLight(0xffffff, 0xcfc8bc, 2.1));
-    this.sun = new DirectionalLight(0xffffff, 1.9);
+    this.scene.add(new HemisphereLight(0xffffff, 0xb9b2a6, 1.55));
+    this.sun = new DirectionalLight(0xffffff, 2.6);
     this.sun.castShadow = true;
     this.sun.shadow.mapSize.set(2048, 2048);
     this.sun.shadow.radius = 5;
@@ -840,14 +844,20 @@ export class AssemblyViewer {
     sc.far = r * 4;
     sc.updateProjectionMatrix();
     this.sun.target.position.copy(c);
-    this.sun.position.copy(c).add(new Vector3(-0.45, 1.25, 0.7).normalize().multiplyScalar(r * 2));
-    this.floor?.scale.setScalar(Math.max(1, r / 60));
+    this.sun.position.copy(c).add(new Vector3(-0.55, 1.35, 0.45).normalize().multiplyScalar(r * 2));
+    if (this.floor) {
+      this.floor.position.set(c.x, 0, c.z);
+      // the faint floor disc just reaches past the content
+      const reach = Math.max(...all.map((b) => Math.hypot(b.max[0] - b.min[0], b.max[2] - b.min[2]))) * 0.75;
+      this.floorDisc?.scale.setScalar(reach / 100);
+    }
   }
 
   private floor: Group | null = null;
+  private floorDisc: Mesh | null = null;
   private addFloor() {
     const g = new Group();
-    const shadow = new Mesh(new PlaneGeometry(400, 400), new ShadowMaterial({ opacity: 0.13 }));
+    const shadow = new Mesh(new PlaneGeometry(2000, 2000), new ShadowMaterial({ opacity: 0.17 }));
     shadow.rotation.x = -Math.PI / 2;
     shadow.receiveShadow = true;
     shadow.raycast = () => {};
@@ -858,13 +868,14 @@ export class AssemblyViewer {
     const x = c.getContext('2d');
     if (x) {
       const grad = x.createRadialGradient(64, 64, 0, 64, 64, 64);
-      grad.addColorStop(0, 'rgba(120,112,100,0.10)');
-      grad.addColorStop(0.6, 'rgba(120,112,100,0.05)');
+      grad.addColorStop(0, 'rgba(120,112,100,0.09)');
+      grad.addColorStop(0.55, 'rgba(120,112,100,0.045)');
       grad.addColorStop(1, 'rgba(120,112,100,0)');
       x.fillStyle = grad;
       x.fillRect(0, 0, 128, 128);
       const tex = new CanvasTexture(c);
-      const disc = new Mesh(new CircleGeometry(140, 48), new MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false }));
+      const disc = new Mesh(new CircleGeometry(100, 48), new MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false }));
+      this.floorDisc = disc;
       disc.rotation.x = -Math.PI / 2;
       disc.position.y = -0.05;
       disc.renderOrder = -1;
@@ -1074,3 +1085,4 @@ export class AssemblyViewer {
 }
 
 export type { View, GuideStepLike };
+export { playSequence, stepPartsSummary } from './timeline';
