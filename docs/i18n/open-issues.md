@@ -67,6 +67,7 @@ after the extraction round. Tick them off here.
 - [ ] Organize scrolls sideways at 360 px in English too (393 px; step-contents box + text column), not only Arabic.
 - [ ] Planner month chart labels columns with each month's first letter — in Creole August (out) and October
       (oktòb) both show "O"; use a per-locale short/narrow month that stays distinct (or two letters where needed).
+- [ ] Build schedule (Create) at 360 px: big empty gap between each phase title and its date box (English too).
 
 ## For native-speaker review (per language)
 
@@ -87,6 +88,10 @@ after the extraction round. Tick them off here.
   `create.mdx` Phase 2 herbicide and weed names + safety notes; `sustain.mdx` 存活 / 茁壮成长 / 社交;
   plants.json common names (Witch Alder → 矮北美瑞香, Wild Pinks → 野石竹, Allen Bush); guide hardware names
   (C形环, 马车螺栓, U形线卡钉); the 6C names in `playful.ts`.
+
+### Russian (ru) — second pass
+- `cost.ts` fix.* / kept.* explanations and `order.tool.hydrantNote` (safety note — exact meaning); `philly.ts`
+  zoning.*, flood zones, `paths.otherAgency.text`; `planner.ts` slope.* (case endings); `shade.ts` sum.* lines.
 
 ### Vietnamese (vi)
 - Step names "Có được đất" (Acquire), "Khảo sát" (Assess); theme names "Vườn ăn được", "Chốn an yên";
