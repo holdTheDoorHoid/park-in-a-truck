@@ -4,6 +4,7 @@
 // dynamic import keeps the ~200kb maplibre-gl bundle out of every other page.
 import { useEffect, useRef, useState } from 'preact/hooks';
 import 'maplibre-gl/dist/maplibre-gl.css';
+import { loadMaplibre } from '../philly/maplibre';
 import { BASEMAP_ATTRIBUTION, BASEMAP_STYLE } from '../../lib/mapstyle';
 import { u } from '../../lib/url';
 import type { Park } from '../../data/parks';
@@ -21,7 +22,8 @@ export default function ParksMapIsland({ parks }: Props) {
     let cancelled = false;
 
     (async () => {
-      const maplibre = await import('maplibre-gl');
+      // Shared loader: points MapLibre at a Vite-built worker (needed in production builds).
+      const maplibre = await loadMaplibre();
       if (cancelled || !mapEl.current) return;
 
       map = new maplibre.Map({
