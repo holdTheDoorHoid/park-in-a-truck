@@ -3,49 +3,54 @@
 import Base from '../../layouts/Base.astro';
 import { RESOURCES, deadLinkCount } from '../../data/resources';
 import { youtubeThumb } from '../../data/parks';
+import pages from '../../i18n/messages/en/pages.ts';
+import { getT, localizeRecord } from '../../i18n/astro.ts';
+
+const t = getT(Astro, pages);
+const resources = localizeRecord(RESOURCES, 'resources', t.locale);
 
 const sections = [
-  { id: 'partners', label: 'Partners' },
-  { id: 'press', label: 'Featured press & video' },
-  { id: 'suppliers', label: 'Suppliers & useful links' },
-  { id: 'toolkit-library', label: 'Toolkit library' },
-  { id: 'contact', label: 'Contact' },
-  { id: 'acknowledgments', label: 'Acknowledgments' },
-  { id: 'legal', label: 'Legal notice' },
+  { id: 'partners', label: t('resources.sections.partners') },
+  { id: 'press', label: t('resources.sections.press') },
+  { id: 'suppliers', label: t('resources.sections.suppliers') },
+  { id: 'toolkit-library', label: t('resources.sections.toolkitLibrary') },
+  { id: 'contact', label: t('resources.sections.contact') },
+  { id: 'acknowledgments', label: t('resources.sections.acknowledgments') },
+  { id: 'legal', label: t('resources.sections.legal') },
 ];
 
 const deadCount = deadLinkCount();
+const deadDate = new Date().toISOString().slice(0, 10);
 
 function statusLabel(status: string): string | null {
-  if (status === 'dead') return 'link currently dead';
-  if (status === 'unverified') return 'could not verify automatically';
-  if (status === 'unconfirmed') return 'unconfirmed';
+  if (status === 'dead') return t('resources.status.dead');
+  if (status === 'unverified') return t('resources.status.unverified');
+  if (status === 'unconfirmed') return t('resources.status.unconfirmed');
   return null;
 }
 ---
 
-<Base title="Resources, partners & press" description="Park in a Truck's partners, press coverage, suppliers, the full Toolkit Library, contact info and legal notice.">
+<Base title={t('resources.title')} description={t('resources.description')}>
   <section class="wrap" style="padding-top:40px">
-    <p class="eyebrow">Beyond the workbooks</p>
-    <h1 class="ruled">Resources, partners & press</h1>
-    <p class="lede">Who helps build these parks, who's written about them, where to get materials and plants, and how to reach the Park in a Truck team.</p>
+    <p class="eyebrow">{t('resources.eyebrow')}</p>
+    <h1 class="ruled">{t('resources.title')}</h1>
+    <p class="lede">{t('resources.lede')}</p>
 
-    <nav class="res-toc no-print" aria-label="Sections on this page">
+    <nav class="res-toc no-print" aria-label={t('resources.sectionsNav')}>
       {sections.map((s) => <a href={`#${s.id}`}>{s.label}</a>)}
     </nav>
 
     {deadCount > 0 && (
       <p class="callout callout-warning">
-        <span class="callout-title">Heads up</span>
-        {deadCount} link{deadCount === 1 ? '' : 's'} on this page {deadCount === 1 ? 'is' : 'are'} currently dead (checked {new Date().toISOString().slice(0, 10)}) — kept here rather than silently
-        dropped, and marked below.
+        <span class="callout-title">{t('resources.deadHeadsUp')}</span>
+        {t('resources.deadLinks', { count: deadCount, date: deadDate })}
       </p>
     )}
 
-    <h2 id="partners" class="ruled">Partners</h2>
-    <p class="prose">Organizations that help make Park in a Truck parks possible.</p>
+    <h2 id="partners" class="ruled">{sections[0]!.label}</h2>
+    <p class="prose">{t('resources.partnersIntro')}</p>
     <div class="grid">
-      {RESOURCES.partners.map((p) => (
+      {resources.partners.map((p) => (
         <div class="card">
           <p class="res-name">
             {p.url ? <a href={p.url} target="_blank" rel="noopener noreferrer">{p.name}</a> : p.name}
@@ -56,13 +61,13 @@ function statusLabel(status: string): string | null {
       ))}
     </div>
 
-    <h2 id="press" class="ruled">Featured press & video</h2>
+    <h2 id="press" class="ruled">{sections[1]!.label}</h2>
     <div class="grid">
-      {RESOURCES.press.map((item) => (
+      {resources.press.map((item) => (
         <div class="card press-card">
           {item.type === 'video' && item.youtubeId && (
             <a class="press-thumb" href={item.url} target="_blank" rel="noopener noreferrer">
-              <img src={youtubeThumb(item.youtubeId)} alt={`Video: ${item.title}`} loading="lazy" />
+              <img src={youtubeThumb(item.youtubeId)} alt={t('resources.videoAlt', { title: item.title })} loading="lazy" />
               <span class="press-play" aria-hidden="true">▶</span>
             </a>
           )}
@@ -77,9 +82,9 @@ function statusLabel(status: string): string | null {
       ))}
     </div>
 
-    <h2 id="suppliers" class="ruled">Suppliers & useful links</h2>
-    <p class="prose">Pulled from links inside the workbooks themselves, grouped by what they're for.</p>
-    {RESOURCES.supplierGroups.map((group) => (
+    <h2 id="suppliers" class="ruled">{sections[2]!.label}</h2>
+    <p class="prose">{t('resources.suppliersIntro')}</p>
+    {resources.supplierGroups.map((group) => (
       <div class="supplier-group">
         <h3>{group.label}</h3>
         <ul class="supplier-list">
@@ -94,9 +99,9 @@ function statusLabel(status: string): string | null {
       </div>
     ))}
 
-    <h2 id="toolkit-library" class="ruled">Toolkit library</h2>
-    <p class="prose">{RESOURCES.toolkitLibrary.intro}</p>
-    {RESOURCES.toolkitLibrary.sections.map((section) => (
+    <h2 id="toolkit-library" class="ruled">{sections[3]!.label}</h2>
+    <p class="prose">{resources.toolkitLibrary.intro}</p>
+    {resources.toolkitLibrary.sections.map((section) => (
       <div class="supplier-group">
         <h3>{section.title}</h3>
         <ul class="supplier-list">
@@ -110,27 +115,27 @@ function statusLabel(status: string): string | null {
       </div>
     ))}
 
-    <h2 id="contact" class="ruled">Contact</h2>
+    <h2 id="contact" class="ruled">{sections[4]!.label}</h2>
     <div class="card" style="max-width:32rem">
       <ul class="contact-list">
-        <li><strong>Email:</strong> <a href={`mailto:${RESOURCES.contact.email}`}>{RESOURCES.contact.email}</a></li>
-        <li><strong>Founder:</strong> <a href={`mailto:${RESOURCES.contact.founderEmail}`}>{RESOURCES.contact.founderEmail}</a></li>
-        <li><strong>Phone:</strong> <a href={`tel:${RESOURCES.contact.phone.replace(/[^0-9]/g, '')}`}>{RESOURCES.contact.phone}</a></li>
-        <li><strong>Instagram:</strong> <a href={RESOURCES.contact.instagram.url} target="_blank" rel="noopener noreferrer">{RESOURCES.contact.instagram.handle}</a></li>
-        <li><strong>Facebook:</strong> <a href={RESOURCES.contact.facebook.url} target="_blank" rel="noopener noreferrer">Park in a Truck</a></li>
+        <li><strong>{t('resources.contact.email')}</strong> <a href={`mailto:${RESOURCES.contact.email}`}>{RESOURCES.contact.email}</a></li>
+        <li><strong>{t('resources.contact.founder')}</strong> <a href={`mailto:${RESOURCES.contact.founderEmail}`}>{RESOURCES.contact.founderEmail}</a></li>
+        <li><strong>{t('resources.contact.phone')}</strong> <a href={`tel:${RESOURCES.contact.phone.replace(/[^0-9]/g, '')}`}>{RESOURCES.contact.phone}</a></li>
+        <li><strong>{t('resources.contact.instagram')}</strong> <a href={RESOURCES.contact.instagram.url} target="_blank" rel="noopener noreferrer">{RESOURCES.contact.instagram.handle}</a></li>
+        <li><strong>{t('resources.contact.facebook')}</strong> <a href={RESOURCES.contact.facebook.url} target="_blank" rel="noopener noreferrer">Park in a Truck</a></li>
       </ul>
     </div>
 
-    <h2 id="acknowledgments" class="ruled">Acknowledgments</h2>
-    <p class="prose">{RESOURCES.acknowledgments.lead}</p>
+    <h2 id="acknowledgments" class="ruled">{sections[5]!.label}</h2>
+    <p class="prose">{resources.acknowledgments.lead}</p>
     <ul class="prose">
       {RESOURCES.acknowledgments.contributors.map((c) => <li>{c}</li>)}
     </ul>
-    <p class="prose muted">{RESOURCES.acknowledgments.note}</p>
+    <p class="prose muted">{resources.acknowledgments.note}</p>
 
-    <h2 id="legal" class="ruled">{RESOURCES.legal.title}</h2>
+    <h2 id="legal" class="ruled">{resources.legal.title}</h2>
     <p class="muted" style="font-size:0.85rem">{RESOURCES.legal.source}</p>
-    <p class="prose">{RESOURCES.legal.text}</p>
+    <p class="prose">{resources.legal.text}</p>
   </section>
 </Base>
 

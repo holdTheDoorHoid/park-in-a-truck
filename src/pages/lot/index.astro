@@ -4,48 +4,45 @@
 import Base from '../../layouts/Base.astro';
 import LotFinderMap from '../../components/widgets/LotFinderMap.astro';
 import LotLookup from '../../components/widgets/LotLookup.astro';
-import { u } from '../../lib/url';
----
-<Base title="Find a lot" description="Look up any Philadelphia lot's owner, size, zoning and vacancy, and browse vacant land on a map.">
-  <section class="wrap lot-page">
-    <p class="eyebrow">Step 1 · Acquire</p>
-    <h1 class="ruled">Find a lot</h1>
-    <p class="lede">
-      Type an address, or browse the map of vacant land. The site checks the same City records atlas.phila.gov
-      shows — owner, lot size, zoning, vacancy — and tells you which Park in a Truck size fits.
-    </p>
+import pages from '../../i18n/messages/en/pages.ts';
+import { getT, urlFor } from '../../i18n/astro.ts';
 
-    <h2 class="ruled">Look up an address</h2>
+const t = getT(Astro, pages);
+const u = urlFor(t.locale);
+---
+<Base title={t('lot.title')} description={t('lot.description')}>
+  <section class="wrap lot-page">
+    <p class="eyebrow">{t('lot.eyebrow')}</p>
+    <h1 class="ruled">{t('lot.h1')}</h1>
+    <p class="lede">{t('lot.lede')}</p>
+
+    <h2 class="ruled">{t('lot.lookupH2')}</h2>
     <LotLookup mode="primary" />
 
-    <h2 class="ruled">Vacant land near you</h2>
-    <p>
-      Lots the City lists as vacant land, coloured by who owns them. Click one to see its owner and size, then save it
-      as your park lot or add it to your list. Walk the block too — the City's list misses some lots and includes some
-      that are already in use.
-    </p>
+    <h2 class="ruled">{t('lot.mapH2')}</h2>
+    <p>{t('lot.mapText')}</p>
     <LotFinderMap height="min(75vh, 640px)" />
 
-    <h2 class="ruled">Compare your possible lots</h2>
+    <h2 class="ruled">{t('lot.compareH2')}</h2>
     <LotLookup mode="candidates" />
 
-    <h2 class="ruled">Next steps</h2>
+    <h2 class="ruled">{t('lot.nextH2')}</h2>
     <div class="grid next">
       <a class="card card-link" href={u('steps/acquire/#who-owns-that-lot')}>
-        <h3>Who owns that lot?</h3>
-        <p>Public or private owner — the ways to get the right to build a park.</p>
+        <h3>{t('lot.next.owner.title')}</h3>
+        <p>{t('lot.next.owner.text')}</p>
       </a>
       <a class="card card-link" href={u('steps/organize/')}>
-        <h3>Organize</h3>
-        <p>Community organizations, schools, gardens and other assets near your lot.</p>
+        <h3>{t('lot.next.organize.title')}</h3>
+        <p>{t('lot.next.organize.text')}</p>
       </a>
       <a class="card card-link" href={u('steps/assess/')}>
-        <h3>Assess</h3>
-        <p>Measured edges, a printable base map, trees and neighboring buildings.</p>
+        <h3>{t('lot.next.assess.title')}</h3>
+        <p>{t('lot.next.assess.text')}</p>
       </a>
       <a class="card card-link" href={u('planner/')}>
-        <h3>Plan in 3D</h3>
-        <p>Fit the park pieces to your lot and see sun and shade.</p>
+        <h3>{t('lot.next.planner.title')}</h3>
+        <p>{t('lot.next.planner.text')}</p>
       </a>
     </div>
   </section>
