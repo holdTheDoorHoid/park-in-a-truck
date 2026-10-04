@@ -1,0 +1,132 @@
+{
+  "title": "Mesa de trabajo / mesa alta",
+  "summary": "Una mesa alta para trasplantar, sobre patas de 4x4, con tres niveles de repisas debajo y un tablero de cinco tablas. El dibujo original no tiene un diagrama con medidas, así que estas medidas totales salen de su lista de cortes y de sus pasos de armado, no de la portada.",
+  "materials": [
+    {
+      "item": "Madera de 4x4: cedro, tratada a presión o pino, cepillada por los cuatro lados (S4S), grado #1"
+    },
+    {
+      "item": "Madera de 2x4: cedro, tratada a presión o pino, cepillada por los cuatro lados (S4S), grado #1"
+    },
+    {
+      "item": "Madera de 2x4: cedro, tratada a presión o pino, cepillada por los cuatro lados (S4S), grado #1"
+    },
+    {
+      "item": "Madera de 2x4: cedro, tratada a presión o pino, cepillada por los cuatro lados (S4S), grado #1"
+    },
+    {
+      "item": "Madera de 2x6: cedro, tratada a presión o pino, cepillada por los cuatro lados (S4S), grado #1"
+    },
+    {
+      "item": "Madera de 1x6: cedro, tratada a presión o pino, cepillada por los cuatro lados (S4S), grado #1"
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Tornillos autoperforantes para madera de exterior"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Refuerzo lateral"
+    },
+    {
+      "notes": "Refuerzo trasero"
+    },
+    {
+      "notes": "Refuerzo delantero"
+    },
+    {
+      "notes": "Repisas de la mesa (2 tablas por repisa, 3 niveles de repisas)"
+    },
+    {
+      "notes": "Patas de la mesa"
+    },
+    {
+      "notes": "Tablero de la mesa, tablas anchas (bordes de afuera y centro)"
+    },
+    {
+      "notes": "Tablero de la mesa, tablas angostas (entre las tablas anchas)"
+    }
+  ],
+  "tools": [
+    "Sierra eléctrica (de mesa o de mano)",
+    "Atornillador de impacto para los tornillos autoperforantes de exterior",
+    "Escuadra de carpintero",
+    "Gafas de seguridad y mascarilla"
+  ],
+  "steps": [
+    {
+      "title": "Marque, rotule y corte la madera",
+      "text": "Marque, rotule y corte la madera a los largos de la lista de cortes: refuerzos laterales A-1, refuerzos traseros A-2, refuerzo delantero A-3, repisas A-4, patas A-5, tablas anchas del tablero B-1 y tablas angostas del tablero B-2.",
+      "imageAlts": [
+        "Diagrama isométrico de las siete piezas cortadas de la mesa de trabajo, de A-1 a A-5 y B-1, B-2, con sus largos rotulados."
+      ],
+      "tips": [
+        "Ayuda escribir la letra de la pieza en cada tabla a medida que la marca, para poder comprobar que tiene todas las piezas.",
+        "Haga una pila aparte para cada letra."
+      ]
+    },
+    {
+      "title": "Arme el marco principal",
+      "text": "Ponga una pieza de 2\"x4\"x20\" (A-1) sobre una superficie plana. En perpendicular a su borde largo, mida 41\" y ponga una segunda pieza de 2\"x4\"x20\" (A-1). Ponga una pieza de 2\"x4\"x41\" (A-2) entre los bordes de atrás de las dos piezas A-1 y fíjela con un atornillador de impacto y cuatro tornillos autoperforantes de exterior de 3\".\n\nPonga una pieza de 2\"x4\"x44\" (A-3) a lo ancho del frente de las dos piezas A-1 —va a sobresalir un poco— y fíjela con otros cuatro tornillos de 3\".",
+      "imageAlts": [
+        "Diagrama de dos refuerzos laterales A-1 unidos por un refuerzo trasero A-2 y un refuerzo delantero A-3 para formar un marco rectangular."
+      ],
+      "tips": [
+        "Use una escuadra de carpintero para comprobar que el marco quede en escuadra antes de fijar los refuerzos de atrás y de adelante."
+      ]
+    },
+    {
+      "title": "Ponga las patas",
+      "text": "Ponga una pata de 4\"x4\"x34\" (A-5) en cada una de las cuatro esquinas del marco de la mesa alta que armó en el paso 2.\n\nFije las patas con un atornillador de impacto y dieciséis tornillos autoperforantes de exterior de 3\", en los lados de adelante, de atrás, izquierdo y derecho de cada pata.",
+      "imageAlts": [
+        "Diagrama de cuatro patas A-5 atornilladas en las esquinas del marco desde adelante, desde atrás y desde los dos lados."
+      ],
+      "tips": [
+        "Use una escuadra de carpintero para comprobar que cada pata quede en escuadra con el marco antes de fijarla."
+      ]
+    },
+    {
+      "title": "Arme cinco marcos más y fije el primero",
+      "text": "Arme cinco marcos más igual que en el paso 2: un refuerzo trasero A-2 entre dos refuerzos laterales A-1, fijado con cuatro tornillos de 3\" cada uno (estos no llevan refuerzo delantero).\n\nPonga uno de estos marcos en la parte de abajo del armazón de la mesa alta, a 2\" del suelo, y fíjelo con un atornillador de impacto y doce tornillos autoperforantes de exterior de 3\".",
+      "imageAlts": [
+        "Diagrama de un segundo marco, sin refuerzo delantero, atornillado a las patas cerca del suelo."
+      ],
+      "tips": [
+        "Use un pedazo sobrante de 2x4 como separador al colocar cada marco de soporte de las repisas contra las patas."
+      ]
+    },
+    {
+      "title": "Agregue la primera repisa",
+      "text": "Ponga otro de los marcos que quedan 2\" más arriba del que puso en el paso anterior, y fíjelo con un atornillador de impacto y doce tornillos autoperforantes de exterior de 3\".\n\nPonga dos tablas de 1\"x6\"x48\" (A-4) una al lado de la otra encima del marco que fijó, y fíjelas con un atornillador de impacto y ocho tornillos autoperforantes de exterior de 3\".",
+      "imageAlts": [
+        "Diagrama de otro marco puesto 2\" más arriba del anterior, con dos tablas de repisa A-4 atornilladas encima."
+      ]
+    },
+    {
+      "title": "Agregue la segunda y la tercera repisa",
+      "text": "Ponga otro marco 2\" más arriba del anterior y fíjelo con doce tornillos de 3\". Ponga otras dos tablas A-4 encima y fíjelas con ocho tornillos de 3\": esa es la segunda repisa.\n\nRepita una vez más para la tercera repisa: otro marco, doce tornillos, otras dos tablas A-4, ocho tornillos.\n\nPor último, ponga el último marco 2\" más arriba de la última repisa y fíjelo con doce tornillos autoperforantes de exterior de 3\": este sostiene el tablero y no lleva tablas de repisa.",
+      "imageAlts": [
+        "Diagrama de otros dos niveles de repisas que se agregan encima del primero, armados igual, con un último marco sin repisa arriba."
+      ]
+    },
+    {
+      "title": "Ponga el tablero",
+      "text": "Ponga una tabla de 2\"x6\"x48\" (B-1) en el centro de la mesa alta, de modo que sobresalga 2\" a la izquierda y a la derecha, y fíjela con un atornillador de impacto y cuatro tornillos autoperforantes de exterior de 3\".\n\nPonga una tabla de 2\"x4\"x48\" (B-2) a cada lado de la tabla del centro y fíjelas con otros cuatro tornillos de 3\".\n\nPonga otra tabla de 2\"x6\"x48\" (B-1) a cada lado de las piezas B-2 y fíjelas con otros cuatro tornillos de 3\"; así queda terminado el tablero de cinco tablas.",
+      "imageAlts": [
+        "Diagrama del armado del tablero de cinco tablas: una tabla ancha B-1 en el centro, tablas angostas B-2 a cada lado y tablas anchas B-1 en los bordes de afuera."
+      ]
+    }
+  ],
+  "finishing": "Hay que lijar un poco todos los bordes y las superficies para quitar las astillas y las asperezas.\n\nCedro: no necesita recubrimiento; con el tiempo se vuelve gris claro. Si quiere conservar el color que tiene al instalarlo, use un tinte alquídico a base de agua, incoloro, que penetre en la madera, o pinte con un sistema de imprimador, pintura y sellador.\n\nTratada a presión: no necesita recubrimiento. Si quiere darle color, déjela secar al aire varios meses, hasta que el agua ya no forme gotas sobre la superficie; lije con mascarilla para no respirar el polvo de la madera tratada. Use un imprimador y una pintura de exterior, y selle con un uretano marino (spar urethane) a base de agua.\n\nAbeto o pino secado en horno: necesita un tinte con sellador, o un sistema de imprimador, pintura y sellador, para que la intemperie no lo dañe rápido. También se puede pintar siguiendo los pasos de la madera tratada a presión, arriba.",
+  "safety": [
+    "Estas son solo recomendaciones para hacerlo usted mismo: adapte los materiales, el armado y la construcción a su propio proyecto y terreno.",
+    "Construir esto supone que sabe usar herramientas manuales y eléctricas, herrajes, tornillería, madera y técnicas básicas de armado.",
+    "Antes de usar cualquier equipo eléctrico, lea y siga los requisitos de seguridad del fabricante, y no deje que use herramientas eléctricas nadie que no haya hecho lo mismo.",
+    "Usted (el dueño) es responsable de cumplir los códigos de construcción y de seguridad, y de conseguir los permisos y aprobaciones que esto necesite.",
+    "Primero limpie el terreno de basura, peligros y estructuras que no quiera, y averigüe si hay servicios públicos (cables o tuberías) que puedan estorbar antes de excavar.",
+    "Todas las personas que ayuden a construir deben firmar una exención de responsabilidad para voluntarios."
+  ],
+  "sourcePages": "Instrucciones de armado de WORKBENCH/STANDING TABLE (están entre los enlaces de la pág. 19 del cuaderno de trabajo Soñar), págs. 1–11 (portada; antes de empezar; madera, herrajes y herramientas; pasos 1–6; acabados y recubrimientos)"
+}
