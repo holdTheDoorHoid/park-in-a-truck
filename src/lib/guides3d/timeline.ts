@@ -90,12 +90,17 @@ export function targetsFor(m: PreparedModel, view: View): Target[] {
   });
 }
 
-/** The view that comes before `view` when replaying it. */
-export function previousView(m: PreparedModel, view: View): View {
-  if (view.kind !== 'step') return { kind: 'empty' };
-  const i = m.steps.indexOf(view.n);
-  if (view.n === m.pileStep || i <= 0) return { kind: 'empty' };
-  return { kind: 'step', n: m.steps[i - 1]! };
+/**
+ * Where "replay this step" starts from: the same view with this step's own
+ * parts taken away (so they fly in again from their usual direction, and the
+ * camera needn't move); the cut pile starts empty and its boards drop in.
+ * Views without a step of their own (the finished piece) rebuild from nothing.
+ */
+export function replayFrom(m: PreparedModel, view: View): Target[] {
+  if (view.kind !== 'step' || view.n === m.pileStep) return targetsFor(m, { kind: 'empty' });
+  const t = targetsFor(m, view);
+  if (!m.parts.some((p) => p.step === view.n)) return targetsFor(m, { kind: 'empty' });
+  return t.map((x, i) => (m.parts[i]!.step === view.n ? { placement: 'hidden', highlight: false } : x));
 }
 
 /** The sequence "play all" walks through. */
@@ -179,12 +184,17 @@ export function planTransition(m: PreparedModel, prev: Target[], next: Target[],
   const sPile = stagger(sorted.length, 45, 900);
   sorted.forEach((i, k) => tracks.push({ i, motion: mot(i)!, delay: Math.min(outEnd, 250) + k * sPile, duration: mot(i) === 'drop-in' ? 520 : 900, snapPose: false }));
 
-  // 3. catching up (a jump over several steps): together, quick
+  // 3. catching up (a jump over several steps, or rebuilding the whole piece):
+  //    quick, one step's parts after another
   const catchUpDelay = Math.min(outEnd, 250);
-  for (const i of arrivingOther) tracks.push({ i, motion: mot(i)!, delay: catchUpDelay, duration: 420, snapPose: false });
+  const otherSteps = [...new Set(arrivingOther.map((i) => m.parts[i]!.step))].sort((a, b) => a - b);
+  const gap = otherSteps.length > 1 ? Math.min(220, 900 / (otherSteps.length - 1)) : 0;
+  for (const i of arrivingOther)
+    tracks.push({ i, motion: mot(i)!, delay: catchUpDelay + otherSteps.indexOf(m.parts[i]!.step) * gap, duration: 460, snapPose: false });
+  const catchUpEnd = arrivingOther.length ? catchUpDelay + (otherSteps.length - 1) * gap + 250 : 0;
 
   // 4. the step's own parts: one after another
-  const starStart = Math.max(catchUpDelay + (arrivingOther.length ? 250 : 0), Math.min(outEnd, 350));
+  const starStart = Math.max(catchUpEnd, Math.min(outEnd, 350));
   const sIn = stagger(arrivingStar.length, 110, 1000);
   arrivingStar.forEach((i, k) => tracks.push({ i, motion: mot(i)!, delay: starStart + k * sIn, duration: mot(i) === 'from-pile' ? 900 : 760, snapPose: false }));
 
@@ -213,5 +223,7 @@ export function trackProgress(t: Track, ms: number): number {
 export function stepPartsSummary(m: PreparedModel, n: number): string {
   const counts = new Map<string, number>();
   for (const p of m.parts) if (p.step === n) counts.set(p.ref ?? p.kind, (counts.get(p.ref ?? p.kind) ?? 0) + 1);
-  return [...counts].map(([ref, c]) => (c > 1 ? `${c} × ${ref}` : ref)).join(', ');
+  const list = [...counts];
+  if (list.length === 1 && list[0]![1] === 1) return list[0]![0];
+  return list.map(([ref, c]) => `${c} × ${ref}`).join(', ');
 }

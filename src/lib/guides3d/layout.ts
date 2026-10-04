@@ -170,7 +170,7 @@ function rowsFor(groups: GroupBox[], width: number) {
  * Rows are filled left to right, back (−z) to front; the row width is chosen so
  * the whole pile is roughly `aspect` times wider than deep.
  */
-export function cutPileLayout(parts: ModelPart[], cutOrder: string[] = [], aspect = 1.5): PileLayout {
+export function cutPileLayout(parts: ModelPart[], cutOrder: string[] = [], aspect = 1.15): PileLayout {
   const byRef = new Map<string, ModelPart[]>();
   for (const p of parts) {
     const ref = p.ref ?? p.id;

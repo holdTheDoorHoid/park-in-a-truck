@@ -5,6 +5,7 @@
 // `data-guide-step` is what the 3D viewer watches to know which step is being read.
 import { u } from '../../lib/url';
 import type { GuideStep } from '../../data/guides';
+import { imageSize } from './imageSize';
 
 interface Props {
   step: GuideStep;
@@ -30,7 +31,7 @@ const paragraphs = step.text.split('\n\n');
     <div class="step-images">
       {step.images.map((src, i) => (
         <button type="button" class="step-img" data-enlarge data-src={u(src)} data-alt={step.imageAlts[i] ?? ''}>
-          <img src={u(src)} alt={step.imageAlts[i] ?? ''} loading="lazy" decoding="async" />
+          <img src={u(src)} alt={step.imageAlts[i] ?? ''} loading="lazy" decoding="async" {...(imageSize(src) ?? {})} />
         </button>
       ))}
     </div>

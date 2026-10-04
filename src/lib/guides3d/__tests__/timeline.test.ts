@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { detectPileStep, ease, planTransition, playSequence, prepare, previousView, stepPartsSummary, targetsFor, trackProgress, type View } from '../timeline';
+import { detectPileStep, ease, planTransition, playSequence, prepare, replayFrom, stepPartsSummary, targetsFor, trackProgress, type View } from '../timeline';
 import { fitBox, viewDirection } from '../framing';
 import { partLabel, partTooltip } from '../labels';
 import type { GuideModel } from '../schema';
@@ -116,10 +116,17 @@ describe('planTransition', () => {
 });
 
 describe('sequences and easing', () => {
-  it('replaying a step starts from the step before; the pile from nothing', () => {
-    expect(previousView(m, step(4))).toEqual(step(3));
-    expect(previousView(m, step(2))).toEqual(step(1));
-    expect(previousView(m, step(1))).toEqual({ kind: 'empty' });
+  it('replaying a step takes only that step’s parts away, so they fly in again', () => {
+    const from = replayFrom(m, step(4));
+    const plan = planTransition(m, from, targetsFor(m, step(4)));
+    expect(plan.tracks.filter((t) => t.motion === 'fly-in').map((t) => m.parts[t.i]!.ref)).toEqual(['B-2']);
+    expect(plan.tracks.every((t) => m.parts[t.i]!.step === 4)).toBe(true);
+    // step 2 is replayed from its fly-in offsets, not from the pile
+    expect(planTransition(m, replayFrom(m, step(2)), targetsFor(m, step(2))).tracks.every((t) => t.motion === 'fly-in')).toBe(true);
+    // the pile starts empty: boards drop in
+    expect(planTransition(m, replayFrom(m, step(1)), targetsFor(m, step(1))).tracks.every((t) => t.motion === 'drop-in')).toBe(true);
+    // the finished piece rebuilds from nothing
+    expect(replayFrom(m, { kind: 'complete' }).every((t) => t.placement === 'hidden')).toBe(true);
   });
   it('play all goes through the pile and every step that adds parts, then the finished piece', () => {
     expect(playSequence(m)).toEqual([{ kind: 'empty' }, step(1), step(2), step(3), step(4), step(5), step(6), { kind: 'complete' }]);
@@ -137,6 +144,8 @@ describe('sequences and easing', () => {
   it('summarises a step’s parts', () => {
     expect(stepPartsSummary(m, 3)).toBe('2 × B-3, 8 × B-6');
     expect(stepPartsSummary(m, 4)).toBe('B-2');
+    const mixed = prepare({ ...bench, parts: bench.parts.map((p) => (p.ref === 'B-2' ? { ...p, step: 3 } : p)) }, guide.steps);
+    expect(stepPartsSummary(mixed, 3)).toBe('2 × B-3, 8 × B-6, 1 × B-2');
   });
 });
 

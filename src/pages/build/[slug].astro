@@ -16,6 +16,7 @@ import StepBlock from '../../components/guides/StepBlock.astro';
 import { getGuides, getGuide, CATEGORY_LABELS } from '../../data/guides';
 import GuideViewer from '../../components/guides3d/GuideViewer.astro';
 import { asBuiltText, dimsText } from '../../components/guides/format';
+import { imageSize } from '../../components/guides/imageSize';
 import { u } from '../../lib/url';
 import type { GuideModel } from '../../lib/guides3d/schema';
 
@@ -58,7 +59,7 @@ if (guide.cost) glance.push({ label: 'Cost', value: guide.cost });
     </p>
     <div class="hero-grid">
       <div class="hero-media">
-        <img src={u(`img/guides/${guide.slug}/hero.webp`)} alt={`${guide.title}, assembled`} />
+        <img src={u(`img/guides/${guide.slug}/hero.webp`)} alt={`${guide.title}, assembled`} {...(imageSize(`img/guides/${guide.slug}/hero.webp`) ?? {})} />
       </div>
       <div class="hero-copy">
         <h1 class="ruled">{guide.title}</h1>

@@ -21,6 +21,7 @@ import {
   EdgesGeometry,
   Euler,
   Float32BufferAttribute,
+  FrontSide,
   Group,
   HemisphereLight,
   LineBasicMaterial,
@@ -48,13 +49,13 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import type { GuideModel, ModelPart, PartKind } from './schema';
 import { partBounds } from './validate';
 import { layFlat, type Pose, type V3 } from './layout';
-import { fitBox, viewDirection, DEFAULT_VIEW } from './framing';
+import { fitPoints, viewDirection, DEFAULT_VIEW } from './framing';
 import { partLabel, inches, type CutLike } from './labels';
 import {
   prepare,
   targetsFor,
   planTransition,
-  previousView,
+  replayFrom,
   trackProgress,
   type GuideStepLike,
   type PreparedModel,
@@ -295,7 +296,7 @@ export function buildPart(p: ModelPart, opts: BuildOptions = {}): PartHandle {
       color,
       transparent: true,
       opacity: baseOpacity,
-      side: p.kind === 'fabric' ? DoubleSide : undefined,
+      side: p.kind === 'fabric' ? DoubleSide : FrontSide,
       depthWrite: !isMesh,
       // push faces back a little so the outlines on their edges draw cleanly
       polygonOffset: true,
@@ -518,8 +519,27 @@ export class AssemblyViewer {
     this.ro.observe(this.container);
     this.resize();
     this.frameCamera(false, this.homeDir);
+    this.precompile();
     this.applyAll();
     this.invalidate();
+  }
+
+  /** Compile every material up front (decals, glow, …) so the first pile or fly-in doesn't stutter. */
+  private precompile() {
+    const shown = this.handles.map((h) => [h.node.visible, h.decal?.visible ?? false] as const);
+    for (const h of this.handles) {
+      h.node.visible = true;
+      if (h.decal) h.decal.visible = true;
+    }
+    try {
+      this.renderer.compile(this.scene, this.camera);
+    } catch {
+      /* compiled lazily instead */
+    }
+    this.handles.forEach((h, i) => {
+      h.node.visible = shown[i]![0];
+      if (h.decal) h.decal.visible = shown[i]![1];
+    });
   }
 
   // ---- public API ----------------------------------------------------------
@@ -549,10 +569,9 @@ export class AssemblyViewer {
 
   /** Replay the current view's step from the state just before it. */
   replay(): Promise<void> {
-    const before = previousView(this.prepared, this.view);
     const view = this.view;
     this.finishAnim();
-    const prevT = targetsFor(this.prepared, before);
+    const prevT = replayFrom(this.prepared, view);
     for (let i = 0; i < this.handles.length; i++) this.display[i] = this.endDisplay(i, prevT[i]!, null);
     this.targets = prevT;
     this.applyAll();
@@ -766,20 +785,37 @@ export class AssemblyViewer {
 
   // ---- camera ----------------------------------------------------------------
 
-  private contentBox(): { min: V3; max: V3 } {
-    if (this.isPileView(this.view) && this.prepared.pile) return this.prepared.pile.bounds;
-    const min: V3 = [Infinity, Infinity, Infinity];
-    const max: V3 = [-Infinity, -Infinity, -Infinity];
+  /** Corners of every part's box as it is (or will be) shown: the pile, the piece, or the exploded piece. */
+  private contentPoints(): V3[] {
+    const pts: V3[] = [];
+    const pile = this.isPileView(this.view) ? this.prepared.pile : null;
     this.prepared.parts.forEach((p, i) => {
       if (p.kind === 'fastener') return;
-      const off = this.exploded ? this.prepared.explode[i]! : [0, 0, 0];
-      const b = partBounds(p);
-      for (let k = 0; k < 3; k++) {
-        min[k] = Math.min(min[k]!, b.min[k]! + off[k]!);
-        max[k] = Math.max(max[k]!, b.max[k]! + off[k]!);
+      let b;
+      if (pile) {
+        const pose = pile.poses[p.id];
+        if (!pose) return;
+        b = partBounds({ ...p, position: pose.position, rotation: pose.rotation });
+      } else {
+        b = partBounds(p);
+        if (this.exploded) {
+          const o = this.prepared.explode[i]!;
+          b = { min: [b.min[0] + o[0], b.min[1] + o[1], b.min[2] + o[2]] as V3, max: [b.max[0] + o[0], b.max[1] + o[1], b.max[2] + o[2]] as V3 };
+        }
       }
+      for (const x of [b.min[0], b.max[0]]) for (const y of [b.min[1], b.max[1]]) for (const z of [b.min[2], b.max[2]]) pts.push([x, y, z]);
     });
-    if (!Number.isFinite(min[0])) return { min: [-12, 0, -12], max: [12, 12, 12] };
+    return pts.length ? pts : [[-12, 0, -12], [12, 12, 12]];
+  }
+
+  private contentBox(): { min: V3; max: V3 } {
+    const min: V3 = [Infinity, Infinity, Infinity];
+    const max: V3 = [-Infinity, -Infinity, -Infinity];
+    for (const p of this.contentPoints())
+      for (let k = 0; k < 3; k++) {
+        min[k] = Math.min(min[k]!, p[k]!);
+        max[k] = Math.max(max[k]!, p[k]!);
+      }
     return { min, max };
   }
 
@@ -788,7 +824,7 @@ export class AssemblyViewer {
     const box = this.contentBox();
     const cur = new Vector3().subVectors(this.camera.position, this.controls.target);
     const d: V3 = dir ?? (cur.lengthSq() > 1e-6 ? (cur.normalize().toArray() as V3) : this.homeDir);
-    const { target, distance } = fitBox(box.min, box.max, d, this.camera.fov, this.camera.aspect || 1, 0.1);
+    const { target, distance } = fitPoints(this.contentPoints(), d, this.camera.fov, this.camera.aspect || 1, 0.1);
     this.controls.minDistance = distance * 0.35;
     this.controls.maxDistance = distance * 2.6;
     this.fitShadow(box);
@@ -926,8 +962,9 @@ export class AssemblyViewer {
     if (!this.frame && !this.disposed) this.frame = requestAnimationFrame(this.tick);
   }
 
-  private tick = (now: number) => {
+  private tick = () => {
     this.frame = 0;
+    const now = performance.now(); // same clock as the animation start times
     if (this.disposed) return;
     let again = false;
     if (this.stepCamera(now)) again = true;
@@ -993,7 +1030,8 @@ export class AssemblyViewer {
       if (e.pointerType !== 'mouse' || e.buttons) return;
       this.pick(e.clientX, e.clientY, false);
     });
-    this.on(this.canvas, 'pointerleave', () => this.setHover(-1));
+    // (a finger lifting also "leaves"; a tapped tooltip stays until its timer)
+    this.on(this.canvas, 'pointerleave', (e) => e.pointerType === 'mouse' && this.setHover(-1));
     // wheel: zoom only once the model has focus (or with ctrl = trackpad pinch); otherwise scroll the page
     this.on(
       this.canvas,

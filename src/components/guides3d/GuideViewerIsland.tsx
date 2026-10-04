@@ -162,6 +162,7 @@ export default function GuideViewerIsland({ slug, title, steps, cutList }: Props
             onError: turnOff,
           });
           reduce.addEventListener?.('change', () => viewer.current?.setReducedMotion(reduce.matches));
+          if (import.meta.env.DEV) (window as unknown as { __g3d: unknown }).__g3d = viewer.current; // dev-only handle for checks
           setStatus('ready');
         })
         .catch((err) => {
@@ -178,6 +179,9 @@ export default function GuideViewerIsland({ slug, title, steps, cutList }: Props
     });
     if (root.current) ro.observe(root.current);
     if (header) ro.observe(header);
+    // images loading above the reader move the steps without a scroll event
+    const list = layout()?.querySelector('.steps');
+    if (list) ro.observe(list);
     measure();
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });

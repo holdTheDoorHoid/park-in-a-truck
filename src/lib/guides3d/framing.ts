@@ -26,6 +26,24 @@ const norm = (a: V3): V3 => {
  * −`dir` sees every corner of the box, with `margin` (fraction of the view) to spare.
  */
 export function fitBox(min: V3, max: V3, dir: V3, vfovDeg: number, aspect: number, margin = 0.08): { target: V3; distance: number } {
+  const corners: V3[] = [];
+  for (const x of [min[0], max[0]]) for (const y of [min[1], max[1]]) for (const z of [min[2], max[2]]) corners.push([x, y, z]);
+  return fitPoints(corners, dir, vfovDeg, aspect, margin);
+}
+
+/**
+ * Like fitBox, but fits the given points (e.g. every part's corners), so a
+ * ragged shape like the cut pile fills the view instead of its bounding box.
+ * The target is the centre of the points' bounding box.
+ */
+export function fitPoints(points: V3[], dir: V3, vfovDeg: number, aspect: number, margin = 0.08): { target: V3; distance: number } {
+  const min: V3 = [Infinity, Infinity, Infinity];
+  const max: V3 = [-Infinity, -Infinity, -Infinity];
+  for (const p of points)
+    for (let i = 0; i < 3; i++) {
+      min[i] = Math.min(min[i]!, p[i]!);
+      max[i] = Math.max(max[i]!, p[i]!);
+    }
   const target: V3 = [(min[0] + max[0]) / 2, (min[1] + max[1]) / 2, (min[2] + max[2]) / 2];
   const d = norm(dir);
   const fwd: V3 = [-d[0], -d[1], -d[2]];
@@ -35,13 +53,12 @@ export function fitBox(min: V3, max: V3, dir: V3, vfovDeg: number, aspect: numbe
   const up = cross(right, fwd);
   const tanV = Math.tan((vfovDeg * Math.PI) / 360) * (1 - margin);
   const tanH = tanV * aspect;
+  // the view is symmetric about the target, so fit the widest point on each side
   let distance = 0;
-  for (const x of [min[0], max[0]])
-    for (const y of [min[1], max[1]])
-      for (const z of [min[2], max[2]]) {
-        const p = sub([x, y, z], target);
-        const depth = dot(p, d); // toward the camera
-        distance = Math.max(distance, depth + Math.abs(dot(p, right)) / tanH, depth + Math.abs(dot(p, up)) / tanV);
-      }
+  for (const q of points) {
+    const p = sub(q, target);
+    const depth = dot(p, d); // toward the camera
+    distance = Math.max(distance, depth + Math.abs(dot(p, right)) / tanH, depth + Math.abs(dot(p, up)) / tanV);
+  }
   return { target, distance };
 }
