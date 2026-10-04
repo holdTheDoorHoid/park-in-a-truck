@@ -661,46 +661,78 @@ Tone: Polite informal style (**해요체**) for UI and instructions; plain, frie
 
 Tone: Tagalog as Filipino Americans read it; common English loanwords for technical things (lot, zoning) are fine. **kayo/ninyo**, "po" sparingly.
 
+*Status: filled in by t-tl (the Tagalog translation round, 2026-10-04). A native reviewer should still read the whole
+language once.*
+
+Conventions chosen (keep to them):
+
+- **Address.** The reader is **kayo / ninyo / inyo** everywhere (polite plural "you", as in Philippine and US public
+  materials): "ang inyong lote", "Hanapin ninyo…" only where a pronoun is needed. Instructions are plain imperatives
+  without a pronoun ("Hanapin ang may-ari.", "Magdagdag ng hilera."), which is how Filipino public notices read.
+  **po** only where a person speaks directly to the reader: greetings, thanks, the first-visit offer, the meeting flyer
+  ("Salamat po", "Inaanyayahan po namin kayo"). Never "ka/mo" for the reader. The neighbours together are **tayo /
+  natin** ("ang ating kapitbahayan"); the site about itself is **ang site na ito** or **namin**.
+- **Taglish.** Words Filipino Americans say in English stay English, spelled the English way: lot → **lote** (already
+  Tagalog), zoning, workbook, Toolkit, planner, file, email, link, browser, website/site, drill, lumber sizes, screw sizes,
+  hardware. Everything else is ordinary Tagalog. Sentences stay grammatical Tagalog (markers ang/ng/sa, linkers na/-ng).
+- **Spelling.** Modern Filipino spelling (KWF): *organisa*, *komite*, *proyekto*, *komunidad*, *materyales*. "rito/roon"
+  after vowels, "dito/doon" after consonants is NOT enforced (both are in everyday use); "din/rin", "daw/raw" follow the
+  vowel rule.
+- **Plurals.** Tagalog nouns do not change for number, and Intl's Filipino plural rule puts 2, 3, 5, 7… in "one", so
+  every plural message gives the same text for every count (`other`, plus `=0`/`=1` where English has them). No "mga"
+  after a number ("3 lote", not "3 mga lote").
+- **Units.** Abbreviations stay as written: `ft`, `in`, `sq ft`, `'`, `"`, `$`. In running prose write **talampakan**
+  (feet) and **pulgada** (inches); "square feet" stays English in prose ("1,200 square feet") because that is how
+  Filipino Americans say floor and lot areas. Lumber sizes (2x4) never change.
+- **Philadelphia** stays "Philadelphia" (Filipino Americans do not use a Tagalog spelling). **Lungsod** with a capital L
+  means the City government; "lungsod" is the place.
+- **Lists.** Intl's Filipino list format gives "a, b, at c" / "a, b, o c", which reads naturally (checked).
+- **Dates and times** come from Intl `fil` ("Oktubre 4, 2026", "3:30 PM"), the way Filipino Americans write them.
+
 | English | Translation | Note |
 |---|---|---|
-| Park in a Truck / PiaT |  | |
-| toolkit |  | |
-| workbook |  | |
-| step |  | |
-| sub-step |  | |
-| Mark this step done / done |  | |
-| Start here · Acquire · Organize · Assess · Dream · Create · Sustain |  | |
-| vacant lot |  | |
-| lot |  | |
-| parcel |  | |
-| mid-block lot / corner lot / breezeway, alley |  | |
-| owner (public / private) |  | |
-| zoning |  | |
-| City records / Filled in from City records |  | |
-| City (of Philadelphia) |  | |
-| RCO (Registered Community Organization) |  | |
-| Philadelphia Land Bank |  | |
-| PHDC |  | |
-| Sheriff Sale |  | |
-| purchase / donation / lease / in-kind (use) agreement |  | |
-| park committee |  | |
-| neighbors / neighborhood |  | |
-| park pieces |  | |
-| frame / front / back (pieces) |  | |
-| seam (length seam, width seam) |  | |
-| theme: Edible · Sanctuary · Nature · Event |  | |
-| size A–E |  | |
-| gabion (wall, bench) |  | |
-| build guide |  | |
-| cut list / materials & hardware / tools |  | |
-| 2x4, 2x4x8', BB-1 |  | |
-| full sun / part sun / shade |  | |
-| native plant · perennial · shrub · small tree · large tree |  | |
-| pollinator |  | |
-| stewardship / sustain |  | |
-| My park |  | |
-| project file |  | |
-| Plan in 3D / the planner |  | |
-| Note from this site, not Park in a Truck |  | |
-| in English |  | |
-| ft, in, sq ft, $ |  | |
+| Park in a Truck / PiaT | Park in a Truck / PiaT | Never translated. |
+| toolkit | ang Toolkit (gabay ng Park in a Truck) | Filipino Americans say "toolkit"; explain once per page as "ang 36-pahinang gabay". A build guide is always "gabay sa paggawa". |
+| workbook | workbook | "Workbook ng Acquire". "Kuwaderno" sounds like school notebooks; "workbook" is what people say. |
+| step | hakbang | "Hakbang 1". |
+| sub-step | maliit na hakbang | plural "maliliit na hakbang". |
+| Mark this step done / done | Markahang tapos na ang hakbang na ito / tapos na | Badge: "✓ Tapos na". |
+| Start here · Acquire · Organize · Assess · Dream · Create · Sustain | Magsimula rito · Kumuha ng lote · Mag-organisa · Magsuri · Mangarap · Lumikha · Mag-alaga | Verb names (infinitive), like the English. "Kumuha ng lote" because "Kumuha" alone is too vague; "Mag-alaga" (take care) for Sustain, the step is about caring for the park. |
+| vacant lot | bakanteng lote | |
+| lot | lote | |
+| parcel | parsela | The City's word in its property records; "lote" in ordinary sentences. |
+| mid-block lot / corner lot / breezeway, alley | lote sa gitna ng block / lote sa kanto / daanan sa pagitan ng mga bahay (breezeway), eskinita | easement = "karapatang dumaan (easement)". |
+| owner (public / private) | may-ari (pampubliko / pribado) | |
+| zoning | zoning | Explain once per page: mga patakaran ng Lungsod kung para saan maaaring gamitin ang isang lote. Codes (RSA-5) unchanged. |
+| City records / Filled in from City records | mga rekord ng Lungsod / Kinuha mula sa mga rekord ng Lungsod | |
+| City (of Philadelphia) | ang Lungsod (ng Philadelphia) | Capital L = the city government. |
+| RCO (Registered Community Organization) | rehistradong organisasyon ng komunidad (RCO) | |
+| Philadelphia Land Bank | Philadelphia Land Bank (ahensiya ng Lungsod na nagbebenta at nagpapaupa ng pampublikong lupa) | Explain once per page. |
+| PHDC | PHDC | Philadelphia Housing Development Corporation, kept in English. |
+| Sheriff Sale | subasta ng Sheriff (Sheriff Sale) | |
+| purchase / donation / lease / in-kind (use) agreement | pagbili / donasyon / pag-upa (lease) / kasunduan sa paggamit (in-kind) | In-kind: the owner keeps the lot and lets neighbours use it. Select options keep the English value. |
+| park committee | komite ng parke | |
+| neighbors / neighborhood | mga kapitbahay / kapitbahayan | |
+| park pieces | mga piraso ng parke (park pieces) | Add "(park pieces)" once per page. |
+| frame / front / back (pieces) | frame (palibot) / piraso sa harap / piraso sa likod | "frame" is said in English; "palibot" explains it once. |
+| seam (length seam, width seam) | dugtong (dugtong sa haba, dugtong sa lapad) | "dugtong" = an added strip that joins and lengthens. |
+| theme: Edible · Sanctuary · Nature · Event | Pagkain · Kanlungan · Kalikasan · Pagtitipon | "Pagkain" (food) is clearer than an adjective for "edible"; "Kanlungan" = a quiet refuge; "Pagtitipon" = gatherings. "Temang Pagkain", "Listahan ng halaman: Kanlungan". |
+| size A–E | laki A–E | Letters unchanged. |
+| gabion (wall, bench) | gabion (pader na gabion, upuang gabion) | Explain once per page: basket na alambre na puno ng bato. |
+| build guide | gabay sa paggawa | Menu: "Mga gabay sa paggawa". |
+| cut list / materials & hardware / tools | listahan ng puputulin / mga materyales at hardware / mga kagamitan | "hardware" (screws, bolts, brackets) is what Filipino Americans say. |
+| 2x4, 2x4x8', BB-1 | 2x4, 2x4x8', BB-1 | Never translated. |
+| full sun / part sun / shade | buong araw / bahagyang araw / lilim | Short for "buong sikat ng araw"; the long form is fine in prose. |
+| native plant · perennial · shrub · small tree · large tree | katutubong halaman · perennial (halamang tumutubo taon-taon) · palumpong · maliit na puno · malaking puno | Scientific names never change. Plant common names: a Tagalog name only where one is widely known; otherwise the English name, which is what nurseries use. |
+| pollinator | pollinator | Explain once: mga bubuyog, paru-paro, ibon, paniki… na nagdadala ng polen. |
+| stewardship / sustain | pag-aalaga sa parke / mag-alaga | |
+| My park | Aking parke | |
+| project file | file ng proyekto | |
+| Plan in 3D / the planner | Magplano sa 3D / ang 3D planner | |
+| Plan view / 3D view | Plan (tanaw mula sa itaas) / 3D | |
+| sun hours / growing season | oras ng araw / panahon ng pagtubo (Abr 15 – Okt 15) | |
+| wet area | basang bahagi | |
+| lidar | lidar | Explain once: sukat ng taas mula sa eroplano gamit ang laser. |
+| Note from this site, not Park in a Truck | Paalala mula sa site na ito, hindi mula sa Park in a Truck | |
+| in English | sa Ingles | After links: "(sa Ingles)". |
+| ft, in, sq ft, $ | ft, in, sq ft, $ — in prose: talampakan, pulgada, square feet | See Units above. |
