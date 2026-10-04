@@ -1,0 +1,121 @@
+{
+  "title": "Bàn 2'",
+  "summary": "Một chiếc bàn vuông gọn bằng gỗ 2x4, nhỏ nhất trong ba cỡ bàn, có kích thước hợp với ghế đẩu và ghế dài.",
+  "materials": [
+    {
+      "item": "Gỗ xẻ 2x4 — gỗ tuyết tùng đỏ miền tây (western red cedar), gỗ thông Douglas (Douglas fir) hoặc gỗ thông xử lý áp lực",
+      "notes": "Gỗ tuyết tùng: tự nhiên chịu được thời tiết và mục, màu đỏ đẹp, dễ làm, không cần phủ lớp bảo vệ (để lâu sẽ ngả màu xám); giá cao hơn — hãy hỏi loại 'có mắt gỗ' (STK), rẻ hơn nhiều so với loại không mắt (clear). Gỗ thông Douglas: chịu mục ở mức vừa phải, chắc và dễ làm, rẻ hơn gỗ tuyết tùng, nhưng không bền bằng — là lựa chọn tốt nếu bạn định sơn. Gỗ xử lý áp lực: chịu mục và rẻ nhất, nhưng chất lượng gỗ thường kém và không đều, cần phơi khô ngoài không khí 1–4 tháng trước khi sơn, và không nên dùng ở chỗ trồng thực phẩm. Hãy đặt nhiều hơn 5–10% so với danh sách cắt gỗ để phòng gỗ không đều và cắt sai."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Vít gỗ tự khoan dùng ngoài trời"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Thành bên bàn"
+    },
+    {
+      "notes": "Mặt bàn"
+    },
+    {
+      "notes": "Mặt trước bàn"
+    },
+    {
+      "notes": "Thành bên bàn"
+    },
+    {
+      "notes": "Thành bên bàn"
+    },
+    {
+      "notes": "Thành bên bàn"
+    }
+  ],
+  "tools": [
+    "Máy cưa góc (miter saw) 10\" hoặc 12\" (hoặc cưa tay phù hợp)",
+    "Máy bắt vít động lực (impact driver) cho vít gỗ tự khoan dùng ngoài trời",
+    "Máy khoan với mũi khoan 1/8\" để khoan mồi",
+    "Giấy nhám, độ nhám 120",
+    "Thước vuông thợ mộc (ê-ke)",
+    "Kính bảo hộ + găng tay"
+  ],
+  "steps": [
+    {
+      "title": "Đánh dấu, ghi nhãn và cắt gỗ",
+      "text": "Đánh dấu, ghi nhãn và cắt gỗ theo thứ tự từ T-1 đến T-6, theo chiều dài trong danh sách cắt gỗ.\n\nKiểm tra từng thanh gỗ xem có khuyết điểm như nứt, cong vênh hay bào không đều không, và bỏ những đoạn gỗ đó đi.",
+      "imageAlts": [
+        "Sơ đồ ba chiều sáu thanh gỗ đã cắt của bàn 2', từ T-1 đến T-6, có ghi chiều dài, từ tấm ván 27\" đến khối gỗ 12\"."
+      ],
+      "tips": [
+        "Ghi nhãn từng thanh gỗ khi bạn đo và cắt.",
+        "Xếp gỗ của mỗi phần thành một đống riêng, từ T-1 đến T-6.",
+        "Chà nhám nhẹ các mép cắt giúp bỏ dằm gỗ và dễ lắp ráp hơn.",
+        "Làm nhiều hơn một bàn? Một khối chặn trên máy cưa góc giúp mọi thanh cắt ra đều dài bằng nhau."
+      ]
+    },
+    {
+      "title": "Đóng hai khung đầu ghế",
+      "text": "Đặt hai thanh T-5 trên một mặt phẳng. Đặt hai thanh T-1 ở hai bên của hai thanh T-5, canh các mép như trong hình. Làm lại như vậy để đóng một khung thứ hai giống hệt.",
+      "imageAlts": [
+        "Sơ đồ cho thấy hai thanh T-1 và hai thanh T-5 ghép thành một khung đầu bàn hình vuông."
+      ],
+      "tips": [
+        "Dùng thước vuông thợ mộc để kiểm tra mỗi góc có vuông không — nếu lệch nhiều, hãy kiểm tra lại chiều dài các thanh.",
+        "Làm một đồ gá (jig) 90 độ có thể giúp khi lắp bước này và bước tiếp theo."
+      ]
+    },
+    {
+      "title": "Gắn thanh giằng chân vào mỗi khung đầu",
+      "text": "Đặt một thanh T-2, hai thanh T-4 và hai thanh T-6 lên trên khung đã đóng ở bước 2. Để chắc chắn có khe 1.5\" giữa hai thanh T-6, hãy dùng một khúc 2x4 dư dựng đứng làm miếng chêm.\n\nDùng mẫu khoan mồi ở cuối tập hướng dẫn để khoan mồi các lỗ vít, rồi bắt chặt gỗ vào các thanh T-2, T-4 và T-6 bằng máy bắt vít động lực và 30 vít gỗ tự khoan dùng ngoài trời dài 2.5\".\n\nLàm lại như vậy với chân bên kia, rồi dựng cả hai chân đứng lên cho bước tiếp theo.",
+      "imageAlts": [
+        "Sơ đồ các thanh T-2, T-4 và T-6 được bắt vít lên mặt trên của khung đầu, có chú thích khe chêm 1.5\"."
+      ]
+    },
+    {
+      "title": "Nối hai khung đầu ghế",
+      "text": "Đặt một thanh T-3 vào khe ở chân của hai khung đã đóng ở bước 3.\n\nĐặt hai thanh T-2 lên mặt bàn ở hai mép, như trong hình — bảo đảm chúng bằng mặt với mép chân bàn, để bàn được vuông vức — rồi bắt chặt bằng 12 vít gỗ tự khoan dùng ngoài trời dài 2.5\".\n\nBắt chặt thanh T-3 ở cả bên trái lẫn bên phải vào các thanh T-1 bằng máy bắt vít động lực và 4 vít gỗ tự khoan dùng ngoài trời dài 2.5\".",
+      "imageAlts": [
+        "Sơ đồ một thanh T-3 nối hai khung đầu ở chân bàn, với các tấm ván mặt T-2 canh bằng mặt với chân bàn."
+      ],
+      "tips": [
+        "Dùng thước vuông thợ mộc kiểm tra thành bên vẫn giữ góc 90 độ."
+      ]
+    },
+    {
+      "title": "Gắn mặt bàn và chà nhám",
+      "text": "Đặt năm thanh T-2 lên trên khung đã đóng ở bước 4, canh thẳng mọi mép và chừa khe đều nhau giữa các thanh.\n\nBắt chặt bằng máy bắt vít động lực và 20 vít gỗ tự khoan dùng ngoài trời dài 2.5\".\n\nChà nhám nhẹ các mép thô của bàn.",
+      "imageAlts": [
+        "Sơ đồ các tấm ván mặt T-2 còn lại được đặt cách đều và bắt vít ngang qua khung bàn."
+      ]
+    },
+    {
+      "title": "Mẫu khoan mồi (khuôn mẫu)",
+      "text": "Cắt mẫu khoan mồi theo đường chấm. Khi khoan, canh mép của khuôn mẫu trùng với mép ngoài của thanh gỗ trước khi khoan mồi.\n\nKhông phải lỗ nào cũng dùng đến — không phải kiểu bắt vít nào cũng dùng khuôn mẫu. Hãy theo các bước lắp ráp ở trên để biết vị trí lỗ. Giữ mọi lỗ cách mép khoảng một bề ngang ngón tay cái (khoảng 1\"), kể cả những lỗ không dùng khuôn mẫu này.",
+      "imageAlts": [
+        "Khuôn mẫu khoan mồi để in, có năm vị trí lỗ được đánh dấu và đường cắt, kèm hình phóng to cho thấy khoảng cách lỗ đến mép ván."
+      ]
+    }
+  ],
+  "finishing": "Xử lý gỗ ngoài trời có thể kéo dài tuổi thọ các món đồ công viên, nhưng không bắt buộc — những món này được thiết kế để rẻ, bền và dễ làm, nên có khi thực tế hơn là cứ để thế hệ sau làm lại khi đến lúc. Nếu bạn muốn nhuộm màu, sơn hay phủ lớp bảo vệ cho gỗ, hãy xem các tài liệu về hoàn thiện bên dưới.",
+  "safety": [
+    "Đây chỉ là những khuyến nghị cho việc tự làm — hãy điều chỉnh vật liệu, cách lắp ráp và cách xây dựng cho phù hợp với dự án và khu đất của bạn.",
+    "Làm món này cần có chút hiểu biết về dụng cụ cầm tay và dụng cụ chạy điện, đồ ngũ kim, vít bu-lông, gỗ xẻ và kỹ thuật lắp ráp cơ bản.",
+    "Trước khi dùng bất kỳ thiết bị chạy điện nào, hãy đọc và làm theo yêu cầu an toàn của nhà sản xuất, và đừng để ai chưa làm như vậy dùng dụng cụ chạy điện.",
+    "Bạn (chủ sở hữu) chịu trách nhiệm về mọi quy chuẩn xây dựng và an toàn, giấy phép và sự chấp thuận của cơ quan quản lý mà việc này cần.",
+    "Trước tiên hãy dọn sạch rác, những thứ nguy hiểm và công trình không cần thiết khỏi khu đất, và xác định mọi đường ống, đường dây có thể bị ảnh hưởng trước khi đào.",
+    "Mọi người phụ giúp xây đều nên ký giấy miễn trách nhiệm cho tình nguyện viên."
+  ],
+  "links": [
+    {
+      "label": "Chọn lớp hoàn thiện tốt nhất cho đồ ngoài trời (Rockler)"
+    },
+    {
+      "label": "Lớp hoàn thiện tốt nhất cho gỗ ngoài trời (Real Milk Paint)"
+    },
+    {
+      "label": "Lớp phủ gỗ ngoài trời (Vermont Natural Coatings)"
+    }
+  ],
+  "sourcePages": "Hướng dẫn lắp ráp 2_TABLE, tr. 1–9 (bìa; trước khi bắt đầu; các loại gỗ thường dùng; bước 1–5; mẫu khoan mồi)"
+}

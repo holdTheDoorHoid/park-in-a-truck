@@ -1,0 +1,168 @@
+{
+  "title": "Mái che nắng 8'",
+  "summary": "Một giàn gỗ 2x4 đứng riêng, cỡ 8x8x8 feet, mái che ghép thanh nan, được neo xuống đất (hoặc xuống luống trồng cây) bằng ke chữ L và móc chữ J, hoặc bắt bu-lông vào một ghế rọ đá kế bên.",
+  "materials": [
+    {
+      "item": "Gỗ xẻ 2x4 — gỗ tuyết tùng đỏ miền tây (western red cedar) hoặc gỗ thông Douglas (Douglas fir)",
+      "notes": "Gỗ tuyết tùng: tự nhiên chịu được thời tiết và mục, màu đỏ đẹp, không cần phủ lớp bảo vệ; giá cao hơn — hãy hỏi loại 'có mắt gỗ' (STK). Gỗ linh sam (fir): chịu mục ở mức vừa phải, chắc, rẻ hơn gỗ tuyết tùng; tốt nếu bạn định sơn. Gỗ vẫn có thể bị nứt do nắng. Hãy đặt nhiều hơn 5–10% so với danh sách cắt gỗ để phòng gỗ không đều và cắt sai."
+    },
+    {
+      "item": "Khối kê bê tông (deck block)",
+      "notes": "Chỉ khi cần — xem bước 8. Dùng ở chỗ cột rơi vào luống trồng cây, để kê cột cao hơn mặt đất và giữ cột vững, đồng thời hạn chế mục. Đào để chôn khối kê khi cần sao cho mọi cột đều ngang bằng nhau."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Vít gỗ tự khoan dùng ngoài trời"
+    },
+    {
+      "item": "Ke chữ L"
+    },
+    {
+      "item": "Vít đầu lục giác bắt gỗ (lag screw)"
+    },
+    {
+      "item": "Móc chữ J"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Chân (dài), thanh giằng bên, thanh giằng trên, và ván mái che",
+      "siteNote": "Danh sách cắt gỗ của hướng dẫn ghi 14, nhưng các bước dùng 32: 4 chân, 2 xà trên, 4 thanh giằng, 2 xà ngang, 4 thanh giằng dài, 1 thanh đỡ trên và 15 tấm ván mái che. 47 tấm 2x4x8 trong danh sách vật liệu đủ cho tất cả, cộng với SS-2 đến SS-4."
+    },
+    {
+      "notes": "Chân (ngắn)"
+    },
+    {
+      "notes": "Thanh giằng trong, cạnh B — cắt đúng kích thước cuối cùng tại chỗ, áp vào khung đã đóng"
+    },
+    {
+      "notes": "Thanh giằng trong, cạnh A — chỉ là ước chừng; đừng cắt đúng chiều dài cuối cùng cho đến khi đã đo khung ở bước 5"
+    }
+  ],
+  "tools": [
+    "Máy cưa góc (miter saw) 10\" hoặc 12\" (hoặc cưa tay phù hợp)",
+    "Máy bắt vít động lực (impact driver) cho vít gỗ tự khoan dùng ngoài trời",
+    "Máy khoan với mũi khoan 1/8\" để khoan mồi",
+    "Búa 5 lb, để đóng móc chữ J",
+    "Giấy nhám, độ nhám 120",
+    "Thước vuông thợ mộc (ê-ke)",
+    "Kính bảo hộ + găng tay",
+    "Thang gấp 6'",
+    "2 cái kẹp gỗ (không bắt buộc)"
+  ],
+  "steps": [
+    {
+      "title": "Đánh dấu, ghi nhãn và cắt gỗ",
+      "text": "Đánh dấu, ghi nhãn và cắt gỗ theo thứ tự từ SS-1 đến SS-4, theo chiều dài trong danh sách cắt gỗ. SS-3 và SS-4 ở đây chỉ cắt theo chiều dài ước chừng, rồi cắt gọt cho đúng kích thước cuối cùng tại chỗ ở bước 5 — đừng cắt ngắn thêm trước lúc đó.\n\nKiểm tra từng thanh gỗ xem có khuyết điểm như nứt, cong vênh hay bào không đều không, và bỏ những đoạn gỗ đó đi.",
+      "imageAlts": [
+        "Sơ đồ ba chiều bốn thanh gỗ đã cắt của mái che nắng, từ SS-1 đến SS-4, có ghi chiều dài, từ tấm ván 96\" đến các thanh giằng trong dài khoảng 87\"."
+      ],
+      "tips": [
+        "Ghi nhãn từng thanh gỗ khi bạn đo và cắt.",
+        "Xếp gỗ SS-1 đến SS-4 thành từng đống riêng.",
+        "Chà nhám nhẹ các mép cắt giúp bỏ dằm gỗ và dễ lắp ráp hơn.",
+        "Làm nhiều hơn một mái che nắng? Một khối chặn trên máy cưa góc giúp mọi thanh cắt ra đều dài bằng nhau."
+      ]
+    },
+    {
+      "title": "Đóng bốn chân và nối thành hai cặp",
+      "text": "Chồng một thanh SS-2 lên một thanh SS-1, canh một đầu bằng mặt và chừa khe 3.5\" ở đầu kia. Đây là chân thứ nhất của giàn.\n\nDùng mẫu khoan mồi ở cuối tập hướng dẫn để khoan mồi các lỗ vít, rồi bắt chặt hai thanh bằng 2 vít ở một đầu, 2 vít ở đầu kia, 2 vít ở giữa, và thêm 2 vít cách đều giữa một đầu và điểm giữa — mỗi chân 10 vít.\n\nLàm lại thêm 3 lần nữa, với thêm 3 thanh SS-2, 3 thanh SS-1 và thêm 30 vít, để đóng đủ bốn chân.\n\nĐể nối các chân thành từng cặp: bắt chặt một thanh SS-1 ngang qua đỉnh hai chân, đặt vào khe 3.5\", bằng 8 vít (mỗi chân 4 vít). Làm lại như vậy với hai chân còn lại.",
+      "imageAlts": [
+        "Sơ đồ một thanh SS-2 và một thanh SS-1 chồng lên nhau với khe 3.5\" thành một chân giàn, với một thanh ngang SS-1 ở trên nối hai chân thành một cặp."
+      ],
+      "tips": [
+        "Hai bước đầu có thể làm trên mặt đất bằng phẳng trước khi dựng bất cứ thứ gì lên.",
+        "Dùng thước vuông thợ mộc kiểm tra mỗi mặt vẫn giữ góc 90 độ."
+      ]
+    },
+    {
+      "title": "Gắn các thanh giằng bên phía dưới và dựng chân lên",
+      "text": "Lật các cặp chân lại. Dùng hai thanh SS-1 ở một mặt của giàn để thêm thanh giằng, dùng một khúc 2x4 dư để chừa khe đều 3.5\" giữa thanh giằng chân trên cùng và các thanh giằng mới bên dưới — mỗi thanh giằng 4 vít, tổng cộng 8 vít cho mặt này.\n\nLàm lại như vậy với cặp chân kia, thêm hai thanh SS-1 và 8 vít nữa.\n\nDựng các chân đứng lên.",
+      "imageAlts": [
+        "Sơ đồ các thanh giằng bên SS-1 được gắn bên dưới thanh ngang trên cùng của mỗi cặp chân, với khe chêm 3.5\", rồi các cặp chân được dựng đứng lên."
+      ],
+      "tips": [
+        "Dùng thước vuông thợ mộc kiểm tra mỗi mặt vẫn giữ góc 90 độ."
+      ]
+    },
+    {
+      "title": "Gắn các xà ngang trên và các thanh giằng dài",
+      "text": "Khi các chân đã đứng, nối hai cặp chân bằng hai xà ngang trên SS-1, kiểm tra mọi mặt đều vuông góc 90 độ, và bắt chặt mỗi góc bằng 4 vít (8 vít cho bước này).\n\nGắn các thanh giằng dài dọc theo một mặt bằng hai thanh SS-1, lại dùng một khúc 2x4 dư để chừa khe đều 3.5\" bên dưới xà ngang trên (mỗi thanh giằng 4 vít). Làm lại như vậy ở mặt bên kia.",
+      "imageAlts": [
+        "Sơ đồ các xà ngang trên SS-1 nối hai cặp chân ở trên đỉnh, và các thanh giằng dài SS-1 chạy dọc hai bên phía dưới."
+      ],
+      "tips": [
+        "Các bước còn lại cần thang để với tới đỉnh khung.",
+        "Dùng thước vuông thợ mộc kiểm tra mỗi mặt vẫn giữ góc 90 độ."
+      ]
+    },
+    {
+      "title": "Lắp vừa và bắt chặt các thanh giằng trong",
+      "text": "Đo khoảng cách giữa hai cột ở chỗ đặt mỗi thanh giằng trong SS-4, cắt thanh SS-4 đúng kích thước đó để vừa khít, và bắt chặt vào thanh SS-1 phía sau. Làm lại cho cả 4 thanh giằng trong ở cạnh dài, mỗi thanh bắt chặt bằng 8 vít 2.5\" đặt thành từng cặp cách đều nhau (tổng cộng 32 vít).\n\nLàm tương tự với các thanh giằng trong SS-3 ở cạnh ngắn: đo, cắt cho vừa khít từng thanh, bắt chặt vào thanh SS-1 phía sau, cho 4 thanh giằng trong ở cạnh ngắn và thêm 32 vít.",
+      "imageAlts": [
+        "Sơ đồ cho thấy các thanh giằng trong SS-4 và SS-3 được đo và cắt cho vừa khít giữa các cột, rồi bắt vít thành từng cặp cách đều nhau."
+      ],
+      "tips": [
+        "Dùng kẹp để giữ gỗ cố định trong lúc bắt chặt."
+      ]
+    },
+    {
+      "title": "Gắn thanh đỡ giằng trên",
+      "text": "Dùng một thanh SS-1 làm thanh đỡ giằng trên, đặt cách đều ở chính giữa khung.\n\nBắt chặt bằng 4 vít gỗ tự khoan dùng ngoài trời.",
+      "imageAlts": [
+        "Sơ đồ một thanh đỡ giằng trên SS-1 đặt ở chính giữa, ngang qua khung."
+      ],
+      "tips": [
+        "Dùng kẹp để giữ gỗ cố định trong lúc bắt chặt."
+      ]
+    },
+    {
+      "title": "Làm mái che và chà nhám",
+      "text": "Dùng các thanh SS-1 làm mái che. Dùng một khúc 2x4 dư làm miếng chêm, bắt chặt từng tấm ván mái che SS-1 từ mép này sang mép kia của khung (từ phải sang trái).\n\nBắt chặt gỗ bằng máy bắt vít động lực và 75 vít gỗ tự khoan dùng ngoài trời dài 2.5\", rồi bắt chặt các tấm ván mái che SS-1 còn lại bằng thêm 70 vít.\n\nCanh tấm cuối cùng thẳng với khung để không bị nhô ra — tấm cuối hẹp hơn 3.5\" cũng không sao nếu cần để vừa.\n\nChà nhám nhẹ các mép thô của mái che nắng.",
+      "imageAlts": [
+        "Sơ đồ các tấm ván mái che SS-1 được đặt cạnh nhau ngang qua đỉnh khung với miếng chêm 2x4, bắt vít từ mép này sang mép kia."
+      ]
+    },
+    {
+      "title": "Neo các cột",
+      "text": "Đặt một ke chữ L ở mặt trong của mỗi cột và bắt chặt bằng một vít đầu lục giác 1/2\" x 2\".\n\nLuồn một móc chữ J 18\" qua lỗ dưới cùng của mỗi ke chữ L và đóng xuống đất bằng búa 5 lb.",
+      "imageAlts": [
+        "Sơ đồ một ke chữ L và móc chữ J neo chân cột giàn xuống đất, kèm phương án khối kê bê tông cho luống trồng cây."
+      ],
+      "tips": [
+        "Nếu mái che nắng đặt cạnh một ghế rọ đá mặt gỗ, tốt nhất là dùng ke chữ L và vít đầu lục giác để bắt chân giàn thẳng vào ghế.",
+        "Nếu một cột rơi vào luống trồng cây, hãy đặt cột lên một khối kê bê tông cao hơn mặt đất cho vững và để bớt mục gỗ — đào để chôn khối kê sao cho ngang bằng với các cột khác."
+      ]
+    },
+    {
+      "title": "Mẫu khoan mồi (khuôn mẫu)",
+      "text": "Cắt mẫu khoan mồi theo đường chấm. Khi khoan, canh mép của khuôn mẫu trùng với mép ngoài của thanh gỗ trước khi khoan mồi.\n\nKhông phải lỗ nào cũng dùng đến — không phải kiểu bắt vít nào cũng dùng khuôn mẫu. Hãy theo các bước lắp ráp ở trên để biết vị trí lỗ. Giữ mọi lỗ cách mép khoảng một bề ngang ngón tay cái (khoảng 1\"), kể cả những lỗ không dùng khuôn mẫu này.",
+      "imageAlts": [
+        "Khuôn mẫu khoan mồi để in, có năm vị trí lỗ được đánh dấu và đường cắt, kèm hình phóng to cho thấy khoảng cách lỗ đến mép ván."
+      ]
+    }
+  ],
+  "finishing": "Xử lý gỗ ngoài trời có thể kéo dài tuổi thọ các món đồ công viên, nhưng không bắt buộc — những món này được thiết kế để rẻ, bền và dễ làm, nên có khi thực tế hơn là cứ để thế hệ sau làm lại khi đến lúc. Nếu bạn muốn nhuộm màu, sơn hay phủ lớp bảo vệ cho gỗ, hãy xem các tài liệu về hoàn thiện bên dưới.",
+  "safety": [
+    "Đây chỉ là những khuyến nghị cho việc tự làm — hãy điều chỉnh vật liệu, cách lắp ráp và cách xây dựng cho phù hợp với dự án và khu đất của bạn.",
+    "Làm món này cần có chút hiểu biết về dụng cụ cầm tay và dụng cụ chạy điện, đồ ngũ kim, vít bu-lông, gỗ xẻ và kỹ thuật lắp ráp cơ bản.",
+    "Trước khi dùng bất kỳ thiết bị chạy điện nào, hãy đọc và làm theo yêu cầu an toàn của nhà sản xuất, và đừng để ai chưa làm như vậy dùng dụng cụ chạy điện.",
+    "Bạn (chủ sở hữu) chịu trách nhiệm về mọi quy chuẩn xây dựng và an toàn, giấy phép và sự chấp thuận của cơ quan quản lý mà việc này cần.",
+    "Trước tiên hãy dọn sạch rác, những thứ nguy hiểm và công trình không cần thiết khỏi khu đất, và xác định mọi đường ống, đường dây có thể bị ảnh hưởng trước khi đào.",
+    "Mọi người phụ giúp xây đều nên ký giấy miễn trách nhiệm cho tình nguyện viên.",
+    "Đây là công trình cao 8 feet, phải làm trên thang ở trên cao — hãy nhờ một người phụ giữ vững khung và thang khi bạn làm việc trên cao."
+  ],
+  "links": [
+    {
+      "label": "Chọn lớp hoàn thiện tốt nhất cho đồ ngoài trời (Rockler)"
+    },
+    {
+      "label": "Lớp hoàn thiện tốt nhất cho gỗ ngoài trời (Real Milk Paint)"
+    },
+    {
+      "label": "Lớp phủ gỗ ngoài trời (Vermont Natural Coatings)"
+    }
+  ],
+  "sourcePages": "Hướng dẫn lắp ráp SHADE_Assembly, tr. 1–12 (bìa; trước khi bắt đầu; các loại gỗ thường dùng; bước 1–7; neo cột; mẫu khoan mồi)"
+}
