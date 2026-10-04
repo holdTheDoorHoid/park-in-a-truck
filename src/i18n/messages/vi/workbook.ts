@@ -45,6 +45,11 @@ export default {
   'chapter.notTranslated':
     'Chương này chưa được dịch, nên đang hiện bằng tiếng Anh. Câu trả lời của bạn được lưu giống nhau ở mọi ngôn ngữ.',
 
+  'notice.title': 'Ghi chú của trang web',
+  'notice.lot':
+    'Bạn chưa ghi lại giấy phép dùng lô đất — bạn sẽ cần nó trước khi bất kỳ ai bắt đầu đào đất. <a href="{href}">Đến bước Có được đất → Giữ chắc lô đất của bạn</a>.',
+  'notice.dismiss': 'Đóng',
+
   'auto.owner.city': 'Thành phố Philadelphia (công)',
   'auto.owner.landbank': 'Philadelphia Land Bank (công)',
   'auto.owner.pha': 'Cơ quan Gia cư Philadelphia, PHA (công)',
