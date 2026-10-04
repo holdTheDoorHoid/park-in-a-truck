@@ -20,6 +20,7 @@ export const COLORS = {
   buildingEdge: 0x8f8f8f,
   /** taller buildings farther away (far shade) */
   farBuilding: 0xe3e7ec,
+  farFootprint: 0xbcb7ab,
   parcel: 0x00a8e8,
   trunk: 0x6b5340,
   crown: 0x4c9a55,
@@ -87,6 +88,30 @@ export function buildFarBuildings(prisms: Prism[], floorFt: number): THREE.Group
     new THREE.LineBasicMaterial({ color: COLORS.buildingEdge, transparent: true, opacity: 0.3 }),
   );
   group.add(edges);
+  // a darker patch of ground under each one, so they read as standing on the plain ground
+  // (beyond the photo the ground is plain and pale, and a bare wall foot looks afloat)
+  const pads: THREE.BufferGeometry[] = [];
+  for (const b of prisms) {
+    if (b.ring.length < 3) continue;
+    const c = b.ring.reduce((a, [x, y]) => [a[0] + x / b.ring.length, a[1] + y / b.ring.length], [0, 0]);
+    const m = Math.max(4, b.heightFt * 0.12); // wider under taller ones: they are seen from farther
+    const grow = (p: number, q: number) => {
+      const dx = p - c[0]!;
+      const dy = q - c[1]!;
+      const d = Math.hypot(dx, dy) || 1;
+      return new THREE.Vector2(p + (dx / d) * m, q + (dy / d) * m);
+    };
+    const g = new THREE.ShapeGeometry(new THREE.Shape(b.ring.map(([x, y]) => grow(x, y))), 1);
+    g.rotateX(-Math.PI / 2);
+    g.translate(0, Math.min(b.baseFt ?? 0, floorFt) + 0.15, 0);
+    pads.push(g.index ? g.toNonIndexed() : g);
+  }
+  if (pads.length) {
+    const pad = new THREE.Mesh(mergeGeometries(pads, false)!, new THREE.MeshLambertMaterial({ color: COLORS.farFootprint }));
+    pads.forEach((g) => g.dispose());
+    pad.receiveShadow = true;
+    group.add(pad);
+  }
   return group;
 }
 

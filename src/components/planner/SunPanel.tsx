@@ -369,7 +369,8 @@ export function SunPanel({ store }: { store: PlannerStore }) {
           <li>
             Buildings: every building within about {SURROUNDINGS_RADIUS_FT} ft of the lot, plus taller buildings up to {FAR_SHADE_MAX_FT.toLocaleString('en-US')} ft
             away whose shadow can reach it{site?.farBuildings?.length ? ` (${site.farBuildings.length} for this lot)` : ''}. Their outlines and heights are the
-            City's, measured from the air (lidar) to the main roof; pitched roofs, chimneys and things like walls, fences, billboards and the El aren't in the data.
+            City's, measured from the air (lidar). Each is a flat-topped block at its usual roof height, so pitched roofs and chimneys aren't counted, and
+            neither are walls, fences, billboards or the El.
           </li>
           <li>
             Trees are the City's street and park trees (their size worked out from trunk width) and the trees marked on the lot. A tree in leaf blocks about{' '}
