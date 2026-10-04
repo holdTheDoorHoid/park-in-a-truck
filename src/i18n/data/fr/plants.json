@@ -1,0 +1,457 @@
+{
+  "edible-small-tree-both-serviceberry": {
+    "common": "Amélanchier (serviceberry)",
+    "notes": "Parties comestibles : fruit",
+    "matureSize": "20–30 pieds"
+  },
+  "edible-small-tree-both-redbud": {
+    "common": "Gainier du Canada (redbud)",
+    "notes": "Parties comestibles : fleurs ; Variété : Forest Pansy",
+    "matureSize": "20–25 pieds"
+  },
+  "edible-small-tree-both-apple": {
+    "common": "Pommier",
+    "notes": "Parties comestibles : fruit ; Variété : Enterprise",
+    "matureSize": "10–20 pieds"
+  },
+  "edible-small-tree-both-peach": {
+    "common": "Pêcher",
+    "notes": "Parties comestibles : fruit ; Variété : Contender",
+    "matureSize": "10–20 pieds"
+  },
+  "edible-small-tree-both-pear": {
+    "common": "Poirier",
+    "notes": "Parties comestibles : fruit ; Variété : Golden Russet bosc",
+    "matureSize": "10–20 pieds"
+  },
+  "edible-small-tree-both-plum": {
+    "common": "Prunier",
+    "notes": "Parties comestibles : fruit ; Variété : Methly",
+    "matureSize": "10–20 pieds"
+  },
+  "edible-shrub-sun-red-currant": {
+    "common": "Groseillier rouge",
+    "notes": "Parties comestibles : fruit ; Variété : Red Lake",
+    "matureSize": "3–4 pieds"
+  },
+  "edible-shrub-sun-gooseberry": {
+    "common": "Groseillier à maquereau",
+    "notes": "Parties comestibles : fruit ; Variété : Black Velvet",
+    "matureSize": "3–4 pieds"
+  },
+  "edible-shrub-sun-pasture-rose": {
+    "common": "Rosier de Caroline (pasture rose)",
+    "notes": "Parties comestibles : cynorhodons, pétales",
+    "matureSize": "3–4 pieds"
+  },
+  "edible-shrub-sun-low-bush-blueberry": {
+    "common": "Myrtille naine, ou bleuet (lowbush blueberry)",
+    "notes": "Parties comestibles : fruit ; Variété : Chippewa",
+    "matureSize": "2–3 pieds"
+  },
+  "edible-perennial-sun-strawberries": {
+    "common": "Fraisiers",
+    "notes": "Parties comestibles : fruit ; Variété : Sweet Kiss",
+    "matureSize": "6 pouces"
+  },
+  "edible-perennial-sun-virginia-strawberry": {
+    "common": "Fraisier de Virginie",
+    "notes": "Parties comestibles : fleurs",
+    "matureSize": "1–2 pieds"
+  },
+  "edible-perennial-sun-rudbeckia": {
+    "common": "Rudbeckia"
+  },
+  "edible-perennial-sun-prairie-dropseed": {
+    "common": "Sporobole (prairie dropseed)"
+  },
+  "edible-perennial-sun-hairy-field-aster": {
+    "common": "Aster poilu (hairy field aster)"
+  },
+  "edible-perennial-sun-sedum": {
+    "common": "Sedum (orpin)",
+    "notes": "Variété : Larinem Park"
+  },
+  "edible-shrub-shade-red-twig-dogwood": {
+    "common": "Cornouiller stolonifère (red-twig dogwood)",
+    "notes": "Variété : Arctic Fire"
+  },
+  "edible-shrub-shade-arrowwood-viburnum": {
+    "common": "Viorne dentée (arrowwood viburnum)"
+  },
+  "edible-shrub-shade-lowbush-blueberry": {
+    "common": "Myrtille naine, ou bleuet (lowbush blueberry)"
+  },
+  "edible-shrub-shade-mountain-laurel": {
+    "common": "Kalmia à larges feuilles (mountain laurel)",
+    "notes": "Variété : Pink Charm"
+  },
+  "edible-perennial-shade-lady-fern": {
+    "common": "Fougère femelle (lady fern)"
+  },
+  "edible-perennial-shade-wild-geranium": {
+    "common": "Géranium maculé (wild geranium)"
+  },
+  "edible-perennial-shade-cinnamon-fern": {
+    "common": "Osmonde cannelle (cinnamon fern)"
+  },
+  "edible-perennial-shade-jacobs-ladder": {
+    "common": "Échelle de Jacob (Jacob’s ladder)"
+  },
+  "edible-perennial-shade-pennsylvania-sedge": {
+    "common": "Carex de Pennsylvanie (Pennsylvania sedge)"
+  },
+  "edible-perennial-shade-hayscented-fern": {
+    "common": "Fougère à odeur de foin (hay-scented fern)"
+  },
+  "edible-perennial-shade-coral-bells": {
+    "common": "Heuchère d’Amérique (coral bells)"
+  },
+  "sanctuary-large-tree-both-burr-oak": {
+    "common": "Chêne à gros fruits (bur oak)",
+    "notes": "Atouts pour les sens : belle ramure",
+    "matureSize": "50–70 pieds"
+  },
+  "sanctuary-large-tree-both-sweet-birch": {
+    "common": "Bouleau flexible (sweet birch)",
+    "notes": "Atouts pour les sens : fleurs magnifiques et parfumées",
+    "matureSize": "30–50 pieds"
+  },
+  "sanctuary-small-tree-sun-washington-hawthorne": {
+    "common": "Aubépine de Washington (Washington hawthorn)",
+    "notes": "Atouts pour les sens : fruits rouge vif",
+    "matureSize": "15–20 pieds"
+  },
+  "sanctuary-small-tree-sun-sourwood": {
+    "common": "Oxydendron (sourwood)",
+    "notes": "Atouts pour les sens : couleurs dès le début de l’automne",
+    "matureSize": "15–20 pieds"
+  },
+  "sanctuary-small-tree-sun-fringetree": {
+    "common": "Arbre à franges (fringetree)",
+    "notes": "Atouts pour les sens : floraison en juin, fleurs parfumées",
+    "matureSize": "15–20 pieds"
+  },
+  "sanctuary-shrub-sun-summersweet": {
+    "common": "Cléthra (summersweet)",
+    "notes": "Atouts pour les sens : fleurs parfumées",
+    "matureSize": "3–4 pieds"
+  },
+  "sanctuary-shrub-sun-sweetfern": {
+    "common": "Comptonie (sweetfern)",
+    "notes": "Atouts pour les sens : feuilles parfumées",
+    "matureSize": "1–2 pieds"
+  },
+  "sanctuary-shrub-sun-sweetspire": {
+    "common": "Itéa (sweetspire)",
+    "notes": "Atouts pour les sens : fleurs parfumées",
+    "matureSize": "3–4 pieds"
+  },
+  "sanctuary-shrub-sun-swamp-azalea": {
+    "common": "Azalée des marais (swamp azalea)",
+    "notes": "Atouts pour les sens : fleurs parfumées",
+    "matureSize": "3–4 pieds"
+  },
+  "sanctuary-perennial-sun-blue-false-indigo": {
+    "common": "Faux indigo bleu (blue false indigo)",
+    "notes": "Atouts pour les sens : gousses de graines qui font du bruit",
+    "matureSize": "2–3 pieds"
+  },
+  "sanctuary-perennial-sun-wild-bergamot": {
+    "common": "Monarde fistuleuse (wild bergamot)",
+    "notes": "Atouts pour les sens : feuilles parfumées",
+    "matureSize": "2–3 pieds"
+  },
+  "sanctuary-perennial-sun-sideoats-grama": {
+    "common": "Bouteloua (sideoats grama)",
+    "notes": "Atouts pour les sens : mouvement et bruissement apaisants",
+    "matureSize": "2–3 pieds"
+  },
+  "sanctuary-perennial-sun-prairie-dropseed": {
+    "common": "Sporobole (prairie dropseed)",
+    "notes": "Atouts pour les sens : feuilles parfumées, texture douce",
+    "matureSize": "1–2 pieds"
+  },
+  "sanctuary-perennial-sun-aster": {
+    "common": "Aster",
+    "notes": "Atouts pour les sens : floraison en automne",
+    "matureSize": "2–3 pieds"
+  },
+  "sanctuary-perennial-sun-moonbeam-tickseed": {
+    "common": "Coréopsis Moonbeam (moonbeam tickseed)",
+    "notes": "Atouts pour les sens : longue floraison",
+    "matureSize": "2–3 pieds"
+  },
+  "sanctuary-perennial-sun-blazing-star": {
+    "common": "Liatris (blazing star)",
+    "notes": "Atouts pour les sens : attire les pollinisateurs",
+    "matureSize": "2–3 pieds"
+  },
+  "sanctuary-perennial-sun-tufted-hairgrass": {
+    "common": "Canche cespiteuse (tufted hairgrass)",
+    "notes": "Atouts pour les sens : mouvement apaisant",
+    "matureSize": "1–2 pieds"
+  },
+  "sanctuary-small-tree-shade-american-hornbeam": {
+    "common": "Charme de Caroline (American hornbeam)",
+    "notes": "Atouts pour les sens : écorce qui semble musclée",
+    "matureSize": "15–20 pieds"
+  },
+  "sanctuary-small-tree-shade-alternate-leaf-dogwood": {
+    "common": "Cornouiller à feuilles alternes (alternate-leaf dogwood)",
+    "notes": "Atouts pour les sens : fleurs parfumées",
+    "matureSize": "15–20 pieds"
+  },
+  "sanctuary-small-tree-shade-redbud": {
+    "common": "Gainier du Canada (redbud)",
+    "notes": "Atouts pour les sens : fleurs au début du printemps",
+    "matureSize": "15–20 pieds"
+  },
+  "sanctuary-small-tree-shade-witchhazel": {
+    "common": "Hamamélis (witch hazel)",
+    "notes": "Atouts pour les sens : fleur parfumée et originale",
+    "matureSize": "10–15 pieds"
+  },
+  "sanctuary-shrub-shade-mountain-laurel": {
+    "common": "Kalmia à larges feuilles (mountain laurel)",
+    "notes": "Atouts pour les sens : feuillage persistant",
+    "matureSize": "2–3 pieds"
+  },
+  "sanctuary-shrub-shade-witch-alder": {
+    "common": "Fothergilla (witch alder)",
+    "notes": "Atouts pour les sens : floraison précoce",
+    "matureSize": "3–4 pieds"
+  },
+  "sanctuary-shrub-shade-new-jersey-tea": {
+    "common": "Céanothe d’Amérique (New Jersey tea)",
+    "notes": "Atouts pour les sens : texture douce",
+    "matureSize": "2–3 pieds"
+  },
+  "sanctuary-shrub-shade-virginia-sweetspire": {
+    "common": "Itéa de Virginie (Virginia sweetspire)",
+    "notes": "Atouts pour les sens : belle floraison et couleurs d’automne",
+    "matureSize": "1–2 pieds"
+  },
+  "sanctuary-perennial-shade-lady-fern": {
+    "common": "Fougère femelle (lady fern)",
+    "notes": "Atouts pour les sens : texture douce",
+    "matureSize": "2–3 pieds"
+  },
+  "sanctuary-perennial-shade-pennsylvania-sedge": {
+    "common": "Carex de Pennsylvanie (Pennsylvania sedge)",
+    "notes": "Atouts pour les sens : texture douce",
+    "matureSize": "6 pouces – 1 pied"
+  },
+  "sanctuary-perennial-shade-cinnamon-fern": {
+    "common": "Osmonde cannelle (cinnamon fern)",
+    "notes": "Atouts pour les sens : texture douce",
+    "matureSize": "2–3 pieds"
+  },
+  "sanctuary-perennial-shade-fragrant-golden-rod": {
+    "common": "Verge d’or odorante (fragrant goldenrod)",
+    "notes": "Atouts pour les sens : feuilles parfumées",
+    "matureSize": "2–3 pieds"
+  },
+  "sanctuary-perennial-shade-shorts-aster": {
+    "common": "Aster de Short (Short’s aster)",
+    "notes": "Atouts pour les sens : floraison tardive",
+    "matureSize": "3 pieds"
+  },
+  "sanctuary-perennial-shade-columbine": {
+    "common": "Ancolie du Canada (columbine)",
+    "notes": "Atouts pour les sens : floraison précoce",
+    "matureSize": "2–3 pieds"
+  },
+  "sanctuary-perennial-shade-celadine-poppy": {
+    "common": "Pavot des bois (celandine poppy)",
+    "notes": "Atouts pour les sens : floraison précoce",
+    "matureSize": "1–2 pieds"
+  },
+  "nature-large-tree-both-shingle-oak": {
+    "common": "Chêne à lattes (shingle oak)"
+  },
+  "nature-large-tree-both-blackgum": {
+    "common": "Tupélo, ou nyssa (blackgum)"
+  },
+  "nature-large-tree-both-basswood": {
+    "common": "Tilleul d’Amérique (basswood)"
+  },
+  "nature-small-tree-both-american-hornbeam": {
+    "common": "Charme de Caroline (American hornbeam)"
+  },
+  "nature-small-tree-both-serviceberry": {
+    "common": "Amélanchier (serviceberry)"
+  },
+  "nature-small-tree-both-pagoda-dogwood": {
+    "common": "Cornouiller pagode (pagoda dogwood)"
+  },
+  "nature-small-tree-both-witchhazel": {
+    "common": "Hamamélis (witch hazel)"
+  },
+  "nature-small-tree-both-blackhaw-viburnum": {
+    "common": "Viorne à feuilles de prunier (blackhaw viburnum)"
+  },
+  "nature-shrub-sun-dwarf-summersweet": {
+    "common": "Cléthra nain (dwarf summersweet)"
+  },
+  "nature-shrub-sun-sweetfern": {
+    "common": "Comptonie (sweetfern)"
+  },
+  "nature-shrub-sun-sweetspire": {
+    "common": "Itéa (sweetspire)",
+    "notes": "Variété : Little Henry"
+  },
+  "nature-shrub-sun-eastern-ninebark": {
+    "common": "Physocarpe (eastern ninebark)"
+  },
+  "nature-shrub-sun-swamp-azalea": {
+    "common": "Azalée des marais (swamp azalea)"
+  },
+  "nature-perennial-sun-bluestar": {
+    "common": "Amsonia (bluestar)",
+    "notes": "Variété : Storm Cloud"
+  },
+  "nature-perennial-sun-sideoats-grama": {
+    "common": "Bouteloua (sideoats grama)"
+  },
+  "nature-perennial-sun-wild-bergamot": {
+    "common": "Monarde fistuleuse (wild bergamot)"
+  },
+  "nature-perennial-sun-narrow-leaf-mountainmint": {
+    "common": "Menthe des montagnes à feuilles étroites (mountain mint)"
+  },
+  "nature-perennial-sun-rudbeckia": {
+    "common": "Rudbeckia"
+  },
+  "nature-perennial-sun-prairie-dropseed": {
+    "common": "Sporobole (prairie dropseed)"
+  },
+  "nature-perennial-sun-hairy-field-aster": {
+    "common": "Aster poilu (hairy field aster)"
+  },
+  "nature-perennial-sun-sedum": {
+    "common": "Sedum (orpin)",
+    "notes": "Variété : Larinem Park"
+  },
+  "nature-shrub-shade-red-twig-dogwood": {
+    "common": "Cornouiller stolonifère (red-twig dogwood)",
+    "notes": "Variété : Arctic Fire"
+  },
+  "nature-shrub-shade-arrowwood-viburnum": {
+    "common": "Viorne dentée (arrowwood viburnum)"
+  },
+  "nature-shrub-shade-lowbush-blueberry": {
+    "common": "Myrtille naine, ou bleuet (lowbush blueberry)"
+  },
+  "nature-shrub-shade-mountain-laurel": {
+    "common": "Kalmia à larges feuilles (mountain laurel)",
+    "notes": "Variété : Pink Charm"
+  },
+  "nature-perennial-shade-lady-fern": {
+    "common": "Fougère femelle (lady fern)"
+  },
+  "nature-perennial-shade-wild-geranium": {
+    "common": "Géranium maculé (wild geranium)"
+  },
+  "nature-perennial-shade-cinnamon-fern": {
+    "common": "Osmonde cannelle (cinnamon fern)"
+  },
+  "nature-perennial-shade-jacobs-ladder": {
+    "common": "Échelle de Jacob (Jacob’s ladder)"
+  },
+  "nature-perennial-shade-pennsylvania-sedge": {
+    "common": "Carex de Pennsylvanie (Pennsylvania sedge)"
+  },
+  "nature-perennial-shade-hayscented-fern": {
+    "common": "Fougère à odeur de foin (hay-scented fern)"
+  },
+  "nature-perennial-shade-coral-bells": {
+    "common": "Heuchère d’Amérique (coral bells)"
+  },
+  "event-large-tree-both-scarlet-oak": {
+    "common": "Chêne écarlate (scarlet oak)",
+    "matureSize": "40–50 pieds"
+  },
+  "event-large-tree-both-american-elm": {
+    "common": "Orme d’Amérique (American elm)",
+    "notes": "Variété : Princeton",
+    "matureSize": "50–70 pieds"
+  },
+  "event-small-tree-both-serviceberry": {
+    "common": "Amélanchier (serviceberry)",
+    "matureSize": "15–20 pieds"
+  },
+  "event-small-tree-both-alternate-leaf-dogwood": {
+    "common": "Cornouiller à feuilles alternes (alternate-leaf dogwood)",
+    "matureSize": "15–20 pieds"
+  },
+  "event-small-tree-both-american-hophornbeam": {
+    "common": "Ostryer de Virginie (hophornbeam)",
+    "matureSize": "15–20 pieds"
+  },
+  "event-small-tree-both-sassafras": {
+    "common": "Sassafras",
+    "matureSize": "25–35 pieds"
+  },
+  "event-small-tree-both-redbud": {
+    "common": "Gainier du Canada (redbud)",
+    "notes": "Variété : Lavender twist",
+    "matureSize": "15–20 pieds"
+  },
+  "event-perennial-sun-butterflyweed": {
+    "common": "Asclépiade tubéreuse (butterfly weed)",
+    "matureSize": "2–3 pieds"
+  },
+  "event-perennial-sun-blue-false-indigo": {
+    "common": "Faux indigo bleu (blue false indigo)",
+    "matureSize": "2–3 pieds"
+  },
+  "event-perennial-sun-plains-coreopsis": {
+    "common": "Coréopsis des plaines (plains coreopsis)",
+    "matureSize": "1–2 pieds"
+  },
+  "event-perennial-sun-love-grass": {
+    "common": "Éragrostis (love grass)",
+    "matureSize": "2–3 pieds"
+  },
+  "event-perennial-sun-black-eyed-susan": {
+    "common": "Rudbeckia (black-eyed Susan)",
+    "matureSize": "2–3 pieds"
+  },
+  "event-perennial-sun-wild-pinks": {
+    "common": "Silène de Caroline (wild pinks)",
+    "matureSize": "1–2 pieds"
+  },
+  "event-perennial-sun-fragrant-goldenrod": {
+    "common": "Verge d’or odorante (fragrant goldenrod)",
+    "matureSize": "1–2 pieds"
+  },
+  "event-perennial-sun-shorts-aster": {
+    "common": "Aster de Short (Short’s aster)",
+    "matureSize": "2–3 pieds"
+  },
+  "event-perennial-shade-prairie-onion": {
+    "common": "Ail penché (prairie onion)",
+    "matureSize": "1–2 pieds"
+  },
+  "event-perennial-shade-lady-fern": {
+    "common": "Fougère femelle (lady fern)",
+    "matureSize": "1–2 pieds"
+  },
+  "event-perennial-shade-bunny-blue-sedge": {
+    "common": "Carex Bunny Blue (sedge)",
+    "matureSize": "6–12 pouces"
+  },
+  "event-perennial-shade-allen-bush-green-and-gold": {
+    "common": "Chrysogonum Allen Bush (green and gold)",
+    "matureSize": "6–12 pouces"
+  },
+  "event-perennial-shade-wood-fern": {
+    "common": "Dryoptéride marginale (wood fern)",
+    "matureSize": "1–2 pieds"
+  },
+  "event-perennial-shade-wild-geranium": {
+    "common": "Géranium maculé (wild geranium)",
+    "matureSize": "1–2 pieds"
+  }
+}

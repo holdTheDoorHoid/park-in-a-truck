@@ -107,7 +107,7 @@ export default {
   'resources.status.unconfirmed': 'non confirmé',
   'resources.partnersIntro': 'Les organisations qui aident à rendre possibles les parcs Park in a Truck.',
   'resources.videoAlt': 'Vidéo : {title}',
-  'resources.suppliersIntro': 'Tirés des liens qui se trouvent dans les cahiers eux-mêmes, classés selon leur usage.',
+  'resources.suppliersIntro': 'Tirés des liens qui se trouvent dans les cahiers eux-mêmes, classés selon leur usage. Ces sites sont en anglais.',
   'resources.contact.email': 'Courriel :',
   'resources.contact.founder': 'Fondatrice :',
   'resources.contact.phone': 'Téléphone :',

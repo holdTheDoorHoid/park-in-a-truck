@@ -1,0 +1,62 @@
+{
+  "cecil-street-garden": {
+    "neighborhood": "Kingsessing, sud-ouest de Philadelphie",
+    "description": "Un jardin partagé sur un terrain d’angle récupéré à Kingsessing, qui figure dans la boîte à outils Park in a Truck sous le nom de « Cecil Street Park » et qui a servi de site d’essai pour les plantations avec la pépinière LandHealth Nursery. Il fait depuis partie d’un réseau d’habitats pour les pollinisateurs, financé par le gouvernement fédéral, qui relie plusieurs sites Park in a Truck du sud-ouest de Philadelphie ; on y a planté des arbres indigènes et des échinacées. Une habitante, Victoria Miles-Chambliss : « Notre rue a vraiment changé depuis qu’on a fait le jardin. C’est comme une oasis au milieu du sud-ouest de Philadelphie. »",
+    "links": [
+      {
+        "label": "Un réseau d’habitats pour les oiseaux et les abeilles fleurit dans le sud-ouest de Philadelphie (Grid Magazine, avril 2024, en anglais)"
+      },
+      {
+        "label": "Page du programme Park in a Truck (Jefferson, en anglais)"
+      }
+    ]
+  },
+  "melon-street-park": {
+    "neighborhood": "Mantua, ouest de Philadelphie",
+    "description": "Le tout premier parc de Park in a Truck, ouvert en octobre 2019 sur un terrain vacant de Mantua (environ 2 400 pieds carrés). Le président de la Mantua Civic Association, DeWayne Drummond : « Le sol sur lequel nous sommes en ce moment, c’était un terrain vacant. Maintenant, il a été embelli par les habitants du quartier et par les jeunes. » La fondatrice, Kim Douglas, le décrit comme un parc qui « peut drainer les eaux de pluie, faire pousser des plantes, offrir un habitat à la faune et accueillir des spectacles ».",
+    "links": [
+      {
+        "label": "Avec le programme Park in a Truck, Jefferson veut aider à transformer les quartiers défavorisés (Jefferson, août 2019, en anglais)"
+      },
+      {
+        "label": "Des terrains vacants deviennent de beaux parcs dans les quartiers de Philadelphie (6abc, juillet 2021, en anglais)"
+      },
+      {
+        "label": "La boîte à outils Park in a Truck permet aux habitants de transformer des terrains vides (Jefferson, août 2022, en anglais)"
+      }
+    ]
+  },
+  "glenda-anne-memorial-park": {
+    "neighborhood": "Kingsessing, sud-ouest de Philadelphie",
+    "description": "Inauguré le 3 août 2019 sur un terrain qui servait autrefois de dépotoir, en présence de plus de 200 voisins et d’élus ; la famille de Glenda Ann Christopher a accepté que le parc soit dédié à sa mémoire (la presse l’écrit « Glenda Ann Christopher Memorial Park »). Un jardin pour les pollinisateurs a été ajouté au printemps 2023. L’organisateur Greg Thompson : « Une semaine ou deux après la plantation, ils étaient là : des abeilles, des oiseaux, des papillons et bien plus d’insectes que nous n’en avions jamais vu. » Une deuxième inauguration, en juin 2024, a fêté cet ajout ; un jeune bénévole, Semaj Flores : « On s’est engagés pour l’environnement, et pour que les jeunes aident les plus petits qui vivent avec la violence des armes à feu. »",
+    "links": [
+      {
+        "label": "Le programme Park in a Truck transforme les espaces verts urbains de Philadelphie (CBS News Philadelphia, juin 2024, en anglais)"
+      },
+      {
+        "label": "Un réseau d’habitats pour les oiseaux et les abeilles fleurit dans le sud-ouest de Philadelphie (Grid Magazine, avril 2024, en anglais)"
+      }
+    ]
+  },
+  "s-60th-greenway": {
+    "neighborhood": "Kingsessing, sud-ouest de Philadelphie",
+    "description": "Un site Park in a Truck à une rue du Glenda Anne Memorial Park, dans le même couloir vert de Kingsessing. Il figure dans les remerciements de la boîte à outils (photo attribuée à Ted Behr, Southwest Globe Times) sur une ligne distincte de Glenda Anne. Aucun article de presse ne distingue ce terrain du Glenda Anne Memorial Park ; considérez-les comme deux sites liés mais séparés, jusqu’à ce que le contraire soit confirmé."
+  },
+  "dover-street-pocket-park": {
+    "neighborhood": "Brewerytown, nord de Philadelphie",
+    "description": "Figure dans la liste des sites sur le site web de Park in a Truck. Il est plus récent que la boîte à outils publiée (il n’est pas dans ses remerciements) et aucun article de presse indépendant n’a été trouvé : en dehors de l’adresse, les détails ne sont pas encore confirmés."
+  },
+  "tilden-middle-school": {
+    "neighborhood": "Elmwood Park, sud-ouest de Philadelphie",
+    "description": "Des élèves ont créé un jardin pour les pollinisateurs et la faune au collège Tilden Middle School, dans le cadre du même réseau de pollinisateurs du sud-ouest de Philadelphie que le Cecil Street Garden. Il est financé en partie par les Pew Charitable Trusts, par l’intermédiaire d’Audubon Mid-Atlantic, avec Park in a Truck comme partenaire. Des jeunes sont payés par le programme des ambassadeurs du parc de PiaT pour l’entretenir et observer les pollinisateurs.",
+    "links": [
+      {
+        "label": "Un réseau d’habitats pour les oiseaux et les abeilles fleurit dans le sud-ouest de Philadelphie (Grid Magazine, avril 2024, en anglais)"
+      }
+    ]
+  },
+  "streetscape-of-brewerytown-garden": {
+    "neighborhood": "Brewerytown, nord de Philadelphie",
+    "description": "Figure dans la liste des sites sur le site web de Park in a Truck, près du Dover Street Pocket Park à Brewerytown. C’est un projet différent du « Brewerytown Garden » du Neighborhood Gardens Trust, situé à l’angle de 27th St et Master St, qui n’a rien à voir. Aucun article de presse indépendant n’a été trouvé : en dehors de l’emplacement approximatif, les détails ne sont pas encore confirmés."
+  }
+}

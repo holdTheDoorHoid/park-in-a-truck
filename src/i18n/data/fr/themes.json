@@ -1,0 +1,18 @@
+{
+  "edible": {
+    "name": "Comestible",
+    "blurb": "Partager de la nourriture et créer des liens avec les voisins : fruits, légumes et une table commune."
+  },
+  "sanctuary": {
+    "name": "Refuge",
+    "blurb": "Un havre de calme pour être seul, lire et se retrouver en petits groupes."
+  },
+  "nature": {
+    "name": "Nature",
+    "blurb": "Des plantes indigènes, un habitat et des jeux pour les enfants et les pollinisateurs."
+  },
+  "event": {
+    "name": "Événements",
+    "blurb": "De l’espace pour des spectacles, des marchés et des fêtes de quartier."
+  }
+}
