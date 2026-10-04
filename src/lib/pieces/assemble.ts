@@ -212,7 +212,8 @@ export function assemble(
   for (const p of edits?.added ?? []) {
     if (removed.has(p.id)) continue;
     const meta = ELEMENTS[p.element];
-    const [w, h] = meta?.footprintFt ?? [2, 2];
+    // a copy of a printed piece keeps that piece's own footprint
+    const [w, h] = p.w && p.h ? [p.w, p.h] : (meta?.footprintFt ?? [2, 2]);
     const mv = moved[p.id];
     const li: LayoutItem = { ...p, w, h, source: 'added' };
     if (mv) Object.assign(li, { x: mv.x, y: mv.y, rotationDeg: mv.rotationDeg });

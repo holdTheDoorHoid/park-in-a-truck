@@ -69,6 +69,11 @@ export interface PlacedItem {
   rotationDeg: number;
   /** theme the item came from (for colour), if any */
   theme?: ThemeId;
+  /** footprint in feet, when it differs from elements.ts (e.g. a copy of a printed piece's bench) */
+  w?: number;
+  h?: number;
+  /** shape variant carried over from the printed pieces (e.g. 'round' raised bed) */
+  variant?: string;
 }
 
 /**
