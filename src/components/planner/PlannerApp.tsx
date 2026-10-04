@@ -4,9 +4,10 @@
 //   mode="design" the Dream chapter (size & themes, arrange, sun, counts)
 //   mode="site"   the Assess chapter (what's already on the lot, sun & shade)
 //   mode="sun"    the SunStudy widget (sun & shade only)
-import { useEffect, useMemo, useState } from 'preact/hooks';
+import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import { useStore } from '@nanostores/preact';
 import { createPlannerStore, type PlannerMode } from '../../lib/planner/store';
+import { $project } from '../../lib/project';
 import { DEMO_LOTS, type DemoSlug } from '../../lib/planner/site';
 import { u } from '../../lib/url';
 import { Viewport } from './Viewport';
@@ -65,7 +66,35 @@ function fromQuery(): Query {
   }
 }
 
-export default function PlannerApp({ mode = 'design', demo, page = false }: Props) {
+/**
+ * In a chapter the planner may sit far down the page: wait until it is about to scroll
+ * into view before loading City data and Three.js.
+ */
+export default function PlannerApp(props: Props) {
+  const [near, setNear] = useState(Boolean(props.page) || typeof IntersectionObserver === 'undefined');
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (near || !ref.current) return;
+    const io = new IntersectionObserver((es) => {
+      if (es.some((e) => e.isIntersecting)) {
+        setNear(true);
+        io.disconnect();
+      }
+    }, { rootMargin: '400px 0px' });
+    io.observe(ref.current);
+    return () => io.disconnect();
+  }, [near]);
+  if (!near) {
+    return (
+      <div class={`pl-root pl-${props.mode ?? 'design'} pl-waiting`} ref={ref}>
+        <p class="muted">The 3D planner loads when you scroll to it…</p>
+      </div>
+    );
+  }
+  return <PlannerInner {...props} />;
+}
+
+function PlannerInner({ mode = 'design', demo, page = false }: Props) {
   const query: Query = page ? fromQuery() : { demo: null, step: null };
   const store = useMemo(() => {
     const st = createPlannerStore(mode, demo ?? query.demo);
@@ -97,6 +126,7 @@ export default function PlannerApp({ mode = 'design', demo, page = false }: Prop
   const status = useStore(store.$status);
   const note = useStore(store.$note);
   const demoSlug = useStore(store.$demo);
+  const hasLot = Boolean(useStore($project).lot);
 
   useEffect(() => {
     // what can be dragged (and what's shown) depends on the step
@@ -144,7 +174,13 @@ export default function PlannerApp({ mode = 'design', demo, page = false }: Prop
         {demoSlug && (
           <div class="pl-demo-banner" role="status">
             <strong>Demo lot:</strong> {DEMO_LOTS[demoSlug].label}. Nothing you do here is saved.{' '}
-            <a href={u('lot/')}>Use your own lot</a>
+            {hasLot ? (
+              <button type="button" class="pl-link" onClick={() => store.setDemo(null)}>
+                Back to your lot
+              </button>
+            ) : (
+              <a href={u('lot/')}>Use your own lot</a>
+            )}
           </div>
         )}
         {note && <p class="pl-note">{note}</p>}

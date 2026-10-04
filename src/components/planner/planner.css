@@ -756,6 +756,13 @@
   background: #ffb000;
 }
 
+.pl-waiting {
+  min-height: 420px;
+  display: grid;
+  place-items: center;
+  background: #eaf3f7;
+}
+
 /* ---- no lot yet ---- */
 
 .pl-cta {

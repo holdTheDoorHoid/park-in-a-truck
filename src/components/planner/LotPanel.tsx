@@ -19,6 +19,7 @@ export function LotPanel({ store }: { store: PlannerStore }) {
   const site = useStore(store.$site);
   const d = useStore(store.$design);
   const overhang = useStore(store.$overhang);
+  const layout = useStore(store.$layout);
   if (!site || !d) return null;
   const f = site.frame;
   // the street in front of the entrance
@@ -104,8 +105,16 @@ export function LotPanel({ store }: { store: PlannerStore }) {
       {overhang && overhang.outsideSqFt > 0 && (
         <p class="pl-warn">
           About {overhang.outsideSqFt} sq ft of the park hangs over the lot line (shown in red)
-          {overhang.items.length ? `, and ${overhang.items.length} item${overhang.items.length > 1 ? 's' : ''} stick out` : ''}. Your lot isn't a
-          perfect rectangle — move or remove what sticks out in “Arrange”.
+          {overhang.items.length ? `, and ${overhang.items.length} thing${overhang.items.length > 1 ? 's' : ''} stick out` : ''}.{' '}
+          {turn % 2 === 1
+            ? 'Turned this way the park does not fit — turn it back, or pick a smaller size.'
+            : d.fitToLot === false
+              ? 'The printed pieces are bigger than your lot — try “Stretch the pieces to fill my lot” in Size & themes.'
+              : layout && (layout.lengthFt > f.lengthFt + 0.5 || layout.widthFt > f.widthFt + 0.5)
+                ? d.size === 'A'
+                  ? 'Even the smallest pieces (size A) are bigger than your lot — the Park Patch workbook may suit it better.'
+                  : `Size ${d.size} is bigger than your lot — try a smaller size in Size & themes.`
+                : "Your lot isn't a perfect rectangle — move or remove what sticks out in “Arrange”, or slide the park."}
         </p>
       )}
       <p class="pl-small">

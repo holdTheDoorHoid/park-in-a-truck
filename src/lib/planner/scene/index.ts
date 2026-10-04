@@ -200,7 +200,8 @@ export class PlannerScene {
       const dist = span * 1.25 + 45;
       // stand in the street off the entrance, a little to the right, and look down into the lot
       const dirLocal: Vec2 = [-f.u[0] * 0.92 - f.v[0] * 0.38, -f.u[1] * 0.92 - f.v[1] * 0.38];
-      const elev = 0.88;
+      // look down more steeply into narrow lots between rowhouses
+      const elev = f.widthFt < 26 ? 1.0 : 0.88;
       const h = Math.cos(elev) * dist;
       this.persp.position.copy(target.clone().add(new THREE.Vector3(dirLocal[0] * h, Math.sin(elev) * dist, -dirLocal[1] * h)));
       this.persp.up.set(0, 1, 0);
