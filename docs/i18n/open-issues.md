@@ -53,6 +53,9 @@ after the extraction round. Tick them off here.
 - [ ] Money in Arabic shows "$US 6,884.46" — use `currencyDisplay: 'narrowSymbol'` (or an LTR run).
 - [ ] `datasets.ts` doesn't allow `cutList[].stock` (e.g. "2x2 welded-wire mesh" stays English).
 - [ ] English `dream.mdx` inline CSS uses `left` — change to `border-inline-start` / `text-align: start`.
+- [ ] `en/planner.ts` comment tells translators to use `{hour24}` in `time.am`/`time.pm`, but `check.ts` rejects it
+      as an invented placeholder (French shows "3:30 PM") — allow it or change the comment (ties to the clock-style item).
+- [ ] Planner step labels wrap to three lines in French on desktop ("Taille et thèmes", "Soleil et ombre").
 
 ## For native-speaker review (per language)
 
@@ -90,3 +93,10 @@ after the extraction round. Tick them off here.
   مسامير ملولبة مستديرة الرأس); the 6C names in `playful.ts`; style: و attached to Latin names (وPhiladelphia Land Bank).
 - Decision to confirm: sizes like 2.5" and 4'x4' are written with Arabic unit words (2.5 بوصة, 4 × 4 أقدام) because
   ″/′ marks land on the wrong side in right-to-left text; lumber sizes and part labels unchanged.
+
+### French (fr)
+- `plants.json` names written "French (English)" (Sporobole (prairie dropseed), Oxydendron (sourwood)); hardware words
+  in guides and `cost.ts` (agrafes à anneau, cavaliers, boulons de carrosserie, vis autoforeuses, tire-fonds, visseuse
+  à percussion); `create.mdx` Phase 2 herbicide/weed names and safety notes; `sustain.mdx` Survivre / S'épanouir /
+  Se retrouver; `start.mdx` barn-raising line and "Un parc par jour…"; `acquire.mdx` "accord d'usage en nature";
+  resources legal text; principle and 6C names in `playful.ts`.
