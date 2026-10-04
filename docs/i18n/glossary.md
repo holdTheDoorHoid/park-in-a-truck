@@ -276,6 +276,18 @@ The City as a government is «город» / «городские власти»
 | Note from this site, not Park in a Truck | Примечание этого сайта, а не Park in a Truck | |
 | in English | на английском | «(на английском)» after links |
 | ft, in, sq ft, $ | фт, дюйм., кв. фт, $ | full words in sentences: футов, дюймов, квадратных футов |
+| *(ru only)* planter (box) | ящик для растений | not «кашпо» (indoor pot) |
+| *(ru only)* shade structure / canopy | навес от солнца | |
+| *(ru only)* raised bed · cold frame · rain barrel | приподнятая грядка · парник · бочка для дождевой воды | |
+| *(ru only)* lumber · part (BB-1) · cut / saw | брус (доска for 1x6, 2x6) · деталь · распилить | |
+| *(ru only)* self-driving screw · lag screw · carriage bolt | саморез · шуруп-глухарь · мебельный болт | |
+| *(ru only)* impact driver · miter saw · carpenter's square | ударный шуруповёрт · торцовочная пила · столярный угольник | |
+| *(ru only)* pre-drill · spacer · flush · stop block · jig | просверлить направляющие отверстия · проставка · заподлицо · упор · шаблон | |
+| *(ru only)* hog rings · cable staples · welded-wire mesh | кольца-скобы (hog rings) · U-образные скобы · сварная сетка | |
+| *(ru only)* phase (Create) | этап | «Этап 3: Разметка и гравийное основание» |
+| *(ru only)* volunteer waiver / release form | отказ от претензий для волонтёров | |
+| *(ru only)* Park Ambassador | посол парка (Park Ambassador) | |
+| *(ru only)* topsoil · mulch · gravel | плодородный грунт · мульча · гравий | |
 
 ### ar — العربية
 
