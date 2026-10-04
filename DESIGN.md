@@ -179,6 +179,25 @@ City endpoints verified 2026-10-04 (CORS `*`, no key): `https://phl.carto.com/ap
 `https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/services/<layer>/FeatureServer/0/query`.
 Be polite: debounce, cache per session, never bulk-crawl.
 
+### Shared `project.extra` keys (one writer each; see `SiteFacts` in types.ts)
+
+| Key | Writer | Readers |
+|---|---|---|
+| `extra.site` (size A–E, edges, oriented rect, street edges, lot kind) | philly-data (on choosing a lot) | planner, Assess summary, pieces |
+| `extra.site.sunClass`, `extra.site.treesKept` | planner | Assess summary |
+| `extra.tally` (DesignTally) | planner | cost, plants, Dream counts |
+| `extra.sunGrid` | planner | plants |
+| `extra.costInputs` | cost | — |
+| `extra.plants` | resources | Create (ordering) |
+| `extra.buildSchedule`, `extra.stewardship` | content-b | My park |
+
+Lot kind convention: stand on the entrance edge (x=0) looking into the park (+x). **corner-left** = the side
+street runs along your left (edge y1); **corner-right** = along your right (y0). The pieces workstream checks this
+against the printed pieces and corrects it here if the PDFs say otherwise.
+
+Maps: `src/lib/mapstyle.ts` — OpenFreeMap positron basemap (no key) and City of Philadelphia 3-inch aerial
+tiles (2025; years back to 1996 — useful for "what once stood where your park is?").
+
 ## 7. Workstreams (parallel agents, one worktree each)
 
 | Name | Model | Owns |

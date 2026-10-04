@@ -192,3 +192,35 @@ export interface ParkLayout {
   surfaces: LayoutSurface[];
   items: LayoutItem[];
 }
+
+// ---- project.extra keys shared between workstreams --------------------------
+// Each key has ONE writer; everyone else only reads.
+
+/** project.extra.site — facts about the chosen lot for the planner and the Assess summary. */
+export interface SiteFacts {
+  // written by philly-data when a lot is chosen
+  sizeId?: SizeId;
+  sizeExact?: boolean;
+  tooSmall?: boolean;
+  tooBig?: boolean;
+  /** Long and short edges of the parcel's oriented rectangle, feet */
+  lengthFt?: number;
+  widthFt?: number;
+  /**
+   * Oriented rectangle: centre, and bearing of the park's +x axis (along the long edge),
+   * degrees clockwise from north. x0 = the short edge on the street the lot is addressed to
+   * (the entrance); 'y1' is on your LEFT when you stand at x0 looking toward +x.
+   */
+  rect?: { center: LngLat; bearingDeg: number };
+  streetEdges?: ('x0' | 'x1' | 'y0' | 'y1')[];
+  /** interior | corner-left (street along y1) | corner-right (street along y0) */
+  lotKind?: LotKind;
+  // written by planner (sun study / existing conditions)
+  sunClass?: 'full-sun' | 'mostly-sun' | 'mostly-shade' | 'deep-shade';
+  treesKept?: number;
+}
+// project.extra.tally      : DesignTally          (planner)
+// project.extra.sunGrid    : planner-defined       (planner)
+// project.extra.costInputs : cost-defined          (cost)
+// project.extra.plants     : resources-defined     (resources)
+// project.extra.buildSchedule, project.extra.stewardship : content-b
