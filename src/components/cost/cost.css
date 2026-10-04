@@ -19,7 +19,7 @@
   margin: 0;
 }
 .ce-status {
-  border-left: 6px solid var(--line);
+  border-inline-start: 6px solid var(--line);
   background: var(--paper-2);
   padding: 10px 14px;
   margin: 0 0 10px;
@@ -63,6 +63,13 @@
 }
 .ce details[open] > summary::before {
   transform: rotate(90deg);
+}
+/* right-to-left pages: the triangle points the way the text reads */
+.ce details > summary:dir(rtl)::before {
+  content: '◂';
+}
+.ce details[open] > summary:dir(rtl)::before {
+  transform: rotate(-90deg);
 }
 .ce-group {
   border-top: 2px solid var(--ink);
@@ -127,7 +134,7 @@
   border-radius: var(--radius);
   background: #fff;
   color: var(--ink);
-  text-align: right;
+  text-align: end;
   font-variant-numeric: tabular-nums;
 }
 .ce-input-wrap input:focus {
@@ -222,7 +229,7 @@
   font-weight: 400;
   font-size: 1.3rem;
   color: #fff;
-  margin-left: 0.25em;
+  margin-inline-start: 0.25em;
   font-variant-numeric: tabular-nums;
 }
 .ce-sticky a {
@@ -287,7 +294,7 @@
 }
 .ce-warnings {
   margin: 14px 0 0;
-  border-left: 6px solid var(--warn);
+  border-inline-start: 6px solid var(--warn);
   background: var(--warn-wash);
   padding: 8px 14px;
   font-size: 0.9rem;
@@ -299,7 +306,7 @@
 }
 .ce-warnings ul {
   margin: 0 0 6px;
-  padding-left: 1.2em;
+  padding-inline-start: 1.2em;
 }
 .ce-warnings li + li {
   margin-top: 0.3em;
@@ -380,8 +387,9 @@
 }
 .ce-table th,
 .ce-table td {
-  padding: 7px 10px 7px 0;
-  text-align: left;
+  padding-block: 7px;
+  padding-inline: 0 10px;
+  text-align: start;
   vertical-align: top;
   border-bottom: 1px solid #ececec;
 }
@@ -393,13 +401,13 @@
   font-weight: 700;
 }
 .ce-table .num {
-  text-align: right;
+  text-align: end;
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
 }
 .ce-table th:last-child,
 .ce-table td:last-child {
-  padding-right: 0;
+  padding-inline-end: 0;
 }
 .ce-group-row th {
   background: var(--cyan-wash);
@@ -434,8 +442,8 @@
 }
 .ce-site-note {
   color: var(--ink);
-  border-left: 3px solid var(--cyan);
-  padding-left: 6px;
+  border-inline-start: 3px solid var(--cyan);
+  padding-inline-start: 6px;
   margin-top: 4px;
 }
 .ce-each {
@@ -481,7 +489,7 @@
 }
 .ce-tools {
   margin: 4px 0 0;
-  padding-left: 1.2em;
+  padding-inline-start: 1.2em;
   font-size: 0.9rem;
 }
 
@@ -517,7 +525,7 @@
     grid-column: 1 / -1;
   }
   .ce-table td.num {
-    text-align: left;
+    text-align: start;
     white-space: normal;
   }
   .ce-table td[data-label]::before {
@@ -591,7 +599,7 @@
 }
 .ce-need-total {
   min-width: 7rem;
-  text-align: right;
+  text-align: end;
   font-size: 0.85rem;
   font-variant-numeric: tabular-nums;
 }
@@ -603,14 +611,14 @@
     grid-column: 1 / -1;
   }
   .ce-need-total {
-    text-align: left;
+    text-align: start;
   }
 }
 
 /* how this differs from the spreadsheet */
 .ce-diff {
   margin: 14px 0 0;
-  border-left: 6px solid var(--cyan);
+  border-inline-start: 6px solid var(--cyan);
   background: var(--cyan-wash);
   padding: 8px 14px;
   font-size: 0.9rem;
@@ -624,7 +632,7 @@
 }
 .ce-diff-list {
   margin: 4px 0 10px;
-  padding-left: 1.4em;
+  padding-inline-start: 1.4em;
 }
 .ce-diff-list li + li {
   margin-top: 6px;
@@ -638,15 +646,16 @@
 .ce-diff-effect {
   font-weight: 700;
   font-variant-numeric: tabular-nums;
-  white-space: nowrap;
+  /* stays on one line where it fits; longer money formats (Arabic: "3,717.60 US$ → …") may wrap on phones */
+  min-width: 0;
 }
 .ce-kept {
   margin: 0;
-  padding-left: 1.2em;
+  padding-inline-start: 1.2em;
 }
 .ce-extras {
   margin: 10px 0 0;
-  padding-left: 1.2em;
+  padding-inline-start: 1.2em;
 }
 
 /* ---- print: "Print order list" prints only the results ---- */

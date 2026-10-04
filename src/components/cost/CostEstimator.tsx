@@ -7,11 +7,14 @@ import { useStore } from '@nanostores/preact';
 import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import { $project, setExtra } from '../../lib/project';
 import type { DesignTally, SiteFacts } from '../../lib/types';
-import { FIELD_GROUPS } from '../../lib/cost/fields';
+import { fieldGroups } from '../../lib/cost/fields';
 import { PERENNIALS_PER_SQUARE } from '../../lib/cost/corrections';
-import { estimate, fmtN, money, type CostInputKey } from '../../lib/cost/model';
+import { estimate, type CostInputKey } from '../../lib/cost/model';
 import { COST_INPUTS_KEY, readSaved, resolveInputs, withOverride, withUnitPrice, type SavedCostInputs } from '../../lib/cost/state';
 import { estimateCsv } from '../../lib/cost/csv';
+import { costT, join, money } from '../../lib/cost/text';
+import { ELEMENTS } from '../../data/elements';
+import { localizeRecord } from '../../i18n/data.ts';
 import NumberField from './NumberField';
 import { Differences, EstimateView, OrderListView, PriceNeeded, TotalCard } from './Results';
 import './cost.css';
@@ -21,11 +24,17 @@ interface Props {
   title?: string;
   /** Open the order list first (e.g. in the Create chapter) */
   focus?: 'estimate' | 'order';
+  /** The page's language (passed by the Astro wrapper) */
+  locale?: string;
+  /** Build guides' titles in that language, by slug (the guides' text is not shipped to browsers) */
+  guideTitles?: Record<string, string>;
 }
 
 let counter = 0;
 
-export default function CostEstimator({ title = 'Your cost estimate', focus = 'estimate' }: Props) {
+export default function CostEstimator({ title, focus = 'estimate', locale, guideTitles }: Props) {
+  const t = useMemo(() => costT(locale), [locale]);
+  const groups = useMemo(() => fieldGroups(t), [t]);
   const project = useStore($project);
   const [mounted, setMounted] = useState(false);
   const [openAll, setOpenAll] = useState(false);
@@ -38,8 +47,8 @@ export default function CostEstimator({ title = 'Your cost estimate', focus = 'e
   const tally = (project.extra.tally as DesignTally | undefined) ?? null;
   const site = (project.extra.site as SiteFacts | undefined) ?? null;
   const saved = readSaved(project.extra[COST_INPUTS_KEY]);
-  const r = useMemo(() => resolveInputs(saved, tally, site), [project.extra[COST_INPUTS_KEY], tally, site]);
-  const e = useMemo(() => estimate(r.values, { unitPrices: saved.unitPrices }), [r, project.extra[COST_INPUTS_KEY]]);
+  const r = useMemo(() => resolveInputs(saved, tally, site, t), [project.extra[COST_INPUTS_KEY], tally, site, t]);
+  const e = useMemo(() => estimate(r.values, { unitPrices: saved.unitPrices, t }), [r, project.extra[COST_INPUTS_KEY], t]);
 
   const save = (next: SavedCostInputs) => setExtra(COST_INPUTS_KEY, next);
   const change = (key: CostInputKey, v: number | undefined) => save(withOverride(readSaved($project.get().extra[COST_INPUTS_KEY]), key, v));
@@ -49,19 +58,19 @@ export default function CostEstimator({ title = 'Your cost estimate', focus = 'e
   if (!mounted) {
     return (
       <section class="ce ce-loading" aria-busy="true">
-        <p class="eyebrow">Cost estimator</p>
-        <p>Loading your cost estimate…</p>
+        <p class="eyebrow">{t('ui.eyebrow')}</p>
+        <p>{t('ui.loading')}</p>
       </section>
     );
   }
 
   function downloadCsv() {
-    const csv = estimateCsv(e, project.name);
+    const csv = estimateCsv(e, project.name, new Date(), t);
     const safe = project.name.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '').toLowerCase() || 'park';
     const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
     const a = document.createElement('a');
     a.href = url;
-    a.download = `${safe}-cost-estimate.csv`;
+    a.download = t('ui.csvFile', { name: safe });
     document.body.appendChild(a);
     a.click();
     a.remove();
@@ -97,46 +106,49 @@ export default function CostEstimator({ title = 'Your cost estimate', focus = 'e
   }
 
   const answered = (keys: CostInputKey[]) => keys.filter((k) => r.values[k] !== 0).length;
-  groupsOpen.current ??= Object.fromEntries(FIELD_GROUPS.map((g, gi) => [g.id, gi < 3 || answered(g.fields.map((f) => f.key)) > 0]));
+  groupsOpen.current ??= Object.fromEntries(groups.map((g, gi) => [g.id, gi < 3 || answered(g.fields.map((f) => f.key)) > 0]));
   const unmapped = r.fromTally.unmapped;
+  const elements = localizeRecord(ELEMENTS, 'elements', t.locale);
 
   return (
     <section class="ce" aria-labelledby={`${idBase}-title`}>
       <header class="ce-head">
-        <p class="eyebrow">Cost estimator</p>
+        <p class="eyebrow">{t('ui.eyebrow')}</p>
         <h3 id={`${idBase}-title`} class="ce-title">
-          {title}
+          {title ?? t('ui.title')}
         </h3>
         {r.hasDesign ? (
-          <p class="ce-status ce-status-design">
-            ✓ Filled in from your design. Change any number — your changes are saved in this browser, and “Reset” brings back the design’s count.
-          </p>
+          <p class="ce-status ce-status-design">{t('ui.status.design')}</p>
         ) : r.base === 'example' ? (
           <p class="ce-status ce-status-example">
-            These are the example numbers from the Park in a Truck spreadsheet{r.fromTally.sizeFrom === 'lot' ? ', with your lot’s size' : ''}. Replace them with your own counts, or
-            design your park in the planner to fill them in automatically.{' '}
+            {t(r.fromTally.sizeFrom === 'lot' ? 'ui.status.exampleLot' : 'ui.status.example')}{' '}
             <button type="button" class="btn btn-small" onClick={() => save({ ...saved, base: 'zero' })}>
-              Start from zero
+              {t('ui.startZero')}
             </button>
           </p>
         ) : (
           <p class="ce-status">
-            Count your pieces and type the totals here, or design your park in the planner to fill them in automatically.{' '}
+            {t('ui.status.blank')}{' '}
             <button type="button" class="btn btn-small" onClick={() => save({ ...saved, base: 'example' })}>
-              Show the spreadsheet’s example
+              {t('ui.showExample')}
             </button>
           </p>
         )}
         {unmapped.length > 0 && (
           <p class="ce-status ce-status-warn">
-            Your design also has {unmapped.map((u) => `${fmtN(u.count)} × ${u.name}`).join(', ')}. The PiaT estimator has no line for{' '}
-            {unmapped.length === 1 && unmapped[0]!.count === 1 ? 'it' : 'them'} — add the cost under “Anything else”.
+            {t('ui.unmapped', {
+              count: unmapped.reduce((a, u) => a + u.count, 0),
+              list: join(
+                t,
+                unmapped.map((u) => t('ui.unmappedItem', { count: u.count, name: elements[u.element]?.name ?? u.name })),
+              ),
+            })}
           </p>
         )}
       </header>
 
       <div class="ce-form">
-        {FIELD_GROUPS.map((g) => {
+        {groups.map((g) => {
           const keys = g.fields.map((f) => f.key);
           const n = answered(keys);
           return (
@@ -144,22 +156,21 @@ export default function CostEstimator({ title = 'Your cost estimate', focus = 'e
               <summary>
                 <span class="ce-group-title">{g.title}</span>
                 <span class="ce-group-count">
-                  {keys.length} question{keys.length === 1 ? '' : 's'}
-                  {n > 0 && ` · ${n} not zero`}
+                  {t('ui.group.questions', { count: keys.length })}
+                  {n > 0 && ` · ${t('ui.group.notZero', { count: n })}`}
                 </span>
               </summary>
               {g.intro && <p class="ce-intro">{g.intro}</p>}
               {g.id === 'plants' && (
                 <p class="ce-computed">
-                  Perennials: <strong>{fmtN(e.summary.perennials)}</strong>{' '}
-                  <span class="muted">
-                    ({PERENNIALS_PER_SQUARE} × {fmtN(r.values.plantingSquares)} planting squares, the same as the plant picker)
-                  </span>
+                  {t('ui.perennials')} <strong>{t.num(e.summary.perennials)}</strong>{' '}
+                  <span class="muted">{t('ui.perennialsHow', { per: PERENNIALS_PER_SQUARE, count: r.values.plantingSquares })}</span>
                 </p>
               )}
               {g.fields.map((f) => (
                 <NumberField
                   key={f.key}
+                  t={t}
                   field={f}
                   idBase={idBase}
                   value={r.values[f.key]}
@@ -179,30 +190,27 @@ export default function CostEstimator({ title = 'Your cost estimate', focus = 'e
               type="button"
               class="btn btn-small"
               onClick={() => {
-                if (window.confirm(`Clear the ${overrides} number${overrides === 1 ? '' : 's'} you typed${r.hasDesign ? ' and go back to your design’s counts' : ''}?`))
-                  save({ ...saved, overrides: {} });
+                if (window.confirm(t(r.hasDesign ? 'ui.clearConfirmDesign' : 'ui.clearConfirm', { count: overrides }))) save({ ...saved, overrides: {} });
               }}
             >
-              ↺ Clear my {overrides} number{overrides === 1 ? '' : 's'}
+              {t('ui.clearMine', { count: overrides })}
             </button>
           </p>
         )}
         <div class="ce-sticky">
           <span>
-            Estimated final cost <strong>{money(e.total)}</strong>
+            {t('ui.finalCost')} <strong>{money(t, e.total)}</strong>
           </span>
-          <a href={`#${idBase}-results`}>See the estimate ↓</a>
+          <a href={`#${idBase}-results`}>{t('ui.seeEstimate')}</a>
         </div>
       </div>
 
-      <section class="ce-results" id={`${idBase}-results`} ref={resultsRef} aria-label="Estimate and order list">
-        <h4 class="ce-print-title">
-          {project.name} — cost estimate and order list
-        </h4>
-        <TotalCard e={e} />
+      <section class="ce-results" id={`${idBase}-results`} ref={resultsRef} aria-label={t('ui.resultsLabel')}>
+        <h4 class="ce-print-title">{t('ui.printTitle', { name: project.name })}</h4>
+        <TotalCard e={e} t={t} />
         {e.warnings.length > 0 && (
           <div class="ce-warnings" role="note">
-            <p class="ce-warnings-head">Please check</p>
+            <p class="ce-warnings-head">{t('ui.check')}</p>
             <ul>
               {e.warnings.map((w, k) => (
                 <li key={k}>{w}</li>
@@ -210,27 +218,27 @@ export default function CostEstimator({ title = 'Your cost estimate', focus = 'e
             </ul>
           </div>
         )}
-        <PriceNeeded e={e} onPrice={setPrice} idBase={idBase} />
-        <Differences e={e} />
+        <PriceNeeded e={e} t={t} onPrice={setPrice} idBase={idBase} />
+        <Differences e={e} t={t} />
         <div class="ce-actions ce-no-print">
-          <button type="button" class="btn btn-primary btn-small" onClick={print}>
-            🖨 Print order list
+          <button type="button" class="btn btn-primary btn-small" data-ce="print" onClick={print}>
+            {t('ui.print')}
           </button>
           <button type="button" class="btn btn-small" onClick={downloadCsv}>
-            ⬇ Download CSV
+            {t('ui.csv')}
           </button>
           <button type="button" class="btn btn-small" onClick={() => setOpenAll(!openAll)} aria-pressed={openAll}>
-            {openAll ? 'Close all sections' : 'Open all sections'}
+            {openAll ? t('ui.closeAll') : t('ui.openAll')}
           </button>
         </div>
-        <h4 class="ce-section-head">Cost by category</h4>
-        <EstimateView e={e} open={openAll} />
+        <h4 class="ce-section-head">{t('ui.byCategory')}</h4>
+        <EstimateView e={e} t={t} open={openAll} guideTitles={guideTitles} />
         <details class="ce-orderlist" open={focus === 'order' || openAll}>
           <summary>
-            <span class="ce-section-head">Order list</span>
-            <span class="ce-group-count">what to buy, where, and delivery times</span>
+            <span class="ce-section-head">{t('ui.orderList')}</span>
+            <span class="ce-group-count">{t('ui.orderListWhat')}</span>
           </summary>
-          <OrderListView e={e} />
+          <OrderListView e={e} t={t} />
         </details>
       </section>
     </section>
