@@ -1,7 +1,9 @@
 ---
 import site from '../../i18n/messages/en/site.ts';
+import workbook from '../../i18n/messages/en/workbook.ts';
 import { getT, urlFor, alternates } from '../../i18n/astro.ts';
 const t = getT(Astro, site);
+const tw = getT(Astro, workbook);
 const u = urlFor(t.locale);
 const path = Astro.url.pathname;
 const nav = [
@@ -18,7 +20,7 @@ const current = langs.find((l) => l.code === t.locale) ?? langs[0]!;
 ---
 <header class="site-header">
   <div class="wrap bar">
-    <a class="wordmark" href={u('')} aria-label={t('header.home')}>
+    <a class="wordmark" href={u('')} aria-label={t('header.home')} dir="ltr">
       <span class="w1">PARK</span><span class="w2">in a</span><span class="w1">TRUCK</span>
     </a>
     <div class="bar-end">
@@ -30,7 +32,7 @@ const current = langs.find((l) => l.code === t.locale) ?? langs[0]!;
           ))}
           <a class="my-park" href={u('my-park/')} aria-current={/\/my-park\//.test(path) ? 'page' : undefined}>
             <span class="dot" aria-hidden="true"></span>
-            <span><span class="visually-hidden">{t('nav.myPark')} </span><span data-project-name>My park</span></span>
+            <span><span class="visually-hidden">{t('nav.myPark')} </span><span data-project-name>{tw('project.default')}</span></span>
           </a>
         </nav>
       </details>
@@ -188,7 +190,7 @@ const current = langs.find((l) => l.code === t.locale) ?? langs[0]!;
     box-shadow: var(--shadow);
     padding: 6px;
     min-width: 12rem;
-    max-height: min(70vh, 32rem);
+    max-height: min(80vh, 40rem);
     overflow: auto;
   }
   .langbox-panel ul {
@@ -198,7 +200,7 @@ const current = langs.find((l) => l.code === t.locale) ?? langs[0]!;
   }
   .langbox-panel a {
     display: block;
-    padding: 0.5em 0.75em;
+    padding: 0.45em 0.75em;
     border-radius: var(--radius);
     border-inline-start: 3px solid transparent;
     color: var(--ink);

@@ -5,6 +5,9 @@
 import { defineMessages } from '../../define.ts';
 
 export default defineMessages('workbook', {
+  /** The name a new project starts with, shown in the header until the person renames it */
+  'project.default': 'My park',
+
   'callout.tip': 'Tip',
   'callout.note': 'Note',
   'callout.warning': 'Heads up',

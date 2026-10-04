@@ -15,17 +15,25 @@
   gap: 5%;
   flex: 1;
   min-height: 0;
+  overflow: hidden;
 }
+/* small on the on-screen preview card, full size on paper */
 .flyer-two .flyer-col {
-  font-size: 0.8em;
-  overflow-wrap: anywhere;
+  font-size: 0.62em;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+@media print {
+  .flyer-two .flyer-col {
+    font-size: 1em;
+  }
 }
 .flyer-two .flyer-col + .flyer-col {
   border-inline-start: 2px solid var(--line);
   padding-inline-start: 5%;
 }
 .flyer-two .flyer-headline {
-  font-size: 1.65em;
+  font-size: 1.4em;
 }
 .flyer-langs {
   display: grid;

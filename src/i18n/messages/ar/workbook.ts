@@ -4,6 +4,7 @@ import type en from '../en/workbook.ts';
 import type { Translation } from '../../define.ts';
 
 export default {
+  'project.default': 'حديقتي',
   'done.mark': 'ضع علامة: أُنجزت هذه الخطوة',
   'done.done': 'أُنجزت — أحسنت!',
   'done.badge': '✓ أُنجزت',

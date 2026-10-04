@@ -3,6 +3,8 @@
 // standalone on /plants (no theme prop — the person picks there).
 import type { ThemeId } from '../../lib/types';
 import PlantPickerIsland from '../plants/PlantPickerIsland';
+import LangFallback from '../site/LangFallback.astro';
+import plantsMsgs from '../../i18n/messages/en/plants.ts';
 
 interface Props {
   theme?: ThemeId | ThemeId[];
@@ -16,7 +18,9 @@ const { theme } = Astro.props;
     textbook hydration mismatch (Preact recovers, but logs errors and does
     extra DOM surgery); client:only skips SSR for this component entirely,
     which is fine since the picker is inert without JS anyway. */}
-<PlantPickerIsland theme={theme} client:only="preact" />
+<LangFallback area={plantsMsgs}>
+  <PlantPickerIsland theme={theme} client:only="preact" />
+</LangFallback>
 
 <style is:global>
   /* Preact-rendered markup isn't visible to Astro's scoped CSS, so this is

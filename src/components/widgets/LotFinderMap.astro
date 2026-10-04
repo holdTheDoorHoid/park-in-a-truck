@@ -4,6 +4,8 @@
 // lot → owner, size, "Use this as my park lot" / "Add to my list". Aerial toggle.
 import LotFinderMapIsland from '../philly/LotFinderMap.tsx';
 import '../philly/philly.css';
+import LangFallback from '../site/LangFallback.astro';
+import phillyMsgs from '../../i18n/messages/en/philly.ts';
 interface Props {
   /** CSS height of the map, e.g. "70vh" (default: min(70vh, 560px)) */
   height?: string;
@@ -12,7 +14,9 @@ interface Props {
 const { height } = Astro.props;
 ---
 <div class="ph-widget" data-widget="LotFinderMap">
-  <LotFinderMapIsland client:only="preact" height={height}>
-    <div slot="fallback" class="ph-fallback" style="min-height:420px">Loading the vacant-land map… (it needs JavaScript)</div>
-  </LotFinderMapIsland>
+  <LangFallback area={phillyMsgs}>
+    <LotFinderMapIsland client:only="preact" height={height}>
+      <div slot="fallback" class="ph-fallback" style="min-height:420px">Loading the vacant-land map… (it needs JavaScript)</div>
+    </LotFinderMapIsland>
+  </LangFallback>
 </div>

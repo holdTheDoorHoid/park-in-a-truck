@@ -16,7 +16,7 @@ export { getT, resolveLocale, type T } from './t.ts';
 export { urlFor, samePageIn, alternates } from './url.ts';
 export { localizedSteps, localizedStep, localizeGuide, localizeKeyed, localizeRecord, overlay } from './data.ts';
 export { localeInfo, LOCALES, OTHER_LOCALES, DEFAULT_LOCALE, type Locale } from './locales.ts';
-export { OFFERABLE, coverage, bundleVersion } from './server.ts';
+export { OFFERABLE, coverage, bundleVersion, hasTranslations } from './server.ts';
 export { localeStaticPaths } from './routes.ts';
 
 /** The page's language, from its URL. */

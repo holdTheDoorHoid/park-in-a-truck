@@ -68,6 +68,18 @@ export function formatList(locale: Locale | string, items: string[], type: 'conj
   return memo(`l|${locale}|${type}`, () => new Intl.ListFormat(intlOf(locale), { style: 'long', type })).format(items);
 }
 
+/** A language's name in another language ("inglés" for en, in es); its own name when Intl doesn't know. */
+export function languageName(code: Locale | string, inLocale: Locale | string): string {
+  const target = localeInfo(code);
+  try {
+    const dn = memo(`dn|${inLocale}`, () => new Intl.DisplayNames([intlOf(inLocale)], { type: 'language', fallback: 'none' }));
+    if (Intl.DisplayNames.supportedLocalesOf([intlOf(inLocale)]).length) return dn.of(target.lang) ?? target.name;
+  } catch {
+    /* old browser */
+  }
+  return target.name;
+}
+
 export function pluralCategory(locale: Locale | string, n: number): Intl.LDMLPluralRule {
   return memo(`p|${locale}`, () => new Intl.PluralRules(intlOf(locale))).select(n);
 }

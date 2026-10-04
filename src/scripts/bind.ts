@@ -301,7 +301,8 @@ function render(p: Project) {
   });
 
   document.querySelectorAll<HTMLElement>('[data-project-name]').forEach((el) => {
-    el.textContent = p.name;
+    // The starting name is saved in English; show it in the page's language until it's renamed.
+    el.textContent = p.name === 'My park' ? t('project.default') : p.name;
   });
 
   // site-added: "you haven't recorded permission for your lot yet" (veteran-organizer D2)

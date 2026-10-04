@@ -12,7 +12,7 @@ import { $project, setExtra } from '../../lib/project';
 import type { FieldValue } from '../../lib/types';
 import flyerEn from '../../i18n/messages/en/flyer.ts';
 import { getT } from '../../i18n/t.ts';
-import { interpolate, formatDate } from '../../i18n/format.ts';
+import { interpolate, formatDate, languageName } from '../../i18n/format.ts';
 import { LOCALES, localeInfo, isLocale, type Locale } from '../../i18n/locales.ts';
 import type { Messages, Vars } from '../../i18n/define.ts';
 import './flyer-i18n.css';
@@ -144,7 +144,7 @@ export default function MeetingFlyerIsland() {
             </label>
             {second && (
               <label class="field">
-                <span class="field-label">{t('ui.purpose2', { language: localeInfo(second).name })}</span>
+                <span class="field-label">{t('ui.purpose2', { language: languageName(second, t.locale) })}</span>
                 <textarea rows={3} lang={localeInfo(second).lang} dir={localeInfo(second).dir} value={prefs.purpose2 ?? ''} onInput={(e) => save({ purpose2: e.currentTarget.value })} />
                 <span class="field-hint">{t('ui.purpose2Hint')}</span>
               </label>

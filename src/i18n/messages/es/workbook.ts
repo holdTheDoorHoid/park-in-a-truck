@@ -3,6 +3,8 @@ import type en from '../en/workbook.ts';
 import type { Translation } from '../../define.ts';
 
 export default {
+  'project.default': 'Mi parque',
+
   'callout.tip': 'Consejo',
   'callout.note': 'Nota',
   'callout.warning': 'Atención',

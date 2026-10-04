@@ -13,5 +13,8 @@ Read `DESIGN.md` first. It is authoritative (decisions, contracts, ownership).
 - Saved data goes through `src/lib/project.ts`. Never read/write localStorage directly for project data.
 - Content: PiaT's words, web-friendly. No new advice. Site-added helpers marked `{/* site-added: … */}`.
 - Every image needs real alt text. Keep pages usable at 360px wide.
+- Languages: every page exists in 12 languages. User-facing text goes through `src/i18n/` (`getT`), page links
+  through `urlFor(locale)`, saved ids/values never get translated. Read `docs/i18n/HOW-TO-TRANSLATE.md` before
+  adding text; run `npm run i18n:check`.
 - Don't commit binaries over ~10 MB; compress PDFs with ghostscript (`-dPDFSETTINGS=/ebook`) and check legibility.
 - The repo is PRIVATE and stays that way until the owner says otherwise. Never push to any other remote.

@@ -5,10 +5,14 @@
 // and a small aerial photo. Needs a chosen lot (project.lot).
 import SiteReportIsland from '../philly/SiteReport.tsx';
 import '../philly/philly.css';
+import LangFallback from '../site/LangFallback.astro';
+import phillyMsgs from '../../i18n/messages/en/philly.ts';
 interface Props { [key: string]: unknown }
 ---
 <div class="ph-widget" data-widget="SiteReport">
-  <SiteReportIsland client:only="preact">
-    <div slot="fallback" class="ph-fallback">Loading your lot's site report… (it needs JavaScript)</div>
-  </SiteReportIsland>
+  <LangFallback area={phillyMsgs}>
+    <SiteReportIsland client:only="preact">
+      <div slot="fallback" class="ph-fallback">Loading your lot's site report… (it needs JavaScript)</div>
+    </SiteReportIsland>
+  </LangFallback>
 </div>

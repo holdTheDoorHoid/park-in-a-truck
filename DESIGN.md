@@ -47,7 +47,10 @@ public APIs, no keys).
 ```
 src/
   content/steps/<slug>.mdx   chapters: start, acquire, organize, assess, dream, create, sustain
-  content.config.ts          the `steps` collection
+  content/i18n/<lang>/steps/ translated chapters (same structure, English sub-step ids)
+  content.config.ts          the `steps` and `stepsI18n` collections
+  i18n/                      languages: locales.ts, messages/<lang>/<area>.ts, data/<lang>/ overlays,
+                             getT (t.ts), urlFor (url.ts), checker (check.ts) — see "Languages" below
   data/                      steps.ts, themes.ts, elements.ts, guides/*.json, plants.json, parks.json,
                              resources.json, pieces/*.json
   lib/
@@ -67,6 +70,7 @@ src/
     site/                    Header, Footer, StepPath
   layouts/Base.astro
   pages/                     index, steps/, steps/[slug], my-park/, lot/, planner/, build/, plants/, parks/, resources/
+  pages/[lang]/              the same pages in every other language (5-line twins); pages/i18n/[locale].js.ts
   scripts/bind.ts            binds data-field / data-done markup to the project store
 public/
   img/<doc>/…                images extracted from the PDFs (webp)
@@ -104,6 +108,42 @@ Islands read/write via the exported functions and the `$project` store; never to
 sentences, linking the official source, marked `{/* site-added: … */}`). Build guides use the same box through
 `siteNote` on a step, a materials line or a cut-list line (`src/data/guides/index.ts`) where PiaT's text disagrees with
 its own cut list or drawings.
+
+### Languages (i18n, 2026-10-04)
+
+How-to for extraction and translation agents: `docs/i18n/HOW-TO-TRANSLATE.md`; terms and tone:
+`docs/i18n/glossary.md`. Screenshots: `docs/i18n/*.webp`.
+
+- **URLs:** English at `/…`; each other language at `/<code>/…` (`es zh vi ru ar ht fr pt sw ko tl`, defined in
+  `src/i18n/locales.ts`; `zh` = Simplified, `pt` = Brazilian, `ar` right-to-left). Every page in `src/pages/` has a
+  twin in `src/pages/[lang]/` rendering the same component; components read the language from the URL. `SITE_BASE`
+  still works. `<html lang dir data-locale>` and `hreflang` alternates come from `Base.astro`.
+- **UI text:** `getT(Astro | locale, catalog)` → `t(key, {vars})`, plurals (Intl.PluralRules), `t.num/money/date/list`
+  (US units). English catalogs `src/i18n/messages/en/<area>.ts` are the source; `messages/<lang>/<area>.ts` carry
+  only translations; missing keys fall back to English. At build time every language is registered
+  (`i18n/server.ts`); in the browser a translated page loads `/i18n/<lang>.js` (one language, cached) before islands run.
+- **Chapters:** `src/content/i18n/<lang>/steps/<slug>.mdx`; every `##` carries its English id
+  (`## Busque un lote {/* #find-a-lot */}`, read by `rehype-substeps.mjs`). Missing chapter → English with a notice,
+  marked `lang="en"`. Translated MDX links stay in the language (`export const u = urlFor('<lang>')`, rehype-base).
+- **Data:** per-language overlays `src/i18n/data/<lang>/…json` carry only translated text; allowed fields per dataset in
+  `src/i18n/datasets.ts`; merged by `src/i18n/data.ts`. English stays the source.
+- **Saved progress is language-free:** field ids, option/checklist values (`{ value: English, label }`), sub-step ids
+  are identical in every language, so switching language keeps the same project and page (the box keeps `#hash`).
+- **Language box** (header, top right): native names, links to the same page in each language, remembered in
+  `localStorage['piat:lang']` (a viewer preference, not project data). **First-visit offer:** on English pages only,
+  when nothing is remembered and `navigator.languages` prefers one of ours, one line in that language
+  ("¿Ver este sitio en español?" Sí / No, gracias); never switches by itself. A language is offered once its
+  `site` area is 100% translated; until then its pages say "coming soon" and stay marked English.
+- **Notices:** every translated page says it was machine-translated, with a link to the same page in English.
+  PiaT's PDFs stay English ("· in English", `hreflang="en"`). Islands whose area has no translation yet are wrapped in
+  `<LangFallback>` (`lang="en" dir="ltr"`), which also keeps untranslated planner/cost internals usable in Arabic.
+- **Fonts:** Latin-script languages and Vietnamese keep Work Sans + Alfa Slab One. Russian adds Roboto Slab Black
+  (Cyrillic only, 9 KB) for the slab headings, Arabic adds Cairo (31 KB), Chinese/Korean use system fonts (CJK web
+  fonts are megabytes). Fonts download only on pages that use them. Arabic and CJK get no letter-spacing.
+- **Meeting flyer:** prints in any language whose `flyer` area is complete, or two side by side (saved as
+  `extra.flyer = { langs, purpose2 }`), whatever language the page is read in.
+- **Checker:** `npm run i18n:check` (also a test): keys/placeholders/HTML/plurals, chapter structure and ids, overlay
+  fields, page twins, browser imports; prints words left per language.
 
 ### Widgets
 
@@ -277,6 +317,7 @@ Be polite: debounce, cache per session, never bulk-crawl.
 | `extra.costInputs` | cost | — |
 | `extra.plants` | resources | Create (ordering) |
 | `extra.buildSchedule`, `extra.stewardship` | content-b | My park |
+| `extra.flyer` (`{ langs: [first, second?], purpose2? }`) | MeetingFlyer | — |
 
 Lot kind convention: stand on the entrance edge (x=0) looking into the park (+x). **corner-left** = the side
 street runs along your left (edge y1); **corner-right** = along your right (y0). The pieces workstream checks this
@@ -301,6 +342,9 @@ tiles (2025; years back to 1996 — useful for "what once stood where your park 
 | pieces | Opus | `src/data/pieces/`, `src/lib/pieces/`, `src/data/elements.ts`, `src/data/themes.ts` colours, plan SVG renderer |
 | planner | Opus | `src/lib/planner/`, `Planner`, `SunStudy`, `/planner/` |
 | cost | Opus | `src/lib/cost/`, `CostEstimator` |
+| i18n-core | Opus | `src/i18n/` machinery, `src/pages/[lang]/`, language box/notices/offer, RTL + fonts (`src/styles/i18n.css`), checker, `docs/i18n/` |
+| i18n extraction (round 2) | — | one agent per catalog **area** (site/pages/workbook, philly, planner, cost, plants+parks, guides+schedule+flyer, mypark): English text → `messages/en/<area>.ts` |
+| i18n translation (round 3) | — | one agent per **language**: only `messages/<lang>/`, `data/<lang>/`, `content/i18n/<lang>/` and its glossary section |
 
 Rules: work only in your own files; shared files (`types.ts`, `global.css`, `Base.astro`, `package.json`) get
 **additive** changes only, called out in your final report. Worktrees: `~/Desktop/park-in-a-truck-wt/<name>` on

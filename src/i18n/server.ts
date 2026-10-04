@@ -62,6 +62,12 @@ export function coverage(locale: Locale, area: string): number {
   return keys.filter((k) => own[k] !== undefined).length / keys.length;
 }
 
+/** True when `locale` has its own text for at least one key of `area`. */
+export function hasTranslations(locale: Locale, area: string): boolean {
+  if (locale === DEFAULT_LOCALE) return true;
+  return Object.keys(bundles[locale]?.msgs[area] ?? {}).length > 0;
+}
+
 /**
  * Languages the first-visit offer may suggest: the site's frame (header, footer, notices, the offer
  * itself) is fully translated, so saying "yes" really gives a page in that language.
