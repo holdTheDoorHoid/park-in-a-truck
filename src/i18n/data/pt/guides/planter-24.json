@@ -1,0 +1,139 @@
+{
+  "title": "Jardineira de 24\"",
+  "summary": "Uma jardineira de ripas de 2x4, com 24\" de altura e 24\" de profundidade, forrada com manta geotêxtil. O mesmo PDF também mostra uma versão comprida, de 24\"x48\", feita do mesmo jeito com mais tábuas na frente — veja as observações dos materiais e da lista de cortes.",
+  "finishing": "Tratar a madeira para área externa pode aumentar a vida dos elementos do seu parque, mas não é necessário — estas peças foram pensadas para ser baratas, resistentes e fáceis de construir, então pode ser mais prático simplesmente deixar a próxima geração reconstruí-las quando chegar a hora. Se você quiser tingir, pintar ou selar a madeira, veja os recursos sobre acabamento abaixo.",
+  "sourcePages": "Instruções de montagem 24_Planter_Box, pp. 1–10 (capa; antes de começar; madeiras mais usadas; etapas 1–6, para as montagens de 24\"x24\" e de 24\"x48\"; guia de furos)",
+  "materials": [
+    {
+      "item": "Madeira serrada 2x4 — cedro-vermelho (western red cedar), pinho Douglas (Douglas fir) ou pinus tratado em autoclave",
+      "notes": "Para a caixa de 24\"x24\". A caixa comprida de 24\"x48\" leva 14 tábuas. Cedro: resiste naturalmente ao tempo e ao apodrecimento, tem um bonito tom avermelhado, é fácil de trabalhar e não precisa de selador; custa mais — peça a classe \"com nós\" ('knotty', STK). Pinho Douglas: resiste razoavelmente ao apodrecimento, é forte, mais barato que o cedro; uma boa escolha se você pretende pintar. Tratada em autoclave: a mais barata e resistente ao apodrecimento, mas a qualidade costuma ser ruim ou irregular, precisa secar ao ar de 1 a 4 meses antes de pintar e não é recomendada onde se plantam alimentos. Compre pelo menos 5% a mais do que a lista de cortes, para compensar a qualidade variável da madeira e os cortes errados."
+    },
+    {
+      "item": "Manta geotêxtil",
+      "notes": "Duas peças sobrepostas forram o lado de dentro da caixa, para ela segurar a terra e ainda deixar a água escorrer. Para a caixa de 24\"x24\", corte duas peças de 24\"x72\". Para a caixa de 24\"x48\", corte uma peça de 48\"x72\" e uma de 96\"x24\"."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Parafusos autoatarraxantes para madeira, uso externo"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Frente, ponta e fundo da jardineira"
+    },
+    {
+      "notes": "Ponta da jardineira"
+    },
+    {
+      "notes": "Frente e fundo da jardineira"
+    },
+    {
+      "notes": "Ponta da jardineira"
+    },
+    {
+      "notes": "Ponta da jardineira"
+    }
+  ],
+  "tools": [
+    "Serra de esquadria de 10\" ou 12\" (ou um serrote adequado)",
+    "Parafusadeira de impacto para os parafusos autoatarraxantes para madeira",
+    "Furadeira com brocas de 1/8\" e 1/4\" para fazer os furos-guia",
+    "Grampeador",
+    "Lixa, grão 120",
+    "Esquadro de carpinteiro",
+    "Óculos de proteção + máscara"
+  ],
+  "safety": [
+    "Estas são apenas recomendações para quem faz por conta própria — adapte o material, a montagem e a construção ao seu projeto e ao seu terreno.",
+    "Construir isto exige algum conhecimento prático de ferramentas manuais e elétricas, ferragens, parafusos e fixadores, madeira e técnicas básicas de montagem.",
+    "Antes de usar qualquer equipamento elétrico, leia e siga as regras de segurança do fabricante, e não deixe ninguém usar ferramentas elétricas sem ter feito o mesmo.",
+    "Você (o dono) é responsável por cumprir todas as normas de construção e de segurança, licenças e aprovações oficiais que isto exigir.",
+    "Primeiro, limpe o terreno de lixo, perigos e estruturas indesejadas, e descubra se há redes de serviços (água, gás, luz) que possam atrapalhar antes de cavar.",
+    "Todos que ajudarem na construção devem assinar um termo de responsabilidade para voluntários."
+  ],
+  "steps": [
+    {
+      "title": "Marque, identifique e corte a madeira",
+      "text": "Marque, identifique e corte a madeira na ordem de P-1 a P-2 (caixa de 24\"x24\") ou P-1A, P-1, P-2 (caixa de 24\"x48\"), nos comprimentos da lista de cortes.\n\nConfira cada pedaço de madeira procurando defeitos, como rachaduras, empenamento ou corte irregular, e descarte essas partes da madeira.",
+      "imageAlts": [
+        "Desenhos isométricos das peças cortadas da caixa de 24\"x24\" (P-1, P-2) e da caixa de 24\"x48\" (P-1A, P-1, P-2), com os comprimentos indicados."
+      ],
+      "tips": [
+        "Identifique cada pedaço de madeira à medida que mede e corta.",
+        "Deixe uma pilha de madeira separada para cada peça.",
+        "Lixar de leve as bordas cortadas tira as farpas e ajuda na montagem.",
+        "Vai fazer mais de uma jardineira? Um batente na serra de esquadria deixa todas as peças com o mesmo comprimento."
+      ]
+    },
+    {
+      "title": "Monte as duas estruturas das pontas",
+      "text": "Coloque duas peças P-1 sobre uma superfície plana. Coloque duas peças P-2 dos dois lados das peças P-1, alinhando as bordas como mostra o desenho. Repita para montar uma segunda estrutura igual.",
+      "imageAlts": [
+        "Desenho mostrando duas tábuas P-1 e duas P-2 montadas em uma estrutura quadrada de ponta, para a caixa de 24\"x24\" e para a de 24\"x48\"."
+      ],
+      "tips": [
+        "Use um esquadro de carpinteiro para conferir se cada canto forma um ângulo reto.",
+        "Fazer um gabarito de 90 graus pode ajudar na montagem desta etapa e da próxima."
+      ]
+    },
+    {
+      "title": "Feche cada estrutura da ponta",
+      "text": "Coloque seis peças P-2 em cima da estrutura feita na etapa 2, com um espaço de 1.5\" dos dois lados.\n\nUse o guia de furos no fim do material para fazer os furos-guia dos parafusos, depois prenda a madeira nas peças P-1 e P-2 com uma parafusadeira de impacto e 30 parafusos autoatarraxantes para madeira, uso externo, de 2.5\".\n\nRepita no outro pé e coloque os dois pés em pé para a próxima etapa.",
+      "siteNote": "Use aqui tábuas P-1 (21″), e não P-2: seis tábuas de 21″ na estrutura de 24″ deixam exatamente o espaço de 1.5″ dos dois lados, e tanto a lista de cortes quanto o modelo 3D usam P-1. As quatro peças P-2 de 17″ vão todas nas estruturas das pontas, na etapa 2 (P-1 × 33 = 4 nas estruturas + 12 aqui + 12 nas laterais + 5 no fundo).",
+      "imageAlts": [
+        "Desenho de seis tábuas sendo parafusadas em cada estrutura da ponta, com um espaço de 1.5\" dos dois lados (o rótulo P-2 do desenho aponta para a estrutura), para a caixa de 24\"x24\" e para a de 24\"x48\"."
+      ],
+      "tips": [
+        "Use um pedaço de madeira extra, em pé, como espaçador para deixar um espaço certinho de 1.5\"."
+      ]
+    },
+    {
+      "title": "Ligue as duas estruturas das pontas",
+      "text": "Coloque seis peças P-1 (ou seis peças P-1A, para a caixa de 24\"x48\") entre as duas pontas da jardineira.\n\nPrenda a madeira P-2 ou P-3, de cada lado, nas peças P-2 com uma parafusadeira de impacto e 24 parafusos autoatarraxantes para madeira, uso externo, de 2.5\".\n\nRepita no lado de trás da jardineira.",
+      "siteNote": "As tábuas a parafusar aqui são as seis tábuas laterais P-1 (ou P-1A) que você acabou de colocar. Este guia não tem P-3.",
+      "imageAlts": [
+        "Desenho das tábuas de frente P-1 ou P-1A ligando as duas estruturas das pontas para formar as paredes da jardineira."
+      ],
+      "tips": [
+        "Trabalhe de baixo para cima dos dois lados ao mesmo tempo, e peça a alguém para conferir se a lateral continua a 90 graus."
+      ]
+    },
+    {
+      "title": "Coloque o fundo de ripas",
+      "text": "Coloque cinco peças P-2 (ou cinco peças P-3, para a caixa de 24\"x48\") no fundo da estrutura da jardineira, deixando um espaço de 5/8\" entre cada peça para a água escorrer.\n\nPrenda a madeira P-2 ou P-3, de cada lado, nas peças P-2 com uma parafusadeira de impacto e 20 parafusos autoatarraxantes para madeira, uso externo, de 2.5\".",
+      "siteNote": "Use aqui cinco tábuas P-1 (21″), ou cinco P-1A (45″) para a caixa de 24″x48″: é assim que o desenho desta etapa as identifica e que a lista de cortes as conta. Este guia não tem P-3, e as únicas P-2 estão nas estruturas das pontas.",
+      "imageAlts": [
+        "Desenho das tábuas formando o fundo de ripas da jardineira, com um espaço de 5/8\" entre cada tábua para a água escorrer."
+      ]
+    },
+    {
+      "title": "Forre com manta geotêxtil e termine",
+      "text": "Vire a estrutura da jardineira para cima.\n\nCorte uma peça de manta geotêxtil de 24\"x72\" (ou uma peça de 48\"x72\" para a caixa de 24\"x48\"). Corte uma segunda peça de 24\"x72\" (ou uma peça de 96\"x24\" para a caixa de 24\"x48\").\n\nUse um grampeador para prender as mantas geotêxteis sobrepostas dentro da jardineira.\n\nLixe de leve as bordas ásperas da jardineira. Pronto — leve-a até o lugar final, depois encha com terra para vasos e plante!",
+      "imageAlts": [
+        "Desenho de duas peças sobrepostas de manta geotêxtil sendo grampeadas dentro da jardineira, para os dois tamanhos de caixa."
+      ],
+      "tips": [
+        "Dobre a manta pelo menos 1\" abaixo da borda de cima antes de grampear. Grampeie ao longo da borda de cima e descendo pelos cantos para vedar melhor."
+      ]
+    },
+    {
+      "title": "Guia de furos (molde)",
+      "text": "Recorte o guia de furos pelas linhas pontilhadas. Na hora de furar, alinhe a borda do molde com a borda de fora da madeira antes de fazer o furo-guia.\n\nNem todos os furos são usados — nem todos os desenhos usam o molde. Siga as etapas de montagem acima para saber onde furar. Deixe todos os furos a mais ou menos a largura de um polegar da borda (cerca de 1\"), mesmo os furos que não usam este molde.",
+      "imageAlts": [
+        "Um molde de guia de furos para imprimir, com cinco posições de furo marcadas e linhas de corte, mais um detalhe mostrando a distância dos furos até a borda da tábua."
+      ]
+    }
+  ],
+  "links": [
+    {
+      "label": "Como escolher o melhor acabamento para projetos ao ar livre (Rockler, em inglês)"
+    },
+    {
+      "label": "O melhor acabamento para madeira ao ar livre (Real Milk Paint, em inglês)"
+    },
+    {
+      "label": "Acabamentos para madeira em área externa (Vermont Natural Coatings, em inglês)"
+    }
+  ]
+}

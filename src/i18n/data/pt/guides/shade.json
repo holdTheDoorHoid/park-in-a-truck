@@ -1,0 +1,168 @@
+{
+  "title": "Estrutura de sombra de 8'",
+  "summary": "Uma treliça de 2x4 que fica em pé sozinha, de 8x8x8 pés, com um teto de ripas, presa no chão (ou num canteiro) com cantoneiras em L e ganchos em J, ou parafusada num banco de gabião ao lado.",
+  "finishing": "Tratar a madeira para área externa pode aumentar a vida dos elementos do seu parque, mas não é necessário — estas peças foram pensadas para ser baratas, resistentes e fáceis de construir, então pode ser mais prático simplesmente deixar a próxima geração reconstruí-las quando chegar a hora. Se você quiser tingir, pintar ou selar a madeira, veja os recursos sobre acabamento abaixo.",
+  "sourcePages": "Instruções de montagem SHADE_Assembly, pp. 1–12 (capa; antes de começar; madeiras mais usadas; etapas 1–7; como prender no chão; guia de furos)",
+  "materials": [
+    {
+      "item": "Madeira serrada 2x4 — cedro-vermelho (western red cedar) ou pinho Douglas (Douglas fir)",
+      "notes": "Cedro: resiste naturalmente ao tempo e ao apodrecimento, bonito tom avermelhado, não precisa de selador; custa mais — peça a classe \"com nós\" ('knotty', STK). Pinho: resiste razoavelmente ao apodrecimento, é forte, mais barato que o cedro; bom se você pretende pintar. A madeira ainda pode rachar com o sol. Compre de 5 a 10% a mais do que a lista de cortes, para compensar a qualidade variável da madeira e os cortes errados."
+    },
+    {
+      "item": "Blocos de concreto para deck",
+      "notes": "Só se precisar — veja a etapa 8. Use quando um poste cair em cima de um canteiro, para deixar o poste acima da terra e firme, apodrecendo menos. Enterre os blocos o quanto for preciso para todos os postes ficarem no mesmo nível."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Parafusos autoatarraxantes para madeira, uso externo"
+    },
+    {
+      "item": "Cantoneiras em L"
+    },
+    {
+      "item": "Parafusos sextavados (lag screws)"
+    },
+    {
+      "item": "Ganchos em J"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Pé (comprido), travessa lateral, travessa de cima e tábuas do teto",
+      "siteNote": "A lista de cortes do guia diz 14, mas as etapas usam 32: 4 pés, 2 vigas de cima, 4 travessas, 2 vigas transversais, 4 travessas compridas, 1 apoio de cima e 15 tábuas do teto. As 47 tábuas 2x4x8 da lista de materiais cobrem todas elas, mais as SS-2 a SS-4."
+    },
+    {
+      "notes": "Pé (curto)"
+    },
+    {
+      "notes": "Travessa interna, lado B — cortada no tamanho final no local, medindo na estrutura já montada"
+    },
+    {
+      "notes": "Travessa interna, lado A — só uma estimativa; não corte no comprimento final antes de medir a estrutura na etapa 5"
+    }
+  ],
+  "tools": [
+    "Serra de esquadria de 10\" ou 12\" (ou um serrote adequado)",
+    "Parafusadeira de impacto para os parafusos autoatarraxantes para madeira",
+    "Furadeira com broca de 1/8\" para fazer os furos-guia",
+    "Martelo de 5 lb, para os ganchos em J",
+    "Lixa, grão 120",
+    "Esquadro de carpinteiro",
+    "Óculos de proteção + luvas",
+    "Escada de 6'",
+    "2 grampos sargento para madeira (opcional)"
+  ],
+  "safety": [
+    "Estas são apenas recomendações para quem faz por conta própria — adapte o material, a montagem e a construção ao seu projeto e ao seu terreno.",
+    "Construir isto exige algum conhecimento prático de ferramentas manuais e elétricas, ferragens, parafusos e fixadores, madeira e técnicas básicas de montagem.",
+    "Antes de usar qualquer equipamento elétrico, leia e siga as regras de segurança do fabricante, e não deixe ninguém usar ferramentas elétricas sem ter feito o mesmo.",
+    "Você (o dono) é responsável por cumprir todas as normas de construção e de segurança, licenças e aprovações oficiais que isto exigir.",
+    "Primeiro, limpe o terreno de lixo, perigos e estruturas indesejadas, e descubra se há redes de serviços (água, gás, luz) que possam atrapalhar antes de cavar.",
+    "Todos que ajudarem na construção devem assinar um termo de responsabilidade para voluntários.",
+    "Esta é uma estrutura de 8 pés montada no alto, em cima de uma escada — peça a alguém para segurar a estrutura e a escada enquanto você trabalha lá em cima."
+  ],
+  "steps": [
+    {
+      "title": "Marque, identifique e corte a madeira",
+      "text": "Marque, identifique e corte a madeira na ordem de SS-1 a SS-4, nos comprimentos da lista de cortes. As peças SS-3 e SS-4 são cortadas aqui num comprimento aproximado e acertadas no tamanho final e exato no local, na etapa 5 — não corte mais antes disso.\n\nConfira cada pedaço de madeira procurando defeitos, como rachaduras, empenamento ou corte irregular, e descarte essas partes da madeira.",
+      "imageAlts": [
+        "Desenho isométrico das quatro peças cortadas da estrutura de sombra, de SS-1 a SS-4, com os comprimentos indicados, da tábua de 96\" até as travessas internas de cerca de 87\"."
+      ],
+      "tips": [
+        "Identifique cada pedaço de madeira à medida que mede e corta.",
+        "Deixe uma pilha de madeira separada para cada peça, de SS-1 a SS-4.",
+        "Lixar de leve as bordas cortadas tira as farpas e ajuda na montagem.",
+        "Vai fazer mais de uma estrutura de sombra? Um batente na serra de esquadria deixa todas as peças com o mesmo comprimento."
+      ]
+    },
+    {
+      "title": "Monte os quatro pés e ligue-os em dois pares",
+      "text": "Coloque uma SS-2 em cima de uma SS-1, alinhando um lado rente e deixando um espaço de 3.5\" do outro lado. Isto forma o primeiro pé da treliça.\n\nUse o guia de furos no fim do material para fazer os furos-guia dos parafusos, depois prenda as duas peças com 2 parafusos numa ponta, 2 na outra ponta, 2 no meio e mais 2 com espaços iguais entre uma ponta e o meio — 10 parafusos por pé.\n\nRepita mais 3 vezes, com mais 3 peças SS-2 e SS-1 e mais 30 parafusos, para montar os quatro pés.\n\nPara ligar os pés em pares: prenda uma SS-1 atravessada no topo de dois pés, encaixada no espaço de 3.5\", com 8 parafusos (4 por pé). Repita com os outros dois pés.",
+      "imageAlts": [
+        "Desenho de uma tábua SS-2 e uma SS-1 empilhadas com um espaço de 3.5\" para formar um pé da treliça, com uma peça SS-1 atravessada em cima ligando dois pés em um par."
+      ],
+      "tips": [
+        "As duas primeiras etapas podem ser feitas no chão plano, antes de levantar qualquer coisa.",
+        "Confira com um esquadro de carpinteiro se cada lado continua a 90 graus."
+      ]
+    },
+    {
+      "title": "Coloque as travessas laterais de baixo e levante os pés",
+      "text": "Vire os pares de pés. Usando duas SS-1 de um lado da treliça, coloque as travessas, usando um pedaço de 2x4 que sobrou para deixar um espaço certinho de 3.5\" entre a travessa de cima do pé e as novas travessas embaixo dela — 4 parafusos por travessa, 8 parafusos no total para este lado.\n\nRepita no outro par de pés com mais duas SS-1 e mais 8 parafusos.\n\nLevante os pés.",
+      "imageAlts": [
+        "Desenho das travessas laterais SS-1 sendo colocadas embaixo da peça atravessada de cima em cada par de pés, com o espaço de 3.5\" do espaçador, e depois os pares de pés levantados."
+      ],
+      "tips": [
+        "Confira com um esquadro de carpinteiro se cada lado continua a 90 graus."
+      ]
+    },
+    {
+      "title": "Coloque as vigas transversais de cima e as travessas compridas",
+      "text": "Com os pés em pé, ligue os dois pares de pés com duas vigas transversais de cima SS-1, conferindo se todos os lados estão a 90 graus, e prenda cada canto com 4 parafusos (8 parafusos nesta etapa).\n\nColoque travessas compridas ao longo de um lado usando duas SS-1, de novo usando um pedaço de 2x4 que sobrou para deixar um espaço certinho de 3.5\" embaixo da viga transversal de cima (4 parafusos por travessa). Repita do outro lado.",
+      "imageAlts": [
+        "Desenho das vigas transversais de cima SS-1 ligando os dois pares de pés no alto, e das travessas compridas SS-1 ao longo das laterais, embaixo delas."
+      ],
+      "tips": [
+        "As próximas etapas precisam de uma escada para alcançar o topo da estrutura.",
+        "Confira com um esquadro de carpinteiro se cada lado continua a 90 graus."
+      ]
+    },
+    {
+      "title": "Ajuste e prenda as travessas internas",
+      "text": "Meça a distância entre os dois postes onde vai cada travessa interna SS-4, corte a peça SS-4 exatamente nessa medida para ela entrar justa, e prenda-a na peça SS-1 que fica atrás. Repita para as 4 travessas internas dos lados compridos, prendendo cada uma com 8 parafusos de 2.5\" colocados em pares, com espaços iguais (32 parafusos no total).\n\nFaça o mesmo com as travessas internas SS-3 dos lados curtos: meça, corte cada uma para entrar justa e prenda na peça SS-1 que fica atrás, para 4 travessas internas dos lados curtos e mais 32 parafusos.",
+      "imageAlts": [
+        "Desenho mostrando as travessas internas SS-4 e SS-3 medidas e cortadas para entrar justas entre os postes, e depois parafusadas em pares com espaços iguais."
+      ],
+      "tips": [
+        "Use grampos sargento para segurar a madeira no lugar enquanto você a prende."
+      ]
+    },
+    {
+      "title": "Coloque os apoios da travessa de cima",
+      "text": "Use uma peça SS-1 para fazer um apoio da travessa de cima, bem no centro da estrutura.\n\nPrenda-a com 4 parafusos autoatarraxantes para madeira, uso externo.",
+      "imageAlts": [
+        "Desenho de um único apoio da travessa de cima SS-1, centralizado atravessando o meio da estrutura."
+      ],
+      "tips": [
+        "Use grampos sargento para segurar a madeira no lugar enquanto você a prende."
+      ]
+    },
+    {
+      "title": "Monte o teto e lixe",
+      "text": "Use peças SS-1 para o teto. Usando um pedaço de 2x4 que sobrou como espaçador, prenda cada tábua SS-1 do teto de um lado da estrutura até o outro (da direita para a esquerda).\n\nPrenda a madeira com uma parafusadeira de impacto e 75 parafusos autoatarraxantes para madeira, uso externo, de 2.5\", depois prenda as outras peças SS-1 do teto com mais 70 parafusos.\n\nAlinhe a última peça com a estrutura para não sobrar nada para fora — tudo bem se a última peça for mais estreita que 3.5\", se for preciso para caber.\n\nLixe de leve as bordas ásperas da estrutura de sombra.",
+      "imageAlts": [
+        "Desenho das tábuas SS-1 do teto sendo colocadas lado a lado em cima da estrutura, com um espaçador de 2x4, e parafusadas de um lado até o outro."
+      ]
+    },
+    {
+      "title": "Prenda os postes no chão",
+      "text": "Coloque uma cantoneira em L do lado de dentro de cada poste e prenda-a com um parafuso sextavado de 1/2\" x 2\".\n\nPasse um gancho em J de 18\" pelo furo de baixo de cada cantoneira em L e bata nele com um martelo de 5 lb até entrar no chão.",
+      "imageAlts": [
+        "Desenho de uma cantoneira em L e um gancho em J prendendo no chão a base de um poste da treliça, com a opção de bloco de concreto para deck nos canteiros."
+      ],
+      "tips": [
+        "Se a estrutura de sombra ficar ao lado de um banco de gabião com assento de madeira, é melhor usar as cantoneiras em L e os parafusos sextavados para parafusar os pés da treliça direto no banco.",
+        "Se um poste cair em cima de um canteiro, apoie-o num bloco de concreto para deck acima da terra, para dar firmeza e diminuir o apodrecimento da madeira — enterre o bloco para ele ficar no nível dos outros postes."
+      ]
+    },
+    {
+      "title": "Guia de furos (molde)",
+      "text": "Recorte o guia de furos pelas linhas pontilhadas. Na hora de furar, alinhe a borda do molde com a borda de fora da madeira antes de fazer o furo-guia.\n\nNem todos os furos são usados — nem todos os desenhos usam o molde. Siga as etapas de montagem acima para saber onde furar. Deixe todos os furos a mais ou menos a largura de um polegar da borda (cerca de 1\"), mesmo os furos que não usam este molde.",
+      "imageAlts": [
+        "Um molde de guia de furos para imprimir, com cinco posições de furo marcadas e linhas de corte, mais um detalhe mostrando a distância dos furos até a borda da tábua."
+      ]
+    }
+  ],
+  "links": [
+    {
+      "label": "Como escolher o melhor acabamento para projetos ao ar livre (Rockler, em inglês)"
+    },
+    {
+      "label": "O melhor acabamento para madeira ao ar livre (Real Milk Paint, em inglês)"
+    },
+    {
+      "label": "Acabamentos para madeira em área externa (Vermont Natural Coatings, em inglês)"
+    }
+  ]
+}

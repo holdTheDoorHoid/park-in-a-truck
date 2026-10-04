@@ -1,0 +1,121 @@
+{
+  "title": "Mesa de 2'",
+  "summary": "Uma mesa quadrada e compacta de 2x4, a menor dos três tamanhos de mesa, no tamanho certo para combinar com o banquinho e os bancos.",
+  "finishing": "Tratar a madeira para área externa pode aumentar a vida dos elementos do seu parque, mas não é necessário — estas peças foram pensadas para ser baratas, resistentes e fáceis de construir, então pode ser mais prático simplesmente deixar a próxima geração reconstruí-las quando chegar a hora. Se você quiser tingir, pintar ou selar a madeira, veja os recursos sobre acabamento abaixo.",
+  "sourcePages": "Instruções de montagem 2_TABLE, pp. 1–9 (capa; antes de começar; madeiras mais usadas; etapas 1–5; guia de furos)",
+  "materials": [
+    {
+      "item": "Madeira serrada 2x4 — cedro-vermelho (western red cedar), pinho Douglas (Douglas fir) ou pinus tratado em autoclave",
+      "notes": "Cedro: resiste naturalmente ao tempo e ao apodrecimento, tem um bonito tom avermelhado, é fácil de trabalhar e não precisa de selador (com o tempo fica cinza); custa mais — peça a classe \"com nós\" ('knotty', STK), bem mais barata que a classe sem nós (clear). Pinho Douglas: resiste razoavelmente ao apodrecimento, é forte e fácil de trabalhar, mais barato que o cedro, mas não dura tanto — uma boa escolha se você pretende pintar. Tratada em autoclave: resiste ao apodrecimento e é a opção mais barata, mas a qualidade da madeira costuma ser ruim e irregular, precisa secar ao ar de 1 a 4 meses antes de pintar e não é recomendada onde se plantam alimentos. Compre de 5 a 10% a mais do que a lista de cortes, para compensar a qualidade variável da madeira e os cortes errados."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Parafusos autoatarraxantes para madeira, uso externo"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Lateral da mesa"
+    },
+    {
+      "notes": "Tampo da mesa"
+    },
+    {
+      "notes": "Frente da mesa"
+    },
+    {
+      "notes": "Lateral da mesa"
+    },
+    {
+      "notes": "Lateral da mesa"
+    },
+    {
+      "notes": "Lateral da mesa"
+    }
+  ],
+  "tools": [
+    "Serra de esquadria de 10\" ou 12\" (ou um serrote adequado)",
+    "Parafusadeira de impacto para os parafusos autoatarraxantes para madeira",
+    "Furadeira com broca de 1/8\" para fazer os furos-guia",
+    "Lixa, grão 120",
+    "Esquadro de carpinteiro",
+    "Óculos de proteção + luvas"
+  ],
+  "safety": [
+    "Estas são apenas recomendações para quem faz por conta própria — adapte o material, a montagem e a construção ao seu projeto e ao seu terreno.",
+    "Construir isto exige algum conhecimento prático de ferramentas manuais e elétricas, ferragens, parafusos e fixadores, madeira e técnicas básicas de montagem.",
+    "Antes de usar qualquer equipamento elétrico, leia e siga as regras de segurança do fabricante, e não deixe ninguém usar ferramentas elétricas sem ter feito o mesmo.",
+    "Você (o dono) é responsável por cumprir todas as normas de construção e de segurança, licenças e aprovações oficiais que isto exigir.",
+    "Primeiro, limpe o terreno de lixo, perigos e estruturas indesejadas, e descubra se há redes de serviços (água, gás, luz) que possam atrapalhar antes de cavar.",
+    "Todos que ajudarem na construção devem assinar um termo de responsabilidade para voluntários."
+  ],
+  "steps": [
+    {
+      "title": "Marque, identifique e corte a madeira",
+      "text": "Marque, identifique e corte a madeira na ordem de T-1 a T-6, nos comprimentos da lista de cortes.\n\nConfira cada pedaço de madeira procurando defeitos, como rachaduras, empenamento ou corte irregular, e descarte essas partes da madeira.",
+      "imageAlts": [
+        "Desenho isométrico das seis peças cortadas da mesa de 2', de T-1 a T-6, com os comprimentos indicados, das tábuas de 27\" até os tocos de 12\"."
+      ],
+      "tips": [
+        "Identifique cada pedaço de madeira à medida que mede e corta.",
+        "Deixe uma pilha de madeira separada para cada peça, de T-1 a T-6.",
+        "Lixar de leve as bordas cortadas tira as farpas e ajuda na montagem.",
+        "Vai fazer mais de uma mesa? Um batente na serra de esquadria deixa todas as peças com o mesmo comprimento."
+      ]
+    },
+    {
+      "title": "Monte as duas estruturas das pontas",
+      "text": "Coloque duas peças T-5 sobre uma superfície plana. Coloque duas peças T-1 dos dois lados das peças T-5, alinhando as bordas como mostra o desenho. Repita para montar uma segunda estrutura igual.",
+      "imageAlts": [
+        "Desenho mostrando duas tábuas T-1 e duas T-5 montadas em uma estrutura quadrada de ponta."
+      ],
+      "tips": [
+        "Use um esquadro de carpinteiro para conferir se cada canto forma um ângulo reto — se estiver muito fora, confira de novo o comprimento das tábuas.",
+        "Fazer um gabarito de 90 graus pode ajudar na montagem desta etapa e da próxima."
+      ]
+    },
+    {
+      "title": "Coloque o travamento dos pés em cada estrutura da ponta",
+      "text": "Coloque uma peça T-2, duas T-4 e duas T-6 em cima da estrutura montada na etapa 2. Para garantir um espaço de 1.5\" entre as duas peças T-6, use um pedaço de 2x4 que sobrou, em pé, como espaçador.\n\nUse o guia de furos no fim do material para fazer os furos-guia dos parafusos, depois prenda a madeira nas peças T-2, T-4 e T-6 com uma parafusadeira de impacto e 30 parafusos autoatarraxantes para madeira, uso externo, de 2.5\".\n\nRepita no outro pé, depois coloque os dois pés em pé para a próxima etapa.",
+      "imageAlts": [
+        "Desenho das tábuas T-2, T-4 e T-6 sendo parafusadas em cima da estrutura da ponta, com o espaço de 1.5\" do espaçador indicado."
+      ]
+    },
+    {
+      "title": "Ligue as duas estruturas das pontas",
+      "text": "Coloque uma peça T-3 no encaixe da base das duas estruturas feitas na etapa 3.\n\nColoque duas peças T-2 em cima da mesa, nas duas bordas, como mostra o desenho — confira se elas ficam rentes à borda dos pés, o que mantém a mesa no esquadro — e prenda com 12 parafusos autoatarraxantes para madeira, uso externo, de 2.5\".\n\nPrenda a madeira T-3, tanto do lado esquerdo quanto do direito, nas peças T-1 com uma parafusadeira de impacto e 4 parafusos autoatarraxantes para madeira, uso externo, de 2.5\".",
+      "imageAlts": [
+        "Desenho de uma tábua T-3 ligando as duas estruturas das pontas na base, com as tábuas T-2 do tampo alinhadas rentes aos pés."
+      ],
+      "tips": [
+        "Confira com um esquadro de carpinteiro se a lateral continua a 90 graus."
+      ]
+    },
+    {
+      "title": "Coloque o tampo da mesa e lixe",
+      "text": "Coloque cinco peças T-2 em cima da estrutura feita na etapa 4, alinhando todas as bordas e deixando um espaço igual entre todas as peças.\n\nPrenda com uma parafusadeira de impacto e 20 parafusos autoatarraxantes para madeira, uso externo, de 2.5\".\n\nLixe de leve as bordas ásperas da mesa.",
+      "imageAlts": [
+        "Desenho das outras tábuas T-2 do tampo sendo espaçadas por igual e parafusadas na estrutura da mesa."
+      ]
+    },
+    {
+      "title": "Guia de furos (molde)",
+      "text": "Recorte o guia de furos pelas linhas pontilhadas. Na hora de furar, alinhe a borda do molde com a borda de fora da madeira antes de fazer o furo-guia.\n\nNem todos os furos são usados — nem todos os desenhos usam o molde. Siga as etapas de montagem acima para saber onde furar. Deixe todos os furos a mais ou menos a largura de um polegar da borda (cerca de 1\"), mesmo os furos que não usam este molde.",
+      "imageAlts": [
+        "Um molde de guia de furos para imprimir, com cinco posições de furo marcadas e linhas de corte, mais um detalhe mostrando a distância dos furos até a borda da tábua."
+      ]
+    }
+  ],
+  "links": [
+    {
+      "label": "Como escolher o melhor acabamento para projetos ao ar livre (Rockler, em inglês)"
+    },
+    {
+      "label": "O melhor acabamento para madeira ao ar livre (Real Milk Paint, em inglês)"
+    },
+    {
+      "label": "Acabamentos para madeira em área externa (Vermont Natural Coatings, em inglês)"
+    }
+  ]
+}

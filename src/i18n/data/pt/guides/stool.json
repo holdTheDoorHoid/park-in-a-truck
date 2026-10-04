@@ -1,0 +1,115 @@
+{
+  "title": "Banquinho",
+  "summary": "Um banquinho quadrado de 2x4 com assento de ripas, no tamanho certo para combinar com os bancos e as mesas da mesma família, para você poder misturar e combinar.",
+  "finishing": "Tratar a madeira para área externa pode aumentar a vida dos elementos do seu parque, mas não é necessário — estas peças foram pensadas para ser baratas, resistentes e fáceis de construir, então pode ser mais prático simplesmente deixar a próxima geração reconstruí-las quando chegar a hora. Se você quiser tingir, pintar ou selar a madeira, veja os recursos sobre acabamento abaixo.",
+  "sourcePages": "Instruções STOOL_ASSEMBLY, pp. 1–9 (capa; antes de começar; madeiras mais usadas; etapas 1–5; guia de furos)",
+  "materials": [
+    {
+      "item": "Madeira serrada 2x4 — cedro-vermelho (western red cedar), pinho Douglas (Douglas fir) ou pinus tratado em autoclave",
+      "notes": "Cedro: resiste naturalmente ao tempo e ao apodrecimento, tem um bonito tom avermelhado, é fácil de trabalhar e não precisa de selador (com o tempo fica cinza); custa mais — peça a classe \"com nós\" ('knotty', STK), bem mais barata que a classe sem nós (clear). Pinho Douglas: resiste razoavelmente ao apodrecimento, é forte e fácil de trabalhar, mais barato que o cedro, mas não dura tanto — uma boa escolha se você pretende pintar. Tratada em autoclave: resiste ao apodrecimento e é a opção mais barata, mas a qualidade da madeira costuma ser ruim e irregular, precisa secar ao ar de 1 a 4 meses antes de pintar e não é recomendada onde se plantam alimentos. Compre 5% a mais do que a lista de cortes, para compensar a qualidade variável da madeira e os cortes errados."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Parafusos autoatarraxantes para madeira, uso externo"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Lateral e assento do banquinho"
+    },
+    {
+      "notes": "Lateral do banquinho"
+    },
+    {
+      "notes": "Lateral e base do banquinho"
+    },
+    {
+      "notes": "Lateral do banquinho"
+    }
+  ],
+  "tools": [
+    "Serra de esquadria de 10\" ou 12\" (ou um serrote adequado)",
+    "Parafusadeira de impacto para os parafusos autoatarraxantes para madeira",
+    "Furadeira com broca de 1/8\" para fazer os furos-guia",
+    "Lixa, grão 120",
+    "Esquadro de carpinteiro",
+    "Óculos de proteção + luvas"
+  ],
+  "safety": [
+    "Estas são apenas recomendações para quem faz por conta própria — adapte o material, a montagem e a construção ao seu projeto e ao seu terreno.",
+    "Construir isto exige algum conhecimento prático de ferramentas manuais e elétricas, ferragens, parafusos e fixadores, madeira e técnicas básicas de montagem.",
+    "Antes de usar qualquer equipamento elétrico, leia e siga as regras de segurança do fabricante, e não deixe ninguém usar ferramentas elétricas sem ter feito o mesmo.",
+    "Você (o dono) é responsável por cumprir todas as normas de construção e de segurança, licenças e aprovações oficiais que isto exigir.",
+    "Primeiro, limpe o terreno de lixo, perigos e estruturas indesejadas, e descubra se há redes de serviços (água, gás, luz) que possam atrapalhar antes de cavar.",
+    "Todos que ajudarem na construção devem assinar um termo de responsabilidade para voluntários."
+  ],
+  "steps": [
+    {
+      "title": "Marque, identifique e corte a madeira",
+      "text": "Marque, identifique e corte a madeira na ordem de S-1 a S-4, nos comprimentos da lista de cortes.\n\nConfira cada pedaço de madeira procurando defeitos, como rachaduras, empenamento ou corte irregular, e descarte essas partes da madeira.",
+      "imageAlts": [
+        "Desenho isométrico das quatro peças cortadas do banquinho, de S-1 a S-4, com os comprimentos indicados, das tábuas de 18.5\" até os tocos de 8.5\"."
+      ],
+      "tips": [
+        "Identifique cada pedaço de madeira à medida que mede e corta.",
+        "Deixe uma pilha de madeira separada para cada peça, de S-1 a S-4.",
+        "Lixar de leve as bordas cortadas tira as farpas e ajuda na montagem.",
+        "Vai fazer mais de um banquinho? Um batente na serra de esquadria deixa todas as peças com o mesmo comprimento."
+      ]
+    },
+    {
+      "title": "Monte a estrutura",
+      "text": "Coloque duas peças S-3 sobre uma superfície plana. Coloque duas peças S-2 dos dois lados das peças S-3, alinhando as bordas como mostra a imagem. Repita para montar uma segunda estrutura igual.",
+      "imageAlts": [
+        "Desenho mostrando duas tábuas S-2 e duas S-3 montadas em uma estrutura quadrada, com uma segunda estrutura já pronta atrás."
+      ],
+      "tips": [
+        "Use um esquadro de carpinteiro para conferir se cada canto forma um ângulo reto — se estiver muito fora, confira de novo o comprimento das tábuas.",
+        "Fazer um gabarito de 90 graus pode ajudar na montagem desta etapa e da próxima."
+      ]
+    },
+    {
+      "title": "Coloque as ripas do assento em cada estrutura",
+      "text": "Coloque uma peça S-1 e quatro peças S-4 em cima da estrutura montada na etapa 2. Para garantir um espaço de 1.5\" entre as duas peças S-4, use um pedaço de 2x4 que sobrou, em pé, como espaçador.\n\nUse o guia de furos no fim do material para fazer os furos-guia dos parafusos, depois prenda a madeira nas peças S-3 e S-2 com uma parafusadeira de impacto e 30 parafusos autoatarraxantes para madeira, uso externo, de 2.5\".\n\nRepita no outro pé.",
+      "imageAlts": [
+        "Desenho das tábuas S-1 e S-4 sendo parafusadas em cima da estrutura, com o espaço de 1.5\" do espaçador indicado."
+      ]
+    },
+    {
+      "title": "Ligue as duas estruturas",
+      "text": "Coloque uma peça S-2 no encaixe da base das duas estruturas feitas na etapa 3.\n\nPrenda a madeira S-2, tanto do lado esquerdo quanto do direito, nas peças S-3 com uma parafusadeira de impacto e 4 parafusos autoatarraxantes para madeira, uso externo, de 2.5\".\n\nColoque duas peças S-1 das pontas em cima da estrutura, alinhando todas as bordas para a peça ficar no esquadro em cima, e prenda com uma parafusadeira de impacto e 12 parafusos autoatarraxantes para madeira, uso externo, de 2.5\".",
+      "imageAlts": [
+        "Desenho de uma tábua S-2 ligando as duas estruturas na base, e das peças S-1 das pontas sendo colocadas em cima."
+      ],
+      "tips": [
+        "Use um esquadro de carpinteiro para garantir que a lateral continue a 90 graus."
+      ]
+    },
+    {
+      "title": "Coloque as outras ripas do assento e lixe",
+      "text": "Coloque três peças S-1 em cima da estrutura feita na etapa 4, alinhando todas as bordas e deixando um espaço igual entre cada peça.\n\nPrenda a madeira S-1 com uma parafusadeira de impacto e 12 parafusos autoatarraxantes para madeira, uso externo, de 2.5\".\n\nLixe de leve as bordas ásperas do banquinho.",
+      "imageAlts": [
+        "Desenho das outras tábuas S-1 do assento sendo espaçadas por igual e parafusadas na estrutura do banquinho."
+      ]
+    },
+    {
+      "title": "Guia de furos (molde)",
+      "text": "Recorte o guia de furos pelas linhas pontilhadas. Na hora de furar, alinhe a borda do molde com a borda de fora da madeira antes de fazer o furo-guia.\n\nNem todos os furos são usados — nem todos os desenhos usam o molde. Siga as etapas de montagem acima para saber onde furar. Deixe todos os furos a mais ou menos a largura de um polegar da borda (cerca de 1\"), mesmo os furos que não usam este molde.",
+      "imageAlts": [
+        "Um molde de guia de furos para imprimir, com cinco posições de furo marcadas e linhas de corte, mais um detalhe mostrando a distância dos furos até a borda da tábua."
+      ]
+    }
+  ],
+  "links": [
+    {
+      "label": "Como escolher o melhor acabamento para projetos ao ar livre (Rockler, em inglês)"
+    },
+    {
+      "label": "O melhor acabamento para madeira ao ar livre (Real Milk Paint, em inglês)"
+    },
+    {
+      "label": "Acabamentos para madeira em área externa (Vermont Natural Coatings, em inglês)"
+    }
+  ]
+}
