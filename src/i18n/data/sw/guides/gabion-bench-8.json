@@ -12,11 +12,11 @@
     },
     {
       "item": "Vifaa vya kujazia gabioni",
-      "notes": "Vitu vyenye pembe kali, vigumu na visivyobadilika ambavyo havitaoza wala kuvunjika kwa muda — mawe ya machimbo, sakafu iliyorejelezwa (zege/lami), au matofali/vitofali vya zege vilivyorejelezwa. Magogo yaliyokatwa au vitu vingine vya asili vinavyooza visitumike. Mchanganyiko wa ukubwa kuanzia angalau 2\" hadi zaidi ya 12\"; vipande vilivyo upande wa nje vinapaswa kuwa vikubwa kuliko 3\"."
+      "notes": "Vitu vyenye pembe kali, vigumu na visivyobadilika ambavyo havitaoza wala kuvunjika kwa muda — mawe ya machimbo, sakafu iliyorejelezwa (zege/lami), au matofali/vitofali vya zege vilivyorejelezwa. Magogo yaliyokatwa au vitu vingine vya asili vinavyooza visitumike. Mchanganyiko wa ukubwa kuanzia angalau 2\" hadi 12\" kwa ukubwa wa juu kabisa; vipande vilivyo upande wa nje vinapaswa kuwa vikubwa kuliko 3\"."
     },
     {
       "item": "Vifaa vya kukingamisha (kwa vishikizo vya katikati, chini ya vipande vya fremu vya katikati)",
-      "notes": "Ama roli ya waya laini wa mabati wa gauge 14 au 16, ama vipande vya ziada vya wavu wa waya wa 2x2 vilivyokatwa nusu kwa koleo la kukata boliti (vikienea upana wote wa kikapu, angalau visanduku 2 / 4\" kwenda juu)."
+      "notes": "Ama roli ya waya laini wa mabati wa gauge 14 au 16, ama vipande vya ziada vya wavu wa waya wa 2x2 vilivyokatwa nusu kwa koleo la kukata boliti (vikienea upana wote wa kikapu, kimo cha angalau visanduku 2 / 4\")."
     }
   ],
   "hardware": [
@@ -100,7 +100,7 @@
     },
     {
       "title": "Imarisha katikati",
-      "text": "Katikati ya kikapu cha gabioni, chini ya kipande cha GB-2 cha katikati, ongeza kifaa cha kukingamisha kwa njia mojawapo kati ya mbili: vipande vya ziada vya miisho vya wavu wa waya wa 2x2 vilivyokatwa nusu kwa koleo la kukata boliti, au wavu wowote wa ziada wa 2x2 unaoenea upana wote wa kikapu (angalau visanduku 2, au zaidi ya 4\", kwenda juu).\n\nFunga kipande cha kishikizo cha katikati kwa pete za kubana.",
+      "text": "Katikati ya kikapu cha gabioni, chini ya kipande cha GB-2 cha katikati, ongeza kifaa cha kukingamisha kwa njia mojawapo kati ya mbili: vipande vya ziada vya miisho vya wavu wa waya wa 2x2 vilivyokatwa nusu kwa koleo la kukata boliti, au wavu wowote wa ziada wa 2x2 unaoenea upana wote wa kikapu (kimo cha angalau visanduku 2, yaani 4\" au zaidi).\n\nFunga kipande cha kishikizo cha katikati kwa pete za kubana.",
       "imageAlts": [
         "Mchoro wa kishikizo cha wavu wa waya kikifungwa kwa pete za kubana chini ya kipande cha fremu cha katikati."
       ]

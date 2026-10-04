@@ -13,7 +13,7 @@ export default {
   'nav.steps': 'Hatua',
   'nav.lot': 'Tafuta kiwanja',
   'nav.planner': 'Panga kwa 3D',
-  'nav.build': 'Miongozo ya ujenzi',
+  'nav.build': 'Ujenzi',
   'nav.plants': 'Mimea',
   'nav.parks': 'Bustani',
   'nav.myPark': 'Bustani yangu:',
