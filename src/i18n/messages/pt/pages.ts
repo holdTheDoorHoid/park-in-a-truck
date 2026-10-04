@@ -1,0 +1,116 @@
+// Português do Brasil — textos das páginas avulsas. Glossário: docs/i18n/glossary.md
+import type en from '../en/pages.ts';
+import type { Translation } from '../../define.ts';
+
+export default {
+  'home.eyebrow': 'Um guia faça-você-mesmo para parques de bairro',
+  'home.title': 'Transforme um terreno baldio no parque do seu bairro.',
+  'home.lede':
+    'O Park in a Truck acompanha você e seus vizinhos em cada etapa — achar um terreno, organizar uma equipe, desenhar o parque, construí-lo e mantê-lo bonito. Este site transforma o guia em um caderno de trabalho interativo, passo a passo, que faz as pesquisas por você.',
+  'home.start': 'Comece aqui →',
+  'home.allSteps': 'Ver as seis etapas',
+  'home.heroAlt':
+    'Vizinhos descarregando uma caminhonete com o nome Park in a Truck, carregando um banco, plantando árvores e cuidando do jardim, com casas geminadas ao fundo.',
+  'home.path': 'O seu caminho',
+  'home.lotTitle': 'Tem um terreno em mente?',
+  'home.lotLede':
+    'Digite um endereço da Filadélfia. Nós achamos o dono, o tamanho do terreno, o zoneamento e o contorno do terreno — sem precisar procurar no atlas.phila.gov.',
+  'home.tools': 'Ferramentas que fazem o trabalho por você',
+  'home.tool.lot': 'Achar um terreno',
+  'home.tool.lot.text': 'Mapa de terrenos baldios perto de você, com dono, tamanho e zoneamento.',
+  'home.tool.planner': 'Planejar em 3D',
+  'home.tool.planner.text': 'Encaixe as peças do parque do Park in a Truck no seu terreno de verdade e veja o sol e a sombra.',
+  'home.tool.build': 'Guias de montagem',
+  'home.tool.build.text': 'Instruções passo a passo para bancos, mesas, jardineiras, sombra e muito mais.',
+  'home.tool.plants': 'Plantas',
+  'home.tool.plants.text': 'Listas de plantas nativas para cada tema de parque, para sol e para sombra.',
+  'home.tool.parks': 'Parques já construídos',
+  'home.tool.parks.text': 'Veja o que vizinhos de toda a Filadélfia já criaram.',
+  'home.tool.myPark': 'Meu parque',
+  'home.tool.myPark.text': 'Suas respostas, salvas neste navegador. Compartilhe uma cópia com a sua comissão.',
+
+  'steps.title': 'As etapas',
+  'steps.eyebrow': 'O processo do Park in a Truck',
+  'steps.h1': 'Seis etapas até um parque',
+  'steps.lede':
+    'Todo parque do Park in a Truck passa pelas mesmas seis etapas. Siga-as em ordem — cada uma se apoia na anterior. Marque as subetapas como feitas à medida que avança; o seu progresso fica salvo neste navegador.',
+
+  'lot.title': 'Achar um terreno',
+  'lot.description': 'Descubra o dono, o tamanho, o zoneamento e se está vago qualquer terreno da Filadélfia, e veja os terrenos baldios em um mapa.',
+  'lot.eyebrow': 'Etapa 1 · Adquirir',
+  'lot.h1': 'Achar um terreno',
+  'lot.lede':
+    'Digite um endereço, ou explore o mapa de terrenos baldios. O site consulta os mesmos registros da Prefeitura que o atlas.phila.gov mostra — dono, tamanho do terreno, zoneamento, se está vago — e diz qual tamanho do Park in a Truck serve.',
+  'lot.lookupH2': 'Procurar um endereço',
+  'lot.mapH2': 'Terrenos baldios perto de você',
+  'lot.mapText':
+    'Terrenos que a Prefeitura registra como baldios, coloridos de acordo com quem é o dono. Clique em um para ver o dono e o tamanho, depois salve-o como o terreno do seu parque ou adicione-o à sua lista. Ande pelo quarteirão também — a lista da Prefeitura deixa passar alguns terrenos e inclui outros que já estão em uso.',
+  'lot.compareH2': 'Compare os terrenos possíveis',
+  'lot.nextH2': 'Próximos passos',
+  'lot.next.owner.title': 'Quem é o dono desse terreno?',
+  'lot.next.owner.text': 'Dono público ou privado — os caminhos para conseguir o direito de construir um parque.',
+  'lot.next.organize.title': 'Organizar',
+  'lot.next.organize.text': 'Organizações comunitárias, escolas, hortas e outros recursos perto do seu terreno.',
+  'lot.next.assess.title': 'Avaliar',
+  'lot.next.assess.text': 'Lados medidos, um mapa base para imprimir, árvores e prédios vizinhos.',
+  'lot.next.planner.title': 'Planejar em 3D',
+  'lot.next.planner.text': 'Encaixe as peças do parque no seu terreno e veja o sol e a sombra.',
+
+  'myPark.title': 'Meu parque',
+  'myPark.eyebrow': 'Salvo neste navegador',
+  'myPark.lede':
+    'Tudo o que você preenche neste site fica salvo aqui, só neste aparelho — sem conta, nada é enviado para lugar nenhum. Para trabalhar com a sua comissão, salve um arquivo do projeto e mande para eles; eles podem abri-lo aqui, no próprio aparelho.',
+  'myPark.storageWarning':
+    'Este navegador não está deixando o site salvar nada (janela anônima ou dados do site bloqueados). Salve um arquivo do projeto antes de sair, ou suas respostas serão perdidas.',
+  'myPark.thisProject': 'Este projeto',
+  'myPark.nameLabel': 'Nome',
+  'myPark.saveFile': '⬇ Salvar arquivo do projeto',
+  'myPark.openFile': '⬆ Abrir um arquivo do projeto',
+  'myPark.printEverything': '🖨 Imprimir tudo',
+  'myPark.allProjects': 'Todos os projetos',
+  'myPark.newProjectPlaceholder': 'Nome do novo projeto',
+  'myPark.newProject': '+ Novo projeto',
+  'myPark.progress': 'Progresso',
+  'myPark.yourLot': 'O seu terreno',
+  'myPark.noLotYet': 'Nenhum terreno escolhido ainda. Procure um na <a href="{href}">Etapa 1: Adquirir</a>.',
+  'myPark.yourAnswers': 'Suas respostas',
+  'myPark.nothingFilledIn': 'Nada preenchido ainda.',
+
+  'planner.title': 'Planejar em 3D',
+  'planner.description':
+    'Encaixe as peças do parque do Park in a Truck no seu terreno de verdade na Filadélfia, veja o sol e a sombra, e conte tudo para o orçamento e as listas de plantas.',
+  'planner.h1': 'Planeje o seu parque em 3D',
+  'planner.loading': 'Carregando o planejador…',
+  'planner.noscript': 'O planejador 3D precisa do JavaScript ativado.',
+
+  'resources.title': 'Recursos, parceiros e imprensa',
+  'resources.description':
+    'Os parceiros do Park in a Truck, matérias na imprensa, fornecedores, a Biblioteca do Toolkit completa, contato e aviso legal.',
+  'resources.eyebrow': 'Além dos cadernos de trabalho',
+  'resources.lede':
+    'Quem ajuda a construir estes parques, quem já escreveu sobre eles, onde conseguir materiais e plantas, e como falar com a equipe do Park in a Truck.',
+  'resources.sectionsNav': 'Seções desta página',
+  'resources.sections.partners': 'Parceiros',
+  'resources.sections.press': 'Imprensa e vídeos em destaque',
+  'resources.sections.suppliers': 'Fornecedores e links úteis',
+  'resources.sections.toolkitLibrary': 'Biblioteca do Toolkit',
+  'resources.sections.contact': 'Contato',
+  'resources.sections.acknowledgments': 'Agradecimentos',
+  'resources.sections.legal': 'Aviso legal',
+  'resources.deadHeadsUp': 'Atenção',
+  'resources.deadLinks': {
+    one: '{count} link desta página não funciona no momento (verificado em {date}) — mantido aqui em vez de removido sem aviso, e marcado abaixo.',
+    other: '{count} links desta página não funcionam no momento (verificado em {date}) — mantidos aqui em vez de removidos sem aviso, e marcados abaixo.',
+  },
+  'resources.status.dead': 'link fora do ar no momento',
+  'resources.status.unverified': 'não foi possível verificar automaticamente',
+  'resources.status.unconfirmed': 'não confirmado',
+  'resources.partnersIntro': 'Organizações que ajudam a tornar possíveis os parques do Park in a Truck.',
+  'resources.videoAlt': 'Vídeo: {title}',
+  'resources.suppliersIntro': 'Tirados dos links que estão nos próprios cadernos de trabalho, agrupados pelo uso.',
+  'resources.contact.email': 'E-mail:',
+  'resources.contact.founder': 'Fundadora:',
+  'resources.contact.phone': 'Telefone:',
+  'resources.contact.instagram': 'Instagram:',
+  'resources.contact.facebook': 'Facebook:',
+} satisfies Translation<typeof en>;

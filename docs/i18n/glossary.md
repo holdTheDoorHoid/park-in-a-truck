@@ -517,49 +517,88 @@ Tone: Standard French. **vous**. Keep US units and dates as the site formats the
 
 Tone: Brazilian Portuguese. **você**. Filadélfia.
 
+*Status: filled in by t-pt (2026-10-04). Brazilian usage only (no Portugal-only words: *ecrã*, *casa de banho*, *autocarro*…).
+Plain imperatives with "você" ("Procure um terreno."). The City government is **a Prefeitura** (the natural Brazilian
+word); the place is "a cidade da Filadélfia". A native reviewer should still read the whole language once.*
+
 | English | Translation | Note |
 |---|---|---|
-| Park in a Truck / PiaT |  | |
-| toolkit |  | |
-| workbook |  | |
-| step |  | |
-| sub-step |  | |
-| Mark this step done / done |  | |
-| Start here · Acquire · Organize · Assess · Dream · Create · Sustain |  | |
-| vacant lot |  | |
-| lot |  | |
-| parcel |  | |
-| mid-block lot / corner lot / breezeway, alley |  | |
-| owner (public / private) |  | |
-| zoning |  | |
-| City records / Filled in from City records |  | |
-| City (of Philadelphia) |  | |
-| RCO (Registered Community Organization) |  | |
-| Philadelphia Land Bank |  | |
-| PHDC |  | |
-| Sheriff Sale |  | |
-| purchase / donation / lease / in-kind (use) agreement |  | |
-| park committee |  | |
-| neighbors / neighborhood |  | |
-| park pieces |  | |
-| frame / front / back (pieces) |  | |
-| seam (length seam, width seam) |  | |
-| theme: Edible · Sanctuary · Nature · Event |  | |
-| size A–E |  | |
-| gabion (wall, bench) |  | |
-| build guide |  | |
-| cut list / materials & hardware / tools |  | |
-| 2x4, 2x4x8', BB-1 |  | |
-| full sun / part sun / shade |  | |
-| native plant · perennial · shrub · small tree · large tree |  | |
-| pollinator |  | |
-| stewardship / sustain |  | |
-| My park |  | |
-| project file |  | |
-| Plan in 3D / the planner |  | |
-| Note from this site, not Park in a Truck |  | |
-| in English |  | |
-| ft, in, sq ft, $ |  | |
+| Park in a Truck / PiaT | Park in a Truck / PiaT | Masculine: "o Park in a Truck", "do PiaT". |
+| toolkit | o guia (o *Toolkit*) | "O guia Park in a Truck". A furniture guide is always "guia de montagem", so the two never mix. |
+| workbook | caderno de trabalho | |
+| step | etapa | "Etapa 1: Adquirir". |
+| sub-step | subetapa | |
+| Mark this step done / done | Marcar esta etapa como feita / feito | |
+| Start here · Acquire · Organize · Assess · Dream · Create · Sustain | Comece aqui · Adquirir · Organizar · Avaliar · Sonhar · Criar · Cuidar | "Cuidar" (take care) is warmer and clearer than "Sustentar"/"Manter" for stewardship. |
+| vacant lot | terreno baldio | The usual Brazilian word. |
+| lot | terreno | "terreno" = the plot of land; "solo"/"terra" = soil. |
+| parcel | lote (no cadastro da Prefeitura) | "parcela" means an instalment in Brazil — avoid it. |
+| mid-block lot / corner lot / breezeway, alley | terreno no meio do quarteirão / terreno de esquina / passagem, beco | Easement = servidão de passagem. |
+| owner (public / private) | dono (público / privado) | "proprietário" only in legal phrases. |
+| zoning | zoneamento | Codes like RSA-5 stay. |
+| City records / Filled in from City records | registros da Prefeitura / Preenchido com dados da Prefeitura | |
+| City (of Philadelphia) | a Prefeitura (da Filadélfia) | The government = Prefeitura; the place = a cidade. |
+| RCO (Registered Community Organization) | organização comunitária registrada (RCO) | |
+| Philadelphia Land Bank | Philadelphia Land Bank (o banco de terrenos da Prefeitura) | |
+| PHDC | PHDC | |
+| Sheriff Sale | leilão do xerife (Sheriff Sale) | |
+| purchase / donation / lease / in-kind (use) agreement | compra / doação / aluguel (arrendamento) / acordo de cessão de uso | "cessão de uso": the owner keeps the lot, neighbors use it. Not "em espécie" (in Brazil that means "in cash"). Select options keep the English value. |
+| park committee | comissão do parque | "comissão", as in "comissão de moradores". |
+| neighbors / neighborhood | vizinhos / bairro (vizinhança) | |
+| park pieces | peças do parque | |
+| frame / front / back (pieces) | moldura / peça da frente / peça do fundo | |
+| seam (length seam, width seam) | faixa de emenda (no comprimento, na largura) | |
+| theme: Edible · Sanctuary · Nature · Event | Comestível · Refúgio · Natureza · Eventos | "Santuário" sounds religious in Portuguese; "Refúgio" = a calm, safe place. |
+| size A–E | tamanho A–E | |
+| gabion (wall, bench) | gabião (muro de gabião, banco de gabião) | The wire basket: gaiola de gabião. |
+| build guide | guia de montagem | "montar" = to build/assemble furniture. |
+| cut list / materials & hardware / tools | lista de cortes / materiais e ferragens / ferramentas | |
+| 2x4, 2x4x8', BB-1 | 2x4, 2x4x8', BB-1 | |
+| full sun / part sun / shade | sol pleno / meia-sombra / sombra | Standard Brazilian garden-label words. |
+| native plant · perennial · shrub · small tree · large tree | planta nativa · perene · arbusto · árvore pequena · árvore grande | Plant common names: a Brazilian name where one exists, otherwise a plain description + the English name in brackets so it can be found at a US nursery. |
+| pollinator | polinizador | |
+| stewardship / sustain | cuidado do parque / cuidar | Survive · Thrive · Socialize = Sobreviver · Prosperar · Conviver. |
+| My park | Meu parque | |
+| project file | arquivo do projeto | |
+| Plan in 3D / the planner | Planejar em 3D / o planejador 3D | |
+| Plan view / 3D view | vista de cima (planta) / vista 3D | Button: "Planta", as in an architect's floor plan. |
+| sun hours / growing season | horas de sol / época de plantio (15 abr – 15 out) | |
+| wet area | área encharcada | Where puddles or soggy ground form after rain. |
+| lidar | lidar | Explain once: alturas medidas com laser a partir de um avião. |
+| Note from this site, not Park in a Truck | Nota deste site, não do Park in a Truck | |
+| in English | em inglês | |
+| ft, in, sq ft, $ | pés, pol., pés², $ | In build guides ' and " stay as printed (2x4x8', 2.5"). |
+
+Extra terms used in the chapters, guides and data (pt only):
+
+| English | Translation | Note |
+|---|---|---|
+| site (the lot becoming a park) | terreno / local | |
+| base map / base plan | mapa base / planta base | |
+| soil / topsoil / soil test | solo, terra / terra vegetal / análise de solo | |
+| mulch | cobertura morta (mulch) | |
+| planting bed / raised bed | canteiro / canteiro elevado | |
+| gravel / stone dust | brita / pó de pedra | |
+| weeds / pre-emergent | ervas daninhas (mato) / herbicida pré-emergente | |
+| fire hydrant / backflow preventer | hidrante / válvula de retenção (backflow preventer) | |
+| street tree | árvore da calçada | |
+| volunteer waiver | termo de responsabilidade para voluntários | |
+| Park Ambassador | embaixador do parque | |
+| phase (Create step) | fase | |
+| cost estimate | orçamento | |
+| bench / stool / table / planter box | banco / banquinho / mesa / jardineira | |
+| shade structure / stage / workbench | estrutura de sombra (pérgola) / palco / bancada | |
+| impact driver / self-driving exterior wood screws | parafusadeira de impacto / parafusos autoatarraxantes para madeira (uso externo) | |
+| pre-drill | fazer furo-guia | |
+| miter saw / stop block / jig / spacer | serra de esquadria / batente / gabarito / espaçador | |
+| carpenter's square / level | esquadro de carpinteiro / nível | |
+| lag screws / carriage bolts / socket wrench | parafusos sextavados (lag screws) / parafusos francês (carriage bolts) / chave de catraca | |
+| sledgehammer | marreta | |
+| wire mesh / hog rings / hog ring pliers / cable staples | tela de arame / argolas de fixação (hog rings) / alicate para argolas / grampos para cabo | |
+| bolt cutters / grinder / staple gun | alicate corta-vergalhão / esmerilhadeira / grampeador | |
+| geotextile fabric | manta geotêxtil | |
+| pressure-treated / cedar / Douglas fir | tratada em autoclave / cedro / pinho Douglas (Douglas fir) | |
+| flush / square (adj.) | rente / no esquadro | |
 
 ### sw — Kiswahili
 
