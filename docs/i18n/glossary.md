@@ -240,6 +240,18 @@ number and its Chinese unit (4英尺). Buttons and menu items: 2–6 characters 
 | ft, in, sq ft, $ | 英尺, 英寸, 平方英尺, $（美元） | Inside build steps where English writes 2.5", keep 2.5" as written. |
 | *Park Patch* (not in the English table) | 公园小块地（Park Patch） | PiaT's small-space pollinator planting; first mention keeps the English name in brackets. |
 | *Playful Learning (Landscapes)* (not in the English table) | 玩中学（Playful Learning）; Playful Learning Landscapes（PLL） | The approach = 玩中学; the organisation's name stays English. |
+| *Second pass (widgets), not in the English table:* | | |
+| the (cost) spreadsheet | 电子表格 | PiaT's Google Sheet; tab names (ORDER LIST…) stay English. |
+| contingency / tool rental contingency | 备用金 / 工具租赁备用金 | |
+| order list / price needed | 订货清单 / 需要价格 | |
+| hardscape / softscape | 硬质地面 / 软质地面 | |
+| cubic yards (CY) | 立方码 | |
+| sun hours / direct sun / dappled shade | 日照时数 / 阳光直射 / 斑驳树荫 | |
+| planner steps (rail, short) | 您的地块 · 尺寸主题 · 布置 · 现有情况 · 日照阴影 · 清点 | Panel titles may use the longer 阳光和阴影. |
+| Survive · Thrive · Socialize | 存活 · 茁壮成长 · 社交 | Sustain categories. |
+| agency names (PHA, PIDC…) | English name（中文说明） | e.g. Philadelphia Housing Authority（PHA，费城住房管理局）. |
+| Councilmember / council district | 市议员 / 市议会选区 | |
+| clock times | 上午／下午 + 12-hour clock in the planner | The shade calendar uses the locale's 24-hour format (see report). |
 
 ### vi — Tiếng Việt
 
