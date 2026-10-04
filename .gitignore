@@ -12,3 +12,4 @@ source/work/
 .venv/
 *.part
 .DS_Store
+.claude/
