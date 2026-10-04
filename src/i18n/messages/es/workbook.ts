@@ -52,8 +52,8 @@ export default {
 
   'auto.owner.city': 'Ciudad de Filadelfia (público)',
   'auto.owner.landbank': 'Philadelphia Land Bank (público)',
-  'auto.owner.pha': 'Autoridad de Vivienda de Filadelfia, PHA (público)',
-  'auto.owner.redevelopment': 'Autoridad de Reurbanización de Filadelfia (público)',
+  'auto.owner.pha': 'Philadelphia Housing Authority, PHA (público)',
+  'auto.owner.redevelopment': 'Philadelphia Redevelopment Authority (público)',
   'auto.owner.other-public': 'Otra agencia pública',
   'auto.owner.private': 'Dueño privado (persona, organización o negocio)',
   'auto.owner.unknown': 'Desconocido',
