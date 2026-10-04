@@ -398,7 +398,7 @@ export default {
   'note.stage8Screws': '(17 tablas de arriba + 6 tablas de los lados largos) × 4.',
   'note.stage16Screws': '(35 tablas de arriba + 6 tablas de los lados largos) × 4.',
   'note.stageSizes': "La hoja de cálculo solo tiene listas de cortes para escenarios de 2, 3 o 4 cuadros en fila (8', 12' o 16').",
-  'note.trellis20': 'La hoja le suma un 20 % al enrejado (sin explicar).',
+  'note.trellis20': 'La hoja le suma un 20% al enrejado (sin explicar).',
   'note.compost': 'La hoja solo pone precio a la malla de gallinero; las tablas, los postes, la grava, los tornillos y las grapas aparecen sin precio.',
   'note.noPrice': 'La hoja de cálculo no tiene precio.',
   'note.cisternsSheet': 'La hoja no tiene precio (su subtotal es un $0 fijo).',
@@ -411,7 +411,7 @@ export default {
   'note.swingHammocks': { one: 'Aquí la hoja usa la cantidad de hamacas, no su {count} columpio de portal.', other: 'Aquí la hoja usa la cantidad de hamacas, no sus {count} columpios de portal.' },
   'note.swingHammocksSame': 'Aquí la hoja usa la cantidad de hamacas.',
   'note.solarLights': { one: '{count} luz, se compran en paquetes de 16.', other: '{count} luces, se compran en paquetes de 16.' },
-  'note.toolRentalAgain': 'La línea de imprevistos del 20 % de la hoja (F144) también suma el alquiler de herramientas, así que se cuenta dos veces.',
+  'note.toolRentalAgain': 'La línea de imprevistos del 20% de la hoja (F144) también suma el alquiler de herramientas, así que se cuenta dos veces.',
 
   'warn.edgeSplit': 'Bordes de afuera: escriba cuántos pies están sobre superficie dura y cuántos sobre superficie blanda. Hasta entonces se cuentan los dos tipos de soporte para cada pie, como en la hoja de cálculo.',
   'warn.edgeSplitSum': 'Bordes de afuera: superficie dura + superficie blanda ({split} pies) no suman el total ({total} pies). Las tablas usan el total; los soportes usan la división.',
@@ -507,7 +507,7 @@ export default {
 
   'fix.toolRentalOnce.label': 'El alquiler de herramientas se cuenta una sola vez',
   'fix.toolRentalOnce.detail':
-    'La línea de imprevistos del 20 % de la hoja de cálculo también volvía a sumar el 15 % del alquiler de herramientas, así que el alquiler se contaba dos veces. Ahora el costo final es: costos totales + 15 % de alquiler de herramientas + 20 % de imprevistos.',
+    'La línea de imprevistos del 20% de la hoja de cálculo también volvía a sumar el 15% del alquiler de herramientas, así que el alquiler se contaba dos veces. Ahora el costo final es: costos totales + 15% de alquiler de herramientas + 20% de imprevistos.',
   'fix.playAreaOnce.label': 'El área de juego natural se cuenta una sola vez',
   'fix.playAreaOnce.detail': 'El total del diseño básico sumaba dos veces el mantillo del área de juego.',
   'fix.edgesOnce.label': 'Los bordes de afuera se cuentan una sola vez',
@@ -554,7 +554,7 @@ export default {
   'kept.prices': 'Los precios son los de la hoja de cálculo, incluido un árbol grande ($75) que cuesta menos que uno pequeño ($100), y tablas de 1x6x12 a $4 para los bordes pero a $10 para el escenario.',
   'kept.stakes': 'Estacas: una por cada 20 pies² (aquí los “cuadros” de la hoja de cálculo son el área ÷ 4).',
   'kept.gravelEdges': 'Bordes de grava: la cantidad de 1x4x12 incluye la cantidad de 2x4, y los soportes se calculan para todo el borde (la hoja de cálculo no pone soportes de superficie blanda para los bordes de grava).',
-  'kept.trellis': 'El enrejado de 12x8 lleva un 20 % más de madera y tornillos.',
+  'kept.trellis': 'El enrejado de 12x8 lleva un 20% más de madera y tornillos.',
   'kept.noGuide':
     'Las composteras solo tienen precio por su malla de gallinero; las mesas de gavión con tablero de madera, las mesas largas (comunitarias), los huertos de ojo de cerradura y el enrejado de 12x8, que no tienen guía de construcción, usan las propias líneas de la hoja de cálculo.',
   'kept.mulch': 'El mantillo es el de 2″ de la hoja de cálculo sobre los cuadros de siembra, aunque el cuaderno de trabajo Crear dice que hay que poner 4″; la línea del mantillo muestra lo que harían falta con 4″.',

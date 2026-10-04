@@ -52,9 +52,9 @@ export default {
   'zoning.spAir': 'Aeropuerto',
 
   'flood.none': 'No está en una zona inundable de FEMA',
-  'flood.xShaded': 'Zona X (sombreada): riesgo moderado de inundación (0.2 % de probabilidad al año, la zona inundable "de 500 años")',
+  'flood.xShaded': 'Zona X (sombreada): riesgo moderado de inundación (0.2% de probabilidad al año, la zona inundable "de 500 años")',
   'flood.x': 'Zona X: riesgo mínimo de inundación',
-  'flood.high': 'Zona {zone}: riesgo alto de inundación (1 % de probabilidad al año, la zona inundable "de 100 años")',
+  'flood.high': 'Zona {zone}: riesgo alto de inundación (1% de probabilidad al año, la zona inundable "de 100 años")',
   'flood.waves': 'Zona {zone}: riesgo alto de inundación con olas',
   'flood.other': 'Zona {zone}',
 
@@ -426,13 +426,13 @@ export default {
   'basemap.feet': 'pies',
   'basemap.fitScale': '1″ = {feet}′ (ajustado a la página)',
   'basemap.scale': 'Escala {scale}',
-  'basemap.printActual': 'Imprima al 100 % (“Tamaño real”)',
+  'basemap.printActual': 'Imprima al 100% (“Tamaño real”)',
   'basemap.printFooter': 'Park in a Truck · {date}',
   'basemap.print': '🖨 Imprimir el mapa base',
   'basemap.neighbours': 'Límites de los lotes vecinos',
   'basemap.existing': 'Lo que ya hay en el terreno ({count})',
   'basemap.prints': 'Se imprime en papel tamaño carta, horizontal, a escala {scale}.',
-  'basemap.rounded': 'El largo de los lados está redondeado a la décima de pie. Escala {scale} al imprimir al 100 %.',
+  'basemap.rounded': 'El largo de los lados está redondeado a la décima de pie. Escala {scale} al imprimir al 100%.',
 
   'assets.list.citizens': 'Asociaciones de vecinos',
   'assets.list.institutions': 'Instituciones del barrio',
