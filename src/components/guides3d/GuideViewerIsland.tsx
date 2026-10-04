@@ -15,6 +15,8 @@ import { readingLine, same, stepAtReadingLine, type ScrollStep } from '../../lib
 import type { GuideModel } from '../../lib/guides3d/schema';
 import type { CutLike } from '../../lib/guides3d/labels';
 import type { View } from '../../lib/guides3d/timeline';
+import guidesMsgs from '../../i18n/messages/en/guides.ts';
+import { getT } from '../../i18n/t.ts';
 
 type ViewerModule = typeof import('../../lib/guides3d/viewer');
 type Viewer = InstanceType<ViewerModule['AssemblyViewer']>;
@@ -26,6 +28,8 @@ interface Props {
   title: string;
   steps: { n: number; title?: string }[];
   cutList: CutLike[];
+  /** From the Astro wrapper's `t.locale` (client:only: falls back to <html data-locale>). */
+  locale?: string;
 }
 
 const STORE_KEY = 'piat.guide3d.collapsed'; // a viewing preference, not project data
@@ -60,7 +64,8 @@ function webglWorks(): boolean {
 
 const viewOf = (s: ScrollStep): View => (s.kind === 'step' ? { kind: 'step', n: s.n } : { kind: 'complete' });
 
-export default function GuideViewerIsland({ slug, title, steps, cutList }: Props) {
+export default function GuideViewerIsland({ slug, title, steps, cutList, locale }: Props) {
+  const t = getT(locale, guidesMsgs);
   const root = useRef<HTMLDivElement>(null);
   const stage = useRef<HTMLDivElement>(null);
   const viewer = useRef<Viewer | null>(null);
@@ -258,14 +263,14 @@ export default function GuideViewerIsland({ slug, title, steps, cutList }: Props
   let eyebrow: string;
   let heading: string;
   if (active.kind === 'step') {
-    eyebrow = `Step ${active.n} of ${total}`;
-    heading = steps.find((s) => s.n === active.n)?.title ?? `Step ${active.n}`;
+    eyebrow = t('g3d.stepOf', { n: active.n, total });
+    heading = steps.find((s) => s.n === active.n)?.title ?? t('step', { n: active.n });
   } else if (active.kind === 'empty') {
-    eyebrow = 'Play all steps';
-    heading = 'Starting…';
+    eyebrow = t('g3d.playingAll');
+    heading = t('g3d.starting');
   } else {
-    eyebrow = 'The finished piece';
-    heading = shown.kind === 'before' && !playing ? 'Scroll through the steps to watch it go together' : title;
+    eyebrow = t('g3d.finishedPiece');
+    heading = shown.kind === 'before' && !playing ? t('g3d.scrollPrompt') : title;
   }
   if (playing) eyebrow = `▶ ${eyebrow}`;
 
@@ -273,9 +278,9 @@ export default function GuideViewerIsland({ slug, title, steps, cutList }: Props
   let state = '';
   if (v && active.kind === 'step') {
     const adds = mod.current?.stepPartsSummary(v.prepared, active.n);
-    state = active.n === v.prepared.pileStep ? 'Every cut board laid out flat and labelled.' : adds ? `Step ${active.n} adds ${adds}.` : 'The whole piece.';
-  } else if (active.kind === 'complete') state = 'The whole piece.';
-  const describe = `3D model of the ${title}. ${state} Drag or use the arrow keys to turn it; plus and minus zoom.`;
+    state = active.n === v.prepared.pileStep ? t('g3d.stateFlat') : adds ? t('g3d.stateAdds', { n: active.n, adds }) : t('g3d.stateWhole');
+  } else if (active.kind === 'complete') state = t('g3d.stateWhole');
+  const describe = t('g3d.describe', { model: t('model', { title }), state });
 
   if (status === 'off') return null;
   const ready = status === 'ready';
@@ -289,22 +294,22 @@ export default function GuideViewerIsland({ slug, title, steps, cutList }: Props
           <span class="g3d-title">{heading}</span>
         </p>
         <button type="button" class="g3d-collapse" aria-expanded={!collapsed} aria-controls={bodyId} onClick={toggleCollapsed}>
-          {collapsed ? 'Show 3D' : 'Hide 3D'}
+          {collapsed ? t('g3d.show') : t('g3d.hide')}
         </button>
       </div>
       <div class="g3d-body" id={bodyId}>
         <div class="g3d-stage-wrap">
-          <div ref={stage} class="g3d-stage" tabIndex={0} role="group" aria-roledescription="3D model" aria-label={describe} />
-          {!ready && <div class="g3d-loading">{status === 'loading' ? 'Loading the 3D model…' : '3D model'}</div>}
+          <div ref={stage} class="g3d-stage" tabIndex={0} role="group" aria-roledescription={t('g3d.placeholder')} aria-label={describe} />
+          {!ready && <div class="g3d-loading">{status === 'loading' ? t('g3d.loading') : t('g3d.placeholder')}</div>}
         </div>
-        <div class="g3d-tools" role="toolbar" aria-label="3D model controls">
+        <div class="g3d-tools" role="toolbar" aria-label={t('g3d.controls')}>
           <button type="button" class="g3d-btn" onClick={replay} disabled={!ready}>
             <svg viewBox="0 0 20 20" aria-hidden="true">
               <path d="M4.5 10a5.5 5.5 0 1 0 1.8-4.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
               <path d="M3.2 3.2v4.2h4.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
-            <span class="g3d-long">Replay step</span>
-            <span class="g3d-short">Replay</span>
+            <span class="g3d-long">{t('g3d.replayLong')}</span>
+            <span class="g3d-short">{t('g3d.replayShort')}</span>
           </button>
           <button type="button" class="g3d-btn" onClick={playAll} disabled={!ready} aria-pressed={!!playing}>
             {playing ? (
@@ -316,27 +321,27 @@ export default function GuideViewerIsland({ slug, title, steps, cutList }: Props
                 <path d="M6 4.5v11l9-5.5z" fill="currentColor" />
               </svg>
             )}
-            <span>{playing ? 'Stop' : 'Play all'}</span>
+            <span>{playing ? t('g3d.stop') : t('g3d.playAll')}</span>
           </button>
           <button type="button" class="g3d-btn" onClick={toggleExploded} disabled={!ready} aria-pressed={exploded}>
             <svg viewBox="0 0 20 20" aria-hidden="true">
               <rect x="7.5" y="7.5" width="5" height="5" fill="none" stroke="currentColor" stroke-width="1.8" />
               <path d="M2.5 2.5l3 3M17.5 2.5l-3 3M2.5 17.5l3-3M17.5 17.5l-3-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
             </svg>
-            <span class="g3d-long">Exploded view</span>
-            <span class="g3d-short">Explode</span>
+            <span class="g3d-long">{t('g3d.explodedLong')}</span>
+            <span class="g3d-short">{t('g3d.explodeShort')}</span>
           </button>
           <button type="button" class="g3d-btn" onClick={() => viewer.current?.resetView()} disabled={!ready}>
             <svg viewBox="0 0 20 20" aria-hidden="true">
               <path d="M10 3v3M10 14v3M3 10h3M14 10h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
               <circle cx="10" cy="10" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8" />
             </svg>
-            <span class="g3d-long">Reset view</span>
-            <span class="g3d-short">Reset</span>
+            <span class="g3d-long">{t('g3d.resetLong')}</span>
+            <span class="g3d-short">{t('g3d.resetShort')}</span>
           </button>
         </div>
-        <p class="g3d-help g3d-help-mouse">Drag to turn it. Click it, then scroll to zoom. Point at a board to see its size.</p>
-        <p class="g3d-help g3d-help-touch">Drag to turn it. Tap it, then pinch to zoom. Tap a board to see its size.</p>
+        <p class="g3d-help g3d-help-mouse">{t('g3d.helpMouse')}</p>
+        <p class="g3d-help g3d-help-touch">{t('g3d.helpTouch')}</p>
       </div>
     </div>
   );
