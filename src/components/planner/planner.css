@@ -1171,5 +1171,5 @@
 .pl-drawbar .pl-drawbar-done:not(:disabled) {
   background: var(--cyan);
   border-color: var(--cyan);
-  color: #fff;
+  color: var(--ink); /* dark ink on cyan passes contrast (DESIGN §4) */
 }
