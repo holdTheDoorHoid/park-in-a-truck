@@ -140,7 +140,9 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
 - **Piece sets**: `source/linked/04_Dream_WORKBOOK_p11_<SIZE>__*.pdf`, one per size × lot kind
   (interior / corner street-left / corner street-right), drawn at **1/4" = 1'-0" (18 pt per foot)** on a 4-ft grid.
   Each theme has a FRAME, FRONT and BACK piece plus length/width SEAM strips. Extracted to
-  `src/data/pieces/<size>-<lotKind>.json` (pieces workstream).
+  `src/data/pieces/<size>-<lotKind>.json` (pieces workstream). The pieces are printed at the *minimum* of each size's
+  range (A 44×12, B 64×16, C 76×28, D 88×32, E 80×44 ft); the seams add up to the range maximum. Data model:
+  `src/lib/pieces/model.ts`; extraction and its known deviations: `docs/pieces.md`.
 - **Assembly** (`src/lib/pieces/assemble.ts`): choose frame/front/back themes (mix and match), stretch from the
   set's nominal size to the real lot with seams exactly as the Dream workbook does (length seam between front and
   back; width seam along the length), apply the person's edits → `ParkLayout` (types.ts). `tally(layout, sun)` →
@@ -194,6 +196,10 @@ Be polite: debounce, cache per session, never bulk-crawl.
 Lot kind convention: stand on the entrance edge (x=0) looking into the park (+x). **corner-left** = the side
 street runs along your left (edge y1); **corner-right** = along your right (y0). The pieces workstream checks this
 against the printed pieces and corrects it here if the PDFs say otherwise.
+*Verified 2026-10-04 (pieces workstream):* the printed pieces agree. Every set draws a 1-ft gabion wall along its street
+edges; the street-left sets carry it along the long edge on your left (y1) when you enter at the front piece, the
+street-right sets along your right (y0), and the Dream workbook's "Lot location?" drawings show the same. Two of the
+fifteen downloads are mislabelled (the B and E "street right" links open street-left pieces); see `docs/pieces.md`.
 
 Maps: `src/lib/mapstyle.ts` — OpenFreeMap positron basemap (no key) and City of Philadelphia 3-inch aerial
 tiles (2025; years back to 1996 — useful for "what once stood where your park is?").

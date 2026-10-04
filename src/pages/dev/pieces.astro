@@ -1,0 +1,69 @@
+---
+// DEV ONLY — every park-piece set × theme assembled at its printed size, plus
+// a few mixed / stretched examples, so the extraction can be eyeballed.
+// Not linked from the site; the layout already sends `robots: noindex`.
+import Base from '../../layouts/Base.astro';
+import PlanView from '../../components/pieces/PlanView';
+import { PIECE_SETS } from '../../data/pieces/all';
+import { SET_IDS } from '../../lib/pieces/model';
+import { assemble } from '../../lib/pieces/assemble';
+import { tally } from '../../lib/pieces/tally';
+import { THEME_ORDER, THEMES } from '../../data/themes';
+import type { ThemeId } from '../../lib/types';
+
+const same = (t: ThemeId) => ({ frame: t, front: t, back: t });
+const sets = SET_IDS.map((id) => PIECE_SETS[id]!).filter(Boolean);
+const examples = [
+  { title: 'Workbook example: D corner (street right), Event, stretched to the 90 × 35 ft lot', set: PIECE_SETS['D-corner-right']!, themes: same('event'), L: 90, W: 35 },
+  { title: 'Mix and match: Edible frame, Nature front, Sanctuary back (C interior)', set: PIECE_SETS['C-interior']!, themes: { frame: 'edible', front: 'nature', back: 'sanctuary' } as const, L: 76, W: 28 },
+  { title: 'Trimmed: E corner (street left), Sanctuary, on a 76 × 42 ft lot', set: PIECE_SETS['E-corner-left']!, themes: same('sanctuary'), L: 76, W: 42 },
+];
+function summary(t: ReturnType<typeof tally>) {
+  const it = Object.entries(t.items).sort((a, b) => b[1] - a[1]).map(([k, v]) => `${k} ${v}`).join(', ');
+  return `${t.plantingSquares.sun + t.plantingSquares.shade} green squares · ${t.naturePlaySquares} nature-play · ${t.shrubs.sun + t.shrubs.shade} shrubs · ${t.smallTrees} small / ${t.largeTrees} large trees · ${it}`;
+}
+---
+<Base title="Park pieces (dev)" description="Developer gallery of the extracted park pieces.">
+  <section class="wrap dev-pieces">
+    <h1 class="ruled">Park pieces</h1>
+    <p class="lede">Every printed set (size × lot kind) and theme, assembled at its printed size. Grey dashes mark street edges; x0 (left) is the entrance.</p>
+    <h2>Examples</h2>
+    {examples.map((e) => {
+      const l = assemble(e.set, e.themes, e.L, e.W);
+      return (
+        <figure>
+          <PlanView layout={l} labels />
+          <figcaption><strong>{e.title}</strong><br />{summary(tally(l))}{l.clipped?.length ? ` · clipped: ${l.clipped.join(', ')}` : ''}</figcaption>
+        </figure>
+      );
+    })}
+    {sets.map((s) => (
+      <section id={s.id}>
+        <h2>{s.id} <small>{s.nominal.lengthFt} × {s.nominal.widthFt} ft · street {s.streetEdges.join(' + ')}</small></h2>
+        <p class="src">{s.source.file} — link column: {s.source.linkColumn}; cover: {s.source.cover}{s.source.derivedFrom ? ` · mirrored from ${s.source.derivedFrom}` : ''}</p>
+        {s.issues.map((i) => <p class="issue">⚠ {i}</p>)}
+        <div class="grid">
+          {THEME_ORDER.map((th) => {
+            const l = assemble(s, same(th));
+            return (
+              <figure>
+                <PlanView layout={l} labels title={`${s.id} ${THEMES[th].name}`} />
+                <figcaption><strong>{THEMES[th].name}</strong> — {summary(tally(l))}</figcaption>
+              </figure>
+            );
+          })}
+        </div>
+      </section>
+    ))}
+  </section>
+</Base>
+
+<style>
+  .dev-pieces figure { margin: 0 0 28px; }
+  .dev-pieces figcaption { font-size: 0.85rem; color: var(--ink-2); }
+  .dev-pieces h2 small { font-weight: 400; text-transform: none; font-size: 0.9rem; color: var(--muted); }
+  .dev-pieces .src { font-size: 0.8rem; color: var(--muted); margin: 0 0 8px; }
+  .dev-pieces .issue { font-size: 0.85rem; color: var(--warn); background: var(--warn-wash); padding: 4px 8px; }
+  .dev-pieces .grid { display: grid; grid-template-columns: 1fr; gap: 8px 24px; }
+  @media (min-width: 900px) { .dev-pieces .grid { grid-template-columns: 1fr 1fr; } }
+</style>

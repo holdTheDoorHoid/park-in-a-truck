@@ -157,6 +157,10 @@ export interface DesignTally {
   /** element id -> count, for furnishings and built elements */
   items: Record<string, number>;
   themes: ThemeId[];
+  /** Feet of gabion wall (1-ft baskets, 4 ft long) along the park edge */
+  gabionWallFt?: number;
+  /** Feet of wood edging around raised beds ("How many feet are your wood edges?") */
+  raisedBedEdgeFt?: number;
 }
 
 export type FieldValue =
@@ -223,6 +227,8 @@ export interface LayoutItem extends PlacedItem {
   heightFt?: number;
   /** which piece it came from: frame | front | back | seam | added */
   source?: string;
+  /** drawing variant, e.g. 'round' for a round raised bed */
+  variant?: string;
 }
 
 export interface ParkLayout {
@@ -231,6 +237,20 @@ export interface ParkLayout {
   streetEdges: ('x0' | 'x1' | 'y0' | 'y1')[];
   surfaces: LayoutSurface[];
   items: LayoutItem[];
+  // ---- optional extras filled in by assemble() (src/lib/pieces/assemble.ts)
+  /** piece set the layout was built from, e.g. "D-corner-right" */
+  setId?: string;
+  /** the set's printed size before seams */
+  nominal?: { lengthFt: number; widthFt: number };
+  /** where the seams went in (at = position in the final layout, deltaFt < 0 = trimmed) */
+  seams?: { length: { at: number; deltaFt: number }; width: { at: number; deltaFt: number } };
+  /** lines of the pieces' printed 4-ft grid after seams (x and y positions, feet) — the
+   *  squares counted in "Count your pieces" */
+  countGrid?: { xs: number[]; ys: number[] };
+  /** each piece's footprint and theme, for drawing piece outlines */
+  pieces?: { kind: 'frame' | 'front' | 'back'; theme: ThemeId; rects: [number, number, number, number][] }[];
+  /** template item ids that no longer fit after trimming to a smaller lot */
+  clipped?: string[];
 }
 
 // ---- project.extra keys shared between workstreams --------------------------
