@@ -1087,7 +1087,7 @@
 .pl-spot-tip {
   position: absolute;
   top: 0;
-  transform: translate(-50%, -100%);
+  transform: translate(-50%, 0);
   display: grid;
   gap: 1px;
   min-width: 9.5em;
@@ -1137,4 +1137,14 @@
 .pl-spot-tick.is-six {
   fill: var(--ink);
   font-weight: 800;
+}
+@media (max-width: 640px) {
+  /* below the toolbar on narrow screens */
+  .pl-playchip {
+    top: 54px;
+    padding: 4px 9px 5px;
+  }
+  .pl-playchip strong {
+    font-size: 1.1rem;
+  }
 }

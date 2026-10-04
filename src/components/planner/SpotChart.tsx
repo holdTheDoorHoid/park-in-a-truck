@@ -50,7 +50,7 @@ export function SpotChart({ data, where, month }: { data: MonthSun[]; where: str
   const worst = data.reduce((a, b) => (b.sunHours < a.sunHours ? b : a), data[0]!);
   const full = fullSunMonths(data);
   const label =
-    `Average hours of direct sun a day at ${where}, month by month: most in ${MONTHS[best.month - 1]} (${fmt(best.sunHours)} hours), ` +
+    `Average hours of direct sun a day ${where}, month by month: most in ${MONTHS[best.month - 1]} (${fmt(best.sunHours)} hours), ` +
     `least in ${MONTHS[worst.month - 1]} (${fmt(worst.sunHours)} hours). ` +
     (full ? `6 hours or more in ${full}.` : 'No month reaches 6 hours.');
   const h = hover != null ? data[hover] : null;
@@ -103,7 +103,7 @@ export function SpotChart({ data, where, month }: { data: MonthSun[]; where: str
         )}
       </div>
       <figcaption class="pl-small">
-        <span class="pl-spot-key pl-spot-key-bar" aria-hidden="true" /> direct sun at {where}{' '}
+        <span class="pl-spot-key pl-spot-key-bar" aria-hidden="true" /> direct sun {where}{' '}
         <span class="pl-spot-key pl-spot-key-track" aria-hidden="true" /> hours the sun is up. Hours a day, averaged over each month.
         <br />
         {full ? (

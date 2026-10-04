@@ -186,7 +186,7 @@ if (treeDapple(vTreeW, vTreeLeaf < 0.5 ? 2.2 : 1.1) >= mix(uBlockBare, uBlockLea
 `;
 const TREE_FRAG_COLOR = /* glsl */ `
 {
-  vec3 twig = mix(vec3(0.34, 0.30, 0.27), diffuseColor.rgb, 0.12);
+  vec3 twig = mix(vec3(0.27, 0.24, 0.22), diffuseColor.rgb, 0.12);
   vec3 turned = mix(diffuseColor.rgb, vec3(0.80, 0.40, 0.10), uAutumn * (1.0 - vTreeEver) * 0.8);
   diffuseColor.rgb = mix(twig, turned, smoothstep(0.05, 0.75, vTreeLeaf));
 }

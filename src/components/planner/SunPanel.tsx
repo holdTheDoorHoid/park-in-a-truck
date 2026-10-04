@@ -67,7 +67,7 @@ export function SunPanel({ store }: { store: PlannerStore }) {
   const spotAt = useStore(store.sun.$spotAt);
   const play = useStore(store.sun.$play);
   const root = useRef<HTMLElement>(null);
-  const [spotName, setSpotName] = useState('the middle of the lot');
+  const [spotName, setSpotName] = useState('at the middle of the lot');
   const lat = site?.lf.origin[1] ?? 39.95;
   const lng = site?.lf.origin[0] ?? -75.16;
   const times = sunTimes(YEAR, t.month, t.day, lat, lng);
@@ -143,8 +143,8 @@ export function SunPanel({ store }: { store: PlannerStore }) {
     }
   }, [sel?.id]);
   useEffect(() => {
-    if (!spot) setSpotName('the middle of the lot');
-    else if (!sel) setSpotName('the spot you picked');
+    if (!spot) setSpotName('at the middle of the lot');
+    else if (!sel) setSpotName('at the spot you picked');
   }, [spot]);
   const [spotData, setSpotData] = useState<MonthSun[] | null>(null);
   useEffect(() => {
@@ -171,13 +171,15 @@ export function SunPanel({ store }: { store: PlannerStore }) {
     if (k !== 'growing' && !show.heat) store.$show.set({ ...show, heat: true });
   };
   const hasGround = Boolean(site?.ground);
+  const quiet = play.mode === 'off' ? undefined : ('off' as const);
 
   return (
     <section class="pl-section" ref={root}>
       <h3 class="pl-h">Sun and shade</h3>
       <p class="pl-small">Watch the shadows of the buildings and trees around your lot move through the day and the year.</p>
       <label class="pl-field">
-        <span class="pl-small">
+        {/* while playing, the moving date and clock are not read out 30 times a second */}
+        <span class="pl-small" aria-live={quiet}>
           <strong class="pl-sun-date">
             {MONTHS[t.month - 1]} {t.day}
           </strong>{' '}
@@ -201,7 +203,7 @@ export function SunPanel({ store }: { store: PlannerStore }) {
         ))}
       </div>
       <label class="pl-field">
-        <span class="pl-small">
+        <span class="pl-small" aria-live={quiet}>
           <strong>{clock(t.minutes)}</strong> <span class="muted">(sunrise {clock(rise)}, sunset {clock(set)})</span>
         </span>
         <input
@@ -237,13 +239,13 @@ export function SunPanel({ store }: { store: PlannerStore }) {
         </span>
       </div>
       {play.mode === 'year' && <p class="pl-small muted">The date moves through the year at {clock(t.minutes)} each day.</p>}
-      <p class="pl-small muted">
+      <p class="pl-small muted" aria-live={quiet}>
         {pos.altitudeDeg > 0
           ? `The sun is ${Math.round(pos.altitudeDeg)}° up, in the ${COMPASS[Math.round(pos.azimuthDeg / 45) % 8]}.`
           : 'The sun is down.'}
       </p>
       {pos.altitudeDeg > 0 && (
-        <p class="pl-now" aria-live={play.mode === 'off' ? 'polite' : 'off'}>
+        <p class="pl-now" aria-live={quiet ?? 'polite'}>
           <span class="pl-now-bar" aria-hidden="true">
             <span style={{ width: `${Math.round(litNow * 100)}%` }} />
           </span>
@@ -255,7 +257,7 @@ export function SunPanel({ store }: { store: PlannerStore }) {
       <label class="pl-field">
         <span class="pl-small">Average hours of direct sun a day over</span>
         <select value={periodKey(period)} onChange={(e) => pickPeriod((e.target as HTMLSelectElement).value)}>
-          <option value="growing">the growing season, Apr 15 – Oct 15 (used for the counts)</option>
+          <option value="growing">the growing season, Apr 15 – Oct 15</option>
           <option value={`day:${t.month}-${t.day}`}>this day only ({MONTHS_SHORT[t.month - 1]} {t.day})</option>
           <optgroup label="A season">
             {(Object.keys(SEASONS) as SeasonName[]).map((s) => (
