@@ -165,6 +165,24 @@ Extra terms used in the chapters, guides and data (es only; they may belong in t
 | geotextile fabric | tela geotextil | |
 | pressure-treated / cedar / Douglas fir | tratada a presión / cedro / abeto Douglas | |
 | flush / square (adj.) | al ras / derecho, en escuadra | |
+| planner steps: Your lot · Size & themes · Arrange · What's there · Sun & shade · Counts | Su lote · Tamaño y temas · Ubicar · Lo que hay · Sol y sombra · Contar | Short: the step rail is five narrow columns on a phone. |
+| 3D / Plan (views) | 3D / Planta | "vista de planta" in sentences. |
+| lot line / sticks out | límite del lote / se sale, sobresale | |
+| direct sun / dappled shade / sun down | sol directo / sombra filtrada / de noche | |
+| growing season | temporada de crecimiento | |
+| cost estimate / cost estimator / order list | presupuesto / calculadora de costos / lista de pedido | |
+| the spreadsheet (PiaT's cost sheet) | la hoja de cálculo (la hoja) | Tab names INSERT HERE, ORDER LIST, MATERIAL CALCULATIONS stay. |
+| contingency / tool rental | reserva para imprevistos / alquiler de herramientas | |
+| hardscape / softscape | superficie dura / superficie blanda | |
+| price needed | falta el precio | |
+| cubic yards (CY) / each (ea.) | yd³ / unid. | |
+| Land Bank status: available / on hold / side-yard eligible | disponible / reservado / se puede pedir como patio lateral | |
+| council district / Councilmember | distrito del Concejo / concejal | |
+| flood zone | zona inundable | FEMA zone codes stay. |
+| agency names (Philadelphia Housing Authority, School District of Philadelphia…) | stay in English, with a short gloss in brackets | "Ciudad de Filadelfia" is translated. |
+| build schedule / stewardship calendar | calendario de construcción / calendario de cuidado del parque | |
+| trash can | bote de basura (zafacón) | |
+| clock times, percents | 8:30 a.m., 20% | As the site formats them for es (es-US): no space before %, "a.m."/"p.m.". |
 
 ### zh — 中文 (Simplified)
 

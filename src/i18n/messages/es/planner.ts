@@ -15,10 +15,10 @@ export default {
 
   'step.lot': 'Su lote',
   'step.size': 'Tamaño y temas',
-  'step.arrange': 'Acomodar',
+  'step.arrange': 'Ubicar',
   'step.existing': 'Lo que hay',
   'step.sun': 'Sol y sombra',
-  'step.counts': 'Cuentas',
+  'step.counts': 'Contar',
   'rail.label': 'Pasos del planificador',
   'nav.back': '← {step}',
   'nav.next': 'Siguiente: {step} →',
@@ -110,7 +110,7 @@ export default {
   'lot.overhangTooBig':
     'Dentro de sus límites, su lote mide solo unos {length} × {width} pies, y las piezas del tamaño {size} miden por lo menos {minLength} × {minWidth} pies, así que el parque se sale.',
   'lot.trySmaller': 'Pruebe un tamaño más pequeño en Tamaño y temas.',
-  'lot.overhangShape': 'Su lote no es un rectángulo perfecto: mueva o quite lo que sobresale en “Acomodar”, o deslice el parque.',
+  'lot.overhangShape': 'Su lote no es un rectángulo perfecto: mueva o quite lo que sobresale en “Ubicar”, o deslice el parque.',
   'lot.useSize': 'Usar el tamaño {size}: cabe dentro de su lote',
   'lot.choose': 'Elegir otro lote',
 
@@ -460,7 +460,7 @@ export default {
   'view.northLetter': 'N',
   'view.picked': '{name} (elegido)',
   'view.gabionInfo': 'Muro de gavión: una fila de canastas de piedra de 12″ × 12″ × 48″ a lo largo del borde que da a la calle.',
-  'view.gabionInfoFt': 'Muro de gavión: una fila de canastas de piedra de 12″ × 12″ × 48″ a lo largo del borde que da a la calle: {ft} pies en total (vea Cuentas).',
+  'view.gabionInfoFt': 'Muro de gavión: una fila de canastas de piedra de 12″ × 12″ × 48″ a lo largo del borde que da a la calle: {ft} pies en total (vea Contar).',
   'hint.drawTap': 'Toque alrededor de la zona mojada, punto por punto',
   'hint.drawTapCount': 'Toque alrededor de la zona mojada, punto por punto ({count} hasta ahora)',
   'hint.drawClick': 'Haga clic alrededor de la zona mojada, punto por punto · Esc cancela',
