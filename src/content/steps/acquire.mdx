@@ -10,6 +10,7 @@ import ListField from '../../components/workbook/ListField.astro';
 import Choice from '../../components/workbook/Choice.astro';
 import Checklist from '../../components/workbook/Checklist.astro';
 import Callout from '../../components/workbook/Callout.astro';
+import Figure from '../../components/workbook/Figure.astro';
 import PdfPage from '../../components/workbook/PdfPage.astro';
 import LotLookup from '../../components/widgets/LotLookup.astro';
 import LotFinderMap from '../../components/widgets/LotFinderMap.astro';
@@ -41,20 +42,55 @@ identify potential lots in your neighborhood where you'd like to see your park?
 
 <LotFinderMap />
 
-<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={2} />
+<Figure
+  src="img/acquire/west-kensington-site.webp"
+  alt="A vacant grass lot in West Kensington, Philadelphia, mowed and staked out with teal survey flags marking the corners, with a stucco wall, hedge and parked cars behind it."
+  caption="West Kensington PiaT park site, before construction"
+  duo
+/>
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={3} />
 
 ## Which lot?
 
 Review the three different types of potential neighborhood park locations. Walk your neighborhood and note which
 underutilized properties are possible locations for your park.
 
-- **Mid-block lot (vacant lot).** Rectangular in shape and found in the middle of a residential block. May have
-  buildings on each side and/or the end. The highest number of available "vacant" lots in Philadelphia are this
-  category. May have limitations for some park uses due to narrow width and/or lack of sunlight.
-- **Corner lot (vacant lot).** Rectangular in shape and found at the end of a residential block. May have buildings on
-  the side and/or end. These lots offer high visibility and often have the most sunlight.
-- **Breezeway / alley (easement).** Identifiable by their long and very narrow shape, these locations often connect
-  "across" a block. Originally set aside for pedestrian connections between streets and/or utility easements.
+<div class="lot-types">
+  <div>
+    <Figure
+      src="img/acquire/lot-midblock.webp"
+      alt="Isometric illustration of a mid-block vacant lot: a narrow rectangular gap between two rowhome buildings on a residential block, shown in green with a single tree."
+    />
+    <p class="lot-caption">
+      <strong>Mid-block lot (vacant lot).</strong> Rectangular in shape and found in the middle of a residential
+      block. May have buildings on each side and/or the end. The highest number of available "vacant" lots in
+      Philadelphia are this category. May have limitations for some park uses due to narrow width and/or lack of
+      sunlight.
+    </p>
+  </div>
+  <div>
+    <Figure
+      src="img/acquire/lot-corner.webp"
+      alt="Isometric illustration of a corner vacant lot: a rectangular gap at the end of a residential block, facing two streets, shown in green with a single tree."
+    />
+    <p class="lot-caption">
+      <strong>Corner lot (vacant lot).</strong> Rectangular in shape and found at the end of a residential block. May
+      have buildings on the side and/or end. These lots offer high visibility and often have the most sunlight.
+    </p>
+  </div>
+  <div>
+    <Figure
+      src="img/acquire/lot-alley.webp"
+      alt="Isometric illustration of a breezeway or alley easement: a long, very narrow green gap cutting between rowhome buildings, connecting across the block."
+    />
+    <p class="lot-caption">
+      <strong>Breezeway / alley (easement).</strong> Identifiable by their long and very narrow shape, these locations
+      often connect "across" a block. Originally set aside for pedestrian connections between streets and/or utility
+      easements.
+    </p>
+  </div>
+</div>
 
 Record the address of each possible lot. When you look an address up, the site fills in the owner, size and lot type
 for you.
@@ -81,9 +117,43 @@ Once you have identified some potential underutilized properties for your new ne
 determine who owns the property. The owner could be an individual, business, or non-profit organization. The owner could
 also be the City. The most reliable way to see who owns a lot is to check the City of Philadelphia records.
 
-The workbook walks you through four steps: **(1)** verify the street address, **(2)** search for it on
-[atlas.phila.gov](https://atlas.phila.gov/), **(3)** read the owner under "Property Assessment", and **(4)** decide
-your path depending on whether the owner is public or private.
+This flowchart shows how to determine who owns a lot and the possible steps to acquire the legal rights — or
+"entitlements" — to use the property as a neighborhood park.
+
+{/* site-added: the workbook's flowchart reproduced as HTML (not an image of text), steps 1–4 then the public/private branch. */}
+<ol class="flow-steps">
+  <li>
+    <span class="flow-num">1</span>
+    <div><strong>Determine address.</strong> Verify the street address of the potential lot or lots you wrote down.</div>
+  </li>
+  <li>
+    <span class="flow-num">2</span>
+    <div><strong>Search property.</strong> Go to <a href="https://atlas.phila.gov/" target="_blank" rel="noopener">atlas.phila.gov</a> and enter the street address. You can also find the lot by zooming into a nearby street on the map.</div>
+  </li>
+  <li>
+    <span class="flow-num">3</span>
+    <div><strong>Determine owner.</strong> View the owner of the property under the "Property Assessment" section on the website.</div>
+  </li>
+</ol>
+
+<div class="owner-branch">
+  <div class="owner-branch-col">
+    <h4>4a. Owner is… City of Philadelphia <span class="muted">(public ownership)</span></h4>
+    <p>
+      <strong>Potential purchase.</strong> Do a property search to find out if public land is available for
+      purchase through the Philadelphia Housing Development Corporation (PHDC) and the Philadelphia Land Bank.
+    </p>
+  </div>
+  <div class="owner-branch-col">
+    <h4>4b. Owner is… a person, organization, or business <span class="muted">(private ownership)</span></h4>
+    <ul>
+      <li><strong>Potential donation.</strong> Contact the landowner about permanently donating the property.</li>
+      <li><strong>Potential sale.</strong> Watch for a public sale listing or auction — in Philadelphia this may include a Sheriff Sale.</li>
+      <li><strong>Negotiate a purchase agreement.</strong> Contact the landowner and negotiate a sale for neighborhood use.</li>
+      <li><strong>In-kind agreement.</strong> Discuss granting the neighborhood "in-kind" use of the lot, while the owner keeps ownership.</li>
+    </ul>
+  </div>
+</div>
 
 <Callout kind="auto" title="Steps 1–3 done for you">
   Choose the lot you want to pursue. The site checks the City's address and property records (the same data
