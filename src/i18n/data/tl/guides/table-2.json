@@ -1,0 +1,121 @@
+{
+  "title": "2' na mesa",
+  "summary": "Isang maliit na parisukat na mesang 2x4, ang pinakamaliit sa tatlong laki ng mesa, kasinlaki para itambal sa bangkito at mga upuan.",
+  "finishing": "Makapagpapatagal sa buhay ng mga bahagi ng inyong parke ang panlabas na pampahid sa kahoy, pero hindi ito kailangan — sadyang idinisenyo ang mga pirasong ito para maging mura, matibay at madaling gawin, kaya maaaring mas praktikal na hayaan na lang ang susunod na henerasyon na gawin silang muli pagdating ng panahon. Kung gusto ninyong lagyan ng stain, pintura o sealant ang kahoy, tingnan ang mga mapagkukunan tungkol sa pampahid sa ibaba.",
+  "sourcePages": "Tagubilin sa pagbuo ng 2_TABLE, pp. 1–9 (pabalat; bago kayo magsimula; karaniwang pagpipiliang kahoy; mga hakbang 1–5; gabay sa pre-drill na butas)",
+  "materials": [
+    {
+      "item": "Kahoy na 2x4 — western red cedar, Douglas fir, o pressure-treated pine",
+      "notes": "Cedar: likas na matibay sa panahon at sa pagkabulok, may magandang mapulang kulay, madaling gawan, hindi kailangan ng sealant (nagiging kulay-abo ito sa paglipas ng panahon); mas mahal — hanapin ang grade na 'knotty' (STK), na mas mura nang husto kaysa sa clear grade. Douglas fir: katamtamang matibay sa pagkabulok, matibay at madaling gawan, mas mura kaysa sa cedar, pero hindi kasintagal — magandang piliin kung balak ninyong pintahan. Pressure-treated: matibay sa pagkabulok at pinakamura, pero madalas na mababa at hindi pare-pareho ang kalidad ng kahoy, kailangang patuyuin sa hangin nang 1–4 na buwan bago pintahan, at hindi inirerekomenda kung saan nagtatanim ng pagkain. Umorder ng 5–10% na higit sa listahan ng puputulin para sa iba-ibang kalidad ng kahoy at maling pagputol."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Self-driving exterior wood screw"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Gilid ng mesa"
+    },
+    {
+      "notes": "Ibabaw ng mesa"
+    },
+    {
+      "notes": "Harap ng mesa"
+    },
+    {
+      "notes": "Gilid ng mesa"
+    },
+    {
+      "notes": "Gilid ng mesa"
+    },
+    {
+      "notes": "Gilid ng mesa"
+    }
+  ],
+  "tools": [
+    "10\" o 12\" na miter saw (o angkop na lagaring de-kamay)",
+    "Impact driver para sa mga self-driving exterior wood screw",
+    "Drill na may 1/8\" na bit para sa pre-drill na butas",
+    "Liha, 120 grit",
+    "Iskwala ng karpintero",
+    "Safety goggles + guwantes"
+  ],
+  "steps": [
+    {
+      "title": "Markahan, lagyan ng label at putulin ang kahoy",
+      "text": "Markahan, lagyan ng label at putulin ang kahoy nang sunud-sunod mula T-1 hanggang T-6 ayon sa haba sa listahan ng puputulin.\n\nSuriin ang bawat piraso ng kahoy kung may depekto gaya ng lamat, pagkabaluktot o hindi pantay na pagkakakatam, at itapon ang mga bahaging iyon ng kahoy.",
+      "imageAlts": [
+        "Isometric na diagram ng anim na pinutol na piraso ng 2' na mesa, T-1 hanggang T-6, may label ang haba, mula sa 27\" na tabla hanggang sa 12\" na bloke."
+      ],
+      "tips": [
+        "Lagyan ng label ang bawat piraso ng kahoy habang sinusukat at pinuputol ninyo ito.",
+        "Magkaroon ng hiwalay na tumpok ng kahoy para sa bawat piraso, T-1 hanggang T-6.",
+        "Ang bahagyang paglilija sa mga pinutol na gilid ay nag-aalis ng salubsob at nakatutulong sa pagbuo.",
+        "Gagawa ng higit sa isang mesa? Pinananatiling magkakapareho ang haba ng bawat piraso ng isang stop block sa inyong miter saw."
+      ]
+    },
+    {
+      "title": "Buuin ang dalawang frame sa dulo",
+      "text": "Ilagay ang dalawang pirasong T-5 sa patag na ibabaw. Ilagay ang dalawang pirasong T-1 sa magkabilang gilid ng mga pirasong T-5, at itugma ang mga gilid gaya ng ipinapakita. Ulitin para makabuo ng ikalawa at katugmang frame.",
+      "imageAlts": [
+        "Diagram na nagpapakita ng dalawang tablang T-1 at dalawang T-5 na binuo bilang parisukat na frame sa dulo."
+      ],
+      "tips": [
+        "Gumamit ng iskwala ng karpintero para suriin kung tamang anggulo (90°) ang bawat sulok — kung malayo, suriin ulit ang haba ng mga tabla.",
+        "Makatutulong ang paggawa ng 90-degree na jig sa pagbuo sa hakbang na ito at sa susunod."
+      ]
+    },
+    {
+      "title": "Idagdag ang mga suporta ng paa sa bawat frame sa dulo",
+      "text": "Ilagay ang isang pirasong T-2, dalawang T-4 at dalawang T-6 sa ibabaw ng frame na ginawa sa hakbang 2. Para matiyak ang 1.5\" na puwang sa pagitan ng dalawang pirasong T-6, gumamit ng sobrang 2x4 na nakatayo bilang spacer.\n\nGamitin ang gabay sa pre-drill sa dulo ng packet para mag-pre-drill ng mga butas ng turnilyo, saka ikabit ang kahoy sa mga pirasong T-2, T-4 at T-6 gamit ang impact driver at 30 na 2.5\" na self-driving exterior wood screw.\n\nUlitin sa kabilang paa, saka itayo ang dalawang paa para sa susunod na hakbang.",
+      "imageAlts": [
+        "Diagram ng mga tablang T-2, T-4 at T-6 na tinuturnilyo sa ibabaw ng frame sa dulo, may tanda ng 1.5\" na puwang ng spacer."
+      ]
+    },
+    {
+      "title": "Pagdugtungin ang dalawang frame sa dulo",
+      "text": "Ilagay ang isang pirasong T-3 sa puwang sa paanan ng dalawang frame na ginawa sa hakbang 3.\n\nIlagay ang dalawang pirasong T-2 sa ibabaw ng mesa sa dalawang gilid, gaya ng ipinapakita — tiyaking kapantay sila ng gilid ng mga paa, para manatiling tuwid ang mesa — at ikabit gamit ang 12 na 2.5\" na self-driving exterior wood screw.\n\nIkabit ang kahoy na T-3 sa kaliwa at kanang gilid sa mga pirasong T-1 gamit ang impact driver at 4 na 2.5\" na self-driving exterior wood screw.",
+      "imageAlts": [
+        "Diagram ng isang tablang T-3 na nagdudugtong sa dalawang frame sa dulo sa paanan, at mga tablang T-2 sa ibabaw na kapantay ng mga paa."
+      ],
+      "tips": [
+        "Suriin gamit ang iskwala ng karpintero na nananatiling 90 degrees ang gilid."
+      ]
+    },
+    {
+      "title": "Idagdag ang ibabaw ng mesa at lihahin",
+      "text": "Ilagay ang limang pirasong T-2 sa ibabaw ng frame na ginawa sa hakbang 4, itugma ang lahat ng gilid at mag-iwan ng pantay na puwang sa pagitan ng lahat ng piraso.\n\nIkabit gamit ang impact driver at 20 na 2.5\" na self-driving exterior wood screw.\n\nBahagyang lihahin ang magaspang na gilid ng mesa.",
+      "imageAlts": [
+        "Diagram ng natitirang mga tablang T-2 sa ibabaw na pantay ang agwat at tinuturnilyo sa kabuuan ng frame ng mesa."
+      ]
+    },
+    {
+      "title": "Gabay sa pre-drill na butas (template)",
+      "text": "Gupitin ang gabay sa pre-drill na butas sa mga putol-putol na linya. Kapag nagbubutas, itugma ang gilid ng template sa panlabas na gilid ng kahoy bago mag-pre-drill.\n\nHindi lahat ng butas ay ginagamit — hindi lahat ng pattern ay gumagamit ng template. Gamitin ang mga hakbang sa pagbuo sa itaas bilang gabay sa mga butas. Panatilihin ang lahat ng butas na mga isang lapad ng hinlalaki mula sa gilid (mga 1\"), kahit ang mga butas na hindi gumagamit ng template na ito.",
+      "imageAlts": [
+        "Isang template ng gabay sa pre-drill na butas na mapi-print, may limang minarkahang puwesto ng butas at mga linya ng paggupit, at isang malapitang larawan ng layo ng butas mula sa gilid ng tabla."
+      ]
+    }
+  ],
+  "safety": [
+    "Mga rekomendasyong DIY (kayo mismo ang gagawa) lamang ang mga ito — iangkop ang materyales, pagbuo at konstruksiyon sa sarili ninyong proyekto at lote.",
+    "Ipinapalagay sa paggawa nito na may kaunti kayong kaalaman sa mga kagamitang de-kamay at de-kuryente, hardware, pangkabit, kahoy at batayang paraan ng pagbuo.",
+    "Bago gumamit ng anumang de-kuryenteng kagamitan, basahin at sundin ang mga kinakailangan sa kaligtasan ng gumawa nito, at huwag hayaang gumamit ng de-kuryenteng kagamitan ang sinumang hindi pa nakagagawa nito.",
+    "Kayo (ang may-ari) ang mananagot sa anumang building at safety code, permit at pag-apruba ng pamahalaan na kailangan nito.",
+    "Linisin muna ang lote mula sa basura, panganib at mga ayaw na istruktura, at alamin ang anumang utility (kable at tubo) na maaaring maging sagabal bago kayo maghukay.",
+    "Dapat pumirma ng waiver ng boluntaryo ang lahat ng tumutulong sa paggawa."
+  ],
+  "links": [
+    {
+      "label": "Pagpili ng pinakamahusay na pampahid para sa mga proyekto sa labas (Rockler) (sa Ingles)"
+    },
+    {
+      "label": "Pinakamahusay na pampahid sa kahoy sa labas (Real Milk Paint) (sa Ingles)"
+    },
+    {
+      "label": "Mga pampahid sa kahoy sa labas (Vermont Natural Coatings) (sa Ingles)"
+    }
+  ]
+}

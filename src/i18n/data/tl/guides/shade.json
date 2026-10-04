@@ -1,0 +1,168 @@
+{
+  "title": "8' na silungan",
+  "summary": "Isang nakatayong trellis na 2x4, 8x8x8 talampakan, may bubong na gawa sa magkakahanay na tabla, nakabaon sa lupa (o sa taniman) gamit ang L-bracket at J-hook, o naka-bolt sa katabing upuang gabion.",
+  "finishing": "Makapagpapatagal sa buhay ng mga bahagi ng inyong parke ang panlabas na pampahid sa kahoy, pero hindi ito kailangan — sadyang idinisenyo ang mga pirasong ito para maging mura, matibay at madaling gawin, kaya maaaring mas praktikal na hayaan na lang ang susunod na henerasyon na gawin silang muli pagdating ng panahon. Kung gusto ninyong lagyan ng stain, pintura o sealant ang kahoy, tingnan ang mga mapagkukunan tungkol sa pampahid sa ibaba.",
+  "sourcePages": "Tagubilin sa pagbuo ng SHADE_Assembly, pp. 1–12 (pabalat; bago kayo magsimula; karaniwang pagpipiliang kahoy; mga hakbang 1–7; pag-angkla; gabay sa pre-drill na butas)",
+  "materials": [
+    {
+      "item": "Kahoy na 2x4 — western red cedar o Douglas fir",
+      "notes": "Cedar: likas na matibay sa panahon at sa pagkabulok, magandang mapulang kulay, hindi kailangan ng sealant; mas mahal — hanapin ang grade na 'knotty' (STK). Fir: katamtamang matibay sa pagkabulok, matibay, mas mura kaysa sa cedar; mabuti kung balak ninyong pintahan. Maaari pa ring magkalamat ang kahoy dahil sa init ng araw. Umorder ng 5–10% na higit sa listahan ng puputulin para sa iba-ibang kalidad ng kahoy at maling pagputol."
+    },
+    {
+      "item": "Concrete deck block",
+      "notes": "Kung kailangan lang — tingnan ang hakbang 8. Gamitin kung saan tatama ang poste sa taniman, para nakaangat ang poste sa lupa at manatili itong matatag habang nababawasan ang pagkabulok. Ibaon ang mga block kung kailangan para magkakapantay ang lahat ng poste."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Self-driving exterior wood screw"
+    },
+    {
+      "item": "L-bracket"
+    },
+    {
+      "item": "Lag screw"
+    },
+    {
+      "item": "J hook"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Paa (mahaba), suporta sa gilid, suporta sa itaas, at mga tabla ng bubong",
+      "siteNote": "14 ang sabi ng listahan ng puputulin ng gabay, pero 32 ang ginagamit sa mga hakbang: 4 na paa, 2 biga sa itaas, 4 na suporta, 2 pahalang na biga, 4 na mahabang suporta, 1 suporta sa itaas at 15 tabla ng bubong. Sapat para sa lahat ng ito, pati sa SS-2 hanggang SS-4, ang 47 na 2x4x8 sa listahan ng materyales."
+    },
+    {
+      "notes": "Paa (maikli)"
+    },
+    {
+      "notes": "Suporta sa loob, gilid B — putulin sa huling laki nito sa lote, ayon sa nabuong frame"
+    },
+    {
+      "notes": "Suporta sa loob, gilid A — tantiya lamang; huwag putulin sa huling haba hangga't hindi pa ninyo nasusukat ang frame sa hakbang 5"
+    }
+  ],
+  "tools": [
+    "10\" o 12\" na miter saw (o angkop na lagaring de-kamay)",
+    "Impact driver para sa mga self-driving exterior wood screw",
+    "Drill na may 1/8\" na bit para sa pre-drill na butas",
+    "5 lb na martilyo, para sa mga J hook",
+    "Liha, 120 grit",
+    "Iskwala ng karpintero",
+    "Safety goggles + guwantes",
+    "6' na hagdang-tiklop (step ladder)",
+    "2 wood clamp (hindi kailangan)"
+  ],
+  "steps": [
+    {
+      "title": "Markahan, lagyan ng label at putulin ang kahoy",
+      "text": "Markahan, lagyan ng label at putulin ang kahoy nang sunud-sunod mula SS-1 hanggang SS-4 ayon sa haba sa listahan ng puputulin. Pinuputol dito ang SS-3 at SS-4 sa tantiyang haba at tinatabas sa huli at eksaktong laki nila sa lote sa hakbang 5 — huwag pa silang paikliin hanggang doon.\n\nSuriin ang bawat piraso ng kahoy kung may depekto gaya ng lamat, pagkabaluktot o hindi pantay na pagkakakatam, at itapon ang mga bahaging iyon ng kahoy.",
+      "imageAlts": [
+        "Isometric na diagram ng apat na pinutol na piraso ng silungan, SS-1 hanggang SS-4, may label ang haba, mula sa 96\" na tabla hanggang sa mga suporta sa loob na mga 87\"."
+      ],
+      "tips": [
+        "Lagyan ng label ang bawat piraso ng kahoy habang sinusukat at pinuputol ninyo ito.",
+        "Magkaroon ng hiwalay na tumpok ng kahoy para sa SS-1 hanggang SS-4.",
+        "Ang bahagyang paglilija sa mga pinutol na gilid ay nag-aalis ng salubsob at nakatutulong sa pagbuo.",
+        "Gagawa ng higit sa isang silungan? Pinananatiling magkakapareho ang haba ng bawat piraso ng isang stop block sa inyong miter saw."
+      ]
+    },
+    {
+      "title": "Buuin ang apat na paa at pagdugtungin sila sa dalawang pares",
+      "text": "Ipatong ang isang SS-2 sa isang SS-1, na magkapantay ang isang gilid at may 3.5\" na puwang sa kabilang gilid. Ito ang unang paa ng trellis.\n\nGamitin ang gabay sa pre-drill sa dulo ng packet para mag-pre-drill ng mga butas ng turnilyo, saka ikabit ang dalawang piraso gamit ang 2 turnilyo sa isang dulo, 2 sa kabilang dulo, 2 sa gitna, at 2 pa na pantay ang agwat sa pagitan ng isang dulo at ng gitna — 10 turnilyo bawat paa.\n\nUlitin nang 3 pang beses, gamit ang 3 pang pirasong SS-2 at SS-1 at 30 pang turnilyo, para mabuo ang apat na paa.\n\nPara pagdugtungin ang mga paa nang dala-dalawa: ikabit ang isang SS-1 sa itaas ng dalawang paa, nakasingit sa 3.5\" na puwang, gamit ang 8 turnilyo (4 bawat paa). Ulitin sa dalawa pang paa.",
+      "imageAlts": [
+        "Diagram ng tablang SS-2 at SS-1 na magkapatong na may 3.5\" na puwang para mabuo ang isang paa ng trellis, at isang pahalang na SS-1 sa itaas na nagdudugtong sa dalawang paa bilang pares."
+      ],
+      "tips": [
+        "Magagawa ang unang dalawang hakbang sa patag na lupa bago itayo ang anuman.",
+        "Suriin gamit ang iskwala ng karpintero na nananatiling 90 degrees ang bawat gilid."
+      ]
+    },
+    {
+      "title": "Idagdag ang mga suporta sa ibabang gilid at itayo ang mga paa",
+      "text": "Baligtarin ang mga pares ng paa. Gamit ang dalawang SS-1 sa isang gilid ng trellis, magdagdag ng mga suporta, gamit ang sobrang 2x4 para magkaroon ng pantay na 3.5\" na puwang sa pagitan ng suporta sa itaas ng paa at ng mga bagong suporta sa ilalim nito — 4 na turnilyo bawat suporta, 8 turnilyo lahat para sa gilid na ito.\n\nUlitin sa kabilang pares ng paa gamit ang dalawa pang SS-1 at 8 pang turnilyo.\n\nItayo ang mga paa.",
+      "imageAlts": [
+        "Diagram ng mga suportang SS-1 sa gilid na idinaragdag sa ilalim ng pahalang na piraso sa itaas ng bawat pares ng paa, may 3.5\" na puwang ng spacer, saka itinayo ang mga pares ng paa."
+      ],
+      "tips": [
+        "Suriin gamit ang iskwala ng karpintero na nananatiling 90 degrees ang bawat gilid."
+      ]
+    },
+    {
+      "title": "Idagdag ang mga pahalang na biga sa itaas at mahahabang suporta",
+      "text": "Habang nakatayo ang mga paa, pagdugtungin ang dalawang pares ng paa gamit ang dalawang pahalang na bigang SS-1 sa itaas, suriin na 90 degrees ang lahat ng gilid, at ikabit ang bawat sulok gamit ang 4 na turnilyo (8 turnilyo para sa hakbang na ito).\n\nMagdagdag ng mahahabang suporta sa kahabaan ng isang gilid gamit ang dalawang SS-1, gamit ulit ang sobrang 2x4 para sa pantay na 3.5\" na puwang sa ilalim ng pahalang na biga sa itaas (4 na turnilyo bawat suporta). Ulitin sa kabilang gilid.",
+      "imageAlts": [
+        "Diagram ng mga pahalang na bigang SS-1 na nagdudugtong sa dalawang pares ng paa sa itaas, at ng mahahabang suportang SS-1 sa kahabaan ng mga gilid sa ilalim nila."
+      ],
+      "tips": [
+        "Kailangan ng hagdan sa natitirang mga hakbang para maabot ang itaas ng frame.",
+        "Suriin gamit ang iskwala ng karpintero na nananatiling 90 degrees ang bawat gilid."
+      ]
+    },
+    {
+      "title": "Itugma at ikabit ang mga suporta sa loob",
+      "text": "Sukatin ang layo sa pagitan ng dalawang poste kung saan dapat ilagay ang bawat suportang SS-4 sa loob, putulin ang pirasong SS-4 sa eksaktong sukat na iyon para sakto ang pagkakalagay, at ikabit ito sa pirasong SS-1 sa likod nito. Ulitin para sa 4 na suporta sa loob sa mahabang gilid, at ikabit ang bawat isa gamit ang 8 na 2.5\" na turnilyo na nakapares at pantay ang agwat (32 turnilyo lahat).\n\nGanoon din ang gawin sa mga suportang SS-3 sa loob sa maiikling gilid: sukatin, putulin ang bawat isa para sakto, ikabit sa pirasong SS-1 sa likod nito, para sa 4 na suporta sa loob sa maikling gilid at 32 pang turnilyo.",
+      "imageAlts": [
+        "Diagram na nagpapakita ng mga suportang SS-4 at SS-3 sa loob na sinukat at pinutol para sakto sa pagitan ng mga poste, saka tinurnilyo nang nakapares at pantay ang agwat."
+      ],
+      "tips": [
+        "Gumamit ng clamp para hawakan sa puwesto ang kahoy habang ikinakabit ninyo ito."
+      ]
+    },
+    {
+      "title": "Idagdag ang mga suporta sa itaas",
+      "text": "Gumamit ng isang pirasong SS-1 para gumawa ng suporta sa itaas, nakagitna sa frame at pantay ang agwat.\n\nIkabit ito gamit ang 4 na self-driving exterior wood screw.",
+      "imageAlts": [
+        "Diagram ng iisang suportang SS-1 sa itaas na nakagitna sa kabuuan ng frame."
+      ],
+      "tips": [
+        "Gumamit ng clamp para hawakan sa puwesto ang kahoy habang ikinakabit ninyo ito."
+      ]
+    },
+    {
+      "title": "Buuin ang bubong at lihahin",
+      "text": "Gumamit ng mga pirasong SS-1 para sa bubong. Gamit ang sobrang 2x4 bilang spacer, ikabit ang bawat tabla ng bubong na SS-1 mula sa isang gilid ng frame hanggang sa kabila (kanan pakaliwa).\n\nIkabit ang kahoy gamit ang impact driver at 75 na 2.5\" na self-driving exterior wood screw, saka ikabit ang natitirang mga piraso ng bubong na SS-1 gamit ang 70 pang turnilyo.\n\nItugma ang huling piraso sa frame para walang nakausli — ayos lang kung mas makitid sa 3.5\" ang huling piraso kung kailangan para kumasya.\n\nBahagyang lihahin ang magaspang na gilid ng silungan.",
+      "imageAlts": [
+        "Diagram ng mga tabla ng bubong na SS-1 na inilalatag nang magkakatabi sa itaas ng frame gamit ang 2x4 na spacer, tinuturnilyo mula sa isang gilid hanggang sa kabila."
+      ]
+    },
+    {
+      "title": "I-angkla ang mga poste",
+      "text": "Maglagay ng L-bracket sa loob ng bawat poste at ikabit ito gamit ang 1/2\" x 2\" na lag screw.\n\nIpasok ang isang 18\" na J hook sa butas sa ibaba ng bawat L-bracket at martilyuhin ito pabaon sa lupa gamit ang 5 lb na martilyo.",
+      "imageAlts": [
+        "Diagram ng L-bracket at J hook na nag-aangkla sa paanan ng poste ng trellis sa lupa, kasama ang opsiyong concrete deck block para sa mga taniman."
+      ],
+      "tips": [
+        "Kung katabi ng upuang gabion na may kahoy sa ibabaw ang silungan, mas mabuting gamitin ang mga L-bracket at lag screw para direktang ikabit ang mga paa ng trellis sa upuan.",
+        "Kung tatama ang poste sa taniman, ipatong ito sa concrete deck block sa ibabaw ng lupa para tumatag at mabawasan ang pagkabulok ng kahoy — ibaon ang block para kapantay ito ng ibang poste."
+      ]
+    },
+    {
+      "title": "Gabay sa pre-drill na butas (template)",
+      "text": "Gupitin ang gabay sa pre-drill na butas sa mga putol-putol na linya. Kapag nagbubutas, itugma ang gilid ng template sa panlabas na gilid ng kahoy bago mag-pre-drill.\n\nHindi lahat ng butas ay ginagamit — hindi lahat ng pattern ay gumagamit ng template. Gamitin ang mga hakbang sa pagbuo sa itaas bilang gabay sa mga butas. Panatilihin ang lahat ng butas na mga isang lapad ng hinlalaki mula sa gilid (mga 1\"), kahit ang mga butas na hindi gumagamit ng template na ito.",
+      "imageAlts": [
+        "Isang template ng gabay sa pre-drill na butas na mapi-print, may limang minarkahang puwesto ng butas at mga linya ng paggupit, at isang malapitang larawan ng layo ng butas mula sa gilid ng tabla."
+      ]
+    }
+  ],
+  "safety": [
+    "Mga rekomendasyong DIY (kayo mismo ang gagawa) lamang ang mga ito — iangkop ang materyales, pagbuo at konstruksiyon sa sarili ninyong proyekto at lote.",
+    "Ipinapalagay sa paggawa nito na may kaunti kayong kaalaman sa mga kagamitang de-kamay at de-kuryente, hardware, pangkabit, kahoy at batayang paraan ng pagbuo.",
+    "Bago gumamit ng anumang de-kuryenteng kagamitan, basahin at sundin ang mga kinakailangan sa kaligtasan ng gumawa nito, at huwag hayaang gumamit ng de-kuryenteng kagamitan ang sinumang hindi pa nakagagawa nito.",
+    "Kayo (ang may-ari) ang mananagot sa anumang building at safety code, permit at pag-apruba ng pamahalaan na kailangan nito.",
+    "Linisin muna ang lote mula sa basura, panganib at mga ayaw na istruktura, at alamin ang anumang utility (kable at tubo) na maaaring maging sagabal bago kayo maghukay.",
+    "Dapat pumirma ng waiver ng boluntaryo ang lahat ng tumutulong sa paggawa.",
+    "Isa itong 8-talampakang istrukturang ginagawa sa itaas habang nasa hagdan — magpahawak sa isang katulong ng frame at hagdan habang nagtatrabaho kayo sa mataas."
+  ],
+  "links": [
+    {
+      "label": "Pagpili ng pinakamahusay na pampahid para sa mga proyekto sa labas (Rockler) (sa Ingles)"
+    },
+    {
+      "label": "Pinakamahusay na pampahid sa kahoy sa labas (Real Milk Paint) (sa Ingles)"
+    },
+    {
+      "label": "Mga pampahid sa kahoy sa labas (Vermont Natural Coatings) (sa Ingles)"
+    }
+  ]
+}
