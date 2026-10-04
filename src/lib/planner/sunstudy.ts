@@ -121,7 +121,9 @@ export function buildingsKey(site: LocalSite): string {
 export function buildingsChanged(grid: SunGrid | null | undefined, site: LocalSite | null | undefined): 'far-added' | 'changed' | null {
   if (!grid || !site || !site.ctx.farBuildings) return null;
   if (!grid.inputs.buildingsKey) return site.ctx.farBuildings.length ? 'far-added' : null;
-  return grid.inputs.buildingsKey === buildingsKey(site) ? null : 'changed';
+  if (grid.inputs.buildingsKey === buildingsKey(site)) return null;
+  // worked out while the far buildings could not be loaded, and now they are here
+  return !grid.inputs.farBuildings && site.ctx.farBuildings.length ? 'far-added' : 'changed';
 }
 
 export interface SunStudyResult {

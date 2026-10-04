@@ -210,7 +210,9 @@ describe('a saved study made before the far buildings were counted', () => {
   it('says so: older studies (no key) when far buildings are now counted, and any study whose buildings changed', () => {
     expect(buildingsChanged(grid({ buildings: 195, trees: 3 }), site)).toBe('far-added');
     expect(buildingsChanged(grid({ buildings: 199, trees: 3, buildingsKey: buildingsKey(site) }), site)).toBeNull();
-    expect(buildingsChanged(grid({ buildings: 199, trees: 3, buildingsKey: '1:abc' }), site)).toBe('changed');
+    expect(buildingsChanged(grid({ buildings: 199, trees: 3, buildingsKey: '1:abc', farBuildings: 4 }), site)).toBe('changed');
+    // worked out while the far buildings could not be loaded: they are what's new
+    expect(buildingsChanged(grid({ buildings: 195, trees: 3, buildingsKey: '195:abc' }), site)).toBe('far-added');
     // no far buildings around this lot: an older study is still right
     const g = buildLocalSite(ctxOf(greenway));
     expect(buildingsChanged(grid({ buildings: 120, trees: 3 }), g)).toBeNull();
