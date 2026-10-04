@@ -1,0 +1,454 @@
+{
+  "partners": [
+    {
+      "description": "Katuwang ng PiaT, pinalalawak nito ang mga pagpipiliang disenyo ng parke."
+    },
+    {
+      "description": "Ang sangay ng Philadelphia City Planning Commission para sa edukasyon at pag-abot sa publiko; nagpapatakbo ng walong-linggong kurso tungkol sa kung paano gumagana ang pagpaplano at pagpapaunlad ng lungsod."
+    },
+    {
+      "description": "Ang lokal na non-profit na nagpondo sa unang parke ng Park in a Truck. (Ang sariling hyperlink ng Toolkit para sa pagkilalang ito ay nakaturo talaga sa communityprogress.org, isang pambansang non-profit tungkol sa land bank — malamang na hindi tugma ang link at caption sa orihinal na PDF, kaya walang URL dito hangga't hindi ito nakukumpirma.)"
+    },
+    {
+      "description": "Lokal na real estate brokerage sa Philly na naglilingkod sa West Philadelphia."
+    },
+    {
+      "description": "Katuwang ng PiaT sa green infrastructure — makipag-ugnayan sa kanila para sa tulong sa paghihiwalay ng mga alulod (decoupling downspouts) o pagdagdag ng rain garden sa inyong parke."
+    },
+    {
+      "description": "Isang nangunguna sa pangangalaga ng lupa sa lungsod; isang community land trust para sa mga hardin at iba pang bukas na espasyo."
+    },
+    {
+      "description": "Katuwang na community development corporation (grupong \"PARTNERS\" sa Linktree). Sira ang pahinang ibinabalik ng site ngayon — kumpirmadong hindi gumagana, hindi dahil sa pagharang sa bot."
+    },
+    {
+      "description": "Nagpopondo."
+    },
+    {
+      "description": "Katuwang sa mga permit, lupa at datos ng Lungsod."
+    },
+    {
+      "description": "Katuwang sa tirahan ng mga hayop at pagtatanim."
+    },
+    {
+      "description": "Katuwang sa tirahan ng mga hayop at hardin ng pollinator sa ilang naitayong parke."
+    },
+    {
+      "description": "Nagpopondo."
+    },
+    {
+      "description": "Katuwang para sa workbook ng Playful Learning Landscapes."
+    },
+    {
+      "description": "Nagpopondo."
+    },
+    {
+      "description": "Kasangkapan ng Lungsod para baguhin ang isang bakanteng ari-arian."
+    }
+  ],
+  "press": [
+    {
+      "title": "Sa programang Park in a Truck, nais ng Jefferson na tumulong sa pagbabago ng mga komunidad na kulang sa serbisyo"
+    },
+    {
+      "title": "Kinilala ng Fast Company Magazine ang inisyatibang Park in a Truck para sa 'Social Good'"
+    },
+    {
+      "title": "Ginawaran ang Park in a Truck ng 2020 Groundbreaker Award ng Green Building United"
+    },
+    {
+      "title": "Ang 'Park in a Truck' ay parang Ikea, pero para sa pagtatayo ng mga parke sa kapitbahayan"
+    },
+    {
+      "title": "Mga bakanteng lote, ginawang magagandang parke sa mga kapitbahayan ng Philly"
+    },
+    {
+      "title": "Binabago ng programang Park in a Truck ang mga luntiang espasyo sa lungsod sa Philadelphia sa tulong ng kabataan ng kapitbahayan"
+    },
+    {
+      "title": "ASLA Spotlight — Tagsibol 2025"
+    },
+    null,
+    {
+      "title": "Binabago ang mga kapitbahayan, isang parke sa bawat pagkakataon — itinayo ng komunidad, para sa komunidad"
+    },
+    {
+      "title": "Tagubilin sa pagbuo ng Park in a Truck ng Jefferson #1"
+    },
+    {
+      "title": "Tagubilin sa pagbuo ng Park in a Truck ng Jefferson #2"
+    }
+  ],
+  "supplierGroups": [
+    {
+      "label": "Pag-upa ng kagamitan",
+      "items": [
+        {
+          "note": "Mga kagamitang de-kamay; nakikipagtulungan sa Philadelphia Orchard Project at nagbibigay rin ng mga klase sa kasanayan."
+        },
+        {
+          "title": "Diamond Tool (paupahan ng power tool)",
+          "note": "Mukhang naisama na sa White Cap; hinaharangan ang awtomatikong pagsusuri."
+        },
+        {
+          "note": "Wala nang gumagana sa dalawang domain na inilista ng PiaT para sa paupahang ito sa Darby, PA (okrentalsaleservice.com, okrental1.com)."
+        }
+      ]
+    },
+    {
+      "label": "Basura at recycling",
+      "items": [
+        {
+          "note": "3850 W Ford Rd — compost, wood chips, mulch at dumi ng hayop sa napakababang halaga."
+        },
+        {
+          "title": "Richard S. Burns & Co. (mga recycled na materyales)",
+          "note": "4300 Rising Sun Ave — tapunan + mga recycled na produktong ibinebenta."
+        }
+      ]
+    },
+    {
+      "label": "Mga nursery at halaman",
+      "items": [
+        null,
+        {
+          "note": "Lokal na espesyalista sa halaman para sa pollinator."
+        },
+        {
+          "note": "Mahuhusay na ornamental at katutubong cultivar; NJ, may delivery na may minimum na $1,250."
+        },
+        {
+          "note": "Mga halamang pang-restorasyon mula sa lokal na ecoregion; hindi karaniwan ang sagot ng site sa awtomatikong pagsusuri pero malamang na gumagana ito."
+        },
+        {
+          "note": "Mga halamang pang-restorasyon mula sa lokal na ecoregion."
+        },
+        null,
+        {
+          "note": "Expired ngayon ang TLS certificate ng site — asahang may babala ang browser."
+        },
+        {
+          "title": "Burpee — mga punong namumunga"
+        },
+        {
+          "title": "Stark Bro's — mga punong namumunga"
+        },
+        {
+          "title": "Gurney's — mga prutas at berry"
+        },
+        {
+          "title": "Willis Orchards — mga punong namumunga"
+        },
+        null,
+        {
+          "title": "Philly Orchard Project — mga mapagkukunan"
+        }
+      ]
+    },
+    {
+      "label": "Kahoy at materyales sa pagtatayo",
+      "items": [
+        {
+          "note": "4260 Macalester St — landscape supply, mulch at kagamitan."
+        },
+        {
+          "note": "701 Washington St, Conshohocken — topsoil, mulch, compost."
+        },
+        null,
+        {
+          "note": "4701 Woodland Ave, Phila."
+        },
+        {
+          "note": "1601 S 49th St, Phila."
+        },
+        {
+          "note": "Supply ng cypress, Avondale PA."
+        },
+        null,
+        {
+          "note": "3301 S 61st St — dinurog na bato, topsoil, may delivery."
+        },
+        {
+          "title": "Rockler — pagpili ng pinakamahusay na pampahid para sa mga proyekto sa labas"
+        },
+        {
+          "title": "Real Milk Paint (RMP Finishes) — pinakamahusay na pampahid sa kahoy sa labas"
+        },
+        {
+          "title": "Vermont Natural Coatings — mga pampahid sa labas"
+        },
+        {
+          "title": "Hairpin Legs — hardware para sa bracket ng sandalan"
+        }
+      ]
+    },
+    {
+      "label": "Gabion at bato",
+      "items": [
+        null,
+        {
+          "note": "Hinaharangan ang awtomatikong pagsusuri; rehistrado at gumagana ang domain."
+        },
+        {
+          "title": "Paano magtayo ng pader na gabion (Gardendrum)"
+        }
+      ]
+    },
+    {
+      "label": "Mga video kung paano gawin",
+      "items": [
+        {
+          "title": "Paano pungusan ang puno"
+        },
+        {
+          "title": "Paano magtanim ng puno"
+        },
+        {
+          "title": "Paano magtanim ng palumpong"
+        },
+        {
+          "title": "Gilid na kahoy"
+        },
+        {
+          "title": "Pagtatayo ng pader na gabion"
+        },
+        {
+          "title": "Paggawa ng mesang pansama-sama"
+        },
+        {
+          "title": "Paggawa ng cold frame"
+        },
+        {
+          "title": "Paggawa ng nakataas na taniman"
+        },
+        {
+          "title": "Magpungos nang parang propesyonal"
+        },
+        {
+          "title": "Gabay sa pagdidilig at tubig-ulan"
+        }
+      ]
+    },
+    {
+      "label": "Mga mapagkukunan para matuto",
+      "items": [
+        {
+          "title": "Penn State Extension — soil testing"
+        },
+        {
+          "title": "Penn State Extension — mga form para sa soil fertility test"
+        },
+        {
+          "title": "Penn State Extension — mga peste at sakit ng halaman"
+        },
+        {
+          "title": "Penn State Extension — programang Master Gardener"
+        },
+        null,
+        null,
+        {
+          "title": "Arbor Day — paano magtanim ng punong nasa paso"
+        },
+        {
+          "title": "Arbor Day — mga punong namumunga"
+        },
+        {
+          "note": "Mga workshop, impormasyon tungkol sa hardin ng komunidad, programang Rain Barrel."
+        },
+        {
+          "note": "Tulong legal, datos at mga gabay sa pagkuha at pagpapanatili ng lote."
+        },
+        null,
+        {
+          "note": "Koalisyong pinamumunuan ng mga Black at Brown para sa pagkontrol ng komunidad sa lupa at pagkain."
+        },
+        null,
+        null,
+        null,
+        {
+          "note": "Plano ng PennPraxis para sa Philadelphia Parks & Recreation."
+        },
+        {
+          "title": "PlantSnap (app na pangkilala ng halaman at damong ligaw)"
+        },
+        {
+          "title": "Gardener's Path — paggamit ng panukat ng ulan"
+        },
+        {
+          "title": "Paano maglagay ng mulch (SKH)"
+        },
+        {
+          "title": "Pamatay-damong gawa sa suka (halimbawang produkto)",
+          "note": "Ito lang ang nakitang mapagkukunan para sa produktong ito; inilink nang walang pinapanigan."
+        }
+      ]
+    },
+    {
+      "label": "Mga programa ng Lungsod ng Philadelphia",
+      "items": [
+        {
+          "title": "Atlas Philadelphia (paghahanap ng ari-arian)"
+        },
+        {
+          "title": "Mapa ng pagmamay-ari ng parsela sa Philadelphia (ArcGIS)"
+        },
+        {
+          "title": "Registered Community Organizations (RCO)"
+        },
+        {
+          "title": "Temporary No-Parking Permit (permit na bawal pumarada)"
+        },
+        {
+          "title": "Green City, Clean Waters — grant para sa tubig-ulan / rain garden"
+        }
+      ]
+    }
+  ],
+  "toolkitLibrary": {
+    "intro": "Maligayang pagdating sa toolkit library! Maraming mapagkukunan at link para sa karagdagang impormasyon sa mga sumusunod na pahina, nakaayos ayon sa kabanata.",
+    "sections": [
+      {
+        "title": "Panimula",
+        "entries": [
+          {
+            "title": "Para mabawasan ang kahirapan, dapat kasama sa mga pagsisikap ng City Council ang mas maraming luntiang espasyo (The Inquirer)"
+          },
+          {
+            "title": "Itaguyod natin ang kalusugan at luntiang espasyo, isang bakanteng lote sa bawat pagkakataon (The Inquirer)"
+          },
+          null,
+          {
+            "title": "Bubuyog, mga bagay-bagay at bulaklak lang: kung paano malalampasan ng mga Black na babaeng hardinero ang krisis ng COVID-19 (Essence)"
+          },
+          null,
+          null
+        ]
+      },
+      {
+        "title": "01 Kumuha ng lote",
+        "entries": [
+          {
+            "title": "The PHS City Parks Handbook ($13.95)"
+          },
+          {
+            "title": "Park Advocate Handbook (libre)"
+          },
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "title": "02 Mag-organisa",
+        "entries": [
+          null,
+          null
+        ]
+      },
+      {
+        "title": "03 Magsuri",
+        "entries": [
+          {
+            "title": "Penn State Extension — soil testing"
+          }
+        ]
+      },
+      {
+        "title": "04 Mangarap",
+        "entries": [
+          null,
+          null,
+          null,
+          {
+            "title": "Paghahanap ng halaman sa Longwood Gardens"
+          },
+          null,
+          {
+            "title": "Penn State Master Gardeners — gabay sa pagtatanim sa Philadelphia"
+          }
+        ]
+      },
+      {
+        "title": "05 Lumikha",
+        "entries": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          {
+            "title": "Burpee — mga punong namumunga"
+          },
+          {
+            "title": "Stark Bro's — mga punong namumunga"
+          },
+          {
+            "title": "Gurney's — mga prutas at berry"
+          },
+          {
+            "title": "Willis Orchards — mga punong namumunga"
+          },
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "title": "06 Mag-alaga",
+        "entries": [
+          null,
+          null,
+          null,
+          {
+            "title": "Brandywine Conservancy — mga invasive na halaman"
+          },
+          {
+            "title": "Paano magtanim ng punong nasa paso (Arbor Day)"
+          },
+          {
+            "title": "Paano magtanim ng palumpong (video)"
+          },
+          {
+            "title": "Paano pungusan ang puno (video)"
+          },
+          {
+            "title": "Paano pungusan ang palumpong (Gardeners' World)"
+          },
+          {
+            "title": "Arbor Day Foundation — mga punong namumunga"
+          },
+          null,
+          {
+            "title": "Mga batayan ng pag-compost (video)"
+          },
+          {
+            "title": "Pagpapataba (Penn State Extension)"
+          },
+          {
+            "title": "Paano maglagay ng mulch sa inyong hardin (Good Housekeeping)"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgments": {
+    "lead": "Ang Landscape Architecture Program + The Lab for Social and Urban Innovation, Thomas Jefferson University",
+    "note": "Ginagawa ng site na ito ang sariling Toolkit, mga workbook at listahan ng halaman ng Park in a Truck na isang interactive na bersiyong may gabay, nang may pahintulot ng Park in a Truck / Thomas Jefferson University. Sa kanila ang lahat ng orihinal na teksto, larawan at litrato."
+  },
+  "legal": {
+    "title": "Paunawang legal",
+    "text": "Ang mga rekomendasyong nakapaloob dito ay batay sa karaniwang gawi sa paggawa at konstruksiyon. Sa anumang pagkakataon, ang Thomas Jefferson University (TJU), ang Lab For Social Innovation ng TJU, ang Park-in-a-Truck, at/o ang mga guro, kawani o kaanib nito ay hindi mananagot sa anumang pinsala o pagkasugat ng tao o pinsala sa ari-arian na magmumula sa paggamit ng mga rekomendasyong ito. Ang Thomas Jefferson University (TJU), ang Lab For Social Innovation ng TJU, ang Park-in-a-Truck, o ang mga guro, kawani at/o kaanib nito ay walang ibinibigay na garantiya, hayag man o ipinahihiwatig, at sa pamamagitan nito ay itinatatwa at pinawawalang-bisa ang lahat ng iba pang garantiya, kasama nang walang limitasyon ang mga ipinahihiwatig na garantiya o kondisyon ng pagiging mabibili (merchantability), pagiging angkop sa isang partikular na layunin, o hindi paglabag sa intellectual property o iba pang paglabag sa mga karapatan. Dagdag pa rito, ang Thomas Jefferson University (TJU), ang Lab For Social Innovation ng TJU, ang Park-in-a-Truck, at/o ang mga guro, kawani o kaanib nito ay hindi nagbibigay ng garantiya o anumang pahayag tungkol sa katumpakan, malamang na resulta o pagiging maaasahan ng paggamit ng mga rekomendasyong ito. Ang paggamit sa mga rekomendasyong ito ay nangangahulugang kinikilala at tinatanggap ninyo ang nabanggit."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "cecil-street-garden": {
+    "description": "Isang hardin ng komunidad sa isang binawing lote sa kanto sa Kingsessing, nakalista sa Toolkit ng Park in a Truck bilang \"Cecil Street Park\" at ginamit na lugar ng pagsubok sa pagtatanim kasama ang LandHealth Nursery. Mula noon, naging bahagi ito ng isang network ng tirahan ng mga pollinator na pinondohan ng pederal na pamahalaan, na nag-uugnay sa ilang lote ng Park in a Truck sa Southwest Philadelphia, at tinamnan ng mga katutubong puno at echinacea. Sabi ng residenteng si Victoria Miles-Chambliss: \"Talagang nagbago ang aming block mula nang gawin namin ang hardin. Para itong oasis sa gitna ng Southwest Philadelphia.\"",
+    "links": [
+      { "label": "Namumukadkad ang isang network ng tirahan para sa mga ibon at bubuyog sa Southwest Philadelphia (Grid Magazine, Abr 2024)" },
+      { "label": "Pahina ng programang Park in a Truck (Jefferson)" }
+    ]
+  },
+  "melon-street-park": {
+    "description": "Ang kauna-unahang parke ng Park in a Truck, binuksan noong Oktubre 2019 sa isang bakanteng lote sa Mantua (mga 2,400 sq ft). Sabi ng presidente ng Mantua Civic Association na si DeWayne Drummond: \"Ang lupang kinatatayuan natin ngayon ay dating bakanteng lote. Ngayon, pinaganda na ito ng mga taga-komunidad at ng kabataan.\" Inilalarawan ito ng tagapagtatag na si Kim Douglas bilang parkeng \"kayang padaluyin ang tubig-ulan, magpatubo ng halaman, magbigay ng tirahan sa mga hayop, at maging lugar ng libangan.\"",
+    "links": [
+      { "label": "Sa programang Park in a Truck, nais ng Jefferson na tumulong sa pagbabago ng mga komunidad na kulang sa serbisyo (Jefferson, Ago 2019)" },
+      { "label": "Mga bakanteng lote, ginawang magagandang parke sa mga kapitbahayan ng Philly (6abc, Hul 2021)" },
+      { "label": "Ang Toolkit ng Park in a Truck ay tumutulong sa mga taga-komunidad na baguhin ang mga bakanteng lote (Jefferson, Ago 2022)" }
+    ]
+  },
+  "glenda-anne-memorial-park": {
+    "description": "Inialay noong Agosto 3, 2019 sa isang loteng dating tapunan ng basura, dinaluhan ng mahigit 200 kapitbahay at mga halal na opisyal; tinanggap ng pamilya ni Glenda Ann Christopher ang parke bilang alaala niya (\"Glenda Ann Christopher Memorial Park\" ang baybay sa mga balita). Nagdagdag ng hardin para sa mga pollinator noong tagsibol ng 2023 — sabi ng organizer na si Greg Thompson: \"Isa o dalawang linggo matapos itong itanim, nandoon na sila — mga bubuyog, ibon, paru-paro at mas maraming insekto kaysa sa nakita namin kailanman.\" Ipinagdiwang ang karagdagang iyon sa ikalawang pag-aalay noong Hunyo 2024; sabi ng kabataang boluntaryong si Semaj Flores: \"Sumali kami rito para sa kalikasan at para matulungan ng kabataan ang mas nakababatang mga batang humaharap sa karahasan ng baril.\"",
+    "links": [
+      { "label": "Binabago ng programang Park in a Truck ang mga luntiang espasyo sa lungsod sa Philadelphia (CBS News Philadelphia, Hun 2024)" },
+      { "label": "Namumukadkad ang isang network ng tirahan para sa mga ibon at bubuyog sa Southwest Philadelphia (Grid Magazine, Abr 2024)" }
+    ]
+  },
+  "s-60th-greenway": {
+    "description": "Isang lote ng Park in a Truck na isang block ang layo sa Glenda Anne Memorial Park, sa parehong luntiang koridor ng Kingsessing — nakalista sa pasasalamat ng Toolkit (kinilala si Ted Behr, Southwest Globe Times) sa hiwalay na linya mula sa Glenda Anne. Walang balitang tumutukoy sa loteng ito nang hiwalay sa Glenda Anne Memorial Park; ituring ang dalawa na magkaugnay pero magkahiwalay na lote hangga't walang kumpirmasyon."
+  },
+  "dover-street-pocket-park": {
+    "description": "Nakalista sa sariling direktoryo ng mga lote ng Park in a Truck. Mas bago ito kaysa sa nailathalang Toolkit (wala ito sa pasasalamat nito) at walang nakitang hiwalay na balita — hindi pa kumpirmado ang mga detalye bukod sa address."
+  },
+  "tilden-middle-school": {
+    "description": "Nagtayo ang mga estudyante ng hardin para sa mga pollinator at hayop sa Tilden Middle School bilang bahagi ng parehong network ng pollinator sa Southwest Philadelphia na kinabibilangan ng Cecil Street Garden, na bahagyang pinondohan ng Pew Charitable Trusts sa pamamagitan ng Audubon Mid-Atlantic at katuwang ang Park in a Truck. Binabayaran ang mga kabataan sa pamamagitan ng programang Park Ambassador ng PiaT para alagaan ito at subaybayan ang mga pollinator."
+  },
+  "streetscape-of-brewerytown-garden": {
+    "description": "Nakalista sa sariling direktoryo ng mga lote ng Park in a Truck, malapit sa Dover Street Pocket Park sa Brewerytown. Iba itong proyekto sa walang kaugnayang \"Brewerytown Garden\" ng Neighborhood Gardens Trust sa 27th & Master St. Walang nakitang hiwalay na balita — hindi pa kumpirmado ang mga detalye bukod sa tantiyang lokasyon."
+  }
+}
