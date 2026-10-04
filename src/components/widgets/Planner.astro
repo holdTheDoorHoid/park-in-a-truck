@@ -1,8 +1,28 @@
 ---
-// STUB — owned by the planner workstream, which replaces this file.
-// Content may already place <Planner /> in chapters; keep the props optional.
-interface Props { [key: string]: unknown }
+// The 3D park planner (planner workstream). Preact island, client-only: Three.js
+// and the planner code download only on pages that include this widget.
+//   <Planner />               design mode (Dream): size & themes, arrange, sun, counts
+//   <Planner mode="site" />   existing conditions + sun & shade (Assess)
+//   <Planner mode="full" />   everything, with the step rail (the /planner page uses this)
+import PlannerApp from '../planner/PlannerApp';
+
+interface Props {
+  mode?: 'design' | 'site' | 'full' | 'sun';
+  /** start on a demo lot instead of the person's own */
+  demo?: 'dover' | 'greenway';
+  [key: string]: unknown;
+}
+const { mode = 'design', demo } = Astro.props;
+const label =
+  mode === 'site'
+    ? 'Your lot in 3D: mark what is already there and see its sun and shade'
+    : 'The 3D park planner: Park in a Truck pieces fitted to your real lot';
 ---
-<div class="widget-placeholder" data-widget="Planner">
-  <strong>Planner</strong> — The 3D park planner: park pieces fitted to your real lot.
-</div>
+<section class="planner-widget no-print" aria-label={label}>
+  <PlannerApp client:only="preact" mode={mode} demo={demo}>
+    <div slot="fallback" class="widget-placeholder">Loading the 3D planner…</div>
+  </PlannerApp>
+  <noscript>
+    <p class="widget-placeholder">The 3D planner needs JavaScript. Everything else in this workbook works without it.</p>
+  </noscript>
+</section>

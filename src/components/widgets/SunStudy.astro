@@ -1,8 +1,19 @@
 ---
-// STUB — owned by the planner workstream, which replaces this file.
-// Content may already place <SunStudy /> in chapters; keep the props optional.
-interface Props { [key: string]: unknown }
+// Sun and shade on the lot through the day and the seasons, from real neighboring
+// buildings and trees (planner workstream). Same island as <Planner>, sun panel only.
+import PlannerApp from '../planner/PlannerApp';
+
+interface Props {
+  demo?: 'dover' | 'greenway';
+  [key: string]: unknown;
+}
+const { demo } = Astro.props;
 ---
-<div class="widget-placeholder" data-widget="SunStudy">
-  <strong>SunStudy</strong> — Sun and shade on your lot through the day and the seasons, from real neighboring buildings.
-</div>
+<section class="planner-widget no-print" aria-label="Sun and shade on your lot">
+  <PlannerApp client:only="preact" mode="sun" demo={demo}>
+    <div slot="fallback" class="widget-placeholder">Loading the sun study…</div>
+  </PlannerApp>
+  <noscript>
+    <p class="widget-placeholder">The sun study needs JavaScript.</p>
+  </noscript>
+</section>

@@ -92,8 +92,48 @@ export interface DesignState {
   removed: string[];
   moved: Record<string, { x: number; y: number; rotationDeg: number }>;
   /** Existing conditions marked on the lot (trees, downspouts, wet areas…) */
-  existing?: PlacedItem[];
+  existing?: ExistingItem[];
   updatedAt: string;
+  // ---- planner additions (all optional) ----
+  /** Which lot this design was made for (OPA or PWD parcel id, else address) */
+  lotRef?: string;
+  /** Size was picked automatically from the lot (true) or chosen by hand (false) */
+  sizeAuto?: boolean;
+  /** Lot kind was picked automatically from the lot's streets */
+  lotKindAuto?: boolean;
+  /** Stretch the pieces to fill the lot (default true) or keep the printed size */
+  fitToLot?: boolean;
+  /** Quarter turns of the park on the lot (0 = entrance on the lot's entrance edge) */
+  turn?: 0 | 1 | 2 | 3;
+  /** Park mirrored left-right on the lot */
+  flipped?: boolean;
+  /** Small nudge of the park on the lot, feet, along the lot's length and width */
+  shiftFt?: [number, number];
+}
+
+/**
+ * Something already on the lot (Assess: "existing conditions"). Owner: planner.
+ * `lngLat` is authoritative; x/y are park-local feet at the time of saving.
+ */
+export interface ExistingItem extends PlacedItem {
+  /** existing-tree | downspout | wet-area | hydrant | utility-pole | utility-line | old-pavement */
+  element: string;
+  lngLat?: LngLat;
+  /** tree canopy or wet-area radius, feet */
+  radiusFt?: number;
+  /** overhead line length or pavement length, feet */
+  lengthFt?: number;
+  /** pavement width, feet */
+  widthFt?: number;
+  /** false = will be removed when the park is built */
+  keep?: boolean;
+  /** 'city' = from the City's tree inventory; 'person' = added by hand */
+  origin?: 'city' | 'person';
+  /** City tree key (rounded "lng,lat") for trees from the inventory */
+  cityKey?: string;
+  species?: string | null;
+  dbhIn?: number | null;
+  note?: string;
 }
 
 /**
