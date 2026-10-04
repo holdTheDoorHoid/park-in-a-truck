@@ -4,10 +4,12 @@
 
 import { categories, type Estimate } from './model';
 import { EN, unitWord, type CostT } from './text';
+import { stripIsolates } from '../../i18n/format.ts';
 
 const cell = (v: unknown): string => {
   if (v === null || v === undefined) return '';
-  const s = typeof v === 'number' ? (Number.isInteger(v) ? String(v) : String(Math.round(v * 100) / 100)) : String(v);
+  // right-to-left isolate marks are for the page, not for spreadsheets (src/i18n/format.ts)
+  const s = typeof v === 'number' ? (Number.isInteger(v) ? String(v) : String(Math.round(v * 100) / 100)) : stripIsolates(String(v));
   return /[",\n\r]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
 };
 const usd = (v: number | null | undefined) => (v === null || v === undefined ? '' : v.toFixed(2));

@@ -73,6 +73,12 @@ describe('chapter comparison', () => {
   it('catches a dropped component', () => {
     expect(compare(GOOD.replace(/<Field id="acquire.address"[^\n]*\n/, ''))).toHaveLength(1);
   });
+  it('lets a translation mark a phone number or address left to right (<bdi>, <span dir="ltr">)', () => {
+    const marked = GOOD.replace('Un texto de introducción', 'Llame al <bdi>(215) 686-1776</bdi> o <span dir="ltr">2233 N Uber St</span>. Un texto de introducción');
+    expect(compare(marked)).toEqual([]);
+    // a span with a class is still structure
+    expect(compare(GOOD.replace('Un texto de introducción', '<span class="flow-num">1</span> Un texto de introducción'))).toHaveLength(1);
+  });
 });
 
 describe('overlay checks', () => {
@@ -92,5 +98,15 @@ describe('overlay checks', () => {
     expect(run({ cutList: [{ part: 'BB-9' }] }).errors[0]).toMatch(/not translated/);
     expect(run({ subtitle: 'x' }).errors[0]).toMatch(/not in the English data/);
     expect(run({ tools: ['a', 'b'] }).errors[0]).toMatch(/2 items, English has 1/);
+  });
+});
+
+describe('field labels for the My park summary', () => {
+  it('reads every plain-string field label by id, translated chapters too', async () => {
+    const { chapterFieldLabels } = await import('../mdx');
+    expect(chapterFieldLabels(GOOD.split('---\n').slice(2).join('---\n'))).toEqual({ 'acquire.address': 'Dirección', 'acquire.agreement': 'Tipo' });
+    expect(chapterFieldLabels('<Checklist\n  id="organize.readiness"\n  label="Organization readiness checklist"\n  items={[]}\n/>\n')).toEqual({
+      'organize.readiness': 'Organization readiness checklist',
+    });
   });
 });

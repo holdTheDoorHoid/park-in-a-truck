@@ -9,6 +9,7 @@ export interface CutLike {
   notes?: string;
 }
 
+/** English names of the part kinds (the page's words come from the guides catalog, `g3d.kind.*`). */
 const KIND_NAMES: Record<string, string> = {
   lumber: 'Board',
   sheet: 'Sheet',
@@ -19,6 +20,9 @@ const KIND_NAMES: Record<string, string> = {
   fabric: 'Fabric',
   other: 'Part',
 };
+/** A part kind's name: "Board", "Wire mesh"… */
+export type KindName = (kind: string) => string;
+const englishKind: KindName = (kind) => KIND_NAMES[kind] ?? KIND_NAMES.other!;
 
 /** 18.5 -> "18.5″", 96 -> "96″" (inches, trimmed). */
 export function inches(n: number): string {
@@ -32,9 +36,9 @@ function stockFor(p: ModelPart): { stock: string; length: number } | null {
   return null;
 }
 
-export function partLabel(p: ModelPart, cutList: CutLike[] = []): { name: string; detail: string; note?: string } {
+export function partLabel(p: ModelPart, cutList: CutLike[] = [], kindName: KindName = englishKind): { name: string; detail: string; note?: string } {
   const cut = p.ref ? cutList.find((c) => c.part === p.ref) : undefined;
-  const name = p.ref ?? KIND_NAMES[p.kind] ?? 'Part';
+  const name = p.ref ?? kindName(p.kind);
   if (cut) {
     const isLumber = /^\s*\d+\s*[x×]\s*\d+\s*$/i.test(cut.stock);
     const detail = isLumber ? `${cut.stock} × ${inches(cut.lengthIn)}` : `${cut.stock}, ${inches(cut.lengthIn)}`;
@@ -45,10 +49,10 @@ export function partLabel(p: ModelPart, cutList: CutLike[] = []): { name: string
     if (st) return { name, detail: `${st.stock} × ${inches(st.length)}` };
   }
   const dims = p.shape === 'cylinder' ? `${inches(p.size[0])} ⌀ × ${inches(p.size[1])}` : p.size.map((v) => parseFloat(v.toFixed(2))).join(' × ') + '″';
-  return { name, detail: p.ref ? `${KIND_NAMES[p.kind] ?? 'Part'}, ${dims}` : dims };
+  return { name, detail: p.ref ? `${kindName(p.kind)}, ${dims}` : dims };
 }
 
-export function partTooltip(p: ModelPart, cutList: CutLike[] = []): string {
-  const l = partLabel(p, cutList);
+export function partTooltip(p: ModelPart, cutList: CutLike[] = [], kindName: KindName = englishKind): string {
+  const l = partLabel(p, cutList, kindName);
   return `${l.name} · ${l.detail}`;
 }

@@ -158,6 +158,8 @@ export default function BuildScheduleIsland() {
         .build-schedule-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 1em; }
         @media (max-width: 560px) {
           .phase-row { flex-direction: column; align-items: stretch; }
+          /* in a column, the 220px basis above became a 220px HEIGHT: a big gap under each title */
+          .phase-info { flex: none; }
           .phase-date { align-items: stretch; }
           .phase-date-long { text-align: end; }
         }

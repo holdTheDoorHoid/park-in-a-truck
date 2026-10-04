@@ -15,7 +15,8 @@ const { doc, page, label = t('pdf.label') } = Astro.props;
 const href = u(doc) + (page ? `#page=${page}` : '');
 const english = t.locale !== 'en';
 ---
-<p class="pdf-ref no-print"><a href={href} target="_blank" rel="noopener" hreflang={english ? 'en' : undefined}>📄 {label}{page ? ` ${t('pdf.page', { page: String(page) })}` : ''}{english && <span class="file-lang"> · {t('file.english')}</span>}</a></p>
+<!-- the label and the page note joined the language's way: "简介（PDF 第4页）", no space before a full-width bracket -->
+<p class="pdf-ref no-print"><a href={href} target="_blank" rel="noopener" hreflang={english ? 'en' : undefined}>📄 {t.sentences([label, page ? t('pdf.page', { page: String(page) }) : ''])}{english && <span class="file-lang"> · {t('file.english')}</span>}</a></p>
 <style>
   .pdf-ref { font-size: 0.85rem; margin: 0.5em 0 1em; }
   .pdf-ref a { color: var(--muted); }

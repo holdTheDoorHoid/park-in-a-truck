@@ -6,7 +6,7 @@
 import { useState } from 'preact/hooks';
 import type { MonthSun } from '../../lib/planner/sunperiod';
 import { SUN_HOURS } from '../../lib/planner/sunhours';
-import { listAnd, monthInitial, monthName, oneDecimal, pt, type PlannerT } from '../../lib/planner/words';
+import { listAnd, monthInSentence, monthInitial, monthName, oneDecimal, pt, type PlannerT } from '../../lib/planner/words';
 
 const W = 340;
 const H = 190;
@@ -40,7 +40,7 @@ export function fullSunMonths(data: MonthSun[], t: PlannerT = pt()): string {
   }
   // three or more months in a row read as a span; one or two are named
   const words = runs.flatMap(([a, b]) =>
-    b - a >= 2 ? [t('chart.monthRun', { from: monthName(a, t), to: monthName(b, t) })] : Array.from({ length: b - a + 1 }, (_, i) => monthName(a + i, t)),
+    b - a >= 2 ? [t('chart.monthRun', { from: monthInSentence(a, t), to: monthInSentence(b, t) })] : Array.from({ length: b - a + 1 }, (_, i) => monthInSentence(a + i, t)),
   );
   return listAnd(words, t);
 }
@@ -53,7 +53,7 @@ export function SpotChart({ data, where, month }: { data: MonthSun[]; where: str
   const worst = data.reduce((a, b) => (b.sunHours < a.sunHours ? b : a), data[0]!);
   const full = fullSunMonths(data, t);
   const label =
-    t('chart.label', { where, best: monthName(best.month, t), bestHours: fmt(best.sunHours), worst: monthName(worst.month, t), worstHours: fmt(worst.sunHours) }) +
+    t('chart.label', { where, best: monthInSentence(best.month, t), bestHours: fmt(best.sunHours), worst: monthInSentence(worst.month, t), worstHours: fmt(worst.sunHours) }) +
     ' ' +
     (full ? t('chart.labelFull', { months: full }) : t('chart.labelNone'));
   const h = hover != null ? data[hover] : null;

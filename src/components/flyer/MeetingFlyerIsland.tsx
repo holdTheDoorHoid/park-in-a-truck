@@ -189,7 +189,8 @@ function FlyerColumn({ locale, rawDate, time, place, purpose, address, contact }
         </div>
         <div>
           <dt>{ft('where')}</dt>
-          <dd>{place || '—'}</dd>
+          {/* typed by the organizer, often an English address: its own direction ("1322 N Dover St") */}
+          <dd dir="auto">{place || '—'}</dd>
         </div>
         {address && (
           <div>
@@ -206,8 +207,8 @@ function FlyerColumn({ locale, rawDate, time, place, purpose, address, contact }
         {contact ? (
           <p dir="auto">
             {contact.name || ft('committee')}
-            {contact.phone ? ` · ${contact.phone}` : ''}
-            {contact.email ? ` · ${contact.email}` : ''}
+            {contact.phone ? <> · <bdi>{contact.phone}</bdi></> : ''}
+            {contact.email ? <> · <bdi>{contact.email}</bdi></> : ''}
           </p>
         ) : (
           <p class="muted">{getT(undefined, flyerEn)('ui.noContact')}</p>

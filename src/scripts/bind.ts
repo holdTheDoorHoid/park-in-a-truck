@@ -25,6 +25,7 @@ import { resolveAuto } from '../lib/autofill';
 import type { Project } from '../lib/types';
 import workbook from '../i18n/messages/en/workbook.ts';
 import { getT } from '../i18n/t.ts';
+import { stripIsolates } from '../i18n/format.ts';
 
 const t = getT(undefined, workbook);
 
@@ -48,7 +49,9 @@ function bindFields(root: ParentNode) {
     el.dataset.bound = '1';
     const id = el.dataset.field!;
     const write = () => {
-      const v = el.value;
+      // an edited looked-up value may still carry the right-to-left isolate marks t() adds on
+      // Arabic pages; saved answers stay free of them (src/i18n/format.ts)
+      const v = stripIsolates(el.value);
       const num = el instanceof HTMLInputElement && el.type === 'number';
       setField(id, v === '' ? null : num ? Number(v) : v);
     };

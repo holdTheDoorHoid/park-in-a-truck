@@ -55,7 +55,7 @@ export function ExistingPanel({ store, compact = false }: { store: PlannerStore;
     <section class={`pl-section${compact ? ' pl-compact' : ''}`}>
       <h3 class="pl-h">{t(compact ? 'existing.titleCompact' : 'existing.title')}</h3>
       <p class="pl-small">
-        {[t('existing.intro'), cityNear ? t('existing.cityTrees', { count: cityNear }) : '', t('existing.intro2')].filter(Boolean).join(' ')}
+        {t.sentences([t('existing.intro'), cityNear ? t('existing.cityTrees', { count: cityNear }) : '', t('existing.intro2')])}
       </p>
       <SlopeCard store={store} compact={compact} />
       <div class="pl-chips">

@@ -14,9 +14,13 @@ import PdfPage from '../../components/workbook/PdfPage.astro';
 import Download from '../../components/workbook/Download.astro';
 import { u } from '../../lib/url';
 import patchMsgs from '../../i18n/messages/en/patch.ts';
-import { getT } from '../../i18n/astro.ts';
+import workbook from '../../i18n/messages/en/workbook.ts';
+import { getT, markdownLinks } from '../../i18n/astro.ts';
 
 const t = getT(Astro, patchMsgs);
+const tw = getT(Astro, workbook);
+// PiaT's PDF is English in every language: say so, like the chapter PDF links (PdfPage.astro)
+const english = t.locale !== 'en';
 
 // `whyKeys` hold full catalog keys (not bare suffixes): t()'s key type is a literal union
 // built from the English catalog, and substituting two independent dynamic parts into one
@@ -54,7 +58,7 @@ const PALETTES = [
       </div>
       <p class="lede">{t('lede')}</p>
       <div class="head-actions no-print">
-        <a class="btn btn-small" href={u('downloads/park-patch-workbook.pdf')} target="_blank" rel="noopener">{t('originalPdf')}</a>
+        <a class="btn btn-small" href={u('downloads/park-patch-workbook.pdf')} target="_blank" rel="noopener" hreflang={english ? 'en' : undefined}>{t('originalPdf')}{english && <span class="file-lang"> · {tw('file.english')}</span>}</a>
         <button class="btn btn-small" type="button" onclick="window.print()">{t('printAnswers')}</button>
       </div>
     </div>
@@ -110,7 +114,8 @@ const PALETTES = [
           <li>{t('notes.sign')}</li>
         </ul>
         <Callout kind="tip">
-          {t('notes.callout')}
+          {/* the message keeps PiaT's markdown links: shown as links, page links in the language */}
+          <Fragment set:html={markdownLinks(t('notes.callout'), t.locale)} />
         </Callout>
         <PdfPage doc="downloads/park-patch-workbook.pdf" page={14} />
         <div class="substep-done" data-done="park-patch/general-planting-notes"></div>
@@ -139,7 +144,7 @@ const PALETTES = [
           ]}
         />
         <Callout kind="note">
-          {t('maintenance.sustainNote')}
+          <Fragment set:html={markdownLinks(t('maintenance.sustainNote'), t.locale)} />
         </Callout>
         <PdfPage doc="downloads/park-patch-workbook.pdf" page={15} />
         <div class="substep-done" data-done="park-patch/maintenance"></div>

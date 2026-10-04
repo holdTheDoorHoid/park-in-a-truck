@@ -294,7 +294,7 @@ export function ShadeCalendar({ store }: { store: PlannerStore }) {
       )}
       {failed && (
         <p class="pl-small pl-warn">
-          {t('failed')}{' '}
+          {t('failed')}{t.space}
           <button type="button" class="pl-link" onClick={() => setRetry((n) => n + 1)}>
             {t('retry')}
           </button>
@@ -307,7 +307,7 @@ export function ShadeCalendar({ store }: { store: PlannerStore }) {
             <ul class="sc-summary">
               {groups.map((g) => (
                 <li>
-                  <strong class="sc-summary-when">{monthsLabel(t, g.months)}</strong> {groupSentences(t, g)}
+                  <strong class="sc-summary-when">{monthsLabel(t, g.months)}</strong>{t.space}{groupSentences(t, g)}
                 </li>
               ))}
             </ul>

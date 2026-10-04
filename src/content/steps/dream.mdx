@@ -73,7 +73,7 @@ A few key elements appear in all four themes:
 - **Plants.** Native plants that attract wildlife, increase biodiversity and promote conservation.
 
 {THEME_ORDER.map((id) => (
-  <div style={`margin:2.5em 0; border-left: 8px solid ${THEMES[id].frame}; padding-left: 1.2em;`}>
+  <div style={`margin:2.5em 0; border-inline-start: 8px solid ${THEMES[id].frame}; padding-inline-start: 1.2em;`}>
     <h3 style={`color:${THEMES[id].frame}`}>{THEMES[id].name}</h3>
     <p>{THEMES[id].blurb}</p>
     <Figure
@@ -367,7 +367,7 @@ Congratulations for completing the Dream Workbook! Check off each step below bef
   {`
   .theme-reqs { list-style: none; padding: 0; margin: 0.8em 0 0; font-size: 0.92rem; color: var(--ink-2); display: grid; gap: 0.2em; }
   .size-table, .pieces-table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.95rem; }
-  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: left; }
+  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: start; }
   .elements-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; margin: 1.2em 0; }
   .element-card { display: flex; flex-direction: column; align-items: center; gap: 0.4em; text-align: center; padding: 10px; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); font-size: 0.85rem; background: #fff; }
   .element-card:hover { border-color: var(--cyan); box-shadow: var(--shadow); }

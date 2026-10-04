@@ -26,6 +26,7 @@ import {
 import plantsMsgs from '../../i18n/messages/en/plants.ts';
 import { getT, type T } from '../../i18n/t.ts';
 import { localizeKeyed, localizeRecord } from '../../i18n/data.ts';
+import { stripIsolates } from '../../i18n/format.ts';
 
 type PlantsT = T<typeof plantsMsgs>;
 
@@ -77,7 +78,8 @@ function buildBuckets(t: PlantsT, themes: ThemeId[], counts: PlantTargets): Buck
 }
 
 function csvEscape(s: string | number): string {
-  const v = String(s);
+  // right-to-left isolate marks are for the page, not for spreadsheets (src/i18n/format.ts)
+  const v = stripIsolates(String(s));
   return /[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v;
 }
 

@@ -35,8 +35,13 @@ interface Est {
 
 /** Props whose VALUES are words for people and may differ between languages. Everything else must match. */
 export const TRANSLATABLE_PROPS = new Set(['label', 'hint', 'placeholder', 'alt', 'caption', 'title', 'desc', 'rowName', 'note', 'unit', 'autoNote', 'aria-label']);
-/** Inline formatting a translation may move, add or drop. */
-const INLINE = new Set(['strong', 'em', 'b', 'i', 'br', 'small', 'sup', 'sub', 'code', 'abbr', 'mark', 's', 'u', 'wbr']);
+/**
+ * Inline formatting a translation may move, add or drop. `bdi` (and a bare `<span dir="ltr">`)
+ * keep a phone number, address or size in one left-to-right piece inside right-to-left text.
+ */
+const INLINE = new Set(['strong', 'em', 'b', 'i', 'br', 'small', 'sup', 'sub', 'code', 'abbr', 'mark', 's', 'u', 'wbr', 'bdi']);
+/** A `<span>` whose only attributes are `dir`/`lang` is direction markup, not structure. */
+const isDirSpan = (name: string, props: Record<string, unknown>) => name === 'span' && Object.keys(props).length > 0 && Object.keys(props).every((k) => k === 'dir' || k === 'lang');
 const ID_MARKER = /^\s*\/\*\s*#([a-z0-9][a-z0-9-]*)\s*\*\/\s*$/;
 
 export interface Frontmatter {
@@ -195,7 +200,7 @@ export function chapterShape(source: string): ChapterShape {
         props[a.name] = v;
       }
       const isComponent = /^[A-Z]/.test(name);
-      if (isComponent || !INLINE.has(name)) {
+      if (isComponent || !(INLINE.has(name) || isDirSpan(name, props))) {
         const kept = Object.fromEntries(
           Object.entries(props)
             .filter(([k]) => isComponent || k === 'class' || k === 'className' || k === 'id' || k === 'src')
@@ -229,4 +234,25 @@ export function markHeadings(source: string): string {
     if (/^##\s/.test(lines[i] ?? '')) lines[i] = `${lines[i]!.replace(/\s+$/, '')} {/* #${s.id} */}`;
   }
   return lines.join('\n');
+}
+
+const FIELD_COMPONENTS = new Set(['Field', 'ListField', 'Choice', 'Checklist']);
+
+/**
+ * The label of every field in a chapter, by field id ({ "organize.individual-skills":
+ * "Individual skill list" }), for the My park answers summary. Only plain-string labels.
+ */
+export function chapterFieldLabels(body: string): Record<string, string> {
+  const out: Record<string, string> = {};
+  const walk = (node: Node) => {
+    if ((node.type === 'mdxJsxFlowElement' || node.type === 'mdxJsxTextElement') && node.name && FIELD_COMPONENTS.has(node.name)) {
+      const attr = (name: string) => node.attributes?.find((a) => a.type === 'mdxJsxAttribute' && a.name === name)?.value;
+      const id = attr('id');
+      const label = attr('label');
+      if (typeof id === 'string' && typeof label === 'string' && label.trim() && !(id in out)) out[id] = label.trim();
+    }
+    for (const c of node.children ?? []) walk(c);
+  };
+  walk(parseMdx(body));
+  return out;
 }

@@ -576,7 +576,7 @@ function compute(answers: CostInputs, fixes: ReadonlySet<FixId>, userPrices: Rec
   const money = (v: number) => moneyIn(t, v);
   const price = (v: number) => priceIn(t, v);
   /** Several sentences of a note, in order */
-  const sentences = (...xs: (string | false | undefined)[]) => xs.filter(Boolean).join(' ');
+  const sentences = (...xs: (string | false | undefined)[]) => t.sentences(xs);
   /** Furniture with a build guide is priced from the guide; otherwise the site-added questions go to the spreadsheet's own. */
   const guides = fx('guideMaterials');
   const i = guides ? answers : foldIntoSheet(answers);

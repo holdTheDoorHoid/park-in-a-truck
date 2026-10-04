@@ -74,7 +74,9 @@ export default function ParksMapIsland({ parks, locale }: Props) {
           {active.photos[0] && <img src={u(active.photos[0].src)} alt={active.photos[0].alt} loading="lazy" />}
           <div class="parks-map-card-body">
             <p class="parks-map-card-name">{active.name}</p>
-            <p class="parks-map-card-addr">{active.address}</p>
+            <p class="parks-map-card-addr">
+              <bdi>{active.address}</bdi>
+            </p>
             <a class="btn btn-small" href={`#park-${active.id}`}>
               {t('map.details')}
             </a>

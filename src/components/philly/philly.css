@@ -640,6 +640,17 @@
   align-items: flex-start;
   cursor: pointer;
 }
+/* the name, address and contacts take the room left; long emails or names wrap instead of pushing
+   the distance off the screen at 360 px */
+.ph-asset-group label > span:not(.ph-asset-dist) {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+/* a phone number never breaks across lines */
+.ph-asset-group a[href^='tel:'] {
+  white-space: nowrap;
+}
 .ph-asset-group input[type='checkbox'] {
   width: 1.2em;
   height: 1.2em;

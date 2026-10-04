@@ -20,6 +20,7 @@ import { imageSize } from '../../components/guides/imageSize';
 import { u as fileUrl } from '../../lib/url';
 import type { GuideModel } from '../../lib/guides3d/schema';
 import guidesMsgs from '../../i18n/messages/en/guides.ts';
+import parksMsgs from '../../i18n/messages/en/parks.ts';
 import { getT, urlFor, localizeGuide } from '../../i18n/astro.ts';
 
 const models = import.meta.glob<GuideModel>('../../data/guides/models/*.json', { eager: true, import: 'default' });
@@ -33,6 +34,8 @@ type Props = Record<string, never>;
 const { slug } = Astro.params;
 const t = getT(Astro, guidesMsgs);
 const u = urlFor(t.locale);
+// "(in English)" after links to English-only shops and pages — the parks page's words for the same thing
+const inEnglish = t.locale === 'en' ? '' : `${t.space}${getT(Astro, parksMsgs)('link.english')}`;
 // English is the source: checkmarks are saved under the ENGLISH item names, so a list checked
 // off in one language stays checked in every other. Only the text shown is translated.
 const english = getGuide(slug!)!;
@@ -48,9 +51,11 @@ const dims = (d: { length: number; width: number; height: number }) =>
   t('dims', { length: feetIn(d.length), width: feetIn(d.width), height: feetIn(d.height) });
 
 const englishLines = [...english.materials, ...english.hardware];
+// Sizes (2x4x8', 2-1/2" x 1/4") read left to right: kept in one piece on right-to-left pages.
+const sizeNote = (size?: string) => (size ? ` (${t.isolate(size)})` : '');
 const materialItems = [...guide.materials, ...guide.hardware].map((m, idx) => ({
   value: `${idx}-${englishLines[idx]!.item}`,
-  label: `${m.qty}× ${m.item}${m.size ? ` (${m.size})` : ''}`,
+  label: `${m.qty}× ${m.item}${sizeNote(m.size)}`,
   hint: m.notes,
 }));
 const toolItems = guide.tools.map((label, idx) => ({ value: english.tools[idx]!, label }));
@@ -58,7 +63,7 @@ const toolItems = guide.tools.map((label, idx) => ({ value: english.tools[idx]!,
 // site-added: where the guide's own materials list doesn't add up, a note marked as ours
 const materialNotes = [...guide.materials, ...guide.hardware]
   .filter((m) => m.siteNote)
-  .map((m) => ({ label: `${m.qty}× ${m.item.split(' — ')[0]}${m.size ? ` (${m.size})` : ''}`, note: m.siteNote! }));
+  .map((m) => ({ label: `${m.qty}× ${m.item.split(' — ')[0]}${sizeNote(m.size)}`, note: m.siteNote! }));
 
 const model = Object.values(models).find((m) => m.slug === guide.slug);
 // site-added: where PiaT's stated size is nominal, say what the parts actually build
@@ -186,7 +191,7 @@ if (guide.cost) glance.push({ label: t('glance.cost'), value: guide.cost });
       <h2 class="ruled">{t('links')}</h2>
       <ul class="links">
         {guide.links.map((l) => (
-          <li><a href={l.url} target="_blank" rel="noopener">{l.label}</a></li>
+          <li><a href={l.url} target="_blank" rel="noopener" hreflang="en">{l.label}</a>{inEnglish}</li>
         ))}
       </ul>
     </section>

@@ -209,7 +209,7 @@ export default function NeighborhoodAssets() {
                         {g.warning && <p class="ph-small" style="margin:0 0 6px">{g.warning}</p>}
                         {g.error ? (
                           <p class="ph-small">
-                            {g.error}{' '}
+                            {g.error}{t.space}
                             <button class="btn btn-small" type="button" disabled={retrying.includes(g.id)} onClick={() => retry(g.id)}>
                               {t(retrying.includes(g.id) ? 'assets.trying' : 'lookup.tryAgain')}
                             </button>
@@ -264,7 +264,7 @@ export default function NeighborhoodAssets() {
                           </ul>
                         )}
                         <p class="ph-small" style="margin:4px 0 0">
-                          {t('assets.source')}{' '}
+                          {t('assets.source')}{t.space}
                           <a href={g.source.url} target="_blank" rel="noopener">
                             {g.source.label} ↗
                           </a>

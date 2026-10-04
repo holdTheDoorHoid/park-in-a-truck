@@ -11,9 +11,13 @@ import { THEMES } from '../../data/themes';
 import type { ThemeId } from '../../lib/types';
 import { u } from '../../lib/url';
 import playfulMsgs from '../../i18n/messages/en/playful.ts';
+import workbook from '../../i18n/messages/en/workbook.ts';
 import { getT, localizeRecord } from '../../i18n/astro.ts';
 
 const t = getT(Astro, playfulMsgs);
+const tw = getT(Astro, workbook);
+// PiaT's PDF is English in every language: say so, like the chapter PDF links (PdfPage.astro)
+const english = t.locale !== 'en';
 const themes = localizeRecord(THEMES, 'themes', t.locale);
 
 const PRINCIPLE_IDS = ['activelyEngaging', 'meaningful', 'sociallyInteractive', 'iterative', 'joyful'] as const;
@@ -47,7 +51,7 @@ const elementName = (id: (typeof ELEMENTS)[number]['id']) => t(`elements.${id}.n
       <h1 class="ruled">{t('title')}</h1>
       <p class="lede">{t('lede')}</p>
       <div class="head-actions no-print">
-        <a class="btn btn-small" href={u('downloads/playful-learning-landscapes.pdf')} target="_blank" rel="noopener">{t('originalPdf')}</a>
+        <a class="btn btn-small" href={u('downloads/playful-learning-landscapes.pdf')} target="_blank" rel="noopener" hreflang={english ? 'en' : undefined}>{t('originalPdf')}{english && <span class="file-lang"> · {tw('file.english')}</span>}</a>
       </div>
     </div>
   </header>
@@ -86,14 +90,14 @@ const elementName = (id: (typeof ELEMENTS)[number]['id']) => t(`elements.${id}.n
       <p>{t('community2')}</p>
 
       <h2>{t('elementsHeading')}</h2>
-      <table class="pll-table">
+      <table class="pll-table pll-stack">
         <thead><tr><th>{t('elements.col.element')}</th><th>{t('elements.col.description')}</th><th>{t('elements.col.skills')}</th></tr></thead>
         <tbody>
           {ELEMENTS.map((e) => (
             <tr>
               <td><strong>{t(`elements.${e.id}.name`)}</strong></td>
               <td>{t(`elements.${e.id}.text`)}</td>
-              <td>{e.skills.map((s) => t(`sixCs.${s}.name`)).join(', ')}</td>
+              <td data-label={t('elements.col.skills')}>{t.join(e.skills.map((s) => t(`sixCs.${s}.name`)))}</td>
             </tr>
           ))}
         </tbody>
@@ -107,7 +111,7 @@ const elementName = (id: (typeof ELEMENTS)[number]['id']) => t(`elements.${id}.n
           {BY_THEME.map((row) => (
             <tr>
               <td><strong style={`color:${THEMES[row.theme].frame}`}>{themes[row.theme].name}</strong></td>
-              <td>{row.features.map(elementName).join(', ')}</td>
+              <td>{t.join(row.features.map(elementName))}</td>
             </tr>
           ))}
         </tbody>
@@ -136,4 +140,13 @@ const elementName = (id: (typeof ELEMENTS)[number]['id']) => t(`elements.${id}.n
   }
   .pll-table { width: 100%; border-collapse: collapse; margin: 1em 0 1.6em; font-size: 0.92rem; }
   .pll-table th, .pll-table td { border: 1px solid var(--line); padding: 0.55em 0.7em; text-align: start; vertical-align: top; }
+  /* Phones: the three-column elements table (406 px wide in English) becomes one card per element. */
+  @media (max-width: 560px) {
+    .pll-stack thead { display: none; }
+    .pll-stack, .pll-stack tbody, .pll-stack tr, .pll-stack td { display: block; }
+    .pll-stack tr { border: 1px solid var(--line); border-bottom: 0; padding: 0.55em 0.7em; }
+    .pll-stack tr:last-child { border-bottom: 1px solid var(--line); }
+    .pll-stack td { border: 0; padding: 0.15em 0; }
+    .pll-stack td[data-label]::before { content: attr(data-label) ': '; font-weight: 700; }
+  }
 </style>

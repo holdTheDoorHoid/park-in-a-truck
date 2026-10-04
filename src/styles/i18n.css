@@ -51,6 +51,12 @@
 :root:lang(ar) body {
   line-height: 1.75;
 }
+/* Korean breaks lines between words (spaces), not inside them; a word too long for its box
+   (a URL, a long compound) may still break anywhere rather than overflow at 360 px. */
+:root:lang(ko) body {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
 /* Stacked Vietnamese accents (Ấ, Ể) need room above tight headings. */
 :root:lang(vi) :is(h1, h2, h3, h4, .display) {
   line-height: 1.3;

@@ -17,7 +17,7 @@
 import { isLocale, localeFromPath, localeInfo, DEFAULT_LOCALE, type Locale } from './locales.ts';
 import type { Catalog, Message, MessageKey, Vars } from './define.ts';
 import { bundleFor } from './registry.ts';
-import { formatDate, formatList, formatMoney, formatNumber, interpolate, type DateStyle } from './format.ts';
+import { formatClock, formatDate, formatList, formatMoney, formatNumber, interpolate, isolate, joinList, joinSentences, monthInSentence, type DateStyle } from './format.ts';
 
 export type Where = Locale | string | { url: URL } | null | undefined;
 
@@ -51,6 +51,21 @@ export interface T<C extends Catalog> {
   money(n: number, opts?: { cents?: boolean }): string;
   date(d: Date | string | number, style?: DateStyle): string;
   list(items: string[], type?: 'conjunction' | 'disjunction'): string;
+  /** Items side by side with the language's list comma, no "and": "a, b, c" / "a、b、c". */
+  join(items: string[]): string;
+  /** A month's name inside a sentence ("in June"; Vietnamese "tháng 6", not "Tháng 6"). */
+  monthInSentence(d: Date | string | number): string;
+  /** A clock time from minutes after midnight, the language's way: "3:30 PM", "15:30". */
+  clock(minutesOfDay: number, opts?: { minutes?: 'always' | 'auto' | 'never' }): string;
+  /**
+   * A left-to-right value (size, address, handle, code) kept in one piece on right-to-left pages
+   * when it is NOT going through a {placeholder} (those are isolated already). Unchanged elsewhere.
+   */
+  isolate(value: string): string;
+  /** Sentences one after another: "One. Two." — no space after 。 in Chinese. Empty pieces skipped. */
+  sentences(parts: (string | null | undefined | false)[]): string;
+  /** The space between two sentences or phrases in markup (`{t.space}` for `{' '}`): "" in Chinese. */
+  space: string;
 }
 
 export function getT<C extends Catalog>(where: Where, catalog: C): T<C> {
@@ -75,5 +90,11 @@ export function getT<C extends Catalog>(where: Where, catalog: C): T<C> {
   t.money = (n, opts) => formatMoney(locale, n, opts);
   t.date = (d, style) => formatDate(locale, d, style);
   t.list = (items, type) => formatList(locale, items, type);
+  t.join = (items) => joinList(locale, items);
+  t.clock = (min, opts) => formatClock(locale, min, opts);
+  t.monthInSentence = (d) => monthInSentence(locale, d);
+  t.isolate = (value) => isolate(locale, value);
+  t.sentences = (parts) => joinSentences(locale, parts);
+  t.space = info.noSpaces ? '' : ' ';
   return t;
 }

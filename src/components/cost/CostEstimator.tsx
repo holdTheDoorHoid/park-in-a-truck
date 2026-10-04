@@ -121,14 +121,14 @@ export default function CostEstimator({ title, focus = 'estimate', locale, guide
           <p class="ce-status ce-status-design">{t('ui.status.design')}</p>
         ) : r.base === 'example' ? (
           <p class="ce-status ce-status-example">
-            {t(r.fromTally.sizeFrom === 'lot' ? 'ui.status.exampleLot' : 'ui.status.example')}{' '}
+            {t(r.fromTally.sizeFrom === 'lot' ? 'ui.status.exampleLot' : 'ui.status.example')}{t.space}
             <button type="button" class="btn btn-small" onClick={() => save({ ...saved, base: 'zero' })}>
               {t('ui.startZero')}
             </button>
           </p>
         ) : (
           <p class="ce-status">
-            {t('ui.status.blank')}{' '}
+            {t('ui.status.blank')}{t.space}
             <button type="button" class="btn btn-small" onClick={() => save({ ...saved, base: 'example' })}>
               {t('ui.showExample')}
             </button>

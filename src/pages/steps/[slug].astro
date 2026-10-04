@@ -164,7 +164,8 @@ const contentLang = fallback ? ({ lang: 'en', dir: 'ltr' } as const) : {};
   }
   @media (max-width: 899px) {
     .chapter {
-      grid-template-columns: 1fr;
+      /* minmax(0, …): a wide table or form row inside must not stretch the column past the screen */
+      grid-template-columns: minmax(0, 1fr);
       gap: 0;
     }
     .step-toc {

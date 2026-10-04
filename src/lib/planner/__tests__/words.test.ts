@@ -12,9 +12,11 @@ const en = getT('en', planner);
 
 describe('planner words', () => {
   it('writes English exactly as before', () => {
-    expect(clock(15 * 60 + 30)).toBe('3:30 pm');
-    expect(clock(0)).toBe('12:00 am');
-    expect(clock(12 * 60 + 5)).toBe('12:05 pm');
+    // the language's own clock, the same as the shade calendar's (was "3:30 pm" before 2026-10-04)
+    expect(clock(15 * 60 + 30)).toBe('3:30 PM');
+    expect(clock(0)).toBe('12:00 AM');
+    expect(clock(12 * 60 + 5)).toBe('12:05 PM');
+    expect(clock(15 * 60)).toBe('3:00 PM');
     expect(monthName(9)).toBe('September');
     expect(mmdd('09-22')).toBe('Sep 22');
     expect(monthInitial(1)).toBe('J');
@@ -34,7 +36,8 @@ describe('planner words', () => {
     expect(itemWhere({ x: 1, y: 8, w: 2, h: 2, rotationDeg: 0 }, 16, true, es)).toBe('en la entrada, en el medio');
     expect(midBlockWords({ left: true, right: true }, es)).toBe('A mitad de cuadra (edificios a ambos lados)');
     // untranslated keys fall back to English; dates and numbers are written the local way
-    expect(clock(15 * 60 + 30, es)).toBe('3:30 pm');
+    expect(clock(15 * 60 + 30, es)).toBe('3:30 p.m.');
+    expect(clock(15 * 60 + 30, getT('fr', planner))).toBe('15:30');
     expect(monthName(6, es)).toBe('junio');
     expect(oneDecimal(2.34, getT('fr', planner))).toBe('2,3');
   });

@@ -18,7 +18,7 @@ const nav = [
 const langs = alternates(path);
 const current = langs.find((l) => l.code === t.locale) ?? langs[0]!;
 ---
-<header class="site-header">
+<header class="site-header" data-site-header>
   <div class="wrap bar">
     <a class="wordmark" href={u('')} aria-label={t('header.home')} dir="ltr">
       <span class="w1">PARK</span><span class="w2">in a</span><span class="w1">TRUCK</span>
@@ -220,13 +220,33 @@ const current = langs.find((l) => l.code === t.locale) ?? langs[0]!;
 
   /* Desktop: the <details> is always open and the summary hidden. */
   @media (min-width: 900px) {
-    .menu > nav {
+    .site-header:not([data-compact]) .menu > nav {
       display: flex !important;
     }
     .menu:not([open]) > nav {
       display: flex;
     }
   }
+  /* Narrower desktops: tighter links so longer words (Spanish, Russian, Vietnamese…) still fit one
+     line. When even that doesn't fit, the script below measures it and switches to the menu button
+     (data-compact) instead of letting the menu wrap onto two lines. */
+  @media (min-width: 900px) and (max-width: 1279px) {
+    .bar {
+      gap: 10px;
+    }
+    nav {
+      gap: 0;
+    }
+    nav a {
+      font-size: 0.9rem;
+      padding: 0.45em 0.5em;
+    }
+    .my-park {
+      max-width: 10em;
+    }
+  }
+  /* The menu button: phones and tablets, or wherever the links don't fit (data-compact). The two
+     blocks are the same rules; CSS can't join a media query and a selector in one. */
   @media (max-width: 899px) {
     .menu summary {
       display: inline-block;
@@ -252,6 +272,29 @@ const current = langs.find((l) => l.code === t.locale) ?? langs[0]!;
       min-width: 0;
     }
   }
+  .site-header[data-compact] .menu summary {
+    display: inline-block;
+  }
+  .site-header[data-compact] .menu {
+    position: static;
+  }
+  .site-header[data-compact] .menu[open] nav {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 64px;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    padding: 8px var(--gutter) 16px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .site-header[data-compact] .my-park {
+    display: flex;
+    margin: 8px 0 0;
+    max-width: 100%;
+    min-width: 0;
+  }
   /* Phones: the language box shrinks to the globe and a short code (ES, 中文 stays short anyway). */
   @media (max-width: 520px) {
     .bar {
@@ -270,14 +313,45 @@ const current = langs.find((l) => l.code === t.locale) ?? langs[0]!;
   }
 </style>
 <script>
-  // <details> content is hidden when closed; on wide screens keep it open.
+  // <details> content is hidden when closed; on wide screens keep it open — unless the links don't
+  // fit on one line in this language at this width (measured), then it's the menu button there too.
+  const header = document.querySelector<HTMLElement>('[data-site-header]');
   const d = document.querySelector<HTMLDetailsElement>('.site-header .menu');
+  const nav = d?.querySelector('nav');
   const mq = matchMedia('(min-width: 900px)');
+  /** True when the full menu would wrap: its links sit on more than one line, or the bar overflows. */
+  const wraps = () => {
+    if (!header || !nav) return false;
+    header.removeAttribute('data-compact');
+    if (d) d.open = true;
+    const links = [...nav.querySelectorAll<HTMLElement>(':scope > a')];
+    const mid = (a: HTMLElement) => {
+      const r = a.getBoundingClientRect();
+      return (r.top + r.bottom) / 2;
+    };
+    const first = links[0] ? mid(links[0]) : 0;
+    const bar = header.querySelector<HTMLElement>('.bar');
+    return links.some((a) => Math.abs(mid(a) - first) > 12) || (bar ? bar.scrollWidth > bar.clientWidth + 1 : false);
+  };
+  let measuredAt = -1;
   const sync = () => {
-    if (d) d.open = mq.matches;
+    const wasCompact = header?.hasAttribute('data-compact') ?? false;
+    const wasOpen = d?.open ?? false;
+    const compact = mq.matches && wraps();
+    measuredAt = innerWidth;
+    header?.toggleAttribute('data-compact', compact);
+    // a menu someone opened stays open while it remains the menu button
+    if (d) d.open = mq.matches ? !compact || (wasCompact && wasOpen) : false;
   };
   sync();
   mq.addEventListener('change', sync);
+  let frame = 0;
+  addEventListener('resize', () => {
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(() => mq.matches && innerWidth !== measuredAt && sync());
+  });
+  // web fonts change the width of the words
+  document.fonts?.ready.then(() => mq.matches && sync());
 
   // Language box: remember the choice (a per-viewer preference, not project data), keep the
   // place on the page, close on Escape or a click elsewhere.

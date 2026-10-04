@@ -50,7 +50,7 @@ import type { GuideModel, ModelPart, PartKind } from './schema';
 import { partBounds } from './validate';
 import { layFlat, type Pose, type V3 } from './layout';
 import { fitPoints, viewDirection, DEFAULT_VIEW } from './framing';
-import { partLabel, inches, type CutLike } from './labels';
+import { partLabel, inches, type CutLike, type KindName } from './labels';
 import {
   prepare,
   targetsFor,
@@ -401,6 +401,8 @@ export interface ViewerInit {
   model: GuideModel;
   steps: GuideStepLike[];
   cutList?: CutLike[];
+  /** part kinds in the page's language for the tooltip ("Board"); English without it */
+  kindName?: KindName;
   reducedMotion?: boolean;
   /** the first view, shown without animation */
   view?: View;
@@ -421,6 +423,7 @@ export class AssemblyViewer {
   private readonly handles: PartHandle[];
   private readonly display: Display[];
   private readonly cutList: CutLike[];
+  private readonly kindName?: KindName;
   private readonly sun: DirectionalLight;
   private readonly labelLayer: HTMLDivElement;
   private readonly pileLabels: { el: HTMLElement; at: Vector3 }[] = [];
@@ -449,6 +452,7 @@ export class AssemblyViewer {
   constructor(init: ViewerInit) {
     this.container = init.container;
     this.cutList = init.cutList ?? [];
+    this.kindName = init.kindName;
     this.reducedMotion = !!init.reducedMotion;
     this.onError = init.onError;
     this.prepared = prepare(init.model, init.steps, this.cutList.map((c) => c.part));
@@ -1090,11 +1094,14 @@ export class AssemblyViewer {
       this.canvas.style.cursor = '';
       return;
     }
-    const l = partLabel(this.handles[i]!.part, this.cutList);
+    const l = partLabel(this.handles[i]!.part, this.cutList, this.kindName);
     this.tip.textContent = '';
     const b = document.createElement('b');
     b.textContent = l.name;
-    this.tip.append(b, ` · ${l.detail}`);
+    // sizes ("2x4 × 18.5″") read left to right, also in a right-to-left tooltip
+    const d = document.createElement('bdi');
+    d.textContent = l.detail;
+    this.tip.append(b, ' · ', d);
     if (l.note) {
       const n = document.createElement('span');
       n.className = 'g3d-tip-note';

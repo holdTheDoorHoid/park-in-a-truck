@@ -2,6 +2,8 @@
 // Only what both widgets need: all-day events, an optional location, and an optional
 // yearly RRULE. No timezones (everything here is a date, not a date-time).
 
+import { stripIsolates } from '../../i18n/format.ts';
+
 export interface IcsEvent {
   uid: string;
   summary: string;
@@ -16,7 +18,8 @@ export interface IcsEvent {
 }
 
 function escapeText(s: string): string {
-  return s
+  // right-to-left isolate marks are for the page; calendar apps handle them unevenly (src/i18n/format.ts)
+  return stripIsolates(s)
     .replace(/\\/g, '\\\\')
     .replace(/;/g, '\\;')
     .replace(/,/g, '\\,')

@@ -31,7 +31,7 @@ export function SlopeCard({ store, compact = false }: { store: PlannerStore; com
           {!compact && t.words.more.map((m) => <p class="pl-small">{m}</p>)}
           {t.steepSlope && (
             <p class="pl-small">
-              <span dangerouslySetInnerHTML={{ __html: w.html('slope.steepArea') }} />{' '}
+              <span dangerouslySetInnerHTML={{ __html: w.html('slope.steepArea') }} />{w.space}
               <a href={links.atlasZoning(site.ctx.lot.address)} target="_blank" rel="noopener">
                 {w('slope.atlasLink')}
               </a>
@@ -49,7 +49,7 @@ export function SlopeCard({ store, compact = false }: { store: PlannerStore; com
           )}
           {!compact && (
             <p class="pl-small muted">
-              {w('slope.directions')} {accuracyNote(t.source, w)}
+              {w.sentences([w('slope.directions'), accuracyNote(t.source, w)])}
             </p>
           )}
         </>

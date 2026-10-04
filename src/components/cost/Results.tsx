@@ -294,7 +294,7 @@ export function OrderListView({ e, t }: { e: Estimate; t: CostT }) {
                   {x.linkFlag && <span class="ce-note ce-flag">⚠ {x.linkFlag}</span>}
                   {x.siteNote && (
                     <span class="ce-note ce-site-note">
-                      {x.siteNote.text}{' '}
+                      {x.siteNote.text}{t.space}
                       <a href={x.siteNote.link} target="_blank" rel="noopener noreferrer" hreflang="en">
                         <span dir="ltr">{x.siteNote.link.replace(/^https:\/\//, '')}</span>
                         {newTab()}

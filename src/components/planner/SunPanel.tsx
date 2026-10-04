@@ -320,7 +320,7 @@ export function SunPanel({ store }: { store: PlannerStore }) {
 
       <h4 class="pl-h4">{w('sun.spotTitle')}</h4>
       <p class="pl-small">
-        {w('sun.spotHelp')}{' '}
+        {w('sun.spotHelp')}{w.space}
         <button type="button" class="pl-link" onClick={() => store.sun.$spot.set(null)}>
           {w('sun.spotMiddle')}
         </button>
@@ -353,7 +353,7 @@ export function SunPanel({ store }: { store: PlannerStore }) {
           <li>
             {site?.farBuildings?.length
               ? w('sun.assumeBuildingsCount', { near: SURROUNDINGS_RADIUS_FT, far: FAR_SHADE_MAX_FT, count: site.farBuildings.length })
-              : w('sun.assumeBuildings', { near: SURROUNDINGS_RADIUS_FT, far: FAR_SHADE_MAX_FT })}{' '}
+              : w('sun.assumeBuildings', { near: SURROUNDINGS_RADIUS_FT, far: FAR_SHADE_MAX_FT })}{w.space}
             {w('sun.assumeBuildings2')}
           </li>
           <li>{w('sun.assumeTrees', { inLeaf: pct(CROWN_BLOCKING), bare: pct(BARE_CROWN_BLOCKING) })}</li>

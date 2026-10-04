@@ -156,6 +156,19 @@ Overlays marked `client: true` in datasets.ts are shipped to browsers in `/i18n/
   `text-align: start`. No `left`/`right` in new CSS (use `[dir='rtl']` overrides for the rare exception,
   e.g. `object-position`). Flex and grid flip by themselves.
 - Things that must stay left-to-right (the wordmark, code, a phone number in a row of digits) get `dir="ltr"`.
+- **Values inserted into messages are isolated for you.** On right-to-left pages `t()` / `t.html()` wrap every
+  `{placeholder}` value in Unicode isolates (FSI…PDI), so `1'-6.5"`, `@parkinatruck` or an address keeps its own
+  order inside the Arabic sentence; addresses written into the message itself ("2233 N Uber St", "22nd & Diamond")
+  are kept in one piece too. A left-to-right value shown *outside* a message: `t.isolate(value)` in code, or
+  `<span dir="ltr">` / `<bdi>` in markup. Files people open elsewhere (CSV, .ics) drop the marks again
+  (`stripIsolates` in `src/i18n/format.ts`). Money is "$" in every language and kept in one piece.
+- **In a translated chapter**, mark a phone number, an address or a size written in the text with `<bdi>…</bdi>`
+  (or `<span dir="ltr">…</span>`): `اتصل على <bdi>(215) 686-1776</bdi>`. The checker treats both as inline
+  formatting, like `<strong>`, so they don't count as a changed component.
+- Lists: `t.list(items)` ("a, b and c" in the language's words, Haitian Creole "a, b ak c") and `t.join(items)`
+  ("a, b, c" with the language's comma: 、 in Chinese, ، in Arabic). Clock times: `t.clock(minutes)` — the
+  language's own clock, 12- or 24-hour. A month inside a sentence: `t.monthInSentence(date)` (Vietnamese
+  "tháng 6", not "Tháng 6").
 - An island whose area isn't translated yet is wrapped in `<LangFallback area={…}>` (all widgets already
   are): it is marked `lang="en" dir="ltr"` until the area has any translation, then turns itself off.
   When you extract an area, keep the wrapper — it costs nothing — and check the island in `/ar/` once

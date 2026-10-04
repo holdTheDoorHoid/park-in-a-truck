@@ -46,7 +46,7 @@ export function parkSizeLine(lot: LotRecord): ComponentChildren {
   if (size.tooSmall)
     return (
       <>
-        <span dangerouslySetInnerHTML={{ __html: t.html('park.tooSmall', { href: urlFor(t.locale)('park-patch/') }) }} />{' '}
+        <span dangerouslySetInnerHTML={{ __html: t.html('park.tooSmall', { href: urlFor(t.locale)('park-patch/') }) }} />{t.space}
         <small>{t('park.nearest', { size: size.id })}</small>
       </>
     );
@@ -154,7 +154,7 @@ export default function LotCard({ lot, actions, badge, compact, titleFocusable }
                   <>
                     <br />
                     <small>
-                      {t('card.lbFrom')}{' '}
+                      {t('card.lbFrom')}{t.space}
                       <a href={links.landBankMap} target="_blank" rel="noopener">
                         {t('card.lbMap')} ↗
                       </a>
@@ -228,10 +228,10 @@ export default function LotCard({ lot, actions, badge, compact, titleFocusable }
           <ul>
             {paths.map((p) => (
               <li>
-                <strong>{t('paths.titleDot', { title: p.title })}</strong> {p.text}
+                <strong>{t('paths.titleDot', { title: p.title })}</strong>{t.space}{p.text}
                 {p.link && (
                   <>
-                    {' '}
+                    {t.space}
                     <a href={p.link.url} target="_blank" rel="noopener">
                       {p.link.label} ↗
                     </a>
