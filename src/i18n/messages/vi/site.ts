@@ -12,7 +12,7 @@ export default {
   'nav.steps': 'Các bước',
   'nav.lot': 'Tìm lô đất',
   'nav.planner': 'Thiết kế 3D',
-  'nav.build': 'Hướng dẫn lắp ráp',
+  'nav.build': 'Lắp ráp',
   'nav.plants': 'Cây trồng',
   'nav.parks': 'Công viên',
   'nav.myPark': 'Công viên của tôi:',

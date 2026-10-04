@@ -228,7 +228,7 @@ Conventions chosen (keep to them):
 | theme: Edible · Sanctuary · Nature · Event | chủ đề: Vườn ăn được · Chốn an yên · Thiên nhiên · Sự kiện | bare "Ăn được" reads as an adjective fragment, so Edible = "edible garden" |
 | size A–E | cỡ A–E | letters unchanged |
 | gabion (wall, bench) | rọ đá (gabion) — tường rọ đá, ghế rọ đá | add "(gabion)" once per page |
-| build guide | hướng dẫn lắp ráp | |
+| build guide | hướng dẫn lắp ráp | header menu item uses the short form "Lắp ráp" so the menu fits on one line |
 | cut list / materials & hardware / tools | danh sách cắt gỗ / vật liệu & đồ ngũ kim / dụng cụ | "đồ ngũ kim" = screws, bolts, brackets |
 | 2x4, 2x4x8', BB-1 | 2x4, 2x4x8', BB-1 | never translated |
 | full sun / part sun / shade | nắng cả ngày / nắng một phần / bóng râm | "nắng toàn phần" in plant lists is also understood, but keep "nắng cả ngày" |

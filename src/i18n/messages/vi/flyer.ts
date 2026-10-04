@@ -10,7 +10,7 @@ export default {
   'lot': 'Lô đất',
   'contact': 'Có câu hỏi? Xin liên lạc',
   'committee': 'Ban công viên của chúng tôi',
-  'credit': 'Làm bằng cẩm nang Park in a Truck · Thomas Jefferson University',
+  'credit': 'Thực hiện với cẩm nang Park in a Truck · Thomas Jefferson University',
 
   'ui.empty':
     'Hãy điền ngày, giờ, địa điểm và mục đích buổi họp ở trên (và thêm một thành viên ban công viên) để xem tờ mời dần thành hình.',
