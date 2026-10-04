@@ -34,9 +34,11 @@ const i = (n: number) => Math.round((n / 12) * 100) / 100;
 
 export const ELEMENTS: Record<string, ElementMeta> = {
   // ---- built from PiaT assembly guides
-  // 12" x 12" x 48" gabion baskets, two high. (The workbook's GABION WALL link
+  // 12" x 12" x 48" gabion baskets, one course high: PiaT's basket guide gives
+  // 12" x 12" x 4' as the standard size and never says to stack them; the pieces
+  // draw a 1-ft band and the cost sheet asks for "1' gabion baskets". (The workbook's GABION WALL link
   // opens the generic 12-inch basket assembly, so there is no separate guide.)
-  'gabion-wall': { id: 'gabion-wall', name: 'Gabion wall', kind: 'structure', footprintFt: [4, 1], heightFt: 2, onPieces: true,
+  'gabion-wall': { id: 'gabion-wall', name: 'Gabion wall', kind: 'structure', footprintFt: [4, 1], heightFt: 1, onPieces: true,
     countAs: 'feet of wall (drawn as the grey 1-ft band along the street edges)' },
   // 48" x 18" x 18"
   'gabion-bench': { id: 'gabion-bench', name: 'Wood-topped gabion bench', kind: 'furnishing', guide: 'gabion-bench',

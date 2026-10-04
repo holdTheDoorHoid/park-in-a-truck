@@ -63,8 +63,8 @@ describe('inputsFromTally', () => {
 
   it('counts furnishings by element id, sizing them from elements.ts when the tally has no sizes', () => {
     expect(r.inputs).toMatchObject({
-      // 6 added 4-ft gabion-wall pieces = 24 ft -> 6 baskets a course x 2 courses (elements.ts: 2 ft high)
-      gabionBaskets: 12,
+      // 6 added 4-ft gabion-wall pieces = 24 ft -> 6 baskets, one course (elements.ts: 1 ft high)
+      gabionBaskets: 6,
       woodToppedGabions: 3, // one 4' + one 8' (= two 4')
       benchesWithBack: 2,
       benchesNoBack: 1,
@@ -87,7 +87,7 @@ describe('inputsFromTally', () => {
     });
     expect(r.notes.longTables).toMatch(/long tables/);
     expect(r.notes.sheds4x8).toMatch(/4'x4'/);
-    expect(r.notes.gabionBaskets).toMatch(/2 baskets high/);
+    expect(r.notes.gabionBaskets).toMatch(/1 basket high/);
   });
 
   it('splits every question into derived or manual, never both', () => {
@@ -178,7 +178,7 @@ describe('inputsFromTally', () => {
   it('uses the pieces’ tally: wall and bed feet, new ids, sizes', () => {
     const t = inputsFromTally(pieces);
     expect(t.inputs).toMatchObject({
-      gabionBaskets: 40, // 80 ft / 4 = 20 baskets a course x 2 courses
+      gabionBaskets: 20, // 80 ft / 4 = 20 baskets, one course
       raisedBedWoodEdgeFt: 45.13,
       keyholeGardensSmall: 1, // 4.5 ft across
       keyholeGardensMedium: 1, // 5.75 ft
@@ -212,7 +212,7 @@ describe('inputsFromTally', () => {
   it('prices the pieces’ tally in the estimate', () => {
     const e = estimate(inputsFromTally(pieces).inputs);
     const total = (item: string) => e.lines.filter((l) => l.item === item).reduce((a, l) => a + l.total, 0);
-    expect(total("1'x1'x4' 5 gauge baskets")).toBe(40 * 70);
+    expect(total("1'x1'x4' 5 gauge baskets")).toBe(20 * 70);
     expect(total('Cafe tables + chairs')).toBe(6 * 160);
     expect(total('Porch swing')).toBe(2 * 300);
     expect(total('Keyhole gardens, large')).toBe(120);

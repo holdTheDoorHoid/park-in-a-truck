@@ -284,7 +284,7 @@ notes in `src/data/elements.ts`.
 | planting squares, shrubs | sun + shade | |
 | nature play squares, small/large trees | as tallied | |
 | gravel edge, outer edge (+ hardscape/softscape) | `gravelEdgeFt`, `outerEdgeFt` | the pieces' tally puts everything under softscape |
-| gabion baskets | `gabionWallFt` + 4 ft per added `gabion-wall` piece: one basket per 4 ft per course × the wall's height in elements.ts (2 ft = 2 courses) | PiaT doesn't give the height; the note says so |
+| gabion baskets | `gabionWallFt` + 4 ft per added `gabion-wall` piece: one basket per 4 ft per course × the wall's height in elements.ts (1 ft = one course: PiaT's standard basket is 12"×12"×4') | PiaT never says to stack baskets; one course |
 | raised-bed wood edge feet | `raisedBedEdgeFt` (bed perimeters) | the sheet has no calculation for it, so it isn't priced |
 | wood-topped gabions | `gabion-bench` (4-ft modules) + 2 × `gabion-bench-8` | |
 | benches with back / without back | `bench-back` (4-ft modules) / `bench-4` | |

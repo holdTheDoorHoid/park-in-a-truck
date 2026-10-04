@@ -170,6 +170,8 @@ function edges(r: Raster, layout: ParkLayout) {
 }
 
 /** Count everything the Dream workbook asks for. `sunAt` classifies a point (park feet). */
+const SIZED_ELEMENTS = new Set(['keyhole-garden', 'shade-canopy', 'shed', 'stage', 'cold-frame']);
+
 export function tally(layout: ParkLayout, sunAt?: SunAt): DesignTally {
   const r = rasterise(layout);
   const planting = countSquares(r, layout, 'planting', sunAt);
@@ -178,6 +180,9 @@ export function tally(layout: ParkLayout, sunAt?: SunAt): DesignTally {
   let smallTrees = 0;
   let largeTrees = 0;
   const items: Record<string, number> = {};
+  // Sizes for the cost questions that depend on them (keyhole gardens by
+  // diameter, canopies by area, shed / stage / cold-frame squares).
+  const itemSizes: Record<string, [number, number][]> = {};
   let bedEdge = 0;
   for (const it of layout.items) {
     if (it.element === 'shrub') {
@@ -196,6 +201,7 @@ export function tally(layout: ParkLayout, sunAt?: SunAt): DesignTally {
     }
     if (PLANT_ELEMENTS.has(it.element)) continue;
     items[it.element] = (items[it.element] ?? 0) + 1;
+    if (SIZED_ELEMENTS.has(it.element)) (itemSizes[it.element] ??= []).push([it.w, it.h]);
     if (it.element === 'raised-bed') bedEdge += it.variant === 'round' ? Math.PI * Math.max(it.w, it.h) : 2 * (it.w + it.h);
   }
   let gabionArea = 0;
@@ -223,5 +229,6 @@ export function tally(layout: ParkLayout, sunAt?: SunAt): DesignTally {
     // gabion walls are drawn 1 ft wide
     gabionWallFt: Math.round(gabionArea),
     raisedBedEdgeFt: Math.round(bedEdge),
+    itemSizes,
   };
 }
