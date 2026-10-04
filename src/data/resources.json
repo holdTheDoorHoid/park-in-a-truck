@@ -1,0 +1,284 @@
+{
+  "partners": [
+    { "name": "Nature Sacred", "url": "https://naturesacred.org/", "status": "live", "description": "In partnership with PiaT, expands the offerings of park designs." },
+    { "name": "Citizens Planning Institute", "url": "https://citizensplanninginstitute.org/", "status": "live", "description": "The education and outreach arm of the Philadelphia City Planning Commission; runs an eight-week course on how city planning and development works." },
+    { "name": "Greenfield Foundation", "url": null, "status": "unconfirmed", "description": "The local non-profit that funded the first Park in a Truck park. (The toolkit's own hyperlink for this credit actually points to communityprogress.org, a national land-bank nonprofit — likely a link/caption mismatch in the source PDF, so no URL is given here until that's confirmed.)" },
+    { "name": "West Philadelphia Real Estate", "url": "https://affordablehousingonline.com/housing-search/Pennsylvania/Philadelphia/West-Philadelphia-Real-Estate-(-Wpre-)-II/10077105", "status": "live", "description": "Philly local real estate brokerage serving the West Philadelphia area." },
+    { "name": "Philadelphia Water Department", "url": "https://water.phila.gov/", "status": "live", "description": "Partners with PiaT on green infrastructure — contact them for help decoupling downspouts or adding a rain garden to your park." },
+    { "name": "Neighborhood Gardens Trust", "url": "https://www.ngtrust.org/", "status": "live", "description": "A leader in urban land preservation; a community land trust for gardens and other open space." },
+    { "name": "Empowered CDC", "url": "https://www.empoweredcdc.com/", "status": "dead", "description": "Community development corporation partner (Linktree \"PARTNERS\" group). Site currently returns a broken page — confirmed dead, not a bot-block." },
+    { "name": "William Penn Foundation", "url": "https://williampennfoundation.org/", "status": "live", "description": "Funder." },
+    { "name": "City of Philadelphia", "url": "https://www.phila.gov/", "status": "live", "description": "Partner for permits, land, and City data." },
+    { "name": "John Heinz National Wildlife Refuge at Tinicum", "url": "https://www.fws.gov/refuge/john-heinz-tinicum", "status": "live", "description": "Habitat and planting partner." },
+    { "name": "Audubon Mid-Atlantic", "url": "https://pa.audubon.org/chapters-centers/discovery-center", "status": "live", "description": "Habitat and pollinator-garden partner on several built parks." },
+    { "name": "Robert Wood Johnson Foundation", "url": "https://www.rwjf.org/", "status": "live", "description": "Funder." },
+    { "name": "Playful Learning Landscapes Action Network", "url": "https://playfullearninglandscapes.com/", "status": "live", "description": "Partner for the Playful Learning Landscapes workbook." },
+    { "name": "NFWF (National Fish and Wildlife Foundation)", "url": "https://www.nfwf.org/", "status": "live", "description": "Funder." },
+    { "name": "Clean & Green Philly", "url": "https://www.cleanandgreenphilly.org/transform-property", "status": "live", "description": "City tool for transforming a vacant property." }
+  ],
+
+  "press": [
+    { "type": "article", "title": "With Park in a Truck Program, Jefferson Looks to Help Transform Underserved Communities", "outlet": "Jefferson", "date": "2019-08-06", "url": "https://www.jefferson.edu/about/news-and-events/2019/8/park-in-a-truck-transforms-underserved-communities.html" },
+    { "type": "article", "title": "Park in a Truck Initiative Earns 'Social Good' Recognition From Fast Company Magazine", "outlet": "Jefferson", "date": "2020-09-30", "url": "https://www.jefferson.edu/about/news-and-events/2020/9/park-in-a-truck-earns-recognition-from-fast-company-magazine.html" },
+    { "type": "article", "title": "Park in a Truck Recognized with Green Building United's 2020 Groundbreaker Award", "outlet": "Jefferson", "date": "2020-12-18", "url": "https://www.jefferson.edu/about/news-and-events/2020/12/park-in-a-truck-recognized-with-green-building-uniteds-2020-groundbreaker-award.html" },
+    { "type": "article", "title": "'Park in a Truck' is like Ikea but for building neighborhood parks", "outlet": "Fast Company", "url": "https://www.fastcompany.com/90460838/park-in-a-truck-is-like-ikea-but-for-building-neighborhood-parks", "note": "Could not verify live (blocks automated requests); the link is PiaT's own, corroborated by Jefferson's Sept 2020 article about this same recognition." },
+    { "type": "article", "title": "Vacant lots transform into beautiful parks in Philly neighborhoods", "outlet": "6abc", "byline": "Matteo Iadonisi", "date": "2021-07-10", "url": "https://6abc.com/park-green-community-neighborhood/10877590/" },
+    { "type": "article", "title": "Park in a Truck program transforms urban green spaces in Philadelphia with help of neighborhood youth", "outlet": "CBS News Philadelphia", "byline": "Josh Sanders and Brad Nau", "date": "2024-06-07", "url": "https://www.cbsnews.com/philadelphia/news/park-in-a-truck-program-urban-green-spaces-southwest-philadelphia/" },
+    { "type": "article", "title": "ASLA Spotlight — Spring 2025", "outlet": "ASLA", "url": "https://pubs.royle.com/publication/?i=843437&p=1&view=issueViewer", "note": "A flip-book digital publication; confirmed live and is the Spring 2025 issue, but its page content can't be extracted automatically — open it directly to find the Park in a Truck feature." },
+    { "type": "video", "title": "Park in a Truck", "outlet": "WHYY", "url": "https://www.youtube.com/watch?v=jexf_jCLEIg", "youtubeId": "jexf_jCLEIg" },
+    { "type": "video", "title": "Transforming Neighborhoods, One Park at a Time — Built by the Community, for the Community", "outlet": "Thomas Jefferson University", "url": "https://www.youtube.com/watch?v=xu_8fTqF-zA", "youtubeId": "xu_8fTqF-zA" },
+    { "type": "video", "title": "Jefferson Park in a Truck Assembly Instructions #1", "outlet": "Thomas Jefferson University", "url": "https://www.youtube.com/watch?v=Mgi6oT1a4Fw", "youtubeId": "Mgi6oT1a4Fw" },
+    { "type": "video", "title": "Jefferson Park in a Truck Assembly Instructions #2", "outlet": "Thomas Jefferson University", "url": "https://www.youtube.com/watch?v=MXZHoAMS6fI", "youtubeId": "MXZHoAMS6fI" }
+  ],
+
+  "supplierGroups": [
+    {
+      "id": "tool-rental",
+      "label": "Tool rental",
+      "items": [
+        { "title": "West Philadelphia Tool Library", "url": "http://westphillytools.org", "status": "live", "note": "Hand tools; works with Philadelphia Orchard Project and also runs skills classes." },
+        { "title": "Diamond Tool (power-tool rental)", "url": "https://www.diamondtool.net/Rentals", "status": "unverified", "note": "Appears to have been folded into White Cap; blocks automated checks." },
+        { "title": "OK Rental Sales & Service", "url": null, "status": "dead", "note": "Neither domain PiaT has ever listed for this Darby, PA rental shop (okrentalsaleservice.com, okrental1.com) resolves any more." }
+      ]
+    },
+    {
+      "id": "waste-recycling",
+      "label": "Waste & recycling",
+      "items": [
+        { "title": "Fairmount Park Organic Recycling Center", "url": "https://www.phila.gov/services/trees-parks-the-environment/get-organic-materials/", "status": "live", "note": "3850 W Ford Rd — compost, wood chips, mulch, manure at minimal cost." },
+        { "title": "Richard S. Burns & Co. (recycled materials)", "url": "https://burnscompany.net/recycled-products", "status": "live", "note": "4300 Rising Sun Ave — dump + recycled products for sale." }
+      ]
+    },
+    {
+      "id": "nurseries-plants",
+      "label": "Nurseries & plants",
+      "items": [
+        { "title": "LandHealth Institute Nursery (Philaflora)", "url": "https://www.landhealthinstitute.org/nursery", "status": "live" },
+        { "title": "Good Host Plants", "url": "https://www.goodhostplants.com/", "status": "live", "note": "Local pollinator-plant specialist." },
+        { "title": "Pleasant Run Nursery", "url": "https://www.pleasantrunnursery.com/", "status": "live", "note": "High-quality ornamentals & native cultivars; NJ, delivery with $1,250 minimum." },
+        { "title": "Pinelands Nursery", "url": "https://www.pinelandsnursery.com/", "status": "unverified", "note": "Local-ecoregion restoration stock; site returns a non-standard response to automated checks but is very likely live." },
+        { "title": "Archewild", "url": "https://archewild.com/", "status": "live", "note": "Local-ecoregion restoration stock." },
+        { "title": "North Creek Nurseries", "url": "https://www.northcreeknurseries.com/", "status": "live" },
+        { "title": "Gardens Alive", "url": "https://www.gardensalive.com/", "status": "live", "note": "Site's TLS certificate is currently expired — expect a browser warning." },
+        { "title": "Burpee — fruit trees", "url": "https://www.burpee.com/fruit/fruit-trees/", "status": "live" },
+        { "title": "Stark Bro's — fruit trees", "url": "https://www.starkbros.com/products/fruit-trees", "status": "live" },
+        { "title": "Gurney's — fruits & berries", "url": "https://www.gurneys.com/category/fruits-and-berries", "status": "live" },
+        { "title": "Willis Orchards — fruit trees", "url": "https://www.willisorchards.com/category/fruit-trees", "status": "live" },
+        { "title": "PHS Gold Medal Plants", "url": "https://phsonline.org/for-gardeners/gold-medal-plants", "status": "live" },
+        { "title": "Philly Orchard Project — resources", "url": "https://www.phillyorchards.org/resources/", "status": "live" }
+      ]
+    },
+    {
+      "id": "lumber-building",
+      "label": "Lumber & building supply",
+      "items": [
+        { "title": "D&S Supply", "url": "https://www.ds-supply.com/landscape-supply", "status": "live", "note": "4260 Macalester St — landscape supply, mulch and tools." },
+        { "title": "Underdog Landscape Supply", "url": "https://www.underdogsupply.com/", "status": "live", "note": "701 Washington St, Conshohocken — topsoil, mulch, compost." },
+        { "title": "Mid Atlantic Pine Straw", "url": "https://www.midatlanticpinestraw.com/", "status": "live" },
+        { "title": "Woodland Building Supply", "url": "http://woodlandbuildingsupply.com", "status": "live", "note": "4701 Woodland Ave, Phila." },
+        { "title": "C&R Building Supply", "url": "http://candrbuildingsupply.com", "status": "live", "note": "1601 S 49th St, Phila." },
+        { "title": "A&A Lumber", "url": "https://www.aalumber.com/", "status": "live", "note": "Cypress supply, Avondale PA." },
+        { "title": "Delaware County Supply", "url": "https://www.delawarecountysupply.com/", "status": "live" },
+        { "title": "Castor Materials", "url": "http://castormaterials.com/", "status": "live", "note": "3301 S 61st St — crushed stone, topsoil, delivery available." },
+        { "title": "Rockler — choosing the best finish for outdoor projects", "url": "https://www.rockler.com/learn/choosing-the-best-finish-for-outdoor-projects", "status": "live" },
+        { "title": "Real Milk Paint (RMP Finishes) — best finish for outdoor wood", "url": "https://www.rmpfinishes.com/blog/tips/best-finish-outdoor-wood/", "status": "live" },
+        { "title": "Vermont Natural Coatings — exterior finishes", "url": "https://vermontnaturalcoatings.com/collections/exterior", "status": "live" },
+        { "title": "Hairpin Legs — bed bracket/backrest hardware", "url": "https://www.hairpinlegs.com/products/bed-bracket-backrest", "status": "live" }
+      ]
+    },
+    {
+      "id": "gabion-stone",
+      "label": "Gabion & stone",
+      "items": [
+        { "title": "Gabion1.com", "url": "https://gabion1.com/", "status": "live" },
+        { "title": "Darby Wire Mesh", "url": "http://www.darbywiremesh.com", "status": "unverified", "note": "Blocks automated checks; domain is registered and live." },
+        { "title": "How to Build a Gabion Wall (Gardendrum)", "url": "https://gardendrum.com/2012/04/21/how-to-build-a-gabion-wall/", "status": "live" }
+      ]
+    },
+    {
+      "id": "how-to-videos",
+      "label": "How-to videos",
+      "items": [
+        { "title": "How to prune a tree", "url": "https://www.youtube.com/watch?v=pY5A-5gUqwo", "status": "live" },
+        { "title": "How to plant a tree", "url": "https://www.youtube.com/watch?v=QYmgrw0PgLU", "status": "live" },
+        { "title": "How to plant a shrub", "url": "https://www.youtube.com/watch?v=Tim4LEo6l10", "status": "live" },
+        { "title": "Wood edging", "url": "https://www.youtube.com/watch?v=ImZFpWEqsVA", "status": "live" },
+        { "title": "Building a gabion wall", "url": "https://www.youtube.com/watch?v=QFjEWnA3Mtc", "status": "live" },
+        { "title": "Building a communal table", "url": "https://www.youtube.com/watch?v=Px2JZs4Q2v4", "status": "live" },
+        { "title": "Building a cold frame", "url": "https://www.youtube.com/watch?v=b75RoDmE9qY", "status": "live" },
+        { "title": "Building raised garden beds", "url": "https://www.youtube.com/watch?v=MBIYebUgVVI", "status": "live" },
+        { "title": "Prune like a pro", "url": "https://www.youtube.com/watch?v=BE2K_mCIppM", "status": "live" },
+        { "title": "Watering & rainwater guide", "url": "https://youtu.be/ueQCiSD5AdM", "status": "live" }
+      ]
+    },
+    {
+      "id": "learning-resources",
+      "label": "Learning resources",
+      "items": [
+        { "title": "Penn State Extension — soil testing", "url": "https://extension.psu.edu/soil-testing", "status": "live" },
+        { "title": "Penn State Extension — soil fertility submission forms", "url": "http://agsci.psu.edu/aasl/soil-testing/fertility/soil-fertility-submission-forms", "status": "live" },
+        { "title": "Penn State Extension — pests & diseases", "url": "https://extension.psu.edu/trees-lawns-and-landscaping/home-gardening/pests-and-diseases", "status": "live" },
+        { "title": "Penn State Extension — Master Gardener program", "url": "https://extension.psu.edu/programs/master-gardener", "status": "live" },
+        { "title": "Missouri Botanical Garden — Plant Finder", "url": "https://www.missouribotanicalgarden.org/plantfinder/plantfindersearch.aspx", "status": "live" },
+        { "title": "Arbor Day Foundation", "url": "https://www.arborday.org/", "status": "live" },
+        { "title": "Arbor Day — how to plant a containerized tree", "url": "https://www.arborday.org/trees/planting/containerized.cfm", "status": "live" },
+        { "title": "Arbor Day — fruit trees", "url": "https://www.arborday.org/trees/fruit/", "status": "live" },
+        { "title": "Pennsylvania Horticultural Society (PHS)", "url": "https://phsonline.org/", "status": "live", "note": "Workshops, community garden info, Rain Barrel program." },
+        { "title": "Grounded in Philly", "url": "https://groundedinphilly.org/", "status": "live", "note": "Legal assistance, data and guides for getting/keeping a lot." },
+        { "title": "Philly Orchard Project", "url": "https://www.phillyorchards.org/", "status": "live" },
+        { "title": "Soil Generation", "url": "https://soilgeneration.org/", "status": "live", "note": "Black & Brown-led coalition for community control of land and food." },
+        { "title": "Park Advocate Handbook (NRPA)", "url": "https://www.nrpa.org/uploadedFiles/Americas_Backyard/park-advocate-handbook-100711.pdf", "status": "live" },
+        { "title": "The PHS City Parks Handbook (Temple University Press)", "url": "https://tupress.temple.edu/books/the-phs-city-parks-handbook", "status": "live" },
+        { "title": "Vacant Lot Activation Toolkit (Trust South LA)", "url": "https://trustsouthla.org/wp-content/uploads/2016/03/Free-Lots-Toolkit.pdf", "status": "live" },
+        { "title": "Green2015: An Action Plan for the First 500 Acres", "url": "https://www.phila.gov/media/20160525121520/Green2015-An-Action-Plan-for-the-First-500-Acres.pdf", "status": "live", "note": "PennPraxis plan for Philadelphia Parks & Recreation." },
+        { "title": "PlantSnap (plant & weed ID app)", "url": "https://www.plantsnap.com/", "status": "live" },
+        { "title": "Gardener's Path — using a rain gauge", "url": "https://gardenerspath.com/how-to/hacks/use-rain-gauge/", "status": "live" },
+        { "title": "How to lay mulch (SKH)", "url": "https://www.skh.com/blog/how-to-lay-mulch/", "status": "live" },
+        { "title": "Vinegar-based weed killer (product example)", "url": "https://www.amazon.com/Green-Gobbler-Vinegar-Glyphosate-Herbicide/dp/B09HDFQ531/", "status": "live", "note": "The only source found for this specific product; linked neutrally." }
+      ]
+    },
+    {
+      "id": "city-programs",
+      "label": "City of Philadelphia programs",
+      "items": [
+        { "title": "Atlas Philadelphia (property lookup)", "url": "https://atlas.phila.gov/", "status": "live" },
+        { "title": "Philadelphia parcel ownership map (ArcGIS)", "url": "https://phl.maps.arcgis.com/apps/webappviewer/index.html?id=2eb44decb9464cb79f2132d1c5883674", "status": "live" },
+        { "title": "Registered Community Organizations (RCOs)", "url": "https://www.phila.gov/programs/registered-community-organizations-rcos/", "status": "live" },
+        { "title": "Temporary No-Parking Permit", "url": "https://www.phila.gov/services/cars-parking-transportation/apply-for-a-parking-permit/apply-for-a-temporary-no-parking-permit/", "status": "live" },
+        { "title": "Green City, Clean Waters — stormwater/rain-garden grant", "url": "https://water.phila.gov/drops/gccw10/", "status": "live" }
+      ]
+    }
+  ],
+
+  "toolkitLibrary": {
+    "intro": "Welcome to the toolkit library! The following pages have many resources and links for additional information, organized by chapter.",
+    "sourceDoc": "Download_the_Toolkit_p34_DOWNLOAD_TOOLKIT_LIBRARY_HERE",
+    "sections": [
+      {
+        "title": "Introduction",
+        "entries": [
+          { "title": "To reduce poverty, City Council efforts should include more green space (The Inquirer)", "url": "https://www.inquirer.com/health/parks-poverty-philadelphia-20190408.html" },
+          { "title": "Let's promote health and green space one empty lot at a time (The Inquirer)", "url": "https://www.inquirer.com/philly/health/health-cents/lets-promote-health-and-green-space-one-empty-lot-at-a-time-20180629.html" },
+          { "title": "Gangsta Gardener — Ron Finley", "url": "http://ronfinley.com/" },
+          { "title": "Just Bees And Things And Flowers: How Black Women Gardeners Will Survive In The COVID-19 Crisis (Essence)", "url": "https://www.essence.com/feature/black-women-gardeners-survive-covid-19-crisis/" },
+          { "title": "Black Girls with Gardens", "url": "https://www.blackgirlswithgardens.com/" },
+          { "title": "Farming While Black — Leah Penniman", "url": "https://www.chelseagreen.com/product/farming-while-black/" }
+        ]
+      },
+      {
+        "title": "01 Acquire",
+        "entries": [
+          { "title": "The PHS City Parks Handbook ($13.95)", "url": "https://www.amazon.com/PHS-City-Parks-Handbook/dp/0615260810" },
+          { "title": "Park Advocate Handbook (free)", "url": "https://www.nrpa.org/uploadedFiles/Americas_Backyard/park-advocate-handbook-100711.pdf" },
+          { "title": "Atlas Philadelphia", "url": "https://atlas.phila.gov/" },
+          { "title": "Citizens Planning Institute", "url": "https://citizensplanninginstitute.org/" },
+          { "title": "Green2015: An Action Plan for the First 500 Acres", "url": "https://www.phila.gov/media/20160525121520/Green2015-An-Action-Plan-for-the-First-500-Acres.pdf" },
+          { "title": "Grounded in Philly", "url": "https://groundedinphilly.org/", "description": "Public Interest Law Center — Garden Justice Legal Initiative, 215-627-7100 x236" },
+          { "title": "Neighborhood Gardens Trust", "url": "https://www.ngtrust.org/" },
+          { "title": "Soil Generation", "url": "https://soilgeneration.org/" }
+        ]
+      },
+      {
+        "title": "02 Organize",
+        "entries": [
+          { "title": "The PHS City Parks Handbook", "url": "https://tupress.temple.edu/books/the-phs-city-parks-handbook" },
+          { "title": "Vacant Lot Activation Toolkit (Free Lots Angeles)", "url": "https://trustsouthla.org/wp-content/uploads/2016/03/Free-Lots-Toolkit.pdf" }
+        ]
+      },
+      {
+        "title": "03 Assess",
+        "entries": [
+          { "title": "Penn State Extension — soil testing", "url": "https://extension.psu.edu/soil-testing" }
+        ]
+      },
+      {
+        "title": "04 Dream",
+        "entries": [
+          { "title": "Gardens Alive", "url": "https://www.gardensalive.com/" },
+          { "title": "North Creek Nurseries", "url": "https://www.northcreeknurseries.com/" },
+          { "title": "Missouri Botanical Garden Plant Finder", "url": "https://www.missouribotanicalgarden.org/plantfinder/plantfindersearch.aspx" },
+          { "title": "Longwood Gardens plant search", "url": "https://plantexplorer.longwoodgardens.org/ecmweb/FindPlant.html", "note": "This tool appears to have been retired — the domain no longer resolves." },
+          { "title": "Arbor Day Foundation", "url": "https://www.arborday.org/" },
+          { "title": "Penn State Master Gardeners — Philadelphia planting guide", "url": "https://extension.psu.edu/programs/master-gardener/counties/philadelphia/hotline/master-gardeners-philadelphia-planting-guide" }
+        ]
+      },
+      {
+        "title": "05 Create",
+        "entries": [
+          { "title": "Woodland Building Supply", "url": "http://woodlandbuildingsupply.com", "description": "4701 Woodland Ave, Phila · 215-727-5333" },
+          { "title": "C&R Building Supply", "url": "http://candrbuildingsupply.com", "description": "1601 S 49th St, Phila" },
+          { "title": "A&A Lumber", "url": "https://www.aalumber.com/", "description": "109 Old Limestone Rd, Avondale PA" },
+          { "title": "Philly Reclaim", "url": "https://philadelphiacommunitycorps.org", "description": "150 W Butler St, Phila — reclaimed-materials warehouse; see also PowerCorpsPHL", "note": null },
+          { "title": "PowerCorpsPHL", "url": "http://www.powercorpsphl.org/" },
+          { "title": "Burpee — fruit trees", "url": "https://www.burpee.com/fruit/fruit-trees/" },
+          { "title": "Stark Bro's — fruit trees", "url": "https://www.starkbros.com/products/fruit-trees" },
+          { "title": "Gurney's — fruits & berries", "url": "https://www.gurneys.com/category/fruits-and-berries" },
+          { "title": "Willis Orchards — fruit trees", "url": "https://www.willisorchards.com/category/fruit-trees" },
+          { "title": "Good Host Plants", "url": "https://www.goodhostplants.com/", "description": "150 W Butler St, Phila — local pollinator-plant specialist" },
+          { "title": "LandHealth Institute Nursery (Philaflora)", "url": "https://www.landhealthinstitute.org/nursery", "description": "West Philadelphia, 267-571-5750" },
+          { "title": "Pleasant Run Nursery", "url": null, "description": "93 Ellisdale Rd, Allentown NJ 08501 · 609-259-8585 — $1,250 delivery minimum" },
+          { "title": "Pinelands Nursery", "url": "https://www.pinelandsnursery.com/", "description": "323 Island Rd, Columbus NJ 08022 · 609-291-9486" },
+          { "title": "Archewild", "url": "https://archewild.com/", "description": "2191 Hillcrest Rd, Quakertown PA 18951" },
+          { "title": "Underdog Landscape Supply", "url": "https://www.underdogsupply.com/", "description": "701 Washington St, Conshohocken PA · 610-260-9747" },
+          { "title": "Castor Materials", "url": "http://castormaterials.com/", "description": "3301 S 61st St, Phila" },
+          { "title": "D&S Supply", "url": "https://www.ds-supply.com/landscape-supply", "description": "4260 Macalester St, Phila · 215-457-1177" },
+          { "title": "Richard S. Burns & Co.", "url": "https://burnscompany.net/recycled-products", "description": "4300 Rising Sun Ave, Phila · 215-324-6377 — recycled materials for sale" },
+          { "title": "West Philadelphia Tool Library", "url": "http://westphillytools.org", "description": "1314 S 47th St, Phila" },
+          { "title": "Diamond Tool", "url": "https://www.diamondtool.net/Rentals", "description": "2800 Grays Ferry Ave, Phila" },
+          { "title": "Fairmount Park Organic Recycling Center", "url": "https://www.phila.gov/services/trees-parks-the-environment/get-organic-materials/", "description": "3850 W Ford Rd, Phila · 215-685-0108" }
+        ]
+      },
+      {
+        "title": "06 Sustain",
+        "entries": [
+          { "title": "Pennsylvania Horticultural Society", "url": "https://phsonline.org/" },
+          { "title": "Grounded in Philly", "url": "https://groundedinphilly.org/" },
+          { "title": "Greensgrow", "url": "https://www.greensgrow.org/about-us/" },
+          { "title": "Brandywine Conservancy — invasive plants", "url": "https://www.brandywine.org/conservancy/resources/invasive-plants" },
+          { "title": "How to plant a containerized tree (Arbor Day)", "url": "https://www.arborday.org/trees/planting/containerized.cfm" },
+          { "title": "How to plant a shrub (video)", "url": "https://www.youtube.com/watch?v=Tim4LEo6l10" },
+          { "title": "How to prune a tree (video)", "url": "https://www.youtube.com/watch?v=pY5A-5gUqwo" },
+          { "title": "How to prune a shrub (Gardeners' World)", "url": "https://www.gardenersworld.com/how-to/grow-plants/the-basics-of-shrub-pruning/" },
+          { "title": "Arbor Day Foundation — fruit trees", "url": "https://www.arborday.org/trees/fruit/" },
+          { "title": "Philadelphia Orchard Project", "url": "https://www.phillyorchards.org/" },
+          { "title": "Composting basics (video)", "url": "https://www.youtube.com/watch?v=0hPCkEaMkQU" },
+          { "title": "Fertilizing (Penn State Extension)", "url": "https://extension.psu.edu/promote-plant-health" },
+          { "title": "How to mulch your garden (Good Housekeeping)", "url": "https://www.goodhousekeeping.com/home/gardening/a20706549/how-to-mulch-your-garden/" }
+        ]
+      }
+    ]
+  },
+
+  "contact": {
+    "email": "ParkinaTruck@jefferson.edu",
+    "founderEmail": "Kimberlee.Douglas@jefferson.edu",
+    "phone": "215-951-0115",
+    "instagram": { "handle": "@parkinatruck", "url": "https://www.instagram.com/parkinatruck" },
+    "facebook": { "url": "https://www.facebook.com/larchpu/" }
+  },
+
+  "acknowledgments": {
+    "lead": "The Landscape Architecture Program + The Lab for Social and Urban Innovation, Thomas Jefferson University",
+    "contributors": [
+      "Kimberlee Douglas, RLA, ASLA — Park in a Truck Founder, Director + Professor, Landscape Architecture Program, Jefferson University",
+      "Alexandra Zahn, RLA, ASLA — Park in a Truck VP, Adjunct Professor, Jefferson University",
+      "Darrell Campana, RLA, ASLA — Adjunct Professor, Jefferson University",
+      "Richard Newton, RLA, ASLA — Adjunct Professor, Jefferson University",
+      "Dr. Drew Harris — Adjunct Professor, Jefferson University",
+      "Teddy Pickering — Jefferson Student",
+      "Hunter Dyson — Jefferson Student",
+      "Darby Mann — Jefferson Student",
+      "Ben Nardi — Jefferson Student",
+      "Ted Behr — Southwest Globe Times",
+      "Victoria Miles Chambliss — Empowered Community Development Corporation",
+      "Community members like you!"
+    ],
+    "note": "This site turns Park in a Truck's own toolkit, workbooks and plant lists into a guided, interactive version, with permission from Park in a Truck / Thomas Jefferson University. All original wording, illustrations and photos are theirs."
+  },
+
+  "legal": {
+    "title": "Legal notice",
+    "source": "Park in a Truck Toolkit, Working Version 1.0, p.3",
+    "text": "The recommendations included herein are based on standard practices of fabrication and construction. In no event shall Thomas Jefferson University (TJU), TJU's Lab For Social Innovation, Park-in-a-Truck, and/or its faculty, staff or affiliates be liable for any damages or injury to person or property damages arising out of the use of these recommendations. Thomas Jefferson University (TJU), TJU's Lab For Social Innovation, Park-in-a-Truck, or its faculty, staff and/or affiliates make no warranties, expressed or implied, and hereby disclaims and negates all other warranties, including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights. Further, Thomas Jefferson University (TJU), TJU's Lab For Social Innovation, Park-in-a-Truck, and/or its faculty, staff or affiliates do not warrant or make any representations concerning the accuracy, likely results, or reliability of the use of these recommendations. The use of these recommendations constitutes your acknowledgment of the aforementioned."
+  }
+}

@@ -1,10 +1,229 @@
 ---
-// STUB — owned by the resources workstream.
+// Owner: resources workstream.
 import Base from '../../layouts/Base.astro';
+import PlantPicker from '../../components/widgets/PlantPicker.astro';
+import { PLANTS } from '../../data/plants';
+import { THEME_ORDER, THEMES } from '../../data/themes';
+import { u } from '../../lib/url';
+
+const types = [
+  { id: 'large-tree', label: 'Large trees' },
+  { id: 'small-tree', label: 'Small trees' },
+  { id: 'shrub', label: 'Shrubs' },
+  { id: 'perennial', label: 'Perennials' },
+] as const;
 ---
-<Base title="Plants">
+
+<Base title="Plants" description="Every plant from the Dream workbook's four theme plant lists, with photos, sizes and costs — plus a picker sized to your own design.">
   <section class="wrap" style="padding-top:40px">
+    <p class="eyebrow">Dream workbook · plant lists</p>
     <h1 class="ruled">Plants</h1>
-    <div class="widget-placeholder">Coming soon.</div>
+    <p class="lede">
+      The Dream workbook's four theme plant lists (Edible, Sanctuary, Nature, Event), all in one place — browse
+      what's in each, then use the picker to choose species and quantities sized to your own design.
+    </p>
+
+    <div class="browse no-print">
+      <div class="field" style="max-width:20rem">
+        <label class="field-label" for="plant-search">Search</label>
+        <input id="plant-search" type="text" placeholder="Common or botanical name…" data-plant-search />
+      </div>
+      <div class="browse-filters">
+        <div>
+          <span class="field-label">Theme</span>
+          <div class="chip-row" data-plant-filter="theme">
+            <button type="button" class="chip" data-value="">All</button>
+            {THEME_ORDER.map((id) => <button type="button" class="chip" data-value={id}>{THEMES[id].name}</button>)}
+          </div>
+        </div>
+        <div>
+          <span class="field-label">Type</span>
+          <div class="chip-row" data-plant-filter="type">
+            <button type="button" class="chip" data-value="">All</button>
+            {types.map((t) => <button type="button" class="chip" data-value={t.id}>{t.label}</button>)}
+          </div>
+        </div>
+        <div>
+          <span class="field-label">Light</span>
+          <div class="chip-row" data-plant-filter="light">
+            <button type="button" class="chip" data-value="">All</button>
+            <button type="button" class="chip" data-value="sun">Sun</button>
+            <button type="button" class="chip" data-value="shade">Shade</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="muted" data-plant-count style="margin-top:1em"></p>
+
+    <div class="plant-grid" data-plant-grid>
+      {PLANTS.map((p) => (
+        <article
+          class="plant-tile"
+          data-theme={p.theme}
+          data-type={p.type}
+          data-light={p.light}
+          data-search={`${p.common} ${p.botanical}`.toLowerCase()}
+        >
+          <div class="plant-tile-photo" style={`--theme-color:${THEMES[p.theme].frame}`}>
+            {p.photo ? <img src={u(p.photo)} alt={`${p.common} (${p.botanical})`} loading="lazy" /> : <span aria-hidden="true"></span>}
+            <span class="plant-tile-theme">{THEMES[p.theme].name}</span>
+          </div>
+          <div class="plant-tile-body">
+            <p class="plant-tile-common">{p.common}</p>
+            <p class="plant-tile-botanical">{p.botanical}</p>
+            <p class="plant-tile-meta">
+              {types.find((t) => t.id === p.type)?.label} · {p.light === 'both' ? 'sun or shade' : p.light}
+              {p.matureSize && <> · mature {p.matureSize}</>}
+            </p>
+            {p.notes && <p class="plant-tile-notes">{p.notes}</p>}
+            <p class="plant-tile-cost">${(p.unitCost ?? 0).toFixed(2)}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <h2 class="ruled" style="margin-top:3em">Pick your plants</h2>
+    <p class="prose">
+      Choose one theme, or mix two (the workbook allows it) — then set your counts (or pull them straight from
+      your 3D design) and choose exactly which plants and how many.
+    </p>
+    <PlantPicker />
   </section>
 </Base>
+
+<style>
+  .browse {
+    margin-top: 1.5em;
+    padding: 16px;
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    display: grid;
+    gap: 16px;
+  }
+  .browse-filters {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+  .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 0.4em;
+  }
+  .chip {
+    border: 2px solid var(--line);
+    background: #fff;
+    border-radius: 999px;
+    padding: 0.3em 0.8em;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .chip[aria-pressed='true'] {
+    border-color: var(--cyan);
+    background: var(--cyan-wash);
+    color: var(--cyan-deep);
+  }
+
+  .plant-grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(auto-fill, minmax(min(230px, 100%), 1fr));
+    margin-top: 1em;
+  }
+  .plant-tile {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: #fff;
+  }
+  .plant-tile-photo {
+    aspect-ratio: 4 / 3;
+    background: var(--paper-2);
+    position: relative;
+  }
+  .plant-tile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .plant-tile-theme {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: var(--theme-color);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.2em 0.6em;
+    border-radius: 999px;
+  }
+  .plant-tile-body {
+    padding: 10px 12px;
+  }
+  .plant-tile-common {
+    font-weight: 700;
+    margin: 0;
+  }
+  .plant-tile-botanical {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin: 0.1em 0 0.4em;
+  }
+  .plant-tile-meta,
+  .plant-tile-notes {
+    font-size: 0.8rem;
+    color: var(--ink-2);
+    margin: 0.2em 0;
+  }
+  .plant-tile-cost {
+    font-weight: 700;
+    margin: 0.4em 0 0;
+  }
+</style>
+
+<script>
+  const grid = document.querySelector<HTMLElement>('[data-plant-grid]');
+  const search = document.querySelector<HTMLInputElement>('[data-plant-search]');
+  const countEl = document.querySelector<HTMLElement>('[data-plant-count]');
+  const filterGroups = Array.from(document.querySelectorAll<HTMLElement>('[data-plant-filter]'));
+  const state: Record<string, string> = { theme: '', type: '', light: '' };
+
+  function apply() {
+    if (!grid) return;
+    const q = (search?.value ?? '').trim().toLowerCase();
+    let visible = 0;
+    for (const tile of Array.from(grid.children) as HTMLElement[]) {
+      const matchesTheme = !state.theme || tile.dataset.theme === state.theme;
+      const matchesType = !state.type || tile.dataset.type === state.type;
+      const matchesLight = !state.light || tile.dataset.light === state.light || tile.dataset.light === 'both';
+      const matchesSearch = !q || (tile.dataset.search ?? '').includes(q);
+      const show = matchesTheme && matchesType && matchesLight && matchesSearch;
+      tile.style.display = show ? '' : 'none';
+      if (show) visible += 1;
+    }
+    if (countEl) countEl.textContent = `${visible} of ${grid.children.length} plants`;
+  }
+
+  for (const group of filterGroups) {
+    const key = group.dataset.plantFilter!;
+    const chips = Array.from(group.querySelectorAll<HTMLButtonElement>('.chip'));
+    for (const chip of chips) {
+      chip.setAttribute('aria-pressed', String(chip.dataset.value === ''));
+      chip.addEventListener('click', () => {
+        state[key] = chip.dataset.value ?? '';
+        for (const c of chips) c.setAttribute('aria-pressed', String(c === chip));
+        apply();
+      });
+    }
+  }
+  search?.addEventListener('input', apply);
+  apply();
+</script>

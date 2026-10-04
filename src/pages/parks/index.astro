@@ -1,10 +1,170 @@
 ---
-// STUB — owned by the resources workstream.
+// Owner: resources workstream.
 import Base from '../../layouts/Base.astro';
+import ParksMap from '../../components/widgets/ParksMap.astro';
+import { PARKS, youtubeThumb, youtubeWatchUrl } from '../../data/parks';
+import { u } from '../../lib/url';
 ---
-<Base title="Parks built so far">
+
+<Base title="Parks built so far" description="Real neighborhood parks already built with the Park in a Truck toolkit around Philadelphia.">
   <section class="wrap" style="padding-top:40px">
+    <p class="eyebrow">Built with Park in a Truck</p>
     <h1 class="ruled">Parks built so far</h1>
-    <div class="widget-placeholder">Coming soon.</div>
+    <p class="lede">
+      Neighbors have already used this toolkit to build real parks around Philadelphia. Here's where, with what's
+      known about each — click a pin or a card for the story, photos and press.
+    </p>
+
+    <ParksMap />
+
+    <div class="park-list">
+      {PARKS.map((park) => (
+        <article id={`park-${park.id}`} class="park-card">
+          {park.photos.length > 0 && (
+            <div class="park-photos">
+              {park.photos.map((photo) => (
+                <figure>
+                  <img src={u(photo.src)} alt={photo.alt} loading="lazy" />
+                  {(photo.caption || photo.credit) && (
+                    <figcaption>
+                      {photo.caption}
+                      {photo.credit && <> — {photo.credit}</>}
+                    </figcaption>
+                  )}
+                </figure>
+              ))}
+            </div>
+          )}
+          <div class="park-card-body">
+            <h2>{park.name}</h2>
+            <p class="park-meta">
+              {park.address}
+              {park.neighborhood && <> · {park.neighborhood}</>}
+              {park.year && <> · opened {park.year}</>}
+            </p>
+            <p class="prose">{park.description}</p>
+
+            {park.videos.length > 0 && (
+              <div class="park-videos">
+                {park.videos.map((v) => (
+                  <a class="park-video" href={youtubeWatchUrl(v.id)} target="_blank" rel="noopener noreferrer">
+                    <img src={youtubeThumb(v.id)} alt={`Video: ${v.title}`} loading="lazy" />
+                    <span class="park-video-play" aria-hidden="true">▶</span>
+                    <span class="park-video-title">{v.title}{v.channel && <> · {v.channel}</>}</span>
+                  </a>
+                ))}
+              </div>
+            )}
+
+            {park.links.length > 0 && (
+              <ul class="park-links">
+                {park.links.map((l) => (
+                  <li><a href={l.url} target="_blank" rel="noopener noreferrer">{l.label}</a></li>
+                ))}
+              </ul>
+            )}
+
+            {park.source && <p class="park-source muted">Source: {park.source}</p>}
+          </div>
+        </article>
+      ))}
+    </div>
   </section>
 </Base>
+
+<style>
+  .park-list {
+    display: grid;
+    gap: 28px;
+    margin-top: 2em;
+  }
+  .park-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    scroll-margin-top: 100px;
+  }
+  .park-photos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  }
+  .park-photos figure {
+    margin: 0;
+  }
+  .park-photos img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+  .park-photos figcaption {
+    padding: 6px 10px;
+    background: var(--paper-2);
+  }
+  .park-card-body {
+    padding: 20px;
+  }
+  .park-card-body h2 {
+    margin-bottom: 0.2em;
+  }
+  .park-meta {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin: 0 0 0.9em;
+  }
+  .park-videos {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+    margin: 1em 0;
+  }
+  .park-video {
+    position: relative;
+    display: block;
+    border-radius: var(--radius);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--line);
+  }
+  .park-video img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+  }
+  .park-video-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2.4em;
+    height: 2.4em;
+    border-radius: 50%;
+    background: rgb(0 0 0 / 0.6);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-size: 1rem;
+  }
+  .park-video-title {
+    display: block;
+    padding: 6px 10px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    background: var(--paper-2);
+    color: var(--ink);
+  }
+  .park-links {
+    list-style: none;
+    margin: 0.8em 0 0;
+    padding: 0;
+    font-size: 0.9rem;
+  }
+  .park-links li {
+    margin: 0.3em 0;
+  }
+  .park-source {
+    margin-top: 1em;
+    font-size: 0.78rem;
+  }
+</style>

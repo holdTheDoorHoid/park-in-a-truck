@@ -1,0 +1,119 @@
+[
+  {
+    "id": "cecil-street-garden",
+    "name": "Cecil Street Garden",
+    "address": "Kingsessing Avenue & Cecil Street, Philadelphia, PA 19143",
+    "lat": 39.9347722,
+    "lng": -75.2267376,
+    "neighborhood": "Kingsessing, Southwest Philadelphia",
+    "theme": null,
+    "description": "A community garden on a reclaimed Kingsessing corner lot, listed in the Park in a Truck toolkit as \"Cecil Street Park\" and used as a planting-prototype site with LandHealth Nursery. It's since become part of a federally funded pollinator-habitat network linking several Southwest Philadelphia Park in a Truck sites, planted with native trees and echinacea. Resident Victoria Miles-Chambliss: \"Our block has really changed since we put in the garden. It's like an oasis in the middle of Southwest Philadelphia.\"",
+    "photos": [],
+    "links": [
+      { "label": "A network of habitats for birds and bees is blooming in Southwest Philadelphia (Grid Magazine, Apr 2024)", "url": "https://gridphilly.com/blog-home/2024/04/01/a-network-of-habitats-for-birds-and-bees-is-blooming-in-southwest-philadelphia/" },
+      { "label": "Park in a Truck program page (Jefferson)", "url": "https://www.jefferson.edu/academics/colleges-schools-institutes/architecture-and-the-built-environment/programs/landscape-architecture/park-in-a-truck.html" }
+    ],
+    "videos": [],
+    "source": "Park in a Truck toolkit p.69 acknowledgments; Grid Magazine"
+  },
+  {
+    "id": "melon-street-park",
+    "name": "Melon Street Park",
+    "address": "38th & Melon Streets, Philadelphia, PA 19104",
+    "lat": 39.9652764,
+    "lng": -75.1975572,
+    "neighborhood": "Mantua, West Philadelphia",
+    "year": 2019,
+    "theme": null,
+    "description": "Park in a Truck's first-ever park, opened October 2019 on a vacant Mantua lot (about 2,400 sq ft). Mantua Civic Association president DeWayne Drummond: \"The ground that we're standing on right now, it was a vacant lot. Now, it's beautified by community members and the youth.\" Founder Kim Douglas describes it as a park that \"can drain stormwater, grow plants, provide habitat for wildlife, and host entertainment.\"",
+    "photos": [
+      { "src": "/img/parks/melon-street-park-1.webp", "alt": "Raised garden beds and flowering plants at Melon Street Park, with Mantua rowhouses in the background", "caption": "Melon Street Park, Community park", "credit": "Matthew Tucker, via the Park in a Truck toolkit" },
+      { "src": "/img/parks/melon-street-park-2.webp", "alt": "A group of children and adults gathered around a park-piece model on build day at Melon Street Park", "caption": "Mantua Park in a Truck build day", "credit": "Park in a Truck toolkit" }
+    ],
+    "links": [
+      { "label": "With Park in a Truck Program, Jefferson Looks to Help Transform Underserved Communities (Jefferson, Aug 2019)", "url": "https://www.jefferson.edu/about/news-and-events/2019/8/park-in-a-truck-transforms-underserved-communities.html" },
+      { "label": "Vacant lots transform into beautiful parks in Philly neighborhoods (6abc, Jul 2021)", "url": "https://6abc.com/park-green-community-neighborhood/10877590/" },
+      { "label": "Park in a Truck Toolkit Allows Community Members to Transform Empty Lots (Jefferson, Aug 2022)", "url": "https://www.jefferson.edu/news/2022/08/park-in-a-truck-toolkit-allows-community-members-to-transform-empty-lots-into-green-spaces.html" }
+    ],
+    "videos": [],
+    "source": "Park in a Truck toolkit pp.7-13, 39, 66-69; Jefferson news"
+  },
+  {
+    "id": "glenda-anne-memorial-park",
+    "name": "Glenda Anne Memorial Park",
+    "address": "5900 Greenway Avenue, Philadelphia, PA 19143",
+    "lat": 39.932227,
+    "lng": -75.22691,
+    "neighborhood": "Kingsessing, Southwest Philadelphia",
+    "year": 2019,
+    "theme": null,
+    "description": "Dedicated August 3, 2019 on a formerly-dumped-on lot, with 200+ neighbors and elected officials attending; Glenda Ann Christopher's family accepted the park as her memorial (press coverage spells it \"Glenda Ann Christopher Memorial Park\"). A pollinator garden was added in spring 2023 — organizer Greg Thompson: \"A week or two after it went in they were there — bees, birds, butterflies and a lot more insects than we've ever seen.\" A second dedication in June 2024 celebrated that addition; youth volunteer Semaj Flores: \"We got involved in this for the environment and for the youth to help younger kids that's dealing with gun violence.\"",
+    "photos": [],
+    "links": [
+      { "label": "Park in a Truck program transforms urban green spaces in Philadelphia (CBS News Philadelphia, Jun 2024)", "url": "https://www.cbsnews.com/philadelphia/news/park-in-a-truck-program-urban-green-spaces-southwest-philadelphia/" },
+      { "label": "A network of habitats for birds and bees is blooming in Southwest Philadelphia (Grid Magazine, Apr 2024)", "url": "https://gridphilly.com/blog-home/2024/04/01/a-network-of-habitats-for-birds-and-bees-is-blooming-in-southwest-philadelphia/" }
+    ],
+    "videos": [
+      { "id": "xu_8fTqF-zA", "title": "Transforming Neighborhoods, One Park at a Time — Built by the Community, for the Community", "channel": "Thomas Jefferson University" }
+    ],
+    "source": "CBS News Philadelphia; Grid Magazine; Park in a Truck toolkit p.69 acknowledgments"
+  },
+  {
+    "id": "s-60th-greenway",
+    "name": "S 60th St & Greenway Ave",
+    "address": "S 60th Street & Greenway Avenue, Philadelphia, PA 19143",
+    "lat": 39.9313897,
+    "lng": -75.2288542,
+    "neighborhood": "Kingsessing, Southwest Philadelphia",
+    "theme": null,
+    "description": "A Park in a Truck site a block from Glenda Anne Memorial Park, in the same Kingsessing greening corridor — listed in the toolkit's acknowledgments (credited to Ted Behr, Southwest Globe Times) as a separate line from Glenda Anne. No press coverage names this lot distinctly from Glenda Anne Memorial Park; treat the two as related but separate sites until confirmed otherwise.",
+    "photos": [],
+    "links": [],
+    "videos": [],
+    "source": "Park in a Truck toolkit p.69 acknowledgments ('6oth and Greenway'); unconfirmed beyond that"
+  },
+  {
+    "id": "dover-street-pocket-park",
+    "name": "Dover Street Pocket Park",
+    "address": "1322 N Dover Street, Philadelphia, PA 19121",
+    "lat": 39.9768668,
+    "lng": -75.182514,
+    "neighborhood": "Brewerytown, North Philadelphia",
+    "theme": null,
+    "description": "Listed on Park in a Truck's own site directory. It postdates the published toolkit (not in its acknowledgments) and no independent news coverage was found — details beyond the address are not yet confirmed.",
+    "photos": [],
+    "links": [],
+    "videos": [],
+    "source": "Park in a Truck Linktree only; unconfirmed elsewhere"
+  },
+  {
+    "id": "tilden-middle-school",
+    "name": "Tilden Middle School",
+    "address": "6601 Elmwood Avenue, Philadelphia, PA 19142",
+    "lat": 39.9215511,
+    "lng": -75.2323926,
+    "neighborhood": "Elmwood Park, Southwest Philadelphia",
+    "theme": null,
+    "description": "Students built a pollinator/habitat garden at Tilden Middle School as part of the same Southwest Philadelphia pollinator network that includes Cecil Street Garden, funded in part by Pew Charitable Trusts through Audubon Mid-Atlantic with Park in a Truck as a partner. Youth are paid through PiaT's Park Ambassador program to maintain it and monitor pollinators.",
+    "photos": [],
+    "links": [
+      { "label": "A network of habitats for birds and bees is blooming in Southwest Philadelphia (Grid Magazine, Apr 2024)", "url": "https://gridphilly.com/blog-home/2024/04/01/a-network-of-habitats-for-birds-and-bees-is-blooming-in-southwest-philadelphia/" }
+    ],
+    "videos": [],
+    "source": "Grid Magazine; Park in a Truck Linktree"
+  },
+  {
+    "id": "streetscape-of-brewerytown-garden",
+    "name": "Streetscape of Brewerytown Garden",
+    "address": "Brewerytown, Philadelphia, PA 19121",
+    "lat": 39.977106,
+    "lng": -75.179613,
+    "neighborhood": "Brewerytown, North Philadelphia",
+    "theme": null,
+    "description": "Listed on Park in a Truck's own site directory, near Dover Street Pocket Park in Brewerytown. This is a different project from Neighborhood Gardens Trust's unrelated \"Brewerytown Garden\" at 27th & Master St. No independent news coverage was found — details beyond the approximate location are not yet confirmed.",
+    "photos": [],
+    "links": [],
+    "videos": [],
+    "source": "Park in a Truck Linktree only; unconfirmed elsewhere"
+  }
+]
