@@ -1,0 +1,209 @@
+---
+title: 获取
+intro: 在您的社区里找到一块地，并取得把它变成公园的合法权利。
+sources:
+  - 工具包第24–27页（寻找地块、选哪块地？、确定地块归谁所有）
+  - 获取工作手册第1–7页
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Choice from '../../../../components/workbook/Choice.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import LotLookup from '../../../../components/widgets/LotLookup.astro';
+import LotFinderMap from '../../../../components/widgets/LotFinderMap.astro';
+
+如果建园的人还没有使用空地的合法权利，就必须找到愿意把地块出售或出租用来建公园的人。这件事可能很复杂，也很花时间。没有完美的流程，没有唯一的做法，也不能保证一定成功。这一步会帮您找到获取未来公园用地的办法。
+
+## 寻找地块 {/* #find-a-lot */}
+
+大型城市公园能给市民和游客带来许多社会、生态和经济上的好处。但如果公园不方便去，人们可能只是偶尔才去一次。不是每个人都有车或方便的公共交通，也不是每个人都能走路或骑车走很远。
+
+所以，在附近找一块地或一处空间，把它变成小小的社区公园，是很重要的。社区公园有大公园的许多好处，**而且**离得近，去起来很方便。社区公园去的人越多，大家就越熟悉它，也越珍惜它。公园经常有人用，就会成为社区“社交生活”中不可缺少的中心，增强邻里之间的社区感！
+
+您的社区里有没有闲置的房地产，在法律上可以使用、安全，又适合建公园？您能找出社区里哪些地块有可能建成您想要的公园吗？
+
+<Callout kind="auto" title="让地图替您跑腿">
+  下面的地图显示市政府列为空地的地块。点击一块地，就能看到它的业主、面积和用地分区，还可以把它加到您的清单上。您还是应该在街区里走一走——市政府的清单会漏掉一些地块，也会包括一些已经在使用的地块。
+</Callout>
+
+<LotFinderMap />
+
+<Figure
+  src="img/acquire/west-kensington-site.webp"
+  alt="费城 West Kensington 的一块长草的空地，草已修剪，四角插着青绿色的测量小旗，后面是一道灰泥墙、一排树篱和停着的汽车。"
+  caption="West Kensington 的 PiaT 公园用地，施工之前"
+  duo
+/>
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={3} />
+
+## 选哪块地？ {/* #which-lot */}
+
+了解一下可以建社区公园的三种地点。在您的社区里走一走，记下哪些闲置的房地产有可能用来建公园。
+
+<div class="lot-types">
+  <div>
+    <Figure
+      src="img/acquire/lot-midblock.webp"
+      alt="街区中段空地的等轴测示意图：住宅街区里两栋联排房屋之间一块狭长的矩形空当，用绿色表示，上面有一棵树。"
+    />
+    <p class="lot-caption">
+      <strong>街区中段地块（空地）。</strong>矩形，位于住宅街区的中间。两侧和／或尽头可能有建筑。费城可用的“空地”大多属于这一类。由于宽度窄和／或阳光不足，有些公园用途可能会受到限制。
+    </p>
+  </div>
+  <div>
+    <Figure
+      src="img/acquire/lot-corner.webp"
+      alt="街角空地的等轴测示意图：住宅街区尽头一块矩形空当，面向两条街道，用绿色表示，上面有一棵树。"
+    />
+    <p class="lot-caption">
+      <strong>街角地块（空地）。</strong>矩形，位于住宅街区的尽头。侧面和／或尽头可能有建筑。这类地块很显眼，阳光通常也最充足。
+    </p>
+  </div>
+  <div>
+    <Figure
+      src="img/acquire/lot-alley.webp"
+      alt="过道或小巷通行权地带的等轴测示意图：联排房屋之间一条又长又窄的绿色空当，横穿整个街区。"
+    />
+    <p class="lot-caption">
+      <strong>过道／小巷（通行权地带）。</strong>形状又长又窄，很好辨认，这类地点通常“横穿”一个街区。原本是留作街道之间的步行通道和／或公用设施通行权用地。
+    </p>
+  </div>
+</div>
+
+记下每一块可能的地块的地址。您查询一个地址时，网站会替您填好业主、面积和地块类型。
+
+<LotLookup mode="candidates" />
+
+<ListField
+  id="acquire.candidate-notes"
+  label="社区走访笔记"
+  rowName="地块"
+  min={3}
+  columns={[
+    { key: 'address', label: '地址或位置' },
+    { key: 'type', label: '地块类型', placeholder: '街区中段、街角、小巷' },
+    { key: 'notes', label: '您注意到的情况', placeholder: '垃圾、阳光、邻居、用途…' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={3} />
+
+## 这块地归谁所有？ {/* #who-owns-that-lot */}
+
+找出几处可以用来建新社区公园的闲置房地产之后，下一步就是弄清楚这些房地产归谁所有。业主可能是个人、企业或非营利组织，也可能是市政府。要知道一块地归谁所有，最可靠的办法是查看费城市政府的记录。
+
+这张流程图说明了怎样确定一块地的业主，以及取得把这块地用作社区公园的合法权利（也叫“使用权”）可能要走的步骤。
+
+{/* site-added: the workbook's flowchart reproduced as HTML (not an image of text), steps 1–4 then the public/private branch. */}
+<ol class="flow-steps">
+  <li>
+    <span class="flow-num">1</span>
+    <div><strong>确定地址。</strong>核实您记下的一块或几块地的街道地址。</div>
+  </li>
+  <li>
+    <span class="flow-num">2</span>
+    <div><strong>查询房地产。</strong>打开 <a href="https://atlas.phila.gov/" target="_blank" rel="noopener">atlas.phila.gov</a>（英文），输入街道地址。您也可以在地图上放大附近的街道来找到这块地。</div>
+  </li>
+  <li>
+    <span class="flow-num">3</span>
+    <div><strong>确定业主。</strong>在网站的“Property Assessment”（房产评估）部分查看这处房地产的业主。</div>
+  </li>
+</ol>
+
+<div class="owner-branch">
+  <div class="owner-branch-col">
+    <h4>4a. 业主是……费城市政府 <span class="muted">（公有）</span></h4>
+    <p>
+      <strong>可以考虑购买。</strong>查询房地产，看看这块公有土地能否通过费城住房发展公司（PHDC）和 Philadelphia Land Bank（费城土地银行）购买。
+    </p>
+  </div>
+  <div class="owner-branch-col">
+    <h4>4b. 业主是……个人、组织或企业 <span class="muted">（私有）</span></h4>
+    <ul>
+      <li><strong>可以考虑捐赠。</strong>联系土地业主，商量把这处房地产永久捐出来。</li>
+      <li><strong>可以考虑公开出售。</strong>留意公开的出售信息或拍卖——在费城，这可能包括警长拍卖（Sheriff Sale）。</li>
+      <li><strong>商谈购买协议。</strong>联系土地业主，商谈把地卖给社区使用。</li>
+      <li><strong>实物使用协议。</strong>商量让社区以“实物”方式使用这块地，业主仍然保留所有权。</li>
+    </ul>
+  </div>
+</div>
+
+<Callout kind="auto" title="第1–3步已替您完成">
+  选择您想争取的那块地。网站会查询市政府的地址和房地产记录（就是 atlas.phila.gov 显示的同一份数据），并在下面填好业主。
+</Callout>
+
+<LotLookup mode="primary" />
+
+<Field id="acquire.address" label="您那块地的街道地址" auto="lot.address" />
+<Field id="acquire.owner" label="业主名称" auto="lot.owners|owners" />
+<Field id="acquire.owner-type" label="业主是……" auto="lot.ownerType|ownerType" />
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={4} />
+
+## 如果业主是市政府 {/* #if-the-city-owns-it */}
+
+**可以考虑购买**。费城的公有土地通过费城住房发展公司（PHDC）和 Philadelphia Land Bank（费城土地银行，市政府出售和出租公有土地的机构）出售或出租。查询房地产，看看这块公有土地能否购买。
+
+<p><a class="btn" href="https://phillylandbank.org/community-use-map/" target="_blank" rel="noopener">在 Land Bank 的社区用地地图上查询（英文）↗</a></p>
+
+{/* site-added: the workbook's PHDC link (phdcphila.org/land/buy-land/property-search-map/) is dead; PHDC's search now lives on the Land Bank site. */}
+<p class="muted" style="font-size:0.9rem">工作手册里的 PHDC 查询页面已经搬家：PHDC 和 Philadelphia Land Bank 现在共用这张地图。显示为彩色的地块是可以获取的；社区用地（Community Use）地图是用于花园和开放空间的那一张。</p>
+
+<Checklist
+  id="acquire.public-steps"
+  items={[
+    { value: 'searched-phdc', label: '已在 PHDC 房地产查询地图上查过这块地' },
+    { value: 'contacted-phdc', label: '已联系 PHDC／Land Bank，询问购买或租用这块地建公园' },
+  ]}
+/>
+
+<Field id="acquire.public-notes" label="对方的答复" type="textarea" />
+
+## 如果业主是别人 {/* #if-someone-else-owns-it */}
+
+如果业主是个人、组织或企业，有四条路可以走：
+
+- **可以考虑捐赠**。联系土地业主，商量把这处房地产永久捐给社区，用作公园。
+- **可以考虑公开出售**。留意这处房地产的公开出售信息或拍卖。在费城，这也可能包括警长拍卖（Sheriff Sale）。
+- **商谈购买协议**。联系土地业主，商谈把这处闲置的房地产卖给社区使用。
+- **实物使用协议**。联系土地业主，说明让社区以“实物”方式把这块地用作公园对双方都有好处，业主仍然保留所有权。
+
+<Choice
+  id="acquire.private-path"
+  label="您打算先走哪条路？"
+  options={[
+    { value: 'donation', label: '捐赠', desc: '业主把地送给社区' },
+    { value: 'sale', label: '公开出售／警长拍卖', desc: '留意出售信息和拍卖' },
+    { value: 'purchase', label: '购买协议', desc: '和业主商谈购买' },
+    { value: 'in-kind', label: '实物使用协议', desc: '地仍归业主；邻居们把它用作公园' },
+  ]}
+/>
+
+<ListField
+  id="acquire.owner-contacts"
+  label="联系记录"
+  rowName="联系记录"
+  min={2}
+  columns={[
+    { key: 'date', label: '日期', type: 'date' },
+    { key: 'who', label: '联系上的人' },
+    { key: 'outcome', label: '结果／下一步' },
+  ]}
+/>
+
+<Callout kind="contact">
+  遇到困难？Park in a Truck 团队可以帮您一起想想有哪些选择：[ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu)。
+</Callout>
+
+{/* site-added: a place to record the outcome; no new advice. */}
+## 确保取得地块 {/* #secure-your-lot */}
+
+记下让您的团体有权在这里建公园的协议。把一份副本和委员会的记录放在一起——在“建造”这一步，任何人动工之前都会用到它。
+
+<Field id="acquire.agreement" label="协议类型" type="select" options={[{ value: 'Purchase', label: '购买' }, { value: 'Donation', label: '捐赠' }, { value: 'Lease', label: '租赁' }, { value: 'In-kind use agreement', label: '实物使用协议' }, { value: 'Other', label: '其他' }]} />
+<Field id="acquire.agreement-date" label="签署日期" type="date" />
+<Field id="acquire.agreement-notes" label="需要记住的条款" type="textarea" hint="协议期限、谁负责维护这块地、保险、续约日期…" />
