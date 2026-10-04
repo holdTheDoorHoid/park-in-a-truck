@@ -1,8 +1,447 @@
 ---
 title: Create
+intro: Build your park, one weekend phase at a time.
+sources:
+  - Toolkit pp. 57–59 (Create, Initial Park Construction)
+  - Create Workbook pp. 1–18
 ---
-{/* STUB — replaced by the content workstream. */}
+import Field from '../../components/workbook/Field.astro';
+import ListField from '../../components/workbook/ListField.astro';
+import Choice from '../../components/workbook/Choice.astro';
+import Checklist from '../../components/workbook/Checklist.astro';
+import Callout from '../../components/workbook/Callout.astro';
+import Figure from '../../components/workbook/Figure.astro';
+import PdfPage from '../../components/workbook/PdfPage.astro';
+import Download from '../../components/workbook/Download.astro';
+import CostEstimator from '../../components/widgets/CostEstimator.astro';
+import BuildSchedule from '../../components/widgets/BuildSchedule.astro';
 
-## Coming soon
+Building a park is a great way to connect neighbors, friends and others. The process requires dedicated volunteers
+who can give their time and energy, with a wide variety of skills — carpentry, landscaping, organizing, encouraging,
+leading. Like following a recipe, park building is a step-by-step sequence; most Park in a Truck parks go up in about
+6–8 weekends.
 
-This chapter is being written.
+The Create chapter is all about building your park. We broke the process down into eight phases. Each phase can be
+completed in roughly a weekend — the size of your park and number of volunteers will affect how long it actually
+takes. The phases are ordered for a reason; review each one and adjust your schedule as needed.
+
+This book assumes you've done the cost estimate and know the quantities and materials you'll need to order for each
+phase. If you haven't, go back to the Dream step and use the cost estimator.
+
+<CostEstimator />
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={3} />
+
+## Volunteer release form
+
+Make sure you have volunteer release forms available at the site whenever you're working on the park. This form
+releases you from liability for injuries to your volunteers. It's your responsibility to consult your organization's
+legal advisors and insurance carrier before starting construction — they may want you to take additional steps to
+protect the organization from liability. Give your volunteers clear instructions about expectations and tasks for the
+work day; they're more likely to come back in future weeks when they feel their time was put to good use.
+
+<Download href="downloads/forms/volunteer-release-form.pdf" label="Volunteer waiver and release form" note="One per volunteer; a parent or guardian must also sign for volunteers under 18" />
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={3} />
+
+## Phase 1: Organize
+
+As in any process, the first and most important step is to organize your team by identifying project leaders and
+establishing a schedule. How many people you assign to these roles depends on the complexity and size of your
+project.
+
+- **Construction manager.** Orders materials, is there for deliveries, gives instructions to volunteers on build
+  days, and coordinates with the project manager on schedule.
+- **Project manager.** In charge of getting volunteers, social media, ordering food, handing out waivers, coordinates
+  finances and controls the schedule.
+
+<Field id="create.construction-manager" label="Construction manager" hint="Orders materials, runs build days" />
+<Field id="create.project-manager" label="Project manager" hint="Volunteers, schedule, finances" />
+
+<ListField
+  id="create.org-chart"
+  label="Volunteers & contractors"
+  rowName="person"
+  min={3}
+  columns={[
+    { key: 'name', label: 'Name' },
+    { key: 'role', label: 'Role', placeholder: 'volunteer, contractor…' },
+    { key: 'contact', label: 'Contact' },
+  ]}
+/>
+
+A project calendar is an excellent way to keep track of schedules, important dates, when volunteers will be working,
+and lead times for materials. Planning is as important as the building process itself — start off on the right foot.
+
+<BuildSchedule />
+
+<Download href="downloads/templates/project-calendar.xlsx" label="Calendar template" note="Sample project calendar and contact list — for reference, make your own copy" />
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={4} />
+
+## Phase 2: Prepare the lot
+
+### Steps
+
+**Step 1: Evaluate.** Some sites need more clearing or grading than others, which can require special machinery —
+contact a landscape contractor if any of the following can't be done by the community alone.
+
+- Contact the PiaT team ([ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu)) for a site visit
+  consultation if you're unsure how to prepare your site.
+- Contact Pennsylvania One Call at **811** to mark utility locations.
+
+<Field id="create.one-call-address" label="Address for your PA One Call request" auto="lot.address" />
+
+**Step 2: Protect.** Bring small tools and equipment to the site. Set up protective construction fencing with wood
+posts at tree trunks, buildings and other items that need protection. Install silt/erosion control fencing around
+the site and at all drain inlets.
+
+**Step 3: Removal.** Remove unwanted vegetation (including roots), tree stumps, trash and masonry materials — some
+vegetation removal may require herbicide treatment to control effectively in a timely manner. Prune existing trees to
+remove limbs from the trunk to at least 6' high. Haul debris and vegetation off site to the proper dumping location;
+stockpile masonry materials on site to use as gabion basket fill.
+
+**Step 4: Site leveling.** Begin grade raking and leveling the site. Make sure any Pennsylvania One Call markings are
+still intact and visible — soil grade should be relatively level with the sidewalk grade.
+
+### Equipment & tools
+
+<Checklist
+  id="create.phase2-tools"
+  items={[
+    'Shovels', 'Wheelbarrows', 'Pick axe', 'Grading rakes', 'Sledgehammer',
+    'Hand pruners + loppers', 'Pruning saws', 'Spray paint', 'Construction fencing',
+    'Wood posts', 'Broom', 'Chainsaw', 'Trash bags',
+  ]}
+/>
+<Checklist
+  id="create.phase2-tools-optional"
+  label="Optional — for sites with large amounts of uneven surfaces, concrete, or tree stumps"
+  items={[
+    { value: 'excavator', label: 'Excavator', hint: 'hired contractor recommended' },
+    { value: 'stump-grinder', label: 'Stump grinder', hint: 'hired contractor recommended' },
+    'Jack hammer', 'Rototiller', 'Herbicide spray',
+  ]}
+/>
+
+<Figure
+  src="img/create/phase2-reference-photos.webp"
+  alt="Reference photos for preparing the lot: an excavator clearing a site, a utility locate flag and tracer wire on a lawn, volunteers removing masonry rubble, erosion-control sediment mesh along a curb, and a volunteer grade-raking soil"
+/>
+
+### Useful links
+
+- **Tool rental** — may be worth hiring a contractor for power tools, for efficiency and safety.
+  [West Philadelphia Tool Library ↗](https://westphillytools.org) (hand tools only; 1314 S 47th St) ·
+  [OK Rental ↗](https://okrentalsaleservice.com) (power tools, including chainsaws; 640 Main St, Darby) ·
+  [Diamond Tool ↗](https://diamondtool.net/Rentals) (2800 Grays Ferry Ave)
+- **Waste & recycling** — [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/) (3850 W Ford Rd)
+- **Tree pruning video** — [youtube.com/watch?v=pY5A-5gUqwo ↗](https://youtube.com/watch?v=pY5A-5gUqwo)
+- **Weed ID** — [Philadelphia Orchard Project weed guide ↗](https://www.phillyorchards.org/resources/)
+- **Herbicides** (use sparingly, always follow label instructions) — Picloram for stump application on woody plants;
+  Glyphosate for foliar application on herbaceous and woody plants; Clopyralid for mugwort and Canadian thistle.
+  Invasive weeds that often need herbicide control: mugwort, Canadian thistle, Japanese knotweed and phragmites
+  (herbaceous); Broussonetia, Ailanthus, Paulownia and Japanese honeysuckle (woody — cut and treat the stump only if
+  too large to remove by the roots).
+
+### Preparation for next steps
+
+Check your project calendar and revise as needed. Purchase and deliver any materials or equipment with lead times,
+and make sure the site is prepared for Phase 3.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={5} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={6} label="Reference photos & links (PDF)" />
+
+## Phase 3: Layout & gravel base
+
+### Steps
+
+**Step 1: Materials.** Bring equipment and tools to the site; prepare for deliveries. Locate a stockpile area for
+gravel and cover it with a tarp if possible. Mark the general areas to receive gravel in spray paint — if there's not
+enough room, coordinate the delivery with your city to have it placed in the street.
+
+<Callout kind="note" title="Blocking the street for a delivery?">
+  Apply for a temporary no-parking permit so the delivery truck has somewhere to unload.
+  [Apply on phila.gov ↗](https://www.phila.gov/services/cars-parking-transportation/apply-for-a-parking-permit/apply-for-a-temporary-no-parking-permit/)
+</Callout>
+<Field id="create.delivery-address" label="Address for the no-parking permit" auto="lot.address" />
+
+**Step 2: Layout planting beds & park element locations.** Begin at the starting point you marked in the Assess
+workbook. Refer to your plan for the locations and lengths of planting-bed and park-element edges. Use stakes and
+string line to mark the locations of edging and park elements you'll add in later phases.
+
+**Step 3: Install sub base.** Prepare ground surfaces for gabion baskets per the assembly instructions. Dig out
+entrances to allow for the change in level from the new park to the sidewalk — minimum 4" deep at the sidewalk edge,
+grading as needed (use excess soil to level pathways or add to planting areas). Spread gravel 2" deep in all areas
+except plant beds, about 6" wider than your string lines so the edging in the next phase can sit on top of the
+gravel. Run a vibrating plate over the gravel at least twice.
+
+**Step 4: Entrances & cleanup.** Clean up overspill of gravel and clean up public areas.
+
+### Equipment, tools & materials
+
+<Checklist
+  id="create.phase3-tools"
+  items={[
+    'Square', 'Measuring tape', 'Shovels', 'Wheelbarrows', 'Pick axe', 'Grading rakes',
+    '5 lb hammer', 'Spray paint', 'Wood posts and string', 'Vibrating plate compactor', 'Broom',
+  ]}
+/>
+<p class="muted">Materials: gravel, 3/4" roadbase.</p>
+
+<Figure
+  src="img/create/phase3-reference-photos.webp"
+  alt="Reference photos for layout and gravel base: measuring the site, digging, prepping the sub base, a gravel delivery truck, laying out the site with stakes and string, a gravel stockpile, wheelbarrowing and spreading gravel"
+/>
+
+### Useful links
+
+- **How-to** — [Lay out planting beds ↗](https://lowes.com/n/how-to/create-an-english-style-garden) (watch 1:50–2:40) ·
+  [Install gravel sub-base ↗](https://youtube.com/watch?v=tfDEOIAIUwQ)
+- **Tool rental** — [West Philadelphia Tool Library ↗](https://westphillytools.org) ·
+  [OK Rental ↗](https://okrentalsaleservice.com) · [Diamond Tool ↗](https://diamondtool.net/Rentals)
+
+### Preparation for next steps
+
+Check your project calendar and revise as needed. Purchase and deliver materials with lead times for the next
+phases. Make sure the site is prepared for Phase 4.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={7} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={8} label="Reference photos & links (PDF)" />
+
+## Phase 4: Install the edge
+
+### Steps
+
+**Step 1: Materials.** Bring your edge materials (see the cost estimate and assembly instructions). Remove the
+erosion-protection fence; tree protection should stay unless its location interferes with edge installation.
+
+**Step 2: Assemble.** Assemble gabion baskets (refer to your Gabion Wall assembly instructions).
+
+**Step 3: Installation.** Set up string lines so gabion baskets sit in a straight line along the park edge. Lay out
+the baskets according to your plan and fill the bottoms with 2–3" of gravel. Make small adjustments so the baskets
+are level and straight relative to each other — when used alone as tables or benches, use a leveling tool on top.
+Add wood edges where needed (see the Wood Edging assembly instructions).
+
+### Equipment & materials
+
+<Checklist
+  id="create.phase4-tools"
+  items={[
+    'Measuring tape', 'Shovels', 'Wheelbarrows', 'Garden hoes', 'Grading rakes',
+    'Hand tamper', 'Wire cutters', 'Sledge hammer', 'Level', 'Broom',
+  ]}
+/>
+<p class="muted">Materials: gabion baskets; lumber and hardware for wood edge; large masonry material for gabion baskets, 3" or larger.</p>
+
+<Figure
+  src="img/create/phase4-reference-photos.webp"
+  alt="Reference photos for installing the edge: two filled gabion baskets, and a volunteer setting a wood edge board against a gravel bed"
+/>
+
+### Useful links
+
+- **Materials** — [Castor Materials ↗](https://castormaterials.com) (crushed stone, delivery; 3301 S 61st St) ·
+  [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) (crushed stone, mulch, tools; 4260 Macalester St) ·
+  [Underdog Supply ↗](https://www.underdogsupply.com/) (bulk delivery; Conshohocken) ·
+  Galantino Supply Company (rental equipment and bulk materials; 725 Old Marple Rd, Springfield — (610) 544-2586)
+- **How-to** — [Build a gabion wall ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
+
+### Preparation for next steps
+
+Check your project calendar and revise as needed. Purchase and deliver materials with lead times. Make sure the site
+is prepared for Phase 5.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={9} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={10} label="Reference photos & links (PDF)" />
+
+## Phase 5: Spread topsoil
+
+### Steps
+
+**Step 1: Materials.** Remove the tree protection fence. Locate a stockpile area for topsoil on the sidewalk or
+street — if so, apply for a temporary no-parking permit (see Phase 3).
+
+**Step 2: Soil installation.** Prepare planting beds to receive topsoil by grading the existing soil. Spread topsoil
+approximately 4–6" deep and grade it for smoothness.
+
+**Step 3: Clean up.** Clean up overspill of topsoil and clean up public areas.
+
+### Equipment & materials
+
+<Checklist
+  id="create.phase5-tools"
+  items={['Measuring tape', 'Shovels', 'Wheelbarrows', 'Grading rakes', 'Garden hoes', 'Broom']}
+/>
+<p class="muted">Materials: topsoil.</p>
+
+<Figure
+  src="img/create/phase5-reference-photos.webp"
+  alt="Reference photos for spreading topsoil: a dump truck delivering topsoil, a volunteer grading soil by hand, two volunteers moving topsoil by wheelbarrow, and a volunteer placing topsoil in a bed"
+/>
+
+### Useful links
+
+- **Ordering** — [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
+- **How-to** — [Prep topsoil ↗](https://youtube.com/watch?v=GcOJ4fDJmpM) · [Healthy topsoil for healthy plants ↗](https://youtube.com/watch?v=7-Tyz7fGeZo)
+
+### Preparation for next steps
+
+Check your project calendar and revise as needed. Purchase and deliver materials with lead times. Make sure the site
+is prepared for Phase 6.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={11} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={12} label="Reference photos & links (PDF)" />
+
+## Phase 6: Plant
+
+### Steps
+
+**Step 1: Plants.** Remove any weeds that have emerged. Make sure plant deliveries are scheduled and you've located a
+plant delivery staging area. Lay out trees and shrubs in their desired locations, then clean up overspill of soil and
+public areas.
+
+**Step 2: Installation.** Install large trees first (see the planting detail below). Install shrubs, fine-grade the
+soil, plant perennials, install 4" of mulch, then water all plants thoroughly — repeat twice a week until the plants
+go dormant for winter.
+
+<Figure
+  src="img/create/phase6-plant-illustration.webp"
+  alt="Axonometric illustration of a finished front-yard park, labelled PLANT, with trees, raised planting beds and a paved gathering area between two rowhouses"
+/>
+<Figure
+  src="img/create/phase6-planting-detail.webp"
+  alt="Two planting detail diagrams: a shrub/perennial container planting detail showing mulch depth and backfill, and a tree planting detail showing root-ball placement, staking, mulch and burlap removal"
+/>
+
+### Equipment & materials
+
+<Checklist
+  id="create.phase6-tools"
+  items={['Measuring tape', 'Shovels', 'Wheelbarrows', 'Pick axe', 'Landscape rakes', 'Spray paint', 'Tree stakes and rope', 'Broom']}
+/>
+<p class="muted">Materials: plants — be sure to reference your plant list.</p>
+
+### Useful links
+
+- **General plant info** — [PHS Gold Medal Plants ↗](https://phsonline.org/for-gardeners/gold-medal-plants) ·
+  [Gardens Alive ↗](https://www.gardensalive.com/) · [North Creek Nurseries ↗](https://www.northcreeknurseries.com/) ·
+  [Missouri Botanical Garden ↗](https://www.missouribotanicalgarden.org/) · [Longwood Gardens plant explorer ↗](https://plantexplorer.longwoodgardens.org/ecmweb/ECM_Home.html) ·
+  [Arbor Day Foundation ↗](https://www.arborday.org/) · [Penn State Extension vegetable gardening ↗](https://extension.psu.edu/programs/master-gardener)
+- **PiaT partner nursery** — LandHealth Institute, 4862 Parkside Ave, Philadelphia · (267) 571-5750 ·
+  [landhealthinstitute.org/nursery ↗](https://www.landhealthinstitute.org/nursery)
+- **Other regional nurseries** — [Good Host Plants ↗](https://www.goodhostplants.com/) (local pollinator specialist) ·
+  [Pleasant Run Nursery ↗](https://www.pleasantrunnursery.com/) · [Pinelands Nursery ↗](https://www.pinelandsnursery.com/) ·
+  [Archewild ↗](https://archewild.com/)
+- **Fruit trees** — [Philadelphia Orchard Project ↗](https://www.phillyorchards.org/) ·
+  [Burpee ↗](https://www.burpee.com/fruit/fruit-trees/) · [Stark Bros ↗](https://www.starkbros.com/products/fruit-trees)
+- **Gardening workshops & lot help** — [Pennsylvania Horticultural Society ↗](https://phsonline.org/) ·
+  [Grounded in Philly ↗](https://groundedinphilly.org/) (legal help, insurance, lot data)
+- **How-to** — [Container & bulb planting tips ↗](https://www.gardeners.com/how-to/growing-annual-flowers/5070.html) ·
+  [Containerized tree planting ↗](https://www.arborday.org/trees/planting/containerized.cfm) ·
+  [How to plant a shrub ↗](https://youtube.com/watch?v=Tim4LEo6l10)
+
+### Preparation for next steps
+
+Check your project calendar and make sure you have a schedule for a Park Ambassador — see the Sustain step for
+details. Mulch suppliers: [Mid Atlantic Pine Straw ↗](https://www.midatlanticpinestraw.com/) ·
+[Underdog Landscape Supply ↗](https://underdogsupply.com) · [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/get-organic-materials/)
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={13} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={14} label="Useful links (PDF)" />
+
+## Phase 7: Install the gravel surface
+
+### Steps
+
+**Step 1: Materials.** Prepare for deliveries if not already stockpiled. Locate a stockpile area for gravel on the
+sidewalk or street (temporary no-parking permit, if needed — see Phase 3).
+
+**Step 2: Installation.** Install the gravel surface using a wheelbarrow and landscape rake. Install gravel
+approximately 2" deep, spreading any excess evenly. Tamp down the aggregate with a vibratory plate to reduce
+settling, and move through all areas to make sure they're level and even.
+
+**Step 3: Clean up.** Clean up overspill of gravel and clean up public areas.
+
+### Equipment & materials
+
+<Checklist
+  id="create.phase7-tools"
+  items={['Measuring tape', 'Shovels', 'Wheelbarrows', 'Landscape rakes', 'Hand tamper', 'Vibratory plate', 'Broom']}
+/>
+<p class="muted">Materials: gravel, 3/8" or smaller (stone dust).</p>
+
+<Figure
+  src="img/create/phase7-reference-photos.webp"
+  alt="Reference photos for installing the gravel surface: a landscape grading rake, a hand tamper on packed gravel, and a volunteer running a gas-powered vibratory plate compactor"
+/>
+
+### Useful links
+
+- **Materials** — [Castor Materials ↗](https://castormaterials.com) · [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) ·
+  Galantino Supply Company ((610) 544-2586) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
+- **How-to** — [Install gravel ↗](https://youtube.com/watch?v=t0LWQ_U2z_g)
+
+### Preparation for next steps
+
+Check your project calendar and revise as needed. Purchase and deliver materials with lead times. Make sure the site
+is prepared for Phase 8.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={15} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={16} label="Reference photos & links (PDF)" />
+
+## Phase 8: Install park elements
+
+### Steps
+
+**Step 1: Measure.** Review your assembly manuals and measure and mark out where your park elements need to go.
+
+**Step 2: Materials.** Make sure you have all the materials outlined in your assembly manuals.
+
+**Step 3: Assemble.** Assemble your park elements according to the assembly manuals.
+
+**Step 4: Install.** Make sure you have proper room within your design to install the elements, then locate them in
+their final positions. You may be able to — or choose to — assemble elements ahead of time or off site.
+
+<Callout kind="auto">
+  Every element with an assembly guide is linked from the Dream step's [Assemble](/steps/dream/#assemble) grid — the
+  same guides are listed there.
+</Callout>
+
+### Useful links
+
+- **How-to build a…** (use the assembly guides first; these videos are backup) — [Communal table ↗](https://youtube.com/watch?v=Px2JZs4Q2v4) ·
+  [Cold frame ↗](https://youtube.com/watch?v=b75RoDmE9qY) · [Raised garden beds ↗](https://youtube.com/watch?v=MBIYebUgVVI) ·
+  [Compost bins ↗](https://youtube.com/watch?v=gA6QNLaBEyc) · [Potting bench ↗](https://youtube.com/watch?v=E7HumfxE2f4) ·
+  [Outdoor garden shed ↗](https://youtube.com/watch?v=DuQ0N8z6OkI) · [Gabion wall ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
+- **Lumber & building materials** — Woodland Building Supply, 4701 Woodland Ave, Philadelphia — (215) 727-5333 ·
+  C & R Building Supply, 1601 S 49th St, Philadelphia · A&A Lumber (cypress), Avondale, PA · Delaware County Lumber, Boothwyn, PA
+
+### Preparation for next steps
+
+Check your project calendar and revise as needed — your park is almost done!
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={17} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={18} label="Assembly instructions & links (PDF)" />
+
+{/* site-added: the workbook's own contents page lists a Summary, but this working draft doesn't include one — this wrap-up just recaps the 8 phases above as a final checklist. No new advice. */}
+## Summary
+
+<Checklist
+  id="create.summary-checklist"
+  items={[
+    { value: 'phase1', label: 'Phase 1: Organize', hint: 'Team roles assigned, schedule set' },
+    { value: 'phase2', label: 'Phase 2: Prepare the lot', hint: 'Cleared, protected, leveled' },
+    { value: 'phase3', label: 'Phase 3: Layout & gravel base', hint: 'Beds and elements staked out, sub-base in' },
+    { value: 'phase4', label: 'Phase 4: Install the edge', hint: 'Gabion baskets and wood edging set' },
+    { value: 'phase5', label: 'Phase 5: Spread topsoil', hint: 'Planting beds graded and filled' },
+    { value: 'phase6', label: 'Phase 6: Plant', hint: 'Trees, shrubs and perennials in the ground' },
+    { value: 'phase7', label: 'Phase 7: Install the gravel surface', hint: 'Finish gravel tamped and level' },
+    { value: 'phase8', label: 'Phase 8: Install park elements', hint: 'Benches, tables and structures assembled and placed' },
+  ]}
+/>
+
+<Callout kind="tip">
+  Your park is built! Head to the Sustain step to keep it thriving — watering, weeding and the annual stewardship
+  workplan.
+</Callout>
