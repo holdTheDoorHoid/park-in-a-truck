@@ -500,6 +500,30 @@ reviewer should still read the whole language once.*
 | in English | an anglè | |
 | ft, in, sq ft, $ | pye, pous, pye kare, $ | |
 
+Added in the second pass (planner, City-data widgets, cost estimator, shade calendar):
+
+| English | Translation | Note |
+|---|---|---|
+| hardscape / softscape | sifas di (beton, asfalt) / sifas mou (tè) | Cost estimator edge questions. |
+| contingency / tool rental contingency | … pou enprevi / rezèv pou lwe zouti | "20% pou enprevi". |
+| the spreadsheet (PiaT's cost sheet) | fèy kalkil la | Tab names (INSERT HERE, ORDER LIST…) and cell names (F48) stay. |
+| order list | lis kòmand | |
+| price needed | bezwen pri | |
+| cubic yards (CY) | yad kib | |
+| ea. (each, as a unit) | moso | "450 moso"; a price "each" is "chak". |
+| direct sun / dappled shade / building shade | solèy dirèk / limyè tache (lonbraj fèy pyebwa) / lonbraj bilding | Shade calendar. |
+| to the north (south, …) | bò nò (bò sid, bò lès, bò lwès, bò nòdès…) | Always "bilding ki {dir} yo". |
+| growing season | sezon plantasyon | |
+| slope | pant | |
+| flood zone | zòn inondasyon | |
+| planning district / Council district / Councilmember | distri planifikasyon / distri Konsèy Minisipal / manm Konsèy Minisipal | |
+| side-yard eligible | ka vann kòm lakou bò kay | Land Bank status. |
+| on hold | rezève | Land Bank status. |
+| storey | etaj | |
+| Undo / Redo | Defèt / Refè | Planner. |
+| zoom in / zoom out | fè l grandi / fè l piti | |
+| lumber / boards | bwa / planch | |
+
 ### fr — Français
 
 Tone: Standard French. **vous**. Keep US units and dates as the site formats them.
