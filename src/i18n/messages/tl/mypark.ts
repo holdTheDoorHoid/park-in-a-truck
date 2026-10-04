@@ -5,7 +5,7 @@ import type { Translation } from '../../define.ts';
 
 export default {
   'project.newDefault': 'Bagong parke',
-  'list.openNow': '(bukas)',
+  'list.openNow': '(nakabukas)',
   'list.open': 'Buksan',
   'list.delete': 'Burahin',
   'list.deleteLabel': 'Burahin ang {name}',
