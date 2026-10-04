@@ -1,0 +1,250 @@
+---
+title: Jwenn teren
+intro: Chèche yon teren nan katye ou epi jwenn dwa legal pou fè l tounen yon pak.
+sources:
+  - Gid la (Toolkit), paj 24–27 (Chèche yon teren, Ki teren?, Chèche konnen kiyès ki mèt teren an)
+  - Kaye travay Jwenn teren, paj 1–7
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Choice from '../../../../components/workbook/Choice.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import LotLookup from '../../../../components/widgets/LotLookup.astro';
+import LotFinderMap from '../../../../components/widgets/LotFinderMap.astro';
+
+Moun ki vle kreye yon pak epi ki poko gen dwa legal sou yon teren vid dwe jwenn lòt moun ki dakò vann oswa lwe teren
+yo (youn oswa plizyè) pou pak la. Travay sa a ka konplike epi li ka pran anpil tan. Pa gen yon pwosesis ki pafè, pa
+gen yon sèl fason pou fè l, e pa gen rezilta ki garanti. Etap sa a ap ede w jwenn yon fason pou w jwenn teren pou
+pak ou a.
+
+## Chèche yon teren {/* #find-a-lot */}
+
+Gwo pak nan vil yo bay moun ki rete nan vil la ak vizitè yo anpil avantaj sosyal, ekolojik ak ekonomik. Men si pak la
+pa fasil pou rive, moun ka vizite l yon lè konsa sèlman. Se pa tout moun ki gen machin oswa transpò piblik ki pratik,
+ni ki ka mache oswa monte bisiklèt sou gwo distans.
+
+Se pou sa li enpòtan pou jwenn yon teren oswa yon espas toupre pou fè l tounen yon ti pak nan katye a. Ti pak sa yo
+gen anpil nan avantaj gwo pak la **epi**, paske yo toupre, li fasil pou rive ladan yo. Plis moun vizite yon pak nan
+katye a, plis yo vin abitye avè l — epi plis yo vin renmen l. Lè moun sèvi ak pak la, espas sa yo vin tounen yon
+sant esansyèl pou "lavi sosyal" katye a, ki fè moun santi yo fè pati yon kominote!
+
+Èske gen pwopriyete ki pa sèvi nan katye ou ki disponib legalman, ki an sekirite, epi ki bon pou fè yon pak? Èske ou
+ka idantifye kèk teren nan katye ou kote ou ta renmen wè pak ou a?
+
+<Callout kind="auto" title="Kite kat la mache pou ou">
+  Kat ki anba a montre teren Vil la anrejistre kòm tè vid. Klike sou youn pou w wè kiyès ki mèt li, gwosè li ak
+  zonaj li, epi ajoute l nan lis ou. Men, ou toujou dwe fè yon ti mache nan blòk ou a — lis Vil la manke kèk teren,
+  epi li gen kèk ladan l moun deja ap sèvi ak yo.
+</Callout>
+
+<LotFinderMap />
+
+<Figure
+  src="img/acquire/west-kensington-site.webp"
+  alt="Yon teren vid ak gazon nan West Kensington, Filadèlfi, ki fenk koupe, ak ti drapo topografi koulè ble-vèt ki make kwen yo, ak yon mi an stuko, yon bòdi touf bwa ak machin ki estasyone dèyè l."
+  caption="Teren pak PiaT West Kensington lan, anvan konstriksyon"
+  duo
+/>
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={3} />
+
+## Ki teren? {/* #which-lot */}
+
+Gade twa kalite kote ki ka resevwa yon pak nan katye a. Fè yon mache nan katye ou epi note ki pwopriyete ki pa sèvi
+anpil ki ta ka bon pou pak ou a.
+
+<div class="lot-types">
+  <div>
+    <Figure
+      src="img/acquire/lot-midblock.webp"
+      alt="Desen izometrik yon teren vid nan mitan blòk: yon espas rektangilè ki etwat ant de kay kole youn ak lòt sou yon blòk rezidansyèl, an vèt ak yon sèl pyebwa."
+    />
+    <p class="lot-caption">
+      <strong>Teren nan mitan blòk (teren vid).</strong> Li gen fòm rektang, epi li nan mitan yon blòk rezidansyèl.
+      Li ka gen kay sou chak bò ak/oswa nan bout li. Se nan kategori sa a ou jwenn plis teren "vid" ki disponib nan
+      Filadèlfi. Li ka limite pou kèk itilizasyon pak paske li etwat ak/oswa li pa jwenn ase solèy.
+    </p>
+  </div>
+  <div>
+    <Figure
+      src="img/acquire/lot-corner.webp"
+      alt="Desen izometrik yon teren vid nan kwen: yon espas rektangilè nan bout yon blòk rezidansyèl, ki bay sou de lari, an vèt ak yon sèl pyebwa."
+    />
+    <p class="lot-caption">
+      <strong>Teren nan kwen (teren vid).</strong> Li gen fòm rektang, epi li nan bout yon blòk rezidansyèl. Li ka gen
+      kay sou kote l ak/oswa nan bout li. Tout moun wè teren sa yo fasil, epi souvan se yo ki jwenn plis solèy.
+    </p>
+  </div>
+  <div>
+    <Figure
+      src="img/acquire/lot-alley.webp"
+      alt="Desen izometrik yon koridò oswa ti ri ak dwa pasaj: yon espas vèt ki long epi ki etwat anpil, ki pase ant kay kole youn ak lòt pou travèse blòk la."
+    />
+    <p class="lot-caption">
+      <strong>Koridò / ti ri (dwa pasaj).</strong> Ou rekonèt yo paske yo long epi yo etwat anpil. Souvan yo travèse
+      yon blòk "de bò an bò". Okòmansman, yo te kite yo pou moun pase a pye ant de lari ak/oswa pou fil ak tiyo sèvis
+      piblik yo (dwa pasaj).
+    </p>
+  </div>
+</div>
+
+Note adrès chak teren ki posib. Lè ou chèche yon adrès, sit la ranpli mèt la, gwosè a ak kalite teren an pou ou.
+
+<LotLookup mode="candidates" />
+
+<ListField
+  id="acquire.candidate-notes"
+  label="Nòt ou pran pandan w ap mache nan katye a"
+  rowName="teren"
+  min={3}
+  columns={[
+    { key: 'address', label: 'Adrès oswa kote li ye' },
+    { key: 'type', label: 'Kalite teren', placeholder: 'mitan blòk, kwen, koridò' },
+    { key: 'notes', label: 'Sa ou remake', placeholder: 'fatra, solèy, vwazen, kijan yo sèvi avè l…' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={3} />
+
+## Kiyès ki mèt teren sa a? {/* #who-owns-that-lot */}
+
+Lè ou fin idantifye kèk pwopriyete ki pa sèvi anpil ki ta ka bon pou nouvo pak katye a, pwochen etap la se chèche
+konnen kiyès ki mèt pwopriyete a. Mèt la ka yon moun, yon biznis oswa yon òganizasyon san bi likratif. Mèt la ka Vil la
+tou. Fason ki pi fyab pou konnen kiyès ki mèt yon teren se gade nan dosye Vil Filadèlfi.
+
+Dyagram sa a montre kijan pou chèche konnen kiyès ki mèt yon teren, ak etap ou ka fè pou jwenn dwa legal yo — oswa
+"otorizasyon" yo — pou sèvi ak pwopriyete a kòm pak katye.
+
+{/* site-added: the workbook's flowchart reproduced as HTML (not an image of text), steps 1–4 then the public/private branch. */}
+<ol class="flow-steps">
+  <li>
+    <span class="flow-num">1</span>
+    <div><strong>Konfime adrès la.</strong> Verifye adrès lari teren (oswa teren) ou te note yo.</div>
+  </li>
+  <li>
+    <span class="flow-num">2</span>
+    <div><strong>Chèche pwopriyete a.</strong> Ale sou <a href="https://atlas.phila.gov/" target="_blank" rel="noopener">atlas.phila.gov</a> (an anglè) epi tape adrès lari a. Ou ka jwenn teren an tou si ou fè kat la grandi sou yon lari ki toupre.</div>
+  </li>
+  <li>
+    <span class="flow-num">3</span>
+    <div><strong>Chèche konnen kiyès ki mèt li.</strong> Gade non mèt pwopriyete a nan seksyon "Property Assessment" (evalyasyon pwopriyete a) sou sit entènèt la.</div>
+  </li>
+</ol>
+
+<div class="owner-branch">
+  <div class="owner-branch-col">
+    <h4>4a. Mèt la se… Vil Filadèlfi <span class="muted">(pwopriyete piblik)</span></h4>
+    <p>
+      <strong>Ou ka achte l.</strong> Fè yon rechèch pwopriyete pou w konnen si tè piblik la disponib pou vann pa
+      Philadelphia Housing Development Corporation (PHDC) ak Philadelphia Land Bank.
+    </p>
+  </div>
+  <div class="owner-branch-col">
+    <h4>4b. Mèt la se… yon moun, yon òganizasyon oswa yon biznis <span class="muted">(pwopriyete prive)</span></h4>
+    <ul>
+      <li><strong>Petèt yon don.</strong> Kontakte mèt teren an pou mande l si li ta bay pwopriyete a pou tout tan.</li>
+      <li><strong>Petèt yon vant.</strong> Veye si gen yon anons vant piblik oswa yon vant ozanchè — nan Filadèlfi sa ka gen ladan l yon vant ozanchè Cherif la (Sheriff Sale).</li>
+      <li><strong>Negosye yon akò acha.</strong> Kontakte mèt teren an epi negosye yon vant pou katye a ka sèvi avè l.</li>
+      <li><strong>Akò itilizasyon an nati.</strong> Pale avè l pou l kite katye a sèvi ak teren an "an nati", pandan li rete mèt li.</li>
+    </ul>
+  </div>
+</div>
+
+<Callout kind="auto" title="Nou fè etap 1–3 pou ou">
+  Chwazi teren ou vle chèche jwenn nan. Sit la gade nan dosye adrès ak pwopriyete Vil la (menm done atlas.phila.gov
+  montre yo) epi li ranpli non mèt la anba a.
+</Callout>
+
+<LotLookup mode="primary" />
+
+<Field id="acquire.address" label="Adrès lari teren ou an" auto="lot.address" />
+<Field id="acquire.owner" label="Non mèt la" auto="lot.owners|owners" />
+<Field id="acquire.owner-type" label="Mèt la se…" auto="lot.ownerType|ownerType" />
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={4} />
+
+## Si se Vil la ki mèt li {/* #if-the-city-owns-it */}
+
+**Ou ka achte l.** Nan Filadèlfi, tè piblik yo vann oswa lwe pa Philadelphia Housing Development Corporation (PHDC) ak
+Philadelphia Land Bank (ajans Vil la ki vann oswa lwe tè piblik). Fè yon rechèch pwopriyete pou w konnen si tè piblik
+la disponib pou vann.
+
+<p><a class="btn" href="https://phillylandbank.org/community-use-map/" target="_blank" rel="noopener">Chèche sou kat Community Use Land Bank lan (an anglè) ↗</a></p>
+
+{/* site-added: the workbook's PHDC link (phdcphila.org/land/buy-land/property-search-map/) is dead; PHDC's search now lives on the Land Bank site. */}
+<p class="muted" style="font-size:0.9rem">Paj rechèch PHDC kaye travay la pale de li a chanje plas: kounye a PHDC ak Philadelphia Land Bank pataje kat sa a. Yon teren ki parèt an koulè disponib; kat Community Use (itilizasyon kominotè) a se sa ki pou jaden ak espas louvri.</p>
+
+<Checklist
+  id="acquire.public-steps"
+  items={[
+    { value: 'searched-phdc', label: 'Mwen chèche teren an sou kat rechèch pwopriyete PHDC a' },
+    { value: 'contacted-phdc', label: 'Mwen kontakte PHDC / Land Bank lan pou achte l oswa lwe l pou yon pak' },
+  ]}
+/>
+
+<Field id="acquire.public-notes" label="Ki repons yo ba ou" type="textarea" />
+
+## Si se yon lòt moun ki mèt li {/* #if-someone-else-owns-it */}
+
+Lè mèt la se yon moun, yon òganizasyon oswa yon biznis, gen kat chemen ou ka pran:
+
+- **Petèt yon don.** Kontakte mèt teren an pou mande l si li ta bay katye a pwopriyete a pou tout tan, pou sèvi kòm
+  pak.
+- **Petèt yon vant.** Veye si gen yon anons vant piblik oswa yon vant ozanchè pou pwopriyete a. Nan Filadèlfi, sa ka
+  gen ladan l tou yon vant ozanchè Cherif la (Sheriff Sale).
+- **Negosye yon akò acha.** Kontakte mèt teren an epi negosye pou l vann pwopriyete ki pa sèvi anpil la pou katye a
+  ka sèvi avè l.
+- **Akò itilizasyon an nati.** Kontakte mèt teren an epi pale sou avantaj tou de bò yo genyen si li kite katye a
+  sèvi ak teren an "an nati" kòm pak, pandan li rete mèt li.
+
+<Choice
+  id="acquire.private-path"
+  label="Ki chemen w ap eseye an premye?"
+  options={[
+    { value: 'donation', label: 'Don', desc: 'Mèt la bay katye a teren an' },
+    { value: 'sale', label: 'Vant piblik / vant Cherif (Sheriff Sale)', desc: 'Veye anons ak vant ozanchè yo' },
+    { value: 'purchase', label: 'Akò acha', desc: 'Negosye yon vant ak mèt la' },
+    { value: 'in-kind', label: 'Akò itilizasyon an nati', desc: 'Mèt la kenbe teren an; vwazen yo sèvi avè l kòm pak' },
+  ]}
+/>
+
+<ListField
+  id="acquire.owner-contacts"
+  label="Jounal kontak yo"
+  rowName="kontak"
+  min={2}
+  columns={[
+    { key: 'date', label: 'Dat', type: 'date' },
+    { key: 'who', label: 'Ak kiyès ou pale' },
+    { key: 'outcome', label: 'Sa k pase / pwochen etap' },
+  ]}
+/>
+
+<Callout kind="contact">
+  Ou bloke? Ekip Park in a Truck la ka ede w reflechi sou chwa ou yo (an anglè):
+  [ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu).
+</Callout>
+
+{/* site-added: a place to record the outcome; no new advice. */}
+## Sere teren ou an {/* #secure-your-lot */}
+
+Note akò ki bay gwoup ou a dwa pou bati yon pak isit la. Kenbe yon kopi ak dosye komite ou a — w ap bezwen l anvan
+nenpòt moun kòmanse fouye tè a nan etap Kreye a.
+
+<Field
+  id="acquire.agreement"
+  label="Kalite akò"
+  type="select"
+  options={[
+    { value: 'Purchase', label: 'Acha' },
+    { value: 'Donation', label: 'Don' },
+    { value: 'Lease', label: 'Kontra lwaye' },
+    { value: 'In-kind use agreement', label: 'Akò itilizasyon an nati' },
+    { value: 'Other', label: 'Lòt bagay' },
+  ]}
+/>
+<Field id="acquire.agreement-date" label="Dat yo siyen l" type="date" />
+<Field id="acquire.agreement-notes" label="Kondisyon pou w sonje" type="textarea" hint="Konbyen tan akò a dire, kiyès ki kenbe teren an pwòp, asirans, dat pou renouvle l…" />
