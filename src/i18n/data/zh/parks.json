@@ -3,25 +3,49 @@
     "neighborhood": "Kingsessing，费城西南区",
     "description": "一座建在 Kingsessing 一块收回再利用的街角地块上的社区花园。Park in a Truck 工具包里称它为“Cecil Street Park”，并把它和 LandHealth Nursery 一起用作种植试验地。后来，它成了一个由联邦资金支持的传粉者栖息地网络的一部分，这个网络把费城西南区的几处 Park in a Truck 用地连接起来，种上了本土树木和松果菊。居民 Victoria Miles-Chambliss 说：“自从我们建了这个花园，我们这条街真的变了。它就像费城西南区中间的一片绿洲。”",
     "links": [
-      { "label": "费城西南区正在形成一个鸟类和蜜蜂的栖息地网络（Grid Magazine，2024年4月，英文）" },
-      { "label": "Park in a Truck 项目页面（Jefferson，英文）" }
+      {
+        "label": "费城西南区正在形成一个鸟类和蜜蜂的栖息地网络（Grid Magazine，2024年4月）"
+      },
+      {
+        "label": "Park in a Truck 项目页面（Jefferson）"
+      }
     ]
   },
   "melon-street-park": {
     "neighborhood": "Mantua，费城西区",
     "description": "Park in a Truck 的第一座公园，2019年10月在 Mantua 的一块空地上建成开放（约2,400平方英尺）。Mantua Civic Association 会长 DeWayne Drummond 说：“我们现在站着的这块地，原来是一块空地。现在，社区居民和年轻人把它变美了。”创始人 Kim Douglas 形容它是一座“能排走雨水、种植植物、为野生动物提供栖息地，还能举办娱乐活动”的公园。",
     "links": [
-      { "label": "Jefferson 通过 Park in a Truck 项目，帮助改变资源匮乏的社区（Jefferson，2019年8月，英文）" },
-      { "label": "费城各社区的空地变成了美丽的公园（6abc，2021年7月，英文）" },
-      { "label": "Park in a Truck 工具包让社区成员能改造空地（Jefferson，2022年8月，英文）" }
+      {
+        "label": "Jefferson 通过 Park in a Truck 项目，帮助改变资源匮乏的社区（Jefferson，2019年8月）"
+      },
+      {
+        "label": "费城各社区的空地变成了美丽的公园（6abc，2021年7月）"
+      },
+      {
+        "label": "Park in a Truck 工具包让社区成员能改造空地（Jefferson，2022年8月）"
+      }
+    ],
+    "photos": [
+      {
+        "alt": "Melon Street Park 的高架种植床和开花植物，背景是 Mantua 的联排房屋",
+        "caption": "Melon Street Park，社区公园"
+      },
+      {
+        "alt": "建园日在 Melon Street Park，一群孩子和大人围着一个公园图块模型",
+        "caption": "Mantua 的 Park in a Truck 建园日"
+      }
     ]
   },
   "glenda-anne-memorial-park": {
     "neighborhood": "Kingsessing，费城西南区",
     "description": "2019年8月3日在一块曾被乱倒垃圾的地块上落成，200多位邻居和民选官员出席；Glenda Ann Christopher 的家人接受以这座公园作为对她的纪念（媒体报道写作“Glenda Ann Christopher Memorial Park”）。2023年春天，公园里增加了一个传粉者花园——组织者 Greg Thompson 说：“种下去一两个星期，它们就来了——蜜蜂、鸟、蝴蝶，还有比我们以往见过多得多的昆虫。”2024年6月举行了第二次落成仪式，庆祝这一新增部分；青年志愿者 Semaj Flores 说：“我们参与这件事，是为了环境，也是为了让年轻人帮助正在面对枪支暴力的更小的孩子。”",
     "links": [
-      { "label": "Park in a Truck 项目改变费城的城市绿地（CBS News Philadelphia，2024年6月，英文）" },
-      { "label": "费城西南区正在形成一个鸟类和蜜蜂的栖息地网络（Grid Magazine，2024年4月，英文）" }
+      {
+        "label": "Park in a Truck 项目改变费城的城市绿地（CBS News Philadelphia，2024年6月）"
+      },
+      {
+        "label": "费城西南区正在形成一个鸟类和蜜蜂的栖息地网络（Grid Magazine，2024年4月）"
+      }
     ]
   },
   "s-60th-greenway": {
@@ -36,7 +60,9 @@
     "neighborhood": "Elmwood Park，费城西南区",
     "description": "学生们在 Tilden Middle School 建了一个传粉者／栖息地花园。它属于费城西南区同一个传粉者网络（Cecil Street Garden 也在其中），部分资金由 Pew Charitable Trusts 通过 Audubon Mid-Atlantic 提供，Park in a Truck 是合作伙伴。年轻人通过 PiaT 的公园大使计划获得报酬，负责养护花园并监测传粉者。",
     "links": [
-      { "label": "费城西南区正在形成一个鸟类和蜜蜂的栖息地网络（Grid Magazine，2024年4月，英文）" }
+      {
+        "label": "费城西南区正在形成一个鸟类和蜜蜂的栖息地网络（Grid Magazine，2024年4月）"
+      }
     ]
   },
   "streetscape-of-brewerytown-garden": {

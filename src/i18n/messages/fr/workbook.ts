@@ -1,0 +1,80 @@
+// Français. « vous ». Glossaire : docs/i18n/glossary.md
+// Les rowName des chapitres français portent leur article (« un terrain », « une personne ») :
+// « + Ajouter {row} » donne « + Ajouter un terrain ».
+import type en from '../en/workbook.ts';
+import type { Translation } from '../../define.ts';
+
+export default {
+  'project.default': 'Mon parc',
+
+  'callout.tip': 'Astuce',
+  'callout.note': 'Remarque',
+  'callout.warning': 'Attention',
+  'callout.contact': 'Demander de l’aide',
+  'callout.auto': 'Fait pour vous',
+  'callout.site': 'Note de ce site, et non de Park in a Truck',
+
+  'field.choose': 'Choisir…',
+  'field.auto': '✓ Rempli d’après les registres de la Ville — tapez pour le modifier',
+  'list.noscript': 'Activez JavaScript pour remplir ce tableau, ou imprimez la page du cahier original.',
+  'list.row': 'une ligne',
+  'list.add': '+ Ajouter {row}',
+  'list.fillFirst': 'Remplissez d’abord la ligne ci-dessus (écrivez-y au moins quelque chose) avant d’ajouter {row}.',
+  'list.remove': 'Supprimer',
+  'list.removeRow': 'Supprimer la ligne {n}',
+  'list.removed': 'Vous avez retiré {row} de la liste.',
+  'list.cell': '{label}, ligne {n}',
+
+  'done.mark': 'Marquer cette étape comme terminée',
+  'done.done': 'Terminé — bravo !',
+  'done.badge': '✓ terminé',
+  'progress.of': '{done} sur {total}',
+  'progress.done': '{done} sur {total} terminées',
+  'progress.total': '{done} sur {total} étapes terminées',
+
+  'pdf.label': 'Page du cahier original',
+  'pdf.page': '(page {page} du PDF)',
+  'file.english': 'en anglais',
+  'figure.credit': 'Image : {credit}',
+
+  'chapter.pdf': '📄 Cahier original (PDF)',
+  'chapter.print': '🖨 Imprimer mes réponses',
+  'chapter.toc': 'Dans cette étape',
+  'chapter.pager': 'Étapes',
+  'chapter.prev': '← {title}',
+  'chapter.prevStep': '← Étape {n} : {title}',
+  'chapter.next': 'Suite : étape {n} — {title} →',
+  'chapter.notTranslated': 'Ce chapitre n’a pas encore été traduit, il est donc affiché en anglais. Vos réponses sont enregistrées de la même façon dans toutes les langues.',
+
+  'notice.title': 'Note de ce site',
+  'notice.lot':
+    'Vous n’avez pas encore noté l’autorisation d’utiliser votre terrain : il vous la faudra avant que quiconque commence les travaux. <a href="{href}">Aller à Acquérir → Sécuriser votre terrain</a>.',
+  'notice.dismiss': 'Fermer',
+
+  'auto.owner.city': 'Ville de Philadelphie (public)',
+  'auto.owner.landbank': 'Philadelphia Land Bank (public)',
+  'auto.owner.pha': 'Philadelphia Housing Authority (public)',
+  'auto.owner.redevelopment': 'Philadelphia Redevelopment Authority (public)',
+  'auto.owner.other-public': 'Un autre organisme public',
+  'auto.owner.private': 'Propriétaire privé (personne, organisation ou entreprise)',
+  'auto.owner.unknown': 'Inconnu',
+  'auto.lot.mid-block': 'Terrain en milieu de rue',
+  'auto.lot.corner': 'Terrain d’angle',
+  'auto.lot.alley': 'Passage / ruelle / servitude',
+  'auto.lot.unknown': 'Je ne sais pas',
+  'auto.sun.full-sun': 'Plein soleil toute la journée',
+  'auto.sun.mostly-sun': 'Surtout au soleil',
+  'auto.sun.mostly-shade': 'Surtout à l’ombre',
+  'auto.sun.deep-shade': 'Ombre profonde toute la journée',
+  'auto.kind.interior': 'Terrain en milieu de rue',
+  'auto.kind.corner-right': 'Terrain d’angle (rue à droite)',
+  'auto.kind.corner-left': 'Terrain d’angle (rue à gauche)',
+  'auto.trees.none': 'Aucun arbre',
+  'auto.trees.few': 'Un ou deux arbres',
+  'auto.trees.several': 'Plusieurs arbres',
+  'auto.yes': 'Oui',
+  'auto.no': 'Non',
+  'auto.sqft': '{n} pi²',
+  'auto.ft': '{n} pi',
+  'auto.size': 'Taille {size}',
+} satisfies Translation<typeof en>;
