@@ -71,7 +71,7 @@ export default {
   'auto.trees.several': '好几棵树',
   'auto.yes': '是',
   'auto.no': '否',
-  'auto.sqft': '{n} 平方英尺',
-  'auto.ft': '{n} 英尺',
+  'auto.sqft': '{n}平方英尺',
+  'auto.ft': '{n}英尺',
   'auto.size': '尺寸 {size}',
 } satisfies Translation<typeof en>;
