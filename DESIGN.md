@@ -142,7 +142,9 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
 ## 5. Park pieces, sizes, planner
 
 - **Sizes A–E** (`src/lib/sizing.ts`): long/short edge ranges from Assess p.11. Lots smaller than A → suggest the
-  Park Patch workbook; bigger than E → E + expansion.
+  Park Patch workbook; bigger than E → E + expansion. A lot between ranges gets the *biggest set whose printed pieces
+  fit inside it in both directions* (seams only ever add feet — never a set bigger than the lot; fixed 2026-10-04,
+  saved projects are re-fitted on load in `project.ts`).
 - **Piece sets**: `source/linked/04_Dream_WORKBOOK_p11_<SIZE>__*.pdf`, one per size × lot kind
   (interior / corner street-left / corner street-right), drawn at **1/4" = 1'-0" (18 pt per foot)** on a 4-ft grid.
   Each theme has a FRAME, FRONT and BACK piece plus length/width SEAM strips. Extracted to
@@ -209,9 +211,10 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
 
 | Workbook asks | Site does | Data |
 |---|---|---|
-| Acquire: walk the neighborhood, list possible lots | Vacant-land map around an address; click to add as candidate | ArcGIS `Vacant_Indicators_Land` |
+| Acquire: walk the neighborhood, list possible lots | Vacant-land map around an address or a street's block (street name alone → its blocks); click a lot, or pick it from the list of lots in view (keyboard way), to add as candidate | ArcGIS `Vacant_Indicators_Land`, `Street_Centerline` |
 | Acquire: which lot type? | Guess mid-block / corner / alley from parcel geometry + streets | parcels, street centerlines |
-| Acquire: atlas.phila.gov → owner | Address search → owner, public/private, purchase paths | AIS, Carto `opa_properties_public` |
+| Acquire: atlas.phila.gov → owner | Address search → owner, public/private, purchase paths (City / Land Bank / PRA / PHDC land → the workbook's PHDC–Land Bank path; PHA, School District and other separate agencies → "contact that agency") | AIS, Carto `opa_properties_public` |
+| Acquire: "do a property search to find out if public land is available" | The Land Bank's own status on cards, compare table and map (available / on hold / applicant in process / not available, side-yard eligible) | ArcGIS `LAMAAssets` (agencies PUB, PLB, PRA, PHDC; `status_1`, `sideyardeligible`, keyed by `opabrt`) |
 | Organize: list neighborhood assets & associations | Nearby RCOs, council district, schools, libraries, rec centers, parks, community gardens, murals, historic sites | ArcGIS/Carto layers |
 | Assess: measure the lot in Google Maps | Edge lengths and area from the parcel polygon | `pwd_parcels` / `DOR_Parcel` |
 | Assess: draw the lot on grid paper | Printable base map on a 1-ft/4-ft grid with dimensions and starting point | parcel polygon |

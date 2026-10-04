@@ -18,7 +18,7 @@ import { findStreet, looksLikeStreetOnly, type StreetBlock, type StreetMatch } f
 import { landBankLine } from '../../lib/philly/landbank';
 import { distanceFt } from '../../lib/philly/geo';
 import { PhillyError, type AddressSuggestion, type BBox, type VacantLotFeature, type VacantLotProps } from '../../lib/philly/types';
-import { OWNER_TYPE_LABEL } from '../../lib/philly/owner';
+import { classifyOwner, OWNER_TYPE_LABEL } from '../../lib/philly/owner';
 import { sqft, titleCase, zoningPlain } from '../../lib/philly/plain';
 import AddressSearch from './AddressSearch';
 import LotCard from './LotCard';
@@ -54,7 +54,9 @@ function myLotsFC(lot: LotRecord | null, candidates: LotRecord[]): FC {
 
 /** "Public — City of Philadelphia" / "Private owner" for one vacant lot, in a few words. */
 function ownerShort(p: VacantLotProps): string {
-  return p.isPublic ? OWNER_TYPE_LABEL[p.ownerType].replace(/ \(public\)$/, '') : 'Private owner';
+  if (!p.isPublic) return 'Private owner';
+  if (p.ownerType === 'other-public') return classifyOwner([p.owner]).label.replace(/ \((regional transit|federal railroad|City-owned utility)\)$/, '');
+  return OWNER_TYPE_LABEL[p.ownerType].replace(/ \(public\)$/, '');
 }
 
 function centroid(f: VacantLotFeature): LngLat {

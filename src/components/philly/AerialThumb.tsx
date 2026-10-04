@@ -66,18 +66,18 @@ export default function AerialThumb({ polygon, label, year = 2025, rotateDeg = 0
           <path d={d} fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round" opacity="0.9" />
           <path d={d} fill="none" stroke="#00A8E8" stroke-width="4" stroke-linejoin="round" />
         </g>
-        <g transform={`translate(${SIZE - 48},48)`} aria-hidden="true">
-          <circle r="40" fill="#fff" opacity="0.85" />
+        <g transform={`translate(${SIZE - 58},58)`} aria-hidden="true">
+          <circle r="50" fill="#fff" opacity="0.9" />
           <g transform={`rotate(${rotateDeg})`}>
-            <path d="M0,-18 L8,9 L0,4 L-8,9Z" fill="#111" />
-            <text y="-28" transform={`rotate(${-rotateDeg},0,-28)`} text-anchor="middle" dominant-baseline="middle" font-size="16" font-weight="700" fill="#111">
+            <path d="M0,-12 L13,26 L0,18 L-13,26Z" fill="#111" />
+            <text y="-27" transform={`rotate(${-rotateDeg},0,-27)`} text-anchor="middle" dominant-baseline="central" font-size="28" font-weight="700" fill="#111">
               N
             </text>
           </g>
         </g>
       </svg>
       <figcaption class="ph-credit">
-        Aerial photo {year} © City of Philadelphia. Your lot is outlined in blue{turned ? '; the arrow points north' : ''}.
+        Aerial photo {year} © City of Philadelphia. Your lot is outlined in blue.
       </figcaption>
     </figure>
   );
