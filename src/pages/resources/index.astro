@@ -1,10 +1,246 @@
 ---
-// STUB — owned by the resources workstream.
+// Owner: resources workstream.
 import Base from '../../layouts/Base.astro';
+import { RESOURCES, deadLinkCount } from '../../data/resources';
+import { youtubeThumb } from '../../data/parks';
+
+const sections = [
+  { id: 'partners', label: 'Partners' },
+  { id: 'press', label: 'Featured press & video' },
+  { id: 'suppliers', label: 'Suppliers & useful links' },
+  { id: 'toolkit-library', label: 'Toolkit library' },
+  { id: 'contact', label: 'Contact' },
+  { id: 'acknowledgments', label: 'Acknowledgments' },
+  { id: 'legal', label: 'Legal notice' },
+];
+
+const deadCount = deadLinkCount();
+
+function statusLabel(status: string): string | null {
+  if (status === 'dead') return 'link currently dead';
+  if (status === 'unverified') return 'could not verify automatically';
+  if (status === 'unconfirmed') return 'unconfirmed';
+  return null;
+}
 ---
-<Base title="Resources, partners & press">
+
+<Base title="Resources, partners & press" description="Park in a Truck's partners, press coverage, suppliers, the full Toolkit Library, contact info and legal notice.">
   <section class="wrap" style="padding-top:40px">
+    <p class="eyebrow">Beyond the workbooks</p>
     <h1 class="ruled">Resources, partners & press</h1>
-    <div class="widget-placeholder">Coming soon.</div>
+    <p class="lede">Who helps build these parks, who's written about them, where to get materials and plants, and how to reach the Park in a Truck team.</p>
+
+    <nav class="res-toc no-print" aria-label="Sections on this page">
+      {sections.map((s) => <a href={`#${s.id}`}>{s.label}</a>)}
+    </nav>
+
+    {deadCount > 0 && (
+      <p class="callout callout-warning">
+        <span class="callout-title">Heads up</span>
+        {deadCount} link{deadCount === 1 ? '' : 's'} on this page {deadCount === 1 ? 'is' : 'are'} currently dead (checked {new Date().toISOString().slice(0, 10)}) — kept here rather than silently
+        dropped, and marked below.
+      </p>
+    )}
+
+    <h2 id="partners" class="ruled">Partners</h2>
+    <p class="prose">Organizations that help make Park in a Truck parks possible.</p>
+    <div class="grid">
+      {RESOURCES.partners.map((p) => (
+        <div class="card">
+          <p class="res-name">
+            {p.url ? <a href={p.url} target="_blank" rel="noopener noreferrer">{p.name}</a> : p.name}
+          </p>
+          {statusLabel(p.status) && <p class="res-status" data-status={p.status}>{statusLabel(p.status)}</p>}
+          <p class="res-desc">{p.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <h2 id="press" class="ruled">Featured press & video</h2>
+    <div class="grid">
+      {RESOURCES.press.map((item) => (
+        <div class="card press-card">
+          {item.type === 'video' && item.youtubeId && (
+            <a class="press-thumb" href={item.url} target="_blank" rel="noopener noreferrer">
+              <img src={youtubeThumb(item.youtubeId)} alt={`Video: ${item.title}`} loading="lazy" />
+              <span class="press-play" aria-hidden="true">▶</span>
+            </a>
+          )}
+          <p class="res-name"><a href={item.url} target="_blank" rel="noopener noreferrer">{item.title}</a></p>
+          <p class="res-meta">
+            {item.outlet}
+            {item.byline && <> · {item.byline}</>}
+            {item.date && <> · {item.date}</>}
+          </p>
+          {item.note && <p class="res-desc">{item.note}</p>}
+        </div>
+      ))}
+    </div>
+
+    <h2 id="suppliers" class="ruled">Suppliers & useful links</h2>
+    <p class="prose">Pulled from links inside the workbooks themselves, grouped by what they're for.</p>
+    {RESOURCES.supplierGroups.map((group) => (
+      <div class="supplier-group">
+        <h3>{group.label}</h3>
+        <ul class="supplier-list">
+          {group.items.map((item) => (
+            <li>
+              {item.url ? <a href={item.url} target="_blank" rel="noopener noreferrer">{item.title}</a> : <span>{item.title}</span>}
+              {statusLabel(item.status) && <span class="res-status" data-status={item.status}> — {statusLabel(item.status)}</span>}
+              {item.note && <span class="res-note"> — {item.note}</span>}
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+
+    <h2 id="toolkit-library" class="ruled">Toolkit library</h2>
+    <p class="prose">{RESOURCES.toolkitLibrary.intro}</p>
+    {RESOURCES.toolkitLibrary.sections.map((section) => (
+      <div class="supplier-group">
+        <h3>{section.title}</h3>
+        <ul class="supplier-list">
+          {section.entries.map((entry) => (
+            <li>
+              {entry.url ? <a href={entry.url} target="_blank" rel="noopener noreferrer">{entry.title}</a> : <span>{entry.title}</span>}
+              {entry.description && <span class="res-note"> — {entry.description}</span>}
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+
+    <h2 id="contact" class="ruled">Contact</h2>
+    <div class="card" style="max-width:32rem">
+      <ul class="contact-list">
+        <li><strong>Email:</strong> <a href={`mailto:${RESOURCES.contact.email}`}>{RESOURCES.contact.email}</a></li>
+        <li><strong>Founder:</strong> <a href={`mailto:${RESOURCES.contact.founderEmail}`}>{RESOURCES.contact.founderEmail}</a></li>
+        <li><strong>Phone:</strong> <a href={`tel:${RESOURCES.contact.phone.replace(/[^0-9]/g, '')}`}>{RESOURCES.contact.phone}</a></li>
+        <li><strong>Instagram:</strong> <a href={RESOURCES.contact.instagram.url} target="_blank" rel="noopener noreferrer">{RESOURCES.contact.instagram.handle}</a></li>
+        <li><strong>Facebook:</strong> <a href={RESOURCES.contact.facebook.url} target="_blank" rel="noopener noreferrer">Park in a Truck</a></li>
+      </ul>
+    </div>
+
+    <h2 id="acknowledgments" class="ruled">Acknowledgments</h2>
+    <p class="prose">{RESOURCES.acknowledgments.lead}</p>
+    <ul class="prose">
+      {RESOURCES.acknowledgments.contributors.map((c) => <li>{c}</li>)}
+    </ul>
+    <p class="prose muted">{RESOURCES.acknowledgments.note}</p>
+
+    <h2 id="legal" class="ruled">{RESOURCES.legal.title}</h2>
+    <p class="muted" style="font-size:0.85rem">{RESOURCES.legal.source}</p>
+    <p class="prose">{RESOURCES.legal.text}</p>
   </section>
 </Base>
+
+<style>
+  .res-toc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    margin: 1.5em 0;
+    padding: 12px 16px;
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+  .res-name {
+    font-weight: 700;
+    margin: 0 0 0.2em;
+  }
+  .res-desc,
+  .res-meta {
+    font-size: 0.88rem;
+    color: var(--ink-2);
+    margin: 0.2em 0;
+  }
+  .res-meta {
+    color: var(--muted);
+  }
+  .res-status {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--warn);
+  }
+  .res-status[data-status='dead'] {
+    color: var(--danger);
+  }
+  .res-note {
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+  .press-card {
+    padding: 0;
+    overflow: hidden;
+  }
+  .press-thumb {
+    position: relative;
+    display: block;
+  }
+  .press-thumb img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+  .press-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2.2em;
+    height: 2.2em;
+    border-radius: 50%;
+    background: rgb(0 0 0 / 0.6);
+    color: #fff;
+    display: grid;
+    place-items: center;
+  }
+  .press-card .res-name,
+  .press-card .res-meta,
+  .press-card .res-desc {
+    padding-inline: 16px;
+  }
+  .press-card .res-name {
+    margin-top: 12px;
+  }
+  .press-card .res-desc {
+    padding-bottom: 16px;
+  }
+  .supplier-group {
+    margin: 1.5em 0;
+  }
+  .supplier-group h3 {
+    margin-bottom: 0.4em;
+  }
+  .supplier-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    columns: 1;
+  }
+  @media (min-width: 720px) {
+    .supplier-list {
+      columns: 2;
+      column-gap: 32px;
+    }
+  }
+  .supplier-list li {
+    break-inside: avoid;
+    margin: 0.4em 0;
+    font-size: 0.92rem;
+  }
+  .contact-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .contact-list li {
+    margin: 0.5em 0;
+  }
+</style>

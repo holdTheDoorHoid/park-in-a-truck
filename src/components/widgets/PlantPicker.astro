@@ -1,8 +1,253 @@
 ---
-// STUB — owned by the resources workstream, which replaces this file.
-// Content may already place <PlantPicker /> in chapters; keep the props optional.
-interface Props { [key: string]: unknown }
+// Owner: resources workstream. Placed in the Dream chapter (per-theme) and
+// standalone on /plants (no theme prop — the person picks there).
+import type { ThemeId } from '../../lib/types';
+import PlantPickerIsland from '../plants/PlantPickerIsland';
+
+interface Props {
+  theme?: ThemeId | ThemeId[];
+}
+const { theme } = Astro.props;
 ---
-<div class="widget-placeholder" data-widget="PlantPicker">
-  <strong>PlantPicker</strong> — Choose plants for your theme, sized to your sun and shade counts.
-</div>
+
+{/* client:only, not client:visible -- this island's first render depends on
+    localStorage (project.ts), which SSR can't see. SSR-ing a "Choose a
+    theme" placeholder that gets replaced by real buckets on hydration is a
+    textbook hydration mismatch (Preact recovers, but logs errors and does
+    extra DOM surgery); client:only skips SSR for this component entirely,
+    which is fine since the picker is inert without JS anyway. */}
+<PlantPickerIsland theme={theme} client:only="preact" />
+
+<style is:global>
+  /* Preact-rendered markup isn't visible to Astro's scoped CSS, so this is
+     global on purpose, namespaced under .plant-picker. */
+  .plant-picker {
+    margin: 1.5em 0;
+  }
+  .pp-setup {
+    display: grid;
+    gap: 20px;
+    margin-bottom: 1.5em;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--paper-2);
+  }
+  @media (min-width: 700px) {
+    .pp-setup {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .pp-label {
+    display: block;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.5em;
+  }
+  .pp-theme-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .pp-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    border: 2px solid var(--line);
+    background: #fff;
+    border-radius: 999px;
+    padding: 0.4em 0.9em 0.4em 0.6em;
+    font: inherit;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  .pp-chip[aria-pressed='true'] {
+    border-color: var(--chip-color, var(--cyan));
+    background: color-mix(in srgb, var(--chip-color, var(--cyan)) 12%, white);
+  }
+  .pp-swatch {
+    width: 0.9em;
+    height: 0.9em;
+    border-radius: 50%;
+    background: var(--chip-color, var(--cyan));
+    flex: none;
+  }
+  .pp-source-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+  .pp-source-toggle input {
+    width: 1.2em;
+    height: 1.2em;
+    accent-color: var(--cyan);
+  }
+  .pp-manual-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+    margin-top: 0.6em;
+  }
+  .pp-manual-grid label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--ink-2);
+  }
+  .pp-manual-grid input {
+    display: block;
+    width: 100%;
+    margin-top: 0.3em;
+    font: inherit;
+    padding: 0.4em 0.5em;
+    border: 2px solid #9a9a9a;
+    border-radius: var(--radius);
+  }
+
+  .pp-bucket {
+    margin: 1.75em 0;
+  }
+  .pp-bucket-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    border-bottom: 3px solid var(--ink);
+    padding-bottom: 0.3em;
+    margin-bottom: 1em;
+  }
+  .pp-bucket-head h3 {
+    margin: 0;
+  }
+  .pp-bucket-tally {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .pp-match {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--warn);
+  }
+  .pp-match.ok {
+    color: var(--ok);
+  }
+  .pp-bucket-actions {
+    display: flex;
+    gap: 6px;
+  }
+
+  .pp-cards {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+  }
+  .pp-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+  }
+  .pp-photo {
+    aspect-ratio: 4 / 3;
+    background: var(--paper-2);
+  }
+  .pp-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .pp-photo-none {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .pp-card-body {
+    padding: 12px 14px;
+    flex: 1;
+  }
+  .pp-common {
+    font-weight: 700;
+    margin: 0;
+  }
+  .pp-botanical {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin: 0.1em 0 0.5em;
+  }
+  .pp-meta,
+  .pp-notes {
+    font-size: 0.85rem;
+    color: var(--ink-2);
+    margin: 0.2em 0;
+  }
+  .pp-cost {
+    font-weight: 700;
+    margin: 0.5em 0 0;
+  }
+  .pp-qty {
+    padding: 0 14px 14px;
+  }
+  .pp-qty input {
+    width: 100%;
+    font: inherit;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-align: center;
+    padding: 0.4em;
+    border: 2px solid var(--ink);
+    border-radius: var(--radius);
+  }
+  .pp-qty-print {
+    display: none;
+  }
+
+  .pp-grand {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    border-top: 6px solid var(--ink);
+    padding-top: 1em;
+    margin-top: 2em;
+    font-size: 1.1rem;
+  }
+  .pp-grand-cost strong {
+    color: var(--cyan-ink);
+  }
+  .pp-grand-actions {
+    display: flex;
+    gap: 10px;
+  }
+
+  .print-only {
+    display: none;
+  }
+  @media print {
+    .pp-setup .pp-theme-chips button[aria-pressed='false'] {
+      display: none;
+    }
+    .pp-qty {
+      display: none;
+    }
+    .print-only {
+      display: block;
+      font-weight: 700;
+      padding: 0 14px 14px;
+    }
+    .pp-card {
+      break-inside: avoid;
+    }
+  }
+</style>
