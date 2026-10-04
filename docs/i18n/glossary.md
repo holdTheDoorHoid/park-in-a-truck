@@ -382,51 +382,53 @@ The City as a government is «город» / «городские власти»
 
 Tone: Modern Standard Arabic kept simple. Address one reader with the masculine-singular imperative (the usual generic form); Western digits (1, 2, 3). Arrows point the reading direction: "next" is ←. فيلادلفيا.
 
-*Status: partly filled in by i18n-core (Arabic home page).*
+*Status: filled in by i18n-core (home page) and t-ar (whole site, 2026-10-04).*
 
 | English | Translation | Note |
 |---|---|---|
-| Park in a Truck / PiaT | Park in a Truck / PiaT | |
-| toolkit | الدليل | |
-| workbook | كراسة العمل | |
+| Park in a Truck / PiaT | Park in a Truck / PiaT | Latin letters, never transliterated. |
+| toolkit | الدليل | "الدليل (Toolkit)" in a chapter's sources line. |
+| workbook | كراسة العمل | Plural كراسات العمل. "the Dream workbook" = كراسة عمل «الحلم». |
 | step | خطوة | |
 | sub-step | خطوة فرعية | |
 | Mark this step done / done | ضع علامة: أُنجزت هذه الخطوة / أُنجزت | |
-| Start here · Acquire · Organize · Assess · Dream · Create · Sustain | ابدأ من هنا · الحصول على قطعة أرض · التنظيم · التقييم · الحلم · البناء · الرعاية | |
+| Start here · Acquire · Organize · Assess · Dream · Create · Sustain | ابدأ من هنا · الحصول على قطعة أرض · التنظيم · التقييم · الحلم · البناء · الرعاية | In running text the step name goes in «» quotes: خطوة «البناء». |
 | vacant lot | قطعة أرض فارغة | |
-| lot | قطعة أرض | |
+| lot | قطعة أرض | Short form after first mention: القطعة. |
 | parcel | قطعة أرض مسجلة (parcel) | |
-| mid-block lot / corner lot / breezeway, alley | قطعة في منتصف الشارع / قطعة على الزاوية / ممر | |
-| owner (public / private) | المالك (عام / خاص) | |
+| mid-block lot / corner lot / breezeway, alley | قطعة في منتصف الشارع / قطعة على الزاوية / ممر، زقاق | easement = حق مرور. |
+| owner (public / private) | المالك (ملكية عامة / ملكية خاصة) | |
 | zoning | التصنيف العمراني (التقسيم) | |
-| City records / Filled in from City records | سجلات المدينة | |
+| City records / Filled in from City records | سجلات المدينة / مأخوذ من سجلات المدينة | |
 | City (of Philadelphia) | المدينة (مدينة فيلادلفيا) | |
 | RCO (Registered Community Organization) | منظمة مجتمعية مسجّلة (RCO) | |
 | Philadelphia Land Bank | Philadelphia Land Bank (بنك الأراضي في المدينة) | |
-| PHDC | PHDC | |
+| PHDC | PHDC (مؤسسة فيلادلفيا لتطوير الإسكان) | Explained once per page. |
 | Sheriff Sale | مزاد الشريف (Sheriff Sale) | |
 | purchase / donation / lease / in-kind (use) agreement | شراء / تبرّع / إيجار / اتفاق انتفاع عيني | |
 | park committee | لجنة الحديقة | |
-| neighbors / neighborhood | الجيران / الحي | |
+| neighbors / neighborhood | الجيران / الحي | "community" (the people) = أهل الحي or المجتمع. |
 | park pieces | قطع الحديقة | |
 | frame / front / back (pieces) | الإطار / القطعة الأمامية / القطعة الخلفية | |
-| seam (length seam, width seam) | شريط وصل | |
-| theme: Edible · Sanctuary · Nature · Event | صالحة للأكل · ملاذ · طبيعة · فعاليات | |
+| seam (length seam, width seam) | شريط وصل (شريط وصل للطول، شريط وصل للعرض) | |
+| theme: Edible · Sanctuary · Nature · Event | صالحة للأكل · ملاذ · طبيعة · فعاليات | "theme" = نمط (plural أنماط); names in «» in running text: نمط «ملاذ». |
 | size A–E | الحجم A–E | |
-| gabion (wall, bench) | قفص حجري (جابيون) | |
-| build guide | دليل البناء | |
+| gabion (wall, bench) | قفص حجري (جابيون) | Explained once; in names and steps just جابيون: جدار جابيون، مقعد جابيون، قفص الجابيون. |
+| build guide | دليل البناء | Plural أدلة البناء. |
 | cut list / materials & hardware / tools | قائمة القطع / المواد والعُدد / الأدوات | |
-| 2x4, 2x4x8', BB-1 | 2x4, 2x4x8', BB-1 | |
+| 2x4, 2x4x8', BB-1 | 2x4, 2x4x8', BB-1 | Inside a sentence, a length goes in words: "2x4 بطول 20 بوصة" for 2"x4"x20". |
 | full sun / part sun / shade | شمس كاملة / شمس جزئية / ظل | |
-| native plant · perennial · shrub · small tree · large tree | نبات محلي · نبات معمّر · شجيرة · شجرة صغيرة · شجرة كبيرة | |
-| pollinator | المُلقِّحات | |
-| stewardship / sustain | رعاية الحديقة | |
+| native plant · perennial · shrub · small tree · large tree | نبات محلي · نبات معمّر · شجيرة · شجرة صغيرة · شجرة كبيرة | annual = نبات حولي; bulb = بصلة (أبصال). |
+| pollinator | مُلقِّح (المُلقِّحات) | |
+| stewardship / sustain | رعاية الحديقة / الرعاية | |
 | My park | حديقتي | |
 | project file | ملف المشروع | |
 | Plan in 3D / the planner | التصميم ثلاثي الأبعاد / أداة التخطيط | |
 | Note from this site, not Park in a Truck | ملاحظة من هذا الموقع، وليست من Park in a Truck | |
-| in English | بالإنجليزية | |
-| ft, in, sq ft, $ | قدم، بوصة، قدم مربع، $ | |
+| in English | بالإنجليزية | Added as "(بالإنجليزية)" after English-only links. |
+| ft, in, sq ft, $ | قدم، بوصة، قدم مربع، $ / دولار | Write the unit as a word after the number, never the ' and " marks (they flip around in right-to-left text): 6 أقدام، 2.5 بوصة، 12 قدمًا. Plural: 1 قدم، قدمان، 3–10 أقدام، 11+ قدمًا (same for بوصة/بوصات). Dimensions with ×: 18 × 48 بوصة. |
+
+Extra terms used consistently (not in the English table): mulch = غطاء التربة (المالتش) · topsoil = التربة السطحية · gravel = الحصى · weeds = الأعشاب الضارة · pre-emergent = مبيد وقائي قبل الإنبات · impact driver = المفك الصدمي · self-driving exterior wood screws = براغي خشب خارجية ذاتية الحفر · carpenter's square = زاوية النجار القائمة · miter saw = منشار الزوايا · pre-drill = يحفر مسبقًا · hog rings = حلقات التثبيت · geotextile fabric = قماش جيوتكستايل · Park Ambassador = سفير الحديقة (Park Ambassador) · Park Patch = رقعة الحديقة (Park Patch) · street tree = شجرة الشارع · fire hydrant = صنبور إطفاء الحرائق · downspout = مزراب · volunteer waiver = نموذج التنازل وإخلاء المسؤولية للمتطوعين · build day = يوم البناء. Planner and cost: the spreadsheet (PiaT's cost sheet) = الجدول · contingency = احتياطي للطوارئ · tool rental = تأجير الأدوات · price needed = يحتاج إلى سعر · order list = قائمة الطلب · hardscape / softscape = أرض صلبة / أرض لينة · block (of a street, "the 2200 block") = مقطع (مقطع 2200) · dappled shade = ظل متقطع · compass points with the article (الشمال، الجنوب الغربي) · degrees as words (90 درجة; the ° sign flips) · counts that need a plural use "label: {count}" (عدد البنود: 3) so every Arabic plural form is grammatical.
 
 ### ht — Kreyòl ayisyen
 

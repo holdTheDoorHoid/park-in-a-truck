@@ -1,0 +1,571 @@
+{
+  "partners": [
+    {
+      "description": "بالشراكة مع PiaT، يوسّع مجموعة تصاميم الحدائق المتاحة."
+    },
+    {
+      "description": "ذراع التعليم والتواصل في لجنة تخطيط مدينة فيلادلفيا؛ يقدّم دورة مدتها ثمانية أسابيع عن طريقة عمل التخطيط العمراني والتطوير في المدينة."
+    },
+    {
+      "description": "المنظمة المحلية غير الربحية التي موّلت أول حديقة لبرنامج Park in a Truck. (الرابط الموجود في الدليل نفسه لهذا الشكر يشير في الواقع إلى communityprogress.org، وهي منظمة وطنية غير ربحية تعنى ببنوك الأراضي — والأرجح أن في ملف PDF الأصلي خطأً بين الرابط والتعليق، لذا لا نضع هنا رابطًا حتى يتأكد ذلك.)"
+    },
+    {
+      "description": "شركة وساطة عقارية محلية في فيلادلفيا تخدم منطقة غرب فيلادلفيا."
+    },
+    {
+      "description": "شريك لـ PiaT في البنية التحتية الخضراء — تواصل معهم للمساعدة في فصل مزاريب المطر أو إضافة حديقة مطرية إلى حديقتك."
+    },
+    {
+      "description": "رائدة في حماية الأراضي في المدينة؛ صندوق أراضٍ مجتمعي للحدائق المجتمعية وغيرها من المساحات المفتوحة."
+    },
+    {
+      "description": "شريك من مؤسسات التنمية المجتمعية (مجموعة «PARTNERS» على Linktree). يُظهر الموقع حاليًا صفحة معطلة — تأكدنا أنه متوقف، وليس مجرد حجب للبرامج الآلية."
+    },
+    {
+      "description": "جهة مموِّلة."
+    },
+    {
+      "description": "شريك في التصاريح والأراضي وبيانات المدينة."
+    },
+    {
+      "description": "شريك في الموائل والزراعة."
+    },
+    {
+      "description": "شريك في الموائل وحدائق المُلقِّحات في عدة حدائق بُنيت."
+    },
+    {
+      "description": "جهة مموِّلة."
+    },
+    {
+      "description": "شريك في كراسة عمل Playful Learning Landscapes (مساحات التعلّم باللعب)."
+    },
+    {
+      "description": "جهة مموِّلة."
+    },
+    {
+      "description": "أداة من المدينة لتحويل عقار فارغ."
+    }
+  ],
+  "press": [
+    {
+      "title": "مع برنامج Park in a Truck، تسعى Jefferson إلى المساعدة في تغيير المجتمعات المحرومة من الخدمات (بالإنجليزية)"
+    },
+    {
+      "title": "مبادرة Park in a Truck تنال تقدير مجلة Fast Company في فئة «الخير الاجتماعي» (بالإنجليزية)"
+    },
+    {
+      "title": "Park in a Truck تفوز بجائزة Groundbreaker لعام 2020 من Green Building United (بالإنجليزية)"
+    },
+    {
+      "title": "«Park in a Truck» يشبه Ikea لكن لبناء حدائق الأحياء (بالإنجليزية)"
+    },
+    {
+      "title": "قطع أرض فارغة تتحول إلى حدائق جميلة في أحياء فيلادلفيا (بالإنجليزية)"
+    },
+    {
+      "title": "برنامج Park in a Truck يغيّر المساحات الخضراء في مدينة فيلادلفيا بمساعدة شباب الأحياء (بالإنجليزية)"
+    },
+    {
+      "title": "ASLA Spotlight — ربيع 2025 (بالإنجليزية)"
+    },
+    {
+      "title": "Park in a Truck (بالإنجليزية)"
+    },
+    {
+      "title": "تغيير الأحياء، حديقة بعد حديقة — يبنيها المجتمع، من أجل المجتمع (بالإنجليزية)"
+    },
+    {
+      "title": "تعليمات التركيب من Jefferson Park in a Truck، رقم 1 (بالإنجليزية)"
+    },
+    {
+      "title": "تعليمات التركيب من Jefferson Park in a Truck، رقم 2 (بالإنجليزية)"
+    }
+  ],
+  "supplierGroups": [
+    {
+      "label": "تأجير الأدوات",
+      "items": [
+        {
+          "title": "West Philadelphia Tool Library",
+          "note": "أدوات يدوية؛ تعمل مع Philadelphia Orchard Project وتقدّم أيضًا دروسًا في المهارات."
+        },
+        {
+          "title": "Diamond Tool (تأجير الأدوات الكهربائية)",
+          "note": "يبدو أنها انضمت إلى White Cap؛ موقعها يحجب الفحص الآلي."
+        },
+        {
+          "title": "OK Rental Sales & Service",
+          "note": "لم يعد أيٌّ من النطاقين اللذين ذكرهما PiaT لمحل التأجير هذا في Darby, PA يعمل (okrentalsaleservice.com وokrental1.com)."
+        }
+      ]
+    },
+    {
+      "label": "النفايات وإعادة التدوير",
+      "items": [
+        {
+          "title": "Fairmount Park Organic Recycling Center",
+          "note": "3850 W Ford Rd — سماد عضوي ورقائق خشب وغطاء للتربة (مالتش) وسماد حيواني بتكلفة قليلة."
+        },
+        {
+          "title": "Richard S. Burns & Co. (مواد معاد تدويرها)",
+          "note": "4300 Rising Sun Ave — مكب للنفايات + منتجات معاد تدويرها للبيع."
+        }
+      ]
+    },
+    {
+      "label": "المشاتل والنباتات",
+      "items": [
+        {
+          "title": "LandHealth Institute Nursery (Philaflora)"
+        },
+        {
+          "title": "Good Host Plants",
+          "note": "متخصص محلي في النباتات التي تجذب المُلقِّحات."
+        },
+        {
+          "title": "Pleasant Run Nursery",
+          "note": "نباتات زينة عالية الجودة وأصناف محلية؛ في ولاية نيوجيرسي، والتوصيل لطلبات لا تقل عن 1,250 دولارًا."
+        },
+        {
+          "title": "Pinelands Nursery",
+          "note": "نباتات لإعادة تأهيل البيئة المحلية؛ يرد الموقع ردًّا غير معتاد على الفحص الآلي، لكنه يعمل على الأرجح."
+        },
+        {
+          "title": "Archewild",
+          "note": "نباتات لإعادة تأهيل البيئة المحلية."
+        },
+        {
+          "title": "North Creek Nurseries"
+        },
+        {
+          "title": "Gardens Alive",
+          "note": "شهادة الأمان (TLS) لهذا الموقع منتهية حاليًا — توقّع تحذيرًا من المتصفح."
+        },
+        {
+          "title": "Burpee — أشجار الفاكهة"
+        },
+        {
+          "title": "Stark Bro's — أشجار الفاكهة"
+        },
+        {
+          "title": "Gurney's — الفواكه والتوت"
+        },
+        {
+          "title": "Willis Orchards — أشجار الفاكهة"
+        },
+        {
+          "title": "PHS Gold Medal Plants (نباتات الميدالية الذهبية)"
+        },
+        {
+          "title": "Philly Orchard Project — موارد"
+        }
+      ]
+    },
+    {
+      "label": "الخشب ومواد البناء",
+      "items": [
+        {
+          "title": "D&S Supply",
+          "note": "4260 Macalester St — مستلزمات تنسيق الحدائق وغطاء التربة (مالتش) والأدوات."
+        },
+        {
+          "title": "Underdog Landscape Supply",
+          "note": "701 Washington St, Conshohocken — تربة سطحية وغطاء للتربة (مالتش) وسماد عضوي."
+        },
+        {
+          "title": "Mid Atlantic Pine Straw"
+        },
+        {
+          "title": "Woodland Building Supply",
+          "note": "4701 Woodland Ave, Phila."
+        },
+        {
+          "title": "C&R Building Supply",
+          "note": "1601 S 49th St, Phila."
+        },
+        {
+          "title": "A&A Lumber",
+          "note": "خشب السرو، في Avondale PA."
+        },
+        {
+          "title": "Delaware County Supply"
+        },
+        {
+          "title": "Castor Materials",
+          "note": "3301 S 61st St — حجارة مكسّرة وتربة سطحية، والتوصيل متاح."
+        },
+        {
+          "title": "Rockler — اختيار أفضل طلاء للمشاريع الخارجية"
+        },
+        {
+          "title": "Real Milk Paint (RMP Finishes) — أفضل طلاء للخشب في الخارج"
+        },
+        {
+          "title": "Vermont Natural Coatings — طلاءات للخارج"
+        },
+        {
+          "title": "Hairpin Legs — دعامات الظهر للمقاعد"
+        }
+      ]
+    },
+    {
+      "label": "الجابيون والحجارة",
+      "items": [
+        {
+          "title": "Gabion1.com"
+        },
+        {
+          "title": "Darby Wire Mesh",
+          "note": "يحجب الفحص الآلي؛ النطاق مسجل ويعمل."
+        },
+        {
+          "title": "كيف تبني جدار جابيون (Gardendrum)"
+        }
+      ]
+    },
+    {
+      "label": "فيديوهات تعليمية",
+      "items": [
+        {
+          "title": "كيف تقلّم شجرة"
+        },
+        {
+          "title": "كيف تزرع شجرة"
+        },
+        {
+          "title": "كيف تزرع شجيرة"
+        },
+        {
+          "title": "حواف خشبية للأحواض"
+        },
+        {
+          "title": "بناء جدار جابيون"
+        },
+        {
+          "title": "بناء طاولة مشتركة"
+        },
+        {
+          "title": "بناء إطار بارد للشتلات"
+        },
+        {
+          "title": "بناء أحواض زراعة مرتفعة"
+        },
+        {
+          "title": "قلِّم مثل المحترفين"
+        },
+        {
+          "title": "دليل الري ومياه الأمطار"
+        }
+      ]
+    },
+    {
+      "label": "مصادر للتعلّم",
+      "items": [
+        {
+          "title": "Penn State Extension — فحص التربة"
+        },
+        {
+          "title": "Penn State Extension — نماذج إرسال عينات خصوبة التربة"
+        },
+        {
+          "title": "Penn State Extension — الآفات والأمراض"
+        },
+        {
+          "title": "Penn State Extension — برنامج Master Gardener"
+        },
+        {
+          "title": "Missouri Botanical Garden — Plant Finder (البحث عن النباتات)"
+        },
+        {
+          "title": "Arbor Day Foundation"
+        },
+        {
+          "title": "Arbor Day — كيف تزرع شجرة من أصيص"
+        },
+        {
+          "title": "Arbor Day — أشجار الفاكهة"
+        },
+        {
+          "title": "Pennsylvania Horticultural Society (PHS)",
+          "note": "ورش عمل، ومعلومات عن الحدائق المجتمعية، وبرنامج براميل المطر."
+        },
+        {
+          "title": "Grounded in Philly",
+          "note": "مساعدة قانونية وبيانات وأدلة للحصول على قطعة أرض والاحتفاظ بها."
+        },
+        {
+          "title": "Philly Orchard Project"
+        },
+        {
+          "title": "Soil Generation",
+          "note": "تحالف يقوده السود وذوو البشرة السمراء من أجل سيطرة المجتمع على الأرض والغذاء."
+        },
+        {
+          "title": "Park Advocate Handbook (NRPA) — دليل المدافعين عن الحدائق"
+        },
+        {
+          "title": "The PHS City Parks Handbook (Temple University Press)"
+        },
+        {
+          "title": "Vacant Lot Activation Toolkit (Trust South LA) — دليل تفعيل الأراضي الفارغة"
+        },
+        {
+          "title": "Green2015: An Action Plan for the First 500 Acres",
+          "note": "خطة من PennPraxis لإدارة الحدائق والترفيه في فيلادلفيا (Philadelphia Parks & Recreation)."
+        },
+        {
+          "title": "PlantSnap (تطبيق للتعرف على النباتات والأعشاب الضارة)"
+        },
+        {
+          "title": "Gardener's Path — استخدام مقياس المطر"
+        },
+        {
+          "title": "كيف تفرش غطاء التربة (المالتش) (SKH)"
+        },
+        {
+          "title": "مبيد أعشاب أساسه الخل (مثال على منتج)",
+          "note": "المصدر الوحيد الذي وجدناه لهذا المنتج بعينه؛ نضع الرابط دون توصية."
+        }
+      ]
+    },
+    {
+      "label": "برامج مدينة فيلادلفيا",
+      "items": [
+        {
+          "title": "Atlas Philadelphia (البحث عن العقارات)"
+        },
+        {
+          "title": "خريطة ملكية قطع الأرض في فيلادلفيا (ArcGIS)"
+        },
+        {
+          "title": "المنظمات المجتمعية المسجّلة (RCOs)"
+        },
+        {
+          "title": "تصريح مؤقت لمنع الوقوف (Temporary No-Parking Permit)"
+        },
+        {
+          "title": "Green City, Clean Waters — منحة لمياه الأمطار والحدائق المطرية"
+        }
+      ]
+    }
+  ],
+  "toolkitLibrary": {
+    "intro": "أهلًا بك في مكتبة الدليل! في الصفحات التالية موارد وروابط كثيرة لمزيد من المعلومات، مرتبة حسب الفصول.",
+    "sections": [
+      {
+        "title": "مقدمة",
+        "entries": [
+          {
+            "title": "للحد من الفقر، يجب أن تشمل جهود مجلس المدينة مساحات خضراء أكثر (The Inquirer، بالإنجليزية)"
+          },
+          {
+            "title": "لنعزز الصحة والمساحات الخضراء، قطعة أرض فارغة بعد أخرى (The Inquirer، بالإنجليزية)"
+          },
+          {
+            "title": "Gangsta Gardener — Ron Finley"
+          },
+          {
+            "title": "النحل والأشياء والزهور: كيف ستتجاوز البستانيات السود أزمة COVID-19 (Essence، بالإنجليزية)"
+          },
+          {
+            "title": "Black Girls with Gardens"
+          },
+          {
+            "title": "Farming While Black — Leah Penniman"
+          }
+        ]
+      },
+      {
+        "title": "01 الحصول على قطعة أرض",
+        "entries": [
+          {
+            "title": "The PHS City Parks Handbook (13.95 دولارًا)"
+          },
+          {
+            "title": "Park Advocate Handbook (مجاني)"
+          },
+          {
+            "title": "Atlas Philadelphia"
+          },
+          {
+            "title": "Citizens Planning Institute"
+          },
+          {
+            "title": "Green2015: An Action Plan for the First 500 Acres"
+          },
+          {
+            "title": "Grounded in Philly"
+          },
+          {
+            "title": "Neighborhood Gardens Trust"
+          },
+          {
+            "title": "Soil Generation"
+          }
+        ]
+      },
+      {
+        "title": "02 التنظيم",
+        "entries": [
+          {
+            "title": "The PHS City Parks Handbook"
+          },
+          {
+            "title": "Vacant Lot Activation Toolkit (Free Lots Angeles)"
+          }
+        ]
+      },
+      {
+        "title": "03 التقييم",
+        "entries": [
+          {
+            "title": "Penn State Extension — فحص التربة"
+          }
+        ]
+      },
+      {
+        "title": "04 الحلم",
+        "entries": [
+          {
+            "title": "Gardens Alive"
+          },
+          {
+            "title": "North Creek Nurseries"
+          },
+          {
+            "title": "Missouri Botanical Garden Plant Finder"
+          },
+          {
+            "title": "البحث عن النباتات في Longwood Gardens"
+          },
+          {
+            "title": "Arbor Day Foundation"
+          },
+          {
+            "title": "Penn State Master Gardeners — دليل الزراعة في فيلادلفيا"
+          }
+        ]
+      },
+      {
+        "title": "05 البناء",
+        "entries": [
+          {
+            "title": "Woodland Building Supply"
+          },
+          {
+            "title": "C&R Building Supply"
+          },
+          {
+            "title": "A&A Lumber"
+          },
+          {
+            "title": "Philly Reclaim"
+          },
+          {
+            "title": "PowerCorpsPHL"
+          },
+          {
+            "title": "Burpee — أشجار الفاكهة"
+          },
+          {
+            "title": "Stark Bro's — أشجار الفاكهة"
+          },
+          {
+            "title": "Gurney's — الفواكه والتوت"
+          },
+          {
+            "title": "Willis Orchards — أشجار الفاكهة"
+          },
+          {
+            "title": "Good Host Plants"
+          },
+          {
+            "title": "LandHealth Institute Nursery (Philaflora)"
+          },
+          {
+            "title": "Pleasant Run Nursery"
+          },
+          {
+            "title": "Pinelands Nursery"
+          },
+          {
+            "title": "Archewild"
+          },
+          {
+            "title": "Underdog Landscape Supply"
+          },
+          {
+            "title": "Castor Materials"
+          },
+          {
+            "title": "D&S Supply"
+          },
+          {
+            "title": "Richard S. Burns & Co."
+          },
+          {
+            "title": "West Philadelphia Tool Library"
+          },
+          {
+            "title": "Diamond Tool"
+          },
+          {
+            "title": "Fairmount Park Organic Recycling Center"
+          }
+        ]
+      },
+      {
+        "title": "06 الرعاية",
+        "entries": [
+          {
+            "title": "Pennsylvania Horticultural Society"
+          },
+          {
+            "title": "Grounded in Philly"
+          },
+          {
+            "title": "Greensgrow"
+          },
+          {
+            "title": "Brandywine Conservancy — النباتات الغازية"
+          },
+          {
+            "title": "كيف تزرع شجرة من أصيص (Arbor Day، بالإنجليزية)"
+          },
+          {
+            "title": "كيف تزرع شجيرة (فيديو، بالإنجليزية)"
+          },
+          {
+            "title": "كيف تقلّم شجرة (فيديو، بالإنجليزية)"
+          },
+          {
+            "title": "كيف تقلّم شجيرة (Gardeners' World، بالإنجليزية)"
+          },
+          {
+            "title": "Arbor Day Foundation — أشجار الفاكهة"
+          },
+          {
+            "title": "Philadelphia Orchard Project"
+          },
+          {
+            "title": "أساسيات صنع السماد العضوي (فيديو، بالإنجليزية)"
+          },
+          {
+            "title": "التسميد (Penn State Extension، بالإنجليزية)"
+          },
+          {
+            "title": "كيف تفرش غطاء التربة (المالتش) في حديقتك (Good Housekeeping، بالإنجليزية)"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgments": {
+    "lead": "برنامج هندسة المناظر الطبيعية + مختبر الابتكار الاجتماعي والحضري، Thomas Jefferson University",
+    "note": "يحوّل هذا الموقع دليل Park in a Truck وكراسات العمل وقوائم النباتات الخاصة به إلى نسخة تفاعلية ترافقك خطوة بخطوة، بإذن من Park in a Truck / Thomas Jefferson University. كل النصوص والرسوم والصور الأصلية مِلكٌ لهم."
+  },
+  "legal": {
+    "title": "إشعار قانوني",
+    "text": "التوصيات الواردة هنا مبنية على الممارسات المعتادة في التصنيع والبناء. ولا تتحمل Thomas Jefferson University (TJU)، ولا مختبر الابتكار الاجتماعي التابع لـ TJU، ولا Park-in-a-Truck، ولا أعضاء هيئة التدريس أو الموظفون أو الجهات التابعة لها، بأي حال من الأحوال، المسؤولية عن أي أضرار أو إصابات للأشخاص أو أضرار بالممتلكات تنشأ عن استخدام هذه التوصيات. ولا تقدّم Thomas Jefferson University (TJU)، ولا مختبر الابتكار الاجتماعي التابع لـ TJU، ولا Park-in-a-Truck، ولا أعضاء هيئة التدريس أو الموظفون أو الجهات التابعة لها، أي ضمانات صريحة أو ضمنية، وتُخلي مسؤوليتها هنا من جميع الضمانات الأخرى وتنفيها، بما في ذلك على سبيل المثال لا الحصر الضمانات أو الشروط الضمنية الخاصة بصلاحية التسويق، أو الملاءمة لغرض معين، أو عدم التعدي على الملكية الفكرية أو انتهاك الحقوق الأخرى. وكذلك لا تضمن Thomas Jefferson University (TJU)، ولا مختبر الابتكار الاجتماعي التابع لـ TJU، ولا Park-in-a-Truck، ولا أعضاء هيئة التدريس أو الموظفون أو الجهات التابعة لها، ولا تقدّم أي إقرار بشأن دقة استخدام هذه التوصيات أو نتائجه المحتملة أو موثوقيته. ويُعدّ استخدامك لهذه التوصيات إقرارًا منك بكل ما سبق."
+  }
+}
