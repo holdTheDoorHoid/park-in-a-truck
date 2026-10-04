@@ -1,0 +1,542 @@
+---
+title: Créer
+intro: Construisez votre parc, phase par phase, un week-end à la fois.
+sources:
+  - "Boîte à outils (Toolkit), p. 57–59 (Créer, Construction initiale du parc)"
+  - "Cahier Créer, p. 1–18"
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Choice from '../../../../components/workbook/Choice.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import Download from '../../../../components/workbook/Download.astro';
+import CostEstimator from '../../../../components/widgets/CostEstimator.astro';
+import BuildSchedule from '../../../../components/widgets/BuildSchedule.astro';
+import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
+
+{/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — Create lets you pick build weekends and print an order list with nothing recorded in Acquire; this says so before anyone breaks ground. */}
+<LotAgreementNotice />
+
+Construire un parc est une excellente façon de rapprocher les voisins, les amis et d’autres personnes. Il faut pour
+cela des bénévoles engagés, qui peuvent donner de leur temps et de leur énergie, avec des compétences très variées —
+menuiserie, aménagement paysager, organisation, encouragement, direction. Comme quand on suit une recette, construire
+un parc se fait étape par étape ; la plupart des parcs Park in a Truck se construisent en 6 à 8 week-ends environ.
+
+Le chapitre Créer est entièrement consacré à la construction de votre parc. Nous avons découpé la démarche en huit
+phases. Chaque phase peut se faire en un week-end environ — la taille de votre parc et le nombre de bénévoles
+influenceront le temps qu’il faut vraiment. L’ordre des phases a une raison ; lisez chacune d’elles et adaptez votre
+calendrier si nécessaire.
+
+Ce cahier suppose que vous avez fait l’estimation des coûts et que vous connaissez les quantités et les matériaux à
+commander pour chaque phase. Si ce n’est pas le cas, revenez à l’étape Rêver et utilisez le calculateur de coûts.
+
+<CostEstimator />
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={3} />
+
+## Formulaire de décharge pour les bénévoles {/* #volunteer-release-form */}
+
+Assurez-vous d’avoir des formulaires de décharge de responsabilité pour les bénévoles sur le site chaque fois que vous
+travaillez sur le parc. Ce formulaire vous dégage de toute responsabilité en cas de blessure de vos bénévoles. C’est à
+vous de consulter les conseillers juridiques et l’assureur de votre organisation avant de commencer la construction :
+ils voudront peut-être que vous preniez d’autres mesures pour protéger l’organisation. Donnez à vos bénévoles des
+consignes claires sur ce qu’on attend d’eux et sur les tâches de la journée ; ils reviendront plus volontiers les
+semaines suivantes s’ils sentent que leur temps a été bien utilisé.
+
+<Download href="downloads/forms/volunteer-release-form.pdf" label="Formulaire de décharge de responsabilité pour bénévoles" note="Un par bénévole ; pour les bénévoles de moins de 18 ans, un parent ou un tuteur doit aussi signer" />
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={3} />
+
+## Phase 1 : Organiser {/* #phase-1-organize */}
+
+Comme dans toute démarche, la première étape, et la plus importante, est d’organiser votre équipe en choisissant les
+responsables du projet et en établissant un calendrier. Le nombre de personnes à qui vous confiez ces rôles dépend de
+la complexité et de la taille de votre projet.
+
+- **Responsable de chantier.** Commande les matériaux, est présent pour les livraisons, donne les consignes aux
+  bénévoles les jours de construction et coordonne le calendrier avec le chef de projet.
+- **Chef de projet.** S’occupe de trouver des bénévoles, des réseaux sociaux, de commander les repas et de distribuer
+  les formulaires de décharge ; coordonne les finances et tient le calendrier.
+
+<Field id="create.construction-manager" label="Responsable de chantier" hint="Commande les matériaux, dirige les journées de construction" />
+<Field id="create.project-manager" label="Chef de projet" hint="Bénévoles, calendrier, finances" />
+
+<ListField
+  id="create.org-chart"
+  label="Bénévoles et entrepreneurs"
+  rowName="une personne"
+  min={3}
+  columns={[
+    { key: 'name', label: 'Nom' },
+    { key: 'role', label: 'Rôle', placeholder: 'bénévole, entrepreneur…' },
+    { key: 'contact', label: 'Contact' },
+  ]}
+/>
+
+Un calendrier de projet est un excellent moyen de suivre les horaires, les dates importantes, les moments où les
+bénévoles travailleront et les délais de livraison des matériaux. La planification est aussi importante que la
+construction elle-même : partez du bon pied.
+
+<BuildSchedule />
+
+<Download href="downloads/templates/project-calendar.xlsx" label="Modèle de calendrier" note="Exemple de calendrier de projet et de liste de contacts — à titre de référence, faites-en votre propre copie" />
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={4} />
+
+## Phase 2 : Préparer le terrain {/* #phase-2-prepare-the-lot */}
+
+### Étapes
+
+**Étape 1 : Évaluer.** Certains sites demandent plus de déblayage ou de nivellement que d’autres, ce qui peut
+nécessiter des machines spéciales : contactez une entreprise d’aménagement paysager si l’une des tâches suivantes ne
+peut pas être faite par les habitants seuls.
+
+- Contactez l’équipe PiaT ([ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu)) pour une visite de
+  conseil sur le site si vous ne savez pas comment préparer votre site.
+- Appelez Pennsylvania One Call au **811** pour faire marquer l’emplacement des réseaux souterrains (gaz, eau,
+  électricité…).
+
+<Field id="create.one-call-address" label="Adresse pour votre demande à PA One Call" auto="lot.address" />
+
+**Étape 2 : Protéger.** Apportez les petits outils et le matériel sur le site. Installez une clôture de chantier de
+protection, avec des piquets en bois, autour des troncs d’arbres, des bâtiments et des autres éléments à protéger.
+Installez une barrière contre l’érosion et la boue autour du site et devant toutes les bouches d’égout.
+
+**Étape 3 : Enlever.** Enlevez la végétation non désirée (racines comprises), les souches d’arbres, les déchets et les
+gravats de maçonnerie — pour certaines plantes, il faudra peut-être un traitement herbicide pour les éliminer
+efficacement et à temps. Taillez les arbres existants pour enlever les branches du tronc jusqu’à au moins 6' de
+hauteur. Emportez les débris et la végétation hors du site, à la décharge appropriée ; gardez en tas sur le site les
+gravats de maçonnerie, qui serviront à remplir les cages de gabions.
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — street trees are the City's; facts checked 2026-10-04 on phila.gov. */}
+<Callout kind="site">
+  Les arbres de rue (ceux qui sont dans le trottoir) appartiennent à la Ville : pour en tailler ou en abattre un, il
+  faut un permis de Philadelphia Parks & Recreation (le service des parcs de la Ville), qui taille et enlève
+  gratuitement les arbres de rue dangereux (faites la demande au 311). Voir les [questions sur les arbres de rue ↗](https://www.phila.gov/departments/philadelphia-parks-recreation/street-tree-frequently-asked-questions/)
+  de la Ville (en anglais).
+</Callout>
+
+**Étape 4 : Niveler le site.** Commencez à ratisser et à niveler le site. Vérifiez que les marquages de Pennsylvania
+One Call sont toujours en place et visibles — le niveau du sol doit être à peu près le même que celui du trottoir.
+
+### Matériel et outils
+
+<Checklist
+  id="create.phase2-tools"
+  items={[
+    { value: 'Shovels', label: 'Pelles' },
+    { value: 'Wheelbarrows', label: 'Brouettes' },
+    { value: 'Pick axe', label: 'Pioche' },
+    { value: 'Grading rakes', label: 'Râteaux à niveler' },
+    { value: 'Sledgehammer', label: 'Masse' },
+    { value: 'Hand pruners + loppers', label: 'Sécateurs + coupe-branches' },
+    { value: 'Pruning saws', label: 'Scies d’élagage' },
+    { value: 'Spray paint', label: 'Peinture en aérosol' },
+    { value: 'Construction fencing', label: 'Clôture de chantier' },
+    { value: 'Wood posts', label: 'Piquets en bois' },
+    { value: 'Broom', label: 'Balai' },
+    { value: 'Chainsaw', label: 'Tronçonneuse' },
+    { value: 'Trash bags', label: 'Sacs-poubelle' },
+  ]}
+/>
+<Checklist
+  id="create.phase2-tools-optional"
+  label="Facultatif — pour les sites avec beaucoup de surfaces inégales, de béton ou de souches d’arbres"
+  items={[
+    { value: 'excavator', label: 'Pelleteuse', hint: 'il vaut mieux engager une entreprise' },
+    { value: 'stump-grinder', label: 'Rogneuse de souches', hint: 'il vaut mieux engager une entreprise' },
+    { value: 'Jack hammer', label: 'Marteau-piqueur' },
+    { value: 'Rototiller', label: 'Motoculteur' },
+    { value: 'Herbicide spray', label: 'Pulvérisateur d’herbicide' },
+  ]}
+/>
+
+<Figure
+  src="img/create/phase2-reference-photos.webp"
+  alt="Photos de référence pour préparer le terrain : une pelleteuse qui déblaie un site, un fanion de repérage des réseaux et un fil détecteur sur une pelouse, des bénévoles qui enlèvent des gravats, un filet anti-érosion le long d’un trottoir, et un bénévole qui ratisse la terre pour la niveler"
+/>
+
+### Liens utiles (en anglais)
+
+- **Location d’outils** — il peut valoir la peine d’engager une entreprise pour les outils électriques, pour gagner du
+  temps et pour la sécurité.
+  [West Philadelphia Tool Library ↗](https://westphillytools.org) (outils à main seulement ; 1314 S 47th St) ·
+  [OK Rental ↗](https://okrentalsaleservice.com) *(lien qui ne fonctionne plus)* (outils électriques, y compris des tronçonneuses ; 640 Main St, Darby) ·
+  [Diamond Tool ↗](https://diamondtool.net/Rentals) *(impossible à vérifier automatiquement)* (2800 Grays Ferry Ave)
+- **Déchets et recyclage** — [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/) (3850 W Ford Rd)
+- **Vidéo sur la taille des arbres** — [youtube.com/watch?v=pY5A-5gUqwo ↗](https://youtube.com/watch?v=pY5A-5gUqwo)
+- **Reconnaître les mauvaises herbes** — [guide des mauvaises herbes du Philadelphia Orchard Project ↗](https://www.phillyorchards.org/resources/)
+- **Herbicides** (à utiliser avec modération, en suivant toujours les instructions de l’étiquette) — le piclorame
+  pour traiter les souches des plantes ligneuses ; le glyphosate en pulvérisation sur les feuilles des plantes
+  herbacées et ligneuses ; le clopyralid contre l’armoise commune et le chardon des champs. Plantes envahissantes qui
+  demandent souvent un herbicide : l’armoise commune, le chardon des champs, la renouée du Japon et le roseau commun
+  (phragmites) (herbacées) ; le mûrier à papier (Broussonetia), l’ailante (Ailanthus), le paulownia et le
+  chèvrefeuille du Japon (ligneuses — coupez et traitez la souche seulement si elle est trop grosse pour être
+  arrachée avec les racines).
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — herbicide labels, restricted-use picloram, 20% vinegar; facts checked 2026-10-04 on epa.gov and npic.orst.edu. */}
+<Callout kind="site">
+  L’étiquette d’un herbicide a force de loi : suivez-la, y compris pour les endroits où vous avez le droit d’utiliser
+  le produit et l’équipement de protection qu’elle indique ([EPA ↗](https://www.epa.gov/pesticide-labels/introduction-pesticide-labels),
+  en anglais). Beaucoup de produits au piclorame sont à usage restreint : seul un applicateur certifié peut les
+  acheter ou les appliquer ([liste de l’EPA ↗](https://www.epa.gov/pesticide-worker-safety/restricted-use-products-rup-report),
+  en anglais). Le vinaigre vendu comme désherbant (20 % ou plus) peut abîmer les yeux pour toujours : portez une
+  protection pour les yeux et des gants ([NPIC ↗](https://npic.orst.edu/faq/vinegar.html), en anglais).
+</Callout>
+
+### Préparer la suite
+
+Consultez votre calendrier de projet et modifiez-le si nécessaire. Achetez et faites livrer les matériaux ou le
+matériel qui ont un délai de livraison, et assurez-vous que le site est prêt pour la phase 3.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={5} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={6} label="Photos de référence et liens (PDF)" />
+
+## Phase 3 : Tracé et couche de gravier {/* #phase-3-layout-gravel-base */}
+
+### Étapes
+
+**Étape 1 : Matériaux.** Apportez le matériel et les outils sur le site ; préparez-vous pour les livraisons. Choisissez
+un endroit où entreposer le gravier et couvrez-le d’une bâche si possible. Marquez à la peinture en aérosol les zones
+générales qui recevront du gravier — s’il n’y a pas assez de place, organisez la livraison avec votre ville pour
+qu’il soit déposé dans la rue.
+
+<Callout kind="note" title="Vous bloquez la rue pour une livraison ?">
+  Demandez un permis temporaire d’interdiction de stationner, pour que le camion de livraison ait de la place pour
+  décharger.
+  [Faire la demande sur phila.gov (en anglais) ↗](https://www.phila.gov/services/cars-parking-transportation/apply-for-a-parking-permit/apply-for-a-temporary-no-parking-permit/)
+</Callout>
+<Field id="create.delivery-address" label="Adresse pour le permis d’interdiction de stationner" auto="lot.address" />
+
+**Étape 2 : Tracer les massifs et l’emplacement des éléments du parc.** Commencez au point de départ que vous avez
+marqué dans le cahier Évaluer. Reportez-vous à votre plan pour l’emplacement et la longueur des bords des massifs et
+des éléments du parc. Avec des piquets et une ficelle, marquez l’emplacement des bordures et des éléments du parc que
+vous ajouterez dans les phases suivantes.
+
+**Étape 3 : Poser la sous-couche.** Préparez le sol pour les cages de gabions en suivant les instructions de montage.
+Creusez les entrées pour rattraper la différence de niveau entre le nouveau parc et le trottoir — au moins 4" de
+profondeur au bord du trottoir, en nivelant au besoin (utilisez la terre en trop pour niveler les chemins ou ajoutez-la
+aux zones de plantation). Étalez 2" de gravier sur toutes les zones sauf les massifs, environ 6" plus large que vos
+ficelles, pour que les bordures de la phase suivante puissent reposer sur le gravier. Passez une plaque vibrante sur
+le gravier au moins deux fois.
+
+**Étape 4 : Entrées et nettoyage.** Ramassez le gravier qui a débordé et nettoyez les espaces publics.
+
+### Matériel, outils et matériaux
+
+<Checklist
+  id="create.phase3-tools"
+  items={[
+    { value: 'Square', label: 'Équerre' },
+    { value: 'Measuring tape', label: 'Mètre ruban' },
+    { value: 'Shovels', label: 'Pelles' },
+    { value: 'Wheelbarrows', label: 'Brouettes' },
+    { value: 'Pick axe', label: 'Pioche' },
+    { value: 'Grading rakes', label: 'Râteaux à niveler' },
+    { value: '5 lb hammer', label: 'Masse de 5 lb' },
+    { value: 'Spray paint', label: 'Peinture en aérosol' },
+    { value: 'Wood posts and string', label: 'Piquets en bois et ficelle' },
+    { value: 'Vibrating plate compactor', label: 'Plaque vibrante (compacteur)' },
+    { value: 'Broom', label: 'Balai' },
+  ]}
+/>
+<p class="muted">Matériaux : gravier, tout-venant de 3/4" (roadbase).</p>
+
+<Figure
+  src="img/create/phase3-reference-photos.webp"
+  alt="Photos de référence pour le tracé et la couche de gravier : mesurer le site, creuser, préparer la sous-couche, un camion qui livre du gravier, tracer le site avec des piquets et une ficelle, un tas de gravier, transporter le gravier à la brouette et l’étaler"
+/>
+
+### Liens utiles (en anglais)
+
+- **Comment faire** — [Tracer des massifs ↗](https://lowes.com/n/how-to/create-an-english-style-garden) (regardez de 1:50 à 2:40) ·
+  [Poser une sous-couche de gravier ↗](https://youtube.com/watch?v=tfDEOIAIUwQ)
+- **Location d’outils** — [West Philadelphia Tool Library ↗](https://westphillytools.org) ·
+  [OK Rental ↗](https://okrentalsaleservice.com) *(lien qui ne fonctionne plus)* · [Diamond Tool ↗](https://diamondtool.net/Rentals) *(impossible à vérifier automatiquement)*
+
+### Préparer la suite
+
+Consultez votre calendrier de projet et modifiez-le si nécessaire. Achetez et faites livrer les matériaux qui ont un
+délai de livraison pour les phases suivantes. Assurez-vous que le site est prêt pour la phase 4.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={7} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={8} label="Photos de référence et liens (PDF)" />
+
+## Phase 4 : Poser la bordure {/* #phase-4-install-the-edge */}
+
+### Étapes
+
+**Étape 1 : Matériaux.** Apportez les matériaux de votre bordure (voir l’estimation des coûts et les instructions de
+montage). Enlevez la barrière anti-érosion ; la protection des arbres doit rester, sauf si elle gêne la pose de la
+bordure.
+
+**Étape 2 : Assembler.** Montez les cages de gabions (voir les instructions de montage du mur en gabions).
+
+**Étape 3 : Installation.** Tendez des ficelles pour que les cages de gabions soient alignées bien droit le long du
+bord du parc. Disposez les cages selon votre plan et remplissez le fond avec 2 à 3" de gravier. Faites de petits
+ajustements pour que les cages soient de niveau et bien alignées les unes par rapport aux autres — quand elles
+servent seules de tables ou de bancs, posez un niveau sur le dessus. Ajoutez des bordures en bois là où il le faut
+(voir les instructions de montage des bordures en bois).
+
+### Matériel et matériaux
+
+<Checklist
+  id="create.phase4-tools"
+  items={[
+    { value: 'Measuring tape', label: 'Mètre ruban' },
+    { value: 'Shovels', label: 'Pelles' },
+    { value: 'Wheelbarrows', label: 'Brouettes' },
+    { value: 'Garden hoes', label: 'Binettes' },
+    { value: 'Grading rakes', label: 'Râteaux à niveler' },
+    { value: 'Hand tamper', label: 'Dame à main' },
+    { value: 'Wire cutters', label: 'Pinces coupantes' },
+    { value: 'Sledge hammer', label: 'Masse' },
+    { value: 'Level', label: 'Niveau' },
+    { value: 'Broom', label: 'Balai' },
+  ]}
+/>
+<p class="muted">Matériaux : cages de gabions ; bois et quincaillerie pour la bordure en bois ; gros gravats de maçonnerie pour les cages de gabions, de 3" ou plus.</p>
+
+<Figure
+  src="img/create/phase4-reference-photos.webp"
+  alt="Photos de référence pour poser la bordure : deux cages de gabions remplies, et un bénévole qui place une planche de bordure en bois contre un lit de gravier"
+/>
+
+### Liens utiles (en anglais)
+
+- **Matériaux** — [Castor Materials ↗](https://castormaterials.com) (pierre concassée, livraison ; 3301 S 61st St) ·
+  [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) (pierre concassée, paillis, outils ; 4260 Macalester St) ·
+  [Underdog Supply ↗](https://www.underdogsupply.com/) (livraison en vrac ; Conshohocken) ·
+  Galantino Supply Company (location de matériel et matériaux en vrac ; 725 Old Marple Rd, Springfield — (610) 544-2586)
+- **Comment faire** — [Construire un mur en gabions ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
+
+### Préparer la suite
+
+Consultez votre calendrier de projet et modifiez-le si nécessaire. Achetez et faites livrer les matériaux qui ont un
+délai de livraison. Assurez-vous que le site est prêt pour la phase 5.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={9} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={10} label="Photos de référence et liens (PDF)" />
+
+## Phase 5 : Étaler la terre végétale {/* #phase-5-spread-topsoil */}
+
+### Étapes
+
+**Étape 1 : Matériaux.** Enlevez la clôture de protection des arbres. Choisissez un endroit sur le trottoir ou dans la
+rue pour entreposer la terre végétale — dans ce cas, demandez un permis temporaire d’interdiction de stationner (voir
+la phase 3).
+
+**Étape 2 : Mise en place de la terre.** Préparez les massifs à recevoir la terre végétale en nivelant le sol
+existant. Étalez la terre végétale sur environ 4 à 6" d’épaisseur et nivelez-la pour qu’elle soit bien lisse.
+
+**Étape 3 : Nettoyage.** Ramassez la terre qui a débordé et nettoyez les espaces publics.
+
+### Matériel et matériaux
+
+<Checklist
+  id="create.phase5-tools"
+  items={[
+    { value: 'Measuring tape', label: 'Mètre ruban' },
+    { value: 'Shovels', label: 'Pelles' },
+    { value: 'Wheelbarrows', label: 'Brouettes' },
+    { value: 'Grading rakes', label: 'Râteaux à niveler' },
+    { value: 'Garden hoes', label: 'Binettes' },
+    { value: 'Broom', label: 'Balai' },
+  ]}
+/>
+<p class="muted">Matériaux : terre végétale.</p>
+
+<Figure
+  src="img/create/phase5-reference-photos.webp"
+  alt="Photos de référence pour étaler la terre végétale : un camion-benne qui livre de la terre végétale, un bénévole qui nivelle la terre à la main, deux bénévoles qui transportent de la terre à la brouette, et un bénévole qui met de la terre dans un massif"
+/>
+
+### Liens utiles (en anglais)
+
+- **Commander** — [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
+- **Comment faire** — [Préparer la terre végétale ↗](https://youtube.com/watch?v=GcOJ4fDJmpM) · [Une terre saine pour des plantes saines ↗](https://youtube.com/watch?v=7-Tyz7fGeZo)
+
+### Préparer la suite
+
+Consultez votre calendrier de projet et modifiez-le si nécessaire. Achetez et faites livrer les matériaux qui ont un
+délai de livraison. Assurez-vous que le site est prêt pour la phase 6.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={11} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={12} label="Photos de référence et liens (PDF)" />
+
+## Phase 6 : Planter {/* #phase-6-plant */}
+
+### Étapes
+
+**Étape 1 : Plantes.** Enlevez les mauvaises herbes qui ont poussé. Vérifiez que les livraisons de plantes sont
+prévues et que vous avez choisi un endroit pour recevoir les plantes livrées. Disposez les arbres et les arbustes à
+l’endroit voulu, puis ramassez la terre qui a débordé et nettoyez les espaces publics.
+
+**Étape 2 : Plantation.** Plantez d’abord les grands arbres (voir le détail de plantation ci-dessous). Plantez les
+arbustes, nivelez finement la terre, plantez les vivaces, mettez 4" de paillis, puis arrosez abondamment toutes les
+plantes — recommencez deux fois par semaine jusqu’à ce que les plantes entrent en dormance pour l’hiver.
+
+<Figure
+  src="img/create/phase6-plant-illustration.webp"
+  alt="Dessin en perspective d’un parc terminé sur un terrain de rue, intitulé PLANT (planter), avec des arbres, des massifs surélevés et un espace de rencontre pavé entre deux maisons mitoyennes"
+/>
+<Figure
+  src="img/create/phase6-planting-detail.webp"
+  alt="Deux schémas de plantation : un détail de plantation d’arbuste ou de vivace en pot, qui montre l’épaisseur du paillis et le remblai, et un détail de plantation d’arbre, qui montre la position de la motte, le tuteurage, le paillis et le retrait de la toile de jute"
+/>
+
+### Matériel et matériaux
+
+<Checklist
+  id="create.phase6-tools"
+  items={[
+    { value: 'Measuring tape', label: 'Mètre ruban' },
+    { value: 'Shovels', label: 'Pelles' },
+    { value: 'Wheelbarrows', label: 'Brouettes' },
+    { value: 'Pick axe', label: 'Pioche' },
+    { value: 'Landscape rakes', label: 'Râteaux de paysagiste' },
+    { value: 'Spray paint', label: 'Peinture en aérosol' },
+    { value: 'Tree stakes and rope', label: 'Tuteurs d’arbres et corde' },
+    { value: 'Broom', label: 'Balai' },
+  ]}
+/>
+<p class="muted">Matériaux : plantes — n’oubliez pas de vous reporter à votre liste de plantes.</p>
+
+### Liens utiles (en anglais)
+
+- **Informations générales sur les plantes** — [PHS Gold Medal Plants ↗](https://phsonline.org/for-gardeners/gold-medal-plants) ·
+  [Gardens Alive ↗](https://www.gardensalive.com/) · [North Creek Nurseries ↗](https://www.northcreeknurseries.com/) ·
+  [Missouri Botanical Garden ↗](https://www.missouribotanicalgarden.org/) · [Longwood Gardens — recherche de plantes ↗](https://plantexplorer.longwoodgardens.org/ecmweb/ECM_Home.html) *(lien qui ne fonctionne plus)* ·
+  [Arbor Day Foundation ↗](https://www.arborday.org/) · [Penn State Extension — potager ↗](https://extension.psu.edu/programs/master-gardener)
+- **Pépinière partenaire de PiaT** — LandHealth Institute, 4862 Parkside Ave, Philadelphie · (267) 571-5750 ·
+  [landhealthinstitute.org/nursery ↗](https://www.landhealthinstitute.org/nursery)
+- **Autres pépinières de la région** — [Good Host Plants ↗](https://www.goodhostplants.com/) (spécialiste local des pollinisateurs) ·
+  [Pleasant Run Nursery ↗](https://www.pleasantrunnursery.com/) · [Pinelands Nursery ↗](https://www.pinelandsnursery.com/) ·
+  [Archewild ↗](https://archewild.com/)
+- **Arbres fruitiers** — [Philadelphia Orchard Project ↗](https://www.phillyorchards.org/) ·
+  [Burpee ↗](https://www.burpee.com/fruit/fruit-trees/) · [Stark Bros ↗](https://www.starkbros.com/products/fruit-trees)
+- **Ateliers de jardinage et aide pour les terrains** — [Pennsylvania Horticultural Society ↗](https://phsonline.org/) ·
+  [Grounded in Philly ↗](https://groundedinphilly.org/) (aide juridique, assurance, données sur les terrains)
+- **Comment faire** — [Conseils pour planter en pot et planter des bulbes ↗](https://www.gardeners.com/how-to/growing-annual-flowers/5070.html) ·
+  [Planter un arbre vendu en pot ↗](https://www.arborday.org/trees/planting/containerized.cfm) ·
+  [Comment planter un arbuste ↗](https://youtube.com/watch?v=Tim4LEo6l10)
+
+### Préparer la suite
+
+Consultez votre calendrier de projet et vérifiez que vous avez un planning pour un ambassadeur du parc — voir l’étape
+Entretenir pour plus de détails. Fournisseurs de paillis : [Mid Atlantic Pine Straw ↗](https://www.midatlanticpinestraw.com/) ·
+[Underdog Landscape Supply ↗](https://underdogsupply.com) · [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/get-organic-materials/)
+(sites en anglais)
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={13} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={14} label="Liens utiles (PDF)" />
+
+## Phase 7 : Poser la surface de gravier {/* #phase-7-install-the-gravel-surface */}
+
+### Étapes
+
+**Étape 1 : Matériaux.** Préparez-vous pour les livraisons si le gravier n’est pas déjà en tas sur place. Choisissez
+un endroit sur le trottoir ou dans la rue pour entreposer le gravier (permis temporaire d’interdiction de stationner si
+nécessaire — voir la phase 3).
+
+**Étape 2 : Pose.** Posez la surface de gravier avec une brouette et un râteau de paysagiste. Mettez environ 2" de
+gravier, en étalant le surplus de façon régulière. Tassez les granulats avec une plaque vibrante pour limiter
+l’affaissement, et passez sur toutes les zones pour qu’elles soient bien planes et de niveau.
+
+**Étape 3 : Nettoyage.** Ramassez le gravier qui a débordé et nettoyez les espaces publics.
+
+### Matériel et matériaux
+
+<Checklist
+  id="create.phase7-tools"
+  items={[
+    { value: 'Measuring tape', label: 'Mètre ruban' },
+    { value: 'Shovels', label: 'Pelles' },
+    { value: 'Wheelbarrows', label: 'Brouettes' },
+    { value: 'Landscape rakes', label: 'Râteaux de paysagiste' },
+    { value: 'Hand tamper', label: 'Dame à main' },
+    { value: 'Vibratory plate', label: 'Plaque vibrante' },
+    { value: 'Broom', label: 'Balai' },
+  ]}
+/>
+<p class="muted">Matériaux : gravier de 3/8" ou plus fin (poussière de pierre).</p>
+
+<Figure
+  src="img/create/phase7-reference-photos.webp"
+  alt="Photos de référence pour poser la surface de gravier : un râteau de paysagiste pour niveler, une dame à main sur du gravier tassé, et un bénévole qui passe une plaque vibrante à essence"
+/>
+
+### Liens utiles (en anglais)
+
+- **Matériaux** — [Castor Materials ↗](https://castormaterials.com) · [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) ·
+  Galantino Supply Company ((610) 544-2586) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
+- **Comment faire** — [Poser du gravier ↗](https://youtube.com/watch?v=t0LWQ_U2z_g)
+
+### Préparer la suite
+
+Consultez votre calendrier de projet et modifiez-le si nécessaire. Achetez et faites livrer les matériaux qui ont un
+délai de livraison. Assurez-vous que le site est prêt pour la phase 8.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={15} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={16} label="Photos de référence et liens (PDF)" />
+
+## Phase 8 : Installer les éléments du parc {/* #phase-8-install-park-elements */}
+
+### Étapes
+
+**Étape 1 : Mesurer.** Relisez vos guides de montage, puis mesurez et marquez l’endroit où doivent aller les éléments
+de votre parc.
+
+**Étape 2 : Matériaux.** Vérifiez que vous avez tous les matériaux indiqués dans vos guides de montage.
+
+**Étape 3 : Assembler.** Montez les éléments de votre parc en suivant les guides de montage.
+
+**Étape 4 : Installer.** Vérifiez qu’il y a assez de place dans votre plan pour installer les éléments, puis mettez-les
+à leur place définitive. Vous pourrez peut-être — ou vous choisirez peut-être — monter des éléments à l’avance ou
+ailleurs que sur le site.
+
+<Callout kind="auto">
+  Chaque élément qui a un guide de montage est relié depuis la grille [Assembler](/steps/dream/#assemble) de l’étape
+  Rêver — les mêmes guides y sont listés.
+</Callout>
+
+### Liens utiles (en anglais)
+
+- **Comment construire…** (utilisez d’abord les guides de montage ; ces vidéos sont un complément) — [Table commune ↗](https://youtube.com/watch?v=Px2JZs4Q2v4) ·
+  [Châssis froid ↗](https://youtube.com/watch?v=b75RoDmE9qY) · [Bacs de jardin surélevés ↗](https://youtube.com/watch?v=MBIYebUgVVI) ·
+  [Bacs à compost ↗](https://youtube.com/watch?v=gA6QNLaBEyc) · [Table de rempotage ↗](https://youtube.com/watch?v=E7HumfxE2f4) ·
+  [Cabane de jardin ↗](https://youtube.com/watch?v=DuQ0N8z6OkI) · [Mur en gabions ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
+- **Bois et matériaux de construction** — Woodland Building Supply, 4701 Woodland Ave, Philadelphie — (215) 727-5333 ·
+  C & R Building Supply, 1601 S 49th St, Philadelphie · A&A Lumber (cyprès), Avondale (Pennsylvanie) · Delaware County Lumber, Boothwyn (Pennsylvanie)
+
+### Préparer la suite
+
+Consultez votre calendrier de projet et modifiez-le si nécessaire : votre parc est presque terminé !
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={17} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={18} label="Instructions de montage et liens (PDF)" />
+
+{/* site-added: the workbook's own contents page lists a Summary, but this working draft doesn't include one — this wrap-up just recaps the 8 phases above as a final checklist. No new advice. */}
+## Résumé {/* #summary */}
+
+<Checklist
+  id="create.summary-checklist"
+  items={[
+    { value: 'phase1', label: 'Phase 1 : Organiser', hint: 'Rôles de l’équipe répartis, calendrier établi' },
+    { value: 'phase2', label: 'Phase 2 : Préparer le terrain', hint: 'Déblayé, protégé, nivelé' },
+    { value: 'phase3', label: 'Phase 3 : Tracé et couche de gravier', hint: 'Massifs et éléments tracés au sol, sous-couche posée' },
+    { value: 'phase4', label: 'Phase 4 : Poser la bordure', hint: 'Cages de gabions et bordures en bois en place' },
+    { value: 'phase5', label: 'Phase 5 : Étaler la terre végétale', hint: 'Massifs nivelés et remplis' },
+    { value: 'phase6', label: 'Phase 6 : Planter', hint: 'Arbres, arbustes et vivaces en terre' },
+    { value: 'phase7', label: 'Phase 7 : Poser la surface de gravier', hint: 'Gravier de finition tassé et de niveau' },
+    { value: 'phase8', label: 'Phase 8 : Installer les éléments du parc', hint: 'Bancs, tables et structures montés et en place' },
+  ]}
+/>
+
+<Callout kind="tip">
+  Votre parc est construit ! Passez à l’étape Entretenir pour qu’il reste en pleine forme : arrosage, désherbage et
+  plan d’entretien annuel.
+</Callout>

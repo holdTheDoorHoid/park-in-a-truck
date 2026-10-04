@@ -1,0 +1,197 @@
+{
+  "title": "Banc en gabions de 4' avec assise en bois",
+  "summary": "Une cage de gabion en grillage de 4 pieds, remplie de pierres et recouverte d’une assise en bois de 2x4 — montée et remplie sur place, ou montée ailleurs et remplie en dernier.",
+  "materials": [
+    {
+      "item": "Grillage métallique soudé à mailles de 2x2",
+      "notes": "Fournisseurs suggérés : Darby and Sons (darbywiremesh.com) ou Gabion1.com. Si vous commandez des pièces coupées sur mesure, demandez qu’elles soient coupées à la bonne taille, avec des pièces fermées, et galvanisées après la coupe."
+    },
+    {
+      "item": "Bois de dimension 2x4 — cèdre rouge de l’Ouest, douglas ou pin traité sous pression",
+      "notes": "Cèdre : résiste naturellement aux intempéries et à la pourriture, belle teinte rouge, pas besoin de produit de protection ; coûte plus cher — demandez la qualité « noueuse » (STK). Douglas : résiste moyennement à la pourriture, solide, moins cher que le cèdre ; bon choix si vous comptez le peindre. Bois traité sous pression : le moins cher et résistant à la pourriture, mais de qualité souvent mauvaise ou irrégulière ; doit sécher à l’air 1 à 4 mois avant d’être peint ; déconseillé là où l’on cultive de la nourriture. Commandez 5 à 10 % de plus que la liste de coupe, pour compenser la qualité variable du bois et les coupes ratées.",
+      "siteNote": "4 planches et demie ne suffisent que si l’on tire deux pièces de 48″ de chaque planche de 8′, ce qui ne laisse rien pour le trait de scie : la deuxième pièce sera trop courte d’environ ⅛″, sauf si la planche est un peu plus longue que prévu. Pour sept pièces complètes de 48″, coupez-en une par planche (7 planches, les trois pièces de 15″ venant d’une seule chute) ou achetez des 2x4x10 (4 planches)."
+    },
+    {
+      "item": "Matériau de remplissage du gabion",
+      "notes": "Un matériau anguleux, dur et inerte, qui ne se dégrade pas avec le temps : pierre de carrière, morceaux de chaussée recyclés (béton ou asphalte), ou briques et blocs de béton recyclés. N’utilisez pas de bûches ni d’autres matières organiques. Mélangez des tailles de 2\" au minimum à 12\" au maximum ; les morceaux sur la face extérieure doivent faire plus de 3\"."
+    },
+    {
+      "item": "Matériau de renfort (pour le support du centre, sous la pièce du milieu du cadre)",
+      "notes": "Soit un rouleau de fil de fer galvanisé lisse de calibre 14 ou 16, soit des chutes du grillage à mailles de 2x2 coupées en deux avec un coupe-boulons (sur toute la largeur de la cage, et d’au moins 2 mailles, soit 4\", de haut)."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Vis à bois d’extérieur autoforeuses"
+    },
+    {
+      "item": "Agrafes à anneau (hog rings)"
+    },
+    {
+      "item": "Cavaliers (clous en U)"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Cadre du banc en gabions"
+    },
+    {
+      "notes": "Dessus + cadre du banc en gabions"
+    },
+    {
+      "notes": "Panneau du fond du gabion, 48\" x 18\""
+    },
+    {
+      "notes": "Côté du gabion (long), 48\" x 18\" chacun"
+    },
+    {
+      "notes": "Côté du gabion (court), 18\" x 18\" chacun"
+    }
+  ],
+  "tools": [
+    "Scie à onglets de 10\" ou 12\" (ou une scie à main adaptée)",
+    "Visseuse à percussion pour les vis à bois d’extérieur autoforeuses",
+    "Perceuse avec un foret de 1/8\"",
+    "Papier de verre, grain 120",
+    "Équerre de charpentier",
+    "Lunettes de sécurité + gants",
+    "Pince à agrafes à anneau",
+    "Coupe-boulons",
+    "Marteau",
+    "Masse de 4 lb",
+    "Meuleuse (pour adoucir les bouts de fil coupants)"
+  ],
+  "steps": [
+    {
+      "title": "Mesurer, étiqueter et couper le bois et le grillage",
+      "text": "Mesurez, étiquetez et coupez le bois dans l’ordre, de GB-1 à GB-2, aux longueurs de la liste de coupe.\n\nTriez votre grillage à mailles de 2x2 en piles de même taille et étiquetez-les 18-4a (fond du gabion), 18-4b (côté long du gabion) et 18-4c (côté court du gabion).",
+      "imageAlts": [
+        "Schéma en perspective des pièces de bois GB-1 et GB-2 et des panneaux de grillage 18-4a, 18-4b et 18-4c, avec leur longueur et un schéma de la façon dont les panneaux se touchent."
+      ],
+      "tips": [
+        "Étiquetez chaque morceau de bois au fur et à mesure que vous le mesurez et le coupez.",
+        "Faites une pile de bois séparée pour GB-1 et pour GB-2.",
+        "Poncer légèrement les bords coupés enlève les échardes et facilite l’assemblage.",
+        "Vous construisez plus d’un gabion ? Une butée sur votre scie à onglets permet de couper toutes les pièces à la même longueur."
+      ]
+    },
+    {
+      "title": "Agrafer les côtés en grillage aux bouts du cadre",
+      "text": "Posez deux pièces GB-2 et deux pièces GB-1 sur une surface plane, en alignant les bords comme sur le dessin.\n\nVérifiez que les fils verticaux du grillage du gabion touchent le bois, et que les fils transversaux (aux bords lisses) qui vont dans le même sens que la planche sont à l’extérieur, pour que les bords coupants ne soient pas sur l’extérieur du gabion.\n\nCentrez les deux pièces de grillage 18-4c sur la pièce de bois GB-1 : il doit y avoir 1.5\" entre le bord du bois et le bord du grillage.\n\nFixez les deux pièces de grillage 18-4c et les deux pièces 18-4b sur les pièces de bois GB-1 et GB-2 avec un marteau et 32 cavaliers galvanisés de 1.5\" — 2 cavaliers par pièce de grillage.",
+      "imageAlts": [
+        "Schéma des panneaux de grillage 18-4c et 18-4b agrafés sur les pièces de bois GB-1 et GB-2, avec un gros plan sur l’emplacement des cavaliers et le décalage de 1.5\" du grillage."
+      ],
+      "tips": [
+        "Si vous reliez plusieurs gabions en rangée, n’agrafez le grillage métallique qu’à une seule pièce GB-1."
+      ],
+      "siteNote": "Cette cage se monte à l’envers : le cadre en bois part du sol et devient le rebord du haut quand vous retournez la cage à l’étape 8. Le modèle 3D montre le banc à l’endroit du début à la fin, donc son cadre en bois est toujours en haut."
+    },
+    {
+      "title": "Monter le cadre",
+      "text": "Posez deux pièces GB-2 sur une surface plane. Placez deux pièces GB-1 entre les pièces GB-2, à chaque bout, en alignant les bords comme sur le dessin.\n\nUtilisez le guide de perçage à la fin du livret pour pré-percer les trous des vis, puis fixez les pièces GB-2 dans les pièces GB-1 avec une visseuse à percussion et 8 vis à bois d’extérieur autoforeuses de 2.5\".",
+      "imageAlts": [
+        "Schéma de deux bouts GB-1 et de deux côtés GB-2 vissés ensemble pour former un cadre rectangulaire."
+      ],
+      "tips": [
+        "Utilisez une équerre de charpentier pour vérifier que chaque coin forme un angle droit.",
+        "Si vous reliez plusieurs gabions ensemble, laissez un bout ouvert — voir le chapitre sur la construction pour la disposition."
+      ]
+    },
+    {
+      "title": "Ajouter le support du centre",
+      "text": "Placez une pièce GB-1 au milieu du cadre monté à l’étape 3.\n\nFixez-la avec une visseuse à percussion et 4 vis à bois d’extérieur autoforeuses de 2.5\".",
+      "imageAlts": [
+        "Schéma d’une pièce GB-1 centrée au milieu du cadre, à égale distance des deux bouts."
+      ]
+    },
+    {
+      "title": "Fermer les coins de la cage",
+      "text": "Attachez ensemble aux coins les panneaux de grillage à mailles de 2x2 — les deux pièces 18-4c et les deux pièces 18-4b — avec des agrafes à anneau et une pince à agrafes, une agrafe toutes les deux mailles. Mettez des agrafes à tous les coins et sur tous les bords pour que la cage garde sa forme.",
+      "imageAlts": [
+        "Schéma des agrafes à anneau qui ferment les coins de la cage en grillage, avec un gros plan d’une agrafe qui relie deux bords de grillage."
+      ]
+    },
+    {
+      "title": "Renforcer le centre",
+      "text": "Au centre de la cage de gabion, sous la pièce GB-1 du milieu, ajoutez un renfort de l’une de ces deux façons : des chutes de grillage à mailles de 2x2 coupées en deux avec un coupe-boulons, ou n’importe quelle chute de grillage à mailles de 2x2 qui couvre toute la largeur de la cage (d’au moins 2 mailles de haut, soit 4\" ou plus).\n\nFixez le support du milieu avec des agrafes à anneau.",
+      "imageAlts": [
+        "Schéma d’un renfort en grillage fixé avec des agrafes à anneau sous la pièce du milieu du cadre."
+      ]
+    },
+    {
+      "title": "Fermer le dessus",
+      "text": "Placez la pièce de grillage du dessus 18-4a sur le dessus de la cage de gabion assemblée à l’étape 5.\n\nFixez la pièce du dessus avec des agrafes à anneau sur les quatre côtés et sur le renfort du centre — une agrafe toutes les deux mailles, et deux à chaque coin. La cage de gabion est maintenant prête à être transportée sur le site.",
+      "imageAlts": [
+        "Schéma du panneau de grillage du dessus 18-4a fixé sur la cage avec des agrafes à anneau, avec un gros plan d’une agrafe de coin qui tient les trois pièces de grillage."
+      ],
+      "siteNote": "Cette « pièce du dessus » est le panneau du fond de la liste de coupe (18-4a). Elle est en haut pendant le montage, puis en dessous une fois la cage retournée à l’étape 8 : c’est là que le modèle 3D la montre."
+    },
+    {
+      "title": "Installer la cage sur le site",
+      "text": "Retournez la cage de gabion (rotation de 180°). Placez-la sur le site, sur une couche de gravier.\n\nVérifiez avec un niveau que la cage de gabion est bien droite.",
+      "imageAlts": [
+        "Schéma montrant la cage de gabion retournée et mise à niveau sur un lit de gravier."
+      ],
+      "tips": [
+        "Si elle est à côté d’autres gabions, utilisez une ficelle et un niveau de ligne pour garder la rangée bien droite."
+      ]
+    },
+    {
+      "title": "Remplir la cage",
+      "text": "Placez le gabion à son emplacement, selon le plan de votre parc. Mettez du gravier en dessous pour faire les derniers ajustements.\n\nEn commençant par les morceaux de remplissage les plus grands et les plus plats, remplissez le gabion en partant des bords, et continuez jusqu’à ce que les côtés soient montés.\n\nRemplissez le cadre avec le reste du remplissage jusqu’au niveau du haut du rebord en bois.",
+      "imageAlts": [
+        "Schéma et photos de référence d’une cage de gabion remplie de pierres, en commençant par de grands morceaux plats le long des bords."
+      ],
+      "tips": [
+        "Placez le remplissage avec soin pour ne pas déformer la cage, et assurez-vous que tous les vides sont remplis pour que ce soit stable.",
+        "Voir votre cahier Créer, phase quatre, pour en savoir plus sur cette étape."
+      ]
+    },
+    {
+      "title": "Poser le dessus en bois et poncer",
+      "text": "Posez deux pièces GB-2 sur le dessus du cadre monté à l’étape 3, en utilisant le guide de perçage à la fin du livret pour pré-percer le bois. Fixez d’abord les deux planches des bouts avec une visseuse à percussion et 12 vis à bois d’extérieur autoforeuses de 2.5\", en gardant le bord à ras du bois en dessous.\n\nEspacez de façon égale les trois autres planches GB-2 entre les deux planches des bouts et fixez-les avec une visseuse à percussion et 12 autres vis à bois d’extérieur autoforeuses de 2.5\".\n\nPoncez légèrement les bords rugueux du banc en gabions, et vérifiez qu’aucun bout de fil du gabion n’est coupant — adoucissez-le à la meuleuse s’il est trop coupant.",
+      "imageAlts": [
+        "Schéma de cinq planches de dessus en bois GB-2 vissées sur la cage de gabion remplie, espacées de façon égale."
+      ],
+      "tips": [
+        "Pré-percer à cette étape aide à éviter que les vis fendent les planches.",
+        "Gardez toutes les vis à une largeur de pouce du bord du bois."
+      ]
+    },
+    {
+      "title": "Guide de perçage (gabarit)",
+      "text": "Découpez le guide de perçage en suivant les pointillés. Pour percer, alignez le bord du gabarit avec le bord extérieur du bois avant de pré-percer.\n\nTous les trous ne servent pas — et tous les assemblages n’utilisent pas le gabarit. Suivez les étapes d’assemblage ci-dessus pour placer vos trous. Gardez tous les trous à environ une largeur de pouce du bord (environ 1\"), même ceux qui n’utilisent pas ce gabarit.",
+      "imageAlts": [
+        "Un gabarit de perçage à imprimer, avec cinq emplacements de trous marqués et des lignes de découpe, et un gros plan montrant la distance entre les trous et le bord de la planche."
+      ]
+    }
+  ],
+  "finishing": "Traiter le bois pour l’extérieur peut prolonger la vie des éléments de votre parc, mais ce n’est pas nécessaire : ces pièces sont conçues pour être bon marché, solides et faciles à construire, donc il peut être plus pratique de laisser la prochaine génération les reconstruire le moment venu. Si vous voulez teinter, peindre ou protéger le dessus en bois, consultez les ressources sur les finitions ci-dessous.",
+  "safety": [
+    "Ce ne sont que des conseils pour le faire soi-même : adaptez les matériaux, l’assemblage et la construction à votre propre projet et à votre site.",
+    "Cette construction suppose de savoir un peu se servir des outils à main et des outils électriques, et de connaître la quincaillerie, les fixations, le bois et les techniques d’assemblage de base.",
+    "Avant d’utiliser un appareil électrique, lisez et suivez les consignes de sécurité du fabricant, et ne laissez personne utiliser des outils électriques sans l’avoir fait aussi.",
+    "C’est vous (le propriétaire) qui êtes responsable des codes de construction et de sécurité, des permis et des autorisations nécessaires.",
+    "Débarrassez d’abord le site des déchets, des dangers et des constructions dont vous ne voulez pas, et repérez les réseaux (gaz, eau, électricité…) qui pourraient gêner avant de creuser.",
+    "Toutes les personnes qui aident à construire doivent signer un formulaire de décharge de responsabilité pour bénévoles.",
+    "Le grillage coupé et le remplissage du gabion peuvent laisser des bords coupants : portez des gants et des lunettes de sécurité, et adoucissez à la meuleuse tout bout de fil coupant."
+  ],
+  "links": [
+    {
+      "label": "Grillage Darby and Sons (en anglais)"
+    },
+    {
+      "label": "Gabion1.com — cage de gabion de 18\" x 18\" (en anglais)"
+    },
+    {
+      "label": "Choisir la meilleure finition pour les projets d’extérieur (Rockler, en anglais)"
+    },
+    {
+      "label": "La meilleure finition pour le bois d’extérieur (Real Milk Paint, en anglais)"
+    },
+    {
+      "label": "Produits de finition pour bois d’extérieur (Vermont Natural Coatings, en anglais)"
+    }
+  ],
+  "sourcePages": "Instructions GABION_BENCH_ASSEMBLY, p. 1–15 (couverture ; avant de commencer ; choix courants de matériaux et de bois ; étapes 1 à 10 ; guide de perçage)"
+}

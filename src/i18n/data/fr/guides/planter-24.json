@@ -1,0 +1,139 @@
+{
+  "title": "Bac à plantes de 24\"",
+  "summary": "Un bac à plantes à lattes en 2x4, de 24\" de haut et 24\" de profondeur, doublé de toile géotextile. Le même PDF décrit aussi une version longue de 24\"x48\", montée de la même façon avec plus de planches de façade — voir les remarques des matériaux et de la liste de coupe.",
+  "materials": [
+    {
+      "item": "Bois de dimension 2x4 — cèdre rouge de l’Ouest, douglas ou pin traité sous pression",
+      "notes": "Pour le bac de 24\"x24\". Le bac long de 24\"x48\" demande 14 planches. Cèdre : résiste naturellement aux intempéries et à la pourriture, a une belle teinte rouge, se travaille facilement, pas besoin de produit de protection ; coûte plus cher — demandez la qualité « noueuse » (STK). Douglas : résiste moyennement à la pourriture, solide, moins cher que le cèdre ; un bon choix si vous comptez le peindre. Bois traité sous pression : le moins cher et résistant à la pourriture, mais de qualité souvent mauvaise ou irrégulière ; doit sécher à l’air 1 à 4 mois avant d’être peint, et il est déconseillé là où l’on cultive de la nourriture. Commandez au moins 5 % de plus que la liste de coupe, pour compenser la qualité variable du bois et les coupes ratées."
+    },
+    {
+      "item": "Toile géotextile",
+      "notes": "Deux morceaux qui se chevauchent tapissent l’intérieur du bac, pour qu’il retienne la terre tout en laissant l’eau s’écouler. Pour le bac de 24\"x24\", coupez deux morceaux de 24\"x72\". Pour le bac de 24\"x48\", coupez un morceau de 48\"x72\" et un morceau de 96\"x24\"."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Vis à bois d’extérieur autoforeuses"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Façade, bout et fond du bac"
+    },
+    {
+      "notes": "Bout du bac"
+    },
+    {
+      "notes": "Façade et fond du bac"
+    },
+    {
+      "notes": "Bout du bac"
+    },
+    {
+      "notes": "Bout du bac"
+    }
+  ],
+  "tools": [
+    "Scie à onglets de 10\" ou 12\" (ou une scie à main adaptée)",
+    "Visseuse à percussion pour les vis à bois d’extérieur autoforeuses",
+    "Perceuse avec des forets de 1/8\" et de 1/4\" pour pré-percer les trous",
+    "Agrafeuse",
+    "Papier de verre, grain 120",
+    "Équerre de charpentier",
+    "Lunettes de sécurité + masque"
+  ],
+  "steps": [
+    {
+      "title": "Mesurer, étiqueter et couper le bois",
+      "text": "Mesurez, étiquetez et coupez le bois dans l’ordre, de P-1 à P-2 (bac de 24\"x24\") ou P-1A, P-1, P-2 (bac de 24\"x48\"), aux longueurs de la liste de coupe.\n\nVérifiez chaque morceau de bois pour repérer les défauts, comme des fentes, des déformations ou un sciage irrégulier, et jetez ces parties du bois.",
+      "imageAlts": [
+        "Schémas en perspective des pièces coupées pour le bac de 24\"x24\" (P-1, P-2) et pour le bac de 24\"x48\" (P-1A, P-1, P-2), avec leur longueur indiquée."
+      ],
+      "tips": [
+        "Étiquetez chaque morceau de bois au fur et à mesure que vous le mesurez et le coupez.",
+        "Faites une pile de bois séparée pour chaque pièce.",
+        "Poncer légèrement les bords coupés enlève les échardes et facilite l’assemblage.",
+        "Vous construisez plus d’un bac à plantes ? Une butée sur votre scie à onglets permet de couper toutes les pièces à la même longueur."
+      ]
+    },
+    {
+      "title": "Monter les deux cadres des extrémités",
+      "text": "Posez deux pièces P-1 sur une surface plane. Placez deux pièces P-2 de chaque côté des pièces P-1, en alignant les bords comme sur le dessin. Recommencez pour monter un deuxième cadre identique.",
+      "imageAlts": [
+        "Schéma montrant deux planches P-1 et deux planches P-2 assemblées en un cadre carré pour le bout du bac, pour le bac de 24\"x24\" comme pour celui de 24\"x48\"."
+      ],
+      "tips": [
+        "Utilisez une équerre de charpentier pour vérifier que chaque coin forme un angle droit.",
+        "Fabriquer un gabarit à 90 degrés peut aider à assembler cette étape et la suivante."
+      ]
+    },
+    {
+      "title": "Garnir chaque cadre de bout",
+      "text": "Posez six pièces P-2 sur le dessus du cadre monté à l’étape 2, avec un espace de 1.5\" des deux côtés.\n\nUtilisez le guide de perçage à la fin du livret pour pré-percer les trous des vis, puis fixez le bois dans les pièces P-1 et P-2 avec une visseuse à percussion et 30 vis à bois d’extérieur autoforeuses de 2.5\".\n\nRecommencez sur l’autre côté, puis mettez les deux bouts debout pour l’étape suivante.",
+      "imageAlts": [
+        "Schéma de six planches vissées sur chaque cadre de bout avec un espace de 1.5\" des deux côtés (l’étiquette P-2 du dessin désigne le cadre), pour le bac de 24\"x24\" comme pour celui de 24\"x48\"."
+      ],
+      "tips": [
+        "Utilisez un morceau de bois en trop, posé sur la tranche, comme cale pour obtenir un espace régulier de 1.5\"."
+      ],
+      "siteNote": "Utilisez ici des planches P-1 (21″), et non P-2 : six planches de 21″ sur le cadre de 24″ laissent exactement l’espace de 1.5″ des deux côtés, et la liste de coupe comme le modèle 3D utilisent P-1. Les quatre pièces P-2 de 17″ vont toutes dans les cadres de bout à l’étape 2 (P-1 × 33 = 4 dans les cadres + 12 ici + 12 sur les côtés + 5 dans le fond)."
+    },
+    {
+      "title": "Relier les deux cadres d’extrémité",
+      "text": "Placez six pièces P-1 (ou six pièces P-1A pour le bac de 24\"x48\") entre les deux bouts du bac à plantes.\n\nFixez les pièces P-2 ou P-3 de chaque côté dans les pièces P-2, avec une visseuse à percussion et 24 vis à bois d’extérieur autoforeuses de 2.5\".\n\nRecommencez sur l’arrière du bac à plantes.",
+      "imageAlts": [
+        "Schéma des planches de façade P-1 ou P-1A qui relient les deux cadres de bout pour former les parois du bac à plantes."
+      ],
+      "tips": [
+        "Travaillez à partir du bas, des deux côtés à la fois, et demandez à quelqu’un de vérifier que le côté reste à 90 degrés."
+      ],
+      "siteNote": "Les planches à visser ici sont les six planches de côté P-1 (ou P-1A) que vous venez de placer. Ce guide n’a pas de P-3."
+    },
+    {
+      "title": "Ajouter le fond à lattes",
+      "text": "Placez cinq pièces P-2 (ou cinq pièces P-3 pour le bac de 24\"x48\") au fond du cadre du bac à plantes, en laissant un espace de 5/8\" entre chaque pièce pour que l’eau s’écoule.\n\nFixez les pièces P-2 ou P-3 de chaque côté dans les pièces P-2, avec une visseuse à percussion et 20 vis à bois d’extérieur autoforeuses de 2.5\".",
+      "imageAlts": [
+        "Schéma des planches qui forment le fond à lattes du bac, avec un espace de 5/8\" entre chaque planche pour l’écoulement de l’eau."
+      ],
+      "siteNote": "Utilisez ici cinq planches P-1 (21″), ou cinq P-1A (45″) pour le bac de 24″x48″ : c’est ainsi que le dessin de cette étape les nomme et que la liste de coupe les compte. Ce guide n’a pas de P-3, et ses seules pièces P-2 sont dans les cadres de bout."
+    },
+    {
+      "title": "Doubler de toile géotextile et terminer",
+      "text": "Retournez le cadre du bac à plantes à l’endroit.\n\nCoupez un morceau de toile géotextile de 24\"x72\" (ou de 48\"x72\" pour le bac de 24\"x48\"). Coupez un deuxième morceau de 24\"x72\" (ou de 96\"x24\" pour le bac de 24\"x48\").\n\nAvec une agrafeuse, fixez les toiles géotextiles qui se chevauchent à l’intérieur du bac à plantes.\n\nPoncez légèrement les bords rugueux du bac à plantes. C’est prêt : mettez-le à son emplacement final, puis remplissez-le de terreau et plantez !",
+      "imageAlts": [
+        "Schéma de deux morceaux de toile géotextile qui se chevauchent, agrafés à l’intérieur du bac à plantes, pour les deux tailles de bac."
+      ],
+      "tips": [
+        "Repliez la toile au moins 1\" sous le bord du haut avant d’agrafer. Agrafez le long du haut et dans les coins pour que ce soit bien étanche."
+      ]
+    },
+    {
+      "title": "Guide de perçage (gabarit)",
+      "text": "Découpez le guide de perçage en suivant les pointillés. Pour percer, alignez le bord du gabarit avec le bord extérieur du bois avant de pré-percer.\n\nTous les trous ne servent pas — et tous les assemblages n’utilisent pas le gabarit. Suivez les étapes d’assemblage ci-dessus pour placer vos trous. Gardez tous les trous à environ une largeur de pouce du bord (environ 1\"), même ceux qui n’utilisent pas ce gabarit.",
+      "imageAlts": [
+        "Un gabarit de perçage à imprimer, avec cinq emplacements de trous marqués et des lignes de découpe, et un gros plan montrant la distance entre les trous et le bord de la planche."
+      ]
+    }
+  ],
+  "finishing": "Traiter le bois pour l’extérieur peut prolonger la vie des éléments de votre parc, mais ce n’est pas nécessaire : ces pièces sont conçues pour être bon marché, solides et faciles à construire, donc il peut être plus pratique de laisser la prochaine génération les reconstruire le moment venu. Si vous voulez teinter, peindre ou protéger le bois, consultez les ressources sur les finitions ci-dessous.",
+  "safety": [
+    "Ce ne sont que des conseils pour le faire soi-même : adaptez les matériaux, l’assemblage et la construction à votre propre projet et à votre site.",
+    "Cette construction suppose de savoir un peu se servir des outils à main et des outils électriques, et de connaître la quincaillerie, les fixations, le bois et les techniques d’assemblage de base.",
+    "Avant d’utiliser un appareil électrique, lisez et suivez les consignes de sécurité du fabricant, et ne laissez personne utiliser des outils électriques sans l’avoir fait aussi.",
+    "C’est vous (le propriétaire) qui êtes responsable des codes de construction et de sécurité, des permis et des autorisations nécessaires.",
+    "Débarrassez d’abord le site des déchets, des dangers et des constructions dont vous ne voulez pas, et repérez les réseaux (gaz, eau, électricité…) qui pourraient gêner avant de creuser.",
+    "Toutes les personnes qui aident à construire doivent signer un formulaire de décharge de responsabilité pour bénévoles."
+  ],
+  "links": [
+    {
+      "label": "Choisir la meilleure finition pour les projets d’extérieur (Rockler, en anglais)"
+    },
+    {
+      "label": "La meilleure finition pour le bois d’extérieur (Real Milk Paint, en anglais)"
+    },
+    {
+      "label": "Produits de finition pour bois d’extérieur (Vermont Natural Coatings, en anglais)"
+    }
+  ],
+  "sourcePages": "Instructions de montage 24_Planter_Box, p. 1–10 (couverture ; avant de commencer ; choix de bois courants ; étapes 1 à 6, pour le montage de 24\"x24\" comme pour celui de 24\"x48\" ; guide de perçage)"
+}
