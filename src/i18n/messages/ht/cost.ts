@@ -245,7 +245,7 @@ export default {
   'unit.pack': { one: 'pake', other: 'pake' },
   'unit.piece': { one: 'moso', other: 'moso' },
   'unit.stage': { one: 'sèn', other: 'sèn' },
-  'unit.ea': 'chak',
+  'unit.ea': 'moso',
   'unit.cy': 'yad kib',
   'unit.pack16': { one: 'pake 16', other: 'pake 16' },
   'unit.load18': 'chajman (18 yad kib)',
