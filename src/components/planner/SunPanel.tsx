@@ -15,7 +15,7 @@ import { parkToLocal } from '../../lib/planner/placement';
 import { catalogEntry, existingMeta } from '../../lib/planner/catalog';
 import type { Vec2 } from '../../lib/planner/geo';
 import { DEFAULT_SEASON } from '../../lib/planner/sun';
-import { SEASON_LABEL, clock, compassWord, leafWords, mmdd, monthDay, monthDayShort, monthName, periodLabel, pt, type PlannerKey } from '../../lib/planner/words';
+import { SEASON_LABEL, clock, compassWord, leafWords, mmdd, monthDay, monthDayShort, monthName, periodLabel, pt, thingText, type PlannerKey } from '../../lib/planner/words';
 import { SpotChart } from './SpotChart';
 import { ShadeCalendar } from './ShadeCalendar';
 
@@ -41,17 +41,17 @@ const CLASS_TEXT: Record<string, PlannerKey> = {
 const pct = (f: number) => Math.round(f * 100);
 
 /** where the picked thing stands, local feet, and what to call it ("where the stool is") */
-function selectionPoint(store: PlannerStore): { p: Vec2; name: string } | null {
+function selectionPoint(store: PlannerStore): { p: Vec2; name: string; thing: string | null } | null {
   const sel = store.$selection.get();
   const site = store.$site.get();
   if (!sel || !site) return null;
   if (sel.kind === 'item') {
     const it = store.$layout.get()?.items.find((x) => x.id === sel.id);
     const pl = store.$placement.get();
-    return it && pl ? { p: parkToLocal(pl, site.frame, [it.x, it.y]), name: lower(catalogEntry(it.element).name) } : null;
+    return it && pl ? { p: parkToLocal(pl, site.frame, [it.x, it.y]), name: lower(catalogEntry(it.element).name), thing: it.element } : null;
   }
   const e = store.$design.get()?.existing?.find((x) => x.id === sel.id);
-  return e?.lngLat ? { p: site.lf.toLocal(e.lngLat), name: lower(existingMeta(e.element).name) } : null;
+  return e?.lngLat ? { p: site.lf.toLocal(e.lngLat), name: lower(existingMeta(e.element).name), thing: e.element } : null;
 }
 
 const lower = (s: string) => s.toLocaleLowerCase(pt().lang);
@@ -144,7 +144,7 @@ export function SunPanel({ store }: { store: PlannerStore }) {
     const p = selectionPoint(store);
     if (p) {
       store.sun.$spot.set(p.p);
-      setSpotName(w('spot.thing', { name: p.name }));
+      setSpotName(thingText('spot.thing', p.thing, p.name, w));
     }
   }, [sel?.id]);
   useEffect(() => {
@@ -334,7 +334,7 @@ export function SunPanel({ store }: { store: PlannerStore }) {
                 const p = selectionPoint(store);
                 if (p) {
                   store.sun.$spot.set(p.p);
-                  setSpotName(w('spot.thing', { name: p.name }));
+                  setSpotName(thingText('spot.thing', p.thing, p.name, w));
                 }
               }}
             >

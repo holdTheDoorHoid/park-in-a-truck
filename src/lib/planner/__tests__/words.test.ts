@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import planner from '../../../i18n/messages/en/planner.ts';
 import { getT } from '../../../i18n/t.ts';
 import { registerBundle } from '../../../i18n/registry.ts';
-import { clock, isolate, listAnd, mmdd, monthInitial, monthName, oneDecimal, periodLabel } from '../words';
+import { clock, isolate, listAnd, mmdd, monthInitial, monthName, oneDecimal, periodLabel, thingText } from '../words';
 import { itemWhere } from '../where';
 import { describeSlope } from '../terrain/slope';
 import { midBlockWords } from '../neighbours';
@@ -50,5 +50,14 @@ describe('planner words', () => {
   it('the slope summary can be written in English whatever the page language', () => {
     const flat = { flat: true, fallFt: 0.2 } as Parameters<typeof describeSlope>[0];
     expect(describeSlope(flat, {} as never, {}, en).headline).toBe('The lot is practically flat: its ground varies by less than 4 inches.');
+  });
+});
+
+describe('the picked thing in a phrase of its own', () => {
+  it('uses the thing’s own phrase, or the shared one for things without', () => {
+    expect(thingText('spot.thing', 'stool', 'stool', en)).toBe('where the stool is');
+    expect(thingText('view.picked', 'existing-tree', 'Tree already there', en)).toBe('Tree already there (picked)');
+    expect(thingText('view.picked', null, 'Acer rubrum', en)).toBe('Acer rubrum (picked)');
+    expect(thingText('spot.thing', 'not-a-thing', 'gizmo', en)).toBe('where the gizmo is');
   });
 });

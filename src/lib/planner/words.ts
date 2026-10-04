@@ -47,6 +47,20 @@ export function isolate(s: string, t: PlannerT = pt()): string {
   return t.dir === 'rtl' && s ? `\u2068${s}\u2069` : s;
 }
 
+/**
+ * The picked thing in a phrase of its own (`spot.thing.stool` "where the stool is", `view.picked.stool`
+ * "Stool (picked)") when the language has one — so the words can agree with the noun — otherwise the
+ * shared phrase with the name slotted in. `thing` is the element or existing-item id, or null (a tree
+ * named by its species).
+ */
+export function thingText(base: 'spot.thing' | 'view.picked', thing: string | null, name: string, t: PlannerT = pt()): string {
+  if (thing) {
+    const own = `${base}.${thing.replace(/-(\w)/g, (_, c: string) => c.toUpperCase())}` as PlannerKey;
+    if (own in planner.messages && t.has(own)) return t(own);
+  }
+  return t(base, { name });
+}
+
 const YEAR = 2026;
 const dateOf = (month: number, day = 1) => new Date(YEAR, month - 1, day);
 
