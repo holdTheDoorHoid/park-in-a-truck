@@ -21,8 +21,8 @@ export default {
   'home.tool.lot.text': 'Mapa ng bakanteng lupa malapit sa inyo, kasama ang may-ari, laki at zoning.',
   'home.tool.planner': 'Magplano sa 3D',
   'home.tool.planner.text': 'Ilapat ang mga piraso ng parke ng Park in a Truck sa inyong totoong lote at tingnan ang araw at lilim.',
-  'home.tool.build': 'Mga gabay sa paggawa',
-  'home.tool.build.text': 'Sunud-sunod na tagubilin para sa mga upuan, mesa, taniman, silungan at iba pa.',
+  'home.tool.build': 'Mga gabay sa pagbuo',
+  'home.tool.build.text': 'Sunod-sunod na tagubilin para sa mga upuan, mesa, taniman, silungan at iba pa.',
   'home.tool.plants': 'Mga halaman',
   'home.tool.plants.text': 'Mga listahan ng katutubong halaman para sa bawat tema ng parke, para sa araw at lilim.',
   'home.tool.parks': 'Mga parkeng naitayo na',
@@ -34,7 +34,7 @@ export default {
   'steps.eyebrow': 'Ang proseso ng Park in a Truck',
   'steps.h1': 'Anim na hakbang tungo sa isang parke',
   'steps.lede':
-    'Dumaraan sa parehong anim na hakbang ang bawat parke ng Park in a Truck. Sundan ang mga ito nang sunud-sunod — nakasandig ang bawat isa sa nauna. Markahang tapos ang maliliit na hakbang habang tumatagal; naka-save sa browser na ito ang inyong progreso.',
+    'Dumaraan sa parehong anim na hakbang ang bawat parke ng Park in a Truck. Sundan ang mga ito nang sunod-sunod — nakasandig ang bawat isa sa nauna. Markahang tapos ang maliliit na hakbang habang tumatagal; naka-save sa browser na ito ang inyong progreso.',
 
   'lot.title': 'Maghanap ng lote',
   'lot.description': 'Alamin ang may-ari, laki, zoning at kung bakante ang anumang lote sa Philadelphia, at tingnan ang bakanteng lupa sa mapa.',

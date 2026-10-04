@@ -675,9 +675,9 @@ Conventions chosen (keep to them):
 - **Taglish.** Words Filipino Americans say in English stay English, spelled the English way: lot → **lote** (already
   Tagalog), zoning, workbook, Toolkit, planner, file, email, link, browser, website/site, drill, lumber sizes, screw sizes,
   hardware. Everything else is ordinary Tagalog. Sentences stay grammatical Tagalog (markers ang/ng/sa, linkers na/-ng).
-- **Spelling.** Modern Filipino spelling (KWF): *organisa*, *komite*, *proyekto*, *komunidad*, *materyales*. "rito/roon"
-  after vowels, "dito/doon" after consonants is NOT enforced (both are in everyday use); "din/rin", "daw/raw" follow the
-  vowel rule.
+- **Spelling.** Modern Filipino spelling (KWF): *organisa*, *komite*, *proyekto*, *komunidad*, *materyales*,
+  *konstruksiyon*, *seksiyon*. "rito/roon/rin/raw" after vowels, "dito/doon/din/daw" after consonants where it reads
+  naturally.
 - **Plurals.** Tagalog nouns do not change for number, and Intl's Filipino plural rule puts 2, 3, 5, 7… in "one", so
   every plural message gives the same text for every count (`other`, plus `=0`/`=1` where English has them). No "mga"
   after a number ("3 lote", not "3 mga lote").
@@ -692,8 +692,8 @@ Conventions chosen (keep to them):
 | English | Translation | Note |
 |---|---|---|
 | Park in a Truck / PiaT | Park in a Truck / PiaT | Never translated. |
-| toolkit | ang Toolkit (gabay ng Park in a Truck) | Filipino Americans say "toolkit"; explain once per page as "ang 36-pahinang gabay". A build guide is always "gabay sa paggawa". |
-| workbook | workbook | "Workbook ng Acquire". "Kuwaderno" sounds like school notebooks; "workbook" is what people say. |
+| toolkit | ang Toolkit (gabay ng Park in a Truck) | Filipino Americans say "toolkit"; explain once per page as "ang 36-pahinang gabay". A build guide is always "gabay sa pagbuo". |
+| workbook | workbook | In prose "ang workbook ng Magsuri" (step names in Tagalog); in `sources:` lines the PDF titles stay English ("Workbook ng Assess"). "Kuwaderno" sounds like school notebooks; "workbook" is what people say. |
 | step | hakbang | "Hakbang 1". |
 | sub-step | maliit na hakbang | plural "maliliit na hakbang". |
 | Mark this step done / done | Markahang tapos na ang hakbang na ito / tapos na | Badge: "✓ Tapos na". |
@@ -719,7 +719,7 @@ Conventions chosen (keep to them):
 | theme: Edible · Sanctuary · Nature · Event | Pagkain · Kanlungan · Kalikasan · Pagtitipon | "Pagkain" (food) is clearer than an adjective for "edible"; "Kanlungan" = a quiet refuge; "Pagtitipon" = gatherings. "Temang Pagkain", "Listahan ng halaman: Kanlungan". |
 | size A–E | laki A–E | Letters unchanged. |
 | gabion (wall, bench) | gabion (pader na gabion, upuang gabion) | Explain once per page: basket na alambre na puno ng bato. |
-| build guide | gabay sa paggawa | Menu: "Mga gabay sa paggawa". |
+| build guide | gabay sa pagbuo | Header menu: "Gabay sa pagbuo". The header menu uses short forms so it fits on one line at 1280 px: Hakbang · Maghanap ng lote · Plano sa 3D · Gabay sa pagbuo · Halaman · Parke. |
 | cut list / materials & hardware / tools | listahan ng puputulin / mga materyales at hardware / mga kagamitan | "hardware" (screws, bolts, brackets) is what Filipino Americans say. |
 | 2x4, 2x4x8', BB-1 | 2x4, 2x4x8', BB-1 | Never translated. |
 | full sun / part sun / shade | buong araw / bahagyang araw / lilim | Short for "buong sikat ng araw"; the long form is fine in prose. |
@@ -736,3 +736,20 @@ Conventions chosen (keep to them):
 | Note from this site, not Park in a Truck | Paalala mula sa site na ito, hindi mula sa Park in a Truck | |
 | in English | sa Ingles | After links: "(sa Ingles)". |
 | ft, in, sq ft, $ | ft, in, sq ft, $ — in prose: talampakan, pulgada, square feet | See Units above. |
+| (added) phase (Create step) | yugto | "Yugto 1: Mag-organisa". |
+| (added) weeds / grasses | damong ligaw / damo | "damo" alone is grass; weeds are always "damong ligaw". |
+| (added) planting bed / raised bed / planting square | taniman / nakataas na taniman / parisukat na taniman | Green squares = berdeng parisukat. |
+| (added) soil / topsoil / mulch / gravel | lupa / topsoil / mulch / graba | topsoil and mulch are said in English; explain once (matabang lupang pang-ibabaw). |
+| (added) lumber / board / screw / bolt | kahoy / tabla / turnilyo / bolt | Product names stay English: self-driving exterior wood screw, lag screw, carriage bolt, hog ring. |
+| (added) bench / stool / table / planter box | upuan / bangkito / mesa / planter box | |
+| (added) shade structure, canopy / stage / workbench | silungan / entablado / workbench (mesang tayuan) | |
+| (added) tools | pala, kartilya, piko, kalaykay, asarol, maso, martilyo, medida, iskwala ng karpintero, liha | Power tools stay English: impact driver, miter saw, drill, grinder, jig, spacer, stop block. |
+| (added) pre-drill | mag-pre-drill / pre-drill na butas | |
+| (added) street tree / fire hydrant | puno sa kalye / fire hydrant | |
+| (added) volunteer / waiver, release form | boluntaryo / waiver, release form | |
+| (added) cost estimate / order list / contingency | tantiya ng gastos / listahan ng bibilhin / reserba (contingency) | |
+| (added) sun study / direct sun / dappled shade | pag-aaral ng araw / direktang araw / batik-batik na lilim | |
+| (added) Survive · Thrive · Socialize | Manatiling buhay · Yumabong · Makisalamuha | "Mabuhay" was avoided: it reads as the greeting. |
+| (added) Park Ambassador | Park Ambassador (sugo ng parke) | Program name kept; explain once. |
+| (added) neighborhood assets | mga yaman ng kapitbahayan | |
+| (added) meeting / community meeting | pulong / pulong ng komunidad | |

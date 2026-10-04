@@ -9,7 +9,7 @@ export default {
   'cat.planters': 'Taniman',
   'cat.structures': 'Mga istruktura',
 
-  'crumb': 'Mga gabay sa paggawa',
+  'crumb': 'Mga gabay sa pagbuo',
   'heroAlt': '{title}, buo na',
   'dims': '{length} haba × {width} lapad × {height} taas',
   'glance.size': 'Laki',
@@ -73,9 +73,9 @@ export default {
   'g3d.helpTouch': 'I-drag para paikutin. I-tap ito, saka i-pinch para mag-zoom. I-tap ang isang kahoy para makita ang laki nito.',
 
   'index.description':
-    'Sunud-sunod na tagubilin sa pagbuo, gaya ng sa Ikea, para sa mga upuan, mesa, taniman, upuang gabion, isang silungan at isang entablado ng Park in a Truck.',
+    'Sunod-sunod na tagubilin sa pagbuo, gaya ng sa Ikea, para sa mga upuan, mesa, taniman, upuang gabion, isang silungan at isang entablado ng Park in a Truck.',
   'index.lede':
-    'Ngayon, oras na para makita kung paano ginagawa ang mga bahagi ng parke. May sariling tagubilin ang ilang bahagi, o mga assembly — mga sunud-sunod na gabay para matulungan kayong buuin ang mga ito. Halimbawa, may kasamang tagubilin sa pagbuo ang isang upuan, gaya ng sa Ikea. May iba namang may kasamang disenyo o mungkahing paraan ng paggawa mula sa mga tagubiling nasubukan na. At ang iba ay mga produktong mabibili nang handa na.',
+    'Ngayon, oras na para makita kung paano ginagawa ang mga bahagi ng parke. May sariling tagubilin ang ilang bahagi, o mga assembly — mga sunod-sunod na gabay para matulungan kayong buuin ang mga ito. Halimbawa, may kasamang tagubilin sa pagbuo ang isang upuan, gaya ng sa Ikea. May iba namang may kasamang disenyo o mungkahing paraan ng paggawa mula sa mga tagubiling nasubukan na. At ang iba ay mga produktong mabibili nang handa na.',
   'index.prose':
     'Nasa ibaba ang labintatlong bahagi na may sariling tagubilin sa pagbuo mula sa Park in a Truck. Pumili ng isa para makita ang buong listahan ng materyales, listahan ng puputulin at mga may-numerong hakbang kasama ang orihinal na mga drowing — o i-download ang orihinal na PDF. Lagyan ng tsek ang mga materyales at kagamitan habang tinitipon ninyo ang mga ito; naka-save sa browser na ito ang inyong mga tsek.',
 } satisfies Translation<typeof en>;

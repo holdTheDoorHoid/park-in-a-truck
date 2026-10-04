@@ -8,7 +8,7 @@ export default {
   'description':
     'Hindi mahalaga ang laki — gawing taniman para sa mga pollinator ang isang 4x4 na pitak, isang bakuran sa harap o isang window box gamit ang workbook ng Park Patch.',
   'lede':
-    'Walang bakanteng lote? Hindi mahalaga ang laki. Ginagawa ng workbook na Pollinator Planting Patch ang anumang espasyo — isang 4×4 na pitak, bakuran sa harap, kahit isang window box — na taniman ng katutubong halaman para sa mga pollinator, gamit ang parehong uri ng sunud-sunod na gabay gaya ng sa buong parke.',
+    'Walang bakanteng lote? Hindi mahalaga ang laki. Ginagawa ng workbook na Pollinator Planting Patch ang anumang espasyo — isang 4×4 na pitak, bakuran sa harap, kahit isang window box — na taniman ng katutubong halaman para sa mga pollinator, gamit ang parehong uri ng sunod-sunod na gabay gaya ng sa buong parke.',
   'originalPdf': '📄 Orihinal na workbook (PDF)',
   'printAnswers': '🖨 I-print ang aking mga sagot',
   'intro':

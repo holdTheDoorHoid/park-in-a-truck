@@ -74,7 +74,7 @@ export default {
   'ui.col.cost': 'Gastos',
   'ui.priceNeeded': 'kailangan ng presyo',
   'ui.yourPrice': 'inyong presyo',
-  'ui.fromGuide': 'Mula sa gabay sa paggawa ng {guide}',
+  'ui.fromGuide': 'Mula sa gabay sa pagbuo ng {guide}',
   'ui.items': { other: '{count} item' },
   'ui.qtyUnit': '{count} {unit}',
   'ui.percentOf': '{percent} ng {amount}',
@@ -126,7 +126,7 @@ export default {
   'group.plants.intro': 'Kinuwenta na para sa inyo ang mga perennial: 5 sa bawat parisukat na taniman, gaya ng sa mga listahan ng halaman ng Park in a Truck (4 ang sabi ng spreadsheet ng gastos).',
   'group.gabions': 'Mga basket na gabion at nakataas na taniman',
   'group.furnishings': 'Mga kagamitan sa parke',
-  'group.furnishings.intro': 'Ang mga pirasong may gabay sa paggawa mula sa Park in a Truck ay pinresyuhan mula sa sariling listahan ng materyales ng gabay.',
+  'group.furnishings.intro': 'Ang mga pirasong may gabay sa pagbuo mula sa Park in a Truck ay pinresyuhan mula sa sariling listahan ng materyales ng gabay.',
   'group.additional': 'Mga karagdagang kagamitan',
   'group.additional.intro':
     'Hindi kailangan ang mga sumusunod na kagamitan at tantiya lamang ang gastos nila; hindi ninyo gagawin ang mga ito mula sa tagubiling ibinibigay namin. May tantiya ng gastos, pero batay ito sa disenyong hindi galing sa amin.',
@@ -190,7 +190,7 @@ export default {
   'q.shadeStructures': "Ilan ang inyong 8'x8' na silungan?",
   'q.shadeStructures.hint': 'Gabay na Shade. Dito binibilang ang mga silungan sa inyong disenyo. (Hindi tanong sa spreadsheet.)',
   'q.trellises': 'Ilan ang inyong 12x8 na trellis?',
-  'q.trellises.hint': 'Ang sariling 12x8 na trellis ng spreadsheet (wala itong gabay sa paggawa).',
+  'q.trellises.hint': 'Ang sariling 12x8 na trellis ng spreadsheet (wala itong gabay sa pagbuo).',
   'q.longTables': 'Ilan ang inyong mahabang mesa?',
   'q.compostBins': 'Ilan ang inyong compost bin?',
   'q.keyholeGardensLarge': 'Keyhole garden: malaki',
@@ -530,9 +530,9 @@ export default {
   'fix.perennialsPerSquare.label': 'Perennial: 5 bawat parisukat na taniman, gaya ng sa mga listahan ng halaman',
   'fix.perennialsPerSquare.detail':
     '4 na perennial sa bawat parisukat na taniman ang bilang ng spreadsheet ng gastos (INSERT HERE C30). 5 naman ang bilang ng apat na spreadsheet ng listahan ng halaman ng Park in a Truck — ang ginagamit ninyo sa pagpili ng halaman — (sa kanilang INSERT HERE: berdeng parisukat × 5), at ganoon din ang tagapili ng halaman. 5 na ngayon ang gamit ng tantiya, kaya tugma ang budget sa mga halamang bibilhin ninyo.',
-  'fix.guideMaterials.label': 'Mga kagamitan mula sa mga gabay sa paggawa',
+  'fix.guideMaterials.label': 'Mga kagamitan mula sa mga gabay sa pagbuo',
   'fix.guideMaterials.detail':
-    'Pinresyuhan ang mga upuan, bangkito, mesa, planter, upuang gabion, workbench, silungan at entablado mula sa sariling listahan ng materyales at hardware ng bawat gabay sa paggawa ng Park in a Truck, sa mga presyo ng spreadsheet; “kailangan ng presyo” ang anumang walang presyo sa spreadsheet. Hindi tugma sa mga gabay ang sariling mga linya ng kagamitan sa spreadsheet (naglilista ang upuan nitong may sandalan ng kahoy na 4x4, 2x10, 2x6 at 2x8 na hindi ginagamit ng gabay). Kapag mas maraming tabla ang kailangan ng listahan ng puputulin ng isang gabay kaysa sa sinasabi ng listahan ng materyales nito, ang kailangan ng listahan ng puputulin ang inoorder ng tantiya at sinasabi ng linya kung bakit (binilang na may ⅛″ bawat hiwa ng lagari; 25 na 2x4x8 ang kailangan ng entablado, hindi 16). Ang 12\'x8\' na entablado ay ang entablado ng gabay na Stage (6 na parisukat); binibilang ang mga silungan bilang 8\'x8\' na istruktura ng gabay na Shade; pinresyuhan din ang 4\' at 6\' na mesa, mga planter, workbench at 8\' na upuang gabion, na walang tanong sa spreadsheet.',
+    'Pinresyuhan ang mga upuan, bangkito, mesa, planter, upuang gabion, workbench, silungan at entablado mula sa sariling listahan ng materyales at hardware ng bawat gabay sa pagbuo ng Park in a Truck, sa mga presyo ng spreadsheet; “kailangan ng presyo” ang anumang walang presyo sa spreadsheet. Hindi tugma sa mga gabay ang sariling mga linya ng kagamitan sa spreadsheet (naglilista ang upuan nitong may sandalan ng kahoy na 4x4, 2x10, 2x6 at 2x8 na hindi ginagamit ng gabay). Kapag mas maraming tabla ang kailangan ng listahan ng puputulin ng isang gabay kaysa sa sinasabi ng listahan ng materyales nito, ang kailangan ng listahan ng puputulin ang inoorder ng tantiya at sinasabi ng linya kung bakit (binilang na may ⅛″ bawat hiwa ng lagari; 25 na 2x4x8 ang kailangan ng entablado, hindi 16). Ang 12\'x8\' na entablado ay ang entablado ng gabay na Stage (6 na parisukat); binibilang ang mga silungan bilang 8\'x8\' na istruktura ng gabay na Shade; pinresyuhan din ang 4\' at 6\' na mesa, mga planter, workbench at 8\' na upuang gabion, na walang tanong sa spreadsheet.',
   'fix.orderList.label': 'Tugma ang listahan ng bibilhin sa tantiya',
   'fix.orderList.detail':
     'Maling hilera ang binasa ng listahan ng bibilhin sa spreadsheet para sa mga staple at panel ng mesang gabion, hindi nito nahanap ang mga lag screw (iba ang baybay), iba ang presyo ng mga solar na ilaw, hindi nito isinama ang pangontra sa pagguho, ang hardware ng gilid, mga halaman, corner brace at mga item na mabibili nang handa na, at nagdagdag ito ng $175 na walang label. Ngayon, binubuo ito mula sa parehong mga linya ng tantiya, kaya katumbas ng kabuuan nito ang kabuuang gastos ng tantiya. Iisang hilera ang parehong item mula sa iba\'t ibang piraso; nananatiling hiwalay ang magkaibang produktong pinangalanan nang pareho ng spreadsheet (ang dalawang L-bracket nito), at may tanda ang mga link na itinuturo ng spreadsheet sa ibang laki ng kahoy.',
@@ -544,7 +544,7 @@ export default {
   'kept.gravelEdges': 'Mga gilid ng graba: kasama sa bilang ng 1x4x12 ang bilang ng 2x4, at kinukuwenta ang mga suporta para sa buong gilid (walang nakalistang suporta sa softscape ang spreadsheet para sa mga gilid ng graba).',
   'kept.trellis': 'May 20% na dagdag na kahoy at turnilyo ang 12x8 na trellis.',
   'kept.noGuide':
-    'Ang chicken wire lang ang pinresyuhan sa mga compost bin; ang mga mesang gabion na may kahoy sa ibabaw, mahahabang mesang pansama-sama, keyhole garden at 12x8 na trellis, na walang gabay sa paggawa, ay gumagamit ng sariling mga linya ng spreadsheet.',
+    'Ang chicken wire lang ang pinresyuhan sa mga compost bin; ang mga mesang gabion na may kahoy sa ibabaw, mahahabang mesang pansama-sama, keyhole garden at 12x8 na trellis, na walang gabay sa pagbuo, ay gumagamit ng sariling mga linya ng spreadsheet.',
   'kept.mulch': 'Ang mulch ay ang 2″ ng spreadsheet sa ibabaw ng mga parisukat na taniman, kahit sinasabi ng workbook ng Lumikha na maglagay ng 4″; ipinapakita ng linya ng mulch kung ano ang kailangan para sa 4″.',
   'kept.raisedBeds': 'Walang kuwenta sa spreadsheet ang mga gilid na kahoy ng nakataas na taniman, kaya wala silang presyo.',
 
@@ -614,7 +614,7 @@ export default {
   'order.note.concrete': 'Mag-ipon ng pinakamaraming piraso ng semento hangga\'t maaari sa lote o sa malapit.',
   'order.note.online': 'Kailangang orderin online.',
   'order.note.mesh': 'Gabion wire, na puputulin ng distributor sa mga panel sa ibaba.',
-  'order.note.furnitureScrews': 'Para sa mga kagamitan (ang self-driving exterior wood screw ng mga gabay sa paggawa).',
+  'order.note.furnitureScrews': 'Para sa mga kagamitan (ang self-driving exterior wood screw ng mga gabay sa pagbuo).',
   'order.note.lBracket2in': 'Para sa gilid na kahoy sa paligid ng graba.',
   'order.note.lBracket5in': 'Para sa mga panlabas na gilid.',
   'order.note.selfDriving': 'Para sa mga gilid na kahoy. Ibang turnilyo ito sa 2.5″ na wood screw para sa mga kagamitan: washer-head screw ang naka-link dito sa spreadsheet, sa halagang {price} bawat isa.',

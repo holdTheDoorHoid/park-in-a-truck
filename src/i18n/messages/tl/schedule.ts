@@ -46,8 +46,8 @@ export default {
   'calendar.now': 'ngayon',
   'calendar.monthCount': '{done}/{total}',
 
-  'task.water-weekly': 'Magdilig linggu-linggo — ibabad nang 3 oras o diligan sa kamay, 6–8" ang lalim',
-  'task.weed-weekly': 'Magbunot ng damong ligaw linggu-linggo (bunutin, o i-spray ng 20% na suka)',
+  'task.water-weekly': 'Magdilig linggo-linggo — ibabad nang 3 oras o diligan sa kamay, 6–8" ang lalim',
+  'task.weed-weekly': 'Magbunot ng damong ligaw linggo-linggo (bunutin, o i-spray ng 20% na suka)',
   'task.monthly-inspection': 'Buwanang pagsusuri — peste, damong ligaw, mulch, patay na halaman, basura',
   'task.rake-beds': 'Bahagyang kalaykayin ang mga taniman',
   'task.cutback-perennials': 'Putulin ang mga perennial na pangit na tingnan',
