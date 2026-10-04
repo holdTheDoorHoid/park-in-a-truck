@@ -7,7 +7,7 @@ import * as THREE from 'three';
 import type { Vec2 } from '../geo';
 import { FLAT_GROUND, type GroundFn } from '../ground';
 import { PolygonDraft, insertCorner, moveCorner } from '../interact';
-import { drapedFillGeometry, drapedRibbon } from './terrain';
+import { drapedRibbon, drapedShape } from '../furniture/drape';
 
 const BLUE = 0x1d5f8f;
 const CYAN = 0x00a8e8;
@@ -203,7 +203,7 @@ export class OutlineTool {
       const pts = d.points;
       if (pts.length >= 3) {
         // the outline being drawn shows over everything (park pieces included) until it is finished
-        const fill = new THREE.Mesh(drapedFillGeometry(pts, 0.3, g), new THREE.MeshBasicMaterial({ color: 0x3a8fd1, transparent: true, opacity: 0.32, depthWrite: false, depthTest: false, side: THREE.DoubleSide }));
+        const fill = new THREE.Mesh(drapedShape(pts, g, 0.3), new THREE.MeshBasicMaterial({ color: 0x3a8fd1, transparent: true, opacity: 0.32, depthWrite: false, depthTest: false, side: THREE.DoubleSide }));
         fill.renderOrder = 18;
         this.parts.add(fill);
       }
@@ -218,7 +218,7 @@ export class OutlineTool {
   }
 
   private line(pts: Vec2[], color: number, closed: boolean, width = 0.25): THREE.Mesh {
-    const m = drapedRibbon(pts, width, 0.36, color, this.ground, closed);
+    const m = drapedRibbon(pts, width, 0.36, this.ground, color, closed);
     const mat = m.material as THREE.MeshBasicMaterial;
     mat.depthTest = false;
     mat.depthWrite = false;

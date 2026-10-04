@@ -355,8 +355,8 @@ export function cityTreeSpecs(trees: LocalTree[]): TreeSpec[] {
 
 export interface AerialGround {
   mesh: THREE.Mesh;
-  /** lowest ground along the edge of the photo (the plain ground beyond sits here) */
-  edgeMin: number;
+  /** lowest ground under the photo (the plain ground beyond sits just below it) */
+  minFt: number;
   /** the photo, or plain ground (the ground keeps its shape either way) */
   setPhoto(on: boolean): void;
   /** plan view: a light veil over the photo so the park pieces read clearly */
@@ -396,7 +396,7 @@ export function buildAerial(
   const [x0, y1] = lf.toLocal([west[0], west[1]]);
   const [x1, y0] = lf.toLocal([east[0], east[1]]);
   let geo: THREE.BufferGeometry;
-  let edgeMin = 0;
+  let minFt = 0;
   let skirt: THREE.Mesh | null = null;
   // a little brighter than the photo so cast shadows read clearly against it
   const mat = new THREE.MeshLambertMaterial({ map: tex, color: new THREE.Color(1.35, 1.35, 1.35) });
@@ -405,8 +405,8 @@ export function buildAerial(
     // terrain: a grid lifted onto the ground, about one vertex per lidar cell
     const t = terrainGeometry(x0, x1, y0, y1, ground);
     geo = t.geo;
-    edgeMin = t.edgeMin;
-    skirt = new THREE.Mesh(skirtGeometry(x0, x1, y0, y1, ground, edgeMin - 0.12), plain);
+    minFt = t.min;
+    skirt = new THREE.Mesh(skirtGeometry(x0, x1, y0, y1, ground, minFt - 0.5), plain);
     skirt.receiveShadow = true;
   } else {
     geo = new THREE.PlaneGeometry(x1 - x0, y1 - y0);
@@ -452,7 +452,7 @@ export function buildAerial(
   }
   return {
     mesh,
-    edgeMin,
+    minFt,
     setPhoto(on) {
       photo = on;
       mesh.material = on ? mat : plain;

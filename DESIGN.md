@@ -32,6 +32,8 @@ The owner has permission from PiaT to use all of their content.
 | Saving | **Browser only** (localStorage) + export/import a project file + print. No accounts, no server. |
 | Wording | **PiaT's own words, made web-friendly**: split into steps, blanks → fields, typos fixed, each step links to the original PDF page. Not a rewrite. No new advice. |
 | Tech | **TypeScript + Astro + Three.js** (chosen over Rust/WASM for ecosystem and maintainability by Jefferson). |
+| Furniture order list (2026-10-04) | **From each build guide's own materials list**, priced with the spreadsheet's prices ("price needed" where none). The spreadsheet's furniture lines disagree with the guides; its faithful "sheet" mode stays for tests. |
+| Safety notes (2026-10-04) | Where PiaT's text could get people into **legal or health trouble** (hydrant without a permit, lead testing, street-tree pruning, herbicides), add a **short note clearly marked as from this site**, linking the official source. Everything else goes to the PiaT notes. |
 
 Also: the user wants every lookup automated "as much as possible… a streamline for activists to get the
 information they need to get something done."
@@ -163,6 +165,16 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
   trees. Ground heights (`ground.ts`) are used for every grid cell, crown and building base. The map can show any
   period (a day, a month, a season, the growing season, the year); only the growing season is saved and counted.
   Clicking a spot charts its direct sun month by month.
+  *Furniture in 3D (2026-10-04, `src/lib/planner/furniture/`):* the 3D view draws items as the real thing; plan
+  view keeps the flat paper-pieces blocks. Pieces with a build guide use the guide's own model JSON at TRUE built
+  size, centred on the footprint and never stretched: repeated in modules along the item the way PiaT counts them
+  (4' benches/workbenches, stage as 4'×4' squares unless the whole 12'×8' stage fits, shade canopies as 8'×8'
+  modules — a canopy drawn 8'×4' is still one 8'×8' module); a footprint no whole number of modules fits keeps its
+  block (~10% of printed pieces, e.g. a 2-ft "bench with back"). Gabion walls (bands and items) are 12"×12"×48"
+  baskets of stone, one course, plus one shorter end basket. Items without a guide get simple shapes (`procedural.ts`);
+  planted trees share the City trees' drawing. Furniture is built level on the lowest ground under it; surfaces,
+  grid, outlines and the selection ring follow the ground. The plain blocks stay underneath, invisible, as what the
+  mouse picks. Detail steps down (high → low → blocks) when frames stay slow; `?furniture=high|low|blocks` pins it.
   *Ground and slope (terrain, 2026-10-04):* ground heights come from USGS 3DEP lidar (Philadelphia: flown 2015,
   1 m grid, NAVD88) — one `exportImage` request per lot for a ±310 ft square (raw floats, ≈140 KB), cached for the
   session; demo lots use recorded fixtures (`fixtures/<slug>.elevation.json`, `capture_elevation.py`). The service
@@ -171,7 +183,8 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
   bilinear. Buildings stand on the LOWEST ground along their outline — the City's `base_elevation` matches that
   (median 0.15–0.37 ft on 230 buildings around four lots, vs 1–2 ft for the mean ground), so City heights are
   measured from it; walls reach down to it and roofs stay where the City puts them. The aerial ground, lot line,
-  markers and selection lie on the ground; no vertical exaggeration (contour lines show subtle slopes instead).
+  markers and selection lie on the ground (one draping helper for everything: `furniture/drape.ts`; one ground-picking
+  path for drags, drawing and spot clicks); the plain ground beyond the photo sits below its lowest point; no vertical exaggeration (contour lines show subtle slopes instead).
   Slope summary (`terrain/slope.ts`): fall, average slope (fitted plane), steepest 8-ft stretch, which way rain
   runs (front = entrance edge on the street; left/right as you stand there looking in), any dip lower than the
   lot's whole edge, and the City zoning map's Steep Slope Protection Area; plan-view overlay with contour lines,

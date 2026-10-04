@@ -21,7 +21,8 @@ import { Overlays, type Footprint } from './overlays';
 import { catalogEntry } from '../catalog';
 import { CLOSE_PX, DragGesture, isTurnable, turnFromDrag, type Pose } from '../interact';
 import { groundOf } from '../ground';
-import { SlopeOverlay, drapedRibbon, rayGround } from './terrain';
+import { SlopeOverlay, rayGround } from './terrain';
+import { ON_GROUND, drapedRibbon } from '../furniture/drape';
 import { OutlineTool } from './outline';
 
 export type ViewMode = '3d' | 'plan';
@@ -152,7 +153,6 @@ export class PlannerScene {
   private holdControls = false;
   private tmp = { m: new THREE.Matrix4(), p: new THREE.Vector3(), q: new THREE.Quaternion(), s: new THREE.Vector3() };
   private raycaster = new THREE.Raycaster();
-  private ground = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
   private mobile = isCoarse();
   private disposed = false;
   lost = false;
@@ -213,6 +213,11 @@ export class PlannerScene {
       this.lost = true;
     });
     this.controls = this.makeControls();
+    // furniture: a model finished loading, or the detail level changed
+    this.park.onChange = () => {
+      if (this.parkState) this.refreshItems();
+      this.requestRender(true);
+    };
 
     this.ro = new ResizeObserver(() => this.resize());
     this.ro.observe(container);
@@ -319,6 +324,9 @@ export class PlannerScene {
     // the plan view's light veil over the photo lies on the ground (terrain)
     this.aerial?.setVeil(v === 'plan');
     this.slope.setView(v);
+    // furniture: real furniture in 3D, the flat paper-pieces look in plan
+    this.park.setMode(v);
+    if (this.parkState) this.refreshItems();
     this.resetCamera();
   }
 
@@ -351,14 +359,17 @@ export class PlannerScene {
     this.siteGroup.clear();
     this.aerial?.dispose();
     this.siteGroup.add(buildBuildings(site.buildings));
-    const outline = drapedRibbon(site.parcel, 0.7, 0.45, COLORS.parcel, ground);
+    // the cyan lot line lies on the ground
+    const outline = drapedRibbon(site.parcel, 0.7, 0.45, ground, COLORS.parcel);
+    Object.assign(outline.material, ON_GROUND);
     outline.renderOrder = 4;
     this.siteGroup.add(outline);
     this.aerial = buildAerial(site.lf, site.extentFt, this.mobile ? 19 : 20, () => this.requestRender(), site.ground);
     this.aerial.setPhoto(this.photoOn);
     this.aerial.setVeil(this.view === 'plan');
     this.siteGroup.add(this.aerial.mesh);
-    this.outer.position.y = this.aerial.edgeMin - 0.1;
+    // the plain ground beyond the photo sits below the lowest ground under it (nothing buried on a slope)
+    this.outer.position.y = this.aerial.minFt - 0.5;
     this.slope.set(site, this.slopeOn);
     // trees stand on the ground under their trunks (City trees and trees on the lot)
     const treeGround = site.ground ? ground : null;
@@ -402,7 +413,7 @@ export class PlannerScene {
     this.parkState = state;
     this.park.group.visible = Boolean(state);
     if (state) {
-      this.park.setLayout(state.layout, state.map, { themes: state.themes, overhangMask: state.overhang, grid: state.grid });
+      this.park.setLayout(state.layout, state.map, { themes: state.themes, overhangMask: state.overhang, grid: state.grid, ground: groundOf(this.site) });
       this.items = items;
       this.refreshItems();
       // plan view follows the park's orientation (after flip/turn)
@@ -693,12 +704,14 @@ export class PlannerScene {
     return new THREE.Vector2(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
   }
 
+  /**
+   * The ground point (local feet) under the pointer — the one path for drags, drops, drawing
+   * wet areas and the sun step's spot clicks. On a sloping lot the ray is walked onto the
+   * ground's height (a few plane intersections converge); on flat ground it is the plane at 0.
+   */
   private groundPoint(e: PointerAt): Vec2 | null {
     this.raycaster.setFromCamera(this.ndc(e), this.camera);
-    if (this.site?.ground) return rayGround(this.raycaster.ray.origin, this.raycaster.ray.direction, this.site.ground);
-    const p = new THREE.Vector3();
-    if (!this.raycaster.ray.intersectPlane(this.ground, p)) return null;
-    return [p.x, -p.z];
+    return rayGround(this.raycaster.ray.origin, this.raycaster.ray.direction, groundOf(this.site));
   }
 
   /** a ground point (local feet) on screen, client pixels (null = behind the camera) */
@@ -1205,13 +1218,19 @@ export class PlannerScene {
         this.slope.layout(fppAt);
       }
       this.renderer.render(this.scene, this.camera);
+      // furniture: steps its detail down if frames stay slow while the view moves
+      this.park.frameDrawn(performance.now(), this.drewLastFrame);
+      this.drewLastFrame = true;
       const n = this.northDeg();
       if (Math.abs(n - this.lastNorth) > 0.5) {
         this.lastNorth = n;
         this.cb.onCamera?.(n);
       }
-    }
+    } else this.drewLastFrame = false;
   };
+
+  /** furniture: the previous display frame was drawn (for its frame-time watch) */
+  private drewLastFrame = false;
 
   private lastNorth = Infinity;
 

@@ -11,6 +11,7 @@ import { FLAT_GROUND, type GroundFn } from '../ground';
 import type { Vec2 } from '../geo';
 import type { LocalSite } from '../localsite';
 import { arrowSpacing, contourInterval, contours, drainArrows } from '../terrain/slope';
+import { ON_GROUND, drapedShape, ribbonPositions } from '../furniture/drape';
 
 const FLAT: GroundFn = FLAT_GROUND;
 
@@ -19,14 +20,14 @@ const FLAT: GroundFn = FLAT_GROUND;
 /**
  * A grid over [x0, x1] × [y0, y1] (local feet) at about `cellFt` spacing (at most `maxSeg`
  * cells a side), each vertex on the ground; uv (0,0) at (x0, y0), (1,1) at (x1, y1).
- * Also returns the lowest height along its edge (for the skirt and the plain ground beyond).
+ * Also returns the lowest height on it (the skirt and the plain ground beyond sit below that).
  */
 export function terrainGeometry(x0: number, x1: number, y0: number, y1: number, ground: GroundFn, cellFt = 3.3, maxSeg = 240) {
   const nx = Math.max(1, Math.min(maxSeg, Math.ceil((x1 - x0) / cellFt)));
   const ny = Math.max(1, Math.min(maxSeg, Math.ceil((y1 - y0) / cellFt)));
   const pos = new Float32Array((nx + 1) * (ny + 1) * 3);
   const uv = new Float32Array((nx + 1) * (ny + 1) * 2);
-  let edgeMin = Infinity;
+  let min = Infinity;
   for (let j = 0; j <= ny; j++) {
     const y = y0 + ((y1 - y0) * j) / ny;
     for (let i = 0; i <= nx; i++) {
@@ -38,7 +39,7 @@ export function terrainGeometry(x0: number, x1: number, y0: number, y1: number, 
       pos[k * 3 + 2] = -y;
       uv[k * 2] = i / nx;
       uv[k * 2 + 1] = j / ny;
-      if (i === 0 || j === 0 || i === nx || j === ny) edgeMin = Math.min(edgeMin, h);
+      min = Math.min(min, h);
     }
   }
   const idx = new Uint32Array(nx * ny * 6);
@@ -60,7 +61,7 @@ export function terrainGeometry(x0: number, x1: number, y0: number, y1: number, 
   geo.setIndex(new THREE.BufferAttribute(idx, 1));
   geo.computeVertexNormals();
   geo.computeBoundingSphere();
-  return { geo, edgeMin: Number.isFinite(edgeMin) ? edgeMin : 0, nx, ny };
+  return { geo, min: Number.isFinite(min) ? min : 0, nx, ny };
 }
 
 /** Vertical strips from the grid's edge down to `bottom`, so the ground doesn't end in mid-air. */
@@ -88,116 +89,16 @@ export function skirtGeometry(x0: number, x1: number, y0: number, y1: number, gr
 }
 
 // ---- things drawn on the ground ---------------------------------------------------
-
-/**
- * Positions for a ribbon `width` ft wide along a polyline, `up` ft above the ground. Long
- * segments are cut into pieces of at most `maxSeg` ft so the ribbon follows the slope.
- */
-export function ribbonPositions(pts: Vec2[], width: number, up: number, ground: GroundFn = FLAT, closed = true, maxSeg = 2): number[] {
-  const pos: number[] = [];
-  const n = pts.length;
-  const count = closed ? n : n - 1;
-  const hw = width / 2;
-  const h = (x: number, y: number) => ground(x, y) + up;
-  for (let i = 0; i < count; i++) {
-    const a = pts[i]!;
-    const b = pts[(i + 1) % n]!;
-    const dx = b[0] - a[0];
-    const dy = b[1] - a[1];
-    const L = Math.hypot(dx, dy) || 1;
-    const ux = dx / L;
-    const uy = dy / L;
-    const nx = -uy * hw;
-    const ny = ux * hw;
-    const k = ground === FLAT ? 1 : Math.max(1, Math.ceil(L / maxSeg));
-    for (let s = 0; s < k; s++) {
-      // extend the first and last piece by hw so corners meet
-      const t0 = (L * s) / k - (s === 0 ? hw : 0);
-      const t1 = (L * (s + 1)) / k + (s === k - 1 ? hw : 0);
-      const p0: Vec2 = [a[0] + ux * t0, a[1] + uy * t0];
-      const p1: Vec2 = [a[0] + ux * t1, a[1] + uy * t1];
-      const q = [
-        [p0[0] + nx, p0[1] + ny],
-        [p0[0] - nx, p0[1] - ny],
-        [p1[0] - nx, p1[1] - ny],
-        [p1[0] + nx, p1[1] + ny],
-      ] as Vec2[];
-      for (const c of [0, 1, 2, 0, 2, 3]) pos.push(q[c]![0], h(q[c]![0], q[c]![1]), -q[c]![1]);
-    }
-  }
-  return pos;
-}
-
-/** Pulls ground-hugging drawings toward the camera, so the ground mesh (a few cm off the smooth ground here and there) never covers them. */
-export const ON_GROUND: Pick<THREE.MeshBasicMaterialParameters, 'polygonOffset' | 'polygonOffsetFactor' | 'polygonOffsetUnits'> = {
-  polygonOffset: true,
-  polygonOffsetFactor: -2,
-  polygonOffsetUnits: -4,
-};
-
-/** A ribbon that lies on the ground (the cyan lot line, selection rings, wet-area edges). */
-export function drapedRibbon(pts: Vec2[], width: number, up: number, color: number, ground: GroundFn = FLAT, closed = true): THREE.Mesh {
-  const g = new THREE.BufferGeometry();
-  g.setAttribute('position', new THREE.Float32BufferAttribute(ribbonPositions(pts, width, up, ground, closed), 3));
-  return new THREE.Mesh(g, new THREE.MeshBasicMaterial({ color, side: THREE.DoubleSide, ...(ground === FLAT ? {} : ON_GROUND) }));
-}
+// (one implementation for everything that lies on the ground: ../furniture/drape.ts)
 
 /** The ground lightly smoothed (a ±1.5 ft cross): lidar has inch-level bumps that make contours wiggle. */
 export function smoothGround(g: GroundFn, r = 1.5): GroundFn {
   return (x, y) => (g(x, y) * 2 + g(x + r, y) + g(x - r, y) + g(x, y + r) + g(x, y - r)) / 6;
 }
 
-/**
- * A filled polygon lying on the ground `up` ft above it: triangulated, then its triangles
- * split until no edge is longer than `maxEdge` ft so it bends with the slope.
- */
-export function drapedFillGeometry(pts: Vec2[], up: number, ground: GroundFn = FLAT, maxEdge = 2): THREE.BufferGeometry {
-  const shape = new THREE.ShapeGeometry(new THREE.Shape(pts.map(([x, y]) => new THREE.Vector2(x, y))));
-  const p = shape.getAttribute('position');
-  const index = shape.getIndex();
-  const tris: Vec2[][] = [];
-  const at = (k: number): Vec2 => [p.getX(k), p.getY(k)];
-  const count = index ? index.count : p.count;
-  for (let t = 0; t < count; t += 3) {
-    const k = (o: number) => (index ? index.getX(t + o) : t + o);
-    tris.push([at(k(0)), at(k(1)), at(k(2))]);
-  }
-  shape.dispose();
-  const out: number[] = [];
-  const flat = ground === FLAT;
-  const split = (a: Vec2, b: Vec2, c: Vec2, depth: number) => {
-    const ab = Math.hypot(b[0] - a[0], b[1] - a[1]);
-    const bc = Math.hypot(c[0] - b[0], c[1] - b[1]);
-    const ca = Math.hypot(a[0] - c[0], a[1] - c[1]);
-    const m = Math.max(ab, bc, ca);
-    if (flat || m <= maxEdge || depth > 10) {
-      for (const q of [a, b, c]) out.push(q[0], ground(q[0], q[1]) + up, -q[1]);
-      return;
-    }
-    if (m === ab) {
-      const mid: Vec2 = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
-      split(a, mid, c, depth + 1);
-      split(mid, b, c, depth + 1);
-    } else if (m === bc) {
-      const mid: Vec2 = [(b[0] + c[0]) / 2, (b[1] + c[1]) / 2];
-      split(a, b, mid, depth + 1);
-      split(a, mid, c, depth + 1);
-    } else {
-      const mid: Vec2 = [(c[0] + a[0]) / 2, (c[1] + a[1]) / 2];
-      split(a, b, mid, depth + 1);
-      split(mid, b, c, depth + 1);
-    }
-  };
-  for (const [a, b, c] of tris) split(a!, b!, c!, 0);
-  const g = new THREE.BufferGeometry();
-  g.setAttribute('position', new THREE.Float32BufferAttribute(out, 3));
-  return g;
-}
-
-/** A disc (circle) lying on the ground. */
-export function drapedDiscGeometry(c: Vec2, r: number, up: number, ground: GroundFn = FLAT, seg = 36): THREE.BufferGeometry {
-  const pts = Array.from({ length: seg }, (_, i) => [c[0] + r * Math.cos((i / seg) * Math.PI * 2), c[1] + r * Math.sin((i / seg) * Math.PI * 2)] as Vec2);
-  return drapedFillGeometry(pts, up, ground);
+/** A circle's outline (local feet). */
+export function circlePts(c: Vec2, r: number, seg = 36): Vec2[] {
+  return Array.from({ length: seg }, (_, i) => [c[0] + r * Math.cos((i / seg) * Math.PI * 2), c[1] + r * Math.sin((i / seg) * Math.PI * 2)] as Vec2);
 }
 
 /** Where a ray meets the ground (a few steps of plane intersections; exact on flat ground). */
@@ -372,7 +273,7 @@ export class SlopeOverlay {
         }
         // a dot exactly on the spot
         const dm = mat(new THREE.Color(color).getHex(), 1);
-        const dot = new THREE.Mesh(drapedDiscGeometry(p, 0.55, 0.2, ground, 20), dm);
+        const dot = new THREE.Mesh(drapedShape(circlePts(p, 0.55, 20), ground, 0.2), dm);
         dot.renderOrder = 11;
         this.group.add(dot);
       }

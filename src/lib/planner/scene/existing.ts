@@ -7,7 +7,7 @@ import type { Vec2 } from '../geo';
 import { FLAT_GROUND, type GroundFn } from '../ground';
 import { wetAreaPolygon } from '../interact';
 import { COLORS, TreeInstances, W, disposeTree } from './builders';
-import { ON_GROUND, drapedFillGeometry, drapedRibbon } from './terrain';
+import { ON_GROUND, drapedRibbon, drapedShape } from '../furniture/drape';
 import type { Footprint } from './overlays';
 
 export interface ExistingRender {
@@ -106,7 +106,11 @@ export class ExistingMeshes {
     const ghosts: Parameters<TreeInstances['set']>[0] = [];
     const lambert = (c: string | number, extra: THREE.MeshLambertMaterialParameters = {}) => new THREE.MeshLambertMaterial({ color: c, ...extra });
     const gr = this.ground;
-    const ribbon = (pts: Vec2[], width: number, up: number, color: number, closed = true) => drapedRibbon(pts, width, up, color, gr, closed);
+    const ribbon = (pts: Vec2[], width: number, up: number, color: number, closed = true) => {
+      const m = drapedRibbon(pts, width, up, gr, color, closed);
+      Object.assign(m.material, ON_GROUND);
+      return m;
+    };
     for (const it of items) {
       const z0 = gr(it.x, it.y);
       const meta = existingMeta(it.element);
@@ -135,7 +139,7 @@ export class ExistingMeshes {
           // a drawn outline, or a circle (older saves)
           const poly = wetAreaPolygon(it, [it.x, it.y], 36);
           const m = new THREE.Mesh(
-            drapedFillGeometry(poly, 0.32, gr),
+            drapedShape(poly, gr, 0.32),
             new THREE.MeshBasicMaterial({ color: meta.color, transparent: true, opacity: sel ? 0.55 : 0.38, depthWrite: false, side: THREE.DoubleSide, ...ON_GROUND }),
           );
           m.renderOrder = 2;
@@ -150,7 +154,7 @@ export class ExistingMeshes {
           m.castShadow = true;
           add(m);
           const splash = new THREE.Mesh(
-            drapedFillGeometry(circle(1.4, 20).map(([a, b]) => [a + it.x, b + it.y] as Vec2), 0.33, gr),
+            drapedShape(circle(1.4, 20).map(([a, b]) => [a + it.x, b + it.y] as Vec2), gr, 0.33),
             new THREE.MeshBasicMaterial({ color: meta.color, transparent: true, opacity: 0.45, side: THREE.DoubleSide, ...ON_GROUND }),
           );
           add(splash);
