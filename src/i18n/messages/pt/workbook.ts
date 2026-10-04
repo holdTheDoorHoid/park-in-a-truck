@@ -67,8 +67,6 @@ export default {
   'auto.trees.several': 'Várias árvores',
   'auto.yes': 'Sim',
   'auto.no': 'Não',
-  'auto.sqft': '{n} pés²',
-  'auto.ft': '{n} pés',
   'auto.size': 'Tamanho {size}',
 
   'notice.title': 'Nota do site',

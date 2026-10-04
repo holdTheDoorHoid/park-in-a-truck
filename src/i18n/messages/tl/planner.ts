@@ -46,7 +46,7 @@ export default {
   'note.sunFailed': 'Hindi natapos ang pag-aaral ng araw. Subukan ulit.',
 
   'common.dims': '{length} × {width} ft',
-  'common.ft': '{ft} ft',
+  'common.ft': { other: '{ft} ft' },
   'common.add': '+ {name}',
   'common.cancel': 'Kanselahin',
   'action.turn': '↻ Ikutin',
@@ -193,12 +193,12 @@ export default {
 
   'where.both': '{along}, {across}',
   'where.atEntrance': 'sa pasukan',
-  'where.fromEntrance': '{ft} ft mula sa pasukan',
+  'where.fromEntrance': { other: '{ft} ft mula sa pasukan' },
   'where.middle': 'sa gitna ng lapad',
   'where.againstLeft': 'nakadikit sa kaliwang gilid',
   'where.againstRight': 'nakadikit sa kanang gilid',
-  'where.fromLeft': '{ft} ft mula sa kaliwang gilid',
-  'where.fromRight': '{ft} ft mula sa kanang gilid',
+  'where.fromLeft': { other: '{ft} ft mula sa kaliwang gilid' },
+  'where.fromRight': { other: '{ft} ft mula sa kanang gilid' },
   'where.numbered': '{label} (#{n})',
 
   'existing.title': 'Ano ang nasa lote ngayon',
@@ -227,13 +227,13 @@ export default {
   'existing.redrawTitle': 'Iguhit ulit ang basang bahagi',
   'existing.drawHelp':
     'Mag-click (o mag-tap) sa mapa sa paligid ng bahaging nababasa, punto por punto. Para tapusin, i-click ulit ang unang punto, mag-double-click, o pindutin ang Enter — o gamitin ang “Tapusin” sa mapa. Kinakansela ng Esc.',
-  'existing.spread': '{ft} ft ang abot ng mga sanga',
+  'existing.spread': { other: '{ft} ft ang abot ng mga sanga' },
   'existing.wetSize': 'Mga {area} sq ft. I-drag ang bahagi para ilipat ito; i-drag ang isang sulok para baguhin ang hugis, o ang maliit na + sa pagitan ng dalawang sulok para magdagdag ng sulok.',
   'existing.redraw': 'Iguhit ulit ang hugis nito',
-  'existing.across': 'Mga {ft} ft ang lapad',
+  'existing.across': { other: 'Mga {ft} ft ang lapad' },
   'existing.drawInstead': 'Iguhit na lang ang hugis nito',
-  'existing.long': '{ft} ft ang haba',
-  'existing.wide': '{ft} ft ang lapad',
+  'existing.long': { other: '{ft} ft ang haba' },
+  'existing.wide': { other: '{ft} ft ang lapad' },
   'existing.turn15': '↻ Ikutin nang 15°',
   'existing.turn90': '↻ 90°',
   'existing.takeOff': 'Alisin sa mapa',
@@ -256,15 +256,14 @@ export default {
   'slope.legend': 'Pinagdurugtong ng mga linyang kayumanggi ang lupang magkapareho ang taas; nakaturo pababa ang mga palaso, kung saan dumadaloy ang ulan. Minamarkahan ng ▲ at ▼ ang pinakamataas at pinakamababang lupa sa lote.',
   'slope.legendInches':
     'Pinagdurugtong ng mga linyang kayumanggi ang lupang magkapareho ang taas, bawat {inches} pulgada ng taas; nakaturo pababa ang mga palaso, kung saan dumadaloy ang ulan. Minamarkahan ng ▲ at ▼ ang pinakamataas at pinakamababang lupa sa lote.',
-  'slope.legendFeet':
-    'Pinagdurugtong ng mga linyang kayumanggi ang lupang magkapareho ang taas, bawat {ft} ft ng taas; nakaturo pababa ang mga palaso, kung saan dumadaloy ang ulan. Minamarkahan ng ▲ at ▼ ang pinakamataas at pinakamababang lupa sa lote.',
+  'slope.legendFeet': { other: 'Pinagdurugtong ng mga linyang kayumanggi ang lupang magkapareho ang taas, bawat {ft} ft ng taas; nakaturo pababa ang mga palaso, kung saan dumadaloy ang ulan. Minamarkahan ng ▲ at ▼ ang pinakamataas at pinakamababang lupa sa lote.' },
   'slope.directions': 'Ang harap ay ang gilid ng pasukan sa kalye; ang kaliwa at kanan ay ayon sa pagkakatayo ninyo roon habang nakatingin sa loob.',
   'slope.accuracy':
     'Taas ng lupa mula sa {source} na kinuha noong {year} sa grid na {cell} metro — karaniwang tama hanggang mga 4 na pulgada sa bukas na lupa. Hindi lalabas ang mga tambak, pagpapatag o anumang itinayo mula noon.',
   'slope.accuracyNoYear':
     'Taas ng lupa mula sa {source} sa grid na {cell} metro — karaniwang tama hanggang mga 4 na pulgada sa bukas na lupa. Hindi lalabas ang mga tambak, pagpapatag o anumang itinayo mula noon.',
   'slope.inches': { other: '{count} pulgada' },
-  'slope.feet': '{ft} ft',
+  'slope.feet': { other: '{ft} ft' },
   'slope.pct': '{pct}%',
   'slope.pctRun': '{pct}% (mga 1 ft bawat {run} ft)',
   'slope.flat': 'Halos patag ang lote: wala pang {amount} ang pagkakaiba ng taas ng lupa nito.',
@@ -294,7 +293,7 @@ export default {
   'slope.placeMiddle': 'gitna ng lote',
   'slope.high': '▲ Mataas',
   'slope.lowInches': '▼ Mababa · {inches} in ang baba',
-  'slope.lowFeet': '▼ Mababa · {ft} ft ang baba',
+  'slope.lowFeet': { other: '▼ Mababa · {ft} ft ang baba' },
 
   'sun.title': 'Araw at lilim',
   'sun.intro': 'Panoorin ang paggalaw ng mga anino ng mga gusali at puno sa paligid ng inyong lote sa buong araw at buong taon.',

@@ -72,7 +72,5 @@ export default {
   'auto.trees.several': 'عدة أشجار',
   'auto.yes': 'نعم',
   'auto.no': 'لا',
-  'auto.sqft': '{n} قدم مربع',
-  'auto.ft': '{n} قدم',
   'auto.size': 'الحجم {size}',
 } satisfies Translation<typeof en>;

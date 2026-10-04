@@ -198,7 +198,8 @@ export function slopeSummary(ground: GroundFn, parcel: Vec2[], frame: SiteFrame)
 /** "4 inches", "2.3 ft", "14 ft" */
 export function lengthWords(ft: number, t: PlannerT = pt()): string {
   if (ft < 0.96) return t('slope.inches', { count: Math.max(1, Math.round(ft * 12)) });
-  return t('slope.feet', { ft: ft < 9.95 ? oneDecimal(ft, t) : Math.round(ft) });
+  const n = ft < 9.95 ? Math.round(ft * 10) / 10 : Math.round(ft);
+  return t('slope.feet', { ft: ft < 9.95 ? oneDecimal(ft, t) : n, count: n });
 }
 
 /** "3% (about 1 ft in 33 ft)" */

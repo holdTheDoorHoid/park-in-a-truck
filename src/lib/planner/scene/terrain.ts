@@ -256,7 +256,7 @@ export class SlopeOverlay {
     }
     const fall = t.slope.fallFt;
     const w = pt();
-    const lower = Math.abs(fall) < 0.96 ? w('slope.lowInches', { inches: Math.round(Math.abs(fall) * 12) }) : w('slope.lowFeet', { ft: oneDecimal(Math.abs(fall), w) });
+    const lower = Math.abs(fall) < 0.96 ? w('slope.lowInches', { inches: Math.round(Math.abs(fall) * 12) }) : w('slope.lowFeet', { ft: oneDecimal(Math.abs(fall), w), count: Math.round(Math.abs(fall) * 10) / 10 });
     if (fall >= 0.25) {
       const c = site.frame.center;
       for (const [p, text, color] of [

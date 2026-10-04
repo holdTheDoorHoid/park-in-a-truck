@@ -75,7 +75,7 @@ export default {
   'auto.trees.several': 'Несколько деревьев',
   'auto.yes': 'Да',
   'auto.no': 'Нет',
-  'auto.sqft': '{n} кв. фт',
-  'auto.ft': '{n} фт',
+  'auto.sqft': { other: '{n} кв. фт' },
+  'auto.ft': { other: '{n} фт' },
   'auto.size': 'Размер {size}',
 } satisfies Translation<typeof en>;

@@ -10,9 +10,9 @@ export default {
   'loading.assets': 'Chargement des atouts du quartier… (JavaScript doit être activé)',
   'loading.basemap': 'Dessin de votre carte de base… (JavaScript doit être activé)',
 
-  'unit.ft': '{n} pi',
-  'unit.sqft': '{n} pi²',
-  'unit.mi': '{n} mi',
+  'unit.ft': { other: '{n} pi' },
+  'unit.sqft': { other: '{n} pi²' },
+  'unit.mi': { other: '{n} mi' },
   'distance.nextDoor': 'juste à côté',
   'map.north': 'N',
   'map.ui.zoomIn': 'Zoomer',

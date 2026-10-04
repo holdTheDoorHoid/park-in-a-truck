@@ -73,7 +73,7 @@ export default {
   'auto.trees.several': 'Miti kadhaa',
   'auto.yes': 'Ndiyo',
   'auto.no': 'Hapana',
-  'auto.sqft': 'futi za mraba {n}',
-  'auto.ft': 'futi {n}',
+  'auto.sqft': { other: 'futi za mraba {n}' },
+  'auto.ft': { other: 'futi {n}' },
   'auto.size': 'Ukubwa {size}',
 } satisfies Translation<typeof en>;

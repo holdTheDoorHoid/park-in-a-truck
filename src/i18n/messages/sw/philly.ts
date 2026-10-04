@@ -12,9 +12,9 @@ export default {
   'loading.assets': 'Mali za mtaa zinapakiwa… (inahitaji JavaScript)',
   'loading.basemap': 'Ramani yako ya msingi inachorwa… (inahitaji JavaScript)',
 
-  'unit.ft': 'futi {n}',
-  'unit.sqft': 'futi za mraba {n}',
-  'unit.mi': 'maili {n}',
+  'unit.ft': { other: 'futi {n}' },
+  'unit.sqft': { other: 'futi za mraba {n}' },
+  'unit.mi': { other: 'maili {n}' },
   'distance.nextDoor': 'jirani kabisa',
   'map.north': 'K',
   'map.ui.zoomIn': 'Kuza',

@@ -74,7 +74,7 @@ export default {
   'auto.trees.several': 'Ilang puno',
   'auto.yes': 'Oo',
   'auto.no': 'Hindi',
-  'auto.sqft': '{n} sq ft',
-  'auto.ft': '{n} ft',
+  'auto.sqft': { other: '{n} sq ft' },
+  'auto.ft': { other: '{n} ft' },
   'auto.size': 'Laki {size}',
 } satisfies Translation<typeof en>;

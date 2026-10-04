@@ -29,13 +29,13 @@ export function CountsPanel({ store }: { store: PlannerStore }) {
             <th scope="row">
               {t('counts.length')} <span class="muted">{t('counts.lengthHint')}</span>
             </th>
-            <td>{t('common.ft', { ft: tally.lengthFt })}</td>
+            <td>{t('common.ft', { ft: tally.lengthFt, count: tally.lengthFt })}</td>
           </tr>
           <tr>
             <th scope="row">
               {t('counts.width')} <span class="muted">{t('counts.widthHint')}</span>
             </th>
-            <td>{t('common.ft', { ft: tally.widthFt })}</td>
+            <td>{t('common.ft', { ft: tally.widthFt, count: tally.widthFt })}</td>
           </tr>
           <tr>
             <th scope="row">
@@ -49,7 +49,7 @@ export function CountsPanel({ store }: { store: PlannerStore }) {
                 {t('counts.wall')}{' '}
                 <span class="muted">{wallPieces ? t('counts.wallHintPieces', { count: wallPieces }) : t('counts.wallHint')}</span>
               </th>
-              <td>{t('common.ft', { ft: wallFt })}</td>
+              <td>{t('common.ft', { ft: wallFt, count: wallFt })}</td>
             </tr>
           )}
           {tally.naturePlaySquares > 0 && (

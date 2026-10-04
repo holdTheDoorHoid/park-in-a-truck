@@ -20,11 +20,14 @@ export default defineMessages('philly', {
 
   // ---- units and small words --------------------------------------------------------------------
   /** A length in feet: "14.0 ft" */
-  'unit.ft': '{n} ft',
+  /** Plural forms: the form follows the number of feet in {n} ("1 ft", "2 ft"); give the forms your language needs */
+  'unit.ft': { one: '{n} ft', other: '{n} ft' },
   /** An area in square feet: "1,235 sq ft" */
-  'unit.sqft': '{n} sq ft',
+  /** Plural forms: the form follows the number of square feet in {n} ("1 ft", "2 ft"); give the forms your language needs */
+  'unit.sqft': { one: '{n} sq ft', other: '{n} sq ft' },
   /** A distance in miles: "0.5 mi" */
-  'unit.mi': '{n} mi',
+  /** Plural forms: the form follows the number of miles in {n} ("1 ft", "2 ft"); give the forms your language needs */
+  'unit.mi': { one: '{n} mi', other: '{n} mi' },
   /** Distance in a list of places: the place is right next to the lot */
   'distance.nextDoor': 'next door',
   /** The letter for north on the arrow of a map or drawing (one letter or character) */

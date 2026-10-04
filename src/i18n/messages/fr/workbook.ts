@@ -74,7 +74,7 @@ export default {
   'auto.trees.several': 'Plusieurs arbres',
   'auto.yes': 'Oui',
   'auto.no': 'Non',
-  'auto.sqft': '{n} pi²',
-  'auto.ft': '{n} pi',
+  'auto.sqft': { other: '{n} pi²' },
+  'auto.ft': { other: '{n} pi' },
   'auto.size': 'Taille {size}',
 } satisfies Translation<typeof en>;

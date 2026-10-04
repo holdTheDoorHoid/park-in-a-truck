@@ -48,7 +48,7 @@ export default {
   'note.sunFailed': 'Etid solèy la pa t ka fini. Eseye ankò.',
 
   'common.dims': '{length} × {width} pye',
-  'common.ft': '{ft} pye',
+  'common.ft': { other: '{ft} pye' },
   'common.add': '+ {name}',
   'common.cancel': 'Anile',
   'action.turn': '↻ Vire',
@@ -197,12 +197,12 @@ export default {
 
   'where.both': '{along}, {across}',
   'where.atEntrance': 'nan antre a',
-  'where.fromEntrance': '{ft} pye depi antre a',
+  'where.fromEntrance': { other: '{ft} pye depi antre a' },
   'where.middle': 'nan mitan an travè',
   'where.againstLeft': 'kole sou bò gòch',
   'where.againstRight': 'kole sou bò dwat',
-  'where.fromLeft': '{ft} pye depi bò gòch',
-  'where.fromRight': '{ft} pye depi bò dwat',
+  'where.fromLeft': { other: '{ft} pye depi bò gòch' },
+  'where.fromRight': { other: '{ft} pye depi bò dwat' },
   'where.numbered': '{label} (#{n})',
 
   'existing.title': 'Sa ki sou teren an kounye a',
@@ -232,13 +232,13 @@ export default {
   'existing.redrawTitle': 'Desinen zòn ki mouye a ankò',
   'existing.drawHelp':
     'Klike (oswa touche) sou kat la toutotou kote ki mouye a, pwen pa pwen. Pou fini, klike sou premye pwen an ankò, fè de klik, oswa peze Enter — oswa sèvi ak “Fini” sou kat la. Esc anile.',
-  'existing.spread': 'Branch yo louvri sou {ft} pye',
+  'existing.spread': { other: 'Branch yo louvri sou {ft} pye' },
   'existing.wetSize': 'Apeprè {area} pye kare. Trennen zòn nan pou deplase l; trennen yon kwen pou chanje fòm li, oswa ti + ki ant de kwen an pou ajoute youn.',
   'existing.redraw': 'Desinen kontou l ankò',
-  'existing.across': 'Apeprè {ft} pye lajè',
+  'existing.across': { other: 'Apeprè {ft} pye lajè' },
   'existing.drawInstead': 'Desinen kontou l pito',
-  'existing.long': '{ft} pye longè',
-  'existing.wide': '{ft} pye lajè',
+  'existing.long': { other: '{ft} pye longè' },
+  'existing.wide': { other: '{ft} pye lajè' },
   'existing.turn15': '↻ Vire 15°',
   'existing.turn90': '↻ 90°',
   'existing.takeOff': 'Retire l sou kat la',
@@ -261,15 +261,14 @@ export default {
   'slope.legend': 'Liy mawon yo konekte tè ki gen menm wotè; flèch yo montre bò ki desann, jan dlo lapli koule. ▲ ak ▼ make tè ki pi wo a ak tè ki pi ba a sou teren an.',
   'slope.legendInches':
     'Liy mawon yo konekte tè ki gen menm wotè, chak {inches} pous wotè; flèch yo montre bò ki desann, jan dlo lapli koule. ▲ ak ▼ make tè ki pi wo a ak tè ki pi ba a sou teren an.',
-  'slope.legendFeet':
-    'Liy mawon yo konekte tè ki gen menm wotè, chak {ft} pye wotè; flèch yo montre bò ki desann, jan dlo lapli koule. ▲ ak ▼ make tè ki pi wo a ak tè ki pi ba a sou teren an.',
+  'slope.legendFeet': { other: 'Liy mawon yo konekte tè ki gen menm wotè, chak {ft} pye wotè; flèch yo montre bò ki desann, jan dlo lapli koule. ▲ ak ▼ make tè ki pi wo a ak tè ki pi ba a sou teren an.' },
   'slope.directions': 'Devan se bò antre a sou lari a; gòch ak dwat se jan ou kanpe la a k ap gade anndan.',
   'slope.accuracy':
     'Wotè tè a soti nan {source} yo te pran an {year} sou yon kadriyaj {cell} mèt — anjeneral pa plis pase apeprè 4 pous erè sou tè ki dekouvri. Pil tè, tè yo renivle oswa nenpòt bagay yo bati depi lè sa a p ap parèt.',
   'slope.accuracyNoYear':
     'Wotè tè a soti nan {source} sou yon kadriyaj {cell} mèt — anjeneral pa plis pase apeprè 4 pous erè sou tè ki dekouvri. Pil tè, tè yo renivle oswa nenpòt bagay yo bati depi lè sa a p ap parèt.',
   'slope.inches': { one: '{count} pous', other: '{count} pous' },
-  'slope.feet': '{ft} pye',
+  'slope.feet': { other: '{ft} pye' },
   'slope.pct': '{pct}%',
   'slope.pctRun': '{pct}% (apeprè 1 pye sou {run} pye)',
   'slope.flat': 'Teren an prèske plat: wotè tè a pa chanje plis pase {amount}.',
@@ -299,7 +298,7 @@ export default {
   'slope.placeMiddle': 'mitan teren an',
   'slope.high': '▲ Wo',
   'slope.lowInches': '▼ Ba · {inches} pous pi ba',
-  'slope.lowFeet': '▼ Ba · {ft} pye pi ba',
+  'slope.lowFeet': { other: '▼ Ba · {ft} pye pi ba' },
 
   'sun.title': 'Solèy ak lonbraj',
   'sun.intro': 'Gade lonbraj bilding ak pyebwa ki toutotou teren ou an ap deplase pandan jounen an ak pandan ane a.',

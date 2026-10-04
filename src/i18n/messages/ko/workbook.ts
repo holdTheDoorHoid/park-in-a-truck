@@ -72,7 +72,7 @@ export default {
   'auto.trees.several': '나무 여러 그루',
   'auto.yes': '예',
   'auto.no': '아니요',
-  'auto.sqft': '{n}제곱피트',
-  'auto.ft': '{n}피트',
+  'auto.sqft': { other: '{n}제곱피트' },
+  'auto.ft': { other: '{n}피트' },
   'auto.size': '크기 {size}',
 } satisfies Translation<typeof en>;

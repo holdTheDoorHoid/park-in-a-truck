@@ -52,7 +52,7 @@ export default {
   'note.sunFailed': 'Uchunguzi wa jua haukuweza kumalizika. Jaribu tena.',
 
   'common.dims': 'futi {length} × {width}',
-  'common.ft': 'futi {ft}',
+  'common.ft': { other: 'futi {ft}' },
   'common.add': '+ {name}',
   'common.cancel': 'Ghairi',
   'action.turn': '↻ Geuza',
@@ -201,12 +201,12 @@ export default {
 
   'where.both': '{along}, {across}',
   'where.atEntrance': 'kwenye mlango wa kuingilia',
-  'where.fromEntrance': 'futi {ft} kutoka mlangoni',
+  'where.fromEntrance': { other: 'futi {ft} kutoka mlangoni' },
   'where.middle': 'katikati kwa upana',
   'where.againstLeft': 'kando ya upande wa kushoto',
   'where.againstRight': 'kando ya upande wa kulia',
-  'where.fromLeft': 'futi {ft} kutoka upande wa kushoto',
-  'where.fromRight': 'futi {ft} kutoka upande wa kulia',
+  'where.fromLeft': { other: 'futi {ft} kutoka upande wa kushoto' },
+  'where.fromRight': { other: 'futi {ft} kutoka upande wa kulia' },
   'where.numbered': '{label} (#{n})',
 
   'existing.title': 'Kilichopo kwenye kiwanja sasa',
@@ -236,13 +236,13 @@ export default {
   'existing.redrawTitle': 'Chora upya eneo linalotuama maji',
   'existing.drawHelp':
     'Bofya (au gusa) kwenye ramani kuzunguka mahali panapotuama maji, nukta kwa nukta. Ili kumaliza, bofya nukta ya kwanza tena, bofya mara mbili, au bonyeza Enter — au tumia “Maliza” kwenye ramani. Esc inaghairi.',
-  'existing.spread': 'Matawi yanaenea futi {ft} kwa upana',
+  'existing.spread': { other: 'Matawi yanaenea futi {ft} kwa upana' },
   'existing.wetSize': 'Takriban futi za mraba {area}. Buruta eneo ili kulisogeza; buruta pembe ili kubadilisha umbo lake, au + ndogo iliyo kati ya pembe mbili ili kuongeza pembe.',
   'existing.redraw': 'Chora upya mpaka wake',
-  'existing.across': 'Takriban futi {ft} kwa upana',
+  'existing.across': { other: 'Takriban futi {ft} kwa upana' },
   'existing.drawInstead': 'Chora mpaka wake badala yake',
-  'existing.long': 'urefu wa futi {ft}',
-  'existing.wide': 'upana wa futi {ft}',
+  'existing.long': { other: 'urefu wa futi {ft}' },
+  'existing.wide': { other: 'upana wa futi {ft}' },
   'existing.turn15': '↻ Geuza 15°',
   'existing.turn90': '↻ 90°',
   'existing.takeOff': 'Ondoa kwenye ramani',
@@ -265,15 +265,14 @@ export default {
   'slope.legend': 'Mistari ya kahawia inaunganisha ardhi yenye kimo sawa; mishale inaelekeza kwenye mteremko wa kushuka, njia ambayo maji ya mvua hutiririka. ▲ na ▼ zinaonyesha ardhi ya juu kabisa na ya chini kabisa kwenye kiwanja.',
   'slope.legendInches':
     'Mistari ya kahawia inaunganisha ardhi yenye kimo sawa, kila inchi {inches} za kimo; mishale inaelekeza kwenye mteremko wa kushuka, njia ambayo maji ya mvua hutiririka. ▲ na ▼ zinaonyesha ardhi ya juu kabisa na ya chini kabisa kwenye kiwanja.',
-  'slope.legendFeet':
-    'Mistari ya kahawia inaunganisha ardhi yenye kimo sawa, kila futi {ft} za kimo; mishale inaelekeza kwenye mteremko wa kushuka, njia ambayo maji ya mvua hutiririka. ▲ na ▼ zinaonyesha ardhi ya juu kabisa na ya chini kabisa kwenye kiwanja.',
+  'slope.legendFeet': { other: 'Mistari ya kahawia inaunganisha ardhi yenye kimo sawa, kila futi {ft} za kimo; mishale inaelekeza kwenye mteremko wa kushuka, njia ambayo maji ya mvua hutiririka. ▲ na ▼ zinaonyesha ardhi ya juu kabisa na ya chini kabisa kwenye kiwanja.' },
   'slope.directions': 'Mbele ni ukingo wa mlango wa kuingilia ulio barabarani; kushoto na kulia ni kama unavyosimama hapo ukitazama ndani.',
   'slope.accuracy':
     'Vimo vya ardhi kutoka {source} vilivyopimwa mwaka {year} kwenye gridi ya mita {cell} — kwa kawaida ni sahihi ndani ya takriban inchi 4 kwenye ardhi wazi. Marundo, usawazishaji mpya au chochote kilichojengwa tangu hapo hakitaonekana.',
   'slope.accuracyNoYear':
     'Vimo vya ardhi kutoka {source} kwenye gridi ya mita {cell} — kwa kawaida ni sahihi ndani ya takriban inchi 4 kwenye ardhi wazi. Marundo, usawazishaji mpya au chochote kilichojengwa tangu hapo hakitaonekana.',
   'slope.inches': { one: 'inchi {count}', other: 'inchi {count}' },
-  'slope.feet': 'futi {ft}',
+  'slope.feet': { other: 'futi {ft}' },
   'slope.pct': '{pct}%',
   'slope.pctRun': '{pct}% (takriban futi 1 kwa kila futi {run})',
   'slope.flat': 'Kiwanja kiko tambarare karibu kabisa: tofauti ya kimo cha ardhi yake ni chini ya {amount}.',
@@ -303,7 +302,7 @@ export default {
   'slope.placeMiddle': 'katikati ya kiwanja',
   'slope.high': '▲ Juu',
   'slope.lowInches': '▼ Chini · inchi {inches} chini zaidi',
-  'slope.lowFeet': '▼ Chini · futi {ft} chini zaidi',
+  'slope.lowFeet': { other: '▼ Chini · futi {ft} chini zaidi' },
 
   'sun.title': 'Jua na kivuli',
   'sun.intro': 'Tazama vivuli vya majengo na miti inayozunguka kiwanja chako vikisogea mchana kutwa na mwaka mzima.',

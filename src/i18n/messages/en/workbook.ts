@@ -83,7 +83,9 @@ export default defineMessages('workbook', {
   'auto.trees.several': 'Several trees',
   'auto.yes': 'Yes',
   'auto.no': 'No',
-  'auto.sqft': '{n} sq ft',
-  'auto.ft': '{n} ft',
+  /** Plural forms: the form follows the number of square feet in {n} ("1 ft", "2 ft"); give the forms your language needs */
+  'auto.sqft': { one: '{n} sq ft', other: '{n} sq ft' },
+  /** Plural forms: the form follows the number of feet in {n} ("1 ft", "2 ft"); give the forms your language needs */
+  'auto.ft': { one: '{n} ft', other: '{n} ft' },
   'auto.size': 'Size {size}',
 });

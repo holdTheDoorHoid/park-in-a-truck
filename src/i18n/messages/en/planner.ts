@@ -71,7 +71,8 @@ export default defineMessages('planner', {
   /** A length × width in feet, e.g. "4 × 1.5 ft" */
   'common.dims': '{length} × {width} ft',
   /** A length in feet, e.g. "24 ft" */
-  'common.ft': '{ft} ft',
+  /** Plural forms: the form follows the number of feet in {ft} ("1 ft", "2 ft"); give the forms your language needs */
+  'common.ft': { one: '{ft} ft', other: '{ft} ft' },
   /** On buttons that add a thing to the park or the map: "+ Stool" */
   'common.add': '+ {name}',
   'common.cancel': 'Cancel',
@@ -136,7 +137,7 @@ export default defineMessages('planner', {
   'lot.bestSlide': 'Slide it to fit the lot as well as it can',
   'lot.overhang': 'About {area} sq ft of the park hangs over the lot line (shown in red).',
   'lot.overhangItems': {
-    one: 'About {area} sq ft of the park hangs over the lot line (shown in red), and {count} thing stick out.',
+    one: 'About {area} sq ft of the park hangs over the lot line (shown in red), and {count} thing sticks out.',
     other: 'About {area} sq ft of the park hangs over the lot line (shown in red), and {count} things stick out.',
   },
   'lot.overhangTurned': 'Turned this way the park does not fit — turn it back, or pick a smaller size.',
@@ -246,12 +247,15 @@ export default defineMessages('planner', {
   /** "{along}, {across}" e.g. "29 ft from the entrance, 4 ft from the left side" */
   'where.both': '{along}, {across}',
   'where.atEntrance': 'at the entrance',
-  'where.fromEntrance': '{ft} ft from the entrance',
+  /** Plural forms: the form follows the number of feet in {ft} ("1 ft", "2 ft"); give the forms your language needs */
+  'where.fromEntrance': { one: '{ft} ft from the entrance', other: '{ft} ft from the entrance' },
   'where.middle': 'in the middle across',
   'where.againstLeft': 'against the left side',
   'where.againstRight': 'against the right side',
-  'where.fromLeft': '{ft} ft from the left side',
-  'where.fromRight': '{ft} ft from the right side',
+  /** Plural forms: the form follows the number of feet in {ft} ("1 ft", "2 ft"); give the forms your language needs */
+  'where.fromLeft': { one: '{ft} ft from the left side', other: '{ft} ft from the left side' },
+  /** Plural forms: the form follows the number of feet in {ft} ("1 ft", "2 ft"); give the forms your language needs */
+  'where.fromRight': { one: '{ft} ft from the right side', other: '{ft} ft from the right side' },
   /** Two items in a list that would read the same get numbered: "Stool — at the entrance, … (#2)" */
   'where.numbered': '{label} (#{n})',
 
@@ -260,7 +264,7 @@ export default defineMessages('planner', {
   'existing.titleCompact': 'Already on the lot',
   'existing.intro': "Mark what's already there: trees, a neighbor's downspout, spots that get wet, hydrants, poles and wires, old pavement.",
   'existing.cityTrees': {
-    one: "The {count} street tree nearby come from the City's tree inventory.",
+    one: "The {count} street tree nearby comes from the City's tree inventory.",
     other: "The {count} street trees nearby come from the City's tree inventory.",
   },
   'existing.intro2': 'Add a thing, then drag it to where it really is; an area that gets wet you draw around on the map.',
@@ -285,13 +289,17 @@ export default defineMessages('planner', {
   'existing.redrawTitle': 'Redraw the wet area',
   'existing.drawHelp':
     'Click (or tap) on the map around the spot that gets wet, point by point. To finish, click the first point again, double-click, or press Enter — or use “Finish” on the map. Esc cancels.',
-  'existing.spread': 'Branches spread {ft} ft across',
+  /** Plural forms: the form follows the number of feet in {ft} ("1 ft", "2 ft"); give the forms your language needs */
+  'existing.spread': { one: 'Branches spread {ft} ft across', other: 'Branches spread {ft} ft across' },
   'existing.wetSize': 'About {area} sq ft. Drag the area to move it; drag a corner to reshape it, or the small + between two corners to add one.',
   'existing.redraw': 'Redraw its outline',
-  'existing.across': 'About {ft} ft across',
+  /** Plural forms: the form follows the number of feet in {ft} ("1 ft", "2 ft"); give the forms your language needs */
+  'existing.across': { one: 'About {ft} ft across', other: 'About {ft} ft across' },
   'existing.drawInstead': 'Draw its outline instead',
-  'existing.long': '{ft} ft long',
-  'existing.wide': '{ft} ft wide',
+  /** Plural forms: the form follows the number of feet in {ft} ("1 ft", "2 ft"); give the forms your language needs */
+  'existing.long': { one: '{ft} ft long', other: '{ft} ft long' },
+  /** Plural forms: the form follows the number of feet in {ft} ("1 ft", "2 ft"); give the forms your language needs */
+  'existing.wide': { one: '{ft} ft wide', other: '{ft} ft wide' },
   'existing.turn15': '↻ Turn 15°',
   'existing.turn90': '↻ 90°',
   'existing.takeOff': 'Take off the map',
@@ -319,8 +327,8 @@ export default defineMessages('planner', {
   'slope.legend': 'Brown lines join ground of equal height; arrows point downhill, the way rain runs off. ▲ and ▼ mark the highest and lowest ground on the lot.',
   'slope.legendInches':
     'Brown lines join ground of equal height, every {inches} inches of height; arrows point downhill, the way rain runs off. ▲ and ▼ mark the highest and lowest ground on the lot.',
-  'slope.legendFeet':
-    'Brown lines join ground of equal height, every {ft} ft of height; arrows point downhill, the way rain runs off. ▲ and ▼ mark the highest and lowest ground on the lot.',
+  /** Plural forms: the form follows the number of feet in {ft} ("1 ft", "2 ft"); give the forms your language needs */
+  'slope.legendFeet': { one: 'Brown lines join ground of equal height, every {ft} ft of height; arrows point downhill, the way rain runs off. ▲ and ▼ mark the highest and lowest ground on the lot.', other: 'Brown lines join ground of equal height, every {ft} ft of height; arrows point downhill, the way rain runs off. ▲ and ▼ mark the highest and lowest ground on the lot.' },
   'slope.directions': 'Front is the entrance edge on the street; left and right are as you stand there looking in.',
   /** {source} is the survey's name (e.g. "USGS 3DEP lidar"), {year} the year it was flown, {cell} the grid size in metres */
   'slope.accuracy':
@@ -330,7 +338,8 @@ export default defineMessages('planner', {
   /** Small heights: "4 inches" */
   'slope.inches': { one: '{count} inch', other: '{count} inches' },
   /** Larger heights: "2.3 ft" */
-  'slope.feet': '{ft} ft',
+  /** Plural forms: the form follows the number of feet in {ft} ("1 ft", "2 ft"); give the forms your language needs */
+  'slope.feet': { one: '{ft} ft', other: '{ft} ft' },
   /** A slope: "0.5%" */
   'slope.pct': '{pct}%',
   /** A slope with its rise over run: "3% (about 1 ft in 33 ft)" */
@@ -370,7 +379,8 @@ export default defineMessages('planner', {
   /** Labels drawn on the map at the highest and lowest ground. Short. */
   'slope.high': '▲ High',
   'slope.lowInches': '▼ Low · {inches} in lower',
-  'slope.lowFeet': '▼ Low · {ft} ft lower',
+  /** Plural forms: the form follows the number of feet in {ft} ("1 ft", "2 ft"); give the forms your language needs */
+  'slope.lowFeet': { one: '▼ Low · {ft} ft lower', other: '▼ Low · {ft} ft lower' },
 
   // ---- Sun & shade (SunPanel) ----
   'sun.title': 'Sun and shade',

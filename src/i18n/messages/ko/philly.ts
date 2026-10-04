@@ -12,9 +12,9 @@ export default {
   'loading.assets': '동네 자원을 불러오는 중… (JavaScript가 필요해요)',
   'loading.basemap': '기본 지도를 그리는 중… (JavaScript가 필요해요)',
 
-  'unit.ft': '{n}피트',
-  'unit.sqft': '{n}제곱피트',
-  'unit.mi': '{n}마일',
+  'unit.ft': { other: '{n}피트' },
+  'unit.sqft': { other: '{n}제곱피트' },
+  'unit.mi': { other: '{n}마일' },
   'distance.nextDoor': '바로 옆',
   'map.north': 'N',
   'map.ui.zoomIn': '확대',

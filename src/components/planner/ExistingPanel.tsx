@@ -84,7 +84,7 @@ export function ExistingPanel({ store, compact = false }: { store: PlannerStore;
           {selected.element === 'existing-tree' && (
             <>
               <label class="pl-field">
-                <span class="pl-small">{t('existing.spread', { ft: Math.round((selected.radiusFt ?? 8) * 2) })}</span>
+                <span class="pl-small">{t('existing.spread', { ft: Math.round((selected.radiusFt ?? 8) * 2), count: Math.round((selected.radiusFt ?? 8) * 2) })}</span>
                 <input
                   type="range"
                   min={2}
@@ -114,7 +114,7 @@ export function ExistingPanel({ store, compact = false }: { store: PlannerStore;
             <>
               {/* older saves: a circle */}
               <label class="pl-field">
-                <span class="pl-small">{t('existing.across', { ft: Math.round((selected.radiusFt ?? 5) * 2) })}</span>
+                <span class="pl-small">{t('existing.across', { ft: Math.round((selected.radiusFt ?? 5) * 2), count: Math.round((selected.radiusFt ?? 5) * 2) })}</span>
                 <input type="range" min={1} max={20} step={0.5} value={selected.radiusFt ?? 5} onInput={(e) => patch(selected.id, { radiusFt: Number((e.target as HTMLInputElement).value) }, `radiusFt:${selected.id}`)} />
               </label>
               {store.editable && (
@@ -128,13 +128,13 @@ export function ExistingPanel({ store, compact = false }: { store: PlannerStore;
           )}
           {(selected.element === 'utility-line' || selected.element === 'old-pavement') && (
             <label class="pl-field">
-              <span class="pl-small">{t('existing.long', { ft: Math.round(selected.lengthFt ?? 10) })}</span>
+              <span class="pl-small">{t('existing.long', { ft: Math.round(selected.lengthFt ?? 10), count: Math.round(selected.lengthFt ?? 10) })}</span>
               <input type="range" min={2} max={120} step={1} value={selected.lengthFt ?? 10} onInput={(e) => patch(selected.id, { lengthFt: Number((e.target as HTMLInputElement).value) }, `lengthFt:${selected.id}`)} />
             </label>
           )}
           {selected.element === 'old-pavement' && (
             <label class="pl-field">
-              <span class="pl-small">{t('existing.wide', { ft: Math.round(selected.widthFt ?? 8) })}</span>
+              <span class="pl-small">{t('existing.wide', { ft: Math.round(selected.widthFt ?? 8), count: Math.round(selected.widthFt ?? 8) })}</span>
               <input type="range" min={1} max={60} step={1} value={selected.widthFt ?? 8} onInput={(e) => patch(selected.id, { widthFt: Number((e.target as HTMLInputElement).value) }, `widthFt:${selected.id}`)} />
             </label>
           )}

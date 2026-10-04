@@ -12,9 +12,9 @@ export default {
   'loading.assets': 'Đang tải điểm mạnh của khu phố… (cần bật JavaScript)',
   'loading.basemap': 'Đang vẽ bản đồ nền của bạn… (cần bật JavaScript)',
 
-  'unit.ft': '{n} ft',
-  'unit.sqft': '{n} ft²',
-  'unit.mi': '{n} dặm',
+  'unit.ft': { other: '{n} ft' },
+  'unit.sqft': { other: '{n} ft²' },
+  'unit.mi': { other: '{n} dặm' },
   'distance.nextDoor': 'ngay bên cạnh',
   'map.north': 'B',
   'map.ui.zoomIn': 'Phóng to',

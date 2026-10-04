@@ -29,7 +29,7 @@ export function lotTypeReasonText(g: Pick<LotGeometry, 'lotTypeReason' | 'street
   const hit = matchEnglish(main, REASONS);
   if (!hit) return saved;
   const names = [...new Set((g.streets ?? []).map((s) => titleCase(s.name)))];
-  const ft = (n: number) => t('unit.ft', { n: Math.round(n) });
+  const ft = (n: number) => t('unit.ft', { n: Math.round(n), count: Math.round(n) });
   const text = t(hit.key, {
     ...hit.vars,
     ...(names.length ? { streets: t.list(names) } : {}),

@@ -132,21 +132,21 @@ export function phone(p: string | null | undefined): string {
 }
 
 /** 1234.5 → "1,235 sq ft" (written the local way: "1 235 sq ft") */
-export const sqft = (n: number | null | undefined, locale?: Locale | string) => (n == null ? '—' : words(locale)('unit.sqft', { n: Math.round(n) }));
+export const sqft = (n: number | null | undefined, locale?: Locale | string) => (n == null ? '—' : words(locale)('unit.sqft', { n: Math.round(n), count: Math.round(n) }));
 /** 13.96 → "14.0 ft" (always `d` decimals; "14,0 ft" where a comma is the decimal mark) */
 export const feet = (n: number | null | undefined, d = 1, locale?: Locale | string) => {
   if (n == null) return '—';
   const t = words(locale);
   const v = Math.round(n * 10 ** d) / 10 ** d;
-  return t('unit.ft', { n: t.num(v, { minimumFractionDigits: d, maximumFractionDigits: d, useGrouping: false }) });
+  return t('unit.ft', { n: t.num(v, { minimumFractionDigits: d, maximumFractionDigits: d, useGrouping: false }), count: v });
 };
 /** distance for lists: 180 → "180 ft", 2400 → "0.5 mi" */
 export function distance(ft: number | null | undefined, locale?: Locale | string): string {
   if (ft == null) return '';
   const t = words(locale);
   if (ft < 30) return t('distance.nextDoor');
-  if (ft < 1000) return t('unit.ft', { n: Math.round(ft / 10) * 10 });
+  if (ft < 1000) return t('unit.ft', { n: Math.round(ft / 10) * 10, count: Math.round(ft / 10) * 10 });
   // 0.25 mi, 0.5 mi, 1 mi, 1.3 mi — never "1." or "1.0"
   const mi = Math.round((ft / 5280) * (ft < 5280 ? 100 : 10)) / (ft < 5280 ? 100 : 10);
-  return t('unit.mi', { n: mi });
+  return t('unit.mi', { n: mi, count: mi });
 }

@@ -73,7 +73,7 @@ export default {
   'auto.trees.several': 'Plizyè pyebwa',
   'auto.yes': 'Wi',
   'auto.no': 'Non',
-  'auto.sqft': '{n} pye kare',
-  'auto.ft': '{n} pye',
+  'auto.sqft': { other: '{n} pye kare' },
+  'auto.ft': { other: '{n} pye' },
   'auto.size': 'Gwosè {size}',
 } satisfies Translation<typeof en>;

@@ -49,7 +49,7 @@ export default {
   'note.sunFailed': 'Phần khảo sát nắng không tính xong được. Hãy thử lại.',
 
   'common.dims': '{length} × {width} ft',
-  'common.ft': '{ft} ft',
+  'common.ft': { other: '{ft} ft' },
   'common.add': '+ {name}',
   'common.cancel': 'Hủy',
   'action.turn': '↻ Xoay',
@@ -196,12 +196,12 @@ export default {
 
   'where.both': '{along}, {across}',
   'where.atEntrance': 'ở lối vào',
-  'where.fromEntrance': 'cách lối vào {ft} ft',
+  'where.fromEntrance': { other: 'cách lối vào {ft} ft' },
   'where.middle': 'ở giữa theo chiều ngang',
   'where.againstLeft': 'sát phía trái',
   'where.againstRight': 'sát phía phải',
-  'where.fromLeft': 'cách phía trái {ft} ft',
-  'where.fromRight': 'cách phía phải {ft} ft',
+  'where.fromLeft': { other: 'cách phía trái {ft} ft' },
+  'where.fromRight': { other: 'cách phía phải {ft} ft' },
   'where.numbered': '{label} (#{n})',
 
   'existing.title': 'Những gì đang có trên lô đất',
@@ -230,13 +230,13 @@ export default {
   'existing.redrawTitle': 'Vẽ lại chỗ bị ướt',
   'existing.drawHelp':
     'Bấm (hoặc chạm) trên bản đồ quanh chỗ hay bị ướt, từng điểm một. Để xong, bấm lại điểm đầu tiên, bấm đúp, hoặc nhấn Enter — hoặc dùng nút “Xong” trên bản đồ. Esc để hủy.',
-  'existing.spread': 'Tán cây rộng {ft} ft',
+  'existing.spread': { other: 'Tán cây rộng {ft} ft' },
   'existing.wetSize': 'Khoảng {area} ft². Kéo vùng này để dời chỗ; kéo một góc để đổi hình dạng, hoặc dấu + nhỏ giữa hai góc để thêm góc.',
   'existing.redraw': 'Vẽ lại đường viền',
-  'existing.across': 'Rộng khoảng {ft} ft',
+  'existing.across': { other: 'Rộng khoảng {ft} ft' },
   'existing.drawInstead': 'Vẽ đường viền thay vào đó',
-  'existing.long': 'dài {ft} ft',
-  'existing.wide': 'rộng {ft} ft',
+  'existing.long': { other: 'dài {ft} ft' },
+  'existing.wide': { other: 'rộng {ft} ft' },
   'existing.turn15': '↻ Xoay 15°',
   'existing.turn90': '↻ 90°',
   'existing.takeOff': 'Gỡ khỏi bản đồ',
@@ -259,15 +259,14 @@ export default {
   'slope.legend': 'Các đường màu nâu nối những chỗ đất cao bằng nhau; mũi tên chỉ hướng xuống dốc, hướng nước mưa chảy. ▲ và ▼ đánh dấu chỗ đất cao nhất và thấp nhất trên lô đất.',
   'slope.legendInches':
     'Các đường màu nâu nối những chỗ đất cao bằng nhau, cứ mỗi {inches} inch độ cao một đường; mũi tên chỉ hướng xuống dốc, hướng nước mưa chảy. ▲ và ▼ đánh dấu chỗ đất cao nhất và thấp nhất trên lô đất.',
-  'slope.legendFeet':
-    'Các đường màu nâu nối những chỗ đất cao bằng nhau, cứ mỗi {ft} ft độ cao một đường; mũi tên chỉ hướng xuống dốc, hướng nước mưa chảy. ▲ và ▼ đánh dấu chỗ đất cao nhất và thấp nhất trên lô đất.',
+  'slope.legendFeet': { other: 'Các đường màu nâu nối những chỗ đất cao bằng nhau, cứ mỗi {ft} ft độ cao một đường; mũi tên chỉ hướng xuống dốc, hướng nước mưa chảy. ▲ và ▼ đánh dấu chỗ đất cao nhất và thấp nhất trên lô đất.' },
   'slope.directions': 'Phía trước là mép lối vào giáp đường; trái và phải là khi bạn đứng ở đó nhìn vào trong.',
   'slope.accuracy':
     'Độ cao mặt đất lấy từ {source} bay chụp năm {year} trên lưới ô {cell} mét — thường sai lệch trong khoảng 4 inch trên đất trống. Những đống đất, chỗ san lại hay bất cứ thứ gì xây sau thời điểm đó sẽ không hiện ra.',
   'slope.accuracyNoYear':
     'Độ cao mặt đất lấy từ {source} trên lưới ô {cell} mét — thường sai lệch trong khoảng 4 inch trên đất trống. Những đống đất, chỗ san lại hay bất cứ thứ gì xây sau thời điểm đó sẽ không hiện ra.',
   'slope.inches': { other: '{count} inch' },
-  'slope.feet': '{ft} ft',
+  'slope.feet': { other: '{ft} ft' },
   'slope.pct': '{pct}%',
   'slope.pctRun': '{pct}% (khoảng 1 ft trên {run} ft)',
   'slope.flat': 'Lô đất gần như bằng phẳng: mặt đất chênh nhau chưa tới {amount}.',
@@ -297,7 +296,7 @@ export default {
   'slope.placeMiddle': 'giữa lô đất',
   'slope.high': '▲ Cao',
   'slope.lowInches': '▼ Thấp · thấp hơn {inches} in',
-  'slope.lowFeet': '▼ Thấp · thấp hơn {ft} ft',
+  'slope.lowFeet': { other: '▼ Thấp · thấp hơn {ft} ft' },
 
   'sun.title': 'Nắng và bóng râm',
   'sun.intro': 'Xem bóng của nhà cửa và cây cối quanh lô đất di chuyển suốt ngày và suốt năm.',

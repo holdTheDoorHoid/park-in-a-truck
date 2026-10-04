@@ -73,7 +73,7 @@ export default {
   'auto.trees.several': 'Nhiều cây',
   'auto.yes': 'Có',
   'auto.no': 'Không',
-  'auto.sqft': '{n} ft²',
-  'auto.ft': '{n} ft',
+  'auto.sqft': { other: '{n} ft²' },
+  'auto.ft': { other: '{n} ft' },
   'auto.size': 'Cỡ {size}',
 } satisfies Translation<typeof en>;

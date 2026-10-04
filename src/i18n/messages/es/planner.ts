@@ -47,7 +47,6 @@ export default {
   'note.sunFailed': 'El estudio de sol no pudo terminar. Intente de nuevo.',
 
   'common.dims': '{length} × {width} pies',
-  'common.ft': '{ft} pies',
   'common.add': '+ {name}',
   'common.cancel': 'Cancelar',
   'action.turn': '↻ Girar',
@@ -196,12 +195,9 @@ export default {
 
   'where.both': '{along}, {across}',
   'where.atEntrance': 'en la entrada',
-  'where.fromEntrance': 'a {ft} pies de la entrada',
   'where.middle': 'en el centro a lo ancho',
   'where.againstLeft': 'pegado al lado izquierdo',
   'where.againstRight': 'pegado al lado derecho',
-  'where.fromLeft': 'a {ft} pies del lado izquierdo',
-  'where.fromRight': 'a {ft} pies del lado derecho',
   'where.numbered': '{label} (n.º {n})',
 
   'existing.title': 'Lo que hay ahora en el lote',
@@ -231,13 +227,9 @@ export default {
   'existing.redrawTitle': 'Vuelva a dibujar la zona mojada',
   'existing.drawHelp':
     'Haga clic (o toque) en el mapa alrededor del lugar que se moja, punto por punto. Para terminar, haga clic otra vez en el primer punto, haga doble clic o presione Enter, o use “Terminar” en el mapa. Esc cancela.',
-  'existing.spread': 'Las ramas se abren {ft} pies de ancho',
   'existing.wetSize': 'Unos {area} pies². Arrastre la zona para moverla; arrastre una esquina para cambiar su forma, o el pequeño + entre dos esquinas para agregar una.',
   'existing.redraw': 'Volver a dibujar su contorno',
-  'existing.across': 'Unos {ft} pies de ancho',
   'existing.drawInstead': 'Mejor dibujar su contorno',
-  'existing.long': '{ft} pies de largo',
-  'existing.wide': '{ft} pies de ancho',
   'existing.turn15': '↻ Girar 15°',
   'existing.turn90': '↻ 90°',
   'existing.takeOff': 'Quitar del mapa',
@@ -260,15 +252,12 @@ export default {
   'slope.legend': 'Las líneas marrones unen puntos del suelo a la misma altura; las flechas apuntan cuesta abajo, por donde corre la lluvia. ▲ y ▼ marcan el suelo más alto y el más bajo del lote.',
   'slope.legendInches':
     'Las líneas marrones unen puntos del suelo a la misma altura, cada {inches} pulgadas de altura; las flechas apuntan cuesta abajo, por donde corre la lluvia. ▲ y ▼ marcan el suelo más alto y el más bajo del lote.',
-  'slope.legendFeet':
-    'Las líneas marrones unen puntos del suelo a la misma altura, cada {ft} pies de altura; las flechas apuntan cuesta abajo, por donde corre la lluvia. ▲ y ▼ marcan el suelo más alto y el más bajo del lote.',
   'slope.directions': 'Adelante es el borde de la entrada, en la calle; izquierda y derecha son como las ve parado ahí, mirando hacia adentro.',
   'slope.accuracy':
     'Altura del suelo según {source}, tomada en {year} en una cuadrícula de {cell} metros: por lo general con un error de unas 4 pulgadas en terreno abierto. No aparecen montones de tierra, nivelaciones ni nada construido después.',
   'slope.accuracyNoYear':
     'Altura del suelo según {source}, en una cuadrícula de {cell} metros: por lo general con un error de unas 4 pulgadas en terreno abierto. No aparecen montones de tierra, nivelaciones ni nada construido después.',
   'slope.inches': { one: '{count} pulgada', other: '{count} pulgadas' },
-  'slope.feet': '{ft} pies',
   'slope.pct': '{pct}%',
   'slope.pctRun': '{pct}% (más o menos 1 pie cada {run} pies)',
   'slope.flat': 'El lote es prácticamente plano: la altura del suelo cambia menos de {amount}.',
@@ -298,7 +287,6 @@ export default {
   'slope.placeMiddle': 'el centro del lote',
   'slope.high': '▲ Alto',
   'slope.lowInches': '▼ Bajo · {inches} pulg. más abajo',
-  'slope.lowFeet': '▼ Bajo · {ft} pies más abajo',
 
   'sun.title': 'Sol y sombra',
   'sun.intro': 'Vea cómo se mueven las sombras de los edificios y los árboles alrededor de su lote durante el día y durante el año.',

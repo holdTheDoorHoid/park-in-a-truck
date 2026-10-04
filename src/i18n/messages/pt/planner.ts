@@ -50,7 +50,6 @@ export default {
 
   // ---- partes comuns ----
   'common.dims': '{length} × {width} pés',
-  'common.ft': '{ft} pés',
   'common.add': '+ {name}',
   'common.cancel': 'Cancelar',
   'action.turn': '↻ Girar',
@@ -203,12 +202,9 @@ export default {
   // ---- Onde fica um item (visto da entrada, olhando para dentro) ----
   'where.both': '{along}, {across}',
   'where.atEntrance': 'na entrada',
-  'where.fromEntrance': 'a {ft} pés da entrada',
   'where.middle': 'no meio, de um lado ao outro',
   'where.againstLeft': 'junto ao lado esquerdo',
   'where.againstRight': 'junto ao lado direito',
-  'where.fromLeft': 'a {ft} pés do lado esquerdo',
-  'where.fromRight': 'a {ft} pés do lado direito',
   'where.numbered': '{label} (nº {n})',
 
   // ---- O que já existe no terreno ----
@@ -239,13 +235,9 @@ export default {
   'existing.redrawTitle': 'Desenhar de novo a área encharcada',
   'existing.drawHelp':
     'Clique (ou toque) no mapa em volta do lugar que fica encharcado, ponto por ponto. Para terminar, clique de novo no primeiro ponto, dê um clique duplo ou aperte Enter — ou use “Concluir” no mapa. Esc cancela.',
-  'existing.spread': 'Os galhos se abrem por {ft} pés',
   'existing.wetSize': 'Cerca de {area} pés². Arraste a área para movê-la; arraste um canto para mudar a forma, ou o pequeno + entre dois cantos para acrescentar um.',
   'existing.redraw': 'Desenhar o contorno de novo',
-  'existing.across': 'Cerca de {ft} pés de largura',
   'existing.drawInstead': 'Desenhar o contorno em vez disso',
-  'existing.long': '{ft} pés de comprimento',
-  'existing.wide': '{ft} pés de largura',
   'existing.turn15': '↻ Girar 15°',
   'existing.turn90': '↻ 90°',
   'existing.takeOff': 'Tirar do mapa',
@@ -269,15 +261,12 @@ export default {
   'slope.legend': 'As linhas marrons ligam pontos do chão com a mesma altura; as setas apontam para baixo, para onde a chuva escorre. ▲ e ▼ marcam o ponto mais alto e o mais baixo do terreno.',
   'slope.legendInches':
     'As linhas marrons ligam pontos do chão com a mesma altura, a cada {inches} polegadas de altura; as setas apontam para baixo, para onde a chuva escorre. ▲ e ▼ marcam o ponto mais alto e o mais baixo do terreno.',
-  'slope.legendFeet':
-    'As linhas marrons ligam pontos do chão com a mesma altura, a cada {ft} pés de altura; as setas apontam para baixo, para onde a chuva escorre. ▲ e ▼ marcam o ponto mais alto e o mais baixo do terreno.',
   'slope.directions': 'A frente é o lado da entrada, na rua; esquerda e direita são como você vê parado ali, olhando para dentro.',
   'slope.accuracy':
     'Alturas do chão do {source}, medidas em {year} numa grade de {cell} metros — em geral com erro de no máximo umas 4 polegadas em chão aberto. Montes de terra, aterros ou qualquer coisa construída depois disso não aparecem.',
   'slope.accuracyNoYear':
     'Alturas do chão do {source}, numa grade de {cell} metros — em geral com erro de no máximo umas 4 polegadas em chão aberto. Montes de terra, aterros ou qualquer coisa construída depois disso não aparecem.',
   'slope.inches': { one: '{count} polegada', other: '{count} polegadas' },
-  'slope.feet': '{ft} pés',
   'slope.pct': '{pct}%',
   'slope.pctRun': '{pct}% (cerca de 1 pé a cada {run} pés)',
   'slope.flat': 'O terreno é praticamente plano: a altura do chão varia menos de {amount}.',
@@ -307,7 +296,6 @@ export default {
   'slope.placeMiddle': 'meio do terreno',
   'slope.high': '▲ Alto',
   'slope.lowInches': '▼ Baixo · {inches} pol. mais baixo',
-  'slope.lowFeet': '▼ Baixo · {ft} pés mais baixo',
 
   // ---- Sol e sombra ----
   'sun.title': 'Sol e sombra',
