@@ -197,7 +197,7 @@ export default function SiteReport() {
           {g && (
             <p class="ph-small">
               {g.size.tooSmall
-                ? `Your lot (${fmtFt(g.lengthFt)} × ${fmtFt(g.widthFt)}) is smaller than size A — the Park Patch workbook is made for spaces like this.`
+                ? <>Your lot ({fmtFt(g.lengthFt)} × {fmtFt(g.widthFt)}) is smaller than size A — the <a href={u('park-patch/')}>Park Patch workbook</a> is made for spaces like this.</>
                 : g.size.tooBig
                   ? `Your lot (${fmtFt(g.lengthFt)} × ${fmtFt(g.widthFt)}) is bigger than size E — start from E and expand.`
                   : `Your lot (${fmtFt(g.lengthFt)} × ${fmtFt(g.widthFt)}) is size ${g.size.id}${g.size.exact ? '' : ' (closest fit)'}.`}

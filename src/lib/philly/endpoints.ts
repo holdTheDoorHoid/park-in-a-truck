@@ -126,8 +126,10 @@ export const links = {
   atlasZoning: (address: string) => `https://atlas.phila.gov/${encodeURIComponent(address)}/zoning`,
   property: (opa: string) => `https://property.phila.gov/?p=${encodeURIComponent(opa)}`,
   landBank: 'https://www.phila.gov/departments/philadelphia-land-bank/',
-  /** The Acquire workbook's link. It answered 404 on 2026-10-04; kept because it is PiaT's. */
-  phdcSearch: 'https://phdcphila.org/land/buy-land/property-search-map/',
+  /** The Acquire workbook's link (phdcphila.org/land/buy-land/property-search-map/) is dead
+   *  (404, 2026-10-04); PHDC's search moved to the Land Bank's site. This is its Community Use
+   *  map — lots available for gardens and open space. */
+  phdcSearch: 'https://phillylandbank.org/community-use-map/',
   rcos: 'https://www.phila.gov/programs/registered-community-organizations-rcos/',
   council: 'https://phlcouncil.com/',
   historic: 'https://www.phila.gov/departments/philadelphia-historical-commission/',

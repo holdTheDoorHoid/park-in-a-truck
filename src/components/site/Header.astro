@@ -103,6 +103,7 @@ const nav = [
     max-width: 14em;
   }
   .my-park > span:last-child {
+    min-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -142,8 +143,10 @@ const nav = [
       align-items: stretch;
     }
     .my-park {
+      display: flex;
       margin: 8px 0 0;
-      max-width: none;
+      max-width: 100%;
+      min-width: 0;
     }
   }
 </style>

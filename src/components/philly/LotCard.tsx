@@ -8,6 +8,7 @@ import type { LotExtra } from '../../lib/philly/types';
 import { acquirePaths, isPublic, OWNER_TYPE_LABEL } from '../../lib/philly/owner';
 import { feet, sqft, titleCase, zoningPlain } from '../../lib/philly/plain';
 import LotOutline from './LotOutline';
+import { u } from '../../lib/url';
 
 const LOT_TYPE: Record<string, string> = {
   'mid-block': 'Mid-block lot',
@@ -41,7 +42,7 @@ export function parkSizeLine(lot: LotRecord): ComponentChildren {
   if (g.size.tooSmall)
     return (
       <>
-        Smaller than size A — the Park Patch workbook fits small spaces better.{' '}
+        Smaller than size A — the <a href={u('park-patch/')}>Park Patch workbook</a> fits small spaces better.{' '}
         <small>(Nearest: size {g.size.id})</small>
       </>
     );

@@ -125,7 +125,7 @@ export function acquirePaths(t: OwnerType): AcquirePath[] {
         title: 'Potential purchase',
         text:
           'Publicly owned land in Philadelphia is sold or leased through the Philadelphia Housing Development Corporation (PHDC) and the Philadelphia Land Bank. Do a property search to find out if public land is available for purchase.',
-        link: { label: 'Philadelphia Land Bank', url: 'https://www.phila.gov/departments/philadelphia-land-bank/' },
+        link: { label: 'Land Bank Community Use map', url: 'https://phillylandbank.org/community-use-map/' },
       },
     ];
   }
