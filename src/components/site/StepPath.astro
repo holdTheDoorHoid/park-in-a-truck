@@ -1,0 +1,93 @@
+---
+// The six-step path (plus "Start here"), with live progress from the saved project.
+import { STEPS } from '../../data/steps';
+import { u } from '../../lib/url';
+interface Props {
+  current?: string;
+  compact?: boolean;
+}
+const { current, compact = false } = Astro.props;
+---
+<ol class:list={['path', { compact }]}>
+  {STEPS.map((s) => (
+    <li>
+      <a class="card card-link step" href={u(`steps/${s.slug}/`)} aria-current={current === s.slug ? 'step' : undefined} data-progress-step={s.slug}>
+        <span class="num" aria-hidden="true">{s.n === 0 ? '00' : String(s.n).padStart(2, '0')}</span>
+        <span class="title">{s.title}</span>
+        {!compact && <span class="tag">{s.tagline}</span>}
+        <span class="bar" aria-hidden="true"><span></span></span>
+        <span class="count"><span data-progress-text>—</span><span class="visually-hidden"> sub-steps done</span></span>
+      </a>
+    </li>
+  ))}
+</ol>
+<style>
+  .path {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
+  }
+  .compact {
+    grid-template-columns: repeat(auto-fill, minmax(min(130px, 100%), 1fr));
+    gap: 8px;
+  }
+  .step {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px;
+    position: relative;
+  }
+  .compact .step {
+    padding: 10px 12px;
+  }
+  .num {
+    font-family: var(--font-display);
+    color: var(--cyan);
+    font-size: 2.2rem;
+    line-height: 1;
+  }
+  .compact .num {
+    font-size: 1.4rem;
+  }
+  .title {
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .tag {
+    font-size: 0.9rem;
+    color: var(--ink-2);
+    flex: 1;
+  }
+  .bar {
+    display: block;
+    height: 6px;
+    background: var(--paper-2);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+  .bar > span {
+    display: block;
+    height: 100%;
+    width: calc(var(--pct, 0) * 100%);
+    background: var(--cyan);
+    transition: width 0.3s;
+  }
+  .step[data-state='done'] .bar > span {
+    background: var(--ok);
+  }
+  .count {
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  .step[aria-current='step'] {
+    border-color: var(--cyan);
+    border-width: 2px;
+  }
+</style>

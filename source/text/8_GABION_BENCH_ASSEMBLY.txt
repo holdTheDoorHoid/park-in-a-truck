@@ -1,0 +1,709 @@
+                                                                                                                               18”
+
+
+
+
+                                                                                                                           ”
+                                                                                                                       6
+                                                                                                                     9
+                                          18”
+
+
+
+
+8’ GABION BENCH
+ASSEMBLY INSTRUCTIONS
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University             1
+WORKING VERSION 1.0
+      BEFORE YOU BEGIN                                                                              LEGAL NOTICE:
+
+       1.   This document includes recommendations for do-it-yourself (DIY) construction            The recommendations included herein are based on standard practices of
+            of a 8’ gabion bench. As a DIY project, the Owner, or the Owner's Contractor,           fabrication and construction of garden furnishings. In no event shall Thomas
+            is required to procure, fabricate, assemble, install, and maintain all project          Jefferson University (TJU), TJU's Lab For Social Innovation, Park-in-a-Truck, and/
+            materials. These are recommendations only and any material, assembly, and               or its faculty, staff or affiliates be liable for any damages or injury to person or
+            construction must be tailored to specific project requirements.                         property damages arising out of the use of these recommendations. Thomas
+       2.   These recommendations are based on common best practices associated with                Jefferson University (TJU), TJU's Lab For Social Innovation, Park-in-a-Truck, or
+            standard DIY home-improvement and/or landscape construction. These best                 its faculty, staff and/or affiliates make no warranties, expressed or implied, and
+            practices may include working knowledge and experience with manual and                  hereby disclaims and negates all other warranties, including without limitation,
+            power tools, hardware, fasteners, lumber, concrete footings, and associated             implied warranties or conditions of merchantability, fitness for a particular
+            techniques of assembly and construction. Prior working knowledge of these best          purpose, or non-infringement of intellectual property or other violation of rights.
+            practices is required so as to avoid harm or personal injury to self or others, or      Further, Thomas Jefferson University (TJU), TJU's Lab For Social Innovation,
+            to property.                                                                            Park-in-a-Truck, and/or its faculty, staff or affiliates do not warrant or make any
+       3.   This document includes recommendations for the sequence and assembly of                 representations concerning the accuracy, likely results, or reliability of the use
+            gabion bench components. Locate your gabion benches in your plan you created            of these recommendations. The use of these recommendations constitutes your
+            in the ‘Dream’ workbook to find the proposed location and dimension of all              acknowledgment of the aforementioned.
+            gamion benches. This plan must be tailored to the specific conditions of the
+            project site, including property lines, existing features- such as walls, trees, etc-
+            and any other existing site conditions that may limit or otherwise influence the
+            installation. Use your cost estimation spreadsheet to determine the quantity
+            needed for all your gabion benches.
+       4.   Before using any power equipment (such as drills, saws, augers, or other), review
+            all manufacturer safety requirements. While handling or operating any power
+            equipment, follow all manufacturer safety requirements. Do not allow others
+            who have not reviewed and/or follow manufacturer safety requirements to
+            handle or utilize power equipment.
+       5.   The owner is solely responsible for any work required to secure, and comply
+            with, all necessary building and safety codes, permits, and regulatory approvals.
+       6.   These recommendations assume that the project site has been sufficiently
+            prepared for construction. This includes, but is not limited to: identification
+            of utilities that may interfere or otherwise impact installation; the removal of
+            trash, hazards, unwanted structures; or other conditions that may inhibit safe
+            construction.
+       7.   Before construction, review the project site conditions to identify any potential
+            limitations to assembly and installation. This includes determining advance
+            notification by the Owner of utility companies so as to determine the location of
+            all above and below ground utilities.
+       8.   All persons associated with building and construction should sign a volunteer
+            waiver.
+
+
+
+
+8’ GABION BENCH
+ASSEMBLY INSTRUCTIONS
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University                                                                   2
+WORKING VERSION 1.0
+ COMMON MATERIAL SELECTIONS \\                                                                                             8’ GABION BENCH \\
+ GABION BASKET                                                                                                               TOOLS:
+ METAL 2X2 WIRE MESH, FABRICATED WITH 8 GAUGE (3/16” DIA. WIRE) WELDED-WIRE,
+ GALVANIZED-WITH 2” OPENINGS.                                                                                                10” OR 12” MITER SAW (or
+                                                                                                                             appropriate hand saw)
+ FABRICATION SUGGESTIONS:                                                                                                    IMPACT DRIVER for self
+ DARBY AND SONS: WWW.DARBYWIREMESH.COM                                                                                       drilling exterior wood screws
+ GABION1.COM: HTTPS://GABION1.COM/PRODUCT/18-HIGH-X-18-THICK-1/                                                              DRILL with 1/8” drill bit if
+                                                                                                                             needed for pre-drilling holes
+ NOTE: WHEN ORDERING PIECES, ENSURE TO STATE THE PIECES SHOULD BE CUT TO SIZE, CLOSED PIECES, GALVANIZED
+ AFTER
+                                                                                                                             SANDPAPER 120 GRIT
+ SIZES: SEE STEP 01                                                                                                          CARPENTERS SQUARE
+                                                                                                                             SAFETY GOOGLES + GLOVES
+ BRACING MATERIAL
+                                                                                                                             HOG RING PLIERS
+ OPT 1: ROLL OF 14 OR 16 GAUGE SMOOTH, GALVANIZED WIRE
+                                                                                                                             BOLT CUTTERS
+ OPT 2: EXCESS PIECES OF 2x2 WIRE METAL MESH (YOU WILL HAVE EXTRA PIECES OF WIRE MESH
+ TO CUT IN HALF IF BUILDING MORE THAN ONE GABION BASKET AT A TIME)                                                           HAMMER
+
+
+ GABION FILL MATERIAL
+ STEPS 1-7 CAN BE PREFORMED OFF SITE BEFORE THEY ARE FILLED IN (STEP 9)                                                      MATERIALS:
+ ALL FILL MATERIAL SHOULD BE ANGULAR IN SHAPE. MATERIALS SHOULD BE HARD AND INERT                                            (36) 2.5” SELF DRIVING
+                                                                                                                             EXTERIOR WOOD SCREWS
+ SO THAT IT WILL NOT BREAK-DOWN OVER TIME. BOTH THE FILL MATERIAL AND THE GABION
+ PANELS WORK TOGETHER TO PROVIDE STRUCTURAL INTEGRITY. CUT LOGS SHOULD NOT BE                                                (32) CABLE STAPLES
+ USED FOR THIS REASON.
+                                                                                                                             (50) 3/4” HOGRINGS
+ MATERIALS FREQUENTLY USED FOR GABION FILL INCLUDE QUARRIED ROCK, RECYCLED
+                                                                                                                             (32) CABLE STAPLES
+ PAVEMENT MATERIALS (CONCRETE, ASPHALT, OTHER) OR OTHER RECYCLED MATERIALS SUCH AS
+ BRICK OR CONCRETE MASONRY UNITS. THE SELECTION OF APPROPRIATE FILL MATERIALS IS UP                                          (36) 2.5 SELF DRIVING
+ TO YOU.                                                                                                                     EXTERIOR WOOD SCREWS
+
+ FILL MATERIAL SHOULD BE A MIX OF SIZES, RANGING FROM 12 INCHES MAXIMUM TO 2 INCHES
+ MINIMUM. ALL FILL MATERIAL PIECES USED ON THE EXTERIOR FACE WILL NEED TO BE LARGER
+ THAN 3 INCHES.. SMALLER FILL PIECES WILL BE USED TO FILL IN ANY VOIDS, AS NECESSARY.
+
+
+ https://www.rockler.com/learn/choosing-the-besT-6inish-for-outdoor-projects
+ https://www.realmilkpaint.com/blog/tips/besT-6inish-outdoor-wood/
+ https://vermontnaturalcoatings.com/producT-3ategory/exterior/
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University                                     3
+WORKING VERSION 1.0
+                                                                                                                           LUMBER:
+COMMON LUMBER SELECTIONS \\
+WESTERN RED CEDAR:                                                                                                         (8) 2” x 4” x 8’
+PRO: NATURALLY WEATHER/ROT RESISTANT LUMBER WITH AESTHETICALLY PLEASING RED TONES
+AND PLEASANT AROMAS, THAT IS EASY TO WORK WITH. NO PRESERVATION TREATMENTS ARE
+NECESSARY AS THE SURFACES WILL GRADUALLY DEVELOP A LOVELY GRAY PATINA. IT IS EASILY
+RECYCLABLE AT THE END OF ITS PRIMARY USE.
+CON: COST, BE SURE TO SPECIFY ‘KNOTTY’ (STK) GRADE WHICH IS MUCH MORE AFFORDABLE
+THAN ‘CLEAR’ GRADE.
+
+DOUGLAS FIR:
+PRO: MODERATELY WEATHER/ROT RESISTANT AND STRONG LUMBER. IT IS ALSO EASY TO WORK
+WITH AT A LOWER COST THAN CEDAR. IT IS EASILY RECYCLABLE AT THE END OF ITS PRIMARY USE.
+CON: IT WILL NOT STAND THE TEST OF TIME AS WELL AS CEDAR, BUT A GREAT CHOICE ESPECIALLY
+IF YOU PLAN TO PAINT IT.
+
+PRESSURE TREATED:
+PRO: WEATHER/ROT RESISTANT LUMBER AT A LOW COST.
+CON: LUMBER IS OFTEN OF VARIABLE POOR QUALITY AND SATURATED WITH CHEMICAL TREATMENT
+MAKING IT DIFFICULT TO WORK WITH LEADING TO INCONSISTENT RESULTS. NEEDS 1-4 MONTHS
+OF AIR DRYING BEFORE PAINTING. NOT EASILY RECYCLABLE AND OFTEN ENDS UP IN LANDFILLS
+AT THE END OF ITS PRIMARY USE. NOT RECOMMENDED FOR USE IN AREAS WHERE VEGETABLES
+ARE GROWN.
+
+GENERAL NOTES:
+1. ORDER 5-10% MORE LUMBER DEPENDING ON OVERALL QUANTITIES TO ALLOW FOR SOME
+VARIABLE LUMBER QUALITY AND INCORRECT CUTS.
+2. EXTERIOR WOOD TREATMENT CAN PROLONG THE LIFE OF YOUR PARK ELEMENTS. HOWEVER, IT
+IS NOT NECESSARY TO BRING MANY YEARS OF ENJOYMENT. ANY TREATMENTS MUST BE APPLIED
+AND MAINTAINED PROPERLY WHICH IS A LABOR INTENSIVE PROCESS. ONE SHOULD DECIDE IF
+THIS IS PRACTICAL OR NOT FOR THEIR PARK. THE PARK ELEMENTS ARE LOW COST, DURABLE,
+AND EASY TO BUILD BY DESIGN AND IT MAY BE MORE PRACTICAL TO SIMPLY HAVE THE NEXT
+GENERATION REBUILD THE ELEMENTS WHEN DEEMED NECESSARY. BELOW ARE RESOURCES/
+LINKS FOR CONSIDERATION IF INTERESTED IN EXTERIOR WOOD TREATMENTS.
+https://www.rockler.com/learn/choosing-the-best-finish-for-outdoor-projects
+https://www.realmilkpaint.com/blog/tips/best-finish-outdoor-wood/
+https://vermontnaturalcoatings.com/product-category/exterior/
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University                      4
+WORKING VERSION 1.0
+    1
+                     1. MARK, LABEL AND CUT LUMBER
+                     IN ORDER OF GB-1 TO GB-6 TO THE
+                     FOLLOWING LENGTHS:
+
+                     NOTE: CHECK EACH PIECE OF LUMBER
+                     IMPERFECTIONS SUCH AS CRACKS, WARPING, OR
+
+STEP                 UNEVEN MILLING. DISCARD THESE PORTIONS OF
+                     LUMBER.
+
+
+                     GABION BENCH ASSEMBLY
+
+
+
+
+                                                                                                                               ”
+                                                                                                                               6
+                                                                                                                               9
+                      GB-1: (7) 2 x 4 x 96”
+
+
+
+
+                                                                                      -1
+                                                                                   B
+                                                                                  G
+                     			 GABION BENCH TOP
+
+
+
+
+                                                                                                                                         -2
+                                                                                                                                         B
+                                                                                                                                        G
+                      GB-2: (6) 2 x 4 x 15”
+
+
+
+
+                                                                                                                                                             ”
+                                                                                                                                                            15
+                     			 GABION BENCH TOP
+
+
+                     2. SORT YOUR 2x2 WIRE MESH
+                     INTO EQUAL SIZED PILES AND LABEL:
+
+                      18-8a (1) 96” x 18”
+                     			 GABION BOTTOM
+
+
+
+
+                                                                                                                                                        c
+                                                                                                                                                      -8
+                                                                                                                                                    18
+                      18-8b: (2) 96” x 18”
+                     			 GABION SIDE LONG
+
+
+
+
+                                                                                                                           ”
+                                                                                                                           6
+                                                                                    b
+
+
+
+
+                                                                                                                           9
+                                                                                 -8
+
+
+
+
+                                                                                                                                                                                   ”
+                                                                               18
+
+
+
+
+                                                                                                                                                                               18
+                      18-8c: (2) 18” x 18”
+                     			 GABION SIDE SHORT
+
+
+                     TIPS:
+                     -LABEL EACH PIECE OF LUMBER AS YOU ARE
+                     MEASURING/CUTTING
+
+
+
+
+                                                                                                                                                                               c
+                                                                                                                                                                           -8
+                     -HAVE A PILE OF LUMBER FOR GB-1 TO GB-7
+
+
+
+
+                                                                                                                                                                          18
+                     -LIGHTLY SANDING CUT EDGES TO REMOVE
+
+
+
+
+                                                                                                                                                   b
+                                                                                                                                               -8
+                     SPLINTERS WILL ALSO HELP WITH ASSEMBLY.
+
+
+
+
+                                                                                                                                              18
+                                                                                                                                    ”
+                                                                                                                                    6
+                     -IF BUILDING MULTIPLE GABION BENCHES,
+
+
+
+
+                                                                                                                                   9
+                                                                                         a
+                                                                                        -8
+
+
+
+
+                                                                                                                                                            a
+                                                                                    18
+
+
+
+
+                                                                                                                                                        -8
+                     CREATING A STOP FOR YOUR MITER SAW
+
+
+
+
+                                                                                                                                                       18
+                     ENSURES ALL PIECES ARE CUT TO THE SAME
+
+
+
+
+                                                                                                                                                   c
+                                                                                                                                               -8
+
+
+
+
+                                                                                                                                                                      b
+                     LENGTH.
+
+
+
+
+                                                                                                                                                                  -8
+                                                                                                                                              18
+
+
+
+
+                                                                                                                                                                 18
+                                                                                                                                                   BENCH MESH ADJACENCIES
+
+
+
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University                                                               5
+WORKING VERSION 1.0
+    2
+                      1. PLACE (2) GB-1 AND (2) GB-2
+                      ON FLAT SURFACE. ALIGNING                                                                                       GB-2
+                      THE EDGES AS SHOWN IN THE
+                      IMAGE.
+
+STEP                  2. USE THE PRE-DRILLING GUIDE
+                      AT THE END OF THE PACKET TO
+                      PRE-DRILL YOUR SCREW HOLES
+
+                      3. SECURE GB-1 LUMBER INTO
+
+
+
+
+                                                                                                                                  0
+                                                                                                                                  9
+                      THE GB-2 PIECES BY USING AN
+                      IMPACT DRIVER WITH (8) 2.5”
+                      SELF DRIVING EXTERIOR WOOD
+                      SCREWS.
+
+                      NOTE: UTILIZE A CARPENTERS SQUARE
+                      TO ENSURE A RIGHT ANGLE IS FORMED
+                      IN EACH CORNER. IF THE RIGHT
+                      ANGEL IS FAR OFF, CHECK THAT YOUR
+                      MEASUREMENTS OF EACH BOARD ARE
+                      CORRECT.
+
+
+
+
+                                                                                                                           GB-1
+
+
+
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University                     6
+WORKING VERSION 1.0
+    3
+                      1. PLACE (1) GB-2 PIECE IN THE
+                      MIDDLE OF THE FRAME CREATED
+                      IN STEP TWO.
+
+                      2. SECURE LUMBER USING AN
+STEP                  IMPACT DRIVER WITH (4) 2.5”
+                      SELF DRIVING EXTERIOR WOOD
+                      SCREWS.
+                                                                                                                           GB-2
+                      3. REPEAT WITH (2) ADDITIONAL
+                      GB-2 PIECES. PLACE THE NEXT
+                      TWO EQUIDISTANT FROM MIDDLE
+                      GB-2 PIECE TO END GB-2 PIECE.
+
+                      4. SECURE THE (2) GB-2 PIECES
+
+
+
+
+                                                                                                                                         Q
+                                                                                                                                        E
+                      USING AN IMPACT DRIVER WITH
+                      (8) 2.5” SELF DRIVING EXTERIOR
+                      WOOD SCREWS.
+
+
+
+
+                                                                                                                                    Q
+                                                                                                                                   E
+                                                                                                                               Q
+                                                                                                                              E
+                                                                                                              Q
+                                                                                                             E
+
+
+
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University                     7
+WORKING VERSION 1.0
+    4
+                      1. SECURE (2) 18-8c AND
+                      (2) 18-8b WITH 2X2 WIRE MESH
+                      AROUND THE GB-2 AND GB-1
+                      FRAME CREATED IN STEP THREE                                                                          18-8c
+                      BY USING (32) 1.5” GALVANIZED
+STEP                  STAPLES WITH HAMMER. USE 2
+                      STAPLES PER PIECE OF WIRE, AS
+                      SHOWN.
+                                                                                                                   18-8b
+                      NOTE: SECURE THE 2X2 WIRE MESH ONE
+                      SIDE AT A TIME
+
+                      2. SECURE 2X2 WIRE SHEET
+                      USING (2) 18-8c AND (2) 18-8b
+                      PIECES TOGETHER BY USING
+                      HOG RINGS TO SECURE BASKET
+                      TO ITSELF, ONE HOG RING EVERY
+                      OTHER OPENING. ENSURE HOG
+                      RINGS ARE AT ALL CORNERS AND
+                      EDGES
+
+
+
+
+                              1.5” CABLE STAPLE
+
+
+
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University           8
+WORKING VERSION 1.0
+    5
+                      1. USE BRACING MATERIAL
+
+                      2. IN THE CENTER OF THE
+                      GABION BASKET, BELOW THE
+                      MIDDLE GB-2 PIECE, USE ONE OF
+STEP                  THE FOLLOWING OPTIONS:
+                         OPT A: TAKE EXCESS END PIECES OF
+                         2X2 WIRE METAL MESH + CUT IN HALF
+                         WITH BOLT CUTTERS
+
+                         OPT B: USE ANY EXCESS 2X2 METAL
+                         MESH THAT SPANS THE ENTIRE
+                         WIDTH OF THE BASKET, SO LONG AS
+                         IT HAS A MINIMUM OF 2 BOXES IN
+                         HEIGHT (4”+ INCH MINIMUM)
+
+
+                      3. SECURE MIDDLE SUPPORT
+                      PIECE BY USING HOG RINGS
+
+
+
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University   9
+WORKING VERSION 1.0
+    6
+                     1. PLACE (1) BM - 3 2X2 WIRE
+                     MESH TOP PIECE ON TOP OF THE
+                     GABION BASKET SECURED IN
+                                                                                                                           18-8a
+                     STEP FIVE.
+
+STEP                 2. SECURE 2X2 WIRE MESH
+                     TOP PIECE BY USING THE HOG
+                     RINGS ON THE FOUR SIDES AND
+                     THE CENTER BRACE. SECURE 1
+                     HOG RING EVERY OTHER MESH
+                     OPENING AND (2) AT EACH
+                     CORNER
+
+                     NOTE: GABION BASKET IS NOW READY
+                     TO TRANSPORT TO SITE
+
+
+
+
+                                                                                                      1” G
+                                                                                                      G RIN 3
+                                                                                                   H O ALL SH
+                                                                                                 R    E    E
+                                                                                             R NE CUROF M
+                                                                                           CO O SECES
+                                                                                             T IE
+                                                                                               P
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University           10
+WORKING VERSION 1.0
+    7
+                     1. ROTATE GABION BASKET 180º.
+
+                     2. PLACE ON-SITE WITH GRAVEL
+                     UNDERLAY. SEE FIG 1
+
+STEP                 3. ENSURE GABION BASKET IS
+                     STRAIGHT USING A LEVEL.
+
+                     NOTE: IF NEXT TO OTHER GABIONS, USE
+                     STRING AND LINE LEVELS TO ENSURE
+                     GABIONS ARE STRAIGHT
+
+
+
+
+                        FIG 1
+                 LEVEL GABION BASKET
+                     WITH GRAVEL
+
+
+
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University   11
+WORKING VERSION 1.0
+    8
+                      1. PLACE GABION IN ITS
+                      LOCATION PER YOUR PARKS
+                      DESIGN. APPLY GRAVEL IN
+                      BOTTOM TO FINE TUNE
+                      ADJUSTMENTS, SEE FIG 1 IN
+STEP                  STEP 7.
+
+                      NOTE: REFERENCE PHASE FOUR IN YOUR
+                      CREATE WORKBOOK.
+
+
+                      2. STARTING WITH THE LARGEST,
+                      FLATTEST PICES OF GABION
+                      FILL YOU HAVE, BEGIN FILLING
+                      GABIONS, STARTING AT THE
+                      EDGES. CONTINUE UNTIL YOU
+                      HAVE BUILT UP THE SIDES, SEE
+                      FIG. 2
+
+                      3. FILL THE FRAME WITH
+                      LEFTOVER GABION FILL UNTIL IT
+                      IS LEVEL WITH THE TOP OF THE
+                      WOOD EDGE.
+
+                      NOTE: CAREFULLY PLACE FILL INSIDE
+                      BASKET TO AVOID WARPING AND
+                      ENSURING ALL GAPS ARE FILLED FOR
+                      STABILITY
+
+
+
+
+                               FIG 2
+                 GABION BASKET FILLING ALONG EDGES
+
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University   12
+WORKING VERSION 1.0
+10
+                      1. PLACE (2) GB-2 PIECES ON
+                      TOP OF THE FRAME CREATED
+                      IN STEP SIX, USE THE PRE-
+                      DRILLING GUIDE, FOUND AT THE
+                      END OF THIS DOCUMENT, TO
+STEP                  PRE-DRILL THE WOOD. SECURE
+                      TWO ENDS FIRST WITH (12) 2.5”
+                      SELF DRIVING EXTERIOR WOOD
+                      SCREWS, MAKING SURE TO
+                      ALIGN EDGE FLUSH WITH WOOD
+                      BELOW.
+
+                      NOTE: PREDRILLING AT THIS STEP IS
+                      HELPFUL TO ENSURE SCREWS DON’T
+                      SPLIT THE BOARDS.                                            GB-1
+
+                      TIP: ALL SCREWS SHOULD BE A
+                      THUMB’S WIDTH AWAY FROM THE EDGE
+                      OF THE WOOD, USING THE PRE-DRILLING
+                      GUIDE CAN HELP HERE
+
+                      3. LIGHTLY SAND THE ROUGH
+                      EDGES OF THE GABION BENCH.
+                      ENSURE NO SHARP EDGES
+                      OF GABION WIRE, BUFF WITH
+                      GRINDER IF ANY ARE TOO
+
+
+
+
+                                                                                                         ”1”
+                                                                                                      1/4
+
+
+
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University   13
+WORKING VERSION 1.0
+11
+                      1. EQUALLY SPACE THE OTHER
+                      3 BOARDS BETWEEN TWO END
+                      BOARDS. SECURE THE GB-2
+                      LUMBER USING AN IMPACT
+                      DRIVER WITH (20) 2.5” SELF
+STEP                  DRIVING EXTERIOR WOOD
+                      SCREWS.
+
+                      NOTE: PREDRILLING AT THIS STEP IS
+                      HELPFUL TO ENSURE SCREWS DON’T
+                      SPLIT THE BOARDS.
+
+                      TIP: ALL SCREWS SHOULD BE A
+                      THUMB’S WIDTH AWAY FROM THE EDGE
+                      OF THE WOOD, USING THE PRE-DRILLING                          GB-1
+                      GUIDE CAN HELP HERE
+
+                      3. LIGHTLY SAND THE ROUGH
+                      EDGES OF THE GABION BENCH.
+                      ENSURE NO SHARP EDGES
+                      OF GABION WIRE, BUFF WITH
+                      GRINDER IF ANY ARE TOO
+                      SHARP..
+
+
+
+
+                                                                                                       L
+                                                                                                  Q UA
+                                                                                                 E
+
+
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University   14
+WORKING VERSION 1.0
+                     1. CUT OUT PRE-DRILLING HOLE GUIDE ALONG DOTTED LINES
+
+                     2. WHEN DRILLING, ENSURE THAT YOU PROPERLY ALIGN
+                     THE EDGE OF THE TEMPLATE WITH OUTSIDE EDGE OF THE
+                     LUMBER BEFORE
+GUIDE                PRE-DRILLING                                                                                          PRE-DRILLING HOLE GUIDE
+
+
+
+
+                                        N
+                                     IG
+                                    L
+                                   A
+
+
+
+
+                                                                               U . U N RE
+
+                                                                                     L E
+                                                                             YO E E A
+                                                                                R S S
+                                                                                    O TH
+                                                                            R AT T S
+                                                                           O L T E
+
+                                                                                       R
+                                                                          F P PA L
+
+
+
+                                                                                      E
+
+                                                                                      E
+                                                                         Y M L HO
+
+
+
+
+                                                                                  H
+                                                                    E BL TE AL L
+                                                                                L
+                                                                 U E E T A
+                                                                G S TH NO T
+                                                                  A SE D. NO
+                                                                    U E E:
+                                                                     U OT
+                                                                       N
+                                                                      S
+
+
+                                                                  ID M
+                                                                   S
+
+
+
+                     3. ENSURE ALL HOLES ARE                                                                                ALIGN DASHED LINE WITH INSIDE EDGE OF
+                     ABOUT A THUMB IN WIDTH                                                                                                LUMBER
+                     FROM THE EDGE (~1”) EVEN
+                     HOLES THAT DON’T USE THIS
+                     TEMPLATE
+
+
+
+
+                                                                                                                               CUT ALONG THE DOTTED LINES
+
+
+
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University                                            15
+WORKING VERSION 1.0
+

@@ -1,0 +1,61 @@
+---
+import { u } from '../../lib/url';
+---
+<footer class="site-footer">
+  <div class="wrap cols">
+    <div>
+      <p class="wordmark-sm">PARK <small>in a</small> TRUCK</p>
+      <p>
+        A do-it-yourself toolkit for neighborhood parks from the Landscape Architecture Program and the Lab for Social
+        and Urban Innovation at Thomas Jefferson University, Philadelphia. Toolkit and workbook content is theirs, used
+        with permission.
+      </p>
+    </div>
+    <div>
+      <h4>Questions?</h4>
+      <p>
+        <a href="mailto:ParkinaTruck@jefferson.edu">ParkinaTruck@jefferson.edu</a><br />
+        <a href="mailto:Kimberlee.Douglas@jefferson.edu">Kimberlee.Douglas@jefferson.edu</a><br />
+        <a href="tel:+12159510115">215-951-0115</a><br />
+        <a href="https://www.instagram.com/parkinatruck">@parkinatruck</a>
+      </p>
+    </div>
+    <div>
+      <h4>About this site</h4>
+      <p>
+        Your answers and designs are saved only in this browser. Use <a href={u('my-park/')}>My park</a> to save a
+        copy or share it with your committee.
+      </p>
+      <p><a href={u('resources/')}>Resources, partners & press</a> · <a href={u('resources/#legal')}>Legal notice</a></p>
+    </div>
+  </div>
+</footer>
+<style>
+  .site-footer {
+    margin-top: 80px;
+    border-top: 6px solid var(--ink);
+    background: var(--paper-2);
+    padding: 32px 0 48px;
+    font-size: 0.92rem;
+  }
+  .cols {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  }
+  .wordmark-sm {
+    font-weight: 900;
+    font-size: 1.1rem;
+    margin: 0 0 0.5em;
+  }
+  .wordmark-sm small {
+    font-weight: 600;
+    font-size: 0.75em;
+  }
+  h4 {
+    margin-bottom: 0.4em;
+  }
+  p {
+    margin: 0 0 0.8em;
+  }
+</style>

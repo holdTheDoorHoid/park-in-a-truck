@@ -1,0 +1,168 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import StepPath from '../../components/site/StepPath.astro';
+import { STEPS, stepBySlug } from '../../data/steps';
+import { u } from '../../lib/url';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('steps');
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const meta = stepBySlug(entry.id)!;
+const { Content, headings } = await render(entry);
+const subs = headings.filter((h) => h.depth === 2).map((h) => ({ id: h.slug.replace(/-title$/, ''), title: h.text }));
+const i = STEPS.findIndex((s) => s.slug === meta.slug);
+const prev = STEPS[i - 1];
+const next = STEPS[i + 1];
+---
+<Base title={entry.data.title} description={meta.tagline}>
+  <header class="chapter-head">
+    <div class="wrap">
+      <div class="head-row">
+        <h1 class="ruled">{entry.data.title}</h1>
+        <span class="big-num" aria-hidden="true">{String(meta.n).padStart(2, '0')}</span>
+      </div>
+      <p class="lede">{entry.data.intro ?? meta.tagline}</p>
+      {meta.assumes && <p class="muted assumes">{meta.assumes}</p>}
+      <div class="head-actions no-print">
+        {meta.pdf && <a class="btn btn-small" href={u(meta.pdf)} target="_blank" rel="noopener">📄 Original workbook (PDF)</a>}
+        <button class="btn btn-small" type="button" onclick="window.print()">🖨 Print my answers</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap chapter">
+    <nav class="step-toc no-print" aria-label="In this step">
+      <p class="eyebrow">In this step</p>
+      <ol>
+        {subs.map((s) => (
+          <li>
+            <a href={`#${s.id}`} data-toc-done={`${meta.slug}/${s.id}`}>{s.title}</a>
+          </li>
+        ))}
+      </ol>
+      <p class="toc-progress" data-progress-step={meta.slug}><span data-progress-text></span> done</p>
+    </nav>
+    <article class="prose chapter-body">
+      <Content />
+    </article>
+  </div>
+
+  <nav class="wrap pager no-print" aria-label="Steps">
+    {prev ? <a class="btn" href={u(`steps/${prev.slug}/`)}>← {prev.n ? `Step ${prev.n}: ` : ''}{prev.title}</a> : <span></span>}
+    {next && <a class="btn btn-primary" href={u(`steps/${next.slug}/`)}>Next: Step {next.n} — {next.title} →</a>}
+  </nav>
+  <section class="wrap no-print" style="margin-top:40px">
+    <StepPath current={meta.slug} compact />
+  </section>
+</Base>
+<style>
+  .chapter-head {
+    padding: 40px 0 24px;
+  }
+  .head-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+  }
+  .head-row h1 {
+    flex: 1;
+    margin: 0;
+  }
+  .head-row .big-num {
+    border-bottom: 6px solid var(--ink);
+    padding-bottom: 0.05em;
+  }
+  .assumes {
+    font-size: 0.95rem;
+    font-style: italic;
+  }
+  .head-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+  .chapter {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 48px;
+    align-items: start;
+  }
+  .step-toc {
+    position: sticky;
+    top: 84px;
+    font-size: 0.92rem;
+    max-height: calc(100vh - 100px);
+    overflow: auto;
+  }
+  .step-toc ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: s;
+  }
+  .step-toc li {
+    counter-increment: s;
+  }
+  .step-toc a {
+    display: flex;
+    gap: 0.5em;
+    padding: 0.35em 0;
+    color: var(--ink);
+    text-decoration: none;
+    line-height: 1.3;
+  }
+  .step-toc a::before {
+    content: counter(s);
+    flex: none;
+    width: 1.6em;
+    height: 1.6em;
+    border-radius: 50%;
+    border: 2px solid var(--line);
+    display: grid;
+    place-items: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+  .step-toc a[data-checked]::before {
+    content: '✓';
+    background: var(--ok);
+    border-color: var(--ok);
+    color: #fff;
+  }
+  .step-toc a:hover {
+    color: var(--cyan-ink);
+  }
+  .toc-progress {
+    margin-top: 12px;
+    color: var(--muted);
+  }
+  .chapter-body {
+    max-width: 760px;
+  }
+  .pager {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+  }
+  @media (max-width: 899px) {
+    .chapter {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .step-toc {
+      position: static;
+      max-height: none;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      margin-bottom: 8px;
+    }
+  }
+</style>

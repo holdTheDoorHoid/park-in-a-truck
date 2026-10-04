@@ -1,0 +1,675 @@
+                                                                                                                           96”
+
+                                                                 9
+                                                                   6
+                                                                    ”
+
+
+
+
+                                                                                                                ”
+                                                                                                              6
+                                                                                                             9
+8’ SHADE STRUCTURE
+ASSEMBLY INSTRUCTIONS
+
+
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University         1
+WORKING VERSION 1.0
+      BEFORE YOU BEGIN                                                                              LEGAL NOTICE:
+
+       1.   This document includes recommendations for do-it-yourself (DIY) construction            The recommendations included herein are based on standard practices of
+            of a shade structure. As a DIY project, the Owner, or the Owner's Contractor,           fabrication and construction of garden furnishings. In no event shall Thomas
+            is required to procure, fabricate, assemble, install, and maintain all project          Jefferson University (TJU), TJU's Lab For Social Innovation, Park-in-a-Truck, and/
+            materials. These are recommendations only and any material, assembly, and               or its faculty, staff or affiliates be liable for any damages or injury to person or
+            construction must be tailored to specific project requirements.                         property damages arising out of the use of these recommendations. Thomas
+       2.   These recommendations are based on common best practices associated with                Jefferson University (TJU), TJU's Lab For Social Innovation, Park-in-a-Truck, or
+            standard DIY home-improvement and/or landscape construction. These best                 its faculty, staff and/or affiliates make no warranties, expressed or implied, and
+            practices may include working knowledge and experience with manual and                  hereby disclaims and negates all other warranties, including without limitation,
+            power tools, hardware, fasteners, lumber, concrete footings, and associated             implied warranties or conditions of merchantability, fitness for a particular
+            techniques of assembly and construction. Prior working knowledge of these best          purpose, or non-infringement of intellectual property or other violation of rights.
+            practices is required so as to avoid harm or personal injury to self or others, or      Further, Thomas Jefferson University (TJU), TJU's Lab For Social Innovation,
+            to property.                                                                            Park-in-a-Truck, and/or its faculty, staff or affiliates do not warrant or make any
+       3.   This document includes recommendations for the sequence and assembly of                 representations concerning the accuracy, likely results, or reliability of the use
+            shade structure components. Locate your shade structures in your plan you               of these recommendations. The use of these recommendations constitutes your
+            created in the ‘Dream’ workbook to find the proposed location and dimension of          acknowledgment of the aforementioned.
+            all shade structures. This plan must be tailored to the specific conditions of the
+            project site, including property lines, existing features- such as walls, trees, etc-
+            and any other existing site conditions that may limit or otherwise influence the
+            installation. Use your cost estimation spreadsheet to determine the quantity
+            needed for all your shade structures.
+       4.   Before using any power equipment (such as drills, saws, augers, or other), review
+            all manufacturer safety requirements. While handling or operating any power
+            equipment, follow all manufacturer safety requirements. Do not allow others
+            who have not reviewed and/or follow manufacturer safety requirements to
+            handle or utilize power equipment.
+       5.   The owner is solely responsible for any work required to secure, and comply
+            with, all necessary building and safety codes, permits, and regulatory approvals.
+       6.   These recommendations assume that the project site has been sufficiently
+            prepared for construction. This includes, but is not limited to: identification
+            of utilities that may interfere or otherwise impact installation; the removal of
+            trash, hazards, unwanted structures; or other conditions that may inhibit safe
+            construction.
+       7.   Before construction, review the project site conditions to identify any potential
+            limitations to assembly and installation. This includes determining advance
+            notification by the Owner of utility companies so as to determine the location of
+            all above and below ground utilities.
+       8.   All persons associated with building and construction should sign a volunteer
+            waiver.
+
+
+
+
+SHADE STRUCTURE
+ASSEMBLY INSTRUCTIONS
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University                                                                   2
+WORKING VERSION 1.0
+COMMON LUMBER SELECTIONS \\                                                                                                SHADE
+WESTERN RED CEDAR:                                                                                                         STRUCTURE \\
+PRO: NATURALLY WEATHER/ROT RESISTANT LUMBER WITH AESTHETICALLY PLEASING RED TONES
+AND PLEASANT AROMAS, THAT IS EASY TO WORK WITH. NO PRESERVATION TREATMENTS ARE                                             TOOLS:
+NECESSARY AS THE SURFACES WILL GRADUALLY DEVELOP A LOVELY GRAY PATINA. IT IS EASILY
+                                                                                                                           10” OR 12” MITER SAW (or
+RECYCLABLE AT THE END OF ITS PRIMARY USE.                                                                                  appropriate hand saw)
+CON: COST, BE SURE TO SPECIFY ‘KNOTTY’ (STK) GRADE WHICH IS MUCH MORE AFFORDABLE
+THAN ‘CLEAR’ GRADE.                                                                                                        IMPACT DRIVER for self
+                                                                                                                           drilling exterior wood screws
+
+FIR:                                                                                                                       DRILL with 1/8” drill bit if
+                                                                                                                           needed for pre-drilling holes
+PRO: MODERATELY WEATHER/ROT RESISTANT AND STRONG LUMBER. IT IS ALSO EASY TO WORK
+WITH AT A LOWER COST THAN CEDAR. IT IS EASILY RECYCLABLE AT THE END OF ITS PRIMARY USE.
+                                                                                                                           5lb HAMMER for J hooks
+CON: IT WILL NOT STAND THE TEST OF TIME AS WELL AS CEDAR, BUT A GREAT CHOICE ESPECIALLY
+                                                                                                                           SANDPAPER 120 GRIT
+IF YOU PLAN TO PAINT IT.
+                                                                                                                           CARPENTERS SQUARE
+PRESSURE TREATED:                                                                                                          SAFETY GOOGLES + GLOVES
+                                                                                                                           6’ STEP LADDER
+PRO: WEATHER/ROT RESISTANT LUMBER AT A LOW COST.
+                                                                                                                           (2) WOOD CLAMPS (OPTIONAL)
+CON: LUMBER IS STILL SUSCEPTIBLE TO CRACKING FROM SUN EXPOSURE, AND OFTEN OF VARIABLE
+POOR QUALITY AND SATURATED WITH CHEMICAL TREATMENT MAKING IT DIFFICULT TO WORK
+WITH LEADING TO INCONSISTENT RESULTS. NEEDS 1-4 MONTHS OF AIR DRYING BEFORE PAINTING.                                      MATERIALS:
+NOT EASILY RECYCLABLE AND OFTEN ENDS UP IN LANDFILLS AT THE END OF ITS PRIMARY USE.
+NOT RECOMMENDED FOR USE IN AREAS WHERE VEGETABLES ARE GROWN.                                                               (268) 2.5” SELF DRIVING
+                                                                                                                           EXTERIOR WOOD SCREWS
+TIP: ORDER 5-10% MORE LUMBER DEPENDING ON OVERALL QUANTITIES TO ALLOW FOR SOME                                             (4) L BRACKETS
+VARIABLE LUMBER QUALITY AND INCORRECT CUTS.
+                                                                                                                           (4) 1/2” x 2” LAG SCREWS
+NOTE: EXTERIOR WOOD TREATMENT CAN PROLONG THE LIFE OF YOUR PARK ELEMENTS. HOWEVER,
+IT IS NOT NECESSARY TO BRING MANY YEARS OF ENJOYMENT. ANY TREATMENTS MUST BE APPLIED                                       (4) 18”J HOOKS
+AND MAINTAINED PROPERLY WHICH IS A LABOR INTENSIVE PROCESS. ONE SHOULD DECIDE IF
+THIS IS PRACTICAL OR NOT FOR THEIR PARK. THE PARK ELEMENTS ARE LOW COST, DURABLE,                                          (4) 18”J HOOKS
+AND EASY TO BUILD BY DESIGN AND IT MAY BE MORE PRACTICAL TO SIMPLY HAVE THE NEXT                                           CONCRETE DECK BLOCKS (IF
+GENERATION REBUILD THE ELEMENTS WHEN DEEMED NECESSARY. BELOW ARE RESOURCES FOR                                             NEEDED SEE STEP 7)
+CONSIDERATION IF INTERESTED IN EXTERIOR WOOD TREATMENTS.
+https://www.rockler.com/learn/choosing-the-best-finish-for-outdoor-projects
+https://www.realmilkpaint.com/blog/tips/best-finish-outdoor-wood/                                                          LUMBER:
+https://vermontnaturalcoatings.com/product-category/exterior/                                                              (47) 2” x 4” x 8’-0”
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University                                   3
+WORKING VERSION 1.0
+    1
+                     1. MARK, LABEL AND CUT LUMBER
+                     IN ORDER OF SS-1 TO SS-4 TO THE
+                     FOLLOWING LENGTHS:
+
+                     NOTE: CHECK EACH PIECE OF LUMBER
+
+STEP                 IMPERFECTIONS SUCH AS CRACKS, WARPING,
+                     OR UNEVEN MILLING. DISCARD THESE
+                     PORTIONS OF LUMBER.
+
+
+
+
+                     SHADE STRUCTURE ASSEMBLY
+
+                      SS-1: (14) 2 x 4 x 96”
+                     			 LEG LONG, SIDE BRACE,
+                     			         TOP BRACE, TOP
+
+
+
+
+                                                                                      -1
+                                                                                     S
+                                                                                    S
+                      SS-2: (4) 2 x 4 x 92.5”
+
+
+
+
+                                                                                                                                      ”
+                                                                                                                             -2
+
+
+
+
+                                                                                                                                   .5
+                                                                                                                   ”
+
+
+
+
+                                                                                                                            S
+                                                                                                                  6
+                     			 LEG SHORT
+
+
+
+
+                                                                                                                                  2
+                                                                                                                           S
+                                                                                                                 9
+
+
+
+
+                                                                                                                                  9
+                       SS-3: (4) 2 x 4 x 89”
+                     			 INTERIOR BRACE- SIDE B
+                     		          (CUT TO SIZE)
+
+                       SS-4: (4)* 2 x 4 x +/- 87”
+                     			 INTERIOR BRACE- SIDE A
+                     		           (CUT TO SIZE IN STEP 5)
+
+
+
+
+                                                                                                                            -4
+                                                                                      -3
+
+
+
+
+                                                                                                         ”
+
+
+
+
+                                                                                                                                     ”
+                                                                                     S
+
+
+
+
+                                                                                                                           S
+                                                                                                        9
+
+
+
+
+                                                                                                                                  87
+                                                                                    S
+
+
+
+
+                                                                                                                           S
+                                                                                                       8
+                     * THESE PIECES ARE A ROUGH ESTIMATE OF SIZE,
+                     DO NOT CUT THESE DOWN UNTIL MEASUREMENTS
+                     ON SITE HAVE BEEN TAKEN, AS REQUIRED IN STEP 5
+
+                     TIPS:
+                     -LABEL EACH PIECE OF LUMBER AS YOU ARE
+                     MEASURING/CUTTING
+                     -HAVE A PILE OF LUMBER FOR SS-1 TO SS-7
+                     -LIGHTLY SANDING CUT EDGES TO REMOVE
+                     SPLINTERS WILL ALSO HELP WITH ASSEMBLY.
+                     -IF BUILDING MULTIPLE STAGES, CREATING A STOP
+                     FOR YOUR MITER SAW ENSURES ALL PIECES ARE
+                     CUT TO THE SAME LENGTH
+
+
+
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University                  4
+WORKING VERSION 1.0
+    2
+                      NOTE: THE FIRST TWO STEPS CAN BE
+                      PREFORMED ON LEVEL GROUND TO
+                      ASSIST WITH ASSEMBLY
+
+                      1. CREATE LEGS
+STEP                  STACK (1) SS-2 TO (1) SS-1 WITH ONE
+                      SIDE ALIGNING THE TWO PIECES OF
+
+
+
+
+                                                                                                       .
+                                                                                                      Q
+                      LUMBER, THE OTHER SIDE ALLOWING
+
+
+
+
+                                                                                                     E
+                                                                                                                               SS-2
+
+
+
+
+                                                                                                 .
+                                                                                                Q
+                      FOR A 3.5” GAP. THIS WILL FORM THE
+
+
+
+
+                                                                                               E
+                                                                                           .
+                                                                                          Q
+                      FIRST LEG OF THE TRELLIS.
+
+
+
+
+                                                                                         E
+                                                                                     .
+                                                                                    Q
+                                                                                   E
+                      2. USE THE PRE-DRILLING GUIDE
+                      AT THE END OF THE PACKET TO
+                      PRE-DRILL YOUR SCREW HOLES
+
+
+
+
+                                                                                     ”
+                                                                                    .5
+                                                                                   3
+                      3. SECURE THESE TWO PIECES WITH
+                      (2) 2.5” SELF DRIVING EXTERIOR
+                      SCREWS AT ONE END OF THE PIECE,
+                      AND ANOTHER (2) SCREWS AT THE                                    SS-1
+                      OTHER END. ADD ANOTHER (2) SCREWS
+                      IN THE MIDDLE. THEN ANOTHER
+                      SET OF (2) SCREWS EQUAL DISTANT
+                      FROM THE END OF THE WOOD AND                                                                             SS-1
+                      THE MIDDLE. EACH LEG WILL HAVE A
+
+
+
+
+                                                                                                                           0
+                                                                                                                           9
+                      TOTAL OF (10) SELF-DRIVING EXTERIOR
+                      SCREWS.
+
+                      4. REPEAT (3) MORE TIMES WITH
+                      ANOTHER (3)SS-2 AND (3) SS-1, AND
+                      (30) SELF-DRIVING EXTERIOR SCREWS.
+
+                      5. CONNECT LEGS
+                      SECURE (1) SS-1 TO THE TOP OF
+                      (2) LEGS (SLOTTED INTO THE 3.5”
+                      GAP BETWEEN THE SS-2 + SS-1 OF
+                      THE LEGS) WITH (8) SELF-DRIVING
+                      EXTERIOR SCREWS, (4) PER LEG.
+                      REPEAT WITH THE OTHER TWO LEGS.
+
+                      TIP: ENSURE EACH SIDE STAYS 90 DEGREES BY
+                      USING A CARPENTERS
+                      SQUARE
+
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University         5
+WORKING VERSION 1.0
+    3
+                      NOTE: THE FIRST TWO STEPS CAN BE
+                      PREFORMED ON LEVEL GROUND TO
+                      ASSIST WITH ASSEMBLY
+
+                      1. FLIP THE LEGS OVER
+STEP                  USING (2) SS-1s FOR ONE SET OF LEGS,
+                      CREATE BRACES ON ONE SIDE OF YOUR
+                      TRELLIS. USE A SPARE 2x4 TO CREATE
+                      AN EVEN 3.5” GAP BETWEEN THE TOP
+                      LEG BRACE AND THE ADDITIONAL
+                      BRACES. EACH BRACE SHOULD USE (4)
+                      SELF-DRIVING EXTERIOR SCREWS, (8)
+                      TOTAL FOR THIS SIDE.
+                                                                                                  SS-1
+                      2. REPEAT ON OTHER LEGS
+                      USING (2) SS-1, SECURE WITH (8) SELF-
+                      DRIVING EXTERIOR SCREWS.
+
+                      3. STAND LEGS UP
+
+                      TIP: ENSURE EACH SIDE STAYS 90 DEGREES BY
+                      USING A CARPENTERS
+                      SQUARE
+
+
+
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University   6
+WORKING VERSION 1.0
+    4
+                      NOTE: THE REMAINING STEPS WILL
+                      REQUIRE A LADDER TO ASSIST IN                                                  SS-1
+
+
+
+
+                                                                                                                           0
+                      ASSEMBLY
+
+
+
+
+                                                                                                                           9
+                      1. ADD TOP CROSS BEAMS
+
+STEP                  USING (2) SS-1s TO CONNECT
+                      EACH OF THE TWO SETS OF
+                      LEGS. ENSURE ALL SIDES ARE
+                      90 DEGREES. SECURE EACH
+                      CORNER WITH (4) SELF-DRIVING
+                      EXTERIOR SCREWS, FOR A TOTAL
+                      OF (8) SCREWS FOR THIS STEP.
+
+                      TIP: ENSURE EACH SIDE STAYS 90
+                      DEGREES BY USING A CARPENTERS
+                      SQUARE
+
+                      2. ADD LONG BRACES
+
+
+
+
+                                                                                                                               0
+                      USING (2) SS-1s FOR ONE SET OF
+
+
+
+
+                                                                                                                               9
+                      LEGS, CREATE BRACES ON ONE
+                      SIDE OF YOUR TRELLIS. USE A
+                      SPARE 2x4 TO CREATE AN EVEN
+                      3.5” GAP BETWEEN THE TOP LEG
+                      BRACE AND THE ADDITIONAL
+                      BRACES. EACH BRACE SHOULD                                                     SS-1
+                      USE (4) SELF-DRIVING EXTERIOR
+                      SCREWS, FOR A TOTAL (16) TOTAL
+                      FOR THIS SIDE.
+
+                      3. REPEAT ON OTHER LEGS
+                      USING (1) SS-1, SECURE WITH
+                      (4) SELF-DRIVING EXTERIOR
+                      SCREWS.
+                                                                         3.5”
+                                                                        3.5”
+
+
+
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University           7
+WORKING VERSION 1.0
+    5
+                      1. MEASURE THE DISTANCE
+                      BETWEEN YOUR TWO POSTS WHERE
+                      THE SS-4 INTERIOR BRACE SHOULD                                                                                                         SCREWS
+                      BE (AS SHOWN). CUT YOUR SS-4                                                                                                            HERE
+                                                                                                                                                        SCREWS (2)
+                      PIECE TO SIZE, ENSURE A SNUG                                                                                                       HERE
+
+STEP                  FIT. SECURE TO THE SS-5 PIECE
+                      BEHIND IT. REPEAT WITH REMAINING                                                                                     SCREWS
+                                                                                                                                            HERE
+                                                                                                                                                  SCREWS (2)
+                                                                                                                                                   HERE
+                                                                                                                                                    (2)
+
+                      LONG BRACES, FOR A TOTAL OF (4)                                                                             SCREWS
+                                                                                                                                             (2)
+                      INTERIOR LONG BRACE PIECES.                                                                                  HERE
+                                                                                                                                    (2)
+
+
+                      2. SECURE IN PLACE WITH (8) 2.5”
+                      SELF DRIVING EXTERIOR WOOD
+                      SCREWS, PLACED IN PAIRS OF (2) AT
+                      EQUAL INTERVALS, AS SHOWN. THIS
+                      STEP WILL REQUIRE A TOTAL OF (32)
+
+
+
+
+                                                                                                                              .
+                                                                                                                             Q
+                                                                                                                            E
+                      SCREWS.
+
+
+
+
+                                                                                                                        .
+                                                                                                                       Q
+                                                                                                                      E
+                      3. MEASURE THE DISTANCE
+
+
+
+
+                                                                                                              .
+                                                                                                             Q
+                                                                                                            E
+                      BETWEEN YOUR TWO POSTS WHERE
+                      THE SS-3 INTERIOR BRACE SHOULD                                     SS-4
+                      BE (AS SHOWN) BEFORE SECURING                                                                                                              SS-3
+                      IT IN PLACE. CUT YOUR SS-3
+                      PIECE TO SIZE,ENSURE A SNUG
+                      FIT. SECURE TO THE SS-1 PIECE
+                      BEHIND IT. REPEAT WITH REMAINING                                   SS-3
+                      SHORT BRACES FOR A TOTAL OF (4)
+                      INTERIOR SHORT BRACE PIECES.
+
+                      4. SECURE IN PLACE WITH (8) 2.5”
+                      SELF DRIVING EXTERIOR WOOD
+                      SCREWS, PLACED IN PAIRS OF (2) AT
+                      EQUAL INTERVALS, AS SHOWN. THIS
+                      STEP WILL REQUIRE A TOTAL OF (32)
+                      SCREWS.
+
+
+                      TIP: USE CLAMPS TO HOLD WOOD IN PLACE
+                      WHILE SECURING
+
+
+
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University                                              8
+WORKING VERSION 1.0
+    6
+                     1. USE (1) SS-1 PIECES TO CREATE
+                     THE TOP BRACE SUPPORTS.
+                     EQUALLY SPACE AN SS-1 PIECE IN
+                     THE CENTER OF THE FRAME, AS
+                     SHOWN.                                                                                    SS-1
+STEP                 2. SECURE WITH (4) SELF-DRIVING
+                     EXTERIOR SCREWS.
+
+
+                     TIP: USE CLAMPS TO HOLD WOOD IN
+                     PLACE WHILE SECURING
+
+
+
+
+                                                                                                                              .
+                                                                                                                             Q
+                                                                                                                            E
+                                                                                                                        .
+                                                                                                                       Q
+                                                                                                                      E
+
+
+
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University          9
+WORKING VERSION 1.0
+    7
+                      1. USE (15) SS-1 PIECES FOR THE
+                      CANOPY. USE A 2x4 AS A SPACER,
+                      SECURE EACH SS-5 PIECE FROM
+                      ONE SIDE TO THE OTHER (RIGHT TO
+                      LEFT) SIDE.
+STEP                  2. SECURE LUMBER BY USING AN
+                      IMPACT DRIVER WITH (75) 2.5” SELF
+                      DRIVING EXTERIOR WOOD SCREWS,
+                                                                                                                                     SS-1
+                      AS SHOWN.
+
+                      3. SECURE REMAINING SS-1 PIECES
+                      USING AN IMPACT DRIVER WITH (70)
+                      2.5” SELF DRIVING EXTERIOR WOOD
+                      SCREWS.
+
+                      4. ALIGN THE LAST PIECE WITH THE
+                      FRAME TO ENSURE NO OVERHANG,
+                      LETTING THE LAST PIECE BE LESS
+                      THAN 3.5” iF NEEDED.
+
+                      5. LIGHTLY SAND THE ROUGH
+                      EDGES OF THE SHADE STRUCTURE.
+
+
+
+
+                                                                                                                             ”
+                                                                                                                       3.5
+                                                                                                                              IG N
+                                                                                                                           AL
+
+
+
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University                    10
+WORKING VERSION 1.0
+    8
+                      1. PLACE (4) L BRACKETS ON THE
+                      INSIDE OF EACH POST AND SECURE
+                      WITH (4) 1/2” x 2” LAG SCREWS.
+
+                      2. PLACE (4) 18” J HOOKS THROUGH
+STEP                  THE BOTTOM HOLE OF EACH L
+                      BRACKET AND HAMMER INTO
+                      GROUND WITH 5LB HAMMER.
+
+
+
+
+                       L BRACKETS
+                       NOTE: WHEN SHADE STRUCTURE IS
+                       ADJACENT TO GABION BENCH WITH
+                       WOOD TOP, IT IS RECCOMENDED
+                       TO USE AN L-BRACKETS AND LAG
+                       SCREW TO SECURE THE TRELLIS
+                       LEGS TO THE GABION BENCH
+
+                       18” J HOOKS
+
+
+
+
+                       CONCRETE DECK BLOCKS
+
+
+
+
+                       NOTE: WHEN SECURING POST WITHIN
+                       PLANTING BEDS, USE A CONCRETE
+                       DECK BLOCK TO SET POST ABOVE SOIL
+                       AND TO PROVIDE STABLE SUPPORT
+                       WHILE MINIMIZING WOOD ROT. BLOCKS
+                       WILL HAVE TO BE DUG INTO THE SOIL
+                       ACCORDINGLY TO PROVIDE LEVEL
+                       SURFACES WITH OTHER POSTS.
+
+
+
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University   11
+WORKING VERSION 1.0
+                     1. CUT OUT PRE-DRILLING HOLE GUIDE ALONG DOTTED LINES
+
+                     2. WHEN DRILLING, ENSURE THAT YOU PROPERLY ALIGN
+                     THE EDGE OF THE TEMPLATE WITH OUTSIDE EDGE OF THE
+                     LUMBER BEFORE
+GUIDE                PRE-DRILLING                                                                                          PRE-DRILLING HOLE GUIDE
+
+
+
+
+                                        N
+                                     IG
+                                    L
+                                   A
+
+
+
+
+                                                                               U . U N RE
+
+                                                                                     L E
+                                                                             YO E E A
+                                                                                R S S
+                                                                                    O TH
+                                                                            R AT T S
+                                                                           O L T E
+
+                                                                                       R
+                                                                          F P PA L
+
+
+
+                                                                                      E
+
+                                                                                      E
+                                                                         Y M L HO
+
+
+
+
+                                                                                  H
+                                                                    E BL TE AL L
+                                                                                L
+                                                                 U E E T A
+                                                                G S TH NO T
+                                                                  A SE D. NO
+                                                                    U E E:
+                                                                     U OT
+                                                                       N
+                                                                      S
+
+
+                                                                  ID M
+                                                                   S
+
+
+
+                     3. ENSURE ALL HOLES ARE                                                                                ALIGN DASHED LINE WITH INSIDE EDGE OF
+                     ABOUT A THUMB IN WIDTH                                                                                                LUMBER
+                     FROM THE EDGE (~1”) EVEN
+                     HOLES THAT DON’T USE THIS
+                     TEMPLATE
+
+
+
+
+                                                                                                                               CUT ALONG THE DOTTED LINES
+
+
+
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University                                            12
+WORKING VERSION 1.0
+

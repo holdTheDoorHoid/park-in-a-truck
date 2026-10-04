@@ -1,0 +1,40 @@
+{
+  "name": "park-in-a-truck",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "test": "vitest run",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/markdown-remark": "^7.3.1",
+    "@astrojs/mdx": "^8.0.2",
+    "@astrojs/preact": "^6.0.5",
+    "@fontsource-variable/work-sans": "^5.3.0",
+    "@fontsource/alfa-slab-one": "^5.3.0",
+    "@nanostores/preact": "^1.1.0",
+    "astro": "^7.3.5",
+    "maplibre-gl": "^6.12.0",
+    "nanostores": "^1.5.4",
+    "preact": "^10.29.8",
+    "suncalc": "^2.1.0",
+    "three": "^0.186.1"
+  },
+  "allowScripts": {
+    "esbuild": true
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@types/suncalc": "^1.9.2",
+    "@types/three": "^0.186.0",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.3"
+  }
+}

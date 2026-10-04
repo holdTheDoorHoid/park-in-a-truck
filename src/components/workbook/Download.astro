@@ -1,0 +1,17 @@
+---
+// A download button for a PiaT file (template, form, spreadsheet, guide).
+import { u } from '../../lib/url';
+interface Props {
+  href: string;
+  label: string;
+  note?: string;
+}
+const { href, label, note } = Astro.props;
+const ext = (href.split('?')[0]!.split('.').pop() || '').toUpperCase();
+---
+<p class="download">
+  <a class="btn" href={u(href)} download={!/^https?:/.test(href) ? '' : undefined} target={/^https?:/.test(href) ? '_blank' : undefined} rel="noopener">
+    ⬇ {label}{ext && ext.length <= 4 && <span class="muted"> ({ext})</span>}
+  </a>
+  {note && <span class="muted" style="margin-left:0.6em;font-size:0.9rem">{note}</span>}
+</p>

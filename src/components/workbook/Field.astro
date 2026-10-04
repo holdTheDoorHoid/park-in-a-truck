@@ -1,0 +1,38 @@
+---
+// A workbook blank. Saved in the browser under `id` ("<step>.<name>").
+// `auto` shows a value the site looked up (e.g. "lot.owners|join") until the
+// person types their own. See src/lib/autofill.ts for paths and formats.
+interface Props {
+  id: string;
+  label: string;
+  type?: 'text' | 'textarea' | 'number' | 'date' | 'email' | 'tel' | 'url' | 'select';
+  hint?: string;
+  placeholder?: string;
+  options?: string[];
+  unit?: string;
+  auto?: string;
+  rows?: number;
+}
+const { id, label, type = 'text', hint, placeholder, options = [], unit, auto, rows = 4 } = Astro.props;
+const inputId = `f-${id.replace(/[^a-z0-9]+/gi, '-')}`;
+---
+<div class="field">
+  <label class="field-label" for={inputId}>{label}</label>
+  {type === 'textarea' ? (
+    <textarea id={inputId} data-field={id} data-auto={auto} rows={rows} placeholder={placeholder}></textarea>
+  ) : type === 'select' ? (
+    <select id={inputId} data-field={id} data-auto={auto}>
+      <option value="">Choose…</option>
+      {options.map((o) => <option value={o}>{o}</option>)}
+    </select>
+  ) : unit ? (
+    <span class="field-with-unit">
+      <input id={inputId} type={type} data-field={id} data-auto={auto} placeholder={placeholder} inputmode={type === 'number' ? 'decimal' : undefined} />
+      <span>{unit}</span>
+    </span>
+  ) : (
+    <input id={inputId} type={type} data-field={id} data-auto={auto} placeholder={placeholder} />
+  )}
+  {auto && <span class="field-auto" hidden>✓ Filled in from City records — type to change it</span>}
+  {hint && <span class="field-hint">{hint}</span>}
+</div>

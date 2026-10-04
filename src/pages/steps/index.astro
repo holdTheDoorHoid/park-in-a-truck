@@ -1,0 +1,38 @@
+---
+import Base from '../../layouts/Base.astro';
+import StepPath from '../../components/site/StepPath.astro';
+---
+<Base title="The steps">
+  <section class="wrap" style="padding-top:40px">
+    <p class="eyebrow">The Park in a Truck process</p>
+    <h1 class="ruled">Six steps to a park</h1>
+    <p class="lede">
+      Every Park in a Truck park goes through the same six steps. Work through them in order — each one builds on the
+      last. Mark sub-steps done as you go; your progress is saved in this browser.
+    </p>
+    <div data-progress-total class="total"><span class="bar"><span></span></span> <span data-progress-text></span></div>
+    <StepPath />
+  </section>
+</Base>
+<style>
+  .total {
+    margin: 24px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+  }
+  .total .bar {
+    flex: 0 1 320px;
+    height: 10px;
+    background: var(--paper-2);
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  .total .bar > span {
+    display: block;
+    height: 100%;
+    width: calc(var(--pct, 0) * 100%);
+    background: var(--cyan);
+  }
+</style>

@@ -1,0 +1,1766 @@
+PARK in a TRUCK
+
+
+TOOLKIT
+
+
+A do-it-yourself toolkit for neighborhood parks
+The Landscape Architecture Program +
+The Lab for Social and Urban Innovation
+Thomas Jefferson University
+Philadelphia, PA USA
+Park in a Truck                           CONTENTS
+The Landscape Architecture Program +
+The Lab for Social and Urban Innovation   00   INTRODUCTION
+Thomas Jefferson University
+Philadelphia, PA USA
+                                          01        ACQUIRE
+                                          02       ORGANIZE
+                                          03          ASSESS
+                                          04          DREAM
+                                          05         CREATE
+Have Questions? Contact Us!
+                                          06         SUSTAIN
+Kimberlee.Douglas@jefferson.edu
+ParkinaTruck@jefferson.edu
+Park in a Truck                                                                                                                    WORKING VERSION 1.0
+LEGAL NOTICE                                                                                                                                                                            PARK IN A TRUCK TOOLKIT - WORKING VERSION 1.0
+
+The recommendations included herein are based on standard practices of fabrication and construction. In                This toolkit is a working document describing a formalized process for how a few communities bettered themselves
+no event shall Thomas Jefferson University (TJU), TJU’s Lab For Social Innovation, Park-in-a-Truck, and/or               by designing, building and maintaining their own parks. It is not perfect, but a work in progress and one of several
+its faculty, staff or affiliates be liable for any damages or injury to person or property damages arising out                  versions that will be published. Behind the scenes, neighbors are building parks, communities are bettering
+of the use of these recommendations. Thomas Jefferson University (TJU), TJU’s Lab For Social Innovation,                                                                                  themselves, and people are reviewing this process.
+Park-in-a-Truck, or its faculty, staff and/or affiliates make no warranties, expressed or implied, and hereby        Something is learned with every community meeting, every trip to Home Depot and every park built. All this knowledge
+disclaims and negates all other warranties, including without limitation, implied warranties or conditions of               gained contributes to future Toolkit editions. Crucial to the next version is getting feedback from professionals,
+merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation                                                       organizations and, most importantly, community members like you!
+of rights. Further, Thomas Jefferson University (TJU), TJU’s Lab For Social Innovation, Park-in-a-Truck, and/                                                                        Please share your thoughts, questions, or ideas with us!
+or its faculty, staff or affiliates do not warrant or make any representations concerning the accuracy, likely
+results, or reliability of the use of these recommendations. The use of these recommendations constitutes                                                                                           Kimberlee.Douglas@jefferson.edu
+your acknowledgment of the aforementioned.                                                                                                                                                               ParkinaTruck@jefferson.edu
+                                                                                                                                                                                                                     @ParkinaTruck
+                                                     INTRODUCTION                                                   00
+                         This Toolkit is a ‘do-it yourself’ instruction manual   The Park in a Truck system has two main
+                         for community volunteers committed to bringing          components: This Park in a Truck (PiaT) Toolkit
+                         more nature into their neighborhoods. It doesn’t        and a series of Workbooks.The Toolkit provides
+                         matter if the project is revitalizing a large vacant    the big picture about the benefits of parks,
+                         lot or a small patch of land in the front yard, this    background on the PiaT program, and a soup-to-
+                         manual will guide you and your neighbors through        nuts overview of a park project.
+                         the essential steps of visioning, designing, and
+                         building a neighborhood park.                           Now get reading and have fun!
+
+
+
+
+MELON STREET PiaT PARK
+Build Day
+Image: Matthew Tucker
+                                                                                                                                     7
+                                                                                                             TOOLKIT WORKING DRAFT 1.0
+                                                                   The Park in a Truck Story
+                                                                   Park in a Truck is an initiative of Thomas Jefferson           Building parks is an expensive and complicated undertaking
+                                                                   University’s Landscape Architecture Program and                often conducted without local engagement and support.
+                                                                   Laboratory for Urban and Social Innovation (LUSI).             PiaT takes a different approach:
+
+                                                                     OUR VISION: Cities where people create, build, and             COMMUNITY LED: Local residents do all phases of the
+                                                                     live in sustainable, equitable, healthy, and joyful            planning, implementation, and ongoing maintenance of
+                                                                                                                                    their park. This process is not only park creation—but
+                                                                     communities.
+                                                                                                                                    community creation.
+                                                                     OUR MISSION: Reimagining how cities’ social, ecological,       CUSTOMIZABLE: Through the toolkit, local residents have
+                                                                     and economic networks are designed, built, and                 all the information necessary for their new park.
+                                                                     maintained.
+                                                                                                                                    ENGAGING: PiaT gives young people an opportunity to
+                                                                     THE SOLUTION: A community-operated green network,              direct their energies more positively.
+                                                                     established through low-cost, fast-turnaround
+‘Park in a truck allows                                              renovations of vacant lots that:
+                                                                     • Improve environmental, social, and physical health in
+                                                                                                                                    COST-EFFICIENT: To keep costs down, communities
+                                                                                                                                    select their desired components — chess tables, grilling
+                                                                                                                                    areas, picnic tables, trees, flower beds, pathways for
+communities to better                                                  under-resourced neighborhoods
+                                                                     • Keep neighborhoods intact
+                                                                                                                                    walking, playhouses, stages, a covered pavilion, logs
+                                                                                                                                    to climb on, etc. — for simple installation. There are
+                                                                                                                                    no expensive or specialized in-ground features or
+themselves, and actually serves                                      • Helps residents lead revitalization and reinvestment
+                                                                       efforts.
+                                                                                                                                    construction.
+
+
+residents rather than displace                                     Park in a Truck (PiaT) brings nature back into everyday
+                                                                   life by linking adjacent available lots to create block-by-
+                                                                                                                                    DELIVERED TO YOUR DOOR: All of the essentials are
+                                                                                                                                    loaded on a truck and delivered to the site where
+                                                                                                                                    community volunteers build their park — barn-raising
+
+them’                                                              block green networks–corridors of high-quality, outdoor
+                                                                   spaces. This open space initiative builds upon many great
+                                                                                                                                    style.
+
+                     -DeWayne Drummond, Mantua Civic Association                                                                    PAY-IT-FORWARD: Success is contagious, and PiaT
+                                                                   organizations’ ongoing community development work by             establishes a coalition of park-building veterans willing
+                                                                   repurposing underutilized spaces to fill in the gaps. No one     to pay it forward with those just beginning their park
+                                                                                                                                    journey.
+Melon Street Park
+Visioning workshop
+                                                                   should ever be far from a safe, high-quality green space.
+                                                                                                                                                                                            9
+                                                                                                                                                                    TOOLKIT WORKING DRAFT 1.0
+Guiding Principles + Goals
+Re-imagining how social, ecological and economic networks in cities are designed, built and maintained
+This is what we believe.
+
+
+ACTIVATE EQUITY                       CREATE EDUCATIONAL                        RESPECT and build upon            STIMULATE the local               FIGHT CLIMATE                       PROMOTE HEALTH
+through participation and access      opportunities for all                     existing community strengths,     economy                                                               of communities
+                                                                                resources, and networks
+                                                                                                                                                    CHANGE
+                                                                                                                                                                                        _Encourage physical activity
+                                                                                                                                                    _Reduce urban heat island
+                                                                                                                  _Use locally-sourced, long-
+                                                                                                                                                    effects through tree plantings
+_Disrupt the status quo of unjust     _Build leadership skills of high school   _Welcome diverse types of         lasting and non-toxic materials                                       _Provide places to grow
+                                                                                                                                                    and increasing pollinator habitat
+decision making                       students to be ‘park                      community events and activities                                                                         food and friendships that are
+                                      ambassadors’                                                                _Increase property values and                                         shared within the community
+                                                                                                                                                    _Reduce stormwater/flooding
+_Provide positive avenues for youth                                             _Provide access to all persons    stimulate local economies.
+                                                                                                                                                    impacts
+                                      _Encourage hands on learning                                                                                                                      _Nurture space for mental
+_Create places for new and            through community gardening and           _Cultivate social inclusion       _Activate under-utilized lots                                         relaxation, joy and friendship
+                                                                                                                                                    _Create a network of parks
+existing social connections           events
+                                                                                                                                                    to link islands of high-quality
+                                                                                _Foster inter-generational                                                                              _Allow easy and safe access
+                                                                                                                                                    habitat.
+_Beautify areas and build             _Partner with local schools and           participation                                                                                           to outdoor environments
+community pride in the                educational organizations for
+                                                                                                                                                    _Provide local opportunities to
+neighborhood                          classes and workshops                     _Honor the history of the
+                                                                                                                                                    connect with nature
+                                                                                neighborhood and local culture
+_Create a neighborhood ‘hub’          _Teach real-world skills of
+                                                                                                                                                    _Use low-maintenance, high
+through events, activities, and       construction for life and job training
+                                                                                                                                                    wildlife value native plants
+impromptu meet-ups.
+                                                                                                                                                    _Use organic strategies to
+                                                                                                                                                    eliminate the use of chemical
+                                                                                                                                                    pesticides
+
+                                                                                                                                                    _Collect and reuse rainwater
+
+
+
+                                                                                                                                                                                                                  11
+                                                                                                                                                                                           TOOLKIT WORKING DRAFT 1.0
+Why a Park?                                                   ‘Park in a Truck is a process
+                                                           that empowers communities to
+                                                            change their neighborhood one
+Take a deep breath and imagine yourself in a garden
+or sitting beneath a leafy green tree rustling gently in                     lot at a time.’
+the breeze. Birds are chirping, and you smell the sweet
+scent of spring flowers. Maybe, you hear the sound of                           -PiaT Founder, Kim Douglas
+children giggling with excitement as they jump from
+rock to rock or the quiet chatter of seniors gardening
+nearby. How do you feel?
+
+We all know the joy and calm we feel when
+experiencing the natural world around us. So it should
+be no surprise scientific research confirms that simply
+living near a park makes you healthier and spending
+time in a park, whether walking, biking, or just
+relaxing, boosts your psychological and physical well-
+being. On the next page are four different ways one
+can experience the benefit of neighborhood parks.
+
+
+
+
+                                                                                                       MELON PiaT Park
+                                                                                                         Community park
+                                                                                                   Image: Matthew Tucker
+SOCIAL BENEFITS                                                                                                                                                                                                                               HEALTH BENEFITS
+
+                                                                                                                                                              CLEAN AIR
+Parks bring people out                                                                                                                                                                                                                        Exposure to green spaces
+of their homes. They are                                                                                                                                                                                                                      boosts mental health and
+convenient gathering                                                                                                                                                                                                                          psychological well-being
+places—to drink coffee or                                  SPACES TO BE SAFE                                SPACES TO GROW                                                                                                                    beyond the benefits of
+play chess or for organized                                                                                                                                                                                                                   physical activity alone. Parks
+neighborhood events. The                                                               RESOURCES TO SHARE                SPACES TO MEET UP                         REDUCE TEMPERATURE             INCREASE EXERCISE
+                                                                                                                                                                                                                                              help reduce blood pressure,
+very act of building their park                                                                                                                                                                                                               increase social well-being,
+helps bring a community                                                                                                                                                                                                                       and promote positive health
+together. To share. To heal. To                                                                                                                  IMPROVE COMFORT                                                            REDUCE STRESS
+                                                                                                                                                                                                                                              behaviors. The benefits for
+celebrate.                                                                                                                                                                                                                                    low-income families are even
+                                                                                                                                                                                                                                              greater. A park a day helps
+                                                                                                                                                                                                                                              keep the doctor away.
+
+
+
+
+ECONOMIC BENEFITS                                                                                                                                                                                                                              ECOLOGICAL BENEFITS
+
+                                                                                                                                             CO BANKING                                                       CLEANER AIR
+                                                                                                                                               2
+
+A park can help stimulate                                                                                                                                                                                                                      Green spaces of any
+the local economy. Parks                                                                                                                                                                                                                       size provide important
+                                             ENERGY COST REDUCTIONS
+can become pop-up                                                                                                                                                                                                                              environmental benefits.
+                                                                               SUPPORT LOCAL ARTISANS
+markets where residents                                                                                                                                                                                                                        Small parks can provide
+sell their crafts. Local                                                                                                                                                                                                                       valuable habitat for local
+businesses thrive when                                                                                                                                                                                                                         and migrating wildlife and
+                                                                                                                                                                                                             NUTRIENT CYCLING
+nearby parks attract visitors
+                                                      ENJOY A MEAL                                      MOBILE BUSINESS SUPPORT
+                                                                                                                                                                                                                                               serve as important areas
+and customers. Parks              INCREASED FOOT TRAFFIC
+                                                                                                                                                                                                                                               for pollinator species.
+also enhance property                                                                                                                                     WILDLIFE HABITAT                                                                     Green spaces are essential
+values, attracting families                                                                                                                                                                                                                    to absorbing water and
+looking for a less congested
+                                                                                                                                                                          INCREASE BIODIVERSITY                                                decreasing urban flooding.
+neighborhood with more               Increased home                                                                                                                                                                                            All of these things help to
+                                     values
+green space and amenities.                                                                                                                                            RAINWATER INFILTRATION                                                   mitigate climate change.
+
+
+
+
+                                                                                                                                                                                                                                                                  15
+                                                                                                                                                                                                                                            TOOLKIT WORKING DRAFT 1.0
+A ‘network’ of parks
+
+Clean air, clean water, and the protection of limited green spaces is critical
+to healthy urban neighborhoods. Unfortunately, many urban areas have a
+long history of pollution, poor surface water management and neglected
+open space but lack the resources to remedy these problems. By tapping into
+the residents’ desire to change their neighborhoods, communities can play
+an important role in the creation of healthy urban environments that bring
+nature back into our cities. The Park in a Truck initiative has many goals,
+but one of the most important is to help communities build sustainable
+natural urban oases.
+
+When integrated as a city-wide green network, a Park in a Truck-designed
+park creates wildlife habitat corridors and islands of green that lower high
+outdoor temperatures caused by the “urban heat island” effect. Community-
+led green initiatives are an important way to help create biologically diverse
+and more widely accessible parks that will help with the transition to a
+more sustainable, low-carbon society.
+
+
+
+PiaT enables communities
+to create, build and live
+in sustainable, equitable,
+healthy and joyful
+communities.                                                       A NETWORK OF PARKS
+                                                  Illustration of a vision of a residential and
+                                            commercial neighborhood with a network of PiaT
+                                                              parks on underutilized parcels.                           17
+                                                                                                  TOOLKIT WORKING DRAFT 1.0
+What is a pollinator?                                                               Size doesn’t matter
+                                                                                    You can add greenery regardless of how much space you have
+
+Pollination is important for a strong, healthy ecosystem. One in three
+bites of food you eat depends on pollinators. Apples, Almonds, Oranges,
+Avocados, Peaches, Pears, Plums, Cherries, Alfalfa, Blueberries, Vanilla,
+Cranberries, Tomatoes, Kiwi, Figs, Coffee, Strawberries, Blackberries,
+Raspberries, Lemons, Limes, Eggplants, Kumquats, Nectarines, Grapes, and
+Cacao (chocolate).
+                                                                                                                    native grasses, wildflowers        native grasses, wildflowers     native grasses, wildflowers,
+Pollinators are an essential and vital part of the pollination process. They        native grasses + wildflowers
+                                                                                                                             + shrubs                       + flowering trees           shrubs + flowering trees
+the animals and insects who help distribute the pollen to where it’s needed.
+Birds, bees, butterflies, bats and many other creatures are pollinators.
+                                                                                    Don’t get stuck on the idea that parks have to be big. Even the smallest patch of ground is a potential nature space—a place
+Pollination is an essential part of plant reproduction. Pollen from a flower’s      where birds, bees and other pollinators can find a delicious flower to do their thing. A 4x4 plot in the front yard or even a
+anthers (the male part of the plant) rubs or drops onto a pollinator. The           window box can provide many of the same benefits of larger park. We call these ‘Park Patches’.
+pollinator then take this pollen to another flower, where the pollen sticks to
+the stigma (the female part). The fertilized flower later yields fruit and seeds.   Park Patches are like home gardens…but more. They are part of a community or city-wide park network that connect
+                                                                                    people and pollinators to improve the environment and everyone’s quality of life. Pollinators need food, water, cover…and
+Do you know why some bees buzz? Some plants like tomatoes and                       each other. Park patches are the beginning of something bigger.
+blueberries release their pollen through two tiny pores in each anther. Bees
+bite the anthers, hold tight, and buzz to shake the pollen out of the flowers.      Park Patches are a great way to literally get your hands dirty. Develop your skills and inspire your neighbors—build a Park
+                                                                                    Patch! Check out the Park Patch Workbook.
+
+
+
+
+                                                                                          LINK TO
+                                                                                          PARK PATCH
+                                                                                          WORKBOOK
+                                                                                                                                                                                                           19
+                                                                                                                                                                                     TOOLKIT WORKING DRAFT 1.0
+PiaT Toolkit Steps
+SIX steps to realizing your community park
+
+
+
+
+So how does your community get a new park? One             CHAPTER            1    CHAPTER     2          CHAPTER    3          CHAPTER    4        CHAPTER    5          CHAPTER     6
+way might be to approach your councilperson and                        ed
+try to get the city to build you one. But that might             p ort
+                                                               p
+                                                            Su ized
+take years of planning, and parks are expensive.                an
+                                                            Org s
+Instead, what if a community could design and build
+                                                               ces
+its own park? That is precisely what Park in a Truck        Ac            ?
+Toolkit will allow you to do. Research has shown            ?                 ?
+that community-led park building projects promote
+community pride, empowerment, and safety.
+
+This book describes the key steps to build your park
+in six chapters: Acquire, Organize, Assess, Dream,
+Create, and Sustain. Each chapter gives you an overall
+understanding of the step. Then, when you’re ready to      ACQUIRE                 ORGANIZE                ASSESS              DREAM               CREATE                SUSTAIN
+get going, go to that chapter’s workbook to dive into
+the details. A link to the workbook is found at the
+beginning of each chapter. Read through the entire       How to acquire a lot     How to form a Park   How to assess your   How to design your   How to build your   How to maintain your
+toolkit before going to the workbooks, so you have                                   Committee                 lot                 park                park                 park
+a greater understanding of the entire park-building
+process.
+
+
+
+
+                                                                                                                                                                                            21
+                                                                                                                                                                      TOOLKIT WORKING DRAFT 1.0
+“Vacant lots are great assets
+and opportunities to build a
+network of high quality parks”
+                                 - Dr. Drew Harris
+
+
+
+
+                                                     ACQUIRE                                                              01
+                                                     In this chapter, we assume that you don’t already
+                                                     have access to land for your project. If you have legal                DOWNLOAD
+                                                                                                                            ACQUIRE
+                                                     permission to use a specific lot(s), we invite you to                  WORKBOOK
+
+                                                     skip to Chapter 2: Organize
+
+                                                     For park-creators without legal access to land, the
+                                                     process is complicated by having to ask others to
+                                                     either sell or lease their lot(s). There is no such thing
+                                                     as a perfect process, no one way to proceed, and
+                                                     regrettably no guarantee of a predictable outcome.
+                                                     The following chapter provides an overview to the
+                                                     best course of action to access your future park site!                    ?
+                                                                                                                      ?            ?
+
+
+
+WEST KENSINGTON PiaT PARK SITE
+
+
+                                                                                                                                       23
+                                                                                                                 TOOLKIT WORKING DRAFT 1.0
+Find a Lot                                                        WHICH LOT?
+                                                                  Review the three different types of potential neighborhood park locations. Are
+                                                                  there any of these in your neighborhood?
+Large urban parks provide many social, ecological, and
+economic benefits to a city’s residents and visitors. But
+unless the park is easy to get to, they may only be visited
+occasionally. Not everyone has access to a car or convenient
+public transportation, or can walk or bike long distances.
+
+This is why it’s important to find a nearby lot or space to
+turn into a small neighborhood park. They have many of
+the benefits of the big park AND their proximity allows for
+easy access. The more a neighborhood park is visited, the
+more familiar—and valued—the park becomes. Active park
+use helps these spaces become an essential hub of ‘social life’
+that builds a neighborhood’s sense of community!                  MID-BLOCK LOT                      CORNER LOT                      BREEZEWAY/ALLEY
+                                                                  VACANT LOT                         VACANT LOT                      EASEMENT
+
+Are there unused lots in your neighborhood that are legally                                                                          Identifiable by their long and
+                                                                  Rectangular in shape and           Rectangular in shape
+available, safe, and suitable for park use? Can you identify      found in the middle of a           and found at the end of a       very narrow shape, these
+potential lots in your neighborhood where you’d like to see       residential block. May have        residential block. May have     locations often connect ‘across’
+                                                                                                                                     a block. Orginally set aside
+your park? On the next page are typical locations for under-      buildings on each side and/or      buildings on the side and/
+                                                                                                                                     for pedestrian connections
+                                                                  the end. Most available ‘vacant’   or end. These lots offer high
+utilized spaces that could become your neighborhood park.         lots in Philadelphia are this      visibility and often have the   between streets and/or utility
+                                                                  category. May have limitations     most amount of sunlight.        easements.
+                                                                  for some park uses due to
+                                                                  narrow width and/or lack of
+                                                                  sunlight.
+
+
+
+
+                                                                                                                                                                        25
+                                                                                                                                                  TOOLKIT WORKING DRAFT 1.0
+Determine Lot Ownership
+Once you have identified some potential underutilized properties for your new neighborhood park, the next step is to
+determine who owns the property. The owner could be an individual, business, or non-profit organization. The owner
+could also be the city. The most reliable way to see who owns a lot is to check the City of Philadelphia records.                                                 See the Acquire Workbook for more
+                                                                                                                                                                  information about how to secure rights to use
+This flowchart illustrates how to determine who owns a lot and the possible steps to acquire the necessary legal rights-                                          the property for a park.
+or ‘entitlements’ to utilize the property as a neighborhood park.
+
+
+
+
+1                                          2                                              3                                   4
+                                                                                                                                  OWNER IS....                    POTENTIAL PURCHASE Do a property search to find out
+                                                                                                                                                                  if public land is available for purchase.
+                                                                                                                                  City of Philadelphia     www.
+                                                                                                                                                                  https://phdcphila.org/land/buy-land/property-search-map/
+                                                                                                         OWNER NAME
+
+
+
+
+                                                                                                                                                          PUBLIC OWNERSHIP
+
+                                                                                                                                         OR               PRIVATE OWNERSHIP
+                                                SEARCH PROPERTY                                DETERMINE OWNER                                                    POTENTIAL DONATION Contact the landowner
+    DETERMINE ADDRESS                                                                                                                                             about permanently donating the property to the
+                                                Go to https://atlas.phila.gov/                 View the Owner of the                                              neighborhood for use as a park.
+    Find the street address of the                                                             property under the ‘Property
+                                                and enter the street addresses
+
+
+                                                                                                                              4
+    potential lot or lots.                                                                     Assessment’ section on the
+                                                You can also find the lot by                                                      OWNER IS....
+                                                                                               website.                                                           POTENTIAL SALE Watch for potential public sale
+                                                zooming into a nearby street                                                      Person, Organization,
+                                                on the map.                                                                                                       listing or auction of property. In Philadelphia this
+                                                                                                                                  or Business                     may also include a Sheriff Sale.
+
+
+                                                                                                                                                                  NEGOTIATE PURCHASE AGREEMENT Contact the
+                                                                                                                                                                  landowner and negotiate a sale of the underutilized
+
+
+
+
+                                                                                                                                                             $
+                                                                                                                                                                  property for neighborhood use.
+
+                                                                                                                                                                  IN-KIND AGREEMENT Contact the landowner
+                                                                                                                                                                  and discuss the mutual benefits of granting the
+                                                                                                                                                                  neighborhood an ‘in-kind’ use of the lot as a park,
+                                                                                                                                                                  while the owner retains ownership.
+                                                                                                                                                                                                                                           27
+                                                                                                                                                                                                                     TOOLKIT WORKING DRAFT 1.0
+                                 ‘PiaT helps us plan events, and
+                                  creates community - and even
+                                  when you don’t own your own
+                               home, you feel connected to your
+                                    community because you feel
+                                        connected to the place.’
+                                               -Gwen Morris, Mantua Civic Association
+                                                                                        ORGANIZE                                                       02
+                                                                                        Parks don’t just happen. They are a team effort, with              DOWNLOAD
+                                                                                                                                                           ORGANIZE
+                                                                                        great dividends. A community working together                      WORKBOOK
+
+                                                                                        on a park project builds more than a park—they’re
+                                                                                        building stronger community bonds, creating
+                                                                                        engaging employment opportunities for local youth,
+                                                                                        and making everyone proud. Park building brings
+                                                                                        people together around a common cause. And when
+                                                                                        it’s done, they will say, ‘we did it!’
+
+
+
+
+WEST KENSINGTON PiaT MEETING
+
+
+                                                                                                                                                                      29
+                                                                                                                                                TOOLKIT WORKING DRAFT 1.0
+Create a Park Committee
+
+This step helps you develop organizational capacity to build your
+community park. First, you should form a ‘park committee’ to
+lead the park project. Your committee should include a ‘core’
+group of neighborhood residents who have the shared interest,
+time and dedication to take the park from dream to reality.
+Ideally, committee members should have a variety of skills and
+experiences. For example, some committee members may have
+expertise in leading volunteer efforts. Some may be very good
+with social media and ‘spreading the word.’ Others shine at
+fundraising, accounting or building partnerships. Together, they
+can handle the many different organizational tasks in the park-
+creating project.
+
+There are many effective techniques for creating strong
+neighborhood organizations and sustaining them. We
+recommend ‘The City Parks Handbook’ by the Pennsylvania
+Horticultural Society for more information on organizing a
+community group. The Handbook focuses on the organizational         RESOURCES:
+structure and key steps in the community-building process.          The City Parks Handbook
+                                                                    tupress.temple.edu/book/0872
+Another excellent resource is the ‘Park Advocate Handbook’ by
+                                                                    Park Advocate Handbook
+the National Recreation and Park Association. Both handbooks        nrpa.org/uploadedFiles/Americas_Backyard/park-
+                                                                    advocate-handbook-100711.pdf
+provide valuable insights and guidance to get your organization’s
+efforts started.
+Identify Neighborhood Assets                                            NEIGHBORHOOD ASSETS + INSPIRATION
+
+
+A key step to your park process is identifying what is unique
+about your neighborhood and park site. If you stop and look at
+any neighborhood, you can see an abundance of clues that tell                   Ed Bradley Community Oasis        La Casita de Abuela
+                                                                         Former vacant lot turned into park,      (The Grandmother’s small house).
+us how each is unique and special in its own way. The point is           featuring large mural of Ed Bradley,     Former vacant lots turned into park
+that all communities have inherent value based on its shared                 who was raised in the Belmont
+                                                                              neighborhood of Philadelphia.
+                                                                                                                  and neighborhood garden space.
+                                                                                                                  Features a replica of a petite “house”
+history and culture. If we can identify and utilize these assets                                                  reminiscent of rural Puerto Rico and the
+                                                                                                                  culture of Philadelphia’s Norris Square
+and strengths, we can tap into them to help design and build the                                                  neighborhood.
+
+park.
+
+So how do we identify assets and strengths? Think about your
+neighborhood, its people, its stories. What places are special and
+cherished? Where do people like to congregate? Which tales                                        Clark Park     Philadelphia Peace Park
+do they tell their children and grandchildren? And then think        Features a busy schedule of constantly      This is an open, charitable,
+                                                                       rotated events such as festivals, flea    intergenerational, neighborhood-
+about the people in your community and their talents. Do they             markets, theatrical performances,      managed ecology campus championing
+like to cook? Organize events? Garden? Love neighborhood                concerts and a year-round farmers’
+                                                                                market. The park also offers
+                                                                                                                 food, education and community.
+
+research and history? These can translate into valuable                  playgrounds and basketball courts.
+
+and practical skills to help get the park designed, built, and
+maintained. You just need to list them to know who you might
+tap to help with different jobs in the park process! You will find
+a checklist in the Organize Workbook to help with this process.
+On the page to the right are some examples of neighborhood
+                                                                                     Sankofa Community Farm       Philadelphia’s Magic Gardens
+assets.                                                              This is a community farm of 3.5 acres.       A philadlephia artist, Isaiah Zagar, used
+                                                                      It’s roots are of the African Diaspora.     handmade found items to chronicle
+                                                                        It is a spiritually centered farm that    his life and influences in this place. His
+                                                                       prioritizes spirit, human beings, and      art transformed a forgotten lot into a
+                                                                       relationships to beings beneath and        museum like park, and spread his art
+                                                                                                above the soil    and murals to renovate derlicit buildings,
+                                                                                                                  starting the “South Street Renaissance.”
+
+                                                                                                                                       33
+                                                                                                                 TOOLKIT WORKING DRAFT 1.0
+                                     ASSESS                                                      03
+                                     What makes your lot special and how can you                     DOWNLOAD
+                                                                                                     ASSESS
+                                     best use these features? This chapter reviews how               WORKBOOK
+
+                                     to evaluate your lot and ensure your park takes
+                                     advantage of its site conditions.
+
+                                     A lot doesn’t stand alone, it’s part of your
+                                     community. So, assessment needs to include your
+                                     neighborhood. Is there a unique history or culture
+                                     that should be reflected in the design. A park
+                                     that pays homage to a community’s sense of itself
+                                     will feel more like an old neighbor rather than a
+                                     newcomer.
+
+Park in a Truck Demonstration Park
+
+
+                                                                                                                35
+                                                                                          TOOLKIT WORKING DRAFT 1.0
+Evaluate the Park Site                                                                                  SITE CHARACTERISTICS
+                                                                                                        The diagram below shows an example project site (in blue). There are several
+                                                                                                        important characteristics that make this lot unique, including: 1) location on a busy
+In this step, you will document the physical characteristics of
+the park site. Is the site sunny or shady? Flat or sloped with      !   TIP
+                                                                        Make sure to download the
+                                                                        Assess Workbook so you and
+                                                                                                        corner, 2) on a bus route, 3) a building with large blank wall on the end, 4) utility
+                                                                                                        lines along the street edge, 5) and a sunny area along the sidewalk
+existing trees? Or is it across the street from a church? All of        your park-making friends can
+                                                                        each do their own evaluation
+these characteristics will influence what you can do on the site.       and then compare the results!
+For example, suppose you want to grow tomatoes—your site
+will need to be sunny throughout the day.
+                                                                                                                                                                 4
+Visit your park site and carefully document what might affect
+                                                                                                                                                        3
+your park’s design. By evaluating the site characteristics before
+designing the park’s features, you will make sure the park
+design is adapted to the site’s unique conditions. You will                                                                                                                              2
+document these assets in the Assess Workbook. An example of
+doing this is on the next page.
+
+Document any cultural or historical features of the space and
+adjacent blocks. Did an interesting business once occupy the lot?
+                                                                                                                                           5
+Were there any historical events that occurred nearby? What
+did the space look like before there were buldings?
+
+This is a great way to engage long-time residents—keepers of                                                                       1
+the neighborhood’s oral history and students who have the
+research skills to dive into city archives.
+
+
+
+
+                                                                                                                                                                                                  37
+                                                                                                                                                                            TOOLKIT WORKING DRAFT 1.0
+                         DREAM                                                       04
+                         Now, the real fun begins—creating a vision for your              DOWNLOAD
+                                                                                          DREAM
+                         park! This chapter will help translate your vision               WORKBOOK
+
+                         into your park design.
+
+
+
+
+The next PiaT
+park!
+
+MANTUA PiaT PARK GROUP
+Design Charette
+
+                                                                                                     39
+                                                                               TOOLKIT WORKING DRAFT 1.0
+You get to decide!
+
+This step in the park-building
+process starts with choosing
+one of four different ‘THEMED
+DESIGNS’. However, this is just
+the beginning. Each themed
+
+
+
+
+                                                                                E
+
+
+
+
+                                                                                                                                                                                     E
+                                                                            M
+
+
+
+
+                                                                                                                                                                                 M
+                                                                          A
+
+
+
+
+                                                                                                                                                                                 A
+                                                                        FR
+
+
+
+
+                                                                                                                                                                               FR
+design includes a set of ‘MIX                                                                                                       M      ATCH!
+                                                                        +                                                        ND                                            + EVE
+AND MATCH’ ‘PARK PIECES’                                                                                                     A                                                         NT
+that allow you to create a
+
+
+
+
+                                                                                                              IX
+                                                                                       +
+                                                                                       NT T T                                                                                                 T
+
+
+
+
+                                                                                                              M
+‘CUSTOM PARK’ best suited to                                                        OON EN
+                                                                                                                                         BA
+                                                                                                                                           CK
+                                                                                                                                                                       BA
+                                                                                                                                                                         CK
+                                                                                                                                                                                            ON
+                                                                                FFRR EV                                                                                                   FR
+                                                                                                                                                                                ED
+                                                                                                                                                                                  IB
+your needs. This entire process
+
+
+
+
+                                                                                                                             E
+
+
+
+
+                                                                                                                                                           E
+                                                                                                                                     T                             T
+
+
+
+
+                                                                                                                         M
+
+
+
+
+                                                                                                                                                          M
+                                                                                                                                   ON                        ON                      LE
+
+
+
+
+                                                                                                                         A
+
+
+
+
+                                                                                                                                                      A
+                                                                                                                       FR
+
+
+
+
+                                                                                                                                                     FR
+                                                                                                                  ED             FR             SA         FR
+                                                                                                                    IB                            NC
+
+                                                                                                   CCKK                                                                                                          K
+                                                                                                                        LE
+                                     EDIBLE THEME   SANCTUARY THEME                     +
+                                                                                                                                                      TU
+
+                                                                                                                                                                                                 + NAT        AC
+                                                                                                                                                        AR
+
+is explained on the following
+                                                                                                                                                          Y
+                                                                                                BAA
+                                                                                                B                                                                                                      UR B
+few pages. When you are ready                                                                             +
+                                                                                                                                                                                                         E
+                                                                                                                                                                                                                     +
+to design your park, download                                                                                                            BA
+                                                                                                                                           CK
+                                                                                                                                                                       BA
+                                                                                                                                                                         CK
+
+
+
+the Dream Workbook.
+
+
+
+
+                                                                                                                             E
+
+
+
+
+                                                                                                                                                           E
+                                                                                                                          M
+                                                                                                                                     T                             T
+
+
+
+
+                                                                                                                                                       M
+                                                                                                                         A
+                                                                                                                                   ON                            ON
+
+
+
+
+                                                                                                                                                      A
+                                                                                                                       FR
+
+
+
+
+                                                                                                                                                     FR
+                                                                                                                  NA             FR             EV             FR
+                                                                                                                    TU                               EN
+                                                                                                                         RE                            T
+
+
+
+
+                                                                                                  CK                                                                                                          CK
+                                                                                                BA                                                                                                          BA
+
+
+
+
+                                                                                                                                                                                     E
+                                                                             E
+
+
+
+
+                                                                                                                                                                                 M
+                                                                                                                                                                                                 T
+
+
+
+
+                                                                            M
+                                                                                                                                                                                            ON                  K!
+
+
+
+
+                                                                                                                                                                                A
+                                                                            A
+                                                                                    T T
+
+
+
+
+                                                                                                                                                                               FR
+                                                                                  ON EN
+
+
+
+
+                                                                        FR
+                                                                                FR EV                                                                                                     FR                   R
+                                                                                                                                                                                                            PA
+                                                                                                                                                                                                        M
+                                                                                                                                                                                               S     TO
+                                     NATURE THEME   EVENT THEME                                                                                                                             CU
+
+
+
+                                  THEMED DESIGNS                      PARK PIECES                                                                                             CUSTOM PARK
+                                                                                                                                                                                                                41
+                                                                                                                                                                                          TOOLKIT WORKING DRAFT 1.0
+Themed Designs
+
+As we explained earlier, the four different themes will help
+you design the best park for your community. They include:
+             Edible | Sanctuary | Nature | Event
+Each theme is a different way to use your park. For example,
+some park themes are well suited for neighborhood gatherings
+while others are better for solitude. The interchangeable
+elements like benches, tables, or shelters included in each
+theme help customize the park’s design (note how each theme
+                                                                                        EDIBLE THEME   SANCTUARY THEME
+and its related pieces are the same color). Consider which park
+theme(s) are best suited for your neighborhood park’s vision.
+In the Dream Workbook, you will mix and match the themes
+to get the perfect park for your neighborhood.
+Park in a Truck has also recently teamed up with Playful
+Learning Landscapes, an initiative that combines the science
+of how children learn best with the design of everyday
+spaces. This collaboration integrates the joy of play with
+meaningful, interactive opportunities to support child
+development-transforming sidewalks, parks and community
+spaces into places where learning naturally unfolds.
+Grounded in developmental science, Playful Learning
+experiences are active, engaging, socially interactive and
+joyful.
+                                                                  DOWNLOAD PLAYFUL
+Check out the appendix for more on this exciting addition!        LEARNING LANDSCAPES
+                                                                  WORKBOOK              NATURE THEME   EVENT THEME
+                                                                                                                                               43
+                                                                                                                         TOOLKIT WORKING DRAFT 1.0
+EDIBLE THEME                                    PARK FOR POLLINATORS
+                                                + PEOPLE
+This is a community space for sharing
+food and connecting with neighbors and
+even pollinators—insects and animals that
+pollinate flowering plants. Distinct features          FOOD                                              COMPOST
+of this theme include shared fruit and           A place to be able to
+                                                 grow your own food
+                                                                                                       A natural fertilizer
+                                                                                                      that ensures proper
+
+vegetable gardens, preparing neighborhood
+                                                                                                           soil quality
+
+
+meals, recipe swaps and even cooking classes!
+
+
+
+                                                  FRUIT TREES                                               COOK
+                                                 Many pollinators are                                     A space for
+                                                near-sighted. creating                               community members
+                                                drifts of plantings help                             to cook together and
+                                                 them find their food.                                   share recipes.
+
+
+
+
+REQUIREMENTS
+                                                    VISIBILITY                                           SHELTER
+   NO TREES or ONE OR TWO TREES                      Trees attract                                     Garden beds give
+                                                    pollinators by                                    bugs a place to live
+                                                providing nutrient rich                              while they protect the
+   FULL SUN ALL DAY or MOSTLY SUN                 pollen and nectar                                  garden from harmful
+                                                                                                             insects
+
+   WELL SUITED FOR CORNER LOT
+
+   FREQUENT VOLUNTEER PARTICIPATION
+
+                                                    NO SPRAY                 BIRDHOUSE                    VARIETY
+                                                Avoid using pesticides        give pollinators a       native plants give
+                                                 to create a healthy       place to rest and raise    pollinators the food
+                                                   environment for               their young          they need to thrive
+                                                      pollination
+EVENT THEME                                                                     PARK FOR POLLINATORS
+                                                                                + PEOPLE
+Music in the park, a spring art fair, a monthly
+flea market, a Halloween haunted house.
+This theme is made for having all kinds of
+neighborhood events throughout the year.                                            NATIVES                  DISPLAY
+Distinct features include an open ‘floor plan’                                   native plants give
+                                                                                pollinators the food
+                                                                                                           A gallery wall for
+                                                                                                        local art or community
+for flexible set up for different events, a small                               they need to thrive             sharing
+
+
+platform for performances, and gallery spaces
+to display artwork or school projects.
+
+
+                                                                                    HABITAT                 PERFORM
+                                                                                  Dense planting           multi-use stage
+                                                                                provides shelter, or
+                                                                                 a home, for many
+                                                                                    pollinators
+
+
+
+
+REQUIREMENTS
+                                                                                    BORDER                   GATHER
+    ONE/TWO TREES or SEVERAL TREES 		                                           Using trees to border    large, flexible event
+                                                                                  the park invites        space for multiple
+                                                                                 pollinators into the          activities
+    ANY AMOUNT OF SUN 		                                                                space
+
+
+    WELL SUITED FOR CORNER LOT
+
+    MODERATE VOLUNTEER PARTICIPATION		
+
+                                                                                                            NO SPRAY
+                                                                                                         No pesticides allows
+                                                                                                        for natural pollination
+                                                                                                            to take place
+
+
+
+
+                                                                          46
+                                                    TOOLKIT WORKING DRAFT 1.0
+NATURE THEME                                     PARK FOR POLLINATORS
+                                                 + PEOPLE
+A calming refuge of solitude in the city and a
+great place for smaller gatherings and outdoor
+workshops/classrooms. With the community
+circle area you can toast marshmallows or            HABITAT                                                        GATHER
+host a study group. Nature play includes            Dense planting
+                                                 provides the perfect
+                                                                                                                  Circular area for
+                                                                                                                community to gather
+
+natural park elements like stumps, logs, rocks
+                                                   home for many
+                                                      pollinators
+
+or an oversized play ‘nest.’
+
+
+
+                                                     BORDER                                                           PLAY
+                                                 Using trees to border                                         Nature-based play for
+                                                   the park invites                                                    kids
+                                                  pollinators into the
+                                                         space
+
+
+
+
+REQUIREMENTS
+                                                     NATIVES                                                       SEATING
+   WELL SUITED FOR LOTS WITH TREES                  A native palette                                             Natural log seats
+                                                  gives the park the
+                                                 strongest chance to
+   ANY AMOUNT OF SUN                              attract pollinators
+
+
+   MIDBLOCK or CORNER LOT 		
+
+   MINIMAL REQUIRED VOLUNTEER PARTICIPATION
+
+                                                     MASSES                 NO SPRAY                                 LEARN
+                                                   Planting masses       Avoid using pesticides                 Workshop space to
+                                                  allows pollinators      to create a healthy                   learn from others
+                                                 quickly reach a large      environment for
+                                                   variety of plants           pollination
+
+
+
+
+                                                                                                  TOOLKIT WORKING DRAFT 1.0
+SANCTUARY THEME                                   PARK FOR POLLINATORS
+                                                  + PEOPLE
+This is the most versatile of the park themes
+as it can accommodate a wide range of park
+uses. This theme emphasizes small spaces to
+relax and read a book, take a class, play board        VARIETY                    READ
+games or talk with a neighbor. Distinct fea-       Sticking to a native
+                                                  palette gives the park
+                                                                            Community members
+                                                                             can read in peace
+                                                  the strongest chance
+tures include cozy seating, the calming sound     to attract pollinators
+
+of water, small event area for classes or indi-
+vidual meetings.
+
+
+                                                       HABITAT                 SEATING
+                                                      Dense planting         Seating for small
+                                                   provides the perfect     groups to converse
+                                                     home for many
+                                                        pollinators
+
+
+
+
+REQUIREMENTS
+                                                        WATER                    RELAX
+   ANY AMOUNT OF TREES                               Water calms the         Relaxing lounge style
+                                                    mind and attracts               chairs
+                                                  pollinators to the site
+   ANY AMOUNT OF SUN
+
+   MID-BLOCK or CORNER LOT
+
+   MINIMAL VOLUNTEER PARTICIPATION
+
+                                                      MASSES                   NO SPRAY
+                                                    Planting masses         Avoid using pesticides
+                                                   allows pollinators        to create a healthy
+                                                  quickly reach a large        environment for
+                                                    variety of plants             pollination
+Park Pieces                                                                                                               FOUR THEMES ARE COLOR CODED
+
+Your park design template includes ‘park pieces.’ The park pieces correspond to                                           Each theme has a color to remind you which theme is which. The next step is playing with the pieces to mix and
+each park theme (Edible, Event, Nature, Sanctuary)                                                                        match them (see the following page). Keep in mind which themes work best for your lot!
+
+
+
+PARK PIECES
+The ‘park pieces’ include a front, back and frame. Each of these pieces are
+interchangeable and go together like a puzzle so you can mix and match                                                           EDIBLE THEME                                                  SANCTUARY THEME
+the different themes.
+
+                                                                                            ME                                                             CK                                                           CK
+                                                                                       FR
+                                                                                          A                                                              BA                                                           BA
+FRAME
+Like the frame around a family photo, the park ‘frame’ creates the border
+                                                                                  +                                                             T                                                            T
+
+
+
+
+                                                                                                                                        E
+
+
+
+
+                                                                                                                                                                                                     E
+                                                                                                                                              ON                                                           ON
+
+
+
+
+                                                                                                                                     M
+
+
+
+
+                                                                                                                                                                                                  M
+around the park’s interior. This helps distinguish the park from adjacent
+
+
+
+
+                                                                                                                                    A
+
+
+
+
+                                                                                                                                                                                                 A
+                                                                                                                                   FR
+
+
+
+
+                                                                                                                                                                                                FR
+properties and creates a welcoming location for park entrances, trees,                                                                      FR                                                           FR
+and other features.
+
+FRONT                                                                                               ON
+                                                                                                       T+
+                                                                                                 F R
+The interior of the park is divided into two parts, the ‘Front’ and the
+‘Back.’ The front area is the location closest to the park entrance, and
+                                                                                                                CKK
+holds the major fixed elements.                                                                         +   BBAAC
+BACK                                                                                                                  +          NATURE THEME                                                  EVENT THEME
+The other half of the park interior is the ‘Back.’ Compared to the ‘Front’
+this area typically is open to provide more flexibility of park uses.
+                                                                                                                                                           CK                                                           CK
+                                                                                                                                                         BA                                                           BA
+                                                                                                              CK
+                                                                                                            BA
+                                                                                                                                                T                                                            T
+
+
+
+
+                                                                                                                                      E
+
+
+
+
+                                                                                                                                                                                                     E
+                                                                                                                                              ON                                                           ON
+
+
+
+
+                                                                                                                                     M
+
+
+
+
+                                                                                                                                                                                                  M
+                                                                                                                                    A
+
+
+
+
+                                                                                                                                                                                                 A
+                                                                                            E
+
+
+
+
+                                                                                                                                   FR
+
+
+
+
+                                                                                                                                                                                                FR
+                                                                                         AM                                                 FR                                                           FR
+                                                                                       FR             T
+
+
+                                                                                       E
+                                                                                                   ON
+                                                                                    M
+                                                                                   A
+                                                                                  FR             FR
+
+
+
+
+                                                                                                                                                                                                                                            53
+                                                                                                                                                                                                                      TOOLKIT WORKING DRAFT 1.0
+Mix-and-Match!                                                                                                                         ADJUST PARK DESIGN TO LOT
+Perhaps you want cold frames in your park, but you also want an outdoor classroom and an open area for art shows.                      The park pieces you have downloaded thus far may not fit your lot size exactly. So the final step is to take your park
+You would then select the park pieces that correspond to those uses. You will test various options to see the different                pieces and ‘right-size’ the design to fit the dimensions of YOUR LOT! The diagram on this page gives you an idea of how
+possibilities in the Dream Workbook where you can download and play with the different park pieces.                                    to expand your lot as needed. Further instructions are in the Dream Workbook.
+
+
+
+
+                               M ATCH!
+                             D
+                  AN                                                                     A   ME
+                                                                                      FR
+   IX
+
+
+
+
+                                                                                  +
+ M
+
+
+
+
+                                                                                         EV
+                                     K
+
+
+
+
+                                                                          K
+                                  C
+
+
+
+
+                                                                       C
+                                 A
+
+
+
+
+                                                                      A
+
+
+
+
+                                                                                                                                                                                                   A
+                                                                                              EN
+                                 B
+
+
+
+
+                                                                      B
+
+
+
+
+                                                                                                                                                                                                   E
+                                                                                                   T
+
+
+
+
+                                                                                                                                                                                               R
+                  E                                     E
+
+
+
+
+                                                                                                                                                                                               A
+              AM                                    AM
+           FR                                  FR
+                             T
+
+
+
+
+                                                                  T
+
+
+
+
+                                                                                                                                                                                        K
+      ED                                 SA
+                         N
+
+
+
+
+                                                              N
+                         O
+
+
+
+
+                                                              O
+
+
+
+
+                                                                                                                                                                                      R
+                                           NC
+                       FR
+
+
+
+
+                                                            FR
+
+
+
+
+        IB
+           LE
+
+
+
+
+                                                                                                                                                                                PA
+                                               TU
+
+
+
+
+                                                                                                                                                                                               )
+                                                                                                       NTT
+
+
+
+
+                                                                                                                                                                                           D
+                                                 AR
+
+
+
+
+                                                                                                                                                                                           E
+                                                                                                                                                                                       IR
+                                                                                                      ON
+
+
+
+
+                                                                                                                                                                                                                   E
+                                                   Y
+
+
+
+
+                                                                                                                                                                              D
+                                                                                                                                                                                       U
+                                                                                    ED              RO
+
+
+
+
+                                                                                                                                                                                                                 T
+                                                                                                                                                                                      Q
+                                                                                                  FFR
+
+
+
+
+                                                                                                                                                                            E
+                                                                                                                                                                                     E
+
+
+
+
+                                                                                                                                                                                                               LA
+                                                                                       IB
+
+
+
+
+                                                                                                                                                                                 R
+                                                                                                                                                                          D
+                                                                                                                                                                                 F
+                                                                                             LE
+
+
+
+
+                                                                                                                                                                              (I
+                                                                                                                                                                         N
+
+
+
+
+                                                                                                                                                                                                               P
+                                                                                                                                                                     PA
+
+
+
+
+                                                                                                                                                                                                           M
+                                                                                                           + NAT             CKK
+                                                                                                                         BBAAC
+
+
+
+
+                                                                                                                                                                                                           E
+                                                                                                                                                                    X
+
+
+
+
+                                                                                                                                                                                                           T
+                                                                                                                                                                   E
+
+
+
+
+                                                                                                                                                                                                       N
+                                                                                                                UR
+
+
+
+
+                                                                                                                                                                                                       G
+                                                                                                                     E
+                                                                                                                                   +
+
+
+
+
+                                                                                                                                                                                                   SI
+                                                                                                                                                                                                   5
+                                     K
+
+
+
+
+                                                                          K
+
+
+
+
+                                                                                                                                                                                                   E
+                                  C
+
+
+
+
+                                                                        C
+                                 A
+
+
+
+
+                                                                       A
+
+
+
+
+                                                                                                                                                                                               D
+                                 B
+
+
+
+
+                                                                      B
+
+
+
+
+                                                                                                                                                                                        K
+                   E
+
+
+
+
+                                                                                                                                                                                      R
+                                                     E
+                AM                                 AM
+             FR                                FR
+
+
+
+
+                                                                                                                                                                                PA
+                             T
+
+
+
+
+                                                                  T
+
+
+
+
+      NA                                 EV
+                         N
+
+
+
+
+                                                              N
+                         O
+
+
+
+
+                                                              O
+                       FR
+
+
+
+
+                                              EN
+                                                            FR
+
+
+
+
+        TU
+             RE                                 T
+                                                                                                                           CK
+                                                                                                                         BA
+
+                                                                                         AME
+                                                                                      FR                T
+                                                                                                    ON                    K!
+                                                                                                  FR                   R                                                      S
+                                                                                                                                                                            PO TAR
+                                                                                                                    PA                                                        INT TIN
+                                                                                                                M                                                                      G
+                                                                                                           S TO
+                                                                                                       C U
+
+                                                                                                                                                                                                                                                          55
+                                                                                                                                                                                                                                    TOOLKIT WORKING DRAFT 1.0
+‘I have learned real world, on the
+job skills from building our park
+in a truck park’
+                            -Community Member
+
+                                                CREATE                                                        05
+                                                It is now time to move from the concept to building the            DOWNLOAD
+                                                                                                                   CREATE
+                                                real thing! This chapter walks you through the essential           WORKBOOK
+
+                                                steps of building the park. In the Create Workbook, you
+                                                will learn the steps to build the park and how to schedule
+                                                park construction. It will also help you define tasks for
+                                                ordering, delivery and assembly of different park elements.
+
+
+
+
+West Kensington PiaT Park
+Build Day
+
+                                                                                                                              57
+                                                                                                        TOOLKIT WORKING DRAFT 1.0
+Initial Park Construction
+Building a park is a great way to connect neighbors, friends and others. The process requires dedicated volunteers
+who can give their time and energy, so the neighborhood can enjoy a new park space. Ideally, these volunteers will
+have a wide variety of skills and experience, including carpentry, landscaping, and include those skilled at organizing,
+encouraging, leading and other important team-building skills.
+
+Like following a recipe, park building requires a step-wise sequence of steps. Below is an overview of the primary
+sequence of park-building steps. The steps below are organized into weeks as most Park in a Truck parks can be built in
+about 6-8 weekends!
+
+
+
+
+                     WEEK 1                            WEEK 2                             WEEK 3                           WEEK 4                      WEEK 5                  WEEK 6          WEEK 7
+
+                     PREPARE LOT                        LOCATE + CREATE EDGES             INSTALL SUBBASE                  INSTALL AGGREGATE SURFACE   INSTALL PARK ELEMENTS   PLACE TOPSOIL   PLANT!
+
+
+
+
+                                                                                                                                                                                                                     59
+                                                                                                                                                                                               TOOLKIT WORKING DRAFT 1.0
+                            SUSTAIN                                                         06
+                            Park in a Truck parks strive to be an urban oasis filled              DOWNLOAD
+                                                                                                  THE SUSTAIN
+                            with plants and trees that nourish all who visit them.                WORKBOOK
+
+                            These plants need your help to thrive. This includes the
+                            birds, bees, butterflies, bats and other pollinators who
+                            are essential to the plants’ survival. The right plants
+                            support the pollinators and the pollinators, in turn,
+                            support the plants. Everyone benefits when our efforts
+                            ensure a thriving ecosystem.
+
+                            While we have provided a list of urban tolerant and
+                            well-behaved plants, they will require continued
+                            maintenance. This chapter will give you an overview of
+                            how to care for your park.
+West Kensington PiaT Park
+Build Day
+
+                                                                                                             61
+                                                                                       TOOLKIT WORKING DRAFT 1.0
+              PARK STEWARDSHIP ANNUAL WORKPLAN                                                                                                                                                  PARK STEWARDSHIP ACTIVITIES
+          The guidelines provided are a framework to assist in the ongoing seasonal maintenance of your park. These are the tasks you                                                           Park maintenance is essential for your park’s success. This is a long list of items you should do to ensure your
+          need to complete, by month, season and year.                                                                                                                                          community’s investment is well cared for. However, the most important things you need to do is weed and water
+                                                                                                                                                                                                your park!
+              WINTER                                     SPRING                                          SUMMER                                                 FALL
+              DEC           JAN             FEB                MAR           APR             MAY          JUNE            JULY           AUG             SEPT          OCT            NOV
+
+
+                                                                                                                                                                                                   SEEDS
+PLANT
+
+
+
+
+                    READ SEED CATALOGS                                               CUT BACK                                                                                                                                                                          WEEDING
+                                                                                     PERRENNIALS
+                                                                                                                                               ORDER BULBS                                         1. Read seed catalogs to decide what you                            Must be done weekly. Many weeds must be dug out with a trowel and is easier if the soil is moist.
+                                                                                                                                                                                                      would like to grow and how to care for it.                       For common weeds see https://www.nrcs.usda.gov/Internet/FSE_DOCUMENTS/nrcs142p2_017662.
+                                             START SEEDS INSIDE                                                                                                                                                                                                        Also PlantSnap is a helpful app to identify plants and weeds.
+                                                                                                                                                                                                   2. Order seeds for veggies and annuals.
+                                                                                                                                                                                                   3. Start your seeds indoors for an edible garden.
+                                                                                   MULCHING                                                                     PLANTING BULBS
+                                                                                                                                                                                                                                                                       PEST CONTROL
+                                              BUYING PLANTS & SEEDS
+                                                                                                                                                                                                                                                                       The Park has been designed to attract pollinators who will assist in pest control. For more
+                                                                                                                                                                                                   BULBS                                                               information on disease and insects, see https://extension.psu.edu/trees-lawns-and-land-
+                              PRUNE SHRUBS &                                   PLANT ANNUALS                 PLANT ANNUALS                                                                         1. Order bulbs, store in cool & dry space.                          scaping/home-gardening/pests-and-diseases
+                              DEAD BRANCHES                                    *IF WARM SPRING
+                                                                                                                                                                                                   2. Plant bulbs (between Halloween & Thanksgiving).
+                                                                                                                                                                                                   3. Fertilize 4-6 weeks before anticipated bloom.
+                                                                                                                                                                                                   4. Dead head flowers after bloom.                                   WATERING
+                                                                                                                                                                                                   5. Wait for foliage to turn yellow; then remove.                    1. Pay careful attention to watering plants for the first two years. Use a rainwater guide to track
+                                                                                                                                                                                                                                                                          rainfall. If you need to water, thoroughly soak planting area(s) by either turning on water for
+                                                                                                                                                                                                   PERENNIALS                                                             3 hours using soaker hose or water by hand. Apply water slowly to avoid run off and long
+EVENT
+
+
+
+
+                                                                                                                                                                                                                                                                          enough to penetrate planting bed soil to a depth of 6-8 inches.
+                                            BIRD                                    EARTH DAY                      SUMMER                                                                          1. Buy desired perrenials.
+                                                                                                                                               RIBBON                                                                                                                  2. If the top 2 inches of soil are dry, it is time to water
+                                            WATCHING                                CELEBRATION                    NATURECAMP                  CUTTING                                             2. Plant in early spring.
+                                            EVENT                                                                                                                                                                                                                      3. If plants reach the visible wilt point it’s time to water. If the soil is moist, there may be an-
+                                                                 COMMUNITY                                                                                              COMMUNITY                  3. Cut back existing perennials or grasses.
+                                                                 CLEAN UP                                                                                               CLEAN UP                                                                                          other issue.
+                                                                                                                                                                                                   4. Water as needed.
+                                                                                                                                                                                                   5. Be patient with late blooms. Do not disturb.
+                                  PARK INFORMATION                                                                              PARK INFORMATION                             PARK INFORMATION
+                                  MEETING                                     PARK INFORMATION
+                                                                              MEETING                                           MEETING                                      MEETING               6. Manage pests, remove debris and thin out plants.                 MULCHING
+                                                                                                                                                                                                                                                                       1. Mulch all planting beds with leaf mold or mature, triple shredded hardwood mulch.
+                                                                                                                                                                                                                                                                       2. Maintain mulch throughout planting beds. Maintain mulch at a depth of 2 to 3 inches, being
+                                                                                                                                                                                                   ANNUALS                                                                careful not to over-mulch.
+STEWARDSHIP
+
+
+
+
+              WATERING                                                                                                                                                                             1. Buy desired annual flowers.                                      3. Be especially careful when mulching around trees. The wrong way to apply mulch is to push
+                                                                                                                                                                                                   2. If the spring is warm, plant in April. If cool, plant in June.      it up onto the sides of the trunk like a mountain slope. The correct way is to make it look like
+                                                                                                                                                                                                   3. Keep well watered.                                                  a flat donut, where there is an inch or more of open space between the mulch and the tree
+               TRASH                                                                                                                                                                               4. Monitor pests. If needed, remove infested foliage.                  trunk. If you do not leave a space between the mulch and the trunk the decomposing mulch
+               CLEAN-UP
+                                                                                                                                                                                                                                                                          can rot the bark and expose the tree to insect damage, disease and possible tree death.
+
+
+               WEEDING                                                                                                                                                                             SHRUBS & TREES
+                                                                                                                                                                                                   1. Prune out dead or broken branches.
+                                                                                                                                                                                                                                                                       PRUNING
+                                                                                                                                                                                                                                                                       1. Use hand-pruning tools for all shrub pruning. Don’t use power trimmers.
+                                                                                                                                                                                                   2. Prune flowering shrubs and trees after bloom.
+                            With the Park Ambassador on a monthly basis.                                                                                                                                                                                               2. Prune shrubs only as necessary to guide future structural shape or to remove dead or
+                                                                                                                                                                                                   3. Keep well-watered in the summer heat.
+                                                                                                                                                                                                                                                                          diseased material.
+                            LOOK FOR:                                                                                                                                                              4. Monitor pests. If needed, remove infested foliage.
+               INSPECT                                                     KEEP TRACK OF:                                                                                                                                                                              3. Prune and trim tree branches to maintain a minimum head clearance of 7 feet along
+                            Insect or disease infestation                                                                                                                                          5. Collect and remove any debris, limbs & leaves from storms.
+                                                                           Success or failure of plantings                                                                                                                                                                walks and 13 feet over roads and driveways.
+                            Evidence of weeds                                                                                                                                                      6. Water deeply before ground freezes.
+                            Condition of mulch                             Soil test and amendments incorporated
+                            Evidence of dead or dying plants               Amount of rainfall-use a rainwater
+                            Evidence of trash and debris                   guide to keep track
+                            Need for watering
+
+
+
+
+                                                                                                                                                                                                                                                                                                                                                   63
+                                                                                                                                                                                                                                                                                                                             TOOLKIT WORKING DRAFT 1.0
+Park Stewardship
+
+We highly recommend participating in the Park                DOWNLOAD THE
+                                                             PARK AMBASSADOR
+Ambassador program, which hires local youths to assist in    PROGRAM BOOKLET
+
+maintaining and programming the park.
+
+Park Ambassadors:
+• Create a safe, clean and accessible park for everyone.
+• Plan fun activities for community residents of all ages.
+• Keep the park clean and neat.
+• Make sure the park is a welcoming green oasis.
+
+We have developed a Park Ambassador Handbook, a
+step-by-step guide to help Park Ambassador(s) maintain
+and program the new park. The Handbook lists everyday
+park tasks and is also a place to record what happens in
+the park. The ambassador youths will work closely with
+a community member, who will act as their mentor and
+guide through the entire process.
+
+
+
+
+                                                                               MANTUA PiaT PARK
+                                                                                       Build Day
+APPENDIX
+There are many resources we didn’t list in the
+toolkit. Our ‘Toolkit Library’ contains many
+resources and links to material you might find
+helpful. You can download this Toolkit Library
+below:
+
+    DOWNLOAD TOOLKIT
+    LIBRARY HERE
+
+
+
+
+                                                                       67
+                                                 TOOLKIT WORKING DRAFT 1.0
+Park in a Truck Acknowledgments
+
+
+PARK IN A TRUCK NATIONAL AND LOCAL PARTNERS                                              CONTRIBUTORS TO DEVELOPMENT OF THE TOOLKIT                                                  PARK IN A TRUCK PARKS
+The following are a few partners that may be beneficial to your park building efforts.
+
+       Nature Sacred                                                                        The Landscape Architecture Program + The Lab for Social and Urban
+       In partnership with PiaT, they can expand the offerings of park designs. Read        Innovation, Thomas Jefferson University                                                     Cecil Street Park
+       more about what they do and can offer at naturesacred.org/                                                                                                                       Kingsessing Avenue and Cecil Street, Kingsessing, Philadelphia
+                                                                                            The Audubon Society, Middle States
+                                                                                            Lamar Gore and the John Heinz Wildlife Refuge                                               Park Planting Prototypes
+       Citizens Planing Institute
+                                                                                            Kimberlee Douglas, Park in a Truck Founder, RLA ASLA, Director + Professor                  LandHealth Nursery, West Philadelphia
+                                                                                            Landscape Architecture Program, Jefferson University
+       Greenfield Foundation                                                                Alexandra Zahn, RLA, ASLA, Park in a Truck VP, Adjunct Professor, Jefferson University      HYP Park
+       Local non-profit who funded first Park in a Truck park                                                                                                                           North Phillips and West Dauphin Streets, West Kensington, Philadelphia
+                                                                                            Darrell Campana, RLA, ASLA, Adjunct Professor, Jefferson University
+                                                                                            Richard Newton, RLA, ASLA, Adjunct Professor, Jefferson University
+       West Philadelphia Real Estate                                                                                                                                                    Melon Street Park
+       Philly local real estate brokerage company dedicated to providing quality real
+                                                                                            Dr. Drew Harris Adjunct Professor, Jefferson University
+                                                                                                                                                                                        38th and Melon Streets, Mantua, Philadelphia
+       estate services to those interested in the West Philadelphia area.                   Teddy Pickering, Jefferson Student
+                                                                                            Hunter Dyson, Jefferson Student                                                             Glenda Anne Memorial Park
+       Philadelphia Water Department                                                        Darby Mann, Jefferson Student                                                               59th and Greenway Ave, Kingsessing, Philadelphia
+       PWD will partner with PiaT in development of parks by adding green
+       infrastructure. Contact them for help with decoupling downspouts in your park
+                                                                                            Ben Nardi, Jefferson Student
+                                                                                            Ted Behr Southwest Globe Times                                                              6oth and Greenway
+       or adding a rain garden.                                                                                                                                                         60th and Greenway Ave Kingsessing, Philadelphia
+                                                                                            Victoria Miles Chambliss, Empowered Community Development Corporation
+       Neighborhood Gardens Trust                                                           Community Members Like You!
+       A leader in urban land preservation
+
+
+
+
+                                                                                                                                                                                                                                                                                       69
+                                                                                                                                                                                                                                                                 TOOLKIT WORKING DRAFT 1.0
+Park in a Truck
+The Landscape Architecture Program +
+The Lab for Social and Urban Innovation
+Thomas Jefferson University
+Philadelphia, PA USA
+

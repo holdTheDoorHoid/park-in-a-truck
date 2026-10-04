@@ -1,0 +1,463 @@
+DRAFT
+
+
+
+
+                                                                                                                     28.5”
+
+
+
+
+                                                                            26
+
+
+
+
+                                                                                                             ”
+                                                                               ”
+
+
+
+
+                                                                                                           .5
+                                                                                                         5
+                                                                                                        2
+
+2’ TABLE
+ASSEMBLY INSTRUCTIONS
+
+
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University     2’ TABLE 1
+WORKING VERSION 1.0
+      BEFORE YOU BEGIN                                                                              LEGAL NOTICE:
+
+       1.   This document includes recommendations for do-it-yourself (DIY) construction            The recommendations included herein are based on standard practices of
+            of a 2’ table. As a DIY project, the Owner, or the Owner's Contractor, is required      fabrication and construction of garden furnishings. In no event shall Thomas
+            to procure, fabricate, assemble, install, and maintain all project materials. These     Jefferson University (TJU), TJU's Lab For Social Innovation, Park-in-a-Truck, and/
+            are recommendations only and any material, assembly, and construction must              or its faculty, staff or affiliates be liable for any damages or injury to person or
+            be tailored to specific project requirements.                                           property damages arising out of the use of these recommendations. Thomas
+       2.   These recommendations are based on common best practices associated with                Jefferson University (TJU), TJU's Lab For Social Innovation, Park-in-a-Truck, or
+            standard DIY home-improvement and/or landscape construction. These best                 its faculty, staff and/or affiliates make no warranties, expressed or implied, and
+            practices may include working knowledge and experience with manual and                  hereby disclaims and negates all other warranties, including without limitation,
+            power tools, hardware, fasteners, lumber, concrete footings, and associated             implied warranties or conditions of merchantability, fitness for a particular
+            techniques of assembly and construction. Prior working knowledge of these best          purpose, or non-infringement of intellectual property or other violation of rights.
+            practices is required so as to avoid harm or personal injury to self or others, or      Further, Thomas Jefferson University (TJU), TJU's Lab For Social Innovation,
+            to property.                                                                            Park-in-a-Truck, and/or its faculty, staff or affiliates do not warrant or make any
+       3.   This document includes recommendations for the sequence and assembly of 2’              representations concerning the accuracy, likely results, or reliability of the use
+            table components. Locate your 2’ tables in your plan you created in the ‘Dream’         of these recommendations. The use of these recommendations constitutes your
+            workbook to find the proposed location and dimension of all 2’ tables. This plan        acknowledgment of the aforementioned.
+            must be tailored to the specific conditions of the project site, including property
+            lines, existing features- such as walls, trees, etc- and any other existing site
+            conditions that may limit or otherwise influence the installation. Use your cost
+            estimation spreadsheet to determine the quantity needed for all your 2’ tables.
+       4.   Before using any power equipment (such as drills, saws, augers, or other), review
+            all manufacturer safety requirements. While handling or operating any power
+            equipment, follow all manufacturer safety requirements. Do not allow others
+            who have not reviewed and/or follow manufacturer safety requirements to
+            handle or utilize power equipment.
+       5.   The owner is solely responsible for any work required to secure, and comply
+            with, all necessary building and safety codes, permits, and regulatory approvals.
+       6.   These recommendations assume that the project site has been sufficiently
+            prepared for construction. This includes, but is not limited to: identification
+            of utilities that may interfere or otherwise impact installation; the removal of
+            trash, hazards, unwanted structures; or other conditions that may inhibit safe
+            construction.
+       7.   Before construction, review the project site conditions to identify any potential
+            limitations to assembly and installation. This includes determining advance
+            notification by the Owner of utility companies so as to determine the location of
+            all above and below ground utilities.
+       8.   All persons associated with building and construction should sign a volunteer
+            waiver.
+
+
+
+
+2’ TABLE
+ASSEMBLY INSTRUCTIONS
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University                                                       2’ TABLE 2
+WORKING VERSION 1.0
+COMMON LUMBER SELECTIONS \\                                                                                                2’ TABLE \\
+WESTERN RED CEDAR:                                                                                                         TOOLS:
+PRO: NATURALLY WEATHER/ROT RESISTANT LUMBER WITH AESTHETICALLY PLEASING RED TONES                                          10” OR 12” MITER SAW (or
+AND PLEASANT AROMAS, THAT IS EASY TO WORK WITH. NO PRESERVATION TREATMENTS ARE                                             appropriate hand saw)
+NECESSARY AS THE SURFACES WILL GRADUALLY DEVELOP A LOVELY GRAY PATINA. IT IS EASILY
+RECYCLABLE AT THE END OF ITS PRIMARY USE.                                                                                  IMPACT DRIVER for self
+                                                                                                                           drilling exterior wood screws
+CON: COST, BE SURE TO SPECIFY ‘KNOTTY’ (STK) GRADE WHICH IS MUCH MORE AFFORDABLE
+THAN ‘CLEAR’ GRADE.                                                                                                        DRILL with 1/8” drill bit if
+                                                                                                                           needed for pre-drilling holes
+
+DOUGLAS FIR:
+                                                                                                                           SANDPAPER 120 GRIT
+PRO: MODERATELY WEATHER/ROT RESISTANT AND STRONG LUMBER. IT IS ALSO EASY TO WORK                                           CARPENTERS SQUARE
+WITH AT A LOWER COST THAN CEDAR. IT IS EASILY RECYCLABLE AT THE END OF ITS PRIMARY USE.
+                                                                                                                           SAFETY GOOGLES + GLOVES
+CON: IT WILL NOT STAND THE TEST OF TIME AS WELL AS CEDAR, BUT A GREAT CHOICE ESPECIALLY
+IF YOU PLAN TO PAINT IT.
+
+PRESSURE TREATED:                                                                                                          MATERIALS:
+PRO: WEATHER/ROT RESISTANT LUMBER AT A LOW COST.                                                                           (96) 2.5” SELF DRIVING
+                                                                                                                           EXTERIOR WOOD SCREWS
+CON: LUMBER IS OFTEN OF VARIABLE POOR QUALITY AND SATURATED WITH CHEMICAL TREATMENT
+MAKING IT DIFFICULT TO WORK WITH LEADING TO INCONSISTENT RESULTS. NEEDS 1-4 MONTHS
+OF AIR DRYING BEFORE PAINTING. NOT EASILY RECYCLABLE AND OFTEN ENDS UP IN LANDFILLS
+AT THE END OF ITS PRIMARY USE. NOT RECOMMENDED FOR USE IN AREAS WHERE VEGETABLES                                           LUMBER:
+ARE GROWN.
+                                                                                                                           (6) 2” x 4” x 8’
+
+GENERAL NOTES:
+1. ORDER 5-10% MORE LUMBER DEPENDING ON OVERALL QUANTITIES TO ALLOW FOR SOME
+VARIABLE LUMBER QUALITY AND INCORRECT CUTS.
+2. EXTERIOR WOOD TREATMENT CAN PROLONG THE LIFE OF YOUR PARK ELEMENTS. HOWEVER, IT
+IS NOT NECESSARY TO BRING MANY YEARS OF ENJOYMENT. ANY TREATMENTS MUST BE APPLIED
+AND MAINTAINED PROPERLY WHICH IS A LABOR INTENSIVE PROCESS. ONE SHOULD DECIDE IF
+THIS IS PRACTICAL OR NOT FOR THEIR PARK. THE PARK ELEMENTS ARE LOW COST, DURABLE,
+AND EASY TO BUILD BY DESIGN AND IT MAY BE MORE PRACTICAL TO SIMPLY HAVE THE NEXT
+GENERATION REBUILD THE ELEMENTS WHEN DEEMED NECESSARY. BELOW ARE RESOURCES FOR
+CONSIDERATION IF INTERESTED IN EXTERIOR WOOD TREATMENTS.
+https://www.rockler.com/learn/choosing-the-best-finish-for-outdoor-projects
+https://www.realmilkpaint.com/blog/tips/best-finish-outdoor-wood/
+https://vermontnaturalcoatings.com/product-category/exterior/
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University                           2’ TABLE 3
+WORKING VERSION 1.0
+    1
+                     1. MARK, LABEL AND CUT LUMBER
+                     IN ORDER OF T-1 TO T-6 TO THE
+                     FOLLOWING LENGTHS:
+
+                     NOTE: CHECK EACH PIECE OF LUMBER
+
+STEP                 IMPERFECTIONS SUCH AS CRACKS, WARPING,
+                     OR UNEVEN MILLING. DISCARD THESE
+                     PORTIONS OF LUMBER.
+
+
+
+                     2’ TABLE ASSEMBLY
+
+
+
+
+                                                                                                                             2
+                                                                                                                           T-
+                      T-1: (4) 2 x 4 x 27”
+
+
+
+
+                                                                                        1
+                                                                                      T-
+                     			 TABLE SIDE
+
+
+
+
+                                                                                                                                            ”
+                                                                                                                  ”
+
+
+
+
+                                                                                                                                            .5
+                                                                                                               27
+
+
+
+
+                                                                                                                                        5
+                                                                                                                                        2
+                      T-2: (11) 2 x 4 x 25.5”
+                     			 TABLE TOP
+
+                      T-3: (1) 2 x 4 x 22.5”
+                     			 TABLE FACE
+
+
+
+
+                                                                                                                              4
+                      T-4: (4) 2 x 4 x 20”
+
+
+
+
+                                                                                                                           T-
+                     			 TABLE SIDE
+
+
+
+
+                                                                                                     ”
+                                                                                                   .5
+                                                                                        3
+
+
+
+
+                                                                                                                                        ”
+                                                                                                  2
+                                                                                      T-
+
+
+
+
+                                                                                                                                        0
+                                                                                                 2
+
+
+
+
+                                                                                                                                    2
+                      T-5: (4) 2 x 4 x 18.5”
+                     			 TABLE SIDE
+
+                      T-6: (4) 2 x 4 x 12”
+                     			 TABLE SIDE
+
+
+
+
+                                                                                                                              6
+                                                                                         5
+                                                                                      T-
+
+
+
+
+                                                                                                                           T-
+                                                                                                              ”
+                                                                                                          .5
+                                                                                                         18
+
+
+
+
+                                                                                                                                    ”
+                                                                                                                                  12
+                     		
+                     TIPS:
+                     -LABEL EACH PIECE OF LUMBER AS YOU ARE
+                     MEASURING/CUTTING
+                     -HAVE A PILE OF LUMBER FOR T-1 TO T-6
+                     -LIGHTLY SANDING CUT EDGES TO REMOVE
+                     SPLINTERS WILL ALSO HELP WITH ASSEMBLY.
+                     -IF BUILDING MULTIPLE TABLES, CREATING A STOP
+                     FOR YOUR MITER SAW ENSURES ALL PIECES ARE
+                     CUT TO THE SAME LENGTH
+                     .
+
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University                         2’ TABLE 4
+WORKING VERSION 1.0
+    2
+                      1. PLACE (2) T-5 PIECES
+                      ON FLAT SURFACE.
+
+                      2. PLACE (2) T-1 ON EITHER SIDE OF THE
+                      T-5 PIECES, ALIGNING THE EDGES AS
+STEP                  SHOWN IN THE IMAGE.
+
+                      3. REPEAT STEPS 1-2.
+
+                      NOTE: UTILIZE A CARPENTERS SQUARE TO ENSURE
+                      A RIGHT ANGLE IS FORMED IN EACH CORNER. IF
+                      THE RIGHT ANGEL IS FAR OFF, CHECK THAT YOUR
+                      MEASUREMENTS OF EACH BOARD ARE CORRECT
+
+                      TIP: BUILDING A 90 DEGREE JIG CAN HELP WITH
+                      ASSEMBLY OF THE NEXT TWO STEPS
+
+
+
+
+                                                                               T-1
+
+
+
+
+                                                                                                                0
+                                                                                                               9
+                                                                               T-5
+
+
+
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University   2’ TABLE 5
+WORKING VERSION 1.0
+    3
+                      1. PLACE (1) T-2, (2) T-4 AND (2) T-6 PIECE ON
+                      TOP OF THE FRAME CREATED IN STEP TWO.
+
+                      2. TO ENSURE A 1.5” GAP BETWEEN THE (2)
+                      T-6 PIECES, USE A 2X4 PIECE OF LUMBER ON
+STEP                  END AS A SPACER, AS SHOWN:
+
+
+
+
+                                                                                                           ”
+                                                                                                          5
+                                                                                                        1.
+                                                                                                      1”
+                      3. USE THE PRE-DRILLING GUIDE
+                      AT THE END OF THE PACKET TO PRE-DRILL
+                      YOUR SCREW HOLES.
+
+                      6. SECURE LUMBER INTO THE T-2, T-4 AND
+                      T-6 PIECES BY USING AN IMPACT DRIVER
+                      WITH (30) 2.5” SELF DRIVING EXTERIOR WOOD
+                      SCREWS.
+
+                      7. REPEAT STEPS 1-4 ON THE OTHER LEG, AND
+                      STAND UP THE LEGS FOR THE NEXT STEP.                                                                       T-6
+
+                                                                                    T-2                                    T-4
+
+
+
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University               2’ TABLE 6
+WORKING VERSION 1.0
+    4
+                      1. PLACE (1) T-3 PIECE IN THE SLOT AT THE
+                      BASE OF THE TWO FRAME PIECES CREATED
+                      IN STEP THREE.
+
+                      TIP: ENSURE THE SIDE STAYS 90 DEGREES BY USING A
+
+STEP                  CARPENTERS SQUARE.
+
+                      2. PLACE (2) T-2 PIECES ON THE TOP OF THE
+                      TABLE ON THE TWO EDGES, AS SHOWN.
+
+                      NOTE: ENSURE THEY ARE FLUSH WITH THE EDGE OF THE
+                      LEGS, THIS WILL ENSURE YOUR TABLE IS SQUARE.
+
+                      3. SECURE T-2 PIECES WITH (12) 2.5” SELF
+                      DRIVING EXTERIOR WOOD SCREWS
+                                                                                                                           T-2
+                      4. SECURE T-3 LUMBER ON BOTH THE LEFT
+                      AND RIGHT SIDE INTO THE T-1 PIECES BY
+                      USING AN IMPACT DRIVER WITH (4) 2.5” SELF
+                      DRIVING EXTERIOR WOOD SCREWS.
+
+                                                                                                                           T-3
+
+
+
+
+                                                                                                                     0
+                                                                                                                   9
+
+
+
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University         2’ TABLE 7
+WORKING VERSION 1.0
+    5
+                      1. PLACE (5) T-2 PIECES ON TOP
+                      OF THE FRAME CREATED IN STEP
+                      FOUR, ALIGNING ALL EDGES AND
+                      LEAVING AN EQUAL GAP BETWEEN
+                      ALL PIECES.
+STEP                  2. SECURE THE T-2 WITH AN
+                      IMPACT DRIVER WITH (20 ) 2.5” SELF
+                      DRIVING EXTERIOR WOOD SCREWS.
+
+                      3. LIGHTLY SAND THE ROUGH
+                      EDGES OF THE TABLE.
+
+
+                                                                                                                           T-2
+
+
+
+
+                                                                                                        L
+                                                                                                     UA
+                                                                                                  EQ
+                                                                                                       ”
+                                                                                                  UAL1
+                                                                                               EQ
+
+
+
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University         2’ TABLE 8
+WORKING VERSION 1.0
+                     1. CUT OUT PRE-DRILLING HOLE GUIDE ALONG DOTTED LINES
+
+                     2. WHEN DRILLING, ENSURE THAT YOU PROPERLY ALIGN
+                     THE EDGE OF THE TEMPLATE WITH OUTSIDE EDGE OF THE
+                     LUMBER BEFORE
+GUIDE                PRE-DRILLING                                                                                          PRE-DRILLING HOLE GUIDE
+
+
+
+
+                                        N
+                                     IG
+                                    L
+                                   A
+
+
+
+
+                                                                               U . U N RE
+
+                                                                                     L E
+                                                                             YO E E A
+                                                                                R S S
+                                                                                    O TH
+                                                                            R AT T S
+                                                                           O L T E
+
+                                                                                       R
+                                                                          F P PA L
+
+
+
+                                                                                      E
+
+                                                                                      E
+                                                                         Y M L HO
+
+
+
+
+                                                                                  H
+                                                                    E BL TE AL L
+                                                                                L
+                                                                 U E E T A
+                                                                G S TH NO T
+                                                                  A SE D. NO
+                                                                    U E E:
+                                                                     U OT
+                                                                       N
+                                                                      S
+
+
+                                                                  ID M
+                                                                   S
+
+
+
+                     3. ENSURE ALL HOLES ARE                                                                                ALIGN DASHED LINE WITH INSIDE EDGE OF
+                     ABOUT A THUMB IN WIDTH                                                                                                LUMBER
+                     FROM THE EDGE (~1”) EVEN
+                     HOLES THAT DON’T USE THIS
+                     TEMPLATE
+
+
+
+
+                                                                                                                               CUT ALONG THE DOTTED LINES
+
+
+
+
+PARK IN A TRUCK The Landscape Architecture Program + The Lab for Social and Urban Innovation Thomas Jefferson University                                     2’ TABLE 9
+WORKING VERSION 1.0
+

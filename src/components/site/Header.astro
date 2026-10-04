@@ -1,0 +1,159 @@
+---
+import { u } from '../../lib/url';
+const path = Astro.url.pathname;
+const nav = [
+  { href: 'steps/', label: 'Steps', match: /\/steps\// },
+  { href: 'lot/', label: 'Find a lot', match: /\/lot\// },
+  { href: 'planner/', label: 'Plan in 3D', match: /\/planner\// },
+  { href: 'build/', label: 'Build guides', match: /\/build\// },
+  { href: 'plants/', label: 'Plants', match: /\/plants\// },
+  { href: 'parks/', label: 'Parks', match: /\/parks\// },
+];
+---
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="wordmark" href={u('')} aria-label="Park in a Truck — home">
+      <span class="w1">PARK</span><span class="w2">in a</span><span class="w1">TRUCK</span>
+    </a>
+    <details class="menu">
+      <summary aria-label="Menu"><span aria-hidden="true">☰</span> Menu</summary>
+      <nav aria-label="Main">
+        {nav.map((n) => (
+          <a href={u(n.href)} aria-current={n.match.test(path) ? 'page' : undefined}>{n.label}</a>
+        ))}
+        <a class="my-park" href={u('my-park/')} aria-current={/\/my-park\//.test(path) ? 'page' : undefined}>
+          <span class="dot" aria-hidden="true"></span>
+          <span><span class="visually-hidden">My park: </span><span data-project-name>My park</span></span>
+        </a>
+      </nav>
+    </details>
+  </div>
+</header>
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgb(255 255 255 / 0.96);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 64px;
+  }
+  .wordmark {
+    text-decoration: none;
+    color: var(--ink);
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    font-size: 1.15rem;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.25em;
+    white-space: nowrap;
+  }
+  .w2 {
+    font-weight: 600;
+    font-size: 0.75em;
+    text-transform: lowercase;
+  }
+  .menu summary {
+    display: none;
+    list-style: none;
+    cursor: pointer;
+    font-weight: 700;
+    border: 2px solid var(--ink);
+    border-radius: var(--radius);
+    padding: 0.35em 0.75em;
+  }
+  .menu summary::-webkit-details-marker {
+    display: none;
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+  nav a {
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.45em 0.7em;
+    border-radius: var(--radius);
+  }
+  nav a:hover {
+    background: var(--paper-2);
+    color: var(--ink);
+  }
+  nav a[aria-current='page'] {
+    box-shadow: inset 0 -3px 0 var(--cyan);
+  }
+  .my-park {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45em;
+    border: 2px solid var(--ink);
+    margin-left: 6px;
+    max-width: 14em;
+  }
+  .my-park > span:last-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .dot {
+    width: 0.65em;
+    height: 0.65em;
+    border-radius: 50%;
+    background: var(--cyan);
+    flex: none;
+  }
+  /* Desktop: the <details> is always open and the summary hidden. */
+  @media (min-width: 900px) {
+    .menu > nav {
+      display: flex !important;
+    }
+    .menu:not([open]) > nav {
+      display: flex;
+    }
+  }
+  @media (max-width: 899px) {
+    .menu summary {
+      display: inline-block;
+    }
+    .menu {
+      position: static;
+    }
+    .menu[open] nav {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 64px;
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+      padding: 8px var(--gutter) 16px;
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .my-park {
+      margin: 8px 0 0;
+      max-width: none;
+    }
+  }
+</style>
+<script>
+  // <details> content is hidden when closed; on wide screens keep it open.
+  const d = document.querySelector<HTMLDetailsElement>('.site-header .menu');
+  const mq = matchMedia('(min-width: 900px)');
+  const sync = () => {
+    if (d) d.open = mq.matches;
+  };
+  sync();
+  mq.addEventListener('change', sync);
+</script>

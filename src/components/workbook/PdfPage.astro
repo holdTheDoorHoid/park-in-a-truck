@@ -1,0 +1,17 @@
+---
+// "See this in the original workbook" — links to a page of the original PDF.
+// `doc` is a path under public/ (e.g. "downloads/workbooks/01-acquire.pdf").
+import { u } from '../../lib/url';
+interface Props {
+  doc: string;
+  page?: number;
+  label?: string;
+}
+const { doc, page, label = 'Original workbook page' } = Astro.props;
+const href = u(doc) + (page ? `#page=${page}` : '');
+---
+<p class="pdf-ref no-print"><a href={href} target="_blank" rel="noopener">📄 {label}{page ? ` (PDF page ${page})` : ''}</a></p>
+<style>
+  .pdf-ref { font-size: 0.85rem; margin: 0.5em 0 1em; }
+  .pdf-ref a { color: var(--muted); }
+</style>

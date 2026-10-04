@@ -1,0 +1,168 @@
+---
+title: Acquire
+intro: Find a lot in your neighborhood and get the legal right to turn it into a park.
+sources:
+  - Toolkit pp. 24–27 (Find a Lot, Which Lot?, Determine Lot Ownership)
+  - Acquire Workbook pp. 1–7
+---
+import Field from '../../components/workbook/Field.astro';
+import ListField from '../../components/workbook/ListField.astro';
+import Choice from '../../components/workbook/Choice.astro';
+import Checklist from '../../components/workbook/Checklist.astro';
+import Callout from '../../components/workbook/Callout.astro';
+import PdfPage from '../../components/workbook/PdfPage.astro';
+import LotLookup from '../../components/widgets/LotLookup.astro';
+import LotFinderMap from '../../components/widgets/LotFinderMap.astro';
+
+Park creators who don't already have legal access to vacant land must find others willing to sell or lease their
+lot(s) for the proposed park. This effort can be complicated and time consuming. There is no such thing as a perfect
+process, no one way to proceed, and no guaranteed outcome. This step will help you find a way to acquire your future
+park site.
+
+## Find a lot
+
+Large urban parks provide many social, ecological, and economic benefits to a city's residents and visitors. But unless
+the park is easy to get to, they may only be visited occasionally. Not everyone has access to a car or convenient public
+transportation, or can walk or bike long distances.
+
+This is why it's important to find a nearby lot or space to turn into a small neighborhood park. They have many of the
+benefits of the big park **and** their proximity allows for easy access. The more a neighborhood park is visited, the
+more familiar — and valued — the park becomes. Active park use helps these spaces become an essential hub of "social
+life" that builds a neighborhood's sense of community!
+
+Are there unused properties in your neighborhood that are legally available, safe, and suitable for park use? Can you
+identify potential lots in your neighborhood where you'd like to see your park?
+
+<Callout kind="auto" title="Let the map do the walking">
+  The map below shows lots the City lists as vacant land. Click one to see its owner, size and zoning, and add it to
+  your list. You should still walk your block — the City's list misses some lots and includes some that are already in
+  use.
+</Callout>
+
+<LotFinderMap />
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={2} />
+
+## Which lot?
+
+Review the three different types of potential neighborhood park locations. Walk your neighborhood and note which
+underutilized properties are possible locations for your park.
+
+- **Mid-block lot (vacant lot).** Rectangular in shape and found in the middle of a residential block. May have
+  buildings on each side and/or the end. The highest number of available "vacant" lots in Philadelphia are this
+  category. May have limitations for some park uses due to narrow width and/or lack of sunlight.
+- **Corner lot (vacant lot).** Rectangular in shape and found at the end of a residential block. May have buildings on
+  the side and/or end. These lots offer high visibility and often have the most sunlight.
+- **Breezeway / alley (easement).** Identifiable by their long and very narrow shape, these locations often connect
+  "across" a block. Originally set aside for pedestrian connections between streets and/or utility easements.
+
+Record the address of each possible lot. When you look an address up, the site fills in the owner, size and lot type
+for you.
+
+<LotLookup mode="candidates" />
+
+<ListField
+  id="acquire.candidate-notes"
+  label="Notes from your neighborhood walk"
+  rowName="lot"
+  min={3}
+  columns={[
+    { key: 'address', label: 'Address or location' },
+    { key: 'type', label: 'Lot type', placeholder: 'mid-block, corner, alley' },
+    { key: 'notes', label: 'What you noticed', placeholder: 'trash, sun, neighbors, use…' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={3} />
+
+## Who owns that lot?
+
+Once you have identified some potential underutilized properties for your new neighborhood park, the next step is to
+determine who owns the property. The owner could be an individual, business, or non-profit organization. The owner could
+also be the City. The most reliable way to see who owns a lot is to check the City of Philadelphia records.
+
+The workbook walks you through four steps: **(1)** verify the street address, **(2)** search for it on
+[atlas.phila.gov](https://atlas.phila.gov/), **(3)** read the owner under "Property Assessment", and **(4)** decide
+your path depending on whether the owner is public or private.
+
+<Callout kind="auto" title="Steps 1–3 done for you">
+  Choose the lot you want to pursue. The site checks the City's address and property records (the same data
+  atlas.phila.gov shows) and fills in the owner below.
+</Callout>
+
+<LotLookup mode="primary" />
+
+<Field id="acquire.address" label="Street address of your lot" auto="lot.address" />
+<Field id="acquire.owner" label="Owner name" auto="lot.owners|join" />
+<Field id="acquire.owner-type" label="Owner is…" auto="lot.ownerType|ownerType" />
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={4} />
+
+## If the City owns it
+
+**Potential purchase.** Publicly owned land in Philadelphia is sold or leased through the Philadelphia Housing
+Development Corporation (PHDC) and the Philadelphia Land Bank. Do a property search to find out if public land is
+available for purchase.
+
+<p><a class="btn" href="https://phdcphila.org/land/buy-land/property-search-map/" target="_blank" rel="noopener">Search PHDC public land ↗</a></p>
+
+<Checklist
+  id="acquire.public-steps"
+  items={[
+    { value: 'searched-phdc', label: 'Searched for the lot on the PHDC property search map' },
+    { value: 'contacted-phdc', label: 'Contacted PHDC / the Land Bank about buying or leasing it for a park' },
+  ]}
+/>
+
+<Field id="acquire.public-notes" label="What you heard back" type="textarea" />
+
+## If someone else owns it
+
+When the owner is a person, organization, or business, there are four ways forward:
+
+- **Potential donation.** Contact the landowner about permanently donating the property to the neighborhood for use as
+  a park.
+- **Potential sale.** Watch for a public sale listing or auction of the property. In Philadelphia this may also include
+  a Sheriff Sale.
+- **Negotiate a purchase agreement.** Contact the landowner and negotiate a sale of the underutilized property for
+  neighborhood use.
+- **In-kind agreement.** Contact the landowner and discuss the mutual benefits of granting the neighborhood "in-kind"
+  use of the lot as a park, while the owner keeps ownership.
+
+<Choice
+  id="acquire.private-path"
+  label="Which path are you trying first?"
+  options={[
+    { value: 'donation', label: 'Donation', desc: 'Owner gives the lot to the neighborhood' },
+    { value: 'sale', label: 'Public sale / Sheriff Sale', desc: 'Watch listings and auctions' },
+    { value: 'purchase', label: 'Purchase agreement', desc: 'Negotiate a sale with the owner' },
+    { value: 'in-kind', label: 'In-kind agreement', desc: 'Owner keeps the lot; neighbors use it as a park' },
+  ]}
+/>
+
+<ListField
+  id="acquire.owner-contacts"
+  label="Contact log"
+  rowName="contact"
+  min={2}
+  columns={[
+    { key: 'date', label: 'Date', type: 'date' },
+    { key: 'who', label: 'Who you reached' },
+    { key: 'outcome', label: 'What happened / next step' },
+  ]}
+/>
+
+<Callout kind="contact">
+  Stuck? The Park in a Truck team can help you think through your options:
+  [ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu).
+</Callout>
+
+{/* site-added: a place to record the outcome; no new advice. */}
+## Secure your lot
+
+Record the agreement that gives your group the right to build a park here. Keep a copy with your committee's records —
+you will need it before anyone breaks ground in the Create step.
+
+<Field id="acquire.agreement" label="Type of agreement" type="select" options={['Purchase', 'Donation', 'Lease', 'In-kind use agreement', 'Other']} />
+<Field id="acquire.agreement-date" label="Date signed" type="date" />
+<Field id="acquire.agreement-notes" label="Terms to remember" type="textarea" hint="Length of the agreement, who maintains the lot, insurance, renewal date…" />

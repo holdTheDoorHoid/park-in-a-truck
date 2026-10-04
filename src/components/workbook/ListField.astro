@@ -1,0 +1,26 @@
+---
+// A repeatable table of rows, e.g. committee members or candidate lots.
+// Saved as an array of {column-key: value} under `id`.
+interface Column {
+  key: string;
+  label: string;
+  type?: 'text' | 'email' | 'tel' | 'date' | 'number' | 'url';
+  placeholder?: string;
+}
+interface Props {
+  id: string;
+  label: string;
+  columns: Column[];
+  min?: number;
+  rowName?: string;
+  hint?: string;
+}
+const { id, label, columns, min = 3, rowName = 'row', hint } = Astro.props;
+---
+<div class="field" style="max-width:none">
+  <span class="field-label">{label}</span>
+  <piat-list data-field={id} data-label={label} data-columns={JSON.stringify(columns)} data-min={min} data-row-name={rowName}>
+    <noscript>Turn on JavaScript to fill in this table, or print the original workbook page.</noscript>
+  </piat-list>
+  {hint && <span class="field-hint">{hint}</span>}
+</div>

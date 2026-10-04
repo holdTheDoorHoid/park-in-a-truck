@@ -1,0 +1,573 @@
+/* Park in a Truck — site theme, matched to the PiaT toolkit & workbooks:
+   white paper, black heavy-slab headings with a thick black rule, bright cyan
+   accents, cyan duotone photos, one colour per park theme.
+   Fonts: Work Sans (the workbooks' own face) + Alfa Slab One (stand-in for
+   Rockwell Extra Bold, which is not a web font). */
+
+@import '@fontsource-variable/work-sans/wght.css';
+@import '@fontsource/alfa-slab-one/400.css';
+
+:root {
+  color-scheme: light;
+
+  /* brand */
+  --cyan: #00a8e8;          /* fills, icons, big numbers — not for small text */
+  --cyan-ink: #00709c;      /* cyan that passes contrast for text & links */
+  --cyan-deep: #084868;
+  --cyan-wash: #e3f5fc;
+  --ink: #111111;
+  --ink-2: #3d3d3d;
+  --muted: #6b6b6b;
+  --rule: #111111;
+  --line: #d8d8d8;
+  --paper: #ffffff;
+  --paper-2: #f6f6f4;
+
+  /* park themes (see src/data/themes.ts) */
+  --edible: #f05a28;
+  --sanctuary: #0b4a6b;
+  --nature: #006b35;
+  --event: #8e1f6b;
+
+  /* status */
+  --ok: #1d7a3a;
+  --warn: #9a5b00;
+  --warn-wash: #fff4e0;
+  --danger: #b3261e;
+
+  --font-body: 'Work Sans Variable', 'Work Sans', system-ui, sans-serif;
+  --font-display: 'Alfa Slab One', 'Rockwell Extra Bold', 'Rockwell', Georgia, serif;
+
+  --max: 1180px;
+  --measure: 68ch;
+  --gutter: clamp(16px, 4vw, 40px);
+  --radius: 4px;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 4px 16px rgb(0 0 0 / 0.06);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 88px;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+img,
+svg,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+img {
+  height: auto;
+}
+
+a {
+  color: var(--cyan-ink);
+  text-underline-offset: 0.15em;
+}
+a:hover {
+  color: var(--cyan-deep);
+}
+
+:focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+/* ---- type ------------------------------------------------------------ */
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+  text-wrap: balance;
+}
+
+/* Display slab — chapter titles, like "ASSESS 03" and "What is a pollinator?" */
+.display,
+h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  letter-spacing: 0.01em;
+}
+
+/* Workbook section heads — heavy uppercase Work Sans ("FIND A LOT") */
+h2 {
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+}
+h3 {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+h4 {
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.eyebrow {
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cyan-ink);
+}
+
+.lede {
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: var(--ink-2);
+  max-width: var(--measure);
+}
+
+/* The heading-with-thick-rule motif from the toolkit chapter openers */
+.ruled {
+  border-bottom: 6px solid var(--rule);
+  padding-bottom: 0.2em;
+}
+
+.big-num {
+  font-family: var(--font-display);
+  color: var(--cyan);
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  line-height: 0.9;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---- layout ------------------------------------------------------------ */
+
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+.prose {
+  max-width: var(--measure);
+}
+.prose > * + * {
+  margin-top: 0;
+}
+.prose p,
+.prose ul,
+.prose ol {
+  margin: 0 0 1em;
+}
+.prose li + li {
+  margin-top: 0.25em;
+}
+
+.grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
+}
+
+/* ---- buttons ----------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.65em 1.1em;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  cursor: pointer;
+  line-height: 1.2;
+}
+.btn:hover {
+  background: var(--paper-2);
+  color: var(--ink);
+}
+.btn-primary {
+  background: var(--cyan);
+  border-color: var(--cyan);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--cyan-ink);
+  border-color: var(--cyan-ink);
+  color: #fff;
+}
+.btn-small {
+  padding: 0.4em 0.75em;
+  font-size: 0.85rem;
+}
+.btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ---- cards ------------------------------------------------------------- */
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
+  padding: 20px;
+}
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.card-link:hover {
+  border-color: var(--cyan);
+  box-shadow: var(--shadow);
+  color: inherit;
+}
+
+/* ---- duotone photos (the toolkit's cyan photo treatment) ---------------- */
+
+.duo {
+  background: var(--cyan);
+  position: relative;
+  overflow: hidden;
+}
+.duo img {
+  filter: grayscale(1) contrast(1.15) brightness(1.05);
+  mix-blend-mode: multiply;
+  width: 100%;
+}
+
+/* ---- figures ------------------------------------------------------------ */
+
+figure {
+  margin: 1.5em 0;
+}
+figcaption {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 0.4em;
+}
+
+/* ---- callouts ------------------------------------------------------------ */
+
+.callout {
+  border-left: 6px solid var(--cyan);
+  background: var(--cyan-wash);
+  padding: 14px 18px;
+  margin: 1.25em 0;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.callout > :last-child {
+  margin-bottom: 0;
+}
+.callout-title {
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.8rem;
+  margin-bottom: 0.3em;
+  display: block;
+}
+.callout-warning {
+  border-color: var(--warn);
+  background: var(--warn-wash);
+}
+.callout-auto {
+  border-color: var(--ok);
+  background: #e9f6ee;
+}
+.callout-contact {
+  border-color: var(--ink);
+  background: var(--paper-2);
+}
+
+/* ---- form fields (workbook blanks) ---------------------------------------- */
+
+.field {
+  display: block;
+  margin: 0 0 1.1em;
+  max-width: 40rem;
+}
+.field-label {
+  display: block;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 0.3em;
+}
+.field-hint {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 0.3em;
+}
+.field input[type='text'],
+.field input[type='number'],
+.field input[type='date'],
+.field input[type='email'],
+.field input[type='tel'],
+.field input[type='url'],
+.field select,
+.field textarea,
+piat-list input {
+  width: 100%;
+  font: inherit;
+  font-size: 1rem;
+  padding: 0.55em 0.7em;
+  border: 2px solid #9a9a9a;
+  border-radius: var(--radius);
+  background: #fff;
+  color: var(--ink);
+}
+.field textarea {
+  min-height: 6em;
+  resize: vertical;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus,
+piat-list input:focus {
+  border-color: var(--cyan);
+  outline: none;
+  box-shadow: 0 0 0 3px rgb(0 168 232 / 0.25);
+}
+.field-with-unit {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.field-with-unit input {
+  max-width: 10rem;
+}
+.field-auto {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  margin-top: 0.35em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ok);
+}
+.field[data-autofilled] input,
+.field[data-autofilled] textarea {
+  border-color: var(--ok);
+  background: #f3fbf6;
+}
+
+.check {
+  display: flex;
+  gap: 0.6em;
+  align-items: flex-start;
+  margin: 0.35em 0;
+  cursor: pointer;
+}
+.check input {
+  width: 1.2em;
+  height: 1.2em;
+  margin-top: 0.2em;
+  accent-color: var(--cyan);
+  flex: none;
+}
+
+.choices {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
+  margin: 0 0 1.1em;
+}
+.choice {
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  cursor: pointer;
+  display: block;
+}
+.choice:has(input:checked) {
+  border-color: var(--cyan);
+  background: var(--cyan-wash);
+}
+.choice input {
+  accent-color: var(--cyan);
+  margin-right: 0.4em;
+}
+.choice-desc {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 0.2em;
+}
+
+piat-list {
+  display: block;
+  margin: 0 0 1.25em;
+}
+piat-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+piat-list th {
+  text-align: left;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0 6px 4px 0;
+}
+piat-list td {
+  padding: 3px 6px 3px 0;
+  vertical-align: top;
+}
+piat-list .row-remove {
+  border: 0;
+  background: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 1.2rem;
+  line-height: 1;
+  padding: 0.4em;
+}
+@media (max-width: 640px) {
+  piat-list thead {
+    display: none;
+  }
+  piat-list tr {
+    display: grid;
+    gap: 4px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  piat-list td[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+}
+
+/* ---- sub-steps (generated by rehype-substeps) -------------------------- */
+
+.substep {
+  padding: 2.25rem 0 1rem;
+  border-top: 1px solid var(--line);
+}
+.substep:first-of-type {
+  border-top: 0;
+}
+.substep > h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+}
+.substep[data-state='done'] > h2::after {
+  content: '✓ done';
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--ok);
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  padding: 0.1em 0.6em;
+  margin-left: auto;
+  white-space: nowrap;
+}
+.substep-done {
+  margin-top: 1.5rem;
+}
+.done-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  border: 2px solid var(--ink);
+  background: #fff;
+  border-radius: 999px;
+  padding: 0.5em 1.1em 0.5em 0.6em;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.done-toggle .box {
+  width: 1.4em;
+  height: 1.4em;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  display: grid;
+  place-items: center;
+  font-size: 0.85em;
+}
+.done-toggle[aria-pressed='true'] {
+  background: var(--ok);
+  border-color: var(--ok);
+  color: #fff;
+}
+.done-toggle[aria-pressed='true'] .box {
+  border-color: #fff;
+  background: #fff;
+  color: var(--ok);
+}
+
+/* ---- placeholders for widgets other workstreams own ---------------------- */
+
+.widget-placeholder {
+  border: 2px dashed var(--cyan);
+  border-radius: var(--radius);
+  padding: 20px;
+  background: var(--cyan-wash);
+  color: var(--cyan-deep);
+  margin: 1.5em 0;
+}
+
+/* ---- print: a filled-in workbook --------------------------------------- */
+
+@media print {
+  .no-print,
+  .site-header,
+  .site-footer,
+  .step-toc,
+  .substep-done,
+  .btn {
+    display: none !important;
+  }
+  body {
+    font-size: 11pt;
+  }
+  a {
+    color: inherit;
+  }
+  .substep {
+    break-inside: avoid-page;
+  }
+}

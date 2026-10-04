@@ -1,0 +1,23 @@
+---
+// Pick one option, shown as cards (e.g. lot type, park theme). Saved under `id`.
+interface Props {
+  id: string;
+  label: string;
+  options: { value: string; label: string; desc?: string; color?: string }[];
+  auto?: string;
+}
+const { id, label, options } = Astro.props;
+const name = `c-${id.replace(/[^a-z0-9]+/gi, '-')}`;
+---
+<fieldset class="field" style="border:0;padding:0;max-width:none">
+  <legend class="field-label">{label}</legend>
+  <div class="choices">
+    {options.map((o) => (
+      <label class="choice" style={o.color ? `border-left: 8px solid ${o.color}` : undefined}>
+        <input type="radio" name={name} value={o.value} data-field-radio={id} />
+        <strong>{o.label}</strong>
+        {o.desc && <span class="choice-desc">{o.desc}</span>}
+      </label>
+    ))}
+  </div>
+</fieldset>

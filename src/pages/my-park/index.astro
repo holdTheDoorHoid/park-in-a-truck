@@ -1,0 +1,190 @@
+---
+import Base from '../../layouts/Base.astro';
+import StepPath from '../../components/site/StepPath.astro';
+---
+<Base title="My park">
+  <section class="wrap" style="padding-top:40px">
+    <p class="eyebrow">Saved in this browser</p>
+    <h1 class="ruled"><span data-project-name>My park</span></h1>
+    <p class="lede">
+      Everything you fill in on this site is saved here, on this device only — no account, nothing sent anywhere. To
+      work with your committee, save a project file and send it to them; they can open it here on their own device.
+    </p>
+    <p class="storage-warning callout callout-warning" hidden data-storage-warning>
+      This browser is not letting the site save anything (private window or blocked site data). Save a project file
+      before you leave, or your answers will be lost.
+    </p>
+
+    <div class="tools no-print">
+      <div class="card">
+        <h3>This project</h3>
+        <label class="field"><span class="field-label">Name</span><input type="text" data-rename /></label>
+        <div class="row">
+          <button class="btn" type="button" data-export>⬇ Save project file</button>
+          <label class="btn">⬆ Open a project file<input type="file" accept=".json,application/json" data-import hidden /></label>
+          <button class="btn" type="button" onclick="window.print()">🖨 Print everything</button>
+        </div>
+        <p class="muted small" data-import-msg></p>
+      </div>
+      <div class="card">
+        <h3>All projects</h3>
+        <ul class="projects" data-project-list></ul>
+        <div class="row">
+          <input type="text" placeholder="New project name" data-new-name />
+          <button class="btn" type="button" data-new>+ New project</button>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="ruled" style="margin-top:40px">Progress</h2>
+    <StepPath compact />
+
+    <h2 class="ruled" style="margin-top:40px">Your lot</h2>
+    <div data-lot-summary><p class="muted">No lot chosen yet. Look one up in <a href="../steps/acquire/">Step 1: Acquire</a>.</p></div>
+
+    <h2 class="ruled" style="margin-top:40px">Your answers</h2>
+    <div data-answers><p class="muted">Nothing filled in yet.</p></div>
+  </section>
+</Base>
+<style>
+  .tools {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
+    margin-top: 16px;
+  }
+  .row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .row input[type='text'] {
+    flex: 1 1 160px;
+    font: inherit;
+    padding: 0.5em 0.6em;
+    border: 2px solid #9a9a9a;
+    border-radius: var(--radius);
+  }
+  .projects {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 12px;
+  }
+  .projects li {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .projects li span {
+    flex: 1;
+  }
+  .small {
+    font-size: 0.85rem;
+  }
+  :global([data-answers] h3) {
+    margin-top: 1.5em;
+  }
+  :global([data-answers] dl) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: 4px 16px;
+    margin: 0;
+  }
+  :global([data-answers] dt) {
+    font-weight: 600;
+  }
+  :global([data-answers] dd) {
+    margin: 0;
+    white-space: pre-wrap;
+  }
+</style>
+<script>
+  import {
+    $project, $projects, $storageOk, renameProject, exportProject, importProject,
+    newProject, switchProject, deleteProject,
+  } from '../../lib/project';
+  import { formatAuto } from '../../lib/autofill';
+
+  const $ = <T extends Element>(s: string) => document.querySelector<T>(s)!;
+  const esc = (s: unknown) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
+  const label = (id: string) =>
+    id.split('.').slice(1).join(' ').replace(/[-_]/g, ' ').replace(/^\w/, (c) => c.toUpperCase());
+
+  $storageOk.subscribe((ok) => ($('[data-storage-warning]') as HTMLElement).toggleAttribute('hidden', ok));
+
+  const rename = $<HTMLInputElement>('[data-rename]');
+  rename.addEventListener('change', () => renameProject(rename.value));
+
+  $('[data-export]').addEventListener('click', () => {
+    const { filename, blob } = exportProject();
+    const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: filename });
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  });
+  $<HTMLInputElement>('[data-import]').addEventListener('change', async (e) => {
+    const f = (e.target as HTMLInputElement).files?.[0];
+    if (!f) return;
+    const msg = $('[data-import-msg]');
+    try {
+      const p = importProject(await f.text());
+      msg.textContent = `Opened “${p.name}”. It is now your active project.`;
+    } catch (err) {
+      msg.textContent = (err as Error).message;
+    }
+  });
+  $('[data-new]').addEventListener('click', () => {
+    const inp = $<HTMLInputElement>('[data-new-name]');
+    newProject(inp.value || 'New park');
+    inp.value = '';
+  });
+
+  $projects.subscribe((list) => {
+    const ul = $('[data-project-list]');
+    const active = $project.get().id;
+    ul.innerHTML = list
+      .map(
+        (p) => `<li><span>${esc(p.name)}${p.id === active ? ' <strong>(open)</strong>' : ''}</span>
+        ${p.id === active ? '' : `<button class="btn btn-small" data-open="${p.id}">Open</button>`}
+        <button class="btn btn-small" data-del="${p.id}" aria-label="Delete ${esc(p.name)}">Delete</button></li>`,
+      )
+      .join('');
+    ul.querySelectorAll<HTMLButtonElement>('[data-open]').forEach((b) => b.addEventListener('click', () => switchProject(b.dataset.open!)));
+    ul.querySelectorAll<HTMLButtonElement>('[data-del]').forEach((b) =>
+      b.addEventListener('click', () => {
+        const p = list.find((x) => x.id === b.dataset.del);
+        if (p && confirm(`Delete “${p.name}” from this browser? This cannot be undone unless you saved a project file.`)) deleteProject(p.id);
+      }),
+    );
+  });
+
+  $project.subscribe((p) => {
+    if (document.activeElement !== rename) rename.value = p.name;
+    const lot = p.lot;
+    $('[data-lot-summary]').innerHTML = lot
+      ? `<dl class="lot"><dt>Address</dt><dd>${esc(lot.address)}</dd>
+         <dt>Owner</dt><dd>${esc(lot.owners.join(' & '))} — ${esc(formatAuto(lot.ownerType, 'ownerType'))}</dd>
+         <dt>Lot size</dt><dd>${lot.areaSqFt ? esc(formatAuto(lot.areaSqFt, 'sqft')) : '—'}${lot.frontageFt && lot.depthFt ? ` (${lot.frontageFt} × ${lot.depthFt} ft)` : ''}</dd>
+         <dt>Zoning</dt><dd>${esc(lot.zoning ?? '—')}</dd></dl>`
+      : '<p class="muted">No lot chosen yet. Look one up in <a href="../steps/acquire/">Step 1: Acquire</a>.</p>';
+
+    const groups: Record<string, [string, unknown][]> = {};
+    for (const [k, v] of Object.entries(p.fields)) (groups[k.split('.')[0]!] ??= []).push([k, v]);
+    const order = ['start', 'acquire', 'organize', 'assess', 'dream', 'create', 'sustain'];
+    const html = Object.keys(groups)
+      .sort((a, b) => order.indexOf(a) - order.indexOf(b))
+      .map((g) => {
+        const rows = groups[g]!.map(([k, v]) => {
+          const val = Array.isArray(v)
+            ? v.map((r) => (typeof r === 'object' ? Object.values(r as object).join(' · ') : r)).join('\n')
+            : v;
+          return `<dt>${esc(label(k))}</dt><dd>${esc(val)}</dd>`;
+        }).join('');
+        return `<h3>${esc(g[0]!.toUpperCase() + g.slice(1))}</h3><dl>${rows}</dl>`;
+      })
+      .join('');
+    $('[data-answers]').innerHTML = html || '<p class="muted">Nothing filled in yet.</p>';
+  });
+</script>

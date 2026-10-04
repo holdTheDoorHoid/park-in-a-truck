@@ -1,0 +1,96 @@
+---
+import Base from '../layouts/Base.astro';
+import StepPath from '../components/site/StepPath.astro';
+import LotLookup from '../components/widgets/LotLookup.astro';
+import { u } from '../lib/url';
+---
+<Base title="Park in a Truck">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">A do-it-yourself toolkit for neighborhood parks</p>
+        <h1 class="display hero-title">Turn a vacant lot into your neighborhood's park.</h1>
+        <p class="lede">
+          Park in a Truck walks you and your neighbors through every step — finding a lot, organizing a team, designing
+          the park, building it, and keeping it beautiful. This site turns the toolkit into a guided, interactive
+          workbook that does the lookups for you.
+        </p>
+        <div class="cta">
+          <a class="btn btn-primary" href={u('steps/start/')}>Start here →</a>
+          <a class="btn" href={u('steps/')}>See all six steps</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <span class="big-num">01–06</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap block">
+    <h2 class="ruled">Your path</h2>
+    <div data-progress-total class="total"><span data-progress-text></span></div>
+    <StepPath />
+  </section>
+
+  <section class="wrap block">
+    <h2 class="ruled">Have a lot in mind?</h2>
+    <p class="lede">Type a Philadelphia address. We'll find the owner, the lot size, zoning and the lot's outline — no need to dig through atlas.phila.gov.</p>
+    <LotLookup mode="primary" />
+  </section>
+
+  <section class="wrap block">
+    <h2 class="ruled">Tools that do the legwork</h2>
+    <div class="grid">
+      <a class="card card-link" href={u('lot/')}><h3>Find a lot</h3><p>Map of vacant land near you with owner, size and zoning.</p></a>
+      <a class="card card-link" href={u('planner/')}><h3>Plan in 3D</h3><p>Fit the Park in a Truck park pieces to your real lot and see sun and shade.</p></a>
+      <a class="card card-link" href={u('build/')}><h3>Build guides</h3><p>Step-by-step instructions for benches, tables, planters, shade and more.</p></a>
+      <a class="card card-link" href={u('plants/')}><h3>Plants</h3><p>Native plant lists for each park theme, for sun and shade.</p></a>
+      <a class="card card-link" href={u('parks/')}><h3>Parks built so far</h3><p>See what neighbors across Philadelphia have already created.</p></a>
+      <a class="card card-link" href={u('my-park/')}><h3>My park</h3><p>Your answers, saved in this browser. Share a copy with your committee.</p></a>
+    </div>
+  </section>
+</Base>
+<style>
+  .hero {
+    padding: 56px 0 32px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: 40px;
+    align-items: center;
+  }
+  .hero-title {
+    font-size: clamp(2.2rem, 5.4vw, 4rem);
+    line-height: 1.05;
+    margin-bottom: 0.4em;
+  }
+  .cta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  .hero-art {
+    display: grid;
+    place-items: center;
+    min-height: 220px;
+    background: var(--cyan-wash);
+  }
+  .block {
+    padding-top: 48px;
+  }
+  .total {
+    margin: -4px 0 16px;
+    color: var(--muted);
+  }
+  @media (max-width: 760px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+    }
+    .hero-art {
+      display: none;
+    }
+  }
+</style>

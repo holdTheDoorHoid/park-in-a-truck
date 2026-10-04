@@ -1,0 +1,14 @@
+# build
+dist/
+.astro/
+node_modules/
+# raw source material (large; re-fetch with scripts/fetch_sources.py)
+source/pdfs/
+source/linked/
+source/jefferson/
+source/preview/
+source/.venv/
+source/work/
+.venv/
+*.part
+.DS_Store

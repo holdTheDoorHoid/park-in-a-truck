@@ -1,0 +1,13 @@
+---
+// STUB — owned by the philly-data workstream.
+import Base from '../../layouts/Base.astro';
+import LotFinderMap from '../../components/widgets/LotFinderMap.astro';
+import LotLookup from '../../components/widgets/LotLookup.astro';
+---
+<Base title="Find a lot">
+  <section class="wrap" style="padding-top:40px">
+    <h1 class="ruled">Find a lot</h1>
+    <LotLookup mode="primary" />
+    <LotFinderMap />
+  </section>
+</Base>

@@ -1,0 +1,27 @@
+---
+// An image from public/ (path like "img/toolkit/why-parks.webp").
+// `duo` gives photos the toolkit's cyan duotone look.
+import { u } from '../../lib/url';
+interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+  credit?: string;
+  duo?: boolean;
+  width?: number;
+  height?: number;
+  maxWidth?: string;
+}
+const { src, alt, caption, credit, duo = false, width, height, maxWidth } = Astro.props;
+---
+<figure style={maxWidth ? `max-width:${maxWidth}` : undefined}>
+  <div class={duo ? 'duo' : undefined}>
+    <img src={u(src)} alt={alt} width={width} height={height} loading="lazy" decoding="async" />
+  </div>
+  {(caption || credit) && (
+    <figcaption>
+      {caption}
+      {credit && <span class="muted"> Image: {credit}</span>}
+    </figcaption>
+  )}
+</figure>

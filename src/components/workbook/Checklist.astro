@@ -1,0 +1,20 @@
+---
+// A list of checkboxes (e.g. tools to bring, things to confirm). Saved as the
+// array of checked item values under `id`.
+interface Props {
+  id: string;
+  label?: string;
+  items: (string | { value: string; label: string; hint?: string })[];
+}
+const { id, label, items } = Astro.props;
+const norm = items.map((i) => (typeof i === 'string' ? { value: i, label: i, hint: undefined } : i));
+---
+<fieldset class="field" style="border:0;padding:0;max-width:none">
+  {label && <legend class="field-label">{label}</legend>}
+  {norm.map((i) => (
+    <label class="check">
+      <input type="checkbox" data-field-check={id} value={i.value} />
+      <span>{i.label}{i.hint && <span class="field-hint">{i.hint}</span>}</span>
+    </label>
+  ))}
+</fieldset>
