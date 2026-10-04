@@ -1,0 +1,192 @@
+{
+  "title": "Benchi ya gabioni ya 8' yenye kiti cha mbao",
+  "summary": "Kikapu cha waya cha gabioni cha futi 8 kilichojazwa mawe na kufunikwa kwa mbao za 2x4 — ndugu mrefu zaidi wa benchi ya gabioni ya 4', chenye vishikizo vitatu vya ziada vya kukingama kwa urefu wake.",
+  "materials": [
+    {
+      "item": "Wavu wa waya wa chuma ulioungwa wa 2x2",
+      "notes": "Mapendekezo ya utengenezaji: Darby and Sons (darbywiremesh.com) au Gabion1.com. Unapoagiza vipande vilivyokatwa maalum, omba vipande vikatwe kwa ukubwa unaotakiwa, vifungwe, na vipakwe mabati baada ya kukatwa (galvanized after)."
+    },
+    {
+      "item": "Mbao za 2x4 — mwerezi mwekundu wa magharibi (western red cedar), Douglas fir, au msonobari uliotiwa dawa kwa shinikizo (pressure-treated)",
+      "notes": "Mwerezi (cedar): kwa asili hustahimili hali ya hewa na kuoza, una rangi nzuri nyekundu, hauhitaji dawa ya kuziba; ni ghali zaidi — omba daraja la 'knotty' (STK). Douglas fir: hustahimili kuoza kwa kiasi, ni imara, ni nafuu kuliko mwerezi; ni mzuri kama unapanga kupaka rangi. Mbao zilizotiwa dawa kwa shinikizo (pressure-treated): ndizo nafuu zaidi na hustahimili kuoza, lakini mara nyingi ubora wake ni duni au haulingani, zinahitaji miezi 1–4 ya kukauka hewani kabla ya kupaka rangi, hazipendekezwi mahali ambapo chakula kinalimwa. Agiza mbao asilimia 5–10 zaidi ya orodha ya vipande vya kukata, ili kukabiliana na ubora usio sawa wa mbao na mikato isiyo sahihi."
+    },
+    {
+      "item": "Vifaa vya kujazia gabioni",
+      "notes": "Vitu vyenye pembe kali, vigumu na visivyobadilika ambavyo havitaoza wala kuvunjika kwa muda — mawe ya machimbo, sakafu iliyorejelezwa (zege/lami), au matofali/vitofali vya zege vilivyorejelezwa. Magogo yaliyokatwa au vitu vingine vya asili vinavyooza visitumike. Mchanganyiko wa ukubwa kuanzia angalau 2\" hadi zaidi ya 12\"; vipande vilivyo upande wa nje vinapaswa kuwa vikubwa kuliko 3\"."
+    },
+    {
+      "item": "Vifaa vya kukingamisha (kwa vishikizo vya katikati, chini ya vipande vya fremu vya katikati)",
+      "notes": "Ama roli ya waya laini wa mabati wa gauge 14 au 16, ama vipande vya ziada vya wavu wa waya wa 2x2 vilivyokatwa nusu kwa koleo la kukata boliti (vikienea upana wote wa kikapu, angalau visanduku 2 / 4\" kwenda juu)."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Skrubu za mbao za nje zinazojitoboa"
+    },
+    {
+      "item": "Pete za kubana (hog rings)"
+    },
+    {
+      "item": "Pini za kushikilia waya (cable staples)"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Juu ya benchi ya gabioni + pande za fremu (2 zinatumika kama reli ndefu za fremu, zilizobaki zinakuwa sehemu ya juu ya mbao)"
+    },
+    {
+      "notes": "Fremu ya benchi ya gabioni — vifuniko vya miisho na vishikizo vya kukingama"
+    },
+    {
+      "notes": "Kibao cha chini cha gabioni, 96\" x 18\""
+    },
+    {
+      "notes": "Upande wa gabioni (mrefu), 96\" x 18\" kila kimoja"
+    },
+    {
+      "notes": "Upande wa gabioni (mfupi), 18\" x 18\" kila kimoja"
+    }
+  ],
+  "tools": [
+    "Msumeno wa pembe (miter saw) wa 10\" au 12\" (au msumeno wa mkono unaofaa)",
+    "Bisibisi ya umeme ya kugonga (impact driver) kwa skrubu za mbao za nje zinazojitoboa",
+    "Drili yenye kitobo cha 1/8\"",
+    "Sandpaper (karatasi ya kusugua), grit 120",
+    "Skwea ya seremala",
+    "Miwani ya kinga + glavu",
+    "Koleo za pete za kubana (hog ring pliers)",
+    "Koleo la kukata boliti (bolt cutters)",
+    "Nyundo",
+    "Mashine ya kusaga (grinder) (kulainisha ncha kali za waya)"
+  ],
+  "steps": [
+    {
+      "title": "Weka alama, andika majina na ukate mbao na wavu wa waya",
+      "text": "Weka alama, andika majina na ukate mbao kwa mpangilio wa GB-1 hadi GB-6 kwa urefu ulio kwenye orodha ya vipande vya kukata.\n\nPanga wavu wako wa waya wa 2x2 katika marundo yenye ukubwa sawa na uyaandike 18-8a (chini ya gabioni), 18-8b (upande mrefu wa gabioni) na 18-8c (upande mfupi wa gabioni).",
+      "imageAlts": [
+        "Mchoro wa pembe tatu wa vipande vya mbao vya GB-1 na GB-2 na vibao vya wavu wa waya vya 18-8a, 18-8b na 18-8c, vikiwa na urefu wake na mchoro wa jinsi vibao vya wavu vinavyokaa kando kwa kando."
+      ],
+      "tips": [
+        "Andika jina la kila kipande cha mbao unapokipima na kukikata.",
+        "Weka rundo tofauti la mbao kwa GB-1 na GB-2.",
+        "Kusugua kidogo kingo zilizokatwa kunaondoa vibanzi na kunasaidia kuunganisha.",
+        "Unajenga benchi ya gabioni zaidi ya moja? Kizuizi (stop block) kwenye msumeno wako wa pembe kinafanya kila kipande kiwe na urefu uleule."
+      ]
+    },
+    {
+      "title": "Jenga fremu",
+      "text": "Weka vipande viwili vya GB-1 na viwili vya GB-2 juu ya sehemu iliyo sawa, ukilinganisha kingo kama inavyoonyeshwa.\n\nTumia kiolezo cha kutoboa mapema kilicho mwishoni mwa kijitabu kutoboa matundu ya skrubu mapema, kisha funga mbao za GB-1 kwenye vipande vya GB-2 kwa bisibisi ya kugonga na skrubu 8 za mbao za nje zinazojitoboa za 2.5\".",
+      "siteNote": "Kikapu hiki unakijenga kikiwa kimepinduliwa: fremu ya mbao inaanza ikiwa chini ardhini na inakuwa ukingo wa juu unapokigeuza kikapu katika hatua ya 7. Mfano wa 3D unaonyesha benchi ikiwa imesimama sawasawa muda wote, kwa hiyo fremu yake ya mbao iko juu daima.",
+      "imageAlts": [
+        "Mchoro wa reli mbili ndefu za GB-1 na vifuniko viwili vifupi vya miisho vya GB-2 vilivyofungwa pamoja kwa skrubu kuwa fremu ya mstatili."
+      ],
+      "tips": [
+        "Tumia skwea ya seremala kuhakikisha kila pembe ni pembe mraba (90°)."
+      ]
+    },
+    {
+      "title": "Ongeza vishikizo vya kukingama",
+      "text": "Weka kipande kimoja cha GB-2 katikati ya fremu iliyojengwa katika hatua ya 2, na ukifunge kwa bisibisi ya kugonga na skrubu 4 za mbao za nje zinazojitoboa za 2.5\".\n\nRudia kwa vipande viwili vya ziada vya GB-2, ukiviweka kwa umbali sawa kati ya kipande cha GB-2 cha katikati na kila kipande cha GB-2 cha mwisho. Vifunge vyote viwili kwa bisibisi ya kugonga na skrubu nyingine 8 za mbao za nje zinazojitoboa za 2.5\".",
+      "imageAlts": [
+        "Mchoro wa vishikizo vitatu vya ziada vya kukingama vya GB-2 vikiongezwa katikati na kwenye robo za fremu ndefu."
+      ]
+    },
+    {
+      "title": "Funga pande za wavu wa waya kwa pini na uzifunge pamoja",
+      "text": "Funga vipande viwili vya wavu wa waya vya 18-8c na viwili vya 18-8b kuzunguka fremu ya GB-2 na GB-1 iliyojengwa katika hatua ya 3, ukitumia nyundo na pini 32 za mabati za kushikilia waya (cable staples) za 1.5\" — pini 2 kwa kila kipande cha waya, upande mmoja baada ya mwingine.\n\nUnganisha vipande vya 18-8c na 18-8b kwenye pembe kwa pete za kubana (hog rings), pete moja katika kila tundu la pili, na pete kwenye pembe na kingo zote.",
+      "imageAlts": [
+        "Mchoro wa vibao vya wavu wa waya vya 18-8c na 18-8b vikifungwa kwa pini kuzunguka fremu ya mbao na kuunganishwa kwa pete za kubana kwenye pembe."
+      ]
+    },
+    {
+      "title": "Imarisha katikati",
+      "text": "Katikati ya kikapu cha gabioni, chini ya kipande cha GB-2 cha katikati, ongeza kifaa cha kukingamisha kwa njia mojawapo kati ya mbili: vipande vya ziada vya miisho vya wavu wa waya wa 2x2 vilivyokatwa nusu kwa koleo la kukata boliti, au wavu wowote wa ziada wa 2x2 unaoenea upana wote wa kikapu (angalau visanduku 2, au zaidi ya 4\", kwenda juu).\n\nFunga kipande cha kishikizo cha katikati kwa pete za kubana.",
+      "imageAlts": [
+        "Mchoro wa kishikizo cha wavu wa waya kikifungwa kwa pete za kubana chini ya kipande cha fremu cha katikati."
+      ]
+    },
+    {
+      "title": "Funga kibao cha chini",
+      "text": "Weka kibao cha wavu wa waya cha 18-8a juu ya kikapu cha gabioni kilichofungwa katika hatua ya 5 — hiki kinakuwa sehemu ya chini ya kikapu utakapokigeuza katika hatua inayofuata.\n\nKifunge kwa pete za kubana pande zote nne na kwenye vishikizo vya katikati: pete moja katika kila tundu la pili la wavu, na pete mbili kwenye kila pembe. Sasa kikapu cha gabioni kiko tayari kusafirishwa hadi kwenye eneo.",
+      "imageAlts": [
+        "Mchoro wa kibao cha wavu wa waya cha 18-8a kikifungwa kwa pete za kubana kwenye kikapu, pamoja na picha ya karibu ya pete ya pembeni ikifunga vipande vyote vitatu vya wavu."
+      ]
+    },
+    {
+      "title": "Weka kikapu kwenye eneo",
+      "text": "Zungusha kikapu cha gabioni nyuzi 180°. Kiweke kwenye eneo juu ya tabaka la kokoto.\n\nHakikisha kikapu cha gabioni kimenyooka kwa kutumia kipima-usawa.",
+      "imageAlts": [
+        "Mchoro unaoonyesha kikapu cha gabioni kimegeuzwa na kusawazishwa juu ya tabaka la kokoto."
+      ],
+      "tips": [
+        "Kama kiko kando ya gabioni nyingine, tumia kamba na vipima-usawa vya kamba kuweka safu ikiwa imenyooka."
+      ]
+    },
+    {
+      "title": "Jaza kikapu",
+      "text": "Weka gabioni mahali pake kufuata muundo wa bustani yako. Weka kokoto chini yake ili kufanya marekebisho madogo.\n\nUkianza na vipande vikubwa zaidi na bapa zaidi vya kujazia gabioni ulivyonavyo, anza kujaza gabioni kuanzia kingo, na uendelee hadi uwe umejenga pande.\n\nJaza fremu kwa vifaa vilivyobaki vya kujazia gabioni hadi vilingane na juu ya ukingo wa mbao.",
+      "imageAlts": [
+        "Mchoro na picha za mfano za kikapu cha gabioni kikijazwa mawe, kuanzia na vipande vikubwa bapa kando ya kingo."
+      ],
+      "tips": [
+        "Weka vifaa vya kujazia kwa uangalifu ili kikapu kisipinde, na uhakikishe mapengo yote yamejazwa ili kiwe imara.",
+        "Angalia kitabu chako cha kazi cha Jenga, awamu ya nne, kwa maelezo zaidi kuhusu hatua hii."
+      ]
+    },
+    {
+      "title": "Ongeza mbao za miisho za sehemu ya juu ya mbao",
+      "text": "Weka vipande viwili vya GB-1 juu ya fremu iliyojengwa katika hatua ya 3, ukitumia kiolezo cha kutoboa mapema kilicho mwishoni mwa kijitabu kutoboa mbao mapema. Funga kwanza mbao mbili za miisho kwa bisibisi ya kugonga na skrubu 12 za mbao za nje zinazojitoboa za 2.5\", ukiweka ukingo sawasawa (flush) na mbao zilizo chini.",
+      "imageAlts": [
+        "Mchoro wa mbao mbili za kwanza za juu za GB-1 zikifungwa kwa skrubu sawasawa kwenye kila mwisho wa kikapu cha gabioni kilichojazwa."
+      ],
+      "tips": [
+        "Kutoboa mapema katika hatua hii kunasaidia skrubu zisipasue mbao."
+      ]
+    },
+    {
+      "title": "Maliza sehemu ya juu ya mbao na usugue",
+      "text": "Panga mbao nyingine 3 kwa nafasi sawa kati ya mbao mbili za miisho. Funga mbao za GB-1 kwa bisibisi ya kugonga na skrubu 20 za mbao za nje zinazojitoboa za 2.5\".\n\nSugua kidogo kingo zilizo ngumu za benchi ya gabioni, na uhakikishe hakuna ncha kali za waya wa gabioni — zilainishe kwa mashine ya kusaga kama zipo zilizo kali mno.",
+      "imageAlts": [
+        "Mchoro wa mbao zilizobaki za juu za GB-1 zikipangwa kwa nafasi sawa na kufungwa kwa skrubu kwenye kikapu cha gabioni kilichojazwa."
+      ],
+      "tips": [
+        "Weka skrubu zote umbali wa upana wa kidole gumba kutoka ukingo wa mbao."
+      ]
+    },
+    {
+      "title": "Kiolezo cha kutoboa matundu mapema",
+      "text": "Kata kiolezo cha kutoboa matundu mapema kufuata mistari ya nukta. Unapotoboa, linganisha ukingo wa kiolezo na ukingo wa nje wa mbao kabla ya kutoboa.\n\nSi matundu yote yanatumika — si mipangilio yote inayotumia kiolezo. Tumia hatua za kuunganisha zilizo hapo juu kama mwongozo wako wa matundu. Weka matundu yote umbali wa upana wa kidole gumba hivi kutoka ukingoni (takriban 1\"), hata matundu yasiyotumia kiolezo hiki.",
+      "imageAlts": [
+        "Kiolezo cha kuchapisha cha kutoboa matundu mapema chenye nafasi tano za matundu zilizowekwa alama na mistari ya kukata, pamoja na picha ya karibu inayoonyesha umbali wa matundu kutoka ukingo wa ubao."
+      ]
+    }
+  ],
+  "finishing": "Kupaka mbao dawa ya nje kunaweza kurefusha maisha ya vitu vya bustani yako, lakini si lazima — vitu hivi vimebuniwa kwa makusudi viwe vya gharama ndogo, vya kudumu na rahisi kujenga, kwa hiyo huenda ikawa rahisi zaidi kuacha kizazi kijacho vivijenge upya wakati wake ukifika. Kama unataka kupaka rangi ya mbao, rangi au dawa ya kuziba sehemu ya juu ya mbao, angalia viungo vya umaliziaji hapa chini.",
+  "safety": [
+    "Haya ni mapendekezo ya kujifanyia mwenyewe tu — rekebisha vifaa, uunganishaji na ujenzi ili viendane na mradi wako na eneo lako.",
+    "Kujenga kitu hiki kunadhani una ujuzi fulani wa kutumia zana za mkono na za umeme, vyuma vidogo, vifungio, mbao na mbinu za msingi za kuunganisha.",
+    "Kabla ya kutumia mashine yoyote ya umeme, pitia na ufuate masharti ya usalama ya mtengenezaji, na usimruhusu mtu yeyote kutumia zana za umeme kama hajafanya hivyo pia.",
+    "Wewe (mmiliki) unawajibika kwa kanuni zozote za ujenzi na usalama, vibali na idhini za mamlaka ambazo kazi hii inahitaji.",
+    "Kwanza safisha eneo kwa kuondoa takataka, hatari na vitu visivyotakiwa vilivyojengwa, na utambue huduma zozote za chini ya ardhi (mabomba, nyaya) zinazoweza kuingilia kabla ya kuchimba.",
+    "Kila mtu anayesaidia kujenga anapaswa kusaini fomu ya msamaha wa dhima kwa watu wa kujitolea.",
+    "Wavu wa waya uliokatwa na vifaa vya kujazia gabioni vinaweza kuacha ncha kali — vaa glavu na miwani ya kinga, na ulainishe waya wowote wenye ncha kali kwa mashine ya kusaga."
+  ],
+  "links": [
+    {
+      "label": "Wavu wa waya wa Darby and Sons (kwa Kiingereza)"
+    },
+    {
+      "label": "Gabion1.com — kikapu cha gabioni cha 18\" x 18\" (kwa Kiingereza)"
+    },
+    {
+      "label": "Kuchagua umaliziaji bora kwa kazi za nje (Rockler, kwa Kiingereza)"
+    },
+    {
+      "label": "Umaliziaji bora kwa mbao za nje (Real Milk Paint, kwa Kiingereza)"
+    },
+    {
+      "label": "Rangi na dawa za mbao za nje (Vermont Natural Coatings, kwa Kiingereza)"
+    }
+  ],
+  "sourcePages": "Maelekezo ya 8_GABION_BENCH_ASSEMBLY, uk. 1–15 (jalada; kabla ya kuanza; vifaa na mbao zinazochaguliwa mara nyingi; hatua 1–10; kiolezo cha kutoboa matundu mapema). PDF ya asili inaziita kimakosa mbao za mwisho za juu \"GB-2\" katika maandishi ya hatua 10–11 (alama kwenye mchoro wa ukurasa, na orodha ya vipande vya kukata, vyote vinathibitisha kuwa ni GB-1), na inakipa kibao cha waya cha kufunga jina lisilo sahihi \"BM-3\" badala ya 18-8a — yote mawili yamesahihishwa hapa."
+}
