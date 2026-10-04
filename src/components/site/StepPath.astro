@@ -7,11 +7,21 @@ interface Props {
   compact?: boolean;
 }
 const { current, compact = false } = Astro.props;
+const ICON: Record<string, string> = {
+  start: 'img/brand/step-start.webp',
+  acquire: 'img/brand/step-acquire.webp',
+  organize: 'img/brand/step-organize.webp',
+  assess: 'img/brand/step-assess.webp',
+  dream: 'img/brand/step-dream.webp',
+  create: 'img/brand/step-create.webp',
+  sustain: 'img/brand/step-sustain.webp',
+};
 ---
 <ol class:list={['path', { compact }]}>
   {STEPS.map((s) => (
     <li>
       <a class="card card-link step" href={u(`steps/${s.slug}/`)} aria-current={current === s.slug ? 'step' : undefined} data-progress-step={s.slug}>
+        <img class="step-icon" src={u(ICON[s.slug])} alt="" aria-hidden="true" loading="lazy" width="120" height="100" />
         <span class="num" aria-hidden="true">{s.n === 0 ? '00' : String(s.n).padStart(2, '0')}</span>
         <span class="title">{s.title}</span>
         {!compact && <span class="tag">{s.tagline}</span>}
@@ -41,6 +51,18 @@ const { current, compact = false } = Astro.props;
     gap: 4px;
     padding: 16px;
     position: relative;
+  }
+  .step-icon {
+    width: 100%;
+    max-width: 120px;
+    height: auto;
+    aspect-ratio: 6 / 5;
+    object-fit: contain;
+    object-position: left center;
+    margin-bottom: 4px;
+  }
+  .compact .step-icon {
+    max-width: 72px;
   }
   .compact .step {
     padding: 10px 12px;

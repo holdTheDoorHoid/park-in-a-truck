@@ -191,6 +191,29 @@ h4 {
 .prose li + li {
   margin-top: 0.25em;
 }
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 1.25em;
+  font-size: 0.95rem;
+}
+.prose th,
+.prose td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+}
+.prose thead th {
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  border-bottom: 3px solid var(--ink);
+}
+.prose tbody th {
+  color: var(--cyan-ink);
+  font-family: var(--font-display);
+  font-weight: 400;
+}
 
 .grid {
   display: grid;
@@ -291,6 +314,10 @@ figcaption {
   padding: 14px 18px;
   margin: 1.25em 0;
   border-radius: 0 var(--radius) var(--radius) 0;
+  /* A long unbroken string (a URL typed as plain text, not a link) can
+     otherwise force this box — and the whole narrow-column grid it sits
+     in — wider than the viewport on mobile. */
+  overflow-wrap: anywhere;
 }
 .callout > :last-child {
   margin-bottom: 0;
@@ -381,6 +408,12 @@ piat-list input:focus {
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--ok);
+}
+/* Bugfix: the unconditional `display: inline-flex` above otherwise beats the
+   browser's default [hidden] rule, so every auto-fillable field showed the
+   "Filled in from City records" badge even with no data. */
+.field-auto[hidden] {
+  display: none;
 }
 .field[data-autofilled] input,
 .field[data-autofilled] textarea {
@@ -537,6 +570,82 @@ piat-list .row-remove {
   border-color: #fff;
   background: #fff;
   color: var(--ok);
+}
+
+/* ---- content-a: lot-type figure grid (Acquire "Which lot?") -------------- */
+
+.lot-types {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+  margin: 1.5em 0;
+}
+.lot-caption {
+  font-size: 0.92rem;
+  color: var(--ink-2);
+  margin: 0.5em 0 0;
+}
+
+/* ---- content-a: accessible flowchart (Acquire "Who owns that lot?") ------ */
+
+.flow-steps {
+  list-style: none;
+  padding: 0;
+  margin: 1.25em 0;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+}
+.flow-steps li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  border: 2px solid var(--cyan);
+  border-radius: var(--radius);
+  padding: 14px;
+}
+.flow-num {
+  flex: none;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  background: var(--cyan);
+  color: #fff;
+  font-family: var(--font-display);
+  display: grid;
+  place-items: center;
+  font-size: 1.1rem;
+}
+.owner-branch {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  margin: 1.25em 0 1.5em;
+}
+.owner-branch-col {
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+.owner-branch-col h4 {
+  margin-bottom: 0.6em;
+}
+.owner-branch-col ul {
+  margin: 0;
+  padding-left: 1.2em;
+}
+.owner-branch-col li + li {
+  margin-top: 0.5em;
+}
+
+/* ---- content-a: generic responsive figure/card grid (used by several ----
+   chapters for side-by-side illustrations, e.g. Assess measuring diagrams) */
+
+.figure-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  margin: 1.5em 0;
 }
 
 /* ---- placeholders for widgets other workstreams own ---------------------- */
