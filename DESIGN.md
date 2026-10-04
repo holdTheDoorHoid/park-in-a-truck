@@ -223,6 +223,8 @@ branch `agent/<name>`; the orchestrator merges to `main`. Tests: `npm test` (vit
 
 ## 8. Open items
 
-- STAGE assembly: Linktree link dead; alternate copy found inside the Dream workbook.
-- Planting/Park Patch workbook on Linktree needs a Google sign-in; alternate copy found inside the toolkit.
-- Ask PiaT: logo files, permission to show volunteer photos, whether the cost spreadsheet prices are current.
+- Findings for the PiaT team (broken links, mislabeled piece files, guide typos, spreadsheet issues):
+  `docs/notes-for-piat-team.md` and `docs/piat-spreadsheet-issues.md`. Owner decides whether/how to send.
+- Ask PiaT: logo files, photo permissions, current prices, gabion wall height (site assumes one course).
+- Hosting: still private / local. To publish on GitHub Pages later: make the repo public (owner's call), build with
+  `SITE_BASE=/park-in-a-truck/`, deploy `dist/`.
