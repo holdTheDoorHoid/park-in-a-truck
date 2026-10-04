@@ -277,7 +277,8 @@ export function checkOverlay(en: Json, overlay: Json, spec: DatasetSpec, locale:
     err(`${path.join('.')}: overlays carry only text (strings), not ${typeof o}`);
   };
   walk(overlay, base, []);
-  const all = leaves(base).filter(([p]) => fields.some((f) => matchesField(p, f)));
+  // Only text with words needs translating: plain sizes and codes (2x4x8', 1/4" x 2-1/2", #2) don't count
+  const all = leaves(base).filter(([p, text]) => fields.some((f) => matchesField(p, f)) && /\p{L}{2,}/u.test(text));
   const mine = new Set(leaves(overlay).map(([p]) => p.join('.')));
   const done = all.filter(([p]) => mine.has(p.join('.')));
   const wordsLeft = all.filter(([p]) => !mine.has(p.join('.'))).reduce((s, [, t]) => s + countWords(t), 0);
