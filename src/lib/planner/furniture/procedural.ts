@@ -1,5 +1,6 @@
 // Simple, recognisable shapes for park elements that have no PiaT build guide (rain
-// barrel, compost bin, raised bed, café table, shed, the planted trees and shrubs …).
+// barrel, compost bin, raised bed, café table, shed, shrubs and perennials …). Planted
+// trees are not here: they share the City trees' drawing (scene/builders.ts).
 // Pure: each element becomes a list of primitive parts in the item's own frame, which
 // the three.js side draws as a few shared instanced meshes. Clean and slightly toy-like,
 // like the rest of the planner.
@@ -117,22 +118,6 @@ function clump(rnd: () => number, cx: number, cy: number, d: number, tall: numbe
     const bd = d * (n === 1 ? 1 : 0.68 + rnd() * 0.1);
     const bt = tall * (0.8 + rnd() * 0.2);
     parts.push(ball(cx + Math.cos(a) * off, cy + Math.sin(a) * off, 0, bd, bd, bt, colors[k % colors.length]!));
-  }
-  return parts;
-}
-
-/** A tree: trunk and a crown of a few leafy lumps; crown `d` across, top at `H`. */
-export function treeParts(d: number, H: number, color: string, rnd: () => number): PrimPart[] {
-  const crownH = Math.min(H * 0.62, Math.max(d * 1.25, d + 2));
-  const crownZ = H - crownH;
-  const trunkD = Math.max(0.3, Math.min(1.4, d * 0.07 + H * 0.012));
-  const parts: PrimPart[] = [cyl(0, 0, 0, trunkD, crownZ + crownH * 0.35, '#6b5340')];
-  // a main lump and three around it, lower down
-  parts.push(ball(0, 0, crownZ + crownH * 0.18, d * 0.82, d * 0.82, crownH * 0.82, color));
-  for (let k = 0; k < 3; k++) {
-    const a = (k / 3) * Math.PI * 2 + rnd() * 1.2;
-    const off = d * 0.2;
-    parts.push(ball(Math.cos(a) * off, Math.sin(a) * off, crownZ + rnd() * crownH * 0.12, d * 0.58, d * 0.58, crownH * 0.62, k === 1 ? shade(color, 0.88) : color));
   }
   return parts;
 }
@@ -288,8 +273,9 @@ export function proceduralParts(it: ProcItem, col: ProcColors): PrimPart[] | nul
       return parts;
     }
     case 'cafe-table': {
-      const d = Math.min(2, Math.max(1.5, h));
-      const gapX = Math.max(d / 2 + 0.55, w / 2 - 0.7);
+      // true size whatever the drawing: a 2-ft table, a chair pulled up at each side
+      const d = realSize('cafe-table', [3.5, 2, 2.5])[1];
+      const gapX = d / 2 + 0.15;
       return [
         cyl(0, 0, 0, d * 0.5, 0.06, METAL),
         cyl(0, 0, 0, 0.15, 2.4, METAL),
@@ -456,10 +442,12 @@ export function proceduralParts(it: ProcItem, col: ProcColors): PrimPart[] | nul
       return parts;
     }
     case 'gabion-table': {
-      const H = it.heightFt ?? realSize('gabion-table', [4, 2, 2.5])[2];
+      // true size: a 4' x 2' wood top on a gabion basket
+      const [L, D, H0] = realSize('gabion-table', [4, 2, 2.5]);
+      const H = it.heightFt ?? H0;
       return [
-        { prim: 'box', mat: 'stone', at: [0, 0, 0], size: [w - 0.3, h * 0.6, H - 0.15], color: '#ffffff' },
-        box(0, 0, H - 0.15, w, h, 0.15, WOOD),
+        { prim: 'box', mat: 'stone', at: [0, 0, 0], size: [L - 0.3, D * 0.6, H - 0.15], color: '#ffffff' },
+        box(0, 0, H - 0.15, L, D, 0.15, WOOD),
       ];
     }
     case 'planting-square': {
@@ -488,12 +476,6 @@ export function proceduralParts(it: ProcItem, col: ProcColors): PrimPart[] | nul
       const d = Math.max(d0, Math.min(w, h));
       const H = it.heightFt ?? H0;
       return clump(rnd, 0, 0, d, H, ['#6ba34c', '#5a9446', '#7aae55'], 3);
-    }
-    case 'small-tree':
-    case 'large-tree': {
-      const [d0, , H0] = realSize(it.element, it.element === 'small-tree' ? [4, 4, 15] : [9, 9, 35]);
-      const d = Math.max(1, Math.max(w, h) || d0);
-      return treeParts(d, it.heightFt ?? H0, col.base, rnd);
     }
     default:
       return null;

@@ -163,6 +163,16 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
   trees. Ground heights (`ground.ts`) are used for every grid cell, crown and building base. The map can show any
   period (a day, a month, a season, the growing season, the year); only the growing season is saved and counted.
   Clicking a spot charts its direct sun month by month.
+  *Furniture in 3D (2026-10-04, `src/lib/planner/furniture/`):* the 3D view draws items as the real thing; plan
+  view keeps the flat paper-pieces blocks. Pieces with a build guide use the guide's own model JSON at TRUE built
+  size, centred on the footprint and never stretched: repeated in modules along the item the way PiaT counts them
+  (4' benches/workbenches, stage as 4'×4' squares unless the whole 12'×8' stage fits, shade canopies as 8'×8'
+  modules — a canopy drawn 8'×4' is still one 8'×8' module); a footprint no whole number of modules fits keeps its
+  block (~10% of printed pieces, e.g. a 2-ft "bench with back"). Gabion walls (bands and items) are 12"×12"×48"
+  baskets of stone, one course, plus one shorter end basket. Items without a guide get simple shapes (`procedural.ts`);
+  planted trees share the City trees' drawing. Furniture is built level on the lowest ground under it; surfaces,
+  grid, outlines and the selection ring follow the ground. The plain blocks stay underneath, invisible, as what the
+  mouse picks. Detail steps down (high → low → blocks) when frames stay slow; `?furniture=high|low|blocks` pins it.
 - **Build-guide 3D models** (`src/data/guides/models/<slug>.json`, format `src/lib/guides3d/schema.ts`, checked by
   `validate.ts`): on `/build/<slug>/` a 3D model sits beside the steps (sticky column ≥ 1000 px, collapsible sticky
   strip above the steps below that) and builds itself as you scroll — the step at the upper-middle of the readable

@@ -1,20 +1,18 @@
 // Fitting real furniture to a placed item — the pure parts (no three.js, tested).
 //
 // A placed item has a footprint (w along its own x, h along its own y, in feet). A
-// build-guide model has a true size (inches). We never stretch a model by more than a
-// few percent: an item longer than one module gets the module REPEATED along it (PiaT
-// counts benches and workbenches in 4' modules, the stage in 4' x 4' squares, shade
-// canopies in 8' x 8' modules). If no whole number of modules sits sensibly on the
-// footprint, the item keeps its plain block.
+// build-guide model has a true size (inches). Models are always drawn at their TRUE built
+// size, centred on the footprint — never stretched to it (footprints on the printed
+// pieces are approximate, and stretch with the lot). An item longer than one module gets
+// the module REPEATED along it (PiaT counts benches and workbenches in 4' modules, the
+// stage in 4' x 4' squares, shade canopies in 8' x 8' modules). If no whole number of
+// modules sits sensibly on the footprint, the item keeps its plain block.
 
 import type { GroundFn } from '../ground';
 import type { Vec2 } from '../geo';
 
 /** Inches to feet. */
 export const ft = (inches: number) => inches / 12;
-
-/** How far a module may be stretched or squeezed to fill a footprint exactly (3%). */
-export const MAX_STRETCH = 0.03;
 
 export interface ModuleSpec {
   /** true size of one module in feet: along the item's x, along its y, and tall */
@@ -29,13 +27,16 @@ export interface ModuleSpec {
    * Free-standing modules (shade canopies) can sit apart, so they accept more.
    */
   under?: number;
+  /**
+   * How far a row may hang past the footprint, as a share of ONE module (default: the
+   * general rule below). A canopy drawn 8' x 4' is still built as an 8' x 8' module.
+   */
+  over?: number;
 }
 
 export interface AxisFit {
-  /** modules along this axis */
+  /** modules along this axis (each at true size) */
   n: number;
-  /** scale applied to each module (1 = true size; never further than MAX_STRETCH from 1) */
-  s: number;
 }
 
 /** Feet a row of modules may overhang the footprint: 0.6 ft or 15% of the row, whichever is more. */
@@ -44,10 +45,10 @@ export const overhangAllowed = (total: number) => Math.max(0.6, 0.15 * total);
 export const shortfallAllowed = (len: number, under = 0.25) => Math.max(1, under * len);
 
 /**
- * How many modules of `module` feet go along `len` feet, and how much to stretch them.
- * Null when no whole number fits sensibly.
+ * How many true-size modules of `module` feet go along `len` feet. Null when no whole
+ * number sits sensibly. `over` = overhang allowed as a share of one module (optional).
  */
-export function fitAxis(len: number, module: number, repeat: boolean, under = 0.25): AxisFit | null {
+export function fitAxis(len: number, module: number, repeat: boolean, under = 0.25, over?: number): AxisFit | null {
   if (!(len > 0) || !(module > 0)) return null;
   const counts = repeat ? [...new Set([Math.floor(len / module), Math.ceil(len / module), Math.round(len / module)])].filter((n) => n >= 1) : [1];
   if (!counts.length) counts.push(1);
@@ -55,20 +56,16 @@ export function fitAxis(len: number, module: number, repeat: boolean, under = 0.
   for (const n of counts) {
     const total = n * module;
     const err = Math.abs(total - len);
-    let fit: AxisFit | null = null;
-    if (err <= MAX_STRETCH * total) fit = { n, s: len / total };
-    else if (total > len ? total - len <= overhangAllowed(total) : len - total <= shortfallAllowed(len, under)) fit = { n, s: 1 };
-    if (fit && (!best || err < best.err)) best = { ...fit, err };
+    const overOk = Math.max(overhangAllowed(total), over !== undefined ? over * module : 0);
+    const ok = total >= len ? total - len <= overOk + 1e-9 : len - total <= shortfallAllowed(len, under) + 1e-9;
+    if (ok && (!best || err < best.err)) best = { n, err };
   }
-  return best ? { n: best.n, s: best.s } : null;
+  return best ? { n: best.n } : null;
 }
 
 export interface ModuleFit {
   nx: number;
   ny: number;
-  /** stretch per module along x / y (1 = true size) */
-  sx: number;
-  sy: number;
   /** module centres in the item's own frame (feet from the item's centre) */
   centres: Vec2[];
   /** the row of modules' overall size, feet */
@@ -76,17 +73,17 @@ export interface ModuleFit {
   depthFt: number;
 }
 
-/** Modules laid edge to edge and centred on the footprint, or null (→ keep the block). */
+/** True-size modules laid edge to edge and centred on the footprint, or null (→ keep the block). */
 export function fitModules(w: number, h: number, spec: ModuleSpec): ModuleFit | null {
-  const fx = fitAxis(w, spec.lengthFt, spec.repeatX, spec.under);
-  const fy = fitAxis(h, spec.depthFt, spec.repeatY, spec.under);
+  const fx = fitAxis(w, spec.lengthFt, spec.repeatX, spec.under, spec.over);
+  const fy = fitAxis(h, spec.depthFt, spec.repeatY, spec.under, spec.over);
   if (!fx || !fy) return null;
-  const mx = spec.lengthFt * fx.s;
-  const my = spec.depthFt * fy.s;
+  const mx = spec.lengthFt;
+  const my = spec.depthFt;
   const centres: Vec2[] = [];
   for (let j = 0; j < fy.n; j++)
     for (let i = 0; i < fx.n; i++) centres.push([(i - (fx.n - 1) / 2) * mx, (j - (fy.n - 1) / 2) * my]);
-  return { nx: fx.n, ny: fy.n, sx: fx.s, sy: fy.s, centres, lengthFt: fx.n * mx, depthFt: fy.n * my };
+  return { nx: fx.n, ny: fy.n, centres, lengthFt: fx.n * mx, depthFt: fy.n * my };
 }
 
 /** The first of several candidate modules that fits (e.g. the whole 12' x 8' stage, else 4' squares). */

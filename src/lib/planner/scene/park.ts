@@ -18,7 +18,7 @@ import { FLAT_GROUND, type GroundFn } from '../ground';
 import { TreeInstances, W, quad, cellTexture, ribbon, disposeTree } from './builders';
 import type { Footprint } from './overlays';
 import { furnitureRule, moduleOf, stageSquareModule, type ModelRule } from '../furniture/rules';
-import { bandAsWall, chooseFit, lowestGround, wallBaskets } from '../furniture/fit';
+import { bandAsWall, chooseFit, flatOver, lowestGround, wallBaskets } from '../furniture/fit';
 import { WOOD, proceduralParts } from '../furniture/procedural';
 import { FurnitureLayer, itemMatrix, material } from '../furniture/layer';
 import { dropProtos, modelNow, modelProto, whenLoaded } from '../furniture/protos';
@@ -249,8 +249,6 @@ export class ParkMeshes {
   private trees = new TreeInstances(64);
   // the same blocks, never drawn, for items shown as real furniture
   private pick: Family = { boxes: new Instances(unitBox, pickOnly, 128, false), cyls: new Instances(unitCyl, pickOnly, 32, false), blobs: new Instances(unitBlob, pickOnly, 64, false) };
-  /** planted trees' crowns (soft picks, like the drawn trees') */
-  private pickCrowns = new Instances(unitBlob, pickOnly, 64, false);
   private furniture = new FurnitureLayer('furniture');
   private walls = new FurnitureLayer('gabion-walls');
   private layout: ParkLayout | null = null;
@@ -282,7 +280,6 @@ export class ParkMeshes {
       this.pick.boxes.mesh,
       this.pick.cyls.mesh,
       this.pick.blobs.mesh,
-      this.pickCrowns.mesh,
       this.furniture.group,
       this.walls.group,
     );
@@ -300,7 +297,6 @@ export class ParkMeshes {
       of(this.pick.blobs),
       // a tree's crown is big and airy: things standing under it can be picked through it
       { object: this.trees.pickMesh, idOf: (i) => (i == null ? undefined : this.trees.ids[i]), soft: true },
-      { ...of(this.pickCrowns), soft: true },
     ];
   }
 
@@ -359,6 +355,8 @@ export class ParkMeshes {
     const corners4 = ([[0, 0], [L, 0], [L, Wd], [0, Wd]] as Vec2[]).map(map.toLocal);
     this.ground = opts.ground && needsDrape(opts.ground) && !groundFlat(opts.ground, corners4) ? opts.ground : FLAT_GROUND;
     const ground = needsDrape(this.ground) ? this.ground : null;
+    // planted trees use the shared tree drawing, which stands them on the ground itself
+    this.trees.setGround(ground);
     // surfaces
     layout.surfaces.forEach((s, i) => {
       const pts = s.polygon.map((p) => map.toLocal(p as Vec2));
@@ -444,7 +442,7 @@ export class ParkMeshes {
           const mid = s0 + len / 2;
           const c = map.toLocal([wall.start[0] + wall.dir[0] * mid, wall.start[1] + wall.dir[1] * mid]);
           const base = lowestGround(this.ground, c, dl, yd, len / 2, wall.depthFt / 2);
-          this.basket(this.walls, s.id, c, yaw, base, len, wall.depthFt, 1, white);
+          this.basket(this.walls, c, yaw, base, len, wall.depthFt, 1, white);
         }
       }
     }
@@ -452,19 +450,19 @@ export class ParkMeshes {
   }
 
   /** one gabion basket (feet), long axis along `yaw` */
-  private basket(layer: FurnitureLayer, id: string, c: Vec2, yaw: number, base: number, len: number, depth: number, height: number, color: THREE.Color) {
+  private basket(layer: FurnitureLayer, c: Vec2, yaw: number, base: number, len: number, depth: number, height: number, color: THREE.Color) {
     const r = (v: number) => Math.round(v * 20) / 20;
     const [l, d, h] = [r(len), r(depth), r(height)];
     const textured = this.quality === 'high' && Boolean(gabionTexture());
     // baskets sit 0.4" apart so each reads as its own basket
-    layer.shape(id, `basket:${l}:${d}:${h}:${textured}`, () => ({ geo: stoneBoxGeometry(Math.max(0.2, l - 0.04), h, d), mat: material(textured ? 'stone' : 'stone-plain'), owns: true }), itemMatrix(c[0], c[1], base, yaw), color);
+    layer.shape(`basket:${l}:${d}:${h}:${textured}`, () => ({ geo: stoneBoxGeometry(Math.max(0.2, l - 0.04), h, d), mat: material(textured ? 'stone' : 'stone-plain'), owns: true }), itemMatrix(c[0], c[1], base, yaw), color);
   }
 
   setItems(items: LayoutItem[], hl: ParkHighlight, themes: { frame: ThemeId; front: ThemeId; back: ThemeId }) {
     const map = this.map;
     if (!map) return;
     const vis: Family = { boxes: this.boxes, cyls: this.cyls, blobs: this.blobs };
-    for (const x of [this.boxes, this.cyls, this.blobs, this.pick.boxes, this.pick.cyls, this.pick.blobs, this.pickCrowns]) x.begin();
+    for (const x of [this.boxes, this.cyls, this.blobs, this.pick.boxes, this.pick.cyls, this.pick.blobs]) x.begin();
     this.furniture.begin();
     const trees: { id: string; x: number; y: number; heightFt: number; crownR: number; color: number }[] = [];
     const up = new THREE.Vector3();
@@ -493,7 +491,7 @@ export class ParkMeshes {
       const theme = it.theme ?? themes.back;
       const hw = (it.w || e.w) / 2;
       const hh = (it.h || e.h) / 2;
-      const plant = e.shape === 'tree-small' || e.shape === 'tree-large' || e.shape === 'shrub';
+      const plant = e.shape === 'shrub';
       // furniture is built level on the lowest ground under it; plants stand where they grow
       const base = plant ? lowestGround(this.ground, c, xd, yd, Math.min(hw, 0.5), Math.min(hh, 0.5)) : lowestGround(this.ground, c, xd, yd, hw, hh);
       const real = this.drawReal(it, e, c, xd, yd, yaw, base, theme, tint);
@@ -501,16 +499,10 @@ export class ParkMeshes {
       const at = (ox: number, oy: number, z: number) => W(c[0] + ox * xd[0] + oy * yd[0], c[1] + ox * xd[1] + oy * yd[1], z + base);
       switch (e.shape) {
         case 'tree-small':
-        case 'tree-large': {
-          const H = it.heightFt ?? e.heightFt;
-          const cr = (it.w || e.w) / 2;
-          if (real) {
-            // the drawn crown, as a soft pick (see scene pick())
-            const crownH = Math.min(H * 0.62, Math.max(cr * 2.5, cr * 2 + 2));
-            this.pickCrowns.push(it.id, at(0, 0, H - crownH / 2), yaw, up.set(cr, crownH / 2, cr), '#ffffff');
-          } else trees.push({ id: it.id, x: c[0], y: c[1], heightFt: H, crownR: cr, color: new THREE.Color(tint(e.color)).getHex() });
+        case 'tree-large':
+          // the shared tree drawing (City trees look and shade the same); it finds the ground itself
+          trees.push({ id: it.id, x: c[0], y: c[1], heightFt: it.heightFt ?? e.heightFt, crownR: (it.w || e.w) / 2, color: new THREE.Color(tint(e.color)).getHex() });
           break;
-        }
         case 'shrub': {
           // drawn as the real plant (3D), it is picked at the plant's size, not the dot's
           const rr = (real ? Math.max(it.w || e.w, ELEMENTS[it.element]?.footprintFt?.[0] ?? 0) : it.w || e.w) / 2;
@@ -541,7 +533,7 @@ export class ParkMeshes {
         }
       }
     }
-    for (const x of [this.boxes, this.cyls, this.blobs, this.pick.boxes, this.pick.cyls, this.pick.blobs, this.pickCrowns]) x.end();
+    for (const x of [this.boxes, this.cyls, this.blobs, this.pick.boxes, this.pick.cyls, this.pick.blobs]) x.end();
     this.furniture.end();
     this.trees.set(trees);
   }
@@ -553,21 +545,21 @@ export class ParkMeshes {
   private drawReal(it: LayoutItem, e: CatalogEntry, c: Vec2, xd: Vec2, yd: Vec2, yaw: number, base: number, theme: ThemeId, tint: (col: string) => string): boolean {
     if (this.mode !== '3d') return false;
     const rule = furnitureRule(it.element);
-    const plant = e.shape === 'tree-small' || e.shape === 'tree-large' || e.shape === 'shrub';
+    const plant = e.shape === 'shrub';
     // plants are cheap and never blocks; everything else steps down with the detail level
     if (this.quality === 'blocks' && !plant) return false;
     const w = it.w || e.w;
     const h = it.h || e.h;
     switch (rule.kind) {
       case 'model':
-        return this.drawModel(it.id, rule, w, h, c, xd, yd, yaw, tint);
+        return this.drawModel(rule, w, h, c, xd, yd, yaw, tint);
       case 'gabion': {
         const H = it.heightFt ?? e.heightFt;
         const col = new THREE.Color(tint('#ffffff'));
         for (const [s0, len] of wallBaskets(w)) {
           const ox = -w / 2 + s0 + len / 2;
           const bc: Vec2 = [c[0] + ox * xd[0], c[1] + ox * xd[1]];
-          this.basket(this.furniture, it.id, bc, yaw, lowestGround(this.ground, bc, xd, yd, len / 2, h / 2), len, h, H, col);
+          this.basket(this.furniture, bc, yaw, lowestGround(this.ground, bc, xd, yd, len / 2, h / 2), len, h, H, col);
         }
         return true;
       }
@@ -576,7 +568,7 @@ export class ParkMeshes {
         const parts = proceduralParts({ id: it.id, element: it.element, w, h, heightFt: it.heightFt, variant: it.variant }, { front: t.front, seat: t.plan.seat, shed: t.plan.shed, base: e.color });
         if (!parts) return false;
         const m = itemMatrix(c[0], c[1], base, yaw);
-        for (const p of parts) this.furniture.prim(it.id, m, p, tint(p.color));
+        for (const p of parts) this.furniture.prim(m, p, tint(p.color));
         return true;
       }
       default:
@@ -584,7 +576,7 @@ export class ParkMeshes {
     }
   }
 
-  private drawModel(id: string, rule: ModelRule, w: number, h: number, c: Vec2, xd: Vec2, yd: Vec2, yaw: number, tint: (col: string) => string): boolean {
+  private drawModel(rule: ModelRule, w: number, h: number, c: Vec2, xd: Vec2, yd: Vec2, yaw: number, tint: (col: string) => string): boolean {
     const model = modelNow(rule.slug);
     if (model === undefined) {
       // first use: draw the block now, the model when its JSON arrives
@@ -616,9 +608,9 @@ export class ParkMeshes {
     const m = new THREE.Matrix4();
     const t = new THREE.Matrix4();
     for (const [cx, cy] of fit.centres) {
-      m.copy(M).multiply(t.makeTranslation(cx, 0, -cy)).multiply(t.makeScale(fit.sx, 1, fit.sy));
-      if (proto.solid) this.furniture.shape(id, `${proto.key}:solid`, () => ({ geo: proto.solid!, mat: material('model'), owns: false }), m, ratio);
-      if (proto.stone) this.furniture.shape(id, `${proto.key}:stone`, () => ({ geo: proto.stone!, mat: material(textured ? 'stone' : 'stone-plain'), owns: false }), m, stoneCol);
+      m.copy(M).multiply(t.makeTranslation(cx, 0, -cy));
+      if (proto.solid) this.furniture.shape(`${proto.key}:solid`, () => ({ geo: proto.solid!, mat: material('model'), owns: false }), m, ratio);
+      if (proto.stone) this.furniture.shape(`${proto.key}:stone`, () => ({ geo: proto.stone!, mat: material(textured ? 'stone' : 'stone-plain'), owns: false }), m, stoneCol);
     }
     return true;
   }
@@ -632,7 +624,6 @@ export class ParkMeshes {
     this.pick.boxes.dispose();
     this.pick.cyls.dispose();
     this.pick.blobs.dispose();
-    this.pickCrowns.dispose();
     this.trees.dispose();
     this.furniture.dispose();
     this.walls.dispose();
@@ -644,16 +635,9 @@ function groundFlat(ground: GroundFn, corners: Vec2[]): boolean {
   const [a, b, , d] = corners as [Vec2, Vec2, Vec2, Vec2];
   const nu = Math.max(1, Math.ceil(Math.hypot(b[0] - a[0], b[1] - a[1]) / 4));
   const nv = Math.max(1, Math.ceil(Math.hypot(d[0] - a[0], d[1] - a[1]) / 4));
-  let lo = Infinity;
-  let hi = -Infinity;
+  const pts: Vec2[] = [];
   for (let j = 0; j <= nv; j++)
-    for (let i = 0; i <= nu; i++) {
-      const x = a[0] + ((b[0] - a[0]) * i) / nu + ((d[0] - a[0]) * j) / nv;
-      const y = a[1] + ((b[1] - a[1]) * i) / nu + ((d[1] - a[1]) * j) / nv;
-      const z = ground(x, y);
-      if (!Number.isFinite(z)) continue;
-      lo = Math.min(lo, z);
-      hi = Math.max(hi, z);
-    }
-  return !(hi - lo > 0.02);
+    for (let i = 0; i <= nu; i++)
+      pts.push([a[0] + ((b[0] - a[0]) * i) / nu + ((d[0] - a[0]) * j) / nv, a[1] + ((b[1] - a[1]) * i) / nu + ((d[1] - a[1]) * j) / nv]);
+  return flatOver(ground, pts);
 }

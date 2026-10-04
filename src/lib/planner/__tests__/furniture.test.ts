@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { MAX_STRETCH, bandAsWall, chooseFit, fitAxis, fitModules, flatOver, ft, lowestGround, wallBaskets, type ModuleSpec } from '../furniture/fit';
+import { bandAsWall, chooseFit, fitAxis, fitModules, flatOver, ft, lowestGround, wallBaskets, type ModuleSpec } from '../furniture/fit';
 import { PROCEDURAL, furnitureRule, moduleOf, stageSquareModule, type ModelRule } from '../furniture/rules';
 import { partGroup, partsAt, partsBounds, planterFill, stageSquareParts } from '../furniture/modelparts';
 import { proceduralParts, partsExtent, seeded } from '../furniture/procedural';
@@ -36,23 +36,25 @@ describe('inches to feet and true size', () => {
 
 describe('module tiling', () => {
   it('repeats a 4-ft module along a longer item instead of stretching it', () => {
-    expect(fitAxis(8, 4, true)).toEqual({ n: 2, s: 1 });
-    expect(fitAxis(12, 4, true)).toEqual({ n: 3, s: 1 });
+    expect(fitAxis(8, 4, true)).toEqual({ n: 2 });
+    expect(fitAxis(12, 4, true)).toEqual({ n: 3 });
     const f = fitModules(12, 1.5, bench)!;
     expect(f.nx).toBe(3);
     expect(f.centres.map((c) => c[0])).toEqual([-4, 0, 4]);
     expect(f.lengthFt).toBe(12);
   });
-  it('stretches by at most a few percent, to fill the footprint exactly', () => {
-    const a = fitAxis(4.1, 4, true)!;
-    expect(a.n).toBe(1);
-    expect(a.s).toBeCloseTo(1.025);
-    expect(Math.abs(a.s - 1)).toBeLessThanOrEqual(MAX_STRETCH);
-    // beyond 3% it keeps true size
-    expect(fitAxis(3.75, 4, true)).toEqual({ n: 1, s: 1 });
-    for (const len of [1, 2.3, 3.5, 3.9, 4, 5.1, 7.7, 8.4, 11.6, 16.2, 23.9]) {
-      const r = fitAxis(len, 4, true);
-      if (r) expect(Math.abs(r.s - 1)).toBeLessThanOrEqual(MAX_STRETCH + 1e-9);
+  it('draws modules at their true size, centred, whatever the drawn footprint', () => {
+    // a 4' gabion bench drawn 4 x 1.8 (stretched with the lot) is still 4 x 1.5
+    const f = fitModules(4, 1.8, bench)!;
+    expect(f.lengthFt).toBe(4);
+    expect(f.depthFt).toBe(1.5);
+    expect(f.centres).toEqual([[0, 0]]);
+    // slightly long or short drawings: one true-size module, centred
+    expect(fitModules(4.1, 1.5, bench)!.lengthFt).toBe(4);
+    expect(fitModules(3.75, 1.5, bench)!.lengthFt).toBe(4);
+    for (const len of [3.5, 3.9, 4, 5.1, 7.7, 8.4, 11.6, 16.2, 23.9]) {
+      const r = fitModules(len, 1.5, bench);
+      if (r) expect(r.lengthFt % 4).toBe(0);
     }
   });
   it('keeps the block when no whole number of modules sits sensibly', () => {
@@ -70,7 +72,12 @@ describe('module tiling', () => {
     expect([f.nx, f.ny]).toEqual([2, 1]);
     const g = fitModules(17, 24, canopy)!;
     expect([g.nx, g.ny]).toEqual([2, 3]);
-    expect(fitModules(6, 5.5, canopy)).toBeNull();
+    // a canopy drawn smaller than a module is still one true 8' x 8' module
+    const one = fitModules(8, 4, { ...canopy, over: 0.55 })!;
+    expect([one.nx, one.ny, one.lengthFt, one.depthFt]).toEqual([1, 1, 8, 8.25]);
+    expect(fitModules(6, 5.5, { ...canopy, over: 0.55 })!.lengthFt).toBe(8);
+    // without that allowance it would keep its block
+    expect(fitModules(8, 4, canopy)).toBeNull();
   });
   it('picks the whole stage when it fits, else 4-ft squares', () => {
     const stage = model('stage');
@@ -100,7 +107,9 @@ describe('choosing model, shape or block', () => {
   it('draws gabion walls as baskets and the other elements as shapes', () => {
     expect(furnitureRule('gabion-wall').kind).toBe('gabion');
     expect(furnitureRule('rain-barrel').kind).toBe('procedural');
-    expect(furnitureRule('large-tree').kind).toBe('procedural');
+    expect(furnitureRule('shrub').kind).toBe('procedural');
+    // planted trees share the City trees' drawing
+    expect(furnitureRule('large-tree').kind).toBe('block');
     // existing conditions are not furniture
     expect(furnitureRule('existing-tree').kind).toBe('block');
     expect(furnitureRule('nonsense').kind).toBe('block');
@@ -250,6 +259,10 @@ describe('simple shapes for elements without a guide', () => {
   it('sizes beds and sheds to the drawing, products to the real thing', () => {
     const bed = partsExtent(proceduralParts({ id: 'b', element: 'raised-bed', w: 15.5, h: 3.5 }, colors)!);
     expect(bed.x[1] - bed.x[0]).toBeCloseTo(15.5, 0);
+    // a café set drawn 3.5 x 1.8, 2 or 2.3 ft is the same true-size table and chairs
+    const cafe = [1.8, 2, 2.3].map((h) => partsExtent(proceduralParts({ id: 'c', element: 'cafe-table', w: 3.5, h }, colors)!));
+    expect(cafe[0]).toEqual(cafe[1]);
+    expect(cafe[2]).toEqual(cafe[1]);
     const barrel = partsExtent(proceduralParts({ id: 'r', element: 'rain-barrel', w: 3, h: 3 }, colors)!);
     expect(barrel.z[1]).toBeCloseTo(3);
     expect(barrel.x[1] - barrel.x[0]).toBeLessThanOrEqual(2.1);

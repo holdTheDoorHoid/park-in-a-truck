@@ -21,7 +21,6 @@ import { ExistingMeshes, existingFootprint, type ExistingRender } from './existi
 import { Overlays, type Footprint } from './overlays';
 import { catalogEntry } from '../catalog';
 import { DragGesture, isTurnable, turnFromDrag, type Pose } from '../interact';
-import { groundOf } from '../ground';
 
 export type ViewMode = '3d' | 'plan';
 export type PickKind = 'item' | 'existing';

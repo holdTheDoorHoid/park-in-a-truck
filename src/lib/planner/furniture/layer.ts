@@ -103,7 +103,6 @@ export function itemMatrix(e: number, n: number, base: number, yaw: number, out 
 
 export class Batch {
   mesh: THREE.InstancedMesh;
-  ids: string[] = [];
   private n = 0;
   private c = new THREE.Color();
   constructor(
@@ -131,9 +130,8 @@ export class Batch {
   }
   begin() {
     this.n = 0;
-    this.ids = [];
   }
-  push(id: string, m: THREE.Matrix4, color: THREE.Color) {
+  push(m: THREE.Matrix4, color: THREE.Color) {
     if (this.n >= this.cap) {
       const parent = this.mesh.parent;
       const old = this.mesh;
@@ -151,7 +149,6 @@ export class Batch {
     }
     this.mesh.setMatrixAt(this.n, m);
     this.mesh.setColorAt(this.n, color);
-    this.ids.push(id);
     this.n++;
   }
   end() {
@@ -207,25 +204,25 @@ export class FurnitureLayer {
     for (const b of this.batches.values()) b.end();
   }
 
-  /** one primitive part of an item */
-  prim(id: string, item: THREE.Matrix4, p: PrimPart, color: string) {
+  /** one primitive part of an item (never picked: the item's plain block underneath is) */
+  prim(item: THREE.Matrix4, p: PrimPart, color: string) {
     if (p.mat === 'stone') {
       // a textured box gets a geometry of its own size so the stones keep their scale
       const [x, y, z] = p.size.map((v) => Math.round(v * 20) / 20) as [number, number, number];
       const b = this.batch(`stone:${x}:${y}:${z}`, () => ({ geo: stoneBoxGeometry(x, z, y), mat: material(gabionTexture() ? 'stone' : 'stone-plain'), owns: true }));
       partMatrix({ ...p, size: [1, 1, 1] }, this.tmp).premultiply(item);
-      b.push(id, this.tmp, this.col.set(color));
+      b.push(this.tmp, this.col.set(color));
       return;
     }
     const kind = p.mat === 'glass' ? 'glass' : p.prim === 'ball' ? 'leaf' : 'plain';
     const b = this.batch(`${p.prim}:${kind}`, () => ({ geo: primGeometry(p.prim), mat: material(kind), owns: false }));
     partMatrix(p, this.tmp).premultiply(item);
-    b.push(id, this.tmp, this.col.set(color));
+    b.push(this.tmp, this.col.set(color));
   }
 
   /** a shape with its own geometry (a model module, a basket), placed by `m` */
-  shape(id: string, key: string, make: () => { geo: THREE.BufferGeometry; mat: THREE.Material; owns: boolean }, m: THREE.Matrix4, color: THREE.Color) {
-    this.batch(key, make).push(id, m, color);
+  shape(key: string, make: () => { geo: THREE.BufferGeometry; mat: THREE.Material; owns: boolean }, m: THREE.Matrix4, color: THREE.Color) {
+    this.batch(key, make).push(m, color);
   }
 
   /** draw calls in use (for checks) */

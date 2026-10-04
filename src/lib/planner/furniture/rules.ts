@@ -19,6 +19,7 @@ export interface ModelRule {
   repeatX: boolean;
   repeatY: boolean;
   under?: number;
+  over?: number;
   /** the stage: the whole 12' x 8' model, else 4' x 4' squares built the same way */
   squares?: number;
 }
@@ -41,8 +42,9 @@ const MODEL_RULES: Record<string, Omit<ModelRule, 'kind' | 'slug'>> = {
   // boxes side by side (the guides also give 18" x 48" and 24" x 48" boxes)
   'planter-18': { repeatX: true, repeatY: true },
   'planter-24': { repeatX: true, repeatY: true },
-  // "8' x 8' modules"; free-standing, so a drawn canopy may be larger than its modules
-  'shade-canopy': { repeatX: true, repeatY: true, under: 0.5 },
+  // "8' x 8' modules", always drawn as true 8' x 8' modules: free-standing, so a drawn
+  // canopy may be larger than its modules, and one drawn 8' x 4' is still an 8' x 8' module
+  'shade-canopy': { repeatX: true, repeatY: true, under: 0.5, over: 0.55 },
   // the whole stage, or "4' x 4' squares of stage"
   stage: { repeatX: false, repeatY: false, squares: 4 },
 };
@@ -70,8 +72,7 @@ export const PROCEDURAL = new Set([
   'planting-square',
   'perennial',
   'shrub',
-  'small-tree',
-  'large-tree',
+  // planted trees use the shared tree drawing (scene/builders.ts TreeInstances), like City trees
 ]);
 
 export function furnitureRule(element: string): FurnitureRule {
@@ -87,9 +88,9 @@ export function furnitureRule(element: string): FurnitureRule {
  * A model's true size as a module (feet). Uses the size the parts actually build
  * (`asBuilt`) when the modeller gave one; x = length, z = depth, y = height.
  */
-export function moduleOf(model: Pick<GuideModel, 'bounds' | 'asBuilt'>, rule: Pick<ModelRule, 'repeatX' | 'repeatY' | 'under'>): ModuleSpec {
+export function moduleOf(model: Pick<GuideModel, 'bounds' | 'asBuilt'>, rule: Pick<ModelRule, 'repeatX' | 'repeatY' | 'under' | 'over'>): ModuleSpec {
   const b = model.asBuilt ?? model.bounds;
-  return { lengthFt: ft(b.length), depthFt: ft(b.width), heightFt: ft(b.height), repeatX: rule.repeatX, repeatY: rule.repeatY, under: rule.under };
+  return { lengthFt: ft(b.length), depthFt: ft(b.width), heightFt: ft(b.height), repeatX: rule.repeatX, repeatY: rule.repeatY, under: rule.under, over: rule.over };
 }
 
 /** The stage's 4' x 4' square module (same height as the whole stage). */
