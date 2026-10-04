@@ -3,25 +3,49 @@
     "neighborhood": "Kingsessing, 남서 필라델피아",
     "description": "Kingsessing의 되살린 모퉁이 부지에 만든 공동체 텃밭이에요. Park in a Truck 툴킷에는 \"Cecil Street Park\"로 실려 있고, LandHealth Nursery와 함께 식재 시험 장소로 쓰였어요. 그 뒤로 연방 정부 지원을 받는 꽃가루 매개자 서식지 네트워크의 일부가 되어, 남서 필라델피아의 여러 Park in a Truck 장소를 잇고 있어요. 자생 나무와 에키네시아를 심었어요. 주민 Victoria Miles-Chambliss: \"텃밭을 만든 뒤로 우리 블록이 정말 달라졌어요. 남서 필라델피아 한가운데 있는 오아시스 같아요.\"",
     "links": [
-      { "label": "남서 필라델피아에 새와 벌을 위한 서식지 네트워크가 피어나다 (Grid Magazine, 2024년 4월, 영어)" },
-      { "label": "Park in a Truck 프로그램 페이지 (Jefferson, 영어)" }
+      {
+        "label": "남서 필라델피아에 새와 벌을 위한 서식지 네트워크가 피어나다 (Grid Magazine, 2024년 4월, 영어)"
+      },
+      {
+        "label": "Park in a Truck 프로그램 페이지 (Jefferson, 영어)"
+      }
     ]
   },
   "melon-street-park": {
     "neighborhood": "Mantua, 서필라델피아",
     "description": "Park in a Truck의 첫 공원으로, 2019년 10월 Mantua의 공터(약 2,400제곱피트)에 문을 열었어요. Mantua Civic Association 회장 DeWayne Drummond: \"지금 우리가 서 있는 이 땅은 공터였어요. 이제는 주민들과 청소년들 덕분에 아름다워졌어요.\" 설립자 Kim Douglas는 이곳을 \"빗물을 빼고, 식물을 기르고, 야생 동물에게 서식지를 주고, 공연도 열 수 있는\" 공원이라고 말해요.",
     "links": [
-      { "label": "Jefferson, Park in a Truck 프로그램으로 소외된 동네의 변화를 돕다 (Jefferson, 2019년 8월, 영어)" },
-      { "label": "필라델피아 동네의 공터가 아름다운 공원으로 바뀌다 (6abc, 2021년 7월, 영어)" },
-      { "label": "Park in a Truck 툴킷으로 주민들이 빈 부지를 바꿀 수 있어요 (Jefferson, 2022년 8월, 영어)" }
+      {
+        "label": "Jefferson, Park in a Truck 프로그램으로 소외된 동네의 변화를 돕다 (Jefferson, 2019년 8월, 영어)"
+      },
+      {
+        "label": "필라델피아 동네의 공터가 아름다운 공원으로 바뀌다 (6abc, 2021년 7월, 영어)"
+      },
+      {
+        "label": "Park in a Truck 툴킷으로 주민들이 빈 부지를 바꿀 수 있어요 (Jefferson, 2022년 8월, 영어)"
+      }
+    ],
+    "photos": [
+      {
+        "alt": "Melon Street Park의 높임 화단과 꽃이 핀 식물들. 뒤로 Mantua의 연립주택이 보여요",
+        "caption": "Melon Street Park, 동네 공원"
+      },
+      {
+        "alt": "Melon Street Park를 만드는 날, 아이들과 어른들이 공원 조각 모형 둘레에 모여 있어요",
+        "caption": "Mantua의 Park in a Truck 만드는 날"
+      }
     ]
   },
   "glenda-anne-memorial-park": {
     "neighborhood": "Kingsessing, 남서 필라델피아",
     "description": "쓰레기가 버려지던 부지에 만들어 2019년 8월 3일에 헌정했어요. 200명이 넘는 이웃과 선출직 공무원들이 참석했고, Glenda Ann Christopher의 가족이 이 공원을 그분을 기리는 공원으로 받아들였어요 (언론 보도에는 \"Glenda Ann Christopher Memorial Park\"로 적혀 있어요). 2023년 봄에 꽃가루 매개자 정원을 더했어요. 활동가 Greg Thompson: \"심고 한두 주 지나니 벌, 새, 나비, 그리고 지금껏 본 적 없을 만큼 많은 곤충이 찾아왔어요.\" 2024년 6월 두 번째 헌정식에서 이를 함께 축하했어요. 청소년 자원봉사자 Semaj Flores: \"우리는 환경을 위해, 그리고 총기 폭력을 겪고 있는 더 어린 아이들을 돕기 위해 이 일에 참여했어요.\"",
     "links": [
-      { "label": "Park in a Truck 프로그램, 필라델피아 도시 녹지를 바꾸다 (CBS News Philadelphia, 2024년 6월, 영어)" },
-      { "label": "남서 필라델피아에 새와 벌을 위한 서식지 네트워크가 피어나다 (Grid Magazine, 2024년 4월, 영어)" }
+      {
+        "label": "Park in a Truck 프로그램, 필라델피아 도시 녹지를 바꾸다 (CBS News Philadelphia, 2024년 6월, 영어)"
+      },
+      {
+        "label": "남서 필라델피아에 새와 벌을 위한 서식지 네트워크가 피어나다 (Grid Magazine, 2024년 4월, 영어)"
+      }
     ]
   },
   "s-60th-greenway": {
@@ -36,7 +60,9 @@
     "neighborhood": "Elmwood Park, 남서 필라델피아",
     "description": "Tilden Middle School 학생들이 꽃가루 매개자·서식지 정원을 만들었어요. Cecil Street Garden이 속한 남서 필라델피아 꽃가루 매개자 네트워크의 일부이고, 일부 비용은 Pew Charitable Trusts가 Audubon Mid-Atlantic을 통해 지원했으며 Park in a Truck이 협력했어요. 청소년들은 PiaT의 공원 대사(Park Ambassador) 프로그램으로 보수를 받으며 정원을 관리하고 꽃가루 매개자를 관찰해요.",
     "links": [
-      { "label": "남서 필라델피아에 새와 벌을 위한 서식지 네트워크가 피어나다 (Grid Magazine, 2024년 4월, 영어)" }
+      {
+        "label": "남서 필라델피아에 새와 벌을 위한 서식지 네트워크가 피어나다 (Grid Magazine, 2024년 4월, 영어)"
+      }
     ]
   },
   "streetscape-of-brewerytown-garden": {

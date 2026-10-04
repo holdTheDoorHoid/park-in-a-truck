@@ -44,6 +44,11 @@ export default {
   'chapter.next': '다음: {n}단계 — {title} →',
   'chapter.notTranslated': '이 장은 아직 번역되지 않아 영어로 보여요. 답변은 어느 언어에서나 똑같이 저장돼요.',
 
+  'notice.title': '사이트 안내',
+  'notice.lot':
+    '아직 부지 사용 허락을 기록하지 않았어요. 땅을 파기 전에 꼭 있어야 해요. <a href="{href}">확보하기 → 부지 확정하기로 가기</a>.',
+  'notice.dismiss': '닫기',
+
   'auto.owner.city': '필라델피아시 (공공)',
   'auto.owner.landbank': 'Philadelphia Land Bank (공공)',
   'auto.owner.pha': 'Philadelphia Housing Authority (공공)',
