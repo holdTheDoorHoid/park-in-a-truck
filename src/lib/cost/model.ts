@@ -1341,16 +1341,7 @@ function compute(answers: CostInputs, fixes: ReadonlySet<FixId>, userPrices: Rec
   return { mode, lines, subtotals, summary, total: F146, orderList, warnings, priceNeeded: [...needed.values()] };
 }
 
-// ---- formatting helpers (English; the widget uses the reader's language, src/lib/cost/text.ts) ----
-
-export function money(v: number): string {
-  return v.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-}
-
-/** Up to 2 decimals, no trailing zeros. */
-export function fmtN(v: number): string {
-  return Number.isInteger(v) ? v.toLocaleString('en-US') : v.toLocaleString('en-US', { maximumFractionDigits: 2 });
-}
+// Numbers and money are written in the reader's language by src/lib/cost/text.ts (money, bare, qtyUnit…).
 
 export { inputsFromTally } from './fromTally';
 export type { FromTally } from './fromTally';
