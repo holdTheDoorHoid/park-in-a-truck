@@ -1,9 +1,9 @@
 ---
-title: Create
-intro: Build your park, one weekend phase at a time.
+title: البناء
+intro: ابنِ حديقتك على مراحل، عطلة نهاية أسبوع في كل مرة.
 sources:
-  - Toolkit pp. 57–59 (Create, Initial Park Construction)
-  - Create Workbook pp. 1–18
+  - الدليل (Toolkit)، الصفحات 57–59 (البناء، البناء الأول للحديقة)
+  - كراسة عمل «البناء»، الصفحات 1–18
 ---
 import Field from '../../../../components/workbook/Field.astro';
 import ListField from '../../../../components/workbook/ListField.astro';
@@ -20,449 +20,444 @@ import LotAgreementNotice from '../../../../components/workbook/LotAgreementNoti
 {/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — Create lets you pick build weekends and print an order list with nothing recorded in Acquire; this says so before anyone breaks ground. */}
 <LotAgreementNotice />
 
-Building a park is a great way to connect neighbors, friends and others. The process requires dedicated volunteers
-who can give their time and energy, with a wide variety of skills — carpentry, landscaping, organizing, encouraging,
-leading. Like following a recipe, park building is a step-by-step sequence; most Park in a Truck parks go up in about
-6–8 weekends.
+بناء حديقة طريقة رائعة لتقريب الجيران والأصدقاء وغيرهم من بعضهم. تحتاج العملية إلى متطوعين مخلصين يقدّمون وقتهم وجهدهم،
+ولديهم مهارات متنوعة — النجارة، وتنسيق الحدائق، والتنظيم، والتشجيع، والقيادة. وكما في اتباع وصفة طبخ، بناء الحديقة
+سلسلة من الخطوات المتتالية؛ وتُبنى معظم حدائق Park in a Truck في نحو 6–8 عطلات نهاية أسبوع.
 
-The Create chapter is all about building your park. We broke the process down into eight phases. Each phase can be
-completed in roughly a weekend — the size of your park and number of volunteers will affect how long it actually
-takes. The phases are ordered for a reason; review each one and adjust your schedule as needed.
+فصل «البناء» يدور كله حول بناء حديقتك. قسّمنا العملية إلى ثماني مراحل. يمكن إنجاز كل مرحلة في عطلة نهاية أسبوع تقريبًا —
+وحجم حديقتك وعدد المتطوعين سيؤثران في المدة الفعلية. للمراحل ترتيب له سبب؛ راجع كل مرحلة وعدّل جدولك حسب الحاجة.
 
-This book assumes you've done the cost estimate and know the quantities and materials you'll need to order for each
-phase. If you haven't, go back to the Dream step and use the cost estimator.
+يفترض هذا الكتاب أنك أعددت تقدير التكلفة وتعرف الكميات والمواد التي ستحتاج إلى طلبها لكل مرحلة. إن لم تفعل، فارجع إلى
+خطوة «الحلم» واستخدم أداة تقدير التكلفة.
 
 <CostEstimator />
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={3} />
 
-## Volunteer release form {/* #volunteer-release-form */}
+## نموذج إخلاء المسؤولية للمتطوعين {/* #volunteer-release-form */}
 
-Make sure you have volunteer release forms available at the site whenever you're working on the park. This form
-releases you from liability for injuries to your volunteers. It's your responsibility to consult your organization's
-legal advisors and insurance carrier before starting construction — they may want you to take additional steps to
-protect the organization from liability. Give your volunteers clear instructions about expectations and tasks for the
-work day; they're more likely to come back in future weeks when they feel their time was put to good use.
+تأكد أن نماذج إخلاء المسؤولية للمتطوعين متوفرة في الموقع كلما عملتم في الحديقة. يُخلي هذا النموذج مسؤوليتك عن إصابات
+المتطوعين. ومن مسؤوليتك أن تستشير المستشارين القانونيين لمجموعتك وشركة التأمين قبل بدء البناء — فقد يطلبون منك خطوات
+إضافية لحماية المجموعة من المسؤولية القانونية. أعطِ متطوعيك تعليمات واضحة عن المطلوب منهم ومهامهم في يوم العمل؛ فهم
+يعودون في الأسابيع التالية على الأرجح حين يشعرون أن وقتهم استُخدم استخدامًا جيدًا.
 
-<Download href="downloads/forms/volunteer-release-form.pdf" label="Volunteer waiver and release form" note="One per volunteer; a parent or guardian must also sign for volunteers under 18" />
+<Download href="downloads/forms/volunteer-release-form.pdf" label="نموذج التنازل وإخلاء المسؤولية للمتطوعين" note="نموذج لكل متطوع؛ ويجب أن يوقّع أيضًا أحد الوالدين أو ولي الأمر عن المتطوعين الذين تقل أعمارهم عن 18 سنة" />
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={3} />
 
-## Phase 1: Organize {/* #phase-1-organize */}
+## المرحلة 1: التنظيم {/* #phase-1-organize */}
 
-As in any process, the first and most important step is to organize your team by identifying project leaders and
-establishing a schedule. How many people you assign to these roles depends on the complexity and size of your
-project.
+كما في أي عملية، الخطوة الأولى والأهم أن تنظّم فريقك بتحديد قادة المشروع ووضع جدول زمني. عدد الأشخاص الذين تكلّفهم بهذه
+الأدوار يعتمد على مدى تعقيد مشروعك وحجمه.
 
-- **Construction manager.** Orders materials, is there for deliveries, gives instructions to volunteers on build
-  days, and coordinates with the project manager on schedule.
-- **Project manager.** In charge of getting volunteers, social media, ordering food, handing out waivers, coordinates
-  finances and controls the schedule.
+- **مدير البناء.** يطلب المواد، ويكون حاضرًا عند التوصيل، ويعطي التعليمات للمتطوعين في أيام البناء، وينسّق الجدول مع مدير
+  المشروع.
+- **مدير المشروع.** مسؤول عن جلب المتطوعين، ووسائل التواصل الاجتماعي، وطلب الطعام، وتوزيع نماذج التنازل، وينسّق الأمور
+  المالية ويتحكم في الجدول.
 
-<Field id="create.construction-manager" label="Construction manager" hint="Orders materials, runs build days" />
-<Field id="create.project-manager" label="Project manager" hint="Volunteers, schedule, finances" />
+<Field id="create.construction-manager" label="مدير البناء" hint="يطلب المواد، ويدير أيام البناء" />
+<Field id="create.project-manager" label="مدير المشروع" hint="المتطوعون، والجدول، والأمور المالية" />
 
 <ListField
   id="create.org-chart"
-  label="Volunteers & contractors"
-  rowName="person"
+  label="المتطوعون والمقاولون"
+  rowName="شخص"
   min={3}
   columns={[
-    { key: 'name', label: 'Name' },
-    { key: 'role', label: 'Role', placeholder: 'volunteer, contractor…' },
-    { key: 'contact', label: 'Contact' },
+    { key: 'name', label: 'الاسم' },
+    { key: 'role', label: 'الدور', placeholder: 'متطوع، مقاول…' },
+    { key: 'contact', label: 'جهة التواصل' },
   ]}
 />
 
-A project calendar is an excellent way to keep track of schedules, important dates, when volunteers will be working,
-and lead times for materials. Planning is as important as the building process itself — start off on the right foot.
+تقويم المشروع طريقة ممتازة لمتابعة الجداول والتواريخ المهمة ومواعيد عمل المتطوعين والمدة اللازمة لوصول المواد. التخطيط
+مهم بقدر أهمية عملية البناء نفسها — ابدأ البداية الصحيحة.
 
 <BuildSchedule />
 
-<Download href="downloads/templates/project-calendar.xlsx" label="Calendar template" note="Sample project calendar and contact list — for reference, make your own copy" />
+<Download href="downloads/templates/project-calendar.xlsx" label="قالب التقويم" note="نموذج لتقويم المشروع وقائمة جهات التواصل — للاستعانة به، اصنع نسختك الخاصة" />
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={4} />
 
-## Phase 2: Prepare the lot {/* #phase-2-prepare-the-lot */}
+## المرحلة 2: تجهيز قطعة الأرض {/* #phase-2-prepare-the-lot */}
 
-### Steps
+### الخطوات
 
-**Step 1: Evaluate.** Some sites need more clearing or grading than others, which can require special machinery —
-contact a landscape contractor if any of the following can't be done by the community alone.
+**الخطوة 1: التقييم.** تحتاج بعض المواقع إلى تنظيف أو تسوية أكثر من غيرها، وقد يتطلب ذلك آلات خاصة — تواصل مع مقاول
+تنسيق حدائق إن كان أهل الحي لا يستطيعون وحدهم القيام بأي مما يلي.
 
-- Contact the PiaT team ([ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu)) for a site visit
-  consultation if you're unsure how to prepare your site.
-- Contact Pennsylvania One Call at **811** to mark utility locations.
+- تواصل مع فريق PiaT ([ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu)) لطلب زيارة استشارية للموقع إن
+  لم تكن متأكدًا من طريقة تجهيز موقعك.
+- اتصل بـ Pennsylvania One Call على الرقم **811** ليحددوا أماكن خطوط المرافق تحت الأرض.
 
-<Field id="create.one-call-address" label="Address for your PA One Call request" auto="lot.address" />
+<Field id="create.one-call-address" label="العنوان لطلبك من PA One Call" auto="lot.address" />
 
-**Step 2: Protect.** Bring small tools and equipment to the site. Set up protective construction fencing with wood
-posts at tree trunks, buildings and other items that need protection. Install silt/erosion control fencing around
-the site and at all drain inlets.
+**الخطوة 2: الحماية.** أحضِر الأدوات والمعدات الصغيرة إلى الموقع. ركّب سياج حماية للبناء مع أعمدة خشبية حول جذوع الأشجار
+والمباني وغيرها مما يحتاج إلى حماية. وركّب سياجًا لمنع انجراف الطمي والتربة حول الموقع وعند كل فتحات تصريف المياه.
 
-**Step 3: Removal.** Remove unwanted vegetation (including roots), tree stumps, trash and masonry materials — some
-vegetation removal may require herbicide treatment to control effectively in a timely manner. Prune existing trees to
-remove limbs from the trunk to at least 6' high. Haul debris and vegetation off site to the proper dumping location;
-stockpile masonry materials on site to use as gabion basket fill.
+**الخطوة 3: الإزالة.** أزِل النباتات غير المرغوب فيها (مع جذورها)، وجذوع الأشجار المقطوعة، والنفايات، ومواد البناء من
+حجارة وطوب — وقد تحتاج إزالة بعض النباتات إلى معالجة بمبيد أعشاب للسيطرة عليها بفعالية وفي الوقت المناسب. قلِّم
+الأشجار الموجودة لإزالة الأغصان عن الجذع حتى ارتفاع 6 أقدام على الأقل. انقل المخلفات والنباتات خارج الموقع إلى مكان
+الرمي المناسب؛ واجمع الحجارة والطوب في كومة داخل الموقع لاستخدامها حشوًا لأقفاص الجابيون.
 
 {/* site-added: safety note (DESIGN.md §2, 2026-10-04) — street trees are the City's; facts checked 2026-10-04 on phila.gov. */}
 <Callout kind="site">
-  Street trees (the ones in the sidewalk) belong to the City: pruning or removing one needs a permit from Philadelphia
-  Parks & Recreation, which prunes and removes hazardous street trees for free (ask through 311). See the City's
-  [street tree questions ↗](https://www.phila.gov/departments/philadelphia-parks-recreation/street-tree-frequently-asked-questions/).
+  أشجار الشوارع (المزروعة في الرصيف) ملك للمدينة: تقليم أي منها أو إزالتها يحتاج إلى تصريح من Philadelphia Parks &
+  Recreation (إدارة الحدائق والترفيه)، وهي تقلّم أشجار الشوارع الخطرة وتزيلها مجانًا (اطلب ذلك عن طريق الرقم 311). اطّلع على
+  [أسئلة المدينة عن أشجار الشوارع ↗](https://www.phila.gov/departments/philadelphia-parks-recreation/street-tree-frequently-asked-questions/) (بالإنجليزية).
 </Callout>
 
-**Step 4: Site leveling.** Begin grade raking and leveling the site. Make sure any Pennsylvania One Call markings are
-still intact and visible — soil grade should be relatively level with the sidewalk grade.
+**الخطوة 4: تسوية الموقع.** ابدأ بتمشيط التربة بالمدمّة (المجرفة المسننة) وتسوية الموقع. تأكد أن علامات Pennsylvania One
+Call ما زالت سليمة وظاهرة — يجب أن يكون مستوى التربة قريبًا من مستوى الرصيف.
 
-### Equipment & tools
+### المعدات والأدوات
 
 <Checklist
   id="create.phase2-tools"
   items={[
-    'Shovels', 'Wheelbarrows', 'Pick axe', 'Grading rakes', 'Sledgehammer',
-    'Hand pruners + loppers', 'Pruning saws', 'Spray paint', 'Construction fencing',
-    'Wood posts', 'Broom', 'Chainsaw', 'Trash bags',
+    { value: 'Shovels', label: 'مجارف' }, { value: 'Wheelbarrows', label: 'عربات يد' }, { value: 'Pick axe', label: 'معول' },
+    { value: 'Grading rakes', label: 'أمشاط تسوية' }, { value: 'Sledgehammer', label: 'مطرقة ثقيلة' },
+    { value: 'Hand pruners + loppers', label: 'مقصات تقليم يدوية + مقصات أغصان طويلة' }, { value: 'Pruning saws', label: 'مناشير تقليم' },
+    { value: 'Spray paint', label: 'طلاء بخاخ' }, { value: 'Construction fencing', label: 'سياج بناء' },
+    { value: 'Wood posts', label: 'أعمدة خشبية' }, { value: 'Broom', label: 'مكنسة' }, { value: 'Chainsaw', label: 'منشار سلسلة' },
+    { value: 'Trash bags', label: 'أكياس نفايات' },
   ]}
 />
 <Checklist
   id="create.phase2-tools-optional"
-  label="Optional — for sites with large amounts of uneven surfaces, concrete, or tree stumps"
+  label="اختياري — للمواقع التي فيها مساحات كبيرة غير مستوية، أو خرسانة، أو جذوع أشجار مقطوعة"
   items={[
-    { value: 'excavator', label: 'Excavator', hint: 'hired contractor recommended' },
-    { value: 'stump-grinder', label: 'Stump grinder', hint: 'hired contractor recommended' },
-    'Jack hammer', 'Rototiller', 'Herbicide spray',
+    { value: 'excavator', label: 'حفّارة', hint: 'يُنصح باستئجار مقاول' },
+    { value: 'stump-grinder', label: 'آلة طحن جذوع الأشجار', hint: 'يُنصح باستئجار مقاول' },
+    { value: 'Jack hammer', label: 'مطرقة هوائية (كسّارة)' }, { value: 'Rototiller', label: 'محراث دوّار' },
+    { value: 'Herbicide spray', label: 'رشاش مبيد أعشاب' },
   ]}
 />
 
 <Figure
   src="img/create/phase2-reference-photos.webp"
-  alt="Reference photos for preparing the lot: an excavator clearing a site, a utility locate flag and tracer wire on a lawn, volunteers removing masonry rubble, erosion-control sediment mesh along a curb, and a volunteer grade-raking soil"
+  alt="صور مرجعية لتجهيز قطعة الأرض: حفّارة تنظّف موقعًا، وعلَم تحديد مرافق وسلك تتبّع على العشب، ومتطوعون يزيلون ركام الحجارة والطوب، وشبكة لمنع انجراف الرواسب على طول حافة الرصيف، ومتطوع يسوّي التربة بالمشط"
 />
 
-### Useful links
+### روابط مفيدة (بالإنجليزية)
 
-- **Tool rental** — may be worth hiring a contractor for power tools, for efficiency and safety.
-  [West Philadelphia Tool Library ↗](https://westphillytools.org) (hand tools only; 1314 S 47th St) ·
-  [OK Rental ↗](https://okrentalsaleservice.com) *(link currently dead)* (power tools, including chainsaws; 640 Main St, Darby) ·
-  [Diamond Tool ↗](https://diamondtool.net/Rentals) *(could not verify automatically)* (2800 Grays Ferry Ave)
-- **Waste & recycling** — [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/) (3850 W Ford Rd)
-- **Tree pruning video** — [youtube.com/watch?v=pY5A-5gUqwo ↗](https://youtube.com/watch?v=pY5A-5gUqwo)
-- **Weed ID** — [Philadelphia Orchard Project weed guide ↗](https://www.phillyorchards.org/resources/)
-- **Herbicides** (use sparingly, always follow label instructions) — Picloram for stump application on woody plants;
-  Glyphosate for foliar application on herbaceous and woody plants; Clopyralid for mugwort and Canadian thistle.
-  Invasive weeds that often need herbicide control: mugwort, Canadian thistle, Japanese knotweed and phragmites
-  (herbaceous); Broussonetia, Ailanthus, Paulownia and Japanese honeysuckle (woody — cut and treat the stump only if
-  too large to remove by the roots).
+- **تأجير الأدوات** — قد يكون من الأفضل استئجار مقاول للأدوات الكهربائية، من أجل الكفاءة والسلامة.
+  [West Philadelphia Tool Library ↗](https://westphillytools.org) (أدوات يدوية فقط؛ 1314 S 47th St) ·
+  [OK Rental ↗](https://okrentalsaleservice.com) *(الرابط لا يعمل حاليًا)* (أدوات كهربائية، منها مناشير السلسلة؛ 640 Main St, Darby) ·
+  [Diamond Tool ↗](https://diamondtool.net/Rentals) *(لم نتمكن من التحقق منه آليًّا)* (2800 Grays Ferry Ave)
+- **النفايات وإعادة التدوير** — [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/) (3850 W Ford Rd)
+- **فيديو عن تقليم الأشجار** — [youtube.com/watch?v=pY5A-5gUqwo ↗](https://youtube.com/watch?v=pY5A-5gUqwo)
+- **التعرف على الأعشاب الضارة** — [دليل الأعشاب الضارة من Philadelphia Orchard Project ↗](https://www.phillyorchards.org/resources/)
+- **مبيدات الأعشاب** (استخدمها بقلّة، واتبع دائمًا تعليمات الملصق) — البيكلورام (Picloram) لدهن جذوع النباتات الخشبية المقطوعة؛
+  والغليفوسات (Glyphosate) للرش على أوراق النباتات العشبية والخشبية؛ والكلوبيراليد (Clopyralid) للشيح الشائع (mugwort) والشوك
+  الكندي (Canadian thistle). أعشاب غازية تحتاج غالبًا إلى مبيد للسيطرة عليها: الشيح الشائع (mugwort)، والشوك الكندي (Canadian
+  thistle)، والعُقدية اليابانية (Japanese knotweed)، والقصب (phragmites) (نباتات عشبية)؛ والتوت الورقي (Broussonetia)، وشجرة
+  السماء (Ailanthus)، والبولونيا (Paulownia)، وزهر العسل الياباني (Japanese honeysuckle) (نباتات خشبية — اقطعها وعالج الجذع فقط
+  إن كانت أكبر من أن تُقتلع من جذورها).
 
 {/* site-added: safety note (DESIGN.md §2, 2026-10-04) — herbicide labels, restricted-use picloram, 20% vinegar; facts checked 2026-10-04 on epa.gov and npic.orst.edu. */}
 <Callout kind="site">
-  A herbicide's label is the law: follow it, including where you may use the product and the protective gear it
-  lists ([EPA ↗](https://www.epa.gov/pesticide-labels/introduction-pesticide-labels)). Many picloram products are
-  restricted-use and may only be bought or applied by a certified applicator
-  ([EPA's list ↗](https://www.epa.gov/pesticide-worker-safety/restricted-use-products-rup-report)). Vinegar sold for
-  weeds (20% or more) can permanently damage eyes: wear eye protection and gloves
-  ([NPIC ↗](https://npic.orst.edu/faq/vinegar.html)).
+  ملصق مبيد الأعشاب هو القانون: اتبعه، بما في ذلك الأماكن التي يُسمح فيها باستخدام المنتج ومعدات الحماية التي يذكرها
+  ([EPA ↗](https://www.epa.gov/pesticide-labels/introduction-pesticide-labels)، بالإنجليزية). كثير من منتجات البيكلورام (picloram)
+  مقيّدة الاستخدام، ولا يجوز شراؤها أو استخدامها إلا لمستخدم حاصل على شهادة معتمدة
+  ([قائمة EPA ↗](https://www.epa.gov/pesticide-worker-safety/restricted-use-products-rup-report)، بالإنجليزية). والخل الذي يُباع
+  لمكافحة الأعشاب (بتركيز 20% أو أكثر) يمكن أن يتلف العينين تلفًا دائمًا: البس واقيًا للعينين وقفازات
+  ([NPIC ↗](https://npic.orst.edu/faq/vinegar.html)، بالإنجليزية).
 </Callout>
 
-### Preparation for next steps
+### الاستعداد للخطوات التالية
 
-Check your project calendar and revise as needed. Purchase and deliver any materials or equipment with lead times,
-and make sure the site is prepared for Phase 3.
+راجع تقويم مشروعك وعدّله حسب الحاجة. اشترِ ووصّل أي مواد أو معدات تحتاج إلى وقت لتصل، وتأكد أن الموقع جاهز للمرحلة 3.
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={5} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={6} label="Reference photos & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={6} label="صور مرجعية وروابط (PDF)" />
 
-## Phase 3: Layout & gravel base {/* #phase-3-layout-gravel-base */}
+## المرحلة 3: التخطيط على الأرض وطبقة الحصى الأساسية {/* #phase-3-layout-gravel-base */}
 
-### Steps
+### الخطوات
 
-**Step 1: Materials.** Bring equipment and tools to the site; prepare for deliveries. Locate a stockpile area for
-gravel and cover it with a tarp if possible. Mark the general areas to receive gravel in spray paint — if there's not
-enough room, coordinate the delivery with your city to have it placed in the street.
+**الخطوة 1: المواد.** أحضِر المعدات والأدوات إلى الموقع، واستعد لاستلام الشحنات. حدِّد مكانًا لكومة الحصى وغطِّه بقماش
+مشمّع إن أمكن. حدِّد بالطلاء البخاخ المناطق العامة التي سيوضع فيها الحصى — وإن لم يكن هناك مكان كافٍ، فنسّق مع المدينة
+ليُوضع ما يصل إليكم في الشارع.
 
-<Callout kind="note" title="Blocking the street for a delivery?">
-  Apply for a temporary no-parking permit so the delivery truck has somewhere to unload.
-  [Apply on phila.gov ↗](https://www.phila.gov/services/cars-parking-transportation/apply-for-a-parking-permit/apply-for-a-temporary-no-parking-permit/)
+<Callout kind="note" title="هل ستغلق الشارع لاستلام شحنة؟">
+  قدِّم طلبًا للحصول على تصريح مؤقت لمنع الوقوف حتى تجد شاحنة التوصيل مكانًا لتفريغ حمولتها.
+  [قدِّم الطلب على phila.gov ↗](https://www.phila.gov/services/cars-parking-transportation/apply-for-a-parking-permit/apply-for-a-temporary-no-parking-permit/) (بالإنجليزية)
 </Callout>
-<Field id="create.delivery-address" label="Address for the no-parking permit" auto="lot.address" />
+<Field id="create.delivery-address" label="العنوان لتصريح منع الوقوف" auto="lot.address" />
 
-**Step 2: Layout planting beds & park element locations.** Begin at the starting point you marked in the Assess
-workbook. Refer to your plan for the locations and lengths of planting-bed and park-element edges. Use stakes and
-string line to mark the locations of edging and park elements you'll add in later phases.
+**الخطوة 2: حدِّد على الأرض أماكن أحواض الزراعة وعناصر الحديقة.** ابدأ من نقطة البداية التي حدّدتها في كراسة عمل «التقييم».
+ارجع إلى مخططك لمعرفة أماكن حواف أحواض الزراعة وعناصر الحديقة وأطوالها. استخدم الأوتاد والخيط لتحديد أماكن الحواف وعناصر
+الحديقة التي ستضيفها في المراحل اللاحقة.
 
-**Step 3: Install sub base.** Prepare ground surfaces for gabion baskets per the assembly instructions. Dig out
-entrances to allow for the change in level from the new park to the sidewalk — minimum 4" deep at the sidewalk edge,
-grading as needed (use excess soil to level pathways or add to planting areas). Spread gravel 2" deep in all areas
-except plant beds, about 6" wider than your string lines so the edging in the next phase can sit on top of the
-gravel. Run a vibrating plate over the gravel at least twice.
+**الخطوة 3: ركِّب الطبقة الأساسية.** جهّز سطح الأرض لأقفاص الجابيون حسب تعليمات التركيب. احفر عند المداخل لتسمح بالفرق في
+المستوى بين الحديقة الجديدة والرصيف — بعمق 4 بوصات على الأقل عند حافة الرصيف، مع التسوية حسب الحاجة (استخدم التربة الزائدة
+لتسوية الممرات أو أضفها إلى مناطق الزراعة). افرش الحصى بعمق بوصتين في كل المناطق ما عدا أحواض النباتات، وأعرض من خيوطك بنحو
+6 بوصات حتى تجلس الحواف في المرحلة التالية فوق الحصى. مرِّر آلة الدكّ الاهتزازية على الحصى مرتين على الأقل.
 
-**Step 4: Entrances & cleanup.** Clean up overspill of gravel and clean up public areas.
+**الخطوة 4: المداخل والتنظيف.** نظّف الحصى المتناثر ونظّف الأماكن العامة.
 
-### Equipment, tools & materials
+### المعدات والأدوات والمواد
 
 <Checklist
   id="create.phase3-tools"
   items={[
-    'Square', 'Measuring tape', 'Shovels', 'Wheelbarrows', 'Pick axe', 'Grading rakes',
-    '5 lb hammer', 'Spray paint', 'Wood posts and string', 'Vibrating plate compactor', 'Broom',
+    { value: 'Square', label: 'زاوية قائمة (مربّع نجّار)' }, { value: 'Measuring tape', label: 'شريط قياس' },
+    { value: 'Shovels', label: 'مجارف' }, { value: 'Wheelbarrows', label: 'عربات يد' }, { value: 'Pick axe', label: 'معول' },
+    { value: 'Grading rakes', label: 'أمشاط تسوية' }, { value: '5 lb hammer', label: 'مطرقة وزنها 5 أرطال' },
+    { value: 'Spray paint', label: 'طلاء بخاخ' }, { value: 'Wood posts and string', label: 'أوتاد خشبية وخيط' },
+    { value: 'Vibrating plate compactor', label: 'آلة دكّ اهتزازية' }, { value: 'Broom', label: 'مكنسة' },
   ]}
 />
-<p class="muted">Materials: gravel, 3/4" roadbase.</p>
+<p class="muted">المواد: حصى، حصى طرق (roadbase) مقاس 3/4 بوصة.</p>
 
 <Figure
   src="img/create/phase3-reference-photos.webp"
-  alt="Reference photos for layout and gravel base: measuring the site, digging, prepping the sub base, a gravel delivery truck, laying out the site with stakes and string, a gravel stockpile, wheelbarrowing and spreading gravel"
+  alt="صور مرجعية للتخطيط على الأرض وطبقة الحصى: قياس الموقع، والحفر، وتجهيز الطبقة الأساسية، وشاحنة توصيل حصى، وتحديد الموقع بالأوتاد والخيط، وكومة حصى، ونقل الحصى بعربة يد وفرشه"
 />
 
-### Useful links
+### روابط مفيدة (بالإنجليزية)
 
-- **How-to** — [Lay out planting beds ↗](https://lowes.com/n/how-to/create-an-english-style-garden) (watch 1:50–2:40) ·
-  [Install gravel sub-base ↗](https://youtube.com/watch?v=tfDEOIAIUwQ)
-- **Tool rental** — [West Philadelphia Tool Library ↗](https://westphillytools.org) ·
-  [OK Rental ↗](https://okrentalsaleservice.com) *(link currently dead)* · [Diamond Tool ↗](https://diamondtool.net/Rentals) *(could not verify automatically)*
+- **طريقة العمل** — [حدِّد أحواض الزراعة على الأرض ↗](https://lowes.com/n/how-to/create-an-english-style-garden) (شاهد من الدقيقة 1:50 إلى 2:40) ·
+  [ركِّب طبقة الحصى الأساسية ↗](https://youtube.com/watch?v=tfDEOIAIUwQ)
+- **تأجير الأدوات** — [West Philadelphia Tool Library ↗](https://westphillytools.org) ·
+  [OK Rental ↗](https://okrentalsaleservice.com) *(الرابط لا يعمل حاليًا)* · [Diamond Tool ↗](https://diamondtool.net/Rentals) *(لم نتمكن من التحقق منه آليًّا)*
 
-### Preparation for next steps
+### الاستعداد للخطوات التالية
 
-Check your project calendar and revise as needed. Purchase and deliver materials with lead times for the next
-phases. Make sure the site is prepared for Phase 4.
+راجع تقويم مشروعك وعدّله حسب الحاجة. اشترِ ووصّل المواد التي تحتاج إلى وقت لتصل في المراحل التالية. تأكد أن الموقع جاهز
+للمرحلة 4.
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={7} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={8} label="Reference photos & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={8} label="صور مرجعية وروابط (PDF)" />
 
-## Phase 4: Install the edge {/* #phase-4-install-the-edge */}
+## المرحلة 4: ركِّب الحافة {/* #phase-4-install-the-edge */}
 
-### Steps
+### الخطوات
 
-**Step 1: Materials.** Bring your edge materials (see the cost estimate and assembly instructions). Remove the
-erosion-protection fence; tree protection should stay unless its location interferes with edge installation.
+**الخطوة 1: المواد.** أحضِر مواد الحافة (انظر تقدير التكلفة وتعليمات التركيب). أزِل سياج منع الانجراف؛ أما سياج حماية
+الأشجار فيبقى إلا إذا كان مكانه يعيق تركيب الحافة.
 
-**Step 2: Assemble.** Assemble gabion baskets (refer to your Gabion Wall assembly instructions).
+**الخطوة 2: التجميع.** جمِّع أقفاص الجابيون (ارجع إلى تعليمات تركيب جدار الجابيون).
 
-**Step 3: Installation.** Set up string lines so gabion baskets sit in a straight line along the park edge. Lay out
-the baskets according to your plan and fill the bottoms with 2–3" of gravel. Make small adjustments so the baskets
-are level and straight relative to each other — when used alone as tables or benches, use a leveling tool on top.
-Add wood edges where needed (see the Wood Edging assembly instructions).
+**الخطوة 3: التركيب.** شُدّ خيوطًا حتى تصطف أقفاص الجابيون في خط مستقيم على طول حافة الحديقة. ضع الأقفاص حسب مخططك واملأ
+قيعانها بطبقة من الحصى سُمكها 2–3 بوصات. اضبطها قليلًا حتى تكون الأقفاص مستوية ومستقيمة بالنسبة إلى بعضها — وحين تُستخدم
+وحدها طاولاتٍ أو مقاعد، استخدم ميزان تسوية فوقها. أضِف الحواف الخشبية حيث تلزم (انظر تعليمات تركيب الحواف الخشبية).
 
-### Equipment & materials
+### المعدات والمواد
 
 <Checklist
   id="create.phase4-tools"
   items={[
-    'Measuring tape', 'Shovels', 'Wheelbarrows', 'Garden hoes', 'Grading rakes',
-    'Hand tamper', 'Wire cutters', 'Sledge hammer', 'Level', 'Broom',
+    { value: 'Measuring tape', label: 'شريط قياس' }, { value: 'Shovels', label: 'مجارف' }, { value: 'Wheelbarrows', label: 'عربات يد' },
+    { value: 'Garden hoes', label: 'مجارف عزق' }, { value: 'Grading rakes', label: 'أمشاط تسوية' },
+    { value: 'Hand tamper', label: 'مِدكّ يدوي' }, { value: 'Wire cutters', label: 'قطّاعة أسلاك' },
+    { value: 'Sledge hammer', label: 'مطرقة ثقيلة' }, { value: 'Level', label: 'ميزان تسوية' }, { value: 'Broom', label: 'مكنسة' },
   ]}
 />
-<p class="muted">Materials: gabion baskets; lumber and hardware for wood edge; large masonry material for gabion baskets, 3" or larger.</p>
+<p class="muted">المواد: أقفاص جابيون؛ خشب وعُدد للحافة الخشبية؛ قطع كبيرة من الحجارة والطوب لأقفاص الجابيون، بحجم 3 بوصات أو أكبر.</p>
 
 <Figure
   src="img/create/phase4-reference-photos.webp"
-  alt="Reference photos for installing the edge: two filled gabion baskets, and a volunteer setting a wood edge board against a gravel bed"
+  alt="صور مرجعية لتركيب الحافة: قفصا جابيون مملوءان، ومتطوع يثبّت لوحًا خشبيًّا للحافة عند حوض حصى"
 />
 
-### Useful links
+### روابط مفيدة (بالإنجليزية)
 
-- **Materials** — [Castor Materials ↗](https://castormaterials.com) (crushed stone, delivery; 3301 S 61st St) ·
-  [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) (crushed stone, mulch, tools; 4260 Macalester St) ·
-  [Underdog Supply ↗](https://www.underdogsupply.com/) (bulk delivery; Conshohocken) ·
-  Galantino Supply Company (rental equipment and bulk materials; 725 Old Marple Rd, Springfield — (610) 544-2586)
-- **How-to** — [Build a gabion wall ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
+- **المواد** — [Castor Materials ↗](https://castormaterials.com) (حجارة مكسّرة، مع التوصيل؛ 3301 S 61st St) ·
+  [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) (حجارة مكسّرة، وغطاء للتربة، وأدوات؛ 4260 Macalester St) ·
+  [Underdog Supply ↗](https://www.underdogsupply.com/) (توصيل بكميات كبيرة؛ Conshohocken) ·
+  Galantino Supply Company (تأجير معدات ومواد بكميات كبيرة؛ 725 Old Marple Rd, Springfield — (610) 544-2586)
+- **طريقة العمل** — [ابنِ جدار جابيون ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
 
-### Preparation for next steps
+### الاستعداد للخطوات التالية
 
-Check your project calendar and revise as needed. Purchase and deliver materials with lead times. Make sure the site
-is prepared for Phase 5.
+راجع تقويم مشروعك وعدّله حسب الحاجة. اشترِ ووصّل المواد التي تحتاج إلى وقت لتصل. تأكد أن الموقع جاهز للمرحلة 5.
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={9} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={10} label="Reference photos & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={10} label="صور مرجعية وروابط (PDF)" />
 
-## Phase 5: Spread topsoil {/* #phase-5-spread-topsoil */}
+## المرحلة 5: افرش التربة السطحية {/* #phase-5-spread-topsoil */}
 
-### Steps
+### الخطوات
 
-**Step 1: Materials.** Remove the tree protection fence. Locate a stockpile area for topsoil on the sidewalk or
-street — if so, apply for a temporary no-parking permit (see Phase 3).
+**الخطوة 1: المواد.** أزِل سياج حماية الأشجار. حدِّد مكانًا لكومة التربة السطحية على الرصيف أو في الشارع — وفي هذه الحالة،
+قدِّم طلبًا للحصول على تصريح مؤقت لمنع الوقوف (انظر المرحلة 3).
 
-**Step 2: Soil installation.** Prepare planting beds to receive topsoil by grading the existing soil. Spread topsoil
-approximately 4–6" deep and grade it for smoothness.
+**الخطوة 2: وضع التربة.** جهّز أحواض الزراعة لاستقبال التربة السطحية بتسوية التربة الموجودة. افرش التربة السطحية بعمق 4–6
+بوصات تقريبًا وسوِّها لتصبح ملساء.
 
-**Step 3: Clean up.** Clean up overspill of topsoil and clean up public areas.
+**الخطوة 3: التنظيف.** نظّف التربة المتناثرة ونظّف الأماكن العامة.
 
-### Equipment & materials
+### المعدات والمواد
 
 <Checklist
   id="create.phase5-tools"
-  items={['Measuring tape', 'Shovels', 'Wheelbarrows', 'Grading rakes', 'Garden hoes', 'Broom']}
+  items={[{ value: 'Measuring tape', label: 'شريط قياس' }, { value: 'Shovels', label: 'مجارف' }, { value: 'Wheelbarrows', label: 'عربات يد' }, { value: 'Grading rakes', label: 'أمشاط تسوية' }, { value: 'Garden hoes', label: 'مجارف عزق' }, { value: 'Broom', label: 'مكنسة' }]}
 />
-<p class="muted">Materials: topsoil.</p>
+<p class="muted">المواد: تربة سطحية.</p>
 
 <Figure
   src="img/create/phase5-reference-photos.webp"
-  alt="Reference photos for spreading topsoil: a dump truck delivering topsoil, a volunteer grading soil by hand, two volunteers moving topsoil by wheelbarrow, and a volunteer placing topsoil in a bed"
+  alt="صور مرجعية لفرش التربة السطحية: شاحنة قلّابة توصل التربة السطحية، ومتطوع يسوّي التربة بيده، ومتطوعان ينقلان التربة بعربة يد، ومتطوع يضع التربة في حوض"
 />
 
-### Useful links
+### روابط مفيدة (بالإنجليزية)
 
-- **Ordering** — [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
-- **How-to** — [Prep topsoil ↗](https://youtube.com/watch?v=GcOJ4fDJmpM) · [Healthy topsoil for healthy plants ↗](https://youtube.com/watch?v=7-Tyz7fGeZo)
+- **الطلب** — [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
+- **طريقة العمل** — [جهِّز التربة السطحية ↗](https://youtube.com/watch?v=GcOJ4fDJmpM) · [تربة سطحية صحية لنباتات صحية ↗](https://youtube.com/watch?v=7-Tyz7fGeZo)
 
-### Preparation for next steps
+### الاستعداد للخطوات التالية
 
-Check your project calendar and revise as needed. Purchase and deliver materials with lead times. Make sure the site
-is prepared for Phase 6.
+راجع تقويم مشروعك وعدّله حسب الحاجة. اشترِ ووصّل المواد التي تحتاج إلى وقت لتصل. تأكد أن الموقع جاهز للمرحلة 6.
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={11} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={12} label="Reference photos & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={12} label="صور مرجعية وروابط (PDF)" />
 
-## Phase 6: Plant {/* #phase-6-plant */}
+## المرحلة 6: الزراعة {/* #phase-6-plant */}
 
-### Steps
+### الخطوات
 
-**Step 1: Plants.** Remove any weeds that have emerged. Make sure plant deliveries are scheduled and you've located a
-plant delivery staging area. Lay out trees and shrubs in their desired locations, then clean up overspill of soil and
-public areas.
+**الخطوة 1: النباتات.** أزِل أي أعشاب ضارة نبتت. تأكد أن مواعيد توصيل النباتات محددة، وأنك حددت مكانًا لاستلام النباتات
+وتجهيزها. ضع الأشجار والشجيرات في أماكنها المطلوبة، ثم نظّف التربة المتناثرة والأماكن العامة.
 
-**Step 2: Installation.** Install large trees first (see the planting detail below). Install shrubs, fine-grade the
-soil, plant perennials, install 4" of mulch, then water all plants thoroughly — repeat twice a week until the plants
-go dormant for winter.
+**الخطوة 2: الزراعة.** ازرع الأشجار الكبيرة أولًا (انظر رسم تفاصيل الزراعة في الأسفل). ازرع الشجيرات، ثم سوِّ التربة
+تسوية دقيقة، وازرع النباتات المعمّرة، وافرش طبقة من غطاء التربة (المالتش) سُمكها 4 بوصات، ثم اسقِ كل النباتات جيدًا —
+وكرِّر السقي مرتين في الأسبوع حتى تدخل النباتات في سباتها الشتوي.
 
 <Figure
   src="img/create/phase6-plant-illustration.webp"
-  alt="Axonometric illustration of a finished front-yard park, labelled PLANT, with trees, raised planting beds and a paved gathering area between two rowhouses"
+  alt="رسم مجسّم لحديقة مكتملة في فناء أمامي، مكتوب عليه PLANT (ازرع)، فيها أشجار وأحواض زراعة مرتفعة ومنطقة تجمّع مرصوفة بين بيتين متلاصقين"
 />
 <Figure
   src="img/create/phase6-planting-detail.webp"
-  alt="Two planting detail diagrams: a shrub/perennial container planting detail showing mulch depth and backfill, and a tree planting detail showing root-ball placement, staking, mulch and burlap removal"
+  alt="رسمان لتفاصيل الزراعة: تفاصيل زراعة شجيرة أو نبات معمّر من أصيص، تُظهر عمق غطاء التربة والتربة المُعادة حول الجذور، وتفاصيل زراعة شجرة تُظهر مكان كتلة الجذور، والدعامات، وغطاء التربة، وإزالة قماش الخيش"
 />
 
-### Equipment & materials
+### المعدات والمواد
 
 <Checklist
   id="create.phase6-tools"
-  items={['Measuring tape', 'Shovels', 'Wheelbarrows', 'Pick axe', 'Landscape rakes', 'Spray paint', 'Tree stakes and rope', 'Broom']}
+  items={[{ value: 'Measuring tape', label: 'شريط قياس' }, { value: 'Shovels', label: 'مجارف' }, { value: 'Wheelbarrows', label: 'عربات يد' }, { value: 'Pick axe', label: 'معول' }, { value: 'Landscape rakes', label: 'أمشاط تنسيق الحدائق' }, { value: 'Spray paint', label: 'طلاء بخاخ' }, { value: 'Tree stakes and rope', label: 'دعامات للأشجار وحبل' }, { value: 'Broom', label: 'مكنسة' }]}
 />
-<p class="muted">Materials: plants — be sure to reference your plant list.</p>
+<p class="muted">المواد: النباتات — احرص على الرجوع إلى قائمة نباتاتك.</p>
 
-### Useful links
+### روابط مفيدة (بالإنجليزية)
 
-- **General plant info** — [PHS Gold Medal Plants ↗](https://phsonline.org/for-gardeners/gold-medal-plants) ·
+- **معلومات عامة عن النباتات** — [PHS Gold Medal Plants ↗](https://phsonline.org/for-gardeners/gold-medal-plants) ·
   [Gardens Alive ↗](https://www.gardensalive.com/) · [North Creek Nurseries ↗](https://www.northcreeknurseries.com/) ·
-  [Missouri Botanical Garden ↗](https://www.missouribotanicalgarden.org/) · [Longwood Gardens plant explorer ↗](https://plantexplorer.longwoodgardens.org/ecmweb/ECM_Home.html) *(link currently dead)* ·
-  [Arbor Day Foundation ↗](https://www.arborday.org/) · [Penn State Extension vegetable gardening ↗](https://extension.psu.edu/programs/master-gardener)
-- **PiaT partner nursery** — LandHealth Institute, 4862 Parkside Ave, Philadelphia · (267) 571-5750 ·
+  [Missouri Botanical Garden ↗](https://www.missouribotanicalgarden.org/) · [مستكشف النباتات في Longwood Gardens ↗](https://plantexplorer.longwoodgardens.org/ecmweb/ECM_Home.html) *(الرابط لا يعمل حاليًا)* ·
+  [Arbor Day Foundation ↗](https://www.arborday.org/) · [زراعة الخضروات من Penn State Extension ↗](https://extension.psu.edu/programs/master-gardener)
+- **المشتل الشريك لـ PiaT** — LandHealth Institute، 4862 Parkside Ave, Philadelphia · (267) 571-5750 ·
   [landhealthinstitute.org/nursery ↗](https://www.landhealthinstitute.org/nursery)
-- **Other regional nurseries** — [Good Host Plants ↗](https://www.goodhostplants.com/) (local pollinator specialist) ·
+- **مشاتل أخرى في المنطقة** — [Good Host Plants ↗](https://www.goodhostplants.com/) (متخصص محلي في نباتات المُلقِّحات) ·
   [Pleasant Run Nursery ↗](https://www.pleasantrunnursery.com/) · [Pinelands Nursery ↗](https://www.pinelandsnursery.com/) ·
   [Archewild ↗](https://archewild.com/)
-- **Fruit trees** — [Philadelphia Orchard Project ↗](https://www.phillyorchards.org/) ·
+- **أشجار الفاكهة** — [Philadelphia Orchard Project ↗](https://www.phillyorchards.org/) ·
   [Burpee ↗](https://www.burpee.com/fruit/fruit-trees/) · [Stark Bros ↗](https://www.starkbros.com/products/fruit-trees)
-- **Gardening workshops & lot help** — [Pennsylvania Horticultural Society ↗](https://phsonline.org/) ·
-  [Grounded in Philly ↗](https://groundedinphilly.org/) (legal help, insurance, lot data)
-- **How-to** — [Container & bulb planting tips ↗](https://www.gardeners.com/how-to/growing-annual-flowers/5070.html) ·
-  [Containerized tree planting ↗](https://www.arborday.org/trees/planting/containerized.cfm) ·
-  [How to plant a shrub ↗](https://youtube.com/watch?v=Tim4LEo6l10)
+- **ورش الزراعة والمساعدة في قطع الأرض** — [Pennsylvania Horticultural Society ↗](https://phsonline.org/) ·
+  [Grounded in Philly ↗](https://groundedinphilly.org/) (مساعدة قانونية، وتأمين، وبيانات عن قطع الأرض)
+- **طريقة العمل** — [نصائح لزراعة الأصص والأبصال ↗](https://www.gardeners.com/how-to/growing-annual-flowers/5070.html) ·
+  [زراعة شجرة من أصيص ↗](https://www.arborday.org/trees/planting/containerized.cfm) ·
+  [كيف تزرع شجيرة ↗](https://youtube.com/watch?v=Tim4LEo6l10)
 
-### Preparation for next steps
+### الاستعداد للخطوات التالية
 
-Check your project calendar and make sure you have a schedule for a Park Ambassador — see the Sustain step for
-details. Mulch suppliers: [Mid Atlantic Pine Straw ↗](https://www.midatlanticpinestraw.com/) ·
+راجع تقويم مشروعك وتأكد أن لديك جدولًا لسفير الحديقة (Park Ambassador) — انظر خطوة «الرعاية» للتفاصيل. موردو غطاء التربة
+(المالتش): [Mid Atlantic Pine Straw ↗](https://www.midatlanticpinestraw.com/) ·
 [Underdog Landscape Supply ↗](https://underdogsupply.com) · [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/get-organic-materials/)
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={13} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={14} label="Useful links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={14} label="روابط مفيدة (PDF)" />
 
-## Phase 7: Install the gravel surface {/* #phase-7-install-the-gravel-surface */}
+## المرحلة 7: ركِّب سطح الحصى {/* #phase-7-install-the-gravel-surface */}
 
-### Steps
+### الخطوات
 
-**Step 1: Materials.** Prepare for deliveries if not already stockpiled. Locate a stockpile area for gravel on the
-sidewalk or street (temporary no-parking permit, if needed — see Phase 3).
+**الخطوة 1: المواد.** استعد لاستلام الشحنات إن لم تكن المواد مكوّمة في الموقع بعد. حدِّد مكانًا لكومة الحصى على الرصيف أو
+في الشارع (مع تصريح مؤقت لمنع الوقوف إن لزم — انظر المرحلة 3).
 
-**Step 2: Installation.** Install the gravel surface using a wheelbarrow and landscape rake. Install gravel
-approximately 2" deep, spreading any excess evenly. Tamp down the aggregate with a vibratory plate to reduce
-settling, and move through all areas to make sure they're level and even.
+**الخطوة 2: التركيب.** افرش سطح الحصى باستخدام عربة يد ومشط تنسيق الحدائق. افرش الحصى بعمق بوصتين تقريبًا، ووزّع الزائد
+بالتساوي. ادكّ الحصى بآلة الدكّ الاهتزازية ليقل هبوطه لاحقًا، ومرّ على كل المناطق لتتأكد أنها مستوية ومتساوية.
 
-**Step 3: Clean up.** Clean up overspill of gravel and clean up public areas.
+**الخطوة 3: التنظيف.** نظّف الحصى المتناثر ونظّف الأماكن العامة.
 
-### Equipment & materials
+### المعدات والمواد
 
 <Checklist
   id="create.phase7-tools"
-  items={['Measuring tape', 'Shovels', 'Wheelbarrows', 'Landscape rakes', 'Hand tamper', 'Vibratory plate', 'Broom']}
+  items={[{ value: 'Measuring tape', label: 'شريط قياس' }, { value: 'Shovels', label: 'مجارف' }, { value: 'Wheelbarrows', label: 'عربات يد' }, { value: 'Landscape rakes', label: 'أمشاط تنسيق الحدائق' }, { value: 'Hand tamper', label: 'مِدكّ يدوي' }, { value: 'Vibratory plate', label: 'آلة دكّ اهتزازية' }, { value: 'Broom', label: 'مكنسة' }]}
 />
-<p class="muted">Materials: gravel, 3/8" or smaller (stone dust).</p>
+<p class="muted">المواد: حصى، مقاس 3/8 بوصة أو أصغر (غبار الحجارة).</p>
 
 <Figure
   src="img/create/phase7-reference-photos.webp"
-  alt="Reference photos for installing the gravel surface: a landscape grading rake, a hand tamper on packed gravel, and a volunteer running a gas-powered vibratory plate compactor"
+  alt="صور مرجعية لتركيب سطح الحصى: مشط تسوية لتنسيق الحدائق، ومِدكّ يدوي على حصى مضغوط، ومتطوع يشغّل آلة دكّ اهتزازية تعمل بالبنزين"
 />
 
-### Useful links
+### روابط مفيدة (بالإنجليزية)
 
-- **Materials** — [Castor Materials ↗](https://castormaterials.com) · [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) ·
+- **المواد** — [Castor Materials ↗](https://castormaterials.com) · [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) ·
   Galantino Supply Company ((610) 544-2586) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
-- **How-to** — [Install gravel ↗](https://youtube.com/watch?v=t0LWQ_U2z_g)
+- **طريقة العمل** — [ركِّب الحصى ↗](https://youtube.com/watch?v=t0LWQ_U2z_g)
 
-### Preparation for next steps
+### الاستعداد للخطوات التالية
 
-Check your project calendar and revise as needed. Purchase and deliver materials with lead times. Make sure the site
-is prepared for Phase 8.
+راجع تقويم مشروعك وعدّله حسب الحاجة. اشترِ ووصّل المواد التي تحتاج إلى وقت لتصل. تأكد أن الموقع جاهز للمرحلة 8.
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={15} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={16} label="Reference photos & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={16} label="صور مرجعية وروابط (PDF)" />
 
-## Phase 8: Install park elements {/* #phase-8-install-park-elements */}
+## المرحلة 8: ركِّب عناصر الحديقة {/* #phase-8-install-park-elements */}
 
-### Steps
+### الخطوات
 
-**Step 1: Measure.** Review your assembly manuals and measure and mark out where your park elements need to go.
+**الخطوة 1: القياس.** راجع كتيّبات التركيب، وقِس وحدِّد الأماكن التي يجب أن توضع فيها عناصر حديقتك.
 
-**Step 2: Materials.** Make sure you have all the materials outlined in your assembly manuals.
+**الخطوة 2: المواد.** تأكد أن لديك كل المواد المذكورة في كتيّبات التركيب.
 
-**Step 3: Assemble.** Assemble your park elements according to the assembly manuals.
+**الخطوة 3: التجميع.** جمِّع عناصر حديقتك حسب كتيّبات التركيب.
 
-**Step 4: Install.** Make sure you have proper room within your design to install the elements, then locate them in
-their final positions. You may be able to — or choose to — assemble elements ahead of time or off site.
+**الخطوة 4: التركيب.** تأكد أن في تصميمك مساحة كافية لتركيب العناصر، ثم ضعها في أماكنها النهائية. قد تستطيع — أو تختار —
+أن تجمّع العناصر مسبقًا أو خارج الموقع.
 
 <Callout kind="auto">
-  Every element with an assembly guide is linked from the Dream step's [Assemble](/steps/dream/#assemble) grid — the
-  same guides are listed there.
+  كل عنصر له دليل تركيب موجود رابطه في شبكة [التركيب](/steps/dream/#assemble) في خطوة «الحلم» — والأدلة نفسها مدرجة هناك.
 </Callout>
 
-### Useful links
+### روابط مفيدة (بالإنجليزية)
 
-- **How-to build a…** (use the assembly guides first; these videos are backup) — [Communal table ↗](https://youtube.com/watch?v=Px2JZs4Q2v4) ·
-  [Cold frame ↗](https://youtube.com/watch?v=b75RoDmE9qY) · [Raised garden beds ↗](https://youtube.com/watch?v=MBIYebUgVVI) ·
-  [Compost bins ↗](https://youtube.com/watch?v=gA6QNLaBEyc) · [Potting bench ↗](https://youtube.com/watch?v=E7HumfxE2f4) ·
-  [Outdoor garden shed ↗](https://youtube.com/watch?v=DuQ0N8z6OkI) · [Gabion wall ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
-- **Lumber & building materials** — Woodland Building Supply, 4701 Woodland Ave, Philadelphia — (215) 727-5333 ·
-  C & R Building Supply, 1601 S 49th St, Philadelphia · A&A Lumber (cypress), Avondale, PA · Delaware County Lumber, Boothwyn, PA
+- **كيف تبني…** (استخدم أدلة التركيب أولًا؛ هذه الفيديوهات احتياطية) — [طاولة مشتركة ↗](https://youtube.com/watch?v=Px2JZs4Q2v4) ·
+  [إطار بارد للشتلات ↗](https://youtube.com/watch?v=b75RoDmE9qY) · [أحواض زراعة مرتفعة ↗](https://youtube.com/watch?v=MBIYebUgVVI) ·
+  [حاويات سماد عضوي ↗](https://youtube.com/watch?v=gA6QNLaBEyc) · [طاولة لزراعة الأصص ↗](https://youtube.com/watch?v=E7HumfxE2f4) ·
+  [سقيفة حديقة خارجية ↗](https://youtube.com/watch?v=DuQ0N8z6OkI) · [جدار جابيون ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
+- **الخشب ومواد البناء** — Woodland Building Supply، 4701 Woodland Ave, Philadelphia — (215) 727-5333 ·
+  C & R Building Supply، 1601 S 49th St, Philadelphia · A&A Lumber (خشب السرو)، Avondale, PA · Delaware County Lumber، Boothwyn, PA
 
-### Preparation for next steps
+### الاستعداد للخطوات التالية
 
-Check your project calendar and revise as needed — your park is almost done!
+راجع تقويم مشروعك وعدّله حسب الحاجة — حديقتك أوشكت على الاكتمال!
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={17} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={18} label="Assembly instructions & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={18} label="تعليمات التركيب والروابط (PDF)" />
 
 {/* site-added: the workbook's own contents page lists a Summary, but this working draft doesn't include one — this wrap-up just recaps the 8 phases above as a final checklist. No new advice. */}
-## Summary {/* #summary */}
+## الخلاصة {/* #summary */}
 
 <Checklist
   id="create.summary-checklist"
   items={[
-    { value: 'phase1', label: 'Phase 1: Organize', hint: 'Team roles assigned, schedule set' },
-    { value: 'phase2', label: 'Phase 2: Prepare the lot', hint: 'Cleared, protected, leveled' },
-    { value: 'phase3', label: 'Phase 3: Layout & gravel base', hint: 'Beds and elements staked out, sub-base in' },
-    { value: 'phase4', label: 'Phase 4: Install the edge', hint: 'Gabion baskets and wood edging set' },
-    { value: 'phase5', label: 'Phase 5: Spread topsoil', hint: 'Planting beds graded and filled' },
-    { value: 'phase6', label: 'Phase 6: Plant', hint: 'Trees, shrubs and perennials in the ground' },
-    { value: 'phase7', label: 'Phase 7: Install the gravel surface', hint: 'Finish gravel tamped and level' },
-    { value: 'phase8', label: 'Phase 8: Install park elements', hint: 'Benches, tables and structures assembled and placed' },
+    { value: 'phase1', label: 'المرحلة 1: التنظيم', hint: 'وُزّعت أدوار الفريق، ووُضع الجدول' },
+    { value: 'phase2', label: 'المرحلة 2: تجهيز قطعة الأرض', hint: 'نُظّفت، وحُميت، وسُوّيت' },
+    { value: 'phase3', label: 'المرحلة 3: التخطيط على الأرض وطبقة الحصى الأساسية', hint: 'حُددت الأحواض والعناصر بالأوتاد، ووُضعت الطبقة الأساسية' },
+    { value: 'phase4', label: 'المرحلة 4: تركيب الحافة', hint: 'رُكّبت أقفاص الجابيون والحواف الخشبية' },
+    { value: 'phase5', label: 'المرحلة 5: فرش التربة السطحية', hint: 'سُوّيت أحواض الزراعة ومُلئت' },
+    { value: 'phase6', label: 'المرحلة 6: الزراعة', hint: 'زُرعت الأشجار والشجيرات والنباتات المعمّرة في الأرض' },
+    { value: 'phase7', label: 'المرحلة 7: تركيب سطح الحصى', hint: 'دُكّ الحصى النهائي وأصبح مستويًا' },
+    { value: 'phase8', label: 'المرحلة 8: تركيب عناصر الحديقة', hint: 'جُمّعت المقاعد والطاولات والمنشآت ووُضعت في أماكنها' },
   ]}
 />
 
 <Callout kind="tip">
-  Your park is built! Head to the Sustain step to keep it thriving — watering, weeding and the annual stewardship
-  workplan.
+  اكتمل بناء حديقتك! انتقل إلى خطوة «الرعاية» لتبقى مزدهرة — السقي، وإزالة الأعشاب الضارة، وخطة الرعاية السنوية.
 </Callout>
