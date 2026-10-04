@@ -134,16 +134,23 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
 (`.duo`); isometric line illustrations with cyan fills; one colour per park theme.
 
 - Fonts: Work Sans (the workbooks' face) + Alfa Slab One (stand-in for Rockwell Extra Bold), self-hosted via fontsource.
-- Colours (`src/styles/global.css`): cyan `#00A8E8` for fills/big numbers, `#00709C` for text/links (contrast);
-  themes: Edible `#F05A28`, Sanctuary `#0B4A6B`, Nature `#006B35`, Event `#8E1F6B` (frame/front/back shades in
-  `src/data/themes.ts`).
+- Colours (`src/styles/global.css`): cyan `#00A8E8` for fills only (buttons, bars, badges, pins) — it measures
+  2.70:1 on white, which fails WCAG AA even for large text, so it is never used for text. `#00709C` (`--cyan-ink`)
+  is cyan that passes contrast (5.5:1 on white) and is what every "cyan-looking" piece of text actually uses: the
+  "00"–"06" step numbers, the big chapter-opener numeral (`.big-num`), links, and the default focus ring. Text
+  *on* a cyan fill (primary buttons, the flowchart step circles) uses dark ink instead of white — white only
+  reaches ~3:1 on `#00A8E8`, not enough for normal-size text; ink reaches ~7:1 (found and fixed 2026-10-04,
+  access-keyboard F3). Themes: Edible `#F05A28`, Sanctuary `#0B4A6B`, Nature `#006B35`, Event `#8E1F6B`
+  (frame/front/back shades in `src/data/themes.ts`).
 - Light only (paper look). Mobile first: 16px gutters, no horizontal scroll at 360px.
 - Print: `@media print` produces a filled-in workbook (fields print with their values).
 
 ## 5. Park pieces, sizes, planner
 
 - **Sizes A–E** (`src/lib/sizing.ts`): long/short edge ranges from Assess p.11. Lots smaller than A → suggest the
-  Park Patch workbook; bigger than E → E + expansion.
+  Park Patch workbook; bigger than E → E + expansion. A lot between ranges gets the *biggest set whose printed pieces
+  fit inside it in both directions* (seams only ever add feet — never a set bigger than the lot; fixed 2026-10-04,
+  saved projects are re-fitted on load in `project.ts`).
 - **Piece sets**: `source/linked/04_Dream_WORKBOOK_p11_<SIZE>__*.pdf`, one per size × lot kind
   (interior / corner street-left / corner street-right), drawn at **1/4" = 1'-0" (18 pt per foot)** on a 4-ft grid.
   Each theme has a FRAME, FRONT and BACK piece plus length/width SEAM strips. Extracted to
@@ -154,6 +161,12 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
   set's nominal size to the real lot with seams exactly as the Dream workbook does (length seam between front and
   back; width seam along the length), apply the person's edits → `ParkLayout` (types.ts). `tally(layout, sun)` →
   `DesignTally` (counts the way "Count your pieces / Count your plants" do).
+  *Built size (fix round 2026-10-04, `pieces/builtsize.ts`):* furniture built to a fixed size (guide furniture,
+  café sets, rain barrels) takes its TRUE size from `elements.ts`, turned the way the drawing runs — not the size
+  it happens to be drawn at (a 4' gabion bench is drawn 4×1.75, 3.75×2, 5×1.75…). Stages are whole 4'×4' squares and
+  shade canopies whole 8'×8' modules (a canopy drawn 8'×4' is one 8'×8' module). Surfaces stretch; sized-to-fit
+  things (raised beds, keyhole gardens, sheds, communal tables, compost bins) keep their drawn size. Item cards, the
+  tally and the 3D view all read the same footprint.
 - **Planner** (`src/lib/planner/`, `Planner` widget): Three.js. Parcel outline + neighboring buildings extruded to
   their City heights + aerial ground image; the park layout placed in the parcel's oriented rectangle (street edge
   detected, flip/rotate by hand); plan view (orthographic, looks like the paper pieces) and 3D view; drag, add,
@@ -174,8 +187,8 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
   view keeps the flat paper-pieces blocks. Pieces with a build guide use the guide's own model JSON at TRUE built
   size, centred on the footprint and never stretched: repeated in modules along the item the way PiaT counts them
   (4' benches/workbenches, stage as 4'×4' squares unless the whole 12'×8' stage fits, shade canopies as 8'×8'
-  modules — a canopy drawn 8'×4' is still one 8'×8' module); a footprint no whole number of modules fits keeps its
-  block (~10% of printed pieces, e.g. a 2-ft "bench with back"). Gabion walls (bands and items) are 12"×12"×48"
+  modules); since built items take their true size in the assembly (above), every guide-built piece of every
+  printed set fits; a footprint no whole number of modules fits would keep its block. Gabion walls (bands and items) are 12"×12"×48"
   baskets of stone, one course, plus one shorter end basket. Items without a guide get simple shapes (`procedural.ts`);
   planted trees share the City trees' drawing. Furniture is built level on the lowest ground under it; surfaces,
   grid, outlines and the selection ring follow the ground. The plain blocks stay underneath, invisible, as what the
@@ -196,6 +209,24 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
   arrows downhill and High/Low marks. Saved for other pages as `extra.site.slope` (`SiteSlopeFacts`).
   Wet areas are drawn as outlines (click/tap round the area; close on the first point, double-click or Enter; Esc
   cancels; drag corners or the + between them); older circle wet areas keep working (`ExistingItem.outline`).
+  *Fix round 2026-10-04 (after usability testing):*
+  - **Fitting the lot** (`lotfit.ts`): "Stretch the pieces to fill my lot" stretches to the largest rectangle, lined
+    up with the site frame, that fits INSIDE the parcel (not the rectangle round it), and the park is placed in it;
+    a size whose printed pieces can't fit says so and offers the size that does. Slide buttons with no room are
+    greyed; "Slide it to fit the lot as well as it can" searches for the least overhang.
+  - **Camera** (`camera.ts`, `scene/xray.ts`): the 3D camera never goes inside a building (it rides over roofs) or
+    below eye height, tilts no lower than ~14° above the horizon, turns round a point near the lot and can't pull
+    back past the aerial. Any part of a building between the camera and the lot (a box round the lot's rectangle,
+    ground to 14 ft up) is drawn as a faint ghost; shadows and sun maths still see every wall.
+  - **Planted trees** in 3D: crown radius = a third of the height (`treemodel.plantedCrownR`), so the crown starts a
+    third of the way up; plan view keeps the drawn canopy. Not in the sun study (City/existing trees unchanged).
+  - **Gabion wall**: Counts lists it in feet; plan view draws the band over the lot line with its basket joints;
+    a click on it says what it is.
+  - **Words**: items say "29 ft from the entrance, 4 ft from the left side"; mid-block lots say whether City
+    buildings actually stand on each side (`neighbours.ts`); touch screens get touch wording.
+  - **Keyboard**: shortcuts work whenever something is picked and focus is in the planner (or on the page right
+    after using it), and R / Delete / Ctrl+D from the item list; after Remove focus goes to the item list (or the 3D
+    view) and a status message says what was removed.
 - **Build-guide 3D models** (`src/data/guides/models/<slug>.json`, format `src/lib/guides3d/schema.ts`, checked by
   `validate.ts`): on `/build/<slug>/` a 3D model sits beside the steps (sticky column ≥ 1000 px, collapsible sticky
   strip above the steps below that) and builds itself as you scroll — the step at the upper-middle of the readable
@@ -210,9 +241,10 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
 
 | Workbook asks | Site does | Data |
 |---|---|---|
-| Acquire: walk the neighborhood, list possible lots | Vacant-land map around an address; click to add as candidate | ArcGIS `Vacant_Indicators_Land` |
+| Acquire: walk the neighborhood, list possible lots | Vacant-land map around an address or a street's block (street name alone → its blocks); click a lot, or pick it from the list of lots in view (keyboard way), to add as candidate | ArcGIS `Vacant_Indicators_Land`, `Street_Centerline` |
 | Acquire: which lot type? | Guess mid-block / corner / alley from parcel geometry + streets | parcels, street centerlines |
-| Acquire: atlas.phila.gov → owner | Address search → owner, public/private, purchase paths | AIS, Carto `opa_properties_public` |
+| Acquire: atlas.phila.gov → owner | Address search → owner, public/private, purchase paths (City / Land Bank / PRA / PHDC land → the workbook's PHDC–Land Bank path; PHA, School District and other separate agencies → "contact that agency") | AIS, Carto `opa_properties_public` |
+| Acquire: "do a property search to find out if public land is available" | The Land Bank's own status on cards, compare table and map (available / on hold / applicant in process / not available, side-yard eligible) | ArcGIS `LAMAAssets` (agencies PUB, PLB, PRA, PHDC; `status_1`, `sideyardeligible`, keyed by `opabrt`) |
 | Organize: list neighborhood assets & associations | Nearby RCOs, council district, schools, libraries, rec centers, parks, community gardens, murals, historic sites | ArcGIS/Carto layers |
 | Assess: measure the lot in Google Maps | Edge lengths and area from the parcel polygon | `pwd_parcels` / `DOR_Parcel` |
 | Assess: draw the lot on grid paper | Printable base map on a 1-ft/4-ft grid with dimensions and starting point | parcel polygon |
@@ -222,7 +254,7 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
 | Assess: sloping terrain, where water collects | Slope summary, contour lines and arrows downhill; wet areas drawn as outlines | USGS 3DEP lidar (2015), `Zoning_SteepSlopeProtectArea_r` |
 | Assess summary: trees, sun, lot location, size A–E | Filled in automatically | all of the above |
 | Dream: print pieces, cut seams, tape, count squares | Planner does it on the real lot; counts automatic | pieces JSON |
-| Dream: cost-estimator spreadsheet | Live estimate + order list from the design | ported spreadsheet |
+| Dream: cost-estimator spreadsheet | Live estimate + order list from the design; furniture from the build guides | ported spreadsheet + guides |
 | Dream: plant-list spreadsheets | Plant picker sized to sun/shade counts | plant lists |
 | Create: calendar template | Build schedule from a start date, .ics export | phases |
 | Create: temporary no-parking permit, PA One Call 811 | Linked at the right phase with the lot address filled in | links |

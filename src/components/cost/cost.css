@@ -425,6 +425,19 @@
 .ce-flag {
   color: var(--warn);
 }
+.ce-guide-link {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 2px;
+}
+.ce-site-note {
+  color: var(--ink);
+  border-left: 3px solid var(--cyan);
+  padding-left: 6px;
+  margin-top: 4px;
+}
 .ce-each {
   display: block;
   font-size: 0.75rem;

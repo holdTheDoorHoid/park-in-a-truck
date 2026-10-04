@@ -80,17 +80,18 @@ describe('estimateCsv', () => {
     expect(csv.startsWith('﻿')).toBe(true);
     expect(csv).toContain('"Dover St, ""the lot"""');
     expect(csv).toContain('2026-10-04');
-    expect(csv).toContain('Estimated final cost,,,,6789.96');
+    expect(csv).toContain('Estimated final cost,,,,6884.46');
     expect(csv).toContain('"3/8"" red tipple, 2"" deep"');
-    expect(csv).toContain('Order list total,,,,5029.60');
+    expect(csv).toContain('Order list total,,,,5099.60');
     expect(csv).toContain('The spreadsheet’s final cost for these answers,6482.80');
     expect(csv).toContain('Tool rental counted once,-648.28');
   });
 
   it('marks items that need a price', () => {
-    const csv = estimateCsv(estimate({ ...defaultInputs, benchesWithBack: 1 }));
-    expect(csv).toContain('4x4x6,1,ea.,price needed');
-    expect(csv).toMatch(/4 items need a price/);
+    // an 8' gabion bench: its 96" basket, hog rings and cable staples have no price in the spreadsheet
+    const csv = estimateCsv(estimate({ ...defaultInputs, gabionBenches8: 1 }));
+    expect(csv).toContain('"3/4"" hog rings",50,ea.,price needed');
+    expect(csv).toMatch(/3 items need a price/);
   });
 
   it('still writes the spreadsheet version', () => {

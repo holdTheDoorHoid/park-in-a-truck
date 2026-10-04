@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { PIECE_SETS, getPieceSet } from '../../../data/pieces/all';
 import { THEME_ORDER } from '../../../data/themes';
 import { assemble, itemId, type PieceThemes } from '../assemble';
+import { builtSize } from '../builtsize';
 import { rasterise } from '../tally';
 import { PIECE_KINDS } from '../model';
 import type { LayoutSurface, ParkLayout } from '../../types';
@@ -26,7 +27,7 @@ function gaps(l: ParkLayout) {
 
 describe('assemble at nominal size', () => {
   for (const s of Object.values(PIECE_SETS)) {
-    it(`${s.id}: reproduces the extracted pieces exactly`, () => {
+    it(`${s.id}: reproduces the extracted pieces exactly (built furniture at its true size)`, () => {
       for (const th of THEME_ORDER) {
         const l = assemble(s, same(th));
         expect(l.lengthFt).toBe(s.nominal.lengthFt);
@@ -40,8 +41,8 @@ describe('assemble at nominal size', () => {
           expect(g.element).toBe(it.element);
           expect(g.x).toBeCloseTo(it.x, 6);
           expect(g.y).toBeCloseTo(it.y, 6);
-          expect(g.w).toBe(it.w);
-          expect(g.h).toBe(it.h);
+          // built furniture takes its true built size; everything else its drawn size
+          expect([g.w, g.h]).toEqual(builtSize(it.element, it.w, it.h));
         }
         const rects = PIECE_KINDS.reduce((n, k) => n + Object.values(s.themes[th][k].surfaces).reduce((a, r) => a + r!.length, 0), 0);
         expect(l.surfaces).toHaveLength(rects);

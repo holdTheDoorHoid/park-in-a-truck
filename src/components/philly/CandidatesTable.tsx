@@ -4,7 +4,9 @@
 
 import type { LotRecord } from '../../lib/types';
 import type { LotExtra } from '../../lib/philly/types';
-import { isPublic } from '../../lib/philly/owner';
+import { isPublic, ownerNames } from '../../lib/philly/owner';
+import { landBankLine } from '../../lib/philly/landbank';
+import { sizeOf } from '../../lib/philly/choose';
 import { feet, sqft, titleCase } from '../../lib/philly/plain';
 
 const LOT_TYPE: Record<string, string> = { 'mid-block': 'Mid-block', corner: 'Corner', alley: 'Breezeway / alley', unknown: '—' };
@@ -40,7 +42,9 @@ export default function CandidatesTable({ candidates, chosenAddress, onChoose, o
         </thead>
         <tbody>
           {candidates.map((c) => {
-            const g = (c.extra as LotExtra | undefined)?.geometry;
+            const x = (c.extra ?? {}) as LotExtra;
+            const g = x.geometry;
+            const size = g ? sizeOf(g) : null;
             const chosen = c.address === chosenAddress;
             return (
               <tr data-chosen={chosen ? '' : undefined}>
@@ -49,16 +53,29 @@ export default function CandidatesTable({ candidates, chosenAddress, onChoose, o
                   {chosen && <span class="ph-saved"> ✓ your lot</span>}
                 </td>
                 <td data-label="Owner">
-                  {c.owners.join(' & ') || '—'}
+                  {ownerNames(c.owners) || '—'}
                   <br />
                   <small class="ph-small">{isPublic(c.ownerType) ? 'Public' : c.ownerType === 'private' ? 'Private' : 'Unknown'}</small>
+                  {x.landBank ? (
+                    <>
+                      <br />
+                      <small class="ph-small">
+                        Land Bank: <span class={`ph-lb ph-lb-${x.landBank.tone}`}>{landBankLine(x.landBank)}</span>
+                      </small>
+                    </>
+                  ) : x.landBank === null && isPublic(c.ownerType) ? (
+                    <>
+                      <br />
+                      <small class="ph-small">Not in the Land Bank's inventory</small>
+                    </>
+                  ) : null}
                 </td>
                 <td data-label="Lot size">
                   {g ? `${feet(g.widthFt, 0)} × ${feet(g.lengthFt, 0)}` : c.frontageFt && c.depthFt ? `${c.frontageFt} × ${c.depthFt} ft` : '—'}
                   <br />
                   <small class="ph-small">{sqft(g?.areaSqFt ?? c.areaSqFt)}</small>
                 </td>
-                <td data-label="Park size">{g ? (g.size.tooSmall ? 'Under A (Park Patch)' : g.size.tooBig ? 'Over E' : g.size.id) : '—'}</td>
+                <td data-label="Park size">{size ? (size.tooSmall ? 'Under A (Park Patch)' : size.tooBig ? 'Over E' : size.id) : '—'}</td>
                 <td data-label="Lot type">{LOT_TYPE[c.lotType ?? 'unknown']}</td>
                 <td data-label="Zoning">{c.zoning ?? '—'}</td>
                 <td data-label="Vacant list">{c.vacantLand ? 'Yes' : c.vacantLand === false ? 'No' : '—'}</td>

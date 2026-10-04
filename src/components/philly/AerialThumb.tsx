@@ -1,6 +1,8 @@
 /** @jsxImportSource preact */
 // A small aerial photo of the lot with its outline: City of Philadelphia 2025
-// 3-inch imagery tiles composed in an SVG (no map library needed).
+// 3-inch imagery tiles composed in an SVG (no map library needed). It can be
+// turned (rotateDeg = where north points, clockwise from up) to match a sketch
+// drawn as you stand at the entrance; a north arrow then shows which way is north.
 
 import type { LngLat } from '../../lib/types';
 import { aerialTileUrl } from '../../lib/mapstyle';
@@ -21,9 +23,11 @@ interface Props {
   /** extra outlines drawn thin (neighbours) */
   label: string;
   year?: number;
+  /** Turn the photo so north points this many degrees clockwise from up (default: north up) */
+  rotateDeg?: number;
 }
 
-export default function AerialThumb({ polygon, label, year = 2025 }: Props) {
+export default function AerialThumb({ polygon, label, year = 2025, rotateDeg = 0 }: Props) {
   if (polygon.length < 3) return null;
   const lngs = polygon.map((p) => p[0]);
   const lats = polygon.map((p) => p[1]);
@@ -38,9 +42,12 @@ export default function AerialThumb({ polygon, label, year = 2025 }: Props) {
   const [cx, cy] = project(center, z);
   const x0 = cx - SIZE / 2;
   const y0 = cy - SIZE / 2;
+  // a turned photo needs tiles out to the corners of the frame
+  const turned = Math.abs(rotateDeg % 360) > 0.5;
+  const reach = turned ? (SIZE * (Math.SQRT2 - 1)) / 2 + 2 : 0;
   const tiles: { x: number; y: number; url: string }[] = [];
-  for (let tx = Math.floor(x0 / TILE); tx <= Math.floor((x0 + SIZE) / TILE); tx++)
-    for (let ty = Math.floor(y0 / TILE); ty <= Math.floor((y0 + SIZE) / TILE); ty++)
+  for (let tx = Math.floor((x0 - reach) / TILE); tx <= Math.floor((x0 + SIZE + reach) / TILE); tx++)
+    for (let ty = Math.floor((y0 - reach) / TILE); ty <= Math.floor((y0 + SIZE + reach) / TILE); ty++)
       tiles.push({ x: tx * TILE - x0, y: ty * TILE - y0, url: aerialTileUrl(z, tx, ty, year) });
   const d =
     polygon
@@ -52,13 +59,26 @@ export default function AerialThumb({ polygon, label, year = 2025 }: Props) {
   return (
     <figure style="margin:0">
       <svg class="ph-outline" viewBox={`0 0 ${SIZE} ${SIZE}`} role="img" aria-label={label} style="background:#ccc">
-        {tiles.map((t) => (
-          <image href={t.url} x={t.x} y={t.y} width={TILE} height={TILE} />
-        ))}
-        <path d={d} fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round" opacity="0.9" />
-        <path d={d} fill="none" stroke="#00A8E8" stroke-width="4" stroke-linejoin="round" />
+        <g transform={turned ? `rotate(${rotateDeg},${SIZE / 2},${SIZE / 2})` : undefined}>
+          {tiles.map((t) => (
+            <image href={t.url} x={t.x} y={t.y} width={TILE} height={TILE} />
+          ))}
+          <path d={d} fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round" opacity="0.9" />
+          <path d={d} fill="none" stroke="#00A8E8" stroke-width="4" stroke-linejoin="round" />
+        </g>
+        <g transform={`translate(${SIZE - 58},58)`} aria-hidden="true">
+          <circle r="50" fill="#fff" opacity="0.9" />
+          <g transform={`rotate(${rotateDeg})`}>
+            <path d="M0,-12 L13,26 L0,18 L-13,26Z" fill="#111" />
+            <text y="-27" transform={`rotate(${-rotateDeg},0,-27)`} text-anchor="middle" dominant-baseline="central" font-size="28" font-weight="700" fill="#111">
+              N
+            </text>
+          </g>
+        </g>
       </svg>
-      <figcaption class="ph-credit">Aerial photo {year} © City of Philadelphia. Your lot is outlined in blue.</figcaption>
+      <figcaption class="ph-credit">
+        Aerial photo {year} © City of Philadelphia. Your lot is outlined in blue.
+      </figcaption>
     </figure>
   );
 }

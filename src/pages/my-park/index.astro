@@ -107,16 +107,54 @@ import StepPath from '../../components/site/StepPath.astro';
     newProject, switchProject, deleteProject,
   } from '../../lib/project';
   import { formatAuto } from '../../lib/autofill';
+  import { ownerNames } from '../../lib/philly/owner';
+  import { lotGeometry } from '../../lib/philly/choose';
+  import type { LotRecord } from '../../lib/types';
+
+  /** The same lot size every other page shows: measured from the City's parcel outline. */
+  function lotSizeText(lot: LotRecord): string {
+    const g = lotGeometry(lot);
+    if (g) {
+      const ft = (n: number) => (Math.round(n * 10) / 10).toFixed(1);
+      return `${ft(g.widthFt)} ft × ${ft(g.lengthFt)} ft · ${formatAuto(g.areaSqFt, 'sqft')} (measured from the City's parcel outline)`;
+    }
+    if (lot.frontageFt && lot.depthFt)
+      return `${lot.frontageFt} × ${lot.depthFt} ft${lot.areaSqFt ? ` · ${formatAuto(lot.areaSqFt, 'sqft')}` : ''} (City property record)`;
+    return lot.areaSqFt ? `${formatAuto(lot.areaSqFt, 'sqft')}` : '—';
+  }
 
   const $ = <T extends Element>(s: string) => document.querySelector<T>(s)!;
   const esc = (s: unknown) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
   const label = (id: string) =>
     id.split('.').slice(1).join(' ').replace(/[-_]/g, ' ').replace(/^\w/, (c) => c.toUpperCase());
+  /** Briefly announce a status message through the page's shared polite live region. */
+  function announce(text: string) {
+    const el = document.getElementById('piat-announce');
+    if (!el) return;
+    el.textContent = '';
+    setTimeout(() => (el.textContent = text), 30);
+  }
 
   $storageOk.subscribe((ok) => ($('[data-storage-warning]') as HTMLElement).toggleAttribute('hidden', ok));
 
   const rename = $<HTMLInputElement>('[data-rename]');
+  // Save on blur (unchanged) *and* as-you-type (debounced), plus a flush
+  // right before the page navigates away — relying on blur alone meant a
+  // rename typed and then followed straight into a nav link could be lost.
   rename.addEventListener('change', () => renameProject(rename.value));
+  let renameTimer: ReturnType<typeof setTimeout> | undefined;
+  rename.addEventListener('input', () => {
+    clearTimeout(renameTimer);
+    renameTimer = setTimeout(() => renameProject(rename.value), 400);
+  });
+  const flushRename = () => {
+    clearTimeout(renameTimer);
+    if (document.activeElement === rename) renameProject(rename.value);
+  };
+  window.addEventListener('pagehide', flushRename);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') flushRename();
+  });
 
   $('[data-export]').addEventListener('click', () => {
     const { filename, blob } = exportProject();
@@ -151,11 +189,28 @@ import StepPath from '../../components/site/StepPath.astro';
         <button class="btn btn-small" data-del="${p.id}" aria-label="Delete ${esc(p.name)}">Delete</button></li>`,
       )
       .join('');
-    ul.querySelectorAll<HTMLButtonElement>('[data-open]').forEach((b) => b.addEventListener('click', () => switchProject(b.dataset.open!)));
-    ul.querySelectorAll<HTMLButtonElement>('[data-del]').forEach((b) =>
+    // Both buttons below disappear from their own row once clicked (switching
+    // removes "Open", deleting removes the row entirely) — land focus on
+    // whatever's left nearby rather than letting it fall through to <body>.
+    ul.querySelectorAll<HTMLButtonElement>('[data-open]').forEach((b, idx) =>
+      b.addEventListener('click', () => {
+        switchProject(b.dataset.open!);
+        const row = ul.querySelectorAll('li')[idx];
+        (row?.querySelector<HTMLElement>('button') ?? rename)?.focus();
+      }),
+    );
+    ul.querySelectorAll<HTMLButtonElement>('[data-del]').forEach((b, idx) =>
       b.addEventListener('click', () => {
         const p = list.find((x) => x.id === b.dataset.del);
-        if (p && confirm(`Delete “${p.name}” from this browser? This cannot be undone unless you saved a project file.`)) deleteProject(p.id);
+        if (!p || !confirm(`Delete “${p.name}” from this browser? This cannot be undone unless you saved a project file.`)) return;
+        deleteProject(p.id);
+        const freshItems = ul.querySelectorAll('li');
+        const target =
+          freshItems[idx]?.querySelector<HTMLElement>('button') ??
+          freshItems[idx - 1]?.querySelector<HTMLElement>('button') ??
+          $<HTMLElement>('[data-new-name]');
+        target?.focus();
+        announce(`${p.name} deleted.`);
       }),
     );
   });
@@ -165,8 +220,8 @@ import StepPath from '../../components/site/StepPath.astro';
     const lot = p.lot;
     $('[data-lot-summary]').innerHTML = lot
       ? `<dl class="lot"><dt>Address</dt><dd>${esc(lot.address)}</dd>
-         <dt>Owner</dt><dd>${esc(lot.owners.join(' & '))} — ${esc(formatAuto(lot.ownerType, 'ownerType'))}</dd>
-         <dt>Lot size</dt><dd>${lot.areaSqFt ? esc(formatAuto(lot.areaSqFt, 'sqft')) : '—'}${lot.frontageFt && lot.depthFt ? ` (${lot.frontageFt} × ${lot.depthFt} ft)` : ''}</dd>
+         <dt>Owner</dt><dd>${esc(ownerNames(lot.owners))} — ${esc(formatAuto(lot.ownerType, 'ownerType'))}</dd>
+         <dt>Lot size</dt><dd>${esc(lotSizeText(lot))}</dd>
          <dt>Zoning</dt><dd>${esc(lot.zoning ?? '—')}</dd></dl>`
       : '<p class="muted">No lot chosen yet. Look one up in <a href="../steps/acquire/">Step 1: Acquire</a>.</p>';
 

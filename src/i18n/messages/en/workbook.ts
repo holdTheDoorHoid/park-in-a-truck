@@ -18,8 +18,11 @@ export default defineMessages('workbook', {
   /** Default name of one row in a table of answers ("+ Add row") */
   'list.row': 'row',
   'list.add': '+ Add {row}',
+  'list.fillFirst': 'Fill in the {row} above first, or add something to it.',
   'list.remove': 'Remove',
   'list.removeRow': 'Remove row {n}',
+  /** Read out by screen readers after a row is removed: "lot removed." */
+  'list.removed': '{row} removed.',
   /** Screen-reader name of one cell: "Address, row 2" */
   'list.cell': '{label}, row {n}',
 

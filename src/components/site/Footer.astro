@@ -11,7 +11,7 @@ const u = urlFor(t.locale);
       <p>{t('footer.about')}</p>
     </div>
     <div>
-      <h4>{t('footer.questions')}</h4>
+      <h3 class="footer-heading">{t('footer.questions')}</h3>
       <p>
         <a href="mailto:ParkinaTruck@jefferson.edu">ParkinaTruck@jefferson.edu</a><br />
         <a href="mailto:Kimberlee.Douglas@jefferson.edu">Kimberlee.Douglas@jefferson.edu</a><br />
@@ -20,7 +20,7 @@ const u = urlFor(t.locale);
       </p>
     </div>
     <div>
-      <h4>{t('footer.aboutSite')}</h4>
+      <h3 class="footer-heading">{t('footer.aboutSite')}</h3>
       <p set:html={t.html('footer.saved', { href: u('my-park/') })} />
       <p><a href={u('resources/')}>{t('footer.resources')}</a> · <a href={u('resources/#legal')}>{t('footer.legal')}</a></p>
     </div>
@@ -48,7 +48,14 @@ const u = urlFor(t.locale);
     font-weight: 600;
     font-size: 0.75em;
   }
-  h4 {
+  /* Semantically an h3 (the page has no h3 above it — skipping straight to
+     h4 broke "jump by heading level" screen-reader navigation), styled to
+     keep the small uppercase look the footer always had. */
+  .footer-heading {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
     margin-bottom: 0.4em;
   }
   p {

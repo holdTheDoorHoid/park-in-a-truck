@@ -8,18 +8,22 @@ sheet formula by formula. The site's port is `src/lib/cost/` and has two modes:
   LibreOffice fixture tests prove it.
 - **`estimate(inputs)`** (mode `'corrected'`) is the default and what the widget shows. The owner decided on
   2026-10-04: the same PiaT prices and assumptions, but with the double counts removed and the broken lines
-  repaired. Every fix is listed in [Corrections](#corrections) and in `corrections.ts`, and each can be switched
-  off on its own (`{ fixes: [...] }`).
+  repaired; and (later that day, DESIGN.md §2) **furniture priced from each build guide's own materials list**.
+  Every fix is listed in [Corrections](#corrections) and in `corrections.ts`, and each can be switched off on its
+  own (`{ fixes: [...] }`).
 
-For the sample park the sheet says **$6,482.80** and the corrected model **$6,789.96**.
+For the sample park the sheet says **$6,482.80**; with the spreadsheet's own lines corrected it is **$6,789.96**,
+and the default (also 5 perennials per square, as PiaT's plant lists count) **$6,884.46**. The corrected mode
+works in cents: every line is rounded to the cent and the totals are sums of the rounded lines.
 `docs/piat-spreadsheet-issues.md` is a plain-language version of the issues for the PiaT team.
 
 - Source: `source/linked/04_Dream_WORKBOOK_p18_DOWNLOAD_COST_ESTIMATOR__1mRUQ_FwFtU8SxZ8-7fcfmPczAj6o3E4JHtpY_KQhqHk.xlsx`
   (Google Sheets export, kept outside git).
 - Port: `model.ts` (inputs, estimate, summary), `corrections.ts` (the fixes and the assumptions kept),
   `orderList.ts` (the sheet's ORDER LIST tab, and the corrected list built from the estimate's lines),
-  `prices.ts` (every price and link — the one place to update them), `fromTally.ts` (design → inputs),
-  `fields.ts` (questions as asked), `state.ts` (saved answers and typed prices), `csv.ts` (download).
+  `prices.ts` (every price and link — the one place to update them), `guides.ts` (furniture from the build
+  guides), `boards.ts` (board counts from a cut list), `fromTally.ts` (design → inputs), `fields.ts` (questions
+  as asked), `state.ts` (saved answers and typed prices), `csv.ts` (download).
 - Evidence: `scripts/analyze_cost_model.py` (see [Testing](#testing)).
 
 Cell references: `IH` = INSERT HERE, `QPI` = QUANTITES PER ITEM (sic), `OL` = ORDER LIST,
@@ -84,6 +88,7 @@ The orange cells, plus four answer cells the sheet reads but forgot to colour, p
 | `coldFrameSquares` | B117 | HOW MANY SQUARES OF COLD FRAMES DO YOU HAVE? | yes |
 | `optCafeTableSets` … `solarLights` | D126–D135 | Optional off-the-shelf: cafe tables + chairs, fountain with solar pump, bird bath, bird house, event tent, Adirondack chair, free-standing hammock, porch swing, trash can, solar lights | yes, except **porch swing** (D133 unused — see oddities) |
 | `otherCosts` | F145 | ADD ANY OTHER ADDITIONAL COSTS YOU MIGHT NEED | yes |
+| `gabionBenches8`, `tables4`, `tables6`, `planters18`, `planters24`, `workbenches`, `shadeStructures` | — | Site-added (`SITE_INPUTS`): furniture with a build guide but no question in the sheet | guide-priced; in sheet mode folded into the sheet's questions (see [Furniture from the build guides](#furniture-from-the-build-guides)) |
 
 H22 is a separate helper ("enter number of 4' sections" × 4 = feet, I22); nothing reads it.
 
@@ -211,16 +216,70 @@ after another, so the effects add up exactly to the difference from the sheet.
 | `samePrice` | $0 for the 2x4x8s of benches with armrests (L101 empty), the gabion tables' "2x4" (L180 = 109 never multiplied), and off-the-shelf cafe tables (F115 = 0) | the sheet's own prices for the same items: $5 (2x4x8), $5 (MC lists the table's 2x4s as 2x4x8), $160 (D126) |
 | `wholeUnits` | stakes packages, soil delivery, L-brackets and screws, cold frames, bench-with-arms 2x4x8s (7.5 each) and half boards are fractions | rounded up |
 | `priceNeeded` | lumber sizes with no price in the order list, cisterns (F109 = 0) and stages other than 2/3/4 squares cost $0 | listed as "price needed" (`estimate().priceNeeded`); left out of the total until the person types a unit price (`unitPrices`, saved in `costInputs.unitPrices`) |
+| `perennialsPerSquare` | C30 = planting squares × 4 | × 5 (`PERENNIALS_PER_SQUARE`), as in PiaT's four plant-list spreadsheets (INSERT HERE `=C4*5`) and the plant picker (`src/data/plants.ts`; a test keeps them equal) |
+| `guideMaterials` | furniture from QPI rows 90–228 (a different bench design, short lists, no row for 4'/6' tables, planters, workbench, 8' gabion bench) | every piece with a PiaT build guide priced from the guide's materials and hardware lists — see [Furniture from the build guides](#furniture-from-the-build-guides) |
 | `orderList` | ORDER LIST: misaligned SUMIFs (staples, panels), the lag-screw name mismatch, missing rows and prices, +$175, its own total | built from the estimate's lines merged by material (`buildMergedOrderList`), with the tab's delivery times, phases and notes; its total = the estimate's total costs |
 
 Kept as in the sheet (assumptions, not clearly errors; listed in the widget too): gravel over the whole area,
 the $175 left out (as the sheet's own estimate leaves it out), the prices themselves (large tree < small tree,
-1x6x12 at $4 and $10), stakes per 20 sq ft, the gravel-edge 1x4x12 count and supports, the trellis +20%, the 12'
-stage's 34 screws, the short material lists (compost bin, bench without back, table, stool), and no calculation
-for raised-bed wood edges.
+1x6x12 at $4 and $10), stakes per 20 sq ft, the gravel-edge 1x4x12 count and supports, the trellis +20%, the
+compost bin's short material list, the sheet's own lines for pieces with no guide (gabion tables, long/communal
+tables, keyhole gardens, 12x8 trellis), no calculation for raised-bed wood edges, and 2" of mulch although the
+Create workbook says 4" (the mulch line says what 4" would need: the sheet's own 4" = 0.33 ft, as for the play
+area).
 
-Price-needed ids: `lumber:<size>` (4x4x6, 2x10x8, 2x6x8, 2x8x8, 4x4x10, 4x4x12, 1x6x16, 2x4x16, 4x4x8, 2x4x10),
-`cistern-4x4`, `cistern-4x8`, `stage-other`. Adding a size to `LUMBER` in `prices.ts` prices it automatically.
+Price-needed ids: `lumber:<size>` (4x4x6, 2x10x8, 2x6x8, 2x8x8, 4x4x10, 4x4x12, 1x6x16, 2x4x16, 4x4x8, 2x4x10,
+2x6x12), `cistern-4x4`, `cistern-4x8`, `stage-other`, and `guide:<item>` for guide hardware and materials the
+sheet has no price for (`guide:hog-rings`, `guide:cable-staples`, `guide:j-hooks`, `guide:lag-screw-1-2in-x-2in`,
+`guide:deck-blocks`, `guide:fabric-<size>`, `guide:screw-3in`, `guide:gabion-basket-18x18x96`). Adding a size to
+`LUMBER` in `prices.ts` prices it automatically.
+
+Order-list details (corrected list): the same item from different pieces is one row (all 2x4x8s, all 2.5" wood
+screws); the sheet's two "L-BRACKET" products (a 2" double-wide brace for gravel edges, a 5" brace for outer
+edges, both $3.50) are separate rows, as are the edging's $0.75 washer-head "2 1/2" self-driving screws" and the
+furniture's $0.17 "2.5" wood screws". Links the sheet points at a different lumber size (`wrongSize` in
+`prices.ts`: the 1x6x12 edge boards → a 2x6x12, the 2x4x12 → a 2x4x10) are kept and flagged on the line; the
+1x4x12 has no link and says so. The two "fire hydrant opener" tools carry a site note (PWD hydrant permit and
+backflow preventer, DESIGN.md §2) and a flag that their Diamond Tool links now open a general White Cap page.
+
+## Furniture from the build guides
+
+`guides.ts`, the `guideMaterials` correction. Each piece with a PiaT guide is ordered from that guide's own
+`materials` and `hardware` (`src/data/guides/<slug>.json`, named JSON imports so the step text stays out of the
+bundle), priced with the spreadsheet's prices:
+
+| Guide item | Priced as | |
+|---|---|---|
+| 2x4x8, 2x4x12, 1x6x8 lumber | `LUMBER` ($5, $10, $8) | other sizes (4x4x8, 2x4x10, 2x6x12) price needed |
+| 2.5" self-driving exterior wood screws | `woodScrew` $0.17 (the sheet's furniture screw) | 3" (workbench) price needed |
+| 1/4" × 1-1/4" lag screws (bench with back) | `lagScrew` $0.40, the sheet's lag screw for this same bench (it says 1-1/2") | 1/2" × 2" (shade) price needed |
+| carriage bolts + nuts + washers, backrest brackets | `carriageBolt` $2, `backrestBracket` $30 | |
+| L brackets (shade, no size given) | the sheet's L-bracket price $3.50, no link | |
+| 4' gabion bench basket (18"×18"×48" welded mesh) | `gabionBasket2x18x4` $120, the sheet's basket for its "4' 18" wood-topped gabion" | 8' basket (18"×18"×96") price needed |
+| gabion fill | `stoneFill` $52.50/ton, the sheet's rule: round up(cu ft / 27 × 1.4) on the guide basket (9 / 18 cu ft) | bracing wire: a note on the basket line |
+| hog rings, cable staples, J hooks, concrete deck blocks (only if needed), geotextile fabric pieces | price needed | |
+
+**Lumber is checked against the cut list** (`boards.ts`). For each lumber size the estimate orders the larger of
+the guide's list (× pieces, rounded up once: 7.5 × 4 benches = 30) and what the cut list needs, counted
+honestly: ⅛" per saw cut, so two 48" pieces don't come out of one 96" board and each 93" or 86" piece takes a whole
+8' board. Exact search for one piece, the best of first-fit, best-fit and a cutting-pattern heuristic for many, and
+never more than building them in two batches. Lists with several lengths of one stock (the stage, the workbench)
+are checked by cutting from the listed boards and adding boards where they run out. Where the guide's steps use a
+different number of a part than its cut list (the 3D models' `countOverrides`: shade SS-1 32 not 14, 2' table T-2 9
+not 11, 8' gabion bench GB-2 5 not 6), the steps' number is used; a test keeps `stepCounts` equal to the models.
+A short list gets a one-line note on the line: "The guide's list says 16; its cut list needs 25: each 93″ and 86″
+piece takes a whole 8′ board." Results: the stage 25 (list 16), the 4' gabion bench 7 a bench (list 4.5), the
+workbench 4 2x4x8 (list 3 + the 10' and 12'), 6 1x6x8 (list 3), 2 2x6x12 (list 1); every other list is enough
+(shade 47 for 44 needed; 2' table 6).
+
+**Questions → guides.** Benches with backs *and* benches with backs and armrests → Bench + Back (it has armrests);
+benches without backs → 4' Bench; square tables → 2' Table; stools → Stool; 4' wood-topped gabions → 4' Gabion
+Bench; stage squares → the Stage guide's 12'×8' stage, one per 6 squares (a remainder is "price needed", saying the
+guide has no list for that size); plus the site-added questions for 8' gabion benches, 4' and 6' tables, 18" and
+24" planters (the square box of each guide), workbenches and 8'×8' shade structures. With the fix off (and in
+sheet mode), `foldIntoSheet` answers those the way the sheet would take them: 4'/6' tables as long tables, an 8'
+gabion bench as two 4' wood-topped gabions, shade structures as 12x8 trellises (round up(n × 64 / 96)); planters
+and workbenches have no line there.
 
 ## Oddities and bugs found in the sheet
 
@@ -284,26 +343,27 @@ notes in `src/data/elements.ts`.
 | planting squares, shrubs | sun + shade | |
 | nature play squares, small/large trees | as tallied | |
 | gravel edge, outer edge (+ hardscape/softscape) | `gravelEdgeFt`, `outerEdgeFt` | the pieces' tally puts everything under softscape |
-| gabion baskets | `gabionWallFt` + 4 ft per added `gabion-wall` piece: one basket per 4 ft per course × the wall's height in elements.ts (1 ft = one course: PiaT's standard basket is 12"×12"×4') | PiaT never says to stack baskets; one course |
+| gabion baskets | `gabionWallFt` + 4 ft per added `gabion-wall` piece: one basket per 4 ft per course × the wall's height in elements.ts (1 ft = one course: PiaT's standard basket is 12"×12"×4') | PiaT never says to stack baskets; one course. The note and the line say where the wall is: the grey 1-ft band the pieces draw along the street edges |
 | raised-bed wood edge feet | `raisedBedEdgeFt` (bed perimeters) | the sheet has no calculation for it, so it isn't priced |
-| wood-topped gabions | `gabion-bench` (4-ft modules) + 2 × `gabion-bench-8` | |
-| benches with back / without back | `bench-back` (4-ft modules) / `bench-4` | |
-| square tables, stools, gabion tables | `table-2`, `stool`, `gabion-table` | |
-| long tables | `table-4` + `table-6` + `communal-table` | the sheet has no 4'/6' table line |
+| wood-topped gabions / 8' gabion benches | `gabion-bench` / `gabion-bench-8` | each priced from its own guide |
+| benches with back / without back | `bench-back` / `bench-4` | |
+| square tables, 4' tables, 6' tables, stools, gabion tables | `table-2`, `table-4`, `table-6`, `stool`, `gabion-table` | |
+| 18" / 24" planters, workbenches | `planter-18`, `planter-24`, `workbench` | |
+| long tables | `communal-table` | the sheet's $100 long table |
 | cafe tables + chairs (optional, $160) | `cafe-table` | the off-the-shelf cafe question (a fixed $0 in the sheet) stays manual, to avoid counting twice |
 | fountains, hammocks, porch swings | `solar-fountain`, `hammock`, `porch-swing` | |
 | compost bins, rain barrels, event tents, bird baths, bird houses | `compost-bin`, `rain-barrel`, `event-tent`, `birdbath`, `bird-accessories` | |
-| trellises | `shade-canopy`: each canopy's area / 96 sq ft (a 12'x8' trellis), rounded up | elements.ts `countAs` says 8'x8' modules, but the sheet prices a 12'x8' trellis; without sizes, 8'x8' each |
-| stage squares | `stage`: one 4'x4' square per drawn item (`countAs`), or area / 16 per item with sizes | 2/3/4 squares have cut lists; other sizes need a price |
+| 8'x8' shade structures | `shade-canopy`: each canopy's area / 64 sq ft, rounded up (elements.ts `countAs`; a canopy drawn 8'x4' is one structure) | the 12x8 trellis question is left for people to type |
+| stage squares | `stage`: one 4'x4' square per drawn item (`countAs`), or area / 16 per item with sizes | 6 squares = the Stage guide's 12'x8' stage; other sizes need a price |
 | sheds 4x4 / 4x8 | `shed` by squares (≤1 → 4x4, else 4x8); without sizes the footprint (8'x4' → 4x8) | |
 | cold-frame squares | `cold-frame` × its squares (3'x3' → 1) | |
 | keyhole gardens small / medium / large | `keyhole-garden` by size across (< 5 ft, 5–7 ft, > 7 ft) — **only with `itemSizes`** | the pieces draw 5.75-ft and 7.75-ft gardens, so there is no safe default; without sizes the questions stay manual with a note |
 
 Always manual, because the design can't answer them: connections to gabions (outer edges and raised beds),
-benches with armrests, cisterns, the off-the-shelf cafe tables, Adirondack chairs, trash cans, solar lights and
-other costs. Built elements the sheet has no question for (planters, workbench, flexible seating, outdoor
-classroom, unknown ids) come back in `unmapped`; the widget lists them and points to "Anything else". Plants,
-surfaces and existing conditions are ignored there.
+benches with armrests, cisterns, the off-the-shelf cafe tables, Adirondack chairs, trash cans, solar lights, the
+12x8 trellis and other costs. Built elements with no question (flexible seating, outdoor classroom, unknown ids)
+come back in `unmapped`; the widget lists them and points to "Anything else". Plants, surfaces and existing
+conditions are ignored there.
 
 ## Saved state and the widget
 
@@ -326,6 +386,12 @@ surfaces and existing conditions are ignored there.
 ~/Desktop/park-in-a-truck/source/.venv/bin/python scripts/analyze_cost_model.py verify fixtures
 npm test
 ```
+
+`guides.test.ts` checks the guide lines and board counts by hand (bench with back × 4 = 30 2x4x8, 448 screws,
+24 lag screws, 16 bolts, 8 brackets; the stage's 25 2x4x8 with its note; the shade, gabion benches, tables,
+planters and workbench), a whole park priced by hand, and that the steps' part counts equal the 3D models'.
+`corrected.test.ts` works the fixtures by hand with the spreadsheet-line corrections (`SHEET_FIXES`) and checks the
+default estimate's totals are sums of whole cents.
 
 `verify` recalculates the untouched file in LibreOffice (private profile with "recalculate
 on load: always") and compares all 1,505 formula cells with Google's cached values — 0

@@ -16,10 +16,12 @@ interface Props {
   options?: Option[];
   unit?: string;
   auto?: string;
+  /** Badge shown while the `auto` value is displayed (default: from City records) */
+  autoNote?: string;
   rows?: number;
 }
-const { id, label, type = 'text', hint, placeholder, options = [], unit, auto, rows = 4 } = Astro.props;
 const t = getT(Astro, workbook);
+const { id, label, type = 'text', hint, placeholder, options = [], unit, auto, autoNote = t('field.auto'), rows = 4 } = Astro.props;
 const inputId = `f-${id.replace(/[^a-z0-9]+/gi, '-')}`;
 const opts = options.map((o) => (typeof o === 'string' ? { value: o, label: o } : o));
 ---
@@ -40,6 +42,6 @@ const opts = options.map((o) => (typeof o === 'string' ? { value: o, label: o } 
   ) : (
     <input id={inputId} type={type} data-field={id} data-auto={auto} placeholder={placeholder} />
   )}
-  {auto && <span class="field-auto" hidden>{t('field.auto')}</span>}
+  {auto && <span class="field-auto" hidden>{autoNote}</span>}
   {hint && <span class="field-hint">{hint}</span>}
 </div>

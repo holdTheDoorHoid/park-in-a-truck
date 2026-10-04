@@ -46,9 +46,31 @@ function str(v: FieldValue | undefined): string {
 }
 
 function printFlyer() {
+  const root = document.querySelector<HTMLElement>('.flyer-print-root');
+  if (!root) {
+    window.print();
+    return;
+  }
+  // Chromium's print/PDF pagination measures descendants' natural (unclipped)
+  // extents even through `visibility:hidden`/`overflow:hidden` ancestors, so
+  // hiding the rest of the page with CSS alone still printed the flyer's one
+  // real page plus several blank ones sized for the hidden content. Detach
+  // everything else from the document for the moment of printing instead
+  // (not just hide it), leaving the flyer as the page's only content, then
+  // put it all back exactly where it was once printing is done.
+  const body = document.body;
+  const rootAnchor = document.createComment('flyer-print-root-anchor');
+  root.replaceWith(rootAnchor);
+  const siblings = [...body.children];
+  siblings.forEach((el) => el.remove());
+  body.appendChild(root);
+
   const done = () => {
     document.documentElement.classList.remove('printing-flyer');
     window.removeEventListener('afterprint', done);
+    root.remove();
+    rootAnchor.replaceWith(root);
+    siblings.forEach((el) => body.appendChild(el));
   };
   window.addEventListener('afterprint', done);
   document.documentElement.classList.add('printing-flyer');

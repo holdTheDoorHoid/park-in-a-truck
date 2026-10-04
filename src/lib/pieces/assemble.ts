@@ -6,13 +6,15 @@
 //   - WIDTH seam: cut along the length (between the interior and the frame
 //     strip on the street / y0 side) and add a strip there.
 // Surfaces that touch or cross a seam stretch with it; furniture keeps its size
-// and moves with its side. A lot smaller than the pieces is handled by cutting
+// and moves with its side. Built furniture takes its TRUE built size, not the size it
+// happens to be drawn at on the printed pieces (./builtsize.ts). A lot smaller than the pieces is handled by cutting
 // a strip out instead, where it clips the fewest elements (reported in
 // `clipped`). Owner: pieces workstream.
 
 import type { DesignState, LayoutItem, LayoutSurface, Material, ParkLayout, ThemeId } from '../types';
 import { ELEMENTS } from '../../data/elements';
 import { PIECE_KINDS, type PieceItem, type PieceKind, type PieceSet, type Rect } from './model';
+import { builtSize } from './builtsize';
 
 export interface PieceThemes {
   frame: ThemeId;
@@ -202,7 +204,8 @@ export function assemble(
       y = mv.y;
       rotationDeg = mv.rotationDeg;
     }
-    const li: LayoutItem = { id: a.id, element: it.element, x: round(x), y: round(y), rotationDeg, theme: a.theme, w: it.w, h: it.h, source: a.kind };
+    const [w, h] = builtSize(it.element, it.w, it.h);
+    const li: LayoutItem = { id: a.id, element: it.element, x: round(x), y: round(y), rotationDeg, theme: a.theme, w, h, source: a.kind };
     if (it.shape === 'round') li.variant = 'round';
     if (meta?.heightFt !== undefined) li.heightFt = meta.heightFt;
     items.push(li);
@@ -212,8 +215,9 @@ export function assemble(
   for (const p of edits?.added ?? []) {
     if (removed.has(p.id)) continue;
     const meta = ELEMENTS[p.element];
-    // a copy of a printed piece keeps that piece's own footprint
-    const [w, h] = p.w && p.h ? [p.w, p.h] : (meta?.footprintFt ?? [2, 2]);
+    // a copy keeps the footprint it was copied with (a 16' x 16' canopy stays four
+    // modules), at true built size (copies saved before built sizes were fixed)
+    const [w, h] = p.w && p.h ? builtSize(p.element, p.w, p.h) : (meta?.footprintFt ?? [2, 2]);
     const mv = moved[p.id];
     const li: LayoutItem = { ...p, w, h, source: 'added' };
     if (mv) Object.assign(li, { x: mv.x, y: mv.y, rotationDeg: mv.rotationDeg });

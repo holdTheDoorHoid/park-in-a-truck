@@ -5,6 +5,9 @@
 //   person's project is the one thing kept in localStorage, via project.ts.)
 // - Identical requests in flight share one promise.
 // - At most 4 requests at a time, 20 s timeout.
+// - A request that fails in a way that is usually momentary (no answer, a 5xx, or the
+//   ArcGIS "Invalid URL" 400 its hosted layers give now and then — seen on
+//   Universities_Colleges in the 2026-10-04 usability test) is tried once more.
 // - ArcGIS reports errors as HTTP 200 + {error}; AIS uses 404 + {status:404}
 //   for "no match". Both are turned into PhillyError / null here.
 // - Tests swap `fetch` with setFetch() and never touch the network.
@@ -94,7 +97,7 @@ export async function getJSON<T = unknown>(url: string, opts: GetOpts = {}): Pro
   const running = inflight.get(url);
   if (running) return running as Promise<T>;
 
-  const p = gate(async () => {
+  const once = async (): Promise<T> => {
     const ctrl = new AbortController();
     const timer = setTimeout(() => ctrl.abort(), opts.timeoutMs ?? 20_000);
     const onAbort = () => ctrl.abort();
@@ -105,11 +108,13 @@ export async function getJSON<T = unknown>(url: string, opts: GetOpts = {}): Pro
         res = await doFetch(url, { signal: ctrl.signal });
       } catch (e) {
         if (opts.signal?.aborted) throw new PhillyError('aborted', 'Cancelled.');
-        throw new PhillyError(
+        const down = new PhillyError(
           'city-down',
           `We couldn't reach ${serviceName(url)}. It may be busy or down — try again in a minute. Anything you typed is still saved.`,
           { cause: e },
         );
+        // a request that already waited out the timeout isn't tried again
+        throw ctrl.signal.aborted ? down : retryable(down);
       }
       if (res.status === 404 && opts.allow404) {
         const body = await res.json().catch(() => null);
@@ -118,23 +123,33 @@ export async function getJSON<T = unknown>(url: string, opts: GetOpts = {}): Pro
         return v as unknown as T;
       }
       if (!res.ok) {
-        throw new PhillyError(
+        const err = new PhillyError(
           'city-down',
           `${capital(serviceName(url))} answered with an error (${res.status}). Try again in a minute. Anything you typed is still saved.`,
         );
+        throw res.status >= 500 || res.status === 400 || res.status === 408 || res.status === 429 ? retryable(err) : err;
       }
-      const text = await res.text();
+      let text: string;
+      try {
+        text = await res.text();
+      } catch (e) {
+        // cancelled while the answer was still arriving
+        if (opts.signal?.aborted) throw new PhillyError('aborted', 'Cancelled.');
+        throw retryable(new PhillyError('city-down', `${capital(serviceName(url))} stopped answering. Try again in a minute.`, { cause: e }));
+      }
       let body: unknown;
       try {
         body = JSON.parse(text);
       } catch (e) {
-        throw new PhillyError('city-down', `${capital(serviceName(url))} sent something we couldn't read. Try again in a minute.`, { cause: e });
+        throw retryable(new PhillyError('city-down', `${capital(serviceName(url))} sent something we couldn't read. Try again in a minute.`, { cause: e }));
       }
       const err = (body as { error?: { message?: string } | string[] })?.error;
       if (err) {
-        throw new PhillyError(
-          'city-down',
-          `${capital(serviceName(url))} reported a problem${typeof err === 'object' && !Array.isArray(err) && err.message ? ` (${err.message})` : ''}. Try again in a minute.`,
+        throw retryable(
+          new PhillyError(
+            'city-down',
+            `${capital(serviceName(url))} reported a problem${typeof err === 'object' && !Array.isArray(err) && err.message ? ` (${err.message})` : ''}. Try again in a minute.`,
+          ),
         );
       }
       memory.set(url, body);
@@ -144,6 +159,17 @@ export async function getJSON<T = unknown>(url: string, opts: GetOpts = {}): Pro
       clearTimeout(timer);
       opts.signal?.removeEventListener('abort', onAbort);
     }
+  };
+
+  const p = gate(async () => {
+    try {
+      return await once();
+    } catch (e) {
+      if (!RETRY.has(e as object) || opts.signal?.aborted) throw e;
+      await new Promise((r) => setTimeout(r, RETRY_AFTER_MS));
+      if (opts.signal?.aborted) throw new PhillyError('aborted', 'Cancelled.');
+      return once();
+    }
   });
   inflight.set(url, p);
   try {
@@ -151,6 +177,14 @@ export async function getJSON<T = unknown>(url: string, opts: GetOpts = {}): Pro
   } finally {
     inflight.delete(url);
   }
+}
+
+/** Errors worth one more try. */
+const RETRY = new WeakSet<object>();
+const RETRY_AFTER_MS = 600;
+function retryable<E extends object>(e: E): E {
+  RETRY.add(e);
+  return e;
 }
 
 /** Was this a 404 answer passed through by allow404? */

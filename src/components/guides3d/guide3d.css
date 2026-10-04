@@ -205,9 +205,12 @@
   background: var(--paper-2);
 }
 .g3d-btn[aria-pressed='true'] {
+  /* Dark ink text (not white) so this also passes contrast when :hover's
+     higher-specificity background (paper-2, light grey) wins over this
+     cyan fill — white-on-grey was unreadable; ink reads fine on both. */
   background: var(--cyan);
   border-color: var(--cyan);
-  color: #fff;
+  color: var(--ink);
 }
 .g3d-btn[disabled] {
   opacity: 0.45;
@@ -218,6 +221,21 @@
   font-size: 0.8rem;
   color: var(--muted);
   line-height: 1.35;
+}
+/* Two wordings share the box: one assumes a mouse ("point", "scroll to
+   zoom"), the other a finger ("tap", "pinch to zoom"). Picked by pointer
+   type, not viewport width, so a tablet in landscape (wide, but touch)
+   still gets the touch wording instead of the mouse one. */
+.g3d-help-touch {
+  display: none;
+}
+@media (pointer: coarse) {
+  .g3d-help-mouse {
+    display: none;
+  }
+  .g3d-help-touch {
+    display: block;
+  }
 }
 
 /* ---- phones and tablets: a compact strip above the steps ------------------------ */
@@ -237,7 +255,7 @@
   .g3d.is-collapsed .g3d-body {
     display: none;
   }
-  .g3d-help {
+  .g3d-help-mouse {
     display: none;
   }
   /* buttons float over the bottom of the model to save height */
@@ -267,6 +285,27 @@
     border-radius: 0;
     border-left: 0;
     border-right: 0;
+  }
+}
+/* Touch targets: the compact strip above is sized for a mouse pointer (25px
+   tall, 12px text) — too small to hit reliably with a finger, let alone a
+   work glove. On a coarse (touch) pointer, enlarge to the ~44px minimum
+   regardless of viewport width, so a tablet in landscape also gets it. */
+@media (pointer: coarse) {
+  .g3d-btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+@media (max-width: 999.98px) and (pointer: coarse) {
+  .g3d-tools {
+    gap: 8px;
+  }
+  .g3d-tools .g3d-btn {
+    min-height: 44px;
+    min-width: 44px;
+    font-size: 0.88rem;
+    padding: 0.5em 0.7em;
   }
 }
 @media (min-width: 420px) {

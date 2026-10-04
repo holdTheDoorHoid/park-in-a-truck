@@ -33,6 +33,16 @@ const tools = (['lot', 'planner', 'build', 'plants', 'parks', 'myPark'] as const
     </div>
   </section>
 
+  <section class="wrap welcome-back" hidden data-welcome-back>
+    <div class="card welcome-card">
+      <p class="eyebrow">Welcome back</p>
+      <p data-welcome-text></p>
+      <div class="cta">
+        <a class="btn btn-primary" data-welcome-continue href={u('my-park/')}>See My park →</a>
+      </div>
+    </div>
+  </section>
+
   <section class="wrap block">
     <h2 class="ruled">{t('home.path')}</h2>
     <div data-progress-total class="total"><span data-progress-text></span></div>
@@ -91,4 +101,64 @@ const tools = (['lot', 'planner', 'build', 'plants', 'parks', 'myPark'] as const
     margin: -4px 0 16px;
     color: var(--muted);
   }
+  .welcome-back {
+    padding-top: 24px;
+  }
+  .welcome-card {
+    border-color: var(--cyan);
+    background: var(--cyan-wash);
+  }
+  .welcome-card .eyebrow {
+    margin: 0 0 0.3em;
+  }
+  .welcome-card p:not(.eyebrow) {
+    margin: 0;
+    font-size: 1.1rem;
+  }
+  .welcome-card .cta {
+    margin-top: 16px;
+  }
 </style>
+<script>
+  // F5 (novice-phone): a returning visitor with progress or a chosen lot
+  // used to see the same first-time homepage, with the only sign anything
+  // was saved being a small dot on "My park" two screens down. Surface it
+  // here instead, above "Your path", linking straight to the next
+  // unfinished sub-step. Nothing shows for a first-time, empty project.
+  import { $project } from '../lib/project';
+  import { STEPS } from '../data/steps';
+  import { u } from '../lib/url';
+  import type { Project } from '../lib/types';
+
+  function nextUnfinished(p: Project) {
+    const outline: Record<string, string[]> = (window as any).__PIAT_OUTLINE__ ?? {};
+    for (const step of STEPS) {
+      const subs = outline[step.slug] ?? [];
+      const id = subs.find((sid) => !p.done[`${step.slug}/${sid}`]);
+      if (id) return { title: step.title, href: u(`steps/${step.slug}/#${id}`) };
+    }
+    return null;
+  }
+
+  $project.subscribe((p: Project) => {
+    const section = document.querySelector<HTMLElement>('[data-welcome-back]');
+    if (!section) return;
+    const hasProgress = Object.keys(p.done).length > 0 || Boolean(p.lot);
+    section.hidden = !hasProgress;
+    if (!hasProgress) return;
+
+    const text = section.querySelector('[data-welcome-text]')!;
+    const where = p.lot?.address ? `your lot at ${p.lot.address}` : 'your project';
+    text.textContent = `Continue with ${where}.`;
+
+    const link = section.querySelector<HTMLAnchorElement>('[data-welcome-continue]')!;
+    const next = nextUnfinished(p);
+    if (next) {
+      link.textContent = `Continue: ${next.title} →`;
+      link.href = next.href;
+    } else {
+      link.textContent = 'See My park →';
+      link.href = u('my-park/');
+    }
+  });
+</script>

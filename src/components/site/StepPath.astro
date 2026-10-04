@@ -75,7 +75,8 @@ const ICON: Record<string, string> = {
   }
   .num {
     font-family: var(--font-display);
-    color: var(--cyan);
+    /* --cyan text fails contrast on white (2.70:1); --cyan-ink passes. */
+    color: var(--cyan-ink);
     font-size: 2.2rem;
     line-height: 1;
   }

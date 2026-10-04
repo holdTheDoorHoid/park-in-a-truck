@@ -58,7 +58,8 @@ const matchers = LOCALES.map((l) => [l.code, l.match]);
     {locale !== 'en' && <script is:inline src={u(`i18n/${locale}.js?v=${bundleVersion(locale)}`)}></script>}
   </head>
   <body class={bare ? 'bare' : undefined}>
-    <a class="visually-hidden" href="#main">{t('skip')}</a>
+    <a class="skip-link" href="#main">{t('skip')}</a>
+    <div id="piat-announce" class="visually-hidden" role="status" aria-live="polite"></div>
     {locale === 'en' && (
       <div class="lang-offer no-print" id="lang-offer" hidden>
         <p class="wrap"><span data-offer-q></span> <a class="btn btn-small btn-primary" data-offer-yes href="#"></a> <button type="button" class="btn btn-small" data-offer-no></button></p>

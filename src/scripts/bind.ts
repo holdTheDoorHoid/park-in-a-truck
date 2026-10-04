@@ -13,11 +13,14 @@
 // Text comes from the "workbook" catalog in the page's language (<html data-locale>).
 // Values saved by fields never depend on the language.
 //   [data-project-name]          the active project's name
+//   [data-lot-agreement-notice]  site-added "no lot agreement recorded yet" banner
+//                                (Assess/Dream/Create); [data-dismiss="lot-agreement"]
+//                                dismisses it for this project
 //
 // Content authors never write this markup by hand; the components in
 // src/components/workbook/ emit it.
 
-import { $project, setField, setDone } from '../lib/project';
+import { $project, setDone, setExtra, setField } from '../lib/project';
 import { resolveAuto } from '../lib/autofill';
 import type { Project } from '../lib/types';
 import workbook from '../i18n/messages/en/workbook.ts';
@@ -26,6 +29,18 @@ import { getT } from '../i18n/t.ts';
 const t = getT(undefined, workbook);
 
 type Col = { key: string; label: string; type?: string; placeholder?: string };
+
+/** Briefly announce a status message through the page's shared polite live region. */
+function announce(text: string) {
+  const el = document.getElementById('piat-announce');
+  if (!el) return;
+  // Clear first: if the same text was just announced, re-setting it
+  // identically wouldn't fire a new announcement in most screen readers.
+  el.textContent = '';
+  window.setTimeout(() => {
+    el.textContent = text;
+  }, 30);
+}
 
 function bindFields(root: ParentNode) {
   root.querySelectorAll<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>('[data-field]:not(piat-list)').forEach((el) => {
@@ -39,6 +54,8 @@ function bindFields(root: ParentNode) {
     };
     el.addEventListener('input', write);
     el.addEventListener('change', write);
+    // A field cleared while focused shows its looked-up value (data-auto) again once you leave it.
+    if (el.dataset.auto) el.addEventListener('blur', () => render($project.get()));
   });
 
   root.querySelectorAll<HTMLInputElement>('input[data-field-check]').forEach((el) => {
@@ -60,6 +77,12 @@ function bindFields(root: ParentNode) {
     el.addEventListener('change', () => {
       if (el.checked) setField(el.dataset.fieldRadio!, el.value);
     });
+  });
+
+  root.querySelectorAll<HTMLButtonElement>('[data-dismiss="lot-agreement"]').forEach((el) => {
+    if (el.dataset.bound) return;
+    el.dataset.bound = '1';
+    el.addEventListener('click', () => setExtra('lotNoticeDismissed', true));
   });
 
   root.querySelectorAll<HTMLElement>('.substep-done[data-done]').forEach((el) => {
@@ -154,9 +177,21 @@ function renderLists(p: Project) {
       rm.textContent = '×';
       rm.setAttribute('aria-label', t('list.removeRow', { n: i + 1 }));
       rm.addEventListener('click', () => {
+        const removedIndex = i;
+        const rowName = host.dataset.rowName || t('list.row');
         tr.remove();
         host.dataset.rows = '';
-        save();
+        save(); // rebuilds this list's DOM synchronously (via the project store)
+        // Land focus on the row that shifted up into the removed row's spot,
+        // or the previous row, or the Add button if the list is now empty —
+        // never let it fall through to <body> with no visible focus ring.
+        const freshRows = host.querySelectorAll('tbody tr');
+        const target =
+          freshRows[removedIndex]?.querySelector<HTMLElement>('input') ??
+          freshRows[removedIndex - 1]?.querySelector<HTMLElement>('input') ??
+          host.querySelector<HTMLElement>(':scope > button.btn-small');
+        target?.focus();
+        announce(t('list.removed', { row: rowName }));
       });
       td.append(rm);
       tr.append(td);
@@ -167,12 +202,26 @@ function renderLists(p: Project) {
     add.type = 'button';
     add.className = 'btn btn-small';
     add.textContent = t('list.add', { row: host.dataset.rowName || t('list.row') });
+    const msg = document.createElement('span');
+    msg.className = 'field-hint list-add-msg';
+    msg.setAttribute('role', 'status');
     add.addEventListener('click', () => {
+      const lastRow = host.querySelector('tbody tr:last-child');
+      const lastInputs = lastRow ? [...lastRow.querySelectorAll<HTMLInputElement>('input[data-col]')] : [];
+      const lastIsBlank = lastInputs.length > 0 && lastInputs.every((inp) => !inp.value.trim());
+      if (lastIsBlank) {
+        // Adding another blank row on top of an already-blank one would just be a
+        // second identical empty row — point at the one that needs filling in
+        // instead of silently doing nothing.
+        msg.textContent = t('list.fillFirst', { row: host.dataset.rowName || t('list.row') });
+        lastInputs[0]?.focus();
+        return;
+      }
       blankRows.set(host, (blankRows.get(host) ?? 0) + 1);
       renderLists($project.get());
       host.querySelector<HTMLInputElement>('tbody tr:last-child input')?.focus();
     });
-    host.replaceChildren(table, add);
+    host.replaceChildren(table, add, msg);
   });
 }
 
@@ -253,6 +302,13 @@ function render(p: Project) {
 
   document.querySelectorAll<HTMLElement>('[data-project-name]').forEach((el) => {
     el.textContent = p.name;
+  });
+
+  // site-added: "you haven't recorded permission for your lot yet" (veteran-organizer D2)
+  document.querySelectorAll<HTMLElement>('[data-lot-agreement-notice]').forEach((el) => {
+    const dismissed = Boolean(p.extra['lotNoticeDismissed']);
+    const secured = Boolean(p.done['acquire/secure-your-lot']) || Boolean(p.fields['acquire.agreement']);
+    el.hidden = dismissed || secured;
   });
 }
 

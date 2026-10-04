@@ -141,3 +141,15 @@ export function existingTreeLook(e: { leafHabit?: 'deciduous' | 'evergreen'; spe
 export function crownCenterFt(heightFt: number, crownR: number): number {
   return Math.max(crownR + 4, heightFt - crownR);
 }
+
+/**
+ * Crown radius for a tree planted in the park design (fix round 2026-10-04): in 3D a third
+ * of its height, so the crown runs from a third of the way up to the top and spreads about
+ * two-thirds of the height — a believable young-to-mature tree, not a small ball on a tall
+ * pole — never smaller than the canopy drawn on the pieces; in plan view, as drawn.
+ * Design trees are not in the sun study, so this changes no sun hours; City and existing
+ * trees keep their own sizes.
+ */
+export function plantedCrownR(heightFt: number, drawnR: number, mode: '3d' | 'plan'): number {
+  return mode === '3d' ? Math.max(drawnR, heightFt / 3) : drawnR;
+}
