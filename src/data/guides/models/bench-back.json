@@ -14,7 +14,7 @@
     "length": 48,
     "width": 20.83,
     "height": 33.82,
-    "reason": "The guide's 48 × 18.5 × 25 is the cover's base dimensions: 25\" is the arm height and 18.5\" the end-frame depth. The backrest (10° brackets, 18\" tall, bolted under the 17\" seat, back boards 1/2\" above them) rises to about 33.8\" and the reclined brackets reach about 2.3\" behind the frames."
+    "reason": "The reclined backrest brackets reach about 2.3\" behind the 18.5\"-deep end frames."
   },
   "notes": [
     "End frames: outer layer BB-3 legs (25\") with BB-5 rails (11.5\") at top and foot; inner layer on its inside face. Its lower ring is the stool's (BB-6 feet 8.5 + 1.5 slot + 8.5, BB-6 uprights 8.5, BB-4 seat support 18.5 → 15.5\" tall). Above it the step text puts a BB-4 arm flush with the top rail, two BB-7 under it, and a 1.5\" slot above the seat support. 15.5 + 1.5 + 4 + 3.5 = 24.5, half an inch short of the 25\" legs: modelled the 1.5\" spacer slot (it has to grip the 1.5\" seat boards) and left a 1/2\" gap between the BB-7s and the arm. If the BB-7s are meant to butt the arm, the seat slot is 2\" instead.",

@@ -131,6 +131,6 @@ model.asBuilt = {
   width: Math.round(b.size[2] * 100) / 100,
   height: Math.round(b.size[1] * 100) / 100,
   reason:
-    "The guide's 48 × 18.5 × 25 is the cover's base dimensions: 25\" is the arm height and 18.5\" the end-frame depth. The backrest (10° brackets, 18\" tall, bolted under the 17\" seat, back boards 1/2\" above them) rises to about 33.8\" and the reclined brackets reach about 2.3\" behind the frames.",
+    "The reclined backrest brackets reach about 2.3\" behind the 18.5\"-deep end frames.",
 };
 writeModel(model);
