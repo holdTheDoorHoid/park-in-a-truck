@@ -302,49 +302,66 @@ Conventions chosen (keep to them):
 
 Tone: Standard Russian. **вы** (lowercase), polite and plain. Филадельфия.
 
+*Status: filled in by t-ru.* Conventions: quotes «ёлочки», dash « — », «ё» written. Measurements copied from
+PiaT's drawings stay exactly as printed (2.5", 1-1/2", 4') so they match the diagrams; in running text feet and
+inches are written out with Russian endings (10 футов, 2 дюйма). Short UI labels use «фт», «дюйм.», «кв. фт».
+The City as a government is «город» / «городские власти» (lowercase, as Russian writes it).
+
 | English | Translation | Note |
 |---|---|---|
-| Park in a Truck / PiaT |  | |
-| toolkit |  | |
-| workbook |  | |
-| step |  | |
-| sub-step |  | |
-| Mark this step done / done |  | |
-| Start here · Acquire · Organize · Assess · Dream · Create · Sustain |  | |
-| vacant lot |  | |
-| lot |  | |
-| parcel |  | |
-| mid-block lot / corner lot / breezeway, alley |  | |
-| owner (public / private) |  | |
-| zoning |  | |
-| City records / Filled in from City records |  | |
-| City (of Philadelphia) |  | |
-| RCO (Registered Community Organization) |  | |
-| Philadelphia Land Bank |  | |
-| PHDC |  | |
-| Sheriff Sale |  | |
-| purchase / donation / lease / in-kind (use) agreement |  | |
-| park committee |  | |
-| neighbors / neighborhood |  | |
-| park pieces |  | |
-| frame / front / back (pieces) |  | |
-| seam (length seam, width seam) |  | |
-| theme: Edible · Sanctuary · Nature · Event |  | |
-| size A–E |  | |
-| gabion (wall, bench) |  | |
-| build guide |  | |
-| cut list / materials & hardware / tools |  | |
-| 2x4, 2x4x8', BB-1 |  | |
-| full sun / part sun / shade |  | |
-| native plant · perennial · shrub · small tree · large tree |  | |
-| pollinator |  | |
-| stewardship / sustain |  | |
-| My park |  | |
-| project file |  | |
-| Plan in 3D / the planner |  | |
-| Note from this site, not Park in a Truck |  | |
-| in English |  | |
-| ft, in, sq ft, $ |  | |
+| Park in a Truck / PiaT | Park in a Truck / PiaT | never declined or transliterated |
+| toolkit | руководство (Toolkit) | «Toolkit» in brackets only the first time on a page |
+| workbook | рабочая тетрадь | |
+| step | шаг | «Шаг 1: Приобрести» |
+| sub-step | пункт | a task inside a step: «3 из 7 пунктов выполнено» |
+| Mark this step done / done | Отметить как выполненное / выполнено | the toggle sits at the end of a sub-step; no noun keeps it on one line at 360 px |
+| Start here · Acquire · Organize · Assess · Dream · Create · Sustain | Начните здесь · Приобрести · Собрать команду · Оценить · Мечтать · Создать · Ухаживать | «Организовать» and «Поддерживать» overflow the step-path cards at 360 px, so the plainer «Собрать команду» (wraps on two lines) and «Ухаживать» |
+| vacant lot | пустующий участок (пустырь) | «пустырь» where it reads naturally (headlines) |
+| lot | участок | |
+| parcel | земельный участок (parcel) | the City's record word; «(parcel)» once per page |
+| mid-block lot / corner lot / breezeway, alley | участок посреди квартала / угловой участок / проход, переулок | US «block» = квартал |
+| owner (public / private) | владелец (государственный / частный) | |
+| zoning | зонирование | codes like RSA-5 unchanged |
+| City records / Filled in from City records | данные города / Заполнено по данным города | |
+| City (of Philadelphia) | город (Филадельфия), городские власти | lowercase |
+| RCO (Registered Community Organization) | зарегистрированная общественная организация (RCO) | |
+| Philadelphia Land Bank | Philadelphia Land Bank (городской земельный банк) | |
+| PHDC | PHDC | |
+| Sheriff Sale | торги шерифа (Sheriff Sale) | |
+| purchase / donation / lease / in-kind (use) agreement | покупка / дарение / аренда / соглашение о безвозмездном пользовании | |
+| park committee | комитет парка | |
+| neighbors / neighborhood | соседи / район | |
+| park pieces | модули парка | printed cut-out designs; «детали» is kept for furniture parts |
+| frame / front / back (pieces) | рамка / передний модуль / задний модуль | parts of the park: рамка, передняя часть, задняя часть |
+| seam (length seam, width seam) | вставка (вставка по длине, вставка по ширине) | |
+| theme: Edible · Sanctuary · Nature · Event | Съедобный сад · Тихий уголок · Природа · Мероприятия | «Убежище» sounds like a shelter, so «Тихий уголок» |
+| size A–E | размер A–E | Latin letters |
+| gabion (wall, bench) | габион (габионная стенка, скамья-габион) | |
+| build guide | инструкция по сборке | header menu item only: «Как собрать» (the full term pushes «Мой парк» to a second row at 1366 px) |
+| cut list / materials & hardware / tools | список распила / материалы и крепёж / инструменты | part labels like BB-1 unchanged |
+| 2x4, 2x4x8', BB-1 | 2x4, 2x4x8', BB-1 | «брус 2x4» where a noun is needed |
+| full sun / part sun / shade | полное солнце / полутень / тень | the usual Russian gardening classes |
+| native plant · perennial · shrub · small tree · large tree | местное растение · многолетник · кустарник · небольшое дерево · крупное дерево | |
+| pollinator | опылитель | |
+| stewardship / sustain | уход за парком / ухаживать | |
+| My park | Мой парк | |
+| project file | файл проекта | |
+| Plan in 3D / the planner | План в 3D / планировщик | |
+| Note from this site, not Park in a Truck | Примечание этого сайта, а не Park in a Truck | |
+| in English | на английском | «(на английском)» after links |
+| ft, in, sq ft, $ | фт, дюйм., кв. фт, $ | full words in sentences: футов, дюймов, квадратных футов |
+| *(ru only)* planter (box) | ящик для растений | not «кашпо» (indoor pot) |
+| *(ru only)* shade structure / canopy | навес от солнца | |
+| *(ru only)* raised bed · cold frame · rain barrel | приподнятая грядка · парник · бочка для дождевой воды | |
+| *(ru only)* lumber · part (BB-1) · cut / saw | брус (доска for 1x6, 2x6) · деталь · распилить | |
+| *(ru only)* self-driving screw · lag screw · carriage bolt | саморез · шуруп-глухарь · мебельный болт | |
+| *(ru only)* impact driver · miter saw · carpenter's square | ударный шуруповёрт · торцовочная пила · столярный угольник | |
+| *(ru only)* pre-drill · spacer · flush · stop block · jig | просверлить направляющие отверстия · проставка · заподлицо · упор · шаблон | |
+| *(ru only)* hog rings · cable staples · welded-wire mesh | кольца-скобы (hog rings) · U-образные скобы · сварная сетка | |
+| *(ru only)* phase (Create) | этап | «Этап 3: Разметка и гравийное основание» |
+| *(ru only)* volunteer waiver / release form | отказ от претензий для волонтёров | |
+| *(ru only)* Park Ambassador | посол парка (Park Ambassador) | |
+| *(ru only)* topsoil · mulch · gravel | плодородный грунт · мульча · гравий | |
 
 ### ar — العربية
 
