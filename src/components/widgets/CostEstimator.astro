@@ -1,8 +1,16 @@
 ---
-// STUB — owned by the cost workstream, which replaces this file.
-// Content may already place <CostEstimator /> in chapters; keep the props optional.
-interface Props { [key: string]: unknown }
+// Cost estimator widget (cost workstream): Park in a Truck's cost spreadsheet
+// as a live form, prefilled from the design, with the order list.
+// Usage in a chapter: <CostEstimator />  or  <CostEstimator focus="order" title="Your order list" />
+import Island from '../cost/CostEstimator';
+
+interface Props {
+  /** Heading above the estimator (default "Your cost estimate") */
+  title?: string;
+  /** "order" opens the order list first (Create chapter) */
+  focus?: 'estimate' | 'order';
+  [key: string]: unknown;
+}
+const { title, focus } = Astro.props;
 ---
-<div class="widget-placeholder" data-widget="CostEstimator">
-  <strong>CostEstimator</strong> — Cost estimate built from your design (or your own counts).
-</div>
+<Island client:visible title={title} focus={focus} />
