@@ -56,6 +56,12 @@ after the extraction round. Tick them off here.
 - [ ] `en/planner.ts` comment tells translators to use `{hour24}` in `time.am`/`time.pm`, but `check.ts` rejects it
       as an invented placeholder (French shows "3:30 PM") — allow it or change the comment (ties to the clock-style item).
 - [ ] Planner step labels wrap to three lines in French on desktop ("Taille et thèmes", "Soleil et ombre").
+- [ ] Shade calendar times: leading zero on whole hours but not half hours in vi ("08 giờ … 9:30") — use one
+      consistent locale time format.
+- [ ] Month names capitalised mid-sentence in vi ("vào Tháng 6 và Tháng 7"; Vietnamese writes "tháng 6") — month
+      names used inside sentences need a per-locale "in a sentence" form (lowercase where the language does).
+- [ ] Parks cards: the source line ("Park in a Truck toolkit p.69 acknowledgments") and photo-credit wording
+      ("via the … toolkit") can't be translated — make the wording a catalog message around the names.
 
 ## For native-speaker review (per language)
 
@@ -76,6 +82,10 @@ after the extraction round. Tick them off here.
 - Step names "Có được đất" (Acquire), "Khảo sát" (Assess); theme names "Vườn ăn được", "Chốn an yên";
   `plants.json` descriptive plant names; guide tool words (vít đầu lục giác, bu-lông đầu tròn cổ vuông, máy bắt vít
   động lực, khoen bấm, kìm cộng lực); resources legal text; `start.mdx` "Nguyên tắc + mục tiêu"; `sustain.mdx` "Gặp gỡ".
+
+### Vietnamese (vi) — second pass
+- `cost.ts` `fix.*` and `guide.reason.*` sentences; `philly.ts` zoning meanings and `landBank.*` statuses;
+  `planner.ts` "Nắng & bóng" and the `slope.*` sentences; `shade.ts` summary sentences.
 
 ### Haitian Creole (ht)
 - Build-guide tool and hardware words (machin vis a enpak, bag metal, sèjan, konpaktè a men, mas); `start.mdx`
