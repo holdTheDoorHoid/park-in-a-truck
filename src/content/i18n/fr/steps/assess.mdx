@@ -1,0 +1,330 @@
+---
+title: Évaluer
+intro: "Apprenez à connaître votre terrain — son soleil, son sol, ses alentours et sa taille — et faites de ce que vous trouvez un plan de base."
+sources:
+  - "Boîte à outils (Toolkit), p. 35–37 (Évaluer, Évaluer le site du parc, Les caractéristiques du site)"
+  - "Cahier Évaluer, p. 3–11 (Vue d’ensemble, Visite du site, Mesurer votre terrain, Dessiner votre terrain, Vérifier votre dessin, Noter les objets, Évaluer les objets, Plan de base, Êtes-vous prêts ?)"
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import Download from '../../../../components/workbook/Download.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import SiteReport from '../../../../components/widgets/SiteReport.astro';
+import BaseMap from '../../../../components/widgets/BaseMap.astro';
+import Planner from '../../../../components/widgets/Planner.astro';
+import SunStudy from '../../../../components/widgets/SunStudy.astro';
+import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
+
+{/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — reminds a reader who hasn't recorded a lot agreement yet, before they sink time into site visits and soil work on a lot they may not have permission for. */}
+<LotAgreementNotice />
+
+Qu’est-ce qui rend votre terrain spécial, et comment tirer le meilleur parti de ses particularités ? Cette étape
+explique comment évaluer votre terrain et faire en sorte que votre parc profite des conditions du site.
+
+Un terrain n’est pas isolé : il fait partie de votre quartier. L’évaluation doit donc inclure aussi votre quartier.
+Y a-t-il une histoire ou une culture particulière que le plan devrait refléter ? Un parc qui rend hommage à l’identité
+d’un quartier aura l’air d’un vieux voisin plutôt que d’un nouveau venu.
+
+Des exemples de sites de projet servent à illustrer les étapes clés de cette démarche. Bien sûr, votre situation sera
+différente, selon l’emplacement, la forme et l’environnement du site de votre parc — mais c’est un excellent point de
+départ.
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={3} label="Vue d’ensemble" />
+
+## Les caractéristiques du site {/* #site-characteristics */}
+
+Dans cette étape, vous allez noter les caractéristiques physiques du site du parc. Le site est-il ensoleillé ou
+ombragé ? Plat ou en pente, avec des arbres ? Ou bien se trouve-t-il en face d’une église ? Toutes ces
+caractéristiques influenceront ce que vous pourrez faire sur le site. Par exemple, si vous voulez faire pousser des
+tomates, votre site devra être ensoleillé toute la journée.
+
+Allez sur le site de votre parc et notez avec soin tout ce qui pourrait influencer le plan de votre parc. En évaluant
+les caractéristiques du site avant de concevoir les éléments du parc, vous vous assurez que le plan est adapté aux
+conditions particulières du site.
+
+<Figure
+  src="img/assess/site-characteristics.webp"
+  alt="Dessin en perspective d’un exemple de site de projet, surligné en bleu à un angle de rue résidentiel : des numéros indiquent son emplacement à un angle très fréquenté, une ligne de bus, un grand mur aveugle, des lignes électriques aériennes le long de la rue et une zone ensoleillée le long du trottoir."
+  caption="Un exemple de site de projet et les caractéristiques qui le rendent unique"
+/>
+
+Ce terrain d’exemple est unique à cause de : **(1)** son emplacement à un angle très fréquenté, **(2)** sa position sur
+une ligne de bus, **(3)** un bâtiment au fond avec un grand mur aveugle, **(4)** des lignes électriques le long de la
+rue, et **(5)** une zone ensoleillée le long du trottoir. Votre terrain aura sa propre liste. Notez aussi les éléments
+culturels ou historiques du lieu et des rues voisines : un commerce intéressant occupait-il autrefois le terrain ?
+Des événements historiques ont-ils eu lieu tout près ? À quoi ressemblait l’endroit avant qu’il y ait des
+bâtiments ? C’est une excellente façon de faire participer les habitants de longue date et les élèves qui savent
+faire des recherches dans les archives de la ville.
+
+<Checklist
+  id="assess.conditions"
+  label="Les conditions à noter"
+  items={[
+    { value: 'sidewalks', label: 'Trottoirs et autres revêtements' },
+    { value: 'utilities', label: 'Réseaux visibles (aériens et au sol)' },
+    { value: 'sun-direction', label: 'Direction générale du lever et du coucher du soleil' },
+    { value: 'sun-shade-areas', label: 'Zones ensoleillées et/ou ombragées' },
+    { value: 'ground-cover', label: 'Zones de gravier, de revêtement ou de terre nue' },
+    { value: 'water-collection', label: 'Zones où l’eau s’accumule après la pluie' },
+    { value: 'adjacent-buildings', label: 'Bâtiments voisins' },
+    { value: 'plants', label: 'Arbustes et arbres (et leur espèce, si vous la connaissez)' },
+    { value: 'structures', label: 'Constructions isolées existantes (cabanes, clôtures)' },
+    { value: 'building-remains', label: 'Restes de bâtiments (fondations, vieux mur, etc.)' },
+    { value: 'terrain', label: 'Terrain en pente, buttes et/ou grands creux' },
+    { value: 'views', label: 'Belles vues et/ou vues désagréables' },
+    { value: 'wind', label: 'Zones venteuses / exposées à la brise' },
+    { value: 'sounds', label: 'Principaux bruits / zones de nuisances possibles' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={3} label="Les caractéristiques du site" />
+
+## Visite du site {/* #site-visit */}
+
+Les activités suivantes peuvent se faire en groupe ou seul, quand vous allez sur le site du parc :
+
+1. **Prélever des échantillons de sol.** Connaître les nutriments du sol aide beaucoup à savoir ce qui poussera le
+   mieux dans votre parc. Un simple test du plomb vous aidera aussi à vérifier que votre parc est sans danger. Penn
+   State Extension propose une méthode simple d’analyse de sol (en anglais) :
+   [agsci.psu.edu/aasl/soil-testing](https://agsci.psu.edu/aasl/soil-testing/fertility/soil-fertility-submission-forms).
+2. **Photographier.** Nous voyons tous le paysage différemment, et prendre des photos est une façon de partager avec
+   les autres ce que nous voyons. Prenez 30 minutes pour faire le tour et photographier le site du parc et ses
+   alentours. Ensuite, partagez vos photos entre vous et expliquez pourquoi vous avez pris chacune d’elles.
+3. **S’asseoir et écouter.** Asseyez-vous en silence sur le site du parc et écoutez avec tous vos sens. Qu’est-ce que
+   vous entendez, sentez, touchez ? Au bout de 30 minutes, notez ce que vous avez ressenti. Y a-t-il des sensations
+   agréables que le plan du parc pourrait intégrer, ou des sensations désagréables qu’il pourrait atténuer ? En
+   quoi ce serait différent un autre jour de la semaine, ou à un autre moment du jour ou de la nuit ?
+4. **Mesurer et évaluer.** Mesurer le site du parc aide à mieux le connaître dans le détail — les prochaines étapes
+   expliquent comment faire.
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — Penn State's standard fertility test has no lead in it; facts checked 2026-10-04 on agsci.psu.edu and phila.gov. */}
+<Callout kind="site">
+  L’analyse de fertilité du sol standard de Penn State (pH et nutriments) ne recherche pas le plomb. Le plomb est un
+  test à part, sur le [formulaire d’analyse environnementale du sol ↗](https://agsci.psu.edu/aasl/soil-testing/environmental)
+  du laboratoire (en anglais), ou n’importe quel laboratoire reconnu par l’EPA (l’agence fédérale de l’environnement)
+  peut le faire. Le [guide sur le plomb de la Ville ↗](https://www.phila.gov/guides/lead-guide/where-is-lead/) (en
+  anglais) parle du plomb dans la terre des jardins : couvrir la terre nue, cultiver la nourriture dans des bacs
+  surélevés, et faire des analyses.
+</Callout>
+
+<Field id="assess.soil-notes" label="Résultats de l’analyse de sol" type="textarea" hint="Nutriments, pH, plomb — tous les résultats de l’analyse." />
+<Field id="assess.listen-notes" label="Ce que vous avez entendu, senti et touché" type="textarea" />
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={4} label="Visite du site" />
+
+## Mesurer votre terrain {/* #measure-your-lot */}
+
+Suivez les étapes ci-dessous pour commencer à dessiner le site actuel du parc. Cette « carte de base » pourra ensuite
+être imprimée et utilisée sur place pour noter l’emplacement des différents éléments du site et ses caractéristiques
+importantes.
+
+<Callout kind="auto" title="Mesuré pour vous">
+  Une fois votre terrain choisi à l’étape Acquérir, le site le mesure à partir du plan des parcelles de la Ville : la
+  longueur des côtés et la surface ci-dessous, et une carte de base à imprimer, sans passer par Google Maps.
+</Callout>
+
+<SiteReport />
+<BaseMap />
+
+<details>
+  <summary>Le mesurer plutôt à la main</summary>
+  <ol>
+    <li>Allez sur <a href="https://maps.google.com" target="_blank" rel="noopener">maps.google.com</a>. Ce site contient des photos aériennes et des outils pour mesurer la propriété.</li>
+    <li>Tapez l’adresse de la propriété, ou celle de la propriété la plus proche dont vous connaissez l’adresse. Zoomez sur l’adresse et repérez où se trouvent le trottoir et les coins de la propriété. Si vous ne connaissez pas les coins exacts, faites une estimation pour l’instant.</li>
+    <li>Regardez la photo aérienne et choisissez un point de départ pour commencer à mesurer : un coin de la propriété du parc. Faites un clic droit (Ctrl + clic sur Mac) sur votre point de départ et choisissez « Mesurer une distance ».</li>
+    <li>Trouvez le coin le plus proche, déplacez le curseur et faites un clic gauche. La distance entre les deux points s’affiche. Notez ce nombre.</li>
+    <li>Faites glisser le point de départ jusqu’au coin suivant. Notez ce nombre.</li>
+    <li>Recommencez pour chaque coin du parc jusqu’à avoir mesuré tous les côtés. La dernière mesure doit revenir au point de départ.</li>
+  </ol>
+</details>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={5} label="Mesurer votre terrain" />
+
+## Dessiner votre terrain {/* #diagram-your-lot */}
+
+Vous allez maintenant dessiner les limites actuelles du parc. Ce dessin servira à noter les dimensions des objets
+(comme les arbres, etc.) qui se trouvent sur votre site. Le dessin est une « vue en plan », vue directement d’en haut,
+comme la vue aérienne de Google Maps.
+
+Le dessin des limites se fait sur du papier quadrillé (papier millimétré), où chaque petit carreau représente 1 pied
+de longueur réelle : dessinez d’abord le grand côté (le côté le plus long du parc, à partir du point de départ), puis
+le petit côté au bout de celui-ci, puis recommencez pour l’autre grand côté et l’autre petit côté.
+
+<BaseMap />
+
+<Download href="downloads/forms/assess-grid-sheets.pdf" label="Télécharger les feuilles quadrillées" note={`1/4" = 1'-0" — collez les feuilles ensemble pour les grands terrains`} />
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={6} label="Dessiner votre terrain" />
+
+## Vérifier votre dessin {/* #verify-your-diagram */}
+
+L’étape suivante consiste à aller sur le site du parc pour mesurer et noter à la main la longueur de chaque limite de
+la propriété. **Les dimensions mesurées sur place sont plus fiables que les dimensions numériques.**
+
+1. Repérez le point de départ du projet — le même endroit que celui où vous avez commencé dans Google Maps (ou celui
+   que le site a marqué pour vous).
+2. Avec un ruban à mesurer de 100 pieds, mesurez et notez la distance le long du grand côté extérieur du parc, d’un
+   coin à l’autre.
+3. Avec un ruban à mesurer de 100 pieds, mesurez et notez la distance le long du petit côté extérieur, d’un coin à
+   l’autre.
+4. Recommencez pour l’autre grand côté.
+5. Recommencez pour l’autre petit côté.
+
+<Checklist
+  id="assess.what-to-bring"
+  label="Ce qu’il faut apporter sur le site"
+  items={[
+    { value: 'pens', label: 'Stylo + carnets' },
+    { value: 'clipboards', label: 'Porte-documents à pince' },
+    { value: 'camera', label: 'Appareil photo (celui du téléphone suffit)' },
+    { value: 'tape-100', label: 'Ruban à mesurer de 100 pieds' },
+    { value: 'tape-long', label: 'Long mètre ruban (25 pieds ou plus)' },
+    { value: 'survey-plat', label: 'Plan cadastral (survey plat)' },
+    { value: 'boundary-diagram', label: 'Dessin des limites' },
+    { value: 'flags', label: 'Fanions d’arpentage ou tuteurs de jardin en bambou' },
+  ]}
+/>
+
+<Field id="assess.field-long-edge" label="Grand côté mesuré sur place" type="number" unit="pieds" />
+<Field id="assess.field-short-edge" label="Petit côté mesuré sur place" type="number" unit="pieds" />
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={7} label="Vérifier votre dessin" />
+
+## Noter et évaluer les objets {/* #record-assess-objects */}
+
+L’étape suivante consiste à noter l’emplacement de tous les objets sur le site du projet, puis à évaluer leur état et
+leur utilité possible pour le futur parc. On situe chaque objet en prenant deux mesures : la distance depuis le point
+de départ du projet le long du bord, et la distance depuis le bord du parc. C’est aussi une bonne occasion de noter
+les objets juste à côté du site, mais en dehors — un poteau électrique, une bouche d’incendie ou le bord du trottoir
+qui pourraient influencer le plan du parc.
+
+Il y a beaucoup de façons d’évaluer un objet une fois qu’il est situé : beauté ou caractère, durée de vie prévue,
+stabilité, risque possible, possibilité de réutilisation, intérêt pour la faune, etc. Pour chacun, décidez s’il faut
+le garder.
+
+{/* site-added: the planner places kept objects on the real lot and uses them in the sun study. */}
+<Callout kind="auto" title="Placez les objets sur votre vrai terrain">
+  <Planner mode="site" /> vous permet de placer chaque objet sur la vraie forme de votre terrain, au lieu de reporter
+  les coordonnées à la main sur du papier quadrillé.
+</Callout>
+
+<ListField
+  id="assess.objects"
+  label="Les objets sur le site"
+  rowName="un objet"
+  min={4}
+  columns={[
+    { key: 'object', label: 'Objet', placeholder: 'arbre, clôture, cabane, poteau électrique…' },
+    { key: 'fromStart', label: 'Distance depuis le point de départ', type: 'number' },
+    { key: 'fromEdge', label: 'Distance depuis le bord', type: 'number' },
+    { key: 'keep', label: 'À garder ?', placeholder: 'oui / non' },
+    { key: 'notes', label: 'Remarques' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={8} label="Noter les objets" />
+
+## Soleil et ombre / plan de base {/* #sun-shade-base-plan */}
+
+Dessinez sur votre plan de base les objets que vous voulez garder, de la même façon que vous les avez mesurés : comme
+sur une carte au trésor, mettez un point ou une croix pour marquer l’endroit, entouré d’un cercle de la taille de
+l’objet au sol (pour un arbre ou un arbuste, le cercle correspond à peu près au bord du feuillage, avec un point au
+tronc).
+
+Puis décrivez les conditions du site sur le même dessin :
+
+- Pour l’ombre des bâtiments, dessinez à peu près le contour de la zone d’ombre et hachurez-la.
+- Pour les bâtiments, dessinez le contour et hachurez-le.
+- Pour les réseaux aériens, indiquez leur emplacement au-dessus du site.
+- Pour les zones où le sol est particulier (comme les zones humides), dessinez une forme à peu près à l’endroit
+  concerné.
+- Pour les arbres, indiquez l’espèce si vous la connaissez (par exemple « Érable »).
+
+{/* site-added: real sun and shade from the neighboring buildings' actual heights, any date and time. */}
+<Callout kind="auto" title="Le soleil et l’ombre d’après les vrais bâtiments">
+  <SunStudy /> calcule le soleil et l’ombre heure par heure d’après la hauteur réelle des bâtiments voisins, pour
+  n’importe quelle date et heure de l’année — au lieu de hachurer les ombres à la main sur du papier quadrillé.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={10} label="Plan de base" />
+
+## Résumé — êtes-vous prêts ? {/* #summary-are-you-ready */}
+
+Résumez les caractéristiques principales de votre site. Elles serviront à l’étape suivante pour concevoir votre parc.
+
+<Field
+  id="assess.existing-trees"
+  label="Des arbres sur le site ?"
+  type="select"
+  hint="Le nombre d’arbres qu’il y a en ce moment sur le site, s’il y en a. Ne comptez pas les arbres qui seront enlevés."
+  options={[
+    { value: 'No trees', label: 'Aucun arbre' },
+    { value: 'One or two trees', label: 'Un ou deux arbres' },
+    { value: 'Several trees', label: 'Plusieurs arbres' },
+    { value: 'Mostly trees', label: 'Surtout des arbres' },
+  ]}
+  auto="extra.site.treesKept|treeCount"
+/>
+
+<Field
+  id="assess.sunlight"
+  label="Quantité de soleil ?"
+  type="select"
+  hint="Combien de soleil le site reçoit dans une journée."
+  options={[
+    { value: 'Full sun all day', label: 'Plein soleil toute la journée' },
+    { value: 'Mostly sun', label: 'Surtout au soleil' },
+    { value: 'Mostly shade', label: 'Surtout à l’ombre' },
+    { value: 'Deep shade all day', label: 'Ombre profonde toute la journée' },
+  ]}
+  auto="extra.site.sunClass|sunClass"
+/>
+
+<Field
+  id="assess.lot-location"
+  label="Emplacement du terrain"
+  type="select"
+  hint="Le terrain est-il au milieu de la rue, ou à un angle ? S’il est à un angle, où se trouve la rue par rapport au grand côté ?"
+  options={[
+    { value: 'Mid-block lot', label: 'Terrain en milieu de rue' },
+    { value: 'Corner lot (street right)', label: 'Terrain d’angle (rue à droite)' },
+    { value: 'Corner lot (street left)', label: 'Terrain d’angle (rue à gauche)' },
+  ]}
+  auto="extra.site.lotKind|lotKind"
+/>
+
+<Field id="assess.long-edge" label="Grand côté" type="number" unit="pieds" auto="extra.site.lengthFt" />
+<Field id="assess.short-edge" label="Petit côté" type="number" unit="pieds" auto="extra.site.widthFt" />
+
+<p>La longueur de chaque côté, et la surface totale en pieds carrés, déterminent la taille de votre terrain, de A à E :</p>
+
+<table>
+  <caption class="visually-hidden">Taille du parc selon le grand côté et le petit côté, en pieds</caption>
+  <thead>
+    <tr>
+      <th scope="col">Taille</th>
+      <th scope="col">Grand côté</th>
+      <th scope="col">Petit côté</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">A</th><td>44–64 pieds</td><td>12–16 pieds</td></tr>
+    <tr><th scope="row">B</th><td>64–76 pieds</td><td>16–28 pieds</td></tr>
+    <tr><th scope="row">C</th><td>76–88 pieds</td><td>28–40 pieds</td></tr>
+    <tr><th scope="row">D</th><td>88–96 pieds</td><td>32–48 pieds</td></tr>
+    <tr><th scope="row">E</th><td>80–120 pieds</td><td>44–60 pieds</td></tr>
+  </tbody>
+</table>
+
+<Field
+  id="assess.lot-size"
+  label="La taille de votre terrain est…"
+  type="select"
+  options={['A', 'B', 'C', 'D', 'E']}
+  auto="extra.site.sizeId"
+/>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={11} label="Êtes-vous prêts ?" />
