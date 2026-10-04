@@ -119,7 +119,11 @@ How-to for extraction and translation agents: `docs/i18n/HOW-TO-TRANSLATE.md`; t
   twin in `src/pages/[lang]/` rendering the same component; components read the language from the URL. `SITE_BASE`
   still works. `<html lang dir data-locale>` and `hreflang` alternates come from `Base.astro`.
 - **UI text:** `getT(Astro | locale, catalog)` → `t(key, {vars})`, plurals (Intl.PluralRules), `t.num/money/date/list`
-  (US units). English catalogs `src/i18n/messages/en/<area>.ts` are the source; `messages/<lang>/<area>.ts` carry
+  (US units), `t.join` (plain list with the language's comma), `t.clock` (the language's own clock — planner and shade
+  calendar alike), `t.monthInSentence`, `t.sentences`/`t.space` (no space after 。 in Chinese). **Right-to-left:**
+  `t()` isolates every inserted value (FSI…PDI, never inside a tag) and addresses written into a message, so sizes,
+  handles and addresses keep their order in Arabic; `t.isolate()` for values outside messages; CSV and .ics strip the
+  marks (`stripIsolates`). Money is "$" in every language. English catalogs `src/i18n/messages/en/<area>.ts` are the source; `messages/<lang>/<area>.ts` carry
   only translations; missing keys fall back to English. At build time every language is registered
   (`i18n/server.ts`); in the browser a translated page loads `/i18n/<lang>.js` (one language, cached) before islands run.
 - **Chapters:** `src/content/i18n/<lang>/steps/<slug>.mdx`; every `##` carries its English id

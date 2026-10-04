@@ -647,6 +647,10 @@
   min-width: 0;
   overflow-wrap: anywhere;
 }
+/* a phone number never breaks across lines */
+.ph-asset-group a[href^='tel:'] {
+  white-space: nowrap;
+}
 .ph-asset-group input[type='checkbox'] {
   width: 1.2em;
   height: 1.2em;

@@ -1,7 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
 import StepPath from '../../components/site/StepPath.astro';
-import { getCollection } from 'astro:content';
 import pages from '../../i18n/messages/en/pages.ts';
 import workbook from '../../i18n/messages/en/workbook.ts';
 import philly from '../../i18n/messages/en/philly.ts';
@@ -9,7 +8,7 @@ import patch from '../../i18n/messages/en/patch.ts';
 import guidesMsgs from '../../i18n/messages/en/guides.ts';
 import site from '../../i18n/messages/en/site.ts';
 import { getT, urlFor, localizeGuide } from '../../i18n/astro.ts';
-import { chapterFieldLabels } from '../../i18n/mdx.ts';
+import { chapterFieldLabels, splitFrontmatter } from '../../i18n/mdx.ts';
 import { ASSET_CATEGORIES, assetFieldId } from '../../lib/philly/assets';
 import { getGuides } from '../../data/guides';
 
@@ -24,9 +23,14 @@ const tp = getT(Astro, philly);
 const tpatch = getT(Astro, patch);
 const tg = getT(Astro, guidesMsgs);
 const ts = getT(Astro, site);
+// The chapters' source text (raw, so this page doesn't pull in the chapters' own styles and islands
+// the way getCollection would).
+const englishChapters = import.meta.glob<string>('../../content/steps/*.mdx', { query: '?raw', import: 'default', eager: true });
+const translatedChapters = import.meta.glob<string>('../../content/i18n/*/steps/*.mdx', { query: '?raw', import: 'default', eager: true });
 const fieldLabels: Record<string, string> = {};
-for (const e of await getCollection('steps')) Object.assign(fieldLabels, chapterFieldLabels(e.body ?? ''));
-for (const e of await getCollection('stepsI18n')) if (e.id.startsWith(`${t.locale}/`)) Object.assign(fieldLabels, chapterFieldLabels(e.body ?? ''));
+for (const src of Object.values(englishChapters)) Object.assign(fieldLabels, chapterFieldLabels(splitFrontmatter(src).body));
+for (const [path, src] of Object.entries(translatedChapters))
+  if (path.includes(`/i18n/${t.locale}/steps/`)) Object.assign(fieldLabels, chapterFieldLabels(splitFrontmatter(src).body));
 for (const c of ASSET_CATEGORIES) fieldLabels[assetFieldId(c.id)] ??= tp(`assets.cat.${c.id}`);
 Object.assign(fieldLabels, {
   'patch.length': tpatch('yourArea.lengthLabel'),
