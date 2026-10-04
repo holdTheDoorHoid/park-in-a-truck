@@ -3,7 +3,14 @@
 // philly-data client (src/lib/philly/), which caches and rate-limits politely.
 
 import type { LngLat, LotRecord } from '../types';
-import { fetchSurroundings as phillySurroundings } from '../philly';
+import {
+  FAR_SHADE_MAX_FT,
+  FAR_SHADE_MIN_SUN_DEG,
+  farQueryMinHeight,
+  fetchSurroundings as phillySurroundings,
+  fetchTallBuildings,
+  selectFarShade,
+} from '../philly';
 import { fetchTerrain, type TerrainData } from './terrain';
 import { decodeGrid, type EncodedGrid } from './terrain/grid';
 
@@ -31,6 +38,12 @@ export interface Surroundings {
   trees: SiteTree[];
   parcels: SiteParcel[];
   streets: SiteStreet[];
+  /**
+   * Taller buildings beyond SURROUNDINGS_RADIUS_FT (up to FAR_SHADE_MAX_FT) whose shadow can
+   * reach the lot when the sun is at least FAR_SHADE_MIN_SUN_DEG up (philly selectFarShade).
+   * They count for the sun only. Absent = not looked up (older fixtures) or the lookup failed.
+   */
+  farBuildings?: SiteBuilding[];
 }
 
 /** The lot plus what's around it, as the planner needs it. */
@@ -44,6 +57,7 @@ export interface SiteContext extends Surroundings {
 }
 
 export const SURROUNDINGS_RADIUS_FT = 260;
+export { FAR_SHADE_MAX_FT, FAR_SHADE_MIN_SUN_DEG };
 
 // ---- demo lots ---------------------------------------------------------------
 
@@ -80,22 +94,35 @@ export function fixtureFor(lot: LotRecord): DemoSlug | null {
 
 const cache = new Map<string, Promise<Surroundings>>();
 
-/** Neighbouring buildings (with City heights), trees, parcels and streets around a lot. */
+/**
+ * Neighbouring buildings (with City heights), trees, parcels and streets around a lot, plus
+ * the taller buildings farther out whose shadow can reach it (one more request, run
+ * alongside; if only that one fails, `farBuildings` is absent and the next load tries again).
+ */
 export async function fetchSurroundings(lot: LotRecord, radiusFt = SURROUNDINGS_RADIUS_FT): Promise<Surroundings> {
   const key = `${lot.pwdParcelId ?? lot.address}@${radiusFt}`;
   if (!cache.has(key)) {
-    const p = phillySurroundings(lot, radiusFt).then((s) => ({
-      buildings: s.buildings,
-      trees: s.trees,
-      streets: s.streets,
-      // the lot's own parcel is not a neighbour (entrance detection looks at neighbours)
-      parcels: s.parcels.filter((x) => (lot.opa ? x.opa !== lot.opa : true) && x.address !== lot.address),
-    }));
+    const far = fetchTallBuildings(lot, { minHeightFt: farQueryMinHeight(lot, radiusFt), maxFt: FAR_SHADE_MAX_FT }).catch(() => null);
+    const p = Promise.all([phillySurroundings(lot, radiusFt), far]).then(([s, f]): Surroundings => {
+      if (!f) cache.delete(key);
+      return {
+        buildings: s.buildings,
+        trees: s.trees,
+        streets: s.streets,
+        // the lot's own parcel is not a neighbour (entrance detection looks at neighbours)
+        parcels: s.parcels.filter((x) => (lot.opa ? x.opa !== lot.opa : true) && x.address !== lot.address),
+        ...(f ? { farBuildings: selectFarShade(lot, s.buildings, f.buildings) } : {}),
+      };
+    });
     p.catch(() => cache.delete(key));
     cache.set(key, p);
   }
   return cache.get(key)!;
 }
+
+/** Said when the far buildings could not be loaded (the rest of the lot still works). */
+export const FAR_SHADE_FAILED_NOTE =
+  "Couldn't load the taller buildings farther from your lot, so the sun maps leave out their shade in low morning, evening and winter sun. Reload to try again.";
 
 export async function loadSiteContext(lot: LotRecord): Promise<SiteContext> {
   const demo = fixtureFor(lot);
@@ -109,7 +136,7 @@ export async function loadSiteContext(lot: LotRecord): Promise<SiteContext> {
   }
   try {
     const s = await fetchSurroundings(lot);
-    return { lot, ...s, source: 'city' };
+    return { lot, ...s, source: 'city', ...(s.farBuildings ? {} : { note: FAR_SHADE_FAILED_NOTE }) };
   } catch {
     return {
       lot,

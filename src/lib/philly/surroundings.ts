@@ -9,6 +9,9 @@
 //   ppr_tree_inventory_2025  street & park trees (species, trunk diameter in)
 //   Street_Centerline        street centerlines + names + class
 //
+// fetchTallBuildings() + selectFarShade() (below) add the taller buildings farther out whose
+// shadow can still reach the lot in low sun (one more light query; the planner uses them).
+//
 // Usage:
 //   const s = await fetchSurroundings(project.lot, 250);
 //   s.buildings[0].polygon   // [lng,lat][] outer ring
@@ -17,7 +20,7 @@
 import type { LngLat, LotRecord } from '../types';
 import { queryGeo, soft } from './arcgis';
 import { LAYERS } from './endpoints';
-import { largestOuterRing } from './geo';
+import { centroid, distToRing, largestOuterRing, makeProjector, openRing, type XY } from './geo';
 import type { Surroundings, SurroundingBuilding, SurroundingParcel, SurroundingStreet, SurroundingTree } from './types';
 
 /** A typical Philadelphia 2-storey rowhouse, used when the City has no height. */
@@ -146,4 +149,135 @@ export async function fetchSurroundings(lot: LotLike, radiusFt = 250, opts: { si
     streets,
     ...(warnings.length ? { warnings } : {}),
   };
+}
+
+// ---- taller buildings farther away (far shade, 2026-10-04) ---------------------------------
+//
+// fetchSurroundings() takes everything within a few hundred feet. A taller building farther
+// out can still shade the lot when the sun is low (winter, early morning, evening), so the
+// planner adds ONE light query: buildings tall enough to matter, out to FAR_SHADE_MAX_FT,
+// and keeps only those whose shadow can reach the lot (selectFarShade).
+//
+// "Can reach": a building h ft tall (counting the ground it stands on) shades ground up to
+// h / tan(a) away when the sun is a° up. Below about 10° the sun is in the haze near the
+// horizon — its direct light is weak, and the rowhouses next to a lot block most of it
+// anyway — so 10° is the lowest sun that decides which far buildings count:
+// reach ≈ 5.7 × height. Once counted, a building shades the lot at every sun height.
+
+/** The lowest sun (degrees up) that decides whether a far building can shade the lot. */
+export const FAR_SHADE_MIN_SUN_DEG = 10;
+/** How far out (ft from the lot's centre) taller buildings are looked for. At 10° a 265-ft tower reaches this far. */
+export const FAR_SHADE_MAX_FT = 1500;
+/** The far query never asks for buildings lower than this (keeps the request light on very big lots). */
+export const FAR_SHADE_MIN_QUERY_HEIGHT_FT = 30;
+
+/** Feet of shadow per foot of height with the sun `altDeg` up (≈ 5.67 at 10°). */
+export function reachPerFoot(altDeg = FAR_SHADE_MIN_SUN_DEG): number {
+  return 1 / Math.tan((altDeg * Math.PI) / 180);
+}
+
+/** The lot's outline in feet around the point the surroundings queries are centred on. */
+function lotXY(lot: LotLike) {
+  const pr = makeProjector(centerOf(lot));
+  const ring = openRing(lot.polygon ?? []).map(pr.toXY);
+  return { pr, ring };
+}
+
+/**
+ * The shortest building the far query needs: one the near query (radius `nearFt`) missed
+ * starts more than `nearFt` from the lot's centre, so at least `nearFt` minus the lot's own
+ * radius from the lot, and must be tall enough to throw a shadow that far.
+ */
+export function farQueryMinHeight(lot: LotLike, nearFt: number, minSunDeg = FAR_SHADE_MIN_SUN_DEG): number {
+  const { ring } = lotXY(lot);
+  const rLot = ring.reduce((m, [x, y]) => Math.max(m, Math.hypot(x, y)), 0);
+  return Math.max(FAR_SHADE_MIN_QUERY_HEIGHT_FT, Math.floor((nearFt - rLot) / reachPerFoot(minSunDeg)));
+}
+
+/**
+ * Buildings at least `minHeightFt` tall (City approx_hgt) within `maxFt` of the lot: one
+ * request, two attributes, outlines generalised to about 1.5 ft (plenty for shade hundreds
+ * of feet away). Throws when the City can't be reached (the caller decides what that means).
+ */
+export async function fetchTallBuildings(
+  lot: LotLike,
+  q: { minHeightFt: number; maxFt?: number },
+  opts: { signal?: AbortSignal } = {},
+): Promise<{ buildings: SurroundingBuilding[]; truncated: boolean }> {
+  const r = await queryGeo<{ approx_hgt: number | null; base_elevation: number | null }>(
+    LAYERS.buildings,
+    {
+      where: `approx_hgt >= ${Math.max(1, Math.round(q.minHeightFt))}`,
+      point: centerOf(lot),
+      distanceFt: Math.round(q.maxFt ?? FAR_SHADE_MAX_FT),
+      outFields: ['approx_hgt', 'base_elevation'],
+      precision: 6,
+      maxAllowableOffset: 0.000005,
+      resultRecordCount: 1500,
+    },
+    opts,
+  );
+  const buildings: SurroundingBuilding[] = [];
+  for (const f of r.features) {
+    const polygon = largestOuterRing(f.geometry as never);
+    const h = num(f.properties.approx_hgt);
+    if (polygon.length < 3 || !h || h <= 0) continue;
+    buildings.push({ polygon, heightFt: h, baseElevationFt: num(f.properties.base_elevation) });
+  }
+  return { buildings, truncated: r.truncated };
+}
+
+/** Shortest distance between two outlines that don't overlap (0 when one is inside the other). */
+function ringGap(a: XY[], b: XY[]): number {
+  let d = Infinity;
+  for (const p of a) d = Math.min(d, distToRing(p, b));
+  for (const p of b) d = Math.min(d, distToRing(p, a));
+  return d;
+}
+
+/**
+ * The far buildings whose shadow can reach the lot with the sun at least `minSunDeg` up:
+ * gap to the lot ≤ reachPerFoot × height, where height counts the ground the building
+ * stands on above the lot's (City base elevations; the lot's ground is taken as the lowest
+ * base among the buildings next to it, which errs towards keeping a building). Buildings
+ * the near query already has (same outline centre and height) are dropped.
+ */
+export function selectFarShade(lot: LotLike, near: SurroundingBuilding[], far: SurroundingBuilding[], minSunDeg = FAR_SHADE_MIN_SUN_DEG): SurroundingBuilding[] {
+  const { pr, ring: lotRing } = lotXY(lot);
+  if (lotRing.length < 3 || !far.length) return [];
+  const k = reachPerFoot(minSunDeg);
+  const nearXY = near.map((b) => ({ b, ring: openRing(b.polygon).map(pr.toXY) }));
+
+  // the lot's ground: the lowest City base among its neighbours (within 40 ft), else among all
+  const bases = (pred: (r: XY[]) => boolean) =>
+    nearXY.filter((n) => n.b.baseElevationFt != null && Number.isFinite(n.b.baseElevationFt) && pred(n.ring)).map((n) => n.b.baseElevationFt!);
+  const nextDoor = bases((r) => ringGap(r, lotRing) <= 40);
+  const any = nextDoor.length ? nextDoor : bases(() => true);
+  const groundRef = any.length ? Math.min(...any) : null;
+
+  // outline centres of the near buildings, on a 10-ft hash, to spot the same building twice
+  const cell = (x: number, y: number) => `${Math.floor(x / 10)},${Math.floor(y / 10)}`;
+  const seen = new Map<string, { c: XY; h: number }[]>();
+  for (const n of nearXY) {
+    if (n.ring.length < 3) continue;
+    const c = centroid(n.ring);
+    const key = cell(c[0], c[1]);
+    seen.set(key, [...(seen.get(key) ?? []), { c, h: n.b.heightFt }]);
+  }
+  const duplicate = (c: XY, h: number) => {
+    for (let i = -1; i <= 1; i++)
+      for (let j = -1; j <= 1; j++)
+        for (const s of seen.get(cell(c[0] + i * 10, c[1] + j * 10)) ?? []) if (Math.hypot(s.c[0] - c[0], s.c[1] - c[1]) < 4 && Math.abs(s.h - h) < 1) return true;
+    return false;
+  };
+
+  const out: SurroundingBuilding[] = [];
+  for (const b of far) {
+    const ring = openRing(b.polygon).map(pr.toXY);
+    if (ring.length < 3 || duplicate(centroid(ring), b.heightFt)) continue;
+    const rise = groundRef != null && b.baseElevationFt != null && Number.isFinite(b.baseElevationFt) ? b.baseElevationFt - groundRef : 0;
+    const h = b.heightFt + rise;
+    if (h > 0 && ringGap(ring, lotRing) <= k * h) out.push(b);
+  }
+  return out;
 }

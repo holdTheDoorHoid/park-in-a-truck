@@ -18,6 +18,8 @@ export const COLORS = {
   ground: 0xe6e3dc,
   building: 0xf1eee8,
   buildingEdge: 0x8f8f8f,
+  /** taller buildings farther away (far shade) */
+  farBuilding: 0xe3e7ec,
   parcel: 0x00a8e8,
   trunk: 0x6b5340,
   crown: 0x4c9a55,
@@ -28,23 +30,32 @@ export const COLORS = {
 
 // ---- buildings --------------------------------------------------------------
 
-export function buildBuildings(prisms: Prism[]): THREE.Group {
-  const group = new THREE.Group();
-  group.name = 'buildings';
+/** Footprints extruded to their heights, merged (walls reach down to `floorFt` when that is lower than the base). */
+function extrudePrisms(prisms: Prism[], floorFt?: number): THREE.BufferGeometry | null {
   const geos: THREE.BufferGeometry[] = [];
   for (const b of prisms) {
     if (b.ring.length < 3) continue;
+    const base = b.baseFt ?? 0;
+    const bottom = floorFt !== undefined ? Math.min(base, floorFt) : base;
     const shape = new THREE.Shape(b.ring.map(([x, y]) => new THREE.Vector2(x, y)));
-    const g = new THREE.ExtrudeGeometry(shape, { depth: b.heightFt, bevelEnabled: false, curveSegments: 1 });
+    const g = new THREE.ExtrudeGeometry(shape, { depth: base + b.heightFt - bottom, bevelEnabled: false, curveSegments: 1 });
     g.rotateX(-Math.PI / 2); // (x, y, z) -> (x, z, -y): extrusion goes up, y -> -z (north)
     // terrain: stands on the ground under it (Prism.baseFt; roof at baseFt + heightFt)
-    if (b.baseFt) g.translate(0, b.baseFt, 0);
+    if (bottom) g.translate(0, bottom, 0);
     geos.push(g.index ? g.toNonIndexed() : g);
   }
-  if (!geos.length) return group;
+  if (!geos.length) return null;
   const merged = mergeGeometries(geos, false)!;
   geos.forEach((g) => g.dispose());
   merged.computeVertexNormals();
+  return merged;
+}
+
+export function buildBuildings(prisms: Prism[]): THREE.Group {
+  const group = new THREE.Group();
+  group.name = 'buildings';
+  const merged = extrudePrisms(prisms);
+  if (!merged) return group;
   const mesh = new THREE.Mesh(merged, new THREE.MeshLambertMaterial({ color: COLORS.building }));
   mesh.castShadow = true;
   mesh.receiveShadow = true;
@@ -52,6 +63,28 @@ export function buildBuildings(prisms: Prism[]): THREE.Group {
   const edges = new THREE.LineSegments(
     new THREE.EdgesGeometry(merged, 30),
     new THREE.LineBasicMaterial({ color: COLORS.buildingEdge, transparent: true, opacity: 0.45 }),
+  );
+  group.add(edges);
+  return group;
+}
+
+/**
+ * Taller buildings farther away whose shadow can reach the lot (LocalSite.farBuildings):
+ * plainer and a little cooler than the neighbours, mostly off the aerial photo, standing on
+ * the plain ground (walls reach down to `floorFt`, its level, so none float). They cast
+ * shadows; they don't need to receive any.
+ */
+export function buildFarBuildings(prisms: Prism[], floorFt: number): THREE.Group {
+  const group = new THREE.Group();
+  group.name = 'far-buildings';
+  const merged = extrudePrisms(prisms, floorFt);
+  if (!merged) return group;
+  const mesh = new THREE.Mesh(merged, new THREE.MeshLambertMaterial({ color: COLORS.farBuilding }));
+  mesh.castShadow = true;
+  group.add(mesh);
+  const edges = new THREE.LineSegments(
+    new THREE.EdgesGeometry(merged, 30),
+    new THREE.LineBasicMaterial({ color: COLORS.buildingEdge, transparent: true, opacity: 0.3 }),
   );
   group.add(edges);
   return group;

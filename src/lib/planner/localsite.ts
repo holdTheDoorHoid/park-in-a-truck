@@ -31,6 +31,12 @@ export interface LocalSite {
   areaSqFt: number;
   frame: SiteFrame;
   buildings: Prism[];
+  /**
+   * Taller buildings farther away whose shadow can reach the lot (SiteContext.farBuildings).
+   * They count for the sun (see shadeBuildings in sunstudy.ts) and are drawn plainer in 3D;
+   * nothing else (street edges, neighbours, the camera) looks at them.
+   */
+  farBuildings?: Prism[];
   trees: LocalTree[];
   parcels: Vec2[][];
   streets: { name?: string | null; line: Vec2[] }[];
@@ -130,6 +136,24 @@ export function buildLocalSite(ctx: SiteContext, facts?: SiteFacts): LocalSite {
       buildings.push({ ring: trimmed, heightFt: refFt - g.datumElevFt + heightFt - base, baseFt: base });
     } else buildings.push({ ring: trimmed, heightFt });
   }
+  const farBuildings: Prism[] = [];
+  const box = ctx.terrain?.grid;
+  for (const b of ctx.farBuildings ?? []) {
+    const ring = openRing(b.polygon).map(lf.toLocal);
+    if (ring.length < 3) continue;
+    const heightFt = Math.max(8, b.heightFt || 25);
+    if (!g) {
+      farBuildings.push({ ring, heightFt });
+      continue;
+    }
+    // On the lidar grid: the same rule as the neighbours. Beyond it (the grid is about ±310 ft)
+    // the City's own base elevation; the lidar's nearest edge only when the City has none.
+    const onGrid = box && b.polygon.every(([x, y]) => x >= box.west && x <= box.east && y >= box.south && y <= box.north);
+    const city = b.baseElevationFt != null && Number.isFinite(b.baseElevationFt) ? b.baseElevationFt : null;
+    const { baseFt, refFt } = onGrid || city === null ? buildingBase(ring, g.elev, onGrid ? city : null) : { baseFt: city, refFt: city };
+    const base = baseFt - g.datumElevFt - 0.3;
+    farBuildings.push({ ring, heightFt: refFt - g.datumElevFt + heightFt - base, baseFt: base });
+  }
   const parcels = ctx.parcels.map((p) => openRing(p.polygon).map(lf.toLocal)).filter((r) => r.length >= 3);
   const streets = ctx.streets.map((s) => ({ name: s.name, line: s.line.map(lf.toLocal) }));
   const trees: LocalTree[] = ctx.trees.map((t) => {
@@ -142,6 +166,7 @@ export function buildLocalSite(ctx: SiteContext, facts?: SiteFacts): LocalSite {
   const frame = siteFrameFromFacts(facts, lf, { parcel, parcels, buildings: buildings.map((b) => b.ring), streets, address: ctx.lot.address });
   const extentFt = Math.max(180, Math.min(300, Math.max(frame.lengthFt, frame.widthFt) * 2 + 140));
   const site: LocalSite = { ctx, lf, parcel, areaSqFt: area(parcel), frame, buildings, trees, parcels, streets, extentFt };
+  if (farBuildings.length) site.farBuildings = farBuildings;
   if (g && ctx.terrain) {
     site.ground = g.ground;
     site.datumElevFt = g.datumElevFt;

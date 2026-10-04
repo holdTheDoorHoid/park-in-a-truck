@@ -5,7 +5,8 @@ import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import { useStore } from '@nanostores/preact';
 import type { PlannerStore } from '../../lib/planner/store';
 import { phillyMinutes, phillyTime, sunPosition, sunTimes } from '../../lib/planner/sun';
-import { crownsKey, litFractionAt, shadeCrowns, spotMonthlyFor } from '../../lib/planner/sunstudy';
+import { buildingsChanged, crownsKey, litFractionAt, shadeCrowns, spotMonthlyFor } from '../../lib/planner/sunstudy';
+import { FAR_SHADE_MAX_FT, SURROUNDINGS_RADIUS_FT } from '../../lib/planner/site';
 import { leafFraction, leafWords, LEAF_SEASON } from '../../lib/planner/treemodel';
 import { BARE_CROWN_BLOCKING, CROWN_BLOCKING } from '../../lib/planner/sunhours';
 import { MONTHS, MONTHS_SHORT, SEASONS, parsePeriodKey, periodKey, periodLabel, type MonthSun, type SeasonName } from '../../lib/planner/sunperiod';
@@ -157,6 +158,8 @@ export function SunPanel({ store }: { store: PlannerStore }) {
   // The saved study may be older than the trees on the lot.
   const nowKey = useMemo(() => (site ? crownsKey(shadeCrowns(site, design?.existing)) : ''), [site, design?.existing]);
   const stale = Boolean(grid?.inputs.treesKey && nowKey && grid.inputs.treesKey !== nowKey);
+  // … or than the buildings around it (far shade: older studies left out the taller ones farther away)
+  const buildingsStale = useMemo(() => buildingsChanged(grid, site), [grid, site]);
   const CLASS_TEXT: Record<string, string> = {
     'full-sun': 'Full sun — almost all of the lot gets 6 or more hours of direct sun a day.',
     'mostly-sun': 'Mostly sunny — at least half the lot gets 6 or more hours a day.',
@@ -298,6 +301,13 @@ export function SunPanel({ store }: { store: PlannerStore }) {
         )
       )}
       {growing && stale && !job && <p class="pl-small pl-warn">You've changed what's on the lot since this was worked out — work it out again to include it.</p>}
+      {growing && buildingsStale && !job && (
+        <p class="pl-small pl-warn">
+          {buildingsStale === 'far-added'
+            ? 'Sun hours now also count the shade of taller buildings farther away. This was worked out before that — work it out again to include them (the counts update too).'
+            : "The City's buildings around the lot have changed since this was worked out — work it out again to include them."}
+        </p>
+      )}
       {summary && (
         <div class="pl-sunsum">
           <ul class="pl-legend">
@@ -356,7 +366,11 @@ export function SunPanel({ store }: { store: PlannerStore }) {
         <summary>What the sun maps and chart count</summary>
         <ul class="pl-small">
           <li>Only direct sun: the hours when nothing stands between the sun and a point 1 ft above the ground. Cloudy days and light bouncing off walls are not counted.</li>
-          <li>Buildings are the City's building outlines at their measured heights.</li>
+          <li>
+            Buildings: every building within about {SURROUNDINGS_RADIUS_FT} ft of the lot, plus taller buildings up to {FAR_SHADE_MAX_FT.toLocaleString('en-US')} ft
+            away whose shadow can reach it{site?.farBuildings?.length ? ` (${site.farBuildings.length} for this lot)` : ''}. Their outlines and heights are the
+            City's, measured from the air (lidar) to the main roof; pitched roofs, chimneys and things like walls, fences, billboards and the El aren't in the data.
+          </li>
           <li>
             Trees are the City's street and park trees (their size worked out from trunk width) and the trees marked on the lot. A tree in leaf blocks about{' '}
             {pct(CROWN_BLOCKING)} of the sun; bare branches about {pct(BARE_CROWN_BLOCKING)}.
