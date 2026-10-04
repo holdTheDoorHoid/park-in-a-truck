@@ -19,7 +19,7 @@ export default {
   'step.size': 'Cỡ & chủ đề',
   'step.arrange': 'Bố trí',
   'step.existing': 'Đã có gì',
-  'step.sun': 'Nắng & bóng râm',
+  'step.sun': 'Nắng & bóng',
   'step.counts': 'Đếm',
   'rail.label': 'Các bước thiết kế',
   'nav.back': '← {step}',

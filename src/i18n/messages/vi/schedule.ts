@@ -43,7 +43,7 @@ export default {
   'calendar.progress': 'Đã xong {done} / {total} việc trong năm {year}',
   'calendar.download': '⬇ Thêm lời nhắc vào lịch của tôi',
   'calendar.print': '🖨 In',
-  'calendar.now': 'bây giờ',
+  'calendar.now': 'hiện tại',
   'calendar.monthCount': '{done}/{total}',
 
   'task.water-weekly': 'Tưới nước hằng tuần — cho thấm 3 tiếng hoặc tưới bằng tay, sâu 6–8"',
