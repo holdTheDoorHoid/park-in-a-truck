@@ -1,0 +1,399 @@
+---
+title: Мечтать
+intro: Придумайте свой парк из модулей Park in a Truck, которые можно сочетать как угодно.
+sources:
+  - Руководство (Toolkit), стр. 39–55 (Мечтать, Тематические проекты, Модули парка, Сочетайте как хотите)
+  - Рабочая тетрадь «Мечтать», стр. 1–20
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Choice from '../../../../components/workbook/Choice.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import Download from '../../../../components/workbook/Download.astro';
+import Planner from '../../../../components/widgets/Planner.astro';
+import CostEstimator from '../../../../components/widgets/CostEstimator.astro';
+import PlantPicker from '../../../../components/widgets/PlantPicker.astro';
+import { ELEMENTS } from '../../../../data/elements';
+import { THEMES, THEME_ORDER } from '../../../../data/themes';
+import { SIZES } from '../../../../lib/sizing';
+import { urlFor } from '../../../../i18n/url.ts';
+export const u = urlFor('ru');
+import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
+
+export const THEME_REQUIREMENTS = {
+  edible: { trees: 'Мало деревьев или нет совсем', sun: 'Солнце весь день или в основном солнце', lot: 'Хорошо подходит для углового участка', volunteers: 'Волонтёры нужны часто' },
+  sanctuary: { trees: 'Сколько угодно деревьев', sun: 'Сколько угодно солнца', lot: 'Участок посреди квартала или угловой', volunteers: 'Волонтёров нужно немного' },
+  nature: { trees: 'Хорошо подходит для участков с деревьями', sun: 'Сколько угодно солнца', lot: 'Участок посреди квартала или угловой', volunteers: 'Участия нужно немного' },
+  event: { trees: 'Одно-два дерева или несколько деревьев', sun: 'Сколько угодно солнца', lot: 'Хорошо подходит для углового участка', volunteers: 'Волонтёры нужны время от времени' },
+};
+
+{/* Russian theme and element names for the expressions below (the same words as src/i18n/data/ru/themes.json and elements.json; this chapter reads THEMES / ELEMENTS straight from the English data). */}
+export const THEME_TEXT = {
+  edible: { name: 'Съедобный сад', blurb: 'Делитесь едой и общайтесь с соседями — фрукты, овощи и общий стол.' },
+  sanctuary: { name: 'Тихий уголок', blurb: 'Спокойное место, чтобы побыть одному, почитать или собраться небольшой компанией.' },
+  nature: { name: 'Природа', blurb: 'Местные растения, жильё для животных и место для игр — для детей и опылителей.' },
+  event: { name: 'Мероприятия', blurb: 'Место для выступлений, ярмарок и праздников всего района.' },
+};
+export const ELEMENT_NAMES = {
+  'gabion-wall': 'Габионная стенка', 'gabion-bench': 'Скамья-габион с деревянным сиденьем', 'gabion-bench-8': 'Скамья-габион 8\' с деревянным сиденьем',
+  'gabion-table': 'Стол-габион с деревянной столешницей', 'bench-back': 'Скамейка со спинкой', 'bench-4': 'Скамейка 4\' (без спинки)', stool: 'Табурет',
+  'table-2': 'Стол 2\'', 'table-4': 'Стол 4\'', 'table-6': 'Стол 6\'', 'planter-18': 'Ящик для растений 18" (малый)', 'planter-24': 'Ящик для растений 24" (большой)',
+  'shade-canopy': 'Навес от солнца', stage: 'Сцена', workbench: 'Верстак / стол для работы стоя', 'rain-barrel': 'Бочка для дождевой воды', 'compost-bin': 'Компостный ящик',
+  'raised-bed': 'Приподнятая грядка', 'cold-frame': 'Парник', 'communal-table': 'Общий стол', 'event-tent': 'Шатёр для мероприятий', 'flexible-seating': 'Переносные сиденья',
+  'outdoor-classroom': 'Класс под открытым небом', 'nature-play': 'Природная игровая площадка', birdbath: 'Поилка для птиц', 'bird-accessories': 'Скворечники и кормушки', shed: 'Сарай',
+};
+
+{/* The Assemble grid below skips surfaces, plants and existing-conditions markers — only built/bought elements get an assembly link. */}
+export const NOT_BUILT = new Set(['planting-square', 'perennial', 'shrub', 'small-tree', 'large-tree', 'gravel', 'existing-tree', 'downspout', 'wet-area', 'hydrant', 'utility-line']);
+export const ICON_FALLBACK = { 'table-6': 'table-4', 'bench-4': 'bench-back', 'gabion-bench-8': 'gabion-bench' };
+// The workbook's Assemble page shows these elements; newer vocabulary (e.g. cafe-table) has no icon there.
+export const ASSEMBLE_ICONS = new Set(['bench-back','bird-accessories','birdbath','cold-frame','communal-table','compost-bin','event-tent','flexible-seating','gabion-bench','gabion-wall','nature-play','outdoor-classroom','planter-18','planter-24','rain-barrel','raised-bed','shade-canopy','shed','stage','stool','table-2','table-4','workbench']);
+
+{/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — reminds a reader who hasn't recorded a lot agreement yet, before they design and budget for a lot they may not have permission for. */}
+<LotAgreementNotice />
+
+Придумывать парк Park in a Truck — всё равно что покупать новое платье или костюм. Сначала вы идёте в магазин и
+рассматриваете манекены, чтобы выбрать фасон, цвет или узор, который вам нравится. Конечно, то, что хорошо смотрится
+на вешалке, может не подойти вам. Поэтому нужно найти костюм или платье вашего размера и под вашу фигуру, а потом
+примерить. Если не сидит — можно подогнать. И наконец, вы добавляете аксессуары, чтобы вещь стала по-настоящему
+вашей.
+
+Как и одежда, парк должен подходить к вашему стилю и к тому, как вы собираетесь им пользоваться. Парки Park in a
+Truck бывают четырёх разных стилей — мы называем их **темами**: «Съедобный сад», «Тихий уголок», «Природа» и
+«Мероприятия». Каждая лучше всего подходит для определённого случая или условий.
+
+Теперь начинается самое интересное — создать образ своего парка! Этот шаг начинается с выбора одного из четырёх
+тематических проектов. Но это только начало: в каждой теме есть набор **модулей парка**, которые можно сочетать как
+угодно, чтобы собрать **свой собственный парк** по размеру вашего участка.
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={3} />
+
+## Четыре темы {/* #the-four-themes */}
+
+Каждая тема делает упор на разные способы пользоваться парком: одни хорошо подходят для встреч соседей, другие — для
+уединения. Сравните количество деревьев, количество солнца и расположение участка, которые вы записали в итогах шага
+«Оценить», с общими требованиями ниже.
+
+В каждом парке три части — **рамка**, **передняя часть** и **задняя часть**, — поэтому можно взять одну тему для всего
+парка или **сочетать** разные темы, так же как к низу наряда подбирают верх и куртку.
+
+### Основные элементы (в каждой теме)
+
+Несколько главных элементов есть во всех четырёх темах:
+
+- **Габионная стенка.** Проволочные корзины, наполненные камнем, дают парку чёткую границу. Наполняйте их найденными
+  материалами, например кирпичом и битым бетоном, — так дешевле и бережнее к природе.
+- **Скамейка.** Место, чтобы посидеть; жители легко могут сделать её на свой вкус. Покрасьте скамейки или дайте им
+  естественно состариться — подойдёт и то и другое.
+- **Бочка для дождевой воды.** Каждому парку нужна вода. Бочки собирают дождевую воду для полива деревьев и цветов.
+- **Растения.** Местные растения, которые привлекают животных, увеличивают разнообразие живого и помогают его
+  сохранять.
+
+{THEME_ORDER.map((id) => (
+  <div style={`margin:2.5em 0; border-left: 8px solid ${THEMES[id].frame}; padding-left: 1.2em;`}>
+    <h3 style={`color:${THEMES[id].frame}`}>{THEME_TEXT[id].name}</h3>
+    <p>{THEME_TEXT[id].blurb}</p>
+    <Figure
+      src={`img/dream/theme-${id}.webp`}
+      alt={`Тема «${THEME_TEXT[id].name}»: объёмный вид и план парка, рамка, передний и задний модули показаны цветом темы`}
+    />
+    <ul class="theme-reqs">
+      <li><strong>Деревья:</strong> {THEME_REQUIREMENTS[id].trees}</li>
+      <li><strong>Солнце:</strong> {THEME_REQUIREMENTS[id].sun}</li>
+      <li><strong>Участок:</strong> {THEME_REQUIREMENTS[id].lot}</li>
+      <li><strong>Волонтёры:</strong> {THEME_REQUIREMENTS[id].volunteers}</li>
+    </ul>
+  </div>
+))}
+
+{/* site-added: Playful Learning is the toolkit's own appendix (linked from its Dream chapter); cross-linking it here matches where the toolkit itself introduces it. */}
+<Callout kind="note" title="Думаете и о детях?">
+  Park in a Truck объединился с **Playful Learning Landscapes** — инициативой, которая соединяет науку о том, как учатся
+  дети, с обычным устройством парка: столы для сортировки, колёса историй, рассказы по картинкам и многое другое,
+  подобранное к каждой из четырёх тем выше.
+  [Руководство Playful Learning ↗](/playful-learning/)
+</Callout>
+
+<Field
+  id="dream.theme-reasons"
+  label="Есть ли особые причины, почему одна тема парка нравится вам больше других?"
+  type="textarea"
+/>
+<Field
+  id="dream.theme-qualities"
+  label="Какие качества парка в этих темах для вас важнее всего?"
+  type="textarea"
+/>
+<Choice
+  id="dream.preferred-theme"
+  label="Какая тема парка вам больше нравится?"
+  options={[
+    { value: 'edible', label: 'Съедобный сад', color: THEMES.edible.frame },
+    { value: 'sanctuary', label: 'Тихий уголок', color: THEMES.sanctuary.frame },
+    { value: 'nature', label: 'Природа', color: THEMES.nature.frame },
+    { value: 'event', label: 'Мероприятия', color: THEMES.event.frame },
+    { value: 'mix', label: 'Сочетание тем', desc: 'Разные темы для рамки, передней и задней части' },
+  ]}
+/>
+<Choice
+  id="dream.theme-fits-site"
+  label="Подходит ли выбранная тема к особенностям участка из итогов шага «Оценить»?"
+  options={[
+    { value: 'yes', label: 'Да', desc: 'Хорошо подходит — двигайтесь дальше' },
+    { value: 'no', label: 'Нет', desc: 'Пересмотрите тему парка' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={5} />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={6} label="Тема «Съедобный сад» (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={7} label="Тема «Тихий уголок» (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={8} label="Тема «Природа» (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={9} label="Тема «Мероприятия» (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={10} label="Какая тема подходит вам? (PDF)" />
+
+## Модули парка и как ими пользоваться {/* #park-pieces-how-to-use-them */}
+
+Шаблон проекта вашего парка собирается из разных частей — **модулей парка**. Есть ПЕРЕДНИЕ и ЗАДНИЕ модули для
+внутренней части парка и РАМКА, в которую их вставляют. Каждый модуль сделан в одной из четырёх тем, и все модули
+взаимозаменяемы, так что можно сочетать разные темы или выбрать одну тему для всего парка.
+
+Как рамка вокруг семейной фотографии, **рамка** создаёт границу вокруг внутренней части парка — удобное место для
+входов, деревьев и других элементов. Внутренняя часть делится на **переднюю часть** (ближе всего ко входу в парк, с
+главными постоянными элементами) и **заднюю часть** (обычно более открытую, для разных занятий).
+
+Картинки в руководстве показаны в объёмном **аксонометрическом** виде, как фотография, чтобы их было легко
+представить. А чтобы на самом деле разметить парк, вы будете пользоваться плоским видом — **планом**, похожим на
+простую карту. Оба вида показывают одно и то же.
+
+<Figure
+  src="img/dream/park-pieces-frame-front-back.webp"
+  alt="Схема, сравнивающая объёмный (аксонометрический) вид парка и план: модуль-рамка вместе с передним и задним модулями складывается в целый парк — и в виде объёмных блоков, и на плоском плане"
+/>
+
+<Figure
+  src="img/dream/mix-and-match.webp"
+  alt="Четыре примера парков, в каждом рамка, передний и задний модули взяты из разных тем — «Мероприятия», «Тихий уголок», «Съедобный сад» и «Природа», — чтобы показать, как модули сочетаются в бесконечное число вариантов"
+/>
+
+<Callout kind="auto">
+  На бумаге сочетать модули — значит распечатать, вырезать и склеить их скотчем вручную. Планировщик ниже делает это
+  за вас: выберите тему для рамки, передней и задней части, и он сразу соберёт их точно по размеру вашего настоящего
+  участка.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={4} />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={13} label="Поиграйте с модулями (PDF)" />
+
+## Придумайте свой парк {/* #design-your-park */}
+
+{/* site-added: mode prop for the planner workstream; placement and surrounding copy are ours. */}
+<Planner mode="design" />
+
+<Callout kind="auto" title="Само подгоняется под ваш участок">
+  Планировщик подгоняет модули парка Park in a Truck к вашему настоящему участку — растягивает их вставками точно так
+  же, как это делается вручную по рабочей тетради, — и по ходу работы всё подсчитывает, чтобы данные были готовы для
+  расчёта стоимости и списков растений ниже.
+</Callout>
+
+<details>
+  <summary>Предпочитаете бумагу? Распечатайте модули парка</summary>
+
+  Посмотрев темы, найдите букву, которую вы отметили в итогах шага «Оценить» (размер A–E), и расположение участка
+  (посреди квартала или на углу, с улицей справа или слева). Нажмите на подходящую ссылку ниже — каждая открывает
+  папку Google Drive с модулями парка для печати под этот размер и вид участка.
+
+  <table class="pieces-table">
+    <thead>
+      <tr><th>Размер</th><th>Участок посреди квартала</th><th>Угловой участок — улица справа</th><th>Угловой участок — улица слева</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>A</strong></td><td><a href="https://drive.google.com/open?id=1e3j5d8ZsIxVxsJsdtoosKgMAuCpQwBKo" target="_blank" rel="noopener">Скачать ↗</a></td><td><a href="https://drive.google.com/open?id=1Txw_BMZlvseeyCetUYbGfVSIu2_eq7HW" target="_blank" rel="noopener">Скачать ↗</a></td><td><a href="https://drive.google.com/open?id=1LBQG4r2z1geA6rIEyK_GFYGzV4IBQFua" target="_blank" rel="noopener">Скачать ↗</a></td></tr>
+      <tr><td><strong>B</strong></td><td><a href="https://drive.google.com/open?id=1LC6QvBJ2D-LyhbFGYXsjByiWQaFk06AF" target="_blank" rel="noopener">Скачать ↗</a></td><td><a href="https://drive.google.com/open?id=1LKVUm28LhzKNqmMPPsufWrxt-xqTyJrk" target="_blank" rel="noopener">Скачать ↗</a></td><td><a href="https://drive.google.com/open?id=1LQmrAsZd7Aw0M6F2iwFUUWjoUm-uAIFA" target="_blank" rel="noopener">Скачать ↗</a></td></tr>
+      <tr><td><strong>C</strong></td><td><a href="https://drive.google.com/open?id=1LR04NYM7Ii2srwf4E5tl2t26R8jxdWQr" target="_blank" rel="noopener">Скачать ↗</a></td><td><a href="https://drive.google.com/open?id=1LSWINYM72UNHj6hGjrsn0S51h2hJL47s" target="_blank" rel="noopener">Скачать ↗</a></td><td><a href="https://drive.google.com/open?id=1LJCzWBkOh_hG8205xt1sJ17s4jQFD-H-" target="_blank" rel="noopener">Скачать ↗</a></td></tr>
+      <tr><td><strong>D</strong></td><td><a href="https://drive.google.com/open?id=1LfpisFCCWZwitjJJ2_vpFfv_Pv_pnhMf" target="_blank" rel="noopener">Скачать ↗</a></td><td><a href="https://drive.google.com/open?id=1LSqUwvHJQd5riQI56GgMO6GgN9LK7-Or" target="_blank" rel="noopener">Скачать ↗</a></td><td><a href="https://drive.google.com/open?id=1LejWNaZ9sQFiy1P3er03OuwRURV7LNQI" target="_blank" rel="noopener">Скачать ↗</a></td></tr>
+      <tr><td><strong>E</strong></td><td><a href="https://drive.google.com/open?id=1L-pqs-CuyMjeHE7UgEIDLawzv4ErTA6h" target="_blank" rel="noopener">Скачать ↗</a></td><td><a href="https://drive.google.com/open?id=1LlyI3QGglqZw5f92aR1WLES7Nuz0gkOC" target="_blank" rel="noopener">Скачать ↗</a></td><td><a href="https://drive.google.com/open?id=1LiE8uy8Uc-6R55t8cQr2Eg4CGdifcC8J" target="_blank" rel="noopener">Скачать ↗</a></td></tr>
+    </tbody>
+  </table>
+  <p class="muted">Названия видов участка взяты со страницы загрузки в рабочей тетради; если набор модулей не подходит к вашему углу, попробуйте другой.</p>
+
+  Откройте скачанные модули и распечатайте их на одной стороне листа бумаги 8,5×11 дюймов (формат Letter), затем
+  вырежьте по пунктирным линиям. Совместите модули по значкам выравнивания, напечатанным на каждом листе, и склейте
+  их скотчем. В следующем пункте вы подгоните склеенный парк к настоящему размеру участка.
+
+  <PdfPage doc="downloads/workbooks/04-dream.pdf" page={11} label="Скачайте модули парка (PDF)" />
+  <PdfPage doc="downloads/workbooks/04-dream.pdf" page={12} label="Распечатайте и вырежьте модули (PDF)" />
+</details>
+
+## Подгоните парк по размеру {/* #right-size-your-park */}
+
+Если ваш участок точно подходит под модули, сразу переходите к нанесению существующих объектов. Если остаётся
+свободное место, расширьте парк вставками — дополнительными футами рамки, передней или задней части, — чтобы
+использовать всё доступное пространство.
+
+<table class="size-table">
+  <thead><tr><th>Размер</th><th>Длинная сторона</th><th>Короткая сторона</th></tr></thead>
+  <tbody>
+    {SIZES.map((s) => (
+      <tr><td><strong>{s.id}</strong></td><td>{s.long[0]}–{s.long[1]} фт</td><td>{s.short[0]}–{s.short[1]} фт</td></tr>
+    ))}
+  </tbody>
+</table>
+
+{/* site-added: sizing.ts also flags lots below size A; call that out here since it's the natural place a reader learns their lot doesn't fit the smallest set. */}
+<Callout kind="note" title="Меньше размера A?">
+  Размер не важен. Грядка 4×4 фута, палисадник перед домом или даже ящик на окне всё равно могут стать посадкой для
+  опылителей — вместо полных модулей парка ниже воспользуйтесь [руководством Park Patch](/park-patch/).
+</Callout>
+
+Вставки бывают двух видов: **вставка по длине** — её вырезают между передним и задним модулем — добавляет футы вдоль
+длинной стороны парка; **вставка по ширине** — её обрезают по длине — добавляет футы вдоль короткой стороны. На обеих
+вставках чёрные пунктирные линии отмечают каждые 4 фута, а серые — каждый 1 фут, так что можно точно отсчитать,
+сколько нужно.
+
+<Figure
+  src="img/dream/length-seam.webp"
+  alt="Схема вставки по длине: отсчитайте пунктирные линии на вставке между передним и задним модулем парка, отрежьте её, вклейте скотчем вставку по ширине посередине парка и снова склейте"
+/>
+<Figure
+  src="img/dream/width-seam.webp"
+  alt="Схема вставки по ширине: отсчитайте пунктирные линии на вставке вдоль длины парка, обрежьте её до нужного размера, затем добавьте вставку по ширине посередине и снова склейте две стороны скотчем"
+/>
+
+<Callout kind="auto">
+  Планировщик сам растягивает выбранные модули точно по размерам вашего участка — ничего не нужно резать и клеить.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={14} />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={15} label="Вставка по длине (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={16} label="Вставка по ширине (PDF)" />
+
+## Нанесите существующие объекты {/* #add-existing-conditions */}
+
+Перенесите существующие объекты с плана участка, который вы нарисовали в рабочей тетради «Оценить», на план
+проекта. Положите два плана рядом и перерисуйте каждый объект — сетки одинаковые, так что просто отсчитайте клетки,
+чтобы найти нужное место. Если существующее дерево попало на место посадок — отлично; если на гравий — тоже не страшно
+(в шаге «Создать» объясняется, что с этим делать). Если существующие объекты мешают проекту — скажем, дерево
+оказалось на месте скамейки, — можно убрать скамейку, зачеркнув её, или сдвинуть весь передний или задний модуль.
+Проект — это шаблон: он довольно жёсткий, но всегда можно что-то добавить или убрать, чтобы он вам подошёл.
+
+<Callout kind="auto">
+  Существующие деревья, водосточные трубы, мокрые места, гидранты и провода, которые вы отметили на шаге «Оценить»,
+  уже стоят в планировщике — перетащите то, что оказалось не на своём месте.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={17} />
+
+## Посчитайте модули и стоимость {/* #count-your-pieces-cost */}
+
+Пора подсчитать всё на плане участка. У каждого переднего, заднего модуля и рамки есть подсчёт всех его элементов,
+так что можно рассчитать стоимость и заказать материалы. Рабочая тетрадь спрашивает: сколько футов в длинной стороне
+участка (длина)? В короткой (ширина)? Сколько у вас зелёных квадратов для посадок? И сколько каждого вида мебели —
+по условным обозначениям на ваших модулях парка?
+
+<CostEstimator />
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — the order list's "fire hydrant opener" items; facts checked 2026-10-04 on water.phila.gov. */}
+<Callout kind="site" title="Примечание этого сайта, а не Park in a Truck: пожарные гидранты">
+  В списке заказа предлагается ключ для пожарного гидранта. Чтобы открыть пожарный гидрант в Филадельфии, нужно
+  [разрешение на гидрант от Philadelphia Water Department ↗](https://water.phila.gov/development/connections/hydrant-permits/)
+  (на английском) и одобренный обратный клапан (общественные сады освобождены от платы за разрешение). В
+  [руководстве PWD для городских садов ↗](https://water.phila.gov/urban-garden-guide/) (на английском) перечислены
+  другие способы провести воду в сад.
+</Callout>
+
+<Download href="downloads/templates/cost-estimator.xlsx" label="Расчёт стоимости" note="Исходная таблица — сделайте свою копию, чтобы её редактировать" />
+
+<details>
+  <summary>Считаете на бумаге? Введите итоги здесь</summary>
+  <Field id="dream.diy-length" label="Длина (длинная сторона участка)" type="number" unit="фт" />
+  <Field id="dream.diy-width" label="Ширина (короткая сторона участка)" type="number" unit="фт" />
+  <Field id="dream.diy-planting-squares" label="Квадраты для посадок (зелёные квадраты на плане)" type="number" />
+  <p class="muted">Посчитайте мебель по условным обозначениям, напечатанным на модулях парка, а потом внесите всё в таблицу расчёта стоимости выше.</p>
+</details>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={18} />
+
+## Посчитайте и выберите растения {/* #count-choose-your-plants */}
+
+Всё зелёное на плане — место для посадок, и у каждого значка растения есть размер. Посчитайте многолетники,
+кустарники, небольшие и крупные деревья в своём проекте — для многолетников и кустарников отдельно на солнце и в
+тени. Конкретные сорта растений вы выберете дальше.
+
+{/* site-added: the six counts show your design's numbers (project.extra.tally) until you type your own; the plant picker below uses the same numbers */}
+<Field id="dream.perennials-sun" label="Многолетники — зелёные квадраты на солнце" type="number" unit="квадр." auto="extra.tally.plantingSquares.sun" autoNote="✓ Заполнено по вашему проекту — можно исправить" />
+<Field id="dream.perennials-shade" label="Многолетники — зелёные квадраты в тени" type="number" unit="квадр." auto="extra.tally.plantingSquares.shade" autoNote="✓ Заполнено по вашему проекту — можно исправить" />
+<Field id="dream.shrubs-sun" label="Кустарники — солнце" type="number" auto="extra.tally.shrubs.sun" autoNote="✓ Заполнено по вашему проекту — можно исправить" />
+<Field id="dream.shrubs-shade" label="Кустарники — тень" type="number" auto="extra.tally.shrubs.shade" autoNote="✓ Заполнено по вашему проекту — можно исправить" />
+<Field id="dream.small-trees" label="Небольшие деревья" type="number" auto="extra.tally.smallTrees" autoNote="✓ Заполнено по вашему проекту — можно исправить" />
+<Field id="dream.large-trees" label="Крупные деревья" type="number" auto="extra.tally.largeTrees" autoNote="✓ Заполнено по вашему проекту — можно исправить" />
+
+<PlantPicker />
+
+У каждой темы свой предлагаемый список растений — это отправная точка, а не обязательное требование. Если вы сочетаете
+две темы, выбирайте растения из обоих списков.
+
+<div class="plant-list-links">
+  <Download href="https://docs.google.com/spreadsheets/d/1QsoQ6KYBT5tVrlAtTxoD5q0yP2YS5Wyt/copy" label="Растения для темы «Съедобный сад»" />
+  <Download href="https://docs.google.com/spreadsheets/d/1RhCdaiCLbEJD8KXiX7uJMD7xJFRNCERy/copy" label="Растения для темы «Тихий уголок»" />
+  <Download href="https://docs.google.com/spreadsheets/d/1eEVK3dpBy1-xBFDaACIOTMB2Dd9COGvz/copy" label="Растения для темы «Природа»" />
+  <Download href="https://docs.google.com/spreadsheets/d/1oy_aLqP7RoBcHngZ_uFMl_YBvzJ271MR/copy" label="Растения для темы «Мероприятия»" />
+</div>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={20} label="Выберите растения (PDF)" />
+
+## Соберите {/* #assemble */}
+
+Теперь пора посмотреть, как строятся элементы парка. Для некоторых элементов есть собственные пошаговые инструкции по
+сборке, как в Ikea; для других — предложенный проект по уже проверенным инструкциям; а некоторые — просто готовые
+товары из магазина. Нажмите на любой элемент ниже: если он есть в вашем парке, вот как его построить (или купить).
+
+<div class="elements-grid">
+  {Object.values(ELEMENTS)
+    .filter((el) => !NOT_BUILT.has(el.id) && ASSEMBLE_ICONS.has(ICON_FALLBACK[el.id] ?? el.id))
+    .map((el) => {
+      const icon = ICON_FALLBACK[el.id] ?? el.id;
+      const href = el.guide ? u(`build/${el.guide}/`) : el.link;
+      const external = !el.guide;
+      return (
+        <a class="element-card" href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
+          <img src={u(`img/dream/elements/${icon}.webp`)} alt="" width="96" height="72" loading="lazy" />
+          <span>{ELEMENT_NAMES[el.id] ?? el.name}</span>
+        </a>
+      );
+    })}
+</div>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={19} />
+
+## Вы готовы? {/* #are-you-ready */}
+
+Поздравляем, вы прошли рабочую тетрадь «Мечтать»! Отметьте каждый пункт ниже, прежде чем переходить к шагу «Создать».
+
+<Checklist
+  id="dream.ready-checklist"
+  items={[
+    { value: 'theme-review', label: 'Обзор тематических проектов', hint: 'Вы посмотрели темы и решили, какая лучше всего подходит под ваши нужды' },
+    { value: 'custom-design', label: 'Свой проект', hint: 'Вы поиграли с модулями парка и выбрали окончательный проект парка' },
+    { value: 'custom-size', label: 'Свой размер', hint: 'Вы подогнали парк под размеры участка и существующие объекты' },
+    { value: 'cost-estimate', label: 'Расчёт стоимости', hint: 'Вы посчитали модули и внесли их в расчёт стоимости' },
+    { value: 'plant-choice', label: 'Выбор растений', hint: 'Вы выбрали растения по подсчёту растений' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={20} label="Вы готовы? (PDF)" />
+
+<style>
+  {`
+  .theme-reqs { list-style: none; padding: 0; margin: 0.8em 0 0; font-size: 0.92rem; color: var(--ink-2); display: grid; gap: 0.2em; }
+  .size-table, .pieces-table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.95rem; }
+  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: left; }
+  .elements-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; margin: 1.2em 0; }
+  .element-card { display: flex; flex-direction: column; align-items: center; gap: 0.4em; text-align: center; padding: 10px; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); font-size: 0.85rem; background: #fff; }
+  .element-card:hover { border-color: var(--cyan); box-shadow: var(--shadow); }
+  .element-card img { max-width: 96px; max-height: 72px; width: auto; }
+  .plant-list-links { display: flex; flex-wrap: wrap; gap: 10px; }
+  `}
+</style>
