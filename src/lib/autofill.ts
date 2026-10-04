@@ -24,6 +24,21 @@ const LOT_TYPES: Record<string, string> = {
   unknown: 'Not sure',
 };
 
+// Assess summary ("Are you ready?"): SiteFacts.sunClass -> the workbook's own wording.
+const SUN_CLASSES: Record<string, string> = {
+  'full-sun': 'Full sun all day',
+  'mostly-sun': 'Mostly sun',
+  'mostly-shade': 'Mostly shade',
+  'deep-shade': 'Deep shade all day',
+};
+
+// Assess summary: SiteFacts.lotKind -> the workbook's own wording.
+const LOT_KINDS: Record<string, string> = {
+  interior: 'Mid-block lot',
+  'corner-right': 'Corner lot (street right)',
+  'corner-left': 'Corner lot (street left)',
+};
+
 function get(obj: unknown, path: string): unknown {
   return path.split('.').reduce<unknown>((o, k) => (o == null ? undefined : (o as Record<string, unknown>)[k]), obj);
 }
@@ -47,6 +62,10 @@ export function formatAuto(v: unknown, fmt?: string): string | null {
       return OWNER_TYPES[String(v)] ?? String(v);
     case 'lotType':
       return LOT_TYPES[String(v)] ?? String(v);
+    case 'sunClass':
+      return SUN_CLASSES[String(v)] ?? String(v);
+    case 'lotKind':
+      return LOT_KINDS[String(v)] ?? String(v);
     default:
       return Array.isArray(v) ? v.join(', ') : String(v);
   }
