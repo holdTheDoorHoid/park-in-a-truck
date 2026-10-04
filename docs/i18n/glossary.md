@@ -684,6 +684,43 @@ Conventions chosen (keep to them):
 | in English | 영어 | after links: "(영어)" |
 | ft, in, sq ft, $ | 피트, 인치, 제곱피트, $ | short forms ft, in, sq ft as printed; see Units above |
 
+Extra terms used in the chapters, guides, planner and data (ko only; they may belong in the English table):
+
+| English | Translation | Note |
+|---|---|---|
+| Park Patch | 자투리 공원(Park Patch) | 자투리 땅 = a leftover scrap of land; the English name in brackets on first mention |
+| Playful Learning (Landscapes) | 놀이 학습(Playful Learning); Playful Learning Landscapes(PLL) | the organisation's name stays English |
+| 6Cs | 6C: 협력 · 의사소통 · 콘텐츠 · 비판적 사고 · 창의적 혁신 · 자신감 | the usual Korean names from the Korean edition of *Becoming Brilliant* |
+| phase (Create step) | 차 작업 ("1차 작업: 조직하기") | distinct from 단계 (step); the steps inside a phase are 1단계, 2단계… |
+| site (the lot being turned into a park) | 부지 / 현장 | 현장 = on site, during work |
+| base map / base plan | 기본 지도 / 기본 평면도 | |
+| soil / topsoil / soil test | 흙 / 겉흙 / 흙 검사 | |
+| mulch | 멀칭재 | "멀칭재(덮개)" at first use on a page |
+| planting bed / raised bed / planting square | 화단 / 높임 화단 / 식재 칸 (초록 칸) | |
+| gravel / stone dust | 자갈 / 돌가루 | |
+| weeds / pre-emergent | 잡초 / 발아 전 제초제 | |
+| fire hydrant / hydrant permit / backflow preventer | 소화전 / 소화전 허가 / 역류 방지 장치(backflow preventer) | |
+| street tree | 가로수 | |
+| temporary no-parking permit | 임시 주차 금지 허가 | |
+| volunteer waiver / release form | 자원봉사자 면책 동의서 | |
+| Park Ambassador | 공원 대사(Park Ambassador) | |
+| cost estimate / cost estimator | 비용 견적 / 비용 계산기 | contingency = 예비비; tool rental = 공구 대여 |
+| sun study | 햇빛·그늘 분석 | |
+| bench / stool / table / planter box | 벤치 / 스툴 / 테이블 / 화분 상자 | |
+| shade structure / shade canopy / stage / workbench | 그늘막 구조물 / 그늘막 / 무대 / 작업대 | trellis = 퍼걸러 |
+| impact driver / self-driving exterior wood screws | 임팩트 드라이버 / 실외용 셀프 드릴링 목재 나사 | |
+| pre-drill / pre-drilling hole guide | 구멍 미리 뚫기 / 구멍 뚫기 안내 (본) | |
+| miter saw / stop block / jig / spacer | 각도 절단기(마이터 쏘) / 스톱 블록 / 지그 / 간격재 | |
+| carpenter's square / level | 직각자 / 수평자 | |
+| lag screws / carriage bolts / socket wrench | 래그 스크루 / 캐리지 볼트 / 소켓 렌치 | |
+| sledgehammer / hammer | 큰 망치(해머) / 망치 | |
+| wire mesh / hog rings / hog ring pliers / cable staples | 용접 철망 / 호그링 / 호그링 플라이어 / U자 못(케이블 스테이플) | |
+| bolt cutters / grinder / staple gun | 볼트 커터 / 그라인더 / 타카(스테이플 건) | |
+| geotextile fabric | 부직포(지오텍스타일) | |
+| pressure-treated / cedar / Douglas fir | 방부 처리 목재 / 적삼목(웨스턴 레드 시더) / 미송(더글러스 퍼) | |
+| hardscape / softscape | 단단한 바닥 / 무른 바닥 | cost estimator questions |
+| plant common names | Korean name + (English common name) | e.g. "채진목(serviceberry)", so the plant can be found at a US nursery; common fruit trees (사과나무, 배나무) without brackets |
+
 ### tl — Tagalog
 
 Tone: Tagalog as Filipino Americans read it; common English loanwords for technical things (lot, zoning) are fine. **kayo/ninyo**, "po" sparingly.
