@@ -87,6 +87,11 @@ after the extraction round. Tick them off here.
 - [ ] (phase B) ListField `rowName` goes into "+ Add {row}" / "{row} removed" — languages with noun-class or gender
       agreement (sw, pt, fr, ar) need whole-sentence messages per list instead of a slotted noun.
 - [x] ListFormat for sw: Node and Chrome already give "a, b na c" (ht still needs a fallback).
+- [ ] Build-guide supplier links don't add "(in English)" (`src/pages/build/[slug].astro` ~188) the way parks does
+      (`link.english`) — add it; tl put "(sa Ingles)" in its labels (remove once the page adds it).
+- [ ] English `assess.mdx`: `<Planner mode="site" />` and `<SunStudy />` are used as the subject of a sentence
+      ("… lets you drop…") — reword so the widget isn't the subject (PiaT-faithful wording otherwise).
+- [x] ListFormat for tl reads naturally ("a, b, at c").
 
 ## For native-speaker review (per language)
 
@@ -176,3 +181,12 @@ after the extraction round. Tick them off here.
   skwea ya seremala); `plants.json` names; legal text (start.mdx, resources legal.text); in-kind = "makubaliano ya
   kutumia bila kodi"; long explanations in cost.ts fix.*/note.*, philly.ts zoning.*/landBank.*, planner.ts slope.*,
   shade.ts summaries.
+
+### Tagalog (tl)
+- Step and theme names; Survive/Thrive/Socialize as "Manatiling buhay / Yumabong / Makisalamuha"; `start.mdx`
+  "Bakit parke?" proverb and "bayanihan" for barn-raising; legal text (start.mdx "Paunawang legal", resources);
+  safety notes in create/sustain/assess/dream and the hydrant note in `cost.ts` (exact meaning); `create.mdx` tool
+  checklists (piko, maso, asarol, kalaykay, iskwala); guide hardware wording ("soleras" for joist); long assembled
+  sentences (cost.ts fix.*/note.*/warn.*/guide.reason.*, philly.ts zoning.*/landBank.*/http.*, planner.ts slope.*,
+  shade.ts sum.* "batik-batik na lilim"); plant names (English + Tagalog hints); 6C names in `playful.ts`; map north
+  letter "H" (hilaga) vs "N".
