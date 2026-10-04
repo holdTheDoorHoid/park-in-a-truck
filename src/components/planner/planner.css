@@ -1,5 +1,12 @@
 /* Planner island styles. Everything is prefixed .pl- so nothing leaks. Colours and type
-   come from global.css (paper, ink, cyan, theme colours). */
+   come from global.css (paper, ink, cyan, theme colours).
+
+   Right-to-left (Arabic): the side panel uses logical properties (inline-start/end), so it
+   mirrors — it sits on the other side of the 3D view and reads right to left. The 3D view is a
+   map: the canvas, the compass, the toolbar's corner, the bottom bar's corner, the play chip
+   and the year chart stay where they are; only the words inside them read right to left.
+   Use :dir(rtl), not [dir='rtl'], for the rare exception: an untranslated planner is marked
+   dir="ltr" inside an Arabic page (LangFallback) and must stay left to right. */
 
 .pl-root {
   container-type: inline-size;
@@ -36,7 +43,7 @@
   .pl-side {
     flex: 0 0 360px;
     overflow-y: auto;
-    border-left: 1px solid var(--line);
+    border-inline-start: 1px solid var(--line);
   }
 }
 
@@ -58,8 +65,8 @@
   .pl-page .pl-side {
     flex: 0 0 390px;
     overflow-y: auto;
-    border-left: 0;
-    border-right: 1px solid var(--line);
+    border-inline-start: 0;
+    border-inline-end: 1px solid var(--line);
   }
 }
 @media (max-width: 899.98px) {
@@ -180,7 +187,7 @@
 }
 .pl-menu {
   position: absolute;
-  right: 0;
+  inset-inline-end: 0;
   top: 40px;
   background: #fff;
   border: 1px solid var(--line);
@@ -259,6 +266,12 @@
   color: var(--danger);
   box-shadow: inset 3px 0 0 var(--danger);
 }
+.pl-hint.is-live:dir(rtl) {
+  box-shadow: inset -3px 0 0 var(--cyan);
+}
+.pl-hint.is-over:dir(rtl) {
+  box-shadow: inset -3px 0 0 var(--danger);
+}
 .pl-selbar {
   pointer-events: auto;
   display: flex;
@@ -269,12 +282,13 @@
   border: 2px solid var(--cyan);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 3px 4px 3px 8px;
+  padding-block: 3px;
+  padding-inline: 8px 4px;
   font-size: 0.8rem;
 }
 .pl-selbar-name {
   font-weight: 800;
-  margin-right: 4px;
+  margin-inline-end: 4px;
   max-width: 14em;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -334,7 +348,7 @@
   font: inherit;
   font-size: 0.9rem;
   font-weight: 600;
-  text-align: left;
+  text-align: start;
   padding: 7px 8px;
   min-height: 36px;
   border-radius: var(--radius);
@@ -395,7 +409,7 @@
 
 .pl-demo-banner {
   background: var(--warn-wash);
-  border-left: 6px solid var(--warn);
+  border-inline-start: 6px solid var(--warn);
   padding: 8px 12px;
   font-size: 0.88rem;
   margin-bottom: 12px;
@@ -403,7 +417,7 @@
 .pl-note,
 .pl-warn {
   background: var(--warn-wash);
-  border-left: 4px solid var(--warn);
+  border-inline-start: 4px solid var(--warn);
   padding: 6px 10px;
   font-size: 0.86rem;
   margin: 8px 0;
@@ -433,7 +447,7 @@
   font: inherit;
   cursor: pointer;
   padding: 4px 6px 6px;
-  text-align: left;
+  text-align: start;
 }
 .pl-rail-n {
   font-family: var(--font-display);
@@ -615,7 +629,8 @@
   gap: 6px;
   border: 1.5px solid var(--line);
   border-radius: 999px;
-  padding: 0.25em 0.7em 0.25em 0.35em;
+  padding-block: 0.25em;
+  padding-inline: 0.35em 0.7em;
   font-size: 0.84rem;
   font-weight: 600;
   cursor: pointer;
@@ -657,6 +672,9 @@
 .pl-selected {
   border-color: var(--cyan);
   box-shadow: inset 4px 0 0 var(--cyan);
+}
+.pl-selected:dir(rtl) {
+  box-shadow: inset -4px 0 0 var(--cyan);
 }
 .pl-selected .pl-h {
   margin-top: 0;
@@ -705,7 +723,7 @@
   color: var(--cyan-ink);
   text-decoration: underline;
   cursor: pointer;
-  text-align: left;
+  text-align: start;
 }
 .pl-list {
   list-style: none;
@@ -735,7 +753,7 @@
   padding: 0 0.5em;
 }
 .pl-keep {
-  margin-left: auto;
+  margin-inline-start: auto;
   display: inline-flex;
   border: 1.5px solid var(--ink);
   border-radius: var(--radius);
@@ -766,7 +784,8 @@
   margin: 8px 0;
 }
 .pl-nudge .pl-small {
-  margin: 0 4px 0 0;
+  margin: 0;
+  margin-inline-end: 4px;
 }
 .pl-next {
   display: flex;
@@ -777,7 +796,7 @@
   border-top: 1px solid var(--line);
 }
 .pl-next .btn-primary {
-  margin-left: auto;
+  margin-inline-start: auto;
 }
 .pl-progress {
   position: relative;
@@ -789,7 +808,8 @@
 }
 .pl-progress span {
   position: absolute;
-  inset: 0 auto 0 0;
+  inset-block: 0;
+  inset-inline: 0 auto;
   background: #ffb000;
   transition: width 0.15s;
 }
@@ -815,7 +835,7 @@
   width: 14px;
   height: 14px;
   vertical-align: -2px;
-  margin-right: 4px;
+  margin-inline-end: 4px;
   border: 1px solid rgb(0 0 0 / 0.25);
 }
 .pl-key-sun {
@@ -837,31 +857,31 @@
 .pl-table td {
   border-bottom: 1px solid var(--line);
   padding: 5px 4px;
-  text-align: left;
+  text-align: start;
   font-weight: 500;
 }
 .pl-table th[scope='row'] {
   font-weight: 600;
 }
 .pl-table td {
-  text-align: right;
+  text-align: end;
   font-weight: 800;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
 .pl-table-3 thead th {
-  text-align: right;
+  text-align: end;
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
 .pl-table-3 td[colspan] {
-  text-align: right;
+  text-align: end;
 }
 .pl-sym {
   display: inline-block;
   vertical-align: -3px;
-  margin-right: 6px;
+  margin-inline-end: 6px;
 }
 .pl-sym-perennial {
   width: 14px;
@@ -931,7 +951,7 @@
 .pl-cta .btn {
   flex-direction: column;
   align-items: flex-start;
-  text-align: left;
+  text-align: start;
 }
 .pl-btn-note {
   font-weight: 400;
@@ -971,8 +991,9 @@
   }
   .pl-print-sheet th,
   .pl-print-sheet td {
-    text-align: left;
-    padding: 2pt 12pt 2pt 0;
+    text-align: start;
+    padding-block: 2pt;
+    padding-inline: 0 12pt;
     border-bottom: 1px solid #ccc;
   }
   .pl-root {
@@ -1022,7 +1043,7 @@
   margin: 6px 0 2px;
 }
 .pl-habit .pl-keep {
-  margin-left: 0;
+  margin-inline-start: 0;
 }
 .pl-habit .pl-keep button:last-child[aria-pressed='true'] {
   background: var(--ink);
@@ -1038,6 +1059,8 @@
   width: 100%;
   height: auto;
   overflow: visible;
+  /* the chart's months run left to right in every language (its labels are placed by x) */
+  direction: ltr;
 }
 .pl-spot-grid {
   stroke: #e4e2dc;
@@ -1112,7 +1135,7 @@
   height: 10px;
   border-radius: 2px;
   vertical-align: -1px;
-  margin-right: 3px;
+  margin-inline-end: 3px;
 }
 .pl-spot-key-bar {
   background: #c27c0e;
@@ -1133,7 +1156,7 @@
   padding-top: 8px;
 }
 .pl-assume ul {
-  padding-left: 1.2em;
+  padding-inline-start: 1.2em;
   margin: 6px 0;
 }
 .pl-assume li {

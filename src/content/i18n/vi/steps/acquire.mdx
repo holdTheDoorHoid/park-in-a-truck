@@ -1,0 +1,251 @@
+---
+title: Có được đất
+intro: Tìm một lô đất trong khu phố của bạn và có quyền hợp pháp để biến nó thành công viên.
+sources:
+  - Cẩm nang (Toolkit), tr. 24–27 (Tìm lô đất, Lô đất nào?, Xác định chủ sở hữu lô đất)
+  - Sổ tay thực hành Có được đất, tr. 1–7
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Choice from '../../../../components/workbook/Choice.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import LotLookup from '../../../../components/widgets/LotLookup.astro';
+import LotFinderMap from '../../../../components/widgets/LotFinderMap.astro';
+
+Những người muốn làm công viên mà chưa có quyền hợp pháp dùng một khu đất trống thì phải tìm người sẵn lòng bán hoặc
+cho thuê lô đất (hay các lô đất) của họ để làm công viên. Việc này có thể phức tạp và mất nhiều thời gian. Không có quy
+trình nào hoàn hảo, không chỉ có một cách làm, và không có kết quả nào chắc chắn. Bước này sẽ giúp bạn tìm cách có được
+khu đất cho công viên tương lai của mình.
+
+## Tìm lô đất {/* #find-a-lot */}
+
+Các công viên lớn trong thành phố mang lại nhiều lợi ích về xã hội, sinh thái và kinh tế cho cư dân và du khách. Nhưng
+nếu công viên không dễ đến, người ta có thể chỉ thỉnh thoảng mới ghé. Không phải ai cũng có xe hơi hay phương tiện công
+cộng thuận tiện, hoặc có thể đi bộ hay đạp xe đường xa.
+
+Vì vậy, điều quan trọng là tìm một lô đất hay một khoảng trống gần nhà để biến thành công viên khu phố nhỏ. Công viên
+nhỏ có nhiều lợi ích của công viên lớn **và** vì ở gần nên ai cũng dễ đến. Công viên khu phố càng được nhiều người ghé,
+nó càng trở nên quen thuộc — và được quý mến. Khi mọi người dùng công viên thường xuyên, nơi đó trở thành trung tâm thiết
+yếu của "đời sống xã hội", giúp khu phố gắn bó với nhau hơn!
+
+Trong khu phố của bạn có những bất động sản bỏ không, hợp pháp để dùng, an toàn và phù hợp để làm công viên không? Bạn
+có thể chỉ ra những lô đất trong khu phố mà bạn muốn thấy công viên của mình ở đó không?
+
+<Callout kind="auto" title="Để bản đồ đi bộ giúp bạn">
+  Bản đồ bên dưới cho thấy những lô đất mà Thành phố ghi là đất trống. Bấm vào một lô để xem chủ sở hữu, diện tích và
+  phân vùng (zoning), rồi thêm lô đó vào danh sách của bạn. Bạn vẫn nên đi bộ quanh dãy phố của mình — danh sách của
+  Thành phố bỏ sót một số lô và có cả những lô đã đang được dùng.
+</Callout>
+
+<LotFinderMap />
+
+<Figure
+  src="img/acquire/west-kensington-site.webp"
+  alt="Một lô đất trống phủ cỏ ở West Kensington, Philadelphia, cỏ đã cắt và được cắm cờ khảo sát màu xanh ngọc ở các góc, phía sau là một bức tường trát vữa, một hàng rào cây và những chiếc xe đang đậu."
+  caption="Khu đất công viên PiaT ở West Kensington, trước khi xây dựng"
+  duo
+/>
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={3} />
+
+## Lô đất nào? {/* #which-lot */}
+
+Hãy xem qua ba loại địa điểm có thể làm công viên khu phố. Đi bộ quanh khu phố và ghi lại những bất động sản ít được
+dùng nào có thể làm chỗ cho công viên của bạn.
+
+<div class="lot-types">
+  <div>
+    <Figure
+      src="img/acquire/lot-midblock.webp"
+      alt="Hình minh họa ba chiều một lô đất trống giữa dãy nhà: một khoảng trống hình chữ nhật hẹp giữa hai dãy nhà liền kề trong một khu dân cư, tô màu xanh lá với một cây duy nhất."
+    />
+    <p class="lot-caption">
+      <strong>Lô đất giữa dãy nhà (lô đất trống).</strong> Có hình chữ nhật và nằm ở giữa một dãy phố dân cư. Có thể có
+      nhà ở hai bên và/hoặc ở phía cuối. Phần lớn các lô đất "trống" còn có sẵn ở Philadelphia thuộc loại này. Có thể bị
+      hạn chế cho một số cách dùng công viên vì hẹp và/hoặc thiếu nắng.
+    </p>
+  </div>
+  <div>
+    <Figure
+      src="img/acquire/lot-corner.webp"
+      alt="Hình minh họa ba chiều một lô đất trống ở góc đường: một khoảng trống hình chữ nhật ở cuối một dãy phố dân cư, nhìn ra hai con đường, tô màu xanh lá với một cây duy nhất."
+    />
+    <p class="lot-caption">
+      <strong>Lô đất góc đường (lô đất trống).</strong> Có hình chữ nhật và nằm ở cuối một dãy phố dân cư. Có thể có nhà
+      ở một bên và/hoặc ở phía cuối. Những lô này rất dễ thấy và thường có nhiều nắng nhất.
+    </p>
+  </div>
+  <div>
+    <Figure
+      src="img/acquire/lot-alley.webp"
+      alt="Hình minh họa ba chiều một lối đi xuyên khối nhà hay hẻm: một khoảng xanh dài và rất hẹp cắt ngang giữa các dãy nhà liền kề, nối sang phía bên kia dãy phố."
+    />
+    <p class="lot-caption">
+      <strong>Lối đi xuyên khối nhà / hẻm (lối đi chung).</strong> Dễ nhận ra nhờ hình dáng dài và rất hẹp; những chỗ
+      này thường nối "xuyên qua" một dãy phố. Lúc đầu được chừa ra làm lối đi bộ giữa các con đường và/hoặc làm lối đi
+      cho đường ống, dây điện.
+    </p>
+  </div>
+</div>
+
+Ghi lại địa chỉ của từng lô đất có thể dùng. Khi bạn tra một địa chỉ, trang web sẽ điền sẵn chủ sở hữu, diện tích và
+loại lô đất giúp bạn.
+
+<LotLookup mode="candidates" />
+
+<ListField
+  id="acquire.candidate-notes"
+  label="Ghi chú từ chuyến đi bộ quanh khu phố"
+  rowName="lô đất"
+  min={3}
+  columns={[
+    { key: 'address', label: 'Địa chỉ hoặc vị trí' },
+    { key: 'type', label: 'Loại lô đất', placeholder: 'giữa dãy nhà, góc đường, hẻm' },
+    { key: 'notes', label: 'Bạn thấy gì', placeholder: 'rác, nắng, hàng xóm, đang dùng…' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={3} />
+
+## Ai là chủ lô đất đó? {/* #who-owns-that-lot */}
+
+Khi bạn đã tìm ra một số bất động sản ít được dùng có thể làm công viên khu phố mới, bước tiếp theo là xác định ai là
+chủ sở hữu. Chủ sở hữu có thể là một cá nhân, một doanh nghiệp hay một tổ chức bất vụ lợi. Chủ sở hữu cũng có thể là
+Thành phố. Cách đáng tin cậy nhất để biết ai là chủ một lô đất là xem hồ sơ của Thành phố Philadelphia.
+
+Sơ đồ này cho thấy cách xác định ai là chủ một lô đất và những bước có thể làm để có quyền hợp pháp — hay "quyền sử
+dụng" — dùng bất động sản đó làm công viên khu phố.
+
+{/* site-added: the workbook's flowchart reproduced as HTML (not an image of text), steps 1–4 then the public/private branch. */}
+<ol class="flow-steps">
+  <li>
+    <span class="flow-num">1</span>
+    <div><strong>Xác định địa chỉ.</strong> Kiểm tra lại địa chỉ của lô đất (hay các lô đất) có thể dùng mà bạn đã ghi.</div>
+  </li>
+  <li>
+    <span class="flow-num">2</span>
+    <div><strong>Tra cứu bất động sản.</strong> Vào <a href="https://atlas.phila.gov/" target="_blank" rel="noopener">atlas.phila.gov</a> (bằng tiếng Anh) và nhập địa chỉ. Bạn cũng có thể tìm lô đất bằng cách phóng to bản đồ vào một con đường gần đó.</div>
+  </li>
+  <li>
+    <span class="flow-num">3</span>
+    <div><strong>Xác định chủ sở hữu.</strong> Xem tên chủ sở hữu trong mục "Property Assessment" (Định giá bất động sản) trên trang web.</div>
+  </li>
+</ol>
+
+<div class="owner-branch">
+  <div class="owner-branch-col">
+    <h4>4a. Chủ sở hữu là… Thành phố Philadelphia <span class="muted">(sở hữu công)</span></h4>
+    <p>
+      <strong>Có thể mua.</strong> Tra cứu bất động sản để biết đất công có đang được bán qua Philadelphia Housing
+      Development Corporation (PHDC) và Philadelphia Land Bank hay không.
+    </p>
+  </div>
+  <div class="owner-branch-col">
+    <h4>4b. Chủ sở hữu là… một cá nhân, tổ chức hay doanh nghiệp <span class="muted">(sở hữu tư nhân)</span></h4>
+    <ul>
+      <li><strong>Có thể được hiến tặng.</strong> Liên lạc với chủ đất để hỏi về việc hiến tặng vĩnh viễn bất động sản này.</li>
+      <li><strong>Có thể được bán.</strong> Để ý thông báo bán công khai hay đấu giá — ở Philadelphia có thể có cả phiên đấu giá của cảnh sát trưởng (Sheriff Sale).</li>
+      <li><strong>Thương lượng thỏa thuận mua.</strong> Liên lạc với chủ đất và thương lượng việc mua để khu phố sử dụng.</li>
+      <li><strong>Thỏa thuận cho sử dụng đất.</strong> Bàn với chủ đất về việc cho khu phố sử dụng lô đất theo kiểu "in-kind", trong khi chủ vẫn giữ quyền sở hữu.</li>
+    </ul>
+  </div>
+</div>
+
+<Callout kind="auto" title="Bước 1–3 đã làm sẵn cho bạn">
+  Chọn lô đất bạn muốn theo đuổi. Trang web sẽ kiểm tra địa chỉ và hồ sơ bất động sản của Thành phố (cùng dữ liệu mà
+  atlas.phila.gov hiển thị) và điền sẵn chủ sở hữu bên dưới.
+</Callout>
+
+<LotLookup mode="primary" />
+
+<Field id="acquire.address" label="Địa chỉ lô đất của bạn" auto="lot.address" />
+<Field id="acquire.owner" label="Tên chủ sở hữu" auto="lot.owners|owners" />
+<Field id="acquire.owner-type" label="Chủ sở hữu là…" auto="lot.ownerType|ownerType" />
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={4} />
+
+## Nếu Thành phố là chủ {/* #if-the-city-owns-it */}
+
+**Có thể mua.** Đất công ở Philadelphia được bán hoặc cho thuê qua Philadelphia Housing Development Corporation (PHDC)
+và Philadelphia Land Bank (cơ quan của Thành phố bán và cho thuê đất công). Hãy tra cứu bất động sản để biết đất công
+có đang được bán hay không.
+
+<p><a class="btn" href="https://phillylandbank.org/community-use-map/" target="_blank" rel="noopener">Tìm trên bản đồ Community Use của Land Bank (bằng tiếng Anh) ↗</a></p>
+
+{/* site-added: the workbook's PHDC link (phdcphila.org/land/buy-land/property-search-map/) is dead; PHDC's search now lives on the Land Bank site. */}
+<p class="muted" style="font-size:0.9rem">Trang tra cứu của PHDC ghi trong sổ tay thực hành đã dời chỗ: PHDC và Philadelphia Land Bank nay dùng chung bản đồ này. Lô đất hiện có màu là lô còn trống để mua hoặc thuê; bản đồ Community Use (Sử dụng cộng đồng) là bản đồ dành cho vườn và không gian mở.</p>
+
+<Checklist
+  id="acquire.public-steps"
+  items={[
+    { value: 'searched-phdc', label: 'Đã tìm lô đất trên bản đồ tra cứu bất động sản của PHDC' },
+    { value: 'contacted-phdc', label: 'Đã liên lạc PHDC / Land Bank để hỏi mua hoặc thuê lô đất làm công viên' },
+  ]}
+/>
+
+<Field id="acquire.public-notes" label="Họ đã trả lời bạn thế nào" type="textarea" />
+
+## Nếu người khác là chủ {/* #if-someone-else-owns-it */}
+
+Khi chủ sở hữu là một cá nhân, tổ chức hay doanh nghiệp, có bốn hướng đi:
+
+- **Có thể được hiến tặng.** Liên lạc với chủ đất để hỏi về việc hiến tặng vĩnh viễn bất động sản này cho khu phố làm
+  công viên.
+- **Có thể được bán.** Để ý thông báo bán công khai hay đấu giá bất động sản này. Ở Philadelphia, việc này cũng có thể
+  gồm phiên đấu giá của cảnh sát trưởng (Sheriff Sale).
+- **Thương lượng thỏa thuận mua.** Liên lạc với chủ đất và thương lượng việc mua bất động sản ít được dùng này để khu phố
+  sử dụng.
+- **Thỏa thuận cho sử dụng đất.** Liên lạc với chủ đất và bàn về lợi ích cho cả hai bên khi cho khu phố dùng lô đất làm
+  công viên theo kiểu "in-kind", trong khi chủ vẫn giữ quyền sở hữu.
+
+<Choice
+  id="acquire.private-path"
+  label="Bạn thử hướng nào trước?"
+  options={[
+    { value: 'donation', label: 'Hiến tặng', desc: 'Chủ đất tặng lô đất cho khu phố' },
+    { value: 'sale', label: 'Bán công khai / Sheriff Sale', desc: 'Để ý thông báo bán và đấu giá' },
+    { value: 'purchase', label: 'Thỏa thuận mua', desc: 'Thương lượng mua với chủ đất' },
+    { value: 'in-kind', label: 'Thỏa thuận cho sử dụng đất', desc: 'Chủ đất giữ lô đất; hàng xóm dùng làm công viên' },
+  ]}
+/>
+
+<ListField
+  id="acquire.owner-contacts"
+  label="Nhật ký liên lạc"
+  rowName="lần liên lạc"
+  min={2}
+  columns={[
+    { key: 'date', label: 'Ngày', type: 'date' },
+    { key: 'who', label: 'Bạn đã liên lạc với ai' },
+    { key: 'outcome', label: 'Kết quả / bước tiếp theo' },
+  ]}
+/>
+
+<Callout kind="contact">
+  Bí quá? Nhóm Park in a Truck có thể giúp bạn cân nhắc các lựa chọn (bằng tiếng Anh):
+  [ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu).
+</Callout>
+
+{/* site-added: a place to record the outcome; no new advice. */}
+## Giữ chắc lô đất của bạn {/* #secure-your-lot */}
+
+Ghi lại thỏa thuận cho nhóm của bạn quyền làm công viên ở đây. Giữ một bản trong hồ sơ của ban công viên — bạn sẽ cần nó
+trước khi bất kỳ ai bắt đầu đào đất ở bước Xây dựng.
+
+<Field
+  id="acquire.agreement"
+  label="Loại thỏa thuận"
+  type="select"
+  options={[
+    { value: 'Purchase', label: 'Mua' },
+    { value: 'Donation', label: 'Hiến tặng' },
+    { value: 'Lease', label: 'Thuê' },
+    { value: 'In-kind use agreement', label: 'Thỏa thuận cho sử dụng đất (in-kind)' },
+    { value: 'Other', label: 'Khác' },
+  ]}
+/>
+<Field id="acquire.agreement-date" label="Ngày ký" type="date" />
+<Field id="acquire.agreement-notes" label="Những điều khoản cần nhớ" type="textarea" hint="Thời hạn thỏa thuận, ai lo bảo trì lô đất, bảo hiểm, ngày gia hạn…" />

@@ -12,6 +12,7 @@ import type { Vec2 } from '../geo';
 import type { LocalSite } from '../localsite';
 import { arrowSpacing, contourInterval, contours, drainArrows } from '../terrain/slope';
 import { ON_GROUND, drapedShape, ribbonPositions } from '../furniture/drape';
+import { oneDecimal, plannerLang, pt } from '../words';
 
 const FLAT: GroundFn = FLAT_GROUND;
 
@@ -130,6 +131,9 @@ function labelSprite(text: string, color: string): THREE.Sprite {
   const c = document.createElement('canvas');
   const S = 2;
   const ctx = c.getContext('2d')!;
+  // the label reads in the planner's language (a right-to-left label lays out right to left)
+  const dir = plannerLang().dir;
+  ctx.direction = dir;
   ctx.font = `700 ${15 * S}px "Work Sans Variable", "Work Sans", system-ui, sans-serif`;
   const w = Math.ceil(ctx.measureText(text).width) + 16 * S;
   c.width = w;
@@ -146,6 +150,8 @@ function labelSprite(text: string, color: string): THREE.Sprite {
   g.fillStyle = color;
   g.font = `700 ${15 * S}px "Work Sans Variable", "Work Sans", system-ui, sans-serif`;
   g.textBaseline = 'middle';
+  g.direction = dir;
+  g.textAlign = 'left';
   g.fillText(text, 8 * S, c.height / 2 + S);
   const tex = new THREE.CanvasTexture(c);
   tex.colorSpace = THREE.SRGBColorSpace;
@@ -249,12 +255,13 @@ export class SlopeOverlay {
       }
     }
     const fall = t.slope.fallFt;
-    const fmt = (v: number) => (Math.abs(v) < 0.96 ? `${Math.round(Math.abs(v) * 12)} in` : `${(Math.round(Math.abs(v) * 10) / 10).toFixed(1)} ft`);
+    const w = pt();
+    const lower = Math.abs(fall) < 0.96 ? w('slope.lowInches', { inches: Math.round(Math.abs(fall) * 12) }) : w('slope.lowFeet', { ft: oneDecimal(Math.abs(fall), w) });
     if (fall >= 0.25) {
       const c = site.frame.center;
       for (const [p, text, color] of [
-        [t.slope.high.p, `▲ High`, '#7a4a1c'],
-        [t.slope.low.p, `▼ Low · ${fmt(fall)} lower`, '#00709c'],
+        [t.slope.high.p, w('slope.high'), '#7a4a1c'],
+        [t.slope.low.p, lower, '#00709c'],
       ] as const) {
         const s = labelSprite(text, color);
         // the label sits a little inside the lot (points are often on its edge), tied to its spot by a short line

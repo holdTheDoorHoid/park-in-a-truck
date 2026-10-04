@@ -1,0 +1,168 @@
+{
+  "title": "Abri lonbraj 8'",
+  "summary": "Yon tonèl 2x4 ki kanpe poukont li, 8x8x8 pye, ak yon kouvèti an ti planch, ki fikse nan tè a (oswa nan yon kabann plant) ak ekè metal an L ak kwochè an J, oswa ki boulonnen sou yon ban gabyon bò kote l.",
+  "materials": [
+    {
+      "item": "Bwa 2x4 (dimensional lumber) — sèd wouj (western red cedar) oswa sapen Douglas (Douglas fir)",
+      "notes": "Sèd: natirèlman li reziste ak move tan ak pouriti, bèl koulè wouj, li pa bezwen vèni; li koute pi chè — mande kalite \"knotty\" (STK, ak ne). Sapen: li reziste yon ti jan ak pouriti, li solid, li pi bon mache pase sèd; bon si ou gen lide pentire l. Bwa a ka toujou fann anba solèy. Kòmande 5–10% plis pase lis koupe a, pou kalite bwa ki pa menm ak koupe ki pa bon."
+    },
+    {
+      "item": "Blòk beton pou poto (concrete deck blocks)",
+      "notes": "Sèlman si sa nesesè — gade etap 8. Sèvi ak yo kote yon poto tonbe nan yon kabann plant, pou poto a rete anlè tè a epi pou l rete stab pandan l pa pouri twòp. Fouye pou antere blòk yo jan sa nesesè pou tout poto yo nivo youn ak lòt."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Vis bwa pou deyò ki antre poukont yo (self-driving)"
+    },
+    {
+      "item": "Ekè metal an L (L brackets)"
+    },
+    {
+      "item": "Gwo vis (lag screws)"
+    },
+    {
+      "item": "Kwochè an J (J hooks)"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Pye (long), ranfò bò, ranfò anwo, ak planch kouvèti anwo yo",
+      "siteNote": "Lis koupe gid la di 14, men etap yo sèvi ak 32: 4 pye, 2 travès anwo, 4 ranfò, 2 travès an kwa, 4 ranfò long, 1 sipò anwo ak 15 planch kouvèti. 47 2x4x8 ki nan lis materyèl la kouvri yo tout, plis SS-2 rive SS-4."
+    },
+    {
+      "notes": "Pye (kout)"
+    },
+    {
+      "notes": "Ranfò anndan, bò B — koupe l nan gwosè final li sou teren an, dapre kad ou fin bati a"
+    },
+    {
+      "notes": "Ranfò anndan, bò A — se sèlman yon estimasyon; pa koupe l nan longè final li jiskaske ou fin mezire kad la nan etap 5"
+    }
+  ],
+  "tools": [
+    "Si onglè 10\" oswa 12\" (miter saw), oswa yon bon si a men",
+    "Machin vis a enpak (impact driver) pou vis bwa ki antre poukont yo",
+    "Dril ak mèch 1/8\" pou fè ti twou davans",
+    "Mato 5 liv, pou kwochè J yo",
+    "Papye sab, gren 120",
+    "Ekè chapantye",
+    "Linèt pwoteksyon + gan",
+    "Nechèl 6' (step ladder)",
+    "2 sèjan pou bwa (clamps), si ou vle"
+  ],
+  "steps": [
+    {
+      "title": "Make, mete non sou bwa a epi koupe l",
+      "text": "Make, mete non sou bwa a epi koupe l nan lòd, depi SS-1 rive SS-4, nan longè ki nan lis koupe a. SS-3 ak SS-4 koupe nan yon longè apeprè isit la, epi ou taye yo nan gwosè final egzak yo sou teren an nan etap 5 — pa koupe yo pi kout anvan sa.\n\nVerifye chak moso bwa pou wè si li gen defo tankou fant, bwa ki tòde oswa ki pa rabote egal, epi jete pati sa yo.",
+      "imageAlts": [
+        "Dyagram izometrik kat moso koupe abri lonbraj la, SS-1 rive SS-4, ak longè yo make, depi yon planch 96\" rive nan ranfò anndan ki gen apeprè 87\" yo."
+      ],
+      "tips": [
+        "Ekri non chak moso bwa pandan w ap mezire l epi koupe l.",
+        "Fè yon pil bwa apa pou SS-1 rive SS-4.",
+        "Lè ou pase papye sab dousman sou bò ou koupe yo, sa retire ti pikan bwa yo epi sa ede pou monte l.",
+        "W ap bati plis pase yon abri lonbraj? Yon ti blòk kanpe (stop block) sou si onglè a fè tout moso yo soti menm longè."
+      ]
+    },
+    {
+      "title": "Bati kat pye yo epi konekte yo an de pè",
+      "text": "Mete yon SS-2 sou yon SS-1, aliyen yon bò nèt epi kite yon espas 3.5\" sou lòt bò a. Sa fè premye pye tonèl la.\n\nSèvi ak gid twou ki nan fen pakèt la pou fè ti twou davans pou vis yo, apre sa fikse de moso yo ak 2 vis nan yon bout, 2 nan lòt bout la, 2 nan mitan, ak 2 lòt ak espas egal ant yon bout ak mitan an — 10 vis pou chak pye.\n\nRefè sa 3 lòt fwa, ak 3 lòt moso SS-2 ak SS-1 ak 30 lòt vis, pou bati tout kat pye yo.\n\nPou konekte pye yo an pè: fikse yon SS-1 an travè sou tèt de pye, antre nan espas 3.5\" la, ak 8 vis (4 pou chak pye). Refè sa ak de lòt pye yo.",
+      "imageAlts": [
+        "Dyagram yon planch SS-2 sou yon planch SS-1 ak yon espas 3.5\" pou fè yon pye tonèl, ak yon moso travè SS-1 anwo ki konekte de pye an pè."
+      ],
+      "tips": [
+        "Ou ka fè de premye etap yo sou tè plat anvan ou kanpe anyen.",
+        "Verifye chak bò rete a 90 degre ak yon ekè chapantye."
+      ]
+    },
+    {
+      "title": "Ajoute ranfò bò anba yo epi kanpe pye yo",
+      "text": "Vire pè pye yo lòt bò. Ak de SS-1 sou yon bò tonèl la, ajoute ranfò, epi sèvi ak yon moso 2x4 ki rete pou kite yon espas egal 3.5\" ant ranfò anwo pye a ak nouvo ranfò ki anba l yo — 4 vis pou chak ranfò, 8 vis an tout pou bò sa a.\n\nRefè sa sou lòt pè pye a ak de lòt SS-1 ak 8 lòt vis.\n\nKanpe pye yo.",
+      "imageAlts": [
+        "Dyagram ranfò bò SS-1 k ap ajoute anba moso travè anwo a sou chak pè pye, ak yon espas 3.5\" kal, apre sa pè pye yo kanpe dwat."
+      ],
+      "tips": [
+        "Verifye chak bò rete a 90 degre ak yon ekè chapantye."
+      ]
+    },
+    {
+      "title": "Ajoute travès an kwa anwo yo ak ranfò long yo",
+      "text": "Pandan pye yo kanpe, konekte de pè pye yo ak de travès an kwa SS-1 anwo, verifye tout bò yo a 90 degre, epi fikse chak kwen ak 4 vis (8 vis pou etap sa a).\n\nAjoute ranfò long sou yon bò ak de SS-1, ankò ak yon moso 2x4 ki rete pou yon espas egal 3.5\" anba travès anwo a (4 vis pou chak ranfò). Refè sa sou lòt bò a.",
+      "imageAlts": [
+        "Dyagram travès an kwa SS-1 anwo ki konekte de pè pye yo anwo, ak ranfò long SS-1 ki kouri sou bò yo anba yo."
+      ],
+      "tips": [
+        "Pou rès etap yo, ou bezwen yon nechèl pou rive anwo kad la.",
+        "Verifye chak bò rete a 90 degre ak yon ekè chapantye."
+      ]
+    },
+    {
+      "title": "Ajiste epi fikse ranfò anndan yo",
+      "text": "Mezire distans ant de poto ou yo kote chak ranfò anndan SS-4 dwe ale, koupe moso SS-4 la nan gwosè egzak sa a pou l antre jis, epi fikse l sou moso SS-1 ki dèyè l la. Refè sa pou tout 4 moso ranfò anndan bò long yo, fikse chak ak 8 vis 2.5\" mete de pa de ak espas egal (32 vis an tout).\n\nFè menm bagay la pou ranfò anndan SS-3 yo sou bò kout yo: mezire, koupe chak pou l antre jis, fikse l sou moso SS-1 ki dèyè l la, pou 4 moso ranfò anndan bò kout ak 32 lòt vis.",
+      "imageAlts": [
+        "Dyagram ki montre ranfò anndan SS-4 ak SS-3 yo mezire epi koupe pou yo antre jis ant poto yo, apre sa vise de pa de ak espas egal."
+      ],
+      "tips": [
+        "Sèvi ak sèjan pou kenbe bwa a an plas pandan w ap fikse l."
+      ]
+    },
+    {
+      "title": "Ajoute sipò ranfò anwo yo",
+      "text": "Sèvi ak yon moso SS-1 pou fè yon sipò ranfò anwo, nan mitan kad la ak menm distans sou chak bò.\n\nFikse l ak 4 vis bwa pou deyò ki antre poukont yo.",
+      "imageAlts": [
+        "Dyagram yon sèl sipò ranfò anwo SS-1 ki travèse mitan kad la."
+      ],
+      "tips": [
+        "Sèvi ak sèjan pou kenbe bwa a an plas pandan w ap fikse l."
+      ]
+    },
+    {
+      "title": "Bati kouvèti a epi pase papye sab",
+      "text": "Sèvi ak moso SS-1 pou kouvèti a. Ak yon moso 2x4 ki rete kòm kal, fikse chak planch kouvèti SS-1 depi yon bò kad la rive nan lòt bò a (depi dwat rive gòch).\n\nFikse bwa a ak yon machin vis a enpak ak 75 vis bwa pou deyò 2.5\" ki antre poukont yo, apre sa fikse rès moso kouvèti SS-1 yo ak 70 lòt vis.\n\nAliyen dènye moso a ak kad la pou l pa depase — pa gen pwoblèm si dènye moso a pi etwat pase 3.5\" si sa nesesè pou l antre.\n\nPase papye sab dousman sou bò ki graje yo sou abri lonbraj la.",
+      "imageAlts": [
+        "Dyagram planch kouvèti SS-1 k ap mete youn bò lòt sou tèt kad la ak yon kal 2x4, vise depi yon bò rive nan lòt bò a."
+      ]
+    },
+    {
+      "title": "Fikse poto yo nan tè a",
+      "text": "Mete yon ekè metal an L sou bò anndan chak poto epi fikse l ak yon gwo vis 1/2\" x 2\".\n\nPase yon kwochè J 18\" nan twou anba chak ekè L epi frape l antre nan tè a ak yon mato 5 liv.",
+      "imageAlts": [
+        "Dyagram yon ekè L ak yon kwochè J k ap fikse pye yon poto tonèl nan tè a, ak chwa yon blòk beton pou kabann plant yo."
+      ],
+      "tips": [
+        "Si abri lonbraj la bò kote yon ban gabyon ak tèt an bwa, li pi bon pou sèvi ak ekè L yo ak gwo vis yo pou boulonnen pye tonèl la dirèkteman sou ban an.",
+        "Si yon poto tonbe nan yon kabann plant, mete l sou yon blòk beton anlè tè a pou l rete stab epi pou bwa a pa pouri twòp — fouye pou antere blòk la pou l nivo ak lòt poto yo."
+      ]
+    },
+    {
+      "title": "Gid twou pou fè davans (gabari)",
+      "text": "Koupe gid twou a sou liy pwentiye yo. Lè w ap fè twou, aliyen bò gabari a ak bò deyò bwa a anvan ou fè ti twou davans lan.\n\nSe pa tout twou yo ou sèvi — se pa tout modèl ki sèvi ak gabari a. Swiv etap montaj ki anwo yo pou konnen ki kote pou fè twou yo. Kenbe tout twou yo apeprè lajè yon pous dwèt (apeprè 1\") depi bò a, menm twou ki pa sèvi ak gabari sa a.",
+      "imageAlts": [
+        "Yon gabari gid twou ou ka enprime, ak senk plas twou make ak liy pou koupe, plis yon gwo plan ki montre distans twou yo depi bò planch lan."
+      ]
+    }
+  ],
+  "finishing": "Yon tretman pou bwa deyò ka fè eleman pak ou yo dire pi lontan, men li pa nesesè — moso sa yo fèt espre pou yo pa koute chè, pou yo dire epi pou yo fasil pou bati, kidonk li ka pi pratik pou kite pwochen jenerasyon an rebati yo lè lè a rive. Si ou vle tenti, pentire oswa vèni bwa a, gade resous pou fini ki anba yo.",
+  "safety": [
+    "Sa yo se sèlman rekòmandasyon pou moun ki fè l ak pwòp men yo — adapte materyèl la, montaj la ak konstriksyon an ak pwòp pwojè pa w ak teren pa w.",
+    "Pou bati sa a, ou bezwen konn kèk bagay sou zouti men ak zouti elektrik, pyès metal, vis ak boulon, bwa ak teknik montaj debaz.",
+    "Anvan ou sèvi ak nenpòt zouti elektrik, li epi swiv kondisyon sekirite fabrikan an mande, epi pa kite pèsonn sèvi ak zouti elektrik si yo pa fè menm bagay la.",
+    "Ou menm (mèt la) responsab pou tout règ konstriksyon ak sekirite, pèmi ak otorizasyon ofisyèl sa a bezwen.",
+    "Anvan, netwaye teren an: retire fatra, danje ak estrikti ou pa vle, epi chèche konnen kote fil ak tiyo sèvis piblik ki ta ka jennen yo pase anvan ou fouye.",
+    "Tout moun k ap ede bati dwe siyen yon fòm egzonerasyon pou volontè.",
+    "Sa a se yon estrikti 8 pye ou bati anlè sou yon nechèl — mande yon moun kenbe kad la ak nechèl la pandan w ap travay anwo a."
+  ],
+  "links": [
+    {
+      "label": "Chwazi pi bon fini pou pwojè deyò (Rockler, an anglè)"
+    },
+    {
+      "label": "Pi bon fini pou bwa deyò (Real Milk Paint, an anglè)"
+    },
+    {
+      "label": "Kouch pwoteksyon pou bwa deyò (Vermont Natural Coatings, an anglè)"
+    }
+  ],
+  "sourcePages": "Enstriksyon SHADE_Assembly, paj 1–12 (kouvèti; anvan ou kòmanse; chwa bwa ki pi kouran; etap 1–7; fikse nan tè; gid twou pou fè davans)"
+}

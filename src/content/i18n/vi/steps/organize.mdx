@@ -1,0 +1,218 @@
+---
+title: Tổ chức
+intro: Lập ban công viên, tìm ra những điểm mạnh của khu phố, và vận động những người sẽ giúp công viên thành hiện thực.
+sources:
+  - Cẩm nang (Toolkit), tr. 29–33 (Tổ chức, Lập ban công viên, Tìm ra những điểm mạnh của khu phố)
+  - Sổ tay thực hành Tổ chức, tr. 3–6 (Tổng quan, Tìm ra những điểm mạnh của cộng đồng, Điểm mạnh của khu phố, Tổ chức một buổi họp, Bạn đã sẵn sàng chưa?)
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import NeighborhoodAssets from '../../../../components/widgets/NeighborhoodAssets.astro';
+import MeetingFlyer from '../../../../components/widgets/MeetingFlyer.astro';
+
+Công viên không tự nhiên mà có. Đó là công sức của cả một nhóm, và thành quả rất xứng đáng. Một cộng đồng cùng nhau làm
+một dự án công viên sẽ xây được nhiều hơn một công viên — họ đang thắt chặt tình làng nghĩa xóm, tạo cơ hội việc làm hấp
+dẫn cho giới trẻ địa phương, và làm mọi người tự hào. Làm công viên quy tụ mọi người quanh một mục đích chung. Và khi xong
+việc, họ sẽ nói: "chúng ta đã làm được!"
+
+Cốt lõi của mọi dự án công viên thành công là một nhóm cư dân tận tâm, đa dạng và có tài, cùng làm việc như một đội.
+Ban công viên này sẽ dẫn dắt nỗ lực làm công viên của bạn. Tốt nhất là các tình nguyện viên này đại diện cho những nhóm
+người khác nhau sẽ dùng công viên — người trẻ, người lớn tuổi, các nhóm chủng tộc và sắc tộc khác nhau, người làm chuyên
+môn, người lao động, chủ nhà và người thuê nhà. Họ nên giống với cộng đồng của bạn. Ngoài ra, hãy nghĩ về tài năng của
+họ. Có những người với tài năng và kinh nghiệm khác nhau — thợ xây dựng, người hiểu luật, người có quan hệ chính trị,
+người tổ chức cộng đồng, chức sắc tôn giáo, người giỏi giao thiệp, v.v. — sẽ giúp bạn có nhiều cơ hội thành công hơn.
+
+<Callout kind="note">
+  Để biết thêm về việc tổ chức một nhóm cộng đồng, hãy xem cuốn{' '}
+  <a href="http://tupress.temple.edu/book/0872" target="_blank" rel="noopener"><em>City Parks Handbook</em></a> của
+  Pennsylvania Horticultural Society và cuốn{' '}
+  <a href="https://www.nrpa.org/uploadedFiles/Americas_Backyard/park-advocate-handbook-100711.pdf" target="_blank" rel="noopener"><em>Park Advocate Handbook</em></a>
+  của National Recreation and Park Association (cả hai bằng tiếng Anh).
+</Callout>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={3} label="Tổng quan" />
+
+## Lập ban công viên {/* #create-a-park-committee */}
+
+Khi đã thành lập, việc đầu tiên của ban là tìm ra và ghi lại những gì đặc biệt ở khu phố và khu đất công viên của bạn.
+Hãy ghi danh sách thành viên ban bên dưới — họ là ai, cách liên lạc, và họ góp gì cho cả nhóm.
+
+<ListField
+  id="organize.committee-members"
+  label="Thành viên ban công viên"
+  rowName="thành viên"
+  min={3}
+  columns={[
+    { key: 'name', label: 'Tên' },
+    { key: 'phone', label: 'Điện thoại', type: 'tel' },
+    { key: 'email', label: 'Email', type: 'email' },
+    { key: 'role', label: 'Vai trò / kỹ năng', placeholder: 'tổ chức, làm mộc, gây quỹ…' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={3} label="Tổng quan" />
+
+## Tìm ra những điểm mạnh của cộng đồng {/* #identify-community-assets */}
+
+Giờ hãy nghĩ về những người trong khu phố của bạn và kỹ năng riêng của họ — họ có thích nấu ăn không? Tổ chức sự kiện?
+Làm vườn? Mê lịch sử và có thể tìm hiểu về khu phố? Tất cả đều có thể trở thành những kỹ năng quý giá, hữu ích để giúp
+thiết kế, xây dựng và bảo trì công viên. Bạn chỉ cần ghi lại để biết có thể nhờ ai giúp những việc khác nhau trong quá
+trình làm công viên.
+
+Ở buổi họp cộng đồng đầu tiên, hãy mời mọi người ghi các kỹ năng liên quan của mình vào một tờ đăng ký. Đánh dấu những
+kỹ năng mà ban của bạn đã có:
+
+<Checklist
+  id="organize.individual-skills"
+  label="Danh sách kỹ năng của từng người"
+  items={[
+    { value: 'project-manager', label: 'Quản lý dự án để giám sát việc xây công viên' },
+    { value: 'organizing', label: 'Tổ chức quá trình làm công viên / thiết kế và xây dựng' },
+    { value: 'carpentry', label: 'Làm mộc' },
+    { value: 'masonry', label: 'Làm hồ, xây gạch đá' },
+    { value: 'gardening', label: 'Làm vườn / bảo trì công viên' },
+    { value: 'planting', label: 'Trồng cây lớn, cây bụi, hoa' },
+    { value: 'building', label: 'Phụ giúp xây công viên' },
+    { value: 'fundraising', label: 'Gây quỹ' },
+    { value: 'bookkeeping', label: 'Ghi chép sổ sách' },
+    { value: 'babysitting', label: 'Trông trẻ' },
+    { value: 'food', label: 'Đồ ăn cho các buổi họp / ngày xây công viên' },
+    { value: 'artist', label: 'Nghệ sĩ' },
+    { value: 'photography', label: 'Chụp ảnh' },
+    { value: 'music', label: 'Âm nhạc cho ngày xây công viên — DJ' },
+    { value: 'media', label: 'Truyền thông — Facebook, Instagram, Twitter' },
+    { value: 'history', label: 'Người mê lịch sử' },
+    { value: 'other', label: 'Khác' },
+  ]}
+/>
+
+{/* site-added: a printable version of the same list, for a paper sign-up sheet at an in-person meeting. */}
+<Callout kind="tip" title="In tờ đăng ký">
+  Cần một tờ đăng ký bằng giấy cho buổi họp? Hãy in trang này — danh sách ở trên sẽ được in ra với các ô trống để hàng
+  xóm tự đánh dấu bằng tay, ngay cạnh tên và thông tin liên lạc của họ.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={3} label="Tìm ra những điểm mạnh của cộng đồng" />
+
+## Điểm mạnh của khu phố {/* #neighborhood-assets */}
+
+Một bước quan trọng khác trên hành trình làm công viên là tìm ra những nét riêng của khu phố và khu đất công viên. Hãy
+dành thời gian dừng lại và tìm những dấu hiệu làm cho khu phố của bạn đặc biệt theo cách riêng. Khu phố nào cũng có giá
+trị sẵn có, sinh ra từ lịch sử và văn hóa của chính nó. Tìm ra và tận dụng những điểm mạnh này sẽ làm dự án công viên
+vững chắc hơn và khơi dậy tinh thần làm chủ của cộng đồng.
+
+Vậy làm sao để tìm ra những điểm mạnh và thế mạnh? Hãy nghĩ về khu phố của bạn cùng lịch sử và văn hóa của nó — đâu là
+những nơi đặc biệt? Mọi người thích tụ tập ở đâu? Đã có sự kiện quan trọng nào xảy ra trong khu phố không? Ngày xưa chỗ
+công viên của bạn từng có gì?
+
+<Callout kind="auto" title="Các tổ chức gần bạn, đã tìm sẵn">
+  Nhập địa chỉ lô đất của bạn, trang web sẽ lấy các tổ chức cộng đồng đã đăng ký (RCO), trường học, thư viện, công viên,
+  vườn và những điểm mạnh khác của khu phố có trong danh sách của Thành phố ở gần đó — để bạn bắt đầu danh sách với
+  những ai đã có mặt sẵn.
+</Callout>
+
+<NeighborhoodAssets />
+
+Tiếp theo, hãy ghi tất cả các hội đoàn của cư dân và hội đoàn địa phương có thể làm đối tác và hỗ trợ — bằng tiền, bằng
+hiện vật, hoặc là nơi mua vật liệu làm công viên ngay tại địa phương:
+
+<ListField
+  id="organize.citizens-associations"
+  label="Danh sách hội đoàn của cư dân"
+  rowName="nhóm"
+  min={2}
+  columns={[
+    { key: 'type', label: 'Loại', placeholder: 'nơi thờ phượng, trưởng dãy phố, RCO, nhóm văn hóa…' },
+    { key: 'name', label: 'Tên' },
+    { key: 'contact', label: 'Liên lạc' },
+  ]}
+/>
+
+<ListField
+  id="organize.physical-assets"
+  label="Những điểm mạnh hữu hình của khu phố"
+  rowName="điểm mạnh"
+  min={2}
+  columns={[
+    { key: 'type', label: 'Loại', placeholder: 'địa danh, tranh tường, cảnh quan đường phố, nơi tụ họp…' },
+    { key: 'description', label: 'Mô tả' },
+  ]}
+/>
+
+<ListField
+  id="organize.local-institutions"
+  label="Các cơ sở địa phương"
+  rowName="cơ sở"
+  min={2}
+  columns={[
+    { key: 'type', label: 'Loại', placeholder: 'cửa hàng, trường học, thư viện, bệnh viện, đại học…' },
+    { key: 'name', label: 'Tên' },
+    { key: 'contact', label: 'Liên lạc' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={4} label="Điểm mạnh của khu phố" />
+
+## Tổ chức một buổi họp {/* #organize-a-meeting */}
+
+Tổ chức một buổi họp công khai có thể là cách rất tốt để bắt đầu một cuộc vận động hay để có thêm người tham gia nhóm
+của bạn. Đây là vài ý tưởng giúp nhóm cộng đồng của bạn tổ chức một buổi họp thú vị, ai cũng tham dự được, và diễn ra
+suôn sẻ.
+
+- **Giữ cho đơn giản.** Đừng cố nhồi nhét quá nhiều. Dùng buổi họp để chia sẻ thông tin cơ bản về điều bạn muốn làm,
+  khuyến khích người khác nói lên ý kiến và ý tưởng của họ, và lấy thông tin liên lạc của những ai có thể muốn tham gia
+  sau này.
+- **Quảng bá thật tốt.** Bảo đảm ngày, giờ và địa điểm được ghi rõ trên tờ mời, và nói rõ buổi họp về chuyện gì. Tờ
+  rơi, áp phích, bài đăng trên mạng xã hội và bản tin cộng đồng địa phương đều có ích.
+- **Có gì đó mời gọi.** Đồ ăn nhẹ miễn phí, một đoạn phim hay một diễn giả, hoặc có học sinh tình nguyện trông trẻ, có
+  thể giúp mọi người thu xếp thời gian đến dự.
+- **Nghĩ kỹ về chương trình họp.** Chào mừng và giới thiệu; giải thích ai triệu tập buổi họp và vì sao; nói sơ lược lý
+  do của buổi họp; có thể mời một người đã từng làm công viên chia sẻ kinh nghiệm (nói ngắn gọn thôi — buổi họp đầu
+  tiên không nên thành một bài giảng); nhờ nhóm Park in a Truck ở Jefferson cử một người đến nói chuyện.
+- **Cho mọi người cơ hội chia sẻ.** Có thể có người phản đối công viên — hãy để mọi người nói lên quan điểm và cùng đi
+  đến đồng thuận về vị trí có thể làm công viên, mà không sa đà vào chi tiết.
+- **Nói rõ việc tiếp theo.** Tóm tắt những ý kiến đã nêu, và nếu buổi họp nhỏ, hãy quyết định sẽ thật sự làm gì — kể
+  cả ai sẽ làm.
+- **Chủ trì buổi họp.** Thống nhất trước ai sẽ chủ trì. Việc của người chủ trì: giữ buổi họp đúng chủ đề, bảo đảm mọi
+  người đều có cơ hội phát biểu, và giữ bầu không khí thân thiện, cởi mở.
+- **Ghi biên bản.** Quyết định trước buổi họp ai sẽ ghi biên bản (không phải người chủ trì). Biên bản nên ghi rõ mọi
+  quyết định đã đưa ra, và ai đã nhận làm việc gì.
+- **Thu thập tên và địa chỉ.** Chuẩn bị sẵn một tờ đăng ký để bạn giữ liên lạc với tất cả những ai muốn tiếp tục tham
+  gia.
+- **Lên kế hoạch cho buổi họp sau.** Chốt ngày và địa điểm buổi họp tiếp theo của nhóm trước khi buổi này kết thúc, và
+  thông báo cho mọi người để họ quay lại.
+
+<Field id="organize.meeting-date" label="Ngày họp" type="date" />
+<Field id="organize.meeting-time" label="Giờ họp" type="text" placeholder="ví dụ: 6:30 chiều" />
+<Field id="organize.meeting-place" label="Địa điểm họp" type="text" placeholder="địa chỉ hoặc tên nơi họp" />
+<Field id="organize.meeting-purpose" label="Mục đích buổi họp" type="textarea" hint="Bạn muốn làm gì, và bạn nhờ hàng xóm điều gì." />
+
+<MeetingFlyer />
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={5} label="Tổ chức một buổi họp" />
+
+## Bạn đã sẵn sàng chưa? {/* #are-you-ready */}
+
+Làm sao biết bạn đã lập được một ban công viên đầy đủ, toàn diện? Hãy đọc danh sách bên dưới và đánh dấu vào ô khi bạn
+thấy ban của mình đã có những người hay khả năng đó. Điều quan trọng nhất của việc tổ chức là tự chứng minh với chính
+mình rằng bạn có thể điều phối mọi việc cần thiết cho một công viên khu phố — đánh dấu đủ từng ô bảo đảm tổ chức của
+bạn đã sẵn sàng sang chương tiếp theo.
+
+<Checklist
+  id="organize.readiness"
+  label="Danh sách kiểm tra mức sẵn sàng của tổ chức"
+  items={[
+    { value: 'committee-formed', label: 'Bạn đã lập một ban gồm những hàng xóm tận tâm để dẫn dắt toàn bộ việc lên kế hoạch công viên chưa?' },
+    { value: 'financial-standing', label: 'Tổ chức của bạn có tình hình tài chính vững hay một hạn mức tín dụng để lo các chi phí liên quan đến công viên, như mua đất, bảo trì, sự kiện, v.v. không?' },
+    { value: 'fundraising', label: 'Tổ chức của bạn có khả năng gây đủ quỹ để duy trì hỗ trợ tài chính cho công viên không?' },
+    { value: 'community-engagement', label: 'Tổ chức của bạn có khả năng khơi dậy sự quan tâm của khu phố, tổ chức sự kiện và các hoạt động gắn kết cộng đồng khác không?' },
+    { value: 'skilled-trades', label: 'Tổ chức của bạn có tiếp cận được nhiều kỹ năng và kinh nghiệm khác nhau — thợ mộc, thợ hồ hay thợ các ngành nghề khác — những người có thể góp hiểu biết khi xây dựng và bảo trì công viên không?' },
+    { value: 'initial-meetings', label: 'Tổ chức của bạn đã tổ chức những buổi họp đầu tiên và các sự kiện cộng đồng để tạo sự ủng hộ và đồng thuận cho một công viên có thể có chưa?' },
+    { value: 'social-media', label: 'Tổ chức của bạn đã lập một trang trên mạng để nhắn tin, thông báo và nhiều việc khác (Facebook, Instagram, v.v.), với một hashtag riêng để nhận diện và tạo thương hiệu cho dự án công viên chưa?' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={6} label="Bạn đã sẵn sàng chưa?" />

@@ -1,0 +1,571 @@
+{
+  "partners": [
+    {
+      "description": "Вместе с PiaT расширяет выбор проектов парков."
+    },
+    {
+      "description": "Образовательное подразделение Комиссии по городскому планированию Филадельфии; проводит восьминедельный курс о том, как устроены городское планирование и застройка."
+    },
+    {
+      "description": "Местная некоммерческая организация, которая профинансировала первый парк Park in a Truck. (Ссылка у этой благодарности в самом руководстве на самом деле ведёт на communityprogress.org — сайт общенациональной некоммерческой организации о земельных банках; скорее всего, в исходном PDF ссылка не совпадает с подписью, поэтому адрес здесь не указан, пока это не подтвердится.)"
+    },
+    {
+      "description": "Местное агентство недвижимости в Филадельфии, работающее в Западной Филадельфии."
+    },
+    {
+      "description": "Партнёр PiaT по «зелёной» инфраструктуре: обращайтесь к ним за помощью, чтобы отсоединить водосточные трубы от канализации или устроить в парке дождевой сад."
+    },
+    {
+      "description": "Лидер в сохранении городской земли; общественный земельный фонд для садов и других открытых пространств."
+    },
+    {
+      "description": "Партнёр — корпорация развития района (группа «PARTNERS» в Linktree). Сайт сейчас открывается с ошибкой — проверено: он не работает, это не защита от ботов."
+    },
+    {
+      "description": "Спонсор."
+    },
+    {
+      "description": "Партнёр по разрешениям, земле и данным города."
+    },
+    {
+      "description": "Партнёр по местам обитания животных и посадкам."
+    },
+    {
+      "description": "Партнёр по местам обитания и садам для опылителей в нескольких построенных парках."
+    },
+    {
+      "description": "Спонсор."
+    },
+    {
+      "description": "Партнёр по рабочей тетради Playful Learning Landscapes."
+    },
+    {
+      "description": "Спонсор."
+    },
+    {
+      "description": "Городской инструмент для преображения пустующей недвижимости."
+    }
+  ],
+  "press": [
+    {
+      "title": "С программой Park in a Truck Jefferson хочет помочь изменить обделённые районы"
+    },
+    {
+      "title": "Инициатива Park in a Truck получила признание журнала Fast Company в категории «Social Good» (общественное благо)"
+    },
+    {
+      "title": "Park in a Truck получил премию Groundbreaker 2020 от Green Building United"
+    },
+    {
+      "title": "«Park in a Truck» — это как Ikea, только для строительства парков в районах"
+    },
+    {
+      "title": "Пустыри превращаются в красивые парки в районах Филадельфии"
+    },
+    {
+      "title": "Программа Park in a Truck с помощью молодёжи района преображает зелёные места Филадельфии"
+    },
+    {
+      "title": "ASLA Spotlight — весна 2025"
+    },
+    {
+      "title": "Park in a Truck"
+    },
+    {
+      "title": "Меняем районы, парк за парком — построено жителями для жителей"
+    },
+    {
+      "title": "Инструкции по сборке Park in a Truck от Jefferson, № 1"
+    },
+    {
+      "title": "Инструкции по сборке Park in a Truck от Jefferson, № 2"
+    }
+  ],
+  "supplierGroups": [
+    {
+      "label": "Прокат инструментов",
+      "items": [
+        {
+          "title": "West Philadelphia Tool Library",
+          "note": "Ручной инструмент; работает с Philadelphia Orchard Project и проводит занятия по навыкам."
+        },
+        {
+          "title": "Diamond Tool (прокат электроинструмента)",
+          "note": "Похоже, вошёл в состав White Cap; блокирует автоматические проверки."
+        },
+        {
+          "title": "OK Rental Sales & Service",
+          "note": "Ни один из адресов, которые PiaT указывал для этого пункта проката в Darby, PA (okrentalsaleservice.com, okrental1.com), больше не открывается."
+        }
+      ]
+    },
+    {
+      "label": "Отходы и переработка",
+      "items": [
+        {
+          "title": "Fairmount Park Organic Recycling Center",
+          "note": "3850 W Ford Rd — компост, древесная щепа, мульча, навоз по минимальной цене."
+        },
+        {
+          "title": "Richard S. Burns & Co. (вторичные материалы)",
+          "note": "4300 Rising Sun Ave — приём отходов и продажа вторичных материалов."
+        }
+      ]
+    },
+    {
+      "label": "Питомники и растения",
+      "items": [
+        {
+          "title": "LandHealth Institute Nursery (Philaflora)"
+        },
+        {
+          "title": "Good Host Plants",
+          "note": "Местные специалисты по растениям для опылителей."
+        },
+        {
+          "title": "Pleasant Run Nursery",
+          "note": "Качественные декоративные растения и сорта местных видов; Нью-Джерси, доставка при заказе от $1,250."
+        },
+        {
+          "title": "Pinelands Nursery",
+          "note": "Растения местного экорегиона для восстановления природы; сайт необычно отвечает на автоматические проверки, но, скорее всего, работает."
+        },
+        {
+          "title": "Archewild",
+          "note": "Растения местного экорегиона для восстановления природы."
+        },
+        {
+          "title": "North Creek Nurseries"
+        },
+        {
+          "title": "Gardens Alive",
+          "note": "У сайта сейчас просрочен сертификат TLS — браузер покажет предупреждение."
+        },
+        {
+          "title": "Burpee — плодовые деревья"
+        },
+        {
+          "title": "Stark Bro's — плодовые деревья"
+        },
+        {
+          "title": "Gurney's — фрукты и ягоды"
+        },
+        {
+          "title": "Willis Orchards — плодовые деревья"
+        },
+        {
+          "title": "PHS Gold Medal Plants"
+        },
+        {
+          "title": "Philly Orchard Project — материалы"
+        }
+      ]
+    },
+    {
+      "label": "Пиломатериалы и стройматериалы",
+      "items": [
+        {
+          "title": "D&S Supply",
+          "note": "4260 Macalester St — товары для благоустройства, мульча и инструменты."
+        },
+        {
+          "title": "Underdog Landscape Supply",
+          "note": "701 Washington St, Conshohocken — плодородный грунт, мульча, компост."
+        },
+        {
+          "title": "Mid Atlantic Pine Straw"
+        },
+        {
+          "title": "Woodland Building Supply",
+          "note": "4701 Woodland Ave, Филадельфия."
+        },
+        {
+          "title": "C&R Building Supply",
+          "note": "1601 S 49th St, Филадельфия."
+        },
+        {
+          "title": "A&A Lumber",
+          "note": "Кипарис, Avondale, PA."
+        },
+        {
+          "title": "Delaware County Supply"
+        },
+        {
+          "title": "Castor Materials",
+          "note": "3301 S 61st St — щебень, плодородный грунт, есть доставка."
+        },
+        {
+          "title": "Rockler — как выбрать лучшее покрытие для изделий на улице"
+        },
+        {
+          "title": "Real Milk Paint (RMP Finishes) — лучшее покрытие для дерева на улице"
+        },
+        {
+          "title": "Vermont Natural Coatings — покрытия для наружных работ"
+        },
+        {
+          "title": "Hairpin Legs — кронштейны для спинки скамейки"
+        }
+      ]
+    },
+    {
+      "label": "Габионы и камень",
+      "items": [
+        {
+          "title": "Gabion1.com"
+        },
+        {
+          "title": "Darby Wire Mesh",
+          "note": "Блокирует автоматические проверки; домен зарегистрирован и работает."
+        },
+        {
+          "title": "Как построить габионную стенку (Gardendrum)"
+        }
+      ]
+    },
+    {
+      "label": "Обучающие видео",
+      "items": [
+        {
+          "title": "Как обрезать дерево"
+        },
+        {
+          "title": "Как посадить дерево"
+        },
+        {
+          "title": "Как посадить куст"
+        },
+        {
+          "title": "Деревянный бортик"
+        },
+        {
+          "title": "Как построить габионную стенку"
+        },
+        {
+          "title": "Как построить общий стол"
+        },
+        {
+          "title": "Как построить парник"
+        },
+        {
+          "title": "Как построить приподнятые грядки"
+        },
+        {
+          "title": "Обрезайте, как профессионал"
+        },
+        {
+          "title": "Полив и дождемер"
+        }
+      ]
+    },
+    {
+      "label": "Материалы для изучения",
+      "items": [
+        {
+          "title": "Penn State Extension — анализ почвы"
+        },
+        {
+          "title": "Penn State Extension — бланки для анализа плодородия почвы"
+        },
+        {
+          "title": "Penn State Extension — вредители и болезни"
+        },
+        {
+          "title": "Penn State Extension — программа Master Gardener"
+        },
+        {
+          "title": "Missouri Botanical Garden — поиск растений (Plant Finder)"
+        },
+        {
+          "title": "Arbor Day Foundation"
+        },
+        {
+          "title": "Arbor Day — как посадить дерево из контейнера"
+        },
+        {
+          "title": "Arbor Day — плодовые деревья"
+        },
+        {
+          "title": "Pennsylvania Horticultural Society (PHS)",
+          "note": "Мастер-классы, сведения об общественных садах, программа Rain Barrel (бочки для дождевой воды)."
+        },
+        {
+          "title": "Grounded in Philly",
+          "note": "Юридическая помощь, данные и руководства о том, как получить и сохранить участок."
+        },
+        {
+          "title": "Philly Orchard Project"
+        },
+        {
+          "title": "Soil Generation",
+          "note": "Коалиция под руководством чернокожих и цветных жителей за то, чтобы земля и еда были в руках сообществ."
+        },
+        {
+          "title": "Park Advocate Handbook (NRPA)"
+        },
+        {
+          "title": "The PHS City Parks Handbook (Temple University Press)"
+        },
+        {
+          "title": "Vacant Lot Activation Toolkit (Trust South LA)"
+        },
+        {
+          "title": "Green2015: An Action Plan for the First 500 Acres (план действий для первых 500 акров)",
+          "note": "План PennPraxis для Philadelphia Parks & Recreation."
+        },
+        {
+          "title": "PlantSnap (приложение, чтобы распознавать растения и сорняки)"
+        },
+        {
+          "title": "Gardener's Path — как пользоваться дождемером"
+        },
+        {
+          "title": "Как укладывать мульчу (SKH)"
+        },
+        {
+          "title": "Средство от сорняков на основе уксуса (пример товара)",
+          "note": "Единственный найденный источник этого товара; ссылка дана без рекомендации."
+        }
+      ]
+    },
+    {
+      "label": "Программы города Филадельфии",
+      "items": [
+        {
+          "title": "Atlas Philadelphia (поиск недвижимости)"
+        },
+        {
+          "title": "Карта владельцев земельных участков Филадельфии (ArcGIS)"
+        },
+        {
+          "title": "Зарегистрированные общественные организации (RCO)"
+        },
+        {
+          "title": "Временное разрешение «стоянка запрещена»"
+        },
+        {
+          "title": "Green City, Clean Waters — грант на отвод дождевой воды и дождевые сады"
+        }
+      ]
+    }
+  ],
+  "toolkitLibrary": {
+    "intro": "Добро пожаловать в библиотеку руководства! Ниже — много материалов и ссылок для дополнительной информации, по главам. Все материалы — на английском.",
+    "sections": [
+      {
+        "title": "Введение",
+        "entries": [
+          {
+            "title": "Чтобы сократить бедность, городской совет должен добавить больше зелени (The Inquirer)"
+          },
+          {
+            "title": "Давайте укреплять здоровье и озеленять город — пустырь за пустырём (The Inquirer)"
+          },
+          {
+            "title": "Gangsta Gardener — Ron Finley"
+          },
+          {
+            "title": "Просто пчёлы, всякое и цветы: как чернокожие женщины-садоводы переживут кризис COVID-19 (Essence)"
+          },
+          {
+            "title": "Black Girls with Gardens"
+          },
+          {
+            "title": "Farming While Black — Leah Penniman"
+          }
+        ]
+      },
+      {
+        "title": "01 Приобрести",
+        "entries": [
+          {
+            "title": "The PHS City Parks Handbook ($13.95)"
+          },
+          {
+            "title": "Park Advocate Handbook (бесплатно)"
+          },
+          {
+            "title": "Atlas Philadelphia"
+          },
+          {
+            "title": "Citizens Planning Institute"
+          },
+          {
+            "title": "Green2015: An Action Plan for the First 500 Acres (план действий для первых 500 акров)"
+          },
+          {
+            "title": "Grounded in Philly"
+          },
+          {
+            "title": "Neighborhood Gardens Trust"
+          },
+          {
+            "title": "Soil Generation"
+          }
+        ]
+      },
+      {
+        "title": "02 Собрать команду",
+        "entries": [
+          {
+            "title": "The PHS City Parks Handbook"
+          },
+          {
+            "title": "Vacant Lot Activation Toolkit (Free Lots Angeles)"
+          }
+        ]
+      },
+      {
+        "title": "03 Оценить",
+        "entries": [
+          {
+            "title": "Penn State Extension — анализ почвы"
+          }
+        ]
+      },
+      {
+        "title": "04 Мечтать",
+        "entries": [
+          {
+            "title": "Gardens Alive"
+          },
+          {
+            "title": "North Creek Nurseries"
+          },
+          {
+            "title": "Missouri Botanical Garden — поиск растений (Plant Finder)"
+          },
+          {
+            "title": "Longwood Gardens — поиск растений"
+          },
+          {
+            "title": "Arbor Day Foundation"
+          },
+          {
+            "title": "Penn State Master Gardeners — руководство по посадкам в Филадельфии"
+          }
+        ]
+      },
+      {
+        "title": "05 Создать",
+        "entries": [
+          {
+            "title": "Woodland Building Supply"
+          },
+          {
+            "title": "C&R Building Supply"
+          },
+          {
+            "title": "A&A Lumber"
+          },
+          {
+            "title": "Philly Reclaim"
+          },
+          {
+            "title": "PowerCorpsPHL"
+          },
+          {
+            "title": "Burpee — плодовые деревья"
+          },
+          {
+            "title": "Stark Bro's — плодовые деревья"
+          },
+          {
+            "title": "Gurney's — фрукты и ягоды"
+          },
+          {
+            "title": "Willis Orchards — плодовые деревья"
+          },
+          {
+            "title": "Good Host Plants"
+          },
+          {
+            "title": "LandHealth Institute Nursery (Philaflora)"
+          },
+          {
+            "title": "Pleasant Run Nursery"
+          },
+          {
+            "title": "Pinelands Nursery"
+          },
+          {
+            "title": "Archewild"
+          },
+          {
+            "title": "Underdog Landscape Supply"
+          },
+          {
+            "title": "Castor Materials"
+          },
+          {
+            "title": "D&S Supply"
+          },
+          {
+            "title": "Richard S. Burns & Co."
+          },
+          {
+            "title": "West Philadelphia Tool Library"
+          },
+          {
+            "title": "Diamond Tool"
+          },
+          {
+            "title": "Fairmount Park Organic Recycling Center"
+          }
+        ]
+      },
+      {
+        "title": "06 Ухаживать",
+        "entries": [
+          {
+            "title": "Pennsylvania Horticultural Society"
+          },
+          {
+            "title": "Grounded in Philly"
+          },
+          {
+            "title": "Greensgrow"
+          },
+          {
+            "title": "Brandywine Conservancy — инвазивные растения"
+          },
+          {
+            "title": "Как посадить дерево из контейнера (Arbor Day)"
+          },
+          {
+            "title": "Как посадить куст (видео)"
+          },
+          {
+            "title": "Как обрезать дерево (видео)"
+          },
+          {
+            "title": "Как обрезать куст (Gardeners' World)"
+          },
+          {
+            "title": "Arbor Day Foundation — плодовые деревья"
+          },
+          {
+            "title": "Philadelphia Orchard Project"
+          },
+          {
+            "title": "Основы компостирования (видео)"
+          },
+          {
+            "title": "Удобрение (Penn State Extension)"
+          },
+          {
+            "title": "Как мульчировать сад (Good Housekeeping)"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgments": {
+    "lead": "Программа ландшафтной архитектуры и Лаборатория социальных и городских инноваций, Thomas Jefferson University",
+    "note": "Этот сайт превращает руководство, рабочие тетради и списки растений Park in a Truck в пошаговую интерактивную версию — с разрешения Park in a Truck / Thomas Jefferson University. Все исходные тексты, рисунки и фотографии принадлежат им."
+  },
+  "legal": {
+    "title": "Правовая информация",
+    "text": "Приведённые здесь рекомендации основаны на обычных методах изготовления и строительства. Ни при каких обстоятельствах Thomas Jefferson University (TJU), Лаборатория социальных инноваций TJU, Park-in-a-Truck и/или их преподаватели, сотрудники или партнёры не несут ответственности за какой-либо ущерб, травмы людей или вред имуществу, возникшие в результате использования этих рекомендаций. Thomas Jefferson University (TJU), Лаборатория социальных инноваций TJU, Park-in-a-Truck или их преподаватели, сотрудники и/или партнёры не дают никаких гарантий, явных или подразумеваемых, и настоящим отказываются от всех других гарантий и исключают их, включая, помимо прочего, подразумеваемые гарантии или условия товарной пригодности, пригодности для определённой цели или ненарушения прав интеллектуальной собственности или иных прав. Кроме того, Thomas Jefferson University (TJU), Лаборатория социальных инноваций TJU, Park-in-a-Truck и/или их преподаватели, сотрудники или партнёры не гарантируют и не делают никаких заявлений относительно точности, вероятных результатов или надёжности использования этих рекомендаций. Используя эти рекомендации, вы подтверждаете, что согласны с вышесказанным."
+  }
+}

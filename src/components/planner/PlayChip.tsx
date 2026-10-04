@@ -4,19 +4,18 @@
 // readers, so this one is hidden from them.
 import { useStore } from '@nanostores/preact';
 import type { PlannerStore } from '../../lib/planner/store';
-import { MONTHS } from '../../lib/planner/sunperiod';
-import { leafWords } from '../../lib/planner/treemodel';
-import { clock } from './SunPanel';
+import { clock, leafWords, monthDay, monthName, pt } from '../../lib/planner/words';
 
 export function PlayChip({ store }: { store: PlannerStore }) {
   const play = useStore(store.sun.$play);
   const t = useStore(store.$sunTime);
   if (play.mode === 'off') return null;
+  const w = pt();
   return (
     <div class="pl-playchip" aria-hidden="true">
-      <strong>{play.mode === 'year' ? MONTHS[t.month - 1] : `${MONTHS[t.month - 1]} ${t.day}`}</strong>
-      <span>{play.mode === 'year' ? `${t.day} · ${clock(t.minutes)}` : clock(t.minutes)}</span>
-      <span class="pl-playchip-leaf">{leafWords(t.month, t.day).replace(/ \(.*\)$/, '')}</span>
+      <strong>{play.mode === 'year' ? monthName(t.month, w) : monthDay(t.month, t.day, w)}</strong>
+      <span>{play.mode === 'year' ? `${w.num(t.day)} · ${clock(t.minutes, w)}` : clock(t.minutes, w)}</span>
+      <span class="pl-playchip-leaf">{leafWords(t.month, t.day, w, true)}</span>
     </div>
   );
 }

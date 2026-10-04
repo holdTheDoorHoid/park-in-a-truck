@@ -56,14 +56,6 @@ export function autumnTint(month: number, day: number): number {
   return ramp(n, doyOf(AUTUMN.from), doyOf(AUTUMN.to)) * (n <= doyOf(LEAF_SEASON.dropTo) ? 1 : 0);
 }
 
-/** Plain words for the trees on a date. */
-export function leafWords(month: number, day: number): string {
-  const f = leafFraction(month, day);
-  if (f >= 1) return autumnTint(month, day) > 0.3 ? 'Leaves are turning' : 'Trees are in leaf';
-  if (f <= 0) return 'Trees are bare (evergreens keep their leaves)';
-  return dayOfYear(month, day) < 183 ? 'Leaves are coming out' : 'Leaves are falling';
-}
-
 // ---- evergreen or not, from the City tree inventory's species name ------------------
 
 export interface TreeLook {
