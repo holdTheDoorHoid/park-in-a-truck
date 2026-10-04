@@ -48,9 +48,9 @@ export const ELEMENTS: Record<string, ElementMeta> = {
     footprintFt: [8, i(18)], heightFt: i(18) },
   // not drawn on the pieces; the cost estimator asks for it
   'gabion-table': { id: 'gabion-table', name: 'Wood-topped gabion table', kind: 'furnishing', footprintFt: [4, 2], heightFt: 2.5 },
-  // 48" x 18.5", 25" tall
+  // 48" x 18.5", 25" to the arms; the backrest rises to about 34"
   'bench-back': { id: 'bench-back', name: 'Bench with back', kind: 'furnishing', guide: 'bench-back',
-    footprintFt: [4, i(18.5)], heightFt: i(25), onPieces: true, countAs: "4' benches" },
+    footprintFt: [4, i(18.5)], heightFt: i(34), onPieces: true, countAs: "4' benches" },
   // 48" x 18.5" x 17"
   'bench-4': { id: 'bench-4', name: "4' bench (no back)", kind: 'furnishing', guide: 'bench-4', footprintFt: [4, i(18.5)], heightFt: i(17) },
   // 18.5" x 18.5" x 17"
