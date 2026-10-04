@@ -31,6 +31,8 @@ function bindFields(root: ParentNode) {
     };
     el.addEventListener('input', write);
     el.addEventListener('change', write);
+    // A field cleared while focused shows its looked-up value (data-auto) again once you leave it.
+    if (el.dataset.auto) el.addEventListener('blur', () => render($project.get()));
   });
 
   root.querySelectorAll<HTMLInputElement>('input[data-field-check]').forEach((el) => {

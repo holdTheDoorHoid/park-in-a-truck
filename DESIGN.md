@@ -225,7 +225,7 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
 | Assess: sloping terrain, where water collects | Slope summary, contour lines and arrows downhill; wet areas drawn as outlines | USGS 3DEP lidar (2015), `Zoning_SteepSlopeProtectArea_r` |
 | Assess summary: trees, sun, lot location, size A–E | Filled in automatically | all of the above |
 | Dream: print pieces, cut seams, tape, count squares | Planner does it on the real lot; counts automatic | pieces JSON |
-| Dream: cost-estimator spreadsheet | Live estimate + order list from the design | ported spreadsheet |
+| Dream: cost-estimator spreadsheet | Live estimate + order list from the design; furniture from the build guides | ported spreadsheet + guides |
 | Dream: plant-list spreadsheets | Plant picker sized to sun/shade counts | plant lists |
 | Create: calendar template | Build schedule from a start date, .ics export | phases |
 | Create: temporary no-parking permit, PA One Call 811 | Linked at the right phase with the lot address filled in | links |

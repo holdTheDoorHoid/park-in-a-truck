@@ -24,6 +24,8 @@ export interface Price {
   alt?: string;
   /** When the link points at something other than the item itself */
   linkNote?: string;
+  /** The sheet's link is for a different lumber size than the item (shown on the line) */
+  wrongSize?: string;
 }
 
 const HD = 'https://www.homedepot.com/p/';
@@ -61,7 +63,7 @@ export const PRICES = {
   selfDrivingScrew: { price: 0.75, unit: 'EA', cells: ['QPI!L69', 'QPI!L81'], link: `${HD}SPAX-10-x-2-1-2-in-T-Star-Plus-Drive-Washer-Wafer-Head-Partial-Thread-Yellow-Zinc-Coated-Cabinet-Screw-75-per-Box-4281020500604/315182974` },
   concreteScrew: { price: 0.75, unit: 'EA', cells: ['QPI!L70', 'QPI!L82'], link: `${HD}Tapcon-3-16-in-x-1-3-4-in-Star-Flat-Head-Concrete-Anchors-8-Pack-28155/314110826` },
   /** The outer-edge boards are priced at $4 here, but the ORDER LIST prices 1x6x12 at $10 (OL!N32). */
-  board1x6x12Edge: { price: 4, unit: 'EA', cells: ['QPI!L77'], link: `${HD}WeatherShield-2-in-x-6-in-x-12-ft-2-Prime-Ground-Contact-Pressure-Treated-Lumber-253921/206967802`, linkNote: 'the link is for a 2x6x12' },
+  board1x6x12Edge: { price: 4, unit: 'EA', cells: ['QPI!L77'], link: `${HD}WeatherShield-2-in-x-6-in-x-12-ft-2-Prime-Ground-Contact-Pressure-Treated-Lumber-253921/206967802`, linkNote: 'the link is for a 2x6x12', wrongSize: '2x6x12' },
 
   // ---- plants (no supplier in the sheet) ----
   perennial: { price: 10, unit: 'EA', cells: ['QPI!L39'] },
@@ -125,7 +127,7 @@ export type PriceId = keyof typeof PRICES;
  */
 export const LUMBER: Record<string, Price> = {
   '2x4x8': { price: 5, unit: 'ea.', cells: ['OL!N29'], link: `${HD}2-in-x-4-in-x-8-ft-2-Ground-Contact-Pressure-Treated-Lumber-106147/206970948` },
-  '2x4x12': { price: 10, unit: 'ea.', cells: ['OL!N30'], link: `${HD}WeatherShield-2-in-x-4-in-x-10-ft-2-Prime-Ground-Contact-Pressure-Treated-Lumber-253920/206967803`, linkNote: 'the link is for a 2x4x10' },
+  '2x4x12': { price: 10, unit: 'ea.', cells: ['OL!N30'], link: `${HD}WeatherShield-2-in-x-4-in-x-10-ft-2-Prime-Ground-Contact-Pressure-Treated-Lumber-253920/206967803`, linkNote: 'the link is for a 2x4x10', wrongSize: '2x4x10' },
   '1x6x8': { price: 8, unit: 'ea.', cells: ['OL!N31'], link: `${HD}WeatherShield-1-in-x-6-in-x-8-ft-Ground-Contact-Pressure-Treated-Board-253935/206974075` },
   '1x6x12': { price: 10, unit: 'ea.', cells: ['OL!N32'], link: `${LOWES}Severe-Weather-Common-1-in-x-6-in-x-12-ft-Actual-0-75-in-x-5-5-in-x-12-ft-2/4564830` },
 };

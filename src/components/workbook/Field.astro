@@ -11,9 +11,11 @@ interface Props {
   options?: string[];
   unit?: string;
   auto?: string;
+  /** Badge shown while the `auto` value is displayed (default: from City records) */
+  autoNote?: string;
   rows?: number;
 }
-const { id, label, type = 'text', hint, placeholder, options = [], unit, auto, rows = 4 } = Astro.props;
+const { id, label, type = 'text', hint, placeholder, options = [], unit, auto, autoNote = '✓ Filled in from City records — type to change it', rows = 4 } = Astro.props;
 const inputId = `f-${id.replace(/[^a-z0-9]+/gi, '-')}`;
 ---
 <div class="field">
@@ -33,6 +35,6 @@ const inputId = `f-${id.replace(/[^a-z0-9]+/gi, '-')}`;
   ) : (
     <input id={inputId} type={type} data-field={id} data-auto={auto} placeholder={placeholder} />
   )}
-  {auto && <span class="field-auto" hidden>✓ Filled in from City records — type to change it</span>}
+  {auto && <span class="field-auto" hidden>{autoNote}</span>}
   {hint && <span class="field-hint">{hint}</span>}
 </div>

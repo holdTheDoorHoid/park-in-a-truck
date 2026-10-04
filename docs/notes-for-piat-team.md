@@ -27,7 +27,7 @@ step text disagrees with the cut list or drawings.
 | Sustain → Greensgrow "about us" page | The site's hosting has expired (404) | Linked unmarked |
 | Create and Sustain → Gardens Alive | The site's security certificate has expired, so browsers warn | Linked unmarked in the steps; Resources warns |
 | Sustain → USDA NRCS "Common weeds" PDF | Fails to load | Linked unmarked |
-| Create (tool rental) and the cost estimator's order list ("fire hydrant opener" items) → Diamond Tool | Every link now redirects to a generic White Cap page | Linked unmarked in Create and the order list; Resources marks it "unverified" |
+| Create (tool rental) and the cost estimator's order list ("fire hydrant opener" items) → Diamond Tool | Every link now redirects to a generic White Cap page | Linked unmarked in Create; the order list flags both hydrant-opener links; Resources marks it "unverified" |
 | Sustain → Amazon pre-emergent (B083PKMJTM); order list → Amazon silt fence (B00HL2EABU) | Returned "not found" to an automated check while other Amazon links worked; not confirmed by hand | Linked unmarked |
 
 The jefferson.edu toolkit page still serves the 2022 workbooks; the Linktree versions (2023–2026) are newer.
@@ -89,11 +89,11 @@ consistent. These are the places where a volunteer crew following the text would
 
 Mulch depth: Create Phase 6 says "install **4"** of mulch", but the cost estimator buys "Mulch, **2"**" for the planting
 areas (and Sustain says to keep mulch at 2–3"). At 4" the sample order roughly doubles (for 32 planting squares, about
-7 CY instead of 4). The site's estimate follows the spreadsheet (2"); nothing else.
+7 CY instead of 4). The site's estimate follows the spreadsheet (2"); its mulch line says what 4" would need.
 
 ## Cost-estimator spreadsheet
 
-33 issues, with cells, effects on the sample park and suggested formula fixes: see
+33 issues, plus five found in usability testing, with cells, effects on the sample park and suggested fixes: see
 [`piat-spreadsheet-issues.md`](piat-spreadsheet-issues.md). The biggest: tool rental counted twice in the final
 cost; play area and outer edges counted twice in the base design; the 4' wood-topped gabion subtotal is `#REF!`;
 gabion tables are calculated but left out of the total; several lumber sizes have no price. The site corrects the
@@ -111,16 +111,26 @@ Found in testing (October 2026):
   screws short, plus wood the bench never uses. Smaller gaps of the same kind: stools (80 screws each vs. the guide's
   88), the 4' gabion bench (5.5 × 2x4x8 vs. 4.5), and the 8' gabion bench, which is priced as two 4' modules (11 boards,
   72 screws, two 4' baskets) where the 8' guide uses 8 boards and 36 screws. *Site:* the owner decided on 4 October
-  2026 that the furniture order list comes from each guide's own materials list, priced with the spreadsheet's prices.
+  2026 that the furniture order list comes from each guide's own materials list, priced with the spreadsheet's prices,
+  and it now does, for all thirteen guides (anything the spreadsheet has no price for, such as hog rings, J-hooks or the
+  8' gabion basket, is "price needed"). Each guide's lumber is also checked against its cut list, allowing 1/8" for
+  every saw cut. Three lists come out short, and the order uses the larger number with a note saying why: the stage
+  (16 → 25 2x4x8s), the 4' gabion bench (4.5 → 7, two 48" pieces per board) and the workbench (its 2x4s are one 8'
+  board short; its three 1x6x8s and one 2x6x12 give the 48" pieces only with no saw cut: 6 and 2 boards). All the
+  others, including the shade (47 boards for the 32 full-length SS-1 its steps use) and the 2' table (6 boards for the
+  9 T-2 its steps use), are enough.
 - **Perennials per planting square.** The cost estimator counts **4** perennials per green square (INSERT HERE C30 =
   B9 × 4); the four plant-list spreadsheets count **5**. The same design gets two different plant counts (for 32
-  squares, 128 in the budget and 160 on the shopping list). *Site:* the estimate follows the cost spreadsheet and the
-  plant picker follows the plant lists, so the Dream page shows both numbers.
+  squares, 128 in the budget and 160 on the shopping list). *Site:* the estimate now uses the plant lists' 5 too, and
+  says so, so the budget matches the plants people pick.
 - **Order-list links and lines.** "1x4x12" (QPI L65) has a price but no supplier link. There are two different 2.5"
   screw lines at $0.75 and $0.17 each (a SPAX cabinet-screw link and a GRK wood-screw link); it would help to say which
   goes where. The ORDER LIST's 2x4x12 link opens a 2x4x10 and the 1x6x12 edge-board link (QPI N77) opens a 2x6x12
   (both also in the spreadsheet notes). The Diamond Tool links, including the two "fire hydrant opener" items, now
-  redirect to a generic White Cap page. *Site:* uses the same links for now.
+  redirect to a generic White Cap page. The two "L-BRACKET" rows (QPI B68 and B80) link different products (a 2"
+  double-wide corner brace and a 5" corner brace) under one name and price. *Site:* keeps the spreadsheet's links but
+  says on each line where a link is the wrong size or no longer reaches the product, says the 1x4x12 has no supplier,
+  explains which 2.5" screw is which, and lists the two L-brackets separately.
 - **"Fire hydrant opener — gear puller to open".** See *Philadelphia guidance* below: opening a hydrant needs a
   Philadelphia Water Department permit.
 
@@ -137,7 +147,7 @@ without the permissions that decide whether a park can happen at all.
 | Councilmember support | In practice, the district councilmember's support decides whether City, Land Bank or Redevelopment Authority land goes to a group. The workbooks never name it as a requirement, and Start Here presents "approach your councilperson" as the slow alternative to doing it yourself. Worth saying it is needed, and early. | Nothing new; every lot lookup already shows the district councilmember |
 | Insurance, a written agreement, and an organization to hold them | These first appear in Create ("consult your organization's … insurance carrier before starting construction"). Public agencies and most private owners ask for a written license or lease and proof of liability insurance before anyone works on the lot, which needs a nonprofit or fiscal sponsor to sign. This belongs in Acquire, next to "In-kind agreement", which today reads like a handshake. | Nothing |
 | Lead in soil | One sentence in Assess. Many lots are former rowhouse sites with lead-paint debris, and the toolkit offers an Edible theme and nature play for children. Missing: test before Dream and what results mean; cover bare soil; raised beds with clean soil for food. The workbook's Penn State link opens the standard fertility-test forms, and that test doesn't include lead; lead is a separate environmental test. | A marked note in Assess: the standard test has no lead, how to get a lead test (Penn State's environmental test or an EPA-recognized lab), and the City's lead guide on garden soil |
-| Water and fire hydrants | Sustain says to water weekly for two years, but a vacant lot usually has no water, and the Dream order list suggests a "fire hydrant opener — gear puller to open". Opening a hydrant needs a Philadelphia Water Department permit and an approved backflow preventer (community gardens are exempt from the fee). PWD's urban garden guide lists the legal options. | Marked notes in Dream (by the order list) and Sustain (watering), linking PWD's hydrant permit page and urban garden guide |
+| Water and fire hydrants | Sustain says to water weekly for two years, but a vacant lot usually has no water, and the Dream order list suggests a "fire hydrant opener — gear puller to open". Opening a hydrant needs a Philadelphia Water Department permit and an approved backflow preventer (community gardens are exempt from the fee). PWD's urban garden guide lists the legal options. | Marked notes in Dream (by the order list, and on both hydrant-opener lines of the order list) and Sustain (watering), linking PWD's hydrant permit page and urban garden guide |
 | Public land is more than "purchase" | The Land Bank also offers community garden licenses (up to five years). Side-yard-eligible lots can be bought by the next-door owner, a competing claim residents should know about. | Nothing new; lookups link the Land Bank's map |
 | Private lots | Missing: tangled titles and heirs (one test lot last sold in 1952, so the mailing address may be decades old); tax delinquency, and the Land Bank acquiring tax-delinquent lots that gardeners already use; sheriff-sale risks (deposit, quick payment, title problems); and that an owner with an in-kind agreement can sell at any time. | Nothing |
 | Permits | Create says to "prune existing trees"; pruning or removing a street tree needs a Philadelphia Parks & Recreation permit. Sheds, stages, pergolas, trellises and some fences can need an L&I zoning or building permit; L&I is never mentioned. PA One Call 811 is there, but not its lead time: call three to ten business days before you dig. | Marked notes on street trees in Create and Sustain; nothing on L&I or the 811 lead time |
