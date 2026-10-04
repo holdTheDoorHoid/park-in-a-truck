@@ -13,186 +13,147 @@ import Figure from '../../components/workbook/Figure.astro';
 import PdfPage from '../../components/workbook/PdfPage.astro';
 import Download from '../../components/workbook/Download.astro';
 import { u } from '../../lib/url';
+import patchMsgs from '../../i18n/messages/en/patch.ts';
+import { getT } from '../../i18n/astro.ts';
 
+const t = getT(Astro, patchMsgs);
+
+// `whyKeys` hold full catalog keys (not bare suffixes): t()'s key type is a literal union
+// built from the English catalog, and substituting two independent dynamic parts into one
+// template (palette id + a bare suffix) would type-check against combinations that don't
+// exist. Pre-building the full key per palette keeps every substitution to one dynamic part.
 const PALETTES = [
   {
     id: 'grasses-wildflowers',
-    name: 'Grasses & wildflowers',
     img: 'palette-grasses-wildflowers',
-    good: 'Smaller spaces, promoting biodiversity and supporting pollinators',
-    why: [
-      'Unobstructed views — generally under 3 feet tall, so sightlines stay open.',
-      'A water-wise alternative to lawn: less water, fertilizer and mowing.',
-      'A pollinator buffet of pollen, nectar and seeds.',
-      'Thrives in full sun.',
-      'Season-long color.',
-    ],
+    whyKeys: ['palette.grasses-wildflowers.why.sightlines', 'palette.grasses-wildflowers.why.waterWise', 'palette.grasses-wildflowers.why.buffet', 'palette.grasses-wildflowers.why.fullSun', 'palette.grasses-wildflowers.why.color'] as const,
   },
   {
     id: 'grasses-shrubs',
-    name: 'Grasses, wildflowers + shrubs',
     img: 'palette-grasses-shrubs',
-    good: 'Screening an eyesore and adding structure, with less upkeep than grasses and wildflowers alone',
-    why: [
-      'Screens unsightly views.',
-      'More shelter and five-star dining for pollinators.',
-      'Adds structure and a bit more height — most shrubs stay under 4 feet.',
-      'Lower-maintenance than grasses and wildflowers alone; a light pruning in year 3–4 keeps things tidy.',
-    ],
+    whyKeys: ['palette.grasses-shrubs.why.screens', 'palette.grasses-shrubs.why.shelter', 'palette.grasses-shrubs.why.structure', 'palette.grasses-shrubs.why.lowMaintenance'] as const,
   },
   {
     id: 'grasses-shrubs-trees',
-    name: 'Grasses, wildflowers, shrubs + trees',
     img: 'palette-grasses-shrubs-trees',
-    good: 'A full habitat with the most year-round resilience',
-    why: [
-      'Creates a full-on habitat and a cozy home for wildlife.',
-      'Amps up the planting’s overall resilience.',
-      'A lively, year-round private sanctuary.',
-    ],
+    whyKeys: ['palette.grasses-shrubs-trees.why.habitat', 'palette.grasses-shrubs-trees.why.resilience', 'palette.grasses-shrubs-trees.why.sanctuary'] as const,
   },
   {
     id: 'grasses-trees',
-    name: 'Grasses, wildflowers + trees',
     img: 'palette-grasses-trees',
-    good: 'A little shade with open sightlines underneath',
-    why: [
-      'Native trees bring local elegance suited to your region.',
-      'Better air quality — trees absorb pollutants and release oxygen.',
-      'Habitat and food for local wildlife.',
-      'Carbon sequestration.',
-      'A little shade with a planted carpet underneath, while keeping visibility across the whole site open.',
-    ],
+    whyKeys: ['palette.grasses-trees.why.elegance', 'palette.grasses-trees.why.airQuality', 'palette.grasses-trees.why.habitat', 'palette.grasses-trees.why.carbon', 'palette.grasses-trees.why.shade'] as const,
   },
-];
+] as const;
 ---
-<Base title="Park Patch" description="Size doesn't matter — turn a 4x4 plot, a front yard or a window box into a pollinator planting with the Park Patch workbook.">
+<Base title={t('title')} description={t('description')}>
   <header class="chapter-head">
     <div class="wrap">
       <div class="head-row">
-        <h1 class="ruled">Park Patch</h1>
+        <h1 class="ruled">{t('title')}</h1>
         <span class="big-num" aria-hidden="true">🌼</span>
       </div>
-      <p class="lede">
-        Don't have a vacant lot? Size doesn't matter. The Pollinator Planting Patch workbook turns any space — a 4×4
-        plot, a front yard, even a window box — into a native pollinator planting, using the same kind of
-        step-by-step guide as the full park.
-      </p>
+      <p class="lede">{t('lede')}</p>
       <div class="head-actions no-print">
-        <a class="btn btn-small" href={u('downloads/park-patch-workbook.pdf')} target="_blank" rel="noopener">📄 Original workbook (PDF)</a>
-        <button class="btn btn-small" type="button" onclick="window.print()">🖨 Print my answers</button>
+        <a class="btn btn-small" href={u('downloads/park-patch-workbook.pdf')} target="_blank" rel="noopener">{t('originalPdf')}</a>
+        <button class="btn btn-small" type="button" onclick="window.print()">{t('printAnswers')}</button>
       </div>
     </div>
   </header>
 
   <div class="wrap chapter">
     <article class="prose chapter-body">
-      <p>
-        Planting native plants for pollinators brings a host of benefits: it improves soil health and prevents
-        erosion, supports local wildlife with food and shelter, offers unique beauty, thrives in your local climate
-        with less water and fewer chemicals, and helps your neighborhood's ecology stay resilient to a changing
-        climate — all while needing less maintenance than a typical bed.
-      </p>
+      <p>{t('intro')}</p>
 
       <section class="substep" id="your-planting-area" data-substep="park-patch/your-planting-area">
-        <h2 id="your-planting-area-title">Your planting area</h2>
-        <p>
-          Assess the area you want to plant using your Base Plan from Assess, or — if you don't have one — estimate
-          the square footage you want to dedicate to planting.
-        </p>
-        <Field id="patch.length" label="How long is your patch?" type="number" unit="ft" />
-        <Field id="patch.width" label="How wide is your patch?" type="number" unit="ft" />
-        <Field id="patch.sun-area" label="How long and wide is your area in sun?" />
-        <Field id="patch.shade-area" label="How long and wide is your area in shade?" />
-        <Figure
-          src="img/park-patch/patch-existing-conditions.webp"
-          alt="Grid diagram of a patch marked with existing conditions — a neighbor's house and downspout, a maple tree, a periodically wet area, a dogwood and crabapple tree, overhead utility lines and a fire hydrant — with pollinator planting areas marked in sun and in shade"
-        />
+        <h2 id="your-planting-area-title">{t('yourArea.title')}</h2>
+        <p>{t('yourArea.text')}</p>
+        <Field id="patch.length" label={t('yourArea.lengthLabel')} type="number" unit="ft" />
+        <Field id="patch.width" label={t('yourArea.widthLabel')} type="number" unit="ft" />
+        <Field id="patch.sun-area" label={t('yourArea.sunLabel')} />
+        <Field id="patch.shade-area" label={t('yourArea.shadeLabel')} />
+        <Figure src="img/park-patch/patch-existing-conditions.webp" alt={t('yourArea.alt')} />
         <PdfPage doc="downloads/park-patch-workbook.pdf" page={4} />
         <div class="substep-done" data-done="park-patch/your-planting-area"></div>
       </section>
 
       <section class="substep" id="choose-a-palette" data-substep="park-patch/choose-a-palette">
-        <h2 id="choose-a-palette-title">Choose a planting palette</h2>
-        <p>
-          Whether you're dreaming of a cozy corner of grasses and wildflowers, or a lush space with shrubs and
-          trees, pick the palette that best suits you and your site. (The dotted line in each example shows 6 feet,
-          or eye level — useful if you want to block a view or keep it open.)
-        </p>
+        <h2 id="choose-a-palette-title">{t('palette.title')}</h2>
+        <p>{t('palette.text')}</p>
         <Choice
           id="patch.palette"
-          label="Which palette fits your space?"
-          options={PALETTES.map((p) => ({ value: p.id, label: p.name, desc: p.good }))}
+          label={t('palette.chooseLabel')}
+          options={PALETTES.map((p) => ({ value: p.id, label: t(`palette.${p.id}.name`), desc: t(`palette.${p.id}.good`) }))}
         />
         {PALETTES.map((p) => (
           <div class="palette-block">
-            <h3>{p.name}</h3>
-            <ul>{p.why.map((w) => <li>{w}</li>)}</ul>
-            <Figure src={`img/park-patch/${p.img}.webp`} alt={`Example planting plan for the ${p.name.toLowerCase()} palette, with planting spacing and grouping called out`} />
+            <h3>{t(`palette.${p.id}.name`)}</h3>
+            <ul>{p.whyKeys.map((k) => <li>{t(k)}</li>)}</ul>
+            <Figure src={`img/park-patch/${p.img}.webp`} alt={t('palette.alt', { name: t(`palette.${p.id}.name`).toLowerCase() })} />
           </div>
         ))}
-        <Download href="https://docs.google.com/spreadsheets/d/16DxOfswL57wQZ0B8-4EzEFAO0IQ56LZw-rxQFQRwjcE/edit" label="Pollinator patch plant list" note="One spreadsheet, a tab per palette — make your own copy to edit it" />
+        <Download
+          href="https://docs.google.com/spreadsheets/d/16DxOfswL57wQZ0B8-4EzEFAO0IQ56LZw-rxQFQRwjcE/edit"
+          label={t('palette.plantListLabel')}
+          note={t('palette.plantListNote')}
+        />
         <PdfPage doc="downloads/park-patch-workbook.pdf" page={5} />
         <div class="substep-done" data-done="park-patch/choose-a-palette"></div>
       </section>
 
       <section class="substep" id="general-planting-notes" data-substep="park-patch/general-planting-notes">
-        <h2 id="general-planting-notes-title">General planting notes</h2>
+        <h2 id="general-planting-notes-title">{t('notes.title')}</h2>
         <ul>
-          <li>Plant your grasses and wildflowers in groups, at a minimum of 4–5 in a group, in a triangle formation 24" apart.</li>
-          <li>Plant shrubs in a triangle formation 48" apart, in areas where you might want some shelter or to shield a view.</li>
-          <li>Plant trees in the middle of the bed, 15' apart.</li>
-          <li>After planting, add 3" of mulch to keep weeds at bay.</li>
-          <li>Add a sign to your plants so neighbors know what's growing (and what's a weed).</li>
+          <li>{t('notes.groups')}</li>
+          <li>{t('notes.shrubs')}</li>
+          <li>{t('notes.trees')}</li>
+          <li>{t('notes.mulch')}</li>
+          <li>{t('notes.sign')}</li>
         </ul>
         <Callout kind="tip">
-          [How to unearth plants ↗](https://www.youtube.com/watch?v=-5gk2yVAQtM) ·
-          [How to plant a tree ↗](https://www.youtube.com/watch?v=RypqSrLZVlw) ·
-          [How to deal with a root-bound tree ↗](https://www.youtube.com/watch?v=-5Wk_6fz4rc)
+          {t('notes.callout')}
         </Callout>
         <PdfPage doc="downloads/park-patch-workbook.pdf" page={14} />
         <div class="substep-done" data-done="park-patch/general-planting-notes"></div>
       </section>
 
       <section class="substep" id="maintenance" data-substep="park-patch/maintenance">
-        <h2 id="maintenance-title">Maintenance</h2>
-        <h3>First season</h3>
+        <h2 id="maintenance-title">{t('maintenance.title')}</h2>
+        <h3>{t('maintenance.firstSeason')}</h3>
         <ul>
-          <li>Water thoroughly: provide 1" of water weekly during the first season.</li>
-          <li>Weed identification: mark undesirable weeds with sticks and remove them.</li>
+          <li>{t('maintenance.waterItem')}</li>
+          <li>{t('maintenance.weedItem')}</li>
         </ul>
-        <h3>Second season and on</h3>
+        <h3>{t('maintenance.secondSeason')}</h3>
         <Checklist
           id="patch.maintenance-ongoing"
           items={[
-            { value: 'consult', label: 'Professional consultation', hint: 'Seek advice 2–3 times a year from a gardener or the PiaT team' },
-            { value: 'expand', label: 'Habitat expansion', hint: 'Add plants as needed and share extras with the community' },
-            { value: 'arborist', label: 'Winter arborist', hint: 'Hire an arborist in winter to prune shrubs and trees with the community' },
-            { value: 'cutback', label: 'Perennial cutback', hint: 'Trim to a minimum of 3" above soil between April 1 and May 1' },
-            { value: 'replace', label: 'Winter replacements', hint: "Replace plants that didn't survive the winter" },
-            { value: 'leaf-mold', label: 'Leaf mold', hint: 'Add only in disturbed or bare soil areas' },
-            { value: 'spot-weed', label: 'Monthly spot weeding' },
-            { value: 'drought', label: 'Drought watering', hint: 'Water during prolonged droughts — no rain for more than 2 weeks' },
-            { value: 'signs', label: 'Educational signs', hint: 'Place at the middle of each plant group or the base of trees, with plant/pollinator info' },
+            { value: 'consult', label: t('maintenance.consult.label'), hint: t('maintenance.consult.hint') },
+            { value: 'expand', label: t('maintenance.expand.label'), hint: t('maintenance.expand.hint') },
+            { value: 'arborist', label: t('maintenance.arborist.label'), hint: t('maintenance.arborist.hint') },
+            { value: 'cutback', label: t('maintenance.cutback.label'), hint: t('maintenance.cutback.hint') },
+            { value: 'replace', label: t('maintenance.replace.label'), hint: t('maintenance.replace.hint') },
+            { value: 'leaf-mold', label: t('maintenance.leafMold.label'), hint: t('maintenance.leafMold.hint') },
+            { value: 'spot-weed', label: t('maintenance.spotWeed.label') },
+            { value: 'drought', label: t('maintenance.drought.label'), hint: t('maintenance.drought.hint') },
+            { value: 'signs', label: t('maintenance.signs.label'), hint: t('maintenance.signs.hint') },
           ]}
         />
         <Callout kind="note">
-          Check the Sustain step for more planting maintenance tips, even though it's written for a full park.
-          [Go to Sustain →](/steps/sustain/)
+          {t('maintenance.sustainNote')}
         </Callout>
         <PdfPage doc="downloads/park-patch-workbook.pdf" page={15} />
         <div class="substep-done" data-done="park-patch/maintenance"></div>
       </section>
 
       <section class="substep" id="are-you-ready" data-substep="park-patch/are-you-ready">
-        <h2 id="are-you-ready-title">Are you ready?</h2>
-        <p>Congratulations for completing the Planting workbook! Check off each step below.</p>
+        <h2 id="are-you-ready-title">{t('ready.title')}</h2>
+        <p>{t('ready.text')}</p>
         <Checklist
           id="patch.ready-checklist"
           items={[
-            { value: 'size', label: 'Size of bed', hint: 'You know how big an area you’ll plant, and whether it’s sun or shade' },
-            { value: 'plant-choice', label: 'Plant choice', hint: 'You used the plant calculator and plant list' },
-            { value: 'maintenance', label: 'Maintenance notes', hint: "You've reviewed the maintenance notes" },
+            { value: 'size', label: t('ready.size.label'), hint: t('ready.size.hint') },
+            { value: 'plant-choice', label: t('ready.plantChoice.label'), hint: t('ready.plantChoice.hint') },
+            { value: 'maintenance', label: t('ready.maintenance.label'), hint: t('ready.maintenance.hint') },
           ]}
         />
         <PdfPage doc="downloads/park-patch-workbook.pdf" page={15} />

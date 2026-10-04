@@ -1,0 +1,168 @@
+{
+  "title": "Estructura de sombra de 8'",
+  "summary": "Un enrejado de 2x4 que se sostiene solo, de 8x8x8 pies, con un techo de tablillas, fijado al suelo (o a un cantero) con escuadras en L y ganchos en J, o atornillado a una banca de gavión de al lado.",
+  "materials": [
+    {
+      "item": "Madera de 2x4: cedro rojo del oeste o abeto Douglas",
+      "notes": "Cedro: resiste de forma natural la intemperie y la pudrición, tiene un bonito tono rojizo y no necesita sellador; cuesta más. Pida el grado «con nudos» (STK). Abeto: resiste la pudrición de forma moderada, es fuerte y más barato que el cedro; es bueno si piensa pintar. La madera igual se puede rajar con el sol. Pida de un 5 a un 10 % más de lo que indica la lista de cortes, por si la madera viene con defectos o se equivoca en un corte."
+    },
+    {
+      "item": "Bloques de concreto para terrazas (deck blocks)",
+      "notes": "Solo si hacen falta: vea el paso 8. Úselos donde un poste cae en un cantero, para que el poste quede por encima de la tierra y se mantenga firme, y para que se pudra menos. Entierre los bloques lo que haga falta para que todos los postes queden al mismo nivel."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Tornillos autoperforantes para madera de exterior"
+    },
+    {
+      "item": "Escuadras en L"
+    },
+    {
+      "item": "Tirafondos"
+    },
+    {
+      "item": "Ganchos en J"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Pata (larga), refuerzo lateral, refuerzo de arriba y tablas del techo",
+      "siteNote": "La lista de cortes de la guía dice 14, pero los pasos usan 32: 4 patas, 2 vigas de arriba, 4 refuerzos, 2 vigas transversales, 4 refuerzos largos, 1 soporte de arriba y 15 tablas del techo. Los 47 2x4x8 de la lista de materiales alcanzan para todas, más SS-2 a SS-4."
+    },
+    {
+      "notes": "Pata (corta)"
+    },
+    {
+      "notes": "Refuerzo interior, lado B: se corta a su medida final en el terreno, contra el armazón ya armado"
+    },
+    {
+      "notes": "Refuerzo interior, lado A: es solo un cálculo aproximado; no lo corte a su largo final hasta que haya medido el armazón en el paso 5"
+    }
+  ],
+  "tools": [
+    "Sierra ingletadora de 10\" o 12\" (o un serrucho adecuado)",
+    "Atornillador de impacto para los tornillos autoperforantes de exterior",
+    "Taladro con broca de 1/8\" para hacer agujeros guía",
+    "Marro de 5 lb, para los ganchos en J",
+    "Papel de lija, grano 120",
+    "Escuadra de carpintero",
+    "Gafas de seguridad y guantes",
+    "Escalera de tijera de 6'",
+    "2 prensas para madera (opcional)"
+  ],
+  "steps": [
+    {
+      "title": "Marque, rotule y corte la madera",
+      "text": "Marque, rotule y corte la madera en orden, de SS-1 a SS-4, a los largos de la lista de cortes. SS-3 y SS-4 se cortan aquí a un largo aproximado y se recortan a su medida final exacta en el terreno, en el paso 5: no los corte más hasta entonces.\n\nRevise cada pieza de madera por si tiene defectos como rajaduras, deformaciones o un cepillado desparejo, y descarte esas partes.",
+      "imageAlts": [
+        "Diagrama isométrico de las cuatro piezas cortadas de la estructura de sombra, de SS-1 a SS-4, con sus largos rotulados, desde una tabla de 96\" hasta los refuerzos interiores de unas 87\"."
+      ],
+      "tips": [
+        "Rotule cada pieza de madera a medida que la mide y la corta.",
+        "Haga una pila aparte para cada pieza, de SS-1 a SS-4.",
+        "Lijar un poco los bordes cortados quita las astillas y ayuda al armar.",
+        "¿Va a hacer más de una estructura de sombra? Un tope en la sierra ingletadora hace que todas las piezas salgan del mismo largo."
+      ]
+    },
+    {
+      "title": "Arme las cuatro patas y únalas en dos pares",
+      "text": "Ponga una pieza SS-2 encima de una SS-1, con un lado al ras y dejando un espacio de 3.5\" del otro lado. Así se forma la primera pata del enrejado.\n\nUse la guía para agujeros al final del paquete para hacer los agujeros guía de los tornillos, y luego fije las dos piezas con 2 tornillos en un extremo, 2 en el otro extremo, 2 en el medio y 2 más con espacios iguales entre un extremo y el medio: 10 tornillos por pata.\n\nRepita 3 veces más, con otras 3 piezas SS-2 y SS-1 y 30 tornillos más, para armar las cuatro patas.\n\nPara unir las patas en pares: fije una pieza SS-1 a lo ancho de la parte de arriba de dos patas, metida en el espacio de 3.5\", con 8 tornillos (4 por pata). Repita con las otras dos patas.",
+      "imageAlts": [
+        "Diagrama de una tabla SS-2 y una SS-1 puestas una sobre otra con un espacio de 3.5\" para formar una pata del enrejado, con una pieza transversal SS-1 arriba que une dos patas en un par."
+      ],
+      "tips": [
+        "Los dos primeros pasos se pueden hacer en el suelo plano, antes de poner nada de pie.",
+        "Compruebe con una escuadra de carpintero que cada lado se mantenga a 90 grados."
+      ]
+    },
+    {
+      "title": "Agregue los refuerzos laterales de abajo y ponga las patas de pie",
+      "text": "Voltee los pares de patas. Con dos piezas SS-1 de un lado del enrejado, agregue refuerzos, usando un 2x4 sobrante para dejar un espacio parejo de 3.5\" entre el refuerzo de arriba de la pata y los refuerzos nuevos de abajo: 4 tornillos por refuerzo, 8 tornillos en total para este lado.\n\nRepita en el otro par de patas con otras dos piezas SS-1 y 8 tornillos más.\n\nPonga las patas de pie.",
+      "imageAlts": [
+        "Diagrama de los refuerzos laterales SS-1 que se agregan debajo de la pieza transversal de arriba en cada par de patas, con un espacio de 3.5\" del separador, y de los pares de patas puestos de pie."
+      ],
+      "tips": [
+        "Compruebe con una escuadra de carpintero que cada lado se mantenga a 90 grados."
+      ]
+    },
+    {
+      "title": "Agregue las vigas transversales de arriba y los refuerzos largos",
+      "text": "Con las patas de pie, una los dos pares de patas con dos vigas transversales SS-1 arriba, comprobando que todos los lados estén a 90 grados, y fije cada esquina con 4 tornillos (8 tornillos en este paso).\n\nAgregue refuerzos largos a lo largo de un lado con dos piezas SS-1, otra vez usando un 2x4 sobrante para dejar un espacio parejo de 3.5\" debajo de la viga transversal de arriba (4 tornillos por refuerzo). Repita del otro lado.",
+      "imageAlts": [
+        "Diagrama de las vigas transversales SS-1 que unen los dos pares de patas arriba, y de los refuerzos largos SS-1 a lo largo de los lados, debajo de ellas."
+      ],
+      "tips": [
+        "Para los pasos que quedan hace falta una escalera para llegar a la parte de arriba del armazón.",
+        "Compruebe con una escuadra de carpintero que cada lado se mantenga a 90 grados."
+      ]
+    },
+    {
+      "title": "Ajuste y fije los refuerzos interiores",
+      "text": "Mida la distancia entre sus dos postes donde va cada refuerzo interior SS-4, corte la pieza SS-4 a esa medida exacta para que quede bien ajustada, y fíjela a la pieza SS-1 que tiene detrás. Repita con las 4 piezas de refuerzo interior de los lados largos, fijando cada una con 8 tornillos de 2.5\" puestos en pares a intervalos iguales (32 tornillos en total).\n\nHaga lo mismo con los refuerzos interiores SS-3 de los lados cortos: mida, corte cada uno para que quede bien ajustado y fíjelo a la pieza SS-1 que tiene detrás; son 4 piezas de refuerzo interior de los lados cortos y 32 tornillos más.",
+      "imageAlts": [
+        "Diagrama de los refuerzos interiores SS-4 y SS-3, medidos y cortados para que queden bien ajustados entre los postes, y atornillados en pares a intervalos iguales."
+      ],
+      "tips": [
+        "Use prensas para sujetar la madera mientras la fija."
+      ]
+    },
+    {
+      "title": "Agregue el soporte del refuerzo de arriba",
+      "text": "Use una pieza SS-1 para hacer un soporte del refuerzo de arriba, centrado en el medio del armazón.\n\nFíjelo con 4 tornillos autoperforantes para madera de exterior.",
+      "imageAlts": [
+        "Diagrama de un solo soporte de arriba SS-1, centrado a lo ancho del medio del armazón."
+      ],
+      "tips": [
+        "Use prensas para sujetar la madera mientras la fija."
+      ]
+    },
+    {
+      "title": "Arme el techo y lije",
+      "text": "Use piezas SS-1 para el techo. Con un 2x4 sobrante como separador, fije cada tabla SS-1 del techo de un lado del armazón al otro (de derecha a izquierda).\n\nFije la madera con un atornillador de impacto y 75 tornillos autoperforantes de exterior de 2.5\", y luego fije las demás piezas SS-1 del techo con 70 tornillos más.\n\nAlinee la última pieza con el armazón para que no sobresalga; no importa si la última pieza tiene que ser más angosta que 3.5\" para que quepa.\n\nLije un poco los bordes ásperos de la estructura de sombra.",
+      "imageAlts": [
+        "Diagrama de las tablas SS-1 del techo puestas una al lado de la otra a lo ancho de la parte de arriba del armazón, con un separador de 2x4, atornilladas de un lado al otro."
+      ]
+    },
+    {
+      "title": "Ancle los postes",
+      "text": "Ponga una escuadra en L en la parte de adentro de cada poste y fíjela con un tirafondo de 1/2\" x 2\".\n\nMeta un gancho en J de 18\" por el agujero de abajo de cada escuadra en L y clávelo en el suelo con un marro de 5 lb.",
+      "imageAlts": [
+        "Diagrama de una escuadra en L y un gancho en J que anclan al suelo la base de un poste del enrejado, con la opción de un bloque de concreto para los canteros."
+      ],
+      "tips": [
+        "Si la estructura de sombra queda al lado de una banca de gavión con asiento de madera, es mejor usar las escuadras en L y los tirafondos para atornillar las patas del enrejado directamente a la banca.",
+        "Si un poste cae en un cantero, póngalo sobre un bloque de concreto por encima de la tierra, para que quede firme y la madera se pudra menos; entierre el bloque para que quede al mismo nivel que los otros postes."
+      ]
+    },
+    {
+      "title": "Guía para hacer agujeros (plantilla)",
+      "text": "Recorte la guía para agujeros por las líneas punteadas. Al taladrar, alinee el borde de la plantilla con el borde de afuera de la madera antes de hacer el agujero guía.\n\nNo se usan todos los agujeros, y no todos los patrones usan la plantilla. Guíese por los pasos de armado de arriba para saber dónde van los agujeros. Haga todos los agujeros a más o menos el ancho de un pulgar del borde (alrededor de 1\"), incluso los que no usan esta plantilla.",
+      "imageAlts": [
+        "Una plantilla imprimible para hacer agujeros guía, con cinco posiciones marcadas y líneas de corte, y un acercamiento que muestra la distancia de los agujeros al borde de la tabla."
+      ]
+    }
+  ],
+  "finishing": "Un tratamiento para madera de exterior puede alargar la vida de los elementos de su parque, pero no hace falta: estas piezas están pensadas para ser baratas, duraderas y fáciles de construir, así que puede ser más práctico dejar que la próxima generación las vuelva a construir cuando llegue el momento. Si quiere teñir, pintar o sellar la madera, vea los recursos sobre acabados más abajo.",
+  "safety": [
+    "Estas son solo recomendaciones para hacerlo usted mismo: adapte los materiales, el armado y la construcción a su propio proyecto y terreno.",
+    "Construir esto supone que sabe usar herramientas manuales y eléctricas, herrajes, tornillería, madera y técnicas básicas de armado.",
+    "Antes de usar cualquier equipo eléctrico, lea y siga los requisitos de seguridad del fabricante, y no deje que use herramientas eléctricas nadie que no haya hecho lo mismo.",
+    "Usted (el dueño) es responsable de cumplir los códigos de construcción y de seguridad, y de conseguir los permisos y aprobaciones que esto necesite.",
+    "Primero limpie el terreno de basura, peligros y estructuras que no quiera, y averigüe si hay servicios públicos (cables o tuberías) que puedan estorbar antes de excavar.",
+    "Todas las personas que ayuden a construir deben firmar una exención de responsabilidad para voluntarios.",
+    "Es una estructura de 8 pies que se arma en lo alto, sobre una escalera: pida a alguien que sostenga el armazón y la escalera mientras usted trabaja arriba."
+  ],
+  "links": [
+    {
+      "label": "Cómo elegir el mejor acabado para proyectos al aire libre (Rockler, en inglés)"
+    },
+    {
+      "label": "El mejor acabado para madera de exterior (Real Milk Paint, en inglés)"
+    },
+    {
+      "label": "Recubrimientos para madera de exterior (Vermont Natural Coatings, en inglés)"
+    }
+  ],
+  "sourcePages": "Instrucciones de armado de SHADE_Assembly, págs. 1–12 (portada; antes de empezar; maderas comunes; pasos 1–7; anclaje; guía para hacer agujeros)"
+}

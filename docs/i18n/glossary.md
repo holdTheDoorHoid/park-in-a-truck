@@ -86,18 +86,18 @@ translator stays consistent.
 
 Tone: Latin-American Spanish as used in Philadelphia (Puerto Rican, Dominican, Mexican and Central American neighbors). **usted**, warm and plain. Prefer words common across the Americas (*carro*, *computadora*, *banca*), not Spain-only ones. City is *Filadelfia*.
 
-*Status: filled in by i18n-core (the Spanish slice).*
+*Status: filled in by i18n-core (the Spanish slice); reviewed and extended by the t-es translation round (2026-10-04), which translated the whole site with it.*
 
 | English | Translation | Note |
 |---|---|---|
 | Park in a Truck / PiaT | Park in a Truck / PiaT | |
-| toolkit | la guía (el *Toolkit*) | |
+| toolkit | la guía (el *Toolkit*) | "Guía" alone means the Toolkit; a furniture guide is always "guía de construcción" or "guía de armado". |
 | workbook | cuaderno de trabajo | |
 | step | paso | |
 | sub-step | subpaso | |
 | Mark this step done / done | Marcar este paso como hecho / hecho | |
 | Start here · Acquire · Organize · Assess · Dream · Create · Sustain | Empiece aquí · Adquirir · Organizar · Evaluar · Soñar · Crear · Mantener | |
-| vacant lot | lote baldío | |
+| vacant lot | lote baldío | *terreno* for the site/ground of the future park ("el terreno del parque"). |
 | lot | lote | |
 | parcel | parcela | |
 | mid-block lot / corner lot / breezeway, alley | lote a mitad de cuadra / lote de esquina / pasaje, callejón | |
@@ -109,28 +109,62 @@ Tone: Latin-American Spanish as used in Philadelphia (Puerto Rican, Dominican, M
 | Philadelphia Land Bank | Philadelphia Land Bank (el banco de terrenos de la Ciudad) | |
 | PHDC | PHDC | |
 | Sheriff Sale | venta del Sheriff (Sheriff Sale) | |
-| purchase / donation / lease / in-kind (use) agreement | compra / donación / alquiler (arrendamiento) / acuerdo de uso en especie | |
+| purchase / donation / lease / in-kind (use) agreement | compra / donación / alquiler (arrendamiento) / acuerdo de uso en especie | Select options keep the English value. |
 | park committee | comité del parque | |
 | neighbors / neighborhood | vecinos / barrio | |
 | park pieces | piezas del parque | |
 | frame / front / back (pieces) | marco / pieza delantera / pieza trasera | |
-| seam (length seam, width seam) | franja de unión | |
-| theme: Edible · Sanctuary · Nature · Event | Comestible · Santuario · Naturaleza · Eventos | |
+| seam (length seam, width seam) | franja de unión (a lo largo / a lo ancho) | |
+| theme: Edible · Sanctuary · Nature · Event | Comestible · Santuario · Naturaleza · Eventos | "Tema Comestible", "Lista de plantas: Santuario". |
 | size A–E | tamaño A–E | |
-| gabion (wall, bench) | gavión | |
-| build guide | guía de construcción | |
+| gabion (wall, bench) | gavión (muro de gavión, banca de gavión) | The wire basket: canasta de gavión. |
+| build guide | guía de construcción | Inside a guide: instrucciones de armado, pasos, armar. |
 | cut list / materials & hardware / tools | lista de cortes / materiales y herrajes / herramientas | |
 | 2x4, 2x4x8', BB-1 | 2x4, 2x4x8', BB-1 | |
 | full sun / part sun / shade | pleno sol / sol parcial / sombra | |
-| native plant · perennial · shrub · small tree · large tree | planta nativa · perenne · arbusto · árbol pequeño · árbol grande | |
+| native plant · perennial · shrub · small tree · large tree | planta nativa · perenne · arbusto · árbol pequeño · árbol grande | Plant common names: a Spanish name where one is widely known, otherwise a plain Spanish name + the English name in brackets so it can be found at a nursery ("Itea (sweetspire)"). |
 | pollinator | polinizador | |
-| stewardship / sustain | cuidado del parque / mantener | |
+| stewardship / sustain | cuidado del parque / mantener | Survive · Thrive · Socialize = Sobrevivir · Prosperar · Convivir. |
 | My park | Mi parque | |
 | project file | archivo del proyecto | |
 | Plan in 3D / the planner | Diseñar en 3D / el planificador | |
 | Note from this site, not Park in a Truck | Nota de este sitio, no de Park in a Truck | |
 | in English | en inglés | |
-| ft, in, sq ft, $ | pies, pulg., pies², $ | |
+| ft, in, sq ft, $ | pies, pulg., pies², $ | In build guides the marks ' and " stay as printed (2x4x8', 2.5"). |
+
+Extra terms used in the chapters, guides and data (es only; they may belong in the English table):
+
+| English | Translation | Note |
+|---|---|---|
+| site (the lot being turned into a park) | terreno | |
+| base map / base plan | mapa base / plano base | |
+| soil / topsoil / soil test | tierra / tierra negra / análisis de suelo | *suelo* in "análisis de suelo", "nutrientes del suelo". |
+| mulch | mantillo (mulch) | Add "(mulch)" at the first use in a chapter. |
+| planting bed / raised bed / planting square | cantero / cantero elevado / cuadro de siembra | |
+| gravel / stone dust | grava / polvo de piedra | |
+| weeds / pre-emergent | malas hierbas / preemergente | |
+| to plant / to water | sembrar / regar | Avoid *regar* for spreading gravel or soil (reads as "to water"): use *extender*. |
+| fire hydrant / hydrant permit / backflow preventer | hidrante / permiso de hidrante / válvula antirretorno (backflow preventer) | |
+| street tree | árbol de la calle | |
+| temporary no-parking permit | permiso temporal de no estacionarse | |
+| volunteer waiver / release form | formulario de exención de responsabilidad para voluntarios | |
+| Park Ambassador | embajador del parque | Program name in the Toolkit: programa de embajadores del parque. |
+| phase (Create step) | fase | "Fase 1: Organizar". |
+| cost estimate / cost estimator | presupuesto / calculadora de costos | |
+| sun study | sol y sombra | |
+| bench / stool / table / planter box | banca / banquito / mesa / jardinera | *banca*, not *banco*. |
+| shade structure / stage / workbench | estructura de sombra / escenario / mesa de trabajo (mesa alta) | |
+| impact driver / self-driving exterior wood screws | atornillador de impacto / tornillos autoperforantes de exterior | |
+| pre-drill / pre-drilling hole guide | hacer agujeros guía / guía para hacer agujeros | |
+| miter saw / stop block / jig / spacer | sierra ingletadora / tope / plantilla / separador | |
+| carpenter's square / level | escuadra de carpintero / nivel | |
+| lag screws / carriage bolts / socket wrench | tirafondos / pernos de carruaje / llave de dados | |
+| sledgehammer / hammer | mandarria (marro) / martillo | "Marro de 5 lb". |
+| wire mesh / hog rings / hog ring pliers / cable staples | malla de alambre / anillos de engrapar (hog rings) / pinzas para anillos / grapas para cable | |
+| bolt cutters / grinder / staple gun | cortapernos / esmeriladora / engrapadora | |
+| geotextile fabric | tela geotextil | |
+| pressure-treated / cedar / Douglas fir | tratada a presión / cedro / abeto Douglas | |
+| flush / square (adj.) | al ras / derecho, en escuadra | |
 
 ### zh — 中文 (Simplified)
 
