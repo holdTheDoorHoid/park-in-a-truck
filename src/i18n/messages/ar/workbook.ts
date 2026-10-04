@@ -1,21 +1,78 @@
-// العربية — النصوص التي تظهر في الصفحة الرئيسية وصفحات الخطوات حتى الآن (التقدم وعلامة الإنجاز).
-// The rest of this area is still to translate (npm run i18n:check -- --locale ar --verbose lists it).
+// العربية — مكوّنات كراسة العمل، وصفحة الفصل، وعلامات الإنجاز، والكلمات التي تُملأ من سجلات المدينة.
+// المسرد: docs/i18n/glossary.md — "next" is ← and "previous" is → in Arabic.
 import type en from '../en/workbook.ts';
 import type { Translation } from '../../define.ts';
 
 export default {
   'project.default': 'حديقتي',
+
+  'callout.tip': 'نصيحة',
+  'callout.note': 'ملاحظة',
+  'callout.warning': 'انتبه',
+  'callout.contact': 'اطلب المساعدة',
+  'callout.auto': 'أنجزه الموقع لك',
+  'callout.site': 'ملاحظة من هذا الموقع، وليست من Park in a Truck',
+
+  'field.choose': 'اختر…',
+  'field.auto': '✓ مأخوذ من سجلات المدينة — اكتب لتغييره',
+  'list.noscript': 'شغِّل JavaScript لتملأ هذا الجدول، أو اطبع الصفحة الأصلية من كراسة العمل.',
+  'list.row': 'صف',
+  'list.add': '+ أضف {row}',
+  'list.fillFirst': 'املأ الصف الذي في الأعلى ({row}) أولًا، أو اكتب فيه شيئًا.',
+  'list.remove': 'احذف',
+  'list.removeRow': 'احذف الصف {n}',
+  'list.removed': 'حُذف: {row}.',
+  'list.cell': '{label}، الصف {n}',
+
   'done.mark': 'ضع علامة: أُنجزت هذه الخطوة',
   'done.done': 'أُنجزت — أحسنت!',
   'done.badge': '✓ أُنجزت',
   'progress.of': '{done} من {total}',
   'progress.done': 'المنجز: {done} من {total}',
   'progress.total': 'الخطوات المنجزة: {done} من {total}',
+
+  'pdf.label': 'الصفحة الأصلية في كراسة العمل',
+  'pdf.page': '(صفحة PDF رقم {page})',
+  'file.english': 'بالإنجليزية',
+  'figure.credit': 'الصورة: {credit}',
+
+  'chapter.pdf': '📄 كراسة العمل الأصلية (PDF)',
+  'chapter.print': '🖨 اطبع إجاباتي',
   'chapter.toc': 'في هذه الخطوة',
   'chapter.pager': 'الخطوات',
   'chapter.prev': '→ {title}',
   'chapter.prevStep': '→ الخطوة {n}: {title}',
   'chapter.next': 'التالي: الخطوة {n} — {title} ←',
+  'notice.title': 'ملاحظة من الموقع',
+  'notice.lot':
+    'لم تسجّل بعد إذنًا باستخدام قطعة أرضك — ستحتاج إليه قبل أن يبدأ أي أحد الحفر. <a href="{href}">انتقل إلى «الحصول على قطعة أرض» ← «احصل على قطعة أرضك رسميًّا»</a>.',
+  'notice.dismiss': 'إخفاء',
   'chapter.notTranslated': 'لم يُترجم هذا الفصل بعد، لذا يظهر بالإنجليزية. تُحفظ إجاباتك بالطريقة نفسها في كل اللغات.',
-  'file.english': 'بالإنجليزية',
+
+  'auto.owner.city': 'مدينة فيلادلفيا (ملكية عامة)',
+  'auto.owner.landbank': 'Philadelphia Land Bank (ملكية عامة)',
+  'auto.owner.pha': 'هيئة الإسكان في فيلادلفيا (ملكية عامة)',
+  'auto.owner.redevelopment': 'هيئة إعادة التطوير في فيلادلفيا (ملكية عامة)',
+  'auto.owner.other-public': 'جهة عامة أخرى',
+  'auto.owner.private': 'مالك خاص (شخص أو منظمة أو شركة)',
+  'auto.owner.unknown': 'غير معروف',
+  'auto.lot.mid-block': 'قطعة في منتصف الشارع',
+  'auto.lot.corner': 'قطعة على الزاوية',
+  'auto.lot.alley': 'ممر / زقاق / حق مرور',
+  'auto.lot.unknown': 'لست متأكدًا',
+  'auto.sun.full-sun': 'شمس كاملة طوال اليوم',
+  'auto.sun.mostly-sun': 'شمس في معظم الوقت',
+  'auto.sun.mostly-shade': 'ظل في معظم الوقت',
+  'auto.sun.deep-shade': 'ظل كثيف طوال اليوم',
+  'auto.kind.interior': 'قطعة في منتصف الشارع',
+  'auto.kind.corner-right': 'قطعة على الزاوية (الشارع على اليمين)',
+  'auto.kind.corner-left': 'قطعة على الزاوية (الشارع على اليسار)',
+  'auto.trees.none': 'لا توجد أشجار',
+  'auto.trees.few': 'شجرة أو شجرتان',
+  'auto.trees.several': 'عدة أشجار',
+  'auto.yes': 'نعم',
+  'auto.no': 'لا',
+  'auto.sqft': '{n} قدم مربع',
+  'auto.ft': '{n} قدم',
+  'auto.size': 'الحجم {size}',
 } satisfies Translation<typeof en>;
