@@ -1,0 +1,78 @@
+// Português do Brasil — componentes do caderno de trabalho. Glossário: docs/i18n/glossary.md
+import type en from '../en/workbook.ts';
+import type { Translation } from '../../define.ts';
+
+export default {
+  'project.default': 'Meu parque',
+
+  'callout.tip': 'Dica',
+  'callout.note': 'Observação',
+  'callout.warning': 'Atenção',
+  'callout.contact': 'Peça ajuda',
+  'callout.auto': 'Já feito para você',
+  'callout.site': 'Nota deste site, não do Park in a Truck',
+
+  'field.choose': 'Escolha…',
+  'field.auto': '✓ Preenchido com dados da Prefeitura — digite para mudar',
+  'list.noscript': 'Ative o JavaScript para preencher esta tabela, ou imprima a página original do caderno de trabalho.',
+  'list.row': 'linha',
+  'list.add': '+ Adicionar {row}',
+  'list.fillFirst': 'Preencha primeiro a linha de cima ({row}) ou escreva algo nela.',
+  'list.remove': 'Remover',
+  'list.removeRow': 'Remover a linha {n}',
+  'list.removed': 'Linha removida ({row}).',
+  'list.cell': '{label}, linha {n}',
+
+  'done.mark': 'Marcar esta etapa como feita',
+  'done.done': 'Feito — muito bem!',
+  'done.badge': '✓ feito',
+  'progress.of': '{done} de {total}',
+  'progress.done': '{done} de {total} feitas',
+  'progress.total': '{done} de {total} etapas feitas',
+
+  'pdf.label': 'Página original do caderno de trabalho',
+  'pdf.page': '(página {page} do PDF)',
+  'file.english': 'em inglês',
+  'figure.credit': 'Imagem: {credit}',
+
+  'chapter.pdf': '📄 Caderno de trabalho original (PDF)',
+  'chapter.print': '🖨 Imprimir minhas respostas',
+  'chapter.toc': 'Nesta etapa',
+  'chapter.pager': 'Etapas',
+  'chapter.prev': '← {title}',
+  'chapter.prevStep': '← Etapa {n}: {title}',
+  'chapter.next': 'Próxima: Etapa {n} — {title} →',
+  'chapter.notTranslated': 'Este capítulo ainda não foi traduzido, por isso aparece em inglês. Suas respostas são salvas do mesmo jeito em todos os idiomas.',
+
+  'auto.owner.city': 'Prefeitura da Filadélfia (público)',
+  'auto.owner.landbank': 'Philadelphia Land Bank (público)',
+  'auto.owner.pha': 'Philadelphia Housing Authority (público)',
+  'auto.owner.redevelopment': 'Philadelphia Redevelopment Authority (público)',
+  'auto.owner.other-public': 'Outro órgão público',
+  'auto.owner.private': 'Dono particular (pessoa, organização ou empresa)',
+  'auto.owner.unknown': 'Não se sabe',
+  'auto.lot.mid-block': 'Terreno no meio do quarteirão',
+  'auto.lot.corner': 'Terreno de esquina',
+  'auto.lot.alley': 'Passagem / beco / servidão de passagem',
+  'auto.lot.unknown': 'Não tenho certeza',
+  'auto.sun.full-sun': 'Sol pleno o dia todo',
+  'auto.sun.mostly-sun': 'Sol na maior parte do tempo',
+  'auto.sun.mostly-shade': 'Sombra na maior parte do tempo',
+  'auto.sun.deep-shade': 'Sombra fechada o dia todo',
+  'auto.kind.interior': 'Terreno no meio do quarteirão',
+  'auto.kind.corner-right': 'Terreno de esquina (rua à direita)',
+  'auto.kind.corner-left': 'Terreno de esquina (rua à esquerda)',
+  'auto.trees.none': 'Nenhuma árvore',
+  'auto.trees.few': 'Uma ou duas árvores',
+  'auto.trees.several': 'Várias árvores',
+  'auto.yes': 'Sim',
+  'auto.no': 'Não',
+  'auto.sqft': '{n} pés²',
+  'auto.ft': '{n} pés',
+  'auto.size': 'Tamanho {size}',
+
+  'notice.title': 'Nota do site',
+  'notice.lot':
+    'Você ainda não registrou a permissão para usar o seu terreno — vai precisar dela antes de qualquer pessoa começar a mexer na terra. <a href="{href}">Ir para Adquirir → Garanta o seu terreno</a>.',
+  'notice.dismiss': 'Fechar',
+} satisfies Translation<typeof en>;

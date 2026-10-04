@@ -1,0 +1,221 @@
+---
+title: Organizar
+intro: Forme uma comissão do parque, descubra os recursos do seu bairro e reúna as pessoas que vão fazer o parque acontecer.
+sources:
+  - Guia (Toolkit), pp. 29–33 (Organizar, Forme uma comissão do parque, Descubra os recursos do bairro)
+  - Caderno de trabalho Organizar, pp. 3–6 (Visão geral, Descubra os recursos da comunidade, Recursos do bairro, Organize uma reunião, Tudo pronto?)
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import NeighborhoodAssets from '../../../../components/widgets/NeighborhoodAssets.astro';
+import MeetingFlyer from '../../../../components/widgets/MeetingFlyer.astro';
+
+Parques não aparecem do nada. São um trabalho em equipe, e o retorno é enorme. Uma comunidade que trabalha junto num
+projeto de parque constrói mais que um parque — fortalece os laços da comunidade, cria oportunidades de trabalho
+interessantes para os jovens do bairro e enche todo mundo de orgulho. Construir um parque une as pessoas em volta de
+uma causa comum. E, quando estiver pronto, todos vão dizer: "nós conseguimos!"
+
+No centro de todo projeto de parque que dá certo existe um grupo variado e talentoso de moradores comprometidos,
+trabalhando juntos como uma equipe. Essa Comissão do Parque vai liderar o trabalho de criar o parque. O ideal é que
+esses voluntários representem os vários grupos que vão usar o parque — jovens, idosos, pessoas de raças e origens
+diferentes, profissionais com diploma, trabalhadores, donos de casa e inquilinos. Eles devem se parecer com a sua
+comunidade. Pense também nos talentos de cada um. Ter pessoas com talentos e experiências diferentes — gente da
+construção, quem entende de leis, quem tem contatos políticos, organizadores comunitários, líderes religiosos,
+pessoas muito sociáveis etc. — aumenta as suas chances de sucesso.
+
+<Callout kind="note">
+  Para saber mais sobre como organizar um grupo comunitário, veja o{' '}
+  <a href="http://tupress.temple.edu/book/0872" target="_blank" rel="noopener"><em>City Parks Handbook</em></a> da
+  Pennsylvania Horticultural Society e o{' '}
+  <a href="https://www.nrpa.org/uploadedFiles/Americas_Backyard/park-advocate-handbook-100711.pdf" target="_blank" rel="noopener"><em>Park Advocate Handbook</em></a>
+  da National Recreation and Park Association (os dois em inglês).
+</Callout>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={3} label="Visão geral" />
+
+## Forme uma comissão do parque {/* #create-a-park-committee */}
+
+Depois de formada, a primeira tarefa da comissão é descobrir e registrar o que há de único no seu bairro e no
+terreno do parque. Anote abaixo os membros da sua comissão — quem são, como falar com eles e o que cada um traz para
+a equipe.
+
+<ListField
+  id="organize.committee-members"
+  label="Membros da comissão do parque"
+  rowName="membro"
+  min={3}
+  columns={[
+    { key: 'name', label: 'Nome' },
+    { key: 'phone', label: 'Telefone', type: 'tel' },
+    { key: 'email', label: 'E-mail', type: 'email' },
+    { key: 'role', label: 'Função / habilidades', placeholder: 'organização, marcenaria, arrecadação de fundos…' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={3} label="Visão geral" />
+
+## Descubra os recursos da comunidade {/* #identify-community-assets */}
+
+Agora vamos pensar nas pessoas do seu bairro e nas habilidades de cada uma — alguém gosta de cozinhar? De organizar
+eventos? De mexer com plantas? Adora história e poderia pesquisar sobre o bairro? Tudo isso pode virar habilidades
+valiosas e úteis para ajudar a desenhar, construir e manter o parque. Você só precisa fazer uma lista, para saber a
+quem pedir ajuda em cada tarefa do processo do parque.
+
+Na sua primeira reunião da comunidade, peça às pessoas que escrevam as suas habilidades numa lista de inscrição.
+Marque as habilidades que a sua comissão já tem:
+
+<Checklist
+  id="organize.individual-skills"
+  label="Lista de habilidades das pessoas"
+  items={[
+    { value: 'project-manager', label: 'Gerente de projeto para coordenar a construção do parque' },
+    { value: 'organizing', label: 'Organizar o parque / o processo de desenhar e construir' },
+    { value: 'carpentry', label: 'Marcenaria e carpintaria' },
+    { value: 'masonry', label: 'Alvenaria' },
+    { value: 'gardening', label: 'Jardinagem / manutenção do parque' },
+    { value: 'planting', label: 'Plantar árvores, arbustos, flores' },
+    { value: 'building', label: 'Ajudar a construir o parque' },
+    { value: 'fundraising', label: 'Arrecadação de fundos' },
+    { value: 'bookkeeping', label: 'Contabilidade' },
+    { value: 'babysitting', label: 'Cuidar de crianças' },
+    { value: 'food', label: 'Comida para as reuniões / a construção do parque' },
+    { value: 'artist', label: 'Artista' },
+    { value: 'photography', label: 'Fotografia' },
+    { value: 'music', label: 'Música para os dias de construção — DJ' },
+    { value: 'media', label: 'Divulgação nas redes — Facebook, Instagram, Twitter' },
+    { value: 'history', label: 'Apaixonado por história' },
+    { value: 'other', label: 'Outra' },
+  ]}
+/>
+
+{/* site-added: a printable version of the same list, for a paper sign-up sheet at an in-person meeting. */}
+<Callout kind="tip" title="Imprimir uma lista de inscrição">
+  Precisa de uma lista de inscrição em papel para uma reunião? Imprima esta página — a lista acima sai impressa com
+  quadradinhos em branco que os vizinhos podem marcar à mão, ao lado do nome e do contato deles.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={3} label="Descubra os recursos da comunidade" />
+
+## Recursos do bairro {/* #neighborhood-assets */}
+
+Outro passo essencial na construção do seu parque é descobrir o que o seu bairro e o terreno do parque têm de
+único. Pare um pouco e procure as muitas pistas que tornam o seu bairro especial do seu próprio jeito. Todo bairro
+tem um valor que nasce da sua história e da sua cultura. Descobrir e aproveitar esses recursos vai fortalecer o seu
+projeto de parque e fazer a comunidade sentir que o parque é dela.
+
+Então, como descobrir os recursos e as forças do bairro? Pense no seu bairro, na história e na cultura dele — quais
+são os lugares especiais? Onde as pessoas gostam de se reunir? Aconteceram fatos importantes no seu bairro? O que
+existia antes onde fica o seu parque?
+
+<Callout kind="auto" title="Organizações por perto, já encontradas para você">
+  Digite o endereço do seu terreno e o site busca as organizações comunitárias registradas, escolas, bibliotecas,
+  parques, hortas e outros recursos do bairro listados pela Prefeitura — assim você começa a sua lista com quem já
+  está lá.
+</Callout>
+
+<NeighborhoodAssets />
+
+Depois, liste todas as associações de moradores e locais que possam ser parceiras e dar apoio — em dinheiro, em
+materiais ou serviços, ou como lugar para comprar os materiais do parque no próprio bairro:
+
+<ListField
+  id="organize.citizens-associations"
+  label="Lista de associações de moradores"
+  rowName="grupo"
+  min={2}
+  columns={[
+    { key: 'type', label: 'Tipo', placeholder: 'igreja, líder de quarteirão, RCO, grupo cultural…' },
+    { key: 'name', label: 'Nome' },
+    { key: 'contact', label: 'Contato' },
+  ]}
+/>
+
+<ListField
+  id="organize.physical-assets"
+  label="Recursos físicos do bairro"
+  rowName="recurso"
+  min={2}
+  columns={[
+    { key: 'type', label: 'Tipo', placeholder: 'marco histórico, mural, rua bonita, ponto de encontro…' },
+    { key: 'description', label: 'Descrição' },
+  ]}
+/>
+
+<ListField
+  id="organize.local-institutions"
+  label="Instituições locais"
+  rowName="instituição"
+  min={2}
+  columns={[
+    { key: 'type', label: 'Tipo', placeholder: 'comércio, escola, biblioteca, hospital, universidade…' },
+    { key: 'name', label: 'Nome' },
+    { key: 'contact', label: 'Contato' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={4} label="Recursos do bairro" />
+
+## Organize uma reunião {/* #organize-a-meeting */}
+
+Fazer uma reunião aberta pode ser um ótimo jeito de fortalecer uma campanha ou trazer mais gente para o seu grupo.
+Aqui vão algumas ideias para ajudar o seu grupo comunitário a organizar uma reunião interessante, acessível e que
+corra bem.
+
+- **Seja simples.** Não tente encaixar coisas demais. Use a reunião para contar o básico sobre o que vocês querem
+  fazer, incentivar os outros a dar as suas opiniões e ideias, e pegar o contato das pessoas que talvez queiram
+  participar no futuro.
+- **Divulgue bem.** Confira se a data, a hora e o local aparecem com clareza no folheto, e se está claro do que se
+  trata a reunião. Folhetos, cartazes, posts nas redes sociais e o jornalzinho do bairro ajudam.
+- **Ofereça um atrativo.** Lanche de graça, um vídeo ou um palestrante, ou alguém cuidando das crianças (com
+  estudantes voluntários) podem ajudar as pessoas a arrumar tempo para vir.
+- **Pense na pauta.** Boas-vindas e apresentações; explique quem chamou a reunião e por quê; conte por que a reunião
+  foi convocada; pense em convidar alguém que já construiu um parque para contar a experiência (rápido — esta
+  primeira reunião não deve ser uma palestra); peça à equipe do Park in a Truck, na Jefferson, para mandar alguém
+  para falar.
+- **Dê às pessoas a chance de falar.** Pode haver gente contra o parque — deixe as pessoas darem a sua opinião e
+  construam juntos um acordo sobre o lugar possível do parque, sem se perder nos detalhes.
+- **Diga o que acontece depois.** Resuma as ideias que surgiram e, se a reunião for pequena, decidam que ações vão
+  ser realmente tomadas — e quem vai fazer cada coisa.
+- **Coordene a reunião.** Combinem antes quem vai coordenar. A tarefa dessa pessoa: manter a reunião no assunto,
+  garantir que todos tenham a chance de falar e manter um clima acolhedor e aberto.
+- **Faça a ata.** Decidam antes da reunião quem vai fazer a ata (não pode ser a mesma pessoa que coordena). A ata
+  deve registrar com clareza todas as decisões tomadas e quem aceitou cada tarefa.
+- **Junte nomes e endereços.** Prepare uma lista de inscrição com antecedência, para manter contato com todos que
+  queiram continuar participando.
+- **Planeje a próxima reunião.** Marque a data e o lugar da próxima reunião do grupo antes de esta terminar, e
+  divulgue para as pessoas poderem voltar.
+
+<Field id="organize.meeting-date" label="Data da reunião" type="date" />
+<Field id="organize.meeting-time" label="Hora da reunião" type="text" placeholder="ex.: 18h30" />
+<Field id="organize.meeting-place" label="Local da reunião" type="text" placeholder="endereço ou nome do lugar" />
+<Field id="organize.meeting-purpose" label="Objetivo da reunião" type="textarea" hint="O que vocês querem fazer e o que estão pedindo aos vizinhos." />
+
+<MeetingFlyer />
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={5} label="Organize uma reunião" />
+
+## Tudo pronto? {/* #are-you-ready */}
+
+Como saber se vocês formaram uma comissão do parque bem completa? Leia a lista abaixo e marque o quadradinho quando
+encontrar essas pessoas ou capacidades na sua comissão. O mais importante de organizar é provar para vocês mesmos
+que conseguem reunir tudo o que um parque de bairro precisa — marcar cada quadradinho garante que a sua organização
+está pronta para seguir para o próximo capítulo.
+
+<Checklist
+  id="organize.readiness"
+  label="Lista para ver se a organização está pronta"
+  items={[
+    { value: 'committee-formed', label: 'Vocês formaram uma comissão de vizinhos dedicados para guiar todo o planejamento do parque?' },
+    { value: 'financial-standing', label: 'A sua organização tem condições financeiras ou uma linha de crédito para cobrir os custos do parque, como compra do terreno, manutenção, eventos etc.?' },
+    { value: 'fundraising', label: 'A sua organização consegue arrecadar o dinheiro necessário para manter o apoio financeiro ao parque?' },
+    { value: 'community-engagement', label: 'A sua organização consegue despertar o interesse do bairro, organizar eventos e outras atividades de envolvimento da comunidade?' },
+    { value: 'skilled-trades', label: 'A sua organização tem acesso a pessoas com habilidades e experiências variadas — carpinteiros, pedreiros ou outros profissionais — que possam ajudar com o que sabem durante a construção e a manutenção do parque?' },
+    { value: 'initial-meetings', label: 'A sua organização já fez as primeiras reuniões e eventos na comunidade para conseguir apoio e um acordo sobre um possível parque?' },
+    { value: 'social-media', label: 'A sua organização criou uma página on-line para mensagens, avisos e mais (Facebook, Instagram etc.), com uma hashtag própria para identificar e dar uma marca ao seu projeto de parque?' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={6} label="Tudo pronto?" />

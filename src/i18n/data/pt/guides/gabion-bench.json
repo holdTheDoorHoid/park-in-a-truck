@@ -1,0 +1,197 @@
+{
+  "title": "Banco de gabião de 4' com assento de madeira",
+  "summary": "Uma gaiola de gabião de arame de 4 pés, cheia de pedras e coberta com um assento de madeira 2x4 — montada e enchida no terreno, ou montada fora e enchida no fim.",
+  "finishing": "Tratar a madeira para área externa pode aumentar a vida dos elementos do seu parque, mas não é necessário — estas peças foram pensadas para ser baratas, resistentes e fáceis de construir, então pode ser mais prático simplesmente deixar a próxima geração reconstruí-las quando chegar a hora. Se você quiser tingir, pintar ou selar o tampo de madeira, veja os recursos sobre acabamento abaixo.",
+  "sourcePages": "Instruções GABION_BENCH_ASSEMBLY, pp. 1–15 (capa; antes de começar; materiais e madeiras mais usados; etapas 1–10; guia de furos)",
+  "materials": [
+    {
+      "item": "Tela de arame soldada de metal, malha 2x2",
+      "notes": "Sugestões de quem fabrica: Darby and Sons (darbywiremesh.com) ou Gabion1.com. Ao encomendar peças cortadas sob medida, peça que as peças venham cortadas no tamanho, com as pontas fechadas e galvanizadas depois do corte."
+    },
+    {
+      "item": "Madeira serrada 2x4 — cedro-vermelho (western red cedar), pinho Douglas (Douglas fir) ou pinus tratado em autoclave",
+      "notes": "Cedro: resiste naturalmente ao tempo e ao apodrecimento, bonito tom avermelhado, não precisa de selador; custa mais — peça a classe \"com nós\" ('knotty', STK). Pinho Douglas: resiste razoavelmente ao apodrecimento, é forte, mais barato que o cedro; bom se você pretende pintar. Tratada em autoclave: a mais barata e resistente ao apodrecimento, mas a qualidade costuma ser ruim ou irregular, precisa secar ao ar de 1 a 4 meses antes de pintar, não é recomendada onde se plantam alimentos. Compre de 5 a 10% a mais do que a lista de cortes, para compensar a qualidade variável da madeira e os cortes errados.",
+      "siteNote": "As 4½ tábuas só bastam se saírem duas peças de 48″ de cada tábua de 8′, o que não deixa nada para o corte da serra: a segunda peça sai cerca de ⅛″ mais curta, a não ser que a tábua venha mais comprida. Para ter sete peças inteiras de 48″, corte uma por tábua (7 tábuas, com as três peças de 15″ tiradas de uma sobra) ou compre tábuas 2x4x10 (4 tábuas)."
+    },
+    {
+      "item": "Material de enchimento do gabião",
+      "notes": "Material anguloso, duro e inerte, que não se desmancha com o tempo — pedra de pedreira, pavimento reciclado (concreto/asfalto) ou tijolos e blocos de concreto reciclados. Não use toras cortadas nem outro material orgânico. Misture tamanhos, de no mínimo 2\" até no máximo 12\"; as pedras da face de fora devem ser maiores que 3\"."
+    },
+    {
+      "item": "Material de travamento (para o apoio do centro, embaixo da peça do meio da estrutura)",
+      "notes": "Um rolo de arame galvanizado liso, bitola 14 ou 16, ou sobras da tela de arame 2x2 cortadas ao meio com um alicate corta-vergalhão (ocupando toda a largura da gaiola, com pelo menos 2 quadrados / 4\" de altura)."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Parafusos autoatarraxantes para madeira, uso externo"
+    },
+    {
+      "item": "Argolas de fixação (hog rings)"
+    },
+    {
+      "item": "Grampos para cabo"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Estrutura do banco de gabião"
+    },
+    {
+      "notes": "Tampo + estrutura do banco de gabião"
+    },
+    {
+      "notes": "Painel do fundo do gabião, 48\" x 18\""
+    },
+    {
+      "notes": "Lateral do gabião (comprida), 48\" x 18\" cada"
+    },
+    {
+      "notes": "Lateral do gabião (curta), 18\" x 18\" cada"
+    }
+  ],
+  "tools": [
+    "Serra de esquadria de 10\" ou 12\" (ou um serrote adequado)",
+    "Parafusadeira de impacto para os parafusos autoatarraxantes para madeira",
+    "Furadeira com broca de 1/8\"",
+    "Lixa, grão 120",
+    "Esquadro de carpinteiro",
+    "Óculos de proteção + luvas",
+    "Alicate para argolas (hog ring pliers)",
+    "Alicate corta-vergalhão",
+    "Martelo",
+    "Marreta de 4 lb",
+    "Esmerilhadeira (para alisar pontas de arame afiadas)"
+  ],
+  "safety": [
+    "Estas são apenas recomendações para quem faz por conta própria — adapte o material, a montagem e a construção ao seu projeto e ao seu terreno.",
+    "Construir isto exige algum conhecimento prático de ferramentas manuais e elétricas, ferragens, parafusos e fixadores, madeira e técnicas básicas de montagem.",
+    "Antes de usar qualquer equipamento elétrico, leia e siga as regras de segurança do fabricante, e não deixe ninguém usar ferramentas elétricas sem ter feito o mesmo.",
+    "Você (o dono) é responsável por cumprir todas as normas de construção e de segurança, licenças e aprovações oficiais que isto exigir.",
+    "Primeiro, limpe o terreno de lixo, perigos e estruturas indesejadas, e descubra se há redes de serviços (água, gás, luz) que possam atrapalhar antes de cavar.",
+    "Todos que ajudarem na construção devem assinar um termo de responsabilidade para voluntários.",
+    "A tela de arame cortada e as pedras de enchimento podem deixar pontas afiadas — use luvas e óculos de proteção, e alise com a esmerilhadeira qualquer arame afiado."
+  ],
+  "steps": [
+    {
+      "title": "Marque, identifique e corte a madeira e a tela de arame",
+      "text": "Marque, identifique e corte a madeira na ordem de GB-1 a GB-2, nos comprimentos da lista de cortes.\n\nSepare a sua tela de arame 2x2 em pilhas de tamanhos iguais e identifique-as como 18-4a (fundo do gabião), 18-4b (lateral comprida do gabião) e 18-4c (lateral curta do gabião).",
+      "imageAlts": [
+        "Desenho isométrico das peças de madeira GB-1 e GB-2 e dos painéis de tela de arame 18-4a, 18-4b e 18-4c, com os comprimentos e um desenho de como as telas se encontram."
+      ],
+      "tips": [
+        "Identifique cada pedaço de madeira à medida que mede e corta.",
+        "Deixe uma pilha de madeira separada para GB-1 e para GB-2.",
+        "Lixar de leve as bordas cortadas tira as farpas e ajuda na montagem.",
+        "Vai fazer mais de um gabião? Um batente na serra de esquadria deixa todas as peças com o mesmo comprimento."
+      ]
+    },
+    {
+      "title": "Grampeie as laterais de tela de arame nas pontas da estrutura",
+      "text": "Coloque duas peças GB-2 e duas peças GB-1 sobre uma superfície plana, alinhando as bordas como mostra o desenho.\n\nConfira se os arames verticais da tela do gabião estão encostados na madeira, e se os arames transversais (de bordas lisas), que vão no mesmo sentido da tábua, ficam do lado de fora, para que as pontas afiadas não fiquem na parte de fora do gabião.\n\nCentralize as duas peças de tela 18-4c na peça de madeira GB-1 — deve haver 1.5\" da borda da madeira até a borda da tela.\n\nPrenda as duas peças de tela 18-4c e as duas 18-4b na madeira GB-1 e GB-2 usando um martelo e 32 grampos galvanizados para cabo de 1.5\" — 2 grampos por peça de tela.",
+      "siteNote": "Você monta esta gaiola de cabeça para baixo: a estrutura de madeira começa no chão e vira a borda de cima quando você vira a gaiola na etapa 8. O modelo 3D mostra o banco na posição certa o tempo todo, então a estrutura de madeira está sempre em cima.",
+      "imageAlts": [
+        "Desenho dos painéis de tela de arame 18-4c e 18-4b sendo grampeados na madeira GB-1 e GB-2, com um detalhe de onde vão os grampos e da distância de 1.5\" da tela."
+      ],
+      "tips": [
+        "Se você vai ligar vários gabiões em fila, grampeie a tela de metal em só uma peça GB-1."
+      ]
+    },
+    {
+      "title": "Monte a estrutura",
+      "text": "Coloque duas peças GB-2 sobre uma superfície plana. Coloque duas peças GB-1 entre as peças GB-2, uma em cada ponta, alinhando as bordas como mostra o desenho.\n\nUse o guia de furos no fim do material para fazer os furos-guia dos parafusos, depois prenda a madeira GB-2 nas peças GB-1 com uma parafusadeira de impacto e 8 parafusos autoatarraxantes para madeira, uso externo, de 2.5\".",
+      "imageAlts": [
+        "Desenho de duas peças GB-1 das pontas e duas peças GB-2 das laterais parafusadas formando uma estrutura retangular."
+      ],
+      "tips": [
+        "Use um esquadro de carpinteiro para conferir se cada canto forma um ângulo reto.",
+        "Se você vai ligar vários gabiões, deixe uma ponta aberta — veja o capítulo de construção para saber como arrumar."
+      ]
+    },
+    {
+      "title": "Coloque o apoio do centro",
+      "text": "Coloque uma peça GB-1 no meio da estrutura feita na etapa 3.\n\nPrenda-a com uma parafusadeira de impacto e 4 parafusos autoatarraxantes para madeira, uso externo, de 2.5\".",
+      "imageAlts": [
+        "Desenho de uma peça GB-1 centralizada no meio da estrutura, à mesma distância das duas pontas."
+      ]
+    },
+    {
+      "title": "Feche os cantos da gaiola",
+      "text": "Prenda a tela de arame 2x2 — as duas peças 18-4c e as duas 18-4b — umas nas outras nos cantos usando argolas de fixação e o alicate para argolas, uma argola a cada duas aberturas. Confira se há argolas em todos os cantos e bordas, para a gaiola manter a forma.",
+      "imageAlts": [
+        "Desenho das argolas fechando as emendas dos cantos da gaiola de tela de arame, com um detalhe de uma argola juntando duas bordas de tela."
+      ]
+    },
+    {
+      "title": "Trave o centro",
+      "text": "No centro da gaiola de gabião, embaixo da peça GB-1 do meio, coloque material de travamento usando uma de duas opções: sobras das pontas da tela de arame 2x2 cortadas ao meio com um alicate corta-vergalhão, ou qualquer sobra de tela 2x2 que ocupe toda a largura da gaiola (com pelo menos 2 quadrados, ou 4\" ou mais, de altura).\n\nPrenda a peça de apoio do meio com argolas de fixação.",
+      "imageAlts": [
+        "Desenho de uma trava de tela de arame sendo presa com argolas embaixo da peça do centro da estrutura."
+      ]
+    },
+    {
+      "title": "Feche a parte de cima",
+      "text": "Coloque a peça de cima, de tela de arame 18-4a, em cima da gaiola de gabião presa na etapa 5.\n\nPrenda a peça de cima com argolas de fixação nos quatro lados e na trava do centro — uma argola a cada duas aberturas da tela, e duas em cada canto. Agora a gaiola de gabião está pronta para ser levada até o terreno.",
+      "siteNote": "Esta \"peça de cima\" é o painel do fundo da lista de cortes (18-4a). Ela fica em cima enquanto você monta e embaixo depois que você vira a gaiola na etapa 8, que é onde o modelo 3D a mostra.",
+      "imageAlts": [
+        "Desenho do painel de cima, de tela de arame 18-4a, sendo preso com argolas na gaiola, com um detalhe de uma argola de canto prendendo as três peças de tela."
+      ]
+    },
+    {
+      "title": "Coloque a gaiola no lugar",
+      "text": "Gire a gaiola de gabião 180°. Coloque-a no terreno sobre uma camada de brita.\n\nConfira com um nível se a gaiola de gabião está reta.",
+      "imageAlts": [
+        "Desenho mostrando a gaiola de gabião virada e nivelada sobre uma camada de brita."
+      ],
+      "tips": [
+        "Se ficar ao lado de outros gabiões, use barbante e nível de linha para manter a fileira reta."
+      ]
+    },
+    {
+      "title": "Encha a gaiola",
+      "text": "Coloque o gabião no lugar dele, de acordo com o desenho do seu parque. Coloque brita embaixo para fazer os ajustes finos.\n\nComeçando pelas pedras de enchimento maiores e mais chatas que você tiver, comece a encher o gabião pelas bordas e continue até levantar as laterais.\n\nEncha a estrutura com o resto do enchimento até ficar no nível do topo da borda de madeira.",
+      "imageAlts": [
+        "Desenho e fotos de referência de uma gaiola de gabião sendo enchida com pedras, começando com pedras grandes e chatas ao longo das bordas."
+      ],
+      "tips": [
+        "Coloque o enchimento com cuidado para não entortar a gaiola, e confira se todos os vãos ficaram preenchidos, para dar firmeza.",
+        "Veja a fase quatro do seu caderno de trabalho Criar para saber mais sobre esta etapa."
+      ]
+    },
+    {
+      "title": "Coloque o tampo de madeira e lixe",
+      "text": "Coloque duas peças GB-2 em cima da estrutura feita na etapa 3, usando o guia de furos no fim do material para fazer os furos-guia na madeira. Prenda primeiro as duas tábuas das pontas com uma parafusadeira de impacto e 12 parafusos autoatarraxantes para madeira, uso externo, de 2.5\", mantendo a borda rente à madeira de baixo.\n\nDistribua as outras três tábuas GB-2 com espaços iguais entre as duas tábuas das pontas e prenda com uma parafusadeira de impacto e mais 12 parafusos autoatarraxantes para madeira, uso externo, de 2.5\".\n\nLixe de leve as bordas ásperas do banco de gabião e confira se não há pontas afiadas no arame do gabião — alise com a esmerilhadeira se alguma estiver afiada demais.",
+      "imageAlts": [
+        "Desenho de cinco tábuas GB-2 do tampo de madeira sendo parafusadas na gaiola de gabião cheia, com espaços iguais."
+      ],
+      "tips": [
+        "Fazer os furos-guia nesta etapa ajuda os parafusos a não rachar as tábuas.",
+        "Deixe todos os parafusos à distância da largura de um polegar da borda da madeira."
+      ]
+    },
+    {
+      "title": "Guia de furos (molde)",
+      "text": "Recorte o guia de furos pelas linhas pontilhadas. Na hora de furar, alinhe a borda do molde com a borda de fora da madeira antes de fazer o furo-guia.\n\nNem todos os furos são usados — nem todos os desenhos usam o molde. Siga as etapas de montagem acima para saber onde furar. Deixe todos os furos a mais ou menos a largura de um polegar da borda (cerca de 1\"), mesmo os furos que não usam este molde.",
+      "imageAlts": [
+        "Um molde de guia de furos para imprimir, com cinco posições de furo marcadas e linhas de corte, mais um detalhe mostrando a distância dos furos até a borda da tábua."
+      ]
+    }
+  ],
+  "links": [
+    {
+      "label": "Tela de arame Darby and Sons (em inglês)"
+    },
+    {
+      "label": "Gabion1.com — gaiola de gabião de 18\" x 18\" (em inglês)"
+    },
+    {
+      "label": "Como escolher o melhor acabamento para projetos ao ar livre (Rockler, em inglês)"
+    },
+    {
+      "label": "O melhor acabamento para madeira ao ar livre (Real Milk Paint, em inglês)"
+    },
+    {
+      "label": "Acabamentos para madeira em área externa (Vermont Natural Coatings, em inglês)"
+    }
+  ]
+}
