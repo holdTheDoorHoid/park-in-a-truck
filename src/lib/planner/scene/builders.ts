@@ -19,6 +19,9 @@ export const COLORS = {
   ground: 0xe6e3dc,
   building: 0xf1eee8,
   buildingEdge: 0x8f8f8f,
+  /** taller buildings farther away (far shade) */
+  farBuilding: 0xe3e7ec,
+  farFootprint: 0xbcb7ab,
   parcel: 0x00a8e8,
   trunk: 0x6b5340,
   crown: 0x4c9a55,
@@ -29,6 +32,27 @@ export const COLORS = {
 
 // ---- buildings --------------------------------------------------------------
 
+/** Footprints extruded to their heights, merged (walls reach down to `floorFt` when that is lower than the base). */
+function extrudePrisms(prisms: Prism[], floorFt?: number): THREE.BufferGeometry | null {
+  const geos: THREE.BufferGeometry[] = [];
+  for (const b of prisms) {
+    if (b.ring.length < 3) continue;
+    const base = b.baseFt ?? 0;
+    const bottom = floorFt !== undefined ? Math.min(base, floorFt) : base;
+    const shape = new THREE.Shape(b.ring.map(([x, y]) => new THREE.Vector2(x, y)));
+    const g = new THREE.ExtrudeGeometry(shape, { depth: base + b.heightFt - bottom, bevelEnabled: false, curveSegments: 1 });
+    g.rotateX(-Math.PI / 2); // (x, y, z) -> (x, z, -y): extrusion goes up, y -> -z (north)
+    // terrain: stands on the ground under it (Prism.baseFt; roof at baseFt + heightFt)
+    if (bottom) g.translate(0, bottom, 0);
+    geos.push(g.index ? g.toNonIndexed() : g);
+  }
+  if (!geos.length) return null;
+  const merged = mergeGeometries(geos, false)!;
+  geos.forEach((g) => g.dispose());
+  merged.computeVertexNormals();
+  return merged;
+}
+
 /**
  * Neighbouring buildings as one mesh. With `xray`, whatever hides the lot from the camera
  * is drawn as a faint ghost instead (scene/xray.ts); shadows still come from every wall.
@@ -36,20 +60,8 @@ export const COLORS = {
 export function buildBuildings(prisms: Prism[], xray?: Xray): THREE.Group {
   const group = new THREE.Group();
   group.name = 'buildings';
-  const geos: THREE.BufferGeometry[] = [];
-  for (const b of prisms) {
-    if (b.ring.length < 3) continue;
-    const shape = new THREE.Shape(b.ring.map(([x, y]) => new THREE.Vector2(x, y)));
-    const g = new THREE.ExtrudeGeometry(shape, { depth: b.heightFt, bevelEnabled: false, curveSegments: 1 });
-    g.rotateX(-Math.PI / 2); // (x, y, z) -> (x, z, -y): extrusion goes up, y -> -z (north)
-    // terrain: stands on the ground under it (Prism.baseFt; roof at baseFt + heightFt)
-    if (b.baseFt) g.translate(0, b.baseFt, 0);
-    geos.push(g.index ? g.toNonIndexed() : g);
-  }
-  if (!geos.length) return group;
-  const merged = mergeGeometries(geos, false)!;
-  geos.forEach((g) => g.dispose());
-  merged.computeVertexNormals();
+  const merged = extrudePrisms(prisms);
+  if (!merged) return group;
   const solid = new THREE.MeshLambertMaterial({ color: COLORS.building });
   const mesh = new THREE.Mesh(merged, xray ? xray.patch(solid, 'solid') : solid);
   mesh.castShadow = true;
@@ -67,6 +79,60 @@ export function buildBuildings(prisms: Prism[], xray?: Xray): THREE.Group {
     ghost.renderOrder = 10;
     ghost.name = 'buildings-ghost';
     group.add(ghost);
+  }
+  return group;
+}
+
+/**
+ * Taller buildings farther away whose shadow can reach the lot (LocalSite.farBuildings):
+ * plainer and a little cooler than the neighbours, mostly off the aerial photo, standing on
+ * the plain ground (walls reach down to `floorFt`, its level, so none float). They cast
+ * shadows; they don't need to receive any. With `xray`, one that hides the lot is drawn
+ * see-through like the neighbours.
+ */
+export function buildFarBuildings(prisms: Prism[], floorFt: number, xray?: Xray): THREE.Group {
+  const group = new THREE.Group();
+  group.name = 'far-buildings';
+  const merged = extrudePrisms(prisms, floorFt);
+  if (!merged) return group;
+  const solid = new THREE.MeshLambertMaterial({ color: COLORS.farBuilding });
+  const mesh = new THREE.Mesh(merged, xray ? xray.patch(solid, 'solid') : solid);
+  mesh.castShadow = true;
+  group.add(mesh);
+  const lineMat = new THREE.LineBasicMaterial({ color: COLORS.buildingEdge, transparent: true, opacity: 0.3 });
+  group.add(new THREE.LineSegments(new THREE.EdgesGeometry(merged, 30), xray ? xray.patch(lineMat, 'line') : lineMat));
+  if (xray) {
+    const ghost = new THREE.Mesh(
+      merged,
+      xray.patch(new THREE.MeshLambertMaterial({ color: COLORS.farBuilding, transparent: true, opacity: 0.2, depthWrite: false }), 'ghost'),
+    );
+    ghost.renderOrder = 10;
+    ghost.name = 'far-buildings-ghost';
+    group.add(ghost);
+  }
+  // a darker patch of ground under each one, so they read as standing on the plain ground
+  // (beyond the photo the ground is plain and pale, and a bare wall foot looks afloat)
+  const pads: THREE.BufferGeometry[] = [];
+  for (const b of prisms) {
+    if (b.ring.length < 3) continue;
+    const c = b.ring.reduce((a, [x, y]) => [a[0] + x / b.ring.length, a[1] + y / b.ring.length], [0, 0]);
+    const m = Math.max(4, b.heightFt * 0.12); // wider under taller ones: they are seen from farther
+    const grow = (p: number, q: number) => {
+      const dx = p - c[0]!;
+      const dy = q - c[1]!;
+      const d = Math.hypot(dx, dy) || 1;
+      return new THREE.Vector2(p + (dx / d) * m, q + (dy / d) * m);
+    };
+    const g = new THREE.ShapeGeometry(new THREE.Shape(b.ring.map(([x, y]) => grow(x, y))), 1);
+    g.rotateX(-Math.PI / 2);
+    g.translate(0, Math.min(b.baseFt ?? 0, floorFt) + 0.15, 0);
+    pads.push(g.index ? g.toNonIndexed() : g);
+  }
+  if (pads.length) {
+    const pad = new THREE.Mesh(mergeGeometries(pads, false)!, new THREE.MeshLambertMaterial({ color: COLORS.farFootprint }));
+    pads.forEach((g) => g.dispose());
+    pad.receiveShadow = true;
+    group.add(pad);
   }
   return group;
 }

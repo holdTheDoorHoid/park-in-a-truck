@@ -12,7 +12,8 @@ import type { Vec2 } from '../geo';
 import { siteToLocal } from '../rect';
 import { phillyDate, sunPosition } from '../sun';
 import type { GridSpec } from '../sunhours';
-import { COLORS, W, buildAerial, buildBuildings, cityTreeSpecs, disposeTree, TreeInstances, type AerialGround } from './builders';
+import { COLORS, W, buildAerial, buildBuildings, buildFarBuildings, cityTreeSpecs, disposeTree, TreeInstances, type AerialGround } from './builders';
+import { fogFarFt, sunLightRange } from '../sunlight';
 import { autumnTint, leafFraction } from '../treemodel';
 import { heatMesh, spotMarker } from './sunlayers';
 import { ParkMeshes, itemFootprint, type ParkMapping } from './park';
@@ -101,6 +102,8 @@ export class PlannerScene {
   private controls: OrbitControls;
   private view: ViewMode = '3d';
   private sun = new THREE.DirectionalLight(0xffffff, 3.6);
+  /** far shade: how far from the lot the sun light stands (beyond every building that can shade it; sunlight.ts) */
+  private sunDistFt = 600;
   private hemi = new THREE.HemisphereLight(0xe3f1fb, 0xa39782, 0.95);
   private site: LocalSite | null = null;
   private siteGroup = new THREE.Group();
@@ -390,7 +393,8 @@ export class PlannerScene {
     this.aerial?.dispose();
     this.siteGroup.add(buildBuildings(site.buildings, this.xray));
     this.xray.setBox(lotBox(site.frame, ground));
-    this.camFloor = cameraFloor(ground, site.buildings);
+    // (the camera keeps out of the far buildings too: they can stand within its reach)
+    this.camFloor = cameraFloor(ground, site.farBuildings?.length ? [...site.buildings, ...site.farBuildings] : site.buildings);
     // the cyan lot line lies on the ground
     const outline = drapedRibbon(site.parcel, 0.7, 0.45, ground, COLORS.parcel);
     Object.assign(outline.material, ON_GROUND);
@@ -402,6 +406,8 @@ export class PlannerScene {
     this.siteGroup.add(this.aerial.mesh);
     // the plain ground beyond the photo sits below the lowest ground under it (nothing buried on a slope)
     this.outer.position.y = this.aerial.minFt - 0.5;
+    // far shade: taller buildings farther away whose shadow can reach the lot, on the plain ground
+    if (site.farBuildings?.length) this.siteGroup.add(buildFarBuildings(site.farBuildings, this.outer.position.y, this.xray));
     this.slope.set(site, this.slopeOn);
     // trees stand on the ground under their trunks (City trees and trees on the lot)
     const treeGround = site.ground ? ground : null;
@@ -414,10 +420,16 @@ export class PlannerScene {
     sc.right = ext;
     sc.top = ext;
     sc.bottom = -ext;
-    sc.near = 1;
-    sc.far = 1400;
+    // far shade: the light stands beyond the farthest building that can shade the lot, and the
+    // shadow camera is that deep (its width stays tight around the lot: casters project onto it)
+    const centre = siteToLocal(site.frame, [site.frame.lengthFt / 2, site.frame.widthFt / 2]);
+    const range = sunLightRange([...site.buildings, ...(site.farBuildings ?? [])], centre);
+    this.sunDistFt = range.distanceFt;
+    sc.near = range.near;
+    sc.far = range.far;
+    this.sun.shadow.bias = range.bias;
     sc.updateProjectionMatrix();
-    this.scene.fog = new THREE.Fog(COLORS.sky, site.extentFt * 1.6, site.extentFt * 4);
+    this.scene.fog = new THREE.Fog(COLORS.sky, site.extentFt * 1.6, fogFarFt(site.farBuildings ?? [], site.extentFt, centre));
     if (!sameLot) this.resetCamera();
     else this.requestRender();
   }
@@ -690,7 +702,7 @@ export class PlannerScene {
     const p = sunPosition(date, site.lf.origin[1], site.lf.origin[0]);
     const target = this.lotCenterWorld();
     const d = new THREE.Vector3(p.dir[0], p.dir[2], -p.dir[1]);
-    this.sun.position.copy(target.clone().add(d.multiplyScalar(600)));
+    this.sun.position.copy(target.clone().add(d.multiplyScalar(this.sunDistFt)));
     this.sun.target.position.copy(target);
     this.sun.target.updateMatrixWorld();
     const up = Math.max(0, Math.min(1, p.altitudeDeg / 12));

@@ -183,6 +183,15 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
   trees. Ground heights (`ground.ts`) are used for every grid cell, crown and building base. The map can show any
   period (a day, a month, a season, the growing season, the year); only the growing season is saved and counted.
   Clicking a spot charts its direct sun month by month.
+  *Far shade (2026-10-04):* besides every building within 260 ft of the lot, ONE more light query
+  (`fetchTallBuildings`: `approx_hgt` ≥ what could reach the lot from 260 ft out, within 1,500 ft, two fields,
+  outlines generalised ~1.5 ft) brings the taller buildings farther away, and `selectFarShade` keeps those whose
+  shadow can reach the lot with the sun at least 10° up (gap ≤ 5.7 × height, counting the City base elevation
+  above the lot's neighbours'; below 10° the sun is weak and mostly blocked by the next-door rowhouses anyway).
+  They count in every sun calculation (`shadeBuildings`), stand on the City's base elevation off the lidar grid,
+  are drawn plainer in 3D on the plain ground, and the 3D sun light stands beyond the farthest of them
+  (`sunlight.ts`; the shadow camera stays as wide as before). Saved studies carry `inputs.buildingsKey`; one saved
+  before far shade says it is out of date when the lot has far buildings. Demo fixtures: `capture_far.test.ts`.
   *Furniture in 3D (2026-10-04, `src/lib/planner/furniture/`):* the 3D view draws items as the real thing; plan
   view keeps the flat paper-pieces blocks. Pieces with a build guide use the guide's own model JSON at TRUE built
   size, centred on the footprint and never stretched: repeated in modules along the item the way PiaT counts them
@@ -248,7 +257,7 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
 | Organize: list neighborhood assets & associations | Nearby RCOs, council district, schools, libraries, rec centers, parks, community gardens, murals, historic sites | ArcGIS/Carto layers |
 | Assess: measure the lot in Google Maps | Edge lengths and area from the parcel polygon | `pwd_parcels` / `DOR_Parcel` |
 | Assess: draw the lot on grid paper | Printable base map on a 1-ft/4-ft grid with dimensions and starting point | parcel polygon |
-| Assess: note sun/shade, adjacent buildings | Sun study from real building heights | `LI_BUILDING_FOOTPRINTS` (`approx_hgt`, `max_hgt`) |
+| Assess: note sun/shade, adjacent buildings | Sun study from real building heights (all within 260 ft + taller ones up to 1,500 ft whose shadow can reach the lot) | `LI_BUILDING_FOOTPRINTS` (`approx_hgt`, `max_hgt`, `base_elevation`) |
 | Assess: record existing trees/objects | Street & park trees pre-placed from City inventory; click to add others | `ppr_tree_inventory_2025` |
 | Assess: flooding / wet areas | FEMA flood zone flag | `fema_floodplain_2023` |
 | Assess: sloping terrain, where water collects | Slope summary, contour lines and arrows downhill; wet areas drawn as outlines | USGS 3DEP lidar (2015), `Zoning_SteepSlopeProtectArea_r` |
