@@ -5,8 +5,10 @@ import type { PlannerStore } from '../../lib/planner/store';
 import type { ExistingItem } from '../../lib/types';
 import { updateExisting } from '../../lib/planner/design';
 import { existingTreeLook } from '../../lib/planner/treemodel';
+import { pt } from '../../lib/planner/words';
 
 export function TreeHabitChoice({ store, item }: { store: PlannerStore; item: ExistingItem }) {
+  const t = pt();
   const evergreen = existingTreeLook(item).evergreen;
   const pick = (leafHabit: 'deciduous' | 'evergreen') => {
     const d = store.$design.get();
@@ -14,13 +16,13 @@ export function TreeHabitChoice({ store, item }: { store: PlannerStore; item: Ex
   };
   return (
     <fieldset class="pl-fieldset pl-habit">
-      <legend>In winter</legend>
+      <legend>{t('tree.winter')}</legend>
       <span class="pl-keep" role="group">
         <button type="button" aria-pressed={!evergreen} onClick={() => pick('deciduous')}>
-          Loses its leaves
+          {t('tree.deciduous')}
         </button>
         <button type="button" aria-pressed={evergreen} onClick={() => pick('evergreen')}>
-          Evergreen
+          {t('tree.evergreen')}
         </button>
       </span>
     </fieldset>

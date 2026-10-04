@@ -11,6 +11,9 @@ import type { GroundFn } from '../ground';
 import { bearingOf, distanceToRing, pointInPolygon, type Vec2 } from '../geo';
 import { localToSite, siteToLocal, type Edge, type SiteFrame } from '../rect';
 import { samplesInside } from './grid';
+import { compassWord, oneDecimal, pt, type PlannerKey, type PlannerT } from '../words';
+
+export { compassWord };
 
 export type Toward = 'front' | 'back' | 'left' | 'right' | 'front-left' | 'front-right' | 'back-left' | 'back-right';
 
@@ -95,19 +98,28 @@ export function edgesOf(t: Toward): Edge[] {
   return t.split('-').map((k) => map[k]!);
 }
 
+const PLACE: Record<string, PlannerKey> = {
+  'front-left': 'slope.placeFrontLeft',
+  'front-right': 'slope.placeFrontRight',
+  'back-left': 'slope.placeBackLeft',
+  'back-right': 'slope.placeBackRight',
+  front: 'slope.placeFront',
+  back: 'slope.placeBack',
+  left: 'slope.placeLeft',
+  right: 'slope.placeRight',
+  '': 'slope.placeMiddle',
+};
+
 /** "the back right corner", "the front edge", "the left side", "the middle of the lot". */
-export function whereOnLot(p: Vec2, frame: SiteFrame): string {
-  const [s, t] = localToSite(frame, p);
+export function whereOnLot(p: Vec2, frame: SiteFrame, t: PlannerT = pt()): string {
+  const [s, u] = localToSite(frame, p);
   const fs = s / Math.max(1, frame.lengthFt);
-  const ft = t / Math.max(1, frame.widthFt);
+  const ft = u / Math.max(1, frame.widthFt);
   const fb = fs < 0.25 ? 'front' : fs > 0.75 ? 'back' : '';
   // narrow lots: left/right only near the very edges
   const edge = frame.widthFt < 24 ? 0.2 : 0.25;
   const lr = ft > 1 - edge ? 'left' : ft < edge ? 'right' : '';
-  if (fb && lr) return `the ${fb} ${lr} corner`;
-  if (fb) return `the ${fb} edge`;
-  if (lr) return `the ${lr} side`;
-  return 'the middle of the lot';
+  return t(PLACE[[fb, lr].filter(Boolean).join('-')]!);
 }
 
 export function slopeSummary(ground: GroundFn, parcel: Vec2[], frame: SiteFrame): SlopeSummary {
@@ -183,33 +195,28 @@ export function slopeSummary(ground: GroundFn, parcel: Vec2[], frame: SiteFrame)
 
 // ---- plain words --------------------------------------------------------------------
 
-/** "4 inches", "about 2.3 ft", "about 14 ft" */
-export function lengthWords(ft: number): string {
-  if (ft < 0.96) return `${Math.max(1, Math.round(ft * 12))} inch${Math.round(ft * 12) === 1 ? '' : 'es'}`;
-  return `${ft < 9.95 ? (Math.round(ft * 10) / 10).toFixed(1) : Math.round(ft)} ft`;
+/** "4 inches", "2.3 ft", "14 ft" */
+export function lengthWords(ft: number, t: PlannerT = pt()): string {
+  if (ft < 0.96) return t('slope.inches', { count: Math.max(1, Math.round(ft * 12)) });
+  return t('slope.feet', { ft: ft < 9.95 ? oneDecimal(ft, t) : Math.round(ft) });
 }
 
 /** "3% (about 1 ft in 33 ft)" */
-export function slopeWords(pct: number): string {
+export function slopeWords(pct: number, t: PlannerT = pt()): string {
   const p = pct < 1 ? Math.round(pct * 10) / 10 : Math.round(pct);
-  if (pct < 0.3) return `${p}%`;
-  return `${p}% (about 1 ft in ${Math.round(100 / pct)} ft)`;
+  if (pct < 0.3) return t('slope.pct', { pct: p });
+  return t('slope.pctRun', { pct: p, run: Math.round(100 / pct) });
 }
 
-const COMPASS = ['north', 'northeast', 'east', 'southeast', 'south', 'southwest', 'west', 'northwest'];
-export function compassWord(bearingDeg: number): string {
-  return COMPASS[Math.round((((bearingDeg % 360) + 360) % 360) / 45) % 8]!;
-}
-
-const TOWARD_WORDS: Record<Toward, string> = {
-  front: 'the front of the lot',
-  back: 'the back of the lot',
-  left: 'the left side',
-  right: 'the right side',
-  'front-left': 'the front left corner',
-  'front-right': 'the front right corner',
-  'back-left': 'the back left corner',
-  'back-right': 'the back right corner',
+const TOWARD_WORDS: Record<Toward, PlannerKey> = {
+  front: 'slope.towardFront',
+  back: 'slope.towardBack',
+  left: 'slope.towardLeft',
+  right: 'slope.towardRight',
+  'front-left': 'slope.towardFrontLeft',
+  'front-right': 'slope.towardFrontRight',
+  'back-left': 'slope.towardBackLeft',
+  'back-right': 'slope.towardBackRight',
 };
 
 export interface SlopeWords {
@@ -221,29 +228,28 @@ export interface SlopeWords {
 
 /**
  * The summary in plain words. `streets` names the street along each lot edge that has one
- * (from the City's centrelines); only facts, no advice.
+ * (from the City's centrelines); only facts, no advice. `t`: the language (the page's by default).
  */
-export function describeSlope(s: SlopeSummary, frame: SiteFrame, streets: Partial<Record<Edge, string>> = {}): SlopeWords {
+export function describeSlope(s: SlopeSummary, frame: SiteFrame, streets: Partial<Record<Edge, string>> = {}, t: PlannerT = pt()): SlopeWords {
   const more: string[] = [];
   if (s.flat) {
-    return { headline: `The lot is practically flat: its ground varies by less than ${s.fallFt < 0.3 ? '4 inches' : '6 inches'}.`, more };
+    return { headline: t('slope.flat', { amount: t('slope.inches', { count: s.fallFt < 0.3 ? 4 : 6 }) }), more };
   }
-  const from = whereOnLot(s.high.p, frame);
-  const to = whereOnLot(s.low.p, frame);
-  let headline =
-    from === to
-      ? `The ground on the lot varies by about ${lengthWords(s.fallFt)} — an average slope of ${slopeWords(s.avgPct)}.`
-      : `The ground falls about ${lengthWords(s.fallFt)} from ${from} to ${to} — an average slope of ${slopeWords(s.avgPct)}.`;
+  const from = whereOnLot(s.high.p, frame, t);
+  const to = whereOnLot(s.low.p, frame, t);
+  const amount = lengthWords(s.fallFt, t);
+  const slope = slopeWords(s.avgPct, t);
+  let headline = from === to ? t('slope.varies', { amount, slope }) : t('slope.falls', { amount, from, to, slope });
   if (s.downhill && s.toward) {
     const edges = edgesOf(s.toward);
     const street = edges.map((e) => streets[e]).find(Boolean);
     const onStreet = edges.some((e) => frame.streetEdges.includes(e));
-    const where = TOWARD_WORDS[s.toward];
-    const compass = compassWord(bearingOf(s.downhill));
-    headline += ` Rain runs toward ${where}${street ? ` (${street})` : onStreet ? ' (the street)' : ''}, to the ${compass}.`;
+    const where = t(TOWARD_WORDS[s.toward]);
+    const compass = compassWord(bearingOf(s.downhill), t);
+    headline += ' ' + (street ? t('slope.rainStreet', { where, street, compass }) : onStreet ? t('slope.rainTheStreet', { where, compass }) : t('slope.rain', { where, compass }));
   }
-  if (s.steepest) more.push(`The steepest stretch, near ${whereOnLot(s.steepest.p, frame)}, slopes about ${slopeWords(s.steepest.pct)}.`);
-  if (s.dip) more.push(`There is a dip inside the lot: its lowest spot, near ${whereOnLot(s.dip.p, frame)}, is about ${lengthWords(s.dip.depthFt)} lower than anywhere along the lot's edge.`);
+  if (s.steepest) more.push(t('slope.steepest', { where: whereOnLot(s.steepest.p, frame, t), slope: slopeWords(s.steepest.pct, t) }));
+  if (s.dip) more.push(t('slope.dip', { where: whereOnLot(s.dip.p, frame, t), amount: lengthWords(s.dip.depthFt, t) }));
   return { headline, more };
 }
 

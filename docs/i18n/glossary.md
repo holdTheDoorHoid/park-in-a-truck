@@ -69,6 +69,10 @@ lines. If a term is missing, add it to the English table AND your section, and s
 | My park | The person's saved project (header button, page name). |
 | project file | The file you save and share with your committee. |
 | Plan in 3D / the planner | The 3D design tool. |
+| Plan view / 3D view | The planner's two views: flat from above, like the paper pieces ("Plan" on its button), and 3D. |
+| sun hours / growing season | Average hours of direct sun a day at a spot; the growing season (Apr 15 – Oct 15) is the period the counts use. |
+| wet area | A spot on the lot that gets puddles or soggy ground after rain (drawn as an outline in the planner). |
+| lidar | Heights measured from an airplane with a laser (ground, buildings). Keep the word; say what it is once. |
 | Note from this site, not Park in a Truck | Marks the site's own safety notes. Keep the meaning exact. |
 | in English | Added after links to PiaT's PDFs and English-only websites. |
 | ft, in, sq ft, $ | Units stay US (no metres, no other currency). Write the unit the way the language normally writes feet/inches. |

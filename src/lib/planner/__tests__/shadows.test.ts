@@ -2,8 +2,9 @@
 import { describe, expect, it } from 'vitest';
 import { seasonSamples, DEFAULT_SEASON } from '../sun';
 import { computeSunHours, hoursAt, BARE_CROWN_BLOCKING, CROWN_BLOCKING, type Crown, type GridSpec, type Prism } from '../sunhours';
-import { autumnTint, crownCenterFt, existingTreeLook, leafFraction, leafWords, treeLook } from '../treemodel';
-import { MONTHS, parsePeriodKey, periodKey, periodLabel, periodOptions, periodSamples, spotMonthly, type SunPeriod } from '../sunperiod';
+import { autumnTint, crownCenterFt, existingTreeLook, leafFraction, treeLook } from '../treemodel';
+import { parsePeriodKey, periodKey, periodOptions, periodSamples, spotMonthly, type SunPeriod } from '../sunperiod';
+import { leafWords, periodLabel } from '../words';
 import { crownsKey, lotGrid, shadeCrowns, spotMonthlyFor } from '../sunstudy';
 import { buildLocalSite, type LocalSite } from '../localsite';
 import type { SiteContext } from '../site';
@@ -268,7 +269,7 @@ describe('one spot through the year', () => {
   it('an open spot gets every daylight hour, more in June than in December', () => {
     const m = spotMonthly({ point: [0, 0], buildings: [], crowns: [], ...PHL });
     expect(m).toHaveLength(12);
-    expect(m.map((x) => x.month)).toEqual(MONTHS.map((_, i) => i + 1));
+    expect(m.map((x) => x.month)).toEqual(Array.from({ length: 12 }, (_, i) => i + 1));
     for (const x of m) expect(x.sunHours).toBeCloseTo(x.daylightHours, 3);
     expect(m[5]!.sunHours).toBeGreaterThan(14.5);
     expect(m[11]!.sunHours).toBeLessThan(9.8);

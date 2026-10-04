@@ -9,7 +9,8 @@ import { useStore } from '@nanostores/preact';
 import { createPlannerStore, type PlannerMode } from '../../lib/planner/store';
 import { $project } from '../../lib/project';
 import { DEMO_LOTS, type DemoSlug } from '../../lib/planner/site';
-import { u } from '../../lib/url';
+import { urlFor } from '../../i18n/url';
+import { isolate, pt, type PlannerKey } from '../../lib/planner/words';
 import { Viewport } from './Viewport';
 import { LotPanel } from './LotPanel';
 import { SizePanel } from './SizePanel';
@@ -22,13 +23,13 @@ import './planner.css';
 
 export type StepId = 'lot' | 'size' | 'arrange' | 'existing' | 'sun' | 'counts';
 
-const STEP_LABEL: Record<StepId, string> = {
-  lot: 'Your lot',
-  size: 'Size & themes',
-  arrange: 'Arrange',
-  existing: "What's there",
-  sun: 'Sun & shade',
-  counts: 'Counts',
+const STEP_LABEL: Record<StepId, PlannerKey> = {
+  lot: 'step.lot',
+  size: 'step.size',
+  arrange: 'step.arrange',
+  existing: 'step.existing',
+  sun: 'step.sun',
+  counts: 'step.counts',
 };
 
 /** The planner last clicked or focused (a page can have more than one): it gets keys that land on the page itself. */
@@ -90,7 +91,7 @@ export default function PlannerApp(props: Props) {
   if (!near) {
     return (
       <div class={`pl-root pl-${props.mode ?? 'design'} pl-waiting`} ref={ref}>
-        <p class="muted">The 3D planner loads when you scroll to it…</p>
+        <p class="muted">{pt()('app.waiting')}</p>
       </div>
     );
   }
@@ -98,6 +99,8 @@ export default function PlannerApp(props: Props) {
 }
 
 function PlannerInner({ mode = 'design', demo, page = false }: Props) {
+  const t = pt();
+  const u = urlFor(t.locale);
   const query: Query = page ? fromQuery() : { demo: null, step: null };
   const store = useMemo(() => {
     const st = createPlannerStore(mode, demo ?? query.demo);
@@ -170,23 +173,20 @@ function PlannerInner({ mode = 'design', demo, page = false }: Props) {
     return (
       <div class={`pl-root pl-${mode}${page ? ' pl-page' : ''}`}>
         <div class="pl-cta">
-          <p class="eyebrow">Plan your park</p>
-          <h2>First, choose your lot</h2>
-          <p>
-            The planner fits Park in a Truck's park pieces to a real Philadelphia lot, with the neighbors' buildings and
-            trees around it. Look up your lot and it will appear here.
-          </p>
+          <p class="eyebrow">{t('cta.eyebrow')}</p>
+          <h2>{t('cta.title')}</h2>
+          <p>{t('cta.text')}</p>
           <p>
             <a class="btn btn-primary" href={u('lot/')}>
-              Find your lot
+              {t('cta.find')}
             </a>
           </p>
-          <p class="pl-cta-demo">Or try it out on a demo lot (nothing is saved):</p>
+          <p class="pl-cta-demo">{t('cta.demo')}</p>
           <div class="pl-row">
             {(Object.keys(DEMO_LOTS) as DemoSlug[]).map((k) => (
               <button type="button" class="btn" onClick={() => store.setDemo(k)}>
-                {DEMO_LOTS[k].label}
-                <span class="pl-btn-note">{DEMO_LOTS[k].blurb}</span>
+                {isolate(DEMO_LOTS[k].label)}
+                <span class="pl-btn-note">{t(DEMO_LOTS[k].blurb)}</span>
               </button>
             ))}
           </div>
@@ -208,25 +208,25 @@ function PlannerInner({ mode = 'design', demo, page = false }: Props) {
       <div class="pl-side">
         {demoSlug && (
           <div class="pl-demo-banner" role="status">
-            <strong>Demo lot:</strong> {DEMO_LOTS[demoSlug].label}. Nothing you do here is saved.{' '}
+            <span dangerouslySetInnerHTML={{ __html: t.html('demo.banner', { address: isolate(DEMO_LOTS[demoSlug].label) }) }} />{' '}
             {hasLot ? (
               <button type="button" class="pl-link" onClick={() => store.setDemo(null)}>
-                Back to your lot
+                {t('demo.back')}
               </button>
             ) : (
-              <a href={u('lot/')}>Use your own lot</a>
+              <a href={u('lot/')}>{t('demo.useOwn')}</a>
             )}
           </div>
         )}
         {note && <p class="pl-note">{note}</p>}
         {steps.length > 1 && (
-          <nav class="pl-rail" aria-label="Planner steps">
+          <nav class="pl-rail" aria-label={t('rail.label')}>
             <ol>
               {steps.map((s, i) => (
                 <li>
                   <button type="button" aria-current={s === step ? 'step' : undefined} onClick={() => setStep(s)}>
                     <span class="pl-rail-n">{i + 1}</span>
-                    <span class="pl-rail-label">{STEP_LABEL[s]}</span>
+                    <span class="pl-rail-label">{t(STEP_LABEL[s])}</span>
                   </button>
                 </li>
               ))}
@@ -234,8 +234,8 @@ function PlannerInner({ mode = 'design', demo, page = false }: Props) {
           </nav>
         )}
         <div class="pl-panel" aria-live="polite" aria-busy={status === 'loading'}>
-          {status === 'loading' && <p class="muted">Loading your lot and its neighbors…</p>}
-          {status === 'error' && <p class="pl-note">{note ?? 'Could not load this lot.'}</p>}
+          {status === 'loading' && <p class="muted">{t('app.loading')}</p>}
+          {status === 'error' && <p class="pl-note">{note ?? t('app.loadFailed')}</p>}
           {status === 'ready' && (
             <>
               {step === 'lot' && <LotPanel store={store} />}
@@ -252,12 +252,12 @@ function PlannerInner({ mode = 'design', demo, page = false }: Props) {
           <div class="pl-next">
             {idx > 0 && (
               <button type="button" class="btn btn-small" onClick={() => setStep(steps[idx - 1]!)}>
-                ← {STEP_LABEL[steps[idx - 1]!]}
+                {t('nav.back', { step: t(STEP_LABEL[steps[idx - 1]!]) })}
               </button>
             )}
             {idx < steps.length - 1 && (
               <button type="button" class="btn btn-small btn-primary" onClick={() => setStep(steps[idx + 1]!)}>
-                Next: {STEP_LABEL[steps[idx + 1]!]} →
+                {t('nav.next', { step: t(STEP_LABEL[steps[idx + 1]!]) })}
               </button>
             )}
           </div>
