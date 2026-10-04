@@ -13,6 +13,8 @@ import { adaptToSite, lotRef, newDesign, normaliseDesign, parkDims, syncExisting
 import { makeSunAt, runSunStudy } from './sunstudy';
 import { decodeHours, gridSpecFromSaved, type GridSpec, type SunGrid } from './sunhours';
 import { phillyMinutes } from './sun';
+import { measureEdges } from './edges';
+import { bbox, type Vec2 } from './geo';
 
 export type PlannerMode = 'full' | 'design' | 'site' | 'sun';
 export type Selection = { kind: 'item' | 'existing'; id: string } | null;
@@ -77,10 +79,24 @@ export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = nu
   const $sunData: ReadableAtom<{ spec: GridSpec; hours: Float32Array } | null> = computed([$site, $sunGrid], (site, g) =>
     site && g ? { spec: gridSpecFromSaved(g, site.lf), hours: decodeHours(g.hoursX10) } : null,
   );
-  const $tally: ReadableAtom<DesignTally | null> = computed([$site, $layout, $placement, $sunGrid], (site, layout, pl, g) => {
-    if (!site || !layout || !pl) return null;
-    const sunAt = makeSunAt(g, site, (p) => parkToLocal(pl, site.frame, p));
-    return tallyLayout(layout, sunAt);
+  // neighbours close enough to touch the park's edges
+  const $near: ReadableAtom<{ buildings: Vec2[][]; parcels: Vec2[][] } | null> = computed($site, (site) => {
+    if (!site) return null;
+    const lb = bbox(site.parcel);
+    const pad = Math.max(site.frame.lengthFt, site.frame.widthFt) * 0.5 + 20;
+    const near = (r: Vec2[]) => {
+      const b = bbox(r);
+      return b.maxX > lb.minX - pad && b.minX < lb.maxX + pad && b.maxY > lb.minY - pad && b.minY < lb.maxY + pad;
+    };
+    return { buildings: site.buildings.map((b) => b.ring).filter(near), parcels: [site.parcel, ...site.parcels.filter(near)] };
+  });
+  const $tally: ReadableAtom<DesignTally | null> = computed([$site, $layout, $placement, $sunGrid, $near], (site, layout, pl, g, near) => {
+    if (!site || !layout || !pl || !near) return null;
+    const toLocal = (p: Vec2) => parkToLocal(pl, site.frame, p);
+    const t = tallyLayout(layout, makeSunAt(g, site, toLocal));
+    const edges = measureEdges(layout, { toLocal, ...near });
+    const hasGravel = t.gravelEdgeFt && t.gravelEdgeFt.hardscape + t.gravelEdgeFt.softscape > 0;
+    return { ...t, outerEdgeFt: edges.outerEdgeFt, gravelEdgeFt: hasGravel ? t.gravelEdgeFt : edges.gravelEdgeFt };
   });
 
   // ---- piece set follows size & lot kind ----

@@ -100,6 +100,9 @@ export class PlannerScene {
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, this.mobile ? 1.5 : 2));
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFShadowMap;
+    // The shadow pass is most of the frame cost; redo it only when the sun or the
+    // scene changes, not while the camera orbits.
+    this.renderer.shadowMap.autoUpdate = false;
     this.scene.background = new THREE.Color(COLORS.sky);
     this.scene.fog = new THREE.Fog(COLORS.sky, 500, 1200);
 
@@ -261,6 +264,7 @@ export class PlannerScene {
   // ---- content ----
 
   setSite(site: LocalSite) {
+    this.renderer.shadowMap.needsUpdate = true;
     this.site = site;
     disposeTree(this.siteGroup);
     this.siteGroup.clear();
@@ -286,6 +290,7 @@ export class PlannerScene {
   }
 
   setShow(flags: { aerial: boolean; cityTrees: boolean }) {
+    this.renderer.shadowMap.needsUpdate = true;
     if (this.aerial) this.aerial.mesh.visible = flags.aerial;
     this.planVeil.visible = this.view === 'plan' && flags.aerial;
     this.cityTrees.group.visible = flags.cityTrees;
@@ -293,6 +298,7 @@ export class PlannerScene {
   }
 
   setPark(state: ParkState | null, items: LayoutItem[] = state?.layout.items ?? []) {
+    this.renderer.shadowMap.needsUpdate = true;
     const hadAxes = this.parkState?.axes;
     this.parkState = state;
     this.park.group.visible = Boolean(state);
@@ -309,6 +315,7 @@ export class PlannerScene {
   private dragPreview: { id: string; x: number; y: number; rotationDeg: number } | null = null;
 
   private refreshItems() {
+    this.renderer.shadowMap.needsUpdate = true;
     const st = this.parkState;
     if (!st) return;
     this.park.setItems(this.items, { selected: this.selected, overhang: new Set(st.overhang?.items ?? []), dragging: this.dragPreview }, st.themes);
@@ -331,6 +338,7 @@ export class PlannerScene {
   private existingPreview: { id: string; x: number; y: number } | null = null;
 
   private refreshExisting() {
+    this.renderer.shadowMap.needsUpdate = true;
     const items = this.existingPreview
       ? this.existingItems.map((e) => (e.id === this.existingPreview!.id ? { ...e, x: this.existingPreview!.x, y: this.existingPreview!.y } : e))
       : this.existingItems;
@@ -338,6 +346,7 @@ export class PlannerScene {
   }
 
   setSun(date: Date) {
+    this.renderer.shadowMap.needsUpdate = true;
     const site = this.site;
     if (!site) return;
     const p = sunPosition(date, site.lf.origin[1], site.lf.origin[0]);
@@ -419,6 +428,8 @@ export class PlannerScene {
 
   private onPointerDown = (e: PointerEvent) => {
     if (e.button !== 0 && e.pointerType === 'mouse') return;
+    // focus the canvas so the planner's keyboard shortcuts work after a click
+    if (e.pointerType === 'mouse') this.renderer.domElement.focus({ preventScroll: true });
     const hit = this.pick(e);
     if (!hit) {
       this.drag = null;
@@ -495,8 +506,9 @@ export class PlannerScene {
 
   // ---- rendering ----
 
-  requestRender() {
+  requestRender(shadows = false) {
     this.dirty = true;
+    if (shadows) this.renderer.shadowMap.needsUpdate = true;
   }
 
   private resize() {
@@ -546,6 +558,7 @@ export class PlannerScene {
   /** PNG of the current view (or another one), as a data URL. */
   snapshot(view: ViewMode = this.view, size?: { w: number; h: number }): string {
     const prevView = this.view;
+    const keep = { pos: this.persp.position.clone(), target: this.controls.target.clone() };
     if (view !== prevView) this.setView(view);
     const o = this.ortho;
     const savedOrtho = { left: o.left, right: o.right, top: o.top, bottom: o.bottom, zoom: o.zoom };
@@ -580,7 +593,15 @@ export class PlannerScene {
       this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, this.mobile ? 1.5 : 2));
       this.resize();
     }
-    if (view !== prevView) this.setView(prevView);
+    if (view !== prevView) {
+      this.setView(prevView);
+      if (prevView === '3d') {
+        // put the person's 3D camera back where it was
+        this.persp.position.copy(keep.pos);
+        this.controls.target.copy(keep.target);
+        this.controls.update();
+      }
+    }
     this.requestRender();
     return url;
   }

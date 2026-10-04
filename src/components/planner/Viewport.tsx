@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'preact/hooks';
 import { useStore } from '@nanostores/preact';
 import type { PlannerMode, PlannerStore } from '../../lib/planner/store';
 import type { PlannerScene, PickKind } from '../../lib/planner/scene';
-import type { StepId } from './PlannerApp';
 import { bindScene, snapItem } from './binding';
 import { localToPark } from '../../lib/planner/placement';
 import { moveItem, updateExisting } from '../../lib/planner/design';
@@ -12,7 +11,6 @@ import { downloadDataUrl, printPlan } from './exporting';
 
 interface Props {
   store: PlannerStore;
-  step: StepId;
   mode: PlannerMode;
 }
 

@@ -2,8 +2,6 @@
 // it, Ctrl/Cmd+Z undoes, Ctrl+Shift+Z / Ctrl+Y redoes, Esc deselects, P switches 3D/plan.
 // Only while focus is inside the planner and not in a text field.
 
-import { useEffect } from 'preact/hooks';
-import type { RefObject } from 'preact';
 import type { PlannerStore } from '../../lib/planner/store';
 import { deleteExisting, moveItem, removeItem, updateExisting } from '../../lib/planner/design';
 
@@ -48,65 +46,59 @@ export function deleteSelected(store: PlannerStore) {
   store.$selection.set(null);
 }
 
-export function useKeyboard(root: RefObject<HTMLElement>, store: PlannerStore, step: string) {
-  useEffect(() => {
-    const el = root.current;
-    if (!el) return;
-    const onKey = (e: KeyboardEvent) => {
-      const t = e.target as HTMLElement;
-      if (t.closest('input, textarea, select, [contenteditable]') && !(t as HTMLInputElement).type?.match(/checkbox|radio|range|button/)) return;
-      if (t.closest('input[type="range"]')) return;
-      const mod = e.ctrlKey || e.metaKey;
-      if (mod && e.key.toLowerCase() === 'z') {
+/** keydown handler for the planner root (attached with onKeyDown, so it follows re-renders). */
+export function keyHandler(store: PlannerStore, step: string) {
+  return (e: KeyboardEvent) => {
+    const t = e.target as HTMLElement;
+    if (t.closest('input, textarea, select, [contenteditable]') && !(t as HTMLInputElement).type?.match(/checkbox|radio|button/)) return;
+    const mod = e.ctrlKey || e.metaKey;
+    if (mod && e.key.toLowerCase() === 'z') {
+      e.preventDefault();
+      if (e.shiftKey) store.redo();
+      else store.undo();
+      return;
+    }
+    if (mod && e.key.toLowerCase() === 'y') {
+      e.preventDefault();
+      store.redo();
+      return;
+    }
+    if (mod || e.altKey) return;
+    const sel = store.$selection.get();
+    const s = store.$snap.get();
+    const canEdit = sel && (sel.kind === 'item' ? step === 'arrange' || step === 'size' : step === 'existing' || step === 'lot');
+    switch (e.key) {
+      case 'ArrowLeft':
+      case 'ArrowRight':
+      case 'ArrowUp':
+      case 'ArrowDown': {
+        if (!canEdit) return;
         e.preventDefault();
-        if (e.shiftKey) store.redo();
-        else store.undo();
-        return;
+        const k = e.shiftKey ? 4 : s;
+        const dx = e.key === 'ArrowLeft' ? -k : e.key === 'ArrowRight' ? k : 0;
+        const dy = e.key === 'ArrowDown' ? -k : e.key === 'ArrowUp' ? k : 0;
+        nudgeSelected(store, dx, dy);
+        break;
       }
-      if (mod && e.key.toLowerCase() === 'y') {
+      case 'r':
+      case 'R':
+        if (!canEdit) return;
         e.preventDefault();
-        store.redo();
-        return;
-      }
-      if (mod || e.altKey) return;
-      const sel = store.$selection.get();
-      const s = store.$snap.get();
-      const canEdit = sel && (sel.kind === 'item' ? step === 'arrange' || step === 'size' : step === 'existing' || step === 'lot');
-      switch (e.key) {
-        case 'ArrowLeft':
-        case 'ArrowRight':
-        case 'ArrowUp':
-        case 'ArrowDown': {
-          if (!canEdit) return;
-          e.preventDefault();
-          const k = e.shiftKey ? 4 : s;
-          const dx = e.key === 'ArrowLeft' ? -k : e.key === 'ArrowRight' ? k : 0;
-          const dy = e.key === 'ArrowDown' ? -k : e.key === 'ArrowUp' ? k : 0;
-          nudgeSelected(store, dx, dy);
-          break;
-        }
-        case 'r':
-        case 'R':
-          if (!canEdit) return;
-          e.preventDefault();
-          rotateSelected(store, e.shiftKey ? -90 : 90);
-          break;
-        case 'Delete':
-        case 'Backspace':
-          if (!canEdit) return;
-          e.preventDefault();
-          deleteSelected(store);
-          break;
-        case 'Escape':
-          store.$selection.set(null);
-          break;
-        case 'p':
-        case 'P':
-          store.$view.set(store.$view.get() === 'plan' ? '3d' : 'plan');
-          break;
-      }
-    };
-    el.addEventListener('keydown', onKey);
-    return () => el.removeEventListener('keydown', onKey);
-  }, [root.current, store, step]);
+        rotateSelected(store, e.shiftKey ? -90 : 90);
+        break;
+      case 'Delete':
+      case 'Backspace':
+        if (!canEdit) return;
+        e.preventDefault();
+        deleteSelected(store);
+        break;
+      case 'Escape':
+        store.$selection.set(null);
+        break;
+      case 'p':
+      case 'P':
+        store.$view.set(store.$view.get() === 'plan' ? '3d' : 'plan');
+        break;
+    }
+  };
 }

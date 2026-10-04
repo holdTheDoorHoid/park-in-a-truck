@@ -88,3 +88,28 @@ describe('DesignState', () => {
     expect(synced.existing![0]!.x).toBeLessThan(3);
   });
 });
+
+describe('edge lengths for the cost estimate', () => {
+  it('splits the outer edge and the gravel edging by what is next to them', async () => {
+    const { measureEdges } = await import('../edges');
+    type V = [number, number];
+    const rect = (x0: number, y0: number, x1: number, y1: number): V[] => [[x0, y0], [x1, y0], [x1, y1], [x0, y1]];
+    const layout = {
+      lengthFt: 20,
+      widthFt: 10,
+      streetEdges: ['x0' as const],
+      surfaces: [
+        { id: 'g', material: 'gravel' as const, polygon: rect(0, 0, 10, 10) },
+        { id: 'p', material: 'planting' as const, polygon: rect(10, 0, 20, 10) },
+      ],
+      items: [],
+    };
+    const e = measureEdges(layout, {
+      toLocal: (p) => p,
+      buildings: [rect(-5, -30, 25, 0)], // a building along y0
+      parcels: [rect(0, 0, 20, 10), rect(0, 10, 20, 40), rect(20, -30, 50, 40), rect(-5, -30, 25, 0)], // street beyond x0
+    });
+    expect(e.outerEdgeFt).toEqual({ hardscape: 10, softscape: 30 });
+    expect(e.gravelEdgeFt).toEqual({ hardscape: 10, softscape: 20 });
+  });
+});

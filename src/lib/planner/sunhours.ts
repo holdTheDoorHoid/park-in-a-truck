@@ -244,7 +244,8 @@ export interface SunGrid {
   summary: { sun: number; part: number; shade: number };
   sunClass: NonNullable<SiteFacts['sunClass']>;
   computedAt: string;
-  inputs: { buildings: number; trees: number };
+  /** what went in; `treesKey` changes when trees on the lot are added, moved, resized or removed */
+  inputs: { buildings: number; trees: number; treesKey?: string };
   /** the lot the grid was computed for (see design.ts lotRef) */
   lotRef?: string;
 }

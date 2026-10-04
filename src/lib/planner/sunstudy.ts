@@ -57,6 +57,15 @@ export function shadeCrowns(site: LocalSite, existing: ExistingItem[] = []): Cro
   return crowns;
 }
 
+/** A short fingerprint of the trees that shade the lot (to tell when a saved study is out of date). */
+export function crownsKey(crowns: Crown[]): string {
+  let h = 0;
+  for (const c of crowns) {
+    for (const v of [c.x, c.y, c.r]) h = (Math.imul(h, 31) + Math.round(v * 2)) | 0;
+  }
+  return `${crowns.length}:${(h >>> 0).toString(36)}`;
+}
+
 export interface SunStudyResult {
   grid: SunGrid;
   hours: Float32Array;
@@ -117,7 +126,7 @@ export function runSunStudy(
       summary,
       sunClass: lotSunClass(summary),
       computedAt: new Date().toISOString(),
-      inputs: { buildings: site.buildings.length, trees: crowns.length },
+      inputs: { buildings: site.buildings.length, trees: crowns.length, treesKey: crownsKey(crowns) },
     };
     return { grid, hours };
   });
@@ -139,4 +148,31 @@ export function makeSunAt(grid: SunGrid | null | undefined, site: LocalSite, toL
     const h = hoursAt(spec, hours, toLocal([x, y]));
     return Number.isNaN(h) ? 'sun' : classify(h);
   };
+}
+
+const gridCache = new WeakMap<LocalSite, GridSpec>();
+
+/** Share of the lot in direct sun at one moment (tree crowns let 40% through). */
+export function litFractionAt(site: LocalSite, existing: ExistingItem[] | undefined, altitudeDeg: number, azimuthDeg: number): number {
+  if (altitudeDeg <= 0.5) return 0;
+  let spec = gridCache.get(site);
+  if (!spec) {
+    spec = lotGrid(site);
+    gridCache.set(site, spec);
+  }
+  const lit = computeSunHours({
+    grid: spec,
+    buildings: site.buildings,
+    crowns: shadeCrowns(site, existing),
+    samples: [{ altitudeDeg, azimuthDeg, weight: 1 }],
+    days: 1,
+  });
+  let sum = 0;
+  let n = 0;
+  for (const v of lit) {
+    if (Number.isNaN(v)) continue;
+    sum += v;
+    n++;
+  }
+  return n ? sum / n : 0;
 }

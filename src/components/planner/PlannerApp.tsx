@@ -4,7 +4,7 @@
 //   mode="design" the Dream chapter (size & themes, arrange, sun, counts)
 //   mode="site"   the Assess chapter (what's already on the lot, sun & shade)
 //   mode="sun"    the SunStudy widget (sun & shade only)
-import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
+import { useEffect, useMemo, useState } from 'preact/hooks';
 import { useStore } from '@nanostores/preact';
 import { createPlannerStore, type PlannerMode } from '../../lib/planner/store';
 import { DEMO_LOTS, type DemoSlug } from '../../lib/planner/site';
@@ -16,7 +16,7 @@ import { ArrangePanel } from './ArrangePanel';
 import { ExistingPanel } from './ExistingPanel';
 import { SunPanel } from './SunPanel';
 import { CountsPanel } from './CountsPanel';
-import { useKeyboard } from './keyboard';
+import { keyHandler } from './keyboard';
 import './planner.css';
 
 export type StepId = 'lot' | 'size' | 'arrange' | 'existing' | 'sun' | 'counts';
@@ -97,8 +97,6 @@ export default function PlannerApp({ mode = 'design', demo, page = false }: Prop
   const status = useStore(store.$status);
   const note = useStore(store.$note);
   const demoSlug = useStore(store.$demo);
-  const rootRef = useRef<HTMLDivElement>(null);
-  useKeyboard(rootRef, store, step);
 
   useEffect(() => {
     // what can be dragged (and what's shown) depends on the step
@@ -137,10 +135,10 @@ export default function PlannerApp({ mode = 'design', demo, page = false }: Prop
 
   const idx = steps.indexOf(step);
   return (
-    <div class={`pl-root pl-${mode}${page ? ' pl-page' : ''}`} ref={rootRef}>
+    <div class={`pl-root pl-${mode}${page ? ' pl-page' : ''}`} onKeyDown={keyHandler(store, step)}>
       <div class="pl-layout">
       <div class="pl-stage">
-        <Viewport store={store} step={step} mode={mode} />
+        <Viewport store={store} mode={mode} />
       </div>
       <div class="pl-side">
         {demoSlug && (

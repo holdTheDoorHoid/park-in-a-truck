@@ -249,7 +249,6 @@ export function tally(layout: ParkLayout, sunAt: SunAt = () => 'sun'): DesignTal
   let largeTrees = 0;
   let naturePlaySquares = 0;
   const items: Record<string, number> = {};
-  let gravelEdge = 0;
 
   for (const s of layout.surfaces) {
     const b = polyBox(s.polygon);
@@ -264,8 +263,6 @@ export function tally(layout: ParkLayout, sunAt: SunAt = () => 'sun'): DesignTal
       }
     } else if (s.material === 'nature-play') {
       naturePlaySquares += Math.round(((b.x1 - b.x0) * (b.y1 - b.y0)) / 16);
-    } else if (s.material === 'gravel') {
-      gravelEdge += 2 * (b.x1 - b.x0 + (b.y1 - b.y0));
     }
   }
   for (const it of layout.items) {
@@ -290,8 +287,6 @@ export function tally(layout: ParkLayout, sunAt: SunAt = () => 'sun'): DesignTal
   }
   const L = layout.lengthFt;
   const W = layout.widthFt;
-  const edgeLen = (e: string) => (e.startsWith('x') ? W : L);
-  const street = layout.streetEdges.reduce((s, e) => s + edgeLen(e), 0);
   const themes = [...new Set(layout.surfaces.map((s) => s.theme).filter(Boolean))] as ThemeId[];
   return {
     lengthFt: L,
@@ -301,8 +296,7 @@ export function tally(layout: ParkLayout, sunAt: SunAt = () => 'sun'): DesignTal
     shrubs,
     smallTrees,
     largeTrees,
-    gravelEdgeFt: { hardscape: 0, softscape: Math.round(gravelEdge) },
-    outerEdgeFt: { hardscape: Math.round(street), softscape: 0 },
+    // edge lengths depend on the neighbours: the planner measures them on the lot (edges.ts)
     items,
     themes,
   };

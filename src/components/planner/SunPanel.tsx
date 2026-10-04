@@ -1,8 +1,9 @@
 /** @jsxImportSource preact */
-import { useEffect, useState } from 'preact/hooks';
+import { useEffect, useMemo, useState } from 'preact/hooks';
 import { useStore } from '@nanostores/preact';
 import type { PlannerStore } from '../../lib/planner/store';
 import { phillyMinutes, phillyTime, sunPosition, sunTimes } from '../../lib/planner/sun';
+import { crownsKey, litFractionAt, shadeCrowns } from '../../lib/planner/sunstudy';
 
 const YEAR = 2026;
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -43,6 +44,10 @@ export function SunPanel({ store }: { store: PlannerStore }) {
   const rise = times.sunrise ? phillyMinutes(times.sunrise) : 6 * 60;
   const set = times.sunset ? phillyMinutes(times.sunset) : 20 * 60;
   const pos = sunPosition(phillyTime(YEAR, t.month, t.day, t.minutes), lat, lng);
+  const litNow = useMemo(
+    () => (site ? litFractionAt(site, design?.existing, pos.altitudeDeg, pos.azimuthDeg) : 0),
+    [site, design?.existing, Math.round(pos.altitudeDeg * 10), Math.round(pos.azimuthDeg * 10)],
+  );
 
   useEffect(() => {
     if (!playing) return;
@@ -56,7 +61,8 @@ export function SunPanel({ store }: { store: PlannerStore }) {
   }, [playing, rise, set]);
 
   // The saved study may be older than the trees on the lot.
-  const stale = grid && design && Date.parse(design.updatedAt) > Date.parse(grid.computedAt) && (design.existing ?? []).length > 0;
+  const nowKey = useMemo(() => (site ? crownsKey(shadeCrowns(site, design?.existing)) : ''), [site, design?.existing]);
+  const stale = Boolean(grid?.inputs.treesKey && nowKey && grid.inputs.treesKey !== nowKey);
   const pct = (f: number) => `${Math.round(f * 100)}%`;
   const CLASS_TEXT: Record<string, string> = {
     'full-sun': 'Full sun — almost all of the lot gets 6 or more hours of direct sun a day.',
@@ -117,6 +123,14 @@ export function SunPanel({ store }: { store: PlannerStore }) {
             : 'The sun is down.'}
         </span>
       </div>
+      {pos.altitudeDeg > 0 && (
+        <p class="pl-now" aria-live="polite">
+          <span class="pl-now-bar" aria-hidden="true">
+            <span style={{ width: `${Math.round(litNow * 100)}%` }} />
+          </span>
+          At this moment about <strong>{Math.round(litNow * 100)}%</strong> of the lot is in direct sun.
+        </p>
+      )}
 
       <h4 class="pl-h4">Sun hours over the growing season</h4>
       <p class="pl-small">
