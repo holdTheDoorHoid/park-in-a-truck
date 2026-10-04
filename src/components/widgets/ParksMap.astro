@@ -46,6 +46,14 @@ import { PARKS } from '../../data/parks';
   .parks-marker:hover {
     background: var(--cyan-ink);
   }
+  /* The default focus ring is cyan-ink, same family as this pin's own cyan
+     fill — on a cluster of overlapping pins a focused one was impossible to
+     tell from an unfocused one. Use a colour nothing else on this marker is,
+     with an offset ring the pin's own rotated shape can't hide. */
+  .parks-marker:focus-visible {
+    outline: 3px solid var(--ink);
+    outline-offset: 3px;
+  }
   .parks-map-card {
     position: absolute;
     left: 12px;

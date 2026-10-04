@@ -19,6 +19,18 @@ import type { Project } from '../lib/types';
 
 type Col = { key: string; label: string; type?: string; placeholder?: string };
 
+/** Briefly announce a status message through the page's shared polite live region. */
+function announce(text: string) {
+  const el = document.getElementById('piat-announce');
+  if (!el) return;
+  // Clear first: if the same text was just announced, re-setting it
+  // identically wouldn't fire a new announcement in most screen readers.
+  el.textContent = '';
+  window.setTimeout(() => {
+    el.textContent = text;
+  }, 30);
+}
+
 function bindFields(root: ParentNode) {
   root.querySelectorAll<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>('[data-field]:not(piat-list)').forEach((el) => {
     if (el.dataset.bound) return;
@@ -144,9 +156,21 @@ function renderLists(p: Project) {
       rm.textContent = '×';
       rm.setAttribute('aria-label', `Remove row ${i + 1}`);
       rm.addEventListener('click', () => {
+        const removedIndex = i;
+        const rowName = host.dataset.rowName || 'row';
         tr.remove();
         host.dataset.rows = '';
-        save();
+        save(); // rebuilds this list's DOM synchronously (via the project store)
+        // Land focus on the row that shifted up into the removed row's spot,
+        // or the previous row, or the Add button if the list is now empty —
+        // never let it fall through to <body> with no visible focus ring.
+        const freshRows = host.querySelectorAll('tbody tr');
+        const target =
+          freshRows[removedIndex]?.querySelector<HTMLElement>('input') ??
+          freshRows[removedIndex - 1]?.querySelector<HTMLElement>('input') ??
+          host.querySelector<HTMLElement>(':scope > button.btn-small');
+        target?.focus();
+        announce(`${rowName} removed.`);
       });
       td.append(rm);
       tr.append(td);
@@ -157,12 +181,26 @@ function renderLists(p: Project) {
     add.type = 'button';
     add.className = 'btn btn-small';
     add.textContent = `+ Add ${host.dataset.rowName || 'row'}`;
+    const msg = document.createElement('span');
+    msg.className = 'field-hint list-add-msg';
+    msg.setAttribute('role', 'status');
     add.addEventListener('click', () => {
+      const lastRow = host.querySelector('tbody tr:last-child');
+      const lastInputs = lastRow ? [...lastRow.querySelectorAll<HTMLInputElement>('input[data-col]')] : [];
+      const lastIsBlank = lastInputs.length > 0 && lastInputs.every((inp) => !inp.value.trim());
+      if (lastIsBlank) {
+        // Adding another blank row on top of an already-blank one would just be a
+        // second identical empty row — point at the one that needs filling in
+        // instead of silently doing nothing.
+        msg.textContent = `Fill in the ${host.dataset.rowName || 'row'} above first, or add something to it.`;
+        lastInputs[0]?.focus();
+        return;
+      }
       blankRows.set(host, (blankRows.get(host) ?? 0) + 1);
       renderLists($project.get());
       host.querySelector<HTMLInputElement>('tbody tr:last-child input')?.focus();
     });
-    host.replaceChildren(table, add);
+    host.replaceChildren(table, add, msg);
   });
 }
 

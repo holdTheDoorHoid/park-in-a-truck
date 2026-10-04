@@ -27,7 +27,8 @@ const fullTitle = title === 'Park in a Truck' ? title : `${title} · Park in a T
     <script is:inline define:vars={{ outline }}>window.__PIAT_OUTLINE__ = outline;</script>
   </head>
   <body class={bare ? 'bare' : undefined}>
-    <a class="visually-hidden" href="#main">Skip to content</a>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div id="piat-announce" class="visually-hidden" role="status" aria-live="polite"></div>
     <Header />
     <main id="main">
       <slot />

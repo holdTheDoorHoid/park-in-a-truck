@@ -202,6 +202,19 @@ export function exportProject(id = $saved.get().activeId): { filename: string; b
   return { filename: `${safe}.park.json`, blob: new Blob([body], { type: 'application/json' }) };
 }
 
+/** True for a project with no answers, lot, design or anything else recorded yet
+ *  — i.e. still exactly what `blankProject()` produced, name aside. */
+function isUntouched(p: Project): boolean {
+  return (
+    Object.keys(p.fields).length === 0 &&
+    Object.keys(p.done).length === 0 &&
+    p.lot === null &&
+    p.candidates.length === 0 &&
+    p.design === null &&
+    Object.keys(p.extra).length === 0
+  );
+}
+
 /**
  * Import a share file. A project with the same id is NOT overwritten silently:
  * the import becomes a copy so a committee member's file never clobbers your own work.
@@ -215,6 +228,14 @@ export function importProject(text: string): Project {
     p.id = uid();
     p.name = `${p.name} (imported)`;
   }
-  $saved.set({ activeId: p.id, projects: { ...s.projects, [p.id]: p } });
+  const projects = { ...s.projects, [p.id]: p };
+  // A fresh browser auto-creates one empty "My park" project. Importing into
+  // that untouched browser otherwise leaves two identically-named rows in
+  // "All projects" — replace the untouched default instead.
+  const existingIds = Object.keys(s.projects);
+  if (existingIds.length === 1 && existingIds[0] !== p.id && isUntouched(s.projects[existingIds[0]!]!)) {
+    delete projects[existingIds[0]!];
+  }
+  $saved.set({ activeId: p.id, projects });
   return p;
 }

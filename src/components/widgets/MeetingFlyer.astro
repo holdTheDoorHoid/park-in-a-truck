@@ -126,13 +126,24 @@ interface Props { [key: string]: unknown }
     html.printing-flyer body * {
       visibility: hidden;
     }
+    /* `visibility: hidden` keeps every hidden element's own layout height,
+       so without this the rest of the page (everything above and below the
+       flyer in the chapter) still counts toward the printed page count,
+       producing 1 real page plus however many blank ones its hidden height
+       would have needed. Collapsing body's direct children removes that
+       height; `.flyer-print-root` switches to `position: fixed` (below) so
+       it isn't clipped by the `overflow: hidden` this adds to its ancestor. */
+    html.printing-flyer body > * {
+      max-height: 0;
+      overflow: hidden;
+    }
     html.printing-flyer .flyer-print-root,
     html.printing-flyer .flyer-print-root * {
       visibility: visible;
     }
     html.printing-flyer .flyer-print-root {
       display: block;
-      position: absolute;
+      position: fixed;
       inset: 0;
       margin: 0;
       padding: 0;

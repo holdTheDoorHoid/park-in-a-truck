@@ -147,7 +147,7 @@ export default function BuildScheduleIsland() {
         .phase-list { list-style: none; padding: 0; margin: 1.2em 0; border-top: 1px solid var(--line); }
         .phase-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--line); }
         .phase-info { display: flex; gap: 12px; align-items: flex-start; flex: 1 1 220px; min-width: 0; }
-        .phase-num { flex: none; width: 1.8em; height: 1.8em; border-radius: 50%; background: var(--cyan); color: #fff; display: grid; place-items: center; font-weight: 800; font-size: 0.85rem; }
+        .phase-num { flex: none; width: 1.8em; height: 1.8em; border-radius: 50%; background: var(--cyan); color: var(--ink); display: grid; place-items: center; font-weight: 800; font-size: 0.85rem; }
         .phase-info strong { display: block; }
         .phase-blurb { display: block; font-size: 0.85rem; color: var(--muted); }
         .phase-date { display: flex; flex-direction: column; gap: 4px; align-items: flex-end; flex: none; }

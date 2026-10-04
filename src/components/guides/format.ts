@@ -36,7 +36,11 @@ export function friendlyIn(n: number): string {
 export function asBuiltText(stated: { length: number; width: number; height: number }, built: { length: number; width: number; height: number }): string {
   const out: string[] = [];
   if (Math.abs(built.length - stated.length) >= 0.25) out.push(`${friendlyIn(built.length)} long`);
-  if (Math.abs(built.width - stated.width) >= 0.25) out.push(`${friendlyIn(built.width)} wide`);
+  // "width" in this schema is the front-to-back footprint (length runs left-right along the
+  // row), so the plain-English word for it is "deep", not "wide" — confirmed against every
+  // guide's own reason text (e.g. the bench's "18.5"-deep end frames", the shade's "front to
+  // back it is 99"").
+  if (Math.abs(built.width - stated.width) >= 0.25) out.push(`${friendlyIn(built.width)} deep`);
   if (Math.abs(built.height - stated.height) >= 0.25) out.push(`${friendlyIn(built.height)} tall`);
   if (!out.length) return '';
   const list = out.length > 1 ? `${out.slice(0, -1).join(', ')} and ${out[out.length - 1]}` : out[0]!;
