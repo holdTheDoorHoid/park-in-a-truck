@@ -10,6 +10,7 @@ import type { LocalTree } from '../localsite';
 import type { GroundFn } from '../ground';
 import { skirtGeometry, terrainGeometry } from './terrain';
 import { crownCenterFt, treeLook } from '../treemodel';
+import type { Xray } from './xray';
 
 export const W = (e: number, n: number, up = 0) => new THREE.Vector3(e, up, -n);
 
@@ -28,7 +29,11 @@ export const COLORS = {
 
 // ---- buildings --------------------------------------------------------------
 
-export function buildBuildings(prisms: Prism[]): THREE.Group {
+/**
+ * Neighbouring buildings as one mesh. With `xray`, whatever hides the lot from the camera
+ * is drawn as a faint ghost instead (scene/xray.ts); shadows still come from every wall.
+ */
+export function buildBuildings(prisms: Prism[], xray?: Xray): THREE.Group {
   const group = new THREE.Group();
   group.name = 'buildings';
   const geos: THREE.BufferGeometry[] = [];
@@ -45,15 +50,24 @@ export function buildBuildings(prisms: Prism[]): THREE.Group {
   const merged = mergeGeometries(geos, false)!;
   geos.forEach((g) => g.dispose());
   merged.computeVertexNormals();
-  const mesh = new THREE.Mesh(merged, new THREE.MeshLambertMaterial({ color: COLORS.building }));
+  const solid = new THREE.MeshLambertMaterial({ color: COLORS.building });
+  const mesh = new THREE.Mesh(merged, xray ? xray.patch(solid, 'solid') : solid);
   mesh.castShadow = true;
   mesh.receiveShadow = true;
   group.add(mesh);
-  const edges = new THREE.LineSegments(
-    new THREE.EdgesGeometry(merged, 30),
-    new THREE.LineBasicMaterial({ color: COLORS.buildingEdge, transparent: true, opacity: 0.45 }),
-  );
+  const lineMat = new THREE.LineBasicMaterial({ color: COLORS.buildingEdge, transparent: true, opacity: 0.45 });
+  const edges = new THREE.LineSegments(new THREE.EdgesGeometry(merged, 30), xray ? xray.patch(lineMat, 'line') : lineMat);
   group.add(edges);
+  if (xray) {
+    // the see-through part: the same walls, faint, drawn after everything solid
+    const ghost = new THREE.Mesh(
+      merged,
+      xray.patch(new THREE.MeshLambertMaterial({ color: COLORS.building, transparent: true, opacity: 0.2, depthWrite: false }), 'ghost'),
+    );
+    ghost.renderOrder = 10;
+    ghost.name = 'buildings-ghost';
+    group.add(ghost);
+  }
   return group;
 }
 

@@ -24,6 +24,8 @@ import { groundOf } from '../ground';
 import { SlopeOverlay, rayGround } from './terrain';
 import { ON_GROUND, drapedRibbon } from '../furniture/drape';
 import { OutlineTool } from './outline';
+import { Xray, lotBox } from './xray';
+import { cameraFloor, cameraLimits, type CameraFloor } from '../camera';
 
 export type ViewMode = '3d' | 'plan';
 export type PickKind = 'item' | 'existing';
@@ -116,6 +118,9 @@ export class PlannerScene {
   private slopeOn = false;
   /** terrain: drawing a wet area's outline, and moving its corners */
   private outline = new OutlineTool();
+  /** neighbours that hide the lot are drawn see-through; the camera stays out of them (F3) */
+  private xray = new Xray();
+  private camFloor: CameraFloor | null = null;
   private drawDown: { x: number; y: number; id: number; touch: boolean } | null = null;
   private photoOn = true;
   private dirty = true;
@@ -241,7 +246,16 @@ export class PlannerScene {
   private makeControls() {
     this.controls?.dispose();
     const c = new OrbitControls(this.camera, this.renderer.domElement);
-    c.addEventListener('change', () => this.requestRender());
+    c.addEventListener('change', () => {
+      this.keepCameraOut();
+      this.requestRender();
+    });
+    // the point the view turns round stays near the lot (no panning off into nowhere)
+    const lim = this.site ? cameraLimits(this.site.extentFt, this.site.frame) : null;
+    if (lim) {
+      c.cursor.copy(this.lotCenterWorld());
+      c.maxTargetRadius = lim.maxTargetRadius;
+    }
     if (this.view === 'plan') {
       c.enableRotate = false;
       c.screenSpacePanning = true;
@@ -252,12 +266,27 @@ export class PlannerScene {
     } else {
       c.enableDamping = true;
       c.dampingFactor = 0.12;
-      c.maxPolarAngle = Math.PI * 0.47;
+      // no lower than ~14° above the horizon: low enough for a street-level look when
+      // zoomed in, never a view along the ground into a wall (novice-phone F3)
+      c.maxPolarAngle = Math.PI * 0.42;
       c.minDistance = 12;
-      c.maxDistance = 700;
+      c.maxDistance = lim?.maxDistance ?? 700;
       c.touches = { ONE: THREE.TOUCH.ROTATE, TWO: THREE.TOUCH.DOLLY_PAN };
     }
     return c;
+  }
+
+  /**
+   * After every camera move: never inside a building or below eye height over the ground
+   * (it rides up over a roof instead). The view keeps looking at the same point.
+   */
+  private keepCameraOut() {
+    if (this.view !== '3d' || !this.camFloor) return;
+    const p = this.persp.position;
+    const floor = this.camFloor.at([p.x, -p.z]);
+    if (p.y >= floor) return;
+    p.y = floor;
+    this.persp.lookAt(this.controls.target);
   }
 
   private lotCenterWorld(): THREE.Vector3 {
@@ -321,6 +350,7 @@ export class PlannerScene {
     this.cancelDrag();
     this.view = v;
     this.camera = v === '3d' ? this.persp : this.ortho;
+    this.xray.setEnabled(v === '3d');
     // the plan view's light veil over the photo lies on the ground (terrain)
     this.aerial?.setVeil(v === 'plan');
     this.slope.setView(v);
@@ -337,7 +367,7 @@ export class PlannerScene {
     } else {
       const t = this.controls.target;
       const off = this.persp.position.clone().sub(t).multiplyScalar(1 / f);
-      const len = Math.max(12, Math.min(700, off.length()));
+      const len = Math.max(this.controls.minDistance, Math.min(this.controls.maxDistance, off.length()));
       this.persp.position.copy(t.clone().add(off.setLength(len)));
     }
     this.controls.update();
@@ -358,7 +388,9 @@ export class PlannerScene {
     disposeTree(this.siteGroup);
     this.siteGroup.clear();
     this.aerial?.dispose();
-    this.siteGroup.add(buildBuildings(site.buildings));
+    this.siteGroup.add(buildBuildings(site.buildings, this.xray));
+    this.xray.setBox(lotBox(site.frame, ground));
+    this.camFloor = cameraFloor(ground, site.buildings);
     // the cyan lot line lies on the ground
     const outline = drapedRibbon(site.parcel, 0.7, 0.45, ground, COLORS.parcel);
     Object.assign(outline.material, ON_GROUND);
