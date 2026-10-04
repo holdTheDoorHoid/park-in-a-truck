@@ -30,6 +30,8 @@ export interface GuideMaterial {
   size?: string;
   notes?: string;
   link?: string;
+  /** A short note from this site (not PiaT) where the guide's own numbers don't add up; shown marked as ours. */
+  siteNote?: string;
 }
 
 export interface GuideCutListItem {
@@ -40,6 +42,8 @@ export interface GuideCutListItem {
   stock: string;
   lengthIn: number;
   notes?: string;
+  /** A short note from this site (not PiaT), shown marked as ours in the cut list. */
+  siteNote?: string;
 }
 
 export interface GuideStep {
@@ -52,6 +56,8 @@ export interface GuideStep {
   /** Alt text for each image, same length/order as `images`. */
   imageAlts: string[];
   tips?: string[];
+  /** A short note from this site (not PiaT) where the step text disagrees with the cut list, drawing or 3D model. */
+  siteNote?: string;
 }
 
 export interface GuideLink {

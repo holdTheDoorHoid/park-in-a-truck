@@ -2,6 +2,8 @@
 // neighbouring buildings and City trees ready for the 3D scene and the sun study.
 
 import type { GroundFn } from './ground';
+import { buildingBase } from './terrain/slope';
+import { makeGround, siteTerrain, type SiteTerrain } from './terrain';
 import type { SiteFacts } from '../types';
 import { area, centroid, distanceToRing, distanceToSegment, makeFrame, openRing, pointInPolygon, signedArea, type LocalFrame, type Vec2 } from './geo';
 import { siteFrameFromFacts, type SiteFrame } from './rect';
@@ -38,6 +40,8 @@ export interface LocalSite {
   ground?: GroundFn;
   /** elevation of the datum, ft above sea level (NAVD88), when terrain is known */
   datumElevFt?: number;
+  /** ground heights' source, the slope summary and its words (terrain; absent = flat/unknown) */
+  terrain?: SiteTerrain;
 }
 
 /** Keep the part of `ring` on the left of the directed line a→b (Sutherland–Hodgman, one edge). */
@@ -104,6 +108,9 @@ export function buildLocalSite(ctx: SiteContext, facts?: SiteFacts): LocalSite {
   const lf = makeFrame(lf0.toLngLat(c));
   const parcel = ring0.map(lf.toLocal);
 
+  // Ground heights (terrain): datum = the lot's average elevation, so 0 on a flat lot
+  const g = ctx.terrain ? makeGround(ctx.terrain, lf, parcel) : null;
+
   const buildings: Prism[] = [];
   for (const b of ctx.buildings) {
     const ring = openRing(b.polygon).map(lf.toLocal);
@@ -114,7 +121,14 @@ export function buildLocalSite(ctx: SiteContext, facts?: SiteFacts): LocalSite {
     if (pointInPolygon(bc, parcel) && area(ring) > 30) continue;
     const trimmed = trimToLot(ring, parcel);
     if (trimmed.length < 3 || area(trimmed) < 4) continue;
-    buildings.push({ ring: trimmed, heightFt: Math.max(8, b.heightFt || 25) });
+    const heightFt = Math.max(8, b.heightFt || 25);
+    if (g) {
+      // City heights are measured from the lowest ground along the outline (see buildingBase);
+      // the walls reach down to the lowest ground, a little into it so no gap shows.
+      const { baseFt, refFt } = buildingBase(ring, g.elev, b.baseElevationFt);
+      const base = baseFt - g.datumElevFt - 0.3;
+      buildings.push({ ring: trimmed, heightFt: refFt - g.datumElevFt + heightFt - base, baseFt: base });
+    } else buildings.push({ ring: trimmed, heightFt });
   }
   const parcels = ctx.parcels.map((p) => openRing(p.polygon).map(lf.toLocal)).filter((r) => r.length >= 3);
   const streets = ctx.streets.map((s) => ({ name: s.name, line: s.line.map(lf.toLocal) }));
@@ -122,9 +136,16 @@ export function buildLocalSite(ctx: SiteContext, facts?: SiteFacts): LocalSite {
     const [x, y] = lf.toLocal(t.lngLat);
     const { heightFt, crownR } = treeFromDbh(t.dbhIn, t.heightFt);
     const onLot = pointInPolygon([x, y], parcel) || distanceToRing([x, y], parcel) < 2;
+    // (tree bases are raised onto the ground by the tree drawing and the sun maths, from groundOf(site))
     return { key: cityTreeKey(t.lngLat), x, y, heightFt, crownR, species: t.species, dbhIn: t.dbhIn, onLot };
   });
   const frame = siteFrameFromFacts(facts, lf, { parcel, parcels, buildings: buildings.map((b) => b.ring), streets, address: ctx.lot.address });
   const extentFt = Math.max(180, Math.min(300, Math.max(frame.lengthFt, frame.widthFt) * 2 + 140));
-  return { ctx, lf, parcel, areaSqFt: area(parcel), frame, buildings, trees, parcels, streets, extentFt };
+  const site: LocalSite = { ctx, lf, parcel, areaSqFt: area(parcel), frame, buildings, trees, parcels, streets, extentFt };
+  if (g && ctx.terrain) {
+    site.ground = g.ground;
+    site.datumElevFt = g.datumElevFt;
+    site.terrain = siteTerrain(ctx.terrain, g, parcel, frame, streets);
+  }
+  return site;
 }

@@ -41,6 +41,8 @@ export function existingRenders(site: LocalSite, items: ExistingItem[] | undefin
       heightFt: city?.heightFt,
       ...(look?.evergreen ? { evergreen: true } : {}),
       ...(look?.conifer ? { conifer: true } : {}),
+      // terrain: a wet area drawn as an outline (absent on older saves = a circle)
+      ...(e.outline && e.outline.length >= 3 ? { outline: e.outline } : {}),
     });
   }
   return out;
@@ -111,6 +113,13 @@ export function bindScene(scene: PlannerScene, store: PlannerStore, mode: Planne
     // the pin on the spot whose year is charted (sun step only)
     const spot = step === 'sun' ? store.sun.$spotAt.get() : null;
     if (changed('spot', spot?.[0], spot?.[1])) scene.setSpot(spot);
+    // terrain: the slope overlay, and drawing a wet area's outline
+    if (changed('slope', show.slope)) scene.setSlope(show.slope);
+    const drawing = store.$drawing.get();
+    if (changed('drawing', drawing)) {
+      if (drawing) scene.startDrawing();
+      else scene.cancelDrawing();
+    }
   };
 
   const schedule = () => {
@@ -118,7 +127,7 @@ export function bindScene(scene: PlannerScene, store: PlannerStore, mode: Planne
     queued = true;
     queueMicrotask(update);
   };
-  const atoms = [store.$site, store.$step, store.$view, store.$show, store.$design, store.$layout, store.$placement, store.$overhang, store.$selection, store.$sunTime, store.$sunData, store.sun.$heat, store.sun.$spotAt];
+  const atoms = [store.$site, store.$step, store.$view, store.$show, store.$design, store.$layout, store.$placement, store.$overhang, store.$selection, store.$sunTime, store.$sunData, store.sun.$heat, store.sun.$spotAt, store.$drawing];
   const unsubs = atoms.map((a) => (a as { subscribe: (cb: () => void) => () => void }).subscribe(schedule));
   return () => unsubs.forEach((u) => u());
 }

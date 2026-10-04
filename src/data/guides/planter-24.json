@@ -64,8 +64,9 @@
       "title": "Fill in each end frame",
       "text": "Place six P-2 pieces on top of the frame created in step 2, with a 1.5\" gap on both sides.\n\nUse the pre-drilling guide at the end of the packet to pre-drill your screw holes, then secure the lumber into the P-1 and P-2 pieces with an impact driver and 30 2.5\" self-driving exterior wood screws.\n\nRepeat on the other leg, and stand both legs up for the next step.",
       "images": ["img/guides/planter-24/step-03.webp"],
-      "imageAlts": ["Diagram of P-2 boards being screwed onto each end frame with a 1.5\" gap on both sides, shown for both the 24\"x24\" and 24\"x48\" box."],
-      "tips": ["Use an extra piece of lumber on end as a spacer to get an even 1.5\" gap."]
+      "imageAlts": ["Diagram of six boards being screwed onto each end frame with a 1.5\" gap on both sides (the drawing's P-2 label points at the frame), shown for both the 24\"x24\" and 24\"x48\" box."],
+      "tips": ["Use an extra piece of lumber on end as a spacer to get an even 1.5\" gap."],
+      "siteNote": "Use P-1 (21″) boards here, not P-2: six 21″ boards on the 24″ frame leave exactly the 1.5″ gap on both sides, and the cut list and the 3D model both use P-1. The four 17″ P-2 pieces all go into the end frames in step 2 (P-1 × 33 = 4 in the frames + 12 here + 12 on the sides + 5 in the bottom)."
     },
     {
       "n": 4,
@@ -73,14 +74,16 @@
       "text": "Place six P-1 pieces (or six P-1A pieces, for the 24\"x48\" box) in between the two ends of the planter box.\n\nSecure the P-2 or P-3 lumber on each side into the P-2 pieces with an impact driver and 24 2.5\" self-driving exterior wood screws.\n\nRepeat on the back side of the planter box.",
       "images": ["img/guides/planter-24/step-04.webp"],
       "imageAlts": ["Diagram of P-1 or P-1A face boards connecting the two end frames to form the planter box walls."],
-      "tips": ["Work from the bottom on both sides at once, and have a helper check the side stays at 90 degrees."]
+      "tips": ["Work from the bottom on both sides at once, and have a helper check the side stays at 90 degrees."],
+      "siteNote": "The boards to screw on here are the six P-1 (or P-1A) side boards you just placed. This guide has no P-3."
     },
     {
       "n": 5,
       "title": "Add the slatted bottom",
       "text": "Place five P-2 pieces (or five P-3 pieces, for the 24\"x48\" box) on the bottom of the planter box frame, leaving a 5/8\" gap between each piece to allow for water drainage.\n\nSecure the P-2 or P-3 lumber on each side into the P-2 pieces with an impact driver and 20 2.5\" self-driving exterior wood screws.",
       "images": ["img/guides/planter-24/step-05.webp"],
-      "imageAlts": ["Diagram of boards forming the planter's slatted bottom, with a 5/8\" drainage gap between each board."]
+      "imageAlts": ["Diagram of boards forming the planter's slatted bottom, with a 5/8\" drainage gap between each board."],
+      "siteNote": "Use five P-1 (21″) boards here, or five P-1A (45″) for the 24″x48″ box: that's how this step's drawing labels them and how the cut list counts them. This guide has no P-3, and its only P-2s are in the end frames."
     },
     {
       "n": 6,
