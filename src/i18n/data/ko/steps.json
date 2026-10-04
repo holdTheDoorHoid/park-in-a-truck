@@ -1,0 +1,31 @@
+{
+  "start": {
+    "title": "시작하기",
+    "tagline": "공원이 왜 중요한지, Park in a Truck이 어떻게 진행되는지 알아봐요."
+  },
+  "acquire": {
+    "title": "확보하기",
+    "tagline": "부지를 찾고 쓸 수 있도록 허락을 받아요.",
+    "assumes": "툴킷을 읽었고, 아직 쓸 수 있는 부지가 없는 분을 위한 장이에요."
+  },
+  "organize": {
+    "title": "조직하기",
+    "tagline": "공원 위원회를 만들고 이웃의 힘을 모아요."
+  },
+  "assess": {
+    "title": "조사하기",
+    "tagline": "부지를 알아 가요: 햇빛, 흙, 주변 환경."
+  },
+  "dream": {
+    "title": "꿈꾸기",
+    "tagline": "공원 조각으로 공원을 설계해요."
+  },
+  "create": {
+    "title": "만들기",
+    "tagline": "주말마다 한 단계씩 직접 만들어요."
+  },
+  "sustain": {
+    "title": "가꾸기",
+    "tagline": "계절이 바뀌어도 공원을 돌봐요."
+  }
+}

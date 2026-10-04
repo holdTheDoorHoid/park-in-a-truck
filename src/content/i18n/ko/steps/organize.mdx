@@ -1,0 +1,206 @@
+---
+title: 조직하기
+intro: 공원 위원회를 꾸리고, 동네의 자원을 찾고, 공원을 현실로 만들 사람들을 모아요.
+sources:
+  - 툴킷 29–33쪽 (조직하기, 공원 위원회 만들기, 동네 자원 찾기)
+  - 조직하기 워크북 3–6쪽 (개요, 지역사회 자원 찾기, 동네 자원, 모임 열기, 준비됐나요?)
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import NeighborhoodAssets from '../../../../components/widgets/NeighborhoodAssets.astro';
+import MeetingFlyer from '../../../../components/widgets/MeetingFlyer.astro';
+
+공원은 저절로 생기지 않아요. 여럿이 함께하는 일이고, 그만큼 돌아오는 것도 커요. 공원 프로젝트를 함께하는 지역사회는
+공원 이상의 것을 만들어요. 공동체의 유대를 더 단단하게 하고, 동네 청소년에게 보람 있는 일자리를 만들고, 모두가
+자랑스러워하게 돼요. 공원 만들기는 공동의 목표로 사람들을 하나로 모아요. 그리고 다 끝나면 모두가 "우리가 해냈어!"라고
+말할 거예요.
+
+성공한 공원 프로젝트의 중심에는 언제나 한 팀으로 함께 일하는, 다양하고 재능 있고 헌신적인 주민 모임이 있어요. 이
+공원 위원회가 공원 만들기를 이끌어요. 이 자원봉사자들은 공원을 쓸 여러 집단을 대표하면 가장 좋아요. 젊은이와
+어르신, 여러 인종과 민족, 전문직과 노동자, 집주인과 세입자. 우리 동네를 닮은 모임이어야 해요. 또 각자의 재능도
+생각해 보세요. 건축가, 법률 지식이 있는 사람, 정치적 인맥이 있는 사람, 지역 활동가, 성직자, 사교적인 사람처럼
+재능과 경험이 다양한 사람들이 있으면 성공할 가능성이 커져요.
+
+<Callout kind="note">
+  지역 모임을 꾸리는 방법을 더 알고 싶다면 Pennsylvania Horticultural Society(펜실베이니아 원예협회)의{' '}
+  <a href="http://tupress.temple.edu/book/0872" target="_blank" rel="noopener"><em>City Parks Handbook</em></a>(영어)과
+  National Recreation and Park Association(미국 국립 레크리에이션·공원 협회)의{' '}
+  <a href="https://www.nrpa.org/uploadedFiles/Americas_Backyard/park-advocate-handbook-100711.pdf" target="_blank" rel="noopener"><em>Park Advocate Handbook</em></a>(영어)을 보세요.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={3} label="개요" />
+
+## 공원 위원회 만들기 {/* #create-a-park-committee */}
+
+위원회가 꾸려지면, 첫 번째 할 일은 우리 동네와 공원 부지만의 특별한 점을 찾아 기록하는 거예요. 아래에 위원을
+적으세요. 누구인지, 어떻게 연락하는지, 팀에 무엇을 보태는지요.
+
+<ListField
+  id="organize.committee-members"
+  label="공원 위원회 위원"
+  rowName="위원"
+  min={3}
+  columns={[
+    { key: 'name', label: '이름' },
+    { key: 'phone', label: '전화', type: 'tel' },
+    { key: 'email', label: '이메일', type: 'email' },
+    { key: 'role', label: '역할 / 재능', placeholder: '조직, 목공, 기금 모금…' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={3} label="개요" />
+
+## 지역사회 자원 찾기 {/* #identify-community-assets */}
+
+이제 동네 사람들과 그들만의 재능을 생각해 봐요. 요리를 좋아하나요? 행사를 꾸리나요? 정원을 가꾸나요? 역사를 좋아해서
+동네를 조사해 볼 수 있나요? 이 모든 것이 공원을 설계하고, 만들고, 관리하는 데 쓸모 있는 귀한 재능이 될 수 있어요.
+목록으로 적어 두기만 하면, 공원을 만드는 과정에서 여러 일을 누구에게 부탁하면 좋을지 알 수 있어요.
+
+첫 주민 모임에서 사람들에게 신청서에 자기 재능을 적어 달라고 하세요. 위원회에 이미 있는 재능을 체크하세요.
+
+<Checklist
+  id="organize.individual-skills"
+  label="개인 재능 목록"
+  items={[
+    { value: 'project-manager', label: '공원 만들기를 총괄할 프로젝트 관리자' },
+    { value: 'organizing', label: '공원 / 설계·시공 과정 조직하기' },
+    { value: 'carpentry', label: '목공' },
+    { value: 'masonry', label: '벽돌·석재 쌓기' },
+    { value: 'gardening', label: '공원 정원 가꾸기 / 관리' },
+    { value: 'planting', label: '나무, 관목, 꽃 심기' },
+    { value: 'building', label: '공원 만들기 돕기' },
+    { value: 'fundraising', label: '기금 모금' },
+    { value: 'bookkeeping', label: '회계 장부 정리' },
+    { value: 'babysitting', label: '아이 돌보기' },
+    { value: 'food', label: '모임 / 공원 만들기 날 음식' },
+    { value: 'artist', label: '예술가' },
+    { value: 'photography', label: '사진' },
+    { value: 'music', label: '공원 만들기 날 음악 — DJ' },
+    { value: 'media', label: '홍보 — Facebook, Instagram, Twitter' },
+    { value: 'history', label: '역사를 좋아하는 사람' },
+    { value: 'other', label: '기타' },
+  ]}
+/>
+
+{/* site-added: a printable version of the same list, for a paper sign-up sheet at an in-person meeting. */}
+<Callout kind="tip" title="신청서 인쇄하기">
+  모임에서 쓸 종이 신청서가 필요한가요? 이 페이지를 인쇄하세요. 위의 체크리스트가 빈 네모 칸으로 인쇄되니, 이웃들이
+  이름과 연락처 옆에 손으로 체크할 수 있어요.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={3} label="지역사회 자원 찾기" />
+
+## 동네 자원 {/* #neighborhood-assets */}
+
+공원을 만드는 여정에서 또 하나 중요한 단계는 우리 동네와 공원 부지만의 특징을 찾는 거예요. 잠시 멈춰 서서 우리 동네를
+특별하게 만드는 수많은 단서를 찾아보세요. 모든 동네에는 그 동네의 역사와 문화에서 나온 고유한 가치가 있어요. 이런
+자원을 찾아 활용하면 공원 프로젝트가 더 튼튼해지고, 주민들이 공원을 자기 것으로 여기게 돼요.
+
+그럼 자원과 강점은 어떻게 찾을까요? 동네와 그 역사와 문화를 생각해 보세요. 특별한 장소는 어디인가요? 사람들은
+어디에 즐겨 모이나요? 동네에 중요한 사건이 있었나요? 공원 자리에는 예전에 무엇이 있었나요?
+
+<Callout kind="auto" title="근처 단체를 찾아 드려요">
+  부지 주소를 넣으면 근처의 등록 지역 단체(RCO), 학교, 도서관, 공원, 텃밭, 그 밖에 시 목록에 있는 동네 자원을
+  가져와요. 이미 그곳에 있는 사람들부터 목록을 시작할 수 있어요.
+</Callout>
+
+<NeighborhoodAssets />
+
+그다음, 돈이나 물품으로 돕거나, 공원 자재를 동네에서 살 수 있게 해 주는 협력자가 될 만한 주민 단체와 지역 단체를
+모두 적으세요.
+
+<ListField
+  id="organize.citizens-associations"
+  label="주민 단체 자원 목록"
+  rowName="단체"
+  min={2}
+  columns={[
+    { key: 'type', label: '종류', placeholder: '교회, 블록 대표, RCO, 문화 단체…' },
+    { key: 'name', label: '이름' },
+    { key: 'contact', label: '연락처' },
+  ]}
+/>
+
+<ListField
+  id="organize.physical-assets"
+  label="동네의 물리적 자원"
+  rowName="자원"
+  min={2}
+  columns={[
+    { key: 'type', label: '종류', placeholder: '명소, 벽화, 거리 풍경, 모이는 곳…' },
+    { key: 'description', label: '설명' },
+  ]}
+/>
+
+<ListField
+  id="organize.local-institutions"
+  label="지역 기관"
+  rowName="기관"
+  min={2}
+  columns={[
+    { key: 'type', label: '종류', placeholder: '가게, 학교, 도서관, 병원, 대학교…' },
+    { key: 'name', label: '이름' },
+    { key: 'contact', label: '연락처' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={4} label="동네 자원" />
+
+## 모임 열기 {/* #organize-a-meeting */}
+
+공개 모임을 여는 것은 활동을 키우거나 모임에 더 많은 사람을 끌어들이는 아주 좋은 방법이에요. 주민 모임이 흥미롭고,
+누구나 참여하기 쉽고, 순조롭게 진행되도록 돕는 몇 가지 아이디어예요.
+
+- **단순하게 하세요.** 너무 많은 것을 담으려 하지 마세요. 모임에서는 하고 싶은 일에 대한 기본 정보를 나누고, 다른
+  사람들이 의견과 아이디어를 내도록 북돋우고, 앞으로 함께하고 싶은 사람들의 연락처를 받으세요.
+- **잘 알리세요.** 전단지에 날짜, 시간, 장소가 분명히 나와 있고, 무엇에 관한 모임인지 분명한지 확인하세요. 전단지,
+  포스터, 소셜 미디어 게시물, 동네 소식지가 모두 도움이 돼요.
+- **참여할 이유를 주세요.** 무료 다과, 영상이나 초청 연사, 학생 자원봉사자의 아이 돌봄이 있으면 사람들이 시간을 내어
+  오기 쉬워요.
+- **진행 순서를 생각하세요.** 환영과 소개, 누가 왜 모임을 열었는지 설명, 모임을 연 이유 간단히 소개, 공원을 만들어 본
+  사람에게 경험을 나눠 달라고 부탁하기 (짧게 하세요. 첫 모임이 강의가 되면 안 돼요), Jefferson의 Park in a Truck
+  팀에 연사를 부탁하기.
+- **사람들에게 말할 기회를 주세요.** 공원에 반대하는 사람이 있을 수도 있어요. 세부 사항에 얽매이지 말고, 사람들이
+  의견을 털어놓게 하면서 공원 후보지에 대한 합의를 이끌어 내세요.
+- **다음에 무엇을 할지 말하세요.** 나온 아이디어를 정리하고, 모임이 작다면 실제로 무엇을 할지, 누가 할지까지 정하세요.
+- **사회를 보세요.** 누가 사회를 볼지 미리 정하세요. 사회자는 모임이 주제에서 벗어나지 않게 하고, 모두가 말할 기회를
+  갖게 하고, 반갑고 열린 분위기를 지켜요.
+- **회의록을 쓰세요.** 누가 회의록을 쓸지 모임 전에 정하세요 (사회자와 다른 사람으로). 회의록에는 정한 내용과 누가
+  어떤 일을 맡기로 했는지 분명히 적어요.
+- **이름과 주소를 모으세요.** 계속 함께하고 싶은 사람들과 연락할 수 있도록 신청서를 미리 준비하세요.
+- **다음 모임을 계획하세요.** 이번 모임이 끝나기 전에 다음 모임의 날짜와 장소를 정하고, 사람들이 다시 올 수 있도록
+  알리세요.
+
+<Field id="organize.meeting-date" label="모임 날짜" type="date" />
+<Field id="organize.meeting-time" label="모임 시간" type="text" placeholder="예: 오후 6:30" />
+<Field id="organize.meeting-place" label="모임 장소" type="text" placeholder="주소나 장소 이름" />
+<Field id="organize.meeting-purpose" label="모임 목적" type="textarea" hint="하고 싶은 일, 그리고 이웃에게 부탁하는 것." />
+
+<MeetingFlyer />
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={5} label="모임 열기" />
+
+## 준비됐나요? {/* #are-you-ready */}
+
+공원 위원회를 골고루 잘 꾸렸는지 어떻게 알 수 있을까요? 아래 목록을 읽고, 위원회에서 그런 사람이나 역량을 찾을
+때마다 체크하세요. 조직하기에서 가장 중요한 것은 동네 공원에 필요한 모든 일을 해낼 수 있다는 것을 스스로 확인하는
+거예요. 모든 칸을 체크하면 모임이 다음 장으로 넘어갈 준비가 된 거예요.
+
+<Checklist
+  id="organize.readiness"
+  label="조직 준비 체크리스트"
+  items={[
+    { value: 'committee-formed', label: '공원 계획 전체를 이끌 헌신적인 이웃들로 위원회를 꾸렸나요?' },
+    { value: 'financial-standing', label: '부지 확보, 관리, 행사 같은 공원 관련 비용을 감당할 재정 여력이나 신용 한도가 있나요?' },
+    { value: 'fundraising', label: '공원을 꾸준히 재정적으로 지원하는 데 필요한 기금을 모을 수 있나요?' },
+    { value: 'community-engagement', label: '동네의 관심을 끌어내고, 행사와 그 밖의 주민 참여 활동을 꾸릴 수 있나요?' },
+    { value: 'skilled-trades', label: '공원을 만들고 관리하는 동안 지식을 나눠 줄, 목수, 석공, 그 밖의 기술자 같은 다양한 재능과 경험을 가진 사람들이 있나요?' },
+    { value: 'initial-meetings', label: '공원 후보지에 대한 지지와 합의를 이끌어 내기 위해 첫 모임과 주민 행사를 열었나요?' },
+    { value: 'social-media', label: '메시지, 공지 등을 올릴 온라인 페이지(Facebook, Instagram 등)를 만들고, 공원 프로젝트를 알리고 브랜드로 삼을 고유한 해시태그를 정했나요?' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={6} label="준비됐나요?" />

@@ -1,0 +1,571 @@
+{
+  "partners": [
+    {
+      "description": "PiaT와 함께 공원 디자인의 선택지를 넓혀요."
+    },
+    {
+      "description": "필라델피아시 도시계획위원회(Philadelphia City Planning Commission)의 교육·홍보 기관이에요. 도시 계획과 개발이 어떻게 이루어지는지 배우는 8주 과정을 운영해요."
+    },
+    {
+      "description": "첫 Park in a Truck 공원에 자금을 댄 지역 비영리 단체예요. (툴킷에 이 감사 문구에 걸린 링크는 사실 전국 토지은행 비영리 단체인 communityprogress.org로 연결돼요. 원본 PDF에서 링크와 설명이 어긋난 것으로 보여서, 확인될 때까지 여기에는 주소를 넣지 않았어요.)"
+    },
+    {
+      "description": "서필라델피아 지역을 담당하는 필라델피아 지역 부동산 중개업체예요."
+    },
+    {
+      "description": "그린 인프라 분야에서 PiaT와 협력해요. 빗물 홈통을 하수관에서 떼어 내거나 공원에 빗물 정원을 만들 때 도움을 받으려면 연락하세요."
+    },
+    {
+      "description": "도시 땅 보전을 이끄는 단체이자, 텃밭과 그 밖의 열린 공간을 위한 공동체 토지 신탁이에요."
+    },
+    {
+      "description": "지역사회 개발 법인 협력 단체예요 (Linktree \"PARTNERS\" 묶음). 지금은 사이트가 깨진 페이지를 보여 줘요. 봇 차단이 아니라 실제로 닫힌 것으로 확인됐어요."
+    },
+    {
+      "description": "후원 기관."
+    },
+    {
+      "description": "허가, 땅, 시 자료에 관한 협력 기관."
+    },
+    {
+      "description": "서식지와 식재 협력 기관."
+    },
+    {
+      "description": "이미 만든 여러 공원에서 서식지와 꽃가루 매개자 정원을 함께 만든 협력 기관."
+    },
+    {
+      "description": "후원 기관."
+    },
+    {
+      "description": "Playful Learning Landscapes 워크북의 협력 기관."
+    },
+    {
+      "description": "후원 기관."
+    },
+    {
+      "description": "빈 부동산을 바꾸는 데 쓰는 시의 도구예요."
+    }
+  ],
+  "press": [
+    {
+      "title": "Jefferson, Park in a Truck 프로그램으로 소외된 동네의 변화를 돕다 (영어)"
+    },
+    {
+      "title": "Park in a Truck, Fast Company 매거진의 '사회적 가치' 부문에서 인정받다 (영어)"
+    },
+    {
+      "title": "Park in a Truck, Green Building United의 2020 Groundbreaker Award 수상 (영어)"
+    },
+    {
+      "title": "'Park in a Truck'은 동네 공원을 만드는 이케아 같아요 (영어)"
+    },
+    {
+      "title": "필라델피아 동네의 공터가 아름다운 공원으로 바뀌다 (영어)"
+    },
+    {
+      "title": "Park in a Truck 프로그램, 동네 청소년들과 함께 필라델피아 도시 녹지를 바꾸다 (영어)"
+    },
+    {
+      "title": "ASLA 스포트라이트 — 2025년 봄 (영어)"
+    },
+    {
+      "title": "Park in a Truck (영어)"
+    },
+    {
+      "title": "공원 하나씩 동네를 바꾸다 — 지역사회가, 지역사회를 위해 만든 공원 (영어)"
+    },
+    {
+      "title": "Jefferson Park in a Truck 조립 설명 #1 (영어)"
+    },
+    {
+      "title": "Jefferson Park in a Truck 조립 설명 #2 (영어)"
+    }
+  ],
+  "supplierGroups": [
+    {
+      "label": "공구 대여",
+      "items": [
+        {
+          "note": "손 공구를 빌려줘요. Philadelphia Orchard Project와 협력하고, 기술 강좌도 열어요.",
+          "title": "West Philadelphia Tool Library"
+        },
+        {
+          "title": "Diamond Tool (전동 공구 대여)",
+          "note": "White Cap에 합쳐진 것으로 보여요. 자동 확인을 막아요."
+        },
+        {
+          "note": "PiaT가 이 Darby, PA 대여점의 주소로 올렸던 두 도메인(okrentalsaleservice.com, okrental1.com) 모두 이제 열리지 않아요.",
+          "title": "OK Rental Sales & Service"
+        }
+      ]
+    },
+    {
+      "label": "폐기물과 재활용",
+      "items": [
+        {
+          "note": "3850 W Ford Rd — 퇴비, 나무 칩, 멀칭재, 거름을 아주 싼 값에 구할 수 있어요.",
+          "title": "Fairmount Park Organic Recycling Center"
+        },
+        {
+          "title": "Richard S. Burns & Co. (재활용 자재)",
+          "note": "4300 Rising Sun Ave — 폐기물 처리장, 재활용 제품도 팔아요."
+        }
+      ]
+    },
+    {
+      "label": "묘목장과 식물",
+      "items": [
+        {
+          "title": "LandHealth Institute Nursery (Philaflora)"
+        },
+        {
+          "note": "꽃가루 매개자 식물을 전문으로 하는 지역 업체예요.",
+          "title": "Good Host Plants"
+        },
+        {
+          "note": "품질 좋은 관상용 식물과 자생 식물 품종. NJ에 있고, $1,250 이상 주문하면 배달해요.",
+          "title": "Pleasant Run Nursery"
+        },
+        {
+          "note": "이 지역 생태권의 복원용 묘목. 자동 확인에는 이상한 응답을 보내지만, 운영 중일 가능성이 아주 높아요.",
+          "title": "Pinelands Nursery"
+        },
+        {
+          "note": "이 지역 생태권의 복원용 묘목.",
+          "title": "Archewild"
+        },
+        {
+          "title": "North Creek Nurseries"
+        },
+        {
+          "note": "사이트의 TLS 인증서가 지금 만료됐어요. 브라우저 경고가 뜰 수 있어요.",
+          "title": "Gardens Alive"
+        },
+        {
+          "title": "Burpee — 과일나무"
+        },
+        {
+          "title": "Stark Bro's — 과일나무"
+        },
+        {
+          "title": "Gurney's — 과일과 베리"
+        },
+        {
+          "title": "Willis Orchards — 과일나무"
+        },
+        {
+          "title": "PHS Gold Medal Plants"
+        },
+        {
+          "title": "Philly Orchard Project — 자료"
+        }
+      ]
+    },
+    {
+      "label": "목재와 건축 자재",
+      "items": [
+        {
+          "note": "4260 Macalester St — 조경 자재, 멀칭재, 공구.",
+          "title": "D&S Supply"
+        },
+        {
+          "note": "701 Washington St, Conshohocken — 겉흙, 멀칭재, 퇴비.",
+          "title": "Underdog Landscape Supply"
+        },
+        {
+          "title": "Mid Atlantic Pine Straw"
+        },
+        {
+          "note": "4701 Woodland Ave, Phila.",
+          "title": "Woodland Building Supply"
+        },
+        {
+          "note": "1601 S 49th St, Phila.",
+          "title": "C&R Building Supply"
+        },
+        {
+          "note": "사이프러스 목재 공급, Avondale PA.",
+          "title": "A&A Lumber"
+        },
+        {
+          "title": "Delaware County Supply"
+        },
+        {
+          "note": "3301 S 61st St — 부순 돌, 겉흙, 배달 가능.",
+          "title": "Castor Materials"
+        },
+        {
+          "title": "Rockler — 야외 작업에 가장 좋은 마감재 고르기"
+        },
+        {
+          "title": "Real Milk Paint (RMP Finishes) — 야외 목재에 가장 좋은 마감재"
+        },
+        {
+          "title": "Vermont Natural Coatings — 외부용 마감재"
+        },
+        {
+          "title": "Hairpin Legs — 침대 브래킷/등받이 철물"
+        }
+      ]
+    },
+    {
+      "label": "돌망태와 돌",
+      "items": [
+        {
+          "title": "Gabion1.com"
+        },
+        {
+          "note": "자동 확인을 막아요. 도메인은 등록되어 있고 운영 중이에요.",
+          "title": "Darby Wire Mesh"
+        },
+        {
+          "title": "돌망태 벽 만드는 법 (Gardendrum)"
+        }
+      ]
+    },
+    {
+      "label": "따라 하기 영상",
+      "items": [
+        {
+          "title": "나무 가지치기하는 법"
+        },
+        {
+          "title": "나무 심는 법"
+        },
+        {
+          "title": "관목 심는 법"
+        },
+        {
+          "title": "나무 테두리"
+        },
+        {
+          "title": "돌망태 벽 만들기"
+        },
+        {
+          "title": "함께 쓰는 식탁 만들기"
+        },
+        {
+          "title": "냉상 만들기"
+        },
+        {
+          "title": "높임 화단 만들기"
+        },
+        {
+          "title": "전문가처럼 가지치기하기"
+        },
+        {
+          "title": "물 주기와 빗물 안내"
+        }
+      ]
+    },
+    {
+      "label": "배움 자료",
+      "items": [
+        {
+          "title": "Penn State Extension — 흙 검사"
+        },
+        {
+          "title": "Penn State Extension — 흙 비옥도 검사 신청서"
+        },
+        {
+          "title": "Penn State Extension — 병해충"
+        },
+        {
+          "title": "Penn State Extension — Master Gardener 프로그램"
+        },
+        {
+          "title": "Missouri Botanical Garden — Plant Finder(식물 검색)"
+        },
+        {
+          "title": "Arbor Day Foundation"
+        },
+        {
+          "title": "Arbor Day — 화분에 든 나무 심는 법"
+        },
+        {
+          "title": "Arbor Day — 과일나무"
+        },
+        {
+          "title": "Pennsylvania Horticultural Society(펜실베이니아 원예협회, PHS)",
+          "note": "워크숍, 공동체 텃밭 정보, 빗물 통(Rain Barrel) 프로그램."
+        },
+        {
+          "note": "부지를 얻고 지키는 데 필요한 법률 지원, 자료, 안내서.",
+          "title": "Grounded in Philly"
+        },
+        {
+          "title": "Philly Orchard Project"
+        },
+        {
+          "note": "땅과 먹거리를 지역사회가 직접 관리하도록 흑인과 유색인이 이끄는 연합.",
+          "title": "Soil Generation"
+        },
+        {
+          "title": "Park Advocate Handbook(공원 옹호자 안내서, NRPA)"
+        },
+        {
+          "title": "The PHS City Parks Handbook(PHS 도시 공원 안내서, Temple University Press)"
+        },
+        {
+          "title": "Vacant Lot Activation Toolkit(공터 활용 툴킷, Trust South LA)"
+        },
+        {
+          "title": "Green2015: 첫 500에이커를 위한 실행 계획",
+          "note": "PennPraxis가 Philadelphia Parks & Recreation을 위해 만든 계획."
+        },
+        {
+          "title": "PlantSnap (식물·잡초 구별 앱)"
+        },
+        {
+          "title": "Gardener's Path — 강우량계 쓰는 법"
+        },
+        {
+          "title": "멀칭재 까는 법 (SKH)"
+        },
+        {
+          "title": "식초로 만든 제초제 (제품 예시)",
+          "note": "이 제품에 대해 찾은 유일한 출처예요. 특정 제품을 권하려는 뜻 없이 링크했어요."
+        }
+      ]
+    },
+    {
+      "label": "필라델피아시 프로그램",
+      "items": [
+        {
+          "title": "Atlas Philadelphia (부동산 조회)"
+        },
+        {
+          "title": "필라델피아 필지 소유 지도 (ArcGIS)"
+        },
+        {
+          "title": "등록 지역 단체(RCO)"
+        },
+        {
+          "title": "임시 주차 금지 허가"
+        },
+        {
+          "title": "Green City, Clean Waters — 빗물·빗물 정원 지원금"
+        }
+      ]
+    }
+  ],
+  "toolkitLibrary": {
+    "intro": "툴킷 자료실에 오신 것을 환영해요! 아래에 더 알아볼 수 있는 자료와 링크를 장별로 모아 두었어요.",
+    "sections": [
+      {
+        "title": "소개",
+        "entries": [
+          {
+            "title": "가난을 줄이려면 시의회는 녹지를 늘려야 한다 (The Inquirer, 영어)"
+          },
+          {
+            "title": "빈 부지 하나씩, 건강과 녹지를 늘려 가자 (The Inquirer, 영어)"
+          },
+          {
+            "title": "Gangsta Gardener — Ron Finley"
+          },
+          {
+            "title": "벌과 꽃과 그 밖의 것들: 흑인 여성 정원사들이 코로나19 위기를 이겨 내는 법 (Essence, 영어)"
+          },
+          {
+            "title": "Black Girls with Gardens"
+          },
+          {
+            "title": "Farming While Black — Leah Penniman"
+          }
+        ]
+      },
+      {
+        "title": "01 확보하기",
+        "entries": [
+          {
+            "title": "The PHS City Parks Handbook ($13.95, 영어)"
+          },
+          {
+            "title": "Park Advocate Handbook (무료, 영어)"
+          },
+          {
+            "title": "Atlas Philadelphia"
+          },
+          {
+            "title": "Citizens Planning Institute"
+          },
+          {
+            "title": "Green2015: 첫 500에이커를 위한 실행 계획 (영어)"
+          },
+          {
+            "title": "Grounded in Philly"
+          },
+          {
+            "title": "Neighborhood Gardens Trust"
+          },
+          {
+            "title": "Soil Generation"
+          }
+        ]
+      },
+      {
+        "title": "02 조직하기",
+        "entries": [
+          {
+            "title": "The PHS City Parks Handbook"
+          },
+          {
+            "title": "Vacant Lot Activation Toolkit(공터 활용 툴킷, Free Lots Angeles, 영어)"
+          }
+        ]
+      },
+      {
+        "title": "03 조사하기",
+        "entries": [
+          {
+            "title": "Penn State Extension — 흙 검사 (영어)"
+          }
+        ]
+      },
+      {
+        "title": "04 꿈꾸기",
+        "entries": [
+          {
+            "title": "Gardens Alive"
+          },
+          {
+            "title": "North Creek Nurseries"
+          },
+          {
+            "title": "Missouri Botanical Garden Plant Finder(식물 검색, 영어)"
+          },
+          {
+            "title": "Longwood Gardens 식물 검색 (영어)"
+          },
+          {
+            "title": "Arbor Day Foundation"
+          },
+          {
+            "title": "Penn State Master Gardeners — 필라델피아 식재 안내 (영어)"
+          }
+        ]
+      },
+      {
+        "title": "05 만들기",
+        "entries": [
+          {
+            "title": "Woodland Building Supply"
+          },
+          {
+            "title": "C&R Building Supply"
+          },
+          {
+            "title": "A&A Lumber"
+          },
+          {
+            "title": "Philly Reclaim"
+          },
+          {
+            "title": "PowerCorpsPHL"
+          },
+          {
+            "title": "Burpee — 과일나무"
+          },
+          {
+            "title": "Stark Bro's — 과일나무"
+          },
+          {
+            "title": "Gurney's — 과일과 베리"
+          },
+          {
+            "title": "Willis Orchards — 과일나무"
+          },
+          {
+            "title": "Good Host Plants"
+          },
+          {
+            "title": "LandHealth Institute Nursery (Philaflora)"
+          },
+          {
+            "title": "Pleasant Run Nursery"
+          },
+          {
+            "title": "Pinelands Nursery"
+          },
+          {
+            "title": "Archewild"
+          },
+          {
+            "title": "Underdog Landscape Supply"
+          },
+          {
+            "title": "Castor Materials"
+          },
+          {
+            "title": "D&S Supply"
+          },
+          {
+            "title": "Richard S. Burns & Co."
+          },
+          {
+            "title": "West Philadelphia Tool Library"
+          },
+          {
+            "title": "Diamond Tool"
+          },
+          {
+            "title": "Fairmount Park Organic Recycling Center"
+          }
+        ]
+      },
+      {
+        "title": "06 가꾸기",
+        "entries": [
+          {
+            "title": "Pennsylvania Horticultural Society"
+          },
+          {
+            "title": "Grounded in Philly"
+          },
+          {
+            "title": "Greensgrow"
+          },
+          {
+            "title": "Brandywine Conservancy — 침입 식물 (영어)"
+          },
+          {
+            "title": "화분에 든 나무 심는 법 (Arbor Day, 영어)"
+          },
+          {
+            "title": "관목 심는 법 (영상, 영어)"
+          },
+          {
+            "title": "나무 가지치기하는 법 (영상, 영어)"
+          },
+          {
+            "title": "관목 가지치기하는 법 (Gardeners' World, 영어)"
+          },
+          {
+            "title": "Arbor Day Foundation — 과일나무 (영어)"
+          },
+          {
+            "title": "Philadelphia Orchard Project"
+          },
+          {
+            "title": "퇴비 만들기 기초 (영상, 영어)"
+          },
+          {
+            "title": "비료 주기 (Penn State Extension, 영어)"
+          },
+          {
+            "title": "정원에 멀칭재 까는 법 (Good Housekeeping, 영어)"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgments": {
+    "lead": "Thomas Jefferson University 조경학 프로그램 + 사회·도시 혁신 연구소(Lab for Social and Urban Innovation)",
+    "note": "이 사이트는 Park in a Truck / Thomas Jefferson University의 허락을 받아, Park in a Truck의 툴킷, 워크북, 식물 목록을 단계별 대화형 버전으로 바꾼 것이에요. 원래의 글, 그림, 사진은 모두 그들의 것이에요."
+  },
+  "legal": {
+    "title": "법적 고지",
+    "text": "이 자료에 담긴 권고 사항은 제작과 시공의 표준 관행에 바탕을 두고 있습니다. Thomas Jefferson University(TJU), TJU의 Lab For Social Innovation, Park-in-a-Truck 및/또는 그 교수진, 직원, 관계자는 어떠한 경우에도 이 권고 사항의 사용으로 인해 발생하는 신체 손상이나 재산 피해를 포함한 어떠한 손해에 대해서도 책임을 지지 않습니다. Thomas Jefferson University(TJU), TJU의 Lab For Social Innovation, Park-in-a-Truck 또는 그 교수진, 직원 및/또는 관계자는 명시적이든 묵시적이든 어떠한 보증도 하지 않으며, 상품성, 특정 목적에의 적합성, 지식재산권 비침해 또는 그 밖의 권리 침해에 관한 묵시적 보증이나 조건을 비롯한(이에 한정되지 않음) 다른 모든 보증을 부인하고 배제합니다. 또한 Thomas Jefferson University(TJU), TJU의 Lab For Social Innovation, Park-in-a-Truck 및/또는 그 교수진, 직원, 관계자는 이 권고 사항 사용의 정확성, 예상되는 결과 또는 신뢰성에 관하여 보증하거나 진술하지 않습니다. 이 권고 사항을 사용하는 것은 위 내용을 인정하는 것으로 봅니다."
+  }
+}

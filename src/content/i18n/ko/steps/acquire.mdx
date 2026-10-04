@@ -1,0 +1,234 @@
+---
+title: 확보하기
+intro: 동네에서 부지를 찾고, 그곳을 공원으로 바꿀 법적 권리를 얻어요.
+sources:
+  - 툴킷 24–27쪽 (부지 찾기, 어떤 부지?, 부지 소유자 확인하기)
+  - 확보하기 워크북 1–7쪽
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Choice from '../../../../components/workbook/Choice.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import LotLookup from '../../../../components/widgets/LotLookup.astro';
+import LotFinderMap from '../../../../components/widgets/LotFinderMap.astro';
+
+공터를 쓸 법적 권리가 아직 없는 공원 만드는 사람들은, 계획한 공원을 위해 부지를 팔거나 빌려줄 사람을 찾아야
+해요. 이 일은 복잡하고 시간이 오래 걸릴 수 있어요. 완벽한 과정도, 정해진 한 가지 방법도, 보장된 결과도 없어요.
+이 단계는 앞으로 공원이 될 땅을 확보할 방법을 찾도록 도와줘요.
+
+## 부지 찾기 {/* #find-a-lot */}
+
+큰 도시 공원은 도시의 주민과 방문객에게 사회적, 생태적, 경제적으로 많은 이점을 줘요. 하지만 공원에 가기 쉽지
+않으면 어쩌다 한 번 찾게 될 수도 있어요. 모든 사람에게 자동차나 편한 대중교통이 있는 것도 아니고, 모두가 먼 거리를
+걷거나 자전거를 탈 수 있는 것도 아니니까요.
+
+그래서 작은 동네 공원으로 바꿀 가까운 부지나 공간을 찾는 것이 중요해요. 동네 공원은 큰 공원의 이점을 많이
+가지고 있으면서 **동시에** 가까워서 쉽게 갈 수 있어요. 동네 공원은 사람들이 많이 찾을수록 더 친숙해지고, 더 소중해져요.
+공원을 활발하게 쓰면 이런 공간이 동네의 공동체 의식을 키우는 "사회생활"의 꼭 필요한 중심지가 돼요!
+
+동네에 법적으로 쓸 수 있고, 안전하고, 공원으로 쓰기에 알맞은데 쓰이지 않는 땅이 있나요? 동네에서 공원이
+생겼으면 하는 후보 부지를 찾아볼 수 있나요?
+
+<Callout kind="auto" title="걷는 수고는 지도에 맡기세요">
+  아래 지도는 시가 공터로 분류한 부지를 보여 줘요. 부지를 누르면 소유자, 크기, 용도지역(zoning)이 보이고, 후보 목록에
+  넣을 수 있어요. 그래도 블록을 직접 걸어 보세요. 시 목록에는 빠진 부지도 있고, 이미 쓰이고 있는 부지가 들어 있기도
+  해요.
+</Callout>
+
+<LotFinderMap />
+
+<Figure
+  src="img/acquire/west-kensington-site.webp"
+  alt="필라델피아 West Kensington의 풀밭 공터. 풀을 깎았고 모서리에는 청록색 측량 깃발이 꽂혀 있어요. 뒤로 회반죽 벽, 산울타리, 주차된 차들이 보여요."
+  caption="West Kensington PiaT 공원 부지, 공사 전"
+  duo
+/>
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={3} />
+
+## 어떤 부지? {/* #which-lot */}
+
+동네 공원이 될 수 있는 세 가지 종류의 장소를 살펴보세요. 동네를 걸으며 제대로 쓰이지 않는 땅 가운데 공원이 될 수
+있는 곳을 적어 두세요.
+
+<div class="lot-types">
+  <div>
+    <Figure
+      src="img/acquire/lot-midblock.webp"
+      alt="블록 중간 공터의 입체 그림: 주택가 블록의 연립주택 두 채 사이에 있는 좁은 직사각형 빈 땅이 초록색으로 칠해져 있고 나무가 한 그루 있어요."
+    />
+    <p class="lot-caption">
+      <strong>블록 중간 부지 (공터).</strong> 직사각형이고 주택가 블록 한가운데에 있어요. 양옆이나 뒤쪽에 건물이 있을
+      수 있어요. 필라델피아에서 이용할 수 있는 "공터"는 대부분 이 종류예요. 폭이 좁거나 햇빛이 부족해서 공원 용도에
+      따라 제약이 있을 수 있어요.
+    </p>
+  </div>
+  <div>
+    <Figure
+      src="img/acquire/lot-corner.webp"
+      alt="모퉁이 공터의 입체 그림: 주택가 블록 끝에서 두 도로를 마주한 직사각형 빈 땅이 초록색으로 칠해져 있고 나무가 한 그루 있어요."
+    />
+    <p class="lot-caption">
+      <strong>모퉁이 부지 (공터).</strong> 직사각형이고 주택가 블록 끝에 있어요. 옆이나 뒤쪽에 건물이 있을 수 있어요.
+      눈에 잘 띄고, 햇빛이 가장 잘 드는 경우가 많아요.
+    </p>
+  </div>
+  <div>
+    <Figure
+      src="img/acquire/lot-alley.webp"
+      alt="건물 사이 통로나 골목(통행 지역권)의 입체 그림: 연립주택 사이를 가로지르는 길고 아주 좁은 초록색 빈 땅이 블록을 가로질러 이어져 있어요."
+    />
+    <p class="lot-caption">
+      <strong>건물 사이 통로 / 골목 (통행 지역권).</strong> 길고 아주 좁은 모양으로 알아볼 수 있고, 블록을 "가로질러"
+      잇는 경우가 많아요. 원래 도로와 도로 사이를 걸어서 오가는 길이나 공공시설 통행 지역권으로 떼어 둔 땅이에요.
+    </p>
+  </div>
+</div>
+
+후보 부지마다 주소를 적어 두세요. 주소를 조회하면 이 사이트가 소유자, 크기, 부지 종류를 채워 줘요.
+
+<LotLookup mode="candidates" />
+
+<ListField
+  id="acquire.candidate-notes"
+  label="동네를 걸으며 적은 메모"
+  rowName="부지"
+  min={3}
+  columns={[
+    { key: 'address', label: '주소나 위치' },
+    { key: 'type', label: '부지 종류', placeholder: '블록 중간, 모퉁이, 골목' },
+    { key: 'notes', label: '눈여겨본 점', placeholder: '쓰레기, 햇빛, 이웃, 쓰임새…' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={3} />
+
+## 이 부지의 주인은 누구일까요? {/* #who-owns-that-lot */}
+
+새 동네 공원이 될 만한, 제대로 쓰이지 않는 땅을 몇 곳 찾았다면, 다음 단계는 그 땅의 주인이 누구인지 알아내는
+거예요. 주인은 개인, 기업, 비영리 단체일 수 있어요. 시일 수도 있어요. 부지의 주인을 가장 확실하게 알아보는 방법은
+필라델피아시 기록을 확인하는 거예요.
+
+이 흐름도는 부지의 주인을 알아내는 방법과, 그 땅을 동네 공원으로 쓸 법적 권리, 즉 "사용 권리"를 얻기 위해 밟을
+수 있는 단계를 보여 줘요.
+
+{/* site-added: the workbook's flowchart reproduced as HTML (not an image of text), steps 1–4 then the public/private branch. */}
+<ol class="flow-steps">
+  <li>
+    <span class="flow-num">1</span>
+    <div><strong>주소 확인.</strong> 적어 둔 후보 부지의 도로명 주소가 맞는지 확인하세요.</div>
+  </li>
+  <li>
+    <span class="flow-num">2</span>
+    <div><strong>부동산 검색.</strong> <a href="https://atlas.phila.gov/" target="_blank" rel="noopener">atlas.phila.gov</a>(영어)에 가서 도로명 주소를 입력하세요. 지도에서 근처 도로를 확대해서 부지를 찾을 수도 있어요.</div>
+  </li>
+  <li>
+    <span class="flow-num">3</span>
+    <div><strong>소유자 확인.</strong> 웹사이트의 "Property Assessment"(부동산 평가) 부분에서 부동산의 소유자를 보세요.</div>
+  </li>
+</ol>
+
+<div class="owner-branch">
+  <div class="owner-branch-col">
+    <h4>4a. 소유자가… 필라델피아시 <span class="muted">(공공 소유)</span></h4>
+    <p>
+      <strong>매입 가능성.</strong> 부동산 검색으로 Philadelphia Housing Development Corporation(PHDC,
+      필라델피아 주택개발공사)과 Philadelphia Land Bank(공공 토지를 팔거나 임대하는 시 기관)를 통해 이 공공 땅을 살 수
+      있는지 알아보세요.
+    </p>
+  </div>
+  <div class="owner-branch-col">
+    <h4>4b. 소유자가… 개인, 단체 또는 기업 <span class="muted">(민간 소유)</span></h4>
+    <ul>
+      <li><strong>기부 가능성.</strong> 땅 주인에게 연락해 부동산을 영구 기부할 수 있는지 문의하세요.</li>
+      <li><strong>매각 가능성.</strong> 공개 매각 공고나 경매를 지켜보세요. 필라델피아에서는 보안관 경매(Sheriff Sale)도 들어갈 수 있어요.</li>
+      <li><strong>매매 협약 협상.</strong> 땅 주인에게 연락해 동네가 쓸 수 있도록 매매를 협상하세요.</li>
+      <li><strong>무상 사용 협약.</strong> 소유권은 주인이 그대로 가지면서 동네가 부지를 "무상 사용(in-kind)"하게 해 주는 것에 대해 이야기해 보세요.</li>
+    </ul>
+  </div>
+</div>
+
+<Callout kind="auto" title="1–3단계는 자동으로 해 드려요">
+  확보하려는 부지를 고르세요. 이 사이트가 시의 주소와 부동산 기록(atlas.phila.gov가 보여 주는 것과 같은 자료)을
+  확인하고, 아래에 소유자를 채워 줘요.
+</Callout>
+
+<LotLookup mode="primary" />
+
+<Field id="acquire.address" label="내 부지의 도로명 주소" auto="lot.address" />
+<Field id="acquire.owner" label="소유자 이름" auto="lot.owners|owners" />
+<Field id="acquire.owner-type" label="소유자는…" auto="lot.ownerType|ownerType" />
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={4} />
+
+## 시가 소유한 경우 {/* #if-the-city-owns-it */}
+
+**매입 가능성.** 필라델피아의 공공 소유 땅은 Philadelphia Housing Development Corporation(PHDC)과 Philadelphia
+Land Bank를 통해 팔거나 임대해요. 부동산 검색으로 이 공공 땅을 살 수 있는지 알아보세요.
+
+<p><a class="btn" href="https://phillylandbank.org/community-use-map/" target="_blank" rel="noopener">Land Bank 지역사회 이용 지도 검색하기 (영어) ↗</a></p>
+
+{/* site-added: the workbook's PHDC link (phdcphila.org/land/buy-land/property-search-map/) is dead; PHDC's search now lives on the Land Bank site. */}
+<p class="muted" style="font-size:0.9rem">워크북에 있던 PHDC 검색 페이지는 옮겨졌어요. 이제 PHDC와 Philadelphia Land Bank가 이 지도를 함께 써요. 색칠된 부지는 이용할 수 있는 곳이고, 텃밭과 열린 공간에는 지역사회 이용(Community Use) 지도를 써요.</p>
+
+<Checklist
+  id="acquire.public-steps"
+  items={[
+    { value: 'searched-phdc', label: 'PHDC 부동산 검색 지도에서 부지를 찾아봤어요' },
+    { value: 'contacted-phdc', label: 'PHDC / Land Bank에 공원용으로 사거나 빌리는 것에 대해 연락했어요' },
+  ]}
+/>
+
+<Field id="acquire.public-notes" label="받은 답변" type="textarea" />
+
+## 다른 사람이 소유한 경우 {/* #if-someone-else-owns-it */}
+
+소유자가 개인, 단체 또는 기업이라면 네 가지 방법이 있어요.
+
+- **기부 가능성.** 땅 주인에게 연락해 이 부동산을 공원으로 쓰도록 동네에 영구 기부할 수 있는지 문의하세요.
+- **매각 가능성.** 이 부동산의 공개 매각 공고나 경매를 지켜보세요. 필라델피아에서는 보안관 경매(Sheriff Sale)도
+  여기에 들어갈 수 있어요.
+- **매매 협약 협상.** 땅 주인에게 연락해, 제대로 쓰이지 않는 이 부동산을 동네가 쓸 수 있도록 매매를 협상하세요.
+- **무상 사용 협약.** 땅 주인에게 연락해, 소유권은 주인이 그대로 가지면서 동네가 이 부지를 공원으로 "무상
+  사용(in-kind)"할 수 있게 해 주면 서로에게 어떤 이익이 있는지 이야기해 보세요.
+
+<Choice
+  id="acquire.private-path"
+  label="어떤 방법을 먼저 해 볼까요?"
+  options={[
+    { value: 'donation', label: '기부', desc: '땅 주인이 동네에 부지를 내줘요' },
+    { value: 'sale', label: '공개 매각 / 보안관 경매', desc: '매각 공고와 경매를 지켜봐요' },
+    { value: 'purchase', label: '매매 협약', desc: '땅 주인과 매매를 협상해요' },
+    { value: 'in-kind', label: '무상 사용 협약', desc: '땅 주인은 부지를 그대로 갖고, 이웃은 공원으로 써요' },
+  ]}
+/>
+
+<ListField
+  id="acquire.owner-contacts"
+  label="연락 기록"
+  rowName="연락"
+  min={2}
+  columns={[
+    { key: 'date', label: '날짜', type: 'date' },
+    { key: 'who', label: '연락한 사람' },
+    { key: 'outcome', label: '결과 / 다음 할 일' },
+  ]}
+/>
+
+<Callout kind="contact">
+  막혔나요? Park in a Truck 팀이 어떤 방법이 있는지 함께 생각해 드릴 수 있어요:
+  [ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu).
+</Callout>
+
+{/* site-added: a place to record the outcome; no new advice. */}
+## 부지 확정하기 {/* #secure-your-lot */}
+
+여러분의 모임이 이곳에 공원을 만들 권리를 주는 협약을 기록하세요. 사본을 위원회 기록과 함께 보관하세요. 만들기
+단계에서 땅을 파기 전에 꼭 필요해요.
+
+<Field id="acquire.agreement" label="협약 종류" type="select" options={[{ value: 'Purchase', label: '매입' }, { value: 'Donation', label: '기부' }, { value: 'Lease', label: '임대' }, { value: 'In-kind use agreement', label: '무상 사용 협약' }, { value: 'Other', label: '기타' }]} />
+<Field id="acquire.agreement-date" label="서명한 날짜" type="date" />
+<Field id="acquire.agreement-notes" label="기억해 둘 조건" type="textarea" hint="협약 기간, 부지를 누가 관리하는지, 보험, 갱신 날짜…" />
