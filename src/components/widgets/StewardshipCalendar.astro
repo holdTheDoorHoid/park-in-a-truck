@@ -1,8 +1,13 @@
 ---
-// STUB — owned by the content-b workstream, which replaces this file.
-// Content may already place <StewardshipCalendar /> in chapters; keep the props optional.
+// Seasonal stewardship checklist: the Sustain workbook's annual workplan as a month-by-month
+// list, current month highlighted, with a yearly-recurring .ics export. Logic lives in
+// src/components/schedule/ (pure, unit-tested); this just mounts the Preact island.
+// Owner: content-b.
+//
+// client:only="preact" (not client:visible): this island's first render depends on the
+// saved project (localStorage via src/lib/project.ts), which does not exist during SSR, so
+// SSR and client would otherwise render different content and mismatch on hydration.
+import StewardshipCalendarIsland from '../schedule/StewardshipCalendarIsland';
 interface Props { [key: string]: unknown }
 ---
-<div class="widget-placeholder" data-widget="StewardshipCalendar">
-  <strong>StewardshipCalendar</strong> — Seasonal care tasks for your park, exportable to your calendar.
-</div>
+<StewardshipCalendarIsland client:only="preact" />

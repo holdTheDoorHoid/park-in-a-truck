@@ -1,0 +1,214 @@
+---
+// Park Patch (Pollinator Planting Patch Workbook) — a guided page for small spaces: a 4x4
+// plot, a front yard, a window box. Not one of the six steps, so it isn't in src/content/steps
+// and doesn't count toward the six-step progress bar, but it uses the same components and the
+// same .substep/done-toggle markup (by hand, matching src/lib/rehype-substeps.mjs) so answers
+// and "mark done" still save through the normal bind.ts script. Fields are prefixed `patch.`.
+import Base from '../../layouts/Base.astro';
+import Field from '../../components/workbook/Field.astro';
+import Choice from '../../components/workbook/Choice.astro';
+import Checklist from '../../components/workbook/Checklist.astro';
+import Callout from '../../components/workbook/Callout.astro';
+import Figure from '../../components/workbook/Figure.astro';
+import PdfPage from '../../components/workbook/PdfPage.astro';
+import Download from '../../components/workbook/Download.astro';
+import { u } from '../../lib/url';
+
+const PALETTES = [
+  {
+    id: 'grasses-wildflowers',
+    name: 'Grasses & wildflowers',
+    img: 'palette-grasses-wildflowers',
+    good: 'Smaller spaces, promoting biodiversity and supporting pollinators',
+    why: [
+      'Unobstructed views — generally under 3 feet tall, so sightlines stay open.',
+      'A water-wise alternative to lawn: less water, fertilizer and mowing.',
+      'A pollinator buffet of pollen, nectar and seeds.',
+      'Thrives in full sun.',
+      'Season-long color.',
+    ],
+  },
+  {
+    id: 'grasses-shrubs',
+    name: 'Grasses, wildflowers + shrubs',
+    img: 'palette-grasses-shrubs',
+    good: 'Screening an eyesore and adding structure, with less upkeep than grasses and wildflowers alone',
+    why: [
+      'Screens unsightly views.',
+      'More shelter and five-star dining for pollinators.',
+      'Adds structure and a bit more height — most shrubs stay under 4 feet.',
+      'Lower-maintenance than grasses and wildflowers alone; a light pruning in year 3–4 keeps things tidy.',
+    ],
+  },
+  {
+    id: 'grasses-shrubs-trees',
+    name: 'Grasses, wildflowers, shrubs + trees',
+    img: 'palette-grasses-shrubs-trees',
+    good: 'A full habitat with the most year-round resilience',
+    why: [
+      'Creates a full-on habitat and a cozy home for wildlife.',
+      'Amps up the planting’s overall resilience.',
+      'A lively, year-round private sanctuary.',
+    ],
+  },
+  {
+    id: 'grasses-trees',
+    name: 'Grasses, wildflowers + trees',
+    img: 'palette-grasses-trees',
+    good: 'A little shade with open sightlines underneath',
+    why: [
+      'Native trees bring local elegance suited to your region.',
+      'Better air quality — trees absorb pollutants and release oxygen.',
+      'Habitat and food for local wildlife.',
+      'Carbon sequestration.',
+      'A little shade with a planted carpet underneath, while keeping visibility across the whole site open.',
+    ],
+  },
+];
+---
+<Base title="Park Patch" description="Size doesn't matter — turn a 4x4 plot, a front yard or a window box into a pollinator planting with the Park Patch workbook.">
+  <header class="chapter-head">
+    <div class="wrap">
+      <div class="head-row">
+        <h1 class="ruled">Park Patch</h1>
+        <span class="big-num" aria-hidden="true">🌼</span>
+      </div>
+      <p class="lede">
+        Don't have a vacant lot? Size doesn't matter. The Pollinator Planting Patch workbook turns any space — a 4×4
+        plot, a front yard, even a window box — into a native pollinator planting, using the same kind of
+        step-by-step guide as the full park.
+      </p>
+      <div class="head-actions no-print">
+        <a class="btn btn-small" href={u('downloads/park-patch-workbook.pdf')} target="_blank" rel="noopener">📄 Original workbook (PDF)</a>
+        <button class="btn btn-small" type="button" onclick="window.print()">🖨 Print my answers</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap chapter">
+    <article class="prose chapter-body">
+      <p>
+        Planting native plants for pollinators brings a host of benefits: it improves soil health and prevents
+        erosion, supports local wildlife with food and shelter, offers unique beauty, thrives in your local climate
+        with less water and fewer chemicals, and helps your neighborhood's ecology stay resilient to a changing
+        climate — all while needing less maintenance than a typical bed.
+      </p>
+
+      <section class="substep" id="your-planting-area" data-substep="park-patch/your-planting-area">
+        <h2 id="your-planting-area-title">Your planting area</h2>
+        <p>
+          Assess the area you want to plant using your Base Plan from Assess, or — if you don't have one — estimate
+          the square footage you want to dedicate to planting.
+        </p>
+        <Field id="patch.length" label="How long is your patch?" type="number" unit="ft" />
+        <Field id="patch.width" label="How wide is your patch?" type="number" unit="ft" />
+        <Field id="patch.sun-area" label="How long and wide is your area in sun?" />
+        <Field id="patch.shade-area" label="How long and wide is your area in shade?" />
+        <Figure
+          src="img/park-patch/patch-existing-conditions.webp"
+          alt="Grid diagram of a patch marked with existing conditions — a neighbor's house and downspout, a maple tree, a periodically wet area, a dogwood and crabapple tree, overhead utility lines and a fire hydrant — with pollinator planting areas marked in sun and in shade"
+        />
+        <PdfPage doc="downloads/park-patch-workbook.pdf" page={4} />
+        <div class="substep-done" data-done="park-patch/your-planting-area"></div>
+      </section>
+
+      <section class="substep" id="choose-a-palette" data-substep="park-patch/choose-a-palette">
+        <h2 id="choose-a-palette-title">Choose a planting palette</h2>
+        <p>
+          Whether you're dreaming of a cozy corner of grasses and wildflowers, or a lush space with shrubs and
+          trees, pick the palette that best suits you and your site. (The dotted line in each example shows 6 feet,
+          or eye level — useful if you want to block a view or keep it open.)
+        </p>
+        <Choice
+          id="patch.palette"
+          label="Which palette fits your space?"
+          options={PALETTES.map((p) => ({ value: p.id, label: p.name, desc: p.good }))}
+        />
+        {PALETTES.map((p) => (
+          <div class="palette-block">
+            <h3>{p.name}</h3>
+            <ul>{p.why.map((w) => <li>{w}</li>)}</ul>
+            <Figure src={`img/park-patch/${p.img}.webp`} alt={`Example planting plan for the ${p.name.toLowerCase()} palette, with planting spacing and grouping called out`} />
+          </div>
+        ))}
+        <Download href="https://docs.google.com/spreadsheets/d/16DxOfswL57wQZ0B8-4EzEFAO0IQ56LZw-rxQFQRwjcE/edit" label="Pollinator patch plant list" note="One spreadsheet, a tab per palette — make your own copy to edit it" />
+        <PdfPage doc="downloads/park-patch-workbook.pdf" page={5} />
+        <div class="substep-done" data-done="park-patch/choose-a-palette"></div>
+      </section>
+
+      <section class="substep" id="general-planting-notes" data-substep="park-patch/general-planting-notes">
+        <h2 id="general-planting-notes-title">General planting notes</h2>
+        <ul>
+          <li>Plant your grasses and wildflowers in groups, at a minimum of 4–5 in a group, in a triangle formation 24" apart.</li>
+          <li>Plant shrubs in a triangle formation 48" apart, in areas where you might want some shelter or to shield a view.</li>
+          <li>Plant trees in the middle of the bed, 15' apart.</li>
+          <li>After planting, add 3" of mulch to keep weeds at bay.</li>
+          <li>Add a sign to your plants so neighbors know what's growing (and what's a weed).</li>
+        </ul>
+        <Callout kind="tip">
+          [How to unearth plants ↗](https://www.youtube.com/watch?v=-5gk2yVAQtM) ·
+          [How to plant a tree ↗](https://www.youtube.com/watch?v=RypqSrLZVlw) ·
+          [How to deal with a root-bound tree ↗](https://www.youtube.com/watch?v=-5Wk_6fz4rc)
+        </Callout>
+        <PdfPage doc="downloads/park-patch-workbook.pdf" page={14} />
+        <div class="substep-done" data-done="park-patch/general-planting-notes"></div>
+      </section>
+
+      <section class="substep" id="maintenance" data-substep="park-patch/maintenance">
+        <h2 id="maintenance-title">Maintenance</h2>
+        <h3>First season</h3>
+        <ul>
+          <li>Water thoroughly: provide 1" of water weekly during the first season.</li>
+          <li>Weed identification: mark undesirable weeds with sticks and remove them.</li>
+        </ul>
+        <h3>Second season and on</h3>
+        <Checklist
+          id="patch.maintenance-ongoing"
+          items={[
+            { value: 'consult', label: 'Professional consultation', hint: 'Seek advice 2–3 times a year from a gardener or the PiaT team' },
+            { value: 'expand', label: 'Habitat expansion', hint: 'Add plants as needed and share extras with the community' },
+            { value: 'arborist', label: 'Winter arborist', hint: 'Hire an arborist in winter to prune shrubs and trees with the community' },
+            { value: 'cutback', label: 'Perennial cutback', hint: 'Trim to a minimum of 3" above soil between April 1 and May 1' },
+            { value: 'replace', label: 'Winter replacements', hint: "Replace plants that didn't survive the winter" },
+            { value: 'leaf-mold', label: 'Leaf mold', hint: 'Add only in disturbed or bare soil areas' },
+            { value: 'spot-weed', label: 'Monthly spot weeding' },
+            { value: 'drought', label: 'Drought watering', hint: 'Water during prolonged droughts — no rain for more than 2 weeks' },
+            { value: 'signs', label: 'Educational signs', hint: 'Place at the middle of each plant group or the base of trees, with plant/pollinator info' },
+          ]}
+        />
+        <Callout kind="note">
+          Check the Sustain step for more planting maintenance tips, even though it's written for a full park.
+          [Go to Sustain →](/steps/sustain/)
+        </Callout>
+        <PdfPage doc="downloads/park-patch-workbook.pdf" page={15} />
+        <div class="substep-done" data-done="park-patch/maintenance"></div>
+      </section>
+
+      <section class="substep" id="are-you-ready" data-substep="park-patch/are-you-ready">
+        <h2 id="are-you-ready-title">Are you ready?</h2>
+        <p>Congratulations for completing the Planting workbook! Check off each step below.</p>
+        <Checklist
+          id="patch.ready-checklist"
+          items={[
+            { value: 'size', label: 'Size of bed', hint: 'You know how big an area you’ll plant, and whether it’s sun or shade' },
+            { value: 'plant-choice', label: 'Plant choice', hint: 'You used the plant calculator and plant list' },
+            { value: 'maintenance', label: 'Maintenance notes', hint: "You've reviewed the maintenance notes" },
+          ]}
+        />
+        <PdfPage doc="downloads/park-patch-workbook.pdf" page={15} />
+        <div class="substep-done" data-done="park-patch/are-you-ready"></div>
+      </section>
+    </article>
+  </div>
+</Base>
+
+<style>
+  .chapter-head { padding: 40px 0 24px; }
+  .head-row { display: flex; align-items: flex-end; gap: 16px; }
+  .head-row h1 { flex: 1; margin: 0; }
+  .head-row .big-num { font-size: 3rem; border-bottom: 6px solid var(--ink); padding-bottom: 0.05em; }
+  .head-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+  .chapter-body { max-width: 760px; }
+  .palette-block { margin: 1.5em 0 2em; padding-top: 1em; border-top: 1px solid var(--line); }
+  .palette-block h3 { margin-bottom: 0.4em; }
+</style>
