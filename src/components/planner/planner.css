@@ -431,9 +431,10 @@
   overflow-x: auto;
   scrollbar-width: thin;
 }
+/* Each step's width follows its label (longer labels get more room), so a long two-word label in
+   French or Swahili ("Taille et thèmes") takes two lines like the English ones, not three. */
 .pl-rail li {
-  flex: 1 1 0;
-  min-width: 64px;
+  flex: 1 1 auto;
 }
 .pl-rail button {
   width: 100%;
@@ -446,7 +447,7 @@
   background: none;
   font: inherit;
   cursor: pointer;
-  padding: 4px 6px 6px;
+  padding: 4px 4px 6px;
   text-align: start;
 }
 .pl-rail-n {
@@ -459,7 +460,7 @@
   font-weight: 700;
   font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.01em;
   line-height: 1.2;
 }
 .pl-rail button[aria-current='step'] {
