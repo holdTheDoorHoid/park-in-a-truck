@@ -18,6 +18,7 @@ import { ExistingMeshes, existingFootprint, type ExistingRender } from './existi
 import { Overlays, type Footprint } from './overlays';
 import { catalogEntry } from '../catalog';
 import { DragGesture, isTurnable, turnFromDrag, type Pose } from '../interact';
+import { groundOf } from '../ground';
 
 export type ViewMode = '3d' | 'plan';
 export type PickKind = 'item' | 'existing';
@@ -194,6 +195,11 @@ export class PlannerScene {
       this.lost = true;
     });
     this.controls = this.makeControls();
+    // furniture: a model finished loading, or the detail level changed
+    this.park.onChange = () => {
+      if (this.parkState) this.refreshItems();
+      this.requestRender(true);
+    };
 
     this.ro = new ResizeObserver(() => this.resize());
     this.ro.observe(container);
@@ -298,6 +304,9 @@ export class PlannerScene {
     this.view = v;
     this.camera = v === '3d' ? this.persp : this.ortho;
     this.planVeil.visible = v === 'plan' && Boolean(this.aerial?.mesh.visible);
+    // furniture: real furniture in 3D, the flat paper-pieces look in plan
+    this.park.setMode(v);
+    if (this.parkState) this.refreshItems();
     this.resetCamera();
   }
 
@@ -330,6 +339,7 @@ export class PlannerScene {
     this.aerial = buildAerial(site.lf, site.extentFt, this.mobile ? 19 : 20, () => this.requestRender());
     this.siteGroup.add(this.aerial.mesh);
     this.cityTrees.set(cityTreeSpecs(site.trees));
+    this.overlays.setGround(groundOf(site));
     const ext = Math.max(90, Math.max(site.frame.lengthFt, site.frame.widthFt) / 2 + 70);
     const sc = this.sun.shadow.camera;
     sc.left = -ext;
@@ -357,7 +367,7 @@ export class PlannerScene {
     this.parkState = state;
     this.park.group.visible = Boolean(state);
     if (state) {
-      this.park.setLayout(state.layout, state.map, { themes: state.themes, overhangMask: state.overhang, grid: state.grid });
+      this.park.setLayout(state.layout, state.map, { themes: state.themes, overhangMask: state.overhang, grid: state.grid, ground: groundOf(this.site) });
       this.items = items;
       this.refreshItems();
       // plan view follows the park's orientation (after flip/turn)
@@ -546,6 +556,21 @@ export class PlannerScene {
     this.raycaster.setFromCamera(this.ndc(e), this.camera);
     const p = new THREE.Vector3();
     if (!this.raycaster.ray.intersectPlane(this.ground, p)) return null;
+    // furniture: on sloping ground, walk the ray onto the ground's height (a few steps converge)
+    const g = this.site?.ground;
+    if (g) {
+      const plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+      for (let k = 0; k < 4; k++) {
+        const h = g(p.x, -p.z);
+        if (!Number.isFinite(h)) break;
+        plane.constant = -h;
+        const q = new THREE.Vector3();
+        if (!this.raycaster.ray.intersectPlane(plane, q)) break;
+        const moved = q.distanceTo(p);
+        p.copy(q);
+        if (moved < 0.05) break;
+      }
+    }
     return [p.x, -p.z];
   }
 
@@ -928,13 +953,19 @@ export class PlannerScene {
       this.camera.updateMatrixWorld();
       this.overlays.layout(focus ? this.feetPerPixel(focus) : 0, this.overlays.handle ? this.measure : null);
       this.renderer.render(this.scene, this.camera);
+      // furniture: steps its detail down if frames stay slow while the view moves
+      this.park.frameDrawn(performance.now(), this.drewLastFrame);
+      this.drewLastFrame = true;
       const n = this.northDeg();
       if (Math.abs(n - this.lastNorth) > 0.5) {
         this.lastNorth = n;
         this.cb.onCamera?.(n);
       }
-    }
+    } else this.drewLastFrame = false;
   };
+
+  /** furniture: the previous display frame was drawn (for its frame-time watch) */
+  private drewLastFrame = false;
 
   private lastNorth = Infinity;
 

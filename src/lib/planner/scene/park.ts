@@ -1,14 +1,31 @@
 // The park layout as low-poly, instanced meshes: surfaces as flat shapes, items as a
 // handful of InstancedMeshes (boxes, cylinders, blobs, trees) so a whole park is a few
 // draw calls.
+//
+// 3D view (furniture agent, 2026-10-04): items are drawn as the real thing — PiaT's
+// build-guide models repeated in modules, gabion baskets, simple shapes for the rest —
+// see ../furniture/. The plain blocks stay underneath, invisible, as what the mouse
+// picks. Plan view keeps the blocks (the flat paper-pieces look). Items stand on the
+// lowest ground under them and surfaces follow groundOf(site).
 
 import * as THREE from 'three';
 import type { LayoutItem, LayoutSurface, Material, ParkLayout, ThemeId } from '../../types';
 import { THEMES } from '../../../data/themes';
-import { catalogEntry } from '../catalog';
+import { ELEMENTS } from '../../../data/elements';
+import { catalogEntry, type CatalogEntry } from '../catalog';
 import type { Vec2 } from '../geo';
+import { FLAT_GROUND, type GroundFn } from '../ground';
 import { TreeInstances, W, quad, cellTexture, ribbon, disposeTree } from './builders';
 import type { Footprint } from './overlays';
+import { furnitureRule, moduleOf, stageSquareModule, type ModelRule } from '../furniture/rules';
+import { bandAsWall, chooseFit, lowestGround, wallBaskets } from '../furniture/fit';
+import { WOOD, proceduralParts } from '../furniture/procedural';
+import { FurnitureLayer, itemMatrix, material } from '../furniture/layer';
+import { dropProtos, modelNow, modelProto, whenLoaded } from '../furniture/protos';
+import { FrameWatch, initialQuality, lower, pinnedQuality } from '../furniture/quality';
+import type { Quality } from '../furniture/modelparts';
+import { drapedLines, drapedQuad, drapedRibbon, drapedShape, needsDrape } from '../furniture/drape';
+import { gabionTexture, stoneBoxGeometry } from '../furniture/stone';
 
 export interface ParkMapping {
   toLocal: (p: Vec2) => Vec2;
@@ -79,13 +96,14 @@ class Instances {
     private geo: THREE.BufferGeometry,
     private mat: THREE.Material,
     private cap = 64,
+    private shadows = true,
   ) {
     this.mesh = this.make(cap);
   }
   private make(cap: number) {
     const m = new THREE.InstancedMesh(this.geo, this.mat, cap);
-    m.castShadow = true;
-    m.receiveShadow = true;
+    m.castShadow = this.shadows;
+    m.receiveShadow = this.shadows;
     m.count = 0;
     m.frustumCulled = false;
     return m;
@@ -191,6 +209,36 @@ export interface ParkHighlight {
   dragging?: { id: string; x: number; y: number; rotationDeg: number; over?: boolean } | null;
 }
 
+/** invisible stand-ins: what the mouse picks when an item is drawn as real furniture */
+const pickOnly = new THREE.MeshBasicMaterial({ visible: false });
+
+type Family = { boxes: Instances; cyls: Instances; blobs: Instances };
+
+interface LayoutArgs {
+  layout: ParkLayout;
+  map: ParkMapping;
+  opts: {
+    themes: { frame: ThemeId; front: ThemeId; back: ThemeId };
+    overhangMask?: { mask: Uint8Array; nx: number; ny: number } | null;
+    grid: boolean;
+    /** ground heights (local feet → feet above the lot's datum); flat when absent */
+    ground?: GroundFn;
+  };
+}
+
+const coarse = () => typeof matchMedia !== 'undefined' && matchMedia('(pointer: coarse)').matches;
+
+function startQuality(): { q: Quality; pinned: boolean } {
+  try {
+    const pin = typeof location !== 'undefined' ? pinnedQuality(location.search) : null;
+    if (pin) return { q: pin, pinned: true };
+    const nav = typeof navigator !== 'undefined' ? (navigator as Navigator & { deviceMemory?: number }) : undefined;
+    return { q: initialQuality({ coarsePointer: coarse(), memoryGb: nav?.deviceMemory, cores: nav?.hardwareConcurrency }), pinned: false };
+  } catch {
+    return { q: 'high', pinned: false };
+  }
+}
+
 export class ParkMeshes {
   readonly group = new THREE.Group();
   private surfaces = new THREE.Group();
@@ -199,46 +247,132 @@ export class ParkMeshes {
   private cyls = new Instances(unitCyl, new THREE.MeshLambertMaterial({ color: 0xffffff }), 32);
   private blobs = new Instances(unitBlob, new THREE.MeshLambertMaterial({ color: 0xffffff, flatShading: true }), 256);
   private trees = new TreeInstances(64);
+  // the same blocks, never drawn, for items shown as real furniture
+  private pick: Family = { boxes: new Instances(unitBox, pickOnly, 128, false), cyls: new Instances(unitCyl, pickOnly, 32, false), blobs: new Instances(unitBlob, pickOnly, 64, false) };
+  /** planted trees' crowns (soft picks, like the drawn trees') */
+  private pickCrowns = new Instances(unitBlob, pickOnly, 64, false);
+  private furniture = new FurnitureLayer('furniture');
+  private walls = new FurnitureLayer('gabion-walls');
   private layout: ParkLayout | null = null;
   private map: ParkMapping | null = null;
+  private ground: GroundFn = FLAT_GROUND;
+  private mode: '3d' | 'plan' = '3d';
+  private quality: Quality;
+  private pinned: boolean;
+  private watch = new FrameWatch();
+  private waiting = new Set<string>();
+  private last: LayoutArgs | null = null;
+  /** furniture finished loading or changed detail: the scene redraws the items */
+  onChange?: () => void;
 
   constructor() {
     this.group.name = 'park';
-    this.group.add(this.surfaces, this.overlays, this.boxes.mesh, this.cyls.mesh, this.blobs.mesh, this.trees.group);
+    const sq = startQuality();
+    this.quality = sq.q;
+    this.pinned = sq.pinned;
+    this.furniture.setShadows(this.quality === 'high');
+    this.walls.setShadows(this.quality === 'high');
+    this.group.add(
+      this.surfaces,
+      this.overlays,
+      this.boxes.mesh,
+      this.cyls.mesh,
+      this.blobs.mesh,
+      this.trees.group,
+      this.pick.boxes.mesh,
+      this.pick.cyls.mesh,
+      this.pick.blobs.mesh,
+      this.pickCrowns.mesh,
+      this.furniture.group,
+      this.walls.group,
+    );
   }
 
   /** meshes that can be clicked, and how to turn a hit into an item id */
   pickables(): { object: THREE.Object3D; idOf: (instanceId?: number) => string | undefined; soft?: boolean }[] {
+    const of = (x: Instances) => ({ object: x.mesh, idOf: (i?: number) => (i == null ? undefined : x.ids[i]) });
     return [
-      { object: this.boxes.mesh, idOf: (i) => (i == null ? undefined : this.boxes.ids[i]) },
-      { object: this.cyls.mesh, idOf: (i) => (i == null ? undefined : this.cyls.ids[i]) },
-      { object: this.blobs.mesh, idOf: (i) => (i == null ? undefined : this.blobs.ids[i]) },
+      of(this.boxes),
+      of(this.cyls),
+      of(this.blobs),
+      of(this.pick.boxes),
+      of(this.pick.cyls),
+      of(this.pick.blobs),
       // a tree's crown is big and airy: things standing under it can be picked through it
       { object: this.trees.pickMesh, idOf: (i) => (i == null ? undefined : this.trees.ids[i]), soft: true },
+      { ...of(this.pickCrowns), soft: true },
     ];
   }
 
-  setLayout(
-    layout: ParkLayout,
-    map: ParkMapping,
-    opts: { themes: { frame: ThemeId; front: ThemeId; back: ThemeId }; overhangMask?: { mask: Uint8Array; nx: number; ny: number } | null; grid: boolean },
-  ) {
+  /** 3D view draws real furniture; plan view keeps the flat paper-pieces look. */
+  setMode(mode: '3d' | 'plan') {
+    if (mode === this.mode) return;
+    this.mode = mode;
+    if (this.last) this.setLayout(this.last.layout, this.last.map, this.last.opts);
+  }
+
+  /** current detail level of the 3D furniture */
+  get detail(): Quality {
+    return this.quality;
+  }
+
+  /** Change the detail level (`pin` = keep it, no automatic stepping down). */
+  setQuality(q: Quality, pin = false) {
+    if (pin) this.pinned = true;
+    if (q === this.quality) return;
+    this.quality = q;
+    this.furniture.dispose();
+    this.walls.dispose();
+    dropProtos(q);
+    this.furniture.setShadows(q === 'high');
+    this.walls.setShadows(q === 'high');
+    if (this.last) this.setLayout(this.last.layout, this.last.map, this.last.opts);
+    this.onChange?.();
+  }
+
+  /** The scene drew a frame (`continuous` = it drew the previous display frame too). */
+  frameDrawn(now: number, continuous: boolean) {
+    if (this.pinned || this.mode !== '3d' || this.quality === 'blocks' || !this.group.visible || !this.layout) return;
+    if (this.watch.note(now, continuous)) this.setQuality(lower(this.quality));
+  }
+
+  /** draw calls the furniture uses (for checks) */
+  get furnitureDrawCalls(): number {
+    return this.furniture.drawCalls + this.walls.drawCalls;
+  }
+
+  private get real(): boolean {
+    return this.mode === '3d' && this.quality !== 'blocks';
+  }
+
+  setLayout(layout: ParkLayout, map: ParkMapping, opts: LayoutArgs['opts']) {
+    this.last = { layout, map, opts };
     this.layout = layout;
     this.map = map;
     for (const g of [this.surfaces, this.overlays]) {
       disposeTree(g);
       g.clear();
     }
-    // surfaces
     const L = layout.lengthFt;
     const Wd = layout.widthFt;
+    // a flat lot (or no ground data) is drawn exactly as before
+    const corners4 = ([[0, 0], [L, 0], [L, Wd], [0, Wd]] as Vec2[]).map(map.toLocal);
+    this.ground = opts.ground && needsDrape(opts.ground) && !groundFlat(opts.ground, corners4) ? opts.ground : FLAT_GROUND;
+    const ground = needsDrape(this.ground) ? this.ground : null;
+    // surfaces
     layout.surfaces.forEach((s, i) => {
       const pts = s.polygon.map((p) => map.toLocal(p as Vec2));
-      const shape = new THREE.Shape(pts.map(([x, y]) => new THREE.Vector2(x, y)));
-      const g = new THREE.ShapeGeometry(shape);
-      g.rotateX(-Math.PI / 2);
-      const mesh = new THREE.Mesh(g, new THREE.MeshLambertMaterial({ color: surfaceColor(s), side: THREE.DoubleSide }));
-      mesh.position.y = 0.08 + (i % 3) * 0.004;
+      const up = 0.08 + (i % 3) * 0.004;
+      const mat = new THREE.MeshLambertMaterial({ color: surfaceColor(s), side: THREE.DoubleSide });
+      let mesh: THREE.Mesh;
+      if (ground) mesh = new THREE.Mesh(drapedShape(pts, ground, up), mat);
+      else {
+        const shape = new THREE.Shape(pts.map(([x, y]) => new THREE.Vector2(x, y)));
+        const g = new THREE.ShapeGeometry(shape);
+        g.rotateX(-Math.PI / 2);
+        mesh = new THREE.Mesh(g, mat);
+        mesh.position.y = up;
+      }
       mesh.receiveShadow = true;
       this.surfaces.add(mesh);
     });
@@ -250,14 +384,15 @@ export class ParkMeshes {
         [x1, y1],
         [x0, y1],
       ] as Vec2[]).map(map.toLocal);
-    this.overlays.add(ribbon(corners(0.25, 0.25, L - 0.25, Wd - 0.25), 0.5, 0.2, new THREE.Color(THEMES[opts.themes.frame].frame).getHex()));
+    const band = (ring: Vec2[], width: number, up: number, color: number) => (ground ? drapedRibbon(ring, width, up, ground, color) : ribbon(ring, width, up, color));
+    this.overlays.add(band(corners(0.25, 0.25, L - 0.25, Wd - 0.25), 0.5, 0.2, new THREE.Color(THEMES[opts.themes.frame].frame).getHex()));
     for (const piece of ['front', 'back'] as const) {
       const ss = layout.surfaces.filter((s) => s.id.startsWith(piece));
       if (!ss.length) continue;
       const xs = ss.flatMap((s) => s.polygon.map((p) => p[0]));
       const ys = ss.flatMap((s) => s.polygon.map((p) => p[1]));
       this.overlays.add(
-        ribbon(
+        band(
           corners(Math.min(...xs) + 0.15, Math.min(...ys) + 0.15, Math.max(...xs) - 0.15, Math.max(...ys) - 0.15),
           0.3,
           0.21,
@@ -267,42 +402,70 @@ export class ParkMeshes {
     }
     // 1-ft / 4-ft grid like the workbook's grid paper
     if (opts.grid) {
-      const pos: number[] = [];
-      const pos4: number[] = [];
-      const line = (a: Vec2, b: Vec2, arr: number[]) => {
-        const p = map.toLocal(a);
-        const q = map.toLocal(b);
-        arr.push(p[0], 0.18, -p[1], q[0], 0.18, -q[1]);
+      const pairs: [Vec2, Vec2][] = [];
+      const pairs4: [Vec2, Vec2][] = [];
+      for (let x = 0; x <= L + 1e-6; x++) (x % 4 === 0 ? pairs4 : pairs).push([map.toLocal([x, 0]), map.toLocal([x, Wd])]);
+      for (let y = 0; y <= Wd + 1e-6; y++) (y % 4 === 0 ? pairs4 : pairs).push([map.toLocal([0, y]), map.toLocal([L, y])]);
+      const lines = (ps: [Vec2, Vec2][]) => {
+        if (ground) return drapedLines(ps, 0.18, ground);
+        const g = new THREE.BufferGeometry();
+        g.setAttribute('position', new THREE.Float32BufferAttribute(ps.flatMap(([p, q]) => [p[0], 0.18, -p[1], q[0], 0.18, -q[1]]), 3));
+        return g;
       };
-      for (let x = 0; x <= L + 1e-6; x++) line([x, 0], [x, Wd], x % 4 === 0 ? pos4 : pos);
-      for (let y = 0; y <= Wd + 1e-6; y++) line([0, y], [L, y], y % 4 === 0 ? pos4 : pos);
-      const g1 = new THREE.BufferGeometry();
-      g1.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
-      const g4 = new THREE.BufferGeometry();
-      g4.setAttribute('position', new THREE.Float32BufferAttribute(pos4, 3));
-      this.overlays.add(new THREE.LineSegments(g1, new THREE.LineBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.08 })));
-      this.overlays.add(new THREE.LineSegments(g4, new THREE.LineBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.22 })));
+      this.overlays.add(new THREE.LineSegments(lines(pairs), new THREE.LineBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.08 })));
+      this.overlays.add(new THREE.LineSegments(lines(pairs4), new THREE.LineBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.22 })));
     }
     // where the park sticks out past the lot line
     const oh = opts.overhangMask;
     if (oh && oh.mask.some(Boolean)) {
       const tex = cellTexture(oh.nx, oh.ny, (i, j) => (oh.mask[j * oh.nx + i] ? 'rgba(208,52,44,0.55)' : null));
-      const q = quad(
-        [map.toLocal([0, 0]), map.toLocal([oh.nx, 0]), map.toLocal([oh.nx, oh.ny]), map.toLocal([0, oh.ny])],
-        0.3,
-        new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false, side: THREE.DoubleSide }),
-      );
+      const mat = new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false, side: THREE.DoubleSide });
+      const cs: [Vec2, Vec2, Vec2, Vec2] = [map.toLocal([0, 0]), map.toLocal([oh.nx, 0]), map.toLocal([oh.nx, oh.ny]), map.toLocal([0, oh.ny])];
+      const q = ground ? drapedQuad(cs, 0.3, ground, mat) : quad(cs, 0.3, mat);
       q.renderOrder = 3;
       this.overlays.add(q);
     }
+    this.buildWalls(layout, map);
+  }
+
+  /** gabion bands along the street edges as one course of 12" x 12" x 48" baskets (3D only) */
+  private buildWalls(layout: ParkLayout, map: ParkMapping) {
+    this.walls.begin();
+    if (this.real) {
+      const white = new THREE.Color(1, 1, 1);
+      for (const s of layout.surfaces) {
+        if (s.material !== 'gabion') continue;
+        const wall = bandAsWall(s.polygon as Vec2[]);
+        if (!wall) continue;
+        const dl = map.dirToLocal(wall.dir);
+        const yd: Vec2 = [-dl[1], dl[0]];
+        const yaw = Math.atan2(dl[1], dl[0]);
+        for (const [s0, len] of wallBaskets(wall.lengthFt)) {
+          const mid = s0 + len / 2;
+          const c = map.toLocal([wall.start[0] + wall.dir[0] * mid, wall.start[1] + wall.dir[1] * mid]);
+          const base = lowestGround(this.ground, c, dl, yd, len / 2, wall.depthFt / 2);
+          this.basket(this.walls, s.id, c, yaw, base, len, wall.depthFt, 1, white);
+        }
+      }
+    }
+    this.walls.end();
+  }
+
+  /** one gabion basket (feet), long axis along `yaw` */
+  private basket(layer: FurnitureLayer, id: string, c: Vec2, yaw: number, base: number, len: number, depth: number, height: number, color: THREE.Color) {
+    const r = (v: number) => Math.round(v * 20) / 20;
+    const [l, d, h] = [r(len), r(depth), r(height)];
+    const textured = this.quality === 'high' && Boolean(gabionTexture());
+    // baskets sit 0.4" apart so each reads as its own basket
+    layer.shape(id, `basket:${l}:${d}:${h}:${textured}`, () => ({ geo: stoneBoxGeometry(Math.max(0.2, l - 0.04), h, d), mat: material(textured ? 'stone' : 'stone-plain'), owns: true }), itemMatrix(c[0], c[1], base, yaw), color);
   }
 
   setItems(items: LayoutItem[], hl: ParkHighlight, themes: { frame: ThemeId; front: ThemeId; back: ThemeId }) {
     const map = this.map;
     if (!map) return;
-    this.boxes.begin();
-    this.cyls.begin();
-    this.blobs.begin();
+    const vis: Family = { boxes: this.boxes, cyls: this.cyls, blobs: this.blobs };
+    for (const x of [this.boxes, this.cyls, this.blobs, this.pick.boxes, this.pick.cyls, this.pick.blobs, this.pickCrowns]) x.begin();
+    this.furniture.begin();
     const trees: { id: string; x: number; y: number; heightFt: number; crownR: number; color: number }[] = [];
     const up = new THREE.Vector3();
     for (const it0 of items) {
@@ -327,27 +490,42 @@ export class ParkMeshes {
               : hov
                 ? mix(col, '#00a8e8', 0.25)
                 : col;
-      const at = (ox: number, oy: number, z: number) => W(c[0] + ox * xd[0] + oy * yd[0], c[1] + ox * xd[1] + oy * yd[1], z);
       const theme = it.theme ?? themes.back;
+      const hw = (it.w || e.w) / 2;
+      const hh = (it.h || e.h) / 2;
+      const plant = e.shape === 'tree-small' || e.shape === 'tree-large' || e.shape === 'shrub';
+      // furniture is built level on the lowest ground under it; plants stand where they grow
+      const base = plant ? lowestGround(this.ground, c, xd, yd, Math.min(hw, 0.5), Math.min(hh, 0.5)) : lowestGround(this.ground, c, xd, yd, hw, hh);
+      const real = this.drawReal(it, e, c, xd, yd, yaw, base, theme, tint);
+      const fam = real ? this.pick : vis;
+      const at = (ox: number, oy: number, z: number) => W(c[0] + ox * xd[0] + oy * yd[0], c[1] + ox * xd[1] + oy * yd[1], z + base);
       switch (e.shape) {
         case 'tree-small':
-        case 'tree-large':
-          trees.push({ id: it.id, x: c[0], y: c[1], heightFt: it.heightFt ?? e.heightFt, crownR: (it.w || e.w) / 2, color: new THREE.Color(tint(e.color)).getHex() });
+        case 'tree-large': {
+          const H = it.heightFt ?? e.heightFt;
+          const cr = (it.w || e.w) / 2;
+          if (real) {
+            // the drawn crown, as a soft pick (see scene pick())
+            const crownH = Math.min(H * 0.62, Math.max(cr * 2.5, cr * 2 + 2));
+            this.pickCrowns.push(it.id, at(0, 0, H - crownH / 2), yaw, up.set(cr, crownH / 2, cr), '#ffffff');
+          } else trees.push({ id: it.id, x: c[0], y: c[1], heightFt: H, crownR: cr, color: new THREE.Color(tint(e.color)).getHex() });
           break;
+        }
         case 'shrub': {
-          const rr = (it.w || e.w) / 2;
-          this.blobs.push(it.id, at(0, 0, rr * 0.75), yaw, up.set(rr, rr * 0.8, rr), tint(e.color));
+          // drawn as the real plant (3D), it is picked at the plant's size, not the dot's
+          const rr = (real ? Math.max(it.w || e.w, ELEMENTS[it.element]?.footprintFt?.[0] ?? 0) : it.w || e.w) / 2;
+          fam.blobs.push(it.id, at(0, 0, rr * 0.75), yaw, up.set(rr, rr * 0.8, rr), tint(e.color));
           break;
         }
         case 'barrel':
-          this.cyls.push(it.id, at(0, 0, 0), yaw, up.set(Math.min(it.w, it.h), it.heightFt ?? e.heightFt, Math.min(it.w, it.h)), tint(e.color));
+          fam.cyls.push(it.id, at(0, 0, 0), yaw, up.set(Math.min(it.w, it.h), it.heightFt ?? e.heightFt, Math.min(it.w, it.h)), tint(e.color));
           break;
         case 'post':
-          this.cyls.push(it.id, at(0, 0, 0), yaw, up.set(0.3, (it.heightFt ?? e.heightFt) - 0.8, 0.3), tint(e.color));
-          this.boxes.push(it.id, at(0, 0, (it.heightFt ?? e.heightFt) - 0.8), yaw, up.set(0.8, 0.8, 0.8), tint(mix(THEMES[theme].front, '#ffffff', 0.2)));
+          fam.cyls.push(it.id, at(0, 0, 0), yaw, up.set(0.3, (it.heightFt ?? e.heightFt) - 0.8, 0.3), tint(e.color));
+          fam.boxes.push(it.id, at(0, 0, (it.heightFt ?? e.heightFt) - 0.8), yaw, up.set(0.8, 0.8, 0.8), tint(mix(THEMES[theme].front, '#ffffff', 0.2)));
           break;
         default: {
-          for (const p of partsFor(it)) this.boxes.push(it.id, at(p.ox, p.oy, p.z), yaw, up.set(p.sx, p.sz, p.sy), tint(p.color));
+          for (const p of partsFor(it)) fam.boxes.push(it.id, at(p.ox, p.oy, p.z), yaw, up.set(p.sx, p.sz, p.sy), tint(p.color));
           if (e.shape === 'square') {
             // perennials in the square, in the theme's flower colour
             const flower = mix(THEMES[theme].front, '#ffffff', 0.15);
@@ -357,16 +535,92 @@ export class ParkMeshes {
               [1, 1],
               [-1, 1],
             ]) {
-              this.blobs.push(it.id, at((a! * it.w) / 4, (b! * it.h) / 4, 0.7), yaw, up.set(0.75, 0.6, 0.75), tint(a === b ? flower : '#5aa55e'));
+              fam.blobs.push(it.id, at((a! * it.w) / 4, (b! * it.h) / 4, 0.7), yaw, up.set(0.75, 0.6, 0.75), tint(a === b ? flower : '#5aa55e'));
             }
           }
         }
       }
     }
-    this.boxes.end();
-    this.cyls.end();
-    this.blobs.end();
+    for (const x of [this.boxes, this.cyls, this.blobs, this.pick.boxes, this.pick.cyls, this.pick.blobs, this.pickCrowns]) x.end();
+    this.furniture.end();
     this.trees.set(trees);
+  }
+
+  /**
+   * Draw an item as the real thing (3D view). False = it keeps its block: plan view,
+   * blocks-only detail, a model still loading, or a footprint no module fits.
+   */
+  private drawReal(it: LayoutItem, e: CatalogEntry, c: Vec2, xd: Vec2, yd: Vec2, yaw: number, base: number, theme: ThemeId, tint: (col: string) => string): boolean {
+    if (this.mode !== '3d') return false;
+    const rule = furnitureRule(it.element);
+    const plant = e.shape === 'tree-small' || e.shape === 'tree-large' || e.shape === 'shrub';
+    // plants are cheap and never blocks; everything else steps down with the detail level
+    if (this.quality === 'blocks' && !plant) return false;
+    const w = it.w || e.w;
+    const h = it.h || e.h;
+    switch (rule.kind) {
+      case 'model':
+        return this.drawModel(it.id, rule, w, h, c, xd, yd, yaw, tint);
+      case 'gabion': {
+        const H = it.heightFt ?? e.heightFt;
+        const col = new THREE.Color(tint('#ffffff'));
+        for (const [s0, len] of wallBaskets(w)) {
+          const ox = -w / 2 + s0 + len / 2;
+          const bc: Vec2 = [c[0] + ox * xd[0], c[1] + ox * xd[1]];
+          this.basket(this.furniture, it.id, bc, yaw, lowestGround(this.ground, bc, xd, yd, len / 2, h / 2), len, h, H, col);
+        }
+        return true;
+      }
+      case 'procedural': {
+        const t = THEMES[theme];
+        const parts = proceduralParts({ id: it.id, element: it.element, w, h, heightFt: it.heightFt, variant: it.variant }, { front: t.front, seat: t.plan.seat, shed: t.plan.shed, base: e.color });
+        if (!parts) return false;
+        const m = itemMatrix(c[0], c[1], base, yaw);
+        for (const p of parts) this.furniture.prim(it.id, m, p, tint(p.color));
+        return true;
+      }
+      default:
+        return false;
+    }
+  }
+
+  private drawModel(id: string, rule: ModelRule, w: number, h: number, c: Vec2, xd: Vec2, yd: Vec2, yaw: number, tint: (col: string) => string): boolean {
+    const model = modelNow(rule.slug);
+    if (model === undefined) {
+      // first use: draw the block now, the model when its JSON arrives
+      if (!this.waiting.has(rule.slug)) {
+        this.waiting.add(rule.slug);
+        void whenLoaded(rule.slug).then(() => {
+          this.waiting.delete(rule.slug);
+          this.onChange?.();
+        });
+      }
+      return false;
+    }
+    if (!model) return false;
+    const cands: { variant: 'whole' | 'square'; spec: ReturnType<typeof moduleOf> }[] = [{ variant: 'whole', spec: moduleOf(model, rule) }];
+    if (rule.squares) cands.push({ variant: 'square', spec: stageSquareModule(model, rule.squares) });
+    const ch = chooseFit(w, h, cands);
+    if (!ch) return false;
+    const { fit } = ch;
+    const proto = modelProto(model, ch.candidate.variant, this.quality, rule.squares);
+    // level on the lowest ground under whatever it covers
+    const base = lowestGround(this.ground, c, xd, yd, Math.max(w, fit.lengthFt) / 2, Math.max(h, fit.depthFt) / 2);
+    const M = itemMatrix(c[0], c[1], base, yaw);
+    // boards are vertex-coloured: the instance colour only carries the tint, as a ratio to plain wood
+    const wood = new THREE.Color(WOOD);
+    const tw = new THREE.Color(tint(WOOD));
+    const ratio = new THREE.Color(tw.r / Math.max(1e-4, wood.r), tw.g / Math.max(1e-4, wood.g), tw.b / Math.max(1e-4, wood.b));
+    const stoneCol = new THREE.Color(tint('#ffffff'));
+    const textured = this.quality === 'high' && Boolean(gabionTexture());
+    const m = new THREE.Matrix4();
+    const t = new THREE.Matrix4();
+    for (const [cx, cy] of fit.centres) {
+      m.copy(M).multiply(t.makeTranslation(cx, 0, -cy)).multiply(t.makeScale(fit.sx, 1, fit.sy));
+      if (proto.solid) this.furniture.shape(id, `${proto.key}:solid`, () => ({ geo: proto.solid!, mat: material('model'), owns: false }), m, ratio);
+      if (proto.stone) this.furniture.shape(id, `${proto.key}:stone`, () => ({ geo: proto.stone!, mat: material(textured ? 'stone' : 'stone-plain'), owns: false }), m, stoneCol);
+    }
+    return true;
   }
 
   dispose() {
@@ -375,6 +629,31 @@ export class ParkMeshes {
     this.boxes.dispose();
     this.cyls.dispose();
     this.blobs.dispose();
+    this.pick.boxes.dispose();
+    this.pick.cyls.dispose();
+    this.pick.blobs.dispose();
+    this.pickCrowns.dispose();
     this.trees.dispose();
+    this.furniture.dispose();
+    this.walls.dispose();
   }
+}
+
+/** Is the ground flat (within 0.02 ft) over the park? Sampled on a 4-ft grid inside its corners. */
+function groundFlat(ground: GroundFn, corners: Vec2[]): boolean {
+  const [a, b, , d] = corners as [Vec2, Vec2, Vec2, Vec2];
+  const nu = Math.max(1, Math.ceil(Math.hypot(b[0] - a[0], b[1] - a[1]) / 4));
+  const nv = Math.max(1, Math.ceil(Math.hypot(d[0] - a[0], d[1] - a[1]) / 4));
+  let lo = Infinity;
+  let hi = -Infinity;
+  for (let j = 0; j <= nv; j++)
+    for (let i = 0; i <= nu; i++) {
+      const x = a[0] + ((b[0] - a[0]) * i) / nu + ((d[0] - a[0]) * j) / nv;
+      const y = a[1] + ((b[1] - a[1]) * i) / nu + ((d[1] - a[1]) * j) / nv;
+      const z = ground(x, y);
+      if (!Number.isFinite(z)) continue;
+      lo = Math.min(lo, z);
+      hi = Math.max(hi, z);
+    }
+  return !(hi - lo > 0.02);
 }
