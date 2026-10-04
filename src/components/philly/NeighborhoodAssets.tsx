@@ -102,6 +102,7 @@ export default function NeighborhoodAssets() {
   const [groups, setGroups] = useState<AssetGroup[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [tick, setTick] = useState(0);
+  const [retrying, setRetrying] = useState<AssetCategoryId[]>([]);
   const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -125,6 +126,15 @@ export default function NeighborhoodAssets() {
         <LotLookup mode="primary" />
       </div>
     );
+
+  // one list that failed can be asked for again on its own (veteran S7)
+  const retry = (id: AssetCategoryId) => {
+    setRetrying((r) => [...r, id]);
+    nearbyAssets(lot, radius, { only: [id] })
+      .then(([g]) => g && setGroups((cur) => cur?.map((x) => (x.id === id ? g : x)) ?? cur))
+      .catch(() => undefined)
+      .finally(() => setRetrying((r) => r.filter((x) => x !== id)));
+  };
 
   const saved = (id: AssetCategoryId) => {
     const v = project.fields[assetFieldId(id)];
@@ -185,8 +195,14 @@ export default function NeighborhoodAssets() {
                           {chosen.length > 0 && <span class="ph-small" style="margin-left:auto;text-transform:none;letter-spacing:0">{chosen.length} on your list</span>}
                         </h4>
                         {g.note && <p class="ph-small" style="margin:0 0 6px">{g.note}</p>}
+                        {g.warning && <p class="ph-small" style="margin:0 0 6px">{g.warning}</p>}
                         {g.error ? (
-                          <p class="ph-small">{g.error}</p>
+                          <p class="ph-small">
+                            {g.error}{' '}
+                            <button class="btn btn-small" type="button" disabled={retrying.includes(g.id)} onClick={() => retry(g.id)}>
+                              {retrying.includes(g.id) ? 'Trying…' : 'Try again'}
+                            </button>
+                          </p>
                         ) : g.items.length === 0 ? (
                           <p class="ph-small">None found nearby in City data.</p>
                         ) : (

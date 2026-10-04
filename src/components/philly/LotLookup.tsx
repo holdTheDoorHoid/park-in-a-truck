@@ -14,7 +14,18 @@ import { u } from '../../lib/url';
 import AddressSearch from './AddressSearch';
 import LotCard from './LotCard';
 import CandidatesTable from './CandidatesTable';
+import SaveToggle from './SaveToggle';
 import { useProject } from './hooks';
+
+/** Where the vacant-land map is: on this page if it has one, else the Find a lot page. */
+export function mapHref(): string {
+  return typeof document !== 'undefined' && document.getElementById('vacant-map') ? '#vacant-map' : u('lot/#vacant-map');
+}
+
+/** Does this page have workbook fields that fill themselves from the chosen lot? */
+function pageHasLotFields(): boolean {
+  return typeof document !== 'undefined' && Boolean(document.querySelector('[data-auto^="lot."]'));
+}
 
 interface Props {
   mode?: 'primary' | 'candidates';
@@ -45,7 +56,14 @@ export default function LotLookup({ mode = 'primary' }: Props) {
         // "Refresh from City records": update the saved lot in place
         chooseLot(r);
         setFlash('Updated from City records.');
-      } else setResult(r);
+      } else {
+        setResult(r);
+        // "Add a possible lot by address" adds it: no second step to miss (veteran S10)
+        if (mode === 'candidates' && !project.candidates.some((c) => c.address === r.address)) {
+          addCandidate(r);
+          setFlash(`Added ${titleCase(r.address)} to your list of possible lots — it's in the table below.`);
+        }
+      }
     } catch (e) {
       if (c.signal.aborted) return;
       setResult(null);
@@ -63,7 +81,9 @@ export default function LotLookup({ mode = 'primary' }: Props) {
 
   const use = (l: LotRecord) => {
     chooseLot(l);
-    setFlash(`${titleCase(l.address)} is now your park lot. The owner and address fields on this page are filled in from City records.`);
+    setFlash(
+      `${titleCase(l.address)} is now your park lot.${pageHasLotFields() ? ' The owner and address fields on this page are filled in from City records.' : ''}`,
+    );
     setSearching(false);
   };
   const list = (l: LotRecord) => {
@@ -73,20 +93,12 @@ export default function LotLookup({ mode = 'primary' }: Props) {
 
   const actionsFor = (l: LotRecord) => (
     <>
-      {isChosen(l) ? (
-        <span class="ph-saved">✓ This is your park lot</span>
-      ) : (
-        <button class="btn btn-primary" type="button" onClick={() => use(l)}>
-          Use this as my park lot
-        </button>
-      )}
-      {isListed(l) ? (
-        <span class="ph-saved">✓ On your list</span>
-      ) : (
-        <button class="btn" type="button" onClick={() => list(l)}>
-          + Add to my list
-        </button>
-      )}
+      <SaveToggle primary done={isChosen(l)} doneText="✓ This is your park lot" onClick={() => use(l)}>
+        Use this as my park lot
+      </SaveToggle>
+      <SaveToggle done={isListed(l)} doneText="✓ On your list" onClick={() => list(l)}>
+        + Add to my list
+      </SaveToggle>
     </>
   );
 
@@ -118,7 +130,13 @@ export default function LotLookup({ mode = 'primary' }: Props) {
       ) : (
         <AddressSearch
           label={mode === 'candidates' ? 'Add a possible lot by address' : 'Address of the lot'}
-          buttonLabel="Look up"
+          placeholder={mode === 'candidates' ? 'Address to add, e.g. 2424 N Mole St' : 'e.g. 1322 N Dover St'}
+          hint={
+            mode === 'candidates'
+              ? 'Looks the lot up and adds it to your list of possible lots below.'
+              : 'A Philadelphia street address, a corner like "60th & Greenway", or a 9-digit OPA number.'
+          }
+          buttonLabel={mode === 'candidates' ? 'Add' : 'Look up'}
           busy={busy}
           onPick={pick}
         />
@@ -152,7 +170,14 @@ export default function LotLookup({ mode = 'primary' }: Props) {
             )}
             {error.code === 'intersection' && (
               <p class="ph-small">
-                Or <a href={u('lot/')}>browse the vacant-land map</a>.
+                Or <a href={mapHref()}>browse the vacant-land map</a>.
+              </p>
+            )}
+            {error.code === 'not-found' && (
+              <p class="ph-small">
+                Only know the street, not the house number? Type the street name into the{' '}
+                <a href={mapHref()}>vacant-land map's "Go to an address or corner" box</a> and pick your block — the map shows the vacant
+                lots on it.
               </p>
             )}
           </div>
