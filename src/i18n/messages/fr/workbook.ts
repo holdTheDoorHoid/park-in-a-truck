@@ -46,6 +46,11 @@ export default {
   'chapter.next': 'Suite : étape {n} — {title} →',
   'chapter.notTranslated': 'Ce chapitre n’a pas encore été traduit, il est donc affiché en anglais. Vos réponses sont enregistrées de la même façon dans toutes les langues.',
 
+  'notice.title': 'Note de ce site',
+  'notice.lot':
+    'Vous n’avez pas encore noté l’autorisation d’utiliser votre terrain : il vous la faudra avant que quiconque commence les travaux. <a href="{href}">Aller à Acquérir → Sécuriser votre terrain</a>.',
+  'notice.dismiss': 'Fermer',
+
   'auto.owner.city': 'Ville de Philadelphie (public)',
   'auto.owner.landbank': 'Philadelphia Land Bank (public)',
   'auto.owner.pha': 'Philadelphia Housing Authority (public)',
