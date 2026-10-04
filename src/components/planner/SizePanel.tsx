@@ -4,7 +4,7 @@ import type { PlannerStore } from '../../lib/planner/store';
 import type { LotKind, SizeId, ThemeId } from '../../lib/types';
 import { SIZES, fitSize } from '../../lib/sizing';
 import { THEMES, THEME_ORDER } from '../../data/themes';
-import { setLotKind, setSize, setThemes } from '../../lib/planner/design';
+import { parkDims, setLotKind, setSize, setThemes } from '../../lib/planner/design';
 import { getExtra } from '../../lib/project';
 import type { SiteFacts } from '../../lib/types';
 
@@ -18,7 +18,10 @@ export function SizePanel({ store }: { store: PlannerStore }) {
   const site = useStore(store.$site);
   const d = useStore(store.$design);
   const set = useStore(store.$set);
+  const fitArea = useStore(store.$fit);
   if (!site || !d) return null;
+  // the largest rectangle that fits inside the lot (build-lead A6)
+  const stretch = parkDims(true, { lengthFt: 0, widthFt: 0 }, fitArea ?? site.frame);
   const facts = store.$demo.get() ? undefined : getExtra<SiteFacts>('site');
   const fit = fitSize(site.frame.lengthFt, site.frame.widthFt);
   const one = d.frame === d.front && d.front === d.back ? d.frame : null;
@@ -59,7 +62,7 @@ export function SizePanel({ store }: { store: PlannerStore }) {
         <legend>Stretch to the lot?</legend>
         <label class="pl-radio">
           <input type="radio" name="pl-fit" checked={d.fitToLot !== false} onChange={() => store.commit({ ...d, fitToLot: true, updatedAt: new Date().toISOString() })} />
-          Stretch the pieces to fill my lot ({Math.floor(site.frame.lengthFt + 0.25)} × {Math.floor(site.frame.widthFt + 0.25)} ft — like adding the seams)
+          Stretch the pieces to fill my lot ({stretch.lengthFt} × {stretch.widthFt} ft — like adding the seams)
         </label>
         <label class="pl-radio">
           <input type="radio" name="pl-fit" checked={d.fitToLot === false} onChange={() => store.commit({ ...d, fitToLot: false, updatedAt: new Date().toISOString() })} />

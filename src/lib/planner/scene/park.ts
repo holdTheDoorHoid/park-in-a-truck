@@ -26,6 +26,7 @@ import { FrameWatch, initialQuality, lower, pinnedQuality } from '../furniture/q
 import type { Quality } from '../furniture/modelparts';
 import { drapedLines, drapedQuad, drapedRibbon, drapedShape, needsDrape } from '../furniture/drape';
 import { gabionTexture, stoneBoxGeometry } from '../furniture/stone';
+import { plantedCrownR } from '../treemodel';
 
 export interface ParkMapping {
   toLocal: (p: Vec2) => Vec2;
@@ -423,6 +424,40 @@ export class ParkMeshes {
       q.renderOrder = 3;
       this.overlays.add(q);
     }
+    // plan view: the gabion wall reads as a row of 4-ft baskets, not just a grey strip, and
+    // lies over the lot line drawn along the same edge (build-lead A4)
+    if (this.mode === 'plan') {
+      const joints: [Vec2, Vec2][] = [];
+      for (const sf of layout.surfaces) {
+        if (sf.material !== 'gabion') continue;
+        const wall = bandAsWall(sf.polygon as Vec2[]);
+        if (!wall) continue;
+        const pts = sf.polygon.map((q) => map.toLocal(q as Vec2));
+        const bandMat = new THREE.MeshBasicMaterial({ color: 0x8c8c8c, side: THREE.DoubleSide });
+        let band: THREE.Mesh;
+        if (ground) band = new THREE.Mesh(drapedShape(pts, ground, 0.6), bandMat);
+        else {
+          const g = new THREE.ShapeGeometry(new THREE.Shape(pts.map(([x, y]) => new THREE.Vector2(x, y))));
+          g.rotateX(-Math.PI / 2);
+          band = new THREE.Mesh(g, bandMat);
+          band.position.y = 0.6;
+        }
+        this.overlays.add(band);
+        const across: Vec2 = [-wall.dir[1] * (wall.depthFt / 2), wall.dir[0] * (wall.depthFt / 2)];
+        const at = (t: number): Vec2 => [wall.start[0] + wall.dir[0] * t, wall.start[1] + wall.dir[1] * t];
+        const ends = [0, ...wallBaskets(wall.lengthFt).map(([s0, len]) => s0 + len)];
+        for (const t of ends) {
+          const c = at(t);
+          joints.push([map.toLocal([c[0] - across[0], c[1] - across[1]]), map.toLocal([c[0] + across[0], c[1] + across[1]])]);
+        }
+      }
+      if (joints.length) {
+        const g = ground
+          ? drapedLines(joints, 0.64, ground)
+          : new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(joints.flatMap(([p, q]) => [p[0], 0.64, -p[1], q[0], 0.64, -q[1]]), 3));
+        this.overlays.add(new THREE.LineSegments(g, new THREE.LineBasicMaterial({ color: 0x3d3d3d, transparent: true, opacity: 0.85 })));
+      }
+    }
     this.buildWalls(layout, map);
   }
 
@@ -500,9 +535,17 @@ export class ParkMeshes {
       switch (e.shape) {
         case 'tree-small':
         case 'tree-large':
-          // the shared tree drawing (City trees look and shade the same); it finds the ground itself
-          trees.push({ id: it.id, x: c[0], y: c[1], heightFt: it.heightFt ?? e.heightFt, crownR: (it.w || e.w) / 2, color: new THREE.Color(tint(e.color)).getHex() });
+        {
+          // the shared tree drawing (City trees look and shade the same); it finds the ground itself.
+          // 3D: a believable tree, not a lollipop — the crown spreads two-thirds of the tree's
+          // height and starts a third of the way up (crownCenterFt puts its centre at H − r).
+          // Plan view keeps the canopy as drawn on the paper pieces. (Planted trees are not in
+          // the sun study, so this changes no sun hours.)
+          const H = it.heightFt ?? e.heightFt;
+          const crownR = plantedCrownR(H, (it.w || e.w) / 2, this.mode);
+          trees.push({ id: it.id, x: c[0], y: c[1], heightFt: H, crownR, color: new THREE.Color(tint(e.color)).getHex() });
           break;
+        }
         case 'shrub': {
           // drawn as the real plant (3D), it is picked at the plant's size, not the dot's
           const rr = (real ? Math.max(it.w || e.w, ELEMENTS[it.element]?.footprintFt?.[0] ?? 0) : it.w || e.w) / 2;

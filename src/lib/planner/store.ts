@@ -18,6 +18,7 @@ import { measureEdges } from './edges';
 import { bbox, type Vec2 } from './geo';
 import type { SnapStep } from './interact';
 import { createSunView } from './sunview';
+import { inscribedRect, type FitArea } from './lotfit';
 
 export type PlannerMode = 'full' | 'design' | 'site' | 'sun';
 export type Selection = { kind: 'item' | 'existing'; id: string } | null;
@@ -89,15 +90,21 @@ export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = nu
   const $history = atom({ canUndo: false, canRedo: false });
   /** the panel step the person is on (decides what can be dragged and what's shown) */
   const $step = atom<string>('');
+  /** a short message for screen readers (e.g. what was just removed) */
+  const $announce = atom<string>('');
 
   const past: DesignState[] = [];
   const future: DesignState[] = [];
   const persist = () => !$demo.get();
 
   // ---- derived ----
+  /** where the park may go: the largest rectangle inside the parcel (build-lead A6) */
+  const $fit: ReadableAtom<FitArea | null> = computed($site, (site) => (site ? inscribedRect(site.frame, site.parcel) : null));
   const $layout: ReadableAtom<ParkLayout | null> = computed([$design, $set], (d, set) => (d && set ? buildLayout(set, d) : null));
-  const $placement: ReadableAtom<ParkPlacement | null> = computed([$site, $design, $layout], (site, d, layout) =>
-    site && d && layout ? makePlacement(site.frame, layout.lengthFt, layout.widthFt, d.turn ?? 0, d.flipped ?? false, d.shiftFt ?? [0, 0]) : null,
+  const $placement: ReadableAtom<ParkPlacement | null> = computed([$site, $design, $layout, $fit], (site, d, layout, fit) =>
+    site && d && layout
+      ? makePlacement(site.frame, layout.lengthFt, layout.widthFt, d.turn ?? 0, d.flipped ?? false, d.shiftFt ?? [0, 0], fit ?? undefined)
+      : null,
   );
   const $overhang: ReadableAtom<Overhang | null> = computed([$site, $placement, $layout], (site, pl, layout) =>
     site && pl && layout ? computeOverhang(pl, site.frame, site.parcel, layout.items.map(baseFootprint)) : null,
@@ -146,7 +153,7 @@ export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = nu
     const site = $site.get();
     const set = $set.get();
     if (!site || !set || `${d.size}-${d.lotKind}` !== `${set.size}-${set.lotKind}`) return d;
-    const dims = parkDims(d.fitToLot !== false, nominalOf(set), site.frame);
+    const dims = parkDims(d.fitToLot !== false, nominalOf(set), $fit.get() ?? site.frame);
     return dims.lengthFt === d.lengthFt && dims.widthFt === d.widthFt ? d : { ...d, ...dims };
   }
 
@@ -364,6 +371,7 @@ export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = nu
     $design,
     $set,
     $layout,
+    $fit,
     $placement,
     $overhang,
     $tally,
@@ -377,6 +385,7 @@ export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = nu
     $sunJob,
     $history,
     $step,
+    $announce,
     $terrain,
     $drawing,
     commit,

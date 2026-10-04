@@ -50,6 +50,10 @@ export function Viewport({ store, mode }: Props) {
   const [menu, setMenu] = useState<{ x: number; y: number; sel: Picked } | null>(null);
   /** terrain: points so far while drawing a wet area's outline (null = not drawing) */
   const [drawCount, setDrawCount] = useState<number | null>(null);
+  /** what a click on the ground landed on, when that is worth saying (the gabion wall) */
+  const [info, setInfo] = useState<string | null>(null);
+  const infoTimer = useRef<ReturnType<typeof setTimeout>>();
+  useEffect(() => () => clearTimeout(infoTimer.current), []);
   const view = useStore(store.$view);
   const show = useStore(store.$show);
   const status = useStore(store.$status);
@@ -147,7 +151,27 @@ export function Viewport({ store, mode }: Props) {
             },
             // sun step: a click on the ground charts that spot's sun through the year
             onGroundClick: (p) => {
-              if (store.$step.get() === 'sun') store.sun.$spot.set(p);
+              if (store.$step.get() === 'sun') {
+                store.sun.$spot.set(p);
+                return;
+              }
+              // build-lead A4: the grey band along the street edges is the gabion wall — say so
+              const s = store.$site.get();
+              const pl = store.$placement.get();
+              const layout = store.$layout.get();
+              clearTimeout(infoTimer.current);
+              if (!s || !pl || !layout) return setInfo(null);
+              const [x, y] = localToPark(pl, s.frame, p);
+              const onWall = layout.surfaces.some((sf) => {
+                if (sf.material !== 'gabion') return false;
+                const xs = sf.polygon.map((q) => q[0]);
+                const ys = sf.polygon.map((q) => q[1]);
+                return x >= Math.min(...xs) - 0.3 && x <= Math.max(...xs) + 0.3 && y >= Math.min(...ys) - 0.3 && y <= Math.max(...ys) + 0.3;
+              });
+              if (!onWall) return setInfo(null);
+              const ft = store.$tally.get()?.gabionWallFt;
+              setInfo(`Gabion wall: one row of 12″ × 12″ × 48″ stone baskets along the street edge${ft ? ` — ${ft} ft in all (see Counts)` : ''}.`);
+              infoTimer.current = setTimeout(() => setInfo(null), 8000);
             },
           });
         } catch (e) {
@@ -243,7 +267,9 @@ export function Viewport({ store, mode }: Props) {
   const menuInfo = menu ? describe(store, menu.sel) : null;
 
   let hint: string;
-  if (drawCount !== null) {
+  if (info && !gesture && drawCount === null) {
+    hint = info;
+  } else if (drawCount !== null) {
     hint =
       drawCount < 3
         ? `${coarse ? 'Tap' : 'Click'} around the wet area, point by point${drawCount ? ` (${drawCount} so far)` : ''}${coarse ? '' : ' · Esc cancels'}`

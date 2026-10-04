@@ -4,12 +4,19 @@ import type { PlannerStore } from '../../lib/planner/store';
 import { catalogEntry } from '../../lib/planner/catalog';
 import { u } from '../../lib/url';
 import { USING_PLACEHOLDER_PIECES } from '../../lib/planner/park';
+import { ELEMENTS } from '../../data/elements';
 
 export function CountsPanel({ store }: { store: PlannerStore }) {
   const t = useStore(store.$tally);
   const grid = useStore(store.$sunGrid);
   if (!t) return null;
-  const items = Object.entries(t.items).sort((a, b) => b[1] - a[1]);
+  // the gabion wall is counted in feet (the band along the street edges plus any 4-ft wall
+  // pieces added), the way the cost estimate buys its baskets (build-lead A4)
+  const wallPieces = t.items['gabion-wall'] ?? 0;
+  const wallFt = Math.round((t.gabionWallFt ?? 0) + wallPieces * (ELEMENTS['gabion-wall']?.footprintFt?.[0] ?? 4));
+  const items = Object.entries(t.items)
+    .filter(([id]) => id !== 'gabion-wall')
+    .sort((a, b) => b[1] - a[1]);
   return (
     <section class="pl-section pl-counts">
       <h3 class="pl-h">Count your pieces</h3>
@@ -33,6 +40,17 @@ export function CountsPanel({ store }: { store: PlannerStore }) {
             </th>
             <td>{t.plantingSquares.sun + t.plantingSquares.shade}</td>
           </tr>
+          {wallFt > 0 && (
+            <tr>
+              <th scope="row">
+                Gabion wall{' '}
+                <span class="muted">
+                  — the grey band along the street edges{wallPieces ? `, plus ${wallPieces} wall piece${wallPieces > 1 ? 's' : ''} you added` : ''}
+                </span>
+              </th>
+              <td>{wallFt} ft</td>
+            </tr>
+          )}
           {t.naturePlaySquares > 0 && (
             <tr>
               <th scope="row">Nature play squares</th>

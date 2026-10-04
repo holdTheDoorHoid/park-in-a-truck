@@ -114,7 +114,7 @@ describe('choosing model, shape or block', () => {
     expect(furnitureRule('existing-tree').kind).toBe('block');
     expect(furnitureRule('nonsense').kind).toBe('block');
   });
-  it('fits most guide-built pieces of every printed park set as real furniture', () => {
+  it('fits every guide-built piece of every printed park set as real furniture', () => {
     let fits = 0;
     let total = 0;
     const misses: string[] = [];
@@ -133,10 +133,10 @@ describe('choosing model, shape or block', () => {
       }
     }
     expect(total).toBeGreaterThan(200);
-    // the rest are drawings that are not the guide's piece (e.g. a 2-ft "bench with back")
-    expect(fits / total).toBeGreaterThan(0.8);
-    // every printed stage square becomes stage
-    expect(misses.filter((m) => m.startsWith('stage'))).toEqual([]);
+    // built furniture now takes its true built size (pieces/builtsize.ts), so every
+    // guide-built piece is drawn as the real thing — even a 2-ft "bench with back" drawing
+    expect(misses).toEqual([]);
+    expect(fits).toBe(total);
   });
 });
 

@@ -7,6 +7,7 @@ import type { LocalSite } from './localsite';
 import { existingMeta } from './catalog';
 import { localToPark, type ParkPlacement } from './placement';
 import type { SiteFrame } from './rect';
+import { fitFeet } from './lotfit';
 
 export const DEFAULT_THEME: ThemeId = 'nature';
 
@@ -24,13 +25,14 @@ export function autoSize(frame: Pick<SiteFrame, 'lengthFt' | 'widthFt'>, facts?:
 
 /**
  * Park dimensions: stretched to the lot (the workbook's seams — never smaller than the
- * printed pieces) or the pieces' printed size.
+ * printed pieces) or the pieces' printed size. `fit` is what the park may fill: the
+ * largest rectangle inside the parcel (lotfit.ts), or the site frame.
  */
-export function parkDims(fitToLot: boolean, nominal: { lengthFt: number; widthFt: number }, frame: Pick<SiteFrame, 'lengthFt' | 'widthFt'>) {
+export function parkDims(fitToLot: boolean, nominal: { lengthFt: number; widthFt: number }, fit: Pick<SiteFrame, 'lengthFt' | 'widthFt'>) {
   if (!fitToLot) return { lengthFt: nominal.lengthFt, widthFt: nominal.widthFt };
   return {
-    lengthFt: Math.max(nominal.lengthFt, Math.floor(frame.lengthFt + 0.25)),
-    widthFt: Math.max(nominal.widthFt, Math.floor(frame.widthFt + 0.25)),
+    lengthFt: Math.max(nominal.lengthFt, fitFeet(fit.lengthFt)),
+    widthFt: Math.max(nominal.widthFt, fitFeet(fit.widthFt)),
   };
 }
 
