@@ -1,10 +1,70 @@
 /** @jsxImportSource preact */
+import { useRef } from 'preact/hooks';
 import { useStore } from '@nanostores/preact';
 import type { PlannerStore } from '../../lib/planner/store';
-import type { ThemeId } from '../../lib/types';
 import { catalogEntry, palette } from '../../lib/planner/catalog';
 import { addItem, resetTemplate } from '../../lib/planner/design';
-import { deleteSelected, nudgeSelected, rotateSelected } from './keyboard';
+import { addPlacement } from '../../lib/planner/interact';
+import { deleteSelected, duplicateSelected, nudgeSelected, rotateSelected } from './keyboard';
+
+/**
+ * Press on a palette item and drag it onto the 3D/plan view: the view shows where it
+ * will land, letting go adds it there, Esc (or letting go off the view) cancels. Mouse and
+ * pen only — on a touch screen a tap adds it and then you drag it into place.
+ */
+function startPaletteDrag(store: PlannerStore, e: PointerEvent, element: string, label: string, suppressClick: { current: boolean }) {
+  if (e.pointerType === 'touch' || e.button !== 0) return;
+  const sx = e.clientX;
+  const sy = e.clientY;
+  let dragging = false;
+  let tag: HTMLElement | null = null;
+  const move = (ev: PointerEvent) => {
+    if (!dragging) {
+      if (Math.hypot(ev.clientX - sx, ev.clientY - sy) < 6) return;
+      dragging = true;
+      tag = document.createElement('div');
+      tag.className = 'pl-drag-tag';
+      tag.textContent = `+ ${label}`;
+      document.body.appendChild(tag);
+      document.documentElement.classList.add('pl-palette-dragging');
+    }
+    ev.preventDefault();
+    const over = store.bridge.viewport?.dropPreview(element, ev.clientX, ev.clientY) ?? false;
+    if (tag) {
+      tag.classList.toggle('is-over', over);
+      tag.textContent = over ? 'Let go to put it here · Esc cancels' : `+ ${label}`;
+      // keep the label on screen: flip it to the left of the pointer near the right edge
+      const left = ev.clientX + 14 + tag.offsetWidth > window.innerWidth - 8 ? ev.clientX - 14 - tag.offsetWidth : ev.clientX + 14;
+      tag.style.transform = `translate(${Math.max(4, left)}px, ${ev.clientY + 12}px)`;
+    }
+  };
+  const finish = (drop: PointerEvent | null) => {
+    window.removeEventListener('pointermove', move);
+    window.removeEventListener('pointerup', up);
+    window.removeEventListener('pointercancel', cancel);
+    window.removeEventListener('keydown', key, true);
+    tag?.remove();
+    document.documentElement.classList.remove('pl-palette-dragging');
+    if (!dragging) return;
+    // a drag is not also a click
+    suppressClick.current = true;
+    setTimeout(() => (suppressClick.current = false), 0);
+    if (drop) store.bridge.viewport?.drop(element, drop.clientX, drop.clientY);
+    else store.bridge.viewport?.clearDrop();
+  };
+  const up = (ev: PointerEvent) => finish(ev);
+  const cancel = () => finish(null);
+  const key = (ev: KeyboardEvent) => {
+    if (ev.key !== 'Escape' || !dragging) return;
+    ev.preventDefault();
+    ev.stopPropagation();
+    finish(null);
+  };
+  window.addEventListener('pointermove', move);
+  window.addEventListener('pointerup', up);
+  window.addEventListener('pointercancel', cancel);
+  window.addEventListener('keydown', key, true);
+}
 
 const SOURCE: Record<string, string> = { frame: 'frame', front: 'front', back: 'back', added: 'added by you' };
 
@@ -15,21 +75,17 @@ export function ArrangePanel({ store }: { store: PlannerStore }) {
   const snap = useStore(store.$snap);
   const hist = useStore(store.$history);
   const overhang = useStore(store.$overhang);
+  const suppressClick = useRef(false);
   if (!d || !layout) return null;
   const item = sel?.kind === 'item' ? layout.items.find((i) => i.id === sel.id) : undefined;
+  const step = snap || 1;
   const changes = d.added.length + d.removed.length + Object.keys(d.moved).length;
 
   const add = (element: string) => {
-    // drop it in the middle of the park, in the theme of the piece it lands in
-    const x = layout.lengthFt / 2;
-    const y = layout.widthFt / 2;
-    const zone = layout.surfaces.find((s) => {
-      const xs = s.polygon.map((p) => p[0]);
-      const ys = s.polygon.map((p) => p[1]);
-      return x >= Math.min(...xs) && x <= Math.max(...xs) && y >= Math.min(...ys) && y <= Math.max(...ys);
-    });
-    const theme: ThemeId = (zone?.theme as ThemeId) ?? d.front;
-    const r = addItem(d, element, Math.round(x), Math.round(y), theme);
+    if (suppressClick.current) return;
+    // the middle of the park (beside the last one if that spot is taken), in the theme of the piece it lands in
+    const p = addPlacement(layout, element, d.front);
+    const r = addItem(d, element, p.x, p.y, p.theme);
     store.commit(r.design);
     store.$selection.set({ kind: 'item', id: r.id });
   };
@@ -51,6 +107,9 @@ export function ArrangePanel({ store }: { store: PlannerStore }) {
           <button type="button" aria-pressed={snap === 4} onClick={() => store.$snap.set(4)}>
             4 ft
           </button>
+          <button type="button" aria-pressed={snap === 0} onClick={() => store.$snap.set(0)} title="Move freely, not on the grid">
+            Off
+          </button>
         </div>
       </div>
 
@@ -64,32 +123,38 @@ export function ArrangePanel({ store }: { store: PlannerStore }) {
           {overhang?.items.includes(item.id) && <p class="pl-warn">This sticks out past the lot line.</p>}
           <div class="pl-row">
             <div class="pl-pad" role="group" aria-label="Move">
-              <button type="button" class="pl-tool" aria-label="Move toward the entrance" onClick={() => nudgeSelected(store, -snap, 0)}>
+              <button type="button" class="pl-tool" aria-label="Move toward the entrance" onClick={() => nudgeSelected(store, -step, 0)}>
                 ←
               </button>
-              <button type="button" class="pl-tool" aria-label="Move left" onClick={() => nudgeSelected(store, 0, snap)}>
+              <button type="button" class="pl-tool" aria-label="Move left" onClick={() => nudgeSelected(store, 0, step)}>
                 ↑
               </button>
-              <button type="button" class="pl-tool" aria-label="Move right" onClick={() => nudgeSelected(store, 0, -snap)}>
+              <button type="button" class="pl-tool" aria-label="Move right" onClick={() => nudgeSelected(store, 0, -step)}>
                 ↓
               </button>
-              <button type="button" class="pl-tool" aria-label="Move toward the back" onClick={() => nudgeSelected(store, snap, 0)}>
+              <button type="button" class="pl-tool" aria-label="Move toward the back" onClick={() => nudgeSelected(store, step, 0)}>
                 →
               </button>
             </div>
             <button type="button" class="btn btn-small" onClick={() => rotateSelected(store)}>
               ↻ Turn
             </button>
+            <button type="button" class="btn btn-small" onClick={() => duplicateSelected(store)} title="Put a copy right next to it (Ctrl+D)">
+              ⧉ Duplicate
+            </button>
             <button type="button" class="btn btn-small pl-danger" onClick={() => deleteSelected(store)}>
               Remove
             </button>
           </div>
-          <p class="pl-small muted">Keys: arrows move, R turns, Delete removes, Esc lets go.</p>
+          <p class="pl-small muted">
+            Drag it to move it, or drag the round handle to turn it (it turns in steps; hold Shift to turn freely). Keys: arrows move, R
+            turns, Ctrl+D duplicates, Delete removes, Esc lets go.
+          </p>
         </div>
       ) : (
         <p class="pl-small">
-          <strong>Tap or click</strong> anything in the park to pick it, then <strong>drag</strong> it to move it. Switch to <em>Plan</em> view to
-          see it like the paper pieces.
+          <strong>Drag</strong> anything in the park to move it. Click it to pick it, then drag its <strong>round handle</strong> to turn it.
+          Right-click it (or hold your finger on it) for more. Switch to <em>Plan</em> view to see it like the paper pieces.
         </p>
       )}
 
@@ -120,12 +185,18 @@ export function ArrangePanel({ store }: { store: PlannerStore }) {
       </label>
 
       <h3 class="pl-h">Add to your park</h3>
+      <p class="pl-small muted">Drag one onto the park to put it where you want, or click it to add it in the middle.</p>
       {palette().map((g, i) => (
         <details class="pl-palette" open={i === 0}>
           <summary>{g.group}</summary>
           <div class="pl-chips">
             {g.items.map((e) => (
-              <button type="button" class="pl-chip" onClick={() => add(e.id)}>
+              <button
+                type="button"
+                class="pl-chip pl-chip-drag"
+                onClick={() => add(e.id)}
+                onPointerDown={(ev) => startPaletteDrag(store, ev as PointerEvent, e.id, e.name, suppressClick)}
+              >
                 + {e.name} <span class="pl-dim">{e.w} × {e.h} ft</span>
               </button>
             ))}

@@ -1,9 +1,26 @@
-// Keyboard: arrows move the selected thing (by the snap step), R turns it, Delete removes
-// it, Ctrl/Cmd+Z undoes, Ctrl+Shift+Z / Ctrl+Y redoes, Esc deselects, P switches 3D/plan.
-// Only while focus is inside the planner and not in a text field.
+// Keyboard: arrows move the selected thing (by the snap step), R turns it, Ctrl/Cmd+D
+// duplicates it, Delete removes it, Ctrl/Cmd+Z undoes, Ctrl+Shift+Z / Ctrl+Y redoes, Esc
+// deselects, P switches 3D/plan. Only while focus is inside the planner and not in a text
+// field. The same actions back the buttons and the right-click menu.
 
 import type { PlannerStore } from '../../lib/planner/store';
-import { deleteExisting, moveItem, removeItem, updateExisting } from '../../lib/planner/design';
+import { deleteExisting, duplicateItem, moveItem, removeItem, updateExisting } from '../../lib/planner/design';
+import { duplicatePlacement } from '../../lib/planner/interact';
+
+/** Copy the selected park item and put the copy right next to it (then pick the copy). */
+export function duplicateSelected(store: PlannerStore): boolean {
+  const sel = store.$selection.get();
+  const d = store.$design.get();
+  const layout = store.$layout.get();
+  if (!store.editable || sel?.kind !== 'item' || !d || !layout) return false;
+  const it = layout.items.find((x) => x.id === sel.id);
+  if (!it) return false;
+  const [x, y] = duplicatePlacement(it, layout.lengthFt, layout.widthFt, layout.items);
+  const r = duplicateItem(d, it, x, y);
+  store.commit(r.design);
+  store.$selection.set({ kind: 'item', id: r.id });
+  return true;
+}
 
 export function nudgeSelected(store: PlannerStore, dx: number, dy: number) {
   const sel = store.$selection.get();
@@ -47,7 +64,7 @@ export function deleteSelected(store: PlannerStore) {
 }
 
 /** keydown handler for the planner root (attached with onKeyDown, so it follows re-renders). */
-export function keyHandler(store: PlannerStore, step: string) {
+export function keyHandler(store: PlannerStore) {
   return (e: KeyboardEvent) => {
     const t = e.target as HTMLElement;
     if (t.closest('input, textarea, select, [contenteditable]') && !(t as HTMLInputElement).type?.match(/checkbox|radio|button/)) return;
@@ -63,10 +80,19 @@ export function keyHandler(store: PlannerStore, step: string) {
       store.redo();
       return;
     }
+    if (mod && e.key.toLowerCase() === 'd') {
+      // (and keep the browser from bookmarking the page)
+      if (store.$selection.get()?.kind === 'item') {
+        e.preventDefault();
+        duplicateSelected(store);
+      }
+      return;
+    }
     if (mod || e.altKey) return;
     const sel = store.$selection.get();
-    const s = store.$snap.get();
-    const canEdit = sel && (sel.kind === 'item' ? step === 'arrange' || step === 'size' : step === 'existing' || step === 'lot');
+    const s = store.$snap.get() || 1;
+    // anything you can pick, you can move — on every step (not in the sun-only widget)
+    const canEdit = Boolean(sel) && store.editable;
     switch (e.key) {
       case 'ArrowLeft':
       case 'ArrowRight':

@@ -13,20 +13,50 @@ import { siteToLocal } from '../rect';
 import { sunPosition } from '../sun';
 import { classify, type GridSpec } from '../sunhours';
 import { COLORS, W, buildAerial, buildBuildings, cellTexture, cityTreeSpecs, disposeTree, quad, ribbon, TreeInstances } from './builders';
-import { ParkMeshes, type ParkMapping } from './park';
-import { ExistingMeshes, type ExistingRender } from './existing';
+import { ParkMeshes, itemFootprint, type ParkMapping } from './park';
+import { ExistingMeshes, existingFootprint, type ExistingRender } from './existing';
+import { Overlays, type Footprint } from './overlays';
+import { catalogEntry } from '../catalog';
+import { DragGesture, isTurnable, turnFromDrag, type Pose } from '../interact';
 
 export type ViewMode = '3d' | 'plan';
 export type PickKind = 'item' | 'existing';
+export interface Picked {
+  kind: PickKind;
+  id: string;
+}
+
+/** What the person is doing with the mouse right now (for the on-screen hint). */
+export interface GestureInfo {
+  mode: 'move' | 'turn';
+  /** it would hang off the lot where it is now */
+  over: boolean;
+  /** turning: the angle it would be left at (its own frame, degrees) */
+  deg?: number;
+}
+
+type PointerAt = { clientX: number; clientY: number; shiftKey?: boolean; altKey?: boolean; pointerType?: string };
 
 export interface SceneCallbacks {
-  onSelect(sel: { kind: PickKind; id: string } | null): void;
-  /** a drag finished: new position in the item's own frame (park feet for items, local feet for existing) */
-  onDragEnd(kind: PickKind, id: string, p: Vec2): void;
-  /** convert a ground point (local feet) to the item's frame and snap it */
-  dragTransform(kind: PickKind, id: string, groundLocal: Vec2, grab: Vec2): { p: Vec2; preview: Vec2 } | null;
-  /** may this kind be dragged right now? */
+  onSelect(sel: Picked | null): void;
+  /** may this kind be picked up and moved? */
   canDrag(kind: PickKind): boolean;
+  /**
+   * Where a dragged thing goes: the ground point under the pointer (local feet) less the
+   * grab offset, in the thing's own frame (park feet for items, local feet for existing),
+   * snapped to the grid unless `free` (Alt held).
+   */
+  dragTransform(kind: PickKind, id: string, groundLocal: Vec2, grab: Vec2, free: boolean): Vec2 | null;
+  /** would this park item hang off the lot at this pose? (drawn red) */
+  sticksOut?(id: string, pose: Pose): boolean;
+  /** a move finished: new position in the thing's own frame. One call = one undo step. */
+  onDragEnd(kind: PickKind, id: string, p: Vec2): void;
+  /** a turn with the handle finished: new rotation in the thing's own frame */
+  onTurnEnd?(kind: PickKind, id: string, deg: number): void;
+  /** right-click or long-press on a thing */
+  onMenu?(sel: Picked, at: { clientX: number; clientY: number }): void;
+  /** a move or turn started, changed, or ended (null) */
+  onGesture?(g: GestureInfo | null): void;
   /** the camera moved: which way north points on screen (degrees clockwise from up) */
   onCamera?(northDeg: number): void;
 }
@@ -40,6 +70,9 @@ export interface ParkState {
   /** park-local -> local feet of the park's x0,y0 corner and axis directions (for plan view orientation) */
   axes: { origin: Vec2; x: Vec2; y: Vec2 };
 }
+
+/** id of the palette item shown while it is dragged over the view (never picked) */
+export const GHOST_ID = '__palette-drop';
 
 const isCoarse = () => typeof matchMedia !== 'undefined' && matchMedia('(pointer: coarse)').matches;
 
@@ -71,15 +104,30 @@ export class PlannerScene {
   private selected: string | null = null;
   private existingItems: ExistingRender[] = [];
   private existingMarkers = true;
-  private drag: {
+  private overlays = new Overlays();
+  private gesture: {
+    g: DragGesture;
     kind: PickKind;
     id: string;
     pointerId: number;
-    start: [number, number];
+    /** move: where on the thing it was grabbed (local feet from its centre) */
     grab: Vec2;
-    moved: boolean;
-    last: Vec2 | null;
+    /** turn: the thing's centre and the grab point, in its own frame */
+    center: Vec2;
+    grabFrame: Vec2;
+    last: PointerAt;
+    longPress?: ReturnType<typeof setTimeout>;
   } | null = null;
+  private hover: Picked | null = null;
+  private hoverAt: PointerAt | null = null;
+  private cursor = '';
+  /** a palette item being dragged over the view */
+  private ghost: { item: LayoutItem; over: boolean } | null = null;
+  private rightDown: { x: number; y: number } | null = null;
+  private touches = new Set<number>();
+  /** a second finger cancelled a drag: leave the camera alone until all fingers lift */
+  private holdControls = false;
+  private tmp = { m: new THREE.Matrix4(), p: new THREE.Vector3(), q: new THREE.Quaternion(), s: new THREE.Vector3() };
   private raycaster = new THREE.Raycaster();
   private ground = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
   private mobile = isCoarse();
@@ -131,12 +179,16 @@ export class PlannerScene {
     this.planVeil.visible = false;
     this.planVeil.renderOrder = 1;
 
-    this.scene.add(this.siteGroup, this.cityTrees.group, this.park.group, this.existing.group, this.heat, this.planVeil);
+    this.scene.add(this.siteGroup, this.cityTrees.group, this.park.group, this.existing.group, this.heat, this.planVeil, this.overlays.group);
 
     canvas.addEventListener('pointerdown', this.onPointerDown, { capture: true });
     canvas.addEventListener('pointermove', this.onPointerMove);
     canvas.addEventListener('pointerup', this.onPointerUp);
-    canvas.addEventListener('pointercancel', this.onPointerUp);
+    canvas.addEventListener('pointercancel', this.onPointerCancel);
+    canvas.addEventListener('pointerleave', this.onPointerLeave);
+    canvas.addEventListener('contextmenu', this.onContextMenu);
+    window.addEventListener('keydown', this.onKey, { capture: true });
+    window.addEventListener('keyup', this.onKey, { capture: true });
     canvas.addEventListener('webglcontextlost', (e) => {
       e.preventDefault();
       this.lost = true;
@@ -242,6 +294,7 @@ export class PlannerScene {
 
   setView(v: ViewMode) {
     if (v === this.view) return;
+    this.cancelDrag();
     this.view = v;
     this.camera = v === '3d' ? this.persp : this.ortho;
     this.planVeil.visible = v === 'plan' && Boolean(this.aerial?.mesh.visible);
@@ -313,19 +366,26 @@ export class PlannerScene {
     this.requestRender();
   }
 
-  private dragPreview: { id: string; x: number; y: number; rotationDeg: number } | null = null;
+  private dragPreview: { id: string; x: number; y: number; rotationDeg: number; over?: boolean } | null = null;
 
-  private refreshItems() {
-    this.renderer.shadowMap.needsUpdate = true;
+  /** Redraw the park's items (after a change, a hover, a drag step). `shadows` = positions changed. */
+  private refreshItems(shadows = true) {
+    if (shadows) this.renderer.shadowMap.needsUpdate = true;
     const st = this.parkState;
     if (!st) return;
-    this.park.setItems(this.items, { selected: this.selected, overhang: new Set(st.overhang?.items ?? []), dragging: this.dragPreview }, st.themes);
+    const items = this.ghost ? [...this.items, this.ghost.item] : this.items;
+    this.park.setItems(
+      items,
+      { selected: this.selected, hover: this.hover?.id ?? null, overhang: new Set(st.overhang?.items ?? []), dragging: this.dragPreview },
+      st.themes,
+    );
+    this.refreshOverlay();
   }
 
   setSelection(id: string | null) {
     this.selected = id;
-    this.refreshItems();
-    this.refreshExisting();
+    this.refreshItems(false);
+    this.refreshExisting(false);
     this.requestRender();
   }
 
@@ -336,14 +396,90 @@ export class PlannerScene {
     this.requestRender();
   }
 
-  private existingPreview: { id: string; x: number; y: number } | null = null;
+  private existingPreview: { id: string; x: number; y: number; rotationDeg: number } | null = null;
 
-  private refreshExisting() {
-    this.renderer.shadowMap.needsUpdate = true;
-    const items = this.existingPreview
-      ? this.existingItems.map((e) => (e.id === this.existingPreview!.id ? { ...e, x: this.existingPreview!.x, y: this.existingPreview!.y } : e))
-      : this.existingItems;
-    this.existing.set(items, { showMarkers: this.existingMarkers, selected: this.selected });
+  private refreshExisting(shadows = true) {
+    if (shadows) this.renderer.shadowMap.needsUpdate = true;
+    this.existing.set(this.existingNow(), { showMarkers: this.existingMarkers, selected: this.selected });
+    this.refreshOverlay();
+  }
+
+  /** existing things with the one being dragged at its preview pose */
+  private existingNow(): ExistingRender[] {
+    const pv = this.existingPreview;
+    return pv ? this.existingItems.map((e) => (e.id === pv.id ? { ...e, x: pv.x, y: pv.y, rotationDeg: pv.rotationDeg } : e)) : this.existingItems;
+  }
+
+  /** park items with the one being dragged at its preview pose */
+  private itemNow(id: string): LayoutItem | undefined {
+    const it = this.items.find((x) => x.id === id);
+    const pv = this.dragPreview;
+    return it && pv && pv.id === id ? { ...it, x: pv.x, y: pv.y, rotationDeg: pv.rotationDeg } : it;
+  }
+
+  private kindOf(id: string): PickKind | null {
+    if (this.parkState && this.park.group.visible && this.items.some((x) => x.id === id)) return 'item';
+    if (this.existingItems.some((x) => x.id === id)) return 'existing';
+    return null;
+  }
+
+  private footprintOf(id: string): Footprint | null {
+    const kind = this.kindOf(id);
+    if (kind === 'item') {
+      const it = this.itemNow(id);
+      return it && this.parkState ? itemFootprint(it, this.parkState.map) : null;
+    }
+    if (kind === 'existing') {
+      const e = this.existingNow().find((x) => x.id === id);
+      return e ? existingFootprint(e) : null;
+    }
+    return null;
+  }
+
+  private turnable(kind: PickKind, id: string): boolean {
+    if (kind === 'item') {
+      const it = this.items.find((x) => x.id === id);
+      return Boolean(it) && it!.variant !== 'round' && isTurnable('item', it!.element, catalogEntry(it!.element).shape);
+    }
+    const e = this.existingItems.find((x) => x.id === id);
+    return Boolean(e) && isTurnable('existing', e!.element);
+  }
+
+  /** hover outline, selection ring and fill, landing footprint, turn handle */
+  private refreshOverlay() {
+    const gs = this.gesture;
+    const hover = this.hover && this.hover.id !== this.selected ? this.footprintOf(this.hover.id) : null;
+    let selected: { f: Footprint; over: boolean; dragging: boolean } | null = null;
+    let handle: Footprint | null = null;
+    if (this.ghost && this.parkState) {
+      selected = { f: itemFootprint(this.ghost.item, this.parkState.map), over: this.ghost.over, dragging: true };
+    } else if (this.selected) {
+      const kind = this.kindOf(this.selected);
+      const f = this.footprintOf(this.selected);
+      if (kind && f) {
+        const live = gs && gs.id === this.selected && gs.g.preview ? gs : null;
+        const over = live ? live.g.over : kind === 'item' && Boolean(this.parkState?.overhang?.items.includes(this.selected));
+        const moving = Boolean(live && live.g.mode === 'move');
+        selected = { f, over, dragging: moving };
+        if (!moving && this.cb.canDrag(kind) && this.turnable(kind, this.selected)) handle = f;
+      }
+    }
+    this.overlays.set({ hover, selected, handle });
+    this.requestRender();
+  }
+
+  /** Show a palette item where it would land while it is dragged over the view (null = none). */
+  setGhost(item: LayoutItem | null, over = false) {
+    if (!item && !this.ghost) return;
+    this.ghost = item ? { item, over } : null;
+    this.refreshItems(false);
+  }
+
+  /** The ground point (local feet) under a screen point, or null when it is not over the view. */
+  groundAtClient(clientX: number, clientY: number): Vec2 | null {
+    const r = this.renderer.domElement.getBoundingClientRect();
+    if (clientX < r.left || clientX > r.right || clientY < r.top || clientY > r.bottom) return null;
+    return this.groundPoint({ clientX, clientY });
   }
 
   setSun(date: Date) {
@@ -396,20 +532,24 @@ export class PlannerScene {
   }
 
   // ---- picking & dragging ----
+  //
+  // Press on a thing and drag: it moves (never the camera). Press on empty ground: the
+  // camera turns (3D) or slides (plan). The round handle on the selected thing turns it.
+  // Esc while dragging puts it back. Right-click or a long press opens the little menu.
 
-  private ndc(e: PointerEvent): THREE.Vector2 {
+  private ndc(e: PointerAt): THREE.Vector2 {
     const r = this.renderer.domElement.getBoundingClientRect();
     return new THREE.Vector2(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
   }
 
-  private groundPoint(e: PointerEvent): Vec2 | null {
+  private groundPoint(e: PointerAt): Vec2 | null {
     this.raycaster.setFromCamera(this.ndc(e), this.camera);
     const p = new THREE.Vector3();
     if (!this.raycaster.ray.intersectPlane(this.ground, p)) return null;
     return [p.x, -p.z];
   }
 
-  private pick(e: PointerEvent): { kind: PickKind; id: string } | null {
+  private pick(e: PointerAt): Picked | null {
     this.raycaster.setFromCamera(this.ndc(e), this.camera);
     const cands = [
       ...this.existing.pickables().map((p) => ({ ...p, kind: 'existing' as PickKind })),
@@ -419,44 +559,52 @@ export class PlannerScene {
       cands.map((c) => c.object),
       false,
     );
+    // Tree crowns are big and airy: a bench standing under one is picked through it.
+    let crown: { pick: Picked; x: number; z: number; r: number } | null = null;
     for (const h of hits) {
       const c = cands.find((x) => x.object === h.object);
       const id = c?.idOf(h.instanceId);
-      if (c && id) return { kind: c.kind, id };
+      if (!c || !id || id === GHOST_ID) continue;
+      if (c.soft && h.instanceId != null) {
+        if (!crown) {
+          const t = this.tmp;
+          (h.object as THREE.InstancedMesh).getMatrixAt(h.instanceId, t.m);
+          t.m.decompose(t.p, t.q, t.s);
+          crown = { pick: { kind: c.kind, id }, x: t.p.x, z: t.p.z, r: t.s.x };
+        }
+        continue;
+      }
+      if (!crown) return { kind: c.kind, id };
+      if (Math.hypot(h.point.x - crown.x, h.point.z - crown.z) <= crown.r + 0.5) return { kind: c.kind, id };
+      break;
     }
-    return null;
+    return crown?.pick ?? null;
   }
 
-  private onPointerDown = (e: PointerEvent) => {
-    if (e.button !== 0 && e.pointerType === 'mouse') return;
-    // focus the canvas so the planner's keyboard shortcuts work after a click
-    if (e.pointerType === 'mouse') this.renderer.domElement.focus({ preventScroll: true });
-    const hit = this.pick(e);
-    if (!hit) {
-      this.drag = null;
-      this.pendingDeselect = { x: e.clientX, y: e.clientY };
-      return;
-    }
-    this.pendingDeselect = null;
-    this.cb.onSelect(hit);
-    if (!this.cb.canDrag(hit.kind)) return;
-    const g = this.groundPoint(e);
-    if (!g) return;
-    // grab offset: where on the item we grabbed, so it doesn't jump
-    const center = this.centerOf(hit);
-    this.drag = { ...hit, pointerId: e.pointerId, start: [e.clientX, e.clientY], grab: center ? [g[0] - center[0], g[1] - center[1]] : [0, 0], moved: false, last: null };
-    this.controls.enabled = false;
-    e.stopPropagation();
-    try {
-      this.renderer.domElement.setPointerCapture(e.pointerId);
-    } catch {
-      /* synthetic or already-gone pointer */
-    }
-  };
+  /**
+   * Is the pointer on the turn handle's knob? Tested on screen. `strict` = on the drawn
+   * knob; otherwise within a finger's reach of it (which only wins when nothing else is
+   * under the pointer).
+   */
+  private onKnob(e: PointerAt): boolean {
+    if (!this.overKnob(e)) return false;
+    if (this.overKnob(e, true)) return true;
+    return !this.pick(e);
+  }
 
-  private pendingDeselect: { x: number; y: number } | null = null;
+  private overKnob(e: PointerAt, strict = false): boolean {
+    const k = this.overlays.knobAt;
+    if (!k) return false;
+    const v = k.clone().project(this.camera);
+    if (v.z > 1) return false;
+    const r = this.renderer.domElement.getBoundingClientRect();
+    const x = r.left + ((v.x + 1) / 2) * r.width;
+    const y = r.top + ((1 - v.y) / 2) * r.height;
+    const reach = strict ? 14 : e.pointerType === 'touch' || this.mobile ? 26 : 18;
+    return Math.hypot(e.clientX - x, e.clientY - y) <= reach;
+  }
 
-  private centerOf(hit: { kind: PickKind; id: string }): Vec2 | null {
+  private centerOf(hit: Picked): Vec2 | null {
     if (hit.kind === 'existing') {
       const it = this.existingItems.find((x) => x.id === hit.id);
       return it ? [it.x, it.y] : null;
@@ -465,44 +613,276 @@ export class PlannerScene {
     return it && this.parkState ? this.parkState.map.toLocal([it.x, it.y]) : null;
   }
 
-  private onPointerMove = (e: PointerEvent) => {
-    const d = this.drag;
-    if (!d || e.pointerId !== d.pointerId) return;
-    if (!d.moved && Math.hypot(e.clientX - d.start[0], e.clientY - d.start[1]) < 4) return;
-    d.moved = true;
-    const g = this.groundPoint(e);
-    if (!g) return;
-    const r = this.cb.dragTransform(d.kind, d.id, g, d.grab);
-    if (!r) return;
-    d.last = r.p;
-    if (d.kind === 'item') {
-      const it = this.items.find((x) => x.id === d.id);
-      if (it) this.dragPreview = { id: d.id, x: r.p[0], y: r.p[1], rotationDeg: it.rotationDeg };
-      this.refreshItems();
-    } else {
-      this.existingPreview = { id: d.id, x: r.preview[0], y: r.preview[1] };
-      this.refreshExisting();
+  /** where a thing is now, in its own frame (park feet for items; local feet + saved turn for existing) */
+  private poseOf(hit: Picked): Pose | null {
+    if (hit.kind === 'existing') {
+      const e = this.existingItems.find((x) => x.id === hit.id);
+      return e ? { x: e.x, y: e.y, rotationDeg: e.ownRotationDeg ?? 0 } : null;
     }
-    this.requestRender();
+    const it = this.items.find((x) => x.id === hit.id);
+    return it ? { x: it.x, y: it.y, rotationDeg: it.rotationDeg } : null;
+  }
+
+  /** a ground point (local feet) in the thing's own frame */
+  private toFrame(kind: PickKind, p: Vec2): Vec2 {
+    return kind === 'item' && this.parkState ? this.parkState.map.toPark(p) : p;
+  }
+
+  private setCursor(c: string) {
+    if (c === this.cursor) return;
+    this.cursor = c;
+    this.renderer.domElement.style.cursor = c;
+  }
+
+  private setHover(h: Picked | null) {
+    if ((h?.id ?? null) === (this.hover?.id ?? null)) return;
+    this.hover = h;
+    if (this.parkState) this.refreshItems(false);
+    else this.refreshOverlay();
+  }
+
+  private updateHover(at: PointerAt) {
+    if (this.gesture) return;
+    const onKnob = this.onKnob(at);
+    let hit: Picked | null = null;
+    if (!onKnob) {
+      const p = this.pick(at);
+      if (p && this.cb.canDrag(p.kind)) hit = p;
+    }
+    this.setCursor(onKnob || hit ? 'grab' : '');
+    if (this.overlays.setKnobHot(onKnob)) this.requestRender();
+    this.setHover(hit);
+  }
+
+  private startGesture(e: PointerEvent, hit: Picked, mode: 'move' | 'turn'): boolean {
+    const g = this.groundPoint(e);
+    const pose = this.poseOf(hit);
+    const center = this.centerOf(hit);
+    if (!g || !pose || !center) return false;
+    this.gesture = {
+      g: new DragGesture(mode, pose, [e.clientX, e.clientY], e.pointerType === 'touch' ? 8 : 4),
+      kind: hit.kind,
+      id: hit.id,
+      pointerId: e.pointerId,
+      grab: [g[0] - center[0], g[1] - center[1]],
+      center: this.toFrame(hit.kind, center),
+      grabFrame: this.toFrame(hit.kind, g),
+      last: { clientX: e.clientX, clientY: e.clientY, shiftKey: e.shiftKey, altKey: e.altKey },
+    };
+    this.controls.enabled = false;
+    this.setHover(null);
+    this.setCursor('grabbing');
+    try {
+      this.renderer.domElement.setPointerCapture(e.pointerId);
+    } catch {
+      /* synthetic or already-gone pointer */
+    }
+    if (e.pointerType === 'touch' && mode === 'move') {
+      const gs = this.gesture;
+      gs.longPress = setTimeout(() => {
+        if (this.gesture !== gs || gs.g.moved) return;
+        this.endGesture(false);
+        this.cb.onMenu?.(hit, { clientX: gs.last.clientX, clientY: gs.last.clientY });
+      }, 550);
+    }
+    return true;
+  }
+
+  private onPointerDown = (e: PointerEvent) => {
+    if (e.pointerType === 'touch') this.touches.add(e.pointerId);
+    if (this.gesture && e.pointerId !== this.gesture.pointerId) {
+      // a second finger: they want to pinch or pan, not move the thing
+      this.endGesture(false);
+      this.holdControls = true;
+      this.controls.enabled = false;
+      return;
+    }
+    if (e.pointerType === 'mouse' && e.button === 2) {
+      this.rightDown = { x: e.clientX, y: e.clientY };
+      return;
+    }
+    if (e.button !== 0 && e.pointerType === 'mouse') return;
+    // focus the canvas so the planner's keyboard shortcuts work after a click
+    if (e.pointerType === 'mouse') this.renderer.domElement.focus({ preventScroll: true });
+    // the turn handle on the selected thing
+    const sk = this.selected ? this.kindOf(this.selected) : null;
+    if (sk && this.selected && this.cb.canDrag(sk) && this.onKnob(e)) {
+      this.pendingDeselect = null;
+      if (this.startGesture(e, { kind: sk, id: this.selected }, 'turn')) e.stopPropagation();
+      return;
+    }
+    const hit = this.pick(e);
+    if (!hit) {
+      this.pendingDeselect = { x: e.clientX, y: e.clientY };
+      return;
+    }
+    this.pendingDeselect = null;
+    this.cb.onSelect(hit);
+    if (!this.cb.canDrag(hit.kind)) return;
+    if (this.startGesture(e, hit, 'move')) e.stopPropagation();
   };
 
+  private pendingDeselect: { x: number; y: number } | null = null;
+
+  private onPointerMove = (e: PointerEvent) => {
+    const gs = this.gesture;
+    if (!gs) {
+      if (e.pointerType !== 'touch' && e.buttons === 0) this.hoverAt = { clientX: e.clientX, clientY: e.clientY, pointerType: e.pointerType };
+      return;
+    }
+    if (e.pointerId !== gs.pointerId) return;
+    gs.last = { clientX: e.clientX, clientY: e.clientY, shiftKey: e.shiftKey, altKey: e.altKey };
+    this.stepGesture();
+  };
+
+  /** follow the pointer (or a Shift/Alt change) during a move or turn */
+  private stepGesture() {
+    const gs = this.gesture;
+    if (!gs) return;
+    const ev = gs.last;
+    const g = this.groundPoint(ev);
+    if (!g) return;
+    let next: Pose | null = null;
+    if (gs.g.mode === 'move') {
+      const p = this.cb.dragTransform(gs.kind, gs.id, g, gs.grab, Boolean(ev.altKey));
+      if (p) next = { x: p[0], y: p[1], rotationDeg: gs.g.start.rotationDeg };
+    } else {
+      const deg = turnFromDrag(gs.g.start.rotationDeg, gs.center, gs.grabFrame, this.toFrame(gs.kind, g), Boolean(ev.shiftKey || ev.altKey));
+      next = { ...gs.g.start, rotationDeg: deg };
+    }
+    const over = next && gs.kind === 'item' ? Boolean(this.cb.sticksOut?.(gs.id, next)) : false;
+    const changed = gs.g.update([ev.clientX, ev.clientY], next, over);
+    if (gs.g.moved && gs.longPress) {
+      clearTimeout(gs.longPress);
+      gs.longPress = undefined;
+    }
+    if (changed) this.applyPreview();
+  }
+
+  private applyPreview() {
+    const gs = this.gesture;
+    const pv = gs?.g.preview ?? null;
+    this.dragPreview = null;
+    this.existingPreview = null;
+    if (gs && pv) {
+      if (gs.kind === 'item') this.dragPreview = { id: gs.id, ...pv, over: gs.g.over };
+      else {
+        const e = this.existingItems.find((x) => x.id === gs.id);
+        const off = e ? e.rotationDeg - (e.ownRotationDeg ?? 0) : 0;
+        this.existingPreview = { id: gs.id, x: pv.x, y: pv.y, rotationDeg: pv.rotationDeg + off };
+      }
+    }
+    if (!gs || gs.kind === 'item') this.refreshItems();
+    if (!gs || gs.kind === 'existing') this.refreshExisting();
+    this.requestRender();
+    this.cb.onGesture?.(gs && pv ? { mode: gs.g.mode, over: gs.g.over, deg: gs.g.mode === 'turn' ? pv.rotationDeg : undefined } : null);
+  }
+
+  /** Finish the move or turn: save it (one undo step) or, with commit=false, put it back. */
+  private endGesture(commit: boolean) {
+    const gs = this.gesture;
+    if (!gs) return;
+    this.gesture = null;
+    clearTimeout(gs.longPress);
+    if (!this.holdControls) this.controls.enabled = true;
+    try {
+      this.renderer.domElement.releasePointerCapture(gs.pointerId);
+    } catch {
+      /* already released */
+    }
+    const res = commit ? gs.g.finish() : (gs.g.cancel(), null);
+    const hadPreview = Boolean(this.dragPreview || this.existingPreview);
+    this.dragPreview = null;
+    this.existingPreview = null;
+    if (res) {
+      if (gs.g.mode === 'move') this.cb.onDragEnd(gs.kind, gs.id, [res.x, res.y]);
+      else this.cb.onTurnEnd?.(gs.kind, gs.id, res.rotationDeg);
+    }
+    if (hadPreview) {
+      if (gs.kind === 'item') this.refreshItems();
+      else this.refreshExisting();
+    } else this.refreshOverlay();
+    this.setCursor('');
+    this.cb.onGesture?.(null);
+    this.requestRender();
+  }
+
+  /** Esc, a view switch, a second finger: drop the drag without saving it. */
+  cancelDrag() {
+    this.endGesture(false);
+  }
+
+  get dragging(): boolean {
+    return Boolean(this.gesture?.g.moved);
+  }
+
   private onPointerUp = (e: PointerEvent) => {
-    const d = this.drag;
+    if (e.pointerType === 'touch') this.touches.delete(e.pointerId);
+    if (this.holdControls && this.touches.size === 0) {
+      this.holdControls = false;
+      if (!this.gesture) this.controls.enabled = true;
+    }
+    if (e.pointerType === 'mouse' && e.button === 2) {
+      // right-click without dragging (a right-drag slides the camera): the little menu
+      const rd = this.rightDown;
+      this.rightDown = null;
+      if (rd && Math.hypot(e.clientX - rd.x, e.clientY - rd.y) < 5) {
+        const hit = this.pick(e);
+        if (hit && this.cb.canDrag(hit.kind)) {
+          this.cb.onSelect(hit);
+          this.cb.onMenu?.(hit, { clientX: e.clientX, clientY: e.clientY });
+        }
+      }
+      return;
+    }
     if (this.pendingDeselect && Math.hypot(e.clientX - this.pendingDeselect.x, e.clientY - this.pendingDeselect.y) < 5) {
       this.cb.onSelect(null);
     }
     this.pendingDeselect = null;
-    if (!d || e.pointerId !== d.pointerId) return;
-    this.drag = null;
-    this.controls.enabled = true;
-    try {
-      this.renderer.domElement.releasePointerCapture(e.pointerId);
-    } catch {
-      /* already released */
+    const gs = this.gesture;
+    if (!gs || e.pointerId !== gs.pointerId) return;
+    this.endGesture(true);
+    if (e.pointerType !== 'touch') this.updateHover(e);
+  };
+
+  private onPointerCancel = (e: PointerEvent) => {
+    this.touches.delete(e.pointerId);
+    if (this.touches.size === 0 && this.holdControls) {
+      this.holdControls = false;
+      if (!this.gesture) this.controls.enabled = true;
     }
-    if (d.moved && d.last) this.cb.onDragEnd(d.kind, d.id, d.last);
-    this.dragPreview = null;
-    this.existingPreview = null;
+    this.pendingDeselect = null;
+    if (this.gesture && e.pointerId === this.gesture.pointerId) this.endGesture(false);
+  };
+
+  private onPointerLeave = () => {
+    this.hoverAt = null;
+    if (this.gesture) return;
+    this.setCursor('');
+    if (this.overlays.setKnobHot(false)) this.requestRender();
+    this.setHover(null);
+  };
+
+  private onContextMenu = (e: Event) => {
+    // the planner's own menu comes up on right-button release instead
+    e.preventDefault();
+  };
+
+  private onKey = (e: KeyboardEvent) => {
+    const gs = this.gesture;
+    if (!gs) return;
+    if (e.type === 'keydown' && e.key === 'Escape') {
+      e.preventDefault();
+      e.stopPropagation();
+      this.endGesture(false);
+      return;
+    }
+    if (e.key === 'Shift' || e.key === 'Alt') {
+      // let go of snapping (or take it back) without moving the mouse
+      if (e.key === 'Alt') e.preventDefault();
+      gs.last = { ...gs.last, shiftKey: e.shiftKey, altKey: e.altKey };
+      this.stepGesture();
+    }
   };
 
   // ---- rendering ----
@@ -527,9 +907,17 @@ export class PlannerScene {
     if (this.disposed) return;
     this.raf = requestAnimationFrame(this.loop);
     if (!this.visible) return;
+    if (this.hoverAt) {
+      const at = this.hoverAt;
+      this.hoverAt = null;
+      this.updateHover(at);
+    }
     if (this.view === '3d' && this.controls.enableDamping && this.controls.update()) this.dirty = true;
     if (this.dirty) {
       this.dirty = false;
+      const focus = this.overlays.focus();
+      this.camera.updateMatrixWorld();
+      this.overlays.layout(focus ? this.feetPerPixel(focus) : 0, this.overlays.handle ? this.measure : null);
       this.renderer.render(this.scene, this.camera);
       const n = this.northDeg();
       if (Math.abs(n - this.lastNorth) > 0.5) {
@@ -540,6 +928,22 @@ export class PlannerScene {
   };
 
   private lastNorth = Infinity;
+
+  /** screen pixels per foot along a ground direction at a ground point */
+  private measure = (at: Vec2, dir: Vec2): number => {
+    const r = this.renderer.domElement;
+    const a = W(at[0], at[1], 0.5).project(this.camera);
+    const b = W(at[0] + dir[0], at[1] + dir[1], 0.5).project(this.camera);
+    return Math.hypot(((b.x - a.x) / 2) * r.clientWidth, ((b.y - a.y) / 2) * r.clientHeight);
+  };
+
+  /** world feet per screen pixel at a point (keeps the turn knob one size on screen) */
+  private feetPerPixel(p: THREE.Vector3): number {
+    const h = Math.max(1, this.renderer.domElement.clientHeight);
+    if (this.view === 'plan') return (this.ortho.top - this.ortho.bottom) / this.ortho.zoom / h;
+    const d = this.persp.position.distanceTo(p);
+    return (2 * d * Math.tan((this.persp.fov * Math.PI) / 360)) / h;
+  }
 
   /** Which way north points on screen, degrees clockwise from straight up. */
   northDeg(): number {
@@ -559,6 +963,8 @@ export class PlannerScene {
   /** PNG of the current view (or another one), as a data URL. */
   snapshot(view: ViewMode = this.view, size?: { w: number; h: number }): string {
     const prevView = this.view;
+    // pictures and the printed plan show the park, not the mouse handles
+    this.overlays.group.visible = false;
     const keep = { pos: this.persp.position.clone(), target: this.controls.target.clone() };
     if (view !== prevView) this.setView(view);
     const o = this.ortho;
@@ -603,12 +1009,16 @@ export class PlannerScene {
         this.controls.update();
       }
     }
+    this.overlays.group.visible = true;
     this.requestRender();
     return url;
   }
 
   dispose() {
     this.disposed = true;
+    if (this.gesture) clearTimeout(this.gesture.longPress);
+    window.removeEventListener('keydown', this.onKey, { capture: true });
+    window.removeEventListener('keyup', this.onKey, { capture: true });
     cancelAnimationFrame(this.raf);
     this.ro.disconnect();
     this.io.disconnect();
@@ -617,6 +1027,7 @@ export class PlannerScene {
     disposeTree(this.siteGroup);
     this.park.dispose();
     this.existing.dispose();
+    this.overlays.dispose();
     this.cityTrees.dispose();
     disposeTree(this.heat);
     this.renderer.dispose();

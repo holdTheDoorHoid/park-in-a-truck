@@ -7,11 +7,29 @@ import type { LayoutItem, LayoutSurface, Material, ParkLayout, ThemeId } from '.
 import { THEMES } from '../../../data/themes';
 import { catalogEntry } from '../catalog';
 import type { Vec2 } from '../geo';
-import { COLORS, TreeInstances, W, quad, cellTexture, ribbon, disposeTree } from './builders';
+import { TreeInstances, W, quad, cellTexture, ribbon, disposeTree } from './builders';
+import type { Footprint } from './overlays';
 
 export interface ParkMapping {
   toLocal: (p: Vec2) => Vec2;
   dirToLocal: (d: Vec2) => Vec2;
+  /** local feet -> park feet (the inverse of toLocal) */
+  toPark: (p: Vec2) => Vec2;
+}
+
+/** An item's footprint on the ground in local feet (for the selection and drag overlays). */
+export function itemFootprint(it: LayoutItem, map: ParkMapping): Footprint {
+  const e = catalogEntry(it.element);
+  const r = (it.rotationDeg * Math.PI) / 180;
+  const round = e.shape === 'tree-small' || e.shape === 'tree-large' || e.shape === 'shrub' || e.shape === 'barrel' || it.variant === 'round';
+  return {
+    c: map.toLocal([it.x, it.y]),
+    xd: map.dirToLocal([Math.cos(r), Math.sin(r)]),
+    yd: map.dirToLocal([-Math.sin(r), Math.cos(r)]),
+    hw: (it.w || e.w) / 2,
+    hh: (it.h || e.h) / 2,
+    round,
+  };
 }
 
 const mix = (a: string, b: string, t: number) => '#' + new THREE.Color(a).lerp(new THREE.Color(b), t).getHexString();
@@ -168,8 +186,9 @@ function partsFor(it: LayoutItem): Part[] {
 
 export interface ParkHighlight {
   selected?: string | null;
+  hover?: string | null;
   overhang?: Set<string>;
-  dragging?: { id: string; x: number; y: number; rotationDeg: number } | null;
+  dragging?: { id: string; x: number; y: number; rotationDeg: number; over?: boolean } | null;
 }
 
 export class ParkMeshes {
@@ -180,22 +199,22 @@ export class ParkMeshes {
   private cyls = new Instances(unitCyl, new THREE.MeshLambertMaterial({ color: 0xffffff }), 32);
   private blobs = new Instances(unitBlob, new THREE.MeshLambertMaterial({ color: 0xffffff, flatShading: true }), 256);
   private trees = new TreeInstances(64);
-  private selection = new THREE.Group();
   private layout: ParkLayout | null = null;
   private map: ParkMapping | null = null;
 
   constructor() {
     this.group.name = 'park';
-    this.group.add(this.surfaces, this.overlays, this.boxes.mesh, this.cyls.mesh, this.blobs.mesh, this.trees.group, this.selection);
+    this.group.add(this.surfaces, this.overlays, this.boxes.mesh, this.cyls.mesh, this.blobs.mesh, this.trees.group);
   }
 
   /** meshes that can be clicked, and how to turn a hit into an item id */
-  pickables(): { object: THREE.Object3D; idOf: (instanceId?: number) => string | undefined }[] {
+  pickables(): { object: THREE.Object3D; idOf: (instanceId?: number) => string | undefined; soft?: boolean }[] {
     return [
       { object: this.boxes.mesh, idOf: (i) => (i == null ? undefined : this.boxes.ids[i]) },
       { object: this.cyls.mesh, idOf: (i) => (i == null ? undefined : this.cyls.ids[i]) },
       { object: this.blobs.mesh, idOf: (i) => (i == null ? undefined : this.blobs.ids[i]) },
-      { object: this.trees.pickMesh, idOf: (i) => (i == null ? undefined : this.trees.ids[i]) },
+      // a tree's crown is big and airy: things standing under it can be picked through it
+      { object: this.trees.pickMesh, idOf: (i) => (i == null ? undefined : this.trees.ids[i]), soft: true },
     ];
   }
 
@@ -285,11 +304,10 @@ export class ParkMeshes {
     this.cyls.begin();
     this.blobs.begin();
     const trees: { id: string; x: number; y: number; heightFt: number; crownR: number; color: number }[] = [];
-    disposeTree(this.selection);
-    this.selection.clear();
     const up = new THREE.Vector3();
     for (const it0 of items) {
-      const it = hl.dragging && hl.dragging.id === it0.id ? { ...it0, ...hl.dragging } : it0;
+      const drag = hl.dragging && hl.dragging.id === it0.id ? hl.dragging : null;
+      const it = drag ? { ...it0, x: drag.x, y: drag.y, rotationDeg: drag.rotationDeg } : it0;
       const e = catalogEntry(it.element);
       const r = (it.rotationDeg * Math.PI) / 180;
       const xd = map.dirToLocal([Math.cos(r), Math.sin(r)]);
@@ -297,8 +315,18 @@ export class ParkMeshes {
       const c = map.toLocal([it.x, it.y]);
       const yaw = Math.atan2(xd[1], xd[0]);
       const sel = hl.selected === it.id;
+      const hov = !sel && hl.hover === it.id;
       const over = hl.overhang?.has(it.id);
-      const tint = (col: string) => (sel ? mix(col, '#00a8e8', 0.55) : over ? mix(col, '#d0342c', 0.55) : col);
+      const tint = (col: string) =>
+        drag?.over
+          ? mix(col, '#d0342c', 0.55)
+          : sel
+            ? mix(col, '#00a8e8', 0.5)
+            : over
+              ? mix(col, '#d0342c', hov ? 0.4 : 0.55)
+              : hov
+                ? mix(col, '#00a8e8', 0.25)
+                : col;
       const at = (ox: number, oy: number, z: number) => W(c[0] + ox * xd[0] + oy * yd[0], c[1] + ox * xd[1] + oy * yd[1], z);
       const theme = it.theme ?? themes.back;
       switch (e.shape) {
@@ -334,19 +362,6 @@ export class ParkMeshes {
           }
         }
       }
-      if (sel) {
-        const hw = (it.w || e.w) / 2 + 0.4;
-        const hh = (it.h || e.h) / 2 + 0.4;
-        const ring = ([
-          [-hw, -hh],
-          [hw, -hh],
-          [hw, hh],
-          [-hw, hh],
-        ] as Vec2[]).map(([a, b]) => [c[0] + a * xd[0] + b * yd[0], c[1] + a * xd[1] + b * yd[1]] as Vec2);
-        const rb = ribbon(ring, 0.35, 0.5, COLORS.select);
-        rb.renderOrder = 4;
-        this.selection.add(rb);
-      }
     }
     this.boxes.end();
     this.cyls.end();
@@ -357,7 +372,6 @@ export class ParkMeshes {
   dispose() {
     disposeTree(this.surfaces);
     disposeTree(this.overlays);
-    disposeTree(this.selection);
     this.boxes.dispose();
     this.cyls.dispose();
     this.blobs.dispose();

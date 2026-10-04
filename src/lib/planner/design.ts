@@ -160,6 +160,18 @@ export function addItem(d: DesignState, element: string, x: number, y: number, t
   return { design: touch({ ...d, added: [...d.added, { id, element, x, y, rotationDeg: 0, theme }] }), id };
 }
 
+/** A copy of an item (from the template or added), as a new added item with the same turn and theme. */
+export function duplicateItem(
+  d: DesignState,
+  it: { element: string; rotationDeg: number; theme?: ThemeId },
+  x: number,
+  y: number,
+): { design: DesignState; id: string } {
+  const id = newId('added');
+  const copy = { id, element: it.element, x, y, rotationDeg: it.rotationDeg, ...(it.theme ? { theme: it.theme } : {}) };
+  return { design: touch({ ...d, added: [...d.added, copy] }), id };
+}
+
 export function resetTemplate(d: DesignState): DesignState {
   return touch({ ...d, added: [], removed: [], moved: {} });
 }

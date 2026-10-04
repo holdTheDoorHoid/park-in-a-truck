@@ -100,19 +100,63 @@ export interface Overhang {
   items: string[];
 }
 
+type FootprintItem = { id: string; x: number; y: number; w: number; h: number; rotationDeg: number };
+
+/** What has to fit on the lot: a tree's trunk, not its crown; half a plant's spread. */
+export function baseFootprint<T extends { element: string; w: number; h: number }>(it: T): T {
+  if (it.element === 'small-tree' || it.element === 'large-tree') return { ...it, w: 2, h: 2 };
+  if (it.element === 'shrub' || it.element === 'perennial') return { ...it, w: it.w * 0.5, h: it.h * 0.5 };
+  return it;
+}
+
+/** Test for "outside the lot" in park-local feet, with the parcel converted once. */
+function outsideTest(pl: ParkPlacement, frame: SiteFrame, parcelLocal: Vec2[], tolerance: number) {
+  const ring = parcelLocal.map((p) => localToPark(pl, frame, p));
+  return (p: Vec2) => !pointInPolygon(p, ring) && distanceToRing(p, ring) > tolerance;
+}
+
+function sticksOut(it: Omit<FootprintItem, 'id'>, out: (p: Vec2) => boolean): boolean {
+  const r = (it.rotationDeg * Math.PI) / 180;
+  const c = Math.cos(r);
+  const s = Math.sin(r);
+  return (
+    [
+      [0, 0],
+      [-1, -1],
+      [1, -1],
+      [1, 1],
+      [-1, 1],
+    ] as const
+  ).some(([a, b]) => {
+    const dx = (a * it.w) / 2;
+    const dy = (b * it.h) / 2;
+    return out([it.x + dx * c - dy * s, it.y + dx * s + dy * c]);
+  });
+}
+
+/** Would this one item (park-local pose) stick out past the lot line? Used while dragging. */
+export function itemSticksOut(
+  pl: ParkPlacement,
+  frame: SiteFrame,
+  parcelLocal: Vec2[],
+  it: { element: string; x: number; y: number; w: number; h: number; rotationDeg: number },
+  tolerance = 0.4,
+): boolean {
+  return sticksOut(baseFootprint(it), outsideTest(pl, frame, parcelLocal, tolerance));
+}
+
 export function computeOverhang(
   pl: ParkPlacement,
   frame: SiteFrame,
   parcelLocal: Vec2[],
-  items: { id: string; x: number; y: number; w: number; h: number; rotationDeg: number }[] = [],
+  items: FootprintItem[] = [],
   tolerance = 0.4,
 ): Overhang {
-  const ring = parcelLocal.map((p) => localToPark(pl, frame, p));
   const nx = Math.max(1, Math.ceil(pl.parkL));
   const ny = Math.max(1, Math.ceil(pl.parkW));
   const mask = new Uint8Array(nx * ny);
   let outside = 0;
-  const out = (p: Vec2) => !pointInPolygon(p, ring) && distanceToRing(p, ring) > tolerance;
+  const out = outsideTest(pl, frame, parcelLocal, tolerance);
   for (let j = 0; j < ny; j++) {
     for (let i = 0; i < nx; i++) {
       const p: Vec2 = [Math.min(i + 0.5, pl.parkL), Math.min(j + 0.5, pl.parkW)];
@@ -122,23 +166,6 @@ export function computeOverhang(
       }
     }
   }
-  const ids: string[] = [];
-  for (const it of items) {
-    const r = (it.rotationDeg * Math.PI) / 180;
-    const c = Math.cos(r);
-    const s = Math.sin(r);
-    const pts: Vec2[] = [
-      [0, 0],
-      [-1, -1],
-      [1, -1],
-      [1, 1],
-      [-1, 1],
-    ].map(([a, b]) => {
-      const dx = (a! * it.w) / 2;
-      const dy = (b! * it.h) / 2;
-      return [it.x + dx * c - dy * s, it.y + dx * s + dy * c] as Vec2;
-    });
-    if (pts.some(out)) ids.push(it.id);
-  }
+  const ids = items.filter((it) => sticksOut(it, out)).map((it) => it.id);
   return { mask, nx, ny, outsideSqFt: Math.round(outside), items: ids };
 }
