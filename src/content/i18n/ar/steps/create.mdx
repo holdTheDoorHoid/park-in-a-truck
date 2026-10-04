@@ -1,0 +1,463 @@
+---
+title: البناء
+intro: ابنِ حديقتك على مراحل، عطلة نهاية أسبوع في كل مرة.
+sources:
+  - الدليل (Toolkit)، الصفحات 57–59 (البناء، البناء الأول للحديقة)
+  - كراسة عمل «البناء»، الصفحات 1–18
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Choice from '../../../../components/workbook/Choice.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import Download from '../../../../components/workbook/Download.astro';
+import CostEstimator from '../../../../components/widgets/CostEstimator.astro';
+import BuildSchedule from '../../../../components/widgets/BuildSchedule.astro';
+import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
+
+{/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — Create lets you pick build weekends and print an order list with nothing recorded in Acquire; this says so before anyone breaks ground. */}
+<LotAgreementNotice />
+
+بناء حديقة طريقة رائعة لتقريب الجيران والأصدقاء وغيرهم من بعضهم. تحتاج العملية إلى متطوعين مخلصين يقدّمون وقتهم وجهدهم،
+ولديهم مهارات متنوعة — النجارة، وتنسيق الحدائق، والتنظيم، والتشجيع، والقيادة. وكما في اتباع وصفة طبخ، بناء الحديقة
+سلسلة من الخطوات المتتالية؛ وتُبنى معظم حدائق Park in a Truck في نحو 6–8 عطلات نهاية أسبوع.
+
+فصل «البناء» يدور كله حول بناء حديقتك. قسّمنا العملية إلى ثماني مراحل. يمكن إنجاز كل مرحلة في عطلة نهاية أسبوع تقريبًا —
+وحجم حديقتك وعدد المتطوعين سيؤثران في المدة الفعلية. للمراحل ترتيب له سبب؛ راجع كل مرحلة وعدّل جدولك حسب الحاجة.
+
+يفترض هذا الكتاب أنك أعددت تقدير التكلفة وتعرف الكميات والمواد التي ستحتاج إلى طلبها لكل مرحلة. إن لم تفعل، فارجع إلى
+خطوة «الحلم» واستخدم أداة تقدير التكلفة.
+
+<CostEstimator />
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={3} />
+
+## نموذج إخلاء المسؤولية للمتطوعين {/* #volunteer-release-form */}
+
+تأكد أن نماذج إخلاء المسؤولية للمتطوعين متوفرة في الموقع كلما عملتم في الحديقة. يُخلي هذا النموذج مسؤوليتك عن إصابات
+المتطوعين. ومن مسؤوليتك أن تستشير المستشارين القانونيين لمجموعتك وشركة التأمين قبل بدء البناء — فقد يطلبون منك خطوات
+إضافية لحماية المجموعة من المسؤولية القانونية. أعطِ متطوعيك تعليمات واضحة عن المطلوب منهم ومهامهم في يوم العمل؛ فهم
+يعودون في الأسابيع التالية على الأرجح حين يشعرون أن وقتهم استُخدم استخدامًا جيدًا.
+
+<Download href="downloads/forms/volunteer-release-form.pdf" label="نموذج التنازل وإخلاء المسؤولية للمتطوعين" note="نموذج لكل متطوع؛ ويجب أن يوقّع أيضًا أحد الوالدين أو ولي الأمر عن المتطوعين الذين تقل أعمارهم عن 18 سنة" />
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={3} />
+
+## المرحلة 1: التنظيم {/* #phase-1-organize */}
+
+كما في أي عملية، الخطوة الأولى والأهم أن تنظّم فريقك بتحديد قادة المشروع ووضع جدول زمني. عدد الأشخاص الذين تكلّفهم بهذه
+الأدوار يعتمد على مدى تعقيد مشروعك وحجمه.
+
+- **مدير البناء.** يطلب المواد، ويكون حاضرًا عند التوصيل، ويعطي التعليمات للمتطوعين في أيام البناء، وينسّق الجدول مع مدير
+  المشروع.
+- **مدير المشروع.** مسؤول عن جلب المتطوعين، ووسائل التواصل الاجتماعي، وطلب الطعام، وتوزيع نماذج التنازل، وينسّق الأمور
+  المالية ويتحكم في الجدول.
+
+<Field id="create.construction-manager" label="مدير البناء" hint="يطلب المواد، ويدير أيام البناء" />
+<Field id="create.project-manager" label="مدير المشروع" hint="المتطوعون، والجدول، والأمور المالية" />
+
+<ListField
+  id="create.org-chart"
+  label="المتطوعون والمقاولون"
+  rowName="شخص"
+  min={3}
+  columns={[
+    { key: 'name', label: 'الاسم' },
+    { key: 'role', label: 'الدور', placeholder: 'متطوع، مقاول…' },
+    { key: 'contact', label: 'جهة التواصل' },
+  ]}
+/>
+
+تقويم المشروع طريقة ممتازة لمتابعة الجداول والتواريخ المهمة ومواعيد عمل المتطوعين والمدة اللازمة لوصول المواد. التخطيط
+مهم بقدر أهمية عملية البناء نفسها — ابدأ البداية الصحيحة.
+
+<BuildSchedule />
+
+<Download href="downloads/templates/project-calendar.xlsx" label="قالب التقويم" note="نموذج لتقويم المشروع وقائمة جهات التواصل — للاستعانة به، اصنع نسختك الخاصة" />
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={4} />
+
+## المرحلة 2: تجهيز قطعة الأرض {/* #phase-2-prepare-the-lot */}
+
+### الخطوات
+
+**الخطوة 1: التقييم.** تحتاج بعض المواقع إلى تنظيف أو تسوية أكثر من غيرها، وقد يتطلب ذلك آلات خاصة — تواصل مع مقاول
+تنسيق حدائق إن كان أهل الحي لا يستطيعون وحدهم القيام بأي مما يلي.
+
+- تواصل مع فريق PiaT ([ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu)) لطلب زيارة استشارية للموقع إن
+  لم تكن متأكدًا من طريقة تجهيز موقعك.
+- اتصل بـ Pennsylvania One Call على الرقم **811** ليحددوا أماكن خطوط المرافق تحت الأرض.
+
+<Field id="create.one-call-address" label="العنوان لطلبك من PA One Call" auto="lot.address" />
+
+**الخطوة 2: الحماية.** أحضِر الأدوات والمعدات الصغيرة إلى الموقع. ركّب سياج حماية للبناء مع أعمدة خشبية حول جذوع الأشجار
+والمباني وغيرها مما يحتاج إلى حماية. وركّب سياجًا لمنع انجراف الطمي والتربة حول الموقع وعند كل فتحات تصريف المياه.
+
+**الخطوة 3: الإزالة.** أزِل النباتات غير المرغوب فيها (مع جذورها)، وجذوع الأشجار المقطوعة، والنفايات، ومواد البناء من
+حجارة وطوب — وقد تحتاج إزالة بعض النباتات إلى معالجة بمبيد أعشاب للسيطرة عليها بفعالية وفي الوقت المناسب. قلِّم
+الأشجار الموجودة لإزالة الأغصان عن الجذع حتى ارتفاع 6 أقدام على الأقل. انقل المخلفات والنباتات خارج الموقع إلى مكان
+الرمي المناسب؛ واجمع الحجارة والطوب في كومة داخل الموقع لاستخدامها حشوًا لأقفاص الجابيون.
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — street trees are the City's; facts checked 2026-10-04 on phila.gov. */}
+<Callout kind="site">
+  أشجار الشوارع (المزروعة في الرصيف) ملك للمدينة: تقليم أي منها أو إزالتها يحتاج إلى تصريح من Philadelphia Parks &
+  Recreation (إدارة الحدائق والترفيه)، وهي تقلّم أشجار الشوارع الخطرة وتزيلها مجانًا (اطلب ذلك عن طريق الرقم 311). اطّلع على
+  [أسئلة المدينة عن أشجار الشوارع ↗](https://www.phila.gov/departments/philadelphia-parks-recreation/street-tree-frequently-asked-questions/) (بالإنجليزية).
+</Callout>
+
+**الخطوة 4: تسوية الموقع.** ابدأ بتمشيط التربة بالمدمّة (المجرفة المسننة) وتسوية الموقع. تأكد أن علامات Pennsylvania One
+Call ما زالت سليمة وظاهرة — يجب أن يكون مستوى التربة قريبًا من مستوى الرصيف.
+
+### المعدات والأدوات
+
+<Checklist
+  id="create.phase2-tools"
+  items={[
+    { value: 'Shovels', label: 'مجارف' }, { value: 'Wheelbarrows', label: 'عربات يد' }, { value: 'Pick axe', label: 'معول' },
+    { value: 'Grading rakes', label: 'أمشاط تسوية' }, { value: 'Sledgehammer', label: 'مطرقة ثقيلة' },
+    { value: 'Hand pruners + loppers', label: 'مقصات تقليم يدوية + مقصات أغصان طويلة' }, { value: 'Pruning saws', label: 'مناشير تقليم' },
+    { value: 'Spray paint', label: 'طلاء بخاخ' }, { value: 'Construction fencing', label: 'سياج بناء' },
+    { value: 'Wood posts', label: 'أعمدة خشبية' }, { value: 'Broom', label: 'مكنسة' }, { value: 'Chainsaw', label: 'منشار سلسلة' },
+    { value: 'Trash bags', label: 'أكياس نفايات' },
+  ]}
+/>
+<Checklist
+  id="create.phase2-tools-optional"
+  label="اختياري — للمواقع التي فيها مساحات كبيرة غير مستوية، أو خرسانة، أو جذوع أشجار مقطوعة"
+  items={[
+    { value: 'excavator', label: 'حفّارة', hint: 'يُنصح باستئجار مقاول' },
+    { value: 'stump-grinder', label: 'آلة طحن جذوع الأشجار', hint: 'يُنصح باستئجار مقاول' },
+    { value: 'Jack hammer', label: 'مطرقة هوائية (كسّارة)' }, { value: 'Rototiller', label: 'محراث دوّار' },
+    { value: 'Herbicide spray', label: 'رشاش مبيد أعشاب' },
+  ]}
+/>
+
+<Figure
+  src="img/create/phase2-reference-photos.webp"
+  alt="صور مرجعية لتجهيز قطعة الأرض: حفّارة تنظّف موقعًا، وعلَم تحديد مرافق وسلك تتبّع على العشب، ومتطوعون يزيلون ركام الحجارة والطوب، وشبكة لمنع انجراف الرواسب على طول حافة الرصيف، ومتطوع يسوّي التربة بالمشط"
+/>
+
+### روابط مفيدة (بالإنجليزية)
+
+- **تأجير الأدوات** — قد يكون من الأفضل استئجار مقاول للأدوات الكهربائية، من أجل الكفاءة والسلامة.
+  [West Philadelphia Tool Library ↗](https://westphillytools.org) (أدوات يدوية فقط؛ 1314 S 47th St) ·
+  [OK Rental ↗](https://okrentalsaleservice.com) *(الرابط لا يعمل حاليًا)* (أدوات كهربائية، منها مناشير السلسلة؛ 640 Main St, Darby) ·
+  [Diamond Tool ↗](https://diamondtool.net/Rentals) *(لم نتمكن من التحقق منه آليًّا)* (2800 Grays Ferry Ave)
+- **النفايات وإعادة التدوير** — [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/) (3850 W Ford Rd)
+- **فيديو عن تقليم الأشجار** — [youtube.com/watch?v=pY5A-5gUqwo ↗](https://youtube.com/watch?v=pY5A-5gUqwo)
+- **التعرف على الأعشاب الضارة** — [دليل الأعشاب الضارة من Philadelphia Orchard Project ↗](https://www.phillyorchards.org/resources/)
+- **مبيدات الأعشاب** (استخدمها بقلّة، واتبع دائمًا تعليمات الملصق) — البيكلورام (Picloram) لدهن جذوع النباتات الخشبية المقطوعة؛
+  والغليفوسات (Glyphosate) للرش على أوراق النباتات العشبية والخشبية؛ والكلوبيراليد (Clopyralid) للشيح الشائع (mugwort) والشوك
+  الكندي (Canadian thistle). أعشاب غازية تحتاج غالبًا إلى مبيد للسيطرة عليها: الشيح الشائع (mugwort)، والشوك الكندي (Canadian
+  thistle)، والعُقدية اليابانية (Japanese knotweed)، والقصب (phragmites) (نباتات عشبية)؛ والتوت الورقي (Broussonetia)، وشجرة
+  السماء (Ailanthus)، والبولونيا (Paulownia)، وزهر العسل الياباني (Japanese honeysuckle) (نباتات خشبية — اقطعها وعالج الجذع فقط
+  إن كانت أكبر من أن تُقتلع من جذورها).
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — herbicide labels, restricted-use picloram, 20% vinegar; facts checked 2026-10-04 on epa.gov and npic.orst.edu. */}
+<Callout kind="site">
+  ملصق مبيد الأعشاب هو القانون: اتبعه، بما في ذلك الأماكن التي يُسمح فيها باستخدام المنتج ومعدات الحماية التي يذكرها
+  ([EPA ↗](https://www.epa.gov/pesticide-labels/introduction-pesticide-labels)، بالإنجليزية). كثير من منتجات البيكلورام (picloram)
+  مقيّدة الاستخدام، ولا يجوز شراؤها أو استخدامها إلا لمستخدم حاصل على شهادة معتمدة
+  ([قائمة EPA ↗](https://www.epa.gov/pesticide-worker-safety/restricted-use-products-rup-report)، بالإنجليزية). والخل الذي يُباع
+  لمكافحة الأعشاب (بتركيز 20% أو أكثر) يمكن أن يتلف العينين تلفًا دائمًا: البس واقيًا للعينين وقفازات
+  ([NPIC ↗](https://npic.orst.edu/faq/vinegar.html)، بالإنجليزية).
+</Callout>
+
+### الاستعداد للخطوات التالية
+
+راجع تقويم مشروعك وعدّله حسب الحاجة. اشترِ ووصّل أي مواد أو معدات تحتاج إلى وقت لتصل، وتأكد أن الموقع جاهز للمرحلة 3.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={5} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={6} label="صور مرجعية وروابط (PDF)" />
+
+## المرحلة 3: التخطيط على الأرض وطبقة الحصى الأساسية {/* #phase-3-layout-gravel-base */}
+
+### الخطوات
+
+**الخطوة 1: المواد.** أحضِر المعدات والأدوات إلى الموقع، واستعد لاستلام الشحنات. حدِّد مكانًا لكومة الحصى وغطِّه بقماش
+مشمّع إن أمكن. حدِّد بالطلاء البخاخ المناطق العامة التي سيوضع فيها الحصى — وإن لم يكن هناك مكان كافٍ، فنسّق مع المدينة
+ليُوضع ما يصل إليكم في الشارع.
+
+<Callout kind="note" title="هل ستغلق الشارع لاستلام شحنة؟">
+  قدِّم طلبًا للحصول على تصريح مؤقت لمنع الوقوف حتى تجد شاحنة التوصيل مكانًا لتفريغ حمولتها.
+  [قدِّم الطلب على phila.gov ↗](https://www.phila.gov/services/cars-parking-transportation/apply-for-a-parking-permit/apply-for-a-temporary-no-parking-permit/) (بالإنجليزية)
+</Callout>
+<Field id="create.delivery-address" label="العنوان لتصريح منع الوقوف" auto="lot.address" />
+
+**الخطوة 2: حدِّد على الأرض أماكن أحواض الزراعة وعناصر الحديقة.** ابدأ من نقطة البداية التي حدّدتها في كراسة عمل «التقييم».
+ارجع إلى مخططك لمعرفة أماكن حواف أحواض الزراعة وعناصر الحديقة وأطوالها. استخدم الأوتاد والخيط لتحديد أماكن الحواف وعناصر
+الحديقة التي ستضيفها في المراحل اللاحقة.
+
+**الخطوة 3: ركِّب الطبقة الأساسية.** جهّز سطح الأرض لأقفاص الجابيون حسب تعليمات التركيب. احفر عند المداخل لتسمح بالفرق في
+المستوى بين الحديقة الجديدة والرصيف — بعمق 4 بوصات على الأقل عند حافة الرصيف، مع التسوية حسب الحاجة (استخدم التربة الزائدة
+لتسوية الممرات أو أضفها إلى مناطق الزراعة). افرش الحصى بعمق بوصتين في كل المناطق ما عدا أحواض النباتات، وأعرض من خيوطك بنحو
+6 بوصات حتى تجلس الحواف في المرحلة التالية فوق الحصى. مرِّر آلة الدكّ الاهتزازية على الحصى مرتين على الأقل.
+
+**الخطوة 4: المداخل والتنظيف.** نظّف الحصى المتناثر ونظّف الأماكن العامة.
+
+### المعدات والأدوات والمواد
+
+<Checklist
+  id="create.phase3-tools"
+  items={[
+    { value: 'Square', label: 'زاوية قائمة (مربّع نجّار)' }, { value: 'Measuring tape', label: 'شريط قياس' },
+    { value: 'Shovels', label: 'مجارف' }, { value: 'Wheelbarrows', label: 'عربات يد' }, { value: 'Pick axe', label: 'معول' },
+    { value: 'Grading rakes', label: 'أمشاط تسوية' }, { value: '5 lb hammer', label: 'مطرقة وزنها 5 أرطال' },
+    { value: 'Spray paint', label: 'طلاء بخاخ' }, { value: 'Wood posts and string', label: 'أوتاد خشبية وخيط' },
+    { value: 'Vibrating plate compactor', label: 'آلة دكّ اهتزازية' }, { value: 'Broom', label: 'مكنسة' },
+  ]}
+/>
+<p class="muted">المواد: حصى، حصى طرق (roadbase) مقاس 3/4 بوصة.</p>
+
+<Figure
+  src="img/create/phase3-reference-photos.webp"
+  alt="صور مرجعية للتخطيط على الأرض وطبقة الحصى: قياس الموقع، والحفر، وتجهيز الطبقة الأساسية، وشاحنة توصيل حصى، وتحديد الموقع بالأوتاد والخيط، وكومة حصى، ونقل الحصى بعربة يد وفرشه"
+/>
+
+### روابط مفيدة (بالإنجليزية)
+
+- **طريقة العمل** — [حدِّد أحواض الزراعة على الأرض ↗](https://lowes.com/n/how-to/create-an-english-style-garden) (شاهد من الدقيقة 1:50 إلى 2:40) ·
+  [ركِّب طبقة الحصى الأساسية ↗](https://youtube.com/watch?v=tfDEOIAIUwQ)
+- **تأجير الأدوات** — [West Philadelphia Tool Library ↗](https://westphillytools.org) ·
+  [OK Rental ↗](https://okrentalsaleservice.com) *(الرابط لا يعمل حاليًا)* · [Diamond Tool ↗](https://diamondtool.net/Rentals) *(لم نتمكن من التحقق منه آليًّا)*
+
+### الاستعداد للخطوات التالية
+
+راجع تقويم مشروعك وعدّله حسب الحاجة. اشترِ ووصّل المواد التي تحتاج إلى وقت لتصل في المراحل التالية. تأكد أن الموقع جاهز
+للمرحلة 4.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={7} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={8} label="صور مرجعية وروابط (PDF)" />
+
+## المرحلة 4: ركِّب الحافة {/* #phase-4-install-the-edge */}
+
+### الخطوات
+
+**الخطوة 1: المواد.** أحضِر مواد الحافة (انظر تقدير التكلفة وتعليمات التركيب). أزِل سياج منع الانجراف؛ أما سياج حماية
+الأشجار فيبقى إلا إذا كان مكانه يعيق تركيب الحافة.
+
+**الخطوة 2: التجميع.** جمِّع أقفاص الجابيون (ارجع إلى تعليمات تركيب جدار الجابيون).
+
+**الخطوة 3: التركيب.** شُدّ خيوطًا حتى تصطف أقفاص الجابيون في خط مستقيم على طول حافة الحديقة. ضع الأقفاص حسب مخططك واملأ
+قيعانها بطبقة من الحصى سُمكها 2–3 بوصات. اضبطها قليلًا حتى تكون الأقفاص مستوية ومستقيمة بالنسبة إلى بعضها — وحين تُستخدم
+وحدها طاولاتٍ أو مقاعد، استخدم ميزان تسوية فوقها. أضِف الحواف الخشبية حيث تلزم (انظر تعليمات تركيب الحواف الخشبية).
+
+### المعدات والمواد
+
+<Checklist
+  id="create.phase4-tools"
+  items={[
+    { value: 'Measuring tape', label: 'شريط قياس' }, { value: 'Shovels', label: 'مجارف' }, { value: 'Wheelbarrows', label: 'عربات يد' },
+    { value: 'Garden hoes', label: 'مجارف عزق' }, { value: 'Grading rakes', label: 'أمشاط تسوية' },
+    { value: 'Hand tamper', label: 'مِدكّ يدوي' }, { value: 'Wire cutters', label: 'قطّاعة أسلاك' },
+    { value: 'Sledge hammer', label: 'مطرقة ثقيلة' }, { value: 'Level', label: 'ميزان تسوية' }, { value: 'Broom', label: 'مكنسة' },
+  ]}
+/>
+<p class="muted">المواد: أقفاص جابيون؛ خشب وعُدد للحافة الخشبية؛ قطع كبيرة من الحجارة والطوب لأقفاص الجابيون، بحجم 3 بوصات أو أكبر.</p>
+
+<Figure
+  src="img/create/phase4-reference-photos.webp"
+  alt="صور مرجعية لتركيب الحافة: قفصا جابيون مملوءان، ومتطوع يثبّت لوحًا خشبيًّا للحافة عند حوض حصى"
+/>
+
+### روابط مفيدة (بالإنجليزية)
+
+- **المواد** — [Castor Materials ↗](https://castormaterials.com) (حجارة مكسّرة، مع التوصيل؛ 3301 S 61st St) ·
+  [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) (حجارة مكسّرة، وغطاء للتربة، وأدوات؛ 4260 Macalester St) ·
+  [Underdog Supply ↗](https://www.underdogsupply.com/) (توصيل بكميات كبيرة؛ Conshohocken) ·
+  Galantino Supply Company (تأجير معدات ومواد بكميات كبيرة؛ 725 Old Marple Rd, Springfield — (610) 544-2586)
+- **طريقة العمل** — [ابنِ جدار جابيون ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
+
+### الاستعداد للخطوات التالية
+
+راجع تقويم مشروعك وعدّله حسب الحاجة. اشترِ ووصّل المواد التي تحتاج إلى وقت لتصل. تأكد أن الموقع جاهز للمرحلة 5.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={9} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={10} label="صور مرجعية وروابط (PDF)" />
+
+## المرحلة 5: افرش التربة السطحية {/* #phase-5-spread-topsoil */}
+
+### الخطوات
+
+**الخطوة 1: المواد.** أزِل سياج حماية الأشجار. حدِّد مكانًا لكومة التربة السطحية على الرصيف أو في الشارع — وفي هذه الحالة،
+قدِّم طلبًا للحصول على تصريح مؤقت لمنع الوقوف (انظر المرحلة 3).
+
+**الخطوة 2: وضع التربة.** جهّز أحواض الزراعة لاستقبال التربة السطحية بتسوية التربة الموجودة. افرش التربة السطحية بعمق 4–6
+بوصات تقريبًا وسوِّها لتصبح ملساء.
+
+**الخطوة 3: التنظيف.** نظّف التربة المتناثرة ونظّف الأماكن العامة.
+
+### المعدات والمواد
+
+<Checklist
+  id="create.phase5-tools"
+  items={[{ value: 'Measuring tape', label: 'شريط قياس' }, { value: 'Shovels', label: 'مجارف' }, { value: 'Wheelbarrows', label: 'عربات يد' }, { value: 'Grading rakes', label: 'أمشاط تسوية' }, { value: 'Garden hoes', label: 'مجارف عزق' }, { value: 'Broom', label: 'مكنسة' }]}
+/>
+<p class="muted">المواد: تربة سطحية.</p>
+
+<Figure
+  src="img/create/phase5-reference-photos.webp"
+  alt="صور مرجعية لفرش التربة السطحية: شاحنة قلّابة توصل التربة السطحية، ومتطوع يسوّي التربة بيده، ومتطوعان ينقلان التربة بعربة يد، ومتطوع يضع التربة في حوض"
+/>
+
+### روابط مفيدة (بالإنجليزية)
+
+- **الطلب** — [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
+- **طريقة العمل** — [جهِّز التربة السطحية ↗](https://youtube.com/watch?v=GcOJ4fDJmpM) · [تربة سطحية صحية لنباتات صحية ↗](https://youtube.com/watch?v=7-Tyz7fGeZo)
+
+### الاستعداد للخطوات التالية
+
+راجع تقويم مشروعك وعدّله حسب الحاجة. اشترِ ووصّل المواد التي تحتاج إلى وقت لتصل. تأكد أن الموقع جاهز للمرحلة 6.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={11} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={12} label="صور مرجعية وروابط (PDF)" />
+
+## المرحلة 6: الزراعة {/* #phase-6-plant */}
+
+### الخطوات
+
+**الخطوة 1: النباتات.** أزِل أي أعشاب ضارة نبتت. تأكد أن مواعيد توصيل النباتات محددة، وأنك حددت مكانًا لاستلام النباتات
+وتجهيزها. ضع الأشجار والشجيرات في أماكنها المطلوبة، ثم نظّف التربة المتناثرة والأماكن العامة.
+
+**الخطوة 2: الزراعة.** ازرع الأشجار الكبيرة أولًا (انظر رسم تفاصيل الزراعة في الأسفل). ازرع الشجيرات، ثم سوِّ التربة
+تسوية دقيقة، وازرع النباتات المعمّرة، وافرش طبقة من غطاء التربة (المالتش) سُمكها 4 بوصات، ثم اسقِ كل النباتات جيدًا —
+وكرِّر السقي مرتين في الأسبوع حتى تدخل النباتات في سباتها الشتوي.
+
+<Figure
+  src="img/create/phase6-plant-illustration.webp"
+  alt="رسم مجسّم لحديقة مكتملة في فناء أمامي، مكتوب عليه PLANT (ازرع)، فيها أشجار وأحواض زراعة مرتفعة ومنطقة تجمّع مرصوفة بين بيتين متلاصقين"
+/>
+<Figure
+  src="img/create/phase6-planting-detail.webp"
+  alt="رسمان لتفاصيل الزراعة: تفاصيل زراعة شجيرة أو نبات معمّر من أصيص، تُظهر عمق غطاء التربة والتربة المُعادة حول الجذور، وتفاصيل زراعة شجرة تُظهر مكان كتلة الجذور، والدعامات، وغطاء التربة، وإزالة قماش الخيش"
+/>
+
+### المعدات والمواد
+
+<Checklist
+  id="create.phase6-tools"
+  items={[{ value: 'Measuring tape', label: 'شريط قياس' }, { value: 'Shovels', label: 'مجارف' }, { value: 'Wheelbarrows', label: 'عربات يد' }, { value: 'Pick axe', label: 'معول' }, { value: 'Landscape rakes', label: 'أمشاط تنسيق الحدائق' }, { value: 'Spray paint', label: 'طلاء بخاخ' }, { value: 'Tree stakes and rope', label: 'دعامات للأشجار وحبل' }, { value: 'Broom', label: 'مكنسة' }]}
+/>
+<p class="muted">المواد: النباتات — احرص على الرجوع إلى قائمة نباتاتك.</p>
+
+### روابط مفيدة (بالإنجليزية)
+
+- **معلومات عامة عن النباتات** — [PHS Gold Medal Plants ↗](https://phsonline.org/for-gardeners/gold-medal-plants) ·
+  [Gardens Alive ↗](https://www.gardensalive.com/) · [North Creek Nurseries ↗](https://www.northcreeknurseries.com/) ·
+  [Missouri Botanical Garden ↗](https://www.missouribotanicalgarden.org/) · [مستكشف النباتات في Longwood Gardens ↗](https://plantexplorer.longwoodgardens.org/ecmweb/ECM_Home.html) *(الرابط لا يعمل حاليًا)* ·
+  [Arbor Day Foundation ↗](https://www.arborday.org/) · [زراعة الخضروات من Penn State Extension ↗](https://extension.psu.edu/programs/master-gardener)
+- **المشتل الشريك لـ PiaT** — LandHealth Institute، 4862 Parkside Ave, Philadelphia · (267) 571-5750 ·
+  [landhealthinstitute.org/nursery ↗](https://www.landhealthinstitute.org/nursery)
+- **مشاتل أخرى في المنطقة** — [Good Host Plants ↗](https://www.goodhostplants.com/) (متخصص محلي في نباتات المُلقِّحات) ·
+  [Pleasant Run Nursery ↗](https://www.pleasantrunnursery.com/) · [Pinelands Nursery ↗](https://www.pinelandsnursery.com/) ·
+  [Archewild ↗](https://archewild.com/)
+- **أشجار الفاكهة** — [Philadelphia Orchard Project ↗](https://www.phillyorchards.org/) ·
+  [Burpee ↗](https://www.burpee.com/fruit/fruit-trees/) · [Stark Bros ↗](https://www.starkbros.com/products/fruit-trees)
+- **ورش الزراعة والمساعدة في قطع الأرض** — [Pennsylvania Horticultural Society ↗](https://phsonline.org/) ·
+  [Grounded in Philly ↗](https://groundedinphilly.org/) (مساعدة قانونية، وتأمين، وبيانات عن قطع الأرض)
+- **طريقة العمل** — [نصائح لزراعة الأصص والأبصال ↗](https://www.gardeners.com/how-to/growing-annual-flowers/5070.html) ·
+  [زراعة شجرة من أصيص ↗](https://www.arborday.org/trees/planting/containerized.cfm) ·
+  [كيف تزرع شجيرة ↗](https://youtube.com/watch?v=Tim4LEo6l10)
+
+### الاستعداد للخطوات التالية
+
+راجع تقويم مشروعك وتأكد أن لديك جدولًا لسفير الحديقة (Park Ambassador) — انظر خطوة «الرعاية» للتفاصيل. موردو غطاء التربة
+(المالتش): [Mid Atlantic Pine Straw ↗](https://www.midatlanticpinestraw.com/) ·
+[Underdog Landscape Supply ↗](https://underdogsupply.com) · [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/get-organic-materials/)
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={13} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={14} label="روابط مفيدة (PDF)" />
+
+## المرحلة 7: ركِّب سطح الحصى {/* #phase-7-install-the-gravel-surface */}
+
+### الخطوات
+
+**الخطوة 1: المواد.** استعد لاستلام الشحنات إن لم تكن المواد مكوّمة في الموقع بعد. حدِّد مكانًا لكومة الحصى على الرصيف أو
+في الشارع (مع تصريح مؤقت لمنع الوقوف إن لزم — انظر المرحلة 3).
+
+**الخطوة 2: التركيب.** افرش سطح الحصى باستخدام عربة يد ومشط تنسيق الحدائق. افرش الحصى بعمق بوصتين تقريبًا، ووزّع الزائد
+بالتساوي. ادكّ الحصى بآلة الدكّ الاهتزازية ليقل هبوطه لاحقًا، ومرّ على كل المناطق لتتأكد أنها مستوية ومتساوية.
+
+**الخطوة 3: التنظيف.** نظّف الحصى المتناثر ونظّف الأماكن العامة.
+
+### المعدات والمواد
+
+<Checklist
+  id="create.phase7-tools"
+  items={[{ value: 'Measuring tape', label: 'شريط قياس' }, { value: 'Shovels', label: 'مجارف' }, { value: 'Wheelbarrows', label: 'عربات يد' }, { value: 'Landscape rakes', label: 'أمشاط تنسيق الحدائق' }, { value: 'Hand tamper', label: 'مِدكّ يدوي' }, { value: 'Vibratory plate', label: 'آلة دكّ اهتزازية' }, { value: 'Broom', label: 'مكنسة' }]}
+/>
+<p class="muted">المواد: حصى، مقاس 3/8 بوصة أو أصغر (غبار الحجارة).</p>
+
+<Figure
+  src="img/create/phase7-reference-photos.webp"
+  alt="صور مرجعية لتركيب سطح الحصى: مشط تسوية لتنسيق الحدائق، ومِدكّ يدوي على حصى مضغوط، ومتطوع يشغّل آلة دكّ اهتزازية تعمل بالبنزين"
+/>
+
+### روابط مفيدة (بالإنجليزية)
+
+- **المواد** — [Castor Materials ↗](https://castormaterials.com) · [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) ·
+  Galantino Supply Company ((610) 544-2586) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
+- **طريقة العمل** — [ركِّب الحصى ↗](https://youtube.com/watch?v=t0LWQ_U2z_g)
+
+### الاستعداد للخطوات التالية
+
+راجع تقويم مشروعك وعدّله حسب الحاجة. اشترِ ووصّل المواد التي تحتاج إلى وقت لتصل. تأكد أن الموقع جاهز للمرحلة 8.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={15} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={16} label="صور مرجعية وروابط (PDF)" />
+
+## المرحلة 8: ركِّب عناصر الحديقة {/* #phase-8-install-park-elements */}
+
+### الخطوات
+
+**الخطوة 1: القياس.** راجع كتيّبات التركيب، وقِس وحدِّد الأماكن التي يجب أن توضع فيها عناصر حديقتك.
+
+**الخطوة 2: المواد.** تأكد أن لديك كل المواد المذكورة في كتيّبات التركيب.
+
+**الخطوة 3: التجميع.** جمِّع عناصر حديقتك حسب كتيّبات التركيب.
+
+**الخطوة 4: التركيب.** تأكد أن في تصميمك مساحة كافية لتركيب العناصر، ثم ضعها في أماكنها النهائية. قد تستطيع — أو تختار —
+أن تجمّع العناصر مسبقًا أو خارج الموقع.
+
+<Callout kind="auto">
+  كل عنصر له دليل تركيب موجود رابطه في شبكة [التركيب](/steps/dream/#assemble) في خطوة «الحلم» — والأدلة نفسها مدرجة هناك.
+</Callout>
+
+### روابط مفيدة (بالإنجليزية)
+
+- **كيف تبني…** (استخدم أدلة التركيب أولًا؛ هذه الفيديوهات احتياطية) — [طاولة مشتركة ↗](https://youtube.com/watch?v=Px2JZs4Q2v4) ·
+  [إطار بارد للشتلات ↗](https://youtube.com/watch?v=b75RoDmE9qY) · [أحواض زراعة مرتفعة ↗](https://youtube.com/watch?v=MBIYebUgVVI) ·
+  [حاويات سماد عضوي ↗](https://youtube.com/watch?v=gA6QNLaBEyc) · [طاولة لزراعة الأصص ↗](https://youtube.com/watch?v=E7HumfxE2f4) ·
+  [سقيفة حديقة خارجية ↗](https://youtube.com/watch?v=DuQ0N8z6OkI) · [جدار جابيون ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
+- **الخشب ومواد البناء** — Woodland Building Supply، 4701 Woodland Ave, Philadelphia — (215) 727-5333 ·
+  C & R Building Supply، 1601 S 49th St, Philadelphia · A&A Lumber (خشب السرو)، Avondale, PA · Delaware County Lumber، Boothwyn, PA
+
+### الاستعداد للخطوات التالية
+
+راجع تقويم مشروعك وعدّله حسب الحاجة — حديقتك أوشكت على الاكتمال!
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={17} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={18} label="تعليمات التركيب والروابط (PDF)" />
+
+{/* site-added: the workbook's own contents page lists a Summary, but this working draft doesn't include one — this wrap-up just recaps the 8 phases above as a final checklist. No new advice. */}
+## الخلاصة {/* #summary */}
+
+<Checklist
+  id="create.summary-checklist"
+  items={[
+    { value: 'phase1', label: 'المرحلة 1: التنظيم', hint: 'وُزّعت أدوار الفريق، ووُضع الجدول' },
+    { value: 'phase2', label: 'المرحلة 2: تجهيز قطعة الأرض', hint: 'نُظّفت، وحُميت، وسُوّيت' },
+    { value: 'phase3', label: 'المرحلة 3: التخطيط على الأرض وطبقة الحصى الأساسية', hint: 'حُددت الأحواض والعناصر بالأوتاد، ووُضعت الطبقة الأساسية' },
+    { value: 'phase4', label: 'المرحلة 4: تركيب الحافة', hint: 'رُكّبت أقفاص الجابيون والحواف الخشبية' },
+    { value: 'phase5', label: 'المرحلة 5: فرش التربة السطحية', hint: 'سُوّيت أحواض الزراعة ومُلئت' },
+    { value: 'phase6', label: 'المرحلة 6: الزراعة', hint: 'زُرعت الأشجار والشجيرات والنباتات المعمّرة في الأرض' },
+    { value: 'phase7', label: 'المرحلة 7: تركيب سطح الحصى', hint: 'دُكّ الحصى النهائي وأصبح مستويًا' },
+    { value: 'phase8', label: 'المرحلة 8: تركيب عناصر الحديقة', hint: 'جُمّعت المقاعد والطاولات والمنشآت ووُضعت في أماكنها' },
+  ]}
+/>
+
+<Callout kind="tip">
+  اكتمل بناء حديقتك! انتقل إلى خطوة «الرعاية» لتبقى مزدهرة — السقي، وإزالة الأعشاب الضارة، وخطة الرعاية السنوية.
+</Callout>
