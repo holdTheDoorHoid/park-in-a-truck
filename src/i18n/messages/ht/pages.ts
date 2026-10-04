@@ -16,7 +16,7 @@ export default {
   'home.lotLede':
     'Ekri yon adrès nan Filadèlfi. N ap jwenn mèt teren an, gwosè teren an, zonaj li ak fòm limit li — ou pa bezwen fouye nan atlas.phila.gov.',
   'home.tools': 'Zouti ki fè travay la pou ou',
-  'home.tool.lot': 'Chèche yon teren',
+  'home.tool.lot': 'Chèche teren',
   'home.tool.lot.text': 'Kat tè vid toupre w, ak mèt la, gwosè a ak zonaj la.',
   'home.tool.planner': 'Fè plan an 3D',
   'home.tool.planner.text': 'Mete moso pak Park in a Truck yo sou vrè teren ou an epi gade kote ki gen solèy ak lonbraj.',

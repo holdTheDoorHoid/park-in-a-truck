@@ -369,7 +369,7 @@ reviewer should still read the whole language once.*
 | stewardship / sustain | pran swen pak la / pran swen | |
 | My park | Pak mwen | |
 | project file | fichye pwojè a | |
-| Plan in 3D / the planner | Fè plan an 3D / zouti plan 3D a | |
+| Plan in 3D / the planner | Fè plan an 3D / zouti plan 3D a | Header menu uses short forms so it fits on one line beside "Kreyòl ayisyen": Etap · Chèche teren · Fè plan an 3D · Gid konstriksyon · Plant · Pak. |
 | Note from this site, not Park in a Truck | Nòt sit sa a, se pa nòt Park in a Truck | |
 | in English | an anglè | |
 | ft, in, sq ft, $ | pye, pous, pye kare, $ | |
