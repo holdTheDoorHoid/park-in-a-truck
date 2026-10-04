@@ -27,7 +27,7 @@ export default {
   'cut': 'قائمة القطع',
   'cut.part': 'القطعة',
   'cut.qty': 'العدد',
-  'cut.stock': 'الخشب',
+  'cut.stock': 'المادة',
   'cut.length': 'الطول',
   'cut.notes': 'ملاحظات',
   'siteNote': 'ملاحظة من هذا الموقع، وليست من Park in a Truck:',
