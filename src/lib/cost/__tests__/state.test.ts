@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import type { DesignTally } from '../../types';
 import { ALL_FIELDS } from '../fields';
 import { INPUT_KEYS, defaultInputs, estimate } from '../model';
-import { readSaved, resolveInputs, withOverride } from '../state';
+import { readSaved, resolveInputs, withOverride, withUnitPrice } from '../state';
 import { estimateCsv } from '../csv';
 
 const tally: DesignTally = {
@@ -59,20 +59,42 @@ describe('resolveInputs', () => {
   });
 
   it('ignores junk in saved data', () => {
-    const s = readSaved({ v: 1, overrides: { stools: 'many', shrubs: 4, nonsense: 3 }, base: 'weird' });
+    const s = readSaved({ v: 1, overrides: { stools: 'many', shrubs: 4, nonsense: 3 }, base: 'weird', unitPrices: { 'lumber:4x4x6': 12, bad: -1, worse: 'x' } });
     expect(s.overrides).toEqual({ shrubs: 4 });
     expect(s.base).toBeUndefined();
+    expect(s.unitPrices).toEqual({ 'lumber:4x4x6': 12 });
+  });
+
+  it('saves and clears prices for "price needed" items', () => {
+    let s = withUnitPrice(readSaved(undefined), 'cistern-4x4', 250);
+    expect(s.unitPrices).toEqual({ 'cistern-4x4': 250 });
+    s = withUnitPrice(s, 'cistern-4x4', undefined);
+    expect(s.unitPrices).toEqual({});
   });
 });
 
 describe('estimateCsv', () => {
-  it('writes the estimate and the order list, quoting inch marks', () => {
+  it('writes the corrected estimate, the order list and the corrections, quoting inch marks', () => {
     const csv = estimateCsv(estimate(defaultInputs), 'Dover St, "the lot"', new Date('2026-10-04T12:00:00Z'));
     expect(csv.startsWith('﻿')).toBe(true);
     expect(csv).toContain('"Dover St, ""the lot"""');
     expect(csv).toContain('2026-10-04');
-    expect(csv).toContain('Estimated final cost,,,,6482.80');
+    expect(csv).toContain('Estimated final cost,,,,6789.96');
     expect(csv).toContain('"3/8"" red tipple, 2"" deep"');
+    expect(csv).toContain('Order list total,,,,5029.60');
+    expect(csv).toContain('The spreadsheet’s final cost for these answers,6482.80');
+    expect(csv).toContain('Tool rental counted once,-648.28');
+  });
+
+  it('marks items that need a price', () => {
+    const csv = estimateCsv(estimate({ ...defaultInputs, benchesWithBack: 1 }));
+    expect(csv).toContain('4x4x6,1,ea.,price needed');
+    expect(csv).toMatch(/4 items need a price/);
+  });
+
+  it('still writes the spreadsheet version', () => {
+    const csv = estimateCsv(estimate(defaultInputs, { mode: 'sheet' }));
+    expect(csv).toContain('Estimated final cost,,,,6482.80');
     expect(csv).toContain('Order list total,,,,3717.60');
   });
 });

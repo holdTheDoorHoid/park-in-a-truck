@@ -2,16 +2,24 @@
 
 The Dream workbook (p.18, "Count your pieces") sends people to a Google Sheet:
 fill in the orange squares, get a cost and an order list. This document traces that
-sheet formula by formula. The site's port is `src/lib/cost/` and reproduces it cell
-for cell, **mistakes included** — where the sheet is wrong, the port shows the same
-number and says so (a line note or a warning) instead of silently fixing it.
+sheet formula by formula. The site's port is `src/lib/cost/` and has two modes:
+
+- **`estimate(inputs, { mode: 'sheet' })`** reproduces the sheet cell for cell, mistakes included. The
+  LibreOffice fixture tests prove it.
+- **`estimate(inputs)`** (mode `'corrected'`) is the default and what the widget shows. The owner decided on
+  2026-10-04: the same PiaT prices and assumptions, but with the double counts removed and the broken lines
+  repaired. Every fix is listed in [Corrections](#corrections) and in `corrections.ts`, and each can be switched
+  off on its own (`{ fixes: [...] }`).
+
+For the sample park the sheet says **$6,482.80** and the corrected model **$6,789.96**.
+`docs/piat-spreadsheet-issues.md` is a plain-language version of the issues for the PiaT team.
 
 - Source: `source/linked/04_Dream_WORKBOOK_p18_DOWNLOAD_COST_ESTIMATOR__1mRUQ_FwFtU8SxZ8-7fcfmPczAj6o3E4JHtpY_KQhqHk.xlsx`
   (Google Sheets export, kept outside git).
-- Port: `model.ts` (inputs, estimate, summary), `orderList.ts` (ORDER LIST tab),
-  `prices.ts` (every price and link — the one place to update them), `fromTally.ts`
-  (design → inputs), `fields.ts` (questions as asked), `state.ts` (saved answers),
-  `csv.ts` (download).
+- Port: `model.ts` (inputs, estimate, summary), `corrections.ts` (the fixes and the assumptions kept),
+  `orderList.ts` (the sheet's ORDER LIST tab, and the corrected list built from the estimate's lines),
+  `prices.ts` (every price and link — the one place to update them), `fromTally.ts` (design → inputs),
+  `fields.ts` (questions as asked), `state.ts` (saved answers and typed prices), `csv.ts` (download).
 - Evidence: `scripts/analyze_cost_model.py` (see [Testing](#testing)).
 
 Cell references: `IH` = INSERT HERE, `QPI` = QUANTITES PER ITEM (sic), `OL` = ORDER LIST,
@@ -120,8 +128,8 @@ sheet multiplies a fraction by the price.
 | Raised beds F46 | — | = QPI M87 again | | | |
 
 **BASE DESIGN TOTAL F48** = F46 + F42 + F34 + F16 + F15 + F14 + F22 + F17 + F27 + F17 —
-the play area (F17) twice, and F27/F46 are the same cell. The port shows both repeats as
-lines in a "Counted twice by the spreadsheet" category.
+the play area (F17) twice, and F27/F46 are the same cell. Sheet mode shows both repeats as
+lines in a "Counted twice by the spreadsheet" category; the corrected mode counts each once.
 
 ### Furnishings (F80 = F68 + F65 + F59 + F62 + F56 + F74 + F78)
 
@@ -174,19 +182,50 @@ Each row's quantity is `SUMIF(QPI!B…, item name, QPI!J…)` — all QPI rows w
 
 Its own total: **P18** = O6:O18 + an unlabelled **$175**; **P23** = P18 + O20:O23 + IH!F34
 (plants as one amount); **O71** = P23 + O29:O53. For the example answers that is
-**$3,717.60**, against $4,321.87 total costs / $6,482.80 final on INSERT HERE. The widget
-shows the INSERT HERE figure as the estimate and the order list for what to buy, with the
-order list's own total in a footnote.
+**$3,717.60**, against $4,321.87 total costs / $6,482.80 final on INSERT HERE. The corrected
+mode replaces this list with one built from the estimate's own lines (see Corrections), so its
+total equals the estimate's total costs ($5,029.60 for the example).
 
 The ORDER LIST also has a "PHASE" column (1–6), delivery times, PiaT's tips, a tools list
 (impact driver + adaptor, auger bit, nut-driver sizes), "Additional elements" (fire hydrant
 opener: hose adapter, gear puller; skid steer for a week) and "PAVERS TBD". The port keeps
 the delivery times, phases (data only), tips and the tools list.
 
-## Oddities and bugs (flagged, not fixed)
+## Corrections
 
-The port matches the sheet in every case below; the widget shows a line note or a warning
-when the case affects the person's estimate.
+These apply in the default (corrected) mode, in this order. The widget's "How this differs from Park in a
+Truck's spreadsheet" panel shows each one's dollar effect for the person's answers: the fixes are applied one
+after another, so the effects add up exactly to the difference from the sheet.
+
+| Fix (`FixId`) | Sheet | Corrected |
+|---|---|---|
+| `toolRentalOnce` | F144 = 20% × F142 **+ F143** | F144 = 20% × F142; final = total costs × 1.35 + other |
+| `playAreaOnce` | F48 adds F17 twice | once |
+| `edgesOnce` | F27 and F46 are both QPI M87, and F48 adds both | once; `summary.raisedBeds` = 0 (the sheet has no raised-bed calculation) |
+| `edgeSupportsSplit` | outer-edge hardscape (2x4, L-brackets, screws) and softscape (2x4) supports both come from the whole edge (D79 = C76/5, D84 = D79) | hardscape from F24, softscape from F25; with no split (both 0) both are still counted, with a warning |
+| `edgeGabionConnections` | the edge-to-gabion 2x4x8s use F45 only; F26 (copied to C85) is never used | F26 + F45 |
+| `woodToppedGabions` | F53 = #REF!, not in F80 | QPI rows 90–97 with B92 = the answer: 2'x18"x4' basket $120, stone round up(12 cu ft/27 × 1.4) tons, round up(5.5) 2x4x8, 36 screws each; added to F80 |
+| `gabionTables` | F71 = M180 (empty), not in F80 | F71 = M182, added to F80 |
+| `porchSwings` | C292 = D132 (hammocks) | D133 |
+| `stageCutLists` | 16': counts from MC J91:J94, prices from OL column G, screws (E109+E111+E112)×4 = 124, corner braces COUNTIF(C187,15) = 0; 8' screws (E123 blank + E126)×4 = 24 | 16': 6 1x6x16, 3 2x4x16, 2 4x4x8, 1 2x4x10 (MC L105:L108), prices from the order list (none → price needed), 164 screws ((35 + 6) × 4), 24 corner braces; 8': 92 screws ((17 + 6) × 4) |
+| `samePrice` | $0 for the 2x4x8s of benches with armrests (L101 empty), the gabion tables' "2x4" (L180 = 109 never multiplied), and off-the-shelf cafe tables (F115 = 0) | the sheet's own prices for the same items: $5 (2x4x8), $5 (MC lists the table's 2x4s as 2x4x8), $160 (D126) |
+| `wholeUnits` | stakes packages, soil delivery, L-brackets and screws, cold frames, bench-with-arms 2x4x8s (7.5 each) and half boards are fractions | rounded up |
+| `priceNeeded` | lumber sizes with no price in the order list, cisterns (F109 = 0) and stages other than 2/3/4 squares cost $0 | listed as "price needed" (`estimate().priceNeeded`); left out of the total until the person types a unit price (`unitPrices`, saved in `costInputs.unitPrices`) |
+| `orderList` | ORDER LIST: misaligned SUMIFs (staples, panels), the lag-screw name mismatch, missing rows and prices, +$175, its own total | built from the estimate's lines merged by material (`buildMergedOrderList`), with the tab's delivery times, phases and notes; its total = the estimate's total costs |
+
+Kept as in the sheet (assumptions, not clearly errors; listed in the widget too): gravel over the whole area,
+the $175 left out (as the sheet's own estimate leaves it out), the prices themselves (large tree < small tree,
+1x6x12 at $4 and $10), stakes per 20 sq ft, the gravel-edge 1x4x12 count and supports, the trellis +20%, the 12'
+stage's 34 screws, the short material lists (compost bin, bench without back, table, stool), and no calculation
+for raised-bed wood edges.
+
+Price-needed ids: `lumber:<size>` (4x4x6, 2x10x8, 2x6x8, 2x8x8, 4x4x10, 4x4x12, 1x6x16, 2x4x16, 4x4x8, 2x4x10),
+`cistern-4x4`, `cistern-4x8`, `stage-other`. Adding a size to `LUMBER` in `prices.ts` prices it automatically.
+
+## Oddities and bugs found in the sheet
+
+Sheet mode matches the sheet in every case below. The corrected mode fixes the ones listed under
+[Corrections](#corrections) and keeps the rest, with a note.
 
 **Summary (INSERT HERE)**
 1. B2's instruction contains a reviewer's comment pasted into the text ("took me a minute to understand what this was - how about 'please answer the following…'").
@@ -243,7 +282,7 @@ planner) and returns `{ inputs, derived, manual, notes, unmapped, sizeFrom }`.
 | nature play squares, small/large trees | as tallied | |
 | gravel edge, outer edge (+ hardscape/softscape) | `gravelEdgeFt`, `outerEdgeFt` when the planner measures them | manual otherwise |
 | gabion baskets | `gabion-wall` | one piece = one 1'x1'x4' basket |
-| wood-topped gabions | `gabion-bench` + 2 × `gabion-bench-8` | the sheet prices them at $0 (#REF!) |
+| wood-topped gabions | `gabion-bench` + 2 × `gabion-bench-8` | $0 in the sheet (#REF!); priced in the corrected model |
 | benches with back / without back | `bench-back` / `bench-4` | |
 | square tables | `table-2` | |
 | long tables | `table-4` + `table-6` + `communal-table` | the sheet has no 4'/6' table line |
@@ -262,15 +301,18 @@ points to "Anything else". Plants, surfaces and existing conditions are ignored 
 
 ## Saved state and the widget
 
-- `project.extra.costInputs` = `{ v: 1, overrides: Partial<CostInputs>, base?: 'example' | 'zero' }`
-  — only the numbers the person typed. Each shown value is: their number, else the design's
-  (or lot's), else — with no design — the sheet's example (or zero after "Start from zero").
-- `CostEstimator` (`src/components/widgets/CostEstimator.astro`, props `title?`, `focus?: 'order'`)
-  is a Preact island (`client:visible`) reading `$project`. Badges: "From your design",
-  "From your lot", "Spreadsheet example", "Your number" + per-field reset; output = grand
-  total, the sheet's quirks for this estimate, cost by category (qty, unit price, total,
-  supplier), the order list (quantities, supplier, delivery time), Print (results only) and
-  CSV download.
+- `project.extra.costInputs` = `{ v: 1, overrides: Partial<CostInputs>, base?: 'example' | 'zero', unitPrices?: Record<id, number> }`.
+  `overrides` holds only the numbers the person typed. Each shown value is their number, else the design's (or
+  the lot's), else — when there is no design — the sheet's example (or zero after "Start from zero").
+  `unitPrices` holds the prices they typed for "price needed" items.
+- `CostEstimator` (`src/components/widgets/CostEstimator.astro`, props `title?`, `focus?: 'order'`) is a Preact
+  island (`client:visible`) that reads `$project` and shows the corrected estimate:
+  - badges "From your design", "From your lot", "Spreadsheet example" and "Your number", with a reset per field;
+  - the grand total, with "N items need a price";
+  - the price-needed items, each with a price box;
+  - "How this differs from Park in a Truck's spreadsheet" (collapsed): each correction with its dollar effect,
+    and the assumptions kept;
+  - cost by category, the order list, Print (results only) and CSV download.
 
 ## Testing
 
@@ -285,8 +327,10 @@ differ. `fixtures` writes six input sets into the orange cells, recalculates, ch
 recalculation really happened (area and perimeter cells moved), and saves
 `src/lib/cost/__tests__/fixtures/*.json`: sheet defaults; a size-A park with zero
 furnishings; a size-E park with every item; fractional feet with an 8' stage; a size-B park
-with a 16' stage; values on exact rounding boundaries with a 1-square stage. The tests check
-every INSERT HERE summary cell, every QPI cell a line reproduces, and every ORDER LIST row
-and total to within $0.01. Changing a price in `prices.ts` makes them fail on purpose —
+with a 16' stage; values on exact rounding boundaries with a 1-square stage. The tests check, in
+sheet mode, every INSERT HERE summary cell, every QPI cell a line reproduces, and every ORDER LIST row and total
+to within $0.01. `corrected.test.ts` works each fixture out by hand — from the sheet's own TOTAL COSTS, adding or
+removing exactly what each correction changes, with the arithmetic in the comments — and checks every
+correction on its own (the same answers with that one fix switched off). Changing a price in `prices.ts` makes them fail on purpose —
 regenerate the fixtures from an updated sheet, or update the expected values, when prices
 change.

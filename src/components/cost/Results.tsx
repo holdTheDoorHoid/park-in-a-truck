@@ -1,6 +1,8 @@
 /** @jsxImportSource preact */
 // The estimate (cost by category, grand total) and the spreadsheet's order list.
 
+import { useState } from 'preact/hooks';
+import { KEPT_ASSUMPTIONS } from '../../lib/cost/corrections';
 import { CATEGORIES, fmtN, money, type CostLine, type Estimate } from '../../lib/cost/model';
 import type { OrderListRow } from '../../lib/cost/orderList';
 
@@ -37,21 +39,23 @@ function qtyText(l: CostLine): string {
 
 function LineRow({ l }: { l: CostLine }) {
   return (
-    <tr class={l.inTotal ? undefined : 'ce-not-counted'}>
+    <tr class={l.inTotal || l.needsPrice ? undefined : 'ce-not-counted'}>
       <td class="ce-item-cell">
         <span class="ce-item">{l.item}</span>
         <Where link={l.link} vendor={l.vendor} />
         {l.notes && <span class="ce-note">{l.notes}</span>}
-        {!l.inTotal && <span class="ce-note ce-flag">Not counted in the total.</span>}
+        {!l.inTotal && !l.needsPrice && <span class="ce-note ce-flag">Not counted in the total.</span>}
+        {l.needsPrice && <span class="ce-note ce-flag">Not in the total until you enter a price (above the cost by category).</span>}
       </td>
       <td class="num" data-label="Quantity">
         {qtyText(l)}
       </td>
       <td class="num" data-label="Unit price">
-        {l.unit === '' ? '' : money(l.unitPrice)}
+        {l.needsPrice ? <span class="ce-need-badge">price needed</span> : l.unit === '' ? '' : money(l.unitPrice)}
+        {l.userPrice && <span class="ce-each">your price</span>}
       </td>
       <td class="num ce-total-cell" data-label="Total">
-        {money(l.total)}
+        {l.needsPrice ? '—' : money(l.total)}
       </td>
     </tr>
   );
@@ -115,6 +119,7 @@ function CategoryTable({ e, id, open, bare }: { e: Estimate; id: (typeof CATEGOR
 
 export function TotalCard({ e }: { e: Estimate }) {
   const s = e.summary;
+  const missing = e.priceNeeded.filter((p) => p.price === undefined).length;
   return (
     <div class="ce-total-card">
       <p class="eyebrow">Estimated final cost</p>
@@ -129,7 +134,7 @@ export function TotalCard({ e }: { e: Estimate }) {
           <dd>{money(s.toolRental)}</dd>
         </div>
         <div>
-          <dt>20% contingency (+ tool rental again)</dt>
+          <dt>{e.mode === 'sheet' ? '20% contingency (+ tool rental again)' : '20% contingency'}</dt>
           <dd>{money(s.contingency)}</dd>
         </div>
         {s.otherCosts !== 0 && (
@@ -139,6 +144,11 @@ export function TotalCard({ e }: { e: Estimate }) {
           </div>
         )}
       </dl>
+      {missing > 0 && (
+        <p class="ce-missing">
+          ⚠ {missing} item{missing === 1 ? ' needs' : 's need'} a price — not in the total yet.
+        </p>
+      )}
       <p class="ce-price-note">{PRICE_NOTE}</p>
       <p class="ce-small">This is a cost estimate; your final costs may vary.</p>
     </div>
@@ -149,7 +159,7 @@ export function EstimateView({ e, open }: { e: Estimate; open: boolean }) {
   const parts = [
     { id: 'base', label: 'Base design', total: e.summary.baseDesign },
     { id: 'furnishings', label: 'Furnishings', total: e.summary.baseFurnishings + e.summary.additional + e.summary.offTheShelf + e.summary.optional },
-    { id: 'contingency', label: 'Contingency + other costs', total: e.summary.toolRental + e.summary.contingency + e.summary.otherCosts },
+    { id: 'contingency', label: 'Tool rental, contingency + other costs', total: e.summary.toolRental + e.summary.contingency + e.summary.otherCosts },
   ] as const;
   return (
     <div class="ce-estimate">
@@ -178,6 +188,7 @@ function OrderRow({ r }: { r: OrderListRow }) {
       <td class="ce-item-cell">
         <span class="ce-item">{r.item}</span>
         <Where link={r.link} vendor={r.vendor} />
+        {r.usedFor && r.usedFor.length > 0 && <span class="ce-note">For: {r.usedFor.join(', ')}</span>}
         {r.note && <span class="ce-note">{r.note}</span>}
         {r.flags.map((f, k) => (
           <span key={k} class="ce-note ce-flag">
@@ -190,7 +201,7 @@ function OrderRow({ r }: { r: OrderListRow }) {
       </td>
       <td data-label="Delivery">{r.leadTime ?? ''}</td>
       <td class="num" data-label="Cost">
-        {r.total !== null ? money(r.total) : '—'}
+        {r.needsPrice ? <span class="ce-need-badge">price needed</span> : r.total !== null ? money(r.total) : '—'}
         {r.unitPrice !== null && r.qty !== 1 && <span class="ce-each">{money(r.unitPrice)} each</span>}
       </td>
     </tr>
@@ -200,8 +211,7 @@ function OrderRow({ r }: { r: OrderListRow }) {
 export function OrderListView({ e }: { e: Estimate }) {
   const ol = e.orderList;
   const rows = ol.rows.filter((r) => r.qty !== 0 || r.flags.length);
-  const sections: string[] = [];
-  for (const r of rows) if (!sections.includes(r.section)) sections.push(r.section);
+  const sections = ol.sections.filter((s) => rows.some((r) => r.section === s));
   const tools: string[] = [];
   for (const t of ol.tools) if (!tools.includes(t.section)) tools.push(t.section);
   return (
@@ -233,16 +243,31 @@ export function OrderListView({ e }: { e: Estimate }) {
               {rows
                 .filter((r) => r.section === s)
                 .map((r) => (
-                  <OrderRow key={r.row} r={r} />
+                  <OrderRow key={r.key} r={r} />
                 ))}
             </tbody>
           </table>
         </section>
       ))}
-      <p class="ce-small ce-ol-total">
-        The spreadsheet’s order list adds up to <strong>{money(ol.total)}</strong> (including the plants subtotal and an unlabelled $175). It leaves some
-        items out, so use the estimate above for your budget.
-      </p>
+      {ol.extras.length > 0 && e.mode === 'corrected' && (
+        <ul class="ce-small ce-extras">
+          {ol.extras.map((x, k) => (
+            <li key={k}>
+              Also in the total: {x.label} — {money(x.amount)}
+            </li>
+          ))}
+        </ul>
+      )}
+      {e.mode === 'corrected' ? (
+        <p class="ce-small ce-ol-total">
+          Order list total: <strong>{money(ol.total)}</strong> — the estimate’s total costs, before tool rental and contingency.
+        </p>
+      ) : (
+        <p class="ce-small ce-ol-total">
+          The spreadsheet’s order list adds up to <strong>{money(ol.total)}</strong> (including the plants subtotal and an unlabelled $175). It leaves some
+          items out, so use the estimate above for your budget.
+        </p>
+      )}
       {tools.map((s) => (
         <section key={s} class="ce-order-section" aria-label={s}>
           <h5 class="ce-order-head">{s}</h5>
@@ -266,5 +291,140 @@ export function OrderListView({ e }: { e: Estimate }) {
         </section>
       ))}
     </div>
+  );
+}
+
+/** "Price needed" items: the spreadsheet has no price; the person types one. */
+export function PriceNeeded({ e, onPrice, idBase }: { e: Estimate; onPrice: (id: string, price: number | undefined) => void; idBase: string }) {
+  if (!e.priceNeeded.length) return null;
+  const missing = e.priceNeeded.filter((p) => p.price === undefined).length;
+  return (
+    <section class="ce-needs" aria-labelledby={`${idBase}-needs`}>
+      <h5 id={`${idBase}-needs`} class="ce-needs-head">
+        {missing ? `⚠ ${missing} item${missing === 1 ? ' needs' : 's need'} a price` : '✓ Prices you added'}
+      </h5>
+      <p class="ce-small">
+        The Park in a Truck spreadsheet has no price for {e.priceNeeded.length === 1 ? 'this item' : 'these items'}. Enter a unit price and it is added to the total
+        (with tool rental and contingency); until then {e.priceNeeded.length === 1 ? 'it is' : 'they are'} left out.
+      </p>
+      <ul class="ce-needs-list">
+        {e.priceNeeded.map((p) => (
+          <li key={p.id}>
+            <PriceInput item={p} id={`${idBase}-price-${p.id.replace(/[^a-z0-9]+/gi, '-')}`} onPrice={(v) => onPrice(p.id, v)} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+function PriceInput({ item, id, onPrice }: { item: Estimate['priceNeeded'][number]; id: string; onPrice: (v: number | undefined) => void }) {
+  const [draft, setDraft] = useState<string | null>(null);
+  const [bad, setBad] = useState(false);
+  const shown = draft ?? (item.price === undefined ? '' : String(item.price));
+  return (
+    <div class="ce-need">
+      <label for={id} class="ce-need-label">
+        <span class="ce-item">{item.item}</span>
+        <span class="ce-note">
+          {fmtN(item.qty)} {unitText(item.unit, item.qty)}
+          {item.usedIn.length > 0 && ` — for ${item.usedIn.join(', ')}`}
+        </span>
+      </label>
+      <span class="ce-input-wrap ce-need-input">
+        <span class="ce-unit ce-unit-pre">$</span>
+        <input
+          id={id}
+          type="number"
+          min={0}
+          step="any"
+          inputMode="decimal"
+          placeholder="price"
+          value={shown}
+          aria-invalid={bad || undefined}
+          onInput={(ev) => {
+            const raw = (ev.currentTarget as HTMLInputElement).value;
+            setDraft(raw);
+            if (raw.trim() === '') {
+              setBad(false);
+              onPrice(undefined);
+              return;
+            }
+            const v = Number(raw);
+            const ok = Number.isFinite(v) && v >= 0;
+            setBad(!ok);
+            if (ok) onPrice(v);
+          }}
+          onBlur={() => {
+            setDraft(null);
+            setBad(false);
+          }}
+        />
+        <span class="ce-unit">each</span>
+      </span>
+      <span class="ce-need-total">{item.price === undefined ? 'not in the total' : money(item.price * item.qty)}</span>
+    </div>
+  );
+}
+
+/** "How this differs from Park in a Truck's spreadsheet": each correction with its dollar effect for these answers. */
+export function Differences({ e }: { e: Estimate }) {
+  const c = e.corrections;
+  if (!c) return null;
+  const effect = (v: number) => (Math.abs(v) < 0.005 ? 'no change for your park' : `${v > 0 ? '+' : '−'}${money(Math.abs(v))}`);
+  const matters = (f: (typeof c.fixes)[number]) => (f.id === 'orderList' ? Math.abs(c.sheetOrderListTotal - c.orderListTotal) >= 0.005 : Math.abs(f.effect) >= 0.005);
+  const changed = c.fixes.filter(matters);
+  const unchanged = c.fixes.filter((f) => !matters(f));
+  return (
+    <details class="ce-diff">
+      <summary>How this differs from Park in a Truck’s spreadsheet</summary>
+      <p class="ce-small">
+        This estimate uses the spreadsheet’s prices and assumptions, with its calculation mistakes fixed. For these answers the spreadsheet comes to{' '}
+        <strong>{money(c.sheetTotal)}</strong>; this estimate is <strong>{money(e.total)}</strong>.
+      </p>
+      <ol class="ce-diff-list">
+        {changed.map((f) => (
+          <li key={f.id}>
+            <span class="ce-diff-row">
+              <span class="ce-item">{f.label}</span>
+              <span class="ce-diff-effect">
+                {f.id === 'orderList' ? `order list ${money(c.sheetOrderListTotal)} → ${money(c.orderListTotal)}` : effect(f.effect)}
+              </span>
+            </span>
+            <span class="ce-note">{f.detail}</span>
+          </li>
+        ))}
+        {Math.abs(c.pricesAdded) >= 0.005 && (
+          <li>
+            <span class="ce-diff-row">
+              <span class="ce-item">Prices you added</span>
+              <span class="ce-diff-effect">{effect(c.pricesAdded)}</span>
+            </span>
+          </li>
+        )}
+      </ol>
+      {unchanged.length > 0 && (
+        <>
+          <p class="ce-small">
+            <strong>Also corrected</strong> (no change for these answers):
+          </p>
+          <ul class="ce-small ce-kept">
+            {unchanged.map((f) => (
+              <li key={f.id}>
+                {f.label}. <span class="muted">{f.detail}</span>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+      <p class="ce-small">
+        <strong>Kept as in the spreadsheet</strong> (assumptions rather than mistakes):
+      </p>
+      <ul class="ce-small ce-kept">
+        {KEPT_ASSUMPTIONS.map((k, i) => (
+          <li key={i}>{k}</li>
+        ))}
+      </ul>
+    </details>
   );
 }
