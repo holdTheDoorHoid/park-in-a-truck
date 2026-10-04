@@ -1,0 +1,58 @@
+---
+// Dev-only preview of the cost estimator (not linked from the site; every page is noindex).
+import Base from '../../layouts/Base.astro';
+import CostEstimator from '../../components/widgets/CostEstimator.astro';
+---
+<Base title="Cost estimator (dev)">
+  <div class="wrap" style="max-width: 808px; padding-block: 32px">
+    <p class="eyebrow">Dev preview</p>
+    <h1 class="ruled">Cost estimator</h1>
+    <p class="muted">
+      Load a sample design tally into the active project to see the “from your design” state:
+      <button class="btn btn-small" type="button" id="dev-tally">Load sample tally</button>
+      <button class="btn btn-small" type="button" id="dev-clear">Remove tally</button>
+    </p>
+    <CostEstimator />
+  </div>
+  <script>
+    import { setExtra } from '../../lib/project';
+    document.getElementById('dev-tally')?.addEventListener('click', () =>
+      setExtra('tally', {
+        lengthFt: 90,
+        widthFt: 35,
+        plantingSquares: { sun: 14, shade: 6 },
+        naturePlaySquares: 4,
+        shrubs: { sun: 5, shade: 3 },
+        smallTrees: 2,
+        largeTrees: 1,
+        gravelEdgeFt: { hardscape: 16, softscape: 48 },
+        outerEdgeFt: { hardscape: 0, softscape: 70 },
+        items: { 'gabion-wall': 6, 'gabion-bench': 2, 'bench-back': 2, 'bench-4': 1, 'table-2': 1, 'table-6': 1, stool: 4, 'shade-canopy': 1, 'compost-bin': 1, 'rain-barrel': 2, shed: 1, 'cold-frame': 1, 'planter-18': 2 },
+        themes: ['edible', 'nature'],
+      }),
+    );
+    document.getElementById('dev-clear')?.addEventListener('click', () => setExtra('tally', undefined));
+    // For headless screenshots: ?sample loads the tally, ?open opens every section (?results: all but the
+    // questions), ?print presses "Print order list" (to check the print layout with --print-to-pdf).
+    const q = new URLSearchParams(location.search);
+    if (q.has('sample')) document.getElementById('dev-tally')?.click();
+    if (q.has('print')) {
+      const t = setInterval(() => {
+        const b = [...document.querySelectorAll<HTMLButtonElement>('.ce-actions button')].find((x) => x.textContent?.includes('Print'));
+        if (b) {
+          clearInterval(t);
+          b.click();
+        }
+      }, 100);
+    }
+    if (q.has('open')) {
+      const t = setInterval(() => {
+        const d = document.querySelectorAll<HTMLDetailsElement>('.ce details');
+        if (d.length > 12) {
+          d.forEach((x) => (x.open = !(q.has('results') && x.classList.contains('ce-group'))));
+          clearInterval(t);
+        }
+      }, 100);
+    }
+  </script>
+</Base>
