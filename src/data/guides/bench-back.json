@@ -2,9 +2,9 @@
   "slug": "bench-back",
   "title": "Bench + Back",
   "element": "bench-back",
-  "summary": "A 4-foot cedar, fir or pressure-treated bench with a slatted seat and an angled back, built from 2x4 lumber with a bolt-on backrest bracket.",
+  "summary": "A 4-foot cedar, fir or pressure-treated bench with a slatted seat and an angled back, built from 2x4 lumber with a bolt-on backrest bracket. It stands 25\" to the top of the arms; the backrest rises to about 34\".",
   "category": "seating",
-  "dimensionsIn": { "length": 48, "width": 18.5, "height": 25 },
+  "dimensionsIn": { "length": 48, "width": 18.5, "height": 34 },
   "materials": [
     {
       "item": "2x4 dimensional lumber — western red cedar, Douglas fir, or pressure-treated pine",
