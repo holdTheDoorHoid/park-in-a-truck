@@ -1,0 +1,278 @@
+---
+title: Entretenir
+intro: Prenez soin de votre parc, saison après saison.
+sources:
+  - "Boîte à outils (Toolkit), p. 61–65 (Entretenir, Plan d’entretien annuel du parc, Activités d’entretien du parc, Ambassadeurs du parc)"
+  - "Cahier Entretenir, p. 1–7"
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import Download from '../../../../components/workbook/Download.astro';
+import StewardshipCalendar from '../../../../components/widgets/StewardshipCalendar.astro';
+
+Les parcs Park in a Truck veulent être des oasis urbaines remplies de plantes et d’arbres qui nourrissent tous ceux qui
+les visitent — y compris les oiseaux, les abeilles, les papillons, les chauves-souris et les autres pollinisateurs dont
+les plantes dépendent. Comme un bébé, votre parc a besoin de beaucoup d’amour et d’attention pendant ses premières
+années pour survivre, s’épanouir et devenir un lieu de rencontre !
+
+Cette étape est divisée en trois catégories, chacune coordonnée de préférence par une seule personne :
+
+- **Survivre** — la seule catégorie *indispensable*. Arroser et désherber chaque semaine pendant les deux premières
+  années. Si personne dans le quartier ne peut s’en charger, il faudra payer quelqu’un pendant la petite enfance du
+  parc.
+- **S’épanouir** — un effort en plus, facultatif : plantes annuelles, bulbes, et un potager démarré à partir de
+  graines.
+- **Se retrouver** — c’est entièrement à vous de voir : les événements et les réunions qui font de votre parc un lieu
+  de rencontre.
+
+<PdfPage doc="downloads/workbooks/06-sustain.pdf" page={3} />
+
+## Arroser et désherber chaque semaine {/* #water-weed-every-week */}
+
+**Arrosage.** Arrosez vos plantes chaque semaine pendant les deux premières années. Observez-les pour voir si elles
+ont besoin de plus ou de moins d’eau :
+
+- Si les 2 premiers pouces de terre sont secs, il est temps d’arroser.
+- Si les plantes sont visiblement fanées, il est temps d’arroser.
+- Utilisez un pluviomètre pour savoir combien d’eau reçoivent vos plantes.
+
+S’il faut arroser, mouillez bien toute la zone de plantation : soit laissez couler l’eau pendant 3 heures avec un
+tuyau suintant, soit arrosez à la main, assez lentement pour que l’eau ne ruisselle pas, et assez longtemps pour
+qu’elle pénètre de 6 à 8 pouces dans la terre.
+
+<Callout kind="tip">
+  [Conseils d’arrosage + guide du pluviomètre (en anglais) ↗](https://gardenerspath.com/how-to/hacks/use-rain-gauge/) ·
+  [Conseils généraux d’arrosage (en anglais) ↗](https://youtu.be/ueQCiSD5AdM)
+</Callout>
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — watering from a hydrant needs a PWD permit; facts checked 2026-10-04 on water.phila.gov. */}
+<Callout kind="site">
+  Pour arroser à partir d’une bouche d’incendie, il faut un
+  [permis d’utilisation de bouche d’incendie du Philadelphia Water Department ↗](https://water.phila.gov/development/connections/hydrant-permits/)
+  (en anglais) et un clapet anti-retour (backflow preventer) homologué (les jardins partagés ne paient pas les frais du
+  permis). Le [guide des jardins urbains ↗](https://water.phila.gov/urban-garden-guide/) du PWD (en anglais) donne les
+  autres façons d’amener l’eau jusqu’à un jardin.
+</Callout>
+
+**Désherbage.** Il faut désherber chaque semaine du 15 avril jusqu’en octobre, au moins pendant les deux premières
+années.
+
+- Utilisez un herbicide de prélevée sur vos massifs pour limiter les mauvaises herbes (voir le nettoyage de saison,
+  plus bas).
+- Au lieu d’arracher les mauvaises herbes, essayez de les pulvériser avec une solution de vinaigre à 20 %. Si vous
+  avez du mal, demandez conseil à votre pépinière locale.
+- Consultez des ressources en ligne sur les mauvaises herbes, ou une application comme PlantSnap, pour reconnaître
+  les plantes et les mauvaises herbes.
+
+<Callout kind="tip">
+  [Herbicide de prélevée pour les massifs de fleurs ↗](https://www.amazon.com/dp/B003S3U02E/) ·
+  [Herbicide de prélevée pour les potagers ↗](https://www.amazon.com/dp/B083PKMJTM/) ·
+  [Vinaigre à 20 % ↗](https://www.amazon.com/Green-Gobbler-Vinegar-Glyphosate-Herbicide/dp/B09HDFQ531/) ·
+  [Mauvaises herbes courantes (USDA) ↗](https://www.nrcs.usda.gov/Internet/FSE_DOCUMENTS/nrcs142p2_017662.pdf) *(lien qui ne fonctionne plus)*
+  (sites en anglais)
+</Callout>
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — 20% vinegar is far stronger than kitchen vinegar; facts checked 2026-10-04 on npic.orst.edu. */}
+<Callout kind="site">
+  Le vinaigre vendu comme désherbant (20 % ou plus) est beaucoup plus fort que le vinaigre de cuisine (environ 5 %) :
+  il peut abîmer les yeux pour toujours et brûler la peau. Suivez l’étiquette du produit et portez une protection pour
+  les yeux et des gants ([National Pesticide Information Center ↗](https://npic.orst.edu/faq/vinegar.html), en
+  anglais).
+</Callout>
+
+<PdfPage doc="downloads/workbooks/06-sustain.pdf" page={4} />
+
+## Soins mensuels et nettoyage de saison {/* #monthly-care-seasonal-cleanup */}
+
+Une fois par mois, faites le tour du parc et vérifiez les points suivants :
+
+<Checklist
+  id="sustain.monthly-inspection"
+  items={[
+    { value: 'Insect or disease infestation', label: 'Insectes nuisibles ou maladies' },
+    { value: 'Evidence of weeds', label: 'Présence de mauvaises herbes' },
+    { value: 'Condition of mulch', label: 'État du paillis' },
+    { value: 'Evidence of dead or dying plants', label: 'Plantes mortes ou mourantes' },
+    { value: 'Cleanup of trash and debris', label: 'Ramassage des déchets et des débris' },
+    { value: 'Keep track of the success or failure of plantings', label: 'Suivre la réussite ou l’échec des plantations' },
+  ]}
+/>
+
+### Paillage
+
+Couvrez tous les massifs de paillis — du terreau de feuilles ou du paillis de bois dur bien mûr, broyé trois fois — et
+gardez une épaisseur de 2 à 3 pouces, en faisant attention à ne pas en mettre trop. Faites particulièrement attention
+autour des arbres : la mauvaise façon, c’est de monter le paillis contre le tronc comme une pente de montagne ; la
+bonne façon, c’est un beignet plat, avec un pouce ou plus d’espace libre entre le paillis et le tronc. Du paillis qui
+touche le tronc peut faire pourrir l’écorce et exposer l’arbre aux insectes, aux maladies, et peut-être à la mort.
+
+<Callout kind="tip">[Comment étaler du paillis (en anglais) ↗](https://skh.com/thedirt/how-to-lay-mulch/)</Callout>
+
+### Taille
+
+Utilisez des outils de taille à main pour tous les arbustes — pas de taille-haies électrique. Taillez les arbustes et
+les arbres seulement quand c’est nécessaire, pour guider leur forme future ou pour enlever le bois mort ou malade.
+Taillez et coupez les branches pour garder un passage libre d’au moins 7 pieds de haut au-dessus des allées et de 13
+pieds au-dessus des rues et des entrées de garage.
+
+<Callout kind="tip">[Tailler comme un pro (en anglais) ↗](https://youtube.com/watch?v=BE2K_mCIppM)</Callout>
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — street trees are the City's; facts checked 2026-10-04 on phila.gov. */}
+<Callout kind="site">
+  Les arbres de rue (ceux qui sont dans le trottoir) appartiennent à la Ville : pour en tailler ou en abattre un, il
+  faut un permis de Philadelphia Parks & Recreation (le service des parcs de la Ville). Voir les
+  [questions sur les arbres de rue ↗](https://www.phila.gov/departments/philadelphia-parks-recreation/street-tree-frequently-asked-questions/)
+  de la Ville (en anglais).
+</Callout>
+
+### Lutte contre les nuisibles
+
+Le parc est conçu pour attirer les pollinisateurs, qui aident à lutter contre les nuisibles. Il faut quand même
+parfois intervenir : si vous voyez quelque chose de bizarre sur vos plantes, cherchez à comprendre — prenez des
+photos, faites des recherches en ligne et/ou contactez votre pépinière locale.
+
+<Callout kind="tip">[Guide des ravageurs et des maladies (en anglais) ↗](https://extension.psu.edu/trees-lawns-and-landscaping/home-gardening/pests-and-diseases)</Callout>
+
+### Nettoyage de saison
+
+<Checklist
+  id="sustain.spring-cleanup"
+  label="Printemps"
+  items={[
+    { value: 'Lightly rake out beds', label: 'Ratisser légèrement les massifs' },
+    { value: 'Cut back any unsightly perennials', label: 'Rabattre les vivaces qui ont mauvaise mine' },
+    { value: 'Apply pre-emergent per package directions; spray weeds with 20% vinegar', label: 'Appliquer l’herbicide de prélevée selon les instructions de l’emballage ; pulvériser les mauvaises herbes avec du vinaigre à 20 %' },
+    { value: "Mulch beds (see 'mulching' above)", label: 'Pailler les massifs (voir « Paillage » plus haut)' },
+    { value: 'Add pansies and cool-season annuals for early spring color, if desired', label: 'Ajouter des pensées et des annuelles de saison fraîche pour avoir de la couleur dès le début du printemps, si vous le souhaitez' },
+  ]}
+/>
+<Checklist
+  id="sustain.late-summer-cleanup"
+  label="Fin de l’été"
+  items={[
+    { value: 'Prune evergreen shrubs', label: 'Tailler les arbustes à feuillage persistant' },
+    { value: 'Apply pre-emergent per package directions; spray weeds with 20% vinegar', label: 'Appliquer l’herbicide de prélevée selon les instructions de l’emballage ; pulvériser les mauvaises herbes avec du vinaigre à 20 %' },
+  ]}
+/>
+<Checklist
+  id="sustain.fall-cleanup"
+  label="Automne"
+  items={[
+    { value: 'Inspect plant areas to make sure weeds are eradicated', label: 'Inspecter les zones de plantation pour vérifier que les mauvaises herbes ont disparu' },
+    { value: 'Prune shrubs and trees after leaves have fallen, so you can see the structure of the plant', label: 'Tailler les arbustes et les arbres après la chute des feuilles, pour voir la structure de la plante' },
+    { value: 'leave-perennials', label: 'Ne pas rabattre les vivaces', hint: 'beaucoup de pollinisateurs passent l’hiver dans les tiges' },
+    { value: 'Prune flowering shrubs after they have flowered', label: 'Tailler les arbustes à fleurs après leur floraison' },
+    { value: "Mulch beds, or plan to mulch in spring (see 'mulching' above)", label: 'Pailler les massifs, ou prévoir de pailler au printemps (voir « Paillage » plus haut)' },
+    { value: 'Water trees deeply before the ground freezes', label: 'Arroser les arbres en profondeur avant que le sol gèle' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/06-sustain.pdf" page={5} />
+
+## Faire pousser plus : graines, bulbes et annuelles {/* #grow-more-seeds-bulbs-annuals */}
+
+Si vous êtes prêts à faire un petit effort en plus, voici comment faire vraiment s’épanouir votre parc. Les plantes
+annuelles donnent des fleurs voyantes qui fleurissent toute la saison, mais ne reviennent pas l’année suivante. Les
+bulbes, comme les tulipes et les jonquilles, reviennent en général chaque année et apportent de la couleur en début de
+saison. Démarrer un potager à partir de graines, à l’intérieur, est une façon économique de faire pousser exactement
+ce que vous voulez.
+
+**Graines.** Lisez des catalogues de graines pour décider quoi faire pousser et comment en prendre soin. Commandez des
+graines de légumes et d’annuelles. Faites germer vos graines à l’intérieur pour un potager, puis repiquez-les dans des
+bacs quand il fait plus chaud.
+
+**Bulbes.** Commandez des bulbes et gardez-les dans un endroit frais et sec. Plantez les bulbes entre Halloween (fin
+octobre) et Thanksgiving (fin novembre). Mettez de l’engrais 4 à 6 semaines avant la floraison prévue. Après la
+floraison, coupez les fleurs fanées. Attendez que le feuillage jaunisse, puis enlevez toute la plante.
+
+**Annuelles.** Achetez les fleurs annuelles que vous voulez. Plantez-les en avril si le printemps est doux, ou en juin
+s’il est frais. Arrosez-les bien et surveillez les nuisibles — enlevez les feuilles atteintes si nécessaire.
+
+<PdfPage doc="downloads/workbooks/06-sustain.pdf" page={6} />
+
+## Se retrouver {/* #socialize */}
+
+Cette partie dépend entièrement de vous. Au lieu d’un calendrier détaillé à suivre, c’est vous qui décidez quelles
+activités proposer ! Quelques idées venues d’autres parcs Park in a Truck : une sortie d’observation des oiseaux, une
+fête du Jour de la Terre, un camp nature d’été, une inauguration avec coupure du ruban, un nettoyage collectif, ou une
+réunion d’information sur le parc à chaque saison.
+
+<ListField
+  id="sustain.events"
+  label="Qu’aimeriez-vous faire, et quand ?"
+  rowName="un événement"
+  min={3}
+  columns={[
+    { key: 'season', label: 'Saison', placeholder: 'hiver, printemps, été, automne' },
+    { key: 'activity', label: 'Activité' },
+    { key: 'who', label: 'Qui l’organise' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/06-sustain.pdf" page={7} />
+
+## Votre plan de travail annuel {/* #your-annual-workplan */}
+
+Les conseils ci-dessus forment un cadre pour l’entretien régulier de votre parc, saison après saison : ce sont les
+tâches à faire, par mois, par saison et par année. Cochez-les au fur et à mesure ; le plus important, c’est simplement
+de désherber et d’arroser.
+
+<StewardshipCalendar />
+
+## Le programme des ambassadeurs du parc {/* #park-ambassador-program */}
+
+Nous recommandons vivement le programme des ambassadeurs du parc, qui emploie des jeunes du quartier pour aider à
+entretenir le parc et à y organiser des activités. Les ambassadeurs du parc :
+
+- Créent un parc sûr, propre et accessible à tous.
+- Prévoient des activités amusantes pour les habitants de tous âges.
+- Gardent le parc propre et bien rangé.
+- Veillent à ce que le parc soit une oasis de verdure accueillante.
+
+Nous avons créé un guide des ambassadeurs du parc : un programme étape par étape et un guide de ressources pour aider
+les ambassadeurs à entretenir le nouveau parc et à y organiser des activités, et un endroit pour noter ce qui s’y
+passe. Les jeunes ambassadeurs travaillent de près avec un habitant du quartier, qui leur sert de mentor et de guide
+tout au long du programme.
+
+<Figure
+  src="img/sustain/ambassador-guidebook-cover.webp"
+  alt="Couverture du Park Ambassadors Guidebook (guide des ambassadeurs du parc) : programme et guide de ressources, illustrée par une rangée d’arbres en silhouette et des enfants qui jouent dans un parc"
+/>
+
+<Download href="downloads/park-ambassador-booklet.pdf" label="Guide des ambassadeurs du parc" note="Programme et guide de ressources" />
+
+{/* site-added: tracking helper, not a new program requirement. */}
+<Field id="sustain.ambassador-mentor" label="Mentor du quartier pour votre ou vos ambassadeurs du parc" hint="L’adulte qui guide les jeunes ambassadeurs pendant le programme" />
+
+## Liens utiles {/* #helpful-links */}
+
+Ces sites sont en anglais.
+
+- **Informations générales sur les plantes** — [PHS Gold Medal Plants ↗](https://phsonline.org/for-gardeners/gold-medal-plants) ·
+  [Gardens Alive ↗](https://www.gardensalive.com/) · [North Creek Nurseries ↗](https://www.northcreeknurseries.com/) ·
+  [Missouri Botanical Garden — recherche de plantes ↗](http://www.missouribotanicalgarden.org/plantfinder/plantfindersearch.aspx) ·
+  [Longwood Gardens — recherche de plantes ↗](https://plantexplorer.longwoodgardens.org/ecmweb/FindPlant.html) *(lien qui ne fonctionne plus)* ·
+  [Arbor Day Foundation ↗](https://www.arborday.org/) ·
+  [Guide de plantation de Penn State ↗](https://extension.psu.edu/programs/master-gardener/counties/philadelphia/hotline/master-gardeners-philadelphia-planting-guide)
+- **Ateliers et aide pour les terrains** — [Pennsylvania Horticultural Society ↗](https://phsonline.org/) ·
+  [Grounded in Philly ↗](https://groundedinphilly.org/) (aide juridique, données sur les terrains, assurance, compost) ·
+  [Greensgrow ↗](https://www.greensgrow.org/about-us/) *(lien qui ne fonctionne plus)* (ferme urbaine éducative)
+- **Plantes envahissantes** — [Brandywine Conservancy ↗](https://www.brandywine.org/conservancy/resources/invasive-plants)
+- **Soins des arbres, arbustes et vivaces** — [Planter un arbre vendu en pot ↗](https://www.arborday.org/trees/planting/containerized.cfm) ·
+  [Comment planter un arbre ↗](https://youtube.com/watch?v=QYmgrw0PgLU) · [Comment planter un arbuste ↗](https://youtube.com/watch?v=Tim4LEo6l10) ·
+  [Comment tailler un arbuste ↗](https://www.gardenersworld.com/how-to/grow-plants/the-basics-of-shrub-pruning/)
+- **Arbres fruitiers** — [Soins des arbres fruitiers (Arbor Day Foundation) ↗](https://www.arborday.org/trees/fruit/) ·
+  [Philadelphia Orchard Project ↗](https://www.phillyorchards.org/)
+- **Sol, compostage et engrais** — [Analyse de sol de Penn State ↗](https://extension.psu.edu/soil-testing) ·
+  [Les bases du compostage ↗](https://www.youtube.com/watch?v=0hPCkEaMkQU) ·
+  [Penn State : favoriser la santé des plantes ↗](https://extension.psu.edu/promote-plant-health) ·
+  [Comment pailler votre jardin ↗](https://www.goodhousekeeping.com/home/gardening/a20706549/how-to-mulch-your-garden/)
+
+<Callout kind="contact">
+  Des questions en chemin ? L’équipe Park in a Truck peut vous aider :
+  [ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu).
+</Callout>
