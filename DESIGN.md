@@ -34,6 +34,7 @@ The owner has permission from PiaT to use all of their content.
 | Tech | **TypeScript + Astro + Three.js** (chosen over Rust/WASM for ecosystem and maintainability by Jefferson). |
 | Furniture order list (2026-10-04) | **From each build guide's own materials list**, priced with the spreadsheet's prices ("price needed" where none). The spreadsheet's furniture lines disagree with the guides; its faithful "sheet" mode stays for tests. |
 | Safety notes (2026-10-04) | Where PiaT's text could get people into **legal or health trouble** (hydrant without a permit, lead testing, street-tree pruning, herbicides), add a **short note clearly marked as from this site**, linking the official source. Everything else goes to the PiaT notes. |
+| Languages (2026-10-04) | **English + 11**: Spanish, Chinese (Simplified), Vietnamese, Russian, Arabic (right-to-left), Haitian Creole, French, Portuguese, Swahili (phila.gov's nine) + Korean and Tagalog. **Translated into the site** ahead of time (no live Google Translate), with a shared glossary; every translated page says it was machine-translated and links the English. A language box in the header (top right); on a first visit in another browser language the site **offers** that language in one line, never switches by itself; the choice is remembered. The meeting flyer can print in any site language **or two side by side**. PiaT's original PDFs stay English. |
 
 Also: the user wants every lookup automated "as much as possible… a streamline for activists to get the
 information they need to get something done."
