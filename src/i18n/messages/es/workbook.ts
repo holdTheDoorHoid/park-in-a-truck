@@ -45,6 +45,11 @@ export default {
   'chapter.notTranslated':
     'Este capítulo todavía no está traducido, así que se muestra en inglés. Sus respuestas se guardan igual en todos los idiomas.',
 
+  'notice.title': 'Nota del sitio',
+  'notice.lot':
+    'Todavía no anotó el permiso para usar su lote, y lo va a necesitar antes de que alguien empiece a cavar. <a href="{href}">Ir a Adquirir → Asegure su lote</a>.',
+  'notice.dismiss': 'Cerrar',
+
   'auto.owner.city': 'Ciudad de Filadelfia (público)',
   'auto.owner.landbank': 'Philadelphia Land Bank (público)',
   'auto.owner.pha': 'Autoridad de Vivienda de Filadelfia, PHA (público)',
