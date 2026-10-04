@@ -44,6 +44,10 @@ export default {
   'chapter.next': '下一步：第{n}步 — {title} →',
   'chapter.notTranslated': '本章尚未翻译，因此以英文显示。无论使用哪种语言，您的回答都以同样的方式保存。',
 
+  'notice.title': '本网站的提醒',
+  'notice.lot': '您还没有记录这块地的使用许可——在任何人动工之前，您都需要它。<a href="{href}">前往“获取”→“确保取得地块”</a>。',
+  'notice.dismiss': '关闭',
+
   'auto.owner.city': '费城市政府（公有）',
   'auto.owner.landbank': 'Philadelphia Land Bank（公有）',
   'auto.owner.pha': '费城住房管理局（公有）',
