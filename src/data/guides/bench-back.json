@@ -1,0 +1,141 @@
+{
+  "slug": "bench-back",
+  "title": "Bench + Back",
+  "element": "bench-back",
+  "summary": "A 4-foot cedar, fir or pressure-treated bench with a slatted seat and an angled back, built from 2x4 lumber with a bolt-on backrest bracket.",
+  "category": "seating",
+  "dimensionsIn": { "length": 48, "width": 18.5, "height": 25 },
+  "materials": [
+    {
+      "item": "2x4 dimensional lumber — western red cedar, Douglas fir, or pressure-treated pine",
+      "qty": 7.5,
+      "size": "2x4x8'",
+      "notes": "Cedar: naturally weather/rot resistant with a nice red tone, easy to work, needs no sealant (it weathers to gray); costs more — ask for 'knotty' (STK) grade, much cheaper than clear grade. Douglas fir: moderately rot resistant, strong and easy to work, cheaper than cedar, but won't last as long — a good choice if you plan to paint. Pressure-treated: rot resistant and the cheapest option, but lumber quality is often poor and inconsistent, needs 1–4 months of air-drying before painting, and isn't recommended where food is grown. Order 5% more than the cut list to allow for variable lumber quality and incorrect cuts."
+    }
+  ],
+  "hardware": [
+    { "item": "Self-driving exterior wood screws", "qty": 112, "size": "2.5\"" },
+    { "item": "Lag exterior wood screws", "qty": 6, "size": "1/4\" x 1-1/4\"" },
+    { "item": "Exterior carriage bolts, nuts & washers", "qty": 4, "size": "1/4\" x 2-1/2\"" },
+    {
+      "item": "Backrest brackets",
+      "qty": 2,
+      "link": "https://www.hairpinlegs.com/products/bed-bracket-backrest"
+    }
+  ],
+  "cutList": [
+    { "part": "BB-1", "qty": 6, "stock": "2x4", "lengthIn": 45, "notes": "Bench bottom + top" },
+    { "part": "BB-2", "qty": 3, "stock": "2x4", "lengthIn": 41, "notes": "Bench back" },
+    { "part": "BB-3", "qty": 4, "stock": "2x4", "lengthIn": 25, "notes": "Bench side" },
+    { "part": "BB-4", "qty": 4, "stock": "2x4", "lengthIn": 18.5, "notes": "Bench side" },
+    { "part": "BB-5", "qty": 4, "stock": "2x4", "lengthIn": 11.5, "notes": "Bench side" },
+    { "part": "BB-6", "qty": 8, "stock": "2x4", "lengthIn": 8.5, "notes": "Bench side" },
+    { "part": "BB-7", "qty": 4, "stock": "2x4", "lengthIn": 4, "notes": "Bench side" }
+  ],
+  "tools": [
+    "10\" or 12\" miter saw (or appropriate hand saw)",
+    "Impact driver for self-driving exterior wood screws",
+    "Drill with 1/8\" and 1/4\" bits for pre-drilling holes",
+    "Sandpaper, 120 grit",
+    "Carpenter's square",
+    "Safety goggles + gloves",
+    "Socket wrench (for the carriage bolts and lag screws)"
+  ],
+  "steps": [
+    {
+      "n": 1,
+      "title": "Mark, label and cut the lumber",
+      "text": "Mark, label and cut lumber in order of BB-1 to BB-7 to the lengths in the cut list.\n\nCheck each piece of lumber for imperfections such as cracks, warping or uneven milling, and discard those portions of lumber.",
+      "images": ["img/guides/bench-back/step-01.webp"],
+      "imageAlts": [
+        "Isometric diagram of the seven BENCH + BACK cut pieces BB-1 through BB-7 with their lengths labeled, from 45\" boards down to 4\" blocks."
+      ],
+      "tips": [
+        "Label each piece of lumber as you measure and cut it.",
+        "Keep a separate pile of lumber for each part, BB-1 to BB-7.",
+        "Lightly sanding the cut edges removes splinters and helps with assembly.",
+        "Building more than one bench? A stop block on your miter saw keeps every piece the same length."
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Build the two end frames",
+      "text": "Place two BB-3 pieces on a flat surface. Place two BB-5 pieces on the right side of the BB-3 pieces, aligning the edges as shown in the image. Repeat to build a second, matching frame.",
+      "images": ["img/guides/bench-back/step-02.webp"],
+      "imageAlts": [
+        "Diagram showing two BB-3 and two BB-5 boards assembled into a square end frame, with a second frame shown complete behind it."
+      ],
+      "tips": [
+        "Use a carpenter's square to check each corner forms a right angle — if it's far off, re-check your board lengths.",
+        "Building a 90-degree jig will dramatically help with assembly of this and the next step."
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Add the seat slats and front legs to each end frame",
+      "text": "Place four BB-6 pieces and one BB-4 piece on top of each frame, as shown, leaving a 1.5\" gap between the two BB-6 pieces (use a spare 2x4 on end as a spacer). Use the pre-drilling guide at the end of the packet to pre-drill your screw holes, then secure the lumber with an impact driver and 30 2.5\" self-driving exterior wood screws.\n\nPlace one BB-4 piece flush to the BB-5 piece below it, with two BB-7 pieces at right angles next to it, as shown — again using the 2x4 spacer for a 1.5\" gap — then secure with 14 more 2.5\" screws.\n\nRepeat on the other leg, then stand both legs up for the next step.",
+      "images": ["img/guides/bench-back/step-03.webp"],
+      "imageAlts": [
+        "Diagram of BB-6, BB-4 and BB-7 boards being screwed onto the top and side of each end frame, with a 1.5\" spacer gap called out."
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Connect the two end frames with the bottom slats",
+      "text": "Place three BB-1 pieces in the slots at the base and sides of the two frames built in step 3, as shown.\n\nSecure the BB-1 lumber on both the left and right sides into the frame pieces with an impact driver and 12 2.5\" self-driving exterior wood screws total — 6 screws per side.",
+      "images": ["img/guides/bench-back/step-04.webp"],
+      "imageAlts": ["Diagram of three BB-1 boards connecting the two end frames at the base, with a 90-degree angle called out at the corner."],
+      "tips": ["Check the side stays at 90 degrees with a carpenter's square."]
+    },
+    {
+      "n": 5,
+      "title": "Add the seat top",
+      "text": "Place three BB-1 pieces on top of the frame built in step 4, aligning all edges and leaving an equal 1\" gap between pieces.\n\nSecure the BB-1 lumber with an impact driver and 12 2.5\" self-driving exterior wood screws. These screws will need to be driven in at a slight angle.",
+      "images": ["img/guides/bench-back/step-05.webp"],
+      "imageAlts": ["Diagram of three more BB-1 boards forming the bench seat top, screwed in at an angle with an equal 1\" gap between boards."]
+    },
+    {
+      "n": 6,
+      "title": "Bolt on the backrest brackets",
+      "text": "Place the two backrest brackets on either side of the BB-1 lumber, 5\" inward from the ends, as shown.\n\nMark and pre-drill holes straight through the BB-1 lumber to align with the brackets, then secure the backrest brackets into the bottom of the BB-1 pieces with a socket wrench and four 1/4\" x 2-1/2\" exterior carriage bolts, nuts and washers.",
+      "images": ["img/guides/bench-back/step-06.webp"],
+      "imageAlts": ["Diagram of two backrest brackets bolted to the underside of the seat boards, 5\" in from each end."],
+      "tips": ["Tilting the bench over onto its front side makes this step easier."]
+    },
+    {
+      "n": 7,
+      "title": "Attach the back slats and finish",
+      "text": "Place three BB-2 pieces on top of the backrest brackets secured in step 6. Start with the top piece, set 1/2\" above the top of the bracket, then leave a 1/4\" gap between each piece below it, keeping all edges aligned.\n\nSecure the BB-2 lumber into the backrest brackets with a socket wrench and six 1/4\" x 1-1/4\" lag screws.\n\nLightly sand the rough edges of the bench + back.",
+      "images": ["img/guides/bench-back/step-07.webp"],
+      "imageAlts": ["Diagram of three BB-2 back-slat boards bolted to the backrest brackets with a 1/4\" gap between each board."],
+      "tips": [
+        "Use your carpenter's square as a spacer for the gaps.",
+        "Use a 1/4\" drill bit to pre-drill shallow starter holes for the lag screws — be careful not to drill all the way through the BB-6 lumber below."
+      ]
+    },
+    {
+      "n": 8,
+      "title": "Pre-drilling hole guide (template)",
+      "text": "Cut out the pre-drilling hole guide along the dotted lines. When drilling, align the edge of the template with the outside edge of the lumber before pre-drilling.\n\nNot all holes are used — not all patterns use the template. Use the assembly steps above for your hole guide. Keep all holes about a thumb's width from the edge (about 1\"), even holes that don't use this template.",
+      "images": ["img/guides/bench-back/step-08.webp"],
+      "imageAlts": ["A printable pre-drilling hole guide template with five marked hole positions and cut lines, plus a close-up showing hole spacing from the board edge."]
+    }
+  ],
+  "finishing": "Exterior wood treatment can prolong the life of your park elements, but it isn't necessary — these pieces are built to be low-cost, durable and easy to build by design, so it may be more practical to just let the next generation rebuild them when the time comes. If you do want to stain, paint or seal the wood, see the finish resources below.",
+  "safety": [
+    "These are DIY recommendations only — tailor the material, assembly and construction to your own project and site.",
+    "Building this assumes some working knowledge of hand and power tools, hardware, fasteners, lumber and basic assembly technique.",
+    "Before using any power equipment, review and follow the manufacturer's safety requirements, and don't let anyone use power tools who hasn't done the same.",
+    "You (the owner) are responsible for any building and safety codes, permits and regulatory approvals this needs.",
+    "Clear the site of trash, hazards and unwanted structures first, and identify any utilities that could interfere before you dig.",
+    "Everyone helping build should sign a volunteer waiver."
+  ],
+  "links": [
+    { "label": "Backrest brackets (Hairpin Legs)", "url": "https://www.hairpinlegs.com/products/bed-bracket-backrest" },
+    { "label": "Choosing the best finish for outdoor projects (Rockler)", "url": "https://www.rockler.com/learn/choosing-the-best-finish-for-outdoor-projects" },
+    { "label": "Best finish for outdoor wood (Real Milk Paint)", "url": "https://www.realmilkpaint.com/blog/tips/best-finish-outdoor-wood/" },
+    { "label": "Exterior wood coatings (Vermont Natural Coatings)", "url": "https://vermontnaturalcoatings.com/product-category/exterior/" }
+  ],
+  "pdf": "downloads/guides/bench-back.pdf",
+  "sourcePages": "BENCH_BACK assembly instructions, pp. 1–11 (cover; before you begin; common lumber selections; steps 1–7; pre-drilling hole guide)"
+}

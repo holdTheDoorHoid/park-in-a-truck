@@ -1,0 +1,135 @@
+{
+  "slug": "stage",
+  "title": "Stage",
+  "element": "stage",
+  "summary": "A low 12x8-foot 2x4 performance deck, built as four identical corner frames joined around a center frame, decked with slatted 2x4 boards and set on a leveled gravel base.",
+  "category": "structures",
+  "dimensionsIn": { "length": 144, "width": 96, "height": 16.25 },
+  "cost": "$300–400",
+  "materials": [
+    {
+      "item": "2x4 dimensional lumber — western red cedar, Douglas fir, or pressure-treated pine",
+      "qty": 16,
+      "size": "2x4x8'",
+      "notes": "Cedar: naturally weather/rot resistant, nice red tone, needs no sealant; costs more — ask for 'knotty' (STK) grade. Douglas fir: moderately rot resistant, strong, cheaper than cedar; good if you plan to paint. Pressure-treated: cheapest and rot resistant, but often poor/inconsistent quality, needs 1–4 months of air-drying before painting, not recommended where food is grown. Order at least 5% more than the cut list to allow for variable lumber quality and incorrect cuts."
+    },
+    {
+      "item": "2x4 dimensional lumber (12' lengths)",
+      "qty": 34,
+      "size": "2x4x12'"
+    }
+  ],
+  "hardware": [
+    { "item": "Self-driving exterior wood screws", "qty": 588, "size": "2.5\"" }
+  ],
+  "cutList": [
+    { "part": "ST-1", "qty": 34, "stock": "2x4", "lengthIn": 144, "notes": "Stage face & deck" },
+    { "part": "ST-2", "qty": 11, "stock": "2x4", "lengthIn": 93, "notes": "Stage frame" },
+    { "part": "ST-3", "qty": 12, "stock": "2x4", "lengthIn": 86, "notes": "Stage frame" },
+    { "part": "ST-4", "qty": 8, "stock": "2x4", "lengthIn": 14.75, "notes": "Stage frame" },
+    { "part": "ST-5", "qty": 12, "stock": "2x4", "lengthIn": 7.75, "notes": "Stage frame" }
+  ],
+  "tools": [
+    "10\" or 12\" miter saw (or appropriate hand saw)",
+    "Impact driver for self-driving exterior wood screws",
+    "1/4\" drill bit",
+    "Sandpaper, 120 grit",
+    "Carpenter's square",
+    "Safety goggles + mask"
+  ],
+  "steps": [
+    {
+      "n": 1,
+      "title": "Mark, label and cut the lumber",
+      "text": "Mark, label and cut lumber in order of ST-1 to ST-5 to the lengths in the cut list.\n\nCheck each piece of lumber for imperfections such as cracks, warping or uneven milling, and discard those portions of lumber.",
+      "images": ["img/guides/stage/step-01.webp"],
+      "imageAlts": ["Isometric diagram of the stage's five cut pieces ST-1 through ST-5 with their lengths labeled, from 144\" deck boards down to 7.75\" blocks."],
+      "tips": [
+        "Label each piece of lumber as you measure and cut it.",
+        "Keep a separate pile of lumber for each part, ST-1 to ST-5.",
+        "Lightly sanding the cut edges removes splinters and helps with assembly.",
+        "Building more than one stage? A stop block on your miter saw keeps every piece the same length."
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Build four small corner frames",
+      "text": "Place two ST-4 pieces on a flat surface. Place two ST-3 pieces in between the ST-4 pieces, aligning the edges as shown. Repeat three more times, for four identical small frames in total.",
+      "images": ["img/guides/stage/step-02.webp"],
+      "imageAlts": ["Diagram of two ST-4 and two ST-3 boards assembled into a small rectangular frame, repeated four times."],
+      "tips": [
+        "The gravel surface under the stage should be leveled as much as possible before final placement; concrete blocks can help level low spots.",
+        "Building a 90-degree jig can help with assembly."
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Build the four section frames",
+      "text": "Place two ST-2 pieces on top of the frame created in step 2. Place two ST-5 pieces in between the ST-2 pieces, aligning the edges as shown, and secure everything with an impact driver and 44 2.5\" self-driving exterior wood screws.\n\nRepeat three more times, for four section frames in total. These four frames should all face toward the middle of the stage.",
+      "images": ["img/guides/stage/step-03.webp"],
+      "imageAlts": ["Diagram of ST-2 and ST-5 boards added on top of each small corner frame to build one of the stage's four section frames."]
+    },
+    {
+      "n": 4,
+      "title": "Face each section frame",
+      "text": "Starting at the top, place four ST-1 pieces on the front and back of the frame created in step 3. Keep the lumber flush with the top, with a 1/4\" gap between each ST-1 piece.\n\nSecure the ST-1 lumber with an impact driver and 42 2.5\" self-driving exterior wood screws, then repeat on the other side.",
+      "images": ["img/guides/stage/step-04.webp"],
+      "imageAlts": ["Diagram of ST-1 face boards being screwed onto the front and back of a section frame with a 1/4\" gap between boards."],
+      "tips": ["Use your carpenter's square as a spacer for the gap.", "Check the side stays at 90 degrees with a carpenter's square."]
+    },
+    {
+      "n": 5,
+      "title": "Add the center braces",
+      "text": "Place two ST-5 pieces on the ends in the middle of the frame created in step 3. Place two more ST-5 pieces in the middle of the frame built in steps 2 and 3.\n\nSecure the ST-5 lumber with an impact driver and 8 2.5\" self-driving exterior wood screws driven at a 45-degree angle.",
+      "images": ["img/guides/stage/step-05.webp"],
+      "imageAlts": ["Diagram of ST-5 braces being screwed in at the center and ends of the frame at a 45-degree angle."],
+      "tips": ["Pre-drilling will help with installing screws at a 45-degree angle."]
+    },
+    {
+      "n": 6,
+      "title": "Join two section frames",
+      "text": "Place two ST-3 pieces on one end of the frame built in step 2, with a 1/4\" gap between each ST-3 piece.\n\nSecure the ST-3 lumber from the inside with an impact driver and 8 2.5\" self-driving exterior wood screws at a 45-degree angle. Use the screw pattern to secure the boards to the center ST-5 lumber with 6 more screws.\n\nRepeat on the other side with two more ST-3 pieces.",
+      "images": ["img/guides/stage/step-06.webp"],
+      "imageAlts": ["Diagram of ST-3 boards joining two section frames together with a 1/4\" gap, screwed at a 45-degree angle."],
+      "tips": ["Pre-drilling will help with installing screws at a 45-degree angle."]
+    },
+    {
+      "n": 7,
+      "title": "Connect all four sections",
+      "text": "Place three ST-2 pieces in between the four frame sections, flush with the top of the ST-1 lumber placed in step 4.\n\nSecure the ST-2 lumber into the ST-1 pieces with an impact driver and 12 2.5\" self-driving exterior wood screws.",
+      "images": ["img/guides/stage/step-07.webp"],
+      "imageAlts": ["Diagram of three ST-2 boards connecting all four stage sections together, flush with the top of the frame."]
+    },
+    {
+      "n": 8,
+      "title": "Deck the stage and sand",
+      "text": "Place 26 ST-1 pieces on top of the frame created in step 7, aligning the edges, flush and with equal spacing.\n\nSecure the ST-1 decking at each joist using your 3-hole screw pattern — 78 2.5\" self-driving exterior wood screws in total.\n\nLightly sand the rough edges of the stage.",
+      "images": ["img/guides/stage/step-08.webp"],
+      "imageAlts": ["Diagram of ST-1 deck boards being laid with equal spacing across the top of the stage frame and screwed at each joist."],
+      "tips": ["Use your carpenter's square as a spacer."]
+    },
+    {
+      "n": 9,
+      "title": "Pre-drilling hole guide (template)",
+      "text": "Cut out the pre-drilling hole guide along the dotted lines. When drilling, align the edge of the template with the outside edge of the lumber before pre-drilling.\n\nNot all holes are used — not all patterns use the template. Use the assembly steps above for your hole guide. Keep all holes about a thumb's width from the edge (about 1\"), even holes that don't use this template.",
+      "images": ["img/guides/stage/step-09.webp"],
+      "imageAlts": ["A printable pre-drilling hole guide template with five marked hole positions and cut lines, plus a close-up showing hole spacing from the board edge."]
+    }
+  ],
+  "finishing": "Exterior wood treatment can prolong the life of your park elements, but it isn't necessary — these pieces are built to be low-cost, durable and easy to build by design, so it may be more practical to just let the next generation rebuild them when the time comes. If you do want to stain, paint or seal the wood, see the finish resources below.",
+  "safety": [
+    "These are DIY recommendations only — tailor the material, assembly and construction to your own project and site.",
+    "Building this assumes some working knowledge of hand and power tools, hardware, fasteners, lumber and basic assembly technique.",
+    "Before using any power equipment, review and follow the manufacturer's safety requirements, and don't let anyone use power tools who hasn't done the same.",
+    "You (the owner) are responsible for any building and safety codes, permits and regulatory approvals this needs.",
+    "Clear the site of trash, hazards and unwanted structures first, and identify any utilities that could interfere before you dig.",
+    "Everyone helping build should sign a volunteer waiver."
+  ],
+  "links": [
+    { "label": "Choosing the best finish for outdoor projects (Rockler)", "url": "https://www.rockler.com/learn/choosing-the-best-finish-for-outdoor-projects" },
+    { "label": "Best finish for outdoor wood (Real Milk Paint)", "url": "https://www.realmilkpaint.com/blog/tips/best-finish-outdoor-wood/" },
+    { "label": "Exterior wood coatings (Vermont Natural Coatings)", "url": "https://vermontnaturalcoatings.com/product-category/exterior/" }
+  ],
+  "pdf": "downloads/guides/stage.pdf",
+  "sourcePages": "STAGE assembly instructions (found inside the Dream workbook's p19 links — the Linktree copy is dead), pp. 1–12 (cover; before you begin; common lumber selections + cost; steps 1–7; pre-drilling hole guide)"
+}

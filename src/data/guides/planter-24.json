@@ -1,0 +1,117 @@
+{
+  "slug": "planter-24",
+  "title": "24\" Planter Box",
+  "element": "planter-24",
+  "summary": "A slatted 2x4 planter box, 24\" tall and 24\" deep, lined with geotextile fabric. The same PDF also documents a 24\"x48\" long version built the same way with more face boards — see the materials and cut list notes.",
+  "category": "planters",
+  "dimensionsIn": { "length": 24, "width": 24, "height": 24 },
+  "materials": [
+    {
+      "item": "2x4 dimensional lumber — western red cedar, Douglas fir, or pressure-treated pine",
+      "qty": 9,
+      "size": "2x4x8'",
+      "notes": "For the 24\"x24\" box. The 24\"x48\" long box takes 14 boards instead. Cedar: naturally weather/rot resistant with a nice red tone, easy to work, needs no sealant; costs more — ask for 'knotty' (STK) grade. Douglas fir: moderately rot resistant, strong, cheaper than cedar; a good choice if you plan to paint. Pressure-treated: cheapest and rot resistant, but often poor/inconsistent quality, needs 1–4 months of air-drying before painting, and isn't recommended where food is grown. Order at least 5% more than the cut list to allow for variable lumber quality and incorrect cuts."
+    },
+    {
+      "item": "Geotextile fabric",
+      "qty": 2,
+      "notes": "Two overlapping pieces line the inside of the box so it holds soil while draining. For the 24\"x24\" box, cut two 24\"x72\" pieces. For the 24\"x48\" box, cut one 48\"x72\" piece and one 96\"x24\" piece."
+    }
+  ],
+  "hardware": [
+    { "item": "Self-driving exterior wood screws", "qty": 132, "size": "2.5\"" }
+  ],
+  "cutList": [
+    { "part": "P-1 (24\"x24\" box)", "qty": 33, "stock": "2x4", "lengthIn": 21, "notes": "Planter face, end & bottom" },
+    { "part": "P-2 (24\"x24\" box)", "qty": 4, "stock": "2x4", "lengthIn": 17, "notes": "Planter end" },
+    { "part": "P-1A (24\"x48\" box)", "qty": 17, "stock": "2x4", "lengthIn": 45, "notes": "Planter face & bottom" },
+    { "part": "P-1 (24\"x48\" box)", "qty": 16, "stock": "2x4", "lengthIn": 21, "notes": "Planter end" },
+    { "part": "P-2 (24\"x48\" box)", "qty": 4, "stock": "2x4", "lengthIn": 17, "notes": "Planter end" }
+  ],
+  "tools": [
+    "10\" or 12\" miter saw (or appropriate hand saw)",
+    "Impact driver for self-driving exterior wood screws",
+    "Drill with 1/8\" and 1/4\" bits for pre-drilling holes",
+    "Staple gun",
+    "Sandpaper, 120 grit",
+    "Carpenter's square",
+    "Safety goggles + mask"
+  ],
+  "steps": [
+    {
+      "n": 1,
+      "title": "Mark, label and cut the lumber",
+      "text": "Mark, label and cut lumber in order of P-1 to P-2 (24\"x24\" box) or P-1A, P-1, P-2 (24\"x48\" box) to the lengths in the cut list.\n\nCheck each piece of lumber for imperfections such as cracks, warping or uneven milling, and discard those portions of lumber.",
+      "images": ["img/guides/planter-24/step-01.webp"],
+      "imageAlts": ["Isometric diagrams of the cut pieces for both the 24\"x24\" box (P-1, P-2) and the 24\"x48\" box (P-1A, P-1, P-2), with their lengths labeled."],
+      "tips": [
+        "Label each piece of lumber as you measure and cut it.",
+        "Keep a separate pile of lumber for each part.",
+        "Lightly sanding the cut edges removes splinters and helps with assembly.",
+        "Building more than one planter? A stop block on your miter saw keeps every piece the same length."
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Build the two end frames",
+      "text": "Place two P-1 pieces on a flat surface. Place two P-2 pieces on either side of the P-1 pieces, aligning the edges as shown. Repeat to build a second, matching frame.",
+      "images": ["img/guides/planter-24/step-02.webp"],
+      "imageAlts": ["Diagram showing two P-1 and two P-2 boards assembled into a square end frame, for both the 24\"x24\" and 24\"x48\" box."],
+      "tips": ["Use a carpenter's square to check each corner forms a right angle.", "Building a 90-degree jig can help with assembly of this and the next step."]
+    },
+    {
+      "n": 3,
+      "title": "Fill in each end frame",
+      "text": "Place six P-2 pieces on top of the frame created in step 2, with a 1.5\" gap on both sides.\n\nUse the pre-drilling guide at the end of the packet to pre-drill your screw holes, then secure the lumber into the P-1 and P-2 pieces with an impact driver and 30 2.5\" self-driving exterior wood screws.\n\nRepeat on the other leg, and stand both legs up for the next step.",
+      "images": ["img/guides/planter-24/step-03.webp"],
+      "imageAlts": ["Diagram of P-2 boards being screwed onto each end frame with a 1.5\" gap on both sides, shown for both the 24\"x24\" and 24\"x48\" box."],
+      "tips": ["Use an extra piece of lumber on end as a spacer to get an even 1.5\" gap."]
+    },
+    {
+      "n": 4,
+      "title": "Connect the two end frames",
+      "text": "Place six P-1 pieces (or six P-1A pieces, for the 24\"x48\" box) in between the two ends of the planter box.\n\nSecure the P-2 or P-3 lumber on each side into the P-2 pieces with an impact driver and 24 2.5\" self-driving exterior wood screws.\n\nRepeat on the back side of the planter box.",
+      "images": ["img/guides/planter-24/step-04.webp"],
+      "imageAlts": ["Diagram of P-1 or P-1A face boards connecting the two end frames to form the planter box walls."],
+      "tips": ["Work from the bottom on both sides at once, and have a helper check the side stays at 90 degrees."]
+    },
+    {
+      "n": 5,
+      "title": "Add the slatted bottom",
+      "text": "Place five P-2 pieces (or five P-3 pieces, for the 24\"x48\" box) on the bottom of the planter box frame, leaving a 5/8\" gap between each piece to allow for water drainage.\n\nSecure the P-2 or P-3 lumber on each side into the P-2 pieces with an impact driver and 20 2.5\" self-driving exterior wood screws.",
+      "images": ["img/guides/planter-24/step-05.webp"],
+      "imageAlts": ["Diagram of boards forming the planter's slatted bottom, with a 5/8\" drainage gap between each board."]
+    },
+    {
+      "n": 6,
+      "title": "Line with geotextile fabric and finish",
+      "text": "Flip the planter box frame right side up.\n\nCut a 24\"x72\" piece of geotextile fabric (or a 48\"x72\" piece for the 24\"x48\" box). Cut a second 24\"x72\" piece (or a 96\"x24\" piece for the 24\"x48\" box).\n\nUse a staple gun to secure the overlapping geotextile fabrics inside the planter box.\n\nLightly sand the rough edges of the planter box. Ready to go — move it to its final location, then fill with potting soil and plant!",
+      "images": ["img/guides/planter-24/step-06.webp"],
+      "imageAlts": ["Diagram of two overlapping geotextile fabric pieces being stapled inside the planter box, shown for both box sizes."],
+      "tips": ["Fold the fabric at least 1\" below the top edge before stapling. Staple along the top and down the corners for the best seal."]
+    },
+    {
+      "n": 7,
+      "title": "Pre-drilling hole guide (template)",
+      "text": "Cut out the pre-drilling hole guide along the dotted lines. When drilling, align the edge of the template with the outside edge of the lumber before pre-drilling.\n\nNot all holes are used — not all patterns use the template. Use the assembly steps above for your hole guide. Keep all holes about a thumb's width from the edge (about 1\"), even holes that don't use this template.",
+      "images": ["img/guides/planter-24/step-07.webp"],
+      "imageAlts": ["A printable pre-drilling hole guide template with five marked hole positions and cut lines, plus a close-up showing hole spacing from the board edge."]
+    }
+  ],
+  "finishing": "Exterior wood treatment can prolong the life of your park elements, but it isn't necessary — these pieces are built to be low-cost, durable and easy to build by design, so it may be more practical to just let the next generation rebuild them when the time comes. If you do want to stain, paint or seal the wood, see the finish resources below.",
+  "safety": [
+    "These are DIY recommendations only — tailor the material, assembly and construction to your own project and site.",
+    "Building this assumes some working knowledge of hand and power tools, hardware, fasteners, lumber and basic assembly technique.",
+    "Before using any power equipment, review and follow the manufacturer's safety requirements, and don't let anyone use power tools who hasn't done the same.",
+    "You (the owner) are responsible for any building and safety codes, permits and regulatory approvals this needs.",
+    "Clear the site of trash, hazards and unwanted structures first, and identify any utilities that could interfere before you dig.",
+    "Everyone helping build should sign a volunteer waiver."
+  ],
+  "links": [
+    { "label": "Choosing the best finish for outdoor projects (Rockler)", "url": "https://www.rockler.com/learn/choosing-the-best-finish-for-outdoor-projects" },
+    { "label": "Best finish for outdoor wood (Real Milk Paint)", "url": "https://www.realmilkpaint.com/blog/tips/best-finish-outdoor-wood/" },
+    { "label": "Exterior wood coatings (Vermont Natural Coatings)", "url": "https://vermontnaturalcoatings.com/product-category/exterior/" }
+  ],
+  "pdf": "downloads/guides/planter-24.pdf",
+  "sourcePages": "24_Planter_Box assembly instructions, pp. 1–10 (cover; before you begin; common lumber selections; steps 1–6, covering both the 24\"x24\" and 24\"x48\" assemblies; pre-drilling hole guide)"
+}

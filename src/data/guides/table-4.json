@@ -1,0 +1,106 @@
+{
+  "slug": "table-4",
+  "title": "4' Table",
+  "element": "table-4",
+  "summary": "A 4-foot 2x4 picnic-height table, the middle of the three table sizes.",
+  "category": "tables",
+  "dimensionsIn": { "length": 48, "width": 26, "height": 28.5 },
+  "materials": [
+    {
+      "item": "2x4 dimensional lumber — western red cedar, Douglas fir, or pressure-treated pine",
+      "qty": 8,
+      "size": "2x4x8'",
+      "notes": "Cedar: naturally weather/rot resistant with a nice red tone, easy to work, needs no sealant (it weathers to gray); costs more — ask for 'knotty' (STK) grade, much cheaper than clear grade. Douglas fir: moderately rot resistant, strong and easy to work, cheaper than cedar, but won't last as long — a good choice if you plan to paint. Pressure-treated: rot resistant and the cheapest option, but lumber quality is often poor and inconsistent, needs 1–4 months of air-drying before painting, and isn't recommended where food is grown."
+    }
+  ],
+  "hardware": [
+    { "item": "Self-driving exterior wood screws", "qty": 96, "size": "2.5\"" }
+  ],
+  "cutList": [
+    { "part": "T-1", "qty": 7, "stock": "2x4", "lengthIn": 48, "notes": "Table top" },
+    { "part": "T-2", "qty": 1, "stock": "2x4", "lengthIn": 45, "notes": "Table face" },
+    { "part": "T-3", "qty": 4, "stock": "2x4", "lengthIn": 27, "notes": "Table side" },
+    { "part": "T-4", "qty": 2, "stock": "2x4", "lengthIn": 25.5, "notes": "Table side" },
+    { "part": "T-5", "qty": 4, "stock": "2x4", "lengthIn": 20, "notes": "Table side" },
+    { "part": "T-6", "qty": 4, "stock": "2x4", "lengthIn": 18.5, "notes": "Table side" },
+    { "part": "T-7", "qty": 4, "stock": "2x4", "lengthIn": 12, "notes": "Table side" }
+  ],
+  "tools": [
+    "10\" or 12\" miter saw (or appropriate hand saw)",
+    "Impact driver for self-driving exterior wood screws",
+    "Sandpaper, 120 grit",
+    "Carpenter's square",
+    "Safety goggles + mask"
+  ],
+  "steps": [
+    {
+      "n": 1,
+      "title": "Mark, label and cut the lumber",
+      "text": "Mark, label and cut lumber in order of T-1 to T-7 to the lengths in the cut list.\n\nCheck each piece of lumber for imperfections such as cracks, warping or uneven milling, and discard those portions of lumber.",
+      "images": ["img/guides/table-4/step-01.webp"],
+      "imageAlts": ["Isometric diagram of the 4' table's seven cut pieces T-1 through T-7 with their lengths labeled, from 48\" top boards down to 12\" blocks."],
+      "tips": [
+        "Label each piece of lumber as you measure and cut it.",
+        "Keep a separate pile of lumber for each part, T-1 to T-7.",
+        "Lightly sanding the cut edges removes splinters and helps with assembly.",
+        "Building more than one table? A stop block on your miter saw keeps every piece the same length."
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Build the two end frames",
+      "text": "Place two T-6 pieces on a flat surface. Place two T-3 pieces on either side of the T-6 pieces, aligning the edges as shown. Repeat to build a second, matching frame.",
+      "images": ["img/guides/table-4/step-02.webp"],
+      "imageAlts": ["Diagram showing two T-3 and two T-6 boards assembled into a square end frame."],
+      "tips": [
+        "Use a carpenter's square to check each corner forms a right angle — if it's far off, re-check your board lengths.",
+        "Building a 90-degree jig can help with assembly of this and the next step."
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Add the leg bracing to each end frame",
+      "text": "Place one T-4, two T-5 and two T-7 pieces on top of the frame built in step 2. To ensure a 1.5\" gap between the two T-7 pieces, use a spare 2x4 on end as a spacer.\n\nUse the pre-drilling guide at the end of the packet to pre-drill your screw holes, then secure the lumber into the T-6 and T-3 pieces with an impact driver and 30 2.5\" self-driving exterior wood screws.\n\nRepeat on the other leg, then stand both legs up for the next step.",
+      "images": ["img/guides/table-4/step-03.webp"],
+      "imageAlts": ["Diagram of T-4, T-5 and T-7 boards being screwed onto the top of the end frame, with a 1.5\" spacer gap called out."]
+    },
+    {
+      "n": 4,
+      "title": "Connect the two end frames",
+      "text": "Place one T-2 piece in the slot at the base of the two frames created in step 3.\n\nPlace two T-1 pieces on the top of the table on the two edges, as shown — make sure they're flush with the edge of the legs, which keeps the table square — and secure with 12 2.5\" self-driving exterior wood screws.\n\nSecure the T-2 lumber on both sides with an impact driver and 4 2.5\" self-driving exterior wood screws.",
+      "images": ["img/guides/table-4/step-04.webp"],
+      "imageAlts": ["Diagram of a T-2 board connecting the two end frames at the base, with T-1 top boards aligned flush with the legs."],
+      "tips": ["Check the side stays at 90 degrees using a carpenter's square."]
+    },
+    {
+      "n": 5,
+      "title": "Add the tabletop and sand",
+      "text": "Place five T-1 pieces on top of the frame created in step 4, aligning all edges and leaving an equal gap between all pieces.\n\nSecure the T-1 lumber with an impact driver and 20 2.5\" self-driving exterior wood screws.\n\nLightly sand the rough edges of the table.",
+      "images": ["img/guides/table-4/step-05.webp"],
+      "imageAlts": ["Diagram of the remaining T-1 top boards being spaced equally and screwed down across the table frame."]
+    },
+    {
+      "n": 6,
+      "title": "Pre-drilling hole guide (template)",
+      "text": "Cut out the pre-drilling hole guide along the dotted lines. When drilling, align the edge of the template with the outside edge of the lumber before pre-drilling.\n\nNot all holes are used — not all patterns use the template. Use the assembly steps above for your hole guide. Keep all holes about a thumb's width from the edge (about 1\"), even holes that don't use this template.",
+      "images": ["img/guides/table-4/step-06.webp"],
+      "imageAlts": ["A printable pre-drilling hole guide template with five marked hole positions and cut lines, plus a close-up showing hole spacing from the board edge."]
+    }
+  ],
+  "finishing": "Exterior wood treatment can prolong the life of your park elements, but it isn't necessary — these pieces are built to be low-cost, durable and easy to build by design, so it may be more practical to just let the next generation rebuild them when the time comes. If you do want to stain, paint or seal the wood, see the finish resources below.",
+  "safety": [
+    "These are DIY recommendations only — tailor the material, assembly and construction to your own project and site.",
+    "Building this assumes some working knowledge of hand and power tools, hardware, fasteners, lumber and basic assembly technique.",
+    "Before using any power equipment, review and follow the manufacturer's safety requirements, and don't let anyone use power tools who hasn't done the same.",
+    "You (the owner) are responsible for any building and safety codes, permits and regulatory approvals this needs.",
+    "Clear the site of trash, hazards and unwanted structures first, and identify any utilities that could interfere before you dig.",
+    "Everyone helping build should sign a volunteer waiver."
+  ],
+  "links": [
+    { "label": "Choosing the best finish for outdoor projects (Rockler)", "url": "https://www.rockler.com/learn/choosing-the-best-finish-for-outdoor-projects" },
+    { "label": "Best finish for outdoor wood (Real Milk Paint)", "url": "https://www.realmilkpaint.com/blog/tips/best-finish-outdoor-wood/" },
+    { "label": "Exterior wood coatings (Vermont Natural Coatings)", "url": "https://vermontnaturalcoatings.com/product-category/exterior/" }
+  ],
+  "pdf": "downloads/guides/table-4.pdf",
+  "sourcePages": "4_Table assembly instructions, pp. 1–9 (cover; before you begin; common lumber selections; steps 1–5; pre-drilling hole guide)"
+}

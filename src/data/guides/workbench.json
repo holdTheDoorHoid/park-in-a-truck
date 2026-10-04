@@ -1,0 +1,104 @@
+{
+  "slug": "workbench",
+  "title": "Workbench / Standing Table",
+  "element": "workbench",
+  "summary": "A standing-height potting table on 4x4 legs with three shelf levels underneath and a five-board top. The source drawing has no dimension diagram, so these overall dimensions are derived from its cut list and assembly steps rather than read off the cover.",
+  "category": "tables",
+  "dimensionsIn": { "length": 48, "width": 23.5, "height": 35.5 },
+  "materials": [
+    { "item": "4x4 lumber — cedar, pressure-treated, or pine, S4S #1 grade", "qty": 2, "size": "4x4x8'" },
+    { "item": "2x4 lumber — cedar, pressure-treated, or pine, S4S #1 grade", "qty": 3, "size": "2x4x8'" },
+    { "item": "2x4 lumber — cedar, pressure-treated, or pine, S4S #1 grade", "qty": 2, "size": "2x4x10'" },
+    { "item": "2x4 lumber — cedar, pressure-treated, or pine, S4S #1 grade", "qty": 1, "size": "2x4x12'" },
+    { "item": "2x6 lumber — cedar, pressure-treated, or pine, S4S #1 grade", "qty": 1, "size": "2x6x12'" },
+    { "item": "1x6 lumber — cedar, pressure-treated, or pine, S4S #1 grade", "qty": 3, "size": "1x6x8'" }
+  ],
+  "hardware": [
+    { "item": "Self-driving exterior wood screws", "qty": 144, "size": "3\"" }
+  ],
+  "cutList": [
+    { "part": "A-1", "qty": 12, "stock": "2x4", "lengthIn": 20, "notes": "Side brace" },
+    { "part": "A-2", "qty": 6, "stock": "2x4", "lengthIn": 41, "notes": "Back brace" },
+    { "part": "A-3", "qty": 1, "stock": "2x4", "lengthIn": 44, "notes": "Front brace" },
+    { "part": "A-4", "qty": 6, "stock": "1x6", "lengthIn": 48, "notes": "Table shelves (2 boards per shelf, 3 shelf levels)" },
+    { "part": "A-5", "qty": 4, "stock": "4x4", "lengthIn": 34, "notes": "Table legs" },
+    { "part": "B-1", "qty": 3, "stock": "2x6", "lengthIn": 48, "notes": "Table top, wide boards (outside edges and middle)" },
+    { "part": "B-2", "qty": 2, "stock": "2x4", "lengthIn": 48, "notes": "Table top, narrow boards (between the wide boards)" }
+  ],
+  "tools": [
+    "Power saw (table or hand)",
+    "Impact driver for self-driving exterior wood screws",
+    "Carpenter's square",
+    "Safety goggles + mask"
+  ],
+  "steps": [
+    {
+      "n": 1,
+      "title": "Mark, label and cut the lumber",
+      "text": "Mark, label and cut lumber into the lengths in the cut list: A-1 side braces, A-2 back braces, A-3 front brace, A-4 table shelves, A-5 table legs, B-1 wide top boards and B-2 narrow top boards.",
+      "images": ["img/guides/workbench/step-01.webp"],
+      "imageAlts": ["Isometric diagram of the workbench's seven cut pieces A-1 through A-5 and B-1, B-2, with their lengths labeled."],
+      "tips": [
+        "It's helpful to write the part letters onto each piece of lumber as you mark it, so you can check you have every piece.",
+        "Keep a separate pile of lumber for each letter."
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Build the main frame",
+      "text": "Place one 2\"x4\"x20\" (A-1) on a flat surface. Perpendicular from its long edge, measure 41\" and place a second 2\"x4\"x20\" (A-1). Place one 2\"x4\"x41\" (A-2) in between the back edge of both A-1 pieces, and secure with an impact driver and four 3\" self-driving exterior wood screws.\n\nPlace one 2\"x4\"x44\" (A-3) across the front of the two A-1 pieces — it will overhang them slightly — and secure with four more 3\" screws.",
+      "images": ["img/guides/workbench/step-02.webp"],
+      "imageAlts": ["Diagram of two A-1 side braces connected by an A-2 back brace and an A-3 front brace into a rectangular frame."],
+      "tips": ["Use a carpenter's square to check the frame is square before securing the back and front braces."]
+    },
+    {
+      "n": 3,
+      "title": "Stand the legs",
+      "text": "Place one 4\"x4\"x34\" leg (A-5) in each of the four corners of the standing table frame built in step 2.\n\nSecure the legs with an impact driver and sixteen 3\" self-driving exterior wood screws — on the front, back, left and right sides of each leg.",
+      "images": ["img/guides/workbench/step-03.webp"],
+      "imageAlts": ["Diagram of four A-5 legs being screwed into the corners of the frame from the front, back and both sides."],
+      "tips": ["Use a carpenter's square to check each leg is square against the frame before securing it."]
+    },
+    {
+      "n": 4,
+      "title": "Build five more frame pieces and mount the first",
+      "text": "Build five more frame pieces the same way as step 2 — one A-2 back brace between two A-1 side braces, secured with four 3\" screws each (these don't get a front brace).\n\nPlace one of these frame pieces on the bottom of the standing table frame, 2\" above the ground, and secure it with an impact driver and twelve 3\" self-driving exterior wood screws.",
+      "images": ["img/guides/workbench/step-04.webp"],
+      "imageAlts": ["Diagram of a second frame piece, without a front brace, being screwed onto the legs near the ground."],
+      "tips": ["Use a scrap piece of 2x4 as a spacer when positioning each shelf-support frame against the legs."]
+    },
+    {
+      "n": 5,
+      "title": "Add the first shelf",
+      "text": "Place one of the remaining frame pieces 2\" above the one placed in the previous step, and secure it with an impact driver and twelve 3\" self-driving exterior wood screws.\n\nPlace two 1\"x6\"x48\" boards (A-4) next to one another on top of the secured frame, and secure them with an impact driver and eight 3\" self-driving exterior wood screws.",
+      "images": ["img/guides/workbench/step-05.webp"],
+      "imageAlts": ["Diagram of another frame piece mounted 2\" above the previous one, with two A-4 shelf boards screwed on top of it."]
+    },
+    {
+      "n": 6,
+      "title": "Add the second and third shelves",
+      "text": "Place another frame piece 2\" above the previous one and secure it with twelve 3\" screws. Place two more A-4 boards on top and secure with eight 3\" screws — that's the second shelf.\n\nRepeat once more for the third shelf: another frame piece, twelve screws, two more A-4 boards, eight screws.\n\nFinally, place the last frame piece 2\" above the last shelf and secure it with twelve 3\" self-driving exterior wood screws — this one supports the tabletop and doesn't get its own shelf boards.",
+      "images": ["img/guides/workbench/step-06.webp"],
+      "imageAlts": ["Diagram showing two more shelf levels being added above the first, each built the same way, with a final unshelved frame piece on top."]
+    },
+    {
+      "n": 7,
+      "title": "Lay the tabletop",
+      "text": "Place one 2\"x6\"x48\" board (B-1) in the middle of the standing table, with a 2\" overhang on the left and right sides, and secure it with an impact driver and four 3\" self-driving exterior wood screws.\n\nPlace one 2\"x4\"x48\" board (B-2) on either side of the middle board and secure with four more 3\" screws.\n\nPlace one more 2\"x6\"x48\" board (B-1) on either side of the B-2 pieces and secure with four more 3\" screws, completing the five-board top.",
+      "images": ["img/guides/workbench/step-07.webp"],
+      "imageAlts": ["Diagram of the five-board tabletop being assembled: a wide B-1 board in the middle, narrow B-2 boards on either side, and wide B-1 boards on the outer edges."]
+    }
+  ],
+  "finishing": "All edges and surfaces should be lightly sanded to remove splinters or rough edges.\n\nCedar: no coating required — it will weather to light gray. If you want to keep the as-installed color, use a colorless, wood-penetrating, water-based alkyd stain, or paint with a primer/paint/sealant system.\n\nPressure-treated: no coating required. If you want color, let it air dry for several months until water no longer beads on the surface; sand while wearing a mask to avoid inhaling treated wood dust. Use an exterior primer + paint and seal with a water-based spar urethane.\n\nKiln-dried fir or pine: needs a stain with sealer, or a primer/paint/sealer system, to avoid weathering quickly. Can also be painted per the pressure-treated steps above.",
+  "safety": [
+    "These are DIY recommendations only — tailor the material, assembly and construction to your own project and site.",
+    "Building this assumes some working knowledge of hand and power tools, hardware, fasteners, lumber and basic assembly technique.",
+    "Before using any power equipment, review and follow the manufacturer's safety requirements, and don't let anyone use power tools who hasn't done the same.",
+    "You (the owner) are responsible for any building and safety codes, permits and regulatory approvals this needs.",
+    "Clear the site of trash, hazards and unwanted structures first, and identify any utilities that could interfere before you dig.",
+    "Everyone helping build should sign a volunteer waiver."
+  ],
+  "links": [],
+  "pdf": "downloads/guides/workbench.pdf",
+  "sourcePages": "WORKBENCH/STANDING TABLE assembly instructions (found inside the Dream workbook's p19 links), pp. 1–11 (cover; before you begin; lumber + hardware + tools; steps 1–6; finishes + coatings)"
+}

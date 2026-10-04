@@ -1,0 +1,88 @@
+---
+// The lumber cut list, straight from the PDF's "mark, label and cut" step.
+import type { GuideCutListItem } from '../../data/guides';
+
+interface Props {
+  items: GuideCutListItem[];
+}
+const { items } = Astro.props;
+---
+
+<table class="cutlist">
+  <caption class="visually-hidden">Cut list</caption>
+  <thead>
+    <tr>
+      <th scope="col">Part</th>
+      <th scope="col">Qty</th>
+      <th scope="col">Stock</th>
+      <th scope="col">Length</th>
+      <th scope="col">Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    {items.map((it) => (
+      <tr>
+        <td data-label="Part"><span class="part">{it.part}</span></td>
+        <td data-label="Qty">{it.qty}</td>
+        <td data-label="Stock">{it.stock}</td>
+        <td data-label="Length">{it.lengthIn}"</td>
+        <td data-label="Notes">{it.notes}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+<style>
+  .cutlist {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    margin: 0 0 1.25em;
+  }
+  .cutlist th {
+    text-align: left;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0 10px 6px 0;
+    border-bottom: 2px solid var(--ink);
+  }
+  .cutlist td {
+    padding: 8px 10px 8px 0;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  .part {
+    display: inline-block;
+    font-weight: 800;
+    background: var(--cyan-wash);
+    color: var(--cyan-deep);
+    border-radius: var(--radius);
+    padding: 0.1em 0.5em;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+  @media (max-width: 640px) {
+    .cutlist thead {
+      display: none;
+    }
+    .cutlist tr {
+      display: grid;
+      gap: 2px;
+      padding: 10px 0;
+    }
+    .cutlist td {
+      border-bottom: 0;
+      padding: 1px 0;
+    }
+    .cutlist td[data-label]::before {
+      content: attr(data-label) ': ';
+      font-weight: 700;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+    }
+    .cutlist tr + tr {
+      border-top: 1px solid var(--line);
+    }
+  }
+</style>

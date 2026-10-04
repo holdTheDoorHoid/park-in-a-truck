@@ -1,0 +1,127 @@
+---
+// One numbered assembly step: instructions, tips, and large click-to-enlarge
+// diagrams. The enlarge <dialog> itself lives once per page — see
+// src/pages/build/[slug].astro — this just marks images with data-enlarge.
+import { u } from '../../lib/url';
+import type { GuideStep } from '../../data/guides';
+
+interface Props {
+  step: GuideStep;
+}
+const { step } = Astro.props;
+const paragraphs = step.text.split('\n\n');
+---
+
+<li class="step substep" id={`step-${step.n}`}>
+  <div class="step-head">
+    <span class="step-num" aria-hidden="true">{step.n}</span>
+    <h3>{step.title ?? `Step ${step.n}`}</h3>
+  </div>
+  <div class="step-body">
+    <div class="step-text prose">
+      {paragraphs.map((p) => <p>{p}</p>)}
+      {step.tips && step.tips.length > 0 && (
+        <ul class="step-tips">
+          {step.tips.map((tip) => <li>{tip}</li>)}
+        </ul>
+      )}
+    </div>
+    <div class="step-images">
+      {step.images.map((src, i) => (
+        <button type="button" class="step-img" data-enlarge data-src={u(src)} data-alt={step.imageAlts[i] ?? ''}>
+          <img src={u(src)} alt={step.imageAlts[i] ?? ''} loading="lazy" decoding="async" />
+        </button>
+      ))}
+    </div>
+  </div>
+</li>
+
+<style>
+  .step {
+    padding: 28px 0;
+    border-top: 1px solid var(--line);
+    scroll-margin-top: 90px;
+  }
+  .step:first-of-type {
+    border-top: 0;
+  }
+  .step-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .step-num {
+    flex: none;
+    width: 2.2em;
+    height: 2.2em;
+    border-radius: 50%;
+    background: var(--ink);
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    display: grid;
+    place-items: center;
+  }
+  .step-head h3 {
+    margin: 0;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .step-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: 28px;
+    align-items: start;
+  }
+  .step-text :global(p) {
+    margin: 0 0 0.9em;
+    white-space: pre-line;
+  }
+  .step-tips {
+    list-style: none;
+    margin: 0.9em 0 0;
+    padding: 10px 14px;
+    background: var(--paper-2);
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    color: var(--ink-2);
+  }
+  .step-tips li {
+    padding-left: 1.3em;
+    position: relative;
+  }
+  .step-tips li::before {
+    content: '💡';
+    position: absolute;
+    left: 0;
+  }
+  .step-tips li + li {
+    margin-top: 0.4em;
+  }
+  .step-images {
+    display: grid;
+    gap: 10px;
+  }
+  .step-img {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: #fff;
+    padding: 0;
+    cursor: zoom-in;
+    display: block;
+    width: 100%;
+  }
+  .step-img:hover {
+    border-color: var(--cyan);
+  }
+  .step-img img {
+    width: 100%;
+    display: block;
+  }
+  @media (max-width: 780px) {
+    .step-body {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
