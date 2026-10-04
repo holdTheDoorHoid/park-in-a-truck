@@ -4,8 +4,11 @@
 // by hand. Kept free of the DOM/project store so it's easy to unit test.
 
 import { addDaysISO, nextSaturdayISO } from './dates';
-import { PHASES } from './phases';
+import { PHASES, phaseText } from './phases';
 import type { IcsEvent } from './ics';
+import schedule from '../../i18n/messages/en/schedule.ts';
+import { getT } from '../../i18n/t.ts';
+import type { Locale } from '../../i18n/locales.ts';
 
 export interface BuildScheduleState {
   v: 1;
@@ -72,16 +75,18 @@ export function clearOverride(state: BuildScheduleState, phaseId: string): Build
   return { ...state, overrides };
 }
 
-/** Each phase becomes a two-day (Saturday–Sunday) all-day event. */
-export function scheduleToIcsEvents(slots: PhaseSlot[], location?: string): IcsEvent[] {
+/** Each phase becomes a two-day (Saturday–Sunday) all-day event, worded in `locale` (default: the page's language). */
+export function scheduleToIcsEvents(slots: PhaseSlot[], location?: string, locale?: Locale | string): IcsEvent[] {
+  const t = getT(locale, schedule);
   return slots
     .filter((s) => s.date)
     .map((s) => {
       const phase = PHASES.find((p) => p.id === s.phaseId)!;
+      const text = phaseText(phase, t.locale);
       return {
         uid: `build-${phase.id}-${s.date}`,
-        summary: `Park build: ${phase.title}`,
-        description: phase.blurb,
+        summary: t('ics.buildEvent', { phase: text.title }),
+        description: text.blurb,
         location,
         start: s.date,
         endExclusive: addDaysISO(s.date, 2),

@@ -62,8 +62,7 @@
 .ph-list {
   position: absolute;
   z-index: 30;
-  left: 0;
-  right: 0;
+  inset-inline: 0;
   top: calc(100% + 2px);
   margin: 0;
   padding: 4px 0;
@@ -114,11 +113,14 @@
   font-size: 0.95rem;
 }
 .ph-error {
-  border-left: 6px solid var(--warn);
+  border-inline-start: 6px solid var(--warn);
   background: var(--warn-wash);
   padding: 12px 16px;
   margin: 0.75em 0;
-  border-radius: 0 var(--radius) var(--radius) 0;
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+  border-start-end-radius: var(--radius);
+  border-end-end-radius: var(--radius);
 }
 .ph-error p {
   margin: 0 0 0.5em;
@@ -137,7 +139,7 @@
   border-radius: 999px;
   padding: 0.25em 0.75em;
   cursor: pointer;
-  text-align: left;
+  text-align: start;
 }
 .ph-chip:hover {
   background: var(--cyan-wash);
@@ -154,7 +156,7 @@
   border-radius: 50%;
   animation: ph-spin 0.8s linear infinite;
   vertical-align: -0.1em;
-  margin-right: 0.4em;
+  margin-inline-end: 0.4em;
 }
 @keyframes ph-spin {
   to {
@@ -278,7 +280,7 @@
 }
 .ph-paths ul {
   margin: 0;
-  padding-left: 1.1em;
+  padding-inline-start: 1.1em;
 }
 .ph-paths li {
   margin: 0.25em 0;
@@ -300,7 +302,7 @@
   font-size: 0.85rem;
 }
 .ph-sources a {
-  margin-right: 0.9em;
+  margin-inline-end: 0.9em;
   display: inline-block;
 }
 .ph-outline {
@@ -320,8 +322,9 @@
 }
 .ph-compare th,
 .ph-compare td {
-  text-align: left;
-  padding: 8px 8px 8px 0;
+  text-align: start;
+  padding-block: 8px;
+  padding-inline: 0 8px;
   border-bottom: 1px solid var(--line);
   vertical-align: top;
 }
@@ -499,7 +502,7 @@
   height: 1em;
   border-radius: 2px;
   vertical-align: -0.15em;
-  margin-right: 0.35em;
+  margin-inline-end: 0.35em;
   border: 2px solid transparent;
 }
 .ph-popup {
@@ -557,7 +560,7 @@
 }
 .ph-edges {
   margin: 0;
-  padding-left: 1.2em;
+  padding-inline-start: 1.2em;
 }
 .ph-aerial {
   position: relative;
@@ -645,11 +648,11 @@
   flex: none;
 }
 .ph-asset-dist {
-  margin-left: auto;
+  margin-inline-start: auto;
   white-space: nowrap;
   color: var(--muted);
   font-size: 0.85rem;
-  padding-left: 0.5em;
+  padding-inline-start: 0.5em;
 }
 .ph-dot {
   display: inline-block;

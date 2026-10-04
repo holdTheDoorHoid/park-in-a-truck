@@ -13,7 +13,7 @@ const name = `c-${id.replace(/[^a-z0-9]+/gi, '-')}`;
   <legend class="field-label">{label}</legend>
   <div class="choices">
     {options.map((o) => (
-      <label class="choice" style={o.color ? `border-left: 8px solid ${o.color}` : undefined}>
+      <label class="choice" style={o.color ? `border-inline-start: 8px solid ${o.color}` : undefined}>
         <input type="radio" name={name} value={o.value} data-field-radio={id} />
         <strong>{o.label}</strong>
         {o.desc && <span class="choice-desc">{o.desc}</span>}

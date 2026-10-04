@@ -56,7 +56,7 @@ export async function fetchSurroundings(lot: LotLike, radiusFt = 250, opts: { si
       ),
       empty,
       warnings,
-      'building outlines and heights',
+      'warn.buildings',
     ),
     soft(
       queryGeo<{ address: string | null; brt_id: string | null }>(
@@ -66,7 +66,7 @@ export async function fetchSurroundings(lot: LotLike, radiusFt = 250, opts: { si
       ),
       empty,
       warnings,
-      'parcel outlines',
+      'warn.parcels',
     ),
     soft(
       queryGeo<{ tree_name: string | null; tree_dbh: number | null }>(
@@ -76,7 +76,7 @@ export async function fetchSurroundings(lot: LotLike, radiusFt = 250, opts: { si
       ),
       empty,
       warnings,
-      'City tree inventory',
+      'warn.trees',
     ),
     soft(
       queryGeo<{ stname: string | null; class: number | null }>(
@@ -86,7 +86,7 @@ export async function fetchSurroundings(lot: LotLike, radiusFt = 250, opts: { si
       ),
       empty,
       warnings,
-      'street centerlines',
+      'warn.streets',
     ),
   ]);
 

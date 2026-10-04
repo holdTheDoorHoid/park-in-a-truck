@@ -7,6 +7,7 @@ import { useEffect, useId, useRef, useState } from 'preact/hooks';
 import { searchAddresses } from '../../lib/philly/search';
 import type { AddressSuggestion } from '../../lib/philly/types';
 import { titleCase } from '../../lib/philly/plain';
+import { isolate, words } from '../../lib/philly/words';
 import { useDebounced } from './hooks';
 
 interface Props {
@@ -22,16 +23,12 @@ interface Props {
   formLabel?: string;
 }
 
-export default function AddressSearch({
-  label = 'Address',
-  hint = 'A Philadelphia street address, a corner like "60th & Greenway", or a 9-digit OPA number.',
-  placeholder = 'e.g. 1322 N Dover St',
-  buttonLabel = 'Look up',
-  busy,
-  onPick,
-  initial = '',
-  formLabel,
-}: Props) {
+export default function AddressSearch({ label, hint, placeholder, buttonLabel, busy, onPick, initial = '', formLabel }: Props) {
+  const t = words();
+  label ??= t('search.label');
+  hint ??= t('search.hint');
+  placeholder ??= t('search.placeholder');
+  buttonLabel ??= t('search.button');
   const id = useId();
   const [text, setText] = useState(initial);
   const [items, setItems] = useState<AddressSuggestion[]>([]);
@@ -58,7 +55,7 @@ export default function AddressSearch({
       .catch((e) => {
         if (e?.code === 'aborted' || e?.name === 'AbortError' || ctrl.signal.aborted) return;
         setItems([]);
-        setProblem(e?.message ?? 'The City address service is not answering right now.');
+        setProblem(e?.message ?? t('search.down'));
       });
     return () => ctrl.abort();
   }, [q]);
@@ -135,7 +132,7 @@ export default function AddressSearch({
         </button>
       </div>
       {open && items.length > 0 && (
-        <ul class="ph-list" id={listId} role="listbox" aria-label="Matching addresses">
+        <ul class="ph-list" id={listId} role="listbox" aria-label={t('search.listLabel')}>
           {items.map((s, i) => (
             <li
               id={`${id}-o${i}`}
@@ -147,8 +144,8 @@ export default function AddressSearch({
               }}
             >
               {s.kind === 'intersection' ? '✚ ' : ''}
-              {titleCase(s.label)}
-              <small>{s.kind === 'intersection' ? 'Street corner — shows lots nearby' : s.owner ? `Owner: ${s.owner}` : ''}</small>
+              {isolate(titleCase(s.label), t)}
+              <small>{s.kind === 'intersection' ? t('search.corner') : s.owner ? t('search.owner', { owner: isolate(s.owner, t) }) : ''}</small>
             </li>
           ))}
         </ul>

@@ -29,7 +29,7 @@ export function formatMoney(locale: Locale | string, n: number, opts: { cents?: 
   return formatNumber(locale, n, { style: 'currency', currency: 'USD', currencyDisplay: 'narrowSymbol', minimumFractionDigits: digits, maximumFractionDigits: digits });
 }
 
-export type DateStyle = 'long' | 'full' | 'short' | 'month-year' | 'month-day' | 'month' | 'month-day-short' | 'month-narrow';
+export type DateStyle = 'long' | 'full' | 'short' | 'month-year' | 'month-day' | 'month' | 'month-day-short' | 'month-narrow' | 'weekday-short';
 
 const DATE_OPTS: Record<DateStyle, Intl.DateTimeFormatOptions> = {
   long: { year: 'numeric', month: 'long', day: 'numeric' },
@@ -43,6 +43,8 @@ const DATE_OPTS: Record<DateStyle, Intl.DateTimeFormatOptions> = {
   'month-day-short': { month: 'short', day: 'numeric' },
   /** "J" (chart axes) */
   'month-narrow': { month: 'narrow' },
+  /** "Sat, March 14, 2027" */
+  'weekday-short': { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' },
 };
 
 function toDate(d: Date | string | number): Date {
@@ -66,7 +68,7 @@ export function formatDate(locale: Locale | string, d: Date | string | number, s
     if (style === 'month-day' || style === 'month-day-short') return `${day} ${m}`;
     if (style === 'month') return m;
     if (style === 'month-narrow') return m.charAt(0).toUpperCase();
-    return style === 'full' ? `${wd} ${day} ${m} ${y}` : `${day} ${m} ${y}`;
+    return style === 'full' || style === 'weekday-short' ? `${wd} ${day} ${m} ${y}` : `${day} ${m} ${y}`;
   }
   return memo(`d|${locale}|${style}`, () => new Intl.DateTimeFormat(intlOf(locale), DATE_OPTS[style])).format(date);
 }
