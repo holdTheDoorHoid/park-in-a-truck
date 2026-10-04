@@ -62,6 +62,9 @@ after the extraction round. Tick them off here.
       names used inside sentences need a per-locale "in a sentence" form (lowercase where the language does).
 - [ ] Parks cards: the source line ("Park in a Truck toolkit p.69 acknowledgments") and photo-credit wording
       ("via the … toolkit") can't be translated — make the wording a catalog message around the names.
+- [ ] Plant picker shows the pot size in English ("Al comprarla: Quart") — `containerSize` not translatable in
+      datasets.ts (phase B, or map the few sizes to catalog words).
+- [ ] Organize scrolls sideways at 360 px in English too (393 px; step-contents box + text column), not only Arabic.
 
 ## For native-speaker review (per language)
 
@@ -71,6 +74,11 @@ after the extraction round. Tick them off here.
 - `create.mdx` tool lists, Phases 2–7 (Mandarria, Motocultor, Pisón de mano); gabion guides "anillos de engrapar";
   `resources.json` legal.text (disclaimer); `playful.ts` "peregrina (rayuela)" and the five principle names;
   `sustain.mdx` heading "Convivir".
+
+### Spanish (es) — second pass
+- `cost.ts` fix.* and note.* explanations; "Tipple rojo (red tipple)"; "Minicargadora (skid steer)"; `philly.ts`
+  zoning descriptions ("casas unifamiliares pegadas") and Land Bank statuses; `planner.ts` slope sentences and the
+  step name "Ubicar"; `shade.ts` summary sentences.
 
 ### Chinese, Simplified (zh)
 - `start.mdx` "Why a park?" proverb line (每天去一次公园，医生远离我); `acquire.mdx` 实物使用协议;
