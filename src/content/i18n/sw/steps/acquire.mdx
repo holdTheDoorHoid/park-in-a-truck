@@ -1,0 +1,254 @@
+---
+title: Pata kiwanja
+intro: Tafuta kiwanja katika mtaa wako na upate haki ya kisheria ya kukigeuza kuwa bustani.
+sources:
+  - Mwongozo (Toolkit), uk. 24–27 (Tafuta kiwanja, Kiwanja kipi?, Jua mmiliki wa kiwanja)
+  - Kitabu cha kazi cha Pata kiwanja, uk. 1–7
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Choice from '../../../../components/workbook/Choice.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import LotLookup from '../../../../components/widgets/LotLookup.astro';
+import LotFinderMap from '../../../../components/widgets/LotFinderMap.astro';
+
+Wanaotaka kuunda bustani ambao hawana tayari haki ya kisheria ya kutumia ardhi tupu lazima watafute watu walio tayari
+kuuza au kukodisha kiwanja (au viwanja) vyao kwa ajili ya bustani inayopendekezwa. Juhudi hii inaweza kuwa ngumu na
+kuchukua muda mrefu. Hakuna mchakato mkamilifu, hakuna njia moja tu ya kuendelea, na hakuna matokeo yaliyohakikishwa.
+Hatua hii itakusaidia kupata njia ya kupata eneo la bustani yako ya baadaye.
+
+## Tafuta kiwanja {/* #find-a-lot */}
+
+Bustani kubwa za mjini huleta faida nyingi za kijamii, za kiikolojia na za kiuchumi kwa wakazi na wageni wa jiji.
+Lakini kama bustani haifikiki kwa urahisi, huenda watu wakaitembelea mara chache tu. Si kila mtu ana gari au usafiri
+wa umma ulio karibu, wala si kila mtu anaweza kutembea au kuendesha baiskeli umbali mrefu.
+
+Ndiyo sababu ni muhimu kutafuta kiwanja au nafasi iliyo karibu ili kuigeuza kuwa bustani ndogo ya mtaa. Bustani hizi
+zina faida nyingi za bustani kubwa, **na** ukaribu wake huzifanya zifikike kwa urahisi. Kadiri bustani ya mtaa
+inavyotembelewa zaidi, ndivyo inavyozoeleka zaidi — na kuthaminiwa zaidi. Matumizi ya mara kwa mara ya bustani
+huyasaidia maeneo haya kuwa kitovu muhimu cha "maisha ya kijamii" kinachojenga moyo wa ujirani katika mtaa!
+
+Je, kuna mali zisizotumika katika mtaa wako ambazo zinapatikana kisheria, ni salama, na zinafaa kuwa bustani? Je,
+unaweza kutambua viwanja vinavyowezekana katika mtaa wako ambapo ungependa kuona bustani yako?
+
+<Callout kind="auto" title="Ramani ikutembeze">
+  Ramani iliyo hapa chini inaonyesha viwanja ambavyo Jiji limeviorodhesha kama ardhi tupu. Bofya kimoja uone mmiliki
+  wake, ukubwa wake na zoning yake (kanuni za matumizi ya ardhi), kisha ukiongeze kwenye orodha yako. Bado unapaswa
+  kutembea katika mtaa wako — orodha ya Jiji inakosa baadhi ya viwanja, na ina vingine ambavyo tayari vinatumika.
+</Callout>
+
+<LotFinderMap />
+
+<Figure
+  src="img/acquire/west-kensington-site.webp"
+  alt="Kiwanja kitupu chenye nyasi huko West Kensington, Philadelphia, kimekatwa nyasi na kuwekewa vibendera vya rangi ya kijani-bluu vya upimaji kwenye pembe zake, na nyuma yake kuna ukuta wa lipu, ua wa miti na magari yaliyoegeshwa."
+  caption="Eneo la bustani ya PiaT la West Kensington, kabla ya ujenzi"
+  duo
+/>
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={3} />
+
+## Kiwanja kipi? {/* #which-lot */}
+
+Pitia aina tatu tofauti za maeneo yanayoweza kufaa kwa bustani ya mtaa. Tembea katika mtaa wako na uandike ni mali
+zipi zisizotumika ipasavyo zinazoweza kuwa mahali pa bustani yako.
+
+<div class="lot-types">
+  <div>
+    <Figure
+      src="img/acquire/lot-midblock.webp"
+      alt="Mchoro wa pembe tatu wa kiwanja kitupu cha katikati ya mtaa: nafasi nyembamba ya mstatili kati ya majengo mawili ya nyumba za safu katika mtaa wa makazi, imeonyeshwa kwa rangi ya kijani na mti mmoja."
+    />
+    <p class="lot-caption">
+      <strong>Kiwanja cha katikati ya mtaa (kiwanja kitupu).</strong> Kina umbo la mstatili na kinapatikana katikati
+      ya mtaa wa makazi. Kinaweza kuwa na majengo kila upande na/au upande wa nyuma. Viwanja vingi zaidi vilivyo "tupu"
+      vinavyopatikana Philadelphia ni vya aina hii. Huenda vikawa na mipaka kwa baadhi ya matumizi ya bustani kwa sababu
+      ni vyembamba na/au havipati jua la kutosha.
+    </p>
+  </div>
+  <div>
+    <Figure
+      src="img/acquire/lot-corner.webp"
+      alt="Mchoro wa pembe tatu wa kiwanja kitupu cha kona: nafasi ya mstatili mwishoni mwa mtaa wa makazi, inayotazama barabara mbili, imeonyeshwa kwa rangi ya kijani na mti mmoja."
+    />
+    <p class="lot-caption">
+      <strong>Kiwanja cha kona (kiwanja kitupu).</strong> Kina umbo la mstatili na kinapatikana mwishoni mwa mtaa wa
+      makazi. Kinaweza kuwa na majengo upande mmoja na/au upande wa nyuma. Viwanja hivi vinaonekana kwa urahisi na
+      mara nyingi hupata jua zaidi.
+    </p>
+  </div>
+  <div>
+    <Figure
+      src="img/acquire/lot-alley.webp"
+      alt="Mchoro wa pembe tatu wa njia ya kupita kati ya nyumba au uchochoro (easement): nafasi ndefu ya kijani iliyo nyembamba sana inayopita kati ya majengo ya nyumba za safu, ikiunganisha upande mmoja wa mtaa na mwingine."
+    />
+    <p class="lot-caption">
+      <strong>Njia ya kupita kati ya nyumba (breezeway) / uchochoro (easement).</strong> Maeneo haya yanatambulika kwa
+      umbo lake refu na jembamba sana, na mara nyingi huunganisha upande mmoja wa mtaa na mwingine. Hapo awali yalitengwa
+      kama njia za watembea kwa miguu kati ya barabara na/au kwa ajili ya huduma kama maji na umeme (easement).
+    </p>
+  </div>
+</div>
+
+Andika anwani ya kila kiwanja kinachowezekana. Ukitafuta anwani, tovuti hii inakujazia mmiliki, ukubwa na aina ya
+kiwanja.
+
+<LotLookup mode="candidates" />
+
+<ListField
+  id="acquire.candidate-notes"
+  label="Uliyoona ulipotembea mtaani"
+  rowName="kiwanja"
+  min={3}
+  columns={[
+    { key: 'address', label: 'Anwani au mahali' },
+    { key: 'type', label: 'Aina ya kiwanja', placeholder: 'katikati ya mtaa, kona, uchochoro' },
+    { key: 'notes', label: 'Ulichoona', placeholder: 'takataka, jua, majirani, matumizi…' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={3} />
+
+## Nani anamiliki kiwanja hicho? {/* #who-owns-that-lot */}
+
+Baada ya kutambua mali kadhaa zisizotumika ipasavyo zinazoweza kufaa kwa bustani yako mpya ya mtaa, hatua inayofuata
+ni kujua ni nani anayemiliki mali hiyo. Mmiliki anaweza kuwa mtu binafsi, biashara au shirika lisilo la kibiashara.
+Mmiliki anaweza pia kuwa Jiji. Njia ya kuaminika zaidi ya kujua nani anamiliki kiwanja ni kuangalia kumbukumbu za Jiji
+la Philadelphia.
+
+Chati hii inaonyesha jinsi ya kujua nani anamiliki kiwanja, na hatua zinazowezekana za kupata haki za kisheria — au
+"entitlements" — za kutumia mali hiyo kama bustani ya mtaa.
+
+{/* site-added: the workbook's flowchart reproduced as HTML (not an image of text), steps 1–4 then the public/private branch. */}
+<ol class="flow-steps">
+  <li>
+    <span class="flow-num">1</span>
+    <div><strong>Hakikisha anwani.</strong> Thibitisha anwani ya barabara ya kiwanja au viwanja ulivyoandika.</div>
+  </li>
+  <li>
+    <span class="flow-num">2</span>
+    <div><strong>Tafuta mali.</strong> Nenda kwenye <a href="https://atlas.phila.gov/" target="_blank" rel="noopener">atlas.phila.gov</a> (kwa Kiingereza) na uandike anwani ya barabara. Unaweza pia kupata kiwanja kwa kukuza ramani kwenye barabara iliyo karibu.</div>
+  </li>
+  <li>
+    <span class="flow-num">3</span>
+    <div><strong>Jua mmiliki.</strong> Angalia mmiliki wa mali chini ya sehemu ya "Property Assessment" (tathmini ya mali) kwenye tovuti hiyo.</div>
+  </li>
+</ol>
+
+<div class="owner-branch">
+  <div class="owner-branch-col">
+    <h4>4a. Mmiliki ni… Jiji la Philadelphia <span class="muted">(umiliki wa umma)</span></h4>
+    <p>
+      <strong>Uwezekano wa kununua.</strong> Tafuta mali ili kujua kama ardhi ya umma inapatikana kwa kununuliwa
+      kupitia Philadelphia Housing Development Corporation (PHDC) na Philadelphia Land Bank.
+    </p>
+  </div>
+  <div class="owner-branch-col">
+    <h4>4b. Mmiliki ni… mtu, shirika au biashara <span class="muted">(umiliki binafsi)</span></h4>
+    <ul>
+      <li><strong>Uwezekano wa zawadi.</strong> Wasiliana na mmiliki wa ardhi kuhusu kuitoa mali hiyo kama zawadi ya kudumu.</li>
+      <li><strong>Uwezekano wa mauzo.</strong> Fuatilia tangazo la mauzo ya umma au mnada — huko Philadelphia hii inaweza kujumuisha mnada wa Sheriff (Sheriff Sale).</li>
+      <li><strong>Jadiliana makubaliano ya kununua.</strong> Wasiliana na mmiliki wa ardhi na mjadiliane mauzo kwa ajili ya matumizi ya mtaa.</li>
+      <li><strong>Makubaliano ya kutumia bila kodi (in-kind).</strong> Zungumza kuhusu kuuruhusu mtaa kutumia kiwanja "bila kodi" (in-kind), huku mmiliki akibaki kuwa mmiliki.</li>
+    </ul>
+  </div>
+</div>
+
+<Callout kind="auto" title="Hatua 1–3 zimefanywa kwa ajili yako">
+  Chagua kiwanja unachotaka kufuatilia. Tovuti hii inakagua anwani na kumbukumbu za mali za Jiji (taarifa zilezile
+  zinazoonyeshwa na atlas.phila.gov) na inakujazia mmiliki hapa chini.
+</Callout>
+
+<LotLookup mode="primary" />
+
+<Field id="acquire.address" label="Anwani ya barabara ya kiwanja chako" auto="lot.address" />
+<Field id="acquire.owner" label="Jina la mmiliki" auto="lot.owners|owners" />
+<Field id="acquire.owner-type" label="Mmiliki ni…" auto="lot.ownerType|ownerType" />
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={4} />
+
+## Kama Jiji ndilo mmiliki {/* #if-the-city-owns-it */}
+
+**Uwezekano wa kununua.** Ardhi inayomilikiwa na umma huko Philadelphia huuzwa au hukodishwa kupitia Philadelphia
+Housing Development Corporation (PHDC) na Philadelphia Land Bank (taasisi ya Jiji inayouza na kukodisha ardhi ya umma).
+Tafuta mali ili kujua kama ardhi ya umma inapatikana kwa kununuliwa.
+
+<p><a class="btn" href="https://phillylandbank.org/community-use-map/" target="_blank" rel="noopener">Tafuta kwenye ramani ya Matumizi ya Jamii ya Land Bank (kwa Kiingereza) ↗</a></p>
+
+{/* site-added: the workbook's PHDC link (phdcphila.org/land/buy-land/property-search-map/) is dead; PHDC's search now lives on the Land Bank site. */}
+<p class="muted" style="font-size:0.9rem">Ukurasa wa utafutaji wa PHDC uliotajwa katika kitabu cha kazi umehamishwa: sasa PHDC na Philadelphia Land Bank zinatumia ramani hii moja. Kiwanja kinachoonyeshwa kwa rangi kinapatikana; ramani ya Matumizi ya Jamii (Community Use) ndiyo ya bustani za jamii na maeneo ya wazi.</p>
+
+<Checklist
+  id="acquire.public-steps"
+  items={[
+    { value: 'searched-phdc', label: 'Nimetafuta kiwanja kwenye ramani ya utafutaji wa mali ya PHDC' },
+    { value: 'contacted-phdc', label: 'Nimewasiliana na PHDC / Land Bank kuhusu kukinunua au kukikodisha kwa ajili ya bustani' },
+  ]}
+/>
+
+<Field id="acquire.public-notes" label="Jibu ulilopata" type="textarea" />
+
+## Kama mtu mwingine ndiye mmiliki {/* #if-someone-else-owns-it */}
+
+Mmiliki anapokuwa mtu, shirika au biashara, kuna njia nne za kusonga mbele:
+
+- **Uwezekano wa zawadi.** Wasiliana na mmiliki wa ardhi kuhusu kuitoa mali hiyo kama zawadi ya kudumu kwa mtaa, ili
+  itumike kama bustani.
+- **Uwezekano wa mauzo.** Fuatilia tangazo la mauzo ya umma au mnada wa mali hiyo. Huko Philadelphia hii inaweza pia
+  kujumuisha mnada wa Sheriff (Sheriff Sale).
+- **Jadiliana makubaliano ya kununua.** Wasiliana na mmiliki wa ardhi na mjadiliane mauzo ya mali hiyo isiyotumika
+  ipasavyo kwa ajili ya matumizi ya mtaa.
+- **Makubaliano ya kutumia bila kodi (in-kind).** Wasiliana na mmiliki wa ardhi na mzungumze kuhusu faida kwa pande
+  zote mbili za kuuruhusu mtaa kutumia kiwanja kama bustani "bila kodi" (in-kind), huku mmiliki akibaki kuwa mmiliki.
+
+<Choice
+  id="acquire.private-path"
+  label="Unajaribu njia ipi kwanza?"
+  options={[
+    { value: 'donation', label: 'Zawadi', desc: 'Mmiliki anautolea mtaa kiwanja' },
+    { value: 'sale', label: 'Mauzo ya umma / mnada wa Sheriff', desc: 'Fuatilia matangazo na minada' },
+    { value: 'purchase', label: 'Makubaliano ya kununua', desc: 'Jadiliana mauzo na mmiliki' },
+    { value: 'in-kind', label: 'Makubaliano ya kutumia bila kodi', desc: 'Mmiliki anabaki na kiwanja; majirani wanakitumia kama bustani' },
+  ]}
+/>
+
+<ListField
+  id="acquire.owner-contacts"
+  label="Kumbukumbu ya mawasiliano"
+  rowName="mawasiliano"
+  min={2}
+  columns={[
+    { key: 'date', label: 'Tarehe', type: 'date' },
+    { key: 'who', label: 'Uliyewasiliana naye' },
+    { key: 'outcome', label: 'Kilichotokea / hatua inayofuata' },
+  ]}
+/>
+
+<Callout kind="contact">
+  Umekwama? Timu ya Park in a Truck inaweza kukusaidia kufikiria njia zako:
+  [ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu).
+</Callout>
+
+{/* site-added: a place to record the outcome; no new advice. */}
+## Hakikisha kiwanja chako {/* #secure-your-lot */}
+
+Andika makubaliano yanayoipa kikundi chako haki ya kujenga bustani hapa. Weka nakala pamoja na kumbukumbu za kamati
+yako — utaihitaji kabla mtu yeyote hajaanza kuchimba ardhi katika hatua ya Jenga.
+
+<Field
+  id="acquire.agreement"
+  label="Aina ya makubaliano"
+  type="select"
+  options={[
+    { value: 'Purchase', label: 'Kununua' },
+    { value: 'Donation', label: 'Zawadi (mchango)' },
+    { value: 'Lease', label: 'Kukodisha' },
+    { value: 'In-kind use agreement', label: 'Makubaliano ya kutumia bila kodi (in-kind)' },
+    { value: 'Other', label: 'Nyingine' },
+  ]}
+/>
+<Field id="acquire.agreement-date" label="Tarehe ya kusaini" type="date" />
+<Field id="acquire.agreement-notes" label="Masharti ya kukumbuka" type="textarea" hint="Muda wa makubaliano, nani anatunza kiwanja, bima, tarehe ya kuyafanya upya…" />
