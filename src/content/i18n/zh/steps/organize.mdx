@@ -1,0 +1,175 @@
+---
+title: 组织
+intro: 成立公园委员会，找出您社区的资源和长处，把能让公园变成现实的人召集起来。
+sources:
+  - 工具包第29–33页（组织、成立公园委员会、找出社区资源）
+  - 组织工作手册第3–6页（概述、找出社区资源、社区资源、组织一次会议、准备好了吗？）
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import NeighborhoodAssets from '../../../../components/widgets/NeighborhoodAssets.astro';
+import MeetingFlyer from '../../../../components/widgets/MeetingFlyer.astro';
+
+公园不会自己冒出来。建公园需要团队合作，而回报非常丰厚。社区一起建设公园，收获的不只是一座公园——还加深了邻里之间的感情，为本地年轻人创造了有意思的工作机会，也让每个人都感到自豪。建公园让大家为了共同的目标走到一起。等到公园建成，大家都会说：“我们做到了！”
+
+每一个成功的公园项目，核心都是一群多元、有才干、有决心的居民，像一个团队一样合作。这个公园委员会将带领大家建设公园。理想情况下，这些志愿者能代表将来使用公园的各类人群——年轻人、老年人、不同种族和族裔的人、专业人士、工薪阶层、房主和租户。委员会的组成应该像您的社区一样。另外，也要考虑他们的才能。有各种才能和经验的人——会施工的、懂法律的、有政治人脉的、做社区组织的、神职人员、交际达人等等——会让成功的机会更大。
+
+<Callout kind="note">
+  想进一步了解怎样组织社区团体，请参阅宾夕法尼亚园艺协会（Pennsylvania Horticultural Society）的<a href="http://tupress.temple.edu/book/0872" target="_blank" rel="noopener"><em>City Parks Handbook</em></a>（英文），以及美国国家休闲与公园协会（National Recreation and Park Association）的<a href="https://www.nrpa.org/uploadedFiles/Americas_Backyard/park-advocate-handbook-100711.pdf" target="_blank" rel="noopener"><em>Park Advocate Handbook</em></a>（英文）。
+</Callout>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={3} label="概述" />
+
+## 成立公园委员会 {/* #create-a-park-committee */}
+
+委员会成立后，第一项任务就是找出并记录您的社区和公园用地有哪些独特之处。在下面列出委员会成员——他们是谁、怎样联系他们，以及他们能为团队带来什么。
+
+<ListField
+  id="organize.committee-members"
+  label="公园委员会成员"
+  rowName="成员"
+  min={3}
+  columns={[
+    { key: 'name', label: '姓名' },
+    { key: 'phone', label: '电话', type: 'tel' },
+    { key: 'email', label: '电子邮件', type: 'email' },
+    { key: 'role', label: '角色／技能', placeholder: '组织、木工、筹款…' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={3} label="概述" />
+
+## 找出社区资源 {/* #identify-community-assets */}
+
+现在来想想您社区里的人，以及他们各自独特的本领——他们喜欢做饭吗？会组织活动吗？会种花种菜吗？热爱历史、能研究社区的过去吗？这些都可以变成宝贵、有用的本领，帮助设计、建造和维护公园。您只需要把它们列出来，就知道在建园过程中的不同工作可以找谁帮忙。
+
+在第一次社区会议上，请大家在报名表上写下自己相关的技能。勾选您的委员会已经具备的技能：
+
+<Checklist
+  id="organize.individual-skills"
+  label="个人技能清单"
+  items={[
+    { value: 'project-manager', label: '项目经理，负责监督公园建设' },
+    { value: 'organizing', label: '组织公园的设计和建造过程' },
+    { value: 'carpentry', label: '木工' },
+    { value: 'masonry', label: '砖石工' },
+    { value: 'gardening', label: '公园的园艺／养护' },
+    { value: 'planting', label: '种植树木、灌木、花卉' },
+    { value: 'building', label: '帮忙建造公园' },
+    { value: 'fundraising', label: '筹款' },
+    { value: 'bookkeeping', label: '记账' },
+    { value: 'babysitting', label: '照看孩子' },
+    { value: 'food', label: '为开会／建园准备食物' },
+    { value: 'artist', label: '艺术家' },
+    { value: 'photography', label: '摄影' },
+    { value: 'music', label: '建园日的音乐——DJ' },
+    { value: 'media', label: '媒体宣传——Facebook、Instagram、Twitter' },
+    { value: 'history', label: '历史爱好者' },
+    { value: 'other', label: '其他' },
+  ]}
+/>
+
+{/* site-added: a printable version of the same list, for a paper sign-up sheet at an in-person meeting. */}
+<Callout kind="tip" title="打印报名表">
+  开会时需要一张纸质报名表？打印这一页就行——上面的清单打印出来是空白方框，邻居们可以在自己的姓名和联系方式旁边亲手打勾。
+</Callout>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={3} label="找出社区资源" />
+
+## 社区资源 {/* #neighborhood-assets */}
+
+建园过程中另一个关键步骤，是找出您的社区和公园用地的独特之处。花点时间停下来，寻找那些让您的社区与众不同的线索——这样的线索很多。每个社区都有来自自身历史和文化的价值。找出并利用这些资源，能让您的公园项目更有力量，也能激发大家把公园当作自己的公园。
+
+那么，怎样找出社区的资源和长处呢？想想您的社区，想想它的历史和文化——有哪些特别的地方？人们喜欢在哪里聚集？您的社区发生过哪些重要的事？您的公园所在的位置，以前有过什么？
+
+<Callout kind="auto" title="已替您找到附近的组织">
+  输入您那块地的地址，网站就会找出附近的注册社区组织（RCO）、学校、图书馆、公园、花园，以及市政府列出的其他社区资源——这样您的清单一开始就有了已经在那里的人和机构。
+</Callout>
+
+<NeighborhoodAssets />
+
+接下来，列出所有可能成为合作伙伴、提供支持的居民团体和本地协会——可以是资金、实物，或是在本地购买公园材料的地方：
+
+<ListField
+  id="organize.citizens-associations"
+  label="居民团体资源清单"
+  rowName="团体"
+  min={2}
+  columns={[
+    { key: 'type', label: '类型', placeholder: '教会、街区负责人、RCO、文化团体…' },
+    { key: 'name', label: '名称' },
+    { key: 'contact', label: '联系方式' },
+  ]}
+/>
+
+<ListField
+  id="organize.physical-assets"
+  label="社区的实体资源"
+  rowName="资源"
+  min={2}
+  columns={[
+    { key: 'type', label: '类型', placeholder: '地标、壁画、街景、聚会场所…' },
+    { key: 'description', label: '描述' },
+  ]}
+/>
+
+<ListField
+  id="organize.local-institutions"
+  label="本地机构"
+  rowName="机构"
+  min={2}
+  columns={[
+    { key: 'type', label: '类型', placeholder: '商家、学校、图书馆、医院、大学…' },
+    { key: 'name', label: '名称' },
+    { key: 'contact', label: '联系方式' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={4} label="社区资源" />
+
+## 组织一次会议 {/* #organize-a-meeting */}
+
+举办一次公开会议，是推动行动、吸引更多人加入您团体的好办法。下面有几个点子，帮助您的社区团体组织一次有意思、人人都能参加、进行顺利的会议。
+
+- **简单明了**。不要一次塞进太多内容。利用这次会议介绍您想做的事的基本情况，鼓励大家分享意见和想法，并收集将来可能想参与的人的联系方式。
+- **做好宣传**。确保传单上清楚写明日期、时间和地点，也写清楚会议要谈什么。传单、海报、社交媒体帖子和本地社区简报都能帮上忙。
+- **给点吸引力**。免费茶点、播放视频或请人演讲，或者由学生志愿者帮忙照看孩子，都能让大家更愿意抽时间来。
+- **想好议程**。欢迎和自我介绍；说明是谁召集了这次会议、为什么召集；概述召开会议的原因；可以考虑请一位建过公园的人分享经验（要简短——第一次会议不应该变成讲座）；请 Jefferson 的 Park in a Truck 团队派一位讲者来。
+- **给大家发言的机会**。可能有人反对建公园——让大家说出自己的看法，就可能的公园地点达成共识，但不要陷在细节里。
+- **说明下一步**。总结会上提出的想法；如果会议规模不大，就决定实际要采取哪些行动，包括由谁去做。
+- **主持会议**。事先商定由谁主持。主持人的任务是：让会议不跑题，确保每个人都有机会发言，并让气氛友好、开放。
+- **做会议记录**。会前决定由谁做记录（不要和主持人是同一个人）。记录里应该清楚写下作出的所有决定，以及谁同意承担哪些工作。
+- **收集姓名和地址**。事先准备好报名表，这样您就能和所有想继续参与的人保持联系。
+- **安排下一次会议**。在这次会议结束前，定好下次会议的日期和地点，并告诉大家，让大家可以再来。
+
+<Field id="organize.meeting-date" label="会议日期" type="date" />
+<Field id="organize.meeting-time" label="会议时间" type="text" placeholder="例如：下午6:30" />
+<Field id="organize.meeting-place" label="会议地点" type="text" placeholder="地址或场地名称" />
+<Field id="organize.meeting-purpose" label="会议目的" type="textarea" hint="您想做什么，希望邻居们帮什么忙。" />
+
+<MeetingFlyer />
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={5} label="组织一次会议" />
+
+## 准备好了吗？ {/* #are-you-ready */}
+
+怎样知道您的公园委员会是否各方面都齐备了？阅读下面的清单，在委员会里找到相应的人或能力时就勾选方框。组织工作最重要的，是向自己证明您能统筹好建设社区公园所需的一切——每个方框都勾上了，您的团体就准备好进入下一章了。
+
+<Checklist
+  id="organize.readiness"
+  label="团体准备情况清单"
+  items={[
+    { value: 'committee-formed', label: '您是否已经由热心的邻居组成了委员会，来指导整个公园规划工作？' },
+    { value: 'financial-standing', label: '您的团体是否有一定的财务能力或信用额度，可以支付与公园有关的费用，比如购置地产、养护、举办活动等？' },
+    { value: 'fundraising', label: '您的团体是否有能力筹集必要的资金，持续为公园提供经费支持？' },
+    { value: 'community-engagement', label: '您的团体是否有能力引起社区的兴趣，组织活动和其他社区参与活动？' },
+    { value: 'skilled-trades', label: '您的团体能否找到各种有技能和经验的人——木工、泥瓦匠或其他手艺人——在公园施工和养护期间提供专业知识？' },
+    { value: 'initial-meetings', label: '您的团体是否已经举办了最初的几次会议和社区活动，为可能建设的公园争取支持、达成共识？' },
+    { value: 'social-media', label: '您的团体是否已经建立了网上页面（Facebook、Instagram 等），用来发消息、发通知等，并有一个专属的话题标签（hashtag），用来标识和宣传您的公园项目？' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={6} label="准备好了吗？" />

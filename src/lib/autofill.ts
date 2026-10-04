@@ -62,7 +62,7 @@ export function formatAuto(v: unknown, fmt?: string, locale: Locale | string = '
       return word(`auto.sun.${String(v)}`);
     // added by philly-data
     case 'zoning':
-      return zoningPlain(String(v)) ?? String(v);
+      return zoningPlain(String(v), t.locale) ?? String(v);
     case 'size':
       return t('auto.size', { size: String(v) });
     // Assess summary: SiteFacts.lotKind -> the workbook's own wording.

@@ -1,0 +1,457 @@
+{
+ "edible-small-tree-both-serviceberry": {
+  "common": "Serviceberry (pyebwa ti fwi)",
+  "notes": "Pati ou ka manje: fwi",
+  "matureSize": "20–30 pye"
+ },
+ "edible-small-tree-both-redbud": {
+  "common": "Redbud (pyebwa flè woz)",
+  "notes": "Pati ou ka manje: flè; Varyete: Forest Pansy",
+  "matureSize": "20–25 pye"
+ },
+ "edible-small-tree-both-apple": {
+  "common": "Pòm (apple)",
+  "notes": "Pati ou ka manje: fwi; Varyete: Enterprise",
+  "matureSize": "10–20 pye"
+ },
+ "edible-small-tree-both-peach": {
+  "common": "Pèch (peach)",
+  "notes": "Pati ou ka manje: fwi; Varyete: Contender",
+  "matureSize": "10–20 pye"
+ },
+ "edible-small-tree-both-pear": {
+  "common": "Pwa (pear)",
+  "notes": "Pati ou ka manje: fwi; Varyete: Golden Russet bosc",
+  "matureSize": "10–20 pye"
+ },
+ "edible-small-tree-both-plum": {
+  "common": "Prin (plum)",
+  "notes": "Pati ou ka manje: fwi; Varyete: Methly",
+  "matureSize": "10–20 pye"
+ },
+ "edible-shrub-sun-red-currant": {
+  "common": "Red Currant (ti fwi wouj)",
+  "notes": "Pati ou ka manje: fwi; Varyete: Red Lake",
+  "matureSize": "3–4 pye"
+ },
+ "edible-shrub-sun-gooseberry": {
+  "common": "Gooseberry (ti fwi)",
+  "notes": "Pati ou ka manje: fwi; Varyete: Black Velvet",
+  "matureSize": "3–4 pye"
+ },
+ "edible-shrub-sun-pasture-rose": {
+  "common": "Woz sovaj (pasture rose)",
+  "notes": "Pati ou ka manje: fwi woz la (rose hips), petal yo",
+  "matureSize": "3–4 pye"
+ },
+ "edible-shrub-sun-low-bush-blueberry": {
+  "common": "Bluberi ba (low bush blueberry)",
+  "notes": "Pati ou ka manje: fwi; Varyete: Chippewa",
+  "matureSize": "2–3 pye"
+ },
+ "edible-perennial-sun-strawberries": {
+  "common": "Frèz (strawberries)",
+  "notes": "Pati ou ka manje: fwi; Varyete: Sweet Kiss",
+  "matureSize": "6 pous"
+ },
+ "edible-perennial-sun-virginia-strawberry": {
+  "common": "Frèz Vijini (Virginia strawberry)",
+  "notes": "Pati ou ka manje: flè",
+  "matureSize": "1–2 pye"
+ },
+ "edible-perennial-sun-rudbeckia": {
+  "common": "Rudbeckia (flè jòn)"
+ },
+ "edible-perennial-sun-prairie-dropseed": {
+  "common": "Prairie Dropseed (zèb)"
+ },
+ "edible-perennial-sun-hairy-field-aster": {
+  "common": "Hairy field aster (flè aster)"
+ },
+ "edible-perennial-sun-sedum": {
+  "common": "Sedum (plant gra)",
+  "notes": "Varyete: Larinem Park"
+ },
+ "edible-shrub-shade-red-twig-dogwood": {
+  "common": "Red-twig Dogwood (touf bwa branch wouj)",
+  "notes": "Varyete: Arctic Fire"
+ },
+ "edible-shrub-shade-arrowwood-viburnum": {
+  "common": "Arrowwood viburnum (touf bwa)"
+ },
+ "edible-shrub-shade-lowbush-blueberry": {
+  "common": "Bluberi ba (lowbush blueberry)"
+ },
+ "edible-shrub-shade-mountain-laurel": {
+  "common": "Mountain Laurel (touf bwa ki toujou vèt)",
+  "notes": "Varyete: Pink Charm"
+ },
+ "edible-perennial-shade-lady-fern": {
+  "common": "Lady Fern (foujè)"
+ },
+ "edible-perennial-shade-wild-geranium": {
+  "common": "Jeranyòm sovaj (wild geranium)"
+ },
+ "edible-perennial-shade-cinnamon-fern": {
+  "common": "Cinnamon Fern (foujè)"
+ },
+ "edible-perennial-shade-jacobs-ladder": {
+  "common": "Jacob's Ladder (ti flè ble)"
+ },
+ "edible-perennial-shade-pennsylvania-sedge": {
+  "common": "Pennsylvania Sedge (zèb)"
+ },
+ "edible-perennial-shade-hayscented-fern": {
+  "common": "Hayscented Fern (foujè)"
+ },
+ "edible-perennial-shade-coral-bells": {
+  "common": "Coral bells (plant fèy koulè)"
+ },
+ "sanctuary-large-tree-both-burr-oak": {
+  "common": "Burr Oak (chèn)",
+  "notes": "Pou sans yo: bèl fòm branch",
+  "matureSize": "50–70 pye"
+ },
+ "sanctuary-large-tree-both-sweet-birch": {
+  "common": "Sweet Birch (pyebwa)",
+  "notes": "Pou sans yo: flè ki chame w / santi bon",
+  "matureSize": "30–50 pye"
+ },
+ "sanctuary-small-tree-sun-washington-hawthorne": {
+  "common": "Washington Hawthorne (pyebwa pikan)",
+  "notes": "Pou sans yo: fwi wouj klere",
+  "matureSize": "15–20 pye"
+ },
+ "sanctuary-small-tree-sun-sourwood": {
+  "common": "Sourwood (pyebwa)",
+  "notes": "Pou sans yo: koulè otòn bonè",
+  "matureSize": "15–20 pye"
+ },
+ "sanctuary-small-tree-sun-fringetree": {
+  "common": "Fringetree (pyebwa flè blan)",
+  "notes": "Pou sans yo: fleri an jen — flè ki santi bon",
+  "matureSize": "15–20 pye"
+ },
+ "sanctuary-shrub-sun-summersweet": {
+  "common": "Summersweet (touf bwa flè santi bon)",
+  "notes": "Pou sans yo: flè ki santi bon",
+  "matureSize": "3–4 pye"
+ },
+ "sanctuary-shrub-sun-sweetfern": {
+  "common": "Sweetfern (touf bwa fèy santi bon)",
+  "notes": "Pou sans yo: fèy ki santi bon",
+  "matureSize": "1–2 pye"
+ },
+ "sanctuary-shrub-sun-sweetspire": {
+  "common": "Sweetspire (touf bwa)",
+  "notes": "Pou sans yo: flè ki santi bon",
+  "matureSize": "3–4 pye"
+ },
+ "sanctuary-shrub-sun-swamp-azalea": {
+  "common": "Swamp Azalea (touf bwa flè blan)",
+  "notes": "Pou sans yo: flè ki santi bon",
+  "matureSize": "3–4 pye"
+ },
+ "sanctuary-perennial-sun-blue-false-indigo": {
+  "common": "Blue False Indigo (fo digo ble)",
+  "notes": "Pou sans yo: gous grenn ki fè bri tankou chacha",
+  "matureSize": "2–3 pye"
+ },
+ "sanctuary-perennial-sun-wild-bergamot": {
+  "common": "Wild Bergamot (flè mov)",
+  "notes": "Pou sans yo: fèy ki santi bon",
+  "matureSize": "2–3 pye"
+ },
+ "sanctuary-perennial-sun-sideoats-grama": {
+  "common": "Sideoats Grama (zèb)",
+  "notes": "Pou sans yo: mouvman / bri ki kalme w",
+  "matureSize": "2–3 pye"
+ },
+ "sanctuary-perennial-sun-prairie-dropseed": {
+  "common": "Prairie Dropseed (zèb)",
+  "notes": "Pou sans yo: fèy ki santi bon / dous lè ou manyen yo",
+  "matureSize": "1–2 pye"
+ },
+ "sanctuary-perennial-sun-aster": {
+  "common": "Aster (flè aster)",
+  "notes": "Pou sans yo: fleri nan otòn",
+  "matureSize": "2–3 pye"
+ },
+ "sanctuary-perennial-sun-moonbeam-tickseed": {
+  "common": "Moonbeam Tickseed (flè jòn)",
+  "notes": "Pou sans yo: fleri pandan lontan",
+  "matureSize": "2–3 pye"
+ },
+ "sanctuary-perennial-sun-blazing-star": {
+  "common": "Blazing Star (flè vyolèt)",
+  "notes": "Pou sans yo: atire polinizatè",
+  "matureSize": "2–3 pye"
+ },
+ "sanctuary-perennial-sun-tufted-hairgrass": {
+  "common": "Tufted Hairgrass (zèb)",
+  "notes": "Pou sans yo: mouvman ki kalme w",
+  "matureSize": "1–2 pye"
+ },
+ "sanctuary-small-tree-shade-american-hornbeam": {
+  "common": "American Hornbeam (pyebwa)",
+  "notes": "Pou sans yo: ekòs ki sanble ak misk",
+  "matureSize": "15–20 pye"
+ },
+ "sanctuary-small-tree-shade-alternate-leaf-dogwood": {
+  "common": "Alternate Leaf Dogwood (pyebwa)",
+  "notes": "Pou sans yo: flè ki santi bon",
+  "matureSize": "15–20 pye"
+ },
+ "sanctuary-small-tree-shade-redbud": {
+  "common": "Redbud (pyebwa flè woz)",
+  "notes": "Pou sans yo: flè byen bonè nan prentan",
+  "matureSize": "15–20 pye"
+ },
+ "sanctuary-small-tree-shade-witchhazel": {
+  "common": "Witchhazel (pyebwa flè jòn)",
+  "notes": "Pou sans yo: flè ki gen yon fòm dwòl epi ki santi bon",
+  "matureSize": "10–15 pye"
+ },
+ "sanctuary-shrub-shade-mountain-laurel": {
+  "common": "Mountain Laurel (touf bwa ki toujou vèt)",
+  "notes": "Pou sans yo: rete vèt tout ane a",
+  "matureSize": "2–3 pye"
+ },
+ "sanctuary-shrub-shade-witch-alder": {
+  "common": "Witch Alder (touf bwa)",
+  "notes": "Pou sans yo: fleri bonè",
+  "matureSize": "3–4 pye"
+ },
+ "sanctuary-shrub-shade-new-jersey-tea": {
+  "common": "New Jersey Tea (touf bwa)",
+  "notes": "Pou sans yo: dous lè ou manyen l",
+  "matureSize": "2–3 pye"
+ },
+ "sanctuary-shrub-shade-virginia-sweetspire": {
+  "common": "Virginia Sweetspire (touf bwa)",
+  "notes": "Pou sans yo: bèl flè ak bèl koulè otòn",
+  "matureSize": "1–2 pye"
+ },
+ "sanctuary-perennial-shade-lady-fern": {
+  "common": "Lady Fern (foujè)",
+  "notes": "Pou sans yo: dous lè ou manyen l",
+  "matureSize": "2–3 pye"
+ },
+ "sanctuary-perennial-shade-pennsylvania-sedge": {
+  "common": "Pennsylvania Sedge (zèb)",
+  "notes": "Pou sans yo: dous lè ou manyen l",
+  "matureSize": "6 pous–1 pye"
+ },
+ "sanctuary-perennial-shade-cinnamon-fern": {
+  "common": "Cinnamon Fern (foujè)",
+  "notes": "Pou sans yo: dous lè ou manyen l",
+  "matureSize": "2–3 pye"
+ },
+ "sanctuary-perennial-shade-fragrant-golden-rod": {
+  "common": "Fragrant Goldenrod (flè jòn)",
+  "notes": "Pou sans yo: fèy ki santi bon",
+  "matureSize": "2–3 pye"
+ },
+ "sanctuary-perennial-shade-shorts-aster": {
+  "common": "Short's Aster (flè aster)",
+  "notes": "Pou sans yo: fleri ta",
+  "matureSize": "3 pye"
+ },
+ "sanctuary-perennial-shade-columbine": {
+  "common": "Columbine (flè)",
+  "notes": "Pou sans yo: fleri bonè",
+  "matureSize": "2–3 pye"
+ },
+ "sanctuary-perennial-shade-celadine-poppy": {
+  "common": "Celandine Poppy (flè jòn)",
+  "notes": "Pou sans yo: fleri bonè",
+  "matureSize": "1–2 pye"
+ },
+ "nature-large-tree-both-shingle-oak": {
+  "common": "Shingle Oak (chèn)"
+ },
+ "nature-large-tree-both-blackgum": {
+  "common": "Blackgum (pyebwa)"
+ },
+ "nature-large-tree-both-basswood": {
+  "common": "Basswood (tiyèl)"
+ },
+ "nature-small-tree-both-american-hornbeam": {
+  "common": "American Hornbeam (pyebwa)"
+ },
+ "nature-small-tree-both-serviceberry": {
+  "common": "Serviceberry (pyebwa ti fwi)"
+ },
+ "nature-small-tree-both-pagoda-dogwood": {
+  "common": "Pagoda Dogwood (pyebwa)"
+ },
+ "nature-small-tree-both-witchhazel": {
+  "common": "Witchhazel (pyebwa flè jòn)"
+ },
+ "nature-small-tree-both-blackhaw-viburnum": {
+  "common": "Blackhaw Viburnum (touf bwa)"
+ },
+ "nature-shrub-sun-dwarf-summersweet": {
+  "common": "Dwarf Summersweet (touf bwa)"
+ },
+ "nature-shrub-sun-sweetfern": {
+  "common": "Sweetfern (touf bwa fèy santi bon)"
+ },
+ "nature-shrub-sun-sweetspire": {
+  "common": "Sweetspire (touf bwa)",
+  "notes": "Varyete: Little Henry"
+ },
+ "nature-shrub-sun-eastern-ninebark": {
+  "common": "Eastern Ninebark (touf bwa)"
+ },
+ "nature-shrub-sun-swamp-azalea": {
+  "common": "Swamp Azalea (touf bwa flè blan)"
+ },
+ "nature-perennial-sun-bluestar": {
+  "common": "Bluestar (flè ble)",
+  "notes": "Varyete: Storm Cloud"
+ },
+ "nature-perennial-sun-sideoats-grama": {
+  "common": "Sideoats Grama (zèb)"
+ },
+ "nature-perennial-sun-wild-bergamot": {
+  "common": "Wild Bergamot (flè mov)"
+ },
+ "nature-perennial-sun-narrow-leaf-mountainmint": {
+  "common": "Narrow-leaf Mountainmint (mant sovaj)"
+ },
+ "nature-perennial-sun-rudbeckia": {
+  "common": "Rudbeckia (flè jòn)"
+ },
+ "nature-perennial-sun-prairie-dropseed": {
+  "common": "Prairie Dropseed (zèb)"
+ },
+ "nature-perennial-sun-hairy-field-aster": {
+  "common": "Hairy field aster (flè aster)"
+ },
+ "nature-perennial-sun-sedum": {
+  "common": "Sedum (plant gra)",
+  "notes": "Varyete: Larinem Park"
+ },
+ "nature-shrub-shade-red-twig-dogwood": {
+  "common": "Red-twig Dogwood (touf bwa branch wouj)",
+  "notes": "Varyete: Arctic Fire"
+ },
+ "nature-shrub-shade-arrowwood-viburnum": {
+  "common": "Arrowwood viburnum (touf bwa)"
+ },
+ "nature-shrub-shade-lowbush-blueberry": {
+  "common": "Bluberi ba (lowbush blueberry)"
+ },
+ "nature-shrub-shade-mountain-laurel": {
+  "common": "Mountain Laurel (touf bwa ki toujou vèt)",
+  "notes": "Varyete: Pink Charm"
+ },
+ "nature-perennial-shade-lady-fern": {
+  "common": "Lady Fern (foujè)"
+ },
+ "nature-perennial-shade-wild-geranium": {
+  "common": "Jeranyòm sovaj (wild geranium)"
+ },
+ "nature-perennial-shade-cinnamon-fern": {
+  "common": "Cinnamon Fern (foujè)"
+ },
+ "nature-perennial-shade-jacobs-ladder": {
+  "common": "Jacob's Ladder (ti flè ble)"
+ },
+ "nature-perennial-shade-pennsylvania-sedge": {
+  "common": "Pennsylvania Sedge (zèb)"
+ },
+ "nature-perennial-shade-hayscented-fern": {
+  "common": "Hayscented Fern (foujè)"
+ },
+ "nature-perennial-shade-coral-bells": {
+  "common": "Coral bells (plant fèy koulè)"
+ },
+ "event-large-tree-both-scarlet-oak": {
+  "common": "Scarlet Oak (chèn)",
+  "matureSize": "40–50 pye"
+ },
+ "event-large-tree-both-american-elm": {
+  "common": "American Elm (pyebwa)",
+  "notes": "Varyete: Princeton",
+  "matureSize": "50–70 pye"
+ },
+ "event-small-tree-both-serviceberry": {
+  "common": "Serviceberry (pyebwa ti fwi)",
+  "matureSize": "15–20 pye"
+ },
+ "event-small-tree-both-alternate-leaf-dogwood": {
+  "common": "Alternate Leaf Dogwood (pyebwa)",
+  "matureSize": "15–20 pye"
+ },
+ "event-small-tree-both-american-hophornbeam": {
+  "common": "American Hophornbeam (pyebwa)",
+  "matureSize": "15–20 pye"
+ },
+ "event-small-tree-both-sassafras": {
+  "common": "Sassafras (pyebwa)",
+  "matureSize": "25–35 pye"
+ },
+ "event-small-tree-both-redbud": {
+  "common": "Redbud (pyebwa flè woz)",
+  "notes": "Varyete: Lavender twist",
+  "matureSize": "15–20 pye"
+ },
+ "event-perennial-sun-butterflyweed": {
+  "common": "Butterflyweed (flè zoranj pou papiyon)",
+  "matureSize": "2–3 pye"
+ },
+ "event-perennial-sun-blue-false-indigo": {
+  "common": "Blue False Indigo (fo digo ble)",
+  "matureSize": "2–3 pye"
+ },
+ "event-perennial-sun-plains-coreopsis": {
+  "common": "Plains Coreopsis (flè jòn)",
+  "matureSize": "1–2 pye"
+ },
+ "event-perennial-sun-love-grass": {
+  "common": "Love Grass (zèb)",
+  "matureSize": "2–3 pye"
+ },
+ "event-perennial-sun-black-eyed-susan": {
+  "common": "Black-eyed Susan (flè jòn je nwa)",
+  "matureSize": "2–3 pye"
+ },
+ "event-perennial-sun-wild-pinks": {
+  "common": "Wild Pinks (ti flè woz)",
+  "matureSize": "1–2 pye"
+ },
+ "event-perennial-sun-fragrant-goldenrod": {
+  "common": "Fragrant Goldenrod (flè jòn)",
+  "matureSize": "1–2 pye"
+ },
+ "event-perennial-sun-shorts-aster": {
+  "common": "Short's Aster (flè aster)",
+  "matureSize": "2–3 pye"
+ },
+ "event-perennial-shade-prairie-onion": {
+  "common": "Prairie Onion (zonyon sovaj)",
+  "matureSize": "1–2 pye"
+ },
+ "event-perennial-shade-lady-fern": {
+  "common": "Lady Fern (foujè)",
+  "matureSize": "1–2 pye"
+ },
+ "event-perennial-shade-bunny-blue-sedge": {
+  "common": "Bunny Blue Sedge (zèb)",
+  "matureSize": "6–12 pous"
+ },
+ "event-perennial-shade-allen-bush-green-and-gold": {
+  "common": "Allen Bush Green and Gold (flè jòn)",
+  "matureSize": "6–12 pous"
+ },
+ "event-perennial-shade-wood-fern": {
+  "common": "Wood Fern (foujè)",
+  "matureSize": "1–2 pye"
+ },
+ "event-perennial-shade-wild-geranium": {
+  "common": "Jeranyòm sovaj (wild geranium)",
+  "matureSize": "1–2 pye"
+ }
+}

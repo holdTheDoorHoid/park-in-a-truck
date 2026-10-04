@@ -1,0 +1,400 @@
+---
+title: Mơ ước
+intro: Thiết kế công viên của bạn bằng những mảnh ghép tự do kết hợp của chính Park in a Truck.
+sources:
+  - Cẩm nang (Toolkit), tr. 39–55 (Mơ ước, Các thiết kế theo chủ đề, Mảnh ghép công viên, Kết hợp tự do)
+  - Sổ tay thực hành Mơ ước, tr. 1–20
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Choice from '../../../../components/workbook/Choice.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import Download from '../../../../components/workbook/Download.astro';
+import Planner from '../../../../components/widgets/Planner.astro';
+import CostEstimator from '../../../../components/widgets/CostEstimator.astro';
+import PlantPicker from '../../../../components/widgets/PlantPicker.astro';
+import { ELEMENTS } from '../../../../data/elements';
+import { THEMES, THEME_ORDER } from '../../../../data/themes';
+import { SIZES } from '../../../../lib/sizing';
+import { urlFor } from '../../../../i18n/url.ts';
+export const u = urlFor('vi');
+import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
+
+export const THEME_REQUIREMENTS = {
+  edible: { trees: 'Ít hoặc không có cây', sun: 'Nắng cả ngày hoặc phần lớn có nắng', lot: 'Rất hợp với lô đất góc đường', volunteers: 'Tình nguyện viên tham gia thường xuyên' },
+  sanctuary: { trees: 'Bao nhiêu cây cũng được', sun: 'Nắng nhiều hay ít cũng được', lot: 'Lô đất giữa dãy nhà hoặc góc đường', volunteers: 'Tình nguyện viên tham gia ít' },
+  nature: { trees: 'Rất hợp với lô đất có cây', sun: 'Nắng nhiều hay ít cũng được', lot: 'Lô đất giữa dãy nhà hoặc góc đường', volunteers: 'Cần tham gia ít' },
+  event: { trees: 'Một/hai cây hoặc nhiều cây', sun: 'Nắng nhiều hay ít cũng được', lot: 'Rất hợp với lô đất góc đường', volunteers: 'Tình nguyện viên tham gia vừa phải' },
+};
+
+{/* Vietnamese names for THEMES / ELEMENTS (same words as src/i18n/data/vi/themes.json and elements.json): this chapter reads the English data directly, and a chapter may not import the overlay helpers. */}
+export const VI_THEMES = {
+  edible: { name: 'Vườn ăn được', blurb: 'Chia sẻ thức ăn và gắn bó với hàng xóm — trái cây, rau và một chiếc bàn chung.' },
+  sanctuary: { name: 'Chốn an yên', blurb: 'Một nơi trú yên tĩnh để ngồi một mình, đọc sách và họp mặt nhỏ.' },
+  nature: { name: 'Thiên nhiên', blurb: 'Cây bản địa, nơi sống cho sinh vật, và chỗ chơi cho trẻ em và các loài thụ phấn.' },
+  event: { name: 'Sự kiện', blurb: 'Không gian cho biểu diễn, chợ phiên và lễ hội của khu phố.' },
+};
+export const VI_ELEMENTS = {
+  'gabion-wall': 'Tường rọ đá', 'gabion-bench': 'Ghế rọ đá mặt gỗ', 'gabion-bench-8': "Ghế rọ đá mặt gỗ 8'",
+  'gabion-table': 'Bàn rọ đá mặt gỗ', 'bench-back': 'Ghế dài có tựa lưng', 'bench-4': "Ghế dài 4' (không tựa lưng)",
+  stool: 'Ghế đẩu', 'table-2': "Bàn 2'", 'table-4': "Bàn 4'", 'table-6': "Bàn 6'",
+  'planter-18': 'Bồn trồng cây 18" (nhỏ)', 'planter-24': 'Bồn trồng cây 24" (lớn)', 'shade-canopy': 'Mái che nắng',
+  stage: 'Sân khấu', workbench: 'Bàn làm việc / bàn đứng', 'rain-barrel': 'Thùng hứng nước mưa', 'compost-bin': 'Thùng ủ phân',
+  'raised-bed': 'Luống trồng nâng cao', 'keyhole-garden': 'Vườn lỗ khóa (luống tròn nâng cao)', 'cold-frame': 'Khung ươm cây (cold frame)',
+  'communal-table': 'Bàn chung', 'cafe-table': 'Bàn cà phê + ghế', 'event-tent': 'Lều sự kiện', 'flexible-seating': 'Chỗ ngồi di động',
+  'outdoor-classroom': 'Lớp học ngoài trời', 'nature-play': 'Khu chơi thiên nhiên', birdbath: 'Chậu tắm cho chim',
+  'bird-accessories': 'Nhà chim & máng ăn cho chim', shed: 'Nhà kho nhỏ', hammock: 'Võng có khung đứng',
+  'porch-swing': 'Xích đu có khung đứng', 'solar-fountain': 'Đài phun nước năng lượng mặt trời',
+};
+
+{/* The Assemble grid below skips surfaces, plants and existing-conditions markers — only built/bought elements get an assembly link. */}
+export const NOT_BUILT = new Set(['planting-square', 'perennial', 'shrub', 'small-tree', 'large-tree', 'gravel', 'existing-tree', 'downspout', 'wet-area', 'hydrant', 'utility-line']);
+export const ICON_FALLBACK = { 'table-6': 'table-4', 'bench-4': 'bench-back', 'gabion-bench-8': 'gabion-bench' };
+// The workbook's Assemble page shows these elements; newer vocabulary (e.g. cafe-table) has no icon there.
+export const ASSEMBLE_ICONS = new Set(['bench-back','bird-accessories','birdbath','cold-frame','communal-table','compost-bin','event-tent','flexible-seating','gabion-bench','gabion-wall','nature-play','outdoor-classroom','planter-18','planter-24','rain-barrel','raised-bed','shade-canopy','shed','stage','stool','table-2','table-4','workbench']);
+
+{/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — reminds a reader who hasn't recorded a lot agreement yet, before they design and budget for a lot they may not have permission for. */}
+<LotAgreementNotice />
+
+Thiết kế một công viên Park in a Truck giống như mua một bộ váy hay bộ com-lê mới. Trước tiên, bạn đến cửa hàng và
+ngắm các ma-nơ-canh để chọn kiểu, màu hay họa tiết mình thích. Dĩ nhiên, cái trông đẹp khi treo trên giá chưa chắc đã hợp
+với bạn. Vì vậy bạn phải tìm bộ đồ có cỡ vừa với bạn và dáng người của bạn, rồi mặc thử. Nếu không vừa, bạn có thể sửa
+lại. Cuối cùng, bạn thêm phụ kiện để nó thật sự mang dấu ấn riêng.
+
+Cũng như đi mua quần áo, công viên của bạn cần hợp với phong cách và mục đích sử dụng của bạn. Công viên Park in a Truck
+có bốn phong cách khác nhau — chúng tôi gọi là **chủ đề**: Vườn ăn được, Chốn an yên, Thiên nhiên và Sự kiện. Mỗi chủ đề
+hợp nhất với một dịp hay một hoàn cảnh riêng.
+
+Giờ thì phần vui nhất bắt đầu — hình dung ra công viên của bạn! Bước này bắt đầu bằng việc chọn một trong bốn thiết kế
+theo chủ đề. Nhưng đó mới chỉ là khởi đầu: mỗi chủ đề có một bộ **mảnh ghép công viên** tự do kết hợp, giúp bạn làm một
+**công viên theo ý mình** vừa đúng kích thước lô đất của bạn.
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={3} />
+
+## Bốn chủ đề {/* #the-four-themes */}
+
+Mỗi chủ đề chú trọng những cách dùng công viên khác nhau: có chủ đề rất hợp cho những buổi tụ họp của khu phố, có chủ đề
+hợp hơn cho những lúc muốn ở một mình. Hãy so số cây, lượng nắng và vị trí lô đất bạn đã ghi trong phần Tóm tắt của bước
+Khảo sát với các yêu cầu chung bên dưới.
+
+Vì công viên nào cũng có ba phần — **khung**, **mảnh trước** và **mảnh sau** — bạn có thể dùng một chủ đề cho cả công
+viên, hoặc **kết hợp tự do** nhiều chủ đề khác nhau, giống như phối áo và áo khoác với quần trong một bộ đồ.
+
+### Các món cơ bản của thiết kế (chủ đề nào cũng có)
+
+Một vài món chính có mặt trong cả bốn chủ đề:
+
+- **Tường rọ đá (gabion).** Những giỏ lưới thép chứa đầy đá tạo cho công viên một đường viền riêng — hãy đổ vào đó những
+  vật liệu nhặt được như gạch và bê tông vỡ để làm rẻ hơn và bền vững hơn.
+- **Ghế dài.** Một chỗ để ngồi, cộng đồng của bạn dễ dàng tùy biến. Sơn ghế hay để gỗ tự bạc màu theo thời tiết — cách
+  nào cũng được.
+- **Thùng hứng nước mưa.** Công viên nào cũng cần nước. Thùng hứng nước mưa gom nước mưa để tưới cây và hoa.
+- **Cây trồng.** Cây bản địa thu hút động vật hoang dã, tăng đa dạng sinh học và góp phần bảo tồn.
+
+{THEME_ORDER.map((id) => (
+  <div style={`margin:2.5em 0; border-left: 8px solid ${THEMES[id].frame}; padding-left: 1.2em;`}>
+    <h3 style={`color:${THEMES[id].frame}`}>{VI_THEMES[id].name}</h3>
+    <p>{VI_THEMES[id].blurb}</p>
+    <Figure
+      src={`img/dream/theme-${id}.webp`}
+      alt={`Chủ đề ${VI_THEMES[id].name}: hình minh họa ba chiều và mặt bằng của công viên, với các mảnh khung/trước/sau tô màu của chủ đề`}
+    />
+    <ul class="theme-reqs">
+      <li><strong>Cây:</strong> {THEME_REQUIREMENTS[id].trees}</li>
+      <li><strong>Nắng:</strong> {THEME_REQUIREMENTS[id].sun}</li>
+      <li><strong>Lô đất:</strong> {THEME_REQUIREMENTS[id].lot}</li>
+      <li><strong>Tình nguyện viên:</strong> {THEME_REQUIREMENTS[id].volunteers}</li>
+    </ul>
+  </div>
+))}
+
+{/* site-added: Playful Learning is the toolkit's own appendix (linked from its Dream chapter); cross-linking it here matches where the toolkit itself introduces it. */}
+<Callout kind="note" title="Thiết kế cho cả trẻ em?">
+  Park in a Truck đã hợp tác với **Playful Learning Landscapes**, một sáng kiến kết hợp khoa học về cách trẻ em học hỏi
+  với việc thiết kế công viên hằng ngày — bàn phân loại, bánh xe kể chuyện, kể chuyện bằng hình biểu tượng và nhiều thứ
+  khác, phù hợp với từng chủ đề trong bốn chủ đề ở trên.
+  [Xem hướng dẫn Playful Learning ↗](/playful-learning/)
+</Callout>
+
+<Field
+  id="dream.theme-reasons"
+  label="Có lý do đặc biệt nào khiến bạn thích một chủ đề công viên hơn các chủ đề khác không?"
+  type="textarea"
+/>
+<Field
+  id="dream.theme-qualities"
+  label="Có những nét cụ thể nào trong các chủ đề mà bạn mong muốn nhất không?"
+  type="textarea"
+/>
+<Choice
+  id="dream.preferred-theme"
+  label="Chủ đề công viên bạn thích nhất là gì?"
+  options={[
+    { value: 'edible', label: 'Vườn ăn được', color: THEMES.edible.frame },
+    { value: 'sanctuary', label: 'Chốn an yên', color: THEMES.sanctuary.frame },
+    { value: 'nature', label: 'Thiên nhiên', color: THEMES.nature.frame },
+    { value: 'event', label: 'Sự kiện', color: THEMES.event.frame },
+    { value: 'mix', label: 'Kết hợp nhiều chủ đề', desc: 'Mỗi phần khung, trước và sau một chủ đề khác nhau' },
+  ]}
+/>
+<Choice
+  id="dream.theme-fits-site"
+  label="Chủ đề bạn chọn có hợp với các đặc điểm khu đất trong tờ tóm tắt của bước Khảo sát không?"
+  options={[
+    { value: 'yes', label: 'Có', desc: 'Rất hợp — tiếp tục thôi' },
+    { value: 'no', label: 'Không', desc: 'Xem xét lại chủ đề công viên' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={5} />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={6} label="Chủ đề Vườn ăn được (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={7} label="Chủ đề Chốn an yên (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={8} label="Chủ đề Thiên nhiên (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={9} label="Chủ đề Sự kiện (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={10} label="Chủ đề nào hợp với bạn? (PDF)" />
+
+## Mảnh ghép công viên & cách dùng {/* #park-pieces-how-to-use-them */}
+
+Mẫu thiết kế công viên của bạn được ghép từ những phần khác nhau — **mảnh ghép công viên**. Có các mảnh TRƯỚC và mảnh
+SAU cho phần bên trong công viên, và một KHUNG để đặt chúng vào. Mỗi mảnh thuộc một trong bốn chủ đề, và mảnh nào cũng
+thay thế lẫn nhau được, nên bạn có thể kết hợp tự do giữa các chủ đề hoặc chọn một chủ đề cho cả công viên.
+
+Giống như khung quanh một tấm ảnh gia đình, **khung** tạo đường viền quanh phần bên trong công viên — một chỗ thân thiện
+để đặt lối vào, cây và các món khác. Phần bên trong được chia thành **mảnh trước** (gần lối vào công viên nhất, chứa các
+món chính cố định) và **mảnh sau** (thường trống trải hơn, để dùng linh hoạt).
+
+Hình trong cẩm nang được vẽ theo góc nhìn ba chiều **axon** (phối cảnh trục đo), giống như một tấm ảnh, để dễ hình dung.
+Để thật sự bố trí công viên, bạn sẽ dùng **mặt bằng** phẳng trông như một tấm bản đồ đơn giản — cả hai góc nhìn đều thể
+hiện cùng những thứ giống nhau.
+
+<Figure
+  src="img/dream/park-pieces-frame-front-back.webp"
+  alt="Sơ đồ so sánh góc nhìn axon (ba chiều) và mặt bằng của công viên: một mảnh khung ghép với một mảnh trước và một mảnh sau thành cả công viên, vẽ cả dạng khối ba chiều chồng lên nhau lẫn dạng mặt bằng phẳng"
+/>
+
+<Figure
+  src="img/dream/mix-and-match.webp"
+  alt="Bốn công viên mẫu, mỗi công viên ghép một mảnh khung, mảnh trước và mảnh sau từ các chủ đề khác nhau — sự kiện, chốn an yên, vườn ăn được và thiên nhiên — cho thấy các mảnh kết hợp tự do thành vô số cách phối"
+/>
+
+<Callout kind="auto">
+  Trên giấy, kết hợp tự do nghĩa là phải in, cắt và dán băng keo các mảnh lại với nhau bằng tay. Công cụ thiết kế bên
+  dưới làm phần đó giúp bạn — chọn chủ đề cho khung, mảnh trước và mảnh sau, và nó ghép ngay lập tức, đúng kích thước
+  lô đất thật của bạn.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={4} />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={13} label="Chơi với các mảnh ghép (PDF)" />
+
+## Thiết kế công viên của bạn {/* #design-your-park */}
+
+{/* site-added: mode prop for the planner workstream; placement and surrounding copy are ours. */}
+<Planner mode="design" />
+
+<Callout kind="auto" title="Tự động vừa với lô đất thật của bạn">
+  Công cụ thiết kế đặt các mảnh ghép công viên của chính Park in a Truck vào lô đất thật của bạn — chỉnh cho vừa bằng
+  các dải nối đúng y như sổ tay thực hành hướng dẫn làm bằng tay — và đếm mọi thứ giúp bạn trong lúc làm, sẵn sàng cho
+  bảng ước tính chi phí và danh sách cây ở bên dưới.
+</Callout>
+
+<details>
+  <summary>Thích làm trên giấy? In các mảnh ghép công viên</summary>
+
+  Sau khi xem các chủ đề, hãy để ý chữ cái bạn đã đánh dấu trong trang Tóm tắt của bước Khảo sát (cỡ A–E) và vị trí lô
+  đất của bạn (giữa dãy nhà, hay góc đường với con đường ở bên phải hoặc bên trái). Bấm vào liên kết tải về tương ứng bên
+  dưới — mỗi liên kết mở một thư mục Google Drive chứa các mảnh ghép công viên để in cho cỡ và loại lô đất đó.
+
+  <table class="pieces-table">
+    <thead>
+      <tr><th>Cỡ</th><th>Lô đất giữa dãy nhà</th><th>Lô đất góc đường — đường ở bên phải</th><th>Lô đất góc đường — đường ở bên trái</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>A</strong></td><td><a href="https://drive.google.com/open?id=1e3j5d8ZsIxVxsJsdtoosKgMAuCpQwBKo" target="_blank" rel="noopener">Tải về ↗</a></td><td><a href="https://drive.google.com/open?id=1Txw_BMZlvseeyCetUYbGfVSIu2_eq7HW" target="_blank" rel="noopener">Tải về ↗</a></td><td><a href="https://drive.google.com/open?id=1LBQG4r2z1geA6rIEyK_GFYGzV4IBQFua" target="_blank" rel="noopener">Tải về ↗</a></td></tr>
+      <tr><td><strong>B</strong></td><td><a href="https://drive.google.com/open?id=1LC6QvBJ2D-LyhbFGYXsjByiWQaFk06AF" target="_blank" rel="noopener">Tải về ↗</a></td><td><a href="https://drive.google.com/open?id=1LKVUm28LhzKNqmMPPsufWrxt-xqTyJrk" target="_blank" rel="noopener">Tải về ↗</a></td><td><a href="https://drive.google.com/open?id=1LQmrAsZd7Aw0M6F2iwFUUWjoUm-uAIFA" target="_blank" rel="noopener">Tải về ↗</a></td></tr>
+      <tr><td><strong>C</strong></td><td><a href="https://drive.google.com/open?id=1LR04NYM7Ii2srwf4E5tl2t26R8jxdWQr" target="_blank" rel="noopener">Tải về ↗</a></td><td><a href="https://drive.google.com/open?id=1LSWINYM72UNHj6hGjrsn0S51h2hJL47s" target="_blank" rel="noopener">Tải về ↗</a></td><td><a href="https://drive.google.com/open?id=1LJCzWBkOh_hG8205xt1sJ17s4jQFD-H-" target="_blank" rel="noopener">Tải về ↗</a></td></tr>
+      <tr><td><strong>D</strong></td><td><a href="https://drive.google.com/open?id=1LfpisFCCWZwitjJJ2_vpFfv_Pv_pnhMf" target="_blank" rel="noopener">Tải về ↗</a></td><td><a href="https://drive.google.com/open?id=1LSqUwvHJQd5riQI56GgMO6GgN9LK7-Or" target="_blank" rel="noopener">Tải về ↗</a></td><td><a href="https://drive.google.com/open?id=1LejWNaZ9sQFiy1P3er03OuwRURV7LNQI" target="_blank" rel="noopener">Tải về ↗</a></td></tr>
+      <tr><td><strong>E</strong></td><td><a href="https://drive.google.com/open?id=1L-pqs-CuyMjeHE7UgEIDLawzv4ErTA6h" target="_blank" rel="noopener">Tải về ↗</a></td><td><a href="https://drive.google.com/open?id=1LlyI3QGglqZw5f92aR1WLES7Nuz0gkOC" target="_blank" rel="noopener">Tải về ↗</a></td><td><a href="https://drive.google.com/open?id=1LiE8uy8Uc-6R55t8cQr2Eg4CGdifcC8J" target="_blank" rel="noopener">Tải về ↗</a></td></tr>
+    </tbody>
+  </table>
+  <p class="muted">Tên loại lô đất theo đúng trang tải về của sổ tay thực hành — nếu một bộ mảnh ghép không khớp với góc đường của bạn, hãy thử bộ còn lại.</p>
+
+  Mở các mảnh ghép bạn đã tải về và in một mặt trên giấy 8.5"×11", rồi cắt theo các đường đứt nét. Canh các mảnh theo
+  những ký hiệu canh chỉnh in trên mỗi tờ, và dán băng keo lại với nhau. Tiếp tục sang bước nhỏ tiếp theo để chỉnh công
+  viên đã dán cho vừa với lô đất thật của bạn.
+
+  <PdfPage doc="downloads/workbooks/04-dream.pdf" page={11} label="Tải các mảnh ghép công viên (PDF)" />
+  <PdfPage doc="downloads/workbooks/04-dream.pdf" page={12} label="In + cắt các mảnh ghép (PDF)" />
+</details>
+
+## Chỉnh công viên cho vừa {/* #right-size-your-park */}
+
+Nếu lô đất của bạn vừa khít với các mảnh ghép, hãy bỏ qua để thêm những điều kiện có sẵn. Nếu còn dư chỗ, hãy mở rộng
+công viên bằng cách thêm dải nối — thêm vài feet khung, mảnh trước hoặc mảnh sau — để dùng hết khoảng trống có được.
+
+<table class="size-table">
+  <thead><tr><th>Cỡ</th><th>Cạnh dài</th><th>Cạnh ngắn</th></tr></thead>
+  <tbody>
+    {SIZES.map((s) => (
+      <tr><td><strong>{s.id}</strong></td><td>{s.long[0]}–{s.long[1]} ft</td><td>{s.short[0]}–{s.short[1]} ft</td></tr>
+    ))}
+  </tbody>
+</table>
+
+{/* site-added: sizing.ts also flags lots below size A; call that out here since it's the natural place a reader learns their lot doesn't fit the smallest set. */}
+<Callout kind="note" title="Nhỏ hơn cỡ A?">
+  Lớn nhỏ không quan trọng. Một ô đất 4×4, một khoảng sân trước hay thậm chí một bồn hoa bên cửa sổ vẫn có thể thành chỗ
+  trồng cây cho loài thụ phấn — hãy dùng [hướng dẫn Park Patch](/park-patch/) thay cho các mảnh ghép công viên đầy đủ ở
+  bên dưới.
+</Callout>
+
+Có hai loại dải nối: **dải nối chiều dài**, cắt chen giữa mảnh trước và mảnh sau, thêm vài feet dọc theo cạnh dài của
+công viên; **dải nối chiều rộng**, cắt theo chiều dài, thêm vài feet dọc theo cạnh ngắn. Cả hai loại dải nối đều có đường
+đứt nét màu đen đánh dấu mỗi 4 feet và đường đứt nét màu xám đánh dấu mỗi 1 foot, để bạn đếm đúng số mình cần.
+
+<Figure
+  src="img/dream/length-seam.webp"
+  alt="Sơ đồ dải nối chiều dài: đếm các đường đứt nét trên dải nối giữa mảnh trước và mảnh sau của công viên, cắt ra, rồi dán dải nối chiều rộng vào giữa công viên và dán lại với nhau"
+/>
+<Figure
+  src="img/dream/width-seam.webp"
+  alt="Sơ đồ dải nối chiều rộng: đếm các đường đứt nét trên dải nối chạy dọc chiều dài công viên, cắt cho đúng cỡ, rồi thêm dải nối chiều rộng vào giữa và dán hai bên lại với nhau"
+/>
+
+<Callout kind="auto">
+  Công cụ thiết kế tự động kéo giãn các mảnh bạn chọn cho đúng kích thước lô đất — không cần cắt hay dán.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={14} />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={15} label="Dải nối chiều dài (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={16} label="Dải nối chiều rộng (PDF)" />
+
+## Thêm những điều kiện có sẵn {/* #add-existing-conditions */}
+
+Chép những điều kiện có sẵn từ bản vẽ khu đất bạn đã vẽ trong sổ tay thực hành Khảo sát sang bản thiết kế. Đặt hai bản
+vẽ cạnh nhau và chép từng thứ sang — lưới ô giống nhau, nên chỉ cần đếm ô để biết mọi thứ nằm ở đâu. Nếu một cây có sẵn
+rơi vào khu trồng cây, tuyệt; nếu rơi vào chỗ rải sỏi, cũng không sao (bước Xây dựng sẽ giải thích cách xử lý). Nếu
+những điều kiện có sẵn đụng với thiết kế — ví dụ một cái cây nằm ngay trên ghế dài — bạn có thể bỏ ghế dài bằng cách gạch
+nó đi, hoặc dời cả mảnh trước hay mảnh sau. Thiết kế là một khuôn mẫu: nó hơi cứng nhắc, nhưng bạn luôn có thể thêm hay
+bớt để nó hợp với mình.
+
+<Callout kind="auto">
+  Những cây có sẵn, ống xả nước mưa, chỗ ẩm ướt, trụ nước cứu hỏa và dây điện, cáp mà bạn đã đánh dấu ở bước Khảo sát đã
+  được đặt sẵn trên công cụ thiết kế — hãy kéo bất cứ thứ gì đang nằm sai chỗ.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={17} />
+
+## Đếm mảnh ghép & chi phí {/* #count-your-pieces-cost */}
+
+Đã đến lúc đếm lại bản vẽ khu đất. Mỗi mảnh trước, mảnh sau và khung đều có bảng đếm tất cả các món trong đó, để bạn
+tính chi phí và đặt mua vật liệu. Sổ tay thực hành hỏi: cạnh dài của lô đất (chiều dài) bao nhiêu feet? Cạnh ngắn (chiều
+rộng)? Bạn có bao nhiêu ô trồng cây màu xanh lá? Và, theo bảng chú thích trên các mảnh ghép công viên, mỗi món đồ có bao
+nhiêu cái?
+
+<CostEstimator />
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — the order list's "fire hydrant opener" items; facts checked 2026-10-04 on water.phila.gov. */}
+<Callout kind="site" title="Ghi chú của trang web này, không phải của Park in a Truck: trụ nước cứu hỏa">
+  Danh sách đặt hàng có gợi ý dụng cụ mở trụ nước cứu hỏa. Muốn mở trụ nước cứu hỏa ở Philadelphia, bạn cần
+  [giấy phép dùng trụ nước của Philadelphia Water Department ↗](https://water.phila.gov/development/connections/hydrant-permits/)
+  (bằng tiếng Anh) và một thiết bị chống chảy ngược đã được duyệt (vườn cộng đồng được miễn phí giấy phép).
+  [Hướng dẫn làm vườn đô thị ↗](https://water.phila.gov/urban-garden-guide/) của PWD (bằng tiếng Anh) liệt kê những
+  cách khác để đưa nước đến vườn.
+</Callout>
+
+<Download href="downloads/templates/cost-estimator.xlsx" label="Bảng ước tính chi phí" note="Bảng tính gốc — hãy tạo bản sao của riêng bạn để sửa" />
+
+<details>
+  <summary>Đếm trên giấy? Nhập tổng số ở đây</summary>
+  <Field id="dream.diy-length" label="Chiều dài (cạnh dài của lô đất)" type="number" unit="ft" />
+  <Field id="dream.diy-width" label="Chiều rộng (cạnh ngắn của lô đất)" type="number" unit="ft" />
+  <Field id="dream.diy-planting-squares" label="Ô trồng cây (các ô màu xanh lá trên bản vẽ)" type="number" />
+  <p class="muted">Đếm các món đồ theo bảng chú thích in trên các mảnh ghép công viên, rồi nhập tất cả vào bảng tính ước tính chi phí ở trên.</p>
+</details>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={18} />
+
+## Đếm & chọn cây trồng {/* #count-choose-your-plants */}
+
+Chỗ nào có màu xanh lá trên bản vẽ là khu trồng cây, và mỗi ký hiệu cây đều có kích thước. Hãy đếm số cây lâu năm, cây
+bụi, cây nhỏ và cây lớn trong thiết kế của bạn — với cây lâu năm và cây bụi, đếm riêng chỗ nắng và chỗ bóng râm. Bạn sẽ
+chọn giống cây cụ thể ở bước sau.
+
+{/* site-added: the six counts show your design's numbers (project.extra.tally) until you type your own; the plant picker below uses the same numbers */}
+<Field id="dream.perennials-sun" label="Cây lâu năm — ô xanh lá chỗ có nắng" type="number" unit="ô" auto="extra.tally.plantingSquares.sun" autoNote="✓ Điền sẵn từ thiết kế của bạn — gõ để thay đổi" />
+<Field id="dream.perennials-shade" label="Cây lâu năm — ô xanh lá chỗ bóng râm" type="number" unit="ô" auto="extra.tally.plantingSquares.shade" autoNote="✓ Điền sẵn từ thiết kế của bạn — gõ để thay đổi" />
+<Field id="dream.shrubs-sun" label="Cây bụi — chỗ có nắng" type="number" auto="extra.tally.shrubs.sun" autoNote="✓ Điền sẵn từ thiết kế của bạn — gõ để thay đổi" />
+<Field id="dream.shrubs-shade" label="Cây bụi — chỗ bóng râm" type="number" auto="extra.tally.shrubs.shade" autoNote="✓ Điền sẵn từ thiết kế của bạn — gõ để thay đổi" />
+<Field id="dream.small-trees" label="Cây nhỏ" type="number" auto="extra.tally.smallTrees" autoNote="✓ Điền sẵn từ thiết kế của bạn — gõ để thay đổi" />
+<Field id="dream.large-trees" label="Cây lớn" type="number" auto="extra.tally.largeTrees" autoNote="✓ Điền sẵn từ thiết kế của bạn — gõ để thay đổi" />
+
+<PlantPicker />
+
+Mỗi chủ đề có danh sách cây gợi ý riêng — chỉ là điểm khởi đầu, không bắt buộc. Nếu bạn kết hợp hai chủ đề, hãy chọn cây
+từ cả hai danh sách.
+
+<div class="plant-list-links">
+  <Download href="https://docs.google.com/spreadsheets/d/1QsoQ6KYBT5tVrlAtTxoD5q0yP2YS5Wyt/copy" label="Danh sách cây — Vườn ăn được" />
+  <Download href="https://docs.google.com/spreadsheets/d/1RhCdaiCLbEJD8KXiX7uJMD7xJFRNCERy/copy" label="Danh sách cây — Chốn an yên" />
+  <Download href="https://docs.google.com/spreadsheets/d/1eEVK3dpBy1-xBFDaACIOTMB2Dd9COGvz/copy" label="Danh sách cây — Thiên nhiên" />
+  <Download href="https://docs.google.com/spreadsheets/d/1oy_aLqP7RoBcHngZ_uFMl_YBvzJ271MR/copy" label="Danh sách cây — Sự kiện" />
+</div>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={20} label="Chọn cây trồng (PDF)" />
+
+## Lắp ráp {/* #assemble */}
+
+Giờ là lúc xem các món đồ trong công viên được làm ra sao. Một số món có hướng dẫn lắp ráp từng bước riêng, giống như sách
+hướng dẫn của Ikea; một số món đi kèm một thiết kế gợi ý từ những hướng dẫn đã được thử trước; và một số món chỉ đơn giản
+là hàng mua sẵn. Bấm vào bất kỳ món nào bên dưới — nếu công viên của bạn có món đó, đây là cách bạn làm (hoặc mua) nó.
+
+<div class="elements-grid">
+  {Object.values(ELEMENTS)
+    .filter((el) => !NOT_BUILT.has(el.id) && ASSEMBLE_ICONS.has(ICON_FALLBACK[el.id] ?? el.id))
+    .map((el) => {
+      const icon = ICON_FALLBACK[el.id] ?? el.id;
+      const href = el.guide ? u(`build/${el.guide}/`) : el.link;
+      const external = !el.guide;
+      return (
+        <a class="element-card" href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
+          <img src={u(`img/dream/elements/${icon}.webp`)} alt="" width="96" height="72" loading="lazy" />
+          <span>{VI_ELEMENTS[el.id] ?? el.name}</span>
+        </a>
+      );
+    })}
+</div>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={19} />
+
+## Bạn đã sẵn sàng chưa? {/* #are-you-ready */}
+
+Chúc mừng bạn đã hoàn thành sổ tay thực hành Mơ ước! Hãy đánh dấu từng bước bên dưới trước khi chuyển sang bước Xây dựng.
+
+<Checklist
+  id="dream.ready-checklist"
+  items={[
+    { value: 'theme-review', label: 'Xem xét thiết kế theo chủ đề', hint: 'Bạn đã xem các chủ đề và quyết định chủ đề nào hợp nhất với nhu cầu của mình' },
+    { value: 'custom-design', label: 'Thiết kế theo ý mình', hint: 'Bạn đã thử với các mảnh ghép công viên để chọn ra thiết kế cuối cùng' },
+    { value: 'custom-size', label: 'Kích thước theo ý mình', hint: 'Bạn đã chỉnh công viên cho vừa kích thước lô đất và những gì có sẵn trên đó' },
+    { value: 'cost-estimate', label: 'Ước tính chi phí', hint: 'Bạn đã đếm các mảnh ghép và nhập vào bảng ước tính chi phí' },
+    { value: 'plant-choice', label: 'Chọn cây trồng', hint: 'Bạn đã chọn cây dựa trên số cây đã đếm' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={20} label="Bạn đã sẵn sàng chưa? (PDF)" />
+
+<style>
+  {`
+  .theme-reqs { list-style: none; padding: 0; margin: 0.8em 0 0; font-size: 0.92rem; color: var(--ink-2); display: grid; gap: 0.2em; }
+  .size-table, .pieces-table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.95rem; }
+  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: left; }
+  .elements-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; margin: 1.2em 0; }
+  .element-card { display: flex; flex-direction: column; align-items: center; gap: 0.4em; text-align: center; padding: 10px; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); font-size: 0.85rem; background: #fff; }
+  .element-card:hover { border-color: var(--cyan); box-shadow: var(--shadow); }
+  .element-card img { max-width: 96px; max-height: 72px; width: auto; }
+  .plant-list-links { display: flex; flex-wrap: wrap; gap: 10px; }
+  `}
+</style>

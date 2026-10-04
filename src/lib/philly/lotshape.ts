@@ -30,6 +30,7 @@ import {
 } from './geo';
 import type { EdgeId, LotGeometry, LotType, ParcelEdge, StreetSide } from './types';
 import { titleCase } from './plain';
+import { EN } from './words';
 
 export interface ShapeStreet {
   line: LngLat[];
@@ -192,31 +193,32 @@ export function analyseLot(input: ShapeInput): LotGeometry | null {
     return w || W;
   };
   let lotType: LotType;
+  // Saved with the lot in English; lotTypeReasonText() (saved.ts) shows it translated.
   let lotTypeReason: string;
   if (W < ALLEY_MAX_WIDTH && L / W >= 4) {
     lotType = 'alley';
-    lotTypeReason = `Long and very narrow (${fmtFt(W)} wide, ${fmtFt(L)} long), like a breezeway or alley.`;
+    lotTypeReason = EN('lotType.why.narrow', { width: fmtFt(W), length: fmtFt(L) });
   } else if (endsOnStreet.length && longsOnStreet.length) {
     lotType = 'corner';
-    lotTypeReason = `Streets on two sides: ${listNames(names)}.`;
+    lotTypeReason = EN('lotType.why.corner', { streets: listNames(names) });
   } else if (endsOnStreet.length === 2 && Math.max(endWidth('x0'), endWidth('x1')) <= 20) {
     lotType = 'alley';
-    lotTypeReason = `A narrow strip that reaches streets at both ends (${listNames(names)}), like a passage across the block.`;
+    lotTypeReason = EN('lotType.why.passage', { streets: listNames(names) });
   } else if (/ALLEY|DRIVEWAY|PASSAGE/.test(desc)) {
     lotType = 'alley';
-    lotTypeReason = 'City records describe it as an alley or passage.';
+    lotTypeReason = EN('lotType.why.recorded');
   } else if (endsOnStreet.length === 2) {
     lotType = 'mid-block';
-    lotTypeReason = `Runs through the block, with streets at both ends (${listNames(names)}).`;
+    lotTypeReason = EN('lotType.why.through', { streets: listNames(names) });
   } else if (streetSides.length) {
     lotType = 'mid-block';
-    lotTypeReason = `Faces one street (${listNames(names)}) with neighbors on the other sides.`;
+    lotTypeReason = EN('lotType.why.oneStreet', { streets: listNames(names) });
   } else {
     lotType = 'unknown';
-    lotTypeReason = "We couldn't find a street right next to this lot — it may be reached by a driveway or alley.";
+    lotTypeReason = EN('lotType.why.noStreet');
   }
   const irregular = areaSqFt / (L * W) < 0.8;
-  if (irregular) lotTypeReason += ' Its shape is irregular, so the size is for the rectangle around it.';
+  if (irregular) lotTypeReason += ` ${EN('lotType.why.irregular')}`;
 
   // ---- rectangle corners and the measuring start point --------------------------------------
   const cx0 = add(c, ux, -L / 2);

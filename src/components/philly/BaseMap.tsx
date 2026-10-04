@@ -11,8 +11,12 @@ import { render, type JSX } from 'preact';
 import type { LngLat, LotRecord, PlacedItem } from '../../lib/types';
 import { fetchNeighbourRings } from '../../lib/philly/lookup';
 import { titleCase } from '../../lib/philly/plain';
+import { isolate, words } from '../../lib/philly/words';
 import { ELEMENTS } from '../../data/elements';
-import { u } from '../../lib/url';
+import { localizeRecord } from '../../i18n/data.ts';
+import { escapeHtml } from '../../i18n/format.ts';
+import { urlFor } from '../../i18n/url.ts';
+import type { Locale } from '../../i18n/locales.ts';
 import { lotDrawing, textAngle, type P } from './drawing';
 import { useProject } from './hooks';
 
@@ -31,10 +35,10 @@ const SCALES: [number, string][] = [
 const PAGE_W = 10.2;
 const PAGE_H = 6.8;
 
-export function pickScale(wFt: number, hFt: number): { inPerFt: number; label: string } {
+export function pickScale(wFt: number, hFt: number, locale?: Locale | string): { inPerFt: number; label: string } {
   for (const [s, label] of SCALES) if (wFt * s <= PAGE_W && hFt * s <= PAGE_H) return { inPerFt: s, label };
   const s = Math.min(PAGE_W / wFt, PAGE_H / hFt);
-  return { inPerFt: s, label: `1″ = ${Math.round(1 / s)}′ (fit to page)` };
+  return { inPerFt: s, label: words(locale)('basemap.fitScale', { feet: Math.round(1 / s) }) };
 }
 
 /** Planner's existing-conditions items → lng/lat (park-local feet from the park origin). */
@@ -54,6 +58,9 @@ function placeExisting(lot: LotRecord, item: PlacedItem, placement?: { originLng
 }
 
 export default function BaseMap() {
+  const t = words();
+  const u = urlFor(t.locale);
+  const elements = localizeRecord(ELEMENTS, 'elements', t.locale);
   const project = useProject();
   const lot = project.lot;
   const d = useMemo(() => lotDrawing(lot), [lot?.address, lot?.fetchedAt]);
@@ -83,23 +90,18 @@ export default function BaseMap() {
 
   if (!lot)
     return (
-      <div class="ph ph-fallback">
-        Choose your lot first (<a href={u('lot/')}>Find a lot</a>) — the base map then draws itself from the City's parcel outline.
-      </div>
+      <div class="ph ph-fallback" dangerouslySetInnerHTML={{ __html: t.html('basemap.noLot', { href: u('lot/') }) }} />
     );
   if (!d)
     return (
-      <div class="ph ph-fallback">
-        The City has no parcel outline for {titleCase(lot.address)}, so the base map can't be drawn. Use the workbook's grid sheet
-        and your own measurements.
-      </div>
+      <div class="ph ph-fallback">{t('basemap.noOutline', { address: isolate(titleCase(lot.address), t) })}</div>
     );
 
   const { maxX, maxY } = d.bounds;
   const margin = Math.max(10, 0.16 * Math.max(maxX, maxY));
   const W = maxX + 2 * margin;
   const H = maxY + 2 * margin;
-  const scale = pickScale(W, H);
+  const scale = pickScale(W, H, t.locale);
   const printFont = 0.11 / scale.inPerFt; // ≈ 8pt on paper, in feet
   // On screen, keep labels about 12px tall whatever the width (phones!).
   // (capped so street names and the start label still fit in the margin)
@@ -138,17 +140,28 @@ export default function BaseMap() {
   // top-left corner: the starting point and street names live along the bottom
   const bar: P = [margin * 0.25, margin * 0.4];
 
-  const title = `Base map — ${titleCase(lot.address)}`;
-  const printDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-  const note = `Lot outline from City of Philadelphia parcel records (${(lot.extra as { parcelSource?: string })?.parcelSource === 'dor' ? 'Records Department deed parcels' : 'Water Department parcels'}). Small squares = 1 ft; heavy lines every 4 ft. Measure on site — field measurements win.`;
+  const title = t('basemap.title', { address: isolate(titleCase(lot.address), t) });
+  const printDate = t.date(new Date(), 'long');
+  const note = t((lot.extra as { parcelSource?: string })?.parcelSource === 'dor' ? 'basemap.noteDor' : 'basemap.notePwd');
+  const oneDecimal = (n: number) => t.num(n, { minimumFractionDigits: 1, maximumFractionDigits: 1, useGrouping: false });
+  // "1/8″ = 1′-0″" reads left to right inside any sentence
+  const scaleText = isolate(scale.label, t);
 
   const drawSvg = (font: number) => (
     <svg
       viewBox={`0 0 ${W.toFixed(2)} ${H.toFixed(2)}`}
       xmlns="http://www.w3.org/2000/svg"
       role="img"
-      aria-label={`${title}. ${d.edges.map((e) => `Side ${e.n}: ${e.lengthFt.toFixed(1)} feet${e.street ? ` along ${titleCase(e.street)}` : ''}`).join('. ')}.`}
+      aria-label={`${title}. ${d.edges
+        .map((e) =>
+          e.street
+            ? t('basemap.sideStreet', { n: e.n, length: oneDecimal(e.lengthFt), street: titleCase(e.street) })
+            : t('basemap.side', { n: e.n, length: oneDecimal(e.lengthFt) }),
+        )
+        .join('. ')}.`}
       font-family="Work Sans, Arial, sans-serif"
+      // a drawing: its labels sit where they sit on paper, on right-to-left pages too
+      style="direction:ltr"
     >
       <defs>
         <clipPath id="ph-bm-clip">
@@ -183,7 +196,7 @@ export default function BaseMap() {
               font-weight="700"
               fill="#111"
             >
-              {e.lengthFt.toFixed(1)} ft
+              {t('unit.ft', { n: oneDecimal(e.lengthFt) })}
             </text>
             {e.street && (
               <text
@@ -209,7 +222,7 @@ export default function BaseMap() {
             <g>
               <circle cx={p[0]} cy={p[1]} r={font * 0.45} fill="#F05A28" stroke="#111" stroke-width={font * 0.06} />
               <text x={p[0] + font * 0.7} y={p[1]} dominant-baseline="middle" font-size={font * 0.8} fill="#111">
-                {ELEMENTS[it.element]?.name ?? it.element}
+                {elements[it.element]?.name ?? it.element}
               </text>
             </g>
           );
@@ -226,7 +239,7 @@ export default function BaseMap() {
           font-weight="800"
           fill="#111"
         >
-          PROJECT STARTING POINT
+          {t('basemap.start')}
         </text>
       </g>
 
@@ -235,7 +248,7 @@ export default function BaseMap() {
           <path d={`M0,${-font * 1.6} L${font * 0.6},${font * 0.6} L0,${font * 0.2} L${-font * 0.6},${font * 0.6}Z`} fill="#111" />
         </g>
         <text y={font * 2.1} text-anchor="middle" font-size={font * 0.9} font-weight="800">
-          N
+          {t('map.north')}
         </text>
       </g>
 
@@ -251,7 +264,7 @@ export default function BaseMap() {
           </text>
         ))}
         <text x={4 * unit + font * 0.6} y={-font * 0.05}>
-          feet
+          {t('basemap.feet')}
         </text>
       </g>
     </svg>
@@ -264,7 +277,7 @@ export default function BaseMap() {
     if (!svg) return;
     svg.setAttribute('width', `${(W * scale.inPerFt).toFixed(3)}in`);
     svg.setAttribute('height', `${(H * scale.inPerFt).toFixed(3)}in`);
-    const html = `<!doctype html><html><head><meta charset="utf-8"><title>${title}</title><style>
+    const html = `<!doctype html><html lang="${t.lang}" dir="${t.dir}"><head><meta charset="utf-8"><title>${escapeHtml(title)}</title><style>
       @page { size: letter landscape; margin: 0.4in; }
       html, body { margin: 0; font-family: 'Work Sans', Arial, sans-serif; color: #111; }
       .tb { display: flex; justify-content: space-between; gap: 0.3in; border-top: 3px solid #111; margin-top: 0.08in; padding-top: 0.06in; font-size: 9pt; width: 10.2in; }
@@ -272,8 +285,8 @@ export default function BaseMap() {
       .tb p { margin: 0.03in 0 0; }
       svg { display: block; }
     </style></head><body>${svg.outerHTML}
-      <div class="tb"><div><h1>${title}</h1><p>${note}</p></div>
-      <div style="text-align:right;white-space:nowrap"><strong>Scale ${scale.label}</strong><p>Print at 100% (“Actual size”)</p><p>Park in a Truck · ${printDate}</p></div></div>
+      <div class="tb"><div><h1>${escapeHtml(title)}</h1><p>${escapeHtml(note)}</p></div>
+      <div style="text-align:end;white-space:nowrap"><strong>${escapeHtml(t('basemap.scale', { scale: scaleText }))}</strong><p>${escapeHtml(t('basemap.printActual'))}</p><p>${escapeHtml(t('basemap.printFooter', { date: printDate }))}</p></div></div>
     </body></html>`;
     const frame = document.createElement('iframe');
     frame.setAttribute('aria-hidden', 'true');
@@ -294,21 +307,23 @@ export default function BaseMap() {
     <div class="ph ph-basemap">
       <div class="ph-basemap-controls">
         <button class="btn btn-primary" type="button" onClick={print}>
-          🖨 Print base map
+          {t('basemap.print')}
         </button>
         <label>
-          <input type="checkbox" checked={showNeighbours} onChange={(e) => setShowNeighbours((e.target as HTMLInputElement).checked)} /> Neighbors' lot lines
+          <input type="checkbox" checked={showNeighbours} onChange={(e) => setShowNeighbours((e.target as HTMLInputElement).checked)} />{' '}
+          {t('basemap.neighbours')}
         </label>
         {existing.length > 0 && (
           <label>
-            <input type="checkbox" checked={showExisting} onChange={(e) => setShowExisting((e.target as HTMLInputElement).checked)} /> Existing conditions ({existing.length})
+            <input type="checkbox" checked={showExisting} onChange={(e) => setShowExisting((e.target as HTMLInputElement).checked)} />{' '}
+            {t('basemap.existing', { count: existing.length })}
           </label>
         )}
-        <span class="ph-small">Prints on Letter paper, landscape, at {scale.label}.</span>
+        <span class="ph-small">{t('basemap.prints', { scale: scaleText })}</span>
       </div>
       <div ref={boxRef}>{drawSvg(screenFont)}</div>
       <p class="ph-small">
-        {note} Side lengths are rounded to a tenth of a foot. Scale {scale.label} when printed at 100%.
+        {note} {t('basemap.rounded', { scale: scaleText })}
       </p>
     </div>
   );

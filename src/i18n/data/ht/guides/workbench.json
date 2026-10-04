@@ -1,0 +1,132 @@
+{
+  "title": "Tab travay / tab pou kanpe",
+  "summary": "Yon tab wotè moun kanpe pou mete plant nan po, sou pye 4x4, ak twa nivo etajè anba l ak yon tèt ki gen senk planch. Desen orijinal la pa gen dyagram mezi, kidonk mezi jeneral sa yo soti nan lis koupe a ak etap montaj yo, se pa sou kouvèti a nou li yo.",
+  "materials": [
+    {
+      "item": "Bwa 4x4 — sèd, bwa trete anba presyon, oswa bwa pen, kalite S4S #1"
+    },
+    {
+      "item": "Bwa 2x4 — sèd, bwa trete anba presyon, oswa bwa pen, kalite S4S #1"
+    },
+    {
+      "item": "Bwa 2x4 — sèd, bwa trete anba presyon, oswa bwa pen, kalite S4S #1"
+    },
+    {
+      "item": "Bwa 2x4 — sèd, bwa trete anba presyon, oswa bwa pen, kalite S4S #1"
+    },
+    {
+      "item": "Bwa 2x6 — sèd, bwa trete anba presyon, oswa bwa pen, kalite S4S #1"
+    },
+    {
+      "item": "Bwa 1x6 — sèd, bwa trete anba presyon, oswa bwa pen, kalite S4S #1"
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Vis bwa pou deyò ki antre poukont yo (self-driving)"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Ranfò bò"
+    },
+    {
+      "notes": "Ranfò dèyè"
+    },
+    {
+      "notes": "Ranfò devan"
+    },
+    {
+      "notes": "Etajè tab la (2 planch pou chak etajè, 3 nivo etajè)"
+    },
+    {
+      "notes": "Pye tab la"
+    },
+    {
+      "notes": "Tèt tab la, planch laj (bò deyò yo ak mitan an)"
+    },
+    {
+      "notes": "Tèt tab la, planch etwat (ant planch laj yo)"
+    }
+  ],
+  "tools": [
+    "Si elektrik (si tab oswa si a men)",
+    "Machin vis a enpak (impact driver) pou vis bwa ki antre poukont yo",
+    "Ekè chapantye",
+    "Linèt pwoteksyon + mask"
+  ],
+  "steps": [
+    {
+      "title": "Make, mete non sou bwa a epi koupe l",
+      "text": "Make, mete non sou bwa a epi koupe l nan longè ki nan lis koupe a: A-1 ranfò bò, A-2 ranfò dèyè, A-3 ranfò devan, A-4 etajè tab la, A-5 pye tab la, B-1 planch tèt laj ak B-2 planch tèt etwat.",
+      "imageAlts": [
+        "Dyagram izometrik sèt moso koupe tab travay la, A-1 rive A-5 ak B-1, B-2, ak longè yo make."
+      ],
+      "tips": [
+        "Li itil pou ekri lèt pyès la sou chak moso bwa pandan w ap make l, konsa ou ka verifye ou gen chak moso.",
+        "Fè yon pil apa pou chak lèt."
+      ]
+    },
+    {
+      "title": "Bati kad prensipal la",
+      "text": "Mete yon 2\"x4\"x20\" (A-1) sou yon sifas plat. An ang dwat ak bò long li, mezire 41\" epi mete yon dezyèm 2\"x4\"x20\" (A-1). Mete yon 2\"x4\"x41\" (A-2) ant bò dèyè de moso A-1 yo, epi fikse l ak yon machin vis a enpak ak kat vis bwa pou deyò 3\" ki antre poukont yo.\n\nMete yon 2\"x4\"x44\" (A-3) an travè devan de moso A-1 yo — l ap depase yo yon ti kras — epi fikse l ak kat lòt vis 3\".",
+      "imageAlts": [
+        "Dyagram de ranfò bò A-1 ki konekte ak yon ranfò dèyè A-2 ak yon ranfò devan A-3 pou fè yon kad rektang."
+      ],
+      "tips": [
+        "Sèvi ak yon ekè chapantye pou verifye kad la kare anvan ou fikse ranfò dèyè ak ranfò devan yo."
+      ]
+    },
+    {
+      "title": "Kanpe pye yo",
+      "text": "Mete yon pye 4\"x4\"x34\" (A-5) nan chak kat kwen kad tab pou kanpe ou te bati nan etap 2 a.\n\nFikse pye yo ak yon machin vis a enpak ak sèz vis bwa pou deyò 3\" ki antre poukont yo — devan, dèyè, sou bò gòch ak sou bò dwat chak pye.",
+      "imageAlts": [
+        "Dyagram kat pye A-5 k ap vise nan kwen kad la, devan, dèyè ak sou tou de bò."
+      ],
+      "tips": [
+        "Sèvi ak yon ekè chapantye pou verifye chak pye kare ak kad la anvan ou fikse l."
+      ]
+    },
+    {
+      "title": "Bati senk lòt moso kad epi monte premye a",
+      "text": "Bati senk lòt moso kad menm jan ak etap 2 — yon ranfò dèyè A-2 ant de ranfò bò A-1, fikse ak kat vis 3\" chak (moso sa yo pa gen ranfò devan).\n\nMete youn nan moso kad sa yo anba kad tab pou kanpe a, 2\" anlè tè a, epi fikse l ak yon machin vis a enpak ak douz vis bwa pou deyò 3\" ki antre poukont yo.",
+      "imageAlts": [
+        "Dyagram yon dezyèm moso kad, san ranfò devan, k ap vise sou pye yo toupre tè a."
+      ],
+      "tips": [
+        "Sèvi ak yon moso 2x4 ki rete kòm kal lè w ap mete chak kad ki sipòte yon etajè kont pye yo."
+      ]
+    },
+    {
+      "title": "Ajoute premye etajè a",
+      "text": "Mete youn nan moso kad ki rete yo 2\" anlè sa ou te mete nan etap anvan an, epi fikse l ak yon machin vis a enpak ak douz vis bwa pou deyò 3\" ki antre poukont yo.\n\nMete de planch 1\"x6\"x48\" (A-4) youn bò lòt sou kad ou fenk fikse a, epi fikse yo ak yon machin vis a enpak ak uit vis bwa pou deyò 3\" ki antre poukont yo.",
+      "imageAlts": [
+        "Dyagram yon lòt moso kad ki monte 2\" anlè sa ki anvan an, ak de planch etajè A-4 vise sou li."
+      ]
+    },
+    {
+      "title": "Ajoute dezyèm ak twazyèm etajè yo",
+      "text": "Mete yon lòt moso kad 2\" anlè sa ki anvan an epi fikse l ak douz vis 3\". Mete de lòt planch A-4 sou tèt li epi fikse yo ak uit vis 3\" — sa se dezyèm etajè a.\n\nRefè sa yon lòt fwa pou twazyèm etajè a: yon lòt moso kad, douz vis, de lòt planch A-4, uit vis.\n\nFinalman, mete dènye moso kad la 2\" anlè dènye etajè a epi fikse l ak douz vis bwa pou deyò 3\" ki antre poukont yo — moso sa a sipòte tèt tab la, li pa gen pwòp planch etajè pa l.",
+      "imageAlts": [
+        "Dyagram ki montre de lòt nivo etajè k ap ajoute anlè premye a, chak fèt menm jan, ak yon dènye moso kad san etajè anwo nèt."
+      ]
+    },
+    {
+      "title": "Mete tèt tab la",
+      "text": "Mete yon planch 2\"x6\"x48\" (B-1) nan mitan tab pou kanpe a, ki depase 2\" sou bò gòch ak sou bò dwat, epi fikse l ak yon machin vis a enpak ak kat vis bwa pou deyò 3\" ki antre poukont yo.\n\nMete yon planch 2\"x4\"x48\" (B-2) sou chak bò planch mitan an epi fikse yo ak kat lòt vis 3\".\n\nMete yon lòt planch 2\"x6\"x48\" (B-1) sou chak bò moso B-2 yo epi fikse yo ak kat lòt vis 3\", konsa tèt senk planch lan fini.",
+      "imageAlts": [
+        "Dyagram tèt tab senk planch lan k ap monte: yon planch laj B-1 nan mitan, planch etwat B-2 sou chak bò, ak planch laj B-1 sou bò deyò yo."
+      ]
+    }
+  ],
+  "finishing": "Pase papye sab dousman sou tout bò ak tout sifas pou retire ti pikan bwa oswa bò ki graje.\n\nSèd: li pa bezwen okenn kouch — l ap vin gri pal avèk tan. Si ou vle kenbe koulè li te genyen lè ou fin enstale l, sèvi ak yon tenti alkid a baz dlo, san koulè, ki antre nan bwa a, oswa pentire l ak yon sistèm primè/penti/vèni.\n\nBwa trete anba presyon: li pa bezwen okenn kouch. Si ou vle koulè, kite l seche nan lè a pandan plizyè mwa jiskaske dlo pa fè ti boul sou sifas la ankò; pase papye sab ak yon mask sou figi w pou pa respire pousyè bwa trete a. Sèvi ak yon primè + penti pou deyò epi vèni l ak yon vèni iretàn \"spar\" a baz dlo.\n\nSapen oswa bwa pen ki seche nan fou (kiln-dried): li bezwen yon tenti ak vèni, oswa yon sistèm primè/penti/vèni, pou l pa gate vit nan move tan. Ou ka pentire l tou jan etap pou bwa trete anba presyon an di.",
+  "safety": [
+    "Sa yo se sèlman rekòmandasyon pou moun ki fè l ak pwòp men yo — adapte materyèl la, montaj la ak konstriksyon an ak pwòp pwojè pa w ak teren pa w.",
+    "Pou bati sa a, ou bezwen konn kèk bagay sou zouti men ak zouti elektrik, pyès metal, vis ak boulon, bwa ak teknik montaj debaz.",
+    "Anvan ou sèvi ak nenpòt zouti elektrik, li epi swiv kondisyon sekirite fabrikan an mande, epi pa kite pèsonn sèvi ak zouti elektrik si yo pa fè menm bagay la.",
+    "Ou menm (mèt la) responsab pou tout règ konstriksyon ak sekirite, pèmi ak otorizasyon ofisyèl sa a bezwen.",
+    "Anvan, netwaye teren an: retire fatra, danje ak estrikti ou pa vle, epi chèche konnen kote fil ak tiyo sèvis piblik ki ta ka jennen yo pase anvan ou fouye.",
+    "Tout moun k ap ede bati dwe siyen yon fòm egzonerasyon pou volontè."
+  ],
+  "sourcePages": "Enstriksyon montaj WORKBENCH/STANDING TABLE (yo nan lyen paj 19 kaye travay Reve a), paj 1–11 (kouvèti; anvan ou kòmanse; bwa + pyès metal + zouti; etap 1–6; fini + kouch)"
+}

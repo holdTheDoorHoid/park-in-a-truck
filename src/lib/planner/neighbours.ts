@@ -5,6 +5,7 @@
 
 import { distanceToRing, pointInPolygon, type Vec2 } from './geo';
 import { siteToLocal, type SiteFrame } from './rect';
+import { pt, type PlannerT } from './words';
 
 export interface SideNeighbours {
   /** a building stands along the side on your left / right as you walk in from the entrance */
@@ -32,9 +33,9 @@ export function sideNeighbours(frame: SiteFrame, buildings: Vec2[][], outFt = 3)
 }
 
 /** The words for a mid-block lot. */
-export function midBlockWords(n: SideNeighbours): string {
-  if (n.left && n.right) return 'Mid-block (buildings on both sides)';
-  if (n.left) return 'Mid-block (a building on your left as you walk in, none on your right)';
-  if (n.right) return 'Mid-block (a building on your right as you walk in, none on your left)';
-  return 'Mid-block (no buildings right next to it)';
+export function midBlockWords(n: SideNeighbours, t: PlannerT = pt()): string {
+  if (n.left && n.right) return t('lot.midBlockBoth');
+  if (n.left) return t('lot.midBlockLeft');
+  if (n.right) return t('lot.midBlockRight');
+  return t('lot.midBlockNone');
 }

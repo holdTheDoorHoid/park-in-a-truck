@@ -52,6 +52,13 @@ export default defineMessages('workbook', {
   'chapter.next': 'Next: Step {n} — {title} →',
   'chapter.notTranslated': 'This chapter has not been translated yet, so it is shown in English. Your answers are saved the same way in every language.',
 
+  // site-added banner on Assess, Dream and Create (src/components/workbook/LotAgreementNotice.astro)
+  'notice.title': 'Site note',
+  /** The arrow means "go to"; turn it around for right-to-left languages */
+  'notice.lot':
+    'You haven\'t recorded permission for your lot yet — you will need it before anyone breaks ground. <a href="{href}">Go to Acquire → Secure your lot</a>.',
+  'notice.dismiss': 'Dismiss',
+
   // Filled in from City records (src/lib/autofill.ts)
   'auto.owner.city': 'City of Philadelphia (public)',
   'auto.owner.landbank': 'Philadelphia Land Bank (public)',

@@ -1,0 +1,132 @@
+{
+  "title": "Bàn làm việc / bàn đứng",
+  "summary": "Một chiếc bàn làm vườn cao ngang tầm đứng, chân gỗ 4x4, bên dưới có ba tầng kệ và mặt bàn gồm năm tấm ván. Bản vẽ gốc không có sơ đồ kích thước, nên kích thước tổng thể ở đây được suy ra từ danh sách cắt gỗ và các bước lắp ráp chứ không đọc từ bìa.",
+  "materials": [
+    {
+      "item": "Gỗ xẻ 4x4 — gỗ tuyết tùng, gỗ xử lý áp lực hoặc gỗ thông, bào bốn mặt (S4S), loại #1"
+    },
+    {
+      "item": "Gỗ xẻ 2x4 — gỗ tuyết tùng, gỗ xử lý áp lực hoặc gỗ thông, bào bốn mặt (S4S), loại #1"
+    },
+    {
+      "item": "Gỗ xẻ 2x4 — gỗ tuyết tùng, gỗ xử lý áp lực hoặc gỗ thông, bào bốn mặt (S4S), loại #1"
+    },
+    {
+      "item": "Gỗ xẻ 2x4 — gỗ tuyết tùng, gỗ xử lý áp lực hoặc gỗ thông, bào bốn mặt (S4S), loại #1"
+    },
+    {
+      "item": "Gỗ xẻ 2x6 — gỗ tuyết tùng, gỗ xử lý áp lực hoặc gỗ thông, bào bốn mặt (S4S), loại #1"
+    },
+    {
+      "item": "Gỗ xẻ 1x6 — gỗ tuyết tùng, gỗ xử lý áp lực hoặc gỗ thông, bào bốn mặt (S4S), loại #1"
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Vít gỗ tự khoan dùng ngoài trời"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Thanh giằng bên"
+    },
+    {
+      "notes": "Thanh giằng sau"
+    },
+    {
+      "notes": "Thanh giằng trước"
+    },
+    {
+      "notes": "Kệ bàn (2 tấm ván mỗi kệ, 3 tầng kệ)"
+    },
+    {
+      "notes": "Chân bàn"
+    },
+    {
+      "notes": "Mặt bàn, ván rộng (hai mép ngoài và ở giữa)"
+    },
+    {
+      "notes": "Mặt bàn, ván hẹp (giữa các tấm ván rộng)"
+    }
+  ],
+  "tools": [
+    "Cưa máy (cưa bàn hoặc cưa cầm tay)",
+    "Máy bắt vít động lực (impact driver) cho vít gỗ tự khoan dùng ngoài trời",
+    "Thước vuông thợ mộc (ê-ke)",
+    "Kính bảo hộ + khẩu trang"
+  ],
+  "steps": [
+    {
+      "title": "Đánh dấu, ghi nhãn và cắt gỗ",
+      "text": "Đánh dấu, ghi nhãn và cắt gỗ theo chiều dài trong danh sách cắt gỗ: thanh giằng bên A-1, thanh giằng sau A-2, thanh giằng trước A-3, kệ bàn A-4, chân bàn A-5, ván mặt rộng B-1 và ván mặt hẹp B-2.",
+      "imageAlts": [
+        "Sơ đồ ba chiều bảy thanh gỗ đã cắt của bàn làm việc, từ A-1 đến A-5 và B-1, B-2, có ghi chiều dài."
+      ],
+      "tips": [
+        "Viết chữ ký hiệu của từng phần lên mỗi thanh gỗ khi đánh dấu sẽ rất có ích, để bạn kiểm tra xem đã đủ mọi thanh chưa.",
+        "Xếp gỗ của mỗi chữ ký hiệu thành một đống riêng."
+      ]
+    },
+    {
+      "title": "Đóng khung chính",
+      "text": "Đặt một thanh 2\"x4\"x20\" (A-1) trên một mặt phẳng. Vuông góc với cạnh dài của nó, đo 41\" và đặt thanh 2\"x4\"x20\" (A-1) thứ hai. Đặt một thanh 2\"x4\"x41\" (A-2) vào giữa mép sau của hai thanh A-1, và bắt chặt bằng máy bắt vít động lực và bốn vít gỗ tự khoan dùng ngoài trời dài 3\".\n\nĐặt một thanh 2\"x4\"x44\" (A-3) ngang qua mặt trước của hai thanh A-1 — nó sẽ nhô ra một chút — và bắt chặt bằng thêm bốn vít 3\".",
+      "imageAlts": [
+        "Sơ đồ hai thanh giằng bên A-1 được nối bằng một thanh giằng sau A-2 và một thanh giằng trước A-3 thành một khung chữ nhật."
+      ],
+      "tips": [
+        "Dùng thước vuông thợ mộc kiểm tra khung có vuông không trước khi bắt chặt thanh giằng sau và thanh giằng trước."
+      ]
+    },
+    {
+      "title": "Dựng chân bàn",
+      "text": "Đặt một chân bàn 4\"x4\"x34\" (A-5) vào mỗi góc trong bốn góc của khung bàn đứng đã đóng ở bước 2.\n\nBắt chặt các chân bằng máy bắt vít động lực và mười sáu vít gỗ tự khoan dùng ngoài trời dài 3\" — ở mặt trước, mặt sau, bên trái và bên phải của mỗi chân.",
+      "imageAlts": [
+        "Sơ đồ bốn chân bàn A-5 được bắt vít vào các góc của khung từ mặt trước, mặt sau và hai bên."
+      ],
+      "tips": [
+        "Dùng thước vuông thợ mộc kiểm tra mỗi chân có vuông góc với khung không trước khi bắt chặt."
+      ]
+    },
+    {
+      "title": "Đóng thêm năm khung và gắn khung đầu tiên",
+      "text": "Đóng thêm năm khung giống như bước 2 — một thanh giằng sau A-2 giữa hai thanh giằng bên A-1, mỗi khung bắt chặt bằng bốn vít 3\" (những khung này không có thanh giằng trước).\n\nĐặt một trong những khung này ở phần dưới của khung bàn đứng, cách mặt đất 2\", và bắt chặt bằng máy bắt vít động lực và mười hai vít gỗ tự khoan dùng ngoài trời dài 3\".",
+      "imageAlts": [
+        "Sơ đồ một khung thứ hai, không có thanh giằng trước, được bắt vít vào chân bàn gần mặt đất."
+      ],
+      "tips": [
+        "Dùng một khúc 2x4 vụn làm miếng chêm khi đặt mỗi khung đỡ kệ áp vào chân bàn."
+      ]
+    },
+    {
+      "title": "Gắn kệ thứ nhất",
+      "text": "Đặt một trong những khung còn lại cao hơn khung vừa đặt ở bước trước 2\", và bắt chặt bằng máy bắt vít động lực và mười hai vít gỗ tự khoan dùng ngoài trời dài 3\".\n\nĐặt hai tấm ván 1\"x6\"x48\" (A-4) cạnh nhau lên trên khung đã bắt chặt, và bắt chặt bằng máy bắt vít động lực và tám vít gỗ tự khoan dùng ngoài trời dài 3\".",
+      "imageAlts": [
+        "Sơ đồ một khung khác gắn cao hơn khung trước 2\", với hai tấm ván kệ A-4 bắt vít lên trên."
+      ]
+    },
+    {
+      "title": "Gắn kệ thứ hai và thứ ba",
+      "text": "Đặt một khung khác cao hơn khung trước 2\" và bắt chặt bằng mười hai vít 3\". Đặt thêm hai tấm ván A-4 lên trên và bắt chặt bằng tám vít 3\" — đó là kệ thứ hai.\n\nLàm lại một lần nữa cho kệ thứ ba: thêm một khung, mười hai vít, thêm hai tấm ván A-4, tám vít.\n\nCuối cùng, đặt khung cuối cùng cao hơn kệ trên cùng 2\" và bắt chặt bằng mười hai vít gỗ tự khoan dùng ngoài trời dài 3\" — khung này đỡ mặt bàn và không có ván kệ riêng.",
+      "imageAlts": [
+        "Sơ đồ cho thấy thêm hai tầng kệ được gắn phía trên kệ đầu tiên, mỗi tầng làm giống nhau, với một khung cuối không có kệ ở trên cùng."
+      ]
+    },
+    {
+      "title": "Lát mặt bàn",
+      "text": "Đặt một tấm ván 2\"x6\"x48\" (B-1) ở giữa bàn đứng, nhô ra 2\" ở bên trái và bên phải, và bắt chặt bằng máy bắt vít động lực và bốn vít gỗ tự khoan dùng ngoài trời dài 3\".\n\nĐặt một tấm ván 2\"x4\"x48\" (B-2) ở mỗi bên của tấm ván giữa và bắt chặt bằng thêm bốn vít 3\".\n\nĐặt thêm một tấm ván 2\"x6\"x48\" (B-1) ở mỗi bên của các thanh B-2 và bắt chặt bằng thêm bốn vít 3\", hoàn thành mặt bàn năm tấm ván.",
+      "imageAlts": [
+        "Sơ đồ mặt bàn năm tấm ván đang được lắp: một tấm ván rộng B-1 ở giữa, các tấm ván hẹp B-2 ở hai bên, và các tấm ván rộng B-1 ở hai mép ngoài."
+      ]
+    }
+  ],
+  "finishing": "Mọi mép và bề mặt nên được chà nhám nhẹ để bỏ dằm gỗ hay mép thô.\n\nGỗ tuyết tùng: không cần phủ — gỗ sẽ ngả màu xám nhạt theo thời gian. Nếu muốn giữ màu như lúc mới lắp, hãy dùng màu nhuộm alkyd gốc nước không màu, thấm vào gỗ, hoặc sơn theo hệ sơn lót/sơn/lớp phủ bảo vệ.\n\nGỗ xử lý áp lực: không cần phủ. Nếu muốn có màu, hãy để gỗ khô ngoài không khí vài tháng cho đến khi nước không còn đọng thành giọt trên bề mặt; đeo khẩu trang khi chà nhám để khỏi hít bụi gỗ đã xử lý. Dùng sơn lót + sơn ngoài trời và phủ bảo vệ bằng dầu phủ spar urethane gốc nước.\n\nGỗ linh sam (fir) hoặc gỗ thông sấy lò: cần màu nhuộm có chất phủ bảo vệ, hoặc hệ sơn lót/sơn/lớp phủ bảo vệ, để khỏi bị hư nhanh vì thời tiết. Cũng có thể sơn theo các bước của gỗ xử lý áp lực ở trên.",
+  "safety": [
+    "Đây chỉ là những khuyến nghị cho việc tự làm — hãy điều chỉnh vật liệu, cách lắp ráp và cách xây dựng cho phù hợp với dự án và khu đất của bạn.",
+    "Làm món này cần có chút hiểu biết về dụng cụ cầm tay và dụng cụ chạy điện, đồ ngũ kim, vít bu-lông, gỗ xẻ và kỹ thuật lắp ráp cơ bản.",
+    "Trước khi dùng bất kỳ thiết bị chạy điện nào, hãy đọc và làm theo yêu cầu an toàn của nhà sản xuất, và đừng để ai chưa làm như vậy dùng dụng cụ chạy điện.",
+    "Bạn (chủ sở hữu) chịu trách nhiệm về mọi quy chuẩn xây dựng và an toàn, giấy phép và sự chấp thuận của cơ quan quản lý mà việc này cần.",
+    "Trước tiên hãy dọn sạch rác, những thứ nguy hiểm và công trình không cần thiết khỏi khu đất, và xác định mọi đường ống, đường dây có thể bị ảnh hưởng trước khi đào.",
+    "Mọi người phụ giúp xây đều nên ký giấy miễn trách nhiệm cho tình nguyện viên."
+  ],
+  "sourcePages": "Hướng dẫn lắp ráp WORKBENCH/STANDING TABLE (nằm trong các liên kết ở tr. 19 của sổ tay thực hành Mơ ước), tr. 1–11 (bìa; trước khi bắt đầu; gỗ + đồ ngũ kim + dụng cụ; bước 1–6; hoàn thiện + lớp phủ)"
+}

@@ -5,6 +5,9 @@
 
 import type { IcsEvent } from './ics';
 import { addDaysISO } from './dates';
+import schedule from '../../i18n/messages/en/schedule.ts';
+import { getT } from '../../i18n/t.ts';
+import type { Locale } from '../../i18n/locales.ts';
 
 export type StewardCategory = 'survive' | 'thrive' | 'socialize';
 
@@ -18,48 +21,64 @@ export interface StewardTask {
   day?: number;
 }
 
+/** English names of the three calendars (categoryLabel() gives them in the reader's language). */
 export const CATEGORY_LABEL: Record<StewardCategory, string> = {
-  survive: 'Survive',
-  thrive: 'Thrive',
-  socialize: 'Socialize',
+  survive: schedule.messages['category.survive'],
+  thrive: schedule.messages['category.thrive'],
+  socialize: schedule.messages['category.socialize'],
 };
 
-export const TASKS: StewardTask[] = [
+type ScheduleKey = keyof typeof schedule.messages;
+
+/** "Survive" / "Thrive" / "Socialize" in the reader's language (default: the page's). */
+export const categoryLabel = (c: StewardCategory, locale?: Locale | string) => getT(locale, schedule)(`category.${c}`);
+
+/** A task's words in the reader's language (TASKS keep the English; keys "task.<id>"). */
+export function taskLabel(task: { taskId?: string; id?: string; label: string }, locale?: Locale | string): string {
+  const key = `task.${task.taskId ?? task.id}` as ScheduleKey;
+  return key in schedule.messages ? getT(locale, schedule)(key) : task.label;
+}
+
+// The words of each task are "task.<id>" in the schedule catalog (English: src/i18n/messages/en/schedule.ts).
+const TASK_LIST: Omit<StewardTask, 'label'>[] = [
   // ---- Survive (critical) -------------------------------------------------
-  { id: 'water-weekly', label: 'Water weekly — soak 3 hrs or water by hand, 6–8" deep', category: 'survive', months: [3, 4, 5, 6, 7, 8, 9] },
-  { id: 'weed-weekly', label: 'Weed weekly (pull, or spray with 20% vinegar)', category: 'survive', months: [3, 4, 5, 6, 7, 8, 9], day: 15 },
-  { id: 'monthly-inspection', label: 'Monthly inspection — pests, weeds, mulch, dead plants, trash', category: 'survive', months: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] },
-  { id: 'rake-beds', label: 'Lightly rake out beds', category: 'survive', months: [2] },
-  { id: 'cutback-perennials', label: 'Cut back unsightly perennials', category: 'survive', months: [2] },
-  { id: 'preemergent-spring', label: 'Apply pre-emergent; spray weeds with 20% vinegar', category: 'survive', months: [2] },
-  { id: 'mulch-spring', label: 'Mulch beds — 2–3" deep, donut around trees, not touching trunks', category: 'survive', months: [2, 3] },
-  { id: 'annuals-spring', label: 'Add pansies / cool-season annuals for early color', category: 'survive', months: [2, 3] },
-  { id: 'prune-evergreens', label: 'Prune evergreen shrubs', category: 'survive', months: [7] },
-  { id: 'preemergent-summer', label: 'Apply pre-emergent; spray weeds with 20% vinegar', category: 'survive', months: [7] },
-  { id: 'inspect-weeds-fall', label: 'Inspect plant areas to make sure weeds are eradicated', category: 'survive', months: [9] },
-  { id: 'prune-dormant', label: 'Prune shrubs & trees after leaves fall (leave perennial stems for pollinators)', category: 'survive', months: [10] },
-  { id: 'mulch-fall', label: 'Mulch beds, or plan to mulch in spring', category: 'survive', months: [10] },
-  { id: 'water-trees-fall', label: 'Water trees deeply before the ground freezes', category: 'survive', months: [10] },
+  { id: 'water-weekly', category: 'survive', months: [3, 4, 5, 6, 7, 8, 9] },
+  { id: 'weed-weekly', category: 'survive', months: [3, 4, 5, 6, 7, 8, 9], day: 15 },
+  { id: 'monthly-inspection', category: 'survive', months: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] },
+  { id: 'rake-beds', category: 'survive', months: [2] },
+  { id: 'cutback-perennials', category: 'survive', months: [2] },
+  { id: 'preemergent-spring', category: 'survive', months: [2] },
+  { id: 'mulch-spring', category: 'survive', months: [2, 3] },
+  { id: 'annuals-spring', category: 'survive', months: [2, 3] },
+  { id: 'prune-evergreens', category: 'survive', months: [7] },
+  { id: 'preemergent-summer', category: 'survive', months: [7] },
+  { id: 'inspect-weeds-fall', category: 'survive', months: [9] },
+  { id: 'prune-dormant', category: 'survive', months: [10] },
+  { id: 'mulch-fall', category: 'survive', months: [10] },
+  { id: 'water-trees-fall', category: 'survive', months: [10] },
   // ---- Thrive (optional extra effort) -------------------------------------
-  { id: 'seed-catalogs', label: 'Browse seed catalogs', category: 'thrive', months: [0] },
-  { id: 'order-seeds', label: 'Order seeds for veggies and annuals', category: 'thrive', months: [1] },
-  { id: 'start-seeds', label: 'Start seeds indoors for an edible garden', category: 'thrive', months: [2] },
-  { id: 'fertilize-bulbs', label: 'Fertilize bulbs, 4–6 weeks before anticipated bloom', category: 'thrive', months: [2] },
-  { id: 'buy-annuals', label: 'Buy desired annual flowers', category: 'thrive', months: [3] },
-  { id: 'plant-seedlings', label: 'Transfer seedlings to planters once weather warms', category: 'thrive', months: [4] },
-  { id: 'plant-annuals', label: 'Plant annuals (April if warm, June if cool)', category: 'thrive', months: [3, 5] },
-  { id: 'deadhead-bulbs', label: 'Deadhead bulb flowers after bloom', category: 'thrive', months: [4] },
-  { id: 'remove-bulb-foliage', label: 'Remove bulb foliage once it has turned yellow', category: 'thrive', months: [5] },
-  { id: 'order-bulbs', label: 'Order bulbs; store in a cool, dry space', category: 'thrive', months: [8] },
-  { id: 'plant-bulbs', label: 'Plant bulbs (between Halloween & Thanksgiving)', category: 'thrive', months: [9, 10] },
+  { id: 'seed-catalogs', category: 'thrive', months: [0] },
+  { id: 'order-seeds', category: 'thrive', months: [1] },
+  { id: 'start-seeds', category: 'thrive', months: [2] },
+  { id: 'fertilize-bulbs', category: 'thrive', months: [2] },
+  { id: 'buy-annuals', category: 'thrive', months: [3] },
+  { id: 'plant-seedlings', category: 'thrive', months: [4] },
+  { id: 'plant-annuals', category: 'thrive', months: [3, 5] },
+  { id: 'deadhead-bulbs', category: 'thrive', months: [4] },
+  { id: 'remove-bulb-foliage', category: 'thrive', months: [5] },
+  { id: 'order-bulbs', category: 'thrive', months: [8] },
+  { id: 'plant-bulbs', category: 'thrive', months: [9, 10] },
   // ---- Socialize (ideas, not obligations) ---------------------------------
-  { id: 'info-meeting', label: 'Park information meeting (idea)', category: 'socialize', months: [1, 4, 7, 10] },
-  { id: 'bird-watching', label: 'Bird-watching event (idea)', category: 'socialize', months: [2] },
-  { id: 'earth-day', label: 'Earth Day celebration (idea)', category: 'socialize', months: [3] },
-  { id: 'community-cleanup', label: 'Community clean-up (idea)', category: 'socialize', months: [3, 9] },
-  { id: 'nature-camp', label: 'Summer nature camp (idea)', category: 'socialize', months: [6] },
-  { id: 'ribbon-cutting', label: 'Ribbon cutting (idea)', category: 'socialize', months: [6] },
+  { id: 'info-meeting', category: 'socialize', months: [1, 4, 7, 10] },
+  { id: 'bird-watching', category: 'socialize', months: [2] },
+  { id: 'earth-day', category: 'socialize', months: [3] },
+  { id: 'community-cleanup', category: 'socialize', months: [3, 9] },
+  { id: 'nature-camp', category: 'socialize', months: [6] },
+  { id: 'ribbon-cutting', category: 'socialize', months: [6] },
 ];
+
+/** Every task, with its English words (`label`) from the schedule catalog. */
+export const TASKS: StewardTask[] = TASK_LIST.map((task) => ({ ...task, label: String(schedule.messages[`task.${task.id}` as ScheduleKey] ?? task.id) }));
 
 export interface TaskInstance {
   key: string;
@@ -115,12 +134,14 @@ function pad2(n: number): string {
   return String(n).padStart(2, '0');
 }
 
-export function stewardshipToIcsEvents(year: number): IcsEvent[] {
+/** Yearly reminders, worded in `locale` (default: the page's language). */
+export function stewardshipToIcsEvents(year: number, locale?: Locale | string): IcsEvent[] {
+  const t = getT(locale, schedule);
   return allInstances().map((inst) => {
     const start = `${year}-${pad2(inst.month + 1)}-${pad2(inst.day)}`;
     return {
       uid: `steward-${inst.key}`,
-      summary: `${CATEGORY_LABEL[inst.category]}: ${inst.label}`,
+      summary: t('ics.stewardEvent', { category: categoryLabel(inst.category, t.locale), task: taskLabel(inst, t.locale) }),
       start,
       endExclusive: addDaysISO(start, 1),
       yearly: true,

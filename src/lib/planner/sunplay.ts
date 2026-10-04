@@ -12,8 +12,6 @@ export const PLAY_RATES: Record<PlaySpeed, { day: number; year: number }> = {
   fast: { day: 300, year: 30 },
 };
 
-export const SPEED_LABEL: Record<PlaySpeed, string> = { slow: 'Slow', normal: 'Normal', fast: 'Fast' };
-
 const YEAR = 2026;
 
 /** Day of the year (1–365) of a month/day. */

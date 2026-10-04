@@ -6,6 +6,7 @@
 
 import type { LngLat } from '../../lib/types';
 import { aerialTileUrl } from '../../lib/mapstyle';
+import { words } from '../../lib/philly/words';
 
 const TILE = 256;
 const SIZE = 512;
@@ -29,6 +30,7 @@ interface Props {
 
 export default function AerialThumb({ polygon, label, year = 2025, rotateDeg = 0 }: Props) {
   if (polygon.length < 3) return null;
+  const t = words();
   const lngs = polygon.map((p) => p[0]);
   const lats = polygon.map((p) => p[1]);
   const center: LngLat = [(Math.min(...lngs) + Math.max(...lngs)) / 2, (Math.min(...lats) + Math.max(...lats)) / 2];
@@ -58,7 +60,7 @@ export default function AerialThumb({ polygon, label, year = 2025, rotateDeg = 0
       .join(' ') + 'Z';
   return (
     <figure style="margin:0">
-      <svg class="ph-outline" viewBox={`0 0 ${SIZE} ${SIZE}`} role="img" aria-label={label} style="background:#ccc">
+      <svg class="ph-outline" viewBox={`0 0 ${SIZE} ${SIZE}`} role="img" aria-label={label} style="background:#ccc;direction:ltr">
         <g transform={turned ? `rotate(${rotateDeg},${SIZE / 2},${SIZE / 2})` : undefined}>
           {tiles.map((t) => (
             <image href={t.url} x={t.x} y={t.y} width={TILE} height={TILE} />
@@ -71,14 +73,12 @@ export default function AerialThumb({ polygon, label, year = 2025, rotateDeg = 0
           <g transform={`rotate(${rotateDeg})`}>
             <path d="M0,-12 L13,26 L0,18 L-13,26Z" fill="#111" />
             <text y="-27" transform={`rotate(${-rotateDeg},0,-27)`} text-anchor="middle" dominant-baseline="central" font-size="28" font-weight="700" fill="#111">
-              N
+              {t('map.north')}
             </text>
           </g>
         </g>
       </svg>
-      <figcaption class="ph-credit">
-        Aerial photo {year} © City of Philadelphia. Your lot is outlined in blue.
-      </figcaption>
+      <figcaption class="ph-credit">{t('aerial.credit', { year: String(year) })}</figcaption>
     </figure>
   );
 }

@@ -26,6 +26,7 @@ import { SlopeOverlay, rayGround } from './terrain';
 import { ON_GROUND, drapedRibbon } from '../furniture/drape';
 import { OutlineTool } from './outline';
 import { Xray, lotBox } from './xray';
+import { pt } from '../words';
 import { cameraFloor, cameraLimits, type CameraFloor } from '../camera';
 
 export type ViewMode = '3d' | 'plan';
@@ -172,7 +173,7 @@ export class PlannerScene {
     const canvas = document.createElement('canvas');
     canvas.className = 'pl-canvas';
     canvas.setAttribute('role', 'img');
-    canvas.setAttribute('aria-label', '3D view of your lot and park design');
+    canvas.setAttribute('aria-label', pt()('view.canvas'));
     canvas.tabIndex = -1;
     container.appendChild(canvas);
     this.renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: 'default' });

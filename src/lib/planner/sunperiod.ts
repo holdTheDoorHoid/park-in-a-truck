@@ -18,24 +18,17 @@ export type SunPeriod =
 
 export const GROWING: SunPeriod = { kind: 'growing' };
 
-export const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-export const MONTHS_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-/** Astronomical seasons (equinoxes and solstices, rounded to the usual dates). */
-export const SEASONS: Record<SeasonName, { label: string; from: string; to: string }> = {
-  spring: { label: 'Spring', from: '03-20', to: '06-20' },
-  summer: { label: 'Summer', from: '06-21', to: '09-21' },
-  fall: { label: 'Fall', from: '09-22', to: '12-20' },
-  winter: { label: 'Winter', from: '12-21', to: '03-19' },
+/** Astronomical seasons (equinoxes and solstices, rounded to the usual dates). Their names: words.ts. */
+export const SEASONS: Record<SeasonName, { from: string; to: string }> = {
+  spring: { from: '03-20', to: '06-20' },
+  summer: { from: '06-21', to: '09-21' },
+  fall: { from: '09-22', to: '12-20' },
+  winter: { from: '12-21', to: '03-19' },
 };
 
 const pad = (n: number) => String(n).padStart(2, '0');
-
-function mmdd(s: string): string {
-  const [m, d] = s.split('-').map(Number) as [number, number];
-  return `${MONTHS_SHORT[m - 1]} ${d}`;
-}
 
 /** Which days and how often the sun is sampled for a period (more often for short periods). */
 export function periodOptions(p: SunPeriod): SeasonOptions {
@@ -78,22 +71,6 @@ export function parsePeriodKey(k: string, today?: { month: number; day: number }
     if (today) return { kind: 'day', ...today };
   }
   return GROWING;
-}
-
-/** "the growing season (Apr 15 – Oct 15)", "June", "winter (Dec 21 – Mar 19)", "Jun 21", "the whole year" */
-export function periodLabel(p: SunPeriod): string {
-  switch (p.kind) {
-    case 'growing':
-      return `the growing season (${mmdd(DEFAULT_SEASON.from)} – ${mmdd(DEFAULT_SEASON.to)})`;
-    case 'year':
-      return 'the whole year';
-    case 'season':
-      return `${SEASONS[p.season].label.toLowerCase()} (${mmdd(SEASONS[p.season].from)} – ${mmdd(SEASONS[p.season].to)})`;
-    case 'month':
-      return MONTHS[p.month - 1]!;
-    case 'day':
-      return `${MONTHS_SHORT[p.month - 1]} ${p.day}`;
-  }
 }
 
 export function periodSamples(lat: number, lng: number, p: SunPeriod): { samples: SunSample[]; days: number } {
@@ -142,19 +119,23 @@ export interface SpotInput {
  * about 2,700 sun positions.
  */
 export function spotMonthly(input: SpotInput): MonthSun[] {
-  const [x, y] = input.point;
-  const grid: GridSpec = {
+  const grid = spotGrid(input);
+  return monthSamples(input.lat, input.lng).map(({ samples, days }, i) => {
+    const h = computeSunHours({ grid, buildings: input.buildings, crowns: input.crowns, samples, days });
+    const daylight = samples.reduce((s, x) => s + (x.altitudeDeg > 0.5 ? x.weight : 0), 0) / Math.max(1, days);
+    return { month: i + 1, sunHours: h[0]!, daylightHours: daylight };
+  });
+}
+
+/** A one-cell grid round the spot, standing on its ground (the spot chart and the shade calendar). */
+export function spotGrid({ point: [x, y], groundFt }: Pick<SpotInput, 'point' | 'groundFt'>): GridSpec {
+  return {
     origin: [x - 0.5, y - 0.5],
     ux: [1, 0],
     uy: [0, 1],
     cellFt: 1,
     nx: 1,
     ny: 1,
-    ...(input.groundFt ? { groundFt: new Float32Array([input.groundFt]) } : {}),
+    ...(groundFt ? { groundFt: new Float32Array([groundFt]) } : {}),
   };
-  return monthSamples(input.lat, input.lng).map(({ samples, days }, i) => {
-    const h = computeSunHours({ grid, buildings: input.buildings, crowns: input.crowns, samples, days });
-    const daylight = samples.reduce((s, x) => s + (x.altitudeDeg > 0.5 ? x.weight : 0), 0) / Math.max(1, days);
-    return { month: i + 1, sunHours: h[0]!, daylightHours: daylight };
-  });
 }

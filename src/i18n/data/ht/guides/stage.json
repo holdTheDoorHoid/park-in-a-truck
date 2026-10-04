@@ -1,0 +1,154 @@
+{
+  "title": "Sèn",
+  "summary": "Yon platfòm ki ba pou spektak, 12x8 pye an 2x4, ki fèt ak kat kad kwen ki menm jan, mare toutotou yon kad mitan, ak yon planche an ti planch 2x4, ki chita sou yon baz gravye ki nivle.",
+  "cost": "$300–400",
+  "materials": [
+    {
+      "item": "Bwa 2x4 (dimensional lumber) — sèd wouj (western red cedar), sapen Douglas (Douglas fir), oswa bwa pen trete anba presyon (pressure-treated)",
+      "notes": "Sèd: natirèlman li reziste ak move tan ak pouriti, bèl koulè wouj, li pa bezwen vèni; li koute pi chè — mande kalite \"knotty\" (STK, ak ne). Sapen Douglas: li reziste yon ti jan ak pouriti, li solid, li pi bon mache pase sèd; bon si ou gen lide pentire l. Bwa trete anba presyon: se li ki pi bon mache epi li reziste ak pouriti, men kalite l souvan pa bon/pa menm, li bezwen 1–4 mwa pou l seche nan lè a anvan ou pentire l, yo pa rekòmande l kote w ap plante manje. Kòmande omwen 5% plis pase lis koupe a, pou kalite bwa ki pa menm ak koupe ki pa bon.",
+      "siteNote": "Lis koupe a bezwen apeprè 25, pa 16. Chak ST-2 93″ (11) ak ST-3 86″ (12) bezwen yon planch pou li sèl (23 planch), uit ST-4 14.75″ yo pran 2 lòt, epi douz ST-5 7.75″ yo soti nan rès ST-3 yo. Tèks etap yo dakò ak lis koupe a."
+    },
+    {
+      "item": "Bwa 2x4 (dimensional lumber), longè 12'"
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Vis bwa pou deyò ki antre poukont yo (self-driving)"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Devan + planche sèn nan"
+    },
+    {
+      "notes": "Kad sèn nan"
+    },
+    {
+      "notes": "Kad sèn nan"
+    },
+    {
+      "notes": "Kad sèn nan"
+    },
+    {
+      "notes": "Kad sèn nan"
+    }
+  ],
+  "tools": [
+    "Si onglè 10\" oswa 12\" (miter saw), oswa yon bon si a men",
+    "Machin vis a enpak (impact driver) pou vis bwa ki antre poukont yo",
+    "Mèch dril 1/4\"",
+    "Papye sab, gren 120",
+    "Ekè chapantye",
+    "Linèt pwoteksyon + mask"
+  ],
+  "steps": [
+    {
+      "title": "Make, mete non sou bwa a epi koupe l",
+      "text": "Make, mete non sou bwa a epi koupe l nan lòd, depi ST-1 rive ST-5, nan longè ki nan lis koupe a.\n\nVerifye chak moso bwa pou wè si li gen defo tankou fant, bwa ki tòde oswa ki pa rabote egal, epi jete pati sa yo.",
+      "imageAlts": [
+        "Dyagram izometrik senk moso koupe sèn nan, ST-1 rive ST-5, ak longè yo make, depi planch planche 144\" rive nan ti blòk 7.75\"."
+      ],
+      "tips": [
+        "Ekri non chak moso bwa pandan w ap mezire l epi koupe l.",
+        "Fè yon pil apa pou chak pyès, ST-1 rive ST-5.",
+        "Lè ou pase papye sab dousman sou bò ou koupe yo, sa retire ti pikan bwa yo epi sa ede pou monte l.",
+        "W ap bati plis pase yon sèn? Yon ti blòk kanpe (stop block) sou si onglè a fè tout moso yo soti menm longè."
+      ]
+    },
+    {
+      "title": "Bati kat ti kad kwen",
+      "text": "Mete de moso ST-4 sou yon sifas plat. Mete de moso ST-3 ant moso ST-4 yo, epi aliyen bò yo jan sa montre a. Refè sa twa lòt fwa, pou kat ti kad ki menm jan an tout.",
+      "imageAlts": [
+        "Dyagram de planch ST-4 ak de planch ST-3 ki monte an yon ti kad rektang, refè kat fwa."
+      ],
+      "tips": [
+        "Sifas gravye ki anba sèn nan dwe nivle otan ke posib anvan ou mete l nan plas final li; blòk beton ka ede nivle kote ki ba yo.",
+        "Si ou fè yon gabari 90 degre, sa ka ede w pou monte l."
+      ]
+    },
+    {
+      "title": "Bati kat kad seksyon yo",
+      "text": "Mete de moso ST-2 sou tèt kad ou te fè nan etap 2 a. Mete de moso ST-5 ant moso ST-2 yo, epi aliyen bò yo jan sa montre a, apre sa fikse tout bagay ak yon machin vis a enpak ak 44 vis bwa pou deyò 2.5\" ki antre poukont yo.\n\nRefè sa twa lòt fwa, pou kat kad seksyon an tout. Kat kad sa yo dwe tout bay sou mitan sèn nan.",
+      "imageAlts": [
+        "Dyagram planch ST-2 ak ST-5 k ap ajoute sou tèt chak ti kad kwen pou bati youn nan kat kad seksyon sèn nan."
+      ]
+    },
+    {
+      "title": "Kouvri devan chak kad seksyon",
+      "text": "Kòmanse anwo, mete kat moso ST-1 devan ak dèyè kad ou te fè nan etap 3 a. Kenbe bwa a aliyen nèt ak tèt la, ak yon espas 1/4\" ant chak moso ST-1.\n\nFikse bwa ST-1 yo ak yon machin vis a enpak ak 42 vis bwa pou deyò 2.5\" ki antre poukont yo, apre sa refè sa sou lòt bò a.",
+      "imageAlts": [
+        "Dyagram planch devan ST-1 k ap vise devan ak dèyè yon kad seksyon ak yon espas 1/4\" ant planch yo."
+      ],
+      "tips": [
+        "Sèvi ak ekè chapantye ou a kòm kal pou espas la.",
+        "Verifye bò a rete a 90 degre ak yon ekè chapantye."
+      ]
+    },
+    {
+      "title": "Ajoute ranfò mitan yo",
+      "text": "Mete de moso ST-5 nan bout yo nan mitan kad ou te fè nan etap 3 a. Mete de lòt moso ST-5 nan mitan kad ou te bati nan etap 2 ak 3 yo.\n\nFikse bwa ST-5 yo ak yon machin vis a enpak ak 8 vis bwa pou deyò 2.5\" ki antre poukont yo, vise an ang 45 degre.",
+      "imageAlts": [
+        "Dyagram ranfò ST-5 k ap vise nan mitan ak nan bout kad la an ang 45 degre."
+      ],
+      "tips": [
+        "Lè ou fè ti twou davans, sa ap ede w mete vis yo an ang 45 degre."
+      ]
+    },
+    {
+      "title": "Mare de kad seksyon ansanm",
+      "text": "Mete de moso ST-3 nan yon bout kad ou te bati nan etap 2 a, ak yon espas 1/4\" ant chak moso ST-3.\n\nFikse bwa ST-3 yo depi anndan ak yon machin vis a enpak ak 8 vis bwa pou deyò 2.5\" ki antre poukont yo, an ang 45 degre. Swiv modèl vis la pou fikse planch yo sou bwa ST-5 mitan an ak 6 lòt vis.\n\nRefè sa sou lòt bò a ak de lòt moso ST-3.",
+      "imageAlts": [
+        "Dyagram planch ST-3 k ap mare de kad seksyon ansanm ak yon espas 1/4\", vise an ang 45 degre."
+      ],
+      "tips": [
+        "Lè ou fè ti twou davans, sa ap ede w mete vis yo an ang 45 degre."
+      ]
+    },
+    {
+      "title": "Konekte tout kat seksyon yo",
+      "text": "Mete twa moso ST-2 ant kat seksyon kad yo, aliyen nèt ak tèt bwa ST-1 ou te mete nan etap 4 la.\n\nFikse bwa ST-2 yo nan moso ST-1 yo ak yon machin vis a enpak ak 12 vis bwa pou deyò 2.5\" ki antre poukont yo.",
+      "imageAlts": [
+        "Dyagram twa planch ST-2 ki konekte tout kat seksyon sèn nan ansanm, aliyen nèt ak tèt kad la."
+      ]
+    },
+    {
+      "title": "Mete planche sèn nan epi pase papye sab",
+      "text": "Mete 26 moso ST-1 sou tèt kad ou te fè nan etap 7 la, aliyen bò yo nèt ak espas egal.\n\nFikse planche ST-1 a sou chak solivo ak modèl twa vis ou a — 78 vis bwa pou deyò 2.5\" ki antre poukont yo an tout.\n\nPase papye sab dousman sou bò ki graje yo sou sèn nan.",
+      "imageAlts": [
+        "Dyagram planch planche ST-1 k ap mete ak espas egal sou tout tèt kad sèn nan epi k ap vise sou chak solivo."
+      ],
+      "tips": [
+        "Sèvi ak ekè chapantye ou a kòm kal."
+      ]
+    },
+    {
+      "title": "Gid twou pou fè davans (gabari)",
+      "text": "Koupe gid twou a sou liy pwentiye yo. Lè w ap fè twou, aliyen bò gabari a ak bò deyò bwa a anvan ou fè ti twou davans lan.\n\nSe pa tout twou yo ou sèvi — se pa tout modèl ki sèvi ak gabari a. Swiv etap montaj ki anwo yo pou konnen ki kote pou fè twou yo. Kenbe tout twou yo apeprè lajè yon pous dwèt (apeprè 1\") depi bò a, menm twou ki pa sèvi ak gabari sa a.",
+      "imageAlts": [
+        "Yon gabari gid twou ou ka enprime, ak senk plas twou make ak liy pou koupe, plis yon gwo plan ki montre distans twou yo depi bò planch lan."
+      ]
+    }
+  ],
+  "finishing": "Yon tretman pou bwa deyò ka fè eleman pak ou yo dire pi lontan, men li pa nesesè — moso sa yo fèt espre pou yo pa koute chè, pou yo dire epi pou yo fasil pou bati, kidonk li ka pi pratik pou kite pwochen jenerasyon an rebati yo lè lè a rive. Si ou vle tenti, pentire oswa vèni bwa a, gade resous pou fini ki anba yo.",
+  "safety": [
+    "Sa yo se sèlman rekòmandasyon pou moun ki fè l ak pwòp men yo — adapte materyèl la, montaj la ak konstriksyon an ak pwòp pwojè pa w ak teren pa w.",
+    "Pou bati sa a, ou bezwen konn kèk bagay sou zouti men ak zouti elektrik, pyès metal, vis ak boulon, bwa ak teknik montaj debaz.",
+    "Anvan ou sèvi ak nenpòt zouti elektrik, li epi swiv kondisyon sekirite fabrikan an mande, epi pa kite pèsonn sèvi ak zouti elektrik si yo pa fè menm bagay la.",
+    "Ou menm (mèt la) responsab pou tout règ konstriksyon ak sekirite, pèmi ak otorizasyon ofisyèl sa a bezwen.",
+    "Anvan, netwaye teren an: retire fatra, danje ak estrikti ou pa vle, epi chèche konnen kote fil ak tiyo sèvis piblik ki ta ka jennen yo pase anvan ou fouye.",
+    "Tout moun k ap ede bati dwe siyen yon fòm egzonerasyon pou volontè."
+  ],
+  "links": [
+    {
+      "label": "Chwazi pi bon fini pou pwojè deyò (Rockler, an anglè)"
+    },
+    {
+      "label": "Pi bon fini pou bwa deyò (Real Milk Paint, an anglè)"
+    },
+    {
+      "label": "Kouch pwoteksyon pou bwa deyò (Vermont Natural Coatings, an anglè)"
+    }
+  ],
+  "sourcePages": "Enstriksyon montaj STAGE (yo nan lyen paj 19 kaye travay Reve a — kopi Linktree a pa mache ankò), paj 1–12 (kouvèti; anvan ou kòmanse; chwa bwa ki pi kouran + pri; etap 1–7; gid twou pou fè davans)"
+}

@@ -1,0 +1,456 @@
+{
+  "partners": [
+    {
+      "description": "Hợp tác với PiaT, mở rộng thêm các mẫu thiết kế công viên."
+    },
+    {
+      "description": "Bộ phận giáo dục và tiếp cận cộng đồng của Ủy ban Quy hoạch Thành phố Philadelphia; mở khóa học tám tuần về cách quy hoạch và phát triển đô thị vận hành."
+    },
+    {
+      "description": "Tổ chức bất vụ lợi địa phương đã tài trợ công viên Park in a Truck đầu tiên. (Liên kết trong chính cẩm nang cho dòng ghi công này lại dẫn đến communityprogress.org, một tổ chức bất vụ lợi toàn quốc về ngân hàng đất — có lẽ liên kết và chú thích trong PDF gốc bị lệch nhau, nên ở đây chưa ghi địa chỉ web cho đến khi được xác nhận.)"
+    },
+    {
+      "description": "Công ty môi giới bất động sản địa phương ở Philly, phục vụ khu vực Tây Philadelphia."
+    },
+    {
+      "description": "Hợp tác với PiaT về hạ tầng xanh — hãy liên lạc họ để được giúp tách ống xả nước mưa hoặc làm thêm vườn mưa (rain garden) cho công viên của bạn."
+    },
+    {
+      "description": "Tổ chức đi đầu trong việc bảo tồn đất đô thị; một quỹ đất cộng đồng cho vườn và các không gian mở khác."
+    },
+    {
+      "description": "Đối tác là công ty phát triển cộng đồng (nhóm \"PARTNERS\" trên Linktree). Trang web hiện báo lỗi — đã xác nhận không còn hoạt động, không phải do chặn truy cập tự động."
+    },
+    {
+      "description": "Nhà tài trợ."
+    },
+    {
+      "description": "Đối tác về giấy phép, đất đai và dữ liệu của Thành phố."
+    },
+    {
+      "description": "Đối tác về nơi sống cho sinh vật và trồng cây."
+    },
+    {
+      "description": "Đối tác về nơi sống cho sinh vật và vườn cho loài thụ phấn ở nhiều công viên đã làm."
+    },
+    {
+      "description": "Nhà tài trợ."
+    },
+    {
+      "description": "Đối tác cho sổ tay thực hành Playful Learning Landscapes."
+    },
+    {
+      "description": "Nhà tài trợ."
+    },
+    {
+      "description": "Công cụ của Thành phố để cải tạo một bất động sản bỏ trống."
+    }
+  ],
+  "press": [
+    {
+      "title": "Với chương trình Park in a Truck, Jefferson mong giúp thay đổi những cộng đồng thiếu thốn"
+    },
+    {
+      "title": "Sáng kiến Park in a Truck được tạp chí Fast Company vinh danh hạng mục 'Social Good' (Vì lợi ích xã hội)"
+    },
+    {
+      "title": "Park in a Truck nhận giải Groundbreaker 2020 của Green Building United"
+    },
+    {
+      "title": "'Park in a Truck' giống như Ikea, nhưng để làm công viên khu phố"
+    },
+    {
+      "title": "Những lô đất trống biến thành công viên đẹp ở các khu phố Philly"
+    },
+    {
+      "title": "Chương trình Park in a Truck thay đổi không gian xanh đô thị ở Philadelphia với sự giúp sức của giới trẻ trong khu phố"
+    },
+    {
+      "title": "ASLA Spotlight — mùa xuân 2025"
+    },
+    null,
+    {
+      "title": "Thay đổi khu phố, từng công viên một — do cộng đồng xây, cho cộng đồng"
+    },
+    {
+      "title": "Hướng dẫn lắp ráp Park in a Truck của Jefferson, số 1"
+    },
+    {
+      "title": "Hướng dẫn lắp ráp Park in a Truck của Jefferson, số 2"
+    }
+  ],
+  "supplierGroups": [
+    {
+      "label": "Thuê dụng cụ",
+      "items": [
+        {
+          "note": "Dụng cụ cầm tay; làm việc với Philadelphia Orchard Project và cũng mở lớp dạy kỹ năng."
+        },
+        {
+          "title": "Diamond Tool (cho thuê dụng cụ chạy điện)",
+          "note": "Có vẻ đã sáp nhập vào White Cap; chặn kiểm tra tự động."
+        },
+        {
+          "note": "Cả hai tên miền PiaT từng ghi cho tiệm cho thuê này ở Darby, PA (okrentalsaleservice.com, okrental1.com) đều không còn truy cập được."
+        }
+      ]
+    },
+    {
+      "label": "Rác & tái chế",
+      "items": [
+        {
+          "note": "3850 W Ford Rd — phân ủ, dăm gỗ, lớp phủ gốc, phân chuồng với giá rất rẻ."
+        },
+        {
+          "title": "Richard S. Burns & Co. (vật liệu tái chế)",
+          "note": "4300 Rising Sun Ave — bãi đổ + bán sản phẩm tái chế."
+        }
+      ]
+    },
+    {
+      "label": "Vườn ươm & cây trồng",
+      "items": [
+        null,
+        {
+          "note": "Chuyên cây cho loài thụ phấn ở địa phương."
+        },
+        {
+          "note": "Cây kiểng chất lượng cao & giống cây bản địa; ở NJ, giao hàng với đơn tối thiểu $1.250."
+        },
+        {
+          "note": "Cây giống phục hồi sinh thái của vùng; trang web trả lời bất thường khi kiểm tra tự động nhưng rất có thể vẫn hoạt động."
+        },
+        {
+          "note": "Cây giống phục hồi sinh thái của vùng."
+        },
+        null,
+        {
+          "note": "Chứng chỉ TLS của trang web hiện đã hết hạn — trình duyệt sẽ hiện cảnh báo."
+        },
+        {
+          "title": "Burpee — cây ăn trái"
+        },
+        {
+          "title": "Stark Bro's — cây ăn trái"
+        },
+        {
+          "title": "Gurney's — cây ăn trái & cây mọng"
+        },
+        {
+          "title": "Willis Orchards — cây ăn trái"
+        },
+        null,
+        {
+          "title": "Philly Orchard Project — tài liệu"
+        }
+      ]
+    },
+    {
+      "label": "Gỗ xẻ & vật liệu xây dựng",
+      "items": [
+        {
+          "note": "4260 Macalester St — vật liệu cảnh quan, lớp phủ gốc và dụng cụ."
+        },
+        {
+          "note": "701 Washington St, Conshohocken — đất mặt, lớp phủ gốc, phân ủ."
+        },
+        null,
+        null,
+        null,
+        {
+          "note": "Cung cấp gỗ bách, Avondale PA."
+        },
+        null,
+        {
+          "note": "3301 S 61st St — đá dăm, đất mặt, có giao hàng."
+        },
+        {
+          "title": "Rockler — chọn lớp hoàn thiện tốt nhất cho đồ ngoài trời"
+        },
+        {
+          "title": "Real Milk Paint (RMP Finishes) — lớp hoàn thiện tốt nhất cho gỗ ngoài trời"
+        },
+        {
+          "title": "Vermont Natural Coatings — lớp hoàn thiện ngoài trời"
+        },
+        {
+          "title": "Hairpin Legs — giá đỡ luống/giá đỡ tựa lưng"
+        }
+      ]
+    },
+    {
+      "label": "Rọ đá & đá",
+      "items": [
+        null,
+        {
+          "note": "Chặn kiểm tra tự động; tên miền đã đăng ký và đang hoạt động."
+        },
+        {
+          "title": "Cách xây tường rọ đá (Gardendrum)"
+        }
+      ]
+    },
+    {
+      "label": "Video hướng dẫn",
+      "items": [
+        {
+          "title": "Cách tỉa cây lớn"
+        },
+        {
+          "title": "Cách trồng một cây lớn"
+        },
+        {
+          "title": "Cách trồng một cây bụi"
+        },
+        {
+          "title": "Viền gỗ"
+        },
+        {
+          "title": "Xây tường rọ đá"
+        },
+        {
+          "title": "Đóng bàn chung"
+        },
+        {
+          "title": "Làm khung ươm cây"
+        },
+        {
+          "title": "Làm luống trồng nâng cao"
+        },
+        {
+          "title": "Tỉa cành như dân chuyên nghiệp"
+        },
+        {
+          "title": "Hướng dẫn tưới nước & đo nước mưa"
+        }
+      ]
+    },
+    {
+      "label": "Tài liệu học hỏi",
+      "items": [
+        {
+          "title": "Penn State Extension — xét nghiệm đất"
+        },
+        {
+          "title": "Penn State Extension — mẫu đơn gửi xét nghiệm độ phì nhiêu của đất"
+        },
+        {
+          "title": "Penn State Extension — sâu bọ & bệnh hại"
+        },
+        {
+          "title": "Penn State Extension — chương trình Master Gardener"
+        },
+        {
+          "title": "Missouri Botanical Garden — tìm cây (Plant Finder)"
+        },
+        null,
+        {
+          "title": "Arbor Day — cách trồng cây lớn từ chậu"
+        },
+        {
+          "title": "Arbor Day — cây ăn trái"
+        },
+        {
+          "note": "Lớp học, thông tin về vườn cộng đồng, chương trình Thùng hứng nước mưa."
+        },
+        {
+          "note": "Trợ giúp pháp lý, dữ liệu và hướng dẫn để có/giữ được một lô đất."
+        },
+        null,
+        {
+          "note": "Liên minh do người Da đen & người da màu dẫn dắt, vì quyền tự quản của cộng đồng đối với đất đai và thực phẩm."
+        },
+        null,
+        null,
+        null,
+        {
+          "note": "Kế hoạch của PennPraxis cho Philadelphia Parks & Recreation."
+        },
+        {
+          "title": "PlantSnap (ứng dụng nhận biết cây & cỏ dại)"
+        },
+        {
+          "title": "Gardener's Path — cách dùng dụng cụ đo mưa"
+        },
+        {
+          "title": "Cách rải lớp phủ gốc (SKH)"
+        },
+        {
+          "title": "Thuốc diệt cỏ gốc giấm (ví dụ sản phẩm)",
+          "note": "Nguồn duy nhất tìm được cho sản phẩm này; liên kết chỉ để tham khảo, không nhằm quảng cáo."
+        }
+      ]
+    },
+    {
+      "label": "Các chương trình của Thành phố Philadelphia",
+      "items": [
+        {
+          "title": "Atlas Philadelphia (tra cứu bất động sản)"
+        },
+        {
+          "title": "Bản đồ chủ sở hữu thửa đất Philadelphia (ArcGIS)"
+        },
+        {
+          "title": "Các tổ chức cộng đồng đã đăng ký (RCO)"
+        },
+        {
+          "title": "Giấy phép cấm đậu xe tạm thời"
+        },
+        {
+          "title": "Green City, Clean Waters — tài trợ cho thoát nước mưa/vườn mưa"
+        }
+      ]
+    }
+  ],
+  "toolkitLibrary": {
+    "intro": "Chào mừng bạn đến thư viện của cẩm nang! Các trang sau đây có nhiều tài liệu và liên kết để tìm hiểu thêm, sắp xếp theo từng chương (phần lớn bằng tiếng Anh).",
+    "sections": [
+      {
+        "title": "Lời giới thiệu",
+        "entries": [
+          {
+            "title": "Để giảm nghèo, nỗ lực của Hội đồng Thành phố nên có thêm không gian xanh (The Inquirer)"
+          },
+          {
+            "title": "Hãy thúc đẩy sức khỏe và không gian xanh, từng lô đất trống một (The Inquirer)"
+          },
+          null,
+          {
+            "title": "Chỉ có ong, cây cỏ và hoa: những người phụ nữ Da đen làm vườn sẽ vượt qua khủng hoảng COVID-19 ra sao (Essence)"
+          },
+          null,
+          null
+        ]
+      },
+      {
+        "title": "01 Có được đất",
+        "entries": [
+          {
+            "title": "The PHS City Parks Handbook (sách, $13.95)"
+          },
+          {
+            "title": "Park Advocate Handbook (miễn phí)"
+          },
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "title": "02 Tổ chức",
+        "entries": [
+          null,
+          {
+            "title": "Vacant Lot Activation Toolkit — cẩm nang đưa lô đất trống vào sử dụng (Free Lots Angeles)"
+          }
+        ]
+      },
+      {
+        "title": "03 Khảo sát",
+        "entries": [
+          {
+            "title": "Penn State Extension — xét nghiệm đất"
+          }
+        ]
+      },
+      {
+        "title": "04 Mơ ước",
+        "entries": [
+          null,
+          null,
+          {
+            "title": "Missouri Botanical Garden — tìm cây (Plant Finder)"
+          },
+          {
+            "title": "Longwood Gardens — tìm cây"
+          },
+          null,
+          {
+            "title": "Penn State Master Gardeners — hướng dẫn trồng cây ở Philadelphia"
+          }
+        ]
+      },
+      {
+        "title": "05 Xây dựng",
+        "entries": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          {
+            "title": "Burpee — cây ăn trái"
+          },
+          {
+            "title": "Stark Bro's — cây ăn trái"
+          },
+          {
+            "title": "Gurney's — cây ăn trái & cây mọng"
+          },
+          {
+            "title": "Willis Orchards — cây ăn trái"
+          },
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "title": "06 Duy trì",
+        "entries": [
+          null,
+          null,
+          null,
+          {
+            "title": "Brandywine Conservancy — cây xâm lấn"
+          },
+          {
+            "title": "Cách trồng cây lớn từ chậu (Arbor Day)"
+          },
+          {
+            "title": "Cách trồng một cây bụi (video)"
+          },
+          {
+            "title": "Cách tỉa cây lớn (video)"
+          },
+          {
+            "title": "Cách tỉa một cây bụi (Gardeners' World)"
+          },
+          {
+            "title": "Arbor Day Foundation — cây ăn trái"
+          },
+          null,
+          {
+            "title": "Cơ bản về ủ phân (video)"
+          },
+          {
+            "title": "Bón phân (Penn State Extension)"
+          },
+          {
+            "title": "Cách phủ gốc cho vườn (Good Housekeeping)"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgments": {
+    "lead": "Chương trình Kiến trúc Cảnh quan + Phòng thí nghiệm Đổi mới Xã hội và Đô thị, Thomas Jefferson University",
+    "note": "Trang web này biến cẩm nang, các sổ tay thực hành và danh sách cây của chính Park in a Truck thành một phiên bản có hướng dẫn, có tương tác, với sự cho phép của Park in a Truck / Thomas Jefferson University. Mọi lời văn, hình minh họa và ảnh gốc đều là của họ."
+  },
+  "legal": {
+    "title": "Thông báo pháp lý",
+    "text": "Những khuyến nghị trong tài liệu này dựa trên cách làm tiêu chuẩn trong chế tác và xây dựng. Trong mọi trường hợp, Thomas Jefferson University (TJU), Phòng thí nghiệm Đổi mới Xã hội (Lab For Social Innovation) của TJU, Park-in-a-Truck, và/hoặc giảng viên, nhân viên hay những người cộng tác với họ đều không chịu trách nhiệm về bất kỳ thiệt hại hay thương tích nào cho người, hay thiệt hại tài sản, phát sinh từ việc dùng những khuyến nghị này. Thomas Jefferson University (TJU), Phòng thí nghiệm Đổi mới Xã hội của TJU, Park-in-a-Truck, hay giảng viên, nhân viên và/hoặc những người cộng tác với họ không đưa ra bất kỳ bảo đảm nào, dù rõ ràng hay ngụ ý, và qua đây khước từ và phủ nhận mọi bảo đảm khác, bao gồm nhưng không giới hạn ở các bảo đảm hay điều kiện ngụ ý về khả năng bán được, sự phù hợp cho một mục đích cụ thể, hay việc không xâm phạm quyền sở hữu trí tuệ hoặc vi phạm các quyền khác. Ngoài ra, Thomas Jefferson University (TJU), Phòng thí nghiệm Đổi mới Xã hội của TJU, Park-in-a-Truck, và/hoặc giảng viên, nhân viên hay những người cộng tác với họ không bảo đảm hay cam kết gì về độ chính xác, kết quả có thể đạt được, hay độ tin cậy của việc dùng những khuyến nghị này. Việc dùng những khuyến nghị này nghĩa là bạn thừa nhận những điều nêu trên."
+  }
+}

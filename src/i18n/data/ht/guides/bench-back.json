@@ -1,0 +1,158 @@
+{
+  "title": "Ban + do",
+  "summary": "Yon ban 4 pye an bwa sèd, sapen oswa bwa trete anba presyon, ak yon chèz an ti planch ak yon do ki panche, ki fèt ak bwa 2x4 ak yon sipò metal pou do a ki vise ak boulon. Li gen 25\" wotè jiska tèt bra yo; do a monte jiska apeprè 34\".",
+  "materials": [
+    {
+      "item": "Bwa 2x4 (dimensional lumber) — sèd wouj (western red cedar), sapen Douglas (Douglas fir), oswa bwa pen trete anba presyon (pressure-treated)",
+      "notes": "Sèd: natirèlman li reziste ak move tan ak pouriti, li gen yon bèl koulè wouj, li fasil pou travay, li pa bezwen vèni (avèk tan li vin gri); li koute pi chè — mande kalite \"knotty\" (STK, ak ne), ki pi bon mache anpil pase kalite san ne a (clear). Sapen Douglas: li reziste yon ti jan ak pouriti, li solid epi li fasil pou travay, li pi bon mache pase sèd, men li p ap dire otan — se yon bon chwa si ou gen lide pentire l. Bwa trete anba presyon: li reziste ak pouriti epi se chwa ki pi bon mache a, men kalite bwa a souvan pa bon epi li pa menm, li bezwen 1–4 mwa pou l seche nan lè a anvan ou pentire l, epi yo pa rekòmande l kote w ap plante manje. Kòmande 5% plis pase lis koupe a, pou kalite bwa ki pa menm ak koupe ki pa bon."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Vis bwa pou deyò ki antre poukont yo (self-driving)"
+    },
+    {
+      "item": "Gwo vis bwa pou deyò (lag screws)"
+    },
+    {
+      "item": "Boulon kabrouèt pou deyò (carriage bolts), ekwou ak rondèl"
+    },
+    {
+      "item": "Sipò metal pou do ban an (backrest brackets)"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Anba + tèt ban an"
+    },
+    {
+      "notes": "Do ban an"
+    },
+    {
+      "notes": "Bò ban an"
+    },
+    {
+      "notes": "Bò ban an"
+    },
+    {
+      "notes": "Bò ban an"
+    },
+    {
+      "notes": "Bò ban an"
+    },
+    {
+      "notes": "Bò ban an"
+    }
+  ],
+  "tools": [
+    "Si onglè 10\" oswa 12\" (miter saw), oswa yon bon si a men",
+    "Machin vis a enpak (impact driver) pou vis bwa ki antre poukont yo",
+    "Dril ak mèch 1/8\" ak 1/4\" pou fè ti twou davans",
+    "Papye sab, gren 120",
+    "Ekè chapantye",
+    "Linèt pwoteksyon + gan",
+    "Kle tib (socket wrench), pou boulon kabrouèt yo ak gwo vis yo"
+  ],
+  "steps": [
+    {
+      "title": "Make, mete non sou bwa a epi koupe l",
+      "text": "Make, mete non sou bwa a epi koupe l nan lòd, depi BB-1 rive BB-7, nan longè ki nan lis koupe a.\n\nVerifye chak moso bwa pou wè si li gen defo tankou fant, bwa ki tòde oswa ki pa rabote egal, epi jete pati sa yo.",
+      "imageAlts": [
+        "Dyagram izometrik sèt moso koupe BAN + DO a, BB-1 rive BB-7, ak longè yo make, depi planch 45\" rive nan ti blòk 4\"."
+      ],
+      "tips": [
+        "Ekri non chak moso bwa pandan w ap mezire l epi koupe l.",
+        "Fè yon pil apa pou chak pyès, BB-1 rive BB-7.",
+        "Lè ou pase papye sab dousman sou bò ou koupe yo, sa retire ti pikan bwa yo epi sa ede pou monte l.",
+        "W ap bati plis pase yon ban? Yon ti blòk kanpe (stop block) sou si onglè a fè tout moso yo soti menm longè."
+      ]
+    },
+    {
+      "title": "Bati de kad bout yo",
+      "text": "Mete de moso BB-3 sou yon sifas plat. Mete de moso BB-5 sou bò dwat moso BB-3 yo, epi aliyen bò yo jan imaj la montre l. Refè sa pou bati yon dezyèm kad ki menm jan.",
+      "imageAlts": [
+        "Dyagram ki montre de planch BB-3 ak de planch BB-5 ki monte an yon kad kare pou bout la, ak yon dezyèm kad ki fini dèyè l."
+      ],
+      "tips": [
+        "Sèvi ak yon ekè chapantye pou verifye chak kwen fè yon ang dwat — si li byen lwen, verifye longè planch ou yo ankò.",
+        "Si ou fè yon gabari 90 degre, sa ap ede w anpil pou monte etap sa a ak pwochen an."
+      ]
+    },
+    {
+      "title": "Ajoute ti planch chèz la ak pye devan yo sou chak kad bout",
+      "text": "Mete kat moso BB-6 ak yon moso BB-4 sou tèt chak kad, jan sa montre a, epi kite yon espas 1.5\" ant de moso BB-6 yo (sèvi ak yon moso 2x4 ki rete, kanpe sou bout li, kòm kal). Sèvi ak gid twou ki nan fen pakèt la pou fè ti twou davans pou vis yo, apre sa fikse bwa a ak yon machin vis a enpak ak 30 vis bwa pou deyò 2.5\" ki antre poukont yo.\n\nMete yon moso BB-4 aliyen nèt ak moso BB-5 ki anba l la, ak de moso BB-7 an ang dwat bò kote l, jan sa montre a — ankò sèvi ak kal 2x4 la pou yon espas 1.5\" — apre sa fikse l ak 14 lòt vis 2.5\".\n\nRefè sa sou lòt pye a, apre sa kanpe tou de pye yo pou pwochen etap la.",
+      "imageAlts": [
+        "Dyagram planch BB-6, BB-4 ak BB-7 k ap vise sou tèt ak sou bò chak kad bout, ak espas 1.5\" kal la make."
+      ]
+    },
+    {
+      "title": "Konekte de kad bout yo ak ti planch anba yo",
+      "text": "Mete twa moso BB-1 nan espas ki nan baz ak sou bò de kad ou te bati nan etap 3 yo, jan sa montre a.\n\nFikse bwa BB-1 yo sou bò gòch ak sou bò dwat nan moso kad yo ak yon machin vis a enpak ak 12 vis bwa pou deyò 2.5\" ki antre poukont yo an tout — 6 vis pou chak bò.",
+      "imageAlts": [
+        "Dyagram twa planch BB-1 ki konekte de kad bout yo nan baz la, ak yon ang 90 degre make nan kwen an."
+      ],
+      "tips": [
+        "Verifye bò a rete a 90 degre ak yon ekè chapantye."
+      ]
+    },
+    {
+      "title": "Ajoute tèt chèz la",
+      "text": "Mete twa moso BB-1 sou tèt kad ou te bati nan etap 4 la, aliyen tout bò yo epi kite yon espas egal 1\" ant moso yo.\n\nFikse bwa BB-1 yo ak yon machin vis a enpak ak 12 vis bwa pou deyò 2.5\" ki antre poukont yo. Ou pral bezwen vise vis sa yo yon ti jan an kwa.",
+      "imageAlts": [
+        "Dyagram twa lòt planch BB-1 ki fè tèt chèz ban an, vise an kwa, ak yon espas egal 1\" ant planch yo."
+      ]
+    },
+    {
+      "title": "Mete sipò metal do a ak boulon",
+      "text": "Mete de sipò metal do yo sou chak bò bwa BB-1 yo, 5\" andedan depi bout yo, jan sa montre a.\n\nMake epi fè ti twou davans ki travèse bwa BB-1 yo dwat pou yo aliyen ak sipò yo, apre sa fikse sipò do yo anba moso BB-1 yo ak yon kle tib ak kat boulon kabrouèt pou deyò 1/4\" x 2-1/2\", ak ekwou ak rondèl.",
+      "imageAlts": [
+        "Dyagram de sipò metal do ki boulonnen anba planch chèz yo, 5\" andedan depi chak bout."
+      ],
+      "tips": [
+        "Si ou kouche ban an sou devan l, etap sa a ap pi fasil."
+      ]
+    },
+    {
+      "title": "Mete ti planch do yo epi fini",
+      "text": "Mete twa moso BB-2 sou sipò do ou te fikse nan etap 6 la. Kòmanse ak moso ki anwo a, ki depase 1/2\" anlè tèt sipò a, apre sa kite yon espas 1/4\" ant chak moso anba l, epi kenbe tout bò yo aliyen.\n\nFikse bwa BB-2 yo sou sipò do yo ak yon kle tib ak sis gwo vis (lag screws) 1/4\" x 1-1/4\".\n\nPase papye sab dousman sou bò ki graje yo sou ban + do a.",
+      "imageAlts": [
+        "Dyagram twa ti planch do BB-2 ki fikse sou sipò do yo, ak yon espas 1/4\" ant chak planch."
+      ],
+      "tips": [
+        "Sèvi ak ekè chapantye ou a kòm kal pou espas yo.",
+        "Sèvi ak yon mèch 1/4\" pou fè ti twou davans ki pa fon pou gwo vis yo — fè atansyon pou pa pèse tout bwa BB-6 ki anba a."
+      ]
+    },
+    {
+      "title": "Gid twou pou fè davans (gabari)",
+      "text": "Koupe gid twou a sou liy pwentiye yo. Lè w ap fè twou, aliyen bò gabari a ak bò deyò bwa a anvan ou fè ti twou davans lan.\n\nSe pa tout twou yo ou sèvi — se pa tout modèl ki sèvi ak gabari a. Swiv etap montaj ki anwo yo pou konnen ki kote pou fè twou yo. Kenbe tout twou yo apeprè lajè yon pous dwèt (apeprè 1\") depi bò a, menm twou ki pa sèvi ak gabari sa a.",
+      "imageAlts": [
+        "Yon gabari gid twou ou ka enprime, ak senk plas twou make ak liy pou koupe, plis yon gwo plan ki montre distans twou yo depi bò planch lan."
+      ]
+    }
+  ],
+  "finishing": "Yon tretman pou bwa deyò ka fè eleman pak ou yo dire pi lontan, men li pa nesesè — moso sa yo fèt espre pou yo pa koute chè, pou yo dire epi pou yo fasil pou bati, kidonk li ka pi pratik pou kite pwochen jenerasyon an rebati yo lè lè a rive. Si ou vle tenti, pentire oswa vèni bwa a, gade resous pou fini ki anba yo.",
+  "safety": [
+    "Sa yo se sèlman rekòmandasyon pou moun ki fè l ak pwòp men yo — adapte materyèl la, montaj la ak konstriksyon an ak pwòp pwojè pa w ak teren pa w.",
+    "Pou bati sa a, ou bezwen konn kèk bagay sou zouti men ak zouti elektrik, pyès metal, vis ak boulon, bwa ak teknik montaj debaz.",
+    "Anvan ou sèvi ak nenpòt zouti elektrik, li epi swiv kondisyon sekirite fabrikan an mande, epi pa kite pèsonn sèvi ak zouti elektrik si yo pa fè menm bagay la.",
+    "Ou menm (mèt la) responsab pou tout règ konstriksyon ak sekirite, pèmi ak otorizasyon ofisyèl sa a bezwen.",
+    "Anvan, netwaye teren an: retire fatra, danje ak estrikti ou pa vle, epi chèche konnen kote fil ak tiyo sèvis piblik ki ta ka jennen yo pase anvan ou fouye.",
+    "Tout moun k ap ede bati dwe siyen yon fòm egzonerasyon pou volontè."
+  ],
+  "links": [
+    {
+      "label": "Sipò metal pou do ban (Hairpin Legs, an anglè)"
+    },
+    {
+      "label": "Chwazi pi bon fini pou pwojè deyò (Rockler, an anglè)"
+    },
+    {
+      "label": "Pi bon fini pou bwa deyò (Real Milk Paint, an anglè)"
+    },
+    {
+      "label": "Kouch pwoteksyon pou bwa deyò (Vermont Natural Coatings, an anglè)"
+    }
+  ],
+  "sourcePages": "Enstriksyon montaj BENCH_BACK, paj 1–11 (kouvèti; anvan ou kòmanse; chwa bwa ki pi kouran; etap 1–7; gid twou pou fè davans)"
+}

@@ -1,0 +1,316 @@
+---
+title: Evalye
+intro: Konnen teren ou an — solèy li, tè li, sa ki antoure l ak gwosè li — epi fè sa ou jwenn yo tounen yon plan debaz.
+sources:
+  - Gid la (Toolkit), paj 35–37 (Evalye, Evalye teren pak la, Karakteristik teren an)
+  - Kaye travay Evalye, paj 3–11 (Apèsi, Vizit sou teren an, Mezire teren ou an, Fè desen teren ou an, Verifye desen ou an, Note objè yo, Evalye objè yo, Plan debaz, Èske ou pare?)
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import Download from '../../../../components/workbook/Download.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import SiteReport from '../../../../components/widgets/SiteReport.astro';
+import BaseMap from '../../../../components/widgets/BaseMap.astro';
+import Planner from '../../../../components/widgets/Planner.astro';
+import SunStudy from '../../../../components/widgets/SunStudy.astro';
+import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
+
+{/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — reminds a reader who hasn't recorded a lot agreement yet, before they sink time into site visits and soil work on a lot they may not have permission for. */}
+<LotAgreementNotice />
+
+Kisa ki fè teren ou an espesyal, epi kijan ou ka pi byen sèvi ak karakteristik sa yo? Etap sa a montre kijan pou
+evalye teren ou an epi asire pak ou a pwofite kondisyon teren an.
+
+Yon teren pa kanpe poukont li — li fè pati kominote ou a. Kidonk, evalyasyon an dwe gade katye ou a tou. Èske gen
+yon istwa oswa yon kilti espesyal ki ta dwe parèt nan desen an? Yon pak ki onore jan yon kominote wè tèt li ap sanble
+plis ak yon ansyen vwazen pase ak yon moun ki fenk rive.
+
+Nou sèvi ak kèk teren pwojè kòm egzanp pou montre etap kle nan pwosesis sa a. Natirèlman, sitiyasyon pa w ap
+diferan, dapre kote teren pak ou a ye, fòm li ak sa ki antoure l — men se yon bon kote pou kòmanse.
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={3} label="Apèsi" />
+
+## Karakteristik teren an {/* #site-characteristics */}
+
+Nan etap sa a, w ap note karakteristik fizik teren pak la. Èske teren an gen solèy oswa lonbraj? Èske li plat oswa li
+an pant, èske gen pyebwa sou li deja? Oswa èske li anfas yon legliz? Tout karakteristik sa yo ap enfliyanse sa ou ka
+fè sou teren an. Pa egzanp, si ou vle plante tomat — teren ou an ap bezwen solèy pandan tout jounen an.
+
+Ale sou teren pak ou a epi note avèk atansyon tout sa ki ta ka gen efè sou desen pak ou a. Lè ou evalye karakteristik
+teren an anvan ou fè desen eleman pak la, w ap asire desen an adapte ak kondisyon espesyal teren an.
+
+<Figure
+  src="img/assess/site-characteristics.webp"
+  alt="Desen izometrik yon teren pwojè egzanp, an ble sou yon kwen rezidansyèl: nimewo ki make kote l ye sou yon kwen ki gen anpil machin, yon wout otobis, yon gwo mi ki pa gen fenèt, fil kouran anlè bò lari a, ak yon zòn ki gen solèy bò twotwa a."
+  caption="Yon teren pwojè egzanp ak karakteristik ki fè l espesyal"
+/>
+
+Teren egzanp sa a espesyal poutèt: **(1)** li sou yon kwen ki gen anpil machin, **(2)** li sou yon wout otobis, **(3)**
+gen yon bilding ak yon gwo mi ki pa gen fenèt nan bout li, **(4)** gen fil kouran ak lòt fil bò lari a, epi **(5)**
+gen yon zòn ki gen solèy bò twotwa a. Teren pa w ap gen pwòp lis pa l. Note tou karakteristik kiltirèl oswa istorik
+espas la ak blòk ki kole avè l yo — èske te gen yon biznis enteresan sou teren an lontan? Èske te gen evènman istorik
+toupre a? Kijan espas la te ye anvan te gen bilding? Se yon bon fason pou fè moun ki la depi lontan patisipe, ansanm
+ak elèv ki konn fè rechèch nan achiv vil la.
+
+<Checklist
+  id="assess.conditions"
+  label="Kondisyon pou note"
+  items={[
+    { value: 'sidewalks', label: 'Twotwa ak lòt sifas beton oswa asfalt' },
+    { value: 'utilities', label: 'Fil ak tiyo sèvis piblik ou ka wè (anlè ak atè)' },
+    { value: 'sun-direction', label: 'Bò solèy la leve / bò li kouche' },
+    { value: 'sun-shade-areas', label: 'Zòn ki gen solèy ak/oswa lonbraj' },
+    { value: 'ground-cover', label: 'Zòn ki gen gravye, beton oswa tè toutouni' },
+    { value: 'water-collection', label: 'Zòn kote dlo rete apre lapli' },
+    { value: 'adjacent-buildings', label: 'Bilding ki kole ak teren an' },
+    { value: 'plants', label: 'Touf bwa ak pyebwa (ak kalite yo, si ou konnen)' },
+    { value: 'structures', label: 'Estrikti ki deja la poukont yo (depo, kloti)' },
+    { value: 'building-remains', label: 'Rès ansyen bilding (fondasyon, vye mi, elatriye)' },
+    { value: 'terrain', label: 'Tè an pant, ti mòn ak/oswa gwo twou' },
+    { value: 'views', label: 'Bèl vi ak/oswa vi ki pa bèl' },
+    { value: 'wind', label: 'Zòn ki gen anpil van / briz' },
+    { value: 'sounds', label: 'Bri prensipal yo / kote ki ta ka deranje' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={3} label="Karakteristik teren an" />
+
+## Vizit sou teren an {/* #site-visit */}
+
+Ou ka fè aktivite sa yo an gwoup oswa poukont ou lè w al sou teren pak la:
+
+1. **Pran echantiyon tè.** Lè ou konnen ki eleman nitritif ki nan tè a, sa ede anpil pou w konnen kisa ki ka pouse
+   pi byen nan pak ou a. Yon tès senp pou plon ap ede w asire pak ou a an sekirite tou. Penn State Extension ofri yon
+   fason senp pou teste tè (an anglè): [agsci.psu.edu/aasl/soil-testing](https://agsci.psu.edu/aasl/soil-testing/fertility/soil-fertility-submission-forms).
+2. **Pran foto.** Nou chak wè peyizaj la yon fason diferan, epi pran foto se yon fason pou pataje sa nou wè ak lòt
+   moun. Pran 30 minit pou mache toutotou epi pran foto teren pak la ak sa ki antoure l. Apre sa, pataje foto nou yo
+   youn ak lòt epi esplike poukisa ou pran chak foto.
+3. **Chita epi koute.** Chita san fè bri sou teren pak la epi koute ak tout sans ou. Kisa ou tande, kisa ou santi ak
+   nen ou, kisa ou manyen? Apre 30 minit, note sa ou te santi. Èske gen bon bagay ou santi ki ta ka antre nan desen
+   pak la, oswa move bagay desen an ta ka diminye? Kijan sa ta diferan yon lòt jou nan semèn nan, oswa yon lòt lè nan
+   jounen an oswa nan nwit lan?
+4. **Mezire + evalye.** Lè ou pran mezi teren pak la, sa ede w konprann li pi an detay — kèk etap ki vin apre yo
+   montre w kijan pou fè l.
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — Penn State's standard fertility test has no lead in it; facts checked 2026-10-04 on agsci.psu.edu and phila.gov. */}
+<Callout kind="site">
+  Tès fètilite tè nòmal Penn State la (pH ak eleman nitritif) pa teste plon. Plon se yon lòt tès apa, sou
+  [fòm tès tè pou anviwònman laboratwa a ↗](https://agsci.psu.edu/aasl/soil-testing/environmental) (an anglè), oswa
+  nenpòt laboratwa EPA rekonèt ka fè l. [Gid plon Vil la ↗](https://www.phila.gov/guides/lead-guide/where-is-lead/)
+  (an anglè) pale sou plon nan tè jaden: kouvri tè ki toutouni, kabann jaden wo pou manje, ak tès yo.
+</Callout>
+
+<Field id="assess.soil-notes" label="Rezilta tès tè a" type="textarea" hint="Eleman nitritif, pH, plon — tout sa tès la bay." />
+<Field id="assess.listen-notes" label="Sa ou tande, sa ou santi ak sa ou manyen" type="textarea" />
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={4} label="Vizit sou teren an" />
+
+## Mezire teren ou an {/* #measure-your-lot */}
+
+Swiv etap ki anba yo pou kòmanse fè yon desen teren pak la jan li ye kounye a. Apre sa, ou ka enprime "kat debaz"
+sa a epi sèvi avè l sou teren an pou note kote divès eleman ak karakteristik enpòtan yo ye.
+
+<Callout kind="auto" title="Nou mezire l pou ou">
+  Lè ou fin chwazi teren ou an nan etap Jwenn teren, sit la mezire l sou pwòp kat pasèl Vil la — longè chak bò ak
+  sifas ki anba yo, ak yon kat debaz ou ka enprime, san ou pa bezwen ale sou Google Maps.
+</Callout>
+
+<SiteReport />
+<BaseMap />
+
+<details>
+  <summary>Oswa mezire l ak men ou</summary>
+  <ol>
+    <li>Ale sou <a href="https://maps.google.com" target="_blank" rel="noopener">maps.google.com</a>. Sit sa a gen foto ki pran anlè ak zouti pou mezire pwopriyete a.</li>
+    <li>Tape adrès pwopriyete a, oswa adrès pwopriyete ki pi pre a si ou pa konnen adrès li. Fè kat la grandi sou adrès la epi gade kote twotwa a ak kwen pwopriyete a ye. Si ou pa konnen kwen yo egzakteman, estime yo pou kounye a.</li>
+    <li>Gade foto anlè a epi chwazi yon pwen depa pou kòmanse pran mezi — youn nan kwen pwopriyete pak la. Klike ak bouton dwat sourit la (control-klik sou Mac) sou pwen depa a epi chwazi "Measure distance" (mezire distans).</li>
+    <li>Chèche kwen ki pi pre a, deplase kisè a epi klike ak bouton gòch la. Distans ant de pwen yo ap parèt. Ekri nimewo sa a.</li>
+    <li>Trennen pwen depa a sou pwochen kwen an. Ekri nimewo sa a.</li>
+    <li>Refè sa pou chak kwen pak la jiskaske ou fin mezire chak bò. Dènye mezi a dwe tounen sou pwen depa a.</li>
+  </ol>
+</details>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={5} label="Mezire teren ou an" />
+
+## Fè desen teren ou an {/* #diagram-your-lot */}
+
+Kounye a w ap fè yon desen limit pak la jan yo ye kounye a. W ap sèvi ak desen sa a pou note mezi objè (tankou
+pyebwa, elatriye) ki sou teren ou an. Desen an se yon "vi anlè", tankou si ou t ap gade dirèkteman anwo, menm jan ak
+foto anlè Google Maps.
+
+Desen limit yo fèt sou papye kadriye (papye ki gen ti kare) ki reprezante tè a, kote chak ti kare reprezante 1 pye
+longè toutbon: desen bò long lan anvan (bò ki pi long nan pak la, depi pwen depa a), apre sa bò kout la nan bout li,
+epi refè menm bagay la pou lòt bò long lan ak lòt bò kout la.
+
+<BaseMap />
+
+<Download href="downloads/forms/assess-grid-sheets.pdf" label="Telechaje fèy papye kadriye yo" note={`1/4" = 1'-0" — kole fèy yo ansanm ak tep pou teren ki pi gwo`} />
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={6} label="Fè desen teren ou an" />
+
+## Verifye desen ou an {/* #verify-your-diagram */}
+
+Pwochen etap la se ale sou teren pak la pou mezire epi note longè chak limit pwopriyete a ak men ou. **Mezi ou pran
+sou teren an menm pi fyab pase mezi sou òdinatè.**
+
+1. Chèche pwen depa pwojè a — menm kote ou te kòmanse sou Google Maps (oswa kote sit la te make l pou ou).
+2. Ak yon mèt riban 100 pye, mezire epi note distans bò long deyò pak la, depi yon kwen rive nan lòt kwen an.
+3. Ak yon mèt riban 100 pye, mezire epi note distans bò kout deyò a, depi yon kwen rive nan lòt kwen an.
+4. Refè sa pou lòt bò long lan.
+5. Refè sa pou lòt bò kout la.
+
+<Checklist
+  id="assess.what-to-bring"
+  label="Sa pou w pote sou teren an"
+  items={[
+    { value: 'pens', label: 'Plim + kaye nòt' },
+    { value: 'clipboards', label: 'Tablèt pou kenbe papye (clipboard)' },
+    { value: 'camera', label: 'Kamera (kamera telefòn nan bon)' },
+    { value: 'tape-100', label: 'Mèt riban 100 pye' },
+    { value: 'tape-long', label: 'Mèt riban long (25 pye oswa plis)' },
+    { value: 'survey-plat', label: 'Plan apantaj (survey plat)' },
+    { value: 'boundary-diagram', label: 'Desen limit yo' },
+    { value: 'flags', label: 'Ti drapo topografi oswa ti baton banbou pou jaden' },
+  ]}
+/>
+
+<Field id="assess.field-long-edge" label="Bò long lan, mezire sou teren an" type="number" unit="pye" />
+<Field id="assess.field-short-edge" label="Bò kout la, mezire sou teren an" type="number" unit="pye" />
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={7} label="Verifye desen ou an" />
+
+## Note epi evalye objè yo {/* #record-assess-objects */}
+
+Pwochen etap la se note kote tout objè ki sou teren pwojè a ye, epi apre sa evalye eta yo ak valè yo ta ka genyen
+pou pak la. Pou chak objè, ou pran de mezi: distans depi pwen depa pwojè a sou bò a, ak distans depi bò pak la. Se
+yon bon okazyon tou pou note objè ki kole ak teren pwojè a, men ki deyò l — yon poto elektrik, yon bouch dlo ponpye,
+oswa bò yon twotwa ki ta ka gen efè sou plan pak la.
+
+Gen anpil fason pou evalye yon objè lè ou fin jwenn kote l ye: bote/karaktè, konbyen tan li ka dire ankò, si li
+solid, si li ta ka lakòz pwoblèm oswa aksidan, si ou ka sèvi avè l ankò, valè li pou bèt ki viv la, elatriye. Pou
+chak objè, deside si nou dwe kenbe l.
+
+{/* site-added: the planner places kept objects on the real lot and uses them in the sun study. */}
+<Callout kind="auto" title="Mete objè yo sou vrè teren ou an">
+  <Planner mode="site" /> pèmèt ou mete chak objè sou vrè fòm teren ou an, olye ou make kowòdone ak men sou papye
+  kadriye.
+</Callout>
+
+<ListField
+  id="assess.objects"
+  label="Objè ki sou teren an"
+  rowName="objè"
+  min={4}
+  columns={[
+    { key: 'object', label: 'Objè', placeholder: 'pyebwa, kloti, depo, poto elektrik…' },
+    { key: 'fromStart', label: 'Distans depi pwen depa a', type: 'number' },
+    { key: 'fromEdge', label: 'Distans depi bò a', type: 'number' },
+    { key: 'keep', label: 'Kenbe l?', placeholder: 'wi / non' },
+    { key: 'notes', label: 'Nòt' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={8} label="Note objè yo" />
+
+## Solèy ak lonbraj / plan debaz {/* #sun-shade-base-plan */}
+
+Desen objè ou vle kenbe yo sou plan debaz ou a, menm jan ou te mezire yo: tankou yon kat trezò, mete yon pwen oswa yon
+"X" pou make kote a, ak yon sèk toutotou l ki gen menm gwosè ak espas li okipe (pou yon pyebwa oswa yon touf bwa,
+sèk la se bò fèy yo apeprè, ak yon pwen kote pye bwa a ye).
+
+Apre sa, dekri kondisyon teren an sou menm desen an:
+
+- Pou lonbraj bilding yo, desen bò deyò zòn lonbraj la apeprè epi fè ti liy ladan l.
+- Pou bilding yo, desen kontou yo epi fè ti liy ladan yo.
+- Pou fil sèvis piblik anlè yo, ekri kote yo pase anlè teren an.
+- Pou zòn ki gen yon kondisyon tè diferan (tankou zòn ki mouye), desen yon fòm tankou yon tach kote li ye apeprè.
+- Pou pyebwa yo, ekri ki kalite pyebwa si ou konnen (pa egzanp "Pye erab").
+
+{/* site-added: real sun and shade from the neighboring buildings' actual heights, any date and time. */}
+<Callout kind="auto" title="Solèy ak lonbraj dapre vrè bilding yo">
+  <SunStudy /> kalkile solèy ak lonbraj chak lè dapre wotè vrè bilding vwazen ou yo, pou nenpòt dat ak nenpòt lè nan
+  ane a — olye ou desen lonbraj ak men sou papye kadriye.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={10} label="Plan debaz" />
+
+## Rezime — èske ou pare? {/* #summary-are-you-ready */}
+
+Rezime karakteristik prensipal teren ou an. W ap sèvi ak yo nan pwochen etap la pou ede w fè desen pak ou a.
+
+<Field
+  id="assess.existing-trees"
+  label="Èske gen pyebwa deja?"
+  type="select"
+  hint="Konbyen pyebwa — si genyen — ki sou teren an kounye a. Pa konte pyebwa yo pral retire."
+  options={[
+    { value: 'No trees', label: 'Pa gen pyebwa' },
+    { value: 'One or two trees', label: 'Youn oswa de pyebwa' },
+    { value: 'Several trees', label: 'Plizyè pyebwa' },
+    { value: 'Mostly trees', label: 'Sitou pyebwa' },
+  ]}
+  auto="extra.site.treesKept|treeCount"
+/>
+
+<Field
+  id="assess.sunlight"
+  label="Konbyen solèy?"
+  type="select"
+  hint="Konbyen solèy teren an jwenn nan yon jounen."
+  options={[
+    { value: 'Full sun all day', label: 'Plen solèy tout jounen' },
+    { value: 'Mostly sun', label: 'Plis solèy' },
+    { value: 'Mostly shade', label: 'Plis lonbraj' },
+    { value: 'Deep shade all day', label: 'Gwo lonbraj tout jounen' },
+  ]}
+  auto="extra.site.sunClass|sunClass"
+/>
+
+<Field
+  id="assess.lot-location"
+  label="Kote teren an ye"
+  type="select"
+  hint="Èske teren an nan mitan blòk la, oswa nan yon kwen? Si li nan yon kwen, ki bò lari a ye parapò ak bò long lan?"
+  options={[
+    { value: 'Mid-block lot', label: 'Teren nan mitan blòk' },
+    { value: 'Corner lot (street right)', label: 'Teren nan kwen (lari a sou bò dwat)' },
+    { value: 'Corner lot (street left)', label: 'Teren nan kwen (lari a sou bò gòch)' },
+  ]}
+  auto="extra.site.lotKind|lotKind"
+/>
+
+<Field id="assess.long-edge" label="Bò long" type="number" unit="pye" auto="extra.site.lengthFt" />
+<Field id="assess.short-edge" label="Bò kout" type="number" unit="pye" auto="extra.site.widthFt" />
+
+<p>Longè chak bò ak tout sifas la an pye kare deside gwosè teren ou an, A–E:</p>
+
+<table>
+  <caption class="visually-hidden">Gwosè pak la dapre bò long lan ak bò kout la, an pye</caption>
+  <thead>
+    <tr>
+      <th scope="col">Gwosè</th>
+      <th scope="col">Bò long</th>
+      <th scope="col">Bò kout</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">A</th><td>44–64 pye</td><td>12–16 pye</td></tr>
+    <tr><th scope="row">B</th><td>64–76 pye</td><td>16–28 pye</td></tr>
+    <tr><th scope="row">C</th><td>76–88 pye</td><td>28–40 pye</td></tr>
+    <tr><th scope="row">D</th><td>88–96 pye</td><td>32–48 pye</td></tr>
+    <tr><th scope="row">E</th><td>80–120 pye</td><td>44–60 pye</td></tr>
+  </tbody>
+</table>
+
+<Field
+  id="assess.lot-size"
+  label="Gwosè teren ou an se…"
+  type="select"
+  options={['A', 'B', 'C', 'D', 'E']}
+  auto="extra.site.sizeId"
+/>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={11} label="Èske ou pare?" />
