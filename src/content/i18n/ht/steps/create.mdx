@@ -1,9 +1,9 @@
 ---
-title: Create
-intro: Build your park, one weekend phase at a time.
+title: Kreye
+intro: Bati pak ou a, yon faz nan yon wikenn chak fwa.
 sources:
-  - Toolkit pp. 57–59 (Create, Initial Park Construction)
-  - Create Workbook pp. 1–18
+  - Gid la (Toolkit), paj 57–59 (Kreye, Premye konstriksyon pak la)
+  - Kaye travay Kreye, paj 1–18
 ---
 import Field from '../../../../components/workbook/Field.astro';
 import ListField from '../../../../components/workbook/ListField.astro';
@@ -20,449 +20,502 @@ import LotAgreementNotice from '../../../../components/workbook/LotAgreementNoti
 {/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — Create lets you pick build weekends and print an order list with nothing recorded in Acquire; this says so before anyone breaks ground. */}
 <LotAgreementNotice />
 
-Building a park is a great way to connect neighbors, friends and others. The process requires dedicated volunteers
-who can give their time and energy, with a wide variety of skills — carpentry, landscaping, organizing, encouraging,
-leading. Like following a recipe, park building is a step-by-step sequence; most Park in a Truck parks go up in about
-6–8 weekends.
+Bati yon pak se yon bèl fason pou konekte vwazen, zanmi ak lòt moun. Pwosesis la mande volontè ki angaje, ki ka bay
+tan yo ak enèji yo, ak anpil kalite konpetans — chapant, travay jaden ak peyizaj, òganize, ankouraje, dirije. Tankou
+lè w ap swiv yon resèt, bati yon pak se yon seri etap youn apre lòt; pifò pak Park in a Truck fèt nan apeprè 6–8
+wikenn.
 
-The Create chapter is all about building your park. We broke the process down into eight phases. Each phase can be
-completed in roughly a weekend — the size of your park and number of volunteers will affect how long it actually
-takes. The phases are ordered for a reason; review each one and adjust your schedule as needed.
+Chapit Kreye a se tout sou kijan pou bati pak ou a. Nou separe pwosesis la an uit faz. Ou ka fini chak faz nan apeprè
+yon wikenn — gwosè pak ou a ak kantite volontè ou genyen ap gen efè sou konbyen tan li pran toutbon. Faz yo nan lòd
+sa a pou yon rezon; gade chak faz epi ajiste orè ou si sa nesesè.
 
-This book assumes you've done the cost estimate and know the quantities and materials you'll need to order for each
-phase. If you haven't, go back to the Dream step and use the cost estimator.
+Liv sa a konsidere ou deja fè estimasyon pri a epi ou konnen kantite ak materyèl ou pral bezwen kòmande pou chak faz.
+Si ou poko fè l, retounen nan etap Reve a epi sèvi ak kalkilatè pri a.
 
 <CostEstimator />
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={3} />
 
-## Volunteer release form {/* #volunteer-release-form */}
+## Fòm dechaj pou volontè {/* #volunteer-release-form */}
 
-Make sure you have volunteer release forms available at the site whenever you're working on the park. This form
-releases you from liability for injuries to your volunteers. It's your responsibility to consult your organization's
-legal advisors and insurance carrier before starting construction — they may want you to take additional steps to
-protect the organization from liability. Give your volunteers clear instructions about expectations and tasks for the
-work day; they're more likely to come back in future weeks when they feel their time was put to good use.
+Asire w ou gen fòm dechaj pou volontè disponib sou teren an chak fwa w ap travay sou pak la. Fòm sa a retire
+responsablite ou pou blesi volontè ou yo ta ka genyen. Se responsablite pa w pou konsilte konseye legal òganizasyon
+ou a ak konpayi asirans li anvan ou kòmanse konstriksyon an — yo ka vle ou pran lòt mezi pou pwoteje òganizasyon an
+kont responsablite. Bay volontè ou yo enstriksyon klè sou sa nou tann de yo ak travay pou jou a; y ap gen plis chans
+tounen nan semèn ki vin apre yo si yo santi tan yo te sèvi a yon bon bagay.
 
-<Download href="downloads/forms/volunteer-release-form.pdf" label="Volunteer waiver and release form" note="One per volunteer; a parent or guardian must also sign for volunteers under 18" />
+<Download href="downloads/forms/volunteer-release-form.pdf" label="Fòm egzonerasyon ak dechaj pou volontè" note="Youn pou chak volontè; yon paran oswa yon gadyen dwe siyen tou pou volontè ki gen mwens pase 18 an" />
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={3} />
 
-## Phase 1: Organize {/* #phase-1-organize */}
+## Faz 1: Òganize {/* #phase-1-organize */}
 
-As in any process, the first and most important step is to organize your team by identifying project leaders and
-establishing a schedule. How many people you assign to these roles depends on the complexity and size of your
-project.
+Menm jan ak nenpòt pwosesis, premye etap la, ki pi enpòtan an, se òganize ekip ou a: idantifye moun ki pral dirije
+pwojè a epi fikse yon orè. Konbyen moun ou mete nan wòl sa yo depann de jan pwojè ou a konplike ak gwosè l.
 
-- **Construction manager.** Orders materials, is there for deliveries, gives instructions to volunteers on build
-  days, and coordinates with the project manager on schedule.
-- **Project manager.** In charge of getting volunteers, social media, ordering food, handing out waivers, coordinates
-  finances and controls the schedule.
+- **Responsab konstriksyon.** Li kòmande materyèl, li la lè livrezon yo rive, li bay volontè yo enstriksyon nan jou
+  konstriksyon yo, epi li travay ak responsab pwojè a sou orè a.
+- **Responsab pwojè.** Li responsab pou jwenn volontè, rezo sosyal, kòmande manje, distribye fòm egzonerasyon yo,
+  li jere lajan an epi li kontwole orè a.
 
-<Field id="create.construction-manager" label="Construction manager" hint="Orders materials, runs build days" />
-<Field id="create.project-manager" label="Project manager" hint="Volunteers, schedule, finances" />
+<Field id="create.construction-manager" label="Responsab konstriksyon" hint="Kòmande materyèl, dirije jou konstriksyon yo" />
+<Field id="create.project-manager" label="Responsab pwojè" hint="Volontè, orè, lajan" />
 
 <ListField
   id="create.org-chart"
-  label="Volunteers & contractors"
-  rowName="person"
+  label="Volontè ak kontraktè"
+  rowName="moun"
   min={3}
   columns={[
-    { key: 'name', label: 'Name' },
-    { key: 'role', label: 'Role', placeholder: 'volunteer, contractor…' },
-    { key: 'contact', label: 'Contact' },
+    { key: 'name', label: 'Non' },
+    { key: 'role', label: 'Wòl', placeholder: 'volontè, kontraktè…' },
+    { key: 'contact', label: 'Kontak' },
   ]}
 />
 
-A project calendar is an excellent way to keep track of schedules, important dates, when volunteers will be working,
-and lead times for materials. Planning is as important as the building process itself — start off on the right foot.
+Yon kalandriye pwojè se yon trè bon fason pou swiv orè yo, dat enpòtan yo, kilè volontè yo pral travay, ak konbyen
+tan materyèl yo pran pou rive. Planifikasyon enpòtan menm jan ak konstriksyon an li menm — kòmanse sou bon pye.
 
 <BuildSchedule />
 
-<Download href="downloads/templates/project-calendar.xlsx" label="Calendar template" note="Sample project calendar and contact list — for reference, make your own copy" />
+<Download href="downloads/templates/project-calendar.xlsx" label="Modèl kalandriye" note="Egzanp kalandriye pwojè ak lis kontak — pou referans, fè pwòp kopi pa w" />
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={4} />
 
-## Phase 2: Prepare the lot {/* #phase-2-prepare-the-lot */}
+## Faz 2: Prepare teren an {/* #phase-2-prepare-the-lot */}
 
-### Steps
+### Etap yo
 
-**Step 1: Evaluate.** Some sites need more clearing or grading than others, which can require special machinery —
-contact a landscape contractor if any of the following can't be done by the community alone.
+**Etap 1: Evalye.** Gen kèk teren ki bezwen plis netwayaj oswa plis travay pou nivle tè a pase lòt, e sa ka mande
+machin espesyal — kontakte yon kontraktè peyizaj si kominote a pa ka fè youn nan bagay sa yo poukont li.
 
-- Contact the PiaT team ([ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu)) for a site visit
-  consultation if you're unsure how to prepare your site.
-- Contact Pennsylvania One Call at **811** to mark utility locations.
+- Kontakte ekip PiaT la ([ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu), an anglè) pou yon vizit
+  konsiltasyon sou teren an si ou pa sèten kijan pou prepare teren ou an.
+- Rele Pennsylvania One Call nan **811** pou yo make kote fil ak tiyo sèvis piblik yo pase anba tè a.
 
-<Field id="create.one-call-address" label="Address for your PA One Call request" auto="lot.address" />
+<Field id="create.one-call-address" label="Adrès pou demann PA One Call ou a" auto="lot.address" />
 
-**Step 2: Protect.** Bring small tools and equipment to the site. Set up protective construction fencing with wood
-posts at tree trunks, buildings and other items that need protection. Install silt/erosion control fencing around
-the site and at all drain inlets.
+**Etap 2: Pwoteje.** Pote ti zouti ak ekipman sou teren an. Mete kloti konstriksyon pou pwoteksyon, ak poto bwa,
+toutotou pye pyebwa yo, bilding yo ak lòt bagay ki bezwen pwoteksyon. Enstale yon kloti kont labou ak ewozyon
+toutotou teren an ak devan tout grij drenaj yo.
 
-**Step 3: Removal.** Remove unwanted vegetation (including roots), tree stumps, trash and masonry materials — some
-vegetation removal may require herbicide treatment to control effectively in a timely manner. Prune existing trees to
-remove limbs from the trunk to at least 6' high. Haul debris and vegetation off site to the proper dumping location;
-stockpile masonry materials on site to use as gabion basket fill.
+**Etap 3: Retire.** Retire plant ou pa vle (ak rasin yo), chouk pyebwa, fatra ak debri mason — pou kèk plant, ou ka
+oblije sèvi ak èbisid (pwodui pou touye move zèb) pou kontwole yo byen nan bon tan. Taye pyebwa ki deja la yo pou
+retire branch sou pye bwa a jiska omwen 6' wotè. Pote debri yo ak plant yo ale nan bon kote pou jete yo; kenbe debri
+mason yo sou teren an pou plen kalòj gabyon yo.
 
 {/* site-added: safety note (DESIGN.md §2, 2026-10-04) — street trees are the City's; facts checked 2026-10-04 on phila.gov. */}
 <Callout kind="site">
-  Street trees (the ones in the sidewalk) belong to the City: pruning or removing one needs a permit from Philadelphia
-  Parks & Recreation, which prunes and removes hazardous street trees for free (ask through 311). See the City's
-  [street tree questions ↗](https://www.phila.gov/departments/philadelphia-parks-recreation/street-tree-frequently-asked-questions/).
+  Pyebwa ki sou twotwa a (pyebwa lari) se pou Vil la: pou taye oswa retire youn, ou bezwen yon pèmi Philadelphia Parks
+  & Recreation. Se yo menm ki taye epi retire pyebwa lari ki danjere gratis (mande sa nan 311). Gade
+  [kesyon Vil la sou pyebwa lari ↗](https://www.phila.gov/departments/philadelphia-parks-recreation/street-tree-frequently-asked-questions/)
+  (an anglè).
 </Callout>
 
-**Step 4: Site leveling.** Begin grade raking and leveling the site. Make sure any Pennsylvania One Call markings are
-still intact and visible — soil grade should be relatively level with the sidewalk grade.
+**Etap 4: Nivle teren an.** Kòmanse rato tè a epi nivle teren an. Asire w tout mak Pennsylvania One Call yo toujou la
+epi ou ka wè yo — tè a dwe apeprè menm nivo ak twotwa a.
 
-### Equipment & tools
+### Ekipman ak zouti
 
 <Checklist
   id="create.phase2-tools"
   items={[
-    'Shovels', 'Wheelbarrows', 'Pick axe', 'Grading rakes', 'Sledgehammer',
-    'Hand pruners + loppers', 'Pruning saws', 'Spray paint', 'Construction fencing',
-    'Wood posts', 'Broom', 'Chainsaw', 'Trash bags',
+    { value: 'Shovels', label: 'Pèl' },
+    { value: 'Wheelbarrows', label: 'Bourèt' },
+    { value: 'Pick axe', label: 'Pikwa' },
+    { value: 'Grading rakes', label: 'Rato pou nivle tè' },
+    { value: 'Sledgehammer', label: 'Mas (gwo mato)' },
+    { value: 'Hand pruners + loppers', label: 'Sekatè + gwo sekatè pou branch' },
+    { value: 'Pruning saws', label: 'Si pou koupe branch' },
+    { value: 'Spray paint', label: 'Penti an esprè' },
+    { value: 'Construction fencing', label: 'Kloti konstriksyon' },
+    { value: 'Wood posts', label: 'Poto bwa' },
+    { value: 'Broom', label: 'Bale' },
+    { value: 'Chainsaw', label: 'Tronsonèz' },
+    { value: 'Trash bags', label: 'Sache fatra' },
   ]}
 />
 <Checklist
   id="create.phase2-tools-optional"
-  label="Optional — for sites with large amounts of uneven surfaces, concrete, or tree stumps"
+  label="Si ou vle — pou teren ki gen anpil kote ki pa plat, anpil beton oswa anpil chouk pyebwa"
   items={[
-    { value: 'excavator', label: 'Excavator', hint: 'hired contractor recommended' },
-    { value: 'stump-grinder', label: 'Stump grinder', hint: 'hired contractor recommended' },
-    'Jack hammer', 'Rototiller', 'Herbicide spray',
+    { value: 'excavator', label: 'Eskavatè', hint: 'pi bon pou peye yon kontraktè' },
+    { value: 'stump-grinder', label: 'Machin pou moulen chouk bwa', hint: 'pi bon pou peye yon kontraktè' },
+    { value: 'Jack hammer', label: 'Mato piklè (jackhammer)' },
+    { value: 'Rototiller', label: 'Motokiltè (rototiller)' },
+    { value: 'Herbicide spray', label: 'Ponp èbisid' },
   ]}
 />
 
 <Figure
   src="img/create/phase2-reference-photos.webp"
-  alt="Reference photos for preparing the lot: an excavator clearing a site, a utility locate flag and tracer wire on a lawn, volunteers removing masonry rubble, erosion-control sediment mesh along a curb, and a volunteer grade-raking soil"
+  alt="Foto referans pou prepare teren an: yon eskavatè k ap netwaye yon teren, yon ti drapo ak yon fil ki make kote tiyo sèvis piblik pase sou yon gazon, volontè k ap retire debri mason, yon twal kont labou bò yon bòdi twotwa, ak yon volontè k ap rato tè pou nivle l"
 />
 
-### Useful links
+### Lyen itil (an anglè)
 
-- **Tool rental** — may be worth hiring a contractor for power tools, for efficiency and safety.
-  [West Philadelphia Tool Library ↗](https://westphillytools.org) (hand tools only; 1314 S 47th St) ·
-  [OK Rental ↗](https://okrentalsaleservice.com) *(link currently dead)* (power tools, including chainsaws; 640 Main St, Darby) ·
-  [Diamond Tool ↗](https://diamondtool.net/Rentals) *(could not verify automatically)* (2800 Grays Ferry Ave)
-- **Waste & recycling** — [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/) (3850 W Ford Rd)
-- **Tree pruning video** — [youtube.com/watch?v=pY5A-5gUqwo ↗](https://youtube.com/watch?v=pY5A-5gUqwo)
-- **Weed ID** — [Philadelphia Orchard Project weed guide ↗](https://www.phillyorchards.org/resources/)
-- **Herbicides** (use sparingly, always follow label instructions) — Picloram for stump application on woody plants;
-  Glyphosate for foliar application on herbaceous and woody plants; Clopyralid for mugwort and Canadian thistle.
-  Invasive weeds that often need herbicide control: mugwort, Canadian thistle, Japanese knotweed and phragmites
-  (herbaceous); Broussonetia, Ailanthus, Paulownia and Japanese honeysuckle (woody — cut and treat the stump only if
-  too large to remove by the roots).
+- **Lwe zouti** — li ka vo lapenn peye yon kontraktè pou zouti elektrik, pou travay la ale pi vit epi pi an sekirite.
+  [West Philadelphia Tool Library ↗](https://westphillytools.org) (zouti men sèlman; 1314 S 47th St) ·
+  [OK Rental ↗](https://okrentalsaleservice.com) *(lyen an pa mache kounye a)* (zouti elektrik, tankou tronsonèz; 640 Main St, Darby) ·
+  [Diamond Tool ↗](https://diamondtool.net/Rentals) *(nou pa t ka verifye l otomatikman)* (2800 Grays Ferry Ave)
+- **Fatra ak resiklaj** — [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/) (3850 W Ford Rd)
+- **Videyo sou kijan pou taye pyebwa** — [youtube.com/watch?v=pY5A-5gUqwo ↗](https://youtube.com/watch?v=pY5A-5gUqwo)
+- **Rekonèt move zèb** — [Gid move zèb Philadelphia Orchard Project ↗](https://www.phillyorchards.org/resources/)
+- **Èbisid** (sèvi ak yo ti kras, toujou swiv enstriksyon ki sou etikèt la) — Picloram pou mete sou chouk plant ki gen
+  bwa; Glyphosate pou flite sou fèy plant ki pa gen bwa ak plant ki gen bwa; Clopyralid pou mugwort ak Canadian
+  thistle. Move zèb anvayisan ki souvan bezwen èbisid pou kontwole yo: mugwort, Canadian thistle, Japanese knotweed ak
+  phragmites (plant ki pa gen bwa); Broussonetia, Ailanthus, Paulownia ak Japanese honeysuckle (plant ki gen bwa —
+  koupe epi trete chouk la sèlman si li twò gwo pou rache ak rasin li).
 
 {/* site-added: safety note (DESIGN.md §2, 2026-10-04) — herbicide labels, restricted-use picloram, 20% vinegar; facts checked 2026-10-04 on epa.gov and npic.orst.edu. */}
 <Callout kind="site">
-  A herbicide's label is the law: follow it, including where you may use the product and the protective gear it
-  lists ([EPA ↗](https://www.epa.gov/pesticide-labels/introduction-pesticide-labels)). Many picloram products are
-  restricted-use and may only be bought or applied by a certified applicator
-  ([EPA's list ↗](https://www.epa.gov/pesticide-worker-safety/restricted-use-products-rup-report)). Vinegar sold for
-  weeds (20% or more) can permanently damage eyes: wear eye protection and gloves
-  ([NPIC ↗](https://npic.orst.edu/faq/vinegar.html)).
+  Etikèt yon èbisid se lalwa: swiv li, sa vle di tou kote ou gen dwa sèvi ak pwodui a ak ekipman pwoteksyon li mande
+  ([EPA ↗](https://www.epa.gov/pesticide-labels/introduction-pesticide-labels), an anglè). Anpil pwodui picloram se
+  pwodui ki gen restriksyon, se sèlman yon aplikatè ki sètifye ki ka achte yo oswa mete yo
+  ([lis EPA a ↗](https://www.epa.gov/pesticide-worker-safety/restricted-use-products-rup-report), an anglè). Vinèg
+  yo vann pou move zèb (20% oswa plis) ka domaje je pou tout tan: mete linèt pwoteksyon ak gan
+  ([NPIC ↗](https://npic.orst.edu/faq/vinegar.html), an anglè).
 </Callout>
 
-### Preparation for next steps
+### Prepare pou pwochen etap yo
 
-Check your project calendar and revise as needed. Purchase and deliver any materials or equipment with lead times,
-and make sure the site is prepared for Phase 3.
+Gade kalandriye pwojè ou a epi korije l si sa nesesè. Achte epi fè livre tout materyèl oswa ekipman ki pran tan pou
+rive, epi asire teren an pare pou Faz 3.
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={5} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={6} label="Reference photos & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={6} label="Foto referans ak lyen (PDF)" />
 
-## Phase 3: Layout & gravel base {/* #phase-3-layout-gravel-base */}
+## Faz 3: Trase plan an ak baz gravye {/* #phase-3-layout-gravel-base */}
 
-### Steps
+### Etap yo
 
-**Step 1: Materials.** Bring equipment and tools to the site; prepare for deliveries. Locate a stockpile area for
-gravel and cover it with a tarp if possible. Mark the general areas to receive gravel in spray paint — if there's not
-enough room, coordinate the delivery with your city to have it placed in the street.
+**Etap 1: Materyèl.** Pote ekipman ak zouti sou teren an; prepare pou livrezon yo. Chwazi yon kote pou mete pil
+gravye a epi kouvri l ak yon prela si ou kapab. Make zòn ki pral resevwa gravye yo ak penti an esprè — si pa gen ase
+plas, fè aranjman ak vil la pou yo mete livrezon an nan lari a.
 
-<Callout kind="note" title="Blocking the street for a delivery?">
-  Apply for a temporary no-parking permit so the delivery truck has somewhere to unload.
-  [Apply on phila.gov ↗](https://www.phila.gov/services/cars-parking-transportation/apply-for-a-parking-permit/apply-for-a-temporary-no-parking-permit/)
+<Callout kind="note" title="W ap bloke lari a pou yon livrezon?">
+  Mande yon pèmi tanporè pou pa gen machin ki estasyone, konsa kamyon livrezon an gen kote pou l dechaje.
+  [Mande l sou phila.gov ↗](https://www.phila.gov/services/cars-parking-transportation/apply-for-a-parking-permit/apply-for-a-temporary-no-parking-permit/) (an anglè)
 </Callout>
-<Field id="create.delivery-address" label="Address for the no-parking permit" auto="lot.address" />
+<Field id="create.delivery-address" label="Adrès pou pèmi pa estasyone a" auto="lot.address" />
 
-**Step 2: Layout planting beds & park element locations.** Begin at the starting point you marked in the Assess
-workbook. Refer to your plan for the locations and lengths of planting-bed and park-element edges. Use stakes and
-string line to mark the locations of edging and park elements you'll add in later phases.
+**Etap 2: Trase kabann plant yo ak kote eleman pak yo pral ye.** Kòmanse nan pwen depa ou te make nan kaye travay
+Evalye a. Gade plan ou a pou kote ak longè bòdi kabann plant yo ak eleman pak yo. Sèvi ak pikèt ak fisèl pou make
+kote bòdi yo ak eleman pak ou pral ajoute nan faz ki vin apre yo.
 
-**Step 3: Install sub base.** Prepare ground surfaces for gabion baskets per the assembly instructions. Dig out
-entrances to allow for the change in level from the new park to the sidewalk — minimum 4" deep at the sidewalk edge,
-grading as needed (use excess soil to level pathways or add to planting areas). Spread gravel 2" deep in all areas
-except plant beds, about 6" wider than your string lines so the edging in the next phase can sit on top of the
-gravel. Run a vibrating plate over the gravel at least twice.
+**Etap 3: Mete baz anba a.** Prepare tè a pou kalòj gabyon yo dapre enstriksyon montaj yo. Fouye antre yo pou
+pèmèt diferans nivo ant nouvo pak la ak twotwa a — omwen 4" fon bò twotwa a, epi nivle tè a jan sa nesesè (sèvi ak
+tè ki rete a pou nivle chemen yo oswa ajoute l nan zòn pou plante yo). Simen gravye 2" epesè nan tout zòn yo eksepte
+kabann plant yo, apeprè 6" pi laj pase liy fisèl ou yo, konsa bòdi ou pral mete nan pwochen faz la ka chita sou
+gravye a. Pase yon machin vibre pou konpakte (plate compactor) sou gravye a omwen de fwa.
 
-**Step 4: Entrances & cleanup.** Clean up overspill of gravel and clean up public areas.
+**Etap 4: Antre yo ak netwayaj.** Netwaye gravye ki debòde epi netwaye espas piblik yo.
 
-### Equipment, tools & materials
+### Ekipman, zouti ak materyèl
 
 <Checklist
   id="create.phase3-tools"
   items={[
-    'Square', 'Measuring tape', 'Shovels', 'Wheelbarrows', 'Pick axe', 'Grading rakes',
-    '5 lb hammer', 'Spray paint', 'Wood posts and string', 'Vibrating plate compactor', 'Broom',
+    { value: 'Square', label: 'Ekè' },
+    { value: 'Measuring tape', label: 'Mèt riban' },
+    { value: 'Shovels', label: 'Pèl' },
+    { value: 'Wheelbarrows', label: 'Bourèt' },
+    { value: 'Pick axe', label: 'Pikwa' },
+    { value: 'Grading rakes', label: 'Rato pou nivle tè' },
+    { value: '5 lb hammer', label: 'Mato 5 liv' },
+    { value: 'Spray paint', label: 'Penti an esprè' },
+    { value: 'Wood posts and string', label: 'Poto bwa ak fisèl' },
+    { value: 'Vibrating plate compactor', label: 'Machin vibre pou konpakte (plate compactor)' },
+    { value: 'Broom', label: 'Bale' },
   ]}
 />
-<p class="muted">Materials: gravel, 3/4" roadbase.</p>
+<p class="muted">Materyèl: gravye, gravye wout 3/4" (roadbase).</p>
 
 <Figure
   src="img/create/phase3-reference-photos.webp"
-  alt="Reference photos for layout and gravel base: measuring the site, digging, prepping the sub base, a gravel delivery truck, laying out the site with stakes and string, a gravel stockpile, wheelbarrowing and spreading gravel"
+  alt="Foto referans pou trase plan an ak baz gravye: moun k ap mezire teren an, k ap fouye, k ap prepare baz anba a, yon kamyon k ap livre gravye, moun k ap trase teren an ak pikèt ak fisèl, yon pil gravye, moun k ap pote gravye nan bourèt epi k ap simen l"
 />
 
-### Useful links
+### Lyen itil (an anglè)
 
-- **How-to** — [Lay out planting beds ↗](https://lowes.com/n/how-to/create-an-english-style-garden) (watch 1:50–2:40) ·
-  [Install gravel sub-base ↗](https://youtube.com/watch?v=tfDEOIAIUwQ)
-- **Tool rental** — [West Philadelphia Tool Library ↗](https://westphillytools.org) ·
-  [OK Rental ↗](https://okrentalsaleservice.com) *(link currently dead)* · [Diamond Tool ↗](https://diamondtool.net/Rentals) *(could not verify automatically)*
+- **Kijan pou fè l** — [Trase kabann plant yo ↗](https://lowes.com/n/how-to/create-an-english-style-garden) (gade 1:50–2:40) ·
+  [Mete baz gravye anba a ↗](https://youtube.com/watch?v=tfDEOIAIUwQ)
+- **Lwe zouti** — [West Philadelphia Tool Library ↗](https://westphillytools.org) ·
+  [OK Rental ↗](https://okrentalsaleservice.com) *(lyen an pa mache kounye a)* · [Diamond Tool ↗](https://diamondtool.net/Rentals) *(nou pa t ka verifye l otomatikman)*
 
-### Preparation for next steps
+### Prepare pou pwochen etap yo
 
-Check your project calendar and revise as needed. Purchase and deliver materials with lead times for the next
-phases. Make sure the site is prepared for Phase 4.
+Gade kalandriye pwojè ou a epi korije l si sa nesesè. Achte epi fè livre materyèl ki pran tan pou rive pou faz ki vin
+apre yo. Asire teren an pare pou Faz 4.
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={7} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={8} label="Reference photos & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={8} label="Foto referans ak lyen (PDF)" />
 
-## Phase 4: Install the edge {/* #phase-4-install-the-edge */}
+## Faz 4: Mete bòdi a {/* #phase-4-install-the-edge */}
 
-### Steps
+### Etap yo
 
-**Step 1: Materials.** Bring your edge materials (see the cost estimate and assembly instructions). Remove the
-erosion-protection fence; tree protection should stay unless its location interferes with edge installation.
+**Etap 1: Materyèl.** Pote materyèl pou bòdi a (gade estimasyon pri a ak enstriksyon montaj yo). Retire kloti kont
+ewozyon an; pwoteksyon pyebwa yo dwe rete sof si kote li ye a anpeche w mete bòdi a.
 
-**Step 2: Assemble.** Assemble gabion baskets (refer to your Gabion Wall assembly instructions).
+**Etap 2: Monte.** Monte kalòj gabyon yo (gade enstriksyon montaj Mi gabyon an).
 
-**Step 3: Installation.** Set up string lines so gabion baskets sit in a straight line along the park edge. Lay out
-the baskets according to your plan and fill the bottoms with 2–3" of gravel. Make small adjustments so the baskets
-are level and straight relative to each other — when used alone as tables or benches, use a leveling tool on top.
-Add wood edges where needed (see the Wood Edging assembly instructions).
+**Etap 3: Enstalasyon.** Mete liy fisèl pou kalòj gabyon yo chita an liy dwat sou bò pak la. Ranje kalòj yo dapre
+plan ou a epi plen anba yo ak 2–3" gravye. Fè ti ajisteman pou kalòj yo nivo epi dwat youn parapò ak lòt — lè ou
+sèvi ak yo poukont yo kòm tab oswa ban, mete yon nivo sou tèt yo. Ajoute bòdi an bwa kote sa nesesè (gade enstriksyon
+montaj Bòdi an bwa a).
 
-### Equipment & materials
+### Ekipman ak materyèl
 
 <Checklist
   id="create.phase4-tools"
   items={[
-    'Measuring tape', 'Shovels', 'Wheelbarrows', 'Garden hoes', 'Grading rakes',
-    'Hand tamper', 'Wire cutters', 'Sledge hammer', 'Level', 'Broom',
+    { value: 'Measuring tape', label: 'Mèt riban' },
+    { value: 'Shovels', label: 'Pèl' },
+    { value: 'Wheelbarrows', label: 'Bourèt' },
+    { value: 'Garden hoes', label: 'Wou jaden' },
+    { value: 'Grading rakes', label: 'Rato pou nivle tè' },
+    { value: 'Hand tamper', label: 'Konpaktè a men (tamper)' },
+    { value: 'Wire cutters', label: 'Pens pou koupe fil' },
+    { value: 'Sledge hammer', label: 'Mas (gwo mato)' },
+    { value: 'Level', label: 'Nivo' },
+    { value: 'Broom', label: 'Bale' },
   ]}
 />
-<p class="muted">Materials: gabion baskets; lumber and hardware for wood edge; large masonry material for gabion baskets, 3" or larger.</p>
+<p class="muted">Materyèl: kalòj gabyon; bwa ak pyès metal pou bòdi an bwa a; gwo debri mason pou kalòj gabyon yo, 3" oswa pi gwo.</p>
 
 <Figure
   src="img/create/phase4-reference-photos.webp"
-  alt="Reference photos for installing the edge: two filled gabion baskets, and a volunteer setting a wood edge board against a gravel bed"
+  alt="Foto referans pou mete bòdi a: de kalòj gabyon ki plen, ak yon volontè k ap mete yon planch bòdi an bwa bò yon kabann gravye"
 />
 
-### Useful links
+### Lyen itil (an anglè)
 
-- **Materials** — [Castor Materials ↗](https://castormaterials.com) (crushed stone, delivery; 3301 S 61st St) ·
-  [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) (crushed stone, mulch, tools; 4260 Macalester St) ·
-  [Underdog Supply ↗](https://www.underdogsupply.com/) (bulk delivery; Conshohocken) ·
-  Galantino Supply Company (rental equipment and bulk materials; 725 Old Marple Rd, Springfield — (610) 544-2586)
-- **How-to** — [Build a gabion wall ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
+- **Materyèl** — [Castor Materials ↗](https://castormaterials.com) (wòch kraze, livrezon; 3301 S 61st St) ·
+  [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) (wòch kraze, mulch, zouti; 4260 Macalester St) ·
+  [Underdog Supply ↗](https://www.underdogsupply.com/) (livrezon an gwo; Conshohocken) ·
+  Galantino Supply Company (lwe ekipman ak materyèl an gwo; 725 Old Marple Rd, Springfield — (610) 544-2586)
+- **Kijan pou fè l** — [Bati yon mi gabyon ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
 
-### Preparation for next steps
+### Prepare pou pwochen etap yo
 
-Check your project calendar and revise as needed. Purchase and deliver materials with lead times. Make sure the site
-is prepared for Phase 5.
+Gade kalandriye pwojè ou a epi korije l si sa nesesè. Achte epi fè livre materyèl ki pran tan pou rive. Asire teren an
+pare pou Faz 5.
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={9} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={10} label="Reference photos & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={10} label="Foto referans ak lyen (PDF)" />
 
-## Phase 5: Spread topsoil {/* #phase-5-spread-topsoil */}
+## Faz 5: Simen tè nwa {/* #phase-5-spread-topsoil */}
 
-### Steps
+### Etap yo
 
-**Step 1: Materials.** Remove the tree protection fence. Locate a stockpile area for topsoil on the sidewalk or
-street — if so, apply for a temporary no-parking permit (see Phase 3).
+**Etap 1: Materyèl.** Retire kloti pwoteksyon pyebwa yo. Chwazi yon kote pou mete pil tè nwa (topsoil) a sou twotwa a
+oswa nan lari a — si se sa, mande yon pèmi tanporè pou pa gen machin ki estasyone (gade Faz 3).
 
-**Step 2: Soil installation.** Prepare planting beds to receive topsoil by grading the existing soil. Spread topsoil
-approximately 4–6" deep and grade it for smoothness.
+**Etap 2: Mete tè a.** Prepare kabann plant yo pou resevwa tè nwa a lè ou nivle tè ki deja la a. Simen tè nwa a
+apeprè 4–6" epesè epi nivle l pou l byen swa.
 
-**Step 3: Clean up.** Clean up overspill of topsoil and clean up public areas.
+**Etap 3: Netwaye.** Netwaye tè nwa ki debòde epi netwaye espas piblik yo.
 
-### Equipment & materials
+### Ekipman ak materyèl
 
 <Checklist
   id="create.phase5-tools"
-  items={['Measuring tape', 'Shovels', 'Wheelbarrows', 'Grading rakes', 'Garden hoes', 'Broom']}
+  items={[
+    { value: 'Measuring tape', label: 'Mèt riban' },
+    { value: 'Shovels', label: 'Pèl' },
+    { value: 'Wheelbarrows', label: 'Bourèt' },
+    { value: 'Grading rakes', label: 'Rato pou nivle tè' },
+    { value: 'Garden hoes', label: 'Wou jaden' },
+    { value: 'Broom', label: 'Bale' },
+  ]}
 />
-<p class="muted">Materials: topsoil.</p>
+<p class="muted">Materyèl: tè nwa (topsoil).</p>
 
 <Figure
   src="img/create/phase5-reference-photos.webp"
-  alt="Reference photos for spreading topsoil: a dump truck delivering topsoil, a volunteer grading soil by hand, two volunteers moving topsoil by wheelbarrow, and a volunteer placing topsoil in a bed"
+  alt="Foto referans pou simen tè nwa: yon kamyon bascule k ap livre tè nwa, yon volontè k ap nivle tè ak men, de volontè k ap deplase tè nwa nan bourèt, ak yon volontè k ap mete tè nwa nan yon kabann"
 />
 
-### Useful links
+### Lyen itil (an anglè)
 
-- **Ordering** — [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
-- **How-to** — [Prep topsoil ↗](https://youtube.com/watch?v=GcOJ4fDJmpM) · [Healthy topsoil for healthy plants ↗](https://youtube.com/watch?v=7-Tyz7fGeZo)
+- **Kòmande** — [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
+- **Kijan pou fè l** — [Prepare tè nwa ↗](https://youtube.com/watch?v=GcOJ4fDJmpM) · [Bon tè nwa pou plant an sante ↗](https://youtube.com/watch?v=7-Tyz7fGeZo)
 
-### Preparation for next steps
+### Prepare pou pwochen etap yo
 
-Check your project calendar and revise as needed. Purchase and deliver materials with lead times. Make sure the site
-is prepared for Phase 6.
+Gade kalandriye pwojè ou a epi korije l si sa nesesè. Achte epi fè livre materyèl ki pran tan pou rive. Asire teren an
+pare pou Faz 6.
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={11} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={12} label="Reference photos & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={12} label="Foto referans ak lyen (PDF)" />
 
-## Phase 6: Plant {/* #phase-6-plant */}
+## Faz 6: Plante {/* #phase-6-plant */}
 
-### Steps
+### Etap yo
 
-**Step 1: Plants.** Remove any weeds that have emerged. Make sure plant deliveries are scheduled and you've located a
-plant delivery staging area. Lay out trees and shrubs in their desired locations, then clean up overspill of soil and
-public areas.
+**Etap 1: Plant.** Retire tout move zèb ki pouse. Asire w livrezon plant yo pwograme epi ou chwazi yon kote pou mete
+plant yo lè yo rive. Ranje pyebwa ak touf bwa yo kote ou vle yo ye a, apre sa netwaye tè ki debòde ak espas piblik
+yo.
 
-**Step 2: Installation.** Install large trees first (see the planting detail below). Install shrubs, fine-grade the
-soil, plant perennials, install 4" of mulch, then water all plants thoroughly — repeat twice a week until the plants
-go dormant for winter.
+**Etap 2: Enstalasyon.** Plante gwo pyebwa yo an premye (gade detay plantasyon an anba a). Plante touf bwa yo, nivle
+tè a byen fen, plante plant ki dire plizyè ane yo, mete 4" mulch (kouvèti tè), epi wouze tout plant yo byen — refè sa
+de fwa pa semèn jiskaske plant yo dòmi pou livè.
 
 <Figure
   src="img/create/phase6-plant-illustration.webp"
-  alt="Axonometric illustration of a finished front-yard park, labelled PLANT, with trees, raised planting beds and a paved gathering area between two rowhouses"
+  alt="Desen aksonometrik yon pak devan kay ki fini, ki ekri PLANT, ak pyebwa, kabann plant ki wo ak yon espas pave pou rasanble ant de kay kole youn ak lòt"
 />
 <Figure
   src="img/create/phase6-planting-detail.webp"
-  alt="Two planting detail diagrams: a shrub/perennial container planting detail showing mulch depth and backfill, and a tree planting detail showing root-ball placement, staking, mulch and burlap removal"
+  alt="De dyagram detay plantasyon: yon detay pou plante touf bwa/plant ki dire plizyè ane ki soti nan po, ki montre epesè mulch la ak tè pou ranpli twou a, ak yon detay pou plante pyebwa ki montre kote pou mete boul rasin lan, pikèt yo, mulch la ak kijan pou retire twal jit la"
 />
 
-### Equipment & materials
+### Ekipman ak materyèl
 
 <Checklist
   id="create.phase6-tools"
-  items={['Measuring tape', 'Shovels', 'Wheelbarrows', 'Pick axe', 'Landscape rakes', 'Spray paint', 'Tree stakes and rope', 'Broom']}
+  items={[
+    { value: 'Measuring tape', label: 'Mèt riban' },
+    { value: 'Shovels', label: 'Pèl' },
+    { value: 'Wheelbarrows', label: 'Bourèt' },
+    { value: 'Pick axe', label: 'Pikwa' },
+    { value: 'Landscape rakes', label: 'Rato jaden' },
+    { value: 'Spray paint', label: 'Penti an esprè' },
+    { value: 'Tree stakes and rope', label: 'Pikèt pou pyebwa ak kòd' },
+    { value: 'Broom', label: 'Bale' },
+  ]}
 />
-<p class="muted">Materials: plants — be sure to reference your plant list.</p>
+<p class="muted">Materyèl: plant — pa bliye gade lis plant ou a.</p>
 
-### Useful links
+### Lyen itil (an anglè)
 
-- **General plant info** — [PHS Gold Medal Plants ↗](https://phsonline.org/for-gardeners/gold-medal-plants) ·
+- **Enfòmasyon jeneral sou plant** — [PHS Gold Medal Plants ↗](https://phsonline.org/for-gardeners/gold-medal-plants) ·
   [Gardens Alive ↗](https://www.gardensalive.com/) · [North Creek Nurseries ↗](https://www.northcreeknurseries.com/) ·
-  [Missouri Botanical Garden ↗](https://www.missouribotanicalgarden.org/) · [Longwood Gardens plant explorer ↗](https://plantexplorer.longwoodgardens.org/ecmweb/ECM_Home.html) *(link currently dead)* ·
-  [Arbor Day Foundation ↗](https://www.arborday.org/) · [Penn State Extension vegetable gardening ↗](https://extension.psu.edu/programs/master-gardener)
-- **PiaT partner nursery** — LandHealth Institute, 4862 Parkside Ave, Philadelphia · (267) 571-5750 ·
+  [Missouri Botanical Garden ↗](https://www.missouribotanicalgarden.org/) · [Eksploratè plant Longwood Gardens ↗](https://plantexplorer.longwoodgardens.org/ecmweb/ECM_Home.html) *(lyen an pa mache kounye a)* ·
+  [Arbor Day Foundation ↗](https://www.arborday.org/) · [Jaden legim Penn State Extension ↗](https://extension.psu.edu/programs/master-gardener)
+- **Pepinyè patnè PiaT** — LandHealth Institute, 4862 Parkside Ave, Philadelphia · (267) 571-5750 ·
   [landhealthinstitute.org/nursery ↗](https://www.landhealthinstitute.org/nursery)
-- **Other regional nurseries** — [Good Host Plants ↗](https://www.goodhostplants.com/) (local pollinator specialist) ·
+- **Lòt pepinyè nan rejyon an** — [Good Host Plants ↗](https://www.goodhostplants.com/) (espesyalis lokal pou polinizatè) ·
   [Pleasant Run Nursery ↗](https://www.pleasantrunnursery.com/) · [Pinelands Nursery ↗](https://www.pinelandsnursery.com/) ·
   [Archewild ↗](https://archewild.com/)
-- **Fruit trees** — [Philadelphia Orchard Project ↗](https://www.phillyorchards.org/) ·
+- **Pyebwa fwi** — [Philadelphia Orchard Project ↗](https://www.phillyorchards.org/) ·
   [Burpee ↗](https://www.burpee.com/fruit/fruit-trees/) · [Stark Bros ↗](https://www.starkbros.com/products/fruit-trees)
-- **Gardening workshops & lot help** — [Pennsylvania Horticultural Society ↗](https://phsonline.org/) ·
-  [Grounded in Philly ↗](https://groundedinphilly.org/) (legal help, insurance, lot data)
-- **How-to** — [Container & bulb planting tips ↗](https://www.gardeners.com/how-to/growing-annual-flowers/5070.html) ·
-  [Containerized tree planting ↗](https://www.arborday.org/trees/planting/containerized.cfm) ·
-  [How to plant a shrub ↗](https://youtube.com/watch?v=Tim4LEo6l10)
+- **Atelye jaden ak èd pou teren** — [Pennsylvania Horticultural Society ↗](https://phsonline.org/) ·
+  [Grounded in Philly ↗](https://groundedinphilly.org/) (èd legal, asirans, done sou teren)
+- **Kijan pou fè l** — [Konsèy pou plante nan po ak plante zonyon flè ↗](https://www.gardeners.com/how-to/growing-annual-flowers/5070.html) ·
+  [Plante yon pyebwa ki soti nan po ↗](https://www.arborday.org/trees/planting/containerized.cfm) ·
+  [Kijan pou plante yon touf bwa ↗](https://youtube.com/watch?v=Tim4LEo6l10)
 
-### Preparation for next steps
+### Prepare pou pwochen etap yo
 
-Check your project calendar and make sure you have a schedule for a Park Ambassador — see the Sustain step for
-details. Mulch suppliers: [Mid Atlantic Pine Straw ↗](https://www.midatlanticpinestraw.com/) ·
+Gade kalandriye pwojè ou a epi asire w ou gen yon orè pou yon Anbasadè pak — gade etap Pran swen an pou detay yo.
+Founisè mulch (an anglè): [Mid Atlantic Pine Straw ↗](https://www.midatlanticpinestraw.com/) ·
 [Underdog Landscape Supply ↗](https://underdogsupply.com) · [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/get-organic-materials/)
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={13} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={14} label="Useful links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={14} label="Lyen itil (PDF)" />
 
-## Phase 7: Install the gravel surface {/* #phase-7-install-the-gravel-surface */}
+## Faz 7: Mete sifas gravye a {/* #phase-7-install-the-gravel-surface */}
 
-### Steps
+### Etap yo
 
-**Step 1: Materials.** Prepare for deliveries if not already stockpiled. Locate a stockpile area for gravel on the
-sidewalk or street (temporary no-parking permit, if needed — see Phase 3).
+**Etap 1: Materyèl.** Prepare pou livrezon yo si gravye a poko la an pil. Chwazi yon kote pou mete pil gravye a sou
+twotwa a oswa nan lari a (pèmi tanporè pou pa gen machin ki estasyone, si sa nesesè — gade Faz 3).
 
-**Step 2: Installation.** Install the gravel surface using a wheelbarrow and landscape rake. Install gravel
-approximately 2" deep, spreading any excess evenly. Tamp down the aggregate with a vibratory plate to reduce
-settling, and move through all areas to make sure they're level and even.
+**Etap 2: Enstalasyon.** Mete sifas gravye a ak yon bourèt ak yon rato jaden. Mete gravye a apeprè 2" epesè, epi
+simen sa ki rete a egal toupatou. Konpakte gravye a ak yon plak vibran pou l pa desann pita, epi pase nan tout zòn
+yo pou asire yo nivo epi egal.
 
-**Step 3: Clean up.** Clean up overspill of gravel and clean up public areas.
+**Etap 3: Netwaye.** Netwaye gravye ki debòde epi netwaye espas piblik yo.
 
-### Equipment & materials
+### Ekipman ak materyèl
 
 <Checklist
   id="create.phase7-tools"
-  items={['Measuring tape', 'Shovels', 'Wheelbarrows', 'Landscape rakes', 'Hand tamper', 'Vibratory plate', 'Broom']}
+  items={[
+    { value: 'Measuring tape', label: 'Mèt riban' },
+    { value: 'Shovels', label: 'Pèl' },
+    { value: 'Wheelbarrows', label: 'Bourèt' },
+    { value: 'Landscape rakes', label: 'Rato jaden' },
+    { value: 'Hand tamper', label: 'Konpaktè a men (tamper)' },
+    { value: 'Vibratory plate', label: 'Plak vibran (plate compactor)' },
+    { value: 'Broom', label: 'Bale' },
+  ]}
 />
-<p class="muted">Materials: gravel, 3/8" or smaller (stone dust).</p>
+<p class="muted">Materyèl: gravye 3/8" oswa pi piti (pousyè wòch).</p>
 
 <Figure
   src="img/create/phase7-reference-photos.webp"
-  alt="Reference photos for installing the gravel surface: a landscape grading rake, a hand tamper on packed gravel, and a volunteer running a gas-powered vibratory plate compactor"
+  alt="Foto referans pou mete sifas gravye a: yon rato jaden pou nivle, yon konpaktè a men sou gravye ki byen konpakte, ak yon volontè k ap kondi yon plak vibran ki mache ak gaz"
 />
 
-### Useful links
+### Lyen itil (an anglè)
 
-- **Materials** — [Castor Materials ↗](https://castormaterials.com) · [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) ·
+- **Materyèl** — [Castor Materials ↗](https://castormaterials.com) · [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) ·
   Galantino Supply Company ((610) 544-2586) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
-- **How-to** — [Install gravel ↗](https://youtube.com/watch?v=t0LWQ_U2z_g)
+- **Kijan pou fè l** — [Mete gravye ↗](https://youtube.com/watch?v=t0LWQ_U2z_g)
 
-### Preparation for next steps
+### Prepare pou pwochen etap yo
 
-Check your project calendar and revise as needed. Purchase and deliver materials with lead times. Make sure the site
-is prepared for Phase 8.
+Gade kalandriye pwojè ou a epi korije l si sa nesesè. Achte epi fè livre materyèl ki pran tan pou rive. Asire teren an
+pare pou Faz 8.
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={15} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={16} label="Reference photos & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={16} label="Foto referans ak lyen (PDF)" />
 
-## Phase 8: Install park elements {/* #phase-8-install-park-elements */}
+## Faz 8: Mete eleman pak yo {/* #phase-8-install-park-elements */}
 
-### Steps
+### Etap yo
 
-**Step 1: Measure.** Review your assembly manuals and measure and mark out where your park elements need to go.
+**Etap 1: Mezire.** Reli liv enstriksyon montaj ou yo epi mezire epi make kote eleman pak ou yo dwe ale.
 
-**Step 2: Materials.** Make sure you have all the materials outlined in your assembly manuals.
+**Etap 2: Materyèl.** Asire w ou gen tout materyèl ki nan liv enstriksyon montaj ou yo.
 
-**Step 3: Assemble.** Assemble your park elements according to the assembly manuals.
+**Etap 3: Monte.** Monte eleman pak ou yo dapre liv enstriksyon montaj yo.
 
-**Step 4: Install.** Make sure you have proper room within your design to install the elements, then locate them in
-their final positions. You may be able to — or choose to — assemble elements ahead of time or off site.
+**Etap 4: Enstale.** Asire w gen ase plas nan desen ou a pou mete eleman yo, apre sa mete yo nan plas final yo. Ou ka
+monte eleman yo davans oswa lòt kote — si ou kapab oswa si ou pito sa.
 
 <Callout kind="auto">
-  Every element with an assembly guide is linked from the Dream step's [Assemble](/steps/dream/#assemble) grid — the
-  same guides are listed there.
+  Chak eleman ki gen yon gid montaj gen yon lyen nan griy [Monte eleman yo](/steps/dream/#assemble) nan etap Reve a —
+  se menm gid yo ki la.
 </Callout>
 
-### Useful links
+### Lyen itil (an anglè)
 
-- **How-to build a…** (use the assembly guides first; these videos are backup) — [Communal table ↗](https://youtube.com/watch?v=Px2JZs4Q2v4) ·
-  [Cold frame ↗](https://youtube.com/watch?v=b75RoDmE9qY) · [Raised garden beds ↗](https://youtube.com/watch?v=MBIYebUgVVI) ·
-  [Compost bins ↗](https://youtube.com/watch?v=gA6QNLaBEyc) · [Potting bench ↗](https://youtube.com/watch?v=E7HumfxE2f4) ·
-  [Outdoor garden shed ↗](https://youtube.com/watch?v=DuQ0N8z6OkI) · [Gabion wall ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
-- **Lumber & building materials** — Woodland Building Supply, 4701 Woodland Ave, Philadelphia — (215) 727-5333 ·
-  C & R Building Supply, 1601 S 49th St, Philadelphia · A&A Lumber (cypress), Avondale, PA · Delaware County Lumber, Boothwyn, PA
+- **Kijan pou bati yon…** (sèvi ak gid montaj yo an premye; videyo sa yo se pou ede si sa nesesè) — [Gwo tab pou tout moun ↗](https://youtube.com/watch?v=Px2JZs4Q2v4) ·
+  [Bwat vit pou plant (cold frame) ↗](https://youtube.com/watch?v=b75RoDmE9qY) · [Kabann jaden wo ↗](https://youtube.com/watch?v=MBIYebUgVVI) ·
+  [Bwat konpòs ↗](https://youtube.com/watch?v=gA6QNLaBEyc) · [Tab pou mete plant nan po ↗](https://youtube.com/watch?v=E7HumfxE2f4) ·
+  [Ti depo jaden deyò ↗](https://youtube.com/watch?v=DuQ0N8z6OkI) · [Mi gabyon ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
+- **Bwa ak materyèl konstriksyon** — Woodland Building Supply, 4701 Woodland Ave, Philadelphia — (215) 727-5333 ·
+  C & R Building Supply, 1601 S 49th St, Philadelphia · A&A Lumber (bwa sipre), Avondale, PA · Delaware County Lumber, Boothwyn, PA
 
-### Preparation for next steps
+### Prepare pou pwochen etap yo
 
-Check your project calendar and revise as needed — your park is almost done!
+Gade kalandriye pwojè ou a epi korije l si sa nesesè — pak ou a prèske fini!
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={17} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={18} label="Assembly instructions & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={18} label="Enstriksyon montaj ak lyen (PDF)" />
 
 {/* site-added: the workbook's own contents page lists a Summary, but this working draft doesn't include one — this wrap-up just recaps the 8 phases above as a final checklist. No new advice. */}
-## Summary {/* #summary */}
+## Rezime {/* #summary */}
 
 <Checklist
   id="create.summary-checklist"
   items={[
-    { value: 'phase1', label: 'Phase 1: Organize', hint: 'Team roles assigned, schedule set' },
-    { value: 'phase2', label: 'Phase 2: Prepare the lot', hint: 'Cleared, protected, leveled' },
-    { value: 'phase3', label: 'Phase 3: Layout & gravel base', hint: 'Beds and elements staked out, sub-base in' },
-    { value: 'phase4', label: 'Phase 4: Install the edge', hint: 'Gabion baskets and wood edging set' },
-    { value: 'phase5', label: 'Phase 5: Spread topsoil', hint: 'Planting beds graded and filled' },
-    { value: 'phase6', label: 'Phase 6: Plant', hint: 'Trees, shrubs and perennials in the ground' },
-    { value: 'phase7', label: 'Phase 7: Install the gravel surface', hint: 'Finish gravel tamped and level' },
-    { value: 'phase8', label: 'Phase 8: Install park elements', hint: 'Benches, tables and structures assembled and placed' },
+    { value: 'phase1', label: 'Faz 1: Òganize', hint: 'Wòl ekip la bay, orè a fikse' },
+    { value: 'phase2', label: 'Faz 2: Prepare teren an', hint: 'Netwaye, pwoteje, nivle' },
+    { value: 'phase3', label: 'Faz 3: Trase plan an ak baz gravye', hint: 'Kabann ak eleman yo make ak pikèt, baz anba a mete' },
+    { value: 'phase4', label: 'Faz 4: Mete bòdi a', hint: 'Kalòj gabyon ak bòdi an bwa an plas' },
+    { value: 'phase5', label: 'Faz 5: Simen tè nwa', hint: 'Kabann plant yo nivle epi plen' },
+    { value: 'phase6', label: 'Faz 6: Plante', hint: 'Pyebwa, touf bwa ak plant ki dire plizyè ane nan tè a' },
+    { value: 'phase7', label: 'Faz 7: Mete sifas gravye a', hint: 'Dènye kouch gravye konpakte epi nivo' },
+    { value: 'phase8', label: 'Faz 8: Mete eleman pak yo', hint: 'Ban, tab ak estrikti monte epi mete an plas' },
   ]}
 />
 
 <Callout kind="tip">
-  Your park is built! Head to the Sustain step to keep it thriving — watering, weeding and the annual stewardship
-  workplan.
+  Pak ou a bati! Ale nan etap Pran swen an pou kenbe l an bòn sante — wouze, retire move zèb, ak plan travay anyèl
+  pou pran swen pak la.
 </Callout>
