@@ -560,7 +560,7 @@ word); the place is "a cidade da Filadélfia". A native reviewer should still re
 | stewardship / sustain | cuidado do parque / cuidar | Survive · Thrive · Socialize = Sobreviver · Prosperar · Conviver. |
 | My park | Meu parque | |
 | project file | arquivo do projeto | |
-| Plan in 3D / the planner | Planejar em 3D / o planejador 3D | |
+| Plan in 3D / the planner | Planejar em 3D / o planejador 3D | Header menu uses the short noun "Terrenos" for Find a lot so the menu fits on one line beside "Português" (pages keep "Achar um terreno"). |
 | Plan view / 3D view | vista de cima (planta) / vista 3D | Button: "Planta", as in an architect's floor plan. |
 | sun hours / growing season | horas de sol / época de crescimento (15 abr – 15 out) | |
 | wet area | área encharcada | Where puddles or soggy ground form after rain. |

@@ -9,7 +9,7 @@ export default {
   'list.delete': 'Apagar',
   'list.deleteLabel': 'Apagar {name}',
   'delete.confirm': 'Apagar “{name}” deste navegador? Não dá para desfazer, a não ser que você tenha salvado um arquivo do projeto.',
-  'delete.done': '{name} apagado.',
+  'delete.done': 'Projeto apagado: {name}.',
   'import.opened': '“{name}” foi aberto. Agora ele é o seu projeto ativo.',
   'import.notProject': 'Este não é um arquivo de projeto do Park in a Truck.',
 

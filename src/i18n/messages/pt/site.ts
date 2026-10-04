@@ -10,7 +10,7 @@ export default {
   'header.menu': 'Menu',
   'nav.label': 'Principal',
   'nav.steps': 'Etapas',
-  'nav.lot': 'Achar um terreno',
+  'nav.lot': 'Terrenos',
   'nav.planner': 'Planejar em 3D',
   'nav.build': 'Guias de montagem',
   'nav.plants': 'Plantas',
