@@ -1,0 +1,158 @@
+{
+  "title": "Banc avec dossier",
+  "summary": "Un banc de 4 pieds en cèdre, en douglas ou en bois traité sous pression, avec une assise à lattes et un dossier incliné, fait en bois de 2x4 avec des supports de dossier boulonnés. Il mesure 25\" jusqu’en haut des accoudoirs ; le dossier monte à environ 34\".",
+  "materials": [
+    {
+      "item": "Bois de dimension 2x4 — cèdre rouge de l’Ouest, douglas ou pin traité sous pression",
+      "notes": "Cèdre : résiste naturellement aux intempéries et à la pourriture, a une belle teinte rouge, se travaille facilement et n’a pas besoin de produit de protection (il devient gris avec le temps) ; il coûte plus cher — demandez la qualité « noueuse » (STK), beaucoup moins chère que la qualité sans nœuds. Douglas : résiste moyennement à la pourriture, solide et facile à travailler, moins cher que le cèdre, mais il durera moins longtemps — un bon choix si vous comptez le peindre. Bois traité sous pression : résiste à la pourriture et c’est l’option la moins chère, mais la qualité du bois est souvent mauvaise et irrégulière ; il doit sécher à l’air 1 à 4 mois avant d’être peint, et il est déconseillé là où l’on cultive de la nourriture. Commandez 5 % de plus que la liste de coupe, pour compenser la qualité variable du bois et les coupes ratées."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Vis à bois d’extérieur autoforeuses"
+    },
+    {
+      "item": "Tire-fonds pour bois d’extérieur"
+    },
+    {
+      "item": "Boulons de carrosserie d’extérieur, écrous et rondelles"
+    },
+    {
+      "item": "Supports de dossier"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Bas + dessus du banc"
+    },
+    {
+      "notes": "Dossier du banc"
+    },
+    {
+      "notes": "Côté du banc"
+    },
+    {
+      "notes": "Côté du banc"
+    },
+    {
+      "notes": "Côté du banc"
+    },
+    {
+      "notes": "Côté du banc"
+    },
+    {
+      "notes": "Côté du banc"
+    }
+  ],
+  "tools": [
+    "Scie à onglets de 10\" ou 12\" (ou une scie à main adaptée)",
+    "Visseuse à percussion pour les vis à bois d’extérieur autoforeuses",
+    "Perceuse avec des forets de 1/8\" et de 1/4\" pour pré-percer les trous",
+    "Papier de verre, grain 120",
+    "Équerre de charpentier",
+    "Lunettes de sécurité + gants",
+    "Clé à douille (pour les boulons de carrosserie et les tire-fonds)"
+  ],
+  "steps": [
+    {
+      "title": "Mesurer, étiqueter et couper le bois",
+      "text": "Mesurez, étiquetez et coupez le bois dans l’ordre, de BB-1 à BB-7, aux longueurs de la liste de coupe.\n\nVérifiez chaque morceau de bois pour repérer les défauts, comme des fentes, des déformations ou un sciage irrégulier, et jetez ces parties du bois.",
+      "imageAlts": [
+        "Schéma en perspective des sept pièces coupées du banc avec dossier, de BB-1 à BB-7, avec leur longueur indiquée, des planches de 45\" jusqu’aux blocs de 4\"."
+      ],
+      "tips": [
+        "Étiquetez chaque morceau de bois au fur et à mesure que vous le mesurez et le coupez.",
+        "Faites une pile de bois séparée pour chaque pièce, de BB-1 à BB-7.",
+        "Poncer légèrement les bords coupés enlève les échardes et facilite l’assemblage.",
+        "Vous construisez plus d’un banc ? Une butée sur votre scie à onglets permet de couper toutes les pièces à la même longueur."
+      ]
+    },
+    {
+      "title": "Monter les deux cadres des extrémités",
+      "text": "Posez deux pièces BB-3 sur une surface plane. Placez deux pièces BB-5 du côté droit des pièces BB-3, en alignant les bords comme sur l’image. Recommencez pour monter un deuxième cadre identique.",
+      "imageAlts": [
+        "Schéma montrant deux planches BB-3 et deux planches BB-5 assemblées en un cadre carré pour l’extrémité du banc, avec un deuxième cadre terminé derrière."
+      ],
+      "tips": [
+        "Utilisez une équerre de charpentier pour vérifier que chaque coin forme un angle droit ; si l’écart est grand, vérifiez de nouveau la longueur de vos planches.",
+        "Fabriquer un gabarit à 90 degrés aidera beaucoup à assembler cette étape et la suivante."
+      ]
+    },
+    {
+      "title": "Ajouter les lattes de l’assise et les pieds avant sur chaque cadre d’extrémité",
+      "text": "Placez quatre pièces BB-6 et une pièce BB-4 sur le dessus de chaque cadre, comme sur le dessin, en laissant un espace de 1.5\" entre les deux pièces BB-6 (utilisez un bout de 2x4 posé sur la tranche comme cale). Utilisez le guide de perçage à la fin du livret pour pré-percer les trous des vis, puis fixez le bois avec une visseuse à percussion et 30 vis à bois d’extérieur autoforeuses de 2.5\".\n\nPlacez une pièce BB-4 à ras de la pièce BB-5 qui se trouve dessous, avec deux pièces BB-7 à angle droit à côté, comme sur le dessin — en utilisant encore la cale de 2x4 pour laisser un espace de 1.5\" — puis fixez-les avec 14 autres vis de 2.5\".\n\nRecommencez sur l’autre pied, puis mettez les deux pieds debout pour l’étape suivante.",
+      "imageAlts": [
+        "Schéma des planches BB-6, BB-4 et BB-7 vissées sur le dessus et sur le côté de chaque cadre d’extrémité, avec l’espace de 1.5\" laissé par la cale."
+      ]
+    },
+    {
+      "title": "Relier les deux cadres d’extrémité avec les lattes du bas",
+      "text": "Placez trois pièces BB-1 dans les encoches, à la base et sur les côtés des deux cadres montés à l’étape 3, comme sur le dessin.\n\nFixez les pièces BB-1 des deux côtés, à gauche et à droite, dans les pièces du cadre, avec une visseuse à percussion et 12 vis à bois d’extérieur autoforeuses de 2.5\" en tout — 6 vis par côté.",
+      "imageAlts": [
+        "Schéma de trois planches BB-1 qui relient les deux cadres d’extrémité à la base, avec un angle de 90 degrés indiqué dans le coin."
+      ],
+      "tips": [
+        "Vérifiez avec une équerre de charpentier que le côté reste à 90 degrés."
+      ]
+    },
+    {
+      "title": "Poser le dessus de l’assise",
+      "text": "Posez trois pièces BB-1 sur le dessus du cadre monté à l’étape 4, en alignant tous les bords et en laissant un espace égal de 1\" entre les pièces.\n\nFixez les pièces BB-1 avec une visseuse à percussion et 12 vis à bois d’extérieur autoforeuses de 2.5\". Ces vis devront être enfoncées légèrement en biais.",
+      "imageAlts": [
+        "Schéma de trois autres planches BB-1 qui forment le dessus de l’assise, vissées en biais avec un espace égal de 1\" entre les planches."
+      ]
+    },
+    {
+      "title": "Boulonner les supports de dossier",
+      "text": "Placez les deux supports de dossier de chaque côté des pièces BB-1, à 5\" des extrémités vers l’intérieur, comme sur le dessin.\n\nMarquez et pré-percez des trous qui traversent les pièces BB-1, alignés avec les supports, puis fixez les supports de dossier sous les pièces BB-1 avec une clé à douille et quatre boulons de carrosserie d’extérieur de 1/4\" x 2-1/2\", avec écrous et rondelles.",
+      "imageAlts": [
+        "Schéma de deux supports de dossier boulonnés sous les planches de l’assise, à 5\" de chaque extrémité."
+      ],
+      "tips": [
+        "Basculer le banc sur sa face avant rend cette étape plus facile."
+      ]
+    },
+    {
+      "title": "Fixer les lattes du dossier et terminer",
+      "text": "Placez trois pièces BB-2 sur les supports de dossier fixés à l’étape 6. Commencez par la pièce du haut, placée 1/2\" au-dessus du haut du support, puis laissez un espace de 1/4\" entre chaque pièce en dessous, en gardant tous les bords alignés.\n\nFixez les pièces BB-2 dans les supports de dossier avec une clé à douille et six tire-fonds de 1/4\" x 1-1/4\".\n\nPoncez légèrement les bords rugueux du banc avec dossier.",
+      "imageAlts": [
+        "Schéma de trois lattes de dossier BB-2 boulonnées aux supports de dossier, avec un espace de 1/4\" entre chaque planche."
+      ],
+      "tips": [
+        "Utilisez votre équerre de charpentier comme cale pour les espaces.",
+        "Utilisez un foret de 1/4\" pour pré-percer des avant-trous peu profonds pour les tire-fonds — attention à ne pas percer tout au travers de la pièce BB-6 en dessous."
+      ]
+    },
+    {
+      "title": "Guide de perçage (gabarit)",
+      "text": "Découpez le guide de perçage en suivant les pointillés. Pour percer, alignez le bord du gabarit avec le bord extérieur du bois avant de pré-percer.\n\nTous les trous ne servent pas — et tous les assemblages n’utilisent pas le gabarit. Suivez les étapes d’assemblage ci-dessus pour placer vos trous. Gardez tous les trous à environ une largeur de pouce du bord (environ 1\"), même ceux qui n’utilisent pas ce gabarit.",
+      "imageAlts": [
+        "Un gabarit de perçage à imprimer, avec cinq emplacements de trous marqués et des lignes de découpe, et un gros plan montrant la distance entre les trous et le bord de la planche."
+      ]
+    }
+  ],
+  "finishing": "Traiter le bois pour l’extérieur peut prolonger la vie des éléments de votre parc, mais ce n’est pas nécessaire : ces pièces sont conçues pour être bon marché, solides et faciles à construire, donc il peut être plus pratique de laisser la prochaine génération les reconstruire le moment venu. Si vous voulez teinter, peindre ou protéger le bois, consultez les ressources sur les finitions ci-dessous.",
+  "safety": [
+    "Ce ne sont que des conseils pour le faire soi-même : adaptez les matériaux, l’assemblage et la construction à votre propre projet et à votre site.",
+    "Cette construction suppose de savoir un peu se servir des outils à main et des outils électriques, et de connaître la quincaillerie, les fixations, le bois et les techniques d’assemblage de base.",
+    "Avant d’utiliser un appareil électrique, lisez et suivez les consignes de sécurité du fabricant, et ne laissez personne utiliser des outils électriques sans l’avoir fait aussi.",
+    "C’est vous (le propriétaire) qui êtes responsable des codes de construction et de sécurité, des permis et des autorisations nécessaires.",
+    "Débarrassez d’abord le site des déchets, des dangers et des constructions dont vous ne voulez pas, et repérez les réseaux (gaz, eau, électricité…) qui pourraient gêner avant de creuser.",
+    "Toutes les personnes qui aident à construire doivent signer un formulaire de décharge de responsabilité pour bénévoles."
+  ],
+  "links": [
+    {
+      "label": "Supports de dossier (Hairpin Legs, en anglais)"
+    },
+    {
+      "label": "Choisir la meilleure finition pour les projets d’extérieur (Rockler, en anglais)"
+    },
+    {
+      "label": "La meilleure finition pour le bois d’extérieur (Real Milk Paint, en anglais)"
+    },
+    {
+      "label": "Produits de finition pour bois d’extérieur (Vermont Natural Coatings, en anglais)"
+    }
+  ],
+  "sourcePages": "Instructions de montage BENCH_BACK, p. 1–11 (couverture ; avant de commencer ; choix de bois courants ; étapes 1 à 7 ; guide de perçage)"
+}

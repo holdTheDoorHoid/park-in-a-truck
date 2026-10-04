@@ -1,0 +1,115 @@
+{
+  "title": "Tabouret",
+  "summary": "Un tabouret carré en 2x4 avec un dessus à lattes, aux dimensions assorties aux bancs et aux tables, pour qu’on puisse les combiner.",
+  "materials": [
+    {
+      "item": "Bois de dimension 2x4 — cèdre rouge de l’Ouest, douglas ou pin traité sous pression",
+      "notes": "Cèdre : résiste naturellement aux intempéries et à la pourriture, a une belle teinte rouge, se travaille facilement et n’a pas besoin de produit de protection (il devient gris avec le temps) ; il coûte plus cher — demandez la qualité « noueuse » (STK), beaucoup moins chère que la qualité sans nœuds. Douglas : résiste moyennement à la pourriture, solide et facile à travailler, moins cher que le cèdre, mais il durera moins longtemps — un bon choix si vous comptez le peindre. Bois traité sous pression : résiste à la pourriture et c’est l’option la moins chère, mais la qualité du bois est souvent mauvaise et irrégulière ; il doit sécher à l’air 1 à 4 mois avant d’être peint, et il est déconseillé là où l’on cultive de la nourriture. Commandez 5 % de plus que la liste de coupe, pour compenser la qualité variable du bois et les coupes ratées."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Vis à bois d’extérieur autoforeuses"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Côté et dessus du tabouret"
+    },
+    {
+      "notes": "Côté du tabouret"
+    },
+    {
+      "notes": "Côté et bas du tabouret"
+    },
+    {
+      "notes": "Côté du tabouret"
+    }
+  ],
+  "tools": [
+    "Scie à onglets de 10\" ou 12\" (ou une scie à main adaptée)",
+    "Visseuse à percussion pour les vis à bois d’extérieur autoforeuses",
+    "Perceuse avec un foret de 1/8\" pour pré-percer les trous",
+    "Papier de verre, grain 120",
+    "Équerre de charpentier",
+    "Lunettes de sécurité + gants"
+  ],
+  "steps": [
+    {
+      "title": "Mesurer, étiqueter et couper le bois",
+      "text": "Mesurez, étiquetez et coupez le bois dans l’ordre, de S-1 à S-4, aux longueurs de la liste de coupe.\n\nVérifiez chaque morceau de bois pour repérer les défauts, comme des fentes, des déformations ou un sciage irrégulier, et jetez ces parties du bois.",
+      "imageAlts": [
+        "Schéma en perspective des quatre pièces coupées du tabouret, de S-1 à S-4, avec leur longueur indiquée, des planches de 18.5\" jusqu’aux blocs de 8.5\"."
+      ],
+      "tips": [
+        "Étiquetez chaque morceau de bois au fur et à mesure que vous le mesurez et le coupez.",
+        "Faites une pile de bois séparée pour chaque pièce, de S-1 à S-4.",
+        "Poncer légèrement les bords coupés enlève les échardes et facilite l’assemblage.",
+        "Vous construisez plus d’un tabouret ? Une butée sur votre scie à onglets permet de couper toutes les pièces à la même longueur."
+      ]
+    },
+    {
+      "title": "Monter le cadre",
+      "text": "Posez deux pièces S-3 sur une surface plane. Placez deux pièces S-2 de chaque côté des pièces S-3, en alignant les bords comme sur l’image. Recommencez pour monter un deuxième cadre identique.",
+      "imageAlts": [
+        "Schéma montrant deux planches S-2 et deux planches S-3 assemblées en un cadre carré, avec un deuxième cadre terminé derrière."
+      ],
+      "tips": [
+        "Utilisez une équerre de charpentier pour vérifier que chaque coin forme un angle droit ; si l’écart est grand, vérifiez de nouveau la longueur de vos planches.",
+        "Fabriquer un gabarit à 90 degrés peut aider à assembler cette étape et la suivante."
+      ]
+    },
+    {
+      "title": "Ajouter les lattes du dessus sur chaque cadre",
+      "text": "Posez une pièce S-1 et quatre pièces S-4 sur le dessus du cadre monté à l’étape 2. Pour avoir un espace de 1.5\" entre les deux pièces S-4, utilisez un bout de 2x4 posé sur la tranche comme cale.\n\nUtilisez le guide de perçage à la fin du livret pour pré-percer les trous des vis, puis fixez le bois dans les pièces S-3 et S-2 avec une visseuse à percussion et 30 vis à bois d’extérieur autoforeuses de 2.5\".\n\nRecommencez sur l’autre pied.",
+      "imageAlts": [
+        "Schéma des planches S-1 et S-4 vissées sur le dessus du cadre, avec l’espace de 1.5\" laissé par la cale."
+      ]
+    },
+    {
+      "title": "Relier les deux cadres",
+      "text": "Placez une pièce S-2 dans l’encoche, à la base des deux cadres montés à l’étape 3.\n\nFixez la pièce S-2 des deux côtés, à gauche et à droite, dans les pièces S-3, avec une visseuse à percussion et 4 vis à bois d’extérieur autoforeuses de 2.5\".\n\nPosez deux pièces de bout S-1 sur le dessus du cadre, en alignant tous les bords pour que le dessus soit d’équerre, et fixez-les avec une visseuse à percussion et 12 vis à bois d’extérieur autoforeuses de 2.5\".",
+      "imageAlts": [
+        "Schéma d’une planche S-2 qui relie les deux cadres à la base, et des pièces de bout S-1 ajoutées sur le dessus."
+      ],
+      "tips": [
+        "Vérifiez avec une équerre de charpentier que le côté reste à 90 degrés."
+      ]
+    },
+    {
+      "title": "Ajouter les dernières lattes du dessus et poncer",
+      "text": "Posez trois pièces S-1 sur le dessus du cadre monté à l’étape 4, en alignant tous les bords et en laissant un espace égal entre chaque pièce.\n\nFixez les pièces S-1 avec une visseuse à percussion et 12 vis à bois d’extérieur autoforeuses de 2.5\".\n\nPoncez légèrement les bords rugueux du tabouret.",
+      "imageAlts": [
+        "Schéma des dernières planches de dessus S-1, espacées de façon égale et vissées en travers du cadre du tabouret."
+      ]
+    },
+    {
+      "title": "Guide de perçage (gabarit)",
+      "text": "Découpez le guide de perçage en suivant les pointillés. Pour percer, alignez le bord du gabarit avec le bord extérieur du bois avant de pré-percer.\n\nTous les trous ne servent pas — et tous les assemblages n’utilisent pas le gabarit. Suivez les étapes d’assemblage ci-dessus pour placer vos trous. Gardez tous les trous à environ une largeur de pouce du bord (environ 1\"), même ceux qui n’utilisent pas ce gabarit.",
+      "imageAlts": [
+        "Un gabarit de perçage à imprimer, avec cinq emplacements de trous marqués et des lignes de découpe, et un gros plan montrant la distance entre les trous et le bord de la planche."
+      ]
+    }
+  ],
+  "finishing": "Traiter le bois pour l’extérieur peut prolonger la vie des éléments de votre parc, mais ce n’est pas nécessaire : ces pièces sont conçues pour être bon marché, solides et faciles à construire, donc il peut être plus pratique de laisser la prochaine génération les reconstruire le moment venu. Si vous voulez teinter, peindre ou protéger le bois, consultez les ressources sur les finitions ci-dessous.",
+  "safety": [
+    "Ce ne sont que des conseils pour le faire soi-même : adaptez les matériaux, l’assemblage et la construction à votre propre projet et à votre site.",
+    "Cette construction suppose de savoir un peu se servir des outils à main et des outils électriques, et de connaître la quincaillerie, les fixations, le bois et les techniques d’assemblage de base.",
+    "Avant d’utiliser un appareil électrique, lisez et suivez les consignes de sécurité du fabricant, et ne laissez personne utiliser des outils électriques sans l’avoir fait aussi.",
+    "C’est vous (le propriétaire) qui êtes responsable des codes de construction et de sécurité, des permis et des autorisations nécessaires.",
+    "Débarrassez d’abord le site des déchets, des dangers et des constructions dont vous ne voulez pas, et repérez les réseaux (gaz, eau, électricité…) qui pourraient gêner avant de creuser.",
+    "Toutes les personnes qui aident à construire doivent signer un formulaire de décharge de responsabilité pour bénévoles."
+  ],
+  "links": [
+    {
+      "label": "Choisir la meilleure finition pour les projets d’extérieur (Rockler, en anglais)"
+    },
+    {
+      "label": "La meilleure finition pour le bois d’extérieur (Real Milk Paint, en anglais)"
+    },
+    {
+      "label": "Produits de finition pour bois d’extérieur (Vermont Natural Coatings, en anglais)"
+    }
+  ],
+  "sourcePages": "Instructions STOOL_ASSEMBLY, p. 1–9 (couverture ; avant de commencer ; choix de bois courants ; étapes 1 à 5 ; guide de perçage)"
+}
