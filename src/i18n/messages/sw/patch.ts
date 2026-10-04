@@ -11,7 +11,7 @@ export default {
   'originalPdf': '📄 Kitabu cha kazi halisi (PDF)',
   'printAnswers': '🖨 Chapisha majibu yangu',
   'intro':
-    'Kupanda mimea asilia kwa ajili ya wachavushaji kunaleta faida nyingi: kunaboresha afya ya udongo na kuzuia mmomonyoko, kunawasaidia wanyamapori wa eneo kwa chakula na makazi, kunaleta uzuri wa kipekee, mimea hii hustawi katika hali ya hewa ya eneo lako kwa maji kidogo na kemikali chache, na kunasaidia mazingira ya mtaa wako kubaki imara mbele ya mabadiliko ya tabianchi — huku ikihitaji utunzaji mdogo kuliko kitalu cha kawaida.',
+    'Kupanda mimea asilia kwa ajili ya wachavushaji kunaleta faida nyingi: kunaboresha afya ya udongo na kuzuia mmomonyoko, kunawasaidia wanyamapori wa eneo kwa chakula na makazi, kunaleta uzuri wa kipekee, kunatumia mimea inayostawi katika hali ya hewa ya eneo lako kwa maji kidogo na kemikali chache, na kunasaidia mazingira ya mtaa wako kubaki imara mbele ya mabadiliko ya tabianchi — na yote haya kwa utunzaji mdogo kuliko kitalu cha kawaida.',
 
   'yourArea.title': 'Eneo lako la kupanda',
   'yourArea.text':
