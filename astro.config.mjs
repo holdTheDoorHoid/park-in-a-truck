@@ -4,6 +4,7 @@ import mdx from '@astrojs/mdx';
 import preact from '@astrojs/preact';
 import { unified } from '@astrojs/markdown-remark';
 import { rehypeSubsteps } from './src/lib/rehype-substeps.mjs';
+import { rehypeBase } from './src/lib/rehype-base.mjs';
 
 // SITE_BASE lets the same build run at / locally and at /park-in-a-truck/ on
 // GitHub Pages later (the repo is private for now; see DESIGN.md §Hosting).
@@ -16,7 +17,7 @@ export default defineConfig({
   // plugins. Step chapters need the sub-step plugin, so use unified; MDX
   // inherits it.
   markdown: {
-    processor: unified({ rehypePlugins: [rehypeSubsteps] }),
+    processor: unified({ rehypePlugins: [rehypeSubsteps, [rehypeBase, { base }]] }),
   },
   integrations: [mdx(), preact()],
   vite: {
