@@ -216,6 +216,8 @@ number and its Chinese unit (4英尺). Buttons and menu items: 2–6 characters 
 | Note from this site, not Park in a Truck | 本网站的说明，并非来自 Park in a Truck | |
 | in English | 英文 | After links: （英文）. |
 | ft, in, sq ft, $ | 英尺, 英寸, 平方英尺, $（美元） | Inside build steps where English writes 2.5", keep 2.5" as written. |
+| *Park Patch* (not in the English table) | 公园小块地（Park Patch） | PiaT's small-space pollinator planting; first mention keeps the English name in brackets. |
+| *Playful Learning (Landscapes)* (not in the English table) | 玩中学（Playful Learning）; Playful Learning Landscapes（PLL） | The approach = 玩中学; the organisation's name stays English. |
 
 ### vi — Tiếng Việt
 
