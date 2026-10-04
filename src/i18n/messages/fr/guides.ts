@@ -33,15 +33,15 @@ export default {
   'cut.stock': 'Bois',
   'cut.length': 'Longueur',
   'cut.notes': 'Remarques',
-  'siteNote': 'Note de ce site, et non de Park in a Truck :',
+  'siteNote': 'Note de ce site, et non de Park in a Truck :',
   'steps': 'Étapes',
   'step': 'Étape {n}',
-  'model': 'Modèle 3D : {title}',
+  'model': 'Modèle 3D : {title}',
   'finishing': 'Finitions',
   'safety': 'Avant de commencer',
   'links': 'Liens vers des fournisseurs et des ressources',
-  'source': 'Source : {pages}',
-  'download': 'Télécharger le PDF : {title}',
+  'source': 'Source : {pages}',
+  'download': 'Télécharger le PDF : {title}',
   'pager': 'Guides',
   'close': 'Fermer',
   'notTranslated': 'Ce guide n’a pas encore été traduit, il est donc affiché en anglais.',
@@ -56,7 +56,7 @@ export default {
   'g3d.stateFlat': 'Toutes les planches coupées, posées à plat et étiquetées.',
   'g3d.stateAdds': 'L’étape {n} ajoute {adds}.',
   'g3d.stateWhole': 'L’objet complet.',
-  'g3d.describe': '{model}. {state} Faites-le glisser ou utilisez les flèches du clavier pour le tourner ; plus et moins pour zoomer.',
+  'g3d.describe': '{model}. {state} Faites-le glisser ou utilisez les flèches du clavier pour le tourner ; plus et moins pour zoomer.',
   'g3d.show': 'Afficher la 3D',
   'g3d.hide': 'Masquer la 3D',
   'g3d.replayLong': 'Rejouer l’étape',
@@ -74,7 +74,7 @@ export default {
   'index.description':
     'Des instructions de montage étape par étape, comme celles d’Ikea, pour les bancs, les tables, les bacs à plantes, les sièges en gabions, une structure d’ombrage et une scène de Park in a Truck.',
   'index.lede':
-    'Il est temps de voir comment les éléments du parc sont construits. Certains éléments ont leurs propres instructions, ou assemblages : des guides étape par étape pour vous aider à les construire. Un banc, par exemple, est fourni avec des instructions de montage comme celles d’Ikea. D’autres éléments sont fournis avec un plan ou une façon conseillée de les construire, à partir d’instructions déjà testées. D’autres encore sont simplement des produits tout faits, achetés en magasin.',
+    'Il est temps de voir comment les éléments du parc sont construits. Certains éléments ont leurs propres instructions, ou assemblages : des guides étape par étape pour vous aider à les construire. Un banc, par exemple, est fourni avec des instructions de montage comme celles d’Ikea. D’autres éléments sont fournis avec un plan ou une façon conseillée de les construire, à partir d’instructions déjà testées. D’autres encore sont simplement des produits tout faits, achetés en magasin.',
   'index.prose':
-    'Voici les treize éléments pour lesquels Park in a Truck publie ses propres instructions de montage. Choisissez-en un pour voir la liste complète des matériaux, la liste de coupe et les étapes numérotées avec les dessins originaux, ou téléchargez le PDF original. Cochez les matériaux et les outils au fur et à mesure que vous les rassemblez ; vos coches sont enregistrées dans ce navigateur.',
+    'Voici les treize éléments pour lesquels Park in a Truck publie ses propres instructions de montage. Choisissez-en un pour voir la liste complète des matériaux, la liste de coupe et les étapes numérotées avec les dessins originaux, ou téléchargez le PDF original. Cochez les matériaux et les outils au fur et à mesure que vous les rassemblez ; vos coches sont enregistrées dans ce navigateur.',
 } satisfies Translation<typeof en>;

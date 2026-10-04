@@ -4,11 +4,11 @@ import type { Translation } from '../../define.ts';
 
 export default {
   'eyebrow': 'Vous êtes invités',
-  'headline': 'Réunion de quartier : un nouveau parc pour notre quartier',
+  'headline': 'Réunion de quartier : un nouveau parc pour notre quartier',
   'when': 'Quand',
   'where': 'Où',
   'lot': 'Le terrain',
-  'contact': 'Des questions ? Contactez',
+  'contact': 'Des questions ? Contactez',
   'committee': 'Notre comité du parc',
   'credit': 'Réalisé avec la boîte à outils Park in a Truck · Thomas Jefferson University',
 
@@ -20,5 +20,5 @@ export default {
   'ui.none': 'Aucune',
   'ui.notReady': '{language} (pas encore traduit)',
   'ui.purpose2': 'But, en {language} (facultatif)',
-  'ui.purpose2Hint': 'Ce que vous avez écrit ci-dessus s’imprime tel quel ; ajoutez ici une traduction pour la deuxième colonne.',
+  'ui.purpose2Hint': 'Ce que vous avez écrit ci-dessus s’imprime tel quel ; ajoutez ici une traduction pour la deuxième colonne.',
 } satisfies Translation<typeof en>;

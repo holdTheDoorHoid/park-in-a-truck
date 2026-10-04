@@ -32,7 +32,7 @@ export const THEME_REQUIREMENTS = {
 
 {/* Translated chapters can't import the localized data helpers, so the French theme and element names are repeated here (same text as src/i18n/data/fr/themes.json and elements.json). */}
 export const THEME_FR = {
-  edible: { name: 'Comestible', blurb: 'Partager de la nourriture et créer des liens avec les voisins : fruits, légumes et une table commune.' },
+  edible: { name: 'Comestible', blurb: 'Partager de la nourriture et créer des liens avec les voisins : fruits, légumes et une table commune.' },
   sanctuary: { name: 'Refuge', blurb: 'Un havre de calme pour être seul, lire et se retrouver en petits groupes.' },
   nature: { name: 'Nature', blurb: 'Des plantes indigènes, un habitat et des jeux pour les enfants et les pollinisateurs.' },
   event: { name: 'Événements', blurb: 'De l’espace pour des spectacles, des marchés et des fêtes de quartier.' },
@@ -82,18 +82,18 @@ votre silhouette, puis l’essayer. S’il ne vous va pas, vous pouvez le faire 
 accessoires pour le rendre vraiment personnel.
 
 Comme pour les vêtements, votre parc doit correspondre à votre style et à l’usage prévu. Les parcs Park in a Truck
-existent en quatre styles différents — nous les appelons des **thèmes** : Comestible, Refuge, Nature et Événements.
+existent en quatre styles différents — nous les appelons des **thèmes** : Comestible, Refuge, Nature et Événements.
 Chacun convient le mieux à une occasion ou à une situation particulière.
 
-Maintenant, le vrai plaisir commence : imaginer votre parc ! Cette étape commence par le choix de l’un des quatre plans
-par thème. Mais ce n’est qu’un début : chaque thème comprend un ensemble de **pièces du parc** à combiner comme vous
+Maintenant, le vrai plaisir commence : imaginer votre parc ! Cette étape commence par le choix de l’un des quatre plans
+par thème. Mais ce n’est qu’un début : chaque thème comprend un ensemble de **pièces du parc** à combiner comme vous
 voulez, pour construire un **parc sur mesure**, à la taille de votre propre terrain.
 
 <PdfPage doc="downloads/workbooks/04-dream.pdf" page={3} />
 
 ## Les quatre thèmes {/* #the-four-themes */}
 
-Chaque thème met en avant différentes façons d’utiliser votre parc : certains conviennent bien aux rencontres de
+Chaque thème met en avant différentes façons d’utiliser votre parc : certains conviennent bien aux rencontres de
 quartier, d’autres conviennent mieux pour être seul. Comparez le nombre d’arbres, la quantité de soleil et
 l’emplacement du terrain que vous avez notés dans le résumé de l’étape Évaluer avec les conditions générales
 ci-dessous.
@@ -104,13 +104,13 @@ d’une tenue.
 
 ### Éléments de base du plan (dans tous les thèmes)
 
-Quelques éléments clés se retrouvent dans les quatre thèmes :
+Quelques éléments clés se retrouvent dans les quatre thèmes :
 
 - **Mur en gabions.** Des cages en grillage remplies de pierres donnent au parc une bordure bien marquée. Remplissez-les
   de matériaux de récupération, comme des briques et des morceaux de béton cassé, pour une construction moins chère et
   plus durable.
 - **Banc.** Un endroit pour s’asseoir, facile à personnaliser par les habitants. Peignez-les ou laissez-les vieillir
-  naturellement : les deux conviennent.
+  naturellement : les deux conviennent.
 - **Récupérateur d’eau de pluie.** Tout parc a besoin d’eau. Les récupérateurs recueillent l’eau de pluie pour arroser
   les arbres et les fleurs.
 - **Plantes.** Des plantes indigènes qui attirent la faune, augmentent la biodiversité et favorisent la protection de
@@ -122,19 +122,19 @@ Quelques éléments clés se retrouvent dans les quatre thèmes :
     <p>{THEME_FR[id].blurb}</p>
     <Figure
       src={`img/dream/theme-${id}.webp`}
-      alt={`Thème ${THEME_FR[id].name} : dessins du parc en 3D et en vue en plan, avec les pièces cadre, avant et arrière dans la couleur du thème`}
+      alt={`Thème ${THEME_FR[id].name} : dessins du parc en 3D et en vue en plan, avec les pièces cadre, avant et arrière dans la couleur du thème`}
     />
     <ul class="theme-reqs">
-      <li><strong>Arbres :</strong> {THEME_REQUIREMENTS[id].trees}</li>
-      <li><strong>Soleil :</strong> {THEME_REQUIREMENTS[id].sun}</li>
-      <li><strong>Terrain :</strong> {THEME_REQUIREMENTS[id].lot}</li>
-      <li><strong>Bénévoles :</strong> {THEME_REQUIREMENTS[id].volunteers}</li>
+      <li><strong>Arbres :</strong> {THEME_REQUIREMENTS[id].trees}</li>
+      <li><strong>Soleil :</strong> {THEME_REQUIREMENTS[id].sun}</li>
+      <li><strong>Terrain :</strong> {THEME_REQUIREMENTS[id].lot}</li>
+      <li><strong>Bénévoles :</strong> {THEME_REQUIREMENTS[id].volunteers}</li>
     </ul>
   </div>
 ))}
 
 {/* site-added: Playful Learning is the toolkit's own appendix (linked from its Dream chapter); cross-linking it here matches where the toolkit itself introduces it. */}
-<Callout kind="note" title="Vous concevez aussi pour les enfants ?">
+<Callout kind="note" title="Vous concevez aussi pour les enfants ?">
   Park in a Truck s’est associé à **Playful Learning Landscapes**, une initiative qui associe la science de la façon
   dont les enfants apprennent à l’aménagement des parcs de tous les jours — tables de tri, roues des histoires,
   histoires en images et plus encore, adaptés à chacun des quatre thèmes ci-dessus.
@@ -143,17 +143,17 @@ Quelques éléments clés se retrouvent dans les quatre thèmes :
 
 <Field
   id="dream.theme-reasons"
-  label="Y a-t-il des raisons particulières pour lesquelles vous préférez un thème de parc plutôt que les autres ?"
+  label="Y a-t-il des raisons particulières pour lesquelles vous préférez un thème de parc plutôt que les autres ?"
   type="textarea"
 />
 <Field
   id="dream.theme-qualities"
-  label="Y a-t-il des qualités précises dans les thèmes qui vous plaisent le plus ?"
+  label="Y a-t-il des qualités précises dans les thèmes qui vous plaisent le plus ?"
   type="textarea"
 />
 <Choice
   id="dream.preferred-theme"
-  label="Quel est votre thème de parc préféré ?"
+  label="Quel est votre thème de parc préféré ?"
   options={[
     { value: 'edible', label: 'Comestible', color: THEMES.edible.frame },
     { value: 'sanctuary', label: 'Refuge', color: THEMES.sanctuary.frame },
@@ -164,9 +164,9 @@ Quelques éléments clés se retrouvent dans les quatre thèmes :
 />
 <Choice
   id="dream.theme-fits-site"
-  label="Le thème que vous avez choisi convient-il aux caractéristiques du site notées dans le résumé de l’étape Évaluer ?"
+  label="Le thème que vous avez choisi convient-il aux caractéristiques du site notées dans le résumé de l’étape Évaluer ?"
   options={[
-    { value: 'yes', label: 'Oui', desc: 'Il convient bien : continuez' },
+    { value: 'yes', label: 'Oui', desc: 'Il convient bien : continuez' },
     { value: 'no', label: 'Non', desc: 'Revoyez le thème de votre parc' },
   ]}
 />
@@ -176,13 +176,13 @@ Quelques éléments clés se retrouvent dans les quatre thèmes :
 <PdfPage doc="downloads/workbooks/04-dream.pdf" page={7} label="Thème Refuge (PDF)" />
 <PdfPage doc="downloads/workbooks/04-dream.pdf" page={8} label="Thème Nature (PDF)" />
 <PdfPage doc="downloads/workbooks/04-dream.pdf" page={9} label="Thème Événements (PDF)" />
-<PdfPage doc="downloads/workbooks/04-dream.pdf" page={10} label="Quel thème vous convient ? (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={10} label="Quel thème vous convient ? (PDF)" />
 
 ## Les pièces du parc et comment les utiliser {/* #park-pieces-how-to-use-them */}
 
-Le modèle de plan de votre parc est fait de différents éléments : les **pièces du parc**. Il y a des pièces AVANT et
+Le modèle de plan de votre parc est fait de différents éléments : les **pièces du parc**. Il y a des pièces AVANT et
 ARRIÈRE pour l’intérieur du parc, et un CADRE pour les mettre dedans. Chaque pièce existe dans l’un des quatre thèmes,
-et toutes les pièces sont interchangeables : vous pouvez donc combiner les thèmes ou choisir un seul thème pour tout
+et toutes les pièces sont interchangeables : vous pouvez donc combiner les thèmes ou choisir un seul thème pour tout
 le parc.
 
 Comme le cadre autour d’une photo de famille, le **cadre** forme la bordure autour de l’intérieur du parc — un bon
@@ -196,7 +196,7 @@ une carte simple — les deux vues montrent les mêmes choses.
 
 <Figure
   src="img/dream/park-pieces-frame-front-back.webp"
-  alt="Schéma qui compare la vue axonométrique (3D) et la vue en plan du parc : une pièce cadre s’assemble avec une pièce avant et une pièce arrière pour former le parc complet, montré à la fois en blocs 3D empilés et en plan à plat"
+  alt="Schéma qui compare la vue axonométrique (3D) et la vue en plan du parc : une pièce cadre s’assemble avec une pièce avant et une pièce arrière pour former le parc complet, montré à la fois en blocs 3D empilés et en plan à plat"
 />
 
 <Figure
@@ -206,7 +206,7 @@ une carte simple — les deux vues montrent les mêmes choses.
 
 <Callout kind="auto">
   Sur papier, combiner les pièces veut dire les imprimer, les découper et les scotcher ensemble à la main. Le
-  planificateur ci-dessous le fait pour vous : choisissez un thème pour le cadre, l’avant et l’arrière, et il les
+  planificateur ci-dessous le fait pour vous : choisissez un thème pour le cadre, l’avant et l’arrière, et il les
   assemble tout de suite, exactement à la taille de votre vrai terrain.
 </Callout>
 
@@ -225,11 +225,11 @@ une carte simple — les deux vues montrent les mêmes choses.
 </Callout>
 
 <details>
-  <summary>Vous préférez le papier ? Imprimez les pièces du parc</summary>
+  <summary>Vous préférez le papier ? Imprimez les pièces du parc</summary>
 
   Après avoir regardé les thèmes, notez la lettre que vous avez cochée dans le résumé de l’étape Évaluer (taille A–E)
   et l’emplacement de votre terrain (milieu de rue, ou angle avec la rue à votre droite ou à votre gauche). Cliquez
-  sur le téléchargement correspondant ci-dessous : chacun ouvre un dossier Google Drive de pièces du parc à imprimer
+  sur le téléchargement correspondant ci-dessous : chacun ouvre un dossier Google Drive de pièces du parc à imprimer
   pour cette taille et ce terrain.
 
   <table class="pieces-table">
@@ -244,7 +244,7 @@ une carte simple — les deux vues montrent les mêmes choses.
       <tr><td><strong>E</strong></td><td><a href="https://drive.google.com/open?id=1L-pqs-CuyMjeHE7UgEIDLawzv4ErTA6h" target="_blank" rel="noopener">Télécharger ↗</a></td><td><a href="https://drive.google.com/open?id=1LlyI3QGglqZw5f92aR1WLES7Nuz0gkOC" target="_blank" rel="noopener">Télécharger ↗</a></td><td><a href="https://drive.google.com/open?id=1LiE8uy8Uc-6R55t8cQr2Eg4CGdifcC8J" target="_blank" rel="noopener">Télécharger ↗</a></td></tr>
     </tbody>
   </table>
-  <p class="muted">Les noms des types de terrain suivent la page de téléchargement du cahier : si un ensemble de pièces ne correspond pas à votre angle, essayez l’autre.</p>
+  <p class="muted">Les noms des types de terrain suivent la page de téléchargement du cahier : si un ensemble de pièces ne correspond pas à votre angle, essayez l’autre.</p>
 
   Ouvrez les pièces téléchargées et imprimez-les en recto seul sur du papier de 8.5"×11" (format Lettre), puis
   découpez-les en suivant les pointillés. Alignez les pièces grâce aux repères d’alignement imprimés sur chaque
@@ -271,24 +271,24 @@ de pièce arrière — pour utiliser tout l’espace disponible.
 </table>
 
 {/* site-added: sizing.ts also flags lots below size A; call that out here since it's the natural place a reader learns their lot doesn't fit the smallest set. */}
-<Callout kind="note" title="Plus petit que la taille A ?">
+<Callout kind="note" title="Plus petit que la taille A ?">
   La taille n’a pas d’importance. Un carré de 4×4, une cour avant ou même une jardinière de fenêtre peut quand même
-  devenir un coin de plantes pour les pollinisateurs : utilisez le [guide Park Patch](/park-patch/) au lieu des pièces
+  devenir un coin de plantes pour les pollinisateurs : utilisez le [guide Park Patch](/park-patch/) au lieu des pièces
   du parc complet ci-dessous.
 </Callout>
 
-Il y a deux sortes de bandes de raccord : une **bande de raccord en longueur**, coupée entre la pièce avant et la
-pièce arrière, ajoute des pieds le long du grand côté du parc ; une **bande de raccord en largeur**, coupée dans le
+Il y a deux sortes de bandes de raccord : une **bande de raccord en longueur**, coupée entre la pièce avant et la
+pièce arrière, ajoute des pieds le long du grand côté du parc ; une **bande de raccord en largeur**, coupée dans le
 sens de la longueur, ajoute des pieds le long du petit côté. Les deux bandes ont des pointillés noirs tous les 4 pieds
 et des pointillés gris tous les pieds, pour que vous puissiez compter exactement ce qu’il vous faut.
 
 <Figure
   src="img/dream/length-seam.webp"
-  alt="Schéma de la bande de raccord en longueur : comptez les pointillés sur la bande entre la pièce avant et la pièce arrière du parc, coupez-la, puis scotchez la bande au milieu du parc et rescotchez le tout"
+  alt="Schéma de la bande de raccord en longueur : comptez les pointillés sur la bande entre la pièce avant et la pièce arrière du parc, coupez-la, puis scotchez la bande au milieu du parc et rescotchez le tout"
 />
 <Figure
   src="img/dream/width-seam.webp"
-  alt="Schéma de la bande de raccord en largeur : comptez les pointillés sur la bande qui court sur toute la longueur du parc, coupez-la à la bonne taille, puis ajoutez-la au milieu et rescotchez les deux côtés"
+  alt="Schéma de la bande de raccord en largeur : comptez les pointillés sur la bande qui court sur toute la longueur du parc, coupez-la à la bonne taille, puis ajoutez-la au milieu et rescotchez les deux côtés"
 />
 
 <Callout kind="auto">
@@ -303,16 +303,16 @@ et des pointillés gris tous les pieds, pour que vous puissiez compter exactemen
 ## Ajouter les éléments existants {/* #add-existing-conditions */}
 
 Reportez sur votre plan de conception les éléments existants du plan du site que vous avez dessiné dans le cahier
-Évaluer. Posez les deux plans côte à côte et recopiez chaque élément : les quadrillages sont les mêmes, il suffit donc
+Évaluer. Posez les deux plans côte à côte et recopiez chaque élément : les quadrillages sont les mêmes, il suffit donc
 de compter les carreaux pour trouver où vont les choses. Si un arbre existant tombe dans une zone de plantation, c’est
-parfait ; s’il tombe dans le gravier, c’est bien aussi (l’étape Créer explique comment faire). Si vos éléments
+parfait ; s’il tombe dans le gravier, c’est bien aussi (l’étape Créer explique comment faire). Si vos éléments
 existants entrent en conflit avec votre plan — un arbre sur un banc, par exemple —, vous pouvez enlever le banc en le
-barrant, ou déplacer toute la pièce avant ou arrière. Le plan est un modèle : il est un peu rigide, mais vous pouvez
+barrant, ou déplacer toute la pièce avant ou arrière. Le plan est un modèle : il est un peu rigide, mais vous pouvez
 toujours ajouter ou enlever des choses pour qu’il vous convienne.
 
 <Callout kind="auto">
   Les arbres existants, les gouttières, les zones humides, les bouches d’incendie et les lignes électriques que vous
-  avez notés à l’étape Évaluer sont déjà placés dans le planificateur : déplacez ce qui n’est pas au bon endroit.
+  avez notés à l’étape Évaluer sont déjà placés dans le planificateur : déplacez ce qui n’est pas au bon endroit.
 </Callout>
 
 <PdfPage doc="downloads/workbooks/04-dream.pdf" page={17} />
@@ -320,14 +320,14 @@ toujours ajouter ou enlever des choses pour qu’il vous convienne.
 ## Compter vos pièces et les coûts {/* #count-your-pieces-cost */}
 
 Il est temps de faire le compte de votre plan. Chaque pièce avant, arrière et cadre a la liste de tous ses éléments,
-pour que vous puissiez calculer le coût et commander les matériaux. Le cahier demande : combien de pieds mesure le
-grand côté de votre terrain (longueur) ? Le petit côté (largeur) ? Combien de carrés de plantation verts avez-vous ?
-Et, d’après la légende de vos pièces du parc, combien de chaque meuble ?
+pour que vous puissiez calculer le coût et commander les matériaux. Le cahier demande : combien de pieds mesure le
+grand côté de votre terrain (longueur) ? Le petit côté (largeur) ? Combien de carrés de plantation verts avez-vous ?
+Et, d’après la légende de vos pièces du parc, combien de chaque meuble ?
 
 <CostEstimator />
 
 {/* site-added: safety note (DESIGN.md §2, 2026-10-04) — the order list's "fire hydrant opener" items; facts checked 2026-10-04 on water.phila.gov. */}
-<Callout kind="site" title="Note de ce site, et non de Park in a Truck : bouches d’incendie">
+<Callout kind="site" title="Note de ce site, et non de Park in a Truck : bouches d’incendie">
   La liste de commande propose une clé pour ouvrir les bouches d’incendie. Pour ouvrir une bouche d’incendie à
   Philadelphie, il faut un [permis d’utilisation de bouche d’incendie du Philadelphia Water Department ↗](https://water.phila.gov/development/connections/hydrant-permits/)
   (en anglais) et un clapet anti-retour (backflow preventer) homologué (les jardins partagés ne paient pas les frais du
@@ -335,10 +335,10 @@ Et, d’après la légende de vos pièces du parc, combien de chaque meuble ?
   autres façons d’amener l’eau jusqu’à un jardin.
 </Callout>
 
-<Download href="downloads/templates/cost-estimator.xlsx" label="Calculateur de coûts" note="Tableur original : faites-en votre propre copie pour le modifier" />
+<Download href="downloads/templates/cost-estimator.xlsx" label="Calculateur de coûts" note="Tableur original : faites-en votre propre copie pour le modifier" />
 
 <details>
-  <summary>Vous comptez sur papier ? Entrez vos totaux ici</summary>
+  <summary>Vous comptez sur papier ? Entrez vos totaux ici</summary>
   <Field id="dream.diy-length" label="Longueur (grand côté de votre terrain)" type="number" unit="pieds" />
   <Field id="dream.diy-width" label="Largeur (petit côté de votre terrain)" type="number" unit="pieds" />
   <Field id="dream.diy-planting-squares" label="Carrés de plantation (carrés verts sur votre plan)" type="number" />
@@ -367,10 +367,10 @@ Chaque thème a sa propre liste de plantes conseillées — un point de départ,
 thèmes, choisissez des plantes dans les deux listes.
 
 <div class="plant-list-links">
-  <Download href="https://docs.google.com/spreadsheets/d/1QsoQ6KYBT5tVrlAtTxoD5q0yP2YS5Wyt/copy" label="Liste de plantes : Comestible" />
-  <Download href="https://docs.google.com/spreadsheets/d/1RhCdaiCLbEJD8KXiX7uJMD7xJFRNCERy/copy" label="Liste de plantes : Refuge" />
-  <Download href="https://docs.google.com/spreadsheets/d/1eEVK3dpBy1-xBFDaACIOTMB2Dd9COGvz/copy" label="Liste de plantes : Nature" />
-  <Download href="https://docs.google.com/spreadsheets/d/1oy_aLqP7RoBcHngZ_uFMl_YBvzJ271MR/copy" label="Liste de plantes : Événements" />
+  <Download href="https://docs.google.com/spreadsheets/d/1QsoQ6KYBT5tVrlAtTxoD5q0yP2YS5Wyt/copy" label="Liste de plantes : Comestible" />
+  <Download href="https://docs.google.com/spreadsheets/d/1RhCdaiCLbEJD8KXiX7uJMD7xJFRNCERy/copy" label="Liste de plantes : Refuge" />
+  <Download href="https://docs.google.com/spreadsheets/d/1eEVK3dpBy1-xBFDaACIOTMB2Dd9COGvz/copy" label="Liste de plantes : Nature" />
+  <Download href="https://docs.google.com/spreadsheets/d/1oy_aLqP7RoBcHngZ_uFMl_YBvzJ271MR/copy" label="Liste de plantes : Événements" />
 </div>
 
 <PdfPage doc="downloads/workbooks/04-dream.pdf" page={20} label="Choisir vos plantes (PDF)" />
@@ -378,9 +378,9 @@ thèmes, choisissez des plantes dans les deux listes.
 ## Assembler {/* #assemble */}
 
 Il est temps de voir comment les éléments du parc sont construits. Certains éléments ont leurs propres instructions de
-montage étape par étape, comme un mode d’emploi Ikea ; d’autres sont fournis avec un plan conseillé à partir
-d’instructions déjà testées ; et certains sont simplement des produits tout faits, achetés en magasin. Cliquez sur
-n’importe quel élément ci-dessous : si vous l’avez dans votre parc, voici comment le construire (ou l’acheter).
+montage étape par étape, comme un mode d’emploi Ikea ; d’autres sont fournis avec un plan conseillé à partir
+d’instructions déjà testées ; et certains sont simplement des produits tout faits, achetés en magasin. Cliquez sur
+n’importe quel élément ci-dessous : si vous l’avez dans votre parc, voici comment le construire (ou l’acheter).
 
 <div class="elements-grid">
   {Object.values(ELEMENTS)
@@ -400,9 +400,9 @@ n’importe quel élément ci-dessous : si vous l’avez dans votre parc, voici 
 
 <PdfPage doc="downloads/workbooks/04-dream.pdf" page={19} />
 
-## Êtes-vous prêts ? {/* #are-you-ready */}
+## Êtes-vous prêts ? {/* #are-you-ready */}
 
-Félicitations, vous avez terminé le cahier Rêver ! Cochez chaque étape ci-dessous avant de passer à l’étape Créer.
+Félicitations, vous avez terminé le cahier Rêver ! Cochez chaque étape ci-dessous avant de passer à l’étape Créer.
 
 <Checklist
   id="dream.ready-checklist"
@@ -415,7 +415,7 @@ Félicitations, vous avez terminé le cahier Rêver ! Cochez chaque étape ci-de
   ]}
 />
 
-<PdfPage doc="downloads/workbooks/04-dream.pdf" page={20} label="Êtes-vous prêts ? (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={20} label="Êtes-vous prêts ? (PDF)" />
 
 <style>
   {`

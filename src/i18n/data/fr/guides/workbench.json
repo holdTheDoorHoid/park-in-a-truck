@@ -1,6 +1,6 @@
 {
   "title": "Établi / table haute",
-  "summary": "Une table de rempotage à hauteur debout, sur des pieds en 4x4, avec trois étagères en dessous et un plateau de cinq planches. Le dessin d’origine n’a pas de schéma de dimensions : ces dimensions générales sont donc calculées à partir de sa liste de coupe et des étapes de montage, et non lues sur la couverture.",
+  "summary": "Une table de rempotage à hauteur debout, sur des pieds en 4x4, avec trois étagères en dessous et un plateau de cinq planches. Le dessin d’origine n’a pas de schéma de dimensions : ces dimensions générales sont donc calculées à partir de sa liste de coupe et des étapes de montage, et non lues sur la couverture.",
   "materials": [
     {
       "item": "Bois de 4x4 — cèdre, bois traité sous pression ou pin, raboté 4 faces (S4S), qualité nº 1"
@@ -58,7 +58,7 @@
   "steps": [
     {
       "title": "Mesurer, étiqueter et couper le bois",
-      "text": "Mesurez, étiquetez et coupez le bois aux longueurs de la liste de coupe : entretoises de côté A-1, entretoises arrière A-2, entretoise avant A-3, étagères A-4, pieds A-5, planches larges du plateau B-1 et planches étroites du plateau B-2.",
+      "text": "Mesurez, étiquetez et coupez le bois aux longueurs de la liste de coupe : entretoises de côté A-1, entretoises arrière A-2, entretoise avant A-3, étagères A-4, pieds A-5, planches larges du plateau B-1 et planches étroites du plateau B-2.",
       "imageAlts": [
         "Schéma en perspective des sept pièces coupées de l’établi, de A-1 à A-5 et B-1, B-2, avec leur longueur indiquée."
       ],
@@ -106,7 +106,7 @@
     },
     {
       "title": "Ajouter la deuxième et la troisième étagère",
-      "text": "Placez un autre cadre 2\" au-dessus du précédent et fixez-le avec douze vis de 3\". Posez deux autres planches A-4 dessus et fixez-les avec huit vis de 3\" : c’est la deuxième étagère.\n\nRecommencez une fois pour la troisième étagère : un autre cadre, douze vis, deux autres planches A-4, huit vis.\n\nEnfin, placez le dernier cadre 2\" au-dessus de la dernière étagère et fixez-le avec douze vis à bois d’extérieur autoforeuses de 3\" — celui-ci soutient le plateau et n’a pas de planches d’étagère.",
+      "text": "Placez un autre cadre 2\" au-dessus du précédent et fixez-le avec douze vis de 3\". Posez deux autres planches A-4 dessus et fixez-les avec huit vis de 3\" : c’est la deuxième étagère.\n\nRecommencez une fois pour la troisième étagère : un autre cadre, douze vis, deux autres planches A-4, huit vis.\n\nEnfin, placez le dernier cadre 2\" au-dessus de la dernière étagère et fixez-le avec douze vis à bois d’extérieur autoforeuses de 3\" — celui-ci soutient le plateau et n’a pas de planches d’étagère.",
       "imageAlts": [
         "Schéma montrant deux autres niveaux d’étagères ajoutés au-dessus du premier, montés de la même façon, avec un dernier cadre sans étagère en haut."
       ]
@@ -115,18 +115,18 @@
       "title": "Poser le plateau",
       "text": "Posez une planche de 2\"x6\"x48\" (B-1) au milieu de la table haute, en la laissant dépasser de 2\" à gauche et à droite, et fixez-la avec une visseuse à percussion et quatre vis à bois d’extérieur autoforeuses de 3\".\n\nPosez une planche de 2\"x4\"x48\" (B-2) de chaque côté de la planche du milieu et fixez-les avec quatre autres vis de 3\".\n\nPosez une autre planche de 2\"x6\"x48\" (B-1) de chaque côté des pièces B-2 et fixez-les avec quatre autres vis de 3\", pour terminer le plateau de cinq planches.",
       "imageAlts": [
-        "Schéma du montage du plateau de cinq planches : une planche large B-1 au milieu, des planches étroites B-2 de chaque côté, et des planches larges B-1 sur les bords extérieurs."
+        "Schéma du montage du plateau de cinq planches : une planche large B-1 au milieu, des planches étroites B-2 de chaque côté, et des planches larges B-1 sur les bords extérieurs."
       ]
     }
   ],
-  "finishing": "Tous les bords et toutes les surfaces doivent être légèrement poncés pour enlever les échardes et les bords rugueux.\n\nCèdre : aucun produit n’est nécessaire — il deviendra gris clair avec le temps. Si vous voulez garder la couleur d’origine, utilisez une teinture alkyde à base d’eau, incolore, qui pénètre dans le bois, ou peignez avec un système apprêt/peinture/vernis.\n\nBois traité sous pression : aucun produit n’est nécessaire. Si vous voulez de la couleur, laissez-le sécher à l’air plusieurs mois, jusqu’à ce que l’eau ne fasse plus de gouttes à la surface ; poncez en portant un masque pour ne pas respirer la poussière de bois traité. Utilisez un apprêt et une peinture d’extérieur, puis protégez avec un vernis marin polyuréthane à base d’eau.\n\nSapin ou pin séché au four : il faut une teinture avec protection, ou un système apprêt/peinture/vernis, pour qu’il ne s’abîme pas vite aux intempéries. On peut aussi le peindre en suivant les étapes ci-dessus pour le bois traité sous pression.",
+  "finishing": "Tous les bords et toutes les surfaces doivent être légèrement poncés pour enlever les échardes et les bords rugueux.\n\nCèdre : aucun produit n’est nécessaire — il deviendra gris clair avec le temps. Si vous voulez garder la couleur d’origine, utilisez une teinture alkyde à base d’eau, incolore, qui pénètre dans le bois, ou peignez avec un système apprêt/peinture/vernis.\n\nBois traité sous pression : aucun produit n’est nécessaire. Si vous voulez de la couleur, laissez-le sécher à l’air plusieurs mois, jusqu’à ce que l’eau ne fasse plus de gouttes à la surface ; poncez en portant un masque pour ne pas respirer la poussière de bois traité. Utilisez un apprêt et une peinture d’extérieur, puis protégez avec un vernis marin polyuréthane à base d’eau.\n\nSapin ou pin séché au four : il faut une teinture avec protection, ou un système apprêt/peinture/vernis, pour qu’il ne s’abîme pas vite aux intempéries. On peut aussi le peindre en suivant les étapes ci-dessus pour le bois traité sous pression.",
   "safety": [
-    "Ce ne sont que des conseils pour le faire soi-même : adaptez les matériaux, l’assemblage et la construction à votre propre projet et à votre site.",
+    "Ce ne sont que des conseils pour le faire soi-même : adaptez les matériaux, l’assemblage et la construction à votre propre projet et à votre site.",
     "Cette construction suppose de savoir un peu se servir des outils à main et des outils électriques, et de connaître la quincaillerie, les fixations, le bois et les techniques d’assemblage de base.",
     "Avant d’utiliser un appareil électrique, lisez et suivez les consignes de sécurité du fabricant, et ne laissez personne utiliser des outils électriques sans l’avoir fait aussi.",
     "C’est vous (le propriétaire) qui êtes responsable des codes de construction et de sécurité, des permis et des autorisations nécessaires.",
     "Débarrassez d’abord le site des déchets, des dangers et des constructions dont vous ne voulez pas, et repérez les réseaux (gaz, eau, électricité…) qui pourraient gêner avant de creuser.",
     "Toutes les personnes qui aident à construire doivent signer un formulaire de décharge de responsabilité pour bénévoles."
   ],
-  "sourcePages": "Instructions de montage WORKBENCH/STANDING TABLE (trouvées dans les liens de la p. 19 du cahier Rêver), p. 1–11 (couverture ; avant de commencer ; bois + quincaillerie + outils ; étapes 1 à 6 ; finitions et produits de protection)"
+  "sourcePages": "Instructions de montage WORKBENCH/STANDING TABLE (trouvées dans les liens de la p. 19 du cahier Rêver), p. 1–11 (couverture ; avant de commencer ; bois + quincaillerie + outils ; étapes 1 à 6 ; finitions et produits de protection)"
 }

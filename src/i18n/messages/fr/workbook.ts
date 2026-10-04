@@ -26,7 +26,7 @@ export default {
   'list.cell': '{label}, ligne {n}',
 
   'done.mark': 'Marquer cette étape comme terminée',
-  'done.done': 'Terminé — bravo !',
+  'done.done': 'Terminé — bravo !',
   'done.badge': '✓ terminé',
   'progress.of': '{done} sur {total}',
   'progress.done': '{done} sur {total} terminées',
@@ -35,15 +35,15 @@ export default {
   'pdf.label': 'Page du cahier original',
   'pdf.page': '(page {page} du PDF)',
   'file.english': 'en anglais',
-  'figure.credit': 'Image : {credit}',
+  'figure.credit': 'Image : {credit}',
 
   'chapter.pdf': '📄 Cahier original (PDF)',
   'chapter.print': '🖨 Imprimer mes réponses',
   'chapter.toc': 'Dans cette étape',
   'chapter.pager': 'Étapes',
   'chapter.prev': '← {title}',
-  'chapter.prevStep': '← Étape {n} : {title}',
-  'chapter.next': 'Suite : étape {n} — {title} →',
+  'chapter.prevStep': '← Étape {n} : {title}',
+  'chapter.next': 'Suite : étape {n} — {title} →',
   'chapter.notTranslated': 'Ce chapitre n’a pas encore été traduit, il est donc affiché en anglais. Vos réponses sont enregistrées de la même façon dans toutes les langues.',
 
   'auto.owner.city': 'Ville de Philadelphie (public)',

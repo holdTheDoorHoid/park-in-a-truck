@@ -6,13 +6,13 @@ export default {
   'home.eyebrow': 'Une boîte à outils pour créer soi-même un parc de quartier',
   'home.title': 'Transformez un terrain vacant en parc pour votre quartier.',
   'home.lede':
-    'Park in a Truck vous accompagne, vous et vos voisins, à chaque étape : trouver un terrain, former une équipe, concevoir le parc, le construire et le garder beau. Ce site transforme la boîte à outils en un cahier guidé et interactif qui fait les recherches pour vous.',
+    'Park in a Truck vous accompagne, vous et vos voisins, à chaque étape : trouver un terrain, former une équipe, concevoir le parc, le construire et le garder beau. Ce site transforme la boîte à outils en un cahier guidé et interactif qui fait les recherches pour vous.',
   'home.start': 'Commencer ici →',
   'home.allSteps': 'Voir les six étapes',
   'home.heroAlt':
-    'Des voisins déchargent une camionnette marquée Park in a Truck : ils portent un banc, plantent des arbres et jardinent, devant une rangée de maisons mitoyennes.',
+    'Des voisins déchargent une camionnette marquée Park in a Truck : ils portent un banc, plantent des arbres et jardinent, devant une rangée de maisons mitoyennes.',
   'home.path': 'Votre parcours',
-  'home.lotTitle': 'Vous avez un terrain en tête ?',
+  'home.lotTitle': 'Vous avez un terrain en tête ?',
   'home.lotLede':
     'Tapez une adresse à Philadelphie. Nous trouverons le propriétaire, la taille du terrain, le zonage et le contour du terrain, sans avoir à fouiller atlas.phila.gov.',
   'home.tools': 'Des outils qui font le travail pour vous',
@@ -33,7 +33,7 @@ export default {
   'steps.eyebrow': 'La démarche Park in a Truck',
   'steps.h1': 'Six étapes vers un parc',
   'steps.lede':
-    'Chaque parc Park in a Truck passe par les six mêmes étapes. Suivez-les dans l’ordre : chacune s’appuie sur la précédente. Marquez les sous-étapes comme terminées au fur et à mesure ; votre progression est enregistrée dans ce navigateur.',
+    'Chaque parc Park in a Truck passe par les six mêmes étapes. Suivez-les dans l’ordre : chacune s’appuie sur la précédente. Marquez les sous-étapes comme terminées au fur et à mesure ; votre progression est enregistrée dans ce navigateur.',
 
   'lot.title': 'Trouver un terrain',
   'lot.description': 'Trouvez le propriétaire, la taille, le zonage et l’état d’occupation de n’importe quel terrain de Philadelphie, et parcourez les terrains vacants sur une carte.',
@@ -44,11 +44,11 @@ export default {
   'lot.lookupH2': 'Chercher une adresse',
   'lot.mapH2': 'Terrains vacants près de chez vous',
   'lot.mapText':
-    'Les terrains que la Ville classe comme terrains vacants, en couleur selon leur propriétaire. Cliquez sur l’un d’eux pour voir son propriétaire et sa taille, puis enregistrez-le comme terrain de votre parc ou ajoutez-le à votre liste. Faites aussi le tour du pâté de maisons : la liste de la Ville oublie certains terrains et en contient d’autres qui sont déjà utilisés.',
+    'Les terrains que la Ville classe comme terrains vacants, en couleur selon leur propriétaire. Cliquez sur l’un d’eux pour voir son propriétaire et sa taille, puis enregistrez-le comme terrain de votre parc ou ajoutez-le à votre liste. Faites aussi le tour du pâté de maisons : la liste de la Ville oublie certains terrains et en contient d’autres qui sont déjà utilisés.',
   'lot.compareH2': 'Comparez vos terrains possibles',
   'lot.nextH2': 'Prochaines étapes',
-  'lot.next.owner.title': 'À qui appartient ce terrain ?',
-  'lot.next.owner.text': 'Propriétaire public ou privé : les moyens d’obtenir le droit de construire un parc.',
+  'lot.next.owner.title': 'À qui appartient ce terrain ?',
+  'lot.next.owner.text': 'Propriétaire public ou privé : les moyens d’obtenir le droit de construire un parc.',
   'lot.next.organize.title': 'Organiser',
   'lot.next.organize.text': 'Les organisations de quartier, les écoles, les jardins et les autres atouts près de votre terrain.',
   'lot.next.assess.title': 'Évaluer',
@@ -59,7 +59,7 @@ export default {
   'myPark.title': 'Mon parc',
   'myPark.eyebrow': 'Enregistré dans ce navigateur',
   'myPark.lede':
-    'Tout ce que vous remplissez sur ce site est enregistré ici, sur cet appareil seulement : pas de compte, rien n’est envoyé nulle part. Pour travailler avec votre comité, enregistrez un fichier du projet et envoyez-le-leur ; ils pourront l’ouvrir ici, sur leur propre appareil.',
+    'Tout ce que vous remplissez sur ce site est enregistré ici, sur cet appareil seulement : pas de compte, rien n’est envoyé nulle part. Pour travailler avec votre comité, enregistrez un fichier du projet et envoyez-le-leur ; ils pourront l’ouvrir ici, sur leur propre appareil.',
   'myPark.storageWarning':
     'Ce navigateur ne laisse pas le site enregistrer quoi que ce soit (fenêtre privée ou données de site bloquées). Enregistrez un fichier du projet avant de partir, sinon vos réponses seront perdues.',
   'myPark.thisProject': 'Ce projet',
@@ -72,7 +72,7 @@ export default {
   'myPark.newProject': '+ Nouveau projet',
   'myPark.progress': 'Progression',
   'myPark.yourLot': 'Votre terrain',
-  'myPark.noLotYet': 'Aucun terrain choisi pour l’instant. Cherchez-en un à l’<a href="{href}">étape 1 : Acquérir</a>.',
+  'myPark.noLotYet': 'Aucun terrain choisi pour l’instant. Cherchez-en un à l’<a href="{href}">étape 1 : Acquérir</a>.',
   'myPark.yourAnswers': 'Vos réponses',
   'myPark.nothingFilledIn': 'Rien n’a encore été rempli.',
 
@@ -106,11 +106,11 @@ export default {
   'resources.status.unverified': 'impossible à vérifier automatiquement',
   'resources.status.unconfirmed': 'non confirmé',
   'resources.partnersIntro': 'Les organisations qui aident à rendre possibles les parcs Park in a Truck.',
-  'resources.videoAlt': 'Vidéo : {title}',
+  'resources.videoAlt': 'Vidéo : {title}',
   'resources.suppliersIntro': 'Tirés des liens qui se trouvent dans les cahiers eux-mêmes, classés selon leur usage. Ces sites sont en anglais.',
-  'resources.contact.email': 'Courriel :',
-  'resources.contact.founder': 'Fondatrice :',
-  'resources.contact.phone': 'Téléphone :',
-  'resources.contact.instagram': 'Instagram :',
-  'resources.contact.facebook': 'Facebook :',
+  'resources.contact.email': 'Courriel :',
+  'resources.contact.founder': 'Fondatrice :',
+  'resources.contact.phone': 'Téléphone :',
+  'resources.contact.instagram': 'Instagram :',
+  'resources.contact.facebook': 'Facebook :',
 } satisfies Translation<typeof en>;
