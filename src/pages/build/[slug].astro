@@ -20,6 +20,7 @@ import { imageSize } from '../../components/guides/imageSize';
 import { u as fileUrl } from '../../lib/url';
 import type { GuideModel } from '../../lib/guides3d/schema';
 import guidesMsgs from '../../i18n/messages/en/guides.ts';
+import parksMsgs from '../../i18n/messages/en/parks.ts';
 import { getT, urlFor, localizeGuide } from '../../i18n/astro.ts';
 
 const models = import.meta.glob<GuideModel>('../../data/guides/models/*.json', { eager: true, import: 'default' });
@@ -33,6 +34,8 @@ type Props = Record<string, never>;
 const { slug } = Astro.params;
 const t = getT(Astro, guidesMsgs);
 const u = urlFor(t.locale);
+// "(in English)" after links to English-only shops and pages — the parks page's words for the same thing
+const inEnglish = t.locale === 'en' ? '' : `${t.space}${getT(Astro, parksMsgs)('link.english')}`;
 // English is the source: checkmarks are saved under the ENGLISH item names, so a list checked
 // off in one language stays checked in every other. Only the text shown is translated.
 const english = getGuide(slug!)!;
@@ -188,7 +191,7 @@ if (guide.cost) glance.push({ label: t('glance.cost'), value: guide.cost });
       <h2 class="ruled">{t('links')}</h2>
       <ul class="links">
         {guide.links.map((l) => (
-          <li><a href={l.url} target="_blank" rel="noopener">{l.label}</a></li>
+          <li><a href={l.url} target="_blank" rel="noopener" hreflang="en">{l.label}</a>{inEnglish}</li>
         ))}
       </ul>
     </section>

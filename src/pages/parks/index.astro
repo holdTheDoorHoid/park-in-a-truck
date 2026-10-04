@@ -84,7 +84,7 @@ function creditText(credit: string): string {
             {park.links.length > 0 && (
               <ul class="park-links">
                 {park.links.map((l) => (
-                  <li><a href={l.url} target="_blank" rel="noopener noreferrer" hreflang="en">{l.label}</a>{t.locale !== 'en' && ` ${t('link.english')}`}</li>
+                  <li><a href={l.url} target="_blank" rel="noopener noreferrer" hreflang="en">{l.label}</a>{t.locale !== 'en' && `${t.space}${t('link.english')}`}</li>
                 ))}
               </ul>
             )}

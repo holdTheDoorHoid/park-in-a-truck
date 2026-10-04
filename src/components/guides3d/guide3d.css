@@ -258,15 +258,31 @@
   .g3d-help-mouse {
     display: none;
   }
-  /* buttons float over the bottom of the model to save height */
+  /* buttons float over the bottom of the MODEL to save height (same grid cell as the stage), never
+     over the help line below it */
+  .g3d-body {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .g3d-stage-wrap {
+    grid-area: 1 / 1;
+  }
   .g3d-tools {
-    position: absolute;
-    left: 6px;
-    right: 6px;
-    bottom: 6px;
+    grid-area: 1 / 1;
+    align-self: end;
+    position: relative;
+    z-index: 1;
+    margin: 0 6px 6px;
     padding: 0;
     gap: 4px;
     pointer-events: none;
+  }
+  .g3d-help {
+    grid-row: 2;
+  }
+  .g3d-hint {
+    bottom: 64px;
   }
   .g3d-tools .g3d-btn {
     pointer-events: auto;
@@ -277,9 +293,6 @@
   }
   .g3d-tools .g3d-btn[aria-pressed='true'] {
     background: var(--cyan);
-  }
-  .g3d-body {
-    position: relative;
   }
   .g3d-stage-wrap {
     border-radius: 0;
@@ -308,12 +321,32 @@
     padding: 0.5em 0.7em;
   }
 }
-@media (min-width: 420px) {
+/* Phones: four equal buttons in ONE row, the icon above a short word, so the bar stays one row in
+   every language (side by side, Spanish or Russian words need 400+ px and wrapped onto the model). */
+@media (max-width: 699.98px) {
+  .g3d-tools {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .g3d-tools .g3d-btn {
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    min-width: 0;
+    padding: 0.35em 0.25em;
+    font-size: 0.72rem;
+    line-height: 1.1;
+    white-space: normal;
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+}
+@media (min-width: 700px) {
   .g3d-short {
     display: none;
   }
 }
-@media (max-width: 419.98px) {
+@media (max-width: 699.98px) {
   .g3d-long {
     display: none;
   }

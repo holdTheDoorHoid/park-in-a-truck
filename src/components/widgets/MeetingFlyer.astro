@@ -37,7 +37,8 @@ interface Props { [key: string]: unknown }
   }
   @media (max-width: 640px) {
     .flyer-preview-wrap {
-      grid-template-columns: 1fr;
+      /* minmax(0, …): the flyer's long headline words must not widen the column past the screen */
+      grid-template-columns: minmax(0, 1fr);
     }
   }
 
@@ -68,6 +69,8 @@ interface Props { [key: string]: unknown }
     font-weight: 400;
     font-size: 1.9em;
     line-height: 1.08;
+    /* a long word on the small on-screen preview breaks rather than being cut off */
+    overflow-wrap: break-word;
   }
   .flyer-rule {
     height: 6px;
