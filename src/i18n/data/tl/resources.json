@@ -68,7 +68,9 @@
     {
       "title": "ASLA Spotlight — Tagsibol 2025"
     },
-    null,
+    {
+      "title": "Park in a Truck"
+    },
     {
       "title": "Binabago ang mga kapitbahayan, isang parke sa bawat pagkakataon — itinayo ng komunidad, para sa komunidad"
     },
@@ -84,14 +86,16 @@
       "label": "Pag-upa ng kagamitan",
       "items": [
         {
-          "note": "Mga kagamitang de-kamay; nakikipagtulungan sa Philadelphia Orchard Project at nagbibigay rin ng mga klase sa kasanayan."
+          "note": "Mga kagamitang de-kamay; nakikipagtulungan sa Philadelphia Orchard Project at nagbibigay rin ng mga klase sa kasanayan.",
+          "title": "West Philadelphia Tool Library"
         },
         {
           "title": "Diamond Tool (paupahan ng power tool)",
           "note": "Mukhang naisama na sa White Cap; hinaharangan ang awtomatikong pagsusuri."
         },
         {
-          "note": "Wala nang gumagana sa dalawang domain na inilista ng PiaT para sa paupahang ito sa Darby, PA (okrentalsaleservice.com, okrental1.com)."
+          "note": "Wala nang gumagana sa dalawang domain na inilista ng PiaT para sa paupahang ito sa Darby, PA (okrentalsaleservice.com, okrental1.com).",
+          "title": "OK Rental Sales & Service"
         }
       ]
     },
@@ -99,7 +103,8 @@
       "label": "Basura at recycling",
       "items": [
         {
-          "note": "3850 W Ford Rd — compost, wood chips, mulch at dumi ng hayop sa napakababang halaga."
+          "note": "3850 W Ford Rd — compost, wood chips, mulch at dumi ng hayop sa napakababang halaga.",
+          "title": "Fairmount Park Organic Recycling Center"
         },
         {
           "title": "Richard S. Burns & Co. (mga recycled na materyales)",
@@ -110,22 +115,31 @@
     {
       "label": "Mga nursery at halaman",
       "items": [
-        null,
         {
-          "note": "Lokal na espesyalista sa halaman para sa pollinator."
+          "title": "LandHealth Institute Nursery (Philaflora)"
         },
         {
-          "note": "Mahuhusay na ornamental at katutubong cultivar; NJ, may delivery na may minimum na $1,250."
+          "note": "Lokal na espesyalista sa halaman para sa pollinator.",
+          "title": "Good Host Plants"
         },
         {
-          "note": "Mga halamang pang-restorasyon mula sa lokal na ecoregion; hindi karaniwan ang sagot ng site sa awtomatikong pagsusuri pero malamang na gumagana ito."
+          "note": "Mahuhusay na ornamental at katutubong cultivar; NJ, may delivery na may minimum na $1,250.",
+          "title": "Pleasant Run Nursery"
         },
         {
-          "note": "Mga halamang pang-restorasyon mula sa lokal na ecoregion."
+          "note": "Mga halamang pang-restorasyon mula sa lokal na ecoregion; hindi karaniwan ang sagot ng site sa awtomatikong pagsusuri pero malamang na gumagana ito.",
+          "title": "Pinelands Nursery"
         },
-        null,
         {
-          "note": "Expired ngayon ang TLS certificate ng site — asahang may babala ang browser."
+          "note": "Mga halamang pang-restorasyon mula sa lokal na ecoregion.",
+          "title": "Archewild"
+        },
+        {
+          "title": "North Creek Nurseries"
+        },
+        {
+          "note": "Expired ngayon ang TLS certificate ng site — asahang may babala ang browser.",
+          "title": "Gardens Alive"
         },
         {
           "title": "Burpee — mga punong namumunga"
@@ -139,7 +153,9 @@
         {
           "title": "Willis Orchards — mga punong namumunga"
         },
-        null,
+        {
+          "title": "PHS Gold Medal Plants"
+        },
         {
           "title": "Philly Orchard Project — mga mapagkukunan"
         }
@@ -149,24 +165,34 @@
       "label": "Kahoy at materyales sa pagtatayo",
       "items": [
         {
-          "note": "4260 Macalester St — landscape supply, mulch at kagamitan."
+          "note": "4260 Macalester St — landscape supply, mulch at kagamitan.",
+          "title": "D&S Supply"
         },
         {
-          "note": "701 Washington St, Conshohocken — topsoil, mulch, compost."
-        },
-        null,
-        {
-          "note": "4701 Woodland Ave, Phila."
+          "note": "701 Washington St, Conshohocken — topsoil, mulch, compost.",
+          "title": "Underdog Landscape Supply"
         },
         {
-          "note": "1601 S 49th St, Phila."
+          "title": "Mid Atlantic Pine Straw"
         },
         {
-          "note": "Supply ng cypress, Avondale PA."
+          "note": "4701 Woodland Ave, Phila.",
+          "title": "Woodland Building Supply"
         },
-        null,
         {
-          "note": "3301 S 61st St — dinurog na bato, topsoil, may delivery."
+          "note": "1601 S 49th St, Phila.",
+          "title": "C&R Building Supply"
+        },
+        {
+          "note": "Supply ng cypress, Avondale PA.",
+          "title": "A&A Lumber"
+        },
+        {
+          "title": "Delaware County Supply"
+        },
+        {
+          "note": "3301 S 61st St — dinurog na bato, topsoil, may delivery.",
+          "title": "Castor Materials"
         },
         {
           "title": "Rockler — pagpili ng pinakamahusay na pampahid para sa mga proyekto sa labas"
@@ -185,9 +211,12 @@
     {
       "label": "Gabion at bato",
       "items": [
-        null,
         {
-          "note": "Hinaharangan ang awtomatikong pagsusuri; rehistrado at gumagana ang domain."
+          "title": "Gabion1.com"
+        },
+        {
+          "note": "Hinaharangan ang awtomatikong pagsusuri; rehistrado at gumagana ang domain.",
+          "title": "Darby Wire Mesh"
         },
         {
           "title": "Paano magtayo ng pader na gabion (Gardendrum)"
@@ -244,8 +273,12 @@
         {
           "title": "Penn State Extension — programang Master Gardener"
         },
-        null,
-        null,
+        {
+          "title": "Missouri Botanical Garden — Plant Finder"
+        },
+        {
+          "title": "Arbor Day Foundation"
+        },
         {
           "title": "Arbor Day — paano magtanim ng punong nasa paso"
         },
@@ -253,20 +286,32 @@
           "title": "Arbor Day — mga punong namumunga"
         },
         {
-          "note": "Mga workshop, impormasyon tungkol sa hardin ng komunidad, programang Rain Barrel."
+          "note": "Mga workshop, impormasyon tungkol sa hardin ng komunidad, programang Rain Barrel.",
+          "title": "Pennsylvania Horticultural Society (PHS)"
         },
         {
-          "note": "Tulong legal, datos at mga gabay sa pagkuha at pagpapanatili ng lote."
+          "note": "Tulong legal, datos at mga gabay sa pagkuha at pagpapanatili ng lote.",
+          "title": "Grounded in Philly"
         },
-        null,
         {
-          "note": "Koalisyong pinamumunuan ng mga Black at Brown para sa pagkontrol ng komunidad sa lupa at pagkain."
+          "title": "Philly Orchard Project"
         },
-        null,
-        null,
-        null,
         {
-          "note": "Plano ng PennPraxis para sa Philadelphia Parks & Recreation."
+          "note": "Koalisyong pinamumunuan ng mga Black at Brown para sa pagkontrol ng komunidad sa lupa at pagkain.",
+          "title": "Soil Generation"
+        },
+        {
+          "title": "Park Advocate Handbook (NRPA)"
+        },
+        {
+          "title": "The PHS City Parks Handbook (Temple University Press)"
+        },
+        {
+          "title": "Vacant Lot Activation Toolkit (Trust South LA)"
+        },
+        {
+          "note": "Plano ng PennPraxis para sa Philadelphia Parks & Recreation.",
+          "title": "Green2015: An Action Plan for the First 500 Acres"
         },
         {
           "title": "PlantSnap (app na pangkilala ng halaman at damong ligaw)"
@@ -316,12 +361,18 @@
           {
             "title": "Itaguyod natin ang kalusugan at luntiang espasyo, isang bakanteng lote sa bawat pagkakataon (The Inquirer)"
           },
-          null,
+          {
+            "title": "Gangsta Gardener — Ron Finley"
+          },
           {
             "title": "Bubuyog, mga bagay-bagay at bulaklak lang: kung paano malalampasan ng mga Black na babaeng hardinero ang krisis ng COVID-19 (Essence)"
           },
-          null,
-          null
+          {
+            "title": "Black Girls with Gardens"
+          },
+          {
+            "title": "Farming While Black — Leah Penniman"
+          }
         ]
       },
       {
@@ -333,19 +384,35 @@
           {
             "title": "Park Advocate Handbook (libre)"
           },
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
+          {
+            "title": "Atlas Philadelphia"
+          },
+          {
+            "title": "Citizens Planning Institute"
+          },
+          {
+            "title": "Green2015: An Action Plan for the First 500 Acres"
+          },
+          {
+            "title": "Grounded in Philly"
+          },
+          {
+            "title": "Neighborhood Gardens Trust"
+          },
+          {
+            "title": "Soil Generation"
+          }
         ]
       },
       {
         "title": "02 Mag-organisa",
         "entries": [
-          null,
-          null
+          {
+            "title": "The PHS City Parks Handbook"
+          },
+          {
+            "title": "Vacant Lot Activation Toolkit (Free Lots Angeles)"
+          }
         ]
       },
       {
@@ -359,13 +426,21 @@
       {
         "title": "04 Mangarap",
         "entries": [
-          null,
-          null,
-          null,
+          {
+            "title": "Gardens Alive"
+          },
+          {
+            "title": "North Creek Nurseries"
+          },
+          {
+            "title": "Missouri Botanical Garden Plant Finder"
+          },
           {
             "title": "Paghahanap ng halaman sa Longwood Gardens"
           },
-          null,
+          {
+            "title": "Arbor Day Foundation"
+          },
           {
             "title": "Penn State Master Gardeners — gabay sa pagtatanim sa Philadelphia"
           }
@@ -374,11 +449,21 @@
       {
         "title": "05 Lumikha",
         "entries": [
-          null,
-          null,
-          null,
-          null,
-          null,
+          {
+            "title": "Woodland Building Supply"
+          },
+          {
+            "title": "C&R Building Supply"
+          },
+          {
+            "title": "A&A Lumber"
+          },
+          {
+            "title": "Philly Reclaim"
+          },
+          {
+            "title": "PowerCorpsPHL"
+          },
           {
             "title": "Burpee — mga punong namumunga"
           },
@@ -391,26 +476,56 @@
           {
             "title": "Willis Orchards — mga punong namumunga"
           },
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
+          {
+            "title": "Good Host Plants"
+          },
+          {
+            "title": "LandHealth Institute Nursery (Philaflora)"
+          },
+          {
+            "title": "Pleasant Run Nursery"
+          },
+          {
+            "title": "Pinelands Nursery"
+          },
+          {
+            "title": "Archewild"
+          },
+          {
+            "title": "Underdog Landscape Supply"
+          },
+          {
+            "title": "Castor Materials"
+          },
+          {
+            "title": "D&S Supply"
+          },
+          {
+            "title": "Richard S. Burns & Co."
+          },
+          {
+            "title": "West Philadelphia Tool Library"
+          },
+          {
+            "title": "Diamond Tool"
+          },
+          {
+            "title": "Fairmount Park Organic Recycling Center"
+          }
         ]
       },
       {
         "title": "06 Mag-alaga",
         "entries": [
-          null,
-          null,
-          null,
+          {
+            "title": "Pennsylvania Horticultural Society"
+          },
+          {
+            "title": "Grounded in Philly"
+          },
+          {
+            "title": "Greensgrow"
+          },
           {
             "title": "Brandywine Conservancy — mga invasive na halaman"
           },
@@ -429,7 +544,9 @@
           {
             "title": "Arbor Day Foundation — mga punong namumunga"
           },
-          null,
+          {
+            "title": "Philadelphia Orchard Project"
+          },
           {
             "title": "Mga batayan ng pag-compost (video)"
           },
