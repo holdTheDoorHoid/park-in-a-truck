@@ -46,7 +46,7 @@ export default {
 
   'grid.label': 'Soleil et ombre à cet endroit par mois (lignes) et par heure de la journée (colonnes)',
   'grid.labelLot': 'Part du terrain au soleil direct par mois (lignes) et par heure de la journée (colonnes)',
-  'grid.how': 'Cliquez ou touchez un carré pour voir ce moment dans la vue 3D (le 15 du mois). Au clavier : les flèches pour se déplacer, Entrée pour l’afficher.',
+  'grid.how': 'Cliquez ou touchez un carré pour voir ce moment dans la vue 3D (le 15 du mois). Au clavier : les flèches pour se déplacer, Enter pour l’afficher.',
   'cell.when': '{month}, de {from} à {to}',
   'cell.line': '{when} : {parts}.',
   'cell.sun': 'soleil direct {pct} du temps',

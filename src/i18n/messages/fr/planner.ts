@@ -1,5 +1,5 @@
 // Français. « vous ». Directions vues depuis l'entrée du parc, en regardant vers l'intérieur.
-// Unités US : pi, po, pi². Touches du clavier telles qu'imprimées (Ctrl, Maj, Échap, Entrée, Suppr).
+// Unités US : pi, po, pi². Touches du clavier telles qu'imprimées sur les claviers américains (Ctrl, Shift, Esc, Enter, Delete).
 // time.am/pm : le format 24 h ({hour24} h {minute}) est refusé par le vérificateur (voir le rapport) ; AM/PM en attendant.
 // Les points cardinaux (compass.*) portent leur article (« le nord », « l'est ») et suivent « vers ».
 import type en from '../en/planner.ts';
@@ -56,7 +56,7 @@ export default {
   'action.duplicate': '⧉ Dupliquer',
   'action.duplicateTitle': 'En mettre une copie juste à côté (Ctrl+D)',
   'action.remove': '✕ Retirer',
-  'action.removeTitle': 'Le retirer (Suppr / Delete)',
+  'action.removeTitle': 'Le retirer (Delete)',
   'announce.removed': '{name} : retiré. Annuler (Ctrl+Z) le remet.',
   'announce.removedIt': 'Retiré. Annuler (Ctrl+Z) le remet.',
   'time.am': '{hour}:{minute} AM',
@@ -146,7 +146,7 @@ export default {
   'arrange.undo': '↶ Annuler',
   'arrange.undoTitle': 'Annuler (Ctrl+Z)',
   'arrange.redo': '↷ Rétablir',
-  'arrange.redoTitle': 'Rétablir (Ctrl+Maj+Z)',
+  'arrange.redoTitle': 'Rétablir (Ctrl+Shift+Z)',
   'arrange.snapGroup': 'Aligner sur la grille',
   'arrange.snap': 'Grille',
   'arrange.snapOff': 'Non',
@@ -165,7 +165,7 @@ export default {
   'arrange.remove': 'Retirer',
   'arrange.helpTouch': 'Faites-le glisser pour le déplacer, ou faites glisser la poignée ronde pour le tourner (il tourne d’un quart de tour à la fois). Gardez le doigt appuyé dessus pour plus d’options.',
   'arrange.helpMouse':
-    'Faites-le glisser pour le déplacer, ou faites glisser la poignée ronde pour le tourner (il tourne par crans ; maintenez Maj pour tourner librement). Touches : les flèches déplacent, R tourne, Ctrl+D duplique, Suppr retire, Échap lâche.',
+    'Faites-le glisser pour le déplacer, ou faites glisser la poignée ronde pour le tourner (il tourne par crans ; maintenez Shift pour tourner librement). Touches : les flèches déplacent, R tourne, Ctrl+D duplique, Delete retire, Esc lâche.',
   'arrange.introTouch':
     '<strong>Faites glisser</strong> n’importe quel élément du parc pour le déplacer. Touchez-le pour le choisir, puis faites glisser sa <strong>poignée ronde</strong> pour le tourner. Gardez le doigt appuyé dessus pour plus d’options. Passez à la vue <em>Plan</em> pour le voir comme les pièces en papier.',
   'arrange.introMouse':
@@ -180,7 +180,7 @@ export default {
   'arrange.addTitle': 'Ajouter à votre parc',
   'arrange.addTouch': 'Touchez un élément pour l’ajouter au milieu du parc, puis faites-le glisser à sa place.',
   'arrange.addMouse': 'Faites glisser un élément sur le parc pour le placer où vous voulez, ou cliquez dessus pour l’ajouter au milieu.',
-  'arrange.dropHere': 'Lâchez pour le placer ici · Échap pour annuler',
+  'arrange.dropHere': 'Lâchez pour le placer ici · Esc pour annuler',
   'arrange.changes': {
     one: '{count} changement par rapport au plan de Park in a Truck.',
     other: '{count} changements par rapport au plan de Park in a Truck.',
@@ -231,7 +231,7 @@ export default {
   'existing.drawTitle': 'Dessiner la zone qui devient humide',
   'existing.redrawTitle': 'Redessiner la zone humide',
   'existing.drawHelp':
-    'Cliquez (ou touchez) sur la carte autour de l’endroit qui devient humide, point par point. Pour terminer, cliquez de nouveau sur le premier point, double-cliquez ou appuyez sur Entrée — ou utilisez « Terminer » sur la carte. Échap pour annuler.',
+    'Cliquez (ou touchez) sur la carte autour de l’endroit qui devient humide, point par point. Pour terminer, cliquez de nouveau sur le premier point, double-cliquez ou appuyez sur Enter — ou utilisez « Terminer » sur la carte. Esc pour annuler.',
   'existing.spread': 'Branches sur {ft} pi de large',
   'existing.wetSize': 'Environ {area} pi². Faites glisser la zone pour la déplacer ; faites glisser un coin pour changer sa forme, ou le petit + entre deux coins pour en ajouter un.',
   'existing.redraw': 'Redessiner son contour',
@@ -464,16 +464,16 @@ export default {
   'view.gabionInfoFt': 'Mur en gabions : une rangée de cages de pierres de 12″ × 12″ × 48″ le long du côté qui donne sur la rue — {ft} pi en tout (voir Comptes).',
   'hint.drawTap': 'Touchez autour de la zone humide, point par point',
   'hint.drawTapCount': 'Touchez autour de la zone humide, point par point ({count} pour l’instant)',
-  'hint.drawClick': 'Cliquez autour de la zone humide, point par point · Échap pour annuler',
-  'hint.drawClickCount': 'Cliquez autour de la zone humide, point par point ({count} pour l’instant) · Échap pour annuler',
+  'hint.drawClick': 'Cliquez autour de la zone humide, point par point · Esc pour annuler',
+  'hint.drawClickCount': 'Cliquez autour de la zone humide, point par point ({count} pour l’instant) · Esc pour annuler',
   'hint.closeTap': 'Touchez le premier point (ou Terminer) pour fermer le contour',
-  'hint.closeClick': 'Cliquez sur le premier point, double-cliquez ou appuyez sur Entrée pour terminer · Retour arrière enlève un point · Échap pour annuler',
+  'hint.closeClick': 'Cliquez sur le premier point, double-cliquez ou appuyez sur Enter pour terminer · Backspace enlève un point · Esc pour annuler',
   'hint.overTouch': 'Cet élément dépasserait la limite du terrain (en rouge)',
-  'hint.overMouse': 'Cet élément dépasserait la limite du terrain (en rouge) · Échap le remet en place',
+  'hint.overMouse': 'Cet élément dépasserait la limite du terrain (en rouge) · Esc le remet en place',
   'hint.liftTouch': 'Levez le doigt pour le placer ici',
-  'hint.letGo': 'Lâchez pour le placer ici · maintenez Alt pour ignorer la grille · Échap le remet en place',
+  'hint.letGo': 'Lâchez pour le placer ici · maintenez Alt pour ignorer la grille · Esc le remet en place',
   'hint.turnedTouch': 'Tourné à {deg}°',
-  'hint.turnedMouse': 'Tourné à {deg}° · maintenez Maj pour tourner librement · Échap le remet en place',
+  'hint.turnedMouse': 'Tourné à {deg}° · maintenez Shift pour tourner librement · Esc le remet en place',
   'hint.lookPlan': 'Faites glisser pour vous déplacer · pincez ou utilisez la molette pour zoomer',
   'hint.look3d': 'Faites glisser pour tourner · clic droit glissé ou deux doigts pour vous déplacer · molette ou pincement pour zoomer',
   'hint.touchPlan': 'Faites glisser les éléments pour les déplacer · appuyez longuement sur l’un d’eux pour plus d’options · faites glisser le sol vide pour déplacer la carte',
@@ -483,11 +483,11 @@ export default {
   'draw.toolbar': 'Dessin d’une zone humide',
   'draw.points': { one: 'Zone humide · {count} point', other: 'Zone humide · {count} points' },
   'draw.undo': '↶ Annuler le point',
-  'draw.undoTitle': 'Enlever le dernier point (Retour arrière)',
+  'draw.undoTitle': 'Enlever le dernier point (Backspace)',
   'draw.finish': '✓ Terminer',
-  'draw.finishTitle': 'Fermer le contour (Entrée)',
+  'draw.finishTitle': 'Fermer le contour (Enter)',
   'draw.cancel': '✕ Annuler',
-  'draw.cancelTitle': 'Arrêter de dessiner (Échap)',
+  'draw.cancelTitle': 'Arrêter de dessiner (Esc)',
 
   'print.eyebrow': 'Park in a Truck · plan du parc',
   'print.summary': 'Taille {size} · {length} pi × {width} pi · cadre : {frame}, avant : {front}, arrière : {back}',
