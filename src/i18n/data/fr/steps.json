@@ -1,0 +1,31 @@
+{
+  "start": {
+    "title": "Commencer ici",
+    "tagline": "Pourquoi les parcs comptent et comment fonctionne Park in a Truck."
+  },
+  "acquire": {
+    "title": "Acquérir",
+    "tagline": "Trouvez un terrain et obtenez la permission de l’utiliser.",
+    "assumes": "Vous avez lu la boîte à outils et vous n’avez pas encore de terrain utilisable."
+  },
+  "organize": {
+    "title": "Organiser",
+    "tagline": "Formez un comité du parc et mobilisez vos voisins."
+  },
+  "assess": {
+    "title": "Évaluer",
+    "tagline": "Apprenez à connaître votre terrain : le soleil, le sol et les alentours."
+  },
+  "dream": {
+    "title": "Rêver",
+    "tagline": "Concevez votre parc avec les pièces du parc."
+  },
+  "create": {
+    "title": "Créer",
+    "tagline": "Construisez-le phase par phase, un week-end à la fois."
+  },
+  "sustain": {
+    "title": "Entretenir",
+    "tagline": "Prenez soin de votre parc, saison après saison."
+  }
+}
