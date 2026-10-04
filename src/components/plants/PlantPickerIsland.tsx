@@ -31,7 +31,7 @@ type PlantsT = T<typeof plantsMsgs>;
 
 interface Props {
   theme?: ThemeId | ThemeId[];
-  /** The page's language (the Astro wrapper passes English until the plants area has translations) */
+  /** The page's language (passed by the Astro wrapper) */
   locale?: string;
 }
 

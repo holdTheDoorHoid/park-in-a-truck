@@ -10,7 +10,6 @@ import type { OrderListRow } from '../../lib/cost/orderList';
 import { CONTINGENCY } from '../../lib/cost/prices';
 import { join, money, percent, qtyUnit, type CostT } from '../../lib/cost/text';
 import { urlFor } from '../../i18n/url.ts';
-import { currentLocale } from '../../i18n/t.ts';
 
 function Where({ t, link, vendor }: { t: CostT; link?: string; vendor?: string }) {
   if (!link) return null;
@@ -72,8 +71,7 @@ function CategoryTable({
   if (!lines.length) return null;
   const groups: (string | undefined)[] = [];
   for (const l of lines) if (!groups.includes(l.group)) groups.push(l.group);
-  // links stay in the page's language even while the estimator itself is shown in English
-  const u = urlFor(currentLocale());
+  const u = urlFor(t.locale);
   const table = (
     <table class="ce-table">
       <thead>

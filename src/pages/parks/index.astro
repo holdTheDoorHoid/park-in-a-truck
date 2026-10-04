@@ -6,7 +6,6 @@ import ParksMap from '../../components/widgets/ParksMap.astro';
 import { PARKS, youtubeThumb, youtubeWatchUrl } from '../../data/parks';
 import { u } from '../../lib/url';
 import parksMsgs from '../../i18n/messages/en/parks.ts';
-import LangFallback from '../../components/site/LangFallback.astro';
 import { getT, localizeKeyed } from '../../i18n/astro.ts';
 
 const t = getT(Astro, parksMsgs);
@@ -14,7 +13,6 @@ const parks = localizeKeyed(PARKS, 'parks', 'id', t.locale);
 ---
 
 <Base title={t('page.title')} description={t('page.description')}>
-  <LangFallback area={parksMsgs}>
   <section class="wrap" style="padding-top:40px">
     <p class="eyebrow">{t('page.eyebrow')}</p>
     <h1 class="ruled">{t('page.title')}</h1>
@@ -72,7 +70,6 @@ const parks = localizeKeyed(PARKS, 'parks', 'id', t.locale);
       ))}
     </div>
   </section>
-  </LangFallback>
 </Base>
 
 <style>

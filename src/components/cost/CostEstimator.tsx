@@ -24,7 +24,7 @@ interface Props {
   title?: string;
   /** Open the order list first (e.g. in the Create chapter) */
   focus?: 'estimate' | 'order';
-  /** The page's language (the Astro wrapper passes English until the cost area has translations) */
+  /** The page's language (passed by the Astro wrapper) */
   locale?: string;
   /** Build guides' titles in that language, by slug (the guides' text is not shipped to browsers) */
   guideTitles?: Record<string, string>;

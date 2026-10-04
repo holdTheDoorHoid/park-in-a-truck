@@ -7,7 +7,6 @@ import { PLANTS, type PlantType } from '../../data/plants';
 import { THEME_ORDER, THEMES } from '../../data/themes';
 import { u } from '../../lib/url';
 import plantsMsgs from '../../i18n/messages/en/plants.ts';
-import LangFallback from '../../components/site/LangFallback.astro';
 import { getT, localizeKeyed, localizeRecord } from '../../i18n/astro.ts';
 
 const t = getT(Astro, plantsMsgs);
@@ -23,7 +22,6 @@ const searchText = (p: (typeof PLANTS)[number]) =>
 ---
 
 <Base title={t('page.title')} description={t('page.description')}>
-  <LangFallback area={plantsMsgs}>
   <section class="wrap" style="padding-top:40px">
     <p class="eyebrow">{t('page.eyebrow')}</p>
     <h1 class="ruled">{t('page.title')}</h1>
@@ -96,7 +94,6 @@ const searchText = (p: (typeof PLANTS)[number]) =>
     <p class="prose">{t('page.pickLede')}</p>
     <PlantPicker />
   </section>
-  </LangFallback>
 </Base>
 
 <style>

@@ -5,15 +5,14 @@ import type { ThemeId } from '../../lib/types';
 import PlantPickerIsland from '../plants/PlantPickerIsland';
 import LangFallback from '../site/LangFallback.astro';
 import plantsMsgs from '../../i18n/messages/en/plants.ts';
-import { getT, hasTranslations } from '../../i18n/astro.ts';
+import { getT } from '../../i18n/astro.ts';
 
 interface Props {
   theme?: ThemeId | ThemeId[];
 }
 const { theme } = Astro.props;
 const t = getT(Astro, plantsMsgs);
-// Until the plants area has a translation in this language the island stays English (LangFallback marks it so).
-const locale = hasTranslations(t.locale, 'plants') ? t.locale : 'en';
+const locale = t.locale;
 ---
 
 {/* client:only, not client:visible -- this island's first render depends on

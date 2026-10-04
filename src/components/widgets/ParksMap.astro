@@ -4,11 +4,10 @@ import ParksMapIsland from '../parks/ParksMapIsland';
 import { PARKS } from '../../data/parks';
 import LangFallback from '../site/LangFallback.astro';
 import parksMsgs from '../../i18n/messages/en/parks.ts';
-import { getT, hasTranslations, localizeKeyed } from '../../i18n/astro.ts';
+import { getT, localizeKeyed } from '../../i18n/astro.ts';
 
 const t = getT(Astro, parksMsgs);
-// Until the parks area has a translation in this language the map stays English (LangFallback marks it so).
-const locale = hasTranslations(t.locale, 'parks') ? t.locale : 'en';
+const locale = t.locale;
 const parks = localizeKeyed(PARKS, 'parks', 'id', locale);
 ---
 
