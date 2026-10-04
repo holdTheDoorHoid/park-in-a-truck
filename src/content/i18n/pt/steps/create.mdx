@@ -1,9 +1,9 @@
 ---
-title: Create
-intro: Build your park, one weekend phase at a time.
+title: Criar
+intro: Construa o seu parque por fases, um fim de semana de cada vez.
 sources:
-  - Toolkit pp. 57–59 (Create, Initial Park Construction)
-  - Create Workbook pp. 1–18
+  - Guia (Toolkit), pp. 57–59 (Criar, Construção inicial do parque)
+  - Caderno de trabalho Criar, pp. 1–18
 ---
 import Field from '../../../../components/workbook/Field.astro';
 import ListField from '../../../../components/workbook/ListField.astro';
@@ -20,449 +20,511 @@ import LotAgreementNotice from '../../../../components/workbook/LotAgreementNoti
 {/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — Create lets you pick build weekends and print an order list with nothing recorded in Acquire; this says so before anyone breaks ground. */}
 <LotAgreementNotice />
 
-Building a park is a great way to connect neighbors, friends and others. The process requires dedicated volunteers
-who can give their time and energy, with a wide variety of skills — carpentry, landscaping, organizing, encouraging,
-leading. Like following a recipe, park building is a step-by-step sequence; most Park in a Truck parks go up in about
-6–8 weekends.
+Construir um parque é um ótimo jeito de unir vizinhos, amigos e outras pessoas. O processo precisa de voluntários
+dedicados, que possam dar o seu tempo e a sua energia, com habilidades bem variadas — carpintaria, paisagismo,
+organização, incentivo, liderança. Como seguir uma receita, construir um parque é uma sequência de passos; a maioria
+dos parques do Park in a Truck fica pronta em cerca de 6–8 fins de semana.
 
-The Create chapter is all about building your park. We broke the process down into eight phases. Each phase can be
-completed in roughly a weekend — the size of your park and number of volunteers will affect how long it actually
-takes. The phases are ordered for a reason; review each one and adjust your schedule as needed.
+O capítulo Criar trata só da construção do seu parque. Dividimos o processo em oito fases. Cada fase pode ser feita
+em mais ou menos um fim de semana — o tamanho do seu parque e o número de voluntários vão influenciar quanto tempo
+leva de verdade. As fases estão nessa ordem por um motivo; veja cada uma e ajuste o seu cronograma quando precisar.
 
-This book assumes you've done the cost estimate and know the quantities and materials you'll need to order for each
-phase. If you haven't, go back to the Dream step and use the cost estimator.
+Este caderno parte do princípio de que vocês já fizeram o orçamento e sabem as quantidades e os materiais que vão
+precisar comprar em cada fase. Se ainda não fizeram, voltem à etapa Sonhar e usem a calculadora de custos.
 
 <CostEstimator />
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={3} />
 
-## Volunteer release form {/* #volunteer-release-form */}
+## Termo de responsabilidade dos voluntários {/* #volunteer-release-form */}
 
-Make sure you have volunteer release forms available at the site whenever you're working on the park. This form
-releases you from liability for injuries to your volunteers. It's your responsibility to consult your organization's
-legal advisors and insurance carrier before starting construction — they may want you to take additional steps to
-protect the organization from liability. Give your volunteers clear instructions about expectations and tasks for the
-work day; they're more likely to come back in future weeks when they feel their time was put to good use.
+Tenha sempre termos de responsabilidade para os voluntários no terreno quando estiverem trabalhando no parque. Esse
+termo livra vocês da responsabilidade por ferimentos dos voluntários. É responsabilidade de vocês consultar os
+advogados e a seguradora da sua organização antes de começar a obra — eles podem pedir outros cuidados para proteger
+a organização. Dê aos voluntários instruções claras sobre o que se espera deles e quais são as tarefas do dia de
+trabalho; eles voltam com mais vontade nas próximas semanas quando sentem que o tempo deles foi bem aproveitado.
 
-<Download href="downloads/forms/volunteer-release-form.pdf" label="Volunteer waiver and release form" note="One per volunteer; a parent or guardian must also sign for volunteers under 18" />
+<Download href="downloads/forms/volunteer-release-form.pdf" label="Termo de responsabilidade para voluntários" note="Um por voluntário; para menores de 18 anos, o pai, a mãe ou o responsável também precisa assinar" />
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={3} />
 
-## Phase 1: Organize {/* #phase-1-organize */}
+## Fase 1: Organizar {/* #phase-1-organize */}
 
-As in any process, the first and most important step is to organize your team by identifying project leaders and
-establishing a schedule. How many people you assign to these roles depends on the complexity and size of your
-project.
+Como em qualquer processo, o primeiro e mais importante passo é organizar a equipe, escolhendo os líderes do projeto
+e montando um cronograma. Quantas pessoas vão ficar com essas funções depende da complexidade e do tamanho do seu
+projeto.
 
-- **Construction manager.** Orders materials, is there for deliveries, gives instructions to volunteers on build
-  days, and coordinates with the project manager on schedule.
-- **Project manager.** In charge of getting volunteers, social media, ordering food, handing out waivers, coordinates
-  finances and controls the schedule.
+- **Gerente de obra.** Compra os materiais, está presente nas entregas, dá as instruções aos voluntários nos dias de
+  construção e combina o cronograma com o gerente de projeto.
+- **Gerente de projeto.** Cuida de conseguir voluntários, das redes sociais, de encomendar a comida, de entregar os
+  termos de responsabilidade, coordena o dinheiro e controla o cronograma.
 
-<Field id="create.construction-manager" label="Construction manager" hint="Orders materials, runs build days" />
-<Field id="create.project-manager" label="Project manager" hint="Volunteers, schedule, finances" />
+<Field id="create.construction-manager" label="Gerente de obra" hint="Compra os materiais, comanda os dias de construção" />
+<Field id="create.project-manager" label="Gerente de projeto" hint="Voluntários, cronograma, dinheiro" />
 
 <ListField
   id="create.org-chart"
-  label="Volunteers & contractors"
-  rowName="person"
+  label="Voluntários e prestadores de serviço"
+  rowName="pessoa"
   min={3}
   columns={[
-    { key: 'name', label: 'Name' },
-    { key: 'role', label: 'Role', placeholder: 'volunteer, contractor…' },
-    { key: 'contact', label: 'Contact' },
+    { key: 'name', label: 'Nome' },
+    { key: 'role', label: 'Função', placeholder: 'voluntário, prestador de serviço…' },
+    { key: 'contact', label: 'Contato' },
   ]}
 />
 
-A project calendar is an excellent way to keep track of schedules, important dates, when volunteers will be working,
-and lead times for materials. Planning is as important as the building process itself — start off on the right foot.
+Um calendário do projeto é um ótimo jeito de acompanhar os horários, as datas importantes, os dias em que os
+voluntários vão trabalhar e os prazos de entrega dos materiais. Planejar é tão importante quanto construir — comece
+com o pé direito.
 
 <BuildSchedule />
 
-<Download href="downloads/templates/project-calendar.xlsx" label="Calendar template" note="Sample project calendar and contact list — for reference, make your own copy" />
+<Download href="downloads/templates/project-calendar.xlsx" label="Modelo de calendário" note="Exemplo de calendário do projeto e lista de contatos — para consulta, faça a sua própria cópia" />
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={4} />
 
-## Phase 2: Prepare the lot {/* #phase-2-prepare-the-lot */}
+## Fase 2: Preparar o terreno {/* #phase-2-prepare-the-lot */}
 
-### Steps
+### Passos
 
-**Step 1: Evaluate.** Some sites need more clearing or grading than others, which can require special machinery —
-contact a landscape contractor if any of the following can't be done by the community alone.
+**Passo 1: Avaliar.** Alguns terrenos precisam de mais limpeza ou nivelamento que outros, o que pode exigir máquinas
+especiais — chame uma empresa de paisagismo se a comunidade não conseguir fazer sozinha alguma das coisas abaixo.
 
-- Contact the PiaT team ([ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu)) for a site visit
-  consultation if you're unsure how to prepare your site.
-- Contact Pennsylvania One Call at **811** to mark utility locations.
+- Fale com a equipe do PiaT ([ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu), em inglês) para marcar
+  uma visita de consultoria no terreno se você não tiver certeza de como preparar o seu terreno.
+- Ligue para o Pennsylvania One Call no **811** para marcarem onde passam as redes de serviços (gás, luz, água) no
+  chão.
 
-<Field id="create.one-call-address" label="Address for your PA One Call request" auto="lot.address" />
+<Field id="create.one-call-address" label="Endereço para o seu pedido ao PA One Call" auto="lot.address" />
 
-**Step 2: Protect.** Bring small tools and equipment to the site. Set up protective construction fencing with wood
-posts at tree trunks, buildings and other items that need protection. Install silt/erosion control fencing around
-the site and at all drain inlets.
+**Passo 2: Proteger.** Leve ferramentas e equipamentos pequenos ao terreno. Coloque tela de proteção de obra com
+estacas de madeira em volta dos troncos das árvores, dos prédios e de outras coisas que precisam de proteção. Instale
+uma cerca de controle de erosão e sedimentos em volta do terreno e em todas as bocas de lobo.
 
-**Step 3: Removal.** Remove unwanted vegetation (including roots), tree stumps, trash and masonry materials — some
-vegetation removal may require herbicide treatment to control effectively in a timely manner. Prune existing trees to
-remove limbs from the trunk to at least 6' high. Haul debris and vegetation off site to the proper dumping location;
-stockpile masonry materials on site to use as gabion basket fill.
+**Passo 3: Remoção.** Tire a vegetação indesejada (com as raízes), os tocos de árvore, o lixo e o entulho de
+alvenaria — para tirar parte da vegetação de um jeito eficaz e no tempo certo, pode ser preciso usar herbicida. Pode
+as árvores que já existem, tirando os galhos do tronco até pelo menos 6' de altura. Leve o entulho e a vegetação para
+fora do terreno, até o lugar certo de descarte; junte o entulho de alvenaria num canto do terreno para usar como
+enchimento das gaiolas de gabião.
 
 {/* site-added: safety note (DESIGN.md §2, 2026-10-04) — street trees are the City's; facts checked 2026-10-04 on phila.gov. */}
 <Callout kind="site">
-  Street trees (the ones in the sidewalk) belong to the City: pruning or removing one needs a permit from Philadelphia
-  Parks & Recreation, which prunes and removes hazardous street trees for free (ask through 311). See the City's
-  [street tree questions ↗](https://www.phila.gov/departments/philadelphia-parks-recreation/street-tree-frequently-asked-questions/).
+  As árvores da calçada pertencem à Prefeitura: para podar ou tirar uma delas é preciso uma licença do Philadelphia
+  Parks & Recreation, que poda e remove de graça as árvores de rua que oferecem perigo (peça pelo 311). Veja as
+  [perguntas sobre árvores de rua da Prefeitura ↗](https://www.phila.gov/departments/philadelphia-parks-recreation/street-tree-frequently-asked-questions/)
+  (em inglês).
 </Callout>
 
-**Step 4: Site leveling.** Begin grade raking and leveling the site. Make sure any Pennsylvania One Call markings are
-still intact and visible — soil grade should be relatively level with the sidewalk grade.
+**Passo 4: Nivelar o terreno.** Comece a passar o rastelo e a nivelar o terreno. Confira se as marcações do
+Pennsylvania One Call continuam inteiras e visíveis — o nível do chão deve ficar mais ou menos no nível da calçada.
 
-### Equipment & tools
+### Equipamentos e ferramentas
 
 <Checklist
   id="create.phase2-tools"
   items={[
-    'Shovels', 'Wheelbarrows', 'Pick axe', 'Grading rakes', 'Sledgehammer',
-    'Hand pruners + loppers', 'Pruning saws', 'Spray paint', 'Construction fencing',
-    'Wood posts', 'Broom', 'Chainsaw', 'Trash bags',
+    { value: 'Shovels', label: 'Pás' },
+    { value: 'Wheelbarrows', label: 'Carrinhos de mão' },
+    { value: 'Pick axe', label: 'Picareta' },
+    { value: 'Grading rakes', label: 'Rastelos de nivelar' },
+    { value: 'Sledgehammer', label: 'Marreta' },
+    { value: 'Hand pruners + loppers', label: 'Tesouras de poda + tesourões de poda' },
+    { value: 'Pruning saws', label: 'Serrotes de poda' },
+    { value: 'Spray paint', label: 'Tinta spray' },
+    { value: 'Construction fencing', label: 'Tela de proteção de obra' },
+    { value: 'Wood posts', label: 'Estacas de madeira' },
+    { value: 'Broom', label: 'Vassoura' },
+    { value: 'Chainsaw', label: 'Motosserra' },
+    { value: 'Trash bags', label: 'Sacos de lixo' },
   ]}
 />
 <Checklist
   id="create.phase2-tools-optional"
-  label="Optional — for sites with large amounts of uneven surfaces, concrete, or tree stumps"
+  label="Opcional — para terrenos com muito chão irregular, concreto ou tocos de árvore"
   items={[
-    { value: 'excavator', label: 'Excavator', hint: 'hired contractor recommended' },
-    { value: 'stump-grinder', label: 'Stump grinder', hint: 'hired contractor recommended' },
-    'Jack hammer', 'Rototiller', 'Herbicide spray',
+    { value: 'excavator', label: 'Escavadeira', hint: 'recomendamos contratar uma empresa' },
+    { value: 'stump-grinder', label: 'Triturador de tocos', hint: 'recomendamos contratar uma empresa' },
+    { value: 'Jack hammer', label: 'Martelete (britadeira)' },
+    { value: 'Rototiller', label: 'Motocultivador (enxada rotativa)' },
+    { value: 'Herbicide spray', label: 'Pulverizador de herbicida' },
   ]}
 />
 
 <Figure
   src="img/create/phase2-reference-photos.webp"
-  alt="Reference photos for preparing the lot: an excavator clearing a site, a utility locate flag and tracer wire on a lawn, volunteers removing masonry rubble, erosion-control sediment mesh along a curb, and a volunteer grade-raking soil"
+  alt="Fotos de referência para preparar o terreno: uma escavadeira limpando um terreno, uma bandeirinha de marcação de redes de serviços e um fio rastreador num gramado, voluntários tirando entulho de alvenaria, tela de controle de sedimentos ao longo de um meio-fio, e um voluntário nivelando a terra com o rastelo"
 />
 
-### Useful links
+### Links úteis (em inglês)
 
-- **Tool rental** — may be worth hiring a contractor for power tools, for efficiency and safety.
-  [West Philadelphia Tool Library ↗](https://westphillytools.org) (hand tools only; 1314 S 47th St) ·
-  [OK Rental ↗](https://okrentalsaleservice.com) *(link currently dead)* (power tools, including chainsaws; 640 Main St, Darby) ·
-  [Diamond Tool ↗](https://diamondtool.net/Rentals) *(could not verify automatically)* (2800 Grays Ferry Ave)
-- **Waste & recycling** — [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/) (3850 W Ford Rd)
-- **Tree pruning video** — [youtube.com/watch?v=pY5A-5gUqwo ↗](https://youtube.com/watch?v=pY5A-5gUqwo)
-- **Weed ID** — [Philadelphia Orchard Project weed guide ↗](https://www.phillyorchards.org/resources/)
-- **Herbicides** (use sparingly, always follow label instructions) — Picloram for stump application on woody plants;
-  Glyphosate for foliar application on herbaceous and woody plants; Clopyralid for mugwort and Canadian thistle.
-  Invasive weeds that often need herbicide control: mugwort, Canadian thistle, Japanese knotweed and phragmites
-  (herbaceous); Broussonetia, Ailanthus, Paulownia and Japanese honeysuckle (woody — cut and treat the stump only if
-  too large to remove by the roots).
+- **Aluguel de ferramentas** — pode valer a pena contratar uma empresa para as ferramentas elétricas, por eficiência
+  e segurança. [West Philadelphia Tool Library ↗](https://westphillytools.org) (só ferramentas manuais; 1314 S 47th St) ·
+  [OK Rental ↗](https://okrentalsaleservice.com) *(link fora do ar no momento)* (ferramentas elétricas, inclusive motosserras; 640 Main St, Darby) ·
+  [Diamond Tool ↗](https://diamondtool.net/Rentals) *(não foi possível verificar automaticamente)* (2800 Grays Ferry Ave)
+- **Lixo e reciclagem** — [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/) (3850 W Ford Rd)
+- **Vídeo sobre poda de árvores** — [youtube.com/watch?v=pY5A-5gUqwo ↗](https://youtube.com/watch?v=pY5A-5gUqwo)
+- **Como reconhecer o mato** — [guia de ervas daninhas do Philadelphia Orchard Project ↗](https://www.phillyorchards.org/resources/)
+- **Herbicidas** (use pouco e siga sempre as instruções do rótulo) — Picloram para aplicar em tocos de plantas
+  lenhosas; Glifosato para aplicar nas folhas de plantas herbáceas e lenhosas; Clopiralid para artemísia (mugwort) e
+  cardo-do-canadá (Canadian thistle). Ervas daninhas invasoras que muitas vezes precisam de herbicida: artemísia
+  (mugwort), cardo-do-canadá, sanguinária-do-japão (Japanese knotweed) e caniço (phragmites) (herbáceas);
+  Broussonetia, Ailanthus, Paulownia e madressilva-japonesa (lenhosas — corte e trate o toco só se for grande demais
+  para arrancar pela raiz).
 
 {/* site-added: safety note (DESIGN.md §2, 2026-10-04) — herbicide labels, restricted-use picloram, 20% vinegar; facts checked 2026-10-04 on epa.gov and npic.orst.edu. */}
 <Callout kind="site">
-  A herbicide's label is the law: follow it, including where you may use the product and the protective gear it
-  lists ([EPA ↗](https://www.epa.gov/pesticide-labels/introduction-pesticide-labels)). Many picloram products are
-  restricted-use and may only be bought or applied by a certified applicator
-  ([EPA's list ↗](https://www.epa.gov/pesticide-worker-safety/restricted-use-products-rup-report)). Vinegar sold for
-  weeds (20% or more) can permanently damage eyes: wear eye protection and gloves
-  ([NPIC ↗](https://npic.orst.edu/faq/vinegar.html)).
+  O rótulo de um herbicida tem força de lei: siga o que ele diz, inclusive onde o produto pode ser usado e os
+  equipamentos de proteção que ele indica ([EPA ↗](https://www.epa.gov/pesticide-labels/introduction-pesticide-labels),
+  em inglês). Muitos produtos com picloram são de uso restrito e só podem ser comprados ou aplicados por um aplicador
+  certificado ([lista da EPA ↗](https://www.epa.gov/pesticide-worker-safety/restricted-use-products-rup-report), em
+  inglês). O vinagre vendido para matar mato (20% ou mais) pode causar danos permanentes aos olhos: use proteção para
+  os olhos e luvas ([NPIC ↗](https://npic.orst.edu/faq/vinegar.html), em inglês).
 </Callout>
 
-### Preparation for next steps
+### Para as próximas fases
 
-Check your project calendar and revise as needed. Purchase and deliver any materials or equipment with lead times,
-and make sure the site is prepared for Phase 3.
+Confira o calendário do projeto e ajuste quando precisar. Compre e receba os materiais e equipamentos que têm prazo
+de entrega, e confira se o terreno está pronto para a Fase 3.
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={5} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={6} label="Reference photos & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={6} label="Fotos de referência e links (PDF)" />
 
-## Phase 3: Layout & gravel base {/* #phase-3-layout-gravel-base */}
+## Fase 3: Marcação e base de brita {/* #phase-3-layout-gravel-base */}
 
-### Steps
+### Passos
 
-**Step 1: Materials.** Bring equipment and tools to the site; prepare for deliveries. Locate a stockpile area for
-gravel and cover it with a tarp if possible. Mark the general areas to receive gravel in spray paint — if there's not
-enough room, coordinate the delivery with your city to have it placed in the street.
+**Passo 1: Materiais.** Leve os equipamentos e as ferramentas ao terreno; prepare-se para as entregas. Escolha um
+lugar para juntar a brita e, se der, cubra com uma lona. Marque com tinta spray as áreas que vão receber brita — se
+não houver espaço suficiente, combine com a Prefeitura para a entrega ficar na rua.
 
-<Callout kind="note" title="Blocking the street for a delivery?">
-  Apply for a temporary no-parking permit so the delivery truck has somewhere to unload.
-  [Apply on phila.gov ↗](https://www.phila.gov/services/cars-parking-transportation/apply-for-a-parking-permit/apply-for-a-temporary-no-parking-permit/)
+<Callout kind="note" title="Vai fechar a rua para uma entrega?">
+  Peça uma licença temporária de proibido estacionar, para o caminhão de entrega ter onde descarregar.
+  [Peça no phila.gov (em inglês) ↗](https://www.phila.gov/services/cars-parking-transportation/apply-for-a-parking-permit/apply-for-a-temporary-no-parking-permit/)
 </Callout>
-<Field id="create.delivery-address" label="Address for the no-parking permit" auto="lot.address" />
+<Field id="create.delivery-address" label="Endereço para a licença de proibido estacionar" auto="lot.address" />
 
-**Step 2: Layout planting beds & park element locations.** Begin at the starting point you marked in the Assess
-workbook. Refer to your plan for the locations and lengths of planting-bed and park-element edges. Use stakes and
-string line to mark the locations of edging and park elements you'll add in later phases.
+**Passo 2: Marcar os canteiros e os lugares dos elementos do parque.** Comece no ponto de partida que você marcou no
+caderno de trabalho Avaliar. Veja na sua planta onde ficam e quanto medem as bordas dos canteiros e dos elementos do
+parque. Use estacas e barbante para marcar onde vão as bordas e os elementos do parque que vocês vão colocar nas
+próximas fases.
 
-**Step 3: Install sub base.** Prepare ground surfaces for gabion baskets per the assembly instructions. Dig out
-entrances to allow for the change in level from the new park to the sidewalk — minimum 4" deep at the sidewalk edge,
-grading as needed (use excess soil to level pathways or add to planting areas). Spread gravel 2" deep in all areas
-except plant beds, about 6" wider than your string lines so the edging in the next phase can sit on top of the
-gravel. Run a vibrating plate over the gravel at least twice.
+**Passo 3: Colocar a sub-base.** Prepare o chão para as gaiolas de gabião seguindo as instruções de montagem. Cave as
+entradas para fazer a diferença de nível entre o parque novo e a calçada — no mínimo 4" de profundidade na borda da
+calçada, nivelando quando precisar (use a terra que sobrar para nivelar os caminhos ou para pôr nas áreas de
+plantio). Espalhe 2" de brita em todas as áreas, menos nos canteiros, uns 6" além das linhas de barbante, para a
+borda da próxima fase poder ficar em cima da brita. Passe a placa vibratória sobre a brita pelo menos duas vezes.
 
-**Step 4: Entrances & cleanup.** Clean up overspill of gravel and clean up public areas.
+**Passo 4: Entradas e limpeza.** Limpe a brita que se espalhou para fora e limpe as áreas públicas.
 
-### Equipment, tools & materials
+### Equipamentos, ferramentas e materiais
 
 <Checklist
   id="create.phase3-tools"
   items={[
-    'Square', 'Measuring tape', 'Shovels', 'Wheelbarrows', 'Pick axe', 'Grading rakes',
-    '5 lb hammer', 'Spray paint', 'Wood posts and string', 'Vibrating plate compactor', 'Broom',
+    { value: 'Square', label: 'Esquadro' },
+    { value: 'Measuring tape', label: 'Trena' },
+    { value: 'Shovels', label: 'Pás' },
+    { value: 'Wheelbarrows', label: 'Carrinhos de mão' },
+    { value: 'Pick axe', label: 'Picareta' },
+    { value: 'Grading rakes', label: 'Rastelos de nivelar' },
+    { value: '5 lb hammer', label: 'Martelo de 5 lb' },
+    { value: 'Spray paint', label: 'Tinta spray' },
+    { value: 'Wood posts and string', label: 'Estacas de madeira e barbante' },
+    { value: 'Vibrating plate compactor', label: 'Placa vibratória compactadora' },
+    { value: 'Broom', label: 'Vassoura' },
   ]}
 />
-<p class="muted">Materials: gravel, 3/4" roadbase.</p>
+<p class="muted">Materiais: brita, base de estrada de 3/4" (roadbase).</p>
 
 <Figure
   src="img/create/phase3-reference-photos.webp"
-  alt="Reference photos for layout and gravel base: measuring the site, digging, prepping the sub base, a gravel delivery truck, laying out the site with stakes and string, a gravel stockpile, wheelbarrowing and spreading gravel"
+  alt="Fotos de referência para a marcação e a base de brita: medindo o terreno, cavando, preparando a sub-base, um caminhão entregando brita, marcando o terreno com estacas e barbante, um monte de brita, levando e espalhando a brita com carrinho de mão"
 />
 
-### Useful links
+### Links úteis (em inglês)
 
-- **How-to** — [Lay out planting beds ↗](https://lowes.com/n/how-to/create-an-english-style-garden) (watch 1:50–2:40) ·
-  [Install gravel sub-base ↗](https://youtube.com/watch?v=tfDEOIAIUwQ)
-- **Tool rental** — [West Philadelphia Tool Library ↗](https://westphillytools.org) ·
-  [OK Rental ↗](https://okrentalsaleservice.com) *(link currently dead)* · [Diamond Tool ↗](https://diamondtool.net/Rentals) *(could not verify automatically)*
+- **Como fazer** — [Marcar canteiros ↗](https://lowes.com/n/how-to/create-an-english-style-garden) (veja de 1:50 a 2:40) ·
+  [Colocar a sub-base de brita ↗](https://youtube.com/watch?v=tfDEOIAIUwQ)
+- **Aluguel de ferramentas** — [West Philadelphia Tool Library ↗](https://westphillytools.org) ·
+  [OK Rental ↗](https://okrentalsaleservice.com) *(link fora do ar no momento)* · [Diamond Tool ↗](https://diamondtool.net/Rentals) *(não foi possível verificar automaticamente)*
 
-### Preparation for next steps
+### Para as próximas fases
 
-Check your project calendar and revise as needed. Purchase and deliver materials with lead times for the next
-phases. Make sure the site is prepared for Phase 4.
+Confira o calendário do projeto e ajuste quando precisar. Compre e receba os materiais que têm prazo de entrega para
+as próximas fases. Confira se o terreno está pronto para a Fase 4.
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={7} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={8} label="Reference photos & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={8} label="Fotos de referência e links (PDF)" />
 
-## Phase 4: Install the edge {/* #phase-4-install-the-edge */}
+## Fase 4: Instalar a borda {/* #phase-4-install-the-edge */}
 
-### Steps
+### Passos
 
-**Step 1: Materials.** Bring your edge materials (see the cost estimate and assembly instructions). Remove the
-erosion-protection fence; tree protection should stay unless its location interferes with edge installation.
+**Passo 1: Materiais.** Leve os materiais da borda (veja o orçamento e as instruções de montagem). Tire a cerca de
+proteção contra erosão; a proteção das árvores deve ficar, a não ser que atrapalhe a instalação da borda.
 
-**Step 2: Assemble.** Assemble gabion baskets (refer to your Gabion Wall assembly instructions).
+**Passo 2: Montar.** Monte as gaiolas de gabião (veja as instruções de montagem do muro de gabião).
 
-**Step 3: Installation.** Set up string lines so gabion baskets sit in a straight line along the park edge. Lay out
-the baskets according to your plan and fill the bottoms with 2–3" of gravel. Make small adjustments so the baskets
-are level and straight relative to each other — when used alone as tables or benches, use a leveling tool on top.
-Add wood edges where needed (see the Wood Edging assembly instructions).
+**Passo 3: Instalar.** Estique linhas de barbante para as gaiolas de gabião ficarem em linha reta ao longo da borda
+do parque. Distribua as gaiolas de acordo com a sua planta e encha o fundo com 2–3" de brita. Faça pequenos ajustes
+para as gaiolas ficarem niveladas e retas umas em relação às outras — quando forem usadas sozinhas, como mesas ou
+bancos, use um nível em cima. Coloque as bordas de madeira onde for preciso (veja as instruções de montagem da borda
+de madeira).
 
-### Equipment & materials
+### Equipamentos e materiais
 
 <Checklist
   id="create.phase4-tools"
   items={[
-    'Measuring tape', 'Shovels', 'Wheelbarrows', 'Garden hoes', 'Grading rakes',
-    'Hand tamper', 'Wire cutters', 'Sledge hammer', 'Level', 'Broom',
+    { value: 'Measuring tape', label: 'Trena' },
+    { value: 'Shovels', label: 'Pás' },
+    { value: 'Wheelbarrows', label: 'Carrinhos de mão' },
+    { value: 'Garden hoes', label: 'Enxadas' },
+    { value: 'Grading rakes', label: 'Rastelos de nivelar' },
+    { value: 'Hand tamper', label: 'Soquete manual' },
+    { value: 'Wire cutters', label: 'Alicate de corte' },
+    { value: 'Sledge hammer', label: 'Marreta' },
+    { value: 'Level', label: 'Nível' },
+    { value: 'Broom', label: 'Vassoura' },
   ]}
 />
-<p class="muted">Materials: gabion baskets; lumber and hardware for wood edge; large masonry material for gabion baskets, 3" or larger.</p>
+<p class="muted">Materiais: gaiolas de gabião; madeira e ferragens para a borda de madeira; entulho grande de alvenaria para as gaiolas de gabião, de 3" ou mais.</p>
 
 <Figure
   src="img/create/phase4-reference-photos.webp"
-  alt="Reference photos for installing the edge: two filled gabion baskets, and a volunteer setting a wood edge board against a gravel bed"
+  alt="Fotos de referência para instalar a borda: duas gaiolas de gabião cheias, e um voluntário colocando uma tábua de borda de madeira junto a um canteiro de brita"
 />
 
-### Useful links
+### Links úteis (em inglês)
 
-- **Materials** — [Castor Materials ↗](https://castormaterials.com) (crushed stone, delivery; 3301 S 61st St) ·
-  [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) (crushed stone, mulch, tools; 4260 Macalester St) ·
-  [Underdog Supply ↗](https://www.underdogsupply.com/) (bulk delivery; Conshohocken) ·
-  Galantino Supply Company (rental equipment and bulk materials; 725 Old Marple Rd, Springfield — (610) 544-2586)
-- **How-to** — [Build a gabion wall ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
+- **Materiais** — [Castor Materials ↗](https://castormaterials.com) (brita, faz entrega; 3301 S 61st St) ·
+  [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) (brita, cobertura morta, ferramentas; 4260 Macalester St) ·
+  [Underdog Supply ↗](https://www.underdogsupply.com/) (entrega a granel; Conshohocken) ·
+  Galantino Supply Company (aluguel de equipamentos e materiais a granel; 725 Old Marple Rd, Springfield — (610) 544-2586)
+- **Como fazer** — [Construir um muro de gabião ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
 
-### Preparation for next steps
+### Para as próximas fases
 
-Check your project calendar and revise as needed. Purchase and deliver materials with lead times. Make sure the site
-is prepared for Phase 5.
+Confira o calendário do projeto e ajuste quando precisar. Compre e receba os materiais que têm prazo de entrega.
+Confira se o terreno está pronto para a Fase 5.
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={9} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={10} label="Reference photos & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={10} label="Fotos de referência e links (PDF)" />
 
-## Phase 5: Spread topsoil {/* #phase-5-spread-topsoil */}
+## Fase 5: Espalhar a terra vegetal {/* #phase-5-spread-topsoil */}
 
-### Steps
+### Passos
 
-**Step 1: Materials.** Remove the tree protection fence. Locate a stockpile area for topsoil on the sidewalk or
-street — if so, apply for a temporary no-parking permit (see Phase 3).
+**Passo 1: Materiais.** Tire a cerca de proteção das árvores. Escolha um lugar para juntar a terra vegetal na calçada
+ou na rua — nesse caso, peça uma licença temporária de proibido estacionar (veja a Fase 3).
 
-**Step 2: Soil installation.** Prepare planting beds to receive topsoil by grading the existing soil. Spread topsoil
-approximately 4–6" deep and grade it for smoothness.
+**Passo 2: Colocar a terra.** Prepare os canteiros para receber a terra vegetal, nivelando a terra que já existe.
+Espalhe a terra vegetal com mais ou menos 4–6" de altura e nivele para ficar lisa.
 
-**Step 3: Clean up.** Clean up overspill of topsoil and clean up public areas.
+**Passo 3: Limpeza.** Limpe a terra que se espalhou para fora e limpe as áreas públicas.
 
-### Equipment & materials
+### Equipamentos e materiais
 
 <Checklist
   id="create.phase5-tools"
-  items={['Measuring tape', 'Shovels', 'Wheelbarrows', 'Grading rakes', 'Garden hoes', 'Broom']}
+  items={[
+    { value: 'Measuring tape', label: 'Trena' },
+    { value: 'Shovels', label: 'Pás' },
+    { value: 'Wheelbarrows', label: 'Carrinhos de mão' },
+    { value: 'Grading rakes', label: 'Rastelos de nivelar' },
+    { value: 'Garden hoes', label: 'Enxadas' },
+    { value: 'Broom', label: 'Vassoura' },
+  ]}
 />
-<p class="muted">Materials: topsoil.</p>
+<p class="muted">Materiais: terra vegetal.</p>
 
 <Figure
   src="img/create/phase5-reference-photos.webp"
-  alt="Reference photos for spreading topsoil: a dump truck delivering topsoil, a volunteer grading soil by hand, two volunteers moving topsoil by wheelbarrow, and a volunteer placing topsoil in a bed"
+  alt="Fotos de referência para espalhar a terra vegetal: um caminhão basculante entregando terra, um voluntário nivelando a terra à mão, dois voluntários levando terra no carrinho de mão e um voluntário colocando terra num canteiro"
 />
 
-### Useful links
+### Links úteis (em inglês)
 
-- **Ordering** — [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
-- **How-to** — [Prep topsoil ↗](https://youtube.com/watch?v=GcOJ4fDJmpM) · [Healthy topsoil for healthy plants ↗](https://youtube.com/watch?v=7-Tyz7fGeZo)
+- **Para comprar** — [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
+- **Como fazer** — [Preparar a terra vegetal ↗](https://youtube.com/watch?v=GcOJ4fDJmpM) · [Terra saudável para plantas saudáveis ↗](https://youtube.com/watch?v=7-Tyz7fGeZo)
 
-### Preparation for next steps
+### Para as próximas fases
 
-Check your project calendar and revise as needed. Purchase and deliver materials with lead times. Make sure the site
-is prepared for Phase 6.
+Confira o calendário do projeto e ajuste quando precisar. Compre e receba os materiais que têm prazo de entrega.
+Confira se o terreno está pronto para a Fase 6.
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={11} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={12} label="Reference photos & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={12} label="Fotos de referência e links (PDF)" />
 
-## Phase 6: Plant {/* #phase-6-plant */}
+## Fase 6: Plantar {/* #phase-6-plant */}
 
-### Steps
+### Passos
 
-**Step 1: Plants.** Remove any weeds that have emerged. Make sure plant deliveries are scheduled and you've located a
-plant delivery staging area. Lay out trees and shrubs in their desired locations, then clean up overspill of soil and
-public areas.
+**Passo 1: Plantas.** Tire o mato que tiver nascido. Confira se as entregas de plantas estão marcadas e se vocês já
+escolheram um lugar para receber e organizar as plantas. Distribua as árvores e os arbustos nos lugares desejados,
+depois limpe a terra que se espalhou e as áreas públicas.
 
-**Step 2: Installation.** Install large trees first (see the planting detail below). Install shrubs, fine-grade the
-soil, plant perennials, install 4" of mulch, then water all plants thoroughly — repeat twice a week until the plants
-go dormant for winter.
+**Passo 2: Plantio.** Plante primeiro as árvores grandes (veja o detalhe de plantio abaixo). Plante os arbustos,
+acerte o nível da terra, plante as perenes, coloque 4" de cobertura morta e depois regue bem todas as plantas —
+repita duas vezes por semana até as plantas entrarem em dormência no inverno.
 
 <Figure
   src="img/create/phase6-plant-illustration.webp"
-  alt="Axonometric illustration of a finished front-yard park, labelled PLANT, with trees, raised planting beds and a paved gathering area between two rowhouses"
+  alt="Ilustração axonométrica de um parque pronto na frente de casa, com o rótulo PLANT (plantar), com árvores, canteiros elevados e uma área de convivência pavimentada entre duas casas geminadas"
 />
 <Figure
   src="img/create/phase6-planting-detail.webp"
-  alt="Two planting detail diagrams: a shrub/perennial container planting detail showing mulch depth and backfill, and a tree planting detail showing root-ball placement, staking, mulch and burlap removal"
+  alt="Dois desenhos de detalhe de plantio: um detalhe de plantio de arbusto/perene de vaso, mostrando a altura da cobertura morta e o reaterro, e um detalhe de plantio de árvore, mostrando onde fica o torrão, as estacas, a cobertura morta e a retirada da juta"
 />
 
-### Equipment & materials
+### Equipamentos e materiais
 
 <Checklist
   id="create.phase6-tools"
-  items={['Measuring tape', 'Shovels', 'Wheelbarrows', 'Pick axe', 'Landscape rakes', 'Spray paint', 'Tree stakes and rope', 'Broom']}
+  items={[
+    { value: 'Measuring tape', label: 'Trena' },
+    { value: 'Shovels', label: 'Pás' },
+    { value: 'Wheelbarrows', label: 'Carrinhos de mão' },
+    { value: 'Pick axe', label: 'Picareta' },
+    { value: 'Landscape rakes', label: 'Rastelos de jardinagem' },
+    { value: 'Spray paint', label: 'Tinta spray' },
+    { value: 'Tree stakes and rope', label: 'Estacas e corda para as árvores' },
+    { value: 'Broom', label: 'Vassoura' },
+  ]}
 />
-<p class="muted">Materials: plants — be sure to reference your plant list.</p>
+<p class="muted">Materiais: plantas — não esqueça de consultar a sua lista de plantas.</p>
 
-### Useful links
+### Links úteis (em inglês)
 
-- **General plant info** — [PHS Gold Medal Plants ↗](https://phsonline.org/for-gardeners/gold-medal-plants) ·
+- **Informações gerais sobre plantas** — [PHS Gold Medal Plants ↗](https://phsonline.org/for-gardeners/gold-medal-plants) ·
   [Gardens Alive ↗](https://www.gardensalive.com/) · [North Creek Nurseries ↗](https://www.northcreeknurseries.com/) ·
-  [Missouri Botanical Garden ↗](https://www.missouribotanicalgarden.org/) · [Longwood Gardens plant explorer ↗](https://plantexplorer.longwoodgardens.org/ecmweb/ECM_Home.html) *(link currently dead)* ·
-  [Arbor Day Foundation ↗](https://www.arborday.org/) · [Penn State Extension vegetable gardening ↗](https://extension.psu.edu/programs/master-gardener)
-- **PiaT partner nursery** — LandHealth Institute, 4862 Parkside Ave, Philadelphia · (267) 571-5750 ·
+  [Missouri Botanical Garden ↗](https://www.missouribotanicalgarden.org/) · [Longwood Gardens plant explorer ↗](https://plantexplorer.longwoodgardens.org/ecmweb/ECM_Home.html) *(link fora do ar no momento)* ·
+  [Arbor Day Foundation ↗](https://www.arborday.org/) · [Penn State Extension — horta ↗](https://extension.psu.edu/programs/master-gardener)
+- **Viveiro parceiro do PiaT** — LandHealth Institute, 4862 Parkside Ave, Philadelphia · (267) 571-5750 ·
   [landhealthinstitute.org/nursery ↗](https://www.landhealthinstitute.org/nursery)
-- **Other regional nurseries** — [Good Host Plants ↗](https://www.goodhostplants.com/) (local pollinator specialist) ·
+- **Outros viveiros da região** — [Good Host Plants ↗](https://www.goodhostplants.com/) (especialista local em polinizadores) ·
   [Pleasant Run Nursery ↗](https://www.pleasantrunnursery.com/) · [Pinelands Nursery ↗](https://www.pinelandsnursery.com/) ·
   [Archewild ↗](https://archewild.com/)
-- **Fruit trees** — [Philadelphia Orchard Project ↗](https://www.phillyorchards.org/) ·
+- **Árvores frutíferas** — [Philadelphia Orchard Project ↗](https://www.phillyorchards.org/) ·
   [Burpee ↗](https://www.burpee.com/fruit/fruit-trees/) · [Stark Bros ↗](https://www.starkbros.com/products/fruit-trees)
-- **Gardening workshops & lot help** — [Pennsylvania Horticultural Society ↗](https://phsonline.org/) ·
-  [Grounded in Philly ↗](https://groundedinphilly.org/) (legal help, insurance, lot data)
-- **How-to** — [Container & bulb planting tips ↗](https://www.gardeners.com/how-to/growing-annual-flowers/5070.html) ·
-  [Containerized tree planting ↗](https://www.arborday.org/trees/planting/containerized.cfm) ·
-  [How to plant a shrub ↗](https://youtube.com/watch?v=Tim4LEo6l10)
+- **Oficinas de jardinagem e ajuda com o terreno** — [Pennsylvania Horticultural Society ↗](https://phsonline.org/) ·
+  [Grounded in Philly ↗](https://groundedinphilly.org/) (ajuda jurídica, seguro, dados de terrenos)
+- **Como fazer** — [Dicas para plantar em vasos e plantar bulbos ↗](https://www.gardeners.com/how-to/growing-annual-flowers/5070.html) ·
+  [Plantar árvores que vêm em vaso ↗](https://www.arborday.org/trees/planting/containerized.cfm) ·
+  [Como plantar um arbusto ↗](https://youtube.com/watch?v=Tim4LEo6l10)
 
-### Preparation for next steps
+### Para as próximas fases
 
-Check your project calendar and make sure you have a schedule for a Park Ambassador — see the Sustain step for
-details. Mulch suppliers: [Mid Atlantic Pine Straw ↗](https://www.midatlanticpinestraw.com/) ·
+Confira o calendário do projeto e garanta que vocês tenham uma escala para um Embaixador do Parque — veja os
+detalhes na etapa Cuidar. Fornecedores de cobertura morta: [Mid Atlantic Pine Straw ↗](https://www.midatlanticpinestraw.com/) ·
 [Underdog Landscape Supply ↗](https://underdogsupply.com) · [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/get-organic-materials/)
+(em inglês)
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={13} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={14} label="Useful links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={14} label="Links úteis (PDF)" />
 
-## Phase 7: Install the gravel surface {/* #phase-7-install-the-gravel-surface */}
+## Fase 7: Colocar o piso de brita {/* #phase-7-install-the-gravel-surface */}
 
-### Steps
+### Passos
 
-**Step 1: Materials.** Prepare for deliveries if not already stockpiled. Locate a stockpile area for gravel on the
-sidewalk or street (temporary no-parking permit, if needed — see Phase 3).
+**Passo 1: Materiais.** Prepare-se para as entregas, se a brita ainda não estiver juntada no terreno. Escolha um
+lugar para juntar a brita na calçada ou na rua (licença temporária de proibido estacionar, se precisar — veja a
+Fase 3).
 
-**Step 2: Installation.** Install the gravel surface using a wheelbarrow and landscape rake. Install gravel
-approximately 2" deep, spreading any excess evenly. Tamp down the aggregate with a vibratory plate to reduce
-settling, and move through all areas to make sure they're level and even.
+**Passo 2: Colocar.** Coloque o piso de brita usando um carrinho de mão e um rastelo de jardinagem. Coloque a brita
+com mais ou menos 2" de altura, espalhando por igual o que sobrar. Compacte a brita com uma placa vibratória para ela
+não afundar depois, e passe por todas as áreas para garantir que fiquem niveladas e por igual.
 
-**Step 3: Clean up.** Clean up overspill of gravel and clean up public areas.
+**Passo 3: Limpeza.** Limpe a brita que se espalhou para fora e limpe as áreas públicas.
 
-### Equipment & materials
+### Equipamentos e materiais
 
 <Checklist
   id="create.phase7-tools"
-  items={['Measuring tape', 'Shovels', 'Wheelbarrows', 'Landscape rakes', 'Hand tamper', 'Vibratory plate', 'Broom']}
+  items={[
+    { value: 'Measuring tape', label: 'Trena' },
+    { value: 'Shovels', label: 'Pás' },
+    { value: 'Wheelbarrows', label: 'Carrinhos de mão' },
+    { value: 'Landscape rakes', label: 'Rastelos de jardinagem' },
+    { value: 'Hand tamper', label: 'Soquete manual' },
+    { value: 'Vibratory plate', label: 'Placa vibratória' },
+    { value: 'Broom', label: 'Vassoura' },
+  ]}
 />
-<p class="muted">Materials: gravel, 3/8" or smaller (stone dust).</p>
+<p class="muted">Materiais: brita de 3/8" ou menor (pó de pedra).</p>
 
 <Figure
   src="img/create/phase7-reference-photos.webp"
-  alt="Reference photos for installing the gravel surface: a landscape grading rake, a hand tamper on packed gravel, and a volunteer running a gas-powered vibratory plate compactor"
+  alt="Fotos de referência para colocar o piso de brita: um rastelo de nivelar de jardinagem, um soquete manual sobre a brita compactada e um voluntário passando uma placa vibratória a gasolina"
 />
 
-### Useful links
+### Links úteis (em inglês)
 
-- **Materials** — [Castor Materials ↗](https://castormaterials.com) · [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) ·
+- **Materiais** — [Castor Materials ↗](https://castormaterials.com) · [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) ·
   Galantino Supply Company ((610) 544-2586) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
-- **How-to** — [Install gravel ↗](https://youtube.com/watch?v=t0LWQ_U2z_g)
+- **Como fazer** — [Colocar brita ↗](https://youtube.com/watch?v=t0LWQ_U2z_g)
 
-### Preparation for next steps
+### Para as próximas fases
 
-Check your project calendar and revise as needed. Purchase and deliver materials with lead times. Make sure the site
-is prepared for Phase 8.
+Confira o calendário do projeto e ajuste quando precisar. Compre e receba os materiais que têm prazo de entrega.
+Confira se o terreno está pronto para a Fase 8.
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={15} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={16} label="Reference photos & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={16} label="Fotos de referência e links (PDF)" />
 
-## Phase 8: Install park elements {/* #phase-8-install-park-elements */}
+## Fase 8: Instalar os elementos do parque {/* #phase-8-install-park-elements */}
 
-### Steps
+### Passos
 
-**Step 1: Measure.** Review your assembly manuals and measure and mark out where your park elements need to go.
+**Passo 1: Medir.** Leia os seus manuais de montagem e meça e marque onde os elementos do parque vão ficar.
 
-**Step 2: Materials.** Make sure you have all the materials outlined in your assembly manuals.
+**Passo 2: Materiais.** Confira se vocês têm todos os materiais listados nos manuais de montagem.
 
-**Step 3: Assemble.** Assemble your park elements according to the assembly manuals.
+**Passo 3: Montar.** Monte os elementos do parque seguindo os manuais de montagem.
 
-**Step 4: Install.** Make sure you have proper room within your design to install the elements, then locate them in
-their final positions. You may be able to — or choose to — assemble elements ahead of time or off site.
+**Passo 4: Instalar.** Confira se há espaço suficiente no seu desenho para instalar os elementos, depois coloque-os
+nos lugares finais. Vocês podem — se quiserem — montar os elementos antes ou fora do terreno.
 
 <Callout kind="auto">
-  Every element with an assembly guide is linked from the Dream step's [Assemble](/steps/dream/#assemble) grid — the
-  same guides are listed there.
+  Todos os elementos que têm guia de montagem estão ligados na grade [Monte](/steps/dream/#assemble) da etapa Sonhar
+  — os mesmos guias estão listados lá.
 </Callout>
 
-### Useful links
+### Links úteis (em inglês)
 
-- **How-to build a…** (use the assembly guides first; these videos are backup) — [Communal table ↗](https://youtube.com/watch?v=Px2JZs4Q2v4) ·
-  [Cold frame ↗](https://youtube.com/watch?v=b75RoDmE9qY) · [Raised garden beds ↗](https://youtube.com/watch?v=MBIYebUgVVI) ·
-  [Compost bins ↗](https://youtube.com/watch?v=gA6QNLaBEyc) · [Potting bench ↗](https://youtube.com/watch?v=E7HumfxE2f4) ·
-  [Outdoor garden shed ↗](https://youtube.com/watch?v=DuQ0N8z6OkI) · [Gabion wall ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
-- **Lumber & building materials** — Woodland Building Supply, 4701 Woodland Ave, Philadelphia — (215) 727-5333 ·
-  C & R Building Supply, 1601 S 49th St, Philadelphia · A&A Lumber (cypress), Avondale, PA · Delaware County Lumber, Boothwyn, PA
+- **Como construir…** (use primeiro os guias de montagem; estes vídeos são reserva) — [Mesa comunitária ↗](https://youtube.com/watch?v=Px2JZs4Q2v4) ·
+  [Estufinha (cold frame) ↗](https://youtube.com/watch?v=b75RoDmE9qY) · [Canteiros elevados ↗](https://youtube.com/watch?v=MBIYebUgVVI) ·
+  [Composteiras ↗](https://youtube.com/watch?v=gA6QNLaBEyc) · [Bancada de jardinagem ↗](https://youtube.com/watch?v=E7HumfxE2f4) ·
+  [Depósito de jardim ↗](https://youtube.com/watch?v=DuQ0N8z6OkI) · [Muro de gabião ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
+- **Madeira e material de construção** — Woodland Building Supply, 4701 Woodland Ave, Philadelphia — (215) 727-5333 ·
+  C & R Building Supply, 1601 S 49th St, Philadelphia · A&A Lumber (cipreste), Avondale, PA · Delaware County Lumber, Boothwyn, PA
 
-### Preparation for next steps
+### Para as próximas fases
 
-Check your project calendar and revise as needed — your park is almost done!
+Confira o calendário do projeto e ajuste quando precisar — o seu parque está quase pronto!
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={17} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={18} label="Assembly instructions & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={18} label="Instruções de montagem e links (PDF)" />
 
 {/* site-added: the workbook's own contents page lists a Summary, but this working draft doesn't include one — this wrap-up just recaps the 8 phases above as a final checklist. No new advice. */}
-## Summary {/* #summary */}
+## Resumo {/* #summary */}
 
 <Checklist
   id="create.summary-checklist"
   items={[
-    { value: 'phase1', label: 'Phase 1: Organize', hint: 'Team roles assigned, schedule set' },
-    { value: 'phase2', label: 'Phase 2: Prepare the lot', hint: 'Cleared, protected, leveled' },
-    { value: 'phase3', label: 'Phase 3: Layout & gravel base', hint: 'Beds and elements staked out, sub-base in' },
-    { value: 'phase4', label: 'Phase 4: Install the edge', hint: 'Gabion baskets and wood edging set' },
-    { value: 'phase5', label: 'Phase 5: Spread topsoil', hint: 'Planting beds graded and filled' },
-    { value: 'phase6', label: 'Phase 6: Plant', hint: 'Trees, shrubs and perennials in the ground' },
-    { value: 'phase7', label: 'Phase 7: Install the gravel surface', hint: 'Finish gravel tamped and level' },
-    { value: 'phase8', label: 'Phase 8: Install park elements', hint: 'Benches, tables and structures assembled and placed' },
+    { value: 'phase1', label: 'Fase 1: Organizar', hint: 'Funções da equipe definidas, cronograma pronto' },
+    { value: 'phase2', label: 'Fase 2: Preparar o terreno', hint: 'Limpo, protegido, nivelado' },
+    { value: 'phase3', label: 'Fase 3: Marcação e base de brita', hint: 'Canteiros e elementos marcados com estacas, sub-base colocada' },
+    { value: 'phase4', label: 'Fase 4: Instalar a borda', hint: 'Gaiolas de gabião e bordas de madeira no lugar' },
+    { value: 'phase5', label: 'Fase 5: Espalhar a terra vegetal', hint: 'Canteiros nivelados e cheios' },
+    { value: 'phase6', label: 'Fase 6: Plantar', hint: 'Árvores, arbustos e perenes plantados' },
+    { value: 'phase7', label: 'Fase 7: Colocar o piso de brita', hint: 'Brita de acabamento compactada e nivelada' },
+    { value: 'phase8', label: 'Fase 8: Instalar os elementos do parque', hint: 'Bancos, mesas e estruturas montados e no lugar' },
   ]}
 />
 
 <Callout kind="tip">
-  Your park is built! Head to the Sustain step to keep it thriving — watering, weeding and the annual stewardship
-  workplan.
+  O seu parque está construído! Vá para a etapa Cuidar para mantê-lo bonito e cheio de vida — regar, tirar o mato e o
+  plano anual de cuidados.
 </Callout>
