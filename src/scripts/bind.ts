@@ -104,6 +104,20 @@ function bindFields(root: ParentNode) {
   });
 }
 
+type WorkbookKey = keyof (typeof workbook)['messages'] & string;
+/**
+ * A list's own sentence ("+ Add member", "member removed.") — one whole sentence per list, so
+ * languages can make the words agree with the row's noun. Lists without their own sentences (or a
+ * language without them yet) slot the row name into the shared one ("+ Add {row}").
+ */
+function listText(host: HTMLElement, which: 'add' | 'removed' | 'fillFirst'): string {
+  const rest = (host.dataset.field ?? '').split('.').slice(1).join('.');
+  const name = rest.replace(/-(\w)/g, (_, c: string) => c.toUpperCase());
+  const own = `list.${name}.${which}` as WorkbookKey;
+  if (own in workbook.messages && t.has(own)) return t(own);
+  return t(`list.${which}`, { row: host.dataset.rowName || t('list.row') });
+}
+
 /** Blank rows shown below the saved ones (after "+ Add row"), per list. */
 const blankRows = new WeakMap<HTMLElement, number>();
 
@@ -181,7 +195,7 @@ function renderLists(p: Project) {
       rm.setAttribute('aria-label', t('list.removeRow', { n: i + 1 }));
       rm.addEventListener('click', () => {
         const removedIndex = i;
-        const rowName = host.dataset.rowName || t('list.row');
+        const removedText = listText(host, 'removed');
         tr.remove();
         host.dataset.rows = '';
         save(); // rebuilds this list's DOM synchronously (via the project store)
@@ -194,7 +208,7 @@ function renderLists(p: Project) {
           freshRows[removedIndex - 1]?.querySelector<HTMLElement>('input') ??
           host.querySelector<HTMLElement>(':scope > button.btn-small');
         target?.focus();
-        announce(t('list.removed', { row: rowName }));
+        announce(removedText);
       });
       td.append(rm);
       tr.append(td);
@@ -204,7 +218,7 @@ function renderLists(p: Project) {
     const add = document.createElement('button');
     add.type = 'button';
     add.className = 'btn btn-small';
-    add.textContent = t('list.add', { row: host.dataset.rowName || t('list.row') });
+    add.textContent = listText(host, 'add');
     const msg = document.createElement('span');
     msg.className = 'field-hint list-add-msg';
     msg.setAttribute('role', 'status');
@@ -216,7 +230,7 @@ function renderLists(p: Project) {
         // Adding another blank row on top of an already-blank one would just be a
         // second identical empty row — point at the one that needs filling in
         // instead of silently doing nothing.
-        msg.textContent = t('list.fillFirst', { row: host.dataset.rowName || t('list.row') });
+        msg.textContent = listText(host, 'fillFirst');
         lastInputs[0]?.focus();
         return;
       }
