@@ -1,0 +1,158 @@
+{
+  "title": "Upuang may sandalan (Bench + Back)",
+  "summary": "Isang 4-talampakang upuang cedar, fir o pressure-treated, may upuang gawa sa magkakahanay na tabla at nakahilig na sandalan, gawa sa kahoy na 2x4 na may bracket ng sandalan na ikinakabit ng bolt. 25\" ang taas nito hanggang sa ibabaw ng patungan ng braso; umaabot sa mga 34\" ang sandalan.",
+  "finishing": "Makapagpapatagal sa buhay ng mga bahagi ng inyong parke ang panlabas na pampahid sa kahoy, pero hindi ito kailangan — sadyang idinisenyo ang mga pirasong ito para maging mura, matibay at madaling gawin, kaya maaaring mas praktikal na hayaan na lang ang susunod na henerasyon na gawin silang muli pagdating ng panahon. Kung gusto ninyong lagyan ng stain, pintura o sealant ang kahoy, tingnan ang mga mapagkukunan tungkol sa pampahid sa ibaba.",
+  "sourcePages": "Tagubilin sa pagbuo ng BENCH_BACK, pp. 1–11 (pabalat; bago kayo magsimula; karaniwang pagpipiliang kahoy; mga hakbang 1–7; gabay sa pre-drill na butas)",
+  "materials": [
+    {
+      "item": "Kahoy na 2x4 — western red cedar, Douglas fir, o pressure-treated pine",
+      "notes": "Cedar: likas na matibay sa panahon at sa pagkabulok, may magandang mapulang kulay, madaling gawan, hindi kailangan ng sealant (nagiging kulay-abo ito sa paglipas ng panahon); mas mahal — hanapin ang grade na 'knotty' (STK), na mas mura nang husto kaysa sa clear grade. Douglas fir: katamtamang matibay sa pagkabulok, matibay at madaling gawan, mas mura kaysa sa cedar, pero hindi kasintagal — magandang piliin kung balak ninyong pintahan. Pressure-treated: matibay sa pagkabulok at pinakamura, pero madalas na mababa at hindi pare-pareho ang kalidad ng kahoy, kailangang patuyuin sa hangin nang 1–4 na buwan bago pintahan, at hindi inirerekomenda kung saan nagtatanim ng pagkain. Umorder ng 5% na higit sa listahan ng puputulin para sa iba-ibang kalidad ng kahoy at maling pagputol."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Self-driving exterior wood screw"
+    },
+    {
+      "item": "Lag screw na pang-labas"
+    },
+    {
+      "item": "Exterior carriage bolt, nut at washer"
+    },
+    {
+      "item": "Bracket ng sandalan"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Ilalim + ibabaw ng upuan"
+    },
+    {
+      "notes": "Sandalan ng upuan"
+    },
+    {
+      "notes": "Gilid ng upuan"
+    },
+    {
+      "notes": "Gilid ng upuan"
+    },
+    {
+      "notes": "Gilid ng upuan"
+    },
+    {
+      "notes": "Gilid ng upuan"
+    },
+    {
+      "notes": "Gilid ng upuan"
+    }
+  ],
+  "tools": [
+    "10\" o 12\" na miter saw (o angkop na lagaring de-kamay)",
+    "Impact driver para sa mga self-driving exterior wood screw",
+    "Drill na may 1/8\" at 1/4\" na bit para sa pre-drill na butas",
+    "Liha, 120 grit",
+    "Iskwala ng karpintero",
+    "Safety goggles + guwantes",
+    "Socket wrench (para sa mga carriage bolt at lag screw)"
+  ],
+  "steps": [
+    {
+      "title": "Markahan, lagyan ng label at putulin ang kahoy",
+      "text": "Markahan, lagyan ng label at putulin ang kahoy nang sunod-sunod mula BB-1 hanggang BB-7 ayon sa haba sa listahan ng puputulin.\n\nSuriin ang bawat piraso ng kahoy kung may depekto gaya ng lamat, pagkabaluktot o hindi pantay na pagkakakatam, at itapon ang mga bahaging iyon ng kahoy.",
+      "imageAlts": [
+        "Isometric na diagram ng pitong pinutol na piraso ng BENCH + BACK, BB-1 hanggang BB-7, may label ang haba, mula sa 45\" na tabla hanggang sa 4\" na bloke."
+      ],
+      "tips": [
+        "Lagyan ng label ang bawat piraso ng kahoy habang sinusukat at pinuputol ninyo ito.",
+        "Magkaroon ng hiwalay na tumpok ng kahoy para sa bawat piraso, BB-1 hanggang BB-7.",
+        "Ang bahagyang paglilija sa mga pinutol na gilid ay nag-aalis ng salubsob at nakatutulong sa pagbuo.",
+        "Gagawa ng higit sa isang upuan? Pinananatiling magkakapareho ang haba ng bawat piraso ng isang stop block sa inyong miter saw."
+      ]
+    },
+    {
+      "title": "Buuin ang dalawang frame sa dulo",
+      "text": "Ilagay ang dalawang pirasong BB-3 sa patag na ibabaw. Ilagay ang dalawang pirasong BB-5 sa kanang gilid ng mga pirasong BB-3, at itugma ang mga gilid gaya ng ipinapakita sa larawan. Ulitin para makabuo ng ikalawa at katugmang frame.",
+      "imageAlts": [
+        "Diagram na nagpapakita ng dalawang tablang BB-3 at dalawang BB-5 na binuo bilang parisukat na frame sa dulo, at may ikalawang buong frame sa likod nito."
+      ],
+      "tips": [
+        "Gumamit ng iskwala ng karpintero para suriin kung tamang anggulo (90°) ang bawat sulok — kung malayo, suriin ulit ang haba ng mga tabla.",
+        "Malaking tulong ang paggawa ng 90-degree na jig sa pagbuo sa hakbang na ito at sa susunod."
+      ]
+    },
+    {
+      "title": "Idagdag ang mga tabla ng upuan at mga paa sa harap sa bawat frame sa dulo",
+      "text": "Ilagay ang apat na pirasong BB-6 at isang pirasong BB-4 sa ibabaw ng bawat frame, gaya ng ipinapakita, at mag-iwan ng 1.5\" na puwang sa pagitan ng dalawang pirasong BB-6 (gumamit ng sobrang 2x4 na nakatayo bilang spacer). Gamitin ang gabay sa pre-drill sa dulo ng packet para mag-pre-drill ng mga butas ng turnilyo, saka ikabit ang kahoy gamit ang impact driver at 30 na 2.5\" na self-driving exterior wood screw.\n\nIlagay ang isang pirasong BB-4 nang kapantay ng pirasong BB-5 sa ilalim nito, na may dalawang pirasong BB-7 na naka-90° sa tabi nito, gaya ng ipinapakita — gamit ulit ang 2x4 na spacer para sa 1.5\" na puwang — saka ikabit gamit ang 14 pang 2.5\" na turnilyo.\n\nUlitin sa kabilang paa, saka itayo ang dalawang paa para sa susunod na hakbang.",
+      "imageAlts": [
+        "Diagram ng mga tablang BB-6, BB-4 at BB-7 na tinuturnilyo sa ibabaw at gilid ng bawat frame sa dulo, may tanda ng 1.5\" na puwang ng spacer."
+      ]
+    },
+    {
+      "title": "Pagdugtungin ang dalawang frame sa dulo gamit ang mga tabla sa ilalim",
+      "text": "Ilagay ang tatlong pirasong BB-1 sa mga puwang sa paanan at gilid ng dalawang frame na ginawa sa hakbang 3, gaya ng ipinapakita.\n\nIkabit ang kahoy na BB-1 sa kaliwa at kanang gilid sa mga piraso ng frame gamit ang impact driver at 12 na 2.5\" na self-driving exterior wood screw lahat — 6 na turnilyo bawat gilid.",
+      "imageAlts": [
+        "Diagram ng tatlong tablang BB-1 na nagdudugtong sa dalawang frame sa dulo sa paanan, may tanda ng 90-degree na anggulo sa sulok."
+      ],
+      "tips": [
+        "Suriin gamit ang iskwala ng karpintero na nananatiling 90 degrees ang gilid."
+      ]
+    },
+    {
+      "title": "Idagdag ang ibabaw ng upuan",
+      "text": "Ilagay ang tatlong pirasong BB-1 sa ibabaw ng frame na ginawa sa hakbang 4, itugma ang lahat ng gilid at mag-iwan ng pantay na 1\" na puwang sa pagitan ng mga piraso.\n\nIkabit ang kahoy na BB-1 gamit ang impact driver at 12 na 2.5\" na self-driving exterior wood screw. Kailangang ibaon nang bahagyang pahilig ang mga turnilyong ito.",
+      "imageAlts": [
+        "Diagram ng tatlo pang tablang BB-1 na bumubuo sa ibabaw ng upuan, tinurnilyo nang pahilig na may pantay na 1\" na puwang sa pagitan ng mga tabla."
+      ]
+    },
+    {
+      "title": "Ikabit ng bolt ang mga bracket ng sandalan",
+      "text": "Ilagay ang dalawang bracket ng sandalan sa magkabilang gilid ng kahoy na BB-1, 5\" papasok mula sa mga dulo, gaya ng ipinapakita.\n\nMarkahan at mag-pre-drill ng mga butas na tumatagos sa kahoy na BB-1 para tumapat sa mga bracket, saka ikabit ang mga bracket ng sandalan sa ilalim ng mga pirasong BB-1 gamit ang socket wrench at apat na 1/4\" x 2-1/2\" na exterior carriage bolt, nut at washer.",
+      "imageAlts": [
+        "Diagram ng dalawang bracket ng sandalan na naka-bolt sa ilalim ng mga tabla ng upuan, 5\" papasok mula sa bawat dulo."
+      ],
+      "tips": [
+        "Mas madali ang hakbang na ito kung itataob ang upuan sa harapang gilid nito."
+      ]
+    },
+    {
+      "title": "Ikabit ang mga tabla ng sandalan at tapusin",
+      "text": "Ilagay ang tatlong pirasong BB-2 sa ibabaw ng mga bracket ng sandalan na ikinabit sa hakbang 6. Magsimula sa pinakamataas na piraso, nakalagay nang 1/2\" sa itaas ng tuktok ng bracket, saka mag-iwan ng 1/4\" na puwang sa pagitan ng bawat piraso sa ilalim nito, at panatilihing magkakatugma ang lahat ng gilid.\n\nIkabit ang kahoy na BB-2 sa mga bracket ng sandalan gamit ang socket wrench at anim na 1/4\" x 1-1/4\" na lag screw.\n\nBahagyang lihahin ang magaspang na gilid ng upuang may sandalan.",
+      "imageAlts": [
+        "Diagram ng tatlong tablang BB-2 ng sandalan na naka-bolt sa mga bracket ng sandalan, may 1/4\" na puwang sa pagitan ng bawat tabla."
+      ],
+      "tips": [
+        "Gamitin ang inyong iskwala ng karpintero bilang spacer para sa mga puwang.",
+        "Gumamit ng 1/4\" na drill bit para mag-pre-drill ng mababaw na panimulang butas para sa mga lag screw — mag-ingat na huwag tumagos ang butas sa kahoy na BB-6 sa ilalim."
+      ]
+    },
+    {
+      "title": "Gabay sa pre-drill na butas (template)",
+      "text": "Gupitin ang gabay sa pre-drill na butas sa mga putol-putol na linya. Kapag nagbubutas, itugma ang gilid ng template sa panlabas na gilid ng kahoy bago mag-pre-drill.\n\nHindi lahat ng butas ay ginagamit — hindi lahat ng pattern ay gumagamit ng template. Gamitin ang mga hakbang sa pagbuo sa itaas bilang gabay sa mga butas. Panatilihin ang lahat ng butas na mga isang lapad ng hinlalaki mula sa gilid (mga 1\"), kahit ang mga butas na hindi gumagamit ng template na ito.",
+      "imageAlts": [
+        "Isang template ng gabay sa pre-drill na butas na mapi-print, may limang minarkahang puwesto ng butas at mga linya ng paggupit, at isang malapitang larawan ng layo ng butas mula sa gilid ng tabla."
+      ]
+    }
+  ],
+  "safety": [
+    "Mga rekomendasyong DIY (kayo mismo ang gagawa) lamang ang mga ito — iangkop ang materyales, pagbuo at konstruksiyon sa sarili ninyong proyekto at lote.",
+    "Ipinapalagay sa paggawa nito na may kaunti kayong kaalaman sa mga kagamitang de-kamay at de-kuryente, hardware, pangkabit, kahoy at batayang paraan ng pagbuo.",
+    "Bago gumamit ng anumang de-kuryenteng kagamitan, basahin at sundin ang mga kinakailangan sa kaligtasan ng gumawa nito, at huwag hayaang gumamit ng de-kuryenteng kagamitan ang sinumang hindi pa nakagagawa nito.",
+    "Kayo (ang may-ari) ang mananagot sa anumang building at safety code, permit at pag-apruba ng pamahalaan na kailangan nito.",
+    "Linisin muna ang lote mula sa basura, panganib at mga ayaw na istruktura, at alamin ang anumang utility (kable at tubo) na maaaring maging sagabal bago kayo maghukay.",
+    "Dapat pumirma ng waiver ng boluntaryo ang lahat ng tumutulong sa paggawa."
+  ],
+  "links": [
+    {
+      "label": "Bracket ng sandalan (Hairpin Legs) (sa Ingles)"
+    },
+    {
+      "label": "Pagpili ng pinakamahusay na pampahid para sa mga proyekto sa labas (Rockler) (sa Ingles)"
+    },
+    {
+      "label": "Pinakamahusay na pampahid sa kahoy sa labas (Real Milk Paint) (sa Ingles)"
+    },
+    {
+      "label": "Mga pampahid sa kahoy sa labas (Vermont Natural Coatings) (sa Ingles)"
+    }
+  ]
+}

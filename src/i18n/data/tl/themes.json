@@ -1,0 +1,18 @@
+{
+  "edible": {
+    "name": "Pagkain",
+    "blurb": "Magbahagi ng pagkain at makipag-ugnayan sa mga kapitbahay — prutas, gulay at isang mesang pansama-sama."
+  },
+  "sanctuary": {
+    "name": "Kanlungan",
+    "blurb": "Isang tahimik na kanlungan para mapag-isa, magbasa at magkaroon ng maliliit na pagtitipon."
+  },
+  "nature": {
+    "name": "Kalikasan",
+    "blurb": "Katutubong halaman, tirahan ng mga hayop, at laruan para sa mga bata at pollinator."
+  },
+  "event": {
+    "name": "Pagtitipon",
+    "blurb": "Espasyo para sa mga pagtatanghal, palengke at pagdiriwang ng kapitbahayan."
+  }
+}

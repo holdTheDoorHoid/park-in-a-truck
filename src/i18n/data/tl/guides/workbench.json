@@ -1,0 +1,132 @@
+{
+  "title": "Workbench / mesang tayuan",
+  "summary": "Isang mesang pantanim na kasintaas ng nakatayong tao, nakapatong sa mga paang 4x4, may tatlong patong ng istante sa ilalim at ibabaw na may limang tabla. Walang diagram ng sukat ang orihinal na drowing, kaya kinuwenta ang kabuuang sukat na ito mula sa listahan ng puputulin at mga hakbang sa pagbuo nito, hindi binasa mula sa pabalat.",
+  "finishing": "Dapat bahagyang lihahin ang lahat ng gilid at ibabaw para maalis ang salubsob o magaspang na gilid.\n\nCedar: hindi kailangang pahiran — magiging mapusyaw na kulay-abo ito sa paglipas ng panahon. Kung gusto ninyong panatilihin ang kulay nito noong ikinabit, gumamit ng walang kulay na water-based alkyd stain na tumatagos sa kahoy, o pintahan gamit ang sistemang primer/pintura/sealant.\n\nPressure-treated: hindi kailangang pahiran. Kung gusto ninyo ng kulay, hayaan muna itong matuyo sa hangin nang ilang buwan hanggang hindi na nagbubutil ang tubig sa ibabaw; maglija nang may suot na mask para hindi malanghap ang alikabok ng ginamot na kahoy. Gumamit ng exterior primer + pintura at i-seal gamit ang water-based spar urethane.\n\nKiln-dried na fir o pine: kailangan ng stain na may sealer, o ng sistemang primer/pintura/sealer, para hindi mabilis maluma sa panahon. Puwede rin itong pintahan ayon sa mga hakbang para sa pressure-treated sa itaas.",
+  "sourcePages": "Tagubilin sa pagbuo ng WORKBENCH/STANDING TABLE (nasa mga link sa p19 ng workbook ng Mangarap), pp. 1–11 (pabalat; bago kayo magsimula; kahoy + hardware + kagamitan; mga hakbang 1–6; mga pampahid at patong)",
+  "materials": [
+    {
+      "item": "Kahoy na 4x4 — cedar, pressure-treated o pine, S4S #1 grade"
+    },
+    {
+      "item": "Kahoy na 2x4 — cedar, pressure-treated o pine, S4S #1 grade"
+    },
+    {
+      "item": "Kahoy na 2x4 — cedar, pressure-treated o pine, S4S #1 grade"
+    },
+    {
+      "item": "Kahoy na 2x4 — cedar, pressure-treated o pine, S4S #1 grade"
+    },
+    {
+      "item": "Kahoy na 2x6 — cedar, pressure-treated o pine, S4S #1 grade"
+    },
+    {
+      "item": "Kahoy na 1x6 — cedar, pressure-treated o pine, S4S #1 grade"
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Self-driving exterior wood screw"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Suporta sa gilid"
+    },
+    {
+      "notes": "Suporta sa likod"
+    },
+    {
+      "notes": "Suporta sa harap"
+    },
+    {
+      "notes": "Mga istante ng mesa (2 tabla bawat istante, 3 patong ng istante)"
+    },
+    {
+      "notes": "Mga paa ng mesa"
+    },
+    {
+      "notes": "Ibabaw ng mesa, malalapad na tabla (panlabas na gilid at gitna)"
+    },
+    {
+      "notes": "Ibabaw ng mesa, makikitid na tabla (sa pagitan ng malalapad na tabla)"
+    }
+  ],
+  "tools": [
+    "Lagaring de-kuryente (table saw o de-kamay)",
+    "Impact driver para sa mga self-driving exterior wood screw",
+    "Iskwala ng karpintero",
+    "Safety goggles + mask"
+  ],
+  "steps": [
+    {
+      "title": "Markahan, lagyan ng label at putulin ang kahoy",
+      "text": "Markahan, lagyan ng label at putulin ang kahoy ayon sa haba sa listahan ng puputulin: A-1 na suporta sa gilid, A-2 na suporta sa likod, A-3 na suporta sa harap, A-4 na istante ng mesa, A-5 na paa ng mesa, B-1 na malalapad na tabla sa ibabaw at B-2 na makikitid na tabla sa ibabaw.",
+      "imageAlts": [
+        "Isometric na diagram ng pitong pinutol na piraso ng workbench, A-1 hanggang A-5 at B-1, B-2, may label ang haba."
+      ],
+      "tips": [
+        "Makatutulong na isulat ang letra ng piraso sa bawat kahoy habang minamarkahan ninyo ito, para masuri ninyong kumpleto ang lahat ng piraso.",
+        "Magkaroon ng hiwalay na tumpok ng kahoy para sa bawat letra."
+      ]
+    },
+    {
+      "title": "Buuin ang pangunahing frame",
+      "text": "Ilagay ang isang 2\"x4\"x20\" (A-1) sa patag na ibabaw. Nang patayo mula sa mahabang gilid nito, sumukat ng 41\" at ilagay ang ikalawang 2\"x4\"x20\" (A-1). Ilagay ang isang 2\"x4\"x41\" (A-2) sa pagitan ng likurang gilid ng dalawang pirasong A-1, at ikabit gamit ang impact driver at apat na 3\" na self-driving exterior wood screw.\n\nIlagay ang isang 2\"x4\"x44\" (A-3) sa harap ng dalawang pirasong A-1 — bahagya itong lalampas sa kanila — at ikabit gamit ang apat pang 3\" na turnilyo.",
+      "imageAlts": [
+        "Diagram ng dalawang suportang A-1 sa gilid na pinagdugtong ng suportang A-2 sa likod at suportang A-3 sa harap bilang parihabang frame."
+      ],
+      "tips": [
+        "Gumamit ng iskwala ng karpintero para suriing tuwid ang frame bago ikabit ang mga suporta sa likod at harap."
+      ]
+    },
+    {
+      "title": "Itayo ang mga paa",
+      "text": "Ilagay ang isang paang 4\"x4\"x34\" (A-5) sa bawat isa sa apat na sulok ng frame ng mesang tayuan na ginawa sa hakbang 2.\n\nIkabit ang mga paa gamit ang impact driver at labing-anim na 3\" na self-driving exterior wood screw — sa harap, likod, kaliwa at kanang gilid ng bawat paa.",
+      "imageAlts": [
+        "Diagram ng apat na paang A-5 na tinuturnilyo sa mga sulok ng frame mula sa harap, likod at magkabilang gilid."
+      ],
+      "tips": [
+        "Gumamit ng iskwala ng karpintero para suriing tuwid ang bawat paa laban sa frame bago ito ikabit."
+      ]
+    },
+    {
+      "title": "Bumuo ng lima pang frame at ikabit ang una",
+      "text": "Bumuo ng lima pang frame sa parehong paraan ng hakbang 2 — isang suportang A-2 sa likod sa pagitan ng dalawang suportang A-1 sa gilid, na ikinabit gamit ang apat na 3\" na turnilyo bawat isa (walang suporta sa harap ang mga ito).\n\nIlagay ang isa sa mga frame na ito sa ibaba ng frame ng mesang tayuan, 2\" mula sa lupa, at ikabit ito gamit ang impact driver at labindalawang 3\" na self-driving exterior wood screw.",
+      "imageAlts": [
+        "Diagram ng ikalawang frame, walang suporta sa harap, na tinuturnilyo sa mga paa malapit sa lupa."
+      ],
+      "tips": [
+        "Gumamit ng tirang piraso ng 2x4 bilang spacer kapag inilalagay ang bawat frame na suporta ng istante sa mga paa."
+      ]
+    },
+    {
+      "title": "Idagdag ang unang istante",
+      "text": "Ilagay ang isa sa natitirang mga frame nang 2\" sa itaas ng inilagay sa nakaraang hakbang, at ikabit ito gamit ang impact driver at labindalawang 3\" na self-driving exterior wood screw.\n\nIlagay ang dalawang tablang 1\"x6\"x48\" (A-4) nang magkatabi sa ibabaw ng nakakabit na frame, at ikabit ang mga ito gamit ang impact driver at walong 3\" na self-driving exterior wood screw.",
+      "imageAlts": [
+        "Diagram ng isa pang frame na nakakabit nang 2\" sa itaas ng nauna, may dalawang tablang A-4 ng istante na tinurnilyo sa ibabaw nito."
+      ]
+    },
+    {
+      "title": "Idagdag ang ikalawa at ikatlong istante",
+      "text": "Maglagay ng isa pang frame nang 2\" sa itaas ng nauna at ikabit ito gamit ang labindalawang 3\" na turnilyo. Ilagay ang dalawa pang tablang A-4 sa ibabaw at ikabit gamit ang walong 3\" na turnilyo — iyan ang ikalawang istante.\n\nUlitin nang isa pang beses para sa ikatlong istante: isa pang frame, labindalawang turnilyo, dalawa pang tablang A-4, walong turnilyo.\n\nSa huli, ilagay ang huling frame nang 2\" sa itaas ng huling istante at ikabit ito gamit ang labindalawang 3\" na self-driving exterior wood screw — ito ang sumusuporta sa ibabaw ng mesa at walang sariling tabla ng istante.",
+      "imageAlts": [
+        "Diagram na nagpapakita ng dalawa pang patong ng istante na idinaragdag sa itaas ng una, na ginawa sa parehong paraan, at may huling frame na walang istante sa itaas."
+      ]
+    },
+    {
+      "title": "Ilatag ang ibabaw ng mesa",
+      "text": "Ilagay ang isang tablang 2\"x6\"x48\" (B-1) sa gitna ng mesang tayuan, na may 2\" na lampas sa kaliwa at kanang gilid, at ikabit ito gamit ang impact driver at apat na 3\" na self-driving exterior wood screw.\n\nMaglagay ng isang tablang 2\"x4\"x48\" (B-2) sa magkabilang gilid ng tabla sa gitna at ikabit gamit ang apat pang 3\" na turnilyo.\n\nMaglagay ng isa pang tablang 2\"x6\"x48\" (B-1) sa magkabilang gilid ng mga pirasong B-2 at ikabit gamit ang apat pang 3\" na turnilyo, para mabuo ang ibabaw na may limang tabla.",
+      "imageAlts": [
+        "Diagram ng pagbuo ng ibabaw ng mesa na may limang tabla: malapad na tablang B-1 sa gitna, makikitid na tablang B-2 sa magkabilang gilid, at malalapad na tablang B-1 sa panlabas na gilid."
+      ]
+    }
+  ],
+  "safety": [
+    "Mga rekomendasyong DIY (kayo mismo ang gagawa) lamang ang mga ito — iangkop ang materyales, pagbuo at konstruksiyon sa sarili ninyong proyekto at lote.",
+    "Ipinapalagay sa paggawa nito na may kaunti kayong kaalaman sa mga kagamitang de-kamay at de-kuryente, hardware, pangkabit, kahoy at batayang paraan ng pagbuo.",
+    "Bago gumamit ng anumang de-kuryenteng kagamitan, basahin at sundin ang mga kinakailangan sa kaligtasan ng gumawa nito, at huwag hayaang gumamit ng de-kuryenteng kagamitan ang sinumang hindi pa nakagagawa nito.",
+    "Kayo (ang may-ari) ang mananagot sa anumang building at safety code, permit at pag-apruba ng pamahalaan na kailangan nito.",
+    "Linisin muna ang lote mula sa basura, panganib at mga ayaw na istruktura, at alamin ang anumang utility (kable at tubo) na maaaring maging sagabal bago kayo maghukay.",
+    "Dapat pumirma ng waiver ng boluntaryo ang lahat ng tumutulong sa paggawa."
+  ]
+}

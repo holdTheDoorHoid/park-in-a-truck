@@ -1,0 +1,457 @@
+{
+  "edible-small-tree-both-serviceberry": {
+    "common": "Serviceberry",
+    "notes": "Nakakaing bahagi: Bunga",
+    "matureSize": "20–30 talampakan"
+  },
+  "edible-small-tree-both-redbud": {
+    "common": "Redbud",
+    "notes": "Nakakaing bahagi: Bulaklak; Cultivar: Forest Pansy",
+    "matureSize": "20–25 talampakan"
+  },
+  "edible-small-tree-both-apple": {
+    "common": "Mansanas",
+    "notes": "Nakakaing bahagi: Bunga; Cultivar: Enterprise",
+    "matureSize": "10–20 talampakan"
+  },
+  "edible-small-tree-both-peach": {
+    "common": "Peach",
+    "notes": "Nakakaing bahagi: Bunga; Cultivar: Contender",
+    "matureSize": "10–20 talampakan"
+  },
+  "edible-small-tree-both-pear": {
+    "common": "Peras",
+    "notes": "Nakakaing bahagi: Bunga; Cultivar: Golden Russet bosc",
+    "matureSize": "10–20 talampakan"
+  },
+  "edible-small-tree-both-plum": {
+    "common": "Plum",
+    "notes": "Nakakaing bahagi: Bunga; Cultivar: Methly",
+    "matureSize": "10–20 talampakan"
+  },
+  "edible-shrub-sun-red-currant": {
+    "common": "Red currant",
+    "notes": "Nakakaing bahagi: Bunga; Cultivar: Red Lake",
+    "matureSize": "3–4 talampakan"
+  },
+  "edible-shrub-sun-gooseberry": {
+    "common": "Gooseberry",
+    "notes": "Nakakaing bahagi: Bunga; Cultivar: Black Velvet",
+    "matureSize": "3–4 talampakan"
+  },
+  "edible-shrub-sun-pasture-rose": {
+    "common": "Pasture rose (ligaw na rosas)",
+    "notes": "Nakakaing bahagi: Bunga ng rosas (rose hips), talulot",
+    "matureSize": "3–4 talampakan"
+  },
+  "edible-shrub-sun-low-bush-blueberry": {
+    "common": "Lowbush blueberry",
+    "notes": "Nakakaing bahagi: Bunga; Cultivar: Chippewa",
+    "matureSize": "2–3 talampakan"
+  },
+  "edible-perennial-sun-strawberries": {
+    "common": "Strawberry",
+    "notes": "Nakakaing bahagi: Bunga; Cultivar: Sweet Kiss",
+    "matureSize": "6 pulgada"
+  },
+  "edible-perennial-sun-virginia-strawberry": {
+    "common": "Virginia strawberry (ligaw na strawberry)",
+    "notes": "Nakakaing bahagi: Bulaklak",
+    "matureSize": "1–2 talampakan"
+  },
+  "edible-perennial-sun-rudbeckia": {
+    "common": "Rudbeckia"
+  },
+  "edible-perennial-sun-prairie-dropseed": {
+    "common": "Prairie dropseed (damo)"
+  },
+  "edible-perennial-sun-hairy-field-aster": {
+    "common": "Hairy field aster"
+  },
+  "edible-perennial-sun-sedum": {
+    "common": "Sedum",
+    "notes": "Cultivar: Larinem Park"
+  },
+  "edible-shrub-shade-red-twig-dogwood": {
+    "common": "Red-twig dogwood",
+    "notes": "Cultivar: Arctic Fire"
+  },
+  "edible-shrub-shade-arrowwood-viburnum": {
+    "common": "Arrowwood viburnum"
+  },
+  "edible-shrub-shade-lowbush-blueberry": {
+    "common": "Lowbush blueberry"
+  },
+  "edible-shrub-shade-mountain-laurel": {
+    "common": "Mountain laurel",
+    "notes": "Cultivar: Pink Charm"
+  },
+  "edible-perennial-shade-lady-fern": {
+    "common": "Lady fern (pako)"
+  },
+  "edible-perennial-shade-wild-geranium": {
+    "common": "Wild geranium"
+  },
+  "edible-perennial-shade-cinnamon-fern": {
+    "common": "Cinnamon fern (pako)"
+  },
+  "edible-perennial-shade-jacobs-ladder": {
+    "common": "Jacob's ladder"
+  },
+  "edible-perennial-shade-pennsylvania-sedge": {
+    "common": "Pennsylvania sedge"
+  },
+  "edible-perennial-shade-hayscented-fern": {
+    "common": "Hayscented fern (pako)"
+  },
+  "edible-perennial-shade-coral-bells": {
+    "common": "Coral bells"
+  },
+  "sanctuary-large-tree-both-burr-oak": {
+    "common": "Bur oak (roble)",
+    "notes": "Katangiang pandama: Magandang ayos ng mga sanga",
+    "matureSize": "50–70 talampakan"
+  },
+  "sanctuary-large-tree-both-sweet-birch": {
+    "common": "Sweet birch",
+    "notes": "Katangiang pandama: Kaakit-akit na bulaklak/ mabango",
+    "matureSize": "30–50 talampakan"
+  },
+  "sanctuary-small-tree-sun-washington-hawthorne": {
+    "common": "Washington hawthorn",
+    "notes": "Katangiang pandama: Matingkad na pulang bunga",
+    "matureSize": "15–20 talampakan"
+  },
+  "sanctuary-small-tree-sun-sourwood": {
+    "common": "Sourwood",
+    "notes": "Katangiang pandama: Maagang kulay ng taglagas",
+    "matureSize": "15–20 talampakan"
+  },
+  "sanctuary-small-tree-sun-fringetree": {
+    "common": "Fringetree",
+    "notes": "Katangiang pandama: Namumulaklak sa Hunyo- mababangong bulaklak",
+    "matureSize": "15–20 talampakan"
+  },
+  "sanctuary-shrub-sun-summersweet": {
+    "common": "Summersweet",
+    "notes": "Katangiang pandama: Mababangong bulaklak",
+    "matureSize": "3–4 talampakan"
+  },
+  "sanctuary-shrub-sun-sweetfern": {
+    "common": "Sweetfern",
+    "notes": "Katangiang pandama: Mababangong dahon",
+    "matureSize": "1–2 talampakan"
+  },
+  "sanctuary-shrub-sun-sweetspire": {
+    "common": "Sweetspire",
+    "notes": "Katangiang pandama: Mababangong bulaklak",
+    "matureSize": "3–4 talampakan"
+  },
+  "sanctuary-shrub-sun-swamp-azalea": {
+    "common": "Swamp azalea",
+    "notes": "Katangiang pandama: Mababangong bulaklak",
+    "matureSize": "3–4 talampakan"
+  },
+  "sanctuary-perennial-sun-blue-false-indigo": {
+    "common": "Blue false indigo",
+    "notes": "Katangiang pandama: Kumakalansing na balat ng buto",
+    "matureSize": "2–3 talampakan"
+  },
+  "sanctuary-perennial-sun-wild-bergamot": {
+    "common": "Wild bergamot",
+    "notes": "Katangiang pandama: Mababangong dahon",
+    "matureSize": "2–3 talampakan"
+  },
+  "sanctuary-perennial-sun-sideoats-grama": {
+    "common": "Sideoats grama (damo)",
+    "notes": "Katangiang pandama: Nakapapanatag na galaw/tunog",
+    "matureSize": "2–3 talampakan"
+  },
+  "sanctuary-perennial-sun-prairie-dropseed": {
+    "common": "Prairie dropseed (damo)",
+    "notes": "Katangiang pandama: Mababangong dahon/ malambot na tekstura",
+    "matureSize": "1–2 talampakan"
+  },
+  "sanctuary-perennial-sun-aster": {
+    "common": "Aster",
+    "notes": "Katangiang pandama: Namumulaklak sa taglagas",
+    "matureSize": "2–3 talampakan"
+  },
+  "sanctuary-perennial-sun-moonbeam-tickseed": {
+    "common": "Moonbeam tickseed",
+    "notes": "Katangiang pandama: Matagal na pamumulaklak",
+    "matureSize": "2–3 talampakan"
+  },
+  "sanctuary-perennial-sun-blazing-star": {
+    "common": "Blazing star",
+    "notes": "Katangiang pandama: Umaakit ng mga pollinator",
+    "matureSize": "2–3 talampakan"
+  },
+  "sanctuary-perennial-sun-tufted-hairgrass": {
+    "common": "Tufted hairgrass (damo)",
+    "notes": "Katangiang pandama: Nakapapanatag na galaw",
+    "matureSize": "1–2 talampakan"
+  },
+  "sanctuary-small-tree-shade-american-hornbeam": {
+    "common": "American hornbeam",
+    "notes": "Katangiang pandama: Balat na parang kalamnan",
+    "matureSize": "15–20 talampakan"
+  },
+  "sanctuary-small-tree-shade-alternate-leaf-dogwood": {
+    "common": "Alternate-leaf dogwood",
+    "notes": "Katangiang pandama: Mababangong bulaklak,",
+    "matureSize": "15–20 talampakan"
+  },
+  "sanctuary-small-tree-shade-redbud": {
+    "common": "Redbud",
+    "notes": "Katangiang pandama: Namumulaklak sa simula ng tagsibol",
+    "matureSize": "15–20 talampakan"
+  },
+  "sanctuary-small-tree-shade-witchhazel": {
+    "common": "Witch hazel",
+    "notes": "Katangiang pandama: Kakaiba at mabangong bulaklak",
+    "matureSize": "10–15 talampakan"
+  },
+  "sanctuary-shrub-shade-mountain-laurel": {
+    "common": "Mountain laurel",
+    "notes": "Katangiang pandama: Evergreen (laging may dahon)",
+    "matureSize": "2–3 talampakan"
+  },
+  "sanctuary-shrub-shade-witch-alder": {
+    "common": "Witch alder",
+    "notes": "Katangiang pandama: Maagang pamumulaklak",
+    "matureSize": "3–4 talampakan"
+  },
+  "sanctuary-shrub-shade-new-jersey-tea": {
+    "common": "New Jersey tea",
+    "notes": "Katangiang pandama: Malambot na tekstura",
+    "matureSize": "2–3 talampakan"
+  },
+  "sanctuary-shrub-shade-virginia-sweetspire": {
+    "common": "Virginia sweetspire",
+    "notes": "Katangiang pandama: Magandang pamumulaklak at kulay ng taglagas",
+    "matureSize": "1–2 talampakan"
+  },
+  "sanctuary-perennial-shade-lady-fern": {
+    "common": "Lady fern (pako)",
+    "notes": "Katangiang pandama: Malambot na tekstura",
+    "matureSize": "2–3 talampakan"
+  },
+  "sanctuary-perennial-shade-pennsylvania-sedge": {
+    "common": "Pennsylvania sedge",
+    "notes": "Katangiang pandama: Malambot na tekstura",
+    "matureSize": "6 pulgada–1 talampakan"
+  },
+  "sanctuary-perennial-shade-cinnamon-fern": {
+    "common": "Cinnamon fern (pako)",
+    "notes": "Katangiang pandama: Malambot na tekstura",
+    "matureSize": "2–3 talampakan"
+  },
+  "sanctuary-perennial-shade-fragrant-golden-rod": {
+    "common": "Fragrant goldenrod",
+    "notes": "Katangiang pandama: Mababangong dahon",
+    "matureSize": "2–3 talampakan"
+  },
+  "sanctuary-perennial-shade-shorts-aster": {
+    "common": "Short's aster",
+    "notes": "Katangiang pandama: Huling pamumulaklak",
+    "matureSize": "3 talampakan"
+  },
+  "sanctuary-perennial-shade-columbine": {
+    "common": "Columbine",
+    "notes": "Katangiang pandama: Maagang pamumulaklak",
+    "matureSize": "2–3 talampakan"
+  },
+  "sanctuary-perennial-shade-celadine-poppy": {
+    "common": "Celandine poppy",
+    "notes": "Katangiang pandama: Maagang pamumulaklak",
+    "matureSize": "1–2 talampakan"
+  },
+  "nature-large-tree-both-shingle-oak": {
+    "common": "Shingle oak (roble)"
+  },
+  "nature-large-tree-both-blackgum": {
+    "common": "Blackgum"
+  },
+  "nature-large-tree-both-basswood": {
+    "common": "Basswood"
+  },
+  "nature-small-tree-both-american-hornbeam": {
+    "common": "American hornbeam"
+  },
+  "nature-small-tree-both-serviceberry": {
+    "common": "Serviceberry"
+  },
+  "nature-small-tree-both-pagoda-dogwood": {
+    "common": "Pagoda dogwood"
+  },
+  "nature-small-tree-both-witchhazel": {
+    "common": "Witch hazel"
+  },
+  "nature-small-tree-both-blackhaw-viburnum": {
+    "common": "Blackhaw viburnum"
+  },
+  "nature-shrub-sun-dwarf-summersweet": {
+    "common": "Dwarf summersweet"
+  },
+  "nature-shrub-sun-sweetfern": {
+    "common": "Sweetfern"
+  },
+  "nature-shrub-sun-sweetspire": {
+    "common": "Sweetspire",
+    "notes": "Cultivar: Little Henry"
+  },
+  "nature-shrub-sun-eastern-ninebark": {
+    "common": "Eastern ninebark"
+  },
+  "nature-shrub-sun-swamp-azalea": {
+    "common": "Swamp azalea"
+  },
+  "nature-perennial-sun-bluestar": {
+    "common": "Bluestar",
+    "notes": "Cultivar: Storm Cloud"
+  },
+  "nature-perennial-sun-sideoats-grama": {
+    "common": "Sideoats grama (damo)"
+  },
+  "nature-perennial-sun-wild-bergamot": {
+    "common": "Wild bergamot"
+  },
+  "nature-perennial-sun-narrow-leaf-mountainmint": {
+    "common": "Narrow-leaf mountain mint"
+  },
+  "nature-perennial-sun-rudbeckia": {
+    "common": "Rudbeckia"
+  },
+  "nature-perennial-sun-prairie-dropseed": {
+    "common": "Prairie dropseed (damo)"
+  },
+  "nature-perennial-sun-hairy-field-aster": {
+    "common": "Hairy field aster"
+  },
+  "nature-perennial-sun-sedum": {
+    "common": "Sedum",
+    "notes": "Cultivar: Larinem Park"
+  },
+  "nature-shrub-shade-red-twig-dogwood": {
+    "common": "Red-twig dogwood",
+    "notes": "Cultivar: Arctic Fire"
+  },
+  "nature-shrub-shade-arrowwood-viburnum": {
+    "common": "Arrowwood viburnum"
+  },
+  "nature-shrub-shade-lowbush-blueberry": {
+    "common": "Lowbush blueberry"
+  },
+  "nature-shrub-shade-mountain-laurel": {
+    "common": "Mountain laurel",
+    "notes": "Cultivar: Pink Charm"
+  },
+  "nature-perennial-shade-lady-fern": {
+    "common": "Lady fern (pako)"
+  },
+  "nature-perennial-shade-wild-geranium": {
+    "common": "Wild geranium"
+  },
+  "nature-perennial-shade-cinnamon-fern": {
+    "common": "Cinnamon fern (pako)"
+  },
+  "nature-perennial-shade-jacobs-ladder": {
+    "common": "Jacob's ladder"
+  },
+  "nature-perennial-shade-pennsylvania-sedge": {
+    "common": "Pennsylvania sedge"
+  },
+  "nature-perennial-shade-hayscented-fern": {
+    "common": "Hayscented fern (pako)"
+  },
+  "nature-perennial-shade-coral-bells": {
+    "common": "Coral bells"
+  },
+  "event-large-tree-both-scarlet-oak": {
+    "common": "Scarlet oak (roble)",
+    "matureSize": "40–50 talampakan"
+  },
+  "event-large-tree-both-american-elm": {
+    "common": "American elm",
+    "notes": "Cultivar: Princeton",
+    "matureSize": "50–70 talampakan"
+  },
+  "event-small-tree-both-serviceberry": {
+    "common": "Serviceberry",
+    "matureSize": "15–20 talampakan"
+  },
+  "event-small-tree-both-alternate-leaf-dogwood": {
+    "common": "Alternate-leaf dogwood",
+    "matureSize": "15–20 talampakan"
+  },
+  "event-small-tree-both-american-hophornbeam": {
+    "common": "American hophornbeam",
+    "matureSize": "15–20 talampakan"
+  },
+  "event-small-tree-both-sassafras": {
+    "common": "Sassafras",
+    "matureSize": "25–35 talampakan"
+  },
+  "event-small-tree-both-redbud": {
+    "common": "Redbud",
+    "notes": "Cultivar: Lavender twist",
+    "matureSize": "15–20 talampakan"
+  },
+  "event-perennial-sun-butterflyweed": {
+    "common": "Butterflyweed",
+    "matureSize": "2–3 talampakan"
+  },
+  "event-perennial-sun-blue-false-indigo": {
+    "common": "Blue false indigo",
+    "matureSize": "2–3 talampakan"
+  },
+  "event-perennial-sun-plains-coreopsis": {
+    "common": "Plains coreopsis",
+    "matureSize": "1–2 talampakan"
+  },
+  "event-perennial-sun-love-grass": {
+    "common": "Love grass (damo)",
+    "matureSize": "2–3 talampakan"
+  },
+  "event-perennial-sun-black-eyed-susan": {
+    "common": "Black-eyed Susan",
+    "matureSize": "2–3 talampakan"
+  },
+  "event-perennial-sun-wild-pinks": {
+    "common": "Wild pinks",
+    "matureSize": "1–2 talampakan"
+  },
+  "event-perennial-sun-fragrant-goldenrod": {
+    "common": "Fragrant goldenrod",
+    "matureSize": "1–2 talampakan"
+  },
+  "event-perennial-sun-shorts-aster": {
+    "common": "Short's aster",
+    "matureSize": "2–3 talampakan"
+  },
+  "event-perennial-shade-prairie-onion": {
+    "common": "Prairie onion (ligaw na sibuyas)",
+    "matureSize": "1–2 talampakan"
+  },
+  "event-perennial-shade-lady-fern": {
+    "common": "Lady fern (pako)",
+    "matureSize": "1–2 talampakan"
+  },
+  "event-perennial-shade-bunny-blue-sedge": {
+    "common": "Bunny Blue sedge",
+    "matureSize": "6–12 pulgada"
+  },
+  "event-perennial-shade-allen-bush-green-and-gold": {
+    "common": "Allen Bush green and gold",
+    "matureSize": "6–12 pulgada"
+  },
+  "event-perennial-shade-wood-fern": {
+    "common": "Wood fern (pako)",
+    "matureSize": "1–2 talampakan"
+  },
+  "event-perennial-shade-wild-geranium": {
+    "common": "Wild geranium",
+    "matureSize": "1–2 talampakan"
+  }
+}

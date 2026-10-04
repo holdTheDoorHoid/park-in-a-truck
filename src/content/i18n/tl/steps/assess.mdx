@@ -1,0 +1,319 @@
+---
+title: Magsuri
+intro: Kilalanin ang inyong lote — ang araw, lupa, paligid at laki nito — at gawing base plan ang inyong matutuklasan.
+sources:
+  - Toolkit pp. 35–37 (Magsuri, Suriin ang Lote ng Parke, Mga Katangian ng Lote)
+  - Workbook ng Assess pp. 3–11 (Pangkalahatang-ideya, Pagbisita sa Lote, Sukatin ang Inyong Lote, Iguhit ang Inyong Lote, Tiyakin ang Inyong Drowing, Itala ang mga Bagay, Suriin ang mga Bagay, Base Plan, Handa na ba Kayo?)
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import Download from '../../../../components/workbook/Download.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import SiteReport from '../../../../components/widgets/SiteReport.astro';
+import BaseMap from '../../../../components/widgets/BaseMap.astro';
+import Planner from '../../../../components/widgets/Planner.astro';
+import SunStudy from '../../../../components/widgets/SunStudy.astro';
+import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
+
+{/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — reminds a reader who hasn't recorded a lot agreement yet, before they sink time into site visits and soil work on a lot they may not have permission for. */}
+<LotAgreementNotice />
+
+Ano ang nagpapaespesyal sa inyong lote, at paano ninyo pinakamahusay na magagamit ang mga katangiang ito? Tinatalakay
+ng hakbang na ito kung paano suriin ang inyong lote at tiyaking sinusulit ng inyong parke ang mga kondisyon ng lugar.
+
+Hindi nag-iisa ang isang lote — bahagi ito ng inyong komunidad. Kaya dapat kasama rin sa pagsusuri ang inyong
+kapitbahayan. May natatanging kasaysayan o kultura ba na dapat makita sa disenyo? Ang parkeng nagbibigay-pugay sa
+pagkakakilanlan ng komunidad ay mararamdamang parang dating kapitbahay sa halip na bagong dating.
+
+Gumagamit ng mga halimbawang lote ng proyekto para ipakita ang mahahalagang hakbang sa prosesong ito. Siyempre, iba
+ang magiging sitwasyon ninyo, depende sa lokasyon, hugis at paligid ng sarili ninyong lote ng parke — pero
+magandang simula ito.
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={3} label="Pangkalahatang-ideya" />
+
+## Mga katangian ng lote {/* #site-characteristics */}
+
+Sa hakbang na ito, itatala ninyo ang mga pisikal na katangian ng lote ng parke. Maaraw ba o malilim ang lote? Patag
+o dalisdis, may mga puno na? O nasa tapat ba ito ng simbahan? Lahat ng katangiang ito ay makaaapekto sa magagawa
+ninyo sa lote. Halimbawa, kung gusto ninyong magtanim ng kamatis — kailangang maaraw ang lote sa buong araw.
+
+Bisitahin ang lote ng inyong parke at maingat na itala ang maaaring makaapekto sa disenyo ng parke. Kapag sinuri
+ninyo ang mga katangian ng lote bago idisenyo ang mga bahagi ng parke, matitiyak ninyong angkop ang disenyo sa mga
+natatanging kondisyon ng lugar.
+
+<Figure
+  src="img/assess/site-characteristics.webp"
+  alt="Isometric na larawan ng isang halimbawang lote ng proyekto, nakaasul sa isang residensiyal na kanto: may mga numerong tanda ng lokasyon nito sa mataong kanto, isang ruta ng bus, isang malaking blangkong pader, mga kable ng kuryente sa itaas sa gilid ng kalye, at isang maaraw na bahagi sa tabi ng bangketa."
+  caption="Isang halimbawang lote ng proyekto at ang mga katangiang nagpapaiba rito"
+/>
+
+Natatangi ang halimbawang loteng ito dahil sa: **(1)** lokasyon nito sa mataong kanto, **(2)** pagiging nasa ruta ng
+bus, **(3)** isang gusaling may malaking blangkong pader sa dulo, **(4)** mga kable ng kuryente sa gilid ng kalye, at
+**(5)** isang maaraw na bahagi sa tabi ng bangketa. May sarili ring listahan ang inyong lote. Itala rin ang anumang
+katangiang pangkultura o pangkasaysayan ng lugar at ng mga katabing block — may kawili-wiling negosyo bang dating
+nasa lote? May mga makasaysayang pangyayari bang naganap sa malapit? Ano ang itsura ng lugar bago nagkaroon ng mga
+gusali? Magandang paraan ito para makilahok ang matagal nang residente at mga estudyanteng may kakayahang
+magsaliksik sa mga archive ng lungsod.
+
+<Checklist
+  id="assess.conditions"
+  label="Mga kondisyong dapat itala"
+  items={[
+    { value: 'sidewalks', label: 'Mga bangketa at iba pang semento' },
+    { value: 'utilities', label: 'Mga nakikitang utility (sa itaas at sa lupa)' },
+    { value: 'sun-direction', label: 'Pangkalahatang direksiyon ng pagsikat / paglubog ng araw' },
+    { value: 'sun-shade-areas', label: 'Mga bahaging maaraw at/o malilim' },
+    { value: 'ground-cover', label: 'Mga bahaging may graba, semento o hubad na lupa' },
+    { value: 'water-collection', label: 'Mga bahaging naiipunan ng tubig pagkatapos umulan' },
+    { value: 'adjacent-buildings', label: 'Mga katabing gusali' },
+    { value: 'plants', label: 'Mga palumpong at puno (at ang uri nila, kung alam ninyo)' },
+    { value: 'structures', label: 'Mga nakatayo nang istruktura (bodega, bakod)' },
+    { value: 'building-remains', label: 'Mga labi ng gusali (pundasyon, lumang pader, atbp.)' },
+    { value: 'terrain', label: 'Dalisdis ng lupa, mga bunton at/o malalaking hukay' },
+    { value: 'views', label: 'Magaganda at/o pangit na tanawin' },
+    { value: 'wind', label: 'Mga bahaging mahangin' },
+    { value: 'sounds', label: 'Pangunahing tunog / mga posibleng nakaiistorbong lugar' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={3} label="Mga Katangian ng Lote" />
+
+## Pagbisita sa lote {/* #site-visit */}
+
+Puwedeng gawin nang sama-sama o mag-isa ang mga sumusunod na gawain kapag binisita ninyo ang lote ng parke:
+
+1. **Kumuha ng sample ng lupa.** Malaking tulong ang pag-alam sa mga sustansiya ng lupa para malaman kung ano ang
+   pinakamahusay na tutubo sa inyong parke. Makatutulong din ang isang simpleng test para sa lead (tingga) para
+   matiyak na ligtas ang inyong parke. May simpleng paraan ng soil test ang Penn State Extension:
+   [agsci.psu.edu/aasl/soil-testing](https://agsci.psu.edu/aasl/soil-testing/fertility/soil-fertility-submission-forms) (sa Ingles).
+2. **Kumuha ng litrato.** Iba-iba ang pagtingin natin sa tanawin, at ang pagkuha ng litrato ay isang paraan ng
+   pagbabahagi sa iba ng nakikita natin. Maglaan ng 30 minuto para maglakad-lakad at kumuha ng litrato ng lote ng
+   parke at ng paligid nito. Pagkatapos, ibahagi ang inyong mga litrato sa isa't isa at ipaliwanag kung bakit ninyo
+   kinuha ang bawat isa.
+3. **Umupo at makinig.** Umupo nang tahimik sa lote ng parke at makinig gamit ang lahat ng inyong pandama. Ano ang
+   naririnig, naaamoy at nahahawakan ninyo? Pagkalipas ng 30 minuto, itala ang inyong naramdaman. May magagandang
+   pandama bang maisasama sa disenyo ng parke, o mga hindi kanais-nais na mababawasan nito? Paano ito maiiba sa
+   ibang araw ng linggo, o sa ibang oras ng araw o gabi?
+4. **Sukatin + suriin.** Ang pagsukat sa lote ng parke ay isang paraan para mas maunawaan ito nang detalyado —
+   tinatalakay iyon ng mga susunod na hakbang.
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — Penn State's standard fertility test has no lead in it; facts checked 2026-10-04 on agsci.psu.edu and phila.gov. */}
+<Callout kind="site">
+  Hindi sinusuri ng karaniwang soil fertility test ng Penn State (pH at sustansiya) ang lead. Hiwalay na test ang
+  lead sa [form para sa environmental soil testing ↗](https://agsci.psu.edu/aasl/soil-testing/environmental) ng lab
+  (sa Ingles), o magagawa ito ng anumang lab na kinikilala ng EPA. Tinatalakay ng
+  [gabay ng Lungsod tungkol sa lead ↗](https://www.phila.gov/guides/lead-guide/where-is-lead/) (sa Ingles) ang lead
+  sa lupa ng hardin: pagtatakip sa hubad na lupa, nakataas na taniman para sa pagkain, at pagpapa-test.
+</Callout>
+
+<Field id="assess.soil-notes" label="Resulta ng soil test" type="textarea" hint="Sustansiya, pH, lead — anuman ang ibalik ng test." />
+<Field id="assess.listen-notes" label="Ang narinig, naamoy at nahawakan ninyo" type="textarea" />
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={4} label="Pagbisita sa Lote" />
+
+## Sukatin ang inyong lote {/* #measure-your-lot */}
+
+Sundin ang mga hakbang sa ibaba para simulang gumawa ng drowing ng kasalukuyang lote ng parke. Ang "base map" na
+ito ay maaaring i-print at gamitin sa lote para itala ang lokasyon ng iba't ibang bagay at mahahalagang katangian
+ng lugar.
+
+<Callout kind="auto" title="Sinukat para sa inyo">
+  Kapag napili na ninyo ang inyong lote sa Kumuha ng lote, susukatin ito ng site mula sa sariling mapa ng parsela ng
+  Lungsod — ang haba ng mga gilid at sukat ng lugar sa ibaba, at isang base map na mapi-print, nang hindi na
+  pumupunta sa Google Maps.
+</Callout>
+
+<SiteReport />
+<BaseMap />
+
+<details>
+  <summary>O sukatin ito nang mano-mano</summary>
+  <ol>
+    <li>Pumunta sa <a href="https://maps.google.com" target="_blank" rel="noopener">maps.google.com</a>. May mga larawan mula sa himpapawid ang site na ito at mga kasangkapan para sukatin ang ari-arian.</li>
+    <li>Ilagay ang address ng ari-arian, o ng pinakamalapit na ari-ariang alam ang address. Mag-zoom sa address at pansinin kung nasaan ang bangketa at ang mga sulok ng ari-arian. Kung hindi alam ang eksaktong mga sulok, tantiyahin muna.</li>
+    <li>Tingnan ang larawan mula sa himpapawid at pumili ng panimulang punto ng pagsukat — isang sulok ng ari-arian ng parke. I-right-click (control-click sa Mac) ang inyong panimulang punto at piliin ang "Measure distance."</li>
+    <li>Hanapin ang susunod na pinakamalapit na sulok, ilipat ang cursor, at i-left-click. Lalabas ang layo ng dalawang punto. Isulat ang numerong ito.</li>
+    <li>I-drag ang panimulang punto sa susunod na sulok. Isulat ang numerong ito.</li>
+    <li>Ulitin para sa bawat sulok ng parke hanggang masukat ninyo ang bawat gilid. Dapat pabalik sa panimulang punto ang huling sukat.</li>
+  </ol>
+</details>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={5} label="Sukatin ang Inyong Lote" />
+
+## Iguhit ang inyong lote {/* #diagram-your-lot */}
+
+Gagawa kayo ngayon ng drowing ng kasalukuyang hangganan ng parke. Gagamitin ang drowing na ito para itala ang mga
+sukat ng mga bagay (gaya ng puno, atbp.) na nasa inyong lote. Ang drowing ay isang "plan view," na tanaw mula mismo
+sa itaas, katulad ng larawan mula sa himpapawid sa Google Maps.
+
+Gumagamit ang drowing ng hangganan ng grid paper (tinatawag ding graph paper) para ilarawan ang lupa, at ang bawat
+maliit na kahon ng grid ay katumbas ng 1 talampakan ng totoong haba: iguhit muna ang mahabang gilid (ang
+pinakamahabang gilid ng parke, mula sa panimulang punto), saka ang maikling gilid sa dulo nito, saka ulitin para
+sa kabilang mahaba at maikling gilid.
+
+<BaseMap />
+
+<Download href="downloads/forms/assess-grid-sheets.pdf" label="I-download ang mga grid sheet" note={`1/4" = 1'-0" — pagdugtungin ang mga sheet para sa mas malalaking lote`} />
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={6} label="Iguhit ang Inyong Lote" />
+
+## Tiyakin ang inyong drowing {/* #verify-your-diagram */}
+
+Ang susunod na hakbang ay bisitahin ang lote ng parke para sukatin at itala nang mano-mano ang haba ng bawat
+hangganan ng ari-arian. **Mas dapat pagkatiwalaan ang mga sukat na kinuha mismo sa lote kaysa sa mga sukat mula sa
+computer.**
+
+1. Hanapin ang panimulang punto ng proyekto — ang parehong lugar kung saan kayo nagsimula sa Google Maps (o kung
+   saan ito minarkahan ng site para sa inyo).
+2. Gamit ang 100-talampakang medida, sukatin at itala ang haba ng mahabang panlabas na gilid ng parke, mula sulok
+   hanggang sulok.
+3. Gamit ang 100-talampakang medida, sukatin at itala ang haba ng maikling panlabas na gilid, mula sulok hanggang
+   sulok.
+4. Ulitin para sa kabilang mahabang gilid.
+5. Ulitin para sa kabilang maikling gilid.
+
+<Checklist
+  id="assess.what-to-bring"
+  label="Mga dadalhin sa lote"
+  items={[
+    { value: 'pens', label: 'Panulat + notepad' },
+    { value: 'clipboards', label: 'Clipboard' },
+    { value: 'camera', label: 'Camera (puwede ang camera ng telepono)' },
+    { value: 'tape-100', label: '100 ft na medida' },
+    { value: 'tape-long', label: 'Mahabang medida (25 ft o higit pa)' },
+    { value: 'survey-plat', label: 'Survey plat (mapa ng sukat ng lote)' },
+    { value: 'boundary-diagram', label: 'Drowing ng hangganan' },
+    { value: 'flags', label: 'Mga survey flag o istakang kawayan para sa hardin' },
+  ]}
+/>
+
+<Field id="assess.field-long-edge" label="Mahabang gilid, sinukat sa lote" type="number" unit="ft" />
+<Field id="assess.field-short-edge" label="Maikling gilid, sinukat sa lote" type="number" unit="ft" />
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={7} label="Tiyakin ang Inyong Drowing" />
+
+## Itala at suriin ang mga bagay {/* #record-assess-objects */}
+
+Ang susunod na hakbang ay itala ang lokasyon ng lahat ng bagay sa lote ng proyekto, saka suriin ang kalagayan nila
+at ang posibleng halaga nila sa magiging parke. Natutukoy ang lokasyon ng bawat bagay sa dalawang sukat: ang layo
+mula sa panimulang punto ng proyekto sa kahabaan ng gilid, at ang layo mula sa gilid ng parke. Magandang pagkakataon
+din ito para itala ang mga bagay na katabi mismo pero nasa labas ng lote ng proyekto — isang poste ng kuryente,
+hydrant o gilid ng bangketa na maaaring makaapekto sa plano ng parke.
+
+Maraming paraan para suriin ang isang bagay kapag natukoy na ang lokasyon nito: ganda/katangian, inaasahang tagal,
+katatagan, posibleng pananagutan, posibilidad na magamit muli, halaga bilang tirahan ng mga hayop, atbp. Para sa
+bawat isa, pagpasyahan kung dapat itong panatilihin.
+
+{/* site-added: the planner places kept objects on the real lot and uses them in the sun study. */}
+<Callout kind="auto" title="Ilagay ang mga bagay sa inyong totoong lote">
+  <Planner mode="site" /> Dito, mailalagay ninyo ang bawat bagay sa totoong hugis ng inyong lote, sa halip na
+  mano-manong itala ang mga coordinate sa grid paper.
+</Callout>
+
+<ListField
+  id="assess.objects"
+  label="Mga bagay sa lote"
+  rowName="bagay"
+  min={4}
+  columns={[
+    { key: 'object', label: 'Bagay', placeholder: 'puno, bakod, bodega, poste ng kuryente…' },
+    { key: 'fromStart', label: 'Layo mula sa panimulang punto', type: 'number' },
+    { key: 'fromEdge', label: 'Layo mula sa gilid', type: 'number' },
+    { key: 'keep', label: 'Panatilihin?', placeholder: 'oo / hindi' },
+    { key: 'notes', label: 'Tala' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={8} label="Itala ang mga Bagay" />
+
+## Araw at lilim / base plan {/* #sun-shade-base-plan */}
+
+Iguhit sa inyong base plan ang mga bagay na gusto ninyong panatilihin, sa parehong paraan ng pagsukat ninyo sa
+kanila: gaya ng mapa ng kayamanan, maglagay ng tuldok o "X" para markahan ang puwesto, na may bilog sa paligid na
+kasinlaki ng sakop nito sa lupa (para sa puno o palumpong, ang bilog ay ang tantiyang gilid ng mga dahon, at may
+tuldok sa katawan ng puno).
+
+Pagkatapos, ilarawan ang mga kondisyon ng lote sa parehong drowing:
+
+- Para sa anino ng gusali, iguhit ang tantiyang panlabas na gilid ng malilim na bahagi at lagyan ito ng guhit-guhit.
+- Para sa mga gusali, iguhit ang hugis at lagyan ito ng guhit-guhit.
+- Para sa mga utility sa itaas, lagyan ng label ang lokasyon sa ibabaw ng lote.
+- Para sa mga bahaging may natatanging kondisyon ng lupa (gaya ng basang bahagi), gumuhit ng hugis na parang
+  mantsa sa tantiyang lokasyon.
+- Para sa mga puno, lagyan ng label ang uri ng puno kung alam ninyo (hal. "Puno ng maple").
+
+{/* site-added: real sun and shade from the neighboring buildings' actual heights, any date and time. */}
+<Callout kind="auto" title="Araw at lilim mula sa totoong mga gusali">
+  <SunStudy /> Kinukuwenta nito ang araw at lilim oras-oras mula sa totoong taas ng mga gusali ng inyong mga
+  kapitbahay, para sa anumang petsa at oras ng taon — sa halip na mano-manong guhitan ang mga anino sa grid paper.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={10} label="Base Plan" />
+
+## Buod — handa na ba kayo? {/* #summary-are-you-ready */}
+
+Ibuod ang mahahalagang katangian ng inyong lote. Gagamitin ang mga ito sa susunod na hakbang para matulungan kayong
+idisenyo ang inyong parke.
+
+<Field
+  id="assess.existing-trees"
+  label="May mga puno na ba?"
+  type="select"
+  hint="Ang bilang ng mga puno — kung mayroon — na nasa lote ngayon. Huwag bilangin ang mga punong aalisin."
+  options={[{ value: 'No trees', label: 'Walang puno' }, { value: 'One or two trees', label: 'Isa o dalawang puno' }, { value: 'Several trees', label: 'Ilang puno' }, { value: 'Mostly trees', label: 'Halos puro puno' }]}
+  auto="extra.site.treesKept|treeCount"
+/>
+
+<Field
+  id="assess.sunlight"
+  label="Gaano karaming araw?"
+  type="select"
+  hint="Gaano karaming araw ang natatanggap ng lote sa isang araw."
+  options={[{ value: 'Full sun all day', label: 'Buong araw, maghapon' }, { value: 'Mostly sun', label: 'Halos buong araw' }, { value: 'Mostly shade', label: 'Halos lilim' }, { value: 'Deep shade all day', label: 'Malalim na lilim, maghapon' }]}
+  auto="extra.site.sunClass|sunClass"
+/>
+
+<Field
+  id="assess.lot-location"
+  label="Lokasyon ng lote"
+  type="select"
+  hint="Nasa gitna ba ng block ang lote, o nasa kanto? Kung nasa kanto, saan ang kalye kung ihahambing sa mahabang gilid?"
+  options={[{ value: 'Mid-block lot', label: 'Lote sa gitna ng block' }, { value: 'Corner lot (street right)', label: 'Lote sa kanto (kalye sa kanan)' }, { value: 'Corner lot (street left)', label: 'Lote sa kanto (kalye sa kaliwa)' }]}
+  auto="extra.site.lotKind|lotKind"
+/>
+
+<Field id="assess.long-edge" label="Mahabang gilid" type="number" unit="ft" auto="extra.site.lengthFt" />
+<Field id="assess.short-edge" label="Maikling gilid" type="number" unit="ft" auto="extra.site.widthFt" />
+
+<p>Ang haba ng bawat gilid, at ang kabuuang square footage, ang nagpapasya sa laki ng inyong lote, A–E:</p>
+
+<table>
+  <caption class="visually-hidden">Laki ng parke ayon sa mahaba at maikling gilid, sa talampakan</caption>
+  <thead>
+    <tr>
+      <th scope="col">Laki</th>
+      <th scope="col">Mahabang gilid</th>
+      <th scope="col">Maikling gilid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">A</th><td>44–64 ft</td><td>12–16 ft</td></tr>
+    <tr><th scope="row">B</th><td>64–76 ft</td><td>16–28 ft</td></tr>
+    <tr><th scope="row">C</th><td>76–88 ft</td><td>28–40 ft</td></tr>
+    <tr><th scope="row">D</th><td>88–96 ft</td><td>32–48 ft</td></tr>
+    <tr><th scope="row">E</th><td>80–120 ft</td><td>44–60 ft</td></tr>
+  </tbody>
+</table>
+
+<Field
+  id="assess.lot-size"
+  label="Ang laki ng inyong lote ay…"
+  type="select"
+  options={['A', 'B', 'C', 'D', 'E']}
+  auto="extra.site.sizeId"
+/>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={11} label="Handa na ba Kayo?" />

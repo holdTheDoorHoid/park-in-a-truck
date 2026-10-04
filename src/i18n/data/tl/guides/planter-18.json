@@ -1,0 +1,142 @@
+{
+  "title": "18\" na planter box",
+  "summary": "Isang planter box (kahong taniman) na gawa sa magkakahanay na tablang 2x4, 18\" ang taas at 18\" ang lalim, may sapin na geotextile fabric. Inilalarawan din ng parehong PDF ang mahabang bersiyong 18\"x48\" na ginagawa sa parehong paraan na may mas maraming tabla sa harap — tingnan ang mga tala sa materyales at listahan ng puputulin.",
+  "finishing": "Makapagpapatagal sa buhay ng mga bahagi ng inyong parke ang panlabas na pampahid sa kahoy, pero hindi ito kailangan — sadyang idinisenyo ang mga pirasong ito para maging mura, matibay at madaling gawin, kaya maaaring mas praktikal na hayaan na lang ang susunod na henerasyon na gawin silang muli pagdating ng panahon. Kung gusto ninyong lagyan ng stain, pintura o sealant ang kahoy, tingnan ang mga mapagkukunan tungkol sa pampahid sa ibaba.",
+  "sourcePages": "Tagubilin sa pagbuo ng 18_Planter_Box, pp. 1–10 (pabalat; bago kayo magsimula; karaniwang pagpipiliang kahoy; mga hakbang 1–6, para sa pagbuo ng 18\"x18\" at 18\"x48\"; gabay sa pre-drill na butas)",
+  "materials": [
+    {
+      "item": "Kahoy na 2x4 — western red cedar, Douglas fir, o pressure-treated pine",
+      "notes": "Para sa kahong 18\"x18\". 10 tabla naman ang kailangan ng mahabang kahong 18\"x48\". Cedar: likas na matibay sa panahon at sa pagkabulok, may magandang mapulang kulay, madaling gawan, hindi kailangan ng sealant; mas mahal — hanapin ang grade na 'knotty' (STK). Douglas fir: katamtamang matibay sa pagkabulok, matibay, mas mura kaysa sa cedar; magandang piliin kung balak ninyong pintahan. Pressure-treated: pinakamura at matibay sa pagkabulok, pero madalas na mababa o hindi pare-pareho ang kalidad, kailangang patuyuin sa hangin nang 1–4 na buwan bago pintahan, at hindi inirerekomenda kung saan nagtatanim ng pagkain. Umorder ng hindi bababa sa 5% na higit sa listahan ng puputulin para sa iba-ibang kalidad ng kahoy at maling pagputol."
+    },
+    {
+      "item": "Geotextile fabric (telang geotextile)",
+      "notes": "Dalawang magkapatong na piraso ang sapin sa loob ng kahon para mahawakan nito ang lupa habang tumatagas ang tubig. Para sa kahong 18\"x18\", gumupit ng dalawang pirasong 18\"x54\". Para sa kahong 18\"x48\", gumupit ng isang pirasong 48\"x54\" at isang pirasong 96\"x18\"."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Self-driving exterior wood screw"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Dulo, harap at ilalim ng planter"
+    },
+    {
+      "notes": "Dulo, harap at ilalim ng planter"
+    },
+    {
+      "notes": "Dulo ng planter"
+    },
+    {
+      "notes": "Harap at ilalim ng planter"
+    },
+    {
+      "notes": "Dulo ng planter"
+    },
+    {
+      "notes": "Dulo ng planter"
+    },
+    {
+      "notes": "Dulo ng planter"
+    }
+  ],
+  "tools": [
+    "10\" o 12\" na miter saw (o angkop na lagaring de-kamay)",
+    "Impact driver para sa mga self-driving exterior wood screw",
+    "Drill na may 1/8\" at 1/4\" na bit para sa pre-drill na butas",
+    "Staple gun",
+    "Liha, 120 grit",
+    "Iskwala ng karpintero",
+    "Safety goggles + mask"
+  ],
+  "steps": [
+    {
+      "title": "Markahan, lagyan ng label at putulin ang kahoy",
+      "text": "Markahan, lagyan ng label at putulin ang kahoy nang sunod-sunod mula P-1 hanggang P-3 (kahong 18\"x18\") o P-1A, P-1 hanggang P-3 (kahong 18\"x48\") ayon sa haba sa listahan ng puputulin.\n\nSuriin ang bawat piraso ng kahoy kung may depekto gaya ng lamat, pagkabaluktot o hindi pantay na pagkakakatam, at itapon ang mga bahaging iyon ng kahoy.",
+      "imageAlts": [
+        "Mga isometric na diagram ng mga pinutol na piraso para sa kahong 18\"x18\" (P-1, P-2, P-3) at sa kahong 18\"x48\" (P-1A, P-1, P-2, P-3), may label ang haba."
+      ],
+      "tips": [
+        "Lagyan ng label ang bawat piraso ng kahoy habang sinusukat at pinuputol ninyo ito.",
+        "Magkaroon ng hiwalay na tumpok ng kahoy para sa bawat piraso.",
+        "Ang bahagyang paglilija sa mga pinutol na gilid ay nag-aalis ng salubsob at nakatutulong sa pagbuo.",
+        "Gagawa ng higit sa isang planter? Pinananatiling magkakapareho ang haba ng bawat piraso ng isang stop block sa inyong miter saw."
+      ]
+    },
+    {
+      "title": "Buuin ang dalawang frame sa dulo",
+      "text": "Ilagay ang dalawang pirasong P-3 sa patag na ibabaw. Ilagay ang dalawang pirasong P-1 sa magkabilang gilid ng mga pirasong P-3, at itugma ang mga gilid gaya ng ipinapakita. Ulitin para makabuo ng ikalawa at katugmang frame.",
+      "imageAlts": [
+        "Diagram na nagpapakita ng dalawang tablang P-1 at dalawang P-3 na binuo bilang parisukat na frame sa dulo, para sa kahong 18\"x18\" at 18\"x48\"."
+      ],
+      "tips": [
+        "Gumamit ng iskwala ng karpintero para suriin kung tamang anggulo (90°) ang bawat sulok.",
+        "Makatutulong ang paggawa ng 90-degree na jig sa pagbuo sa hakbang na ito at sa susunod."
+      ]
+    },
+    {
+      "title": "Punuin ang bawat frame sa dulo",
+      "text": "Ilagay ang limang pirasong P-2 sa ibabaw ng frame na ginawa sa hakbang 2, na may 1.5\" na puwang sa magkabilang gilid.\n\nGamitin ang gabay sa pre-drill sa dulo ng packet para mag-pre-drill ng mga butas ng turnilyo, saka ikabit ang kahoy sa mga pirasong P-2 gamit ang impact driver at 20 na 2.5\" na self-driving exterior wood screw.\n\nUlitin sa kabilang paa, at itayo ang dalawang paa para sa susunod na hakbang.",
+      "imageAlts": [
+        "Diagram ng mga tablang P-2 na tinuturnilyo sa bawat frame sa dulo na may 1.5\" na puwang sa magkabilang gilid, para sa kahong 18\"x18\" at 18\"x48\"."
+      ],
+      "tips": [
+        "Gumamit ng sobrang pirasong kahoy na P-3 na nakatayo bilang spacer para makuha ang pantay na 1.5\" na puwang."
+      ]
+    },
+    {
+      "title": "Pagdugtungin ang dalawang frame sa dulo",
+      "text": "Ilagay ang limang pirasong P-2 (o limang pirasong P-1A, para sa kahong 18\"x48\") sa pagitan ng dalawang dulo ng planter box.\n\nIkabit ang kahoy na P-2 o P-1A sa bawat gilid sa mga piraso sa gilid gamit ang impact driver at 20 na 2.5\" na self-driving exterior wood screw.\n\nUlitin sa likod na bahagi ng planter box.",
+      "imageAlts": [
+        "Diagram ng mga tablang P-2 o P-1A sa harap na nagdudugtong sa dalawang frame sa dulo para mabuo ang mga dingding ng planter box."
+      ],
+      "tips": [
+        "Magsimula sa ibaba sa magkabilang gilid nang sabay, at magpasuri sa isang katulong na nananatiling 90 degrees ang gilid."
+      ]
+    },
+    {
+      "title": "Idagdag ang ilalim na gawa sa magkakahanay na tabla",
+      "text": "Ilagay ang apat na pirasong P-2 (o apat na pirasong P-1A, para sa kahong 18\"x48\") sa ilalim ng frame ng planter box, at mag-iwan ng 1/4\" na puwang sa pagitan ng bawat piraso para makalabas ang tubig.\n\nIkabit ang kahoy na P-2 o P-1A sa bawat gilid sa mga piraso sa gilid gamit ang impact driver at 16 na 2.5\" na self-driving exterior wood screw.",
+      "imageAlts": [
+        "Diagram ng mga tablang P-2 o P-1A na bumubuo sa ilalim ng planter, may 1/4\" na puwang na labasan ng tubig sa pagitan ng bawat tabla."
+      ]
+    },
+    {
+      "title": "Sapinan ng geotextile fabric at tapusin",
+      "text": "Ibaligtad ang frame ng planter box para nakatayo ito nang tama.\n\nGumupit ng pirasong 18\"x54\" ng geotextile fabric (o pirasong 48\"x54\" para sa kahong 18\"x48\"). Gumupit ng ikalawang pirasong 18\"x54\" (o pirasong 96\"x18\" para sa kahong 18\"x48\").\n\nGumamit ng staple gun para ikabit ang magkapatong na geotextile fabric sa loob ng planter box.\n\nBahagyang lihahin ang magaspang na gilid ng planter box. Handa na — ilipat ito sa huling puwesto nito, saka punuin ng potting soil (lupang pantanim) at magtanim!",
+      "imageAlts": [
+        "Diagram ng dalawang magkapatong na piraso ng geotextile fabric na ini-staple sa loob ng planter box, para sa dalawang laki ng kahon."
+      ],
+      "tips": [
+        "Tupiin ang tela nang hindi bababa sa 1\" sa ilalim ng gilid sa itaas bago i-staple. Mag-staple sa kahabaan ng itaas at pababa sa mga sulok para maayos ang pagkakasara."
+      ]
+    },
+    {
+      "title": "Gabay sa pre-drill na butas (template)",
+      "text": "Gupitin ang gabay sa pre-drill na butas sa mga putol-putol na linya. Kapag nagbubutas, itugma ang gilid ng template sa panlabas na gilid ng kahoy bago mag-pre-drill.\n\nHindi lahat ng butas ay ginagamit — hindi lahat ng pattern ay gumagamit ng template. Gamitin ang mga hakbang sa pagbuo sa itaas bilang gabay sa mga butas. Panatilihin ang lahat ng butas na mga isang lapad ng hinlalaki mula sa gilid (mga 1\"), kahit ang mga butas na hindi gumagamit ng template na ito.",
+      "imageAlts": [
+        "Isang template ng gabay sa pre-drill na butas na mapi-print, may limang minarkahang puwesto ng butas at mga linya ng paggupit, at isang malapitang larawan ng layo ng butas mula sa gilid ng tabla."
+      ]
+    }
+  ],
+  "safety": [
+    "Mga rekomendasyong DIY (kayo mismo ang gagawa) lamang ang mga ito — iangkop ang materyales, pagbuo at konstruksiyon sa sarili ninyong proyekto at lote.",
+    "Ipinapalagay sa paggawa nito na may kaunti kayong kaalaman sa mga kagamitang de-kamay at de-kuryente, hardware, pangkabit, kahoy at batayang paraan ng pagbuo.",
+    "Bago gumamit ng anumang de-kuryenteng kagamitan, basahin at sundin ang mga kinakailangan sa kaligtasan ng gumawa nito, at huwag hayaang gumamit ng de-kuryenteng kagamitan ang sinumang hindi pa nakagagawa nito.",
+    "Kayo (ang may-ari) ang mananagot sa anumang building at safety code, permit at pag-apruba ng pamahalaan na kailangan nito.",
+    "Linisin muna ang lote mula sa basura, panganib at mga ayaw na istruktura, at alamin ang anumang utility (kable at tubo) na maaaring maging sagabal bago kayo maghukay.",
+    "Dapat pumirma ng waiver ng boluntaryo ang lahat ng tumutulong sa paggawa."
+  ],
+  "links": [
+    {
+      "label": "Pagpili ng pinakamahusay na pampahid para sa mga proyekto sa labas (Rockler) (sa Ingles)"
+    },
+    {
+      "label": "Pinakamahusay na pampahid sa kahoy sa labas (Real Milk Paint) (sa Ingles)"
+    },
+    {
+      "label": "Mga pampahid sa kahoy sa labas (Vermont Natural Coatings) (sa Ingles)"
+    }
+  ]
+}

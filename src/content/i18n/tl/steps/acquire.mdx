@@ -1,0 +1,250 @@
+---
+title: Kumuha ng lote
+intro: Maghanap ng lote sa inyong kapitbahayan at kunin ang legal na karapatang gawin itong parke.
+sources:
+  - Toolkit pp. 24–27 (Maghanap ng Lote, Aling Lote?, Alamin ang May-ari ng Lote)
+  - Workbook ng Acquire pp. 1–7
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Choice from '../../../../components/workbook/Choice.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import LotLookup from '../../../../components/widgets/LotLookup.astro';
+import LotFinderMap from '../../../../components/widgets/LotFinderMap.astro';
+
+Ang mga gustong gumawa ng parke na wala pang legal na karapatang gumamit ng bakanteng lupa ay kailangang
+maghanap ng ibang taong handang magbenta o magpaupa ng kanilang lote para sa balak na parke. Maaaring masalimuot
+at matagal ang gawaing ito. Walang perpektong proseso, walang iisang paraan, at walang tiyak na resulta.
+Tutulungan kayo ng hakbang na ito na makahanap ng paraan para makuha ang magiging lote ng inyong parke.
+
+## Maghanap ng lote {/* #find-a-lot */}
+
+Maraming pakinabang na panlipunan, pangkalikasan at pang-ekonomiya ang malalaking parke sa lungsod para sa mga
+residente at bisita nito. Pero kung hindi madaling puntahan ang parke, baka paminsan-minsan lang itong
+mapuntahan. Hindi lahat ay may kotse o maginhawang pampublikong transportasyon, o kayang maglakad o magbisikleta
+nang malayo.
+
+Kaya mahalagang makahanap ng malapit na lote o espasyo na gagawing maliit na parke ng kapitbahayan. Nasa kanila
+ang marami sa pakinabang ng malaking parke, **at** dahil malapit sila, madali silang puntahan. Habang mas
+madalas na pinupuntahan ang isang parke ng kapitbahayan, mas nagiging pamilyar — at mas pinahahalagahan — ito.
+Ang aktibong paggamit ng parke ay tumutulong na gawing mahalagang sentro ng "buhay panlipunan" ang mga espasyong
+ito, na nagpapalakas sa pakiramdam ng pagiging isang komunidad ng kapitbahayan!
+
+May mga hindi nagagamit na ari-arian ba sa inyong kapitbahayan na legal na makukuha, ligtas at angkop gawing
+parke? Makakakita ba kayo ng mga posibleng lote sa inyong kapitbahayan kung saan ninyo gustong makita ang inyong
+parke?
+
+<Callout kind="auto" title="Hayaang ang mapa ang maglakad">
+  Ipinapakita ng mapa sa ibaba ang mga loteng nakalista sa Lungsod bilang bakanteng lupa. I-click ang isa para
+  makita ang may-ari, laki at zoning nito (mga patakaran ng Lungsod kung para saan maaaring gamitin ang lote), at
+  idagdag ito sa inyong listahan. Lakarin pa rin ang inyong block — may mga loteng wala sa listahan ng Lungsod, at
+  may ilan dito na ginagamit na.
+</Callout>
+
+<LotFinderMap />
+
+<Figure
+  src="img/acquire/west-kensington-site.webp"
+  alt="Isang bakanteng lote na may damo sa West Kensington, Philadelphia, ginapasan at may mga istakang may watawat na kulay teal sa mga sulok, at may pader na stucco, halamang-bakod at mga nakaparadang kotse sa likod."
+  caption="Lote ng parke ng PiaT sa West Kensington, bago ang pagtatayo"
+  duo
+/>
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={3} />
+
+## Aling lote? {/* #which-lot */}
+
+Suriin ang tatlong uri ng posibleng lokasyon ng parke sa kapitbahayan. Lakarin ang inyong kapitbahayan at itala
+kung aling mga hindi nagagamit na ari-arian ang posibleng lugar ng inyong parke.
+
+<div class="lot-types">
+  <div>
+    <Figure
+      src="img/acquire/lot-midblock.webp"
+      alt="Isometric na larawan ng bakanteng lote sa gitna ng block: isang makitid na parihabang puwang sa pagitan ng dalawang hanay ng rowhome sa isang residensiyal na block, kulay berde at may isang puno."
+    />
+    <p class="lot-caption">
+      <strong>Lote sa gitna ng block (bakanteng lote).</strong> Parihaba ang hugis at nasa gitna ng isang
+      residensiyal na block. Maaaring may gusali sa bawat gilid at/o sa dulo. Ito ang kategoryang may
+      pinakamaraming makukuhang "bakanteng" lote sa Philadelphia. Maaaring may limitasyon para sa ilang gamit ng
+      parke dahil sa makitid na lapad at/o kakulangan ng sikat ng araw.
+    </p>
+  </div>
+  <div>
+    <Figure
+      src="img/acquire/lot-corner.webp"
+      alt="Isometric na larawan ng bakanteng lote sa kanto: isang parihabang puwang sa dulo ng isang residensiyal na block, nakaharap sa dalawang kalye, kulay berde at may isang puno."
+    />
+    <p class="lot-caption">
+      <strong>Lote sa kanto (bakanteng lote).</strong> Parihaba ang hugis at nasa dulo ng isang residensiyal na
+      block. Maaaring may gusali sa gilid at/o sa dulo. Kitang-kita ang mga loteng ito at kadalasang sila ang may
+      pinakamaraming sikat ng araw.
+    </p>
+  </div>
+  <div>
+    <Figure
+      src="img/acquire/lot-alley.webp"
+      alt="Isometric na larawan ng breezeway o eskinita (easement): isang mahaba at napakakitid na berdeng puwang sa pagitan ng mga rowhome, tumatagos sa block."
+    />
+    <p class="lot-caption">
+      <strong>Breezeway / eskinita (easement).</strong> Makikilala sa mahaba at napakakitid nilang hugis; madalas
+      na tumatagos ang mga lugar na ito sa isang block. Orihinal na inilaan bilang daanan ng tao sa pagitan ng mga
+      kalye at/o bilang easement ng mga utility (karapatang dumaan ng mga kable at tubo).
+    </p>
+  </div>
+</div>
+
+Itala ang address ng bawat posibleng lote. Kapag hinanap ninyo ang isang address, pupunuin ng site para sa inyo ang
+may-ari, laki at uri ng lote.
+
+<LotLookup mode="candidates" />
+
+<ListField
+  id="acquire.candidate-notes"
+  label="Mga tala mula sa paglalakad sa inyong kapitbahayan"
+  rowName="lote"
+  min={3}
+  columns={[
+    { key: 'address', label: 'Address o lokasyon' },
+    { key: 'type', label: 'Uri ng lote', placeholder: 'gitna ng block, kanto, eskinita' },
+    { key: 'notes', label: 'Ang napansin ninyo', placeholder: 'basura, araw, kapitbahay, gamit…' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={3} />
+
+## Sino ang may-ari ng loteng iyon? {/* #who-owns-that-lot */}
+
+Kapag may nakita na kayong ilang posibleng hindi nagagamit na ari-arian para sa inyong bagong parke, ang susunod na
+hakbang ay alamin kung sino ang may-ari ng ari-arian. Maaaring isang tao, negosyo o non-profit na organisasyon ang
+may-ari. Maaari ding ang Lungsod ang may-ari. Ang pinakamaaasahang paraan para malaman kung sino ang may-ari ng
+isang lote ay tingnan ang mga rekord ng Lungsod ng Philadelphia.
+
+Ipinapakita ng flowchart na ito kung paano malalaman kung sino ang may-ari ng lote at ang mga posibleng hakbang
+para makuha ang legal na karapatan — o "entitlements" — na gamitin ang ari-arian bilang parke ng kapitbahayan.
+
+{/* site-added: the workbook's flowchart reproduced as HTML (not an image of text), steps 1–4 then the public/private branch. */}
+<ol class="flow-steps">
+  <li>
+    <span class="flow-num">1</span>
+    <div><strong>Tiyakin ang address.</strong> Suriin ang address ng posibleng lote o mga loteng isinulat ninyo.</div>
+  </li>
+  <li>
+    <span class="flow-num">2</span>
+    <div><strong>Hanapin ang ari-arian.</strong> Pumunta sa <a href="https://atlas.phila.gov/" target="_blank" rel="noopener">atlas.phila.gov</a> (sa Ingles) at ilagay ang address. Mahahanap din ninyo ang lote sa pamamagitan ng pag-zoom sa isang kalapit na kalye sa mapa.</div>
+  </li>
+  <li>
+    <span class="flow-num">3</span>
+    <div><strong>Alamin ang may-ari.</strong> Tingnan ang may-ari ng ari-arian sa ilalim ng seksiyong "Property Assessment" (pagtatasa ng ari-arian) sa website.</div>
+  </li>
+</ol>
+
+<div class="owner-branch">
+  <div class="owner-branch-col">
+    <h4>4a. Ang may-ari ay… ang Lungsod ng Philadelphia <span class="muted">(pampublikong pag-aari)</span></h4>
+    <p>
+      <strong>Posibleng pagbili.</strong> Maghanap ng ari-arian para malaman kung may pampublikong lupang
+      mabibili sa pamamagitan ng Philadelphia Housing Development Corporation (PHDC) at ng Philadelphia Land Bank
+      (ang ahensiya ng Lungsod na nagbebenta at nagpapaupa ng pampublikong lupa).
+    </p>
+  </div>
+  <div class="owner-branch-col">
+    <h4>4b. Ang may-ari ay… isang tao, organisasyon o negosyo <span class="muted">(pribadong pag-aari)</span></h4>
+    <ul>
+      <li><strong>Posibleng donasyon.</strong> Makipag-ugnayan sa may-ari ng lupa tungkol sa permanenteng pag-donate ng ari-arian.</li>
+      <li><strong>Posibleng pagbebenta.</strong> Abangan kung ilalista ito sa isang pampublikong bentahan o subasta — sa Philadelphia, maaaring kasama rito ang subasta ng Sheriff (Sheriff Sale).</li>
+      <li><strong>Makipagkasundo sa pagbili.</strong> Makipag-ugnayan sa may-ari ng lupa at makipagkasundo sa pagbili nito para magamit ng kapitbahayan.</li>
+      <li><strong>Kasunduan sa paggamit (in-kind).</strong> Pag-usapan ang pagpapagamit sa kapitbahayan ng lote ("in-kind"), habang nananatili sa may-ari ang pagmamay-ari.</li>
+    </ul>
+  </div>
+</div>
+
+<Callout kind="auto" title="Tapos na para sa inyo ang hakbang 1–3">
+  Piliin ang loteng gusto ninyong kunin. Sinusuri ng site ang address at mga rekord ng ari-arian ng Lungsod (ang
+  parehong data na ipinapakita ng atlas.phila.gov) at pinupunan ang may-ari sa ibaba.
+</Callout>
+
+<LotLookup mode="primary" />
+
+<Field id="acquire.address" label="Address ng inyong lote" auto="lot.address" />
+<Field id="acquire.owner" label="Pangalan ng may-ari" auto="lot.owners|owners" />
+<Field id="acquire.owner-type" label="Ang may-ari ay…" auto="lot.ownerType|ownerType" />
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={4} />
+
+## Kung ang Lungsod ang may-ari {/* #if-the-city-owns-it */}
+
+**Posibleng pagbili.** Ibinebenta o pinauupahan ang pampublikong lupa sa Philadelphia sa pamamagitan ng
+Philadelphia Housing Development Corporation (PHDC) at ng Philadelphia Land Bank. Maghanap ng ari-arian para
+malaman kung may pampublikong lupang mabibili.
+
+<p><a class="btn" href="https://phillylandbank.org/community-use-map/" target="_blank" rel="noopener">Hanapin sa Community Use map ng Land Bank (sa Ingles) ↗</a></p>
+
+{/* site-added: the workbook's PHDC link (phdcphila.org/land/buy-land/property-search-map/) is dead; PHDC's search now lives on the Land Bank site. */}
+<p class="muted" style="font-size:0.9rem">Lumipat na ang pahina ng paghahanap ng PHDC na nasa workbook: iisang mapa na ngayon ang gamit ng PHDC at ng Philadelphia Land Bank. Ang loteng may kulay ay available; ang Community Use map ang para sa mga hardin at bukas na espasyo.</p>
+
+<Checklist
+  id="acquire.public-steps"
+  items={[
+    { value: 'searched-phdc', label: 'Hinanap ang lote sa mapa ng paghahanap ng ari-arian ng PHDC' },
+    { value: 'contacted-phdc', label: 'Nakipag-ugnayan sa PHDC / sa Land Bank tungkol sa pagbili o pag-upa nito para sa parke' },
+  ]}
+/>
+
+<Field id="acquire.public-notes" label="Ang naging sagot sa inyo" type="textarea" />
+
+## Kung iba ang may-ari {/* #if-someone-else-owns-it */}
+
+Kapag isang tao, organisasyon o negosyo ang may-ari, may apat na paraan:
+
+- **Posibleng donasyon.** Makipag-ugnayan sa may-ari ng lupa tungkol sa permanenteng pag-donate ng ari-arian sa
+  kapitbahayan para gawing parke.
+- **Posibleng pagbebenta.** Abangan kung ilalista ang ari-arian sa isang pampublikong bentahan o subasta. Sa
+  Philadelphia, maaaring kasama rito ang subasta ng Sheriff (Sheriff Sale).
+- **Makipagkasundo sa pagbili.** Makipag-ugnayan sa may-ari ng lupa at makipagkasundo na bilhin ang hindi
+  nagagamit na ari-arian para magamit ng kapitbahayan.
+- **Kasunduan sa paggamit (in-kind).** Makipag-ugnayan sa may-ari ng lupa at pag-usapan ang pakinabang sa
+  magkabilang panig kung ipagagamit sa kapitbahayan ang lote bilang parke ("in-kind"), habang nananatili sa may-ari
+  ang pagmamay-ari.
+
+<Choice
+  id="acquire.private-path"
+  label="Aling paraan ang una ninyong susubukan?"
+  options={[
+    { value: 'donation', label: 'Donasyon', desc: 'Ibibigay ng may-ari ang lote sa kapitbahayan' },
+    { value: 'sale', label: 'Pampublikong bentahan / Sheriff Sale', desc: 'Abangan ang mga listahan at subasta' },
+    { value: 'purchase', label: 'Kasunduan sa pagbili', desc: 'Makipagkasundo sa may-ari sa pagbili' },
+    { value: 'in-kind', label: 'Kasunduan sa paggamit (in-kind)', desc: 'Sa may-ari pa rin ang lote; ginagamit ito ng mga kapitbahay bilang parke' },
+  ]}
+/>
+
+<ListField
+  id="acquire.owner-contacts"
+  label="Talaan ng pakikipag-ugnayan"
+  rowName="pakikipag-ugnayan"
+  min={2}
+  columns={[
+    { key: 'date', label: 'Petsa', type: 'date' },
+    { key: 'who', label: 'Sino ang nakausap ninyo' },
+    { key: 'outcome', label: 'Ano ang nangyari / susunod na hakbang' },
+  ]}
+/>
+
+<Callout kind="contact">
+  Hindi alam ang susunod na gagawin? Matutulungan kayo ng grupo ng Park in a Truck na pag-isipan ang inyong mga
+  pagpipilian: [ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu).
+</Callout>
+
+{/* site-added: a place to record the outcome; no new advice. */}
+## Siguruhin ang inyong lote {/* #secure-your-lot */}
+
+Itala ang kasunduang nagbibigay sa inyong grupo ng karapatang magtayo ng parke rito. Magtabi ng kopya kasama ng mga
+rekord ng inyong komite — kakailanganin ninyo ito bago magsimula ang anumang paghuhukay o paggawa sa hakbang na
+Lumikha.
+
+<Field id="acquire.agreement" label="Uri ng kasunduan" type="select" options={[{ value: 'Purchase', label: 'Pagbili' }, { value: 'Donation', label: 'Donasyon' }, { value: 'Lease', label: 'Pag-upa (lease)' }, { value: 'In-kind use agreement', label: 'Kasunduan sa paggamit (in-kind)' }, { value: 'Other', label: 'Iba pa' }]} />
+<Field id="acquire.agreement-date" label="Petsa ng pagpirma" type="date" />
+<Field id="acquire.agreement-notes" label="Mga kondisyong dapat tandaan" type="textarea" hint="Haba ng kasunduan, sino ang mag-aalaga sa lote, insurance, petsa ng pag-renew…" />
