@@ -71,6 +71,10 @@ after the extraction round. Tick them off here.
 - [ ] Code joins translated sentences with a space — Chinese shows "。 在那之前" (shade summary, planner slope and
       existing-items text, lot card "可以考虑购买。 费城…"). Use a per-locale sentence joiner (no space for zh, and
       check ko/ar).
+- [ ] (phase B — key shape changes) Lengths in feet are plain strings without plural forms (`where.fromLeft`,
+      `common.ft`, philly `unit.ft`…) → "a 1 pés" in Portuguese; make them `{count}` plurals and update every language.
+- [ ] (phase B) Planner sentences slot bare phrases into others (`slope.place*` after from/to/near, `spot.thing {name}`,
+      `view.picked`) — Romance languages need articles/gender; give translators whole-sentence variants per place.
 
 ## For native-speaker review (per language)
 
@@ -137,3 +141,10 @@ after the extraction round. Tick them off here.
   à percussion); `create.mdx` Phase 2 herbicide/weed names and safety notes; `sustain.mdx` Survivre / S'épanouir /
   Se retrouver; `start.mdx` barn-raising line and "Un parc par jour…"; `acquire.mdx` "accord d'usage en nature";
   resources legal text; principle and 6C names in `playful.ts`.
+
+### Portuguese (pt)
+- `cost.ts`: hardscape/softscape as "pavimento/terra", "reserva para imprevistos", "brita vermelha (red tipple)";
+  guides hardware words (parafusos autoatarraxantes, parafusos sextavados, parafusos tipo francês, argolas de fixação,
+  alicate corta-vergalhão), "com nós", "tratada em autoclave"; `plants.json` descriptive names with English in
+  brackets; `create.mdx` Phase 2 herbicide/weed names and safety notes; `start.mdx` "Why a park?" closing line,
+  "Aviso legal" + resources legal text; `playful.ts` "Aprender Brincando" and the 6Cs ("Pensamento crítico").
