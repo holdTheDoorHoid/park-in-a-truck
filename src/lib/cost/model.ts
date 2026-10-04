@@ -14,8 +14,9 @@
 
 import { CONTINGENCY, LUMBER, PRICES, UNPRICED_LUMBER_LINKS, lumberPrice, vendorOf, type Price } from './prices';
 import { buildMergedOrderList, buildOrderList, type OrderListResult, type QpiQuantities } from './orderList';
-import { ALL_FIXES, FIXES, PERENNIALS_PER_SQUARE, type FixId } from './corrections';
+import { ALL_FIXES, FIXES, PERENNIALS_PER_SQUARE, fixText, type FixId } from './corrections';
 import { GUIDES, SHADE_GUIDE_SQFT, STAGE_GUIDE_SQUARES, guideLines, type GuideSlug } from './guides';
+import { EN, bare, money as moneyIn, percent, price as priceIn, type CostT } from './text';
 
 /**
  * The answers the spreadsheet asks for — its orange cells on the INSERT HERE
@@ -290,22 +291,30 @@ export interface CategoryMeta {
   part: 'base' | 'furnishings' | 'contingency';
 }
 
-export const CATEGORIES: CategoryMeta[] = [
-  { id: 'layout', label: 'Layout + protection', sheet: 'F14', part: 'base' },
-  { id: 'soil', label: 'Soil + mulch', sheet: 'F15', part: 'base' },
-  { id: 'gravel', label: 'Gravel', sheet: 'F16', part: 'base' },
-  { id: 'playArea', label: 'Nature play area', sheet: 'F17', part: 'base' },
-  { id: 'gravelEdge', label: 'Wood edge around gravel', sheet: 'F22', part: 'base' },
-  { id: 'outerEdge', label: 'Outer edges + raised beds', sheet: 'F27 = F46', part: 'base' },
-  { id: 'planting', label: 'Plants', sheet: 'F34', part: 'base' },
-  { id: 'gabions', label: 'Gabion baskets', sheet: 'F42', part: 'base' },
-  { id: 'doubleCounted', label: 'Counted twice by the spreadsheet', sheet: 'F48', part: 'base' },
-  { id: 'furnishings', label: 'Base furnishings', sheet: 'F80', part: 'furnishings' },
-  { id: 'additional', label: 'Additional furnishings', sheet: 'F97', part: 'furnishings' },
-  { id: 'offTheShelf', label: 'Off-the-shelf furnishings', sheet: 'F121', part: 'furnishings' },
-  { id: 'optional', label: 'Optional off-the-shelf furnishings', sheet: 'F136', part: 'furnishings' },
-  { id: 'contingency', label: 'Tool rental, contingency + other costs', sheet: 'F143:F145', part: 'contingency' },
+const CATEGORY_CELLS: Omit<CategoryMeta, 'label'>[] = [
+  { id: 'layout', sheet: 'F14', part: 'base' },
+  { id: 'soil', sheet: 'F15', part: 'base' },
+  { id: 'gravel', sheet: 'F16', part: 'base' },
+  { id: 'playArea', sheet: 'F17', part: 'base' },
+  { id: 'gravelEdge', sheet: 'F22', part: 'base' },
+  { id: 'outerEdge', sheet: 'F27 = F46', part: 'base' },
+  { id: 'planting', sheet: 'F34', part: 'base' },
+  { id: 'gabions', sheet: 'F42', part: 'base' },
+  { id: 'doubleCounted', sheet: 'F48', part: 'base' },
+  { id: 'furnishings', sheet: 'F80', part: 'furnishings' },
+  { id: 'additional', sheet: 'F97', part: 'furnishings' },
+  { id: 'offTheShelf', sheet: 'F121', part: 'furnishings' },
+  { id: 'optional', sheet: 'F136', part: 'furnishings' },
+  { id: 'contingency', sheet: 'F143:F145', part: 'contingency' },
 ];
+
+/** The categories, labelled in the reader's language (cost catalog: cat.<id>). */
+export function categories(t: CostT = EN): CategoryMeta[] {
+  return CATEGORY_CELLS.map((c) => ({ id: c.id, label: t(`cat.${c.id}`), sheet: c.sheet, part: c.part }));
+}
+
+/** The categories, in English. */
+export const CATEGORIES: CategoryMeta[] = categories();
 
 export interface CostLine {
   category: CategoryId;
@@ -499,6 +508,8 @@ export interface EstimateOptions {
   fixes?: readonly FixId[];
   /** Corrected mode only: the person's unit prices for "price needed" lines, by PriceNeededItem id */
   unitPrices?: Record<string, number>;
+  /** The language of the estimate's words (line names, notes, warnings, order list). Default: English. */
+  t?: CostT;
 }
 
 // ---- spreadsheet arithmetic ----------------------------------------------------
@@ -531,21 +542,22 @@ export function normaliseInputs(partial: Partial<CostInputs>): CostInputs {
  */
 export function estimate(inputs: Partial<CostInputs>, options: EstimateOptions = {}): Estimate {
   const i = normaliseInputs(inputs);
-  if (options.mode === 'sheet') return compute(i, new Set(), {}, 'sheet');
+  const t = options.t ?? EN;
+  if (options.mode === 'sheet') return compute(i, new Set(), {}, 'sheet', t);
   const chosen = new Set<FixId>(options.fixes ?? ALL_FIXES);
   const prices = Object.fromEntries(Object.entries(options.unitPrices ?? {}).filter(([, v]) => typeof v === 'number' && Number.isFinite(v) && v >= 0));
-  const result = compute(i, chosen, prices, 'corrected');
+  const result = compute(i, chosen, prices, 'corrected', t);
 
-  // Fix by fix: apply them in order and record what each changes.
-  const sheet = compute(i, new Set(), {}, 'sheet');
+  // Fix by fix: apply them in order and record what each changes (totals only: English is enough).
+  const sheet = compute(i, new Set(), {}, 'sheet', EN);
   const applied = new Set<FixId>();
   let before = sheet.total;
   const fixes: CorrectionEffect[] = [];
   for (const f of FIXES) {
     if (!chosen.has(f.id)) continue;
     applied.add(f.id);
-    const after = compute(i, applied, {}, 'corrected').total;
-    fixes.push({ id: f.id, label: f.label, detail: f.detail, effect: after - before });
+    const after = compute(i, applied, {}, 'corrected', EN).total;
+    fixes.push({ id: f.id, ...fixText(f.id, t), effect: after - before });
     before = after;
   }
   result.corrections = {
@@ -558,8 +570,13 @@ export function estimate(inputs: Partial<CostInputs>, options: EstimateOptions =
   return result;
 }
 
-function compute(answers: CostInputs, fixes: ReadonlySet<FixId>, userPrices: Record<string, number>, mode: 'sheet' | 'corrected'): Estimate {
+function compute(answers: CostInputs, fixes: ReadonlySet<FixId>, userPrices: Record<string, number>, mode: 'sheet' | 'corrected', t: CostT): Estimate {
   const fx = (id: FixId) => fixes.has(id);
+  /** Money in the estimate's words */
+  const money = (v: number) => moneyIn(t, v);
+  const price = (v: number) => priceIn(t, v);
+  /** Several sentences of a note, in order */
+  const sentences = (...xs: (string | false | undefined)[]) => xs.filter(Boolean).join(' ');
   /** Furniture with a build guide is priced from the guide; otherwise the site-added questions go to the spreadsheet's own. */
   const guides = fx('guideMaterials');
   const i = guides ? answers : foldIntoSheet(answers);
@@ -598,7 +615,7 @@ function compute(answers: CostInputs, fixes: ReadonlySet<FixId>, userPrices: Rec
     const link = o.link ?? p?.link;
     // a spreadsheet link to a different size than the item: say so on the line
     if (p?.wrongSize && link === p.link && mode === 'corrected')
-      o = { ...o, notes: `${o.notes ? `${o.notes} ` : ''}The spreadsheet’s link for this is a ${p.wrongSize} — check the size when you order.` };
+      o = { ...o, notes: sentences(o.notes, t('note.wrongSize', { size: p.wrongSize })) };
     let unitPrice = typeof price === 'number' ? price : price.price;
     let inTotal = o.inTotal ?? true;
     let needsPrice: boolean | undefined;
@@ -648,7 +665,7 @@ function compute(answers: CostInputs, fixes: ReadonlySet<FixId>, userPrices: Rec
   const wood = (size: string, extra: Parameters<typeof add>[6] = {}) => ({
     material: `lumber:${size}`,
     priceId: lumberPrice(size) === 0 ? `lumber:${size}` : undefined,
-    notes: lumberPrice(size) === 0 && !fx('priceNeeded') ? 'No price for this size in the sheet (counted as $0).' : undefined,
+    notes: lumberPrice(size) === 0 && !fx('priceNeeded') ? t('note.noSizePrice') : undefined,
     ...extra,
   });
 
@@ -667,20 +684,18 @@ function compute(answers: CostInputs, fixes: ReadonlySet<FixId>, userPrices: Rec
   const J13 = whole(C13 / 25); // D13: the sheet does not round up
   const J14 = roundUp(area / 1000);
   let M15 = 0;
-  M15 += add('layout', 'Erosion control', J12, 'roll', P.erosionControl, P.erosionControl.price * J12, {
-    notes: 'One roll per 100 ft of park edge.',
+  M15 += add('layout', t('line.erosionControl'), J12, 'roll', P.erosionControl, P.erosionControl.price * J12, {
+    notes: t('note.erosion'),
     material: 'erosion-control',
     cells: { qty: 'J12', price: 'L12', total: 'M12' },
   });
-  M15 += add('layout', 'Stakes', J13, 'package', P.stakes, P.stakes.price * J13, {
-    notes: fx('wholeUnits')
-      ? 'One stake per 20 sq ft, 25 to a package, rounded up to whole packages.'
-      : 'One stake per 20 sq ft, 25 to a package; the sheet does not round up to whole packages.',
+  M15 += add('layout', t('line.stakes'), J13, 'package', P.stakes, P.stakes.price * J13, {
+    notes: fx('wholeUnits') ? t('note.stakes') : t('note.stakesSheet'),
     material: 'stakes',
     cells: { qty: 'J13', price: 'L13', total: 'M13' },
   });
-  M15 += add('layout', 'Marking paint', J14, 'can', P.markingPaint, P.markingPaint.price * J14, {
-    notes: 'One can per 1,000 sq ft.',
+  M15 += add('layout', t('line.markingPaint'), J14, 'can', P.markingPaint, P.markingPaint.price * J14, {
+    notes: t('note.paint'),
     material: 'marking-paint',
     cells: { qty: 'J14', price: 'L14', total: 'M14' },
   });
@@ -690,22 +705,20 @@ function compute(answers: CostInputs, fixes: ReadonlySet<FixId>, userPrices: Rec
   const J20 = roundUp((greenSf * 0.18) / 27); // 2" of mulch
   const C21 = whole((J20 + J19) / 18);
   let M22 = 0;
-  M22 += add('soil', 'Soil, 6" deep', J19, 'CY', P.soil, P.soil.price * J19, { notes: 'Over the planting squares.', material: 'soil', cells: { qty: 'J19', price: 'L19', total: 'M19' } });
+  M22 += add('soil', t('line.soil'), J19, 'CY', P.soil, P.soil.price * J19, { notes: t('note.soil'), material: 'soil', cells: { qty: 'J19', price: 'L19', total: 'M19' } });
   // The Create workbook (Phase 6: Plant) says "install 4" of mulch"; the spreadsheet buys 2". Kept, with a note
   // showing 4" at the spreadsheet's own 4" depth (0.33 ft, as for the play area).
   const mulch4 = roundUp((greenSf * 0.33) / 27);
-  M22 += add('soil', 'Mulch, 2"', J20, 'CY', P.mulch, P.mulch.price * J20, {
+  M22 += add('soil', t('line.mulch2'), J20, 'CY', P.mulch, P.mulch.price * J20, {
     material: 'mulch',
     cells: { qty: 'J20', price: 'L20', total: 'M20' },
     notes:
       greenSf > 0
-        ? `The Create step (Phase 6: Plant) says to install 4″ of mulch; the spreadsheet buys 2″. 4″ would be ${fmtN(mulch4)} CY (${money(mulch4 * P.mulch.price)}).`
+        ? t('note.mulch4', { cy: mulch4, cost: money(mulch4 * P.mulch.price) })
         : undefined,
   });
-  M22 += add('soil', 'Delivery', C21, 'load (18 CY)', P.soilDelivery, P.soilDelivery.price * C21, {
-    notes: fx('wholeUnits')
-      ? 'One delivery per 18 CY of soil and mulch, rounded up to whole deliveries.'
-      : 'The sheet charges a fraction of a delivery (cubic yards ÷ 18) instead of whole trips.',
+  M22 += add('soil', t('line.delivery'), C21, 'load (18 CY)', P.soilDelivery, P.soilDelivery.price * C21, {
+    notes: fx('wholeUnits') ? t('note.delivery') : t('note.deliverySheet'),
     material: 'soil-delivery',
     cells: { qty: 'C21', price: 'L21', total: 'M21' },
   });
@@ -718,21 +731,21 @@ function compute(answers: CostInputs, fixes: ReadonlySet<FixId>, userPrices: Rec
   const J28 = roundUp(area / 400);
   const J29 = roundUp((area * 0.2) / 100);
   const J30 = roundUp((H26 + H27) / 24);
-  const wholePark = 'Worked out for the whole park (long × short side), planting squares included.';
+  const wholePark = t('note.wholePark');
   let M31 = 0;
-  M31 += add('gravel', '3/8" red tipple, 2" deep', J26, 'TONS', P.redTipple, P.redTipple.price * J26, { notes: wholePark, material: 'red-tipple', cells: { qty: 'J26', price: 'L26', total: 'M26' } });
-  M31 += add('gravel', '3/4" clean stone aggregate base, 2" deep', J27, 'TONS', P.cleanStone, P.cleanStone.price * J27, {
+  M31 += add('gravel', t('line.redTipple'), J26, 'TONS', P.redTipple, P.redTipple.price * J26, { notes: wholePark, material: 'red-tipple', cells: { qty: 'J26', price: 'L26', total: 'M26' } });
+  M31 += add('gravel', t('line.cleanStone'), J27, 'TONS', P.cleanStone, P.cleanStone.price * J27, {
     notes: wholePark,
     material: 'clean-stone',
     cells: { qty: 'J27', price: 'L27', total: 'M27' },
   });
-  M31 += add('gravel', 'Filter fabric', J28, 'ROLL', P.filterFabric, P.filterFabric.price * J28, { notes: 'One roll per 400 sq ft.', material: 'filter-fabric', cells: { qty: 'J28', price: 'L28', total: 'M28' } });
-  M31 += add('gravel', '3.5" staples', J29, 'BOX', P.staples, P.staples.price * J29, { notes: 'One staple per 5 sq ft, boxes of 100.', material: 'staples', cells: { qty: 'J29', price: 'L29', total: 'M29' } });
-  M31 += add('gravel', 'Delivery', J30, 'TRIP', P.gravelDelivery, P.gravelDelivery.price * J30, { notes: 'One trip per 24 CY of stone.', material: 'gravel-delivery', cells: { qty: 'J30', price: 'L30', total: 'M30' } });
+  M31 += add('gravel', t('line.filterFabric'), J28, 'ROLL', P.filterFabric, P.filterFabric.price * J28, { notes: t('note.filterFabric'), material: 'filter-fabric', cells: { qty: 'J28', price: 'L28', total: 'M28' } });
+  M31 += add('gravel', t('line.staples'), J29, 'BOX', P.staples, P.staples.price * J29, { notes: t('note.staples'), material: 'staples', cells: { qty: 'J29', price: 'L29', total: 'M29' } });
+  M31 += add('gravel', t('line.delivery'), J30, 'TRIP', P.gravelDelivery, P.gravelDelivery.price * J30, { notes: t('note.gravelDelivery'), material: 'gravel-delivery', cells: { qty: 'J30', price: 'L30', total: 'M30' } });
 
   // ---- PLAY AREA (rows 34–35) ----
   const J35 = roundUp((playSf * 0.33) / 27);
-  const M35 = add('playArea', 'Mulch, 4"', J35, 'CY', P.playMulch, P.playMulch.price * J35, { material: 'mulch', cells: { qty: 'J35', price: 'L35', total: 'M35' } });
+  const M35 = add('playArea', t('line.mulch4'), J35, 'CY', P.playMulch, P.playMulch.price * J35, { material: 'mulch', cells: { qty: 'J35', price: 'L35', total: 'M35' } });
 
   // ---- WOOD EDGE FOR GRAVEL (rows 64–74) ----
   const C64 = i.gravelEdgeFt;
@@ -744,31 +757,32 @@ function compute(answers: CostInputs, fixes: ReadonlySet<FixId>, userPrices: Rec
   const C68 = whole(D67);
   const C69 = C68 * 2;
   const C70 = C68 * 2;
-  const perFive = fx('wholeUnits') ? 'One per 5 ft, rounded up.' : 'One per 5 ft (not rounded).';
+  const perFive = fx('wholeUnits') ? t('note.perFive') : t('note.perFiveSheet');
   let M74 = 0;
-  M74 += add('gravelEdge', '1x4x12 boards', J65, 'EA', P.board1x4x12, P.board1x4x12.price * J65, {
-    notes: 'One per 12 ft; the sheet also adds the 2x4 count to the board count. The spreadsheet gives no supplier for this board.',
+  M74 += add('gravelEdge', t('line.boards', { size: '1x4x12' }), J65, 'EA', P.board1x4x12, P.board1x4x12.price * J65, {
+    notes: t('note.board1x4x12'),
     material: 'lumber:1x4x12',
     cells: { qty: 'J65', price: 'L65', total: 'M65' },
   });
-  M74 += add('gravelEdge', '2x4x8 (hardscape support)', J67, 'EA', P.edgeSupport2x4x8, P.edgeSupport2x4x8.price * J67, {
-    notes: 'Worked out for the whole edge; the hardscape/softscape split is not used.',
+  M74 += add('gravelEdge', t('line.gravelEdgeSupport', { size: '2x4x8' }), J67, 'EA', P.edgeSupport2x4x8, P.edgeSupport2x4x8.price * J67, {
+    notes: t('note.gravelEdgeSupport'),
     material: 'lumber:2x4x8',
     cells: { qty: 'J67', price: 'L67', total: 'M67' },
   });
   // The two edging blocks link different L-brackets (a 2" double-wide brace here, a 5" brace for the outer
   // edges) at the same price: separate order-list rows.
-  M74 += add('gravelEdge', 'L-brackets', C68, 'EA', P.lBracket, P.lBracket.price * C68, {
-    notes: `${perFive} The spreadsheet links a 2″ double-wide corner brace here.`,
+  M74 += add('gravelEdge', t('line.lBrackets'), C68, 'EA', P.lBracket, P.lBracket.price * C68, {
+    notes: sentences(perFive, t('note.lBracket2in')),
     material: 'l-bracket-2in',
     cells: { qty: 'J68', price: 'L68', total: 'M68' },
   });
-  M74 += add('gravelEdge', '2 1/2" self-driving screws', C69, 'EA', P.selfDrivingScrew, P.selfDrivingScrew.price * C69, {
-    notes: SELF_DRIVING_NOTE,
+  const selfDrivingNote = t('note.selfDriving', { price: price(P.selfDrivingScrew.price) });
+  M74 += add('gravelEdge', t('line.selfDrivingScrews'), C69, 'EA', P.selfDrivingScrew, P.selfDrivingScrew.price * C69, {
+    notes: selfDrivingNote,
     material: 'self-driving-screw',
     cells: { qty: 'J69', price: 'L69', total: 'M69' },
   });
-  M74 += add('gravelEdge', '2" concrete screws', C70, 'EA', P.concreteScrew, P.concreteScrew.price * C70, { material: 'concrete-screw', cells: { qty: 'J70', price: 'L70', total: 'M70' } });
+  M74 += add('gravelEdge', t('line.concreteScrews'), C70, 'EA', P.concreteScrew, P.concreteScrew.price * C70, { material: 'concrete-screw', cells: { qty: 'J70', price: 'L70', total: 'M70' } });
 
   // ---- RAISED BEDS - TO GABIONS = the outer edges (rows 76–87) ----
   const C76 = i.outerEdgeFt;
@@ -785,64 +799,55 @@ function compute(answers: CostInputs, fixes: ReadonlySet<FixId>, userPrices: Rec
   const connections = fx('edgeGabionConnections') ? i.outerEdgeGabionConnections + i.raisedBedGabionConnections : i.raisedBedGabionConnections;
   const J86 = roundUp(connections / 4);
   let M87 = 0;
-  M87 += add('outerEdge', '1x6x12 boards', C77, 'EA', P.board1x6x12Edge, P.board1x6x12Edge.price * C77, {
-    notes: 'One per 12 ft. $4 here, while the order list prices 1x6x12 at $10.',
+  M87 += add('outerEdge', t('line.boards', { size: '1x6x12' }), C77, 'EA', P.board1x6x12Edge, P.board1x6x12Edge.price * C77, {
+    notes: t('note.board1x6x12', { edge: price(P.board1x6x12Edge.price), list: price(lumberPrice('1x6x12')) }),
     material: 'lumber:1x6x12',
     cells: { qty: 'J77', price: 'L77', total: 'M77' },
   });
-  M87 += add('outerEdge', '2x4x8 (supports, hardscape)', C79, 'EA', lumber('2x4x8'), lumberPrice('2x4x8') * C79, {
-    notes: split ? 'From the hardscape feet.' : 'Worked out from the whole outer edge; the sheet does not use the hardscape/softscape split.',
+  M87 += add('outerEdge', t('line.supportHard', { size: '2x4x8' }), C79, 'EA', lumber('2x4x8'), lumberPrice('2x4x8') * C79, {
+    notes: split ? t('note.fromHardFeet') : t('note.hardWhole'),
     material: 'lumber:2x4x8',
     cells: { qty: 'J79', price: 'L79', total: 'M79' },
   });
-  M87 += add('outerEdge', 'L-brackets', C80, 'EA', { ...P.lBracket, link: P.lBracket.alt }, P.lBracket.price * C80, {
-    notes: `${perFive}${split ? ' On hardscape.' : ''} The spreadsheet links a 5″ corner brace here.`,
+  M87 += add('outerEdge', t('line.lBrackets'), C80, 'EA', { ...P.lBracket, link: P.lBracket.alt }, P.lBracket.price * C80, {
+    notes: sentences(perFive, split && t('note.onHardscape'), t('note.lBracket5in')),
     material: 'l-bracket-5in',
     cells: { qty: 'J80', price: 'L80', total: 'M80' },
   });
-  M87 += add('outerEdge', '2 1/2" self-driving screws', C81, 'EA', P.selfDrivingScrew, P.selfDrivingScrew.price * C81, {
-    notes: SELF_DRIVING_NOTE,
+  M87 += add('outerEdge', t('line.selfDrivingScrews'), C81, 'EA', P.selfDrivingScrew, P.selfDrivingScrew.price * C81, {
+    notes: selfDrivingNote,
     material: 'self-driving-screw',
     cells: { qty: 'J81', price: 'L81', total: 'M81' },
   });
-  M87 += add('outerEdge', '2" concrete screws', C82, 'EA', P.concreteScrew, P.concreteScrew.price * C82, { material: 'concrete-screw', cells: { qty: 'J82', price: 'L82', total: 'M82' } });
-  M87 += add('outerEdge', '2x4x8 (supports, softscape)', C84, 'EA', lumber('2x4x8'), lumberPrice('2x4x8') * C84, {
-    notes: split ? 'From the softscape feet.' : 'Also worked out from the whole outer edge, so both kinds of support are always counted.',
+  M87 += add('outerEdge', t('line.concreteScrews'), C82, 'EA', P.concreteScrew, P.concreteScrew.price * C82, { material: 'concrete-screw', cells: { qty: 'J82', price: 'L82', total: 'M82' } });
+  M87 += add('outerEdge', t('line.supportSoft', { size: '2x4x8' }), C84, 'EA', lumber('2x4x8'), lumberPrice('2x4x8') * C84, {
+    notes: split ? t('note.fromSoftFeet') : t('note.softWhole'),
     material: 'lumber:2x4x8',
     cells: { qty: 'J84', price: 'L84', total: 'M84' },
   });
-  M87 += add('outerEdge', '2x4x8 (edge to gabion)', J86, 'EA', lumber('2x4x8'), lumberPrice('2x4x8') * J86, {
-    notes: fx('edgeGabionConnections')
-      ? 'One per 4 connections to gabions (outer edges and raised beds).'
-      : 'From the raised-bed question “How many connections to gabions do you have?”.',
+  M87 += add('outerEdge', t('line.edgeToGabion', { size: '2x4x8' }), J86, 'EA', lumber('2x4x8'), lumberPrice('2x4x8') * J86, {
+    notes: fx('edgeGabionConnections') ? t('note.edgeToGabion') : t('note.edgeToGabionSheet'),
     material: 'lumber:2x4x8',
     cells: { qty: 'J86', price: 'L86', total: 'M86' },
   });
-  if (fx('edgeSupportsSplit') && C76 > 0 && !split)
-    warnings.push(
-      'Outer edges: enter how many feet sit on hardscape and on softscape. Until then both kinds of supports are counted for every foot, as in the spreadsheet.',
-    );
+  if (fx('edgeSupportsSplit') && C76 > 0 && !split) warnings.push(t('warn.edgeSplit'));
   if (split && Math.abs(i.outerEdgeOnHardscapeFt + i.outerEdgeOnSoftscapeFt - C76) > 1e-9)
-    warnings.push(
-      `Outer edges: hardscape + softscape (${fmtN(i.outerEdgeOnHardscapeFt + i.outerEdgeOnSoftscapeFt)} ft) don’t add up to the total (${fmtN(C76)} ft). Boards use the total; supports use the split.`,
-    );
+    warnings.push(t('warn.edgeSplitSum', { split: i.outerEdgeOnHardscapeFt + i.outerEdgeOnSoftscapeFt, total: C76 }));
 
   // ---- PLANTING (rows 39–43) ----
   // INSERT HERE!C30 = squares x 4; PiaT's four plant-list spreadsheets count 5 per square (corrections.ts)
   const perSquare = fx('perennialsPerSquare') ? PERENNIALS_PER_SQUARE : 4;
   const C39 = i.plantingSquares * perSquare;
   let M43 = 0;
-  M43 += add('planting', 'Perennials', C39, 'EA', P.perennial, P.perennial.price * C39, {
-    notes: fx('perennialsPerSquare')
-      ? `${perSquare} per planting square, as in Park in a Truck’s plant lists (the cost spreadsheet uses 4).`
-      : '4 per planting square.',
+  M43 += add('planting', t('line.perennials'), C39, 'EA', P.perennial, P.perennial.price * C39, {
+    notes: fx('perennialsPerSquare') ? t('note.perennials', { per: bare(t, perSquare) }) : t('note.perennialsSheet'),
     material: 'perennial',
     cells: { qty: 'J39', price: 'L39', total: 'M39' },
   });
-  M43 += add('planting', 'Shrubs', i.shrubs, 'EA', P.shrub, P.shrub.price * i.shrubs, { material: 'shrub', cells: { qty: 'J40', price: 'L40', total: 'M40' } });
-  M43 += add('planting', 'Trees, small', i.smallTrees, 'EA', P.smallTree, P.smallTree.price * i.smallTrees, { material: 'tree-small', cells: { qty: 'J41', price: 'L41', total: 'M41' } });
-  M43 += add('planting', 'Trees, large', i.largeTrees, 'EA', P.largeTree, P.largeTree.price * i.largeTrees, {
-    notes: 'The sheet prices a large tree ($75) below a small one ($100).',
+  M43 += add('planting', t('line.shrubs'), i.shrubs, 'EA', P.shrub, P.shrub.price * i.shrubs, { material: 'shrub', cells: { qty: 'J40', price: 'L40', total: 'M40' } });
+  M43 += add('planting', t('line.smallTrees'), i.smallTrees, 'EA', P.smallTree, P.smallTree.price * i.smallTrees, { material: 'tree-small', cells: { qty: 'J41', price: 'L41', total: 'M41' } });
+  M43 += add('planting', t('line.largeTrees'), i.largeTrees, 'EA', P.largeTree, P.largeTree.price * i.largeTrees, {
+    notes: t('note.largeTree', { large: price(P.largeTree.price), small: price(P.smallTree.price) }),
     material: 'tree-large',
     cells: { qty: 'J42', price: 'L42', total: 'M42' },
   });
@@ -852,13 +857,13 @@ function compute(answers: CostInputs, fixes: ReadonlySet<FixId>, userPrices: Rec
   const J49 = i.gabionBaskets;
   const J50 = roundUp((C48 / 27) * 1.4);
   let M54 = 0;
-  M54 += add('gabions', "1'x1'x4' 5 gauge baskets", J49, 'EA', P.gabionBasket, P.gabionBasket.price * J49, {
-    notes: 'For the gabion wall: the grey 1-ft band the park pieces draw along the street edges. One basket per 4 ft of wall, one course high.',
+  M54 += add('gabions', t('line.gabionBaskets1ft'), J49, 'EA', P.gabionBasket, P.gabionBasket.price * J49, {
+    notes: t('note.gabionWall'),
     material: 'gabion-basket',
     cells: { qty: 'J49', price: 'L49', total: 'M49' },
   });
-  M54 += add('gabions', '1-3" stone fill', J50, 'TONS', P.stoneFill, P.stoneFill.price * J50, {
-    notes: '4 cu ft per basket, 1.4 tons per cubic yard.',
+  M54 += add('gabions', t('line.stoneFill'), J50, 'TONS', P.stoneFill, P.stoneFill.price * J50, {
+    notes: t('note.stoneFill'),
     material: 'stone-fill',
     cells: { qty: 'J50', price: 'L50', total: 'M50' },
   });
@@ -867,13 +872,13 @@ function compute(answers: CostInputs, fixes: ReadonlySet<FixId>, userPrices: Rec
   // The sheet adds F17 (play area) twice, and F27 and F46 both point at QPI!M87.
   let F48 = M87 + M54 + M43 + M31 + M22 + M15 + M74 + M35;
   if (!fx('playAreaOnce'))
-    F48 += add('doubleCounted', 'Nature play mulch, again', 1, '', M35, M35, {
-      notes: 'The base-design total (F48) adds the play-area subtotal twice.',
+    F48 += add('doubleCounted', t('line.playAgain'), 1, '', M35, M35, {
+      notes: t('note.playAgain'),
       cells: { total: 'M35' },
     });
   if (!fx('edgesOnce'))
-    F48 += add('doubleCounted', 'Outer edges + raised beds, again', 1, '', M87, M87, {
-      notes: 'The sheet’s “outer edges” (F27) and “raised beds” (F46) subtotals are the same cell, and the base-design total adds both.',
+    F48 += add('doubleCounted', t('line.edgesAgain'), 1, '', M87, M87, {
+      notes: t('note.edgesAgain'),
       cells: { total: 'M87' },
     });
 
@@ -885,12 +890,11 @@ function compute(answers: CostInputs, fixes: ReadonlySet<FixId>, userPrices: Rec
   const fromGuide = (slug: GuideSlug, n: number, note?: string): number => {
     if (n <= 0) return 0;
     const g = GUIDES[slug];
-    const group = n === 1 ? g.name : `${g.name} × ${fmtN(n)}`;
+    const name = t(g.keys.name);
+    const group = n === 1 ? name : t('piece.times', { name, count: n });
     let sum = 0;
-    guideLines(slug, n).forEach((gl, k) => {
-      const notes = [k === 0 ? note : undefined, gl.notes, !gl.price && !fx('priceNeeded') ? 'No price in the spreadsheet (counted as $0).' : undefined]
-        .filter(Boolean)
-        .join(' ');
+    guideLines(slug, n, t).forEach((gl, k) => {
+      const notes = sentences(k === 0 && note, gl.notes, !gl.price && !fx('priceNeeded') && t('note.noPriceZero'));
       sum += add('furnishings', gl.item, gl.qty, gl.unit, gl.price ?? 0, (gl.price?.price ?? 0) * gl.qty, {
         group,
         notes: notes || undefined,
@@ -928,25 +932,22 @@ function compute(answers: CostInputs, fixes: ReadonlySet<FixId>, userPrices: Rec
     // 4' 18" wood-topped gabions (QPI rows 90–97): the answer cell is gone and F53 = #REF!.
     if (fx('woodToppedGabions')) {
       const b = i.woodToppedGabions;
-      const group = "4' wood-topped gabion (18\" high)";
+      const group = t('piece.woodToppedGabion');
       const C92 = b * 4 * 2 * 1.5; // cubic feet
       const J94 = roundUp((C92 / 27) * 1.4);
       const C95 = roundUp(5.5 * b);
       const C96 = 36 * b;
       M97 = 0;
-      M97 += add('furnishings', '2\'x18"x4\' 5 gauge gabion basket', b, 'EA', P.gabionBasket2x18x4, P.gabionBasket2x18x4.price * b, { group, material: 'gabion-basket-2x18x4' });
-      M97 += add('furnishings', '1-3" stone fill', J94, 'TONS', P.stoneFill, P.stoneFill.price * J94, { group, notes: '12 cu ft per gabion.', material: 'stone-fill' });
+      M97 += add('furnishings', t('line.gabionBasket2x18x4'), b, 'EA', P.gabionBasket2x18x4, P.gabionBasket2x18x4.price * b, { group, material: 'gabion-basket-2x18x4' });
+      M97 += add('furnishings', t('line.stoneFill'), J94, 'TONS', P.stoneFill, P.stoneFill.price * J94, { group, notes: t('note.stonePerGabion'), material: 'stone-fill' });
       M97 += add('furnishings', '2x4x8', C95, 'ea.', lumber('2x4x8'), lumberPrice('2x4x8') * C95, { group, ...wood('2x4x8') });
-      M97 += add('furnishings', '2.5" wood screws', C96, 'ea.', P.woodScrew, P.woodScrew.price * C96, { group, material: 'wood-screw' });
-    } else if (i.woodToppedGabions > 0)
-      warnings.push(
-        `Wood-topped gabions (${fmtN(i.woodToppedGabions)}): the PiaT spreadsheet’s subtotal for these is broken (#REF!), so they add $0 to the estimate.`,
-      );
+      M97 += add('furnishings', t('line.woodScrews'), C96, 'ea.', P.woodScrew, P.woodScrew.price * C96, { group, material: 'wood-screw' });
+    } else if (i.woodToppedGabions > 0) warnings.push(t('warn.woodToppedGabions', { count: i.woodToppedGabions }));
 
     // Bench with back and arms (rows 100–106)
     {
       const b = i.benchesWithBackAndArms;
-      const group = "4' bench with back and armrests";
+      const group = t('piece.benchBackArms');
       const C101 = whole(b * 7.5);
       const C102 = roundUp(88 * b);
       const C103 = 2 * b;
@@ -955,15 +956,15 @@ function compute(answers: CostInputs, fixes: ReadonlySet<FixId>, userPrices: Rec
       const p101 = fx('samePrice') ? lumberPrice('2x4x8') : 0;
       M106 += add('furnishings', '2x4x8', C101, 'ea.', p101, p101 * C101, {
         group,
-        notes: fx('samePrice') ? 'No price in this row of the spreadsheet; uses its 2x4x8 price.' : 'No price in the sheet (counted as $0).',
+        notes: fx('samePrice') ? t('note.armsSamePrice') : t('note.noPriceSheet'),
         link: LUMBER['2x4x8']!.link,
         material: 'lumber:2x4x8',
         cells: { qty: 'J101' },
       });
-      M106 += add('furnishings', '2.5" wood screws', C102, 'ea.', P.woodScrew, P.woodScrew.price * C102, { group, material: 'wood-screw', cells: { qty: 'J102', price: 'L102', total: 'M102' } });
-      M106 += add('furnishings', 'Backrest brackets', C103, 'ea.', P.backrestBracket, P.backrestBracket.price * C103, { group, material: 'backrest-bracket', cells: { qty: 'J103', price: 'L103', total: 'M103' } });
-      M106 += add('furnishings', '1/4" x 1 1/2" lag screws', C104, 'ea.', P.lagScrew, P.lagScrew.price * C104, { group, material: 'lag-screw', cells: { qty: 'J104', price: 'L104', total: 'M104' } });
-      M106 += add('furnishings', '1/4" x 2 1/2" exterior carriage bolts + nuts + washers', C105, 'ea.', P.carriageBolt, P.carriageBolt.price * C105, {
+      M106 += add('furnishings', t('line.woodScrews'), C102, 'ea.', P.woodScrew, P.woodScrew.price * C102, { group, material: 'wood-screw', cells: { qty: 'J102', price: 'L102', total: 'M102' } });
+      M106 += add('furnishings', t('line.backrestBrackets'), C103, 'ea.', P.backrestBracket, P.backrestBracket.price * C103, { group, material: 'backrest-bracket', cells: { qty: 'J103', price: 'L103', total: 'M103' } });
+      M106 += add('furnishings', t('line.lagScrews'), C104, 'ea.', P.lagScrew, P.lagScrew.price * C104, { group, material: 'lag-screw', cells: { qty: 'J104', price: 'L104', total: 'M104' } });
+      M106 += add('furnishings', t('line.carriageBolts'), C105, 'ea.', P.carriageBolt, P.carriageBolt.price * C105, {
         group,
         material: 'carriage-bolt',
         cells: { qty: 'J105', price: 'L105', total: 'M105' },
@@ -973,7 +974,7 @@ function compute(answers: CostInputs, fixes: ReadonlySet<FixId>, userPrices: Rec
     // Bench with back (rows 119–127); lumber counts from MATERIAL CALCULATIONS J75:J79, screws K80
     {
       const b = i.benchesWithBack;
-      const group = "4' bench with back";
+      const group = t('piece.sheetBenchBack');
       const parts: [string, number, string][] = [
         ['4x4x6', 1 * b, 'C120'],
         ['2x10x8', whole(0.5 * b), 'C121'],
@@ -987,43 +988,43 @@ function compute(answers: CostInputs, fixes: ReadonlySet<FixId>, userPrices: Rec
       }
       const C125 = 36 * b;
       const C126 = 2 * b;
-      M127 += add('furnishings', '2.5" wood screws', C125, 'ea.', P.woodScrew, P.woodScrew.price * C125, { group, material: 'wood-screw', cells: { qty: 'C125', price: 'L125', total: 'M125' } });
-      M127 += add('furnishings', 'Backrest brackets', C126, 'ea.', P.backrestBracket, P.backrestBracket.price * C126, { group, material: 'backrest-bracket', cells: { qty: 'C126', price: 'L126', total: 'M126' } });
+      M127 += add('furnishings', t('line.woodScrews'), C125, 'ea.', P.woodScrew, P.woodScrew.price * C125, { group, material: 'wood-screw', cells: { qty: 'C125', price: 'L125', total: 'M125' } });
+      M127 += add('furnishings', t('line.backrestBrackets'), C126, 'ea.', P.backrestBracket, P.backrestBracket.price * C126, { group, material: 'backrest-bracket', cells: { qty: 'C126', price: 'L126', total: 'M126' } });
     }
 
     // Bench without back (rows 135–138): only the 2x4s and screws are listed
     {
       const b = i.benchesNoBack;
-      const group = "4' bench without back";
+      const group = t('piece.bench4');
       const C136 = 3 * b;
       const C137 = 34 * b;
       M138 += add('furnishings', '2x4x8', C136, 'ea.', lumber('2x4x8'), lumberPrice('2x4x8') * C136, {
         group,
         ...wood('2x4x8'),
-        notes: 'The sheet lists only the 2x4s and screws for this bench (no legs or seat boards).',
+        notes: t('note.benchNoBack'),
         cells: { qty: 'C136', price: 'L136', total: 'M136' },
       });
-      M138 += add('furnishings', '2.5" wood screws', C137, 'ea.', P.woodScrew, P.woodScrew.price * C137, { group, material: 'wood-screw', cells: { qty: 'C137', price: 'L137', total: 'M137' } });
+      M138 += add('furnishings', t('line.woodScrews'), C137, 'ea.', P.woodScrew, P.woodScrew.price * C137, { group, material: 'wood-screw', cells: { qty: 'C137', price: 'L137', total: 'M137' } });
     }
 
     // 2' table = "square wood table" (rows 149–152)
     {
       const b = i.squareTables;
-      const group = "2' table";
+      const group = t('piece.table2');
       const C150 = 6 * b;
       const C151 = 62 * b;
       M152 += add('furnishings', '2x4x8', C150, 'ea.', lumber('2x4x8'), lumberPrice('2x4x8') * C150, { group, ...wood('2x4x8'), cells: { qty: 'C150', price: 'L150', total: 'M150' } });
-      M152 += add('furnishings', '2.5" wood screws', C151, 'ea.', P.woodScrew, P.woodScrew.price * C151, { group, material: 'wood-screw', cells: { qty: 'C151', price: 'L151', total: 'M151' } });
+      M152 += add('furnishings', t('line.woodScrews'), C151, 'ea.', P.woodScrew, P.woodScrew.price * C151, { group, material: 'wood-screw', cells: { qty: 'C151', price: 'L151', total: 'M151' } });
     }
 
     // Stools (rows 162–165) — "TO BE UPDATED DESIGN AND MATERIALS"
     {
       const b = i.stools;
-      const group = 'Stool';
+      const group = t('piece.stool');
       const C163 = roundUp(3.5 * b);
       const C164 = 80 * b;
       M165 += add('furnishings', '2x4x8', C163, 'ea.', lumber('2x4x8'), lumberPrice('2x4x8') * C163, { group, ...wood('2x4x8'), cells: { qty: 'C163', price: 'L163', total: 'M163' } });
-      M165 += add('furnishings', '2.5" wood screws', C164, 'ea.', P.woodScrew, P.woodScrew.price * C164, { group, material: 'wood-screw', cells: { qty: 'C164', price: 'L164', total: 'M164' } });
+      M165 += add('furnishings', t('line.woodScrews'), C164, 'ea.', P.woodScrew, P.woodScrew.price * C164, { group, material: 'wood-screw', cells: { qty: 'C164', price: 'L164', total: 'M164' } });
     }
   }
 
@@ -1032,9 +1033,9 @@ function compute(answers: CostInputs, fixes: ReadonlySet<FixId>, userPrices: Rec
   let sheetM182 = 0;
   {
     const b = i.gabionTables;
-    const group = 'Wood-topped gabion table';
+    const group = t('piece.gabionTable');
     const counted = fx('gabionTables');
-    const notCounted = counted ? undefined : 'Not in the spreadsheet’s total.';
+    const notCounted = counted ? undefined : t('note.notInSheetTotal');
     const C176 = 1 * b;
     const C177 = roundUp(4 * b);
     const C178 = roundUp(1 * b);
@@ -1043,29 +1044,24 @@ function compute(answers: CostInputs, fixes: ReadonlySet<FixId>, userPrices: Rec
     const p180 = fx('samePrice') ? lumberPrice('2x4x8') : 0;
     sheetM182 = P.weldedMesh.price * C176 + P.stoneFill.price * J181;
     const o = { group, inTotal: counted };
-    const cut = counted ? 'Cut from the mesh (included in its price).' : 'Cut from the mesh; no price.';
-    M182 += add('furnishings', '2"x2" .16-.19 dia welded wire mesh', C176, 'EA', P.weldedMesh, P.weldedMesh.price * C176, {
+    const cut = counted ? t('note.cutFromMesh') : t('note.cutFromMeshNoPrice');
+    M182 += add('furnishings', t('line.weldedMesh'), C176, 'EA', P.weldedMesh, P.weldedMesh.price * C176, {
       ...o,
       notes: notCounted,
       material: 'welded-mesh',
       cells: { qty: 'J176', price: 'L176', total: 'M176' },
     });
-    M182 += add('furnishings', 'Side panels 22"x24"', C177, 'EA', 0, 0, { ...o, notes: cut, material: 'panel:22x24', cells: { qty: 'J177' } });
-    M182 += add('furnishings', 'Bottom panel 22"x22"', C178, 'EA', 0, 0, { ...o, notes: cut, material: 'panel:22x22', cells: { qty: 'J178' } });
+    M182 += add('furnishings', t('line.sidePanels'), C177, 'EA', 0, 0, { ...o, notes: cut, material: 'panel:22x24', cells: { qty: 'J177' } });
+    M182 += add('furnishings', t('line.bottomPanel'), C178, 'EA', 0, 0, { ...o, notes: cut, material: 'panel:22x22', cells: { qty: 'J178' } });
     M182 += add('furnishings', fx('samePrice') ? '2x4x8' : '2x4', C180, 'EA', p180, p180 * C180, {
       ...o,
-      notes: fx('samePrice')
-        ? 'The sheet lists “2x4” with a stray $109 it never uses; its cut list calls for 2x4x8s, priced at its 2x4x8 price.'
-        : 'The sheet lists $109 here but does not multiply it out.',
+      notes: fx('samePrice') ? t('note.gabionTable2x4', { price: price(109) }) : t('note.gabionTable2x4Sheet', { price: price(109) }),
       link: fx('samePrice') ? LUMBER['2x4x8']!.link : undefined,
       material: 'lumber:2x4x8',
       cells: { qty: 'J180' },
     });
-    M182 += add('furnishings', '1-3" stone fill', J181, 'TONS', P.stoneFill, P.stoneFill.price * J181, { ...o, notes: notCounted, material: 'stone-fill', cells: { qty: 'J181', price: 'L181', total: 'M181' } });
-    if (b > 0 && !counted)
-      warnings.push(
-        `Wood-topped gabion tables (${fmtN(b)}): the spreadsheet works out ${money(sheetM182)} for them, but its summary points at an empty cell, so they are not in the total.`,
-      );
+    M182 += add('furnishings', t('line.stoneFill'), J181, 'TONS', P.stoneFill, P.stoneFill.price * J181, { ...o, notes: notCounted, material: 'stone-fill', cells: { qty: 'J181', price: 'L181', total: 'M181' } });
+    if (b > 0 && !counted) warnings.push(t('warn.gabionTables', { count: b, cost: money(sheetM182) }));
   }
 
   let M210 = 0;
@@ -1074,24 +1070,24 @@ function compute(answers: CostInputs, fixes: ReadonlySet<FixId>, userPrices: Rec
     const sq = i.stageSquares;
     const decks = Math.floor(sq / STAGE_GUIDE_SQUARES + 1e-9);
     const left = Math.round((sq - decks * STAGE_GUIDE_SQUARES) * 100) / 100;
-    M210 += fromGuide('stage', decks, decks > 0 && left > 0 ? `${fmtN(decks * STAGE_GUIDE_SQUARES)} of your ${fmtN(sq)} squares of stage.` : undefined);
+    M210 += fromGuide('stage', decks, decks > 0 && left > 0 ? t('note.stageOfYours', { used: decks * STAGE_GUIDE_SQUARES, count: sq }) : undefined);
     if (left > 0) {
-      const what = `${fmtN(left)} square${left === 1 ? '' : 's'}`;
-      const why = `The Stage build guide builds a 12'x8' stage (${STAGE_GUIDE_SQUARES} squares); it has no materials list for ${what} of stage.`;
-      if (fx('priceNeeded')) M210 += add('furnishings', `Stage, ${what}`, 1, 'stage', 0, 0, { group: `Stage (${what})`, notes: why, priceId: 'stage-other' });
-      else warnings.push(`${why} They come out at $0.`);
+      const why = t('note.stageNoList', { count: left, per: bare(t, STAGE_GUIDE_SQUARES) });
+      if (fx('priceNeeded'))
+        M210 += add('furnishings', t('line.stageSquares', { count: left }), 1, 'stage', 0, 0, { group: t('piece.stageSquares', { count: left }), notes: why, priceId: 'stage-other' });
+      else warnings.push(sentences(why, t('note.comeOutZero')));
     }
     guideOnly += fromGuide('shade', i.shadeStructures);
   } else {
     // Stage (rows 186–210): COUNTIF(length, 8|12|16) picks one of three cut lists.
     {
       const len = i.stageSquares * 4; // C186
-      const group = `Stage (${fmtN(i.stageSquares)} square${i.stageSquares === 1 ? '' : 's'}, ${fmtN(len)}' long)`;
+      const group = t('piece.stageSheet', { count: i.stageSquares, length: len });
       const s8 = len === 8 ? 1 : 0;
       const s12 = len === 12 ? 1 : 0;
       const s16 = len === 16 ? 1 : 0;
       const own = fx('stageCutLists');
-      const zeroG = 'The sheet looks this price up in the delivery-time column, so it is always $0.';
+      const zeroG = t('note.stageZeroPrice');
       /** 16' lumber: the sheet's price lookup reads column G (always 0); fixed, it reads the order list's prices. */
       const p16 = (size: string): Price => (own ? lumber(size) : { ...lumber(size), price: 0 });
       type Row = [item: string, qty: number, price: Price, row: string, extra?: Parameters<typeof add>[6]];
@@ -1100,39 +1096,36 @@ function compute(answers: CostInputs, fixes: ReadonlySet<FixId>, userPrices: Rec
         ['2x4x8', 3 * s8, lumber('2x4x8'), '189', wood('2x4x8')],
         ['4x4x10', 1 * s8, lumber('4x4x10'), '190', wood('4x4x10')],
         // 8' screws: (MC E123 + E126) × 4 with E123 blank; the stage's own top + long sides: (17 + 6) × 4
-        ['2.5" wood screws', (own ? 92 : 24) * s8, P.woodScrew, '191', { material: 'wood-screw', notes: own && s8 ? '(17 top boards + 6 long-side boards) × 4.' : undefined }],
+        [t('line.woodScrews'), (own ? 92 : 24) * s8, P.woodScrew, '191', { material: 'wood-screw', notes: own && s8 ? t('note.stage8Screws') : undefined }],
         ['1x6x12', 16 * s12, lumber('1x6x12'), '194', wood('1x6x12')],
         ['2x4x12', 3 * s12, lumber('2x4x12'), '195', wood('2x4x12')],
         ['4x4x12', 1 * s12, lumber('4x4x12'), '196', wood('4x4x12')],
         ['2x4x8', 1 * s12, lumber('2x4x8'), '197', wood('2x4x8')],
-        ['2.5" wood screws', 34 * s12, P.woodScrew, '198', { material: 'wood-screw' }],
-        ['Corner braces', 16 * s12, P.cornerBrace, '199', { material: 'corner-brace' }],
+        [t('line.woodScrews'), 34 * s12, P.woodScrew, '198', { material: 'wood-screw' }],
+        [t('line.cornerBraces'), 16 * s12, P.cornerBrace, '199', { material: 'corner-brace' }],
         // 16': counts from MC L105:L108 (the sheet reads J91:J94, the bench rows), prices from the order list (the sheet reads its column G)
-        ['1x6x16', (own ? 6 : 1) * s16, p16('1x6x16'), '203', own ? wood('1x6x16') : { material: 'lumber:1x6x16', notes: `${zeroG} The cut list (MATERIAL CALCULATIONS) calls for 6 boards; the sheet reads 1 from the wrong cell.` }],
+        ['1x6x16', (own ? 6 : 1) * s16, p16('1x6x16'), '203', own ? wood('1x6x16') : { material: 'lumber:1x6x16', notes: sentences(zeroG, t('note.stage16Boards')) }],
         ['2x4x16', 3 * s16, p16('2x4x16'), '204', own ? wood('2x4x16') : { material: 'lumber:2x4x16', notes: zeroG }],
         ['4x4x8', (own ? 2 : 1) * s16, p16('4x4x8'), '205', own ? wood('4x4x8') : { material: 'lumber:4x4x8', notes: zeroG }],
         ['2x4x10', (own ? 1 : 0.5) * s16, p16('2x4x10'), '206', own ? wood('2x4x10') : { material: 'lumber:2x4x10', notes: zeroG }],
         // 16' screws: the sheet adds rows of the 12' stage ((E109 + E111 + E112) × 4 = 124); its own top + long sides: (35 + 6) × 4
-        ['2.5" wood screws', (own ? 164 : 124) * s16, P.woodScrew, '207', { material: 'wood-screw', notes: own && s16 ? '(35 top boards + 6 long-side boards) × 4.' : undefined }],
+        [t('line.woodScrews'), (own ? 164 : 124) * s16, P.woodScrew, '207', { material: 'wood-screw', notes: own && s16 ? t('note.stage16Screws') : undefined }],
         // 16' corner braces: COUNTIF(C187, 15) tests an empty cell; fixed: 8 × 3 = 24 when the stage is 16'
-        ['Corner braces', (own ? 24 : 0) * s16, P.cornerBrace, '208', { material: 'corner-brace' }],
+        [t('line.cornerBraces'), (own ? 24 : 0) * s16, P.cornerBrace, '208', { material: 'corner-brace' }],
       ];
       for (const [item, qty, price, row, extra] of rows) {
         M210 += add('furnishings', item, qty, 'ea.', price, price.price * qty, { group, ...extra, cells: { qty: `C${row}`, price: `L${row}`, total: `M${row}` } });
       }
       if (i.stageSquares > 0 && !(s8 || s12 || s16)) {
         if (fx('priceNeeded'))
-          M210 += add('furnishings', `Stage, ${fmtN(i.stageSquares)} square${i.stageSquares === 1 ? '' : 's'}`, 1, 'stage', 0, 0, {
+          M210 += add('furnishings', t('line.stageSquares', { count: i.stageSquares }), 1, 'stage', 0, 0, {
             group,
-            notes: "The spreadsheet has cut lists only for stages of 2, 3 or 4 squares in a row (8', 12' or 16').",
+            notes: t('note.stageSizes'),
             priceId: 'stage-other',
           });
-        else
-          warnings.push(
-            `Stage: the spreadsheet only prices stages of 2, 3 or 4 squares in a row (8', 12' or 16' long); ${fmtN(i.stageSquares)} square${i.stageSquares === 1 ? '' : 's'} come out at $0.`,
-          );
+        else warnings.push(t('warn.stageSizes', { count: i.stageSquares }));
       }
-      if (s16 && !own) warnings.push("16' stage: the spreadsheet has no lumber prices for it (only the screws are counted).");
+      if (s16 && !own) warnings.push(t('warn.stage16'));
     }
   }
 
@@ -1140,15 +1133,16 @@ function compute(answers: CostInputs, fixes: ReadonlySet<FixId>, userPrices: Rec
   let M226 = 0;
   {
     const b = i.trellises;
-    const group = '12x8 trellis';
+    const group = t('piece.trellis');
     const C222 = roundUp(18 * b);
     const C223 = roundUp(27 * b);
     const C224 = roundUp(200 * b);
     const M222 = add('furnishings', '2x4x8', C222, 'ea.', lumber('2x4x8'), lumberPrice('2x4x8') * C222, { group, ...wood('2x4x8'), cells: { qty: 'C222', price: 'L222', total: 'M222' } });
     const M223 = add('furnishings', '2x4x12', C223, 'ea.', lumber('2x4x12'), lumberPrice('2x4x12') * C223, { group, ...wood('2x4x12'), cells: { qty: 'C223', price: 'L223', total: 'M223' } });
-    const M224 = add('furnishings', '2.5" wood screws', C224, 'ea.', P.woodScrew, P.woodScrew.price * C224, { group, material: 'wood-screw', cells: { qty: 'C224', price: 'L224', total: 'M224' } });
+    const M224 = add('furnishings', t('line.woodScrews'), C224, 'ea.', P.woodScrew, P.woodScrew.price * C224, { group, material: 'wood-screw', cells: { qty: 'C224', price: 'L224', total: 'M224' } });
     const base = M222 + M223 + M224;
-    const M225 = b > 0 ? add('furnishings', 'Plus 20%', 0.2, '', base, base * 0.2, { group, notes: 'The sheet adds 20% to the trellis (unlabelled).', cells: { total: 'M225' } }) : 0;
+    const M225 =
+      b > 0 ? add('furnishings', t('line.plusPercent', { percent: percent(t, 0.2) }), 0.2, '', base, base * 0.2, { group, notes: t('note.trellis20'), cells: { total: 'M225' } }) : 0;
     M226 = base + M225;
   }
 
@@ -1156,84 +1150,74 @@ function compute(answers: CostInputs, fixes: ReadonlySet<FixId>, userPrices: Rec
   const F80 = M165 + M152 + M127 + M138 + M106 + M210 + M226 + (M97 ?? 0) + (fx('gabionTables') ? M182 : 0) + guideOnly;
 
   // ---- ADDITIONAL FURNISHINGS ----
-  const M233 = add('additional', 'Long tables (materials)', i.longTables, 'EA', P.longTable, P.longTable.price * i.longTables, { material: 'long-table', cells: { qty: 'J233', price: 'L233', total: 'M233' } });
-  const M240 = add('additional', 'Compost bins', i.compostBins, 'EA', P.compostChickenWire, P.compostChickenWire.price * i.compostBins, {
-    notes: 'The sheet prices only the chicken wire; boards, posts, gravel, screws and staples are listed without prices.',
+  const M233 = add('additional', t('line.longTables'), i.longTables, 'EA', P.longTable, P.longTable.price * i.longTables, { material: 'long-table', cells: { qty: 'J233', price: 'L233', total: 'M233' } });
+  const M240 = add('additional', t('line.compostBins'), i.compostBins, 'EA', P.compostChickenWire, P.compostChickenWire.price * i.compostBins, {
+    notes: t('note.compost'),
     material: 'compost-bin',
     cells: { qty: 'J240', price: 'L240', total: 'M240' },
   });
   let M260 = 0;
-  M260 += add('additional', 'Keyhole gardens, large', i.keyholeGardensLarge, 'EA', P.keyholeLarge, P.keyholeLarge.price * i.keyholeGardensLarge, { material: 'keyhole-large', cells: { qty: 'J256', price: 'L256', total: 'M256' } });
-  M260 += add('additional', 'Keyhole gardens, medium', i.keyholeGardensMedium, 'EA', P.keyholeMedium, P.keyholeMedium.price * i.keyholeGardensMedium, { material: 'keyhole-medium', cells: { qty: 'J257', price: 'L257', total: 'M257' } });
-  M260 += add('additional', 'Keyhole gardens, small', i.keyholeGardensSmall, 'EA', P.keyholeSmall, P.keyholeSmall.price * i.keyholeGardensSmall, { material: 'keyhole-small', cells: { qty: 'J258', price: 'L258', total: 'M258' } });
+  M260 += add('additional', t('line.keyholeLarge'), i.keyholeGardensLarge, 'EA', P.keyholeLarge, P.keyholeLarge.price * i.keyholeGardensLarge, { material: 'keyhole-large', cells: { qty: 'J256', price: 'L256', total: 'M256' } });
+  M260 += add('additional', t('line.keyholeMedium'), i.keyholeGardensMedium, 'EA', P.keyholeMedium, P.keyholeMedium.price * i.keyholeGardensMedium, { material: 'keyhole-medium', cells: { qty: 'J257', price: 'L257', total: 'M257' } });
+  M260 += add('additional', t('line.keyholeSmall'), i.keyholeGardensSmall, 'EA', P.keyholeSmall, P.keyholeSmall.price * i.keyholeGardensSmall, { material: 'keyhole-small', cells: { qty: 'J258', price: 'L258', total: 'M258' } });
   const F97 = M260 + M240 + M233;
 
   // ---- OFF THE SHELF ----
   let M266 = 0;
-  M266 += add('offTheShelf', '4x4 shed (1 square)', i.sheds4x4, 'EA', P.shed4x4, P.shed4x4.price * i.sheds4x4, { material: 'shed-4x4', cells: { qty: 'J264', price: 'L264', total: 'M264' } });
-  M266 += add('offTheShelf', '4x8 shed (2 squares)', i.sheds4x8, 'EA', P.shed4x8, P.shed4x8.price * i.sheds4x8, { material: 'shed-4x8', cells: { qty: 'J265', price: 'L265', total: 'M265' } });
+  M266 += add('offTheShelf', t('line.shed4x4'), i.sheds4x4, 'EA', P.shed4x4, P.shed4x4.price * i.sheds4x4, { material: 'shed-4x4', cells: { qty: 'J264', price: 'L264', total: 'M264' } });
+  M266 += add('offTheShelf', t('line.shed4x8'), i.sheds4x8, 'EA', P.shed4x8, P.shed4x8.price * i.sheds4x8, { material: 'shed-4x8', cells: { qty: 'J265', price: 'L265', total: 'M265' } });
   let F109 = 0; // a fixed 0 in the sheet
   if (fx('priceNeeded')) {
-    const notes = 'No price in the spreadsheet.';
-    F109 += add('offTheShelf', "Cisterns, 1 square (4'x4')", i.cisterns4x4, 'EA', 0, 0, { notes, priceId: 'cistern-4x4', material: 'cistern-4x4' });
-    F109 += add('offTheShelf', "Cisterns, 2 squares (4'x8')", i.cisterns4x8, 'EA', 0, 0, { notes, priceId: 'cistern-4x8', material: 'cistern-4x8' });
+    const notes = t('note.noPrice');
+    F109 += add('offTheShelf', t('line.cistern4x4'), i.cisterns4x4, 'EA', 0, 0, { notes, priceId: 'cistern-4x4', material: 'cistern-4x4' });
+    F109 += add('offTheShelf', t('line.cistern4x8'), i.cisterns4x8, 'EA', 0, 0, { notes, priceId: 'cistern-4x8', material: 'cistern-4x8' });
   } else {
-    add('offTheShelf', 'Cisterns', i.cisterns4x4 + i.cisterns4x8, 'EA', 0, 0, { notes: 'No price in the sheet (its subtotal is a fixed $0).', cells: { total: 'IH!F109' } });
-    if (i.cisterns4x4 + i.cisterns4x8 > 0) warnings.push('Cisterns: the spreadsheet has no price for them, so they add $0.');
+    add('offTheShelf', t('line.cisterns'), i.cisterns4x4 + i.cisterns4x8, 'EA', 0, 0, { notes: t('note.cisternsSheet'), cells: { total: 'IH!F109' } });
+    if (i.cisterns4x4 + i.cisterns4x8 > 0) warnings.push(t('warn.cisterns'));
   }
-  const M268 = add('offTheShelf', 'Rain barrels', i.rainBarrels, 'EA', P.rainBarrel, P.rainBarrel.price * i.rainBarrels, { notes: 'FREE!', material: 'rain-barrel', cells: { total: 'M268' } });
+  const M268 = add('offTheShelf', t('line.rainBarrels'), i.rainBarrels, 'EA', P.rainBarrel, P.rainBarrel.price * i.rainBarrels, { notes: t('note.free'), material: 'rain-barrel', cells: { total: 'M268' } });
   const p115 = fx('samePrice') ? P.cafeSet.price : 0; // the sheet's F115 is a fixed 0
-  const F115 = add('offTheShelf', 'Cafe tables and chairs', i.cafeTableSets, 'EA', fx('samePrice') ? P.cafeSet : 0, p115 * i.cafeTableSets, {
-    notes: fx('samePrice')
-      ? 'A fixed $0 in this part of the spreadsheet; priced like its optional “Cafe tables + chairs”. Don’t count the same tables in both questions.'
-      : 'No price here (a fixed $0); “Cafe tables + chairs” under optional furnishings is priced.',
+  const F115 = add('offTheShelf', t('line.cafeTables'), i.cafeTableSets, 'EA', fx('samePrice') ? P.cafeSet : 0, p115 * i.cafeTableSets, {
+    notes: fx('samePrice') ? t('note.cafeSamePrice') : t('note.cafeSheet'),
     material: 'cafe-set',
     cells: fx('samePrice') ? undefined : { total: 'IH!F115' },
   });
-  if (!fx('samePrice') && i.cafeTableSets > 0)
-    warnings.push('Cafe tables and chairs (off-the-shelf): this question is a fixed $0 in the spreadsheet; enter them under optional “Cafe tables + chairs” to price them.');
+  if (!fx('samePrice') && i.cafeTableSets > 0) warnings.push(t('warn.cafe'));
   const C273 = whole(i.coldFrameSquares / 2);
-  const M273 = add('offTheShelf', '2x8 cold frames', C273, 'EA', P.coldFrame, P.coldFrame.price * C273, {
-    notes: fx('wholeUnits') ? 'One cold frame per 2 squares, rounded up.' : 'One cold frame per 2 squares (not rounded).',
+  const M273 = add('offTheShelf', t('line.coldFrames'), C273, 'EA', P.coldFrame, P.coldFrame.price * C273, {
+    notes: fx('wholeUnits') ? t('note.coldFrames') : t('note.coldFramesSheet'),
     material: 'cold-frame',
     cells: { qty: 'J273', price: 'L273', total: 'M273' },
   });
-  if (!fx('wholeUnits') && i.coldFrameSquares % 2 !== 0)
-    warnings.push('Cold frames: the spreadsheet prices one 2x8 cold frame per 2 squares, so an odd number of squares buys half a cold frame.');
+  if (!fx('wholeUnits') && i.coldFrameSquares % 2 !== 0) warnings.push(t('warn.coldFrames'));
   const F121 = F115 + M268 + F109 + M266 + M273;
 
   // ---- OFF THE SHELF OPTIONAL ----
-  const fountain = 'Fountain with solar pump';
-  const M276 = add('optional', 'Cafe tables + chairs', i.optCafeTableSets, 'EA', P.cafeSet, P.cafeSet.price * i.optCafeTableSets, { material: 'cafe-set', cells: { qty: 'J276', price: 'L276', total: 'M276' } });
-  const M279 = add('optional', 'Solar bubbler', i.fountains, 'EA', P.bubbler, P.bubbler.price * i.fountains, { group: fountain, material: 'bubbler', cells: { qty: 'J279', price: 'L279', total: 'M279' } });
-  const M280 = add('optional', 'Bird bath', i.fountains, 'EA', P.birdBath, P.birdBath.price * i.fountains, { group: fountain, material: 'bird-bath', cells: { qty: 'J280', price: 'L280', total: 'M280' } });
+  const fountain = t('piece.fountain');
+  const M276 = add('optional', t('line.optCafe'), i.optCafeTableSets, 'EA', P.cafeSet, P.cafeSet.price * i.optCafeTableSets, { material: 'cafe-set', cells: { qty: 'J276', price: 'L276', total: 'M276' } });
+  const M279 = add('optional', t('line.bubbler'), i.fountains, 'EA', P.bubbler, P.bubbler.price * i.fountains, { group: fountain, material: 'bubbler', cells: { qty: 'J279', price: 'L279', total: 'M279' } });
+  const M280 = add('optional', t('line.birdBath'), i.fountains, 'EA', P.birdBath, P.birdBath.price * i.fountains, { group: fountain, material: 'bird-bath', cells: { qty: 'J280', price: 'L280', total: 'M280' } });
   const M281 = M279 + M280;
-  const M283 = add('optional', 'Bird bath', i.birdBaths, 'EA', P.birdBath, i.birdBaths * P.birdBath.price, { material: 'bird-bath', cells: { qty: 'J282', price: 'L282', total: 'M283' } });
-  const M285 = add('optional', 'Bird house', i.birdHouses, 'EA', P.birdHouse, P.birdHouse.price * i.birdHouses, { material: 'bird-house', cells: { qty: 'J284', price: 'L284', total: 'M285' } });
-  const M287 = add('optional', 'Event tent', i.eventTents, 'EA', P.eventTent, P.eventTent.price * i.eventTents, { material: 'event-tent', cells: { qty: 'J286', price: 'L286', total: 'M287' } });
-  const M289 = add('optional', 'Adirondack chair', i.adirondackChairs, 'EA', P.adirondackChair, P.adirondackChair.price * i.adirondackChairs, { material: 'adirondack-chair', cells: { qty: 'J288', price: 'L288', total: 'M289' } });
-  const M291 = add('optional', 'Free-standing hammock', i.hammocks, 'EA', P.hammock, P.hammock.price * i.hammocks, { material: 'hammock', cells: { qty: 'J290', price: 'L290', total: 'M291' } });
+  const M283 = add('optional', t('line.birdBath'), i.birdBaths, 'EA', P.birdBath, i.birdBaths * P.birdBath.price, { material: 'bird-bath', cells: { qty: 'J282', price: 'L282', total: 'M283' } });
+  const M285 = add('optional', t('line.birdHouse'), i.birdHouses, 'EA', P.birdHouse, P.birdHouse.price * i.birdHouses, { material: 'bird-house', cells: { qty: 'J284', price: 'L284', total: 'M285' } });
+  const M287 = add('optional', t('line.eventTent'), i.eventTents, 'EA', P.eventTent, P.eventTent.price * i.eventTents, { material: 'event-tent', cells: { qty: 'J286', price: 'L286', total: 'M287' } });
+  const M289 = add('optional', t('line.adirondack'), i.adirondackChairs, 'EA', P.adirondackChair, P.adirondackChair.price * i.adirondackChairs, { material: 'adirondack-chair', cells: { qty: 'J288', price: 'L288', total: 'M289' } });
+  const M291 = add('optional', t('line.hammock'), i.hammocks, 'EA', P.hammock, P.hammock.price * i.hammocks, { material: 'hammock', cells: { qty: 'J290', price: 'L290', total: 'M291' } });
   const C292 = fx('porchSwings') ? i.porchSwings : i.hammocks; // the sheet reads D132 (hammocks), not D133
-  const M293 = add('optional', 'Porch swing', C292, 'EA', P.porchSwing, P.porchSwing.price * C292, {
-    notes: fx('porchSwings')
-      ? undefined
-      : i.porchSwings !== i.hammocks
-        ? `The sheet uses the hammock count here, not your ${fmtN(i.porchSwings)} porch swing${i.porchSwings === 1 ? '' : 's'}.`
-        : 'The sheet uses the hammock count here.',
+  const M293 = add('optional', t('line.porchSwing'), C292, 'EA', P.porchSwing, P.porchSwing.price * C292, {
+    notes: fx('porchSwings') ? undefined : i.porchSwings !== i.hammocks ? t('note.swingHammocks', { count: i.porchSwings }) : t('note.swingHammocksSame'),
     material: 'porch-swing',
     cells: { qty: 'J292', price: 'L292', total: 'M293' },
   });
-  const M295 = add('optional', 'Trash can', i.trashCans, 'EA', P.trashCan, P.trashCan.price * i.trashCans, { material: 'trash-can', cells: { qty: 'C294', price: 'L294', total: 'M295' } });
+  const M295 = add('optional', t('line.trashCan'), i.trashCans, 'EA', P.trashCan, P.trashCan.price * i.trashCans, { material: 'trash-can', cells: { qty: 'C294', price: 'L294', total: 'M295' } });
   const J296 = roundUp(i.solarLights / 16);
-  const M297 = add('optional', 'Solar lights', J296, 'pack of 16', P.solarLightsPack, P.solarLightsPack.price * J296, {
-    notes: `${fmtN(i.solarLights)} light${i.solarLights === 1 ? '' : 's'}, bought in packs of 16.`,
+  const M297 = add('optional', t('line.solarLights'), J296, 'pack of 16', P.solarLightsPack, P.solarLightsPack.price * J296, {
+    notes: t('note.solarLights', { count: i.solarLights }),
     material: 'solar-lights',
     cells: { qty: 'J296', price: 'L296', total: 'M297' },
   });
   if (!fx('porchSwings') && i.porchSwings !== i.hammocks && (i.porchSwings > 0 || i.hammocks > 0))
-    warnings.push(
-      `Porch swings: the spreadsheet prices them with the hammock count (${fmtN(i.hammocks)}) instead of the porch-swing count (${fmtN(i.porchSwings)}).`,
-    );
+    warnings.push(t('warn.porchSwings', { hammocks: i.hammocks, swings: i.porchSwings }));
   const F136 = M276 + M281 + M283 + M285 + M287 + M289 + M291 + M293 + M295 + M297;
 
   // ---- totals ----
@@ -1242,26 +1226,19 @@ function compute(answers: CostInputs, fixes: ReadonlySet<FixId>, userPrices: Rec
   const F144 = cents(F142 * CONTINGENCY.contingency) + (fx('toolRentalOnce') ? 0 : F143);
   const F145 = cents(i.otherCosts);
   const F146 = F142 + F143 + F144 + F145;
-  add('contingency', 'Tool rental contingency', CONTINGENCY.toolRental, '', F142, F143, { keepZero: true, cells: { total: 'IH!F143' } });
-  add('contingency', '20% contingency', CONTINGENCY.contingency, '', F142, cents(F142 * CONTINGENCY.contingency), { keepZero: true });
+  add('contingency', t('line.toolRental'), CONTINGENCY.toolRental, '', F142, F143, { keepZero: true, cells: { total: 'IH!F143' } });
+  add('contingency', t('line.contingency', { percent: percent(t, CONTINGENCY.contingency) }), CONTINGENCY.contingency, '', F142, cents(F142 * CONTINGENCY.contingency), { keepZero: true });
   if (!fx('toolRentalOnce'))
-    add('contingency', 'Tool rental, again', 1, '', F143, F143, {
+    add('contingency', t('line.toolRentalAgain'), 1, '', F143, F143, {
       keepZero: true,
-      notes: 'The sheet’s 20% contingency line (F144) also adds the tool rental, so it is counted twice.',
+      notes: t('note.toolRentalAgain'),
     });
-  if (F145 !== 0) add('contingency', 'Other costs', 1, '', F145, F145, { cells: { total: 'IH!F145' } });
+  if (F145 !== 0) add('contingency', t('line.otherCosts'), 1, '', F145, F145, { cells: { total: 'IH!F145' } });
 
-  if (!fx('playAreaOnce') && i.naturePlaySquares > 0) warnings.push('Nature play: the spreadsheet’s base-design total counts the play-area mulch twice.');
-  if (!fx('edgesOnce') && M87 > 0)
-    warnings.push('Outer edges: the spreadsheet’s base-design total counts the outer-edge lumber twice (its “outer edges” and “raised beds” subtotals are the same cell).');
-  if (i.raisedBedWoodEdgeFt > 0)
-    warnings.push(
-      mode === 'sheet'
-        ? 'Raised beds: the spreadsheet asks for the feet of wood edges but does not use the number.'
-        : 'Raised beds: the spreadsheet has no calculation for raised-bed wood edges, so the feet you entered are not priced.',
-    );
-  if (!fx('priceNeeded') && (i.benchesWithBackAndArms > 0 || i.benchesWithBack > 0))
-    warnings.push('Benches with backs: some of their lumber has no price in the spreadsheet and counts as $0 — check those lines.');
+  if (!fx('playAreaOnce') && i.naturePlaySquares > 0) warnings.push(t('warn.playTwice'));
+  if (!fx('edgesOnce') && M87 > 0) warnings.push(t('warn.edgesTwice'));
+  if (i.raisedBedWoodEdgeFt > 0) warnings.push(mode === 'sheet' ? t('warn.raisedBedsSheet') : t('warn.raisedBeds'));
+  if (!fx('priceNeeded') && (i.benchesWithBackAndArms > 0 || i.benchesWithBack > 0)) warnings.push(t('warn.benchesBack'));
 
   const subtotals = Object.fromEntries(CATEGORIES.map((c) => [c.id, 0])) as Record<CategoryId, number>;
   for (const l of lines) if (l.inTotal) subtotals[l.category] += l.total;
@@ -1318,7 +1295,7 @@ function compute(answers: CostInputs, fixes: ReadonlySet<FixId>, userPrices: Rec
 
   let orderList: OrderListResult;
   if (fx('orderList')) {
-    orderList = buildMergedOrderList(lines, i);
+    orderList = buildMergedOrderList(lines, i, t);
   } else {
     const qpi: QpiQuantities = {
       J12, J13, J14, J19, J20, J26, J27, J28, J29, J30, J35, J49, J50, J67, J77: C77, J79: C79, J84: C84, J86,
@@ -1358,25 +1335,13 @@ function compute(answers: CostInputs, fixes: ReadonlySet<FixId>, userPrices: Rec
       M276, M279, M284: M285, M286: M287, M288: M289, M290: M291, M292: M293,
       plantingSubtotal: M43,
     };
-    orderList = buildOrderList(qpi, i);
+    orderList = buildOrderList(qpi, i, t);
   }
 
   return { mode, lines, subtotals, summary, total: F146, orderList, warnings, priceNeeded: [...needed.values()] };
 }
 
-const SELF_DRIVING_NOTE =
-  'A different screw from the 2.5″ wood screws used for furniture: the spreadsheet links a washer-head screw here, at $0.75 each.';
-
-// ---- formatting helpers shared with the widget ----------------------------------
-
-export function money(v: number): string {
-  return v.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-}
-
-/** Up to 2 decimals, no trailing zeros. */
-export function fmtN(v: number): string {
-  return Number.isInteger(v) ? v.toLocaleString('en-US') : v.toLocaleString('en-US', { maximumFractionDigits: 2 });
-}
+// Numbers and money are written in the reader's language by src/lib/cost/text.ts (money, bare, qtyUnit…).
 
 export { inputsFromTally } from './fromTally';
 export type { FromTally } from './fromTally';
