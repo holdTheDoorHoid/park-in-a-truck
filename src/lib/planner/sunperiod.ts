@@ -119,19 +119,23 @@ export interface SpotInput {
  * about 2,700 sun positions.
  */
 export function spotMonthly(input: SpotInput): MonthSun[] {
-  const [x, y] = input.point;
-  const grid: GridSpec = {
+  const grid = spotGrid(input);
+  return monthSamples(input.lat, input.lng).map(({ samples, days }, i) => {
+    const h = computeSunHours({ grid, buildings: input.buildings, crowns: input.crowns, samples, days });
+    const daylight = samples.reduce((s, x) => s + (x.altitudeDeg > 0.5 ? x.weight : 0), 0) / Math.max(1, days);
+    return { month: i + 1, sunHours: h[0]!, daylightHours: daylight };
+  });
+}
+
+/** A one-cell grid round the spot, standing on its ground (the spot chart and the shade calendar). */
+export function spotGrid({ point: [x, y], groundFt }: Pick<SpotInput, 'point' | 'groundFt'>): GridSpec {
+  return {
     origin: [x - 0.5, y - 0.5],
     ux: [1, 0],
     uy: [0, 1],
     cellFt: 1,
     nx: 1,
     ny: 1,
-    ...(input.groundFt ? { groundFt: new Float32Array([input.groundFt]) } : {}),
+    ...(groundFt ? { groundFt: new Float32Array([groundFt]) } : {}),
   };
-  return monthSamples(input.lat, input.lng).map(({ samples, days }, i) => {
-    const h = computeSunHours({ grid, buildings: input.buildings, crowns: input.crowns, samples, days });
-    const daylight = samples.reduce((s, x) => s + (x.altitudeDeg > 0.5 ? x.weight : 0), 0) / Math.max(1, days);
-    return { month: i + 1, sunHours: h[0]!, daylightHours: daylight };
-  });
 }

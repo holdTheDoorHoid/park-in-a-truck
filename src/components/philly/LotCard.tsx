@@ -5,62 +5,61 @@
 import type { ComponentChildren } from 'preact';
 import type { LotRecord } from '../../lib/types';
 import type { LotExtra } from '../../lib/philly/types';
-import { acquirePaths, isPublic, landBankHandles, ownerNames, OWNER_TYPE_LABEL } from '../../lib/philly/owner';
-import { landBankLine, SIDE_YARD_MEANS } from '../../lib/philly/landbank';
+import { acquirePaths, agencyName, isPublic, landBankHandles, ownerNames, ownerTypeLabel } from '../../lib/philly/owner';
+import { landBankLine, sideYardMeans } from '../../lib/philly/landbank';
 import { sizeOf } from '../../lib/philly/choose';
 import { links } from '../../lib/philly/endpoints';
-import { feet, sqft, titleCase, zoningPlain } from '../../lib/philly/plain';
+import { feet, floodText, sqft, titleCase, zoningPlain } from '../../lib/philly/plain';
+import { lotTypeReasonText, sourceLabel, warningText } from '../../lib/philly/saved';
+import { isolate, words, type PhillyKey } from '../../lib/philly/words';
+import { urlFor } from '../../i18n/url.ts';
 import LotOutline from './LotOutline';
-import { u } from '../../lib/url';
 
-const LOT_TYPE: Record<string, string> = {
-  'mid-block': 'Mid-block lot',
-  corner: 'Corner lot',
-  alley: 'Breezeway / alley',
-  unknown: 'Not sure',
+export const LOT_TYPE_KEY: Record<string, PhillyKey> = {
+  'mid-block': 'lotType.midBlock',
+  corner: 'lotType.corner',
+  alley: 'lotType.alley',
+  unknown: 'lotType.unknown',
 };
 
 export function sizeLine(lot: LotRecord): ComponentChildren {
+  const t = words();
   const g = (lot.extra as LotExtra | undefined)?.geometry;
   if (!g) {
-    return lot.frontageFt && lot.depthFt ? (
-      <>
-        {lot.frontageFt} × {lot.depthFt} ft (City records){lot.areaSqFt ? ` · ${sqft(lot.areaSqFt)}` : ''}
-      </>
-    ) : (
-      '—'
-    );
+    if (!(lot.frontageFt && lot.depthFt)) return '—';
+    const v = { frontage: String(lot.frontageFt), depth: String(lot.depthFt) };
+    return lot.areaSqFt ? t('size.recordArea', { ...v, area: sqft(lot.areaSqFt) }) : t('size.record', v);
   }
   return (
     <>
-      {feet(g.widthFt)} × {feet(g.lengthFt)} · {sqft(g.areaSqFt)}
-      {g.irregular && <small> · irregular shape (size of the rectangle around it)</small>}
+      {t('size.measured', { width: feet(g.widthFt), length: feet(g.lengthFt), area: sqft(g.areaSqFt) })}
+      {g.irregular && <small> · {t('size.irregular')}</small>}
     </>
   );
 }
 
 export function parkSizeLine(lot: LotRecord): ComponentChildren {
+  const t = words();
   const g = (lot.extra as LotExtra | undefined)?.geometry;
   if (!g) return '—';
   const size = sizeOf(g);
   if (size.tooSmall)
     return (
       <>
-        Smaller than size A — the <a href={u('park-patch/')}>Park Patch workbook</a> fits small spaces better.{' '}
-        <small>(Nearest: size {size.id})</small>
+        <span dangerouslySetInnerHTML={{ __html: t.html('park.tooSmall', { href: urlFor(t.locale)('park-patch/') }) }} />{' '}
+        <small>{t('park.nearest', { size: size.id })}</small>
       </>
     );
   if (size.tooBig)
     return (
       <>
-        Bigger than size E — start from size E and expand. <small>(Dream workbook)</small>
+        {t('park.tooBig')} <small>{t('park.dreamWorkbook')}</small>
       </>
     );
   return (
     <>
-      <strong>Size {size.id}</strong>
-      {size.exact ? '' : ' (closest fit — the biggest set whose pieces fit inside the lot)'}{' '}
-      <small>— the Park in a Truck piece set for this lot</small>
+      <strong>{t('park.size', { size: size.id })}</strong>
+      {size.exact ? '' : ` ${t('park.closest')}`} <small>{t('park.pieceSet')}</small>
     </>
   );
 }
@@ -78,45 +77,63 @@ interface Props {
 }
 
 export default function LotCard({ lot, actions, badge, compact, titleFocusable }: Props) {
+  const t = words();
   const x = (lot.extra ?? {}) as LotExtra;
   const g = x.geometry;
   const pub = isPublic(lot.ownerType);
   const paths = acquirePaths(lot.ownerType, x.ownerLabel);
   const lb = x.landBank;
   const sold = !pub && lot.lastSale?.date ? new Date(lot.lastSale.date) : null;
+  // the sale's calendar day as the City records it (UTC), so the month never shifts with the time zone
+  const soldDay = sold && !Number.isNaN(sold.getTime()) ? sold.toISOString().slice(0, 10) : null;
+  const vacant = lot.vacantLand
+    ? t('card.vacantYes')
+    : lot.category === 'VACANT LAND'
+      ? t('card.vacantRecorded')
+      : lot.vacantLand === false
+        ? lot.category
+          ? t('card.vacantNoCategory', { category: lot.category.toLowerCase().replace(/\s+/g, ' ').trim() })
+          : t('card.vacantNo')
+        : '—';
   return (
-    <article class="ph-card" aria-label={`City records for ${titleCase(lot.address)}`}>
+    <article class="ph-card" aria-label={t('card.label', { address: titleCase(lot.address) })}>
       <header class="ph-card-head">
         <div>
           <h3 class="ph-card-title" tabIndex={titleFocusable ? -1 : undefined}>
-            {titleCase(lot.address)}
+            {isolate(titleCase(lot.address), t)}
           </h3>
           <p class="ph-card-sub">
-            {[x.planningDistrict && `${x.planningDistrict} planning district`, x.zip && `Philadelphia ${x.zip}`, lot.opa && `OPA #${lot.opa}`]
+            {[
+              x.planningDistrict && t('card.district', { district: isolate(x.planningDistrict, t) }),
+              x.zip && t('card.zip', { zip: x.zip }),
+              lot.opa && t('card.opa', { opa: lot.opa }),
+            ]
               .filter(Boolean)
               .join(' · ')}
           </p>
         </div>
         <div>
           {badge}{' '}
-          <span class={`ph-badge ${pub ? 'ph-badge-public' : 'ph-badge-private'}`}>{pub ? 'Public owner' : lot.ownerType === 'unknown' ? 'Owner unknown' : 'Private owner'}</span>
+          <span class={`ph-badge ${pub ? 'ph-badge-public' : 'ph-badge-private'}`}>
+            {t(pub ? 'badge.public' : lot.ownerType === 'unknown' ? 'badge.unknown' : 'badge.private')}
+          </span>
         </div>
       </header>
 
       <div class="ph-card-body">
         <dl class="ph-facts">
-          <dt>Owner</dt>
+          <dt>{t('card.owner')}</dt>
           <dd>
-            {lot.owners.length ? ownerNames(lot.owners) : 'Not on record'}
+            {lot.owners.length ? isolate(ownerNames(lot.owners), t) : t('card.notOnRecord')}
             <br />
             <small>
-              {OWNER_TYPE_LABEL[lot.ownerType]}
-              {lot.ownerType === 'other-public' && x.ownerLabel ? ` — ${x.ownerLabel}` : ''}
+              {ownerTypeLabel(lot.ownerType)}
+              {lot.ownerType === 'other-public' && x.ownerLabel ? ` — ${agencyName(x.ownerLabel)}` : ''}
             </small>
           </dd>
           {lb || (pub && lb === null) ? (
             <>
-              <dt>Land Bank status</dt>
+              <dt>{t('card.landBank')}</dt>
               <dd>
                 {lb ? (
                   <>
@@ -124,22 +141,22 @@ export default function LotCard({ lot, actions, badge, compact, titleFocusable }
                     {lb.sideYard && (
                       <>
                         <br />
-                        <small>{SIDE_YARD_MEANS}</small>
+                        <small>{sideYardMeans()}</small>
                       </>
                     )}
                   </>
                 ) : landBankHandles(lot.ownerType, x.ownerLabel) ? (
-                  "Not in the Land Bank's inventory of public land"
+                  t('card.lbNotInInventory')
                 ) : (
-                  "Not in the Land Bank's inventory — a separate agency owns it"
+                  t('card.lbSeparate')
                 )}
                 {(lb || landBankHandles(lot.ownerType, x.ownerLabel)) && (
                   <>
                     <br />
                     <small>
-                      From the Land Bank's own property list.{' '}
+                      {t('card.lbFrom')}{' '}
                       <a href={links.landBankMap} target="_blank" rel="noopener">
-                        Land Bank property map ↗
+                        {t('card.lbMap')} ↗
                       </a>
                     </small>
                   </>
@@ -147,64 +164,58 @@ export default function LotCard({ lot, actions, badge, compact, titleFocusable }
               </dd>
             </>
           ) : null}
-          {sold && !Number.isNaN(sold.getTime()) && (
+          {soldDay && (
             <>
-              <dt>Last sold</dt>
+              <dt>{t('card.lastSold')}</dt>
               <dd>
-                {sold.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' })}{' '}
-                <small>(City property records)</small>
+                {t.date(soldDay, 'month-year')} <small>{t('card.cityRecords')}</small>
               </dd>
             </>
           )}
           {!pub && x.ownerMailing && (
             <>
-              <dt>Owner's mailing address</dt>
+              <dt>{t('card.mailing')}</dt>
               <dd>
-                {titleCase(x.ownerMailing)} <small>(as the City has it on file)</small>
+                {isolate(titleCase(x.ownerMailing), t)} <small>{t('card.asOnFile')}</small>
               </dd>
             </>
           )}
-          <dt>Lot size</dt>
+          <dt>{t('card.lotSize')}</dt>
           <dd>{sizeLine(lot)}</dd>
-          <dt>Park size</dt>
+          <dt>{t('card.parkSize')}</dt>
           <dd>{parkSizeLine(lot)}</dd>
-          <dt>Lot type</dt>
+          <dt>{t('card.lotType')}</dt>
           <dd>
-            {LOT_TYPE[lot.lotType ?? 'unknown']}
+            {t(LOT_TYPE_KEY[lot.lotType ?? 'unknown'] ?? 'lotType.unknown')}
             {g?.lotTypeReason && (
               <>
                 <br />
-                <small>{g.lotTypeReason}</small>
+                <small>{lotTypeReasonText(g)}</small>
               </>
             )}
           </dd>
-          <dt>Zoning</dt>
+          <dt>{t('card.zoning')}</dt>
           <dd>{zoningPlain(lot.zoning) ?? '—'}</dd>
-          <dt>Vacant?</dt>
-          <dd>
-            {lot.vacantLand
-              ? "Yes — on the City's list of vacant land"
-              : lot.category === 'VACANT LAND'
-                ? "Recorded as vacant land, but not on the City's current vacant-land list (it may be in use)"
-                : lot.vacantLand === false
-                  ? `Not on the City's vacant-land list${lot.category ? ` (the property record lists it as ${lot.category.toLowerCase().replace(/\s+/g, ' ').trim()})` : ''}`
-                  : '—'}
-          </dd>
+          <dt>{t('card.vacant')}</dt>
+          <dd>{vacant}</dd>
           {!compact && (
             <>
-              <dt>Council district</dt>
+              <dt>{t('card.council')}</dt>
               <dd>
-                {lot.councilDistrict ? `District ${lot.councilDistrict}` : '—'}
-                {x.councilMember ? ` — Councilmember ${x.councilMember}` : ''}
+                {lot.councilDistrict
+                  ? x.councilMember
+                    ? t('card.councilMember', { district: String(lot.councilDistrict), member: isolate(x.councilMember, t) })
+                    : t('card.councilDistrict', { district: String(lot.councilDistrict) })
+                  : '—'}
               </dd>
               {lot.rcos && lot.rcos.length > 0 && (
                 <>
-                  <dt>Community groups (RCOs)</dt>
-                  <dd>{lot.rcos.map((r) => r.name).join(' · ')}</dd>
+                  <dt>{t('card.rcos')}</dt>
+                  <dd>{lot.rcos.map((r) => isolate(r.name, t)).join(' · ')}</dd>
                 </>
               )}
-              <dt>Flood zone</dt>
-              <dd>{x.floodZoneLabel ?? '—'}</dd>
+              <dt>{t('card.flood')}</dt>
+              <dd>{x.floodZoneLabel ? floodText(x.floodZoneLabel) : '—'}</dd>
             </>
           )}
         </dl>
@@ -212,12 +223,12 @@ export default function LotCard({ lot, actions, badge, compact, titleFocusable }
       </div>
 
       {!compact && (
-        <section class="ph-paths" aria-label="What this means for getting the lot">
-          <h4>{pub ? 'Public owner — your path' : 'Private owner — four ways forward'}</h4>
+        <section class="ph-paths" aria-label={t('paths.label')}>
+          <h4>{t(pub ? 'paths.public' : 'paths.private')}</h4>
           <ul>
             {paths.map((p) => (
               <li>
-                <strong>{p.title}.</strong> {p.text}
+                <strong>{t('paths.titleDot', { title: p.title })}</strong> {p.text}
                 {p.link && (
                   <>
                     {' '}
@@ -232,16 +243,18 @@ export default function LotCard({ lot, actions, badge, compact, titleFocusable }
         </section>
       )}
 
-      {x.warnings && x.warnings.length > 0 && <p class="ph-small">Some details are missing: {x.warnings.join(' ')}</p>}
+      {x.warnings && x.warnings.length > 0 && (
+        <p class="ph-small">{t('card.missing', { warnings: x.warnings.map((w) => warningText(w)).join(' ') })}</p>
+      )}
 
       {actions && <div class="ph-actions">{actions}</div>}
 
       {!compact && (
         <p class="ph-sources">
-          <strong>Check it yourself: </strong>
+          <strong>{t('card.checkIt')} </strong>
           {lot.sources.map((s) => (
             <a href={s.url} target="_blank" rel="noopener">
-              {s.label} ↗
+              {sourceLabel(s.label)} ↗
             </a>
           ))}
         </p>

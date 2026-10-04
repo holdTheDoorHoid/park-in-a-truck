@@ -3,6 +3,7 @@
 
 import { arcgisUrl, type ArcQuery, type LayerName } from './endpoints';
 import { getJSON } from './http';
+import { EN, type PhillyKey } from './words';
 
 export interface GeoFeature<P = Record<string, unknown>> {
   type: 'Feature';
@@ -46,13 +47,17 @@ export async function queryAttrs<P = Record<string, unknown>>(
   return (r.features ?? []).map((f) => f.attributes);
 }
 
-/** Run a lookup, but turn a failure into a warning instead of failing the whole page. */
-export async function soft<T>(p: Promise<T>, fallback: T, warnings: string[], what: string): Promise<T> {
+/**
+ * Run a lookup, but turn a failure into a warning instead of failing the whole page.
+ * `warning`: a "warn.*" message of the philly catalog. Warnings are saved with the lot, so they
+ * are English (warningText() in saved.ts shows them translated).
+ */
+export async function soft<T>(p: Promise<T>, fallback: T, warnings: string[], warning: PhillyKey & `warn.${string}`): Promise<T> {
   try {
     return await p;
   } catch (e) {
     if ((e as { code?: string })?.code === 'aborted') throw e;
-    warnings.push(`Couldn't load ${what} right now.`);
+    warnings.push(EN(warning));
     return fallback;
   }
 }

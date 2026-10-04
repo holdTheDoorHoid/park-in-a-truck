@@ -1,54 +1,58 @@
 ---
-// Owner: resources workstream.
+// Owner: resources workstream. Words: the plants catalog (src/i18n/messages/en/plants.ts);
+// plant and theme names from the plants/themes data overlays (scientific names never change).
 import Base from '../../layouts/Base.astro';
 import PlantPicker from '../../components/widgets/PlantPicker.astro';
-import { PLANTS } from '../../data/plants';
+import { PLANTS, type PlantType } from '../../data/plants';
 import { THEME_ORDER, THEMES } from '../../data/themes';
 import { u } from '../../lib/url';
+import plantsMsgs from '../../i18n/messages/en/plants.ts';
+import { getT, localizeKeyed, localizeRecord } from '../../i18n/astro.ts';
 
-const types = [
-  { id: 'large-tree', label: 'Large trees' },
-  { id: 'small-tree', label: 'Small trees' },
-  { id: 'shrub', label: 'Shrubs' },
-  { id: 'perennial', label: 'Perennials' },
-] as const;
+const t = getT(Astro, plantsMsgs);
+const plants = localizeKeyed(PLANTS, 'plants', 'id', t.locale);
+const themes = localizeRecord(THEMES, 'themes', t.locale);
+const TYPE_KEY = { 'large-tree': 'type.largeTree', 'small-tree': 'type.smallTree', shrub: 'type.shrub', perennial: 'type.perennial' } as const;
+const types = (Object.keys(TYPE_KEY) as PlantType[]).map((id) => ({ id, label: t(TYPE_KEY[id]) }));
+const LIGHT_KEY = { sun: 'tile.light.sun', shade: 'tile.light.shade', both: 'tile.light.both' } as const;
+const english = new Map(PLANTS.map((p) => [p.id, p]));
+/** What the search box matches: the shown name, the botanical name and (on translated pages) the English name. */
+const searchText = (p: (typeof PLANTS)[number]) =>
+  (t.locale === 'en' ? `${p.common} ${p.botanical}` : `${p.common} ${english.get(p.id)!.common} ${p.botanical}`).toLowerCase();
 ---
 
-<Base title="Plants" description="Every plant from the Dream workbook's four theme plant lists, with photos, sizes and costs — plus a picker sized to your own design.">
+<Base title={t('page.title')} description={t('page.description')}>
   <section class="wrap" style="padding-top:40px">
-    <p class="eyebrow">Dream workbook · plant lists</p>
-    <h1 class="ruled">Plants</h1>
-    <p class="lede">
-      The Dream workbook's four theme plant lists (Edible, Sanctuary, Nature, Event), all in one place — browse
-      what's in each, then use the picker to choose species and quantities sized to your own design.
-    </p>
+    <p class="eyebrow">{t('page.eyebrow')}</p>
+    <h1 class="ruled">{t('page.title')}</h1>
+    <p class="lede">{t('page.lede')}</p>
 
     <div class="browse no-print">
       <div class="field" style="max-width:20rem">
-        <label class="field-label" for="plant-search">Search</label>
-        <input id="plant-search" type="text" placeholder="Common or botanical name…" data-plant-search />
+        <label class="field-label" for="plant-search">{t('page.search')}</label>
+        <input id="plant-search" type="text" placeholder={t('page.searchPlaceholder')} data-plant-search />
       </div>
       <div class="browse-filters">
         <div>
-          <span class="field-label">Theme</span>
+          <span class="field-label">{t('page.theme')}</span>
           <div class="chip-row" data-plant-filter="theme">
-            <button type="button" class="chip" data-value="">All</button>
-            {THEME_ORDER.map((id) => <button type="button" class="chip" data-value={id}>{THEMES[id].name}</button>)}
+            <button type="button" class="chip" data-value="">{t('page.all')}</button>
+            {THEME_ORDER.map((id) => <button type="button" class="chip" data-value={id}>{themes[id].name}</button>)}
           </div>
         </div>
         <div>
-          <span class="field-label">Type</span>
+          <span class="field-label">{t('page.type')}</span>
           <div class="chip-row" data-plant-filter="type">
-            <button type="button" class="chip" data-value="">All</button>
-            {types.map((t) => <button type="button" class="chip" data-value={t.id}>{t.label}</button>)}
+            <button type="button" class="chip" data-value="">{t('page.all')}</button>
+            {types.map((x) => <button type="button" class="chip" data-value={x.id}>{x.label}</button>)}
           </div>
         </div>
         <div>
-          <span class="field-label">Light</span>
+          <span class="field-label">{t('page.light')}</span>
           <div class="chip-row" data-plant-filter="light">
-            <button type="button" class="chip" data-value="">All</button>
-            <button type="button" class="chip" data-value="sun">Sun</button>
-            <button type="button" class="chip" data-value="shade">Shade</button>
+            <button type="button" class="chip" data-value="">{t('page.all')}</button>
+            <button type="button" class="chip" data-value="sun">{t('page.sun')}</button>
+            <button type="button" class="chip" data-value="shade">{t('page.shade')}</button>
           </div>
         </div>
       </div>
@@ -57,37 +61,37 @@ const types = [
     <p class="muted" data-plant-count style="margin-top:1em"></p>
 
     <div class="plant-grid" data-plant-grid>
-      {PLANTS.map((p) => (
+      {plants.map((p) => (
         <article
           class="plant-tile"
           data-theme={p.theme}
           data-type={p.type}
           data-light={p.light}
-          data-search={`${p.common} ${p.botanical}`.toLowerCase()}
+          data-search={searchText(p)}
         >
           <div class="plant-tile-photo" style={`--theme-color:${THEMES[p.theme].frame}`}>
-            {p.photo ? <img src={u(p.photo)} alt={`${p.common} (${p.botanical})`} loading="lazy" /> : <span aria-hidden="true"></span>}
-            <span class="plant-tile-theme">{THEMES[p.theme].name}</span>
+            {p.photo ? <img src={u(p.photo)} alt={t('photo.alt', { common: p.common, botanical: p.botanical })} loading="lazy" /> : <span aria-hidden="true"></span>}
+            <span class="plant-tile-theme">{themes[p.theme].name}</span>
           </div>
           <div class="plant-tile-body">
             <p class="plant-tile-common">{p.common}</p>
             <p class="plant-tile-botanical">{p.botanical}</p>
             <p class="plant-tile-meta">
-              {types.find((t) => t.id === p.type)?.label} · {p.light === 'both' ? 'sun or shade' : p.light}
-              {p.matureSize && <> · mature {p.matureSize}</>}
+              {t(p.matureSize ? 'tile.metaMature' : 'tile.meta', {
+                type: types.find((x) => x.id === p.type)?.label,
+                light: t(LIGHT_KEY[p.light]),
+                size: p.matureSize,
+              })}
             </p>
             {p.notes && <p class="plant-tile-notes">{p.notes}</p>}
-            <p class="plant-tile-cost">${(p.unitCost ?? 0).toFixed(2)}</p>
+            <p class="plant-tile-cost">{t.money(p.unitCost ?? 0, { cents: true })}</p>
           </div>
         </article>
       ))}
     </div>
 
-    <h2 class="ruled" style="margin-top:3em">Pick your plants</h2>
-    <p class="prose">
-      Choose one theme, or mix two (the workbook allows it) — then set your counts (or pull them straight from
-      your 3D design) and choose exactly which plants and how many.
-    </p>
+    <h2 class="ruled" style="margin-top:3em">{t('page.pick')}</h2>
+    <p class="prose">{t('page.pickLede')}</p>
     <PlantPicker />
   </section>
 </Base>
@@ -154,7 +158,7 @@ const types = [
   .plant-tile-theme {
     position: absolute;
     top: 8px;
-    left: 8px;
+    inset-inline-start: 8px;
     background: var(--theme-color);
     color: #fff;
     font-size: 0.7rem;
@@ -190,6 +194,10 @@ const types = [
 </style>
 
 <script>
+  import plantsMsgs from '../../i18n/messages/en/plants.ts';
+  import { getT } from '../../i18n/t.ts';
+
+  const t = getT(undefined, plantsMsgs);
   const grid = document.querySelector<HTMLElement>('[data-plant-grid]');
   const search = document.querySelector<HTMLInputElement>('[data-plant-search]');
   const countEl = document.querySelector<HTMLElement>('[data-plant-count]');
@@ -209,7 +217,7 @@ const types = [
       tile.style.display = show ? '' : 'none';
       if (show) visible += 1;
     }
-    if (countEl) countEl.textContent = `${visible} of ${grid.children.length} plants`;
+    if (countEl) countEl.textContent = t('page.count', { shown: visible, count: grid.children.length });
   }
 
   for (const group of filterGroups) {
