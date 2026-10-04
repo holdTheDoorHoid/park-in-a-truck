@@ -60,6 +60,12 @@ export interface SunHoursInput {
   crownTransmit?: number;
   /** light a bare deciduous crown lets through (default 1 − BARE_CROWN_BLOCKING) */
   bareCrownTransmit?: number;
+  /**
+   * Called after each sample the sun is up for (above 0.5°), with every cell's light for it:
+   * 1 = direct sun, 0 = behind a building, in between = through tree crowns (cells outside the
+   * mask: 0). `lit` is reused for the next sample: copy what you keep. (Shade calendar.)
+   */
+  onSample?: (index: number, lit: Float32Array) => void;
 }
 
 /** share of direct sun a crown in leaf blocks */
@@ -240,6 +246,7 @@ export function computeSunHours(input: SunHoursInput, onProgress?: (f: number) =
       }
       lit[k] = l;
     }
+    input.onSample?.(si, lit);
     for (let k = 0; k < N; k++) if (!Number.isNaN(hours[k])) hours[k]! += s.weight * lit[k]!;
     if (onProgress && si % 20 === 0) onProgress(si / samples.length);
   }
