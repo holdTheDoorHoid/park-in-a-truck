@@ -1,0 +1,233 @@
+---
+title: الحصول على قطعة أرض
+intro: ابحث عن قطعة أرض في حيّك، واحصل على الحق القانوني في تحويلها إلى حديقة.
+sources:
+  - الدليل (Toolkit)، الصفحات 24–27 (ابحث عن قطعة أرض، أي قطعة أرض؟، اعرف مالك قطعة الأرض)
+  - كراسة عمل «الحصول على قطعة أرض»، الصفحات 1–7
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Choice from '../../../../components/workbook/Choice.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import LotLookup from '../../../../components/widgets/LotLookup.astro';
+import LotFinderMap from '../../../../components/widgets/LotFinderMap.astro';
+
+من يريد إنشاء حديقة وليس لديه بعد حق قانوني في استخدام أرض فارغة، عليه أن يجد من يقبل أن يبيع أو يؤجّر قطعة أرضه (أو
+قطع أرضه) للحديقة المقترحة. قد يكون هذا الجهد معقدًا ويستغرق وقتًا طويلًا. لا توجد طريقة مثالية، ولا طريق واحد
+للمضي قُدُمًا، ولا نتيجة مضمونة. ستساعدك هذه الخطوة على إيجاد طريقة للحصول على مكان حديقتك المستقبلية.
+
+## ابحث عن قطعة أرض {/* #find-a-lot */}
+
+تقدّم الحدائق الحضرية الكبيرة فوائد اجتماعية وبيئية واقتصادية كثيرة لسكان المدينة وزوارها. لكن إن لم يكن الوصول إلى
+الحديقة سهلًا، فقد لا يزورها الناس إلا من حين لآخر. فليس لدى الجميع سيارة أو مواصلات عامة مريحة، ولا يستطيع الجميع
+المشي أو ركوب الدراجة لمسافات طويلة.
+
+لهذا من المهم أن تجد قطعة أرض أو مساحة قريبة لتحويلها إلى حديقة حي صغيرة. ففيها كثير من فوائد الحديقة الكبيرة،
+**و**قربها يجعل الوصول إليها سهلًا. وكلما زار الناس حديقة الحي أكثر، أصبحت مألوفة أكثر — وغالية عليهم أكثر. والاستخدام
+النشط للحديقة يساعد هذه الأماكن على أن تصبح مركزًا أساسيًّا لـ«الحياة الاجتماعية» يبني روح الجماعة في الحي!
+
+هل في حيّك عقارات غير مستخدمة متاحة قانونيًّا وآمنة ومناسبة لتكون حديقة؟ هل تستطيع أن تحدد قطع أرض محتملة في حيّك
+تحب أن ترى فيها حديقتك؟
+
+<Callout kind="auto" title="دع الخريطة تمشي عنك">
+  تعرض الخريطة في الأسفل قطع الأرض التي تسجّلها المدينة أرضًا فارغة. انقر على واحدة لترى مالكها ومساحتها وتصنيفها
+  العمراني، وأضفها إلى قائمتك. ومع ذلك يجب أن تتجول في شارعك بنفسك — فقائمة المدينة لا تضم بعض قطع الأرض، وتضم بعض
+  القطع المستخدمة فعلًا.
+</Callout>
+
+<LotFinderMap />
+
+<Figure
+  src="img/acquire/west-kensington-site.webp"
+  alt="قطعة أرض فارغة مغطاة بالعشب في حي West Kensington في فيلادلفيا، العشب مقصوص، وأعلام مساحة بلون أزرق مخضر تحدد زواياها، وخلفها جدار مطلي بالجص وسياج من الشجيرات وسيارات متوقفة."
+  caption="موقع حديقة PiaT في West Kensington قبل البناء"
+  duo
+/>
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={3} />
+
+## أي قطعة أرض؟ {/* #which-lot */}
+
+تعرّف على الأنواع الثلاثة المختلفة من الأماكن التي يمكن أن تكون حديقة حي. تجوّل في حيّك، وسجّل العقارات قليلة الاستخدام
+التي يمكن أن تكون مكانًا لحديقتك.
+
+<div class="lot-types">
+  <div>
+    <Figure
+      src="img/acquire/lot-midblock.webp"
+      alt="رسم مجسّم لقطعة أرض فارغة في منتصف الشارع: فراغ مستطيل ضيق بين مبنيين من البيوت المتلاصقة في شارع سكني، ملوّن بالأخضر وفيه شجرة واحدة."
+    />
+    <p class="lot-caption">
+      <strong>قطعة في منتصف الشارع (قطعة أرض فارغة).</strong> مستطيلة الشكل، وتقع في منتصف شارع سكني. قد تكون على
+      جانبيها و/أو في نهايتها مبانٍ. وهذا النوع هو الأكثر عددًا بين قطع الأرض «الفارغة» المتاحة في فيلادلفيا. قد لا
+      تصلح لبعض استخدامات الحديقة بسبب ضيق عرضها و/أو قلة الشمس فيها.
+    </p>
+  </div>
+  <div>
+    <Figure
+      src="img/acquire/lot-corner.webp"
+      alt="رسم مجسّم لقطعة أرض فارغة على الزاوية: فراغ مستطيل في نهاية شارع سكني، يطل على شارعين، ملوّن بالأخضر وفيه شجرة واحدة."
+    />
+    <p class="lot-caption">
+      <strong>قطعة على الزاوية (قطعة أرض فارغة).</strong> مستطيلة الشكل، وتقع في نهاية شارع سكني. قد تكون على جانبها
+      و/أو في نهايتها مبانٍ. هذه القطع ظاهرة جدًّا للمارة، وغالبًا ما تحصل على أكبر قدر من الشمس.
+    </p>
+  </div>
+  <div>
+    <Figure
+      src="img/acquire/lot-alley.webp"
+      alt="رسم مجسّم لممر أو زقاق بحق مرور: فراغ أخضر طويل وضيق جدًّا يقطع بين مباني البيوت المتلاصقة، ويصل بين جانبي المربع السكني."
+    />
+    <p class="lot-caption">
+      <strong>ممر / زقاق (حق مرور).</strong> يُعرف بشكله الطويل والضيق جدًّا، وغالبًا ما يصل «عبر» المربع السكني من
+      شارع إلى آخر. خُصص في الأصل لمرور المشاة بين الشوارع و/أو لمرور خطوط المرافق.
+    </p>
+  </div>
+</div>
+
+سجّل عنوان كل قطعة أرض محتملة. حين تبحث عن عنوان، يملأ الموقع عنك المالك والمساحة ونوع قطعة الأرض.
+
+<LotLookup mode="candidates" />
+
+<ListField
+  id="acquire.candidate-notes"
+  label="ملاحظات من جولتك في الحي"
+  rowName="قطعة أرض"
+  min={3}
+  columns={[
+    { key: 'address', label: 'العنوان أو المكان' },
+    { key: 'type', label: 'نوع قطعة الأرض', placeholder: 'منتصف الشارع، زاوية، ممر' },
+    { key: 'notes', label: 'ما لاحظته', placeholder: 'نفايات، شمس، جيران، استخدام…' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={3} />
+
+## مَن يملك قطعة الأرض هذه؟ {/* #who-owns-that-lot */}
+
+بعد أن تحدد بعض العقارات قليلة الاستخدام التي يمكن أن تصبح حديقة الحي الجديدة، الخطوة التالية هي أن تعرف من يملك
+العقار. قد يكون المالك فردًا أو شركة أو منظمة غير ربحية. وقد يكون المالك هو المدينة أيضًا. وأوثق طريقة لمعرفة مالك
+قطعة الأرض هي الاطلاع على سجلات مدينة فيلادلفيا.
+
+يوضّح هذا المخطط كيف تعرف مالك قطعة الأرض، والخطوات الممكنة للحصول على الحقوق القانونية — أو «الاستحقاقات» — لاستخدام
+العقار حديقةً للحي.
+
+{/* site-added: the workbook's flowchart reproduced as HTML (not an image of text), steps 1–4 then the public/private branch. */}
+<ol class="flow-steps">
+  <li>
+    <span class="flow-num">1</span>
+    <div><strong>حدِّد العنوان.</strong> تأكد من عنوان الشارع لقطعة الأرض أو القطع المحتملة التي كتبتها.</div>
+  </li>
+  <li>
+    <span class="flow-num">2</span>
+    <div><strong>ابحث عن العقار.</strong> ادخل إلى <a href="https://atlas.phila.gov/" target="_blank" rel="noopener">atlas.phila.gov</a> (بالإنجليزية) واكتب عنوان الشارع. ويمكنك أيضًا أن تجد قطعة الأرض بتكبير الخريطة على شارع قريب.</div>
+  </li>
+  <li>
+    <span class="flow-num">3</span>
+    <div><strong>اعرف المالك.</strong> اطّلع على اسم مالك العقار في قسم "Property Assessment" (تقييم العقار) على الموقع.</div>
+  </li>
+</ol>
+
+<div class="owner-branch">
+  <div class="owner-branch-col">
+    <h4>4أ. المالك هو… مدينة فيلادلفيا <span class="muted">(ملكية عامة)</span></h4>
+    <p>
+      <strong>شراء محتمل.</strong> ابحث عن العقار لتعرف إن كانت الأرض العامة متاحة للشراء عن طريق PHDC (مؤسسة فيلادلفيا
+      لتطوير الإسكان) وPhiladelphia Land Bank.
+    </p>
+  </div>
+  <div class="owner-branch-col">
+    <h4>4ب. المالك هو… شخص أو منظمة أو شركة <span class="muted">(ملكية خاصة)</span></h4>
+    <ul>
+      <li><strong>تبرّع محتمل.</strong> تواصل مع مالك الأرض بشأن التبرع بالعقار بشكل دائم.</li>
+      <li><strong>بيع محتمل.</strong> راقب إعلانات البيع العلني أو المزادات — وفي فيلادلفيا قد يشمل ذلك مزاد الشريف (Sheriff Sale).</li>
+      <li><strong>تفاوَض على اتفاق شراء.</strong> تواصل مع مالك الأرض وتفاوض على بيعها لاستخدام الحي.</li>
+      <li><strong>اتفاق انتفاع عيني.</strong> ناقش مع المالك أن يمنح الحي حق الانتفاع «العيني» بقطعة الأرض، مع بقاء ملكيتها له.</li>
+    </ul>
+  </div>
+</div>
+
+<Callout kind="auto" title="الخطوات 1–3 أنجزها الموقع لك">
+  اختر قطعة الأرض التي تريد السعي للحصول عليها. يتحقق الموقع من سجلات العناوين والعقارات في المدينة (البيانات نفسها
+  التي يعرضها atlas.phila.gov) ويملأ اسم المالك في الأسفل.
+</Callout>
+
+<LotLookup mode="primary" />
+
+<Field id="acquire.address" label="عنوان الشارع لقطعة أرضك" auto="lot.address" />
+<Field id="acquire.owner" label="اسم المالك" auto="lot.owners|owners" />
+<Field id="acquire.owner-type" label="المالك هو…" auto="lot.ownerType|ownerType" />
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={4} />
+
+## إذا كانت المدينة هي المالكة {/* #if-the-city-owns-it */}
+
+**شراء محتمل.** تُباع الأراضي المملوكة ملكية عامة في فيلادلفيا أو تؤجَّر عن طريق PHDC (مؤسسة فيلادلفيا لتطوير الإسكان)
+وPhiladelphia Land Bank (بنك الأراضي في المدينة). ابحث عن العقار لتعرف إن كانت الأرض العامة متاحة للشراء.
+
+<p><a class="btn" href="https://phillylandbank.org/community-use-map/" target="_blank" rel="noopener">ابحث في خريطة الاستخدام المجتمعي لدى Land Bank (بالإنجليزية) ↗</a></p>
+
+{/* site-added: the workbook's PHDC link (phdcphila.org/land/buy-land/property-search-map/) is dead; PHDC's search now lives on the Land Bank site. */}
+<p class="muted" style="font-size:0.9rem">صفحة البحث الخاصة بـ PHDC المذكورة في كراسة العمل انتقلت: أصبحت PHDC وPhiladelphia Land Bank تتشاركان هذه الخريطة. قطعة الأرض الملوّنة على الخريطة متاحة؛ وخريطة الاستخدام المجتمعي (Community Use) هي الخاصة بالحدائق المجتمعية والمساحات المفتوحة.</p>
+
+<Checklist
+  id="acquire.public-steps"
+  items={[
+    { value: 'searched-phdc', label: 'بحثت عن قطعة الأرض في خريطة البحث عن العقارات لدى PHDC' },
+    { value: 'contacted-phdc', label: 'تواصلت مع PHDC / Land Bank بشأن شرائها أو استئجارها لتكون حديقة' },
+  ]}
+/>
+
+<Field id="acquire.public-notes" label="الرد الذي وصلك" type="textarea" />
+
+## إذا كان المالك شخصًا آخر {/* #if-someone-else-owns-it */}
+
+حين يكون المالك شخصًا أو منظمة أو شركة، توجد أربع طرق للمضي قُدُمًا:
+
+- **تبرّع محتمل.** تواصل مع مالك الأرض بشأن التبرع بالعقار للحي بشكل دائم ليُستخدم حديقةً.
+- **بيع محتمل.** راقب إعلانات البيع العلني أو المزادات الخاصة بالعقار. وفي فيلادلفيا قد يشمل ذلك أيضًا مزاد الشريف
+  (Sheriff Sale).
+- **تفاوَض على اتفاق شراء.** تواصل مع مالك الأرض وتفاوض على بيع العقار قليل الاستخدام ليستخدمه الحي.
+- **اتفاق انتفاع عيني.** تواصل مع مالك الأرض وناقش معه الفوائد المتبادلة لمنح الحي حق الانتفاع «العيني» بقطعة الأرض
+  حديقةً، مع بقاء ملكيتها له.
+
+<Choice
+  id="acquire.private-path"
+  label="أي طريق ستجرّب أولًا؟"
+  options={[
+    { value: 'donation', label: 'التبرّع', desc: 'يعطي المالك قطعة الأرض للحي' },
+    { value: 'sale', label: 'بيع علني / مزاد الشريف', desc: 'راقب الإعلانات والمزادات' },
+    { value: 'purchase', label: 'اتفاق شراء', desc: 'تفاوض مع المالك على البيع' },
+    { value: 'in-kind', label: 'اتفاق انتفاع عيني', desc: 'تبقى الأرض ملكًا للمالك، ويستخدمها الجيران حديقةً' },
+  ]}
+/>
+
+<ListField
+  id="acquire.owner-contacts"
+  label="سجل التواصل"
+  rowName="تواصل"
+  min={2}
+  columns={[
+    { key: 'date', label: 'التاريخ', type: 'date' },
+    { key: 'who', label: 'من تواصلت معه' },
+    { key: 'outcome', label: 'ما حدث / الخطوة التالية' },
+  ]}
+/>
+
+<Callout kind="contact">
+  هل توقفت؟ يمكن لفريق Park in a Truck أن يساعدك على التفكير في خياراتك:
+  [ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu).
+</Callout>
+
+{/* site-added: a place to record the outcome; no new advice. */}
+## احصل على قطعة أرضك رسميًّا {/* #secure-your-lot */}
+
+سجّل الاتفاق الذي يمنح مجموعتك الحق في بناء حديقة هنا. احتفظ بنسخة منه مع سجلات لجنتك — ستحتاج إليه قبل أن يبدأ أي أحد
+الحفر في خطوة البناء.
+
+<Field id="acquire.agreement" label="نوع الاتفاق" type="select" options={[{ value: 'Purchase', label: 'شراء' }, { value: 'Donation', label: 'تبرّع' }, { value: 'Lease', label: 'إيجار' }, { value: 'In-kind use agreement', label: 'اتفاق انتفاع عيني' }, { value: 'Other', label: 'غير ذلك' }]} />
+<Field id="acquire.agreement-date" label="تاريخ التوقيع" type="date" />
+<Field id="acquire.agreement-notes" label="شروط يجب تذكّرها" type="textarea" hint="مدة الاتفاق، ومن يتولى صيانة قطعة الأرض، والتأمين، وتاريخ التجديد…" />
