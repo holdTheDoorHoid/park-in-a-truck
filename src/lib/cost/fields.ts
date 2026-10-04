@@ -22,7 +22,7 @@ export interface CostField {
   decimal?: boolean;
 }
 
-const UNUSED = 'The PiaT spreadsheet asks this but does not use the answer.';
+const UNUSED = 'Not used: the spreadsheet works out the gravel-edge supports for the whole edge.';
 
 export const FIELD_GROUPS: FieldGroup[] = [
   {
@@ -48,9 +48,9 @@ export const FIELD_GROUPS: FieldGroup[] = [
         unit: 'ft',
         decimal: true,
       },
-      { key: 'outerEdgeOnHardscapeFt', label: 'Of the total, how many are on top of hardscape (concrete, asphalt, etc.)?', unit: 'ft', decimal: true, unpriced: UNUSED },
-      { key: 'outerEdgeOnSoftscapeFt', label: 'Of the total, how many are on top of softscape (earth, soil)?', unit: 'ft', decimal: true, unpriced: UNUSED },
-      { key: 'outerEdgeGabionConnections', label: 'How many times do these edges connect to a gabion?', unpriced: UNUSED },
+      { key: 'outerEdgeOnHardscapeFt', label: 'Of the total, how many are on top of hardscape (concrete, asphalt, etc.)?', unit: 'ft', decimal: true, hint: 'Hardscape supports (2x4s, L-brackets, screws) use these feet.' },
+      { key: 'outerEdgeOnSoftscapeFt', label: 'Of the total, how many are on top of softscape (earth, soil)?', unit: 'ft', decimal: true, hint: 'Softscape supports (2x4s) use these feet. Leave both at 0 to count both kinds for every foot, as the spreadsheet does.' },
+      { key: 'outerEdgeGabionConnections', label: 'How many times do these edges connect to a gabion?' },
     ],
   },
   {
@@ -68,7 +68,7 @@ export const FIELD_GROUPS: FieldGroup[] = [
     title: 'Gabion baskets and raised beds',
     fields: [
       { key: 'gabionBaskets', label: "How many 1' gabion baskets do you have?" },
-      { key: 'raisedBedWoodEdgeFt', label: 'Do you have raised beds? How many feet are your wood edges?', unit: 'ft', decimal: true, unpriced: UNUSED },
+      { key: 'raisedBedWoodEdgeFt', label: 'Do you have raised beds? How many feet are your wood edges?', unit: 'ft', decimal: true, unpriced: 'Not priced: the spreadsheet has no calculation for raised-bed wood edges.' },
       { key: 'raisedBedGabionConnections', label: 'How many connections to gabions do you have?' },
     ],
   },
@@ -76,14 +76,14 @@ export const FIELD_GROUPS: FieldGroup[] = [
     id: 'furnishings',
     title: 'Furnishings',
     fields: [
-      { key: 'woodToppedGabions', label: 'How many 4\' 18" wood-topped gabions do you have?', unpriced: 'The spreadsheet’s subtotal for these is broken (#REF!), so they add $0.' },
+      { key: 'woodToppedGabions', label: 'How many 4\' 18" wood-topped gabions do you have?' },
       { key: 'benchesWithBackAndArms', label: 'How many wood benches with backs and armrests do you have?' },
       { key: 'benchesWithBack', label: 'How many wood benches with backs do you have?' },
       { key: 'benchesNoBack', label: 'How many wood benches without backs do you have?' },
       { key: 'squareTables', label: 'How many square wood tables do you have?', hint: "Priced as the 2' table." },
       { key: 'stools', label: 'How many stools do you have?' },
-      { key: 'gabionTables', label: 'How many wood-topped gabion tables do you have?', unpriced: 'The spreadsheet works these out but leaves them out of its total.' },
-      { key: 'stageSquares', label: 'How many squares of stage do you have?', unit: 'squares', hint: "The spreadsheet prices stages of 2, 3 or 4 squares in a row (8', 12' or 16')." },
+      { key: 'gabionTables', label: 'How many wood-topped gabion tables do you have?' },
+      { key: 'stageSquares', label: 'How many squares of stage do you have?', unit: 'squares', hint: "The spreadsheet has cut lists for stages of 2, 3 or 4 squares in a row (8', 12' or 16'); for other sizes you are asked for a price." },
       { key: 'trellises', label: 'How many 12x8 trellises do you have?' },
     ],
   },
@@ -108,10 +108,10 @@ export const FIELD_GROUPS: FieldGroup[] = [
     fields: [
       { key: 'sheds4x4', label: "Sheds, 1 square (4'x4')" },
       { key: 'sheds4x8', label: "Sheds, 2 squares (4'x8')" },
-      { key: 'cisterns4x4', label: "Cisterns, 1 square (4'x4')", unpriced: 'The spreadsheet has no price for cisterns ($0).' },
-      { key: 'cisterns4x8', label: "Cisterns, 2 squares (4'x8')", unpriced: 'The spreadsheet has no price for cisterns ($0).' },
+      { key: 'cisterns4x4', label: "Cisterns, 1 square (4'x4')", hint: 'No price in the spreadsheet: you are asked for one.' },
+      { key: 'cisterns4x8', label: "Cisterns, 2 squares (4'x8')", hint: 'No price in the spreadsheet: you are asked for one.' },
       { key: 'rainBarrels', label: 'How many rain barrels do you have?', hint: 'Free!' },
-      { key: 'cafeTableSets', label: 'How many cafe tables and chairs do you have?', unpriced: 'A fixed $0 in the spreadsheet; “Cafe tables + chairs” below is priced.' },
+      { key: 'cafeTableSets', label: 'How many cafe tables and chairs do you have?', hint: 'Priced like “Cafe tables + chairs” below ($160) — don’t count the same tables in both.' },
       { key: 'coldFrameSquares', label: 'How many squares of cold frames do you have?', unit: 'squares' },
     ],
   },
@@ -127,7 +127,7 @@ export const FIELD_GROUPS: FieldGroup[] = [
       { key: 'eventTents', label: 'Event tent' },
       { key: 'adirondackChairs', label: 'Adirondack chair' },
       { key: 'hammocks', label: 'Free-standing hammock' },
-      { key: 'porchSwings', label: 'Porch swing', unpriced: 'The spreadsheet prices porch swings using the hammock count.' },
+      { key: 'porchSwings', label: 'Porch swing' },
       { key: 'trashCans', label: 'Trash can' },
       { key: 'solarLights', label: 'Solar lights', hint: 'Bought in packs of 16.' },
     ],

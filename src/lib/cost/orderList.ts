@@ -6,7 +6,7 @@
 // reproduced as the sheet has them, and each row's `flags` says what the
 // quantity tab actually worked out. See docs/cost-model.md ("ORDER LIST").
 
-import type { CostInputs } from './model';
+import type { CostInputs, CostLine } from './model';
 import { CONTINGENCY, LUMBER, PRICES, vendorOf } from './prices';
 
 /** The QUANTITES PER ITEM values the order list sums (column J, plus a few others). */
@@ -75,7 +75,9 @@ export interface QpiQuantities {
 }
 
 export interface OrderListRow {
-  /** Row on the ORDER LIST tab */
+  /** Unique within the list */
+  key: string;
+  /** Row on the spreadsheet's ORDER LIST tab (0 for rows the corrected list adds) */
   row: number;
   section: string;
   item: string;
@@ -98,6 +100,10 @@ export interface OrderListRow {
   note?: string;
   /** Where this row disagrees with the quantity tab or is left out of a total */
   flags: string[];
+  /** Corrected list: no price yet (see the estimate's price-needed items) */
+  needsPrice?: boolean;
+  /** Corrected list: what it is for ("4' bench with back", "Outer edges + raised beds", …) */
+  usedFor?: string[];
 }
 
 export interface OrderListResult {
@@ -106,12 +112,14 @@ export interface OrderListResult {
   tips: Record<string, string>;
   /** Amounts the sheet adds to its total that are not rows */
   extras: { label: string; amount: number }[];
-  /** P18 = O6:O18 + an unlabelled $175 */
-  subtotalLayoutSoilGravel: number;
-  /** P23 = P18 + O20:O23 + the plants subtotal (INSERT HERE!F34) */
-  subtotalWithGabionsAndPlants: number;
-  /** O71 = P23 + O29:O53 — the order list's own total, which leaves things out (see notes) */
+  /** Sheet list only — P18 = O6:O18 + an unlabelled $175 */
+  subtotalLayoutSoilGravel?: number;
+  /** Sheet list only — P23 = P18 + O20:O23 + the plants subtotal (INSERT HERE!F34) */
+  subtotalWithGabionsAndPlants?: number;
+  /** Sheet list: O71 = P23 + O29:O53, which leaves things out. Corrected list: the estimate's total costs. */
   total: number;
+  /** Section names in display order */
+  sections: string[];
   /** Notes about the whole list */
   notes: string[];
   /** Tool and equipment suggestions at the bottom of the tab (no quantities) */
@@ -129,9 +137,23 @@ const S = {
   shelf: 'Off-the-shelf',
 } as const;
 
+const PIAT_NOTES = [
+  'You do not have to use these products, but they are the suggested things to order. The links give more detail about each product if you want to buy it elsewhere.',
+  'Delivery times are for ordering online or in store. Most items can be bought elsewhere, from Home Depot or Lowe’s, etc.',
+];
 const TIP_QTY = 'This is a suggested quantity; you can always talk to the supplier to confirm the material and quantity fit your site.';
 const DARBY = 'https://catalog.darbywiremesh.com/category/plain-steel-mesh-by-mesh-count';
 const HD = 'https://www.homedepot.com/p/';
+
+const TOOLS: OrderListResult['tools'] = [
+  { section: 'Tools', item: 'Impact driver' },
+  { section: 'Tools', item: 'Impact driver adaptor', link: 'https://www.amazon.com/DEWALT-DW2055B-6-Inch-Magnetic-Drive/dp/B000HNFKHS' },
+  { section: 'Highly recommended tools', item: 'Auger bit', link: 'https://www.amazon.com/dp/B087D38RH7' },
+  { section: 'Highly recommended tools', item: 'Impact driver adaptor sizes', link: 'https://www.amazon.com/DEWALT-DWAIND-5-COMPACT-NUT-DRIVER/dp/B07SNGL2GX' },
+  { section: 'Additional elements', item: 'Fire hydrant opener — hose adapter', link: 'https://www.diamondtool.net/philadelphia-fire-hydrant-hose-adapter-34/product/0/hydrant%20r-34' },
+  { section: 'Additional elements', item: 'Fire hydrant opener — gear puller to open', link: 'https://www.diamondtool.net/proto-j4035-2-jaw-gear-puller-7-5-ton-rating/product/0/proto%20j4035' },
+  { section: 'Additional elements', item: 'Skid steer', note: 'Machine for a week.' },
+];
 
 export function buildOrderList(q: QpiQuantities, i: CostInputs): OrderListResult {
   const s8 = q.stageLength === 8 ? 1 : 0;
@@ -160,6 +182,7 @@ export function buildOrderList(q: QpiQuantities, i: CostInputs): OrderListResult
   ) {
     const total = o.total !== undefined ? o.total : unitPrice === null ? null : qty * unitPrice;
     rows.push({
+      key: `r${r}`,
       row: r,
       section,
       item,
@@ -324,16 +347,14 @@ export function buildOrderList(q: QpiQuantities, i: CostInputs): OrderListResult
   const subtotalWithGabionsAndPlants = subtotalLayoutSoilGravel + sumRows(20, 23) + q.plantingSubtotal;
   const total = subtotalWithGabionsAndPlants + sumRows(29, 53);
 
-  const notes = [
-    'You do not have to use these products, but they are the suggested things to order. The links give more detail about each product if you want to buy it elsewhere.',
-    'Delivery times are for ordering online or in store. Most items can be bought elsewhere, from Home Depot or Lowe’s, etc.',
-  ];
+  const notes = [...PIAT_NOTES];
   if (i.gravelEdgeFt > 0 || i.outerEdgeFt > 0)
     notes.push('The order list has no wood-edging rows: the 1x4x12 boards, L-brackets and screws for the edges are only in the estimate (the 2x4x8 and 1x6x12 boards are counted under wood).');
   if (q.plantingSubtotal > 0) notes.push('Plants are not listed; the order list adds the plants subtotal from the estimate as one amount.');
 
   return {
     rows,
+    sections: [...new Set(rows.map((x) => x.section))],
     tips: {
       [S.soil]: TIP_QTY,
       [S.gravel]: TIP_QTY,
@@ -347,14 +368,153 @@ export function buildOrderList(q: QpiQuantities, i: CostInputs): OrderListResult
     subtotalWithGabionsAndPlants,
     total,
     notes,
-    tools: [
-      { section: 'Tools', item: 'Impact driver' },
-      { section: 'Tools', item: 'Impact driver adaptor', link: 'https://www.amazon.com/DEWALT-DW2055B-6-Inch-Magnetic-Drive/dp/B000HNFKHS' },
-      { section: 'Highly recommended tools', item: 'Auger bit', link: 'https://www.amazon.com/dp/B087D38RH7' },
-      { section: 'Highly recommended tools', item: 'Impact driver adaptor sizes', link: 'https://www.amazon.com/DEWALT-DWAIND-5-COMPACT-NUT-DRIVER/dp/B07SNGL2GX' },
-      { section: 'Additional elements', item: 'Fire hydrant opener — hose adapter', link: 'https://www.diamondtool.net/philadelphia-fire-hydrant-hose-adapter-34/product/0/hydrant%20r-34' },
-      { section: 'Additional elements', item: 'Fire hydrant opener — gear puller to open', link: 'https://www.diamondtool.net/proto-j4035-2-jaw-gear-puller-7-5-ton-rating/product/0/proto%20j4035' },
-      { section: 'Additional elements', item: 'Skid steer', note: 'Machine for a week.' },
-    ],
+    tools: TOOLS,
+  };
+}
+
+// ---- corrected order list: the estimate's own lines, merged by material ----
+
+const SECTIONS = ['Layout + protection', 'Soil', 'Gravel', 'Gabion baskets', 'Lumber', 'Wire', 'Hardware', 'Plants', 'Additional furnishings', 'Off-the-shelf'];
+
+interface Meta {
+  label?: string;
+  section?: string;
+  lead?: string;
+  phase?: number;
+  note?: string;
+  link?: string;
+}
+
+const P = PRICES;
+/** Delivery times, phases, notes and links from the spreadsheet's ORDER LIST tab, by material. */
+const META: Record<string, Meta> = {
+  'erosion-control': { lead: '4-7 Days', phase: 1 },
+  stakes: { lead: '2-3 Days', phase: 1 },
+  'marking-paint': { lead: '2-3 Days', phase: 1 },
+  soil: {
+    label: 'Soil',
+    lead: 'Varies',
+    phase: 4,
+    link: P.soil.alt,
+    note: 'This will likely need to be delivered on a truck; be sure to coordinate and ask when ordering what access the truck will need.',
+  },
+  mulch: { label: 'Mulch', lead: 'Varies', phase: 5, link: P.mulch.alt },
+  'soil-delivery': { label: 'Soil and mulch delivery' },
+  'red-tipple': { label: '3/8" red tipple', lead: '4-5 Days', phase: 3 },
+  'clean-stone': { label: '3/4" clean stone aggregate base', lead: '4-5 Days', phase: 2, note: 'Or clean gravel.' },
+  'filter-fabric': { lead: '4-5 Days', phase: 2 },
+  staples: { lead: '4-5 Days', phase: 2 },
+  'gravel-delivery': { label: 'Gravel delivery' },
+  'gabion-basket': { lead: '2-3 weeks', phase: 1, note: 'Alternative: gabion wire (to be cut by distributor) — 2"x2", 4\'-10\' sheets, .16"-.19" dia, welded.' },
+  'gabion-basket-2x18x4': { section: 'Gabion baskets', label: '2\'x18"x4\' 5 gauge gabion baskets', lead: '2-3 weeks', phase: 1 },
+  'stone-fill': { section: 'Gabion baskets', label: '1-3" stone fill', lead: '4-5 days', phase: 2, note: 'Gather as many concrete pieces as possible on site or nearby.' },
+  'welded-mesh': { section: 'Wire', note: 'Gabion wire, to be cut by the distributor into the panels below.' },
+  'panel:22x24': { section: 'Wire', label: 'Side panels 22"x24"', note: 'Cut from the mesh (included in its price).' },
+  'panel:22x22': { section: 'Wire', label: 'Bottom panels 22"x22"', note: 'Cut from the mesh (included in its price).' },
+  'wood-screw': { section: 'Hardware', label: '2.5" wood screws', lead: '2-3 days' },
+  'carriage-bolt': { section: 'Hardware', label: '1/4" x 2 1/2" exterior carriage bolts + nuts + washers', lead: '2-3 days' },
+  'backrest-bracket': { section: 'Hardware', label: 'Backrest brackets', lead: '1-3 weeks', note: 'Must be ordered online.' },
+  'corner-brace': { section: 'Hardware', label: 'Corner braces', lead: '1-3 weeks' },
+  'lag-screw': { section: 'Hardware', label: '1/4" x 1 1/2" lag screws', lead: '2-3 days' },
+  'l-bracket': { section: 'Hardware', label: 'L-brackets' },
+  'self-driving-screw': { section: 'Hardware', label: '2 1/2" self-driving screws' },
+  'concrete-screw': { section: 'Hardware', label: '2" concrete screws' },
+  'bird-bath': { label: 'Bird bath' },
+  'cafe-set': { label: 'Cafe tables + chairs' },
+};
+
+const CATEGORY_SECTION: Record<string, string> = {
+  layout: 'Layout + protection',
+  soil: 'Soil',
+  playArea: 'Soil',
+  gravel: 'Gravel',
+  gabions: 'Gabion baskets',
+  planting: 'Plants',
+  additional: 'Additional furnishings',
+  offTheShelf: 'Off-the-shelf',
+  optional: 'Off-the-shelf',
+  furnishings: 'Hardware',
+};
+
+const CATEGORY_LABEL: Record<string, string> = {
+  gabions: "1' gabion baskets",
+  gravelEdge: 'Wood edge around gravel',
+  outerEdge: 'Outer edges',
+  furnishings: 'Furnishings',
+};
+
+/**
+ * The order list built from the corrected estimate's own lines: one row per
+ * material (all the 2x4x8s together), with the ORDER LIST tab's delivery times
+ * and notes. Its total is the estimate's total costs (before tool rental and
+ * contingency); lines that still need a price are listed without a cost.
+ */
+export function buildMergedOrderList(lines: CostLine[], _i: CostInputs): OrderListResult {
+  const rows = new Map<string, OrderListRow>();
+  const extras: OrderListResult['extras'] = [];
+  for (const l of lines) {
+    if (l.category === 'contingency' || l.category === 'doubleCounted') continue;
+    if (l.unit === '') {
+      // "Plus 20%" on the trellis: a cost, not something to order
+      if (l.inTotal && l.total) extras.push({ label: `${l.group ? `${l.group}: ` : ''}${l.item.toLowerCase()} (${l.notes ?? ''})`.replace(' ()', ''), amount: l.total });
+      continue;
+    }
+    if (!l.inTotal && !l.needsPrice) continue;
+    const material = l.material ?? `${l.category}:${l.item}`;
+    const lumber = material.startsWith('lumber:');
+    const meta: Meta = META[material] ?? (lumber ? { lead: '1-3 weeks' } : material.startsWith('panel:') ? { section: 'Wire' } : {});
+    const key = `${material}@${l.needsPrice ? 'np' : l.unitPrice}`;
+    const usedFor = l.group ?? CATEGORY_LABEL[l.category];
+    let row = rows.get(key);
+    if (!row) {
+      const link = meta.link ?? (lumber ? (LUMBER[material.slice(7)]?.link ?? l.link) : l.link);
+      row = {
+        key,
+        row: 0,
+        section: lumber ? 'Lumber' : (meta.section ?? CATEGORY_SECTION[l.category] ?? 'Hardware'),
+        item: meta.label ?? (lumber ? material.slice(7) : l.item.replace(/ \(.*\)$/, '')),
+        qty: 0,
+        unit: l.unit,
+        unitPrice: l.needsPrice ? null : l.unitPrice,
+        total: l.needsPrice ? null : 0,
+        inTotal: !l.needsPrice,
+        link,
+        vendor: vendorOf(link),
+        leadTime: meta.lead ?? (CATEGORY_SECTION[l.category] === 'Off-the-shelf' ? '2-3 Days' : undefined),
+        phase: meta.phase ?? (CATEGORY_SECTION[l.category] === 'Off-the-shelf' ? 6 : undefined),
+        note: meta.note,
+        flags: l.needsPrice ? ['Price needed — the spreadsheet has none. Enter it with the estimate.'] : [],
+        needsPrice: l.needsPrice,
+        usedFor: [],
+      };
+      rows.set(key, row);
+    }
+    row.qty += l.qty;
+    if (row.total !== null) row.total += l.total;
+    if (usedFor && !row.usedFor!.includes(usedFor)) row.usedFor!.push(usedFor);
+  }
+
+  // The same board at two prices (1x6x12: $4 for edges, $10 for the stage): say so.
+  const byItem = new Map<string, OrderListRow[]>();
+  for (const r of rows.values()) byItem.set(r.item, [...(byItem.get(r.item) ?? []), r]);
+  for (const same of byItem.values())
+    if (same.length > 1 && same.some((r) => r.unitPrice !== null))
+      for (const r of same) r.flags.push('The spreadsheet prices this item differently in different places; both prices are kept.');
+
+  const ordered = [...rows.values()].sort((a, b) => SECTIONS.indexOf(a.section) - SECTIONS.indexOf(b.section));
+  const total = ordered.reduce((a, r) => a + (r.total ?? 0), 0) + extras.reduce((a, x) => a + x.amount, 0);
+  const notes = [
+    ...PIAT_NOTES,
+    'Quantities and prices are the estimate’s, merged by material; the total is the estimate’s total costs, before tool rental and contingency.',
+  ];
+  if (ordered.some((r) => r.needsPrice)) notes.push('Items marked “price needed” are not in the total until you enter a price.');
+  return {
+    rows: ordered,
+    sections: SECTIONS.filter((s) => ordered.some((r) => r.section === s)),
+    tips: { Soil: TIP_QTY, Gravel: TIP_QTY, Lumber: 'Order all your wood from Home Depot or Lowe’s, etc. and have it delivered.' },
+    extras,
+    total,
+    notes,
+    tools: TOOLS,
   };
 }

@@ -1,7 +1,8 @@
-// The cost model against PiaT's own spreadsheet. Each fixture holds one set of
-// answers and every value LibreOffice computed for them in the ORIGINAL file
-// (scripts/analyze_cost_model.py). estimate() must match each summary cell,
-// each quantity-tab line and each order-list row within one cent.
+// The faithful port (mode 'sheet') against PiaT's own spreadsheet. Each fixture
+// holds one set of answers and every value LibreOffice computed for them in the
+// ORIGINAL file (scripts/analyze_cost_model.py). estimate(…, { mode: 'sheet' })
+// must match each summary cell, each quantity-tab line and each order-list row
+// within one cent. The corrected model is tested in corrected.test.ts.
 
 import { describe, expect, it } from 'vitest';
 import {
@@ -49,7 +50,7 @@ describe('fixtures', () => {
 
 for (const f of fixtures) {
   describe(`${f.name} — ${f.description}`, () => {
-    const e = estimate(f.inputs);
+    const e = estimate(f.inputs, { mode: 'sheet' });
 
     it('writes the same answer cells as the model', () => {
       expect(f.cells).toEqual(INPUT_CELLS);
@@ -122,16 +123,18 @@ for (const f of fixtures) {
           near(r.total ?? 0, num(x.O), `${label} total`);
         }
       }
-      near(e.orderList.subtotalLayoutSoilGravel, f.orderListTotals.P18, 'P18');
-      near(e.orderList.subtotalWithGabionsAndPlants, f.orderListTotals.P23, 'P23');
+      near(e.orderList.subtotalLayoutSoilGravel!, f.orderListTotals.P18, 'P18');
+      near(e.orderList.subtotalWithGabionsAndPlants!, f.orderListTotals.P23, 'P23');
       near(e.orderList.total, f.orderListTotals.O71, 'O71');
     });
   });
 }
 
-describe('estimate()', () => {
+const sheet = (i: Partial<CostInputs>) => estimate(i, { mode: 'sheet' });
+
+describe("estimate(…, { mode: 'sheet' })", () => {
   it('is all zeros for empty inputs', () => {
-    const e = estimate(emptyInputs);
+    const e = sheet(emptyInputs);
     expect(e.total).toBe(0);
     expect(e.lines.filter((l) => l.total !== 0)).toEqual([]);
     expect(e.orderList.total).toBe(175); // the sheet's unlabelled +$175
@@ -142,22 +145,22 @@ describe('estimate()', () => {
     expect(i.longSideFt).toBe(10);
     expect(i.shortSideFt).toBe(0);
     expect(i.stools).toBe(0);
-    expect(estimate({ longSideFt: 27, shortSideFt: 56 }).total).toBeGreaterThan(0);
+    expect(sheet({ longSideFt: 27, shortSideFt: 56 }).total).toBeGreaterThan(0);
   });
 
   it('flags the sheet’s quirks only when they matter', () => {
-    expect(estimate(defaultInputs).warnings.join(' ')).toMatch(/gabion tables/i);
-    const w = estimate({ ...emptyInputs, woodToppedGabions: 2, porchSwings: 1, stageSquares: 5, cisterns4x4: 1, coldFrameSquares: 3 }).warnings.join('\n');
+    expect(sheet(defaultInputs).warnings.join(' ')).toMatch(/gabion tables/i);
+    const w = sheet({ ...emptyInputs, woodToppedGabions: 2, porchSwings: 1, stageSquares: 5, cisterns4x4: 1, coldFrameSquares: 3 }).warnings.join('\n');
     expect(w).toMatch(/#REF!/);
     expect(w).toMatch(/hammock count/);
     expect(w).toMatch(/2, 3 or 4 squares/);
     expect(w).toMatch(/Cisterns/);
     expect(w).toMatch(/half a cold frame/);
-    expect(estimate(emptyInputs).warnings).toEqual([]);
+    expect(sheet(emptyInputs).warnings).toEqual([]);
   });
 
   it('keeps the gabion tables visible but out of the total, like the sheet', () => {
-    const e = estimate({ ...emptyInputs, gabionTables: 4 });
+    const e = sheet({ ...emptyInputs, gabionTables: 4 });
     const lines = e.lines.filter((l) => l.group === 'Wood-topped gabion table');
     expect(lines.length).toBeGreaterThan(0);
     expect(lines.every((l) => !l.inTotal)).toBe(true);
@@ -166,7 +169,7 @@ describe('estimate()', () => {
   });
 
   it('names a shop for linked lines', () => {
-    const e = estimate(defaultInputs);
+    const e = sheet(defaultInputs);
     const stakes = e.lines.find((l) => l.item === 'Stakes')!;
     expect(stakes.vendor).toBe('Amazon');
     expect(stakes.link).toMatch(/^https:\/\/www\.amazon\.com\//);

@@ -14,6 +14,8 @@ export interface SavedCostInputs {
   overrides: Partial<CostInputs>;
   /** Without a design, unanswered questions start from the spreadsheet's example or from zero */
   base?: 'example' | 'zero';
+  /** Prices the person filled in for "price needed" items, by PriceNeededItem id ("lumber:4x4x6") */
+  unitPrices?: Record<string, number>;
 }
 
 export const COST_INPUTS_KEY = 'costInputs';
@@ -40,7 +42,11 @@ export function readSaved(raw: unknown): SavedCostInputs {
       if (typeof v === 'number' && Number.isFinite(v)) overrides[k] = v;
     }
   }
-  return { v: 1, overrides, base: s?.base === 'zero' ? 'zero' : s?.base === 'example' ? 'example' : undefined };
+  const unitPrices: Record<string, number> = {};
+  if (s && typeof s === 'object' && s.unitPrices && typeof s.unitPrices === 'object') {
+    for (const [k, v] of Object.entries(s.unitPrices)) if (typeof v === 'number' && Number.isFinite(v) && v >= 0) unitPrices[k] = v;
+  }
+  return { v: 1, overrides, base: s?.base === 'zero' ? 'zero' : s?.base === 'example' ? 'example' : undefined, unitPrices };
 }
 
 export function resolveInputs(saved: SavedCostInputs, tally: DesignTally | null | undefined, site?: SiteFacts | null): ResolvedInputs {
@@ -85,4 +91,12 @@ export function withOverride(saved: SavedCostInputs, key: CostInputKey, value: n
   if (value === undefined) delete overrides[key];
   else overrides[key] = value;
   return { ...saved, overrides };
+}
+
+/** A copy of `saved` with one "price needed" item priced (or cleared with `undefined`). */
+export function withUnitPrice(saved: SavedCostInputs, id: string, price: number | undefined): SavedCostInputs {
+  const unitPrices = { ...(saved.unitPrices ?? {}) };
+  if (price === undefined) delete unitPrices[id];
+  else unitPrices[id] = price;
+  return { ...saved, unitPrices };
 }

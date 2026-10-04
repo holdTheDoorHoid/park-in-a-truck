@@ -9,10 +9,10 @@ import { $project, setExtra } from '../../lib/project';
 import type { DesignTally, SiteFacts } from '../../lib/types';
 import { FIELD_GROUPS } from '../../lib/cost/fields';
 import { estimate, fmtN, money, type CostInputKey } from '../../lib/cost/model';
-import { COST_INPUTS_KEY, readSaved, resolveInputs, withOverride, type SavedCostInputs } from '../../lib/cost/state';
+import { COST_INPUTS_KEY, readSaved, resolveInputs, withOverride, withUnitPrice, type SavedCostInputs } from '../../lib/cost/state';
 import { estimateCsv } from '../../lib/cost/csv';
 import NumberField from './NumberField';
-import { EstimateView, OrderListView, TotalCard } from './Results';
+import { Differences, EstimateView, OrderListView, PriceNeeded, TotalCard } from './Results';
 import './cost.css';
 
 interface Props {
@@ -38,10 +38,11 @@ export default function CostEstimator({ title = 'Your cost estimate', focus = 'e
   const site = (project.extra.site as SiteFacts | undefined) ?? null;
   const saved = readSaved(project.extra[COST_INPUTS_KEY]);
   const r = useMemo(() => resolveInputs(saved, tally, site), [project.extra[COST_INPUTS_KEY], tally, site]);
-  const e = useMemo(() => estimate(r.values), [r]);
+  const e = useMemo(() => estimate(r.values, { unitPrices: saved.unitPrices }), [r, project.extra[COST_INPUTS_KEY]]);
 
   const save = (next: SavedCostInputs) => setExtra(COST_INPUTS_KEY, next);
   const change = (key: CostInputKey, v: number | undefined) => save(withOverride(readSaved($project.get().extra[COST_INPUTS_KEY]), key, v));
+  const setPrice = (id: string, v: number | undefined) => save(withUnitPrice(readSaved($project.get().extra[COST_INPUTS_KEY]), id, v));
   const overrides = Object.keys(saved.overrides).length;
 
   if (!mounted) {
@@ -196,18 +197,17 @@ export default function CostEstimator({ title = 'Your cost estimate', focus = 'e
         </h4>
         <TotalCard e={e} />
         {e.warnings.length > 0 && (
-          <details class="ce-warnings">
-            <summary>
-              ⚠ {e.warnings.length} spreadsheet quirk{e.warnings.length === 1 ? '' : 's'} affect{e.warnings.length === 1 ? 's' : ''} this estimate
-            </summary>
-            <p class="ce-small">The site works the numbers out exactly as the Park in a Truck spreadsheet does, mistakes included, so the two always agree:</p>
+          <div class="ce-warnings" role="note">
+            <p class="ce-warnings-head">Please check</p>
             <ul>
               {e.warnings.map((w, k) => (
                 <li key={k}>{w}</li>
               ))}
             </ul>
-          </details>
+          </div>
         )}
+        <PriceNeeded e={e} onPrice={setPrice} idBase={idBase} />
+        <Differences e={e} />
         <div class="ce-actions ce-no-print">
           <button type="button" class="btn btn-primary btn-small" onClick={print}>
             🖨 Print order list
