@@ -161,6 +161,14 @@ export interface DesignTally {
   gabionWallFt?: number;
   /** Feet of wood edging around raised beds ("How many feet are your wood edges?") */
   raisedBedEdgeFt?: number;
+  /**
+   * Footprints [w, h] in feet, one per item, for the elements whose size changes how
+   * the cost estimator counts them: keyhole gardens (by diameter), shade canopies
+   * (by area), sheds, stages and cold frames (by 4x4 squares). Optional — added by
+   * the cost workstream; without it the estimator falls back to elements.ts
+   * footprints (and asks for keyhole-garden sizes).
+   */
+  itemSizes?: Record<string, [number, number][]>;
 }
 
 export type FieldValue =

@@ -272,32 +272,38 @@ Sheet mode matches the sheet in every case below. The corrected mode fixes the o
 
 ## From the design (`inputsFromTally`)
 
-`inputsFromTally(tally, lot?)` reads `project.extra.tally` (`DesignTally`, written by the
-planner) and returns `{ inputs, derived, manual, notes, unmapped, sizeFrom }`.
+`inputsFromTally(tally, lot?)` reads `project.extra.tally` (`DesignTally`, written by the planner with the
+pieces' `tally()`) and returns `{ inputs, derived, manual, notes, unmapped, sizeFrom }`. The tally counts items
+by element id. For the questions asked by size or by 4'x4' squares, the sizes come from `DesignTally.itemSizes`
+when the tally carries them (an optional field added by this workstream), else from the footprints and `countAs`
+notes in `src/data/elements.ts`.
 
 | Input | From | Notes |
 |---|---|---|
 | long / short side | `tally.lengthFt/widthFt` (larger = long); else the lot's (`extra.site`) | badge "From your lot" |
 | planting squares, shrubs | sun + shade | |
 | nature play squares, small/large trees | as tallied | |
-| gravel edge, outer edge (+ hardscape/softscape) | `gravelEdgeFt`, `outerEdgeFt` when the planner measures them | manual otherwise |
-| gabion baskets | `gabion-wall` | one piece = one 1'x1'x4' basket |
-| wood-topped gabions | `gabion-bench` + 2 × `gabion-bench-8` | $0 in the sheet (#REF!); priced in the corrected model |
-| benches with back / without back | `bench-back` / `bench-4` | |
-| square tables | `table-2` | |
+| gravel edge, outer edge (+ hardscape/softscape) | `gravelEdgeFt`, `outerEdgeFt` | the pieces' tally puts everything under softscape |
+| gabion baskets | `gabionWallFt` + 4 ft per added `gabion-wall` piece: one basket per 4 ft per course × the wall's height in elements.ts (2 ft = 2 courses) | PiaT doesn't give the height; the note says so |
+| raised-bed wood edge feet | `raisedBedEdgeFt` (bed perimeters) | the sheet has no calculation for it, so it isn't priced |
+| wood-topped gabions | `gabion-bench` (4-ft modules) + 2 × `gabion-bench-8` | |
+| benches with back / without back | `bench-back` (4-ft modules) / `bench-4` | |
+| square tables, stools, gabion tables | `table-2`, `stool`, `gabion-table` | |
 | long tables | `table-4` + `table-6` + `communal-table` | the sheet has no 4'/6' table line |
-| stools, compost bins, rain barrels, event tents, bird baths, bird houses | `stool`, `compost-bin`, `rain-barrel`, `event-tent`, `birdbath`, `bird-accessories` | |
-| trellises | `shade-canopy` | the sheet's shade structure is the 12x8 trellis |
-| sheds 4x4 / 4x8 | `shed`, by footprint (≤1 square → 4x4); 4x4 when no footprint | |
-| cold-frame squares | `cold-frame` × footprint squares (2 when unknown) | |
-| stage squares | `stage` × long side / 4 **only if** `elements.ts` gives the stage a footprint | manual (with a hint) until then |
+| cafe tables + chairs (optional, $160) | `cafe-table` | the off-the-shelf cafe question (a fixed $0 in the sheet) stays manual, to avoid counting twice |
+| fountains, hammocks, porch swings | `solar-fountain`, `hammock`, `porch-swing` | |
+| compost bins, rain barrels, event tents, bird baths, bird houses | `compost-bin`, `rain-barrel`, `event-tent`, `birdbath`, `bird-accessories` | |
+| trellises | `shade-canopy`: each canopy's area / 96 sq ft (a 12'x8' trellis), rounded up | elements.ts `countAs` says 8'x8' modules, but the sheet prices a 12'x8' trellis; without sizes, 8'x8' each |
+| stage squares | `stage`: one 4'x4' square per drawn item (`countAs`), or area / 16 per item with sizes | 2/3/4 squares have cut lists; other sizes need a price |
+| sheds 4x4 / 4x8 | `shed` by squares (≤1 → 4x4, else 4x8); without sizes the footprint (8'x4' → 4x8) | |
+| cold-frame squares | `cold-frame` × its squares (3'x3' → 1) | |
+| keyhole gardens small / medium / large | `keyhole-garden` by size across (< 5 ft, 5–7 ft, > 7 ft) — **only with `itemSizes`** | the pieces draw 5.75-ft and 7.75-ft gardens, so there is no safe default; without sizes the questions stay manual with a note |
 
-Always manual: outer-edge gabion connections, raised-bed wood edge and gabion connections,
-benches with armrests, gabion tables, keyhole gardens, cisterns, both cafe-table questions,
-fountains, Adirondack chairs, hammocks, porch swings, trash cans, solar lights, other costs.
-Built elements the sheet has no question for (planters, workbench, raised beds, flexible
-seating, outdoor classroom, unknown ids) come back in `unmapped`; the widget lists them and
-points to "Anything else". Plants, surfaces and existing conditions are ignored there.
+Always manual, because the design can't answer them: connections to gabions (outer edges and raised beds),
+benches with armrests, cisterns, the off-the-shelf cafe tables, Adirondack chairs, trash cans, solar lights and
+other costs. Built elements the sheet has no question for (planters, workbench, flexible seating, outdoor
+classroom, unknown ids) come back in `unmapped`; the widget lists them and points to "Anything else". Plants,
+surfaces and existing conditions are ignored there.
 
 ## Saved state and the widget
 

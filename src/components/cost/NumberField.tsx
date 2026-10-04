@@ -15,7 +15,7 @@ interface Props {
   source: ValueSource;
   fallback: number;
   fallbackSource: Exclude<ValueSource, 'you'>;
-  /** How a design value was worked out */
+  /** How a design value was worked out, or what the design has for a question it can't answer */
   derivedNote?: string;
   onChange: (v: number | undefined) => void;
 }
@@ -97,7 +97,7 @@ export default function NumberField({ field, idBase, value, source, fallback, fa
         <p class="ce-hint" id={hintId}>
           {invalid && <span class="ce-invalid">Enter a number of 0 or more. </span>}
           {field.hint && <span>{field.hint} </span>}
-          {derivedNote && (source === 'design' || source === 'lot') && <span>{derivedNote} </span>}
+          {derivedNote && <span>{derivedNote} </span>}
           {field.unpriced && <span class="ce-unpriced">⚠ {field.unpriced}</span>}
         </p>
       )}
