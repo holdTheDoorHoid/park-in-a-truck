@@ -1,0 +1,392 @@
+{
+  "edible-small-tree-both-serviceberry": {
+    "common": "Cây Serviceberry",
+    "notes": "Phần ăn được: trái"
+  },
+  "edible-small-tree-both-redbud": {
+    "common": "Cây tử kinh Mỹ (Redbud)",
+    "notes": "Phần ăn được: hoa; Giống: Forest Pansy"
+  },
+  "edible-small-tree-both-apple": {
+    "common": "Táo",
+    "notes": "Phần ăn được: trái; Giống: Enterprise"
+  },
+  "edible-small-tree-both-peach": {
+    "common": "Đào",
+    "notes": "Phần ăn được: trái; Giống: Contender"
+  },
+  "edible-small-tree-both-pear": {
+    "common": "Lê",
+    "notes": "Phần ăn được: trái; Giống: Golden Russet bosc"
+  },
+  "edible-small-tree-both-plum": {
+    "common": "Mận",
+    "notes": "Phần ăn được: trái; Giống: Methly"
+  },
+  "edible-shrub-sun-red-currant": {
+    "common": "Lý chua đỏ (Red Currant)",
+    "notes": "Phần ăn được: trái; Giống: Red Lake"
+  },
+  "edible-shrub-sun-gooseberry": {
+    "common": "Lý gai (Gooseberry)",
+    "notes": "Phần ăn được: trái; Giống: Black Velvet"
+  },
+  "edible-shrub-sun-pasture-rose": {
+    "common": "Hồng dại (Pasture Rose)",
+    "notes": "Phần ăn được: trái hồng, cánh hoa"
+  },
+  "edible-shrub-sun-low-bush-blueberry": {
+    "common": "Việt quất bụi thấp (Lowbush Blueberry)",
+    "notes": "Phần ăn được: trái; Giống: Chippewa"
+  },
+  "edible-perennial-sun-strawberries": {
+    "common": "Dâu tây",
+    "notes": "Phần ăn được: trái; Giống: Sweet Kiss"
+  },
+  "edible-perennial-sun-virginia-strawberry": {
+    "common": "Dâu tây dại Virginia",
+    "notes": "Phần ăn được: hoa"
+  },
+  "edible-perennial-sun-rudbeckia": {
+    "common": "Cúc mắt đen (Rudbeckia)"
+  },
+  "edible-perennial-sun-prairie-dropseed": {
+    "common": "Cỏ Prairie Dropseed"
+  },
+  "edible-perennial-sun-hairy-field-aster": {
+    "common": "Thạch thảo lông (Hairy field aster)"
+  },
+  "edible-perennial-sun-sedum": {
+    "common": "Sen đá Sedum",
+    "notes": "Giống: Larinem Park"
+  },
+  "edible-shrub-shade-red-twig-dogwood": {
+    "common": "Sơn thù du cành đỏ (Red-twig Dogwood)",
+    "notes": "Giống: Arctic Fire"
+  },
+  "edible-shrub-shade-arrowwood-viburnum": {
+    "common": "Cây Arrowwood viburnum"
+  },
+  "edible-shrub-shade-lowbush-blueberry": {
+    "common": "Việt quất bụi thấp (Lowbush Blueberry)"
+  },
+  "edible-shrub-shade-mountain-laurel": {
+    "common": "Cây Mountain Laurel",
+    "notes": "Giống: Pink Charm"
+  },
+  "edible-perennial-shade-lady-fern": {
+    "common": "Dương xỉ Lady Fern"
+  },
+  "edible-perennial-shade-wild-geranium": {
+    "common": "Phong lữ dại (Wild geranium)"
+  },
+  "edible-perennial-shade-cinnamon-fern": {
+    "common": "Dương xỉ quế (Cinnamon Fern)"
+  },
+  "edible-perennial-shade-jacobs-ladder": {
+    "common": "Hoa Jacobs Ladder"
+  },
+  "edible-perennial-shade-pennsylvania-sedge": {
+    "common": "Cói Pennsylvania Sedge"
+  },
+  "edible-perennial-shade-hayscented-fern": {
+    "common": "Dương xỉ Hayscented Fern"
+  },
+  "edible-perennial-shade-coral-bells": {
+    "common": "Chuông san hô (Coral bells)"
+  },
+  "sanctuary-large-tree-both-burr-oak": {
+    "common": "Sồi Burr (Burr Oak)",
+    "notes": "Đặc điểm cảm quan: dáng cành đẹp"
+  },
+  "sanctuary-large-tree-both-sweet-birch": {
+    "common": "Bạch dương ngọt (Sweet Birch)",
+    "notes": "Đặc điểm cảm quan: hoa quyến rũ/ thơm"
+  },
+  "sanctuary-small-tree-sun-washington-hawthorne": {
+    "common": "Sơn tra Washington (Washington Hawthorne)",
+    "notes": "Đặc điểm cảm quan: trái đỏ tươi"
+  },
+  "sanctuary-small-tree-sun-sourwood": {
+    "common": "Cây Sourwood",
+    "notes": "Đặc điểm cảm quan: lá đổi màu sớm vào mùa thu"
+  },
+  "sanctuary-small-tree-sun-fringetree": {
+    "common": "Cây Fringetree",
+    "notes": "Đặc điểm cảm quan: nở hoa tháng 6 - hoa thơm"
+  },
+  "sanctuary-shrub-sun-summersweet": {
+    "common": "Cây Summersweet",
+    "notes": "Đặc điểm cảm quan: hoa thơm"
+  },
+  "sanctuary-shrub-sun-sweetfern": {
+    "common": "Cây Sweetfern",
+    "notes": "Đặc điểm cảm quan: lá thơm"
+  },
+  "sanctuary-shrub-sun-sweetspire": {
+    "common": "Cây Sweetspire",
+    "notes": "Đặc điểm cảm quan: hoa thơm"
+  },
+  "sanctuary-shrub-sun-swamp-azalea": {
+    "common": "Đỗ quyên đầm lầy (Swamp Azalea)",
+    "notes": "Đặc điểm cảm quan: hoa thơm"
+  },
+  "sanctuary-perennial-sun-blue-false-indigo": {
+    "common": "Chàm giả xanh (Blue False Indigo)",
+    "notes": "Đặc điểm cảm quan: vỏ hạt khô kêu lạch xạch"
+  },
+  "sanctuary-perennial-sun-wild-bergamot": {
+    "common": "Cây Wild Bergamot",
+    "notes": "Đặc điểm cảm quan: lá thơm"
+  },
+  "sanctuary-perennial-sun-sideoats-grama": {
+    "common": "Cỏ Sideoats Grama",
+    "notes": "Đặc điểm cảm quan: chuyển động/âm thanh êm dịu"
+  },
+  "sanctuary-perennial-sun-prairie-dropseed": {
+    "common": "Cỏ Prairie Dropseed",
+    "notes": "Đặc điểm cảm quan: lá thơm/ mềm mại"
+  },
+  "sanctuary-perennial-sun-aster": {
+    "common": "Thạch thảo (Aster)",
+    "notes": "Đặc điểm cảm quan: nở hoa mùa thu"
+  },
+  "sanctuary-perennial-sun-moonbeam-tickseed": {
+    "common": "Cúc Moonbeam (Moonbeam Tickseed)",
+    "notes": "Đặc điểm cảm quan: nở hoa lâu"
+  },
+  "sanctuary-perennial-sun-blazing-star": {
+    "common": "Hoa Liatris (Blazing star)",
+    "notes": "Đặc điểm cảm quan: thu hút loài thụ phấn"
+  },
+  "sanctuary-perennial-sun-tufted-hairgrass": {
+    "common": "Cỏ Tufted Hairgrass",
+    "notes": "Đặc điểm cảm quan: chuyển động êm dịu"
+  },
+  "sanctuary-small-tree-shade-american-hornbeam": {
+    "common": "Cây American hornbeam",
+    "notes": "Đặc điểm cảm quan: vỏ cây gân guốc"
+  },
+  "sanctuary-small-tree-shade-alternate-leaf-dogwood": {
+    "common": "Sơn thù du lá mọc cách (Alternate leaf Dogwood)",
+    "notes": "Đặc điểm cảm quan: hoa thơm"
+  },
+  "sanctuary-small-tree-shade-redbud": {
+    "common": "Cây tử kinh Mỹ (Redbud)",
+    "notes": "Đặc điểm cảm quan: ra hoa đầu xuân"
+  },
+  "sanctuary-small-tree-shade-witchhazel": {
+    "common": "Cây Witchhazel",
+    "notes": "Đặc điểm cảm quan: hoa thơm, dáng lạ mắt"
+  },
+  "sanctuary-shrub-shade-mountain-laurel": {
+    "common": "Cây Mountain Laurel",
+    "notes": "Đặc điểm cảm quan: thường xanh"
+  },
+  "sanctuary-shrub-shade-witch-alder": {
+    "common": "Cây Witch Alder",
+    "notes": "Đặc điểm cảm quan: nở hoa sớm"
+  },
+  "sanctuary-shrub-shade-new-jersey-tea": {
+    "common": "Cây New Jersey Tea",
+    "notes": "Đặc điểm cảm quan: mềm mại"
+  },
+  "sanctuary-shrub-shade-virginia-sweetspire": {
+    "common": "Cây Virginia Sweetspire",
+    "notes": "Đặc điểm cảm quan: hoa đẹp và lá đổi màu mùa thu"
+  },
+  "sanctuary-perennial-shade-lady-fern": {
+    "common": "Dương xỉ Lady Fern",
+    "notes": "Đặc điểm cảm quan: mềm mại"
+  },
+  "sanctuary-perennial-shade-pennsylvania-sedge": {
+    "common": "Cói Pennsylvania Sedge",
+    "notes": "Đặc điểm cảm quan: mềm mại"
+  },
+  "sanctuary-perennial-shade-cinnamon-fern": {
+    "common": "Dương xỉ quế (Cinnamon Fern)",
+    "notes": "Đặc điểm cảm quan: mềm mại"
+  },
+  "sanctuary-perennial-shade-fragrant-golden-rod": {
+    "common": "Hoa Goldenrod thơm (Fragrant Goldenrod)",
+    "notes": "Đặc điểm cảm quan: lá thơm"
+  },
+  "sanctuary-perennial-shade-shorts-aster": {
+    "common": "Thạch thảo Short (Shorts Aster)",
+    "notes": "Đặc điểm cảm quan: nở hoa muộn"
+  },
+  "sanctuary-perennial-shade-columbine": {
+    "common": "Hoa Columbine",
+    "notes": "Đặc điểm cảm quan: nở hoa sớm"
+  },
+  "sanctuary-perennial-shade-celadine-poppy": {
+    "common": "Hoa Celandine Poppy",
+    "notes": "Đặc điểm cảm quan: nở hoa sớm"
+  },
+  "nature-large-tree-both-shingle-oak": {
+    "common": "Sồi Shingle (Shingle Oak)"
+  },
+  "nature-large-tree-both-blackgum": {
+    "common": "Cây Blackgum"
+  },
+  "nature-large-tree-both-basswood": {
+    "common": "Cây đoạn Mỹ (Basswood)"
+  },
+  "nature-small-tree-both-american-hornbeam": {
+    "common": "Cây American hornbeam"
+  },
+  "nature-small-tree-both-serviceberry": {
+    "common": "Cây Serviceberry"
+  },
+  "nature-small-tree-both-pagoda-dogwood": {
+    "common": "Sơn thù du Pagoda (Pagoda dogwood)"
+  },
+  "nature-small-tree-both-witchhazel": {
+    "common": "Cây Witchhazel"
+  },
+  "nature-small-tree-both-blackhaw-viburnum": {
+    "common": "Cây Blackhaw Viburnum"
+  },
+  "nature-shrub-sun-dwarf-summersweet": {
+    "common": "Cây Summersweet lùn (Dwarf Summersweet)"
+  },
+  "nature-shrub-sun-sweetfern": {
+    "common": "Cây Sweetfern"
+  },
+  "nature-shrub-sun-sweetspire": {
+    "common": "Cây Sweetspire",
+    "notes": "Giống: Little Henry"
+  },
+  "nature-shrub-sun-eastern-ninebark": {
+    "common": "Cây Eastern Ninebark"
+  },
+  "nature-shrub-sun-swamp-azalea": {
+    "common": "Đỗ quyên đầm lầy (Swamp Azalea)"
+  },
+  "nature-perennial-sun-bluestar": {
+    "common": "Hoa Bluestar",
+    "notes": "Giống: Storm Cloud"
+  },
+  "nature-perennial-sun-sideoats-grama": {
+    "common": "Cỏ Sideoats Grama"
+  },
+  "nature-perennial-sun-wild-bergamot": {
+    "common": "Cây Wild Bergamot"
+  },
+  "nature-perennial-sun-narrow-leaf-mountainmint": {
+    "common": "Bạc hà núi lá hẹp (Narrow leaf mountainmint)"
+  },
+  "nature-perennial-sun-rudbeckia": {
+    "common": "Cúc mắt đen (Rudbeckia)"
+  },
+  "nature-perennial-sun-prairie-dropseed": {
+    "common": "Cỏ Prairie Dropseed"
+  },
+  "nature-perennial-sun-hairy-field-aster": {
+    "common": "Thạch thảo lông (Hairy field aster)"
+  },
+  "nature-perennial-sun-sedum": {
+    "common": "Sen đá Sedum",
+    "notes": "Giống: Larinem Park"
+  },
+  "nature-shrub-shade-red-twig-dogwood": {
+    "common": "Sơn thù du cành đỏ (Red-twig Dogwood)",
+    "notes": "Giống: Arctic Fire"
+  },
+  "nature-shrub-shade-arrowwood-viburnum": {
+    "common": "Cây Arrowwood viburnum"
+  },
+  "nature-shrub-shade-lowbush-blueberry": {
+    "common": "Việt quất bụi thấp (Lowbush Blueberry)"
+  },
+  "nature-shrub-shade-mountain-laurel": {
+    "common": "Cây Mountain Laurel",
+    "notes": "Giống: Pink Charm"
+  },
+  "nature-perennial-shade-lady-fern": {
+    "common": "Dương xỉ Lady Fern"
+  },
+  "nature-perennial-shade-wild-geranium": {
+    "common": "Phong lữ dại (Wild geranium)"
+  },
+  "nature-perennial-shade-cinnamon-fern": {
+    "common": "Dương xỉ quế (Cinnamon Fern)"
+  },
+  "nature-perennial-shade-jacobs-ladder": {
+    "common": "Hoa Jacobs Ladder"
+  },
+  "nature-perennial-shade-pennsylvania-sedge": {
+    "common": "Cói Pennsylvania Sedge"
+  },
+  "nature-perennial-shade-hayscented-fern": {
+    "common": "Dương xỉ Hayscented Fern"
+  },
+  "nature-perennial-shade-coral-bells": {
+    "common": "Chuông san hô (Coral bells)"
+  },
+  "event-large-tree-both-scarlet-oak": {
+    "common": "Sồi đỏ tươi (Scarlet Oak)"
+  },
+  "event-large-tree-both-american-elm": {
+    "common": "Cây du Mỹ (American Elm)",
+    "notes": "Giống: Princeton"
+  },
+  "event-small-tree-both-serviceberry": {
+    "common": "Cây Serviceberry"
+  },
+  "event-small-tree-both-alternate-leaf-dogwood": {
+    "common": "Sơn thù du lá mọc cách (Alternate leaf Dogwood)"
+  },
+  "event-small-tree-both-american-hophornbeam": {
+    "common": "Cây American Hophornbeam"
+  },
+  "event-small-tree-both-sassafras": {
+    "common": "Cây xá xị (Sassafras)"
+  },
+  "event-small-tree-both-redbud": {
+    "common": "Cây tử kinh Mỹ (Redbud)",
+    "notes": "Giống: Lavender twist"
+  },
+  "event-perennial-sun-butterflyweed": {
+    "common": "Cây bông tai (Butterflyweed)"
+  },
+  "event-perennial-sun-blue-false-indigo": {
+    "common": "Chàm giả xanh (Blue False Indigo)"
+  },
+  "event-perennial-sun-plains-coreopsis": {
+    "common": "Cúc Coreopsis (Plains Coreopsis)"
+  },
+  "event-perennial-sun-love-grass": {
+    "common": "Cỏ Love Grass"
+  },
+  "event-perennial-sun-black-eyed-susan": {
+    "common": "Cúc mắt đen (Black-eyed Susan)"
+  },
+  "event-perennial-sun-wild-pinks": {
+    "common": "Hoa Wild Pinks"
+  },
+  "event-perennial-sun-fragrant-goldenrod": {
+    "common": "Hoa Goldenrod thơm (Fragrant Goldenrod)"
+  },
+  "event-perennial-sun-shorts-aster": {
+    "common": "Thạch thảo Short (Shorts Aster)"
+  },
+  "event-perennial-shade-prairie-onion": {
+    "common": "Hành dại (Prairie Onion)"
+  },
+  "event-perennial-shade-lady-fern": {
+    "common": "Dương xỉ Lady Fern"
+  },
+  "event-perennial-shade-bunny-blue-sedge": {
+    "common": "Cói Bunny Blue Sedge"
+  },
+  "event-perennial-shade-allen-bush-green-and-gold": {
+    "common": "Cây Allen Bush Green and Gold"
+  },
+  "event-perennial-shade-wood-fern": {
+    "common": "Dương xỉ Wood Fern"
+  },
+  "event-perennial-shade-wild-geranium": {
+    "common": "Phong lữ dại (Wild geranium)"
+  }
+}

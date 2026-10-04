@@ -4,20 +4,22 @@
 import PlannerApp from '../planner/PlannerApp';
 import LangFallback from '../site/LangFallback.astro';
 import plannerMsgs from '../../i18n/messages/en/planner.ts';
+import { getT } from '../../i18n/astro.ts';
 
 interface Props {
   demo?: 'dover' | 'greenway';
   [key: string]: unknown;
 }
 const { demo } = Astro.props;
+const t = getT(Astro, plannerMsgs);
 ---
-<section class="planner-widget no-print" aria-label="Sun and shade on your lot">
+<section class="planner-widget no-print" aria-label={t('widget.sunLabel')}>
   <LangFallback area={plannerMsgs}>
     <PlannerApp client:only="preact" mode="sun" demo={demo}>
-      <div slot="fallback" class="widget-placeholder">Loading the sun study…</div>
+      <div slot="fallback" class="widget-placeholder">{t('widget.sunLoading')}</div>
     </PlannerApp>
   </LangFallback>
   <noscript>
-    <p class="widget-placeholder">The sun study needs JavaScript.</p>
+    <p class="widget-placeholder">{t('widget.sunNoscript')}</p>
   </noscript>
 </section>

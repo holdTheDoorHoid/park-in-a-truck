@@ -2,7 +2,7 @@
 import { useStore } from '@nanostores/preact';
 import type { PlannerStore } from '../../lib/planner/store';
 import type { DesignState } from '../../lib/types';
-import { u } from '../../lib/url';
+import { urlFor } from '../../i18n/url';
 import { streetKey } from '../../lib/planner/rect';
 import { distanceToPolyline } from '../../lib/planner/geo';
 import { siteToLocal } from '../../lib/planner/rect';
@@ -14,13 +14,13 @@ import { getExtra } from '../../lib/project';
 import type { SiteFacts, SizeId } from '../../lib/types';
 import { midBlockWords, sideNeighbours } from '../../lib/planner/neighbours';
 import type { Vec2 } from '../../lib/planner/geo';
+import { isolate, pt, type PlannerKey } from '../../lib/planner/words';
 
-const KIND_LABEL = {
-  // (mid-block: worded from the buildings actually there — veteran S6)
-  interior: 'Mid-block',
-  'corner-left': 'Corner — side street on your left as you walk in',
-  'corner-right': 'Corner — side street on your right as you walk in',
-} as const;
+// (mid-block: worded from the buildings actually there — veteran S6)
+const KIND_LABEL: Record<'corner-left' | 'corner-right', PlannerKey> = {
+  'corner-left': 'lot.kindCornerLeft',
+  'corner-right': 'lot.kindCornerRight',
+};
 
 const title = (s: string) => s.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
 
@@ -31,6 +31,8 @@ export function LotPanel({ store }: { store: PlannerStore }) {
   const layout = useStore(store.$layout);
   const fit = useStore(store.$fit);
   if (!site || !d) return null;
+  const t = pt();
+  const u = urlFor(t.locale);
   const f = site.frame;
   // the street in front of the entrance
   const mid = siteToLocal(f, [-4, f.widthFt / 2]);
@@ -53,7 +55,7 @@ export function LotPanel({ store }: { store: PlannerStore }) {
   const room = layout ? slideRoom(outsideAt, shift) : null;
   const blocked = (k: SlideDir) => Boolean(room?.blocked[k]);
   const full = room && Object.values(room.blocked).every(Boolean);
-  const noRoom = 'No room to slide it this way: the park already reaches the lot line';
+  const noRoom = t('lot.noRoom');
   // what fits inside the lot lines (the largest rectangle) vs this size's printed pieces
   const fitL = fitFeet(fit?.lengthFt ?? f.lengthFt);
   const fitW = fitFeet(fit?.widthFt ?? f.widthFt);
@@ -63,103 +65,101 @@ export function LotPanel({ store }: { store: PlannerStore }) {
   // the biggest smaller size whose printed pieces fit inside the lot lines
   const fitsSize = [...SIZES].reverse().find((s) => order.indexOf(s.id) < order.indexOf(d.size) && s.long[0] <= fitL && s.short[0] <= fitW)?.id as SizeId | undefined;
   const useSize = (s: SizeId) => store.commit(setSize(d, s, site, store.$demo.get() ? undefined : getExtra<SiteFacts>('site')));
+  const otherStreet = Boolean(streetKey(site.ctx.lot.address) && streetKey(entranceStreet) !== streetKey(site.ctx.lot.address));
+  const overhangReason = () =>
+    turn % 2 === 1
+      ? t('lot.overhangTurned')
+      : d.fitToLot === false
+        ? t('lot.overhangPrinted')
+        : tooBig && layout
+          ? d.size === 'A'
+            ? t('lot.overhangSizeA')
+            : t('lot.overhangTooBig', { length: fitL, width: fitW, size: d.size, minLength: printed.long[0], minWidth: printed.short[0] }) +
+              (fitsSize ? '' : ' ' + t('lot.trySmaller'))
+          : t('lot.overhangShape');
 
   return (
     <section class="pl-section">
-      <h3 class="pl-h">{title(site.ctx.lot.address)}</h3>
+      <h3 class="pl-h">{isolate(title(site.ctx.lot.address))}</h3>
       <dl class="pl-facts">
         <div>
-          <dt>Size of the lot</dt>
-          <dd>
-            about {Math.round(f.lengthFt)} ft long × {Math.round(f.widthFt)} ft wide ({Math.round(site.areaSqFt).toLocaleString()} sq ft)
-          </dd>
+          <dt>{t('lot.size')}</dt>
+          <dd>{t('lot.sizeValue', { length: Math.round(f.lengthFt), width: Math.round(f.widthFt), area: Math.round(site.areaSqFt) })}</dd>
         </div>
         <div>
-          <dt>Kind of lot</dt>
-          <dd>{f.lotKind === 'interior' ? midBlockWords(sideNeighbours(f, site.buildings.map((b) => b.ring))) : KIND_LABEL[f.lotKind]}</dd>
+          <dt>{t('lot.kind')}</dt>
+          <dd>{f.lotKind === 'interior' ? midBlockWords(sideNeighbours(f, site.buildings.map((b) => b.ring))) : t(KIND_LABEL[f.lotKind])}</dd>
         </div>
         {entranceStreet && best < 80 && (
           <div>
-            <dt>Entrance</dt>
-            <dd>
-              from {title(entranceStreet)}
-              {streetKey(site.ctx.lot.address) && streetKey(entranceStreet) !== streetKey(site.ctx.lot.address) ? ' (not the street in the address — turn the park if this is wrong)' : ''}
-            </dd>
+            <dt>{t('lot.entrance')}</dt>
+            <dd>{t(otherStreet ? 'lot.entranceFromOther' : 'lot.entranceFrom', { street: isolate(title(entranceStreet)) })}</dd>
           </div>
         )}
       </dl>
-      <p class="pl-small muted">
-        Outline from the City's parcel map; neighbors' buildings drawn at their City-recorded heights; street trees from the
-        City's tree inventory.
-      </p>
+      <p class="pl-small muted">{t('lot.sources')}</p>
 
-      <h4 class="pl-h4">Fit the park on the lot</h4>
-      <p class="pl-small">
-        The park's entrance faces the street. If it's on the wrong end or the wrong way round, turn or flip it here.
-      </p>
+      <h4 class="pl-h4">{t('lot.fitTitle')}</h4>
+      <p class="pl-small">{t('lot.fitHelp')}</p>
       <div class="pl-row">
         <button type="button" class="btn btn-small" onClick={() => set({ turn: ((turn + 2) % 4) as 0 | 1 | 2 | 3 })}>
-          ⇄ Entrance at the other end
+          {t('lot.otherEnd')}
         </button>
         <button type="button" class="btn btn-small" onClick={() => set({ flipped: !d.flipped })}>
-          ⇅ Flip left–right
+          {t('lot.flip')}
         </button>
         <button type="button" class="btn btn-small" onClick={() => set({ turn: ((turn + 1) % 4) as 0 | 1 | 2 | 3 })}>
-          ↻ Turn 90°
+          {t('lot.turn')}
         </button>
       </div>
-      <div class="pl-nudge" role="group" aria-label="Slide the park on the lot, 1 foot at a time">
-        <span class="pl-small">Slide the park:</span>
-        <button type="button" class="pl-tool" aria-label="Slide toward the entrance" disabled={blocked('front')} title={blocked('front') ? noRoom : undefined} onClick={() => nudge(-1, 0)}>
-          ←
-        </button>
-        <button type="button" class="pl-tool" aria-label="Slide toward the back" disabled={blocked('back')} title={blocked('back') ? noRoom : undefined} onClick={() => nudge(1, 0)}>
-          →
-        </button>
-        <button type="button" class="pl-tool" aria-label="Slide to the left" disabled={blocked('left')} title={blocked('left') ? noRoom : undefined} onClick={() => nudge(0, 1)}>
-          ↑
-        </button>
-        <button type="button" class="pl-tool" aria-label="Slide to the right" disabled={blocked('right')} title={blocked('right') ? noRoom : undefined} onClick={() => nudge(0, -1)}>
-          ↓
-        </button>
+      <div class="pl-nudge" role="group" aria-label={t('lot.slideGroup')}>
+        <span class="pl-small">{t('lot.slideLabel')}</span>
+        {/* the arrows point the way the park moves on a plan with its entrance on the left: they stay left to right in every language */}
+        <span class="pl-pad" dir="ltr">
+          <button type="button" class="pl-tool" aria-label={t('lot.slideFront')} disabled={blocked('front')} title={blocked('front') ? noRoom : undefined} onClick={() => nudge(-1, 0)}>
+            ←
+          </button>
+          <button type="button" class="pl-tool" aria-label={t('lot.slideBack')} disabled={blocked('back')} title={blocked('back') ? noRoom : undefined} onClick={() => nudge(1, 0)}>
+            →
+          </button>
+          <button type="button" class="pl-tool" aria-label={t('lot.slideLeft')} disabled={blocked('left')} title={blocked('left') ? noRoom : undefined} onClick={() => nudge(0, 1)}>
+            ↑
+          </button>
+          <button type="button" class="pl-tool" aria-label={t('lot.slideRight')} disabled={blocked('right')} title={blocked('right') ? noRoom : undefined} onClick={() => nudge(0, -1)}>
+            ↓
+          </button>
+        </span>
         {(shift[0] !== 0 || shift[1] !== 0 || turn !== 0 || d.flipped) && (
           <button type="button" class="btn btn-small" onClick={() => set({ shiftFt: [0, 0], turn: 0, flipped: false })}>
-            Put it back
+            {t('lot.putBack')}
           </button>
         )}
       </div>
-      {full && <p class="pl-small muted">The park fills the lot, so there's no room to slide it.</p>}
+      {full && <p class="pl-small muted">{t('lot.full')}</p>}
       {overhang && overhang.outsideSqFt > 0 && layout && (
         <p class="pl-row">
           <button type="button" class="btn btn-small" onClick={() => set({ shiftFt: bestSlide(outsideAt) })}>
-            Slide it to fit the lot as well as it can
+            {t('lot.bestSlide')}
           </button>
         </p>
       )}
       {overhang && overhang.outsideSqFt > 0 && (
         <p class="pl-warn">
-          About {overhang.outsideSqFt} sq ft of the park hangs over the lot line (shown in red)
-          {overhang.items.length ? `, and ${overhang.items.length} thing${overhang.items.length > 1 ? 's' : ''} stick out` : ''}.{' '}
-          {turn % 2 === 1
-            ? 'Turned this way the park does not fit — turn it back, or pick a smaller size.'
-            : d.fitToLot === false
-              ? 'The printed pieces are bigger than your lot — try “Stretch the pieces to fill my lot” in Size & themes.'
-              : tooBig && layout
-                ? d.size === 'A'
-                  ? 'Even the smallest pieces (size A) are bigger than your lot — the Park Patch workbook may suit it better.'
-                  : `Inside its lot lines your lot is only about ${fitL} × ${fitW} ft, and size ${d.size}'s pieces are at least ${printed.long[0]} × ${printed.short[0]} ft, so the park hangs over.${fitsSize ? '' : ' Try a smaller size in Size & themes.'}`
-                : "Your lot isn't a perfect rectangle — move or remove what sticks out in “Arrange”, or slide the park."}
+          {overhang.items.length
+            ? t('lot.overhangItems', { area: overhang.outsideSqFt, count: overhang.items.length })
+            : t('lot.overhang', { area: overhang.outsideSqFt })}{' '}
+          {overhangReason()}
         </p>
       )}
       {overhang && overhang.outsideSqFt > 0 && turn % 2 === 0 && d.fitToLot !== false && tooBig && fitsSize && (
         <p class="pl-row">
           <button type="button" class="btn btn-small btn-primary" onClick={() => useSize(fitsSize)}>
-            Use size {fitsSize} — it fits inside your lot
+            {t('lot.useSize', { size: fitsSize })}
           </button>
         </p>
       )}
       <p class="pl-small">
-        <a href={u('lot/')}>Choose a different lot</a>
+        <a href={u('lot/')}>{t('lot.choose')}</a>
       </p>
     </section>
   );

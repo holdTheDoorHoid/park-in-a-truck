@@ -17,6 +17,7 @@ import { ELEMENTS } from '../../data/elements';
 import { deleteSelected, duplicateSelected, rotateSelected } from './keyboard';
 import { downloadDataUrl, printPlan } from './exporting';
 import { PlayChip } from './PlayChip';
+import { isolate, pt } from '../../lib/planner/words';
 
 interface Props {
   store: PlannerStore;
@@ -34,7 +35,7 @@ function describe(store: PlannerStore, sel: Picked | null): { name: string; kind
   }
   const e = store.$design.get()?.existing?.find((x) => x.id === sel.id);
   if (!e) return null;
-  const name = e.element === 'existing-tree' && e.species ? e.species : existingMeta(e.element).name;
+  const name = e.element === 'existing-tree' && e.species ? isolate(e.species) : existingMeta(e.element).name;
   return { name, kind: 'existing', turn: isTurnable('existing', e.element), copy: false };
 }
 
@@ -61,6 +62,7 @@ export function Viewport({ store, mode }: Props) {
   const sel = useStore(store.$selection);
   useStore(store.$design);
   const coarse = useMemo(() => typeof matchMedia !== 'undefined' && matchMedia('(pointer: coarse)').matches, []);
+  const t = pt();
 
   useEffect(() => {
     let alive = true;
@@ -170,13 +172,13 @@ export function Viewport({ store, mode }: Props) {
               });
               if (!onWall) return setInfo(null);
               const ft = store.$tally.get()?.gabionWallFt;
-              setInfo(`Gabion wall: one row of 12″ × 12″ × 48″ stone baskets along the street edge${ft ? ` — ${ft} ft in all (see Counts)` : ''}.`);
+              setInfo(ft ? t('view.gabionInfoFt', { ft }) : t('view.gabionInfo'));
               infoTimer.current = setTimeout(() => setInfo(null), 8000);
             },
           });
         } catch (e) {
           console.error(e);
-          setFailed('Your browser could not start the 3D view (WebGL is off or not supported). The steps and counts still work.');
+          setFailed(t('view.noWebgl'));
           return;
         }
         sceneRef.current = scene;
@@ -222,7 +224,7 @@ export function Viewport({ store, mode }: Props) {
       })
       .catch((e) => {
         console.error(e);
-        setFailed('The 3D view could not load. Check your connection and reload the page.');
+        setFailed(t('view.loadFailed'));
       });
     return () => {
       alive = false;
@@ -272,118 +274,120 @@ export function Viewport({ store, mode }: Props) {
   } else if (drawCount !== null) {
     hint =
       drawCount < 3
-        ? `${coarse ? 'Tap' : 'Click'} around the wet area, point by point${drawCount ? ` (${drawCount} so far)` : ''}${coarse ? '' : ' · Esc cancels'}`
-        : coarse
-          ? 'Tap the first point (or Finish) to close the outline'
-          : 'Click the first point, double-click or press Enter to finish · Backspace takes back a point · Esc cancels';
+        ? coarse
+          ? drawCount
+            ? t('hint.drawTapCount', { count: drawCount })
+            : t('hint.drawTap')
+          : drawCount
+            ? t('hint.drawClickCount', { count: drawCount })
+            : t('hint.drawClick')
+        : t(coarse ? 'hint.closeTap' : 'hint.closeClick');
   } else if (gesture?.mode === 'move') {
-    hint = gesture.over
-      ? 'This would stick out past the lot line (red)' + (coarse ? '' : ' · Esc puts it back')
-      : coarse
-        ? 'Lift your finger to put it here'
-        : 'Let go to put it here · hold Alt to skip the grid · Esc puts it back';
+    hint = gesture.over ? t(coarse ? 'hint.overTouch' : 'hint.overMouse') : t(coarse ? 'hint.liftTouch' : 'hint.letGo');
   } else if (gesture?.mode === 'turn') {
-    hint = `Turned to ${Math.round(gesture.deg ?? 0)}°` + (coarse ? '' : ' · hold Shift to turn freely · Esc puts it back');
+    hint = t(coarse ? 'hint.turnedTouch' : 'hint.turnedMouse', { deg: Math.round(gesture.deg ?? 0) });
   } else if (!store.editable) {
-    hint = view === 'plan' ? 'Drag to move around · pinch or scroll to zoom' : 'Drag to turn · right-drag or two fingers to move · scroll or pinch to zoom';
+    hint = t(view === 'plan' ? 'hint.lookPlan' : 'hint.look3d');
   } else if (coarse) {
-    hint = `Drag things to move them · hold one for more · drag empty ground to ${view === 'plan' ? 'move the map' : 'look around'}`;
+    hint = t(view === 'plan' ? 'hint.touchPlan' : 'hint.touch3d');
   } else {
-    hint = `Drag things to move them · drag the round handle to turn · drag empty ground to ${view === 'plan' ? 'move the map' : 'look around'} · scroll to zoom`;
+    hint = t(view === 'plan' ? 'hint.mousePlan' : 'hint.mouse3d');
   }
 
   return (
     <div class="pl-viewport" ref={root}>
       <div class="pl-canvas-host" ref={host} />
-      {(!ready || status === 'loading') && !failed && <div class="pl-loading">Loading the 3D view…</div>}
+      {(!ready || status === 'loading') && !failed && <div class="pl-loading">{t('view.loading')}</div>}
       {failed && <div class="pl-loading pl-failed">{failed}</div>}
       {ready && site && (
         <>
-          <div class="pl-toolbar" role="toolbar" aria-label="View">
-            <div class="pl-seg" role="group" aria-label="View">
+          <div class="pl-toolbar" role="toolbar" aria-label={t('view.toolbar')}>
+            <div class="pl-seg" role="group" aria-label={t('view.toolbar')}>
               <button type="button" aria-pressed={view === '3d'} onClick={() => store.$view.set('3d')}>
-                3D
+                {t('view.3d')}
               </button>
               <button type="button" aria-pressed={view === 'plan'} onClick={() => store.$view.set('plan')}>
-                Plan
+                {t('view.plan')}
               </button>
             </div>
-            <button type="button" class="pl-tool" aria-label="Zoom in" title="Zoom in" onClick={() => scene?.zoomBy(1.25)}>
+            <button type="button" class="pl-tool" aria-label={t('view.zoomIn')} title={t('view.zoomIn')} onClick={() => scene?.zoomBy(1.25)}>
               +
             </button>
-            <button type="button" class="pl-tool" aria-label="Zoom out" title="Zoom out" onClick={() => scene?.zoomBy(0.8)}>
+            <button type="button" class="pl-tool" aria-label={t('view.zoomOut')} title={t('view.zoomOut')} onClick={() => scene?.zoomBy(0.8)}>
               −
             </button>
-            <button type="button" class="pl-tool" title="Back to the starting view" onClick={() => scene?.resetCamera()}>
-              ⟲<span class="visually-hidden">Reset view</span>
+            <button type="button" class="pl-tool" title={t('view.resetTitle')} onClick={() => scene?.resetCamera()}>
+              ⟲<span class="visually-hidden">{t('view.reset')}</span>
             </button>
             <details class="pl-more">
-              <summary class="pl-tool" title="More">⋯<span class="visually-hidden">More options</span></summary>
+              <summary class="pl-tool" title={t('view.moreTitle')}>
+                ⋯<span class="visually-hidden">{t('view.more')}</span>
+              </summary>
               <div class="pl-menu">
                 <label>
-                  <input type="checkbox" checked={show.aerial} onChange={() => toggle('aerial')} /> Aerial photo
+                  <input type="checkbox" checked={show.aerial} onChange={() => toggle('aerial')} /> {t('view.aerial')}
                 </label>
                 <label>
-                  <input type="checkbox" checked={show.cityTrees} onChange={() => toggle('cityTrees')} /> Street trees
+                  <input type="checkbox" checked={show.cityTrees} onChange={() => toggle('cityTrees')} /> {t('view.streetTrees')}
                 </label>
                 {mode !== 'site' && mode !== 'sun' && (
                   <label>
-                    <input type="checkbox" checked={show.grid} onChange={() => toggle('grid')} /> 1-ft grid
+                    <input type="checkbox" checked={show.grid} onChange={() => toggle('grid')} /> {t('view.grid')}
                   </label>
                 )}
                 <label>
-                  <input type="checkbox" checked={show.heat} onChange={() => toggle('heat')} /> Sun-hours map
+                  <input type="checkbox" checked={show.heat} onChange={() => toggle('heat')} /> {t('view.heat')}
                 </label>
                 {site.terrain && !site.terrain.slope.flat && (
                   <label>
-                    <input type="checkbox" checked={show.slope} onChange={() => toggle('slope')} /> Slope lines
+                    <input type="checkbox" checked={show.slope} onChange={() => toggle('slope')} /> {t('view.slope')}
                   </label>
                 )}
                 <button type="button" class="btn btn-small" onClick={() => scene && downloadDataUrl(scene.snapshot(view), `park-${view}.png`)}>
-                  Save picture
+                  {t('view.savePicture')}
                 </button>
                 {mode !== 'site' && mode !== 'sun' && (
                   <button type="button" class="btn btn-small" onClick={() => scene && printPlan(scene, store)}>
-                    Print plan
+                    {t('view.print')}
                   </button>
                 )}
               </div>
             </details>
           </div>
           <PlayChip store={store} />
-          <div class="pl-north" style={{ transform: `rotate(${north}deg)` }} aria-hidden="true" title="North">
-            <span>N</span>
+          <div class="pl-north" style={{ transform: `rotate(${north}deg)` }} aria-hidden="true" title={t('view.northTitle')}>
+            <span>{t('view.northLetter')}</span>
           </div>
           <div class="pl-bottom">
             {drawCount !== null && (
-              <div class="pl-selbar pl-drawbar" role="toolbar" aria-label="Drawing a wet area">
-                <span class="pl-selbar-name">Wet area · {drawCount} point{drawCount === 1 ? '' : 's'}</span>
-                <button type="button" disabled={drawCount === 0} onClick={() => scene?.undoDrawPoint()} title="Take back the last point (Backspace)">
-                  ↶ Undo point
+              <div class="pl-selbar pl-drawbar" role="toolbar" aria-label={t('draw.toolbar')}>
+                <span class="pl-selbar-name">{t('draw.points', { count: drawCount })}</span>
+                <button type="button" disabled={drawCount === 0} onClick={() => scene?.undoDrawPoint()} title={t('draw.undoTitle')}>
+                  {t('draw.undo')}
                 </button>
-                <button type="button" class="pl-drawbar-done" disabled={drawCount < 3} onClick={() => scene?.finishDrawing()} title="Close the outline (Enter)">
-                  ✓ Finish
+                <button type="button" class="pl-drawbar-done" disabled={drawCount < 3} onClick={() => scene?.finishDrawing()} title={t('draw.finishTitle')}>
+                  {t('draw.finish')}
                 </button>
-                <button type="button" class="pl-selbar-danger" onClick={() => store.$drawing.set(null)} title="Stop drawing (Esc)">
-                  ✕ Cancel
+                <button type="button" class="pl-selbar-danger" onClick={() => store.$drawing.set(null)} title={t('draw.cancelTitle')}>
+                  {t('draw.cancel')}
                 </button>
               </div>
             )}
             {picked && !gesture && drawCount === null && (
-              <div class="pl-selbar" role="toolbar" aria-label={`${picked.name} (picked)`}>
+              <div class="pl-selbar" role="toolbar" aria-label={t('view.picked', { name: picked.name })}>
                 <span class="pl-selbar-name">{picked.name}</span>
                 {picked.turn && (
-                  <button type="button" onClick={() => rotateSelected(store, 90)} title="Turn a quarter turn (R)">
-                    ↻ Turn
+                  <button type="button" onClick={() => rotateSelected(store, 90)} title={t('action.turnTitle')}>
+                    {t('action.turn')}
                   </button>
                 )}
                 {picked.copy && (
-                  <button type="button" onClick={() => duplicateSelected(store)} title="Put a copy right next to it (Ctrl+D)">
-                    ⧉ Duplicate
+                  <button type="button" onClick={() => duplicateSelected(store)} title={t('action.duplicateTitle')}>
+                    {t('action.duplicate')}
                   </button>
                 )}
-                <button type="button" class="pl-selbar-danger" onClick={() => deleteSelected(store)} title="Remove it (Delete)">
-                  ✕ Remove
+                <button type="button" class="pl-selbar-danger" onClick={() => deleteSelected(store)} title={t('action.removeTitle')}>
+                  {t('action.remove')}
                 </button>
               </div>
             )}
@@ -405,16 +409,16 @@ export function Viewport({ store, mode }: Props) {
               <p class="pl-ctx-title">{menuInfo.name}</p>
               {menuInfo.turn && (
                 <button type="button" role="menuitem" onClick={act(() => rotateSelected(store, 90))}>
-                  ↻ Turn <kbd>R</kbd>
+                  {t('action.turn')} <kbd>R</kbd>
                 </button>
               )}
               {menuInfo.copy && (
                 <button type="button" role="menuitem" onClick={act(() => duplicateSelected(store))}>
-                  ⧉ Duplicate <kbd>Ctrl+D</kbd>
+                  {t('action.duplicate')} <kbd>Ctrl+D</kbd>
                 </button>
               )}
               <button type="button" role="menuitem" class="pl-ctx-danger" onClick={act(() => deleteSelected(store))}>
-                ✕ Remove <kbd>Del</kbd>
+                {t('action.remove')} <kbd>Del</kbd>
               </button>
             </div>
           )}

@@ -1,0 +1,31 @@
+{
+  "start": {
+    "title": "Kòmanse isit la",
+    "tagline": "Poukisa pak enpòtan ak kijan Park in a Truck mache."
+  },
+  "acquire": {
+    "title": "Jwenn teren",
+    "tagline": "Chèche yon teren epi jwenn pèmisyon pou sèvi avè l.",
+    "assumes": "Ou deja li gid la, epi ou poko gen yon teren ou ka sèvi ak li."
+  },
+  "organize": {
+    "title": "Òganize",
+    "tagline": "Mete yon komite pak sou pye epi rasanble vwazen ou yo."
+  },
+  "assess": {
+    "title": "Evalye",
+    "tagline": "Konnen teren ou an: solèy, tè ak sa ki antoure l."
+  },
+  "dream": {
+    "title": "Reve",
+    "tagline": "Fè desen pak ou a ak moso pak yo."
+  },
+  "create": {
+    "title": "Kreye",
+    "tagline": "Bati l, yon faz nan yon wikenn chak fwa."
+  },
+  "sustain": {
+    "title": "Pran swen",
+    "tagline": "Pran swen pak ou a, sezon apre sezon."
+  }
+}

@@ -5,15 +5,16 @@
 // in src/scripts/bind.ts (same place as every other data-* behaviour), so
 // this component is just the markup. Dismissible per project
 // (project.extra.lotNoticeDismissed).
-import { u } from '../../lib/url';
+import workbook from '../../i18n/messages/en/workbook.ts';
+import { getT, urlFor } from '../../i18n/astro.ts';
+const t = getT(Astro, workbook);
+const u = urlFor(t.locale);
 ---
 
 <div class="callout callout-warning lot-agreement-notice" hidden data-lot-agreement-notice>
-  <span class="callout-title">Site note</span>
-  <p>
-    You haven't recorded permission for your lot yet — you will need it before anyone breaks ground. <a href={u('steps/acquire/#secure-your-lot')}>Go to Acquire → Secure your lot</a>.
-  </p>
-  <button type="button" class="btn btn-small" data-dismiss="lot-agreement">Dismiss</button>
+  <span class="callout-title">{t('notice.title')}</span>
+  <p set:html={t.html('notice.lot', { href: u('steps/acquire/#secure-your-lot') })} />
+  <button type="button" class="btn btn-small" data-dismiss="lot-agreement">{t('notice.dismiss')}</button>
 </div>
 
 <style>

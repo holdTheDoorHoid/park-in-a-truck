@@ -3,6 +3,10 @@
 // date-times, and we never want "Saturday" to become "Friday night" for someone west of
 // the prime meridian.
 
+import { formatDate } from '../../i18n/format.ts';
+import { currentLocale } from '../../i18n/t.ts';
+import { localeInfo, type Locale } from '../../i18n/locales.ts';
+
 export function parseISO(iso: string): Date {
   const [y, m, d] = iso.split('-').map(Number);
   return new Date(Date.UTC(y!, (m ?? 1) - 1, d ?? 1));
@@ -27,13 +31,15 @@ export function nextSaturdayISO(iso: string): string {
   return toISO(addDays(d, delta));
 }
 
-export const WEEKDAY_SHORT = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-export const MONTH_NAMES = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December',
-];
+/** "Sat, March 14, 2027" — in the reader's language (default: the page's). */
+export function formatLong(iso: string, locale?: Locale | string): string {
+  // formatDate reads a yyyy-mm-dd string as that calendar day, so the weekday never shifts
+  return formatDate(locale ?? currentLocale(), toISO(parseISO(iso)), 'weekday-short');
+}
 
-export function formatLong(iso: string): string {
-  const d = parseISO(iso);
-  return `${WEEKDAY_SHORT[d.getUTCDay()]}, ${MONTH_NAMES[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`;
+/** The name of month `m` (0 = January), capitalised for a heading, in the reader's language. */
+export function monthName(m: number, locale?: Locale | string): string {
+  const loc = locale ?? currentLocale();
+  const name = formatDate(loc, new Date(2001, m, 1), 'month');
+  return name.charAt(0).toLocaleUpperCase(localeInfo(loc).intl) + name.slice(1);
 }

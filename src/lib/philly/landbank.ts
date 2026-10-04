@@ -10,6 +10,8 @@
 import { queryAttrs } from './arcgis';
 import { LAYERS, sqlString } from './endpoints';
 import type { BBox, LandBankStatus, LandBankTone } from './types';
+import type { Locale } from '../../i18n/locales.ts';
+import { words, type PhillyKey } from './words';
 
 interface LamaAttrs {
   opabrt: string | null;
@@ -28,37 +30,45 @@ export const LAND_BANK_AGENCY: Record<string, string> = {
   PHDC: 'PHDC',
 };
 
-// Every status_1 value in the layer on 2026-10-04, in plain words. Acronyms we
-// can't expand with certainty are kept as the Land Bank writes them.
-const STATUS: [RegExp, string, LandBankTone][] = [
-  [/^Owned - Available$/i, 'Available', 'available'],
-  [/^Owned - Available \(no construction permitted\)$/i, 'Available — no construction permitted', 'available'],
-  [/^Owned - Available \(not for SY\)$/i, 'Available — but not as a side yard', 'available'],
-  [/^Owned - On Hold for AHD$/i, 'On hold for affordable housing', 'hold'],
-  [/^Owned - On Hold for (.+)$/i, 'On hold for $1', 'hold'],
-  [/^Owned - On Hold$/i, 'On hold', 'hold'],
-  [/^Owned - Processing Applicant, Not Available$/i, 'Another applicant is in process — not available', 'unavailable'],
-  [/^Owned - Not Available \(GSI Project\)$/i, 'Not available — green stormwater project', 'unavailable'],
-  [/^Owned - Managed and Not Available$/i, 'Managed by the agency — not available', 'unavailable'],
-  [/^Owned - Not Available/i, 'Not available', 'unavailable'],
-  [/^Owned - Sale Pending$/i, 'Sale pending', 'hold'],
-  [/^Owned - RFP Released$/i, 'Offered through a request for proposals (RFP)', 'hold'],
-  [/^Owned - To Be Featured Soon$/i, 'To be listed soon', 'hold'],
-  [/^Owned - Competitive Bid Posted$/i, 'Open for competitive bids', 'hold'],
-  [/^Owned - Held for City Council Member$/i, 'Held for the district Councilmember', 'hold'],
-  [/^Unknown.*$/i, 'Status not known yet (Land Bank research pending)', 'unknown'],
+// Every status_1 value in the layer on 2026-10-04, in plain words (the "philly" catalog).
+// Acronyms we can't expand with certainty are kept as the Land Bank writes them.
+const STATUS: [RegExp, PhillyKey, LandBankTone][] = [
+  [/^Owned - Available$/i, 'landBank.available', 'available'],
+  [/^Owned - Available \(no construction permitted\)$/i, 'landBank.availableNoBuild', 'available'],
+  [/^Owned - Available \(not for SY\)$/i, 'landBank.availableNotSideYard', 'available'],
+  [/^Owned - On Hold for AHD$/i, 'landBank.holdAffordable', 'hold'],
+  [/^Owned - On Hold for (.+)$/i, 'landBank.holdFor', 'hold'],
+  [/^Owned - On Hold$/i, 'landBank.hold', 'hold'],
+  [/^Owned - Processing Applicant, Not Available$/i, 'landBank.otherApplicant', 'unavailable'],
+  [/^Owned - Not Available \(GSI Project\)$/i, 'landBank.gsi', 'unavailable'],
+  [/^Owned - Managed and Not Available$/i, 'landBank.managed', 'unavailable'],
+  [/^Owned - Not Available/i, 'landBank.notAvailable', 'unavailable'],
+  [/^Owned - Sale Pending$/i, 'landBank.salePending', 'hold'],
+  [/^Owned - RFP Released$/i, 'landBank.rfp', 'hold'],
+  [/^Owned - To Be Featured Soon$/i, 'landBank.soon', 'hold'],
+  [/^Owned - Competitive Bid Posted$/i, 'landBank.bids', 'hold'],
+  [/^Owned - Held for City Council Member$/i, 'landBank.councilHold', 'hold'],
+  [/^Unknown.*$/i, 'landBank.unknown', 'unknown'],
 ];
 
-/** "Owned - On Hold for AHD" → { label: "On hold for affordable housing", tone: "hold" } */
-export function landBankPlain(raw: string | null | undefined): { label: string; tone: LandBankTone } {
+/**
+ * "Owned - On Hold for AHD" → { label: "On hold for affordable housing", tone: "hold" }.
+ * `locale`: the language of the label (default: the page's; lookups save it in English).
+ */
+export function landBankPlain(raw: string | null | undefined, locale?: Locale | string): { label: string; tone: LandBankTone } {
+  const t = words(locale);
   const s = (raw ?? '').trim();
-  if (!s) return { label: 'No status listed', tone: 'unknown' };
-  for (const [re, label, tone] of STATUS) if (re.test(s)) return { label: s.replace(re, label), tone };
+  if (!s) return { label: t('landBank.none'), tone: 'unknown' };
+  for (const [re, key, tone] of STATUS) {
+    const m = re.exec(s);
+    if (m) return { label: t(key, { what: m[1] ?? '' }), tone };
+  }
   return { label: s.replace(/^Owned - /i, ''), tone: /not available/i.test(s) ? 'unavailable' : /available/i.test(s) ? 'available' : 'hold' };
 }
 
 export function landBankFromAttrs(a: LamaAttrs): LandBankStatus {
-  const { label, tone } = landBankPlain(a.status_1);
+  // saved with the lot: English (shown translated by landBankLine)
+  const { label, tone } = landBankPlain(a.status_1, 'en');
   const sy = (a.sideyardeligible ?? '').trim().toUpperCase();
   return {
     agency: a.agency?.trim() || null,
@@ -87,11 +97,12 @@ export async function landBankStatusesIn(bbox: BBox, opts: { signal?: AbortSigna
   return out;
 }
 
-/** "Available · side-yard eligible" */
-export function landBankLine(s: LandBankStatus): string {
-  return s.sideYard ? `${s.label} · side-yard eligible` : s.label;
+/** "Available · side-yard eligible", in the reader's language (worked out again from the Land Bank's own status). */
+export function landBankLine(s: LandBankStatus, locale?: Locale | string): string {
+  const t = words(locale);
+  const label = t.locale === 'en' || !s.status ? s.label : landBankPlain(s.status, t.locale).label;
+  return s.sideYard ? t('landBank.sideYardLine', { status: label }) : label;
 }
 
 /** What "side-yard eligible" means, from the Land Bank's Side or Rear Yards page. */
-export const SIDE_YARD_MEANS =
-  'Side-yard eligible: a homeowner who lives next door can apply to buy it from the Land Bank as a side or rear yard.';
+export const sideYardMeans = (locale?: Locale | string) => words(locale)('landBank.sideYardMeans');

@@ -4,6 +4,11 @@ import ParksMapIsland from '../parks/ParksMapIsland';
 import { PARKS } from '../../data/parks';
 import LangFallback from '../site/LangFallback.astro';
 import parksMsgs from '../../i18n/messages/en/parks.ts';
+import { getT, localizeKeyed } from '../../i18n/astro.ts';
+
+const t = getT(Astro, parksMsgs);
+const locale = t.locale;
+const parks = localizeKeyed(PARKS, 'parks', 'id', locale);
 ---
 
 {/* client:idle, not client:visible -- `client:visible` watches the
@@ -16,11 +21,11 @@ import parksMsgs from '../../i18n/messages/en/parks.ts';
     render's critical path (it loads via requestIdleCallback after first
     paint) without depending on that observer. */}
 <LangFallback area={parksMsgs}>
-  <ParksMapIsland parks={PARKS} client:idle />
+  <ParksMapIsland parks={parks} locale={locale} client:idle />
 </LangFallback>
 {/* The map prints as an empty box (the canvas doesn't reproduce in paged
     output) — swap in a one-line pointer for print instead (block-captain F6). */}
-<p class="print-only">See the interactive map online, or the list of parks below.</p>
+<p class="print-only">{t('map.print')}</p>
 
 <style is:global>
   .parks-map-wrap {
@@ -63,7 +68,7 @@ import parksMsgs from '../../i18n/messages/en/parks.ts';
   }
   .parks-map-card {
     position: absolute;
-    left: 12px;
+    inset-inline-start: 12px;
     bottom: 12px;
     max-width: min(320px, calc(100% - 24px));
     background: #fff;
@@ -95,7 +100,7 @@ import parksMsgs from '../../i18n/messages/en/parks.ts';
   .parks-map-card-close {
     position: absolute;
     top: 2px;
-    right: 4px;
+    inset-inline-end: 4px;
     border: 0;
     background: none;
     font-size: 1.3rem;
