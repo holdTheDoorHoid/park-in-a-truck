@@ -1,0 +1,86 @@
+---
+// Dev-only: render a guide's 3D assembly model as plain boxes so modellers can
+// check their work. /dev/model-check/?slug=bench-back&step=4  (step = show parts up to that step)
+// The real, animated viewer lives in src/components/guides3d/.
+import Base from '../../layouts/Base.astro';
+---
+<Base title="Model check" bare>
+  <meta name="robots" content="noindex" />
+  <div style="padding:8px 16px;font-size:14px" id="mc-info">Loading…</div>
+  <canvas id="mc" style="width:100%;height:calc(100vh - 110px);display:block;background:#f6f6f4"></canvas>
+</Base>
+<script>
+  import * as THREE from 'three';
+  import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+  import type { GuideModel } from '../../lib/guides3d/schema';
+
+  const models = import.meta.glob<GuideModel>('../../data/guides/models/*.json', { import: 'default' });
+  const q = new URLSearchParams(location.search);
+  const slug = q.get('slug') ?? 'bench-4';
+  const upTo = Number(q.get('step') ?? 99);
+  const loader = models[`../../data/guides/models/${slug}.json`];
+  const info = document.getElementById('mc-info')!;
+  const canvas = document.getElementById('mc') as HTMLCanvasElement;
+
+  if (!loader) {
+    info.textContent = `No model for "${slug}". Available: ${Object.keys(models).map((k) => k.split('/').pop()!.replace('.json', '')).join(', ') || 'none'}`;
+  } else {
+    loader().then((m) => {
+      const steps = [...new Set(m.parts.map((p) => p.step))].sort((a, b) => a - b);
+      info.textContent = `${m.slug}: ${m.parts.length} parts · steps ${steps.join(', ')} · showing up to step ${upTo} (cyan = that step)`;
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
+      renderer.setPixelRatio(Math.min(2, devicePixelRatio));
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color('#f6f6f4');
+      scene.add(new THREE.HemisphereLight(0xffffff, 0x888888, 2.2));
+      const sun = new THREE.DirectionalLight(0xffffff, 1.5);
+      sun.position.set(60, 120, 80);
+      scene.add(sun);
+      const size = Math.max(m.bounds.length, m.bounds.width, m.bounds.height);
+      const cam = new THREE.PerspectiveCamera(35, 1, 0.5, size * 20);
+      const az = ((m.view?.azimuthDeg ?? 35) * Math.PI) / 180;
+      const el = ((m.view?.elevationDeg ?? 28) * Math.PI) / 180;
+      const dist = size * 2.4;
+      cam.position.set(Math.sin(az) * Math.cos(el) * dist, Math.sin(el) * dist + m.bounds.height / 2, Math.cos(az) * Math.cos(el) * dist);
+      const controls = new OrbitControls(cam, canvas);
+      controls.target.set(0, m.bounds.height / 2, 0);
+      const grid = new THREE.GridHelper(size * 3, Math.round((size * 3) / 6), 0xcccccc, 0xe4e4e4);
+      scene.add(grid);
+      for (const p of m.parts) {
+        if (p.step > upTo) continue;
+        const geo =
+          p.shape === 'cylinder'
+            ? new THREE.CylinderGeometry(p.size[0] / 2, p.size[0] / 2, p.size[1], 16)
+            : new THREE.BoxGeometry(p.size[0], p.size[1], p.size[2]);
+        const current = p.step === upTo;
+        const color = current ? '#00a8e8' : p.color ?? (p.kind === 'lumber' ? '#e9d3b0' : p.kind === 'stone-fill' ? '#9a948c' : '#b8b8b8');
+        const mesh = new THREE.Mesh(
+          geo,
+          new THREE.MeshStandardMaterial({ color, roughness: 0.85, wireframe: p.shape === 'mesh-box', transparent: p.kind === 'stone-fill', opacity: 0.85 }),
+        );
+        mesh.position.set(...p.position);
+        if (p.rotation) mesh.rotation.set(...(p.rotation.map((d) => (d * Math.PI) / 180) as [number, number, number]));
+        scene.add(mesh);
+        if (p.shape !== 'mesh-box') {
+          const edges = new THREE.LineSegments(new THREE.EdgesGeometry(geo), new THREE.LineBasicMaterial({ color: '#333' }));
+          edges.position.copy(mesh.position);
+          edges.rotation.copy(mesh.rotation);
+          scene.add(edges);
+        }
+      }
+      const resize = () => {
+        const w = canvas.clientWidth;
+        const h = canvas.clientHeight;
+        renderer.setSize(w, h, false);
+        cam.aspect = w / h;
+        cam.updateProjectionMatrix();
+      };
+      resize();
+      addEventListener('resize', resize);
+      renderer.setAnimationLoop(() => {
+        controls.update();
+        renderer.render(scene, cam);
+      });
+    });
+  }
+</script>

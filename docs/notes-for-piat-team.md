@@ -33,6 +33,17 @@ The jefferson.edu toolkit page still serves the 2022 workbooks; the Linktree ver
 | 8' gabion bench | Final steps call the top boards "GB-2" but the cut list and drawing say GB-1; page 9 labels a mesh panel "BM-3", not in the cut list |
 | Workbench | No dimension drawing; the site's sizes come from the cut list |
 
+Stated sizes vs. what the parts build (found while making the 3D models):
+
+| Guide | Stated | Built from the parts | Why |
+|---|---|---|---|
+| 24" planter | 24 × 24 × 24 | 24 × 24 × 22.5 | Six 3.5" wall boards = 21", plus 1.5" bottom slats |
+| Gabion bench (4' and 8') | 18" tall | 19.5" tall | The 2x4 top sits on the frame above the 18" mesh sides |
+| Shade | 96 × 96 × 96 | 96 × 99 × 97.5 | Cross beams sit outside the legs; the canopy sits on the beams |
+| Bench + back | 48 × 18.5 × 25 | 48 × 20.8 × 33.8 | 25" is the arm height; the backrest (bracket + boards) rises to ~34" and reclines back |
+| 2' table | cut list: 11 × T-2 | 9 × T-2 | Steps, cover and drawing use 9 (2 in the end frames, 7 on top); 11 also exceeds the lumber in the materials list |
+| 6' table | 7 top boards | 6 or 7 | Cut list and cover say 7; step-5 text and drawing show 6 |
+
 ## Cost-estimator spreadsheet
 
 33 issues, with cells, effects on the sample park and suggested formula fixes: see
