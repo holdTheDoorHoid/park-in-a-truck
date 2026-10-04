@@ -10,7 +10,7 @@ import { lookupLot, type LotQuery } from '../../lib/philly/lookup';
 import { chooseLot } from '../../lib/philly/choose';
 import { PhillyError, type AddressSuggestion } from '../../lib/philly/types';
 import { titleCase } from '../../lib/philly/plain';
-import { words } from '../../lib/philly/words';
+import { isolate, words } from '../../lib/philly/words';
 import { urlFor } from '../../i18n/url.ts';
 import AddressSearch from './AddressSearch';
 import LotCard from './LotCard';
@@ -64,7 +64,7 @@ export default function LotLookup({ mode = 'primary' }: Props) {
         // "Add a possible lot by address" adds it: no second step to miss (veteran S10)
         if (mode === 'candidates' && !project.candidates.some((c) => c.address === r.address)) {
           addCandidate(r);
-          setFlash(t('lookup.addedBelow', { address: titleCase(r.address) }));
+          setFlash(t('lookup.addedBelow', { address: isolate(titleCase(r.address), t) }));
         }
       }
     } catch (e) {
@@ -84,12 +84,12 @@ export default function LotLookup({ mode = 'primary' }: Props) {
 
   const use = (l: LotRecord) => {
     chooseLot(l);
-    setFlash(t(pageHasLotFields() ? 'lookup.nowYourLotFilled' : 'lookup.nowYourLot', { address: titleCase(l.address) }));
+    setFlash(t(pageHasLotFields() ? 'lookup.nowYourLotFilled' : 'lookup.nowYourLot', { address: isolate(titleCase(l.address), t) }));
     setSearching(false);
   };
   const list = (l: LotRecord) => {
     addCandidate(l);
-    setFlash(t('lookup.added', { address: titleCase(l.address) }));
+    setFlash(t('lookup.added', { address: isolate(titleCase(l.address), t) }));
   };
 
   const actionsFor = (l: LotRecord) => (
@@ -154,8 +154,8 @@ export default function LotLookup({ mode = 'primary' }: Props) {
               <div class="ph-chips">
                 {error.suggestions.map((s) => (
                   <button class="ph-chip" type="button" onClick={() => run(s)}>
-                    {titleCase(s.label)}
-                    {s.owner ? <small> · {titleCase(s.owner)}</small> : null}
+                    {isolate(titleCase(s.label), t)}
+                    {s.owner ? <small> · {isolate(titleCase(s.owner), t)}</small> : null}
                   </button>
                 ))}
               </div>

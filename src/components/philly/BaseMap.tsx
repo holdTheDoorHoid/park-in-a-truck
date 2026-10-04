@@ -11,7 +11,7 @@ import { render, type JSX } from 'preact';
 import type { LngLat, LotRecord, PlacedItem } from '../../lib/types';
 import { fetchNeighbourRings } from '../../lib/philly/lookup';
 import { titleCase } from '../../lib/philly/plain';
-import { words } from '../../lib/philly/words';
+import { isolate, words } from '../../lib/philly/words';
 import { ELEMENTS } from '../../data/elements';
 import { localizeRecord } from '../../i18n/data.ts';
 import { escapeHtml } from '../../i18n/format.ts';
@@ -94,7 +94,7 @@ export default function BaseMap() {
     );
   if (!d)
     return (
-      <div class="ph ph-fallback">{t('basemap.noOutline', { address: titleCase(lot.address) })}</div>
+      <div class="ph ph-fallback">{t('basemap.noOutline', { address: isolate(titleCase(lot.address), t) })}</div>
     );
 
   const { maxX, maxY } = d.bounds;
@@ -140,10 +140,12 @@ export default function BaseMap() {
   // top-left corner: the starting point and street names live along the bottom
   const bar: P = [margin * 0.25, margin * 0.4];
 
-  const title = t('basemap.title', { address: titleCase(lot.address) });
+  const title = t('basemap.title', { address: isolate(titleCase(lot.address), t) });
   const printDate = t.date(new Date(), 'long');
   const note = t((lot.extra as { parcelSource?: string })?.parcelSource === 'dor' ? 'basemap.noteDor' : 'basemap.notePwd');
   const oneDecimal = (n: number) => t.num(n, { minimumFractionDigits: 1, maximumFractionDigits: 1, useGrouping: false });
+  // "1/8″ = 1′-0″" reads left to right inside any sentence
+  const scaleText = isolate(scale.label, t);
 
   const drawSvg = (font: number) => (
     <svg
@@ -284,7 +286,7 @@ export default function BaseMap() {
       svg { display: block; }
     </style></head><body>${svg.outerHTML}
       <div class="tb"><div><h1>${escapeHtml(title)}</h1><p>${escapeHtml(note)}</p></div>
-      <div style="text-align:end;white-space:nowrap"><strong>${escapeHtml(t('basemap.scale', { scale: scale.label }))}</strong><p>${escapeHtml(t('basemap.printActual'))}</p><p>${escapeHtml(t('basemap.printFooter', { date: printDate }))}</p></div></div>
+      <div style="text-align:end;white-space:nowrap"><strong>${escapeHtml(t('basemap.scale', { scale: scaleText }))}</strong><p>${escapeHtml(t('basemap.printActual'))}</p><p>${escapeHtml(t('basemap.printFooter', { date: printDate }))}</p></div></div>
     </body></html>`;
     const frame = document.createElement('iframe');
     frame.setAttribute('aria-hidden', 'true');
@@ -317,11 +319,11 @@ export default function BaseMap() {
             {t('basemap.existing', { count: existing.length })}
           </label>
         )}
-        <span class="ph-small">{t('basemap.prints', { scale: scale.label })}</span>
+        <span class="ph-small">{t('basemap.prints', { scale: scaleText })}</span>
       </div>
       <div ref={boxRef}>{drawSvg(screenFont)}</div>
       <p class="ph-small">
-        {note} {t('basemap.rounded', { scale: scale.label })}
+        {note} {t('basemap.rounded', { scale: scaleText })}
       </p>
     </div>
   );

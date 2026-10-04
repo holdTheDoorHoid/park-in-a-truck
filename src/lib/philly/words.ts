@@ -80,3 +80,14 @@ export function retranslate(
 export function keysWith(prefix: string): PhillyKey[] {
   return (Object.keys(philly.messages) as PhillyKey[]).filter((k) => k.startsWith(prefix));
 }
+
+/**
+ * City data inside right-to-left text — an address ("1322 N Dover St"), a street, an owner's or a
+ * place's name — keeps its own left-to-right order: on right-to-left pages it is wrapped in Unicode
+ * "first strong isolate" marks; everywhere else it is returned unchanged. For display only (never
+ * for saved values or input boxes).
+ */
+export function isolate(text: string | null | undefined, t: { dir: 'ltr' | 'rtl' } = words()): string {
+  if (!text) return text ?? '';
+  return t.dir === 'rtl' ? `\u2068${text}\u2069` : text;
+}

@@ -7,7 +7,7 @@ import { useEffect, useId, useRef, useState } from 'preact/hooks';
 import { searchAddresses } from '../../lib/philly/search';
 import type { AddressSuggestion } from '../../lib/philly/types';
 import { titleCase } from '../../lib/philly/plain';
-import { words } from '../../lib/philly/words';
+import { isolate, words } from '../../lib/philly/words';
 import { useDebounced } from './hooks';
 
 interface Props {
@@ -144,8 +144,8 @@ export default function AddressSearch({ label, hint, placeholder, buttonLabel, b
               }}
             >
               {s.kind === 'intersection' ? '✚ ' : ''}
-              {titleCase(s.label)}
-              <small>{s.kind === 'intersection' ? t('search.corner') : s.owner ? t('search.owner', { owner: s.owner }) : ''}</small>
+              {isolate(titleCase(s.label), t)}
+              <small>{s.kind === 'intersection' ? t('search.corner') : s.owner ? t('search.owner', { owner: isolate(s.owner, t) }) : ''}</small>
             </li>
           ))}
         </ul>

@@ -137,15 +137,9 @@ export function ownerTypeLabel(type: OwnerType, locale?: Locale | string): strin
 }
 
 /** Short plain-language name for an owner type, in English (see ownerTypeLabel). */
-export const OWNER_TYPE_LABEL: Record<OwnerType, string> = {
-  city: 'City of Philadelphia (public)',
-  landbank: 'Philadelphia Land Bank (public)',
-  pha: 'Philadelphia Housing Authority (public)',
-  redevelopment: 'Philadelphia Redevelopment Authority (public)',
-  'other-public': 'Another public agency',
-  private: 'Private owner (person, organization or business)',
-  unknown: 'Unknown',
-};
+export const OWNER_TYPE_LABEL = Object.fromEntries(
+  (['city', 'landbank', 'pha', 'redevelopment', 'other-public', 'private', 'unknown'] as const).map((type) => [type, workbook.messages[`auto.owner.${type}`]]),
+) as Record<OwnerType, string>;
 
 /**
  * Words that show owner_2 carries on the name in owner_1 rather than naming a

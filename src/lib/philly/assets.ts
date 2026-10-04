@@ -21,9 +21,9 @@ import type { LngLat, LotRecord } from '../types';
 import { queryAttrs, queryGeo, type GeoFeature } from './arcgis';
 import { LAYERS, links, type LayerName } from './endpoints';
 import { distToRing, makeProjector, roundTo, type Projector } from './geo';
-import { COUNCIL_MEMBERS, COUNCIL_PAGES, phone as fmtPhone, titleCase } from './plain';
+import { COUNCIL_MEMBERS, COUNCIL_PAGES, COUNCIL_TERM, phone as fmtPhone, titleCase } from './plain';
 import type { Asset, AssetCategoryId, AssetGroup } from './types';
-import { EN, words, type PhillyKey } from './words';
+import { EN, isolate, words, type PhillyKey } from './words';
 
 type LotLike = Pick<LotRecord, 'lat' | 'lng'> & Partial<Pick<LotRecord, 'polygon' | 'councilDistrict' | 'rcos' | 'address'>>;
 
@@ -63,6 +63,12 @@ export const assetFieldId = (c: AssetCategoryId) => `organize.assets-${c}`;
 export const assetLine = (a: Asset) => (a.address && !a.name.includes(a.address) ? `${a.name} — ${a.address}` : a.name);
 
 const MAX_PER_GROUP = 25;
+
+/** "Council member for the January 2024 – January 2028 term", in the page's language. */
+function councilTerm(): string {
+  const t = words();
+  return t('assets.detail.council', { from: t.date(COUNCIL_TERM.from, 'month-year'), to: t.date(COUNCIL_TERM.to, 'month-year') });
+}
 
 function centerOf(lot: LotLike): LngLat {
   const poly = lot.polygon ?? [];
@@ -348,8 +354,8 @@ async function groupItems(
         id: `council:${d}`,
         // saved (assetLine) in English; shown in the page's language
         name: EN(who ? 'assets.council' : 'assets.councilOnly', vars),
-        label: words()(who ? 'assets.council' : 'assets.councilOnly', vars),
-        detail: who ? words()('assets.detail.council') : undefined,
+        label: words()(who ? 'assets.council' : 'assets.councilOnly', { ...vars, member: isolate(who) }),
+        detail: who ? councilTerm() : undefined,
         url: COUNCIL_PAGES[d] ?? links.council,
         distanceFt: 0,
       },

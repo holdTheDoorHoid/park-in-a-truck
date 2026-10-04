@@ -8,7 +8,7 @@ import { isPublic, ownerNames } from '../../lib/philly/owner';
 import { landBankLine } from '../../lib/philly/landbank';
 import { sizeOf } from '../../lib/philly/choose';
 import { feet, sqft, titleCase } from '../../lib/philly/plain';
-import { words, type PhillyKey } from '../../lib/philly/words';
+import { isolate, words, type PhillyKey } from '../../lib/philly/words';
 
 const LOT_TYPE: Record<string, PhillyKey | null> = { 'mid-block': 'compare.midBlock', corner: 'compare.corner', alley: 'lotType.alley', unknown: null };
 
@@ -60,11 +60,11 @@ export default function CandidatesTable({ candidates, chosenAddress, onChoose, o
             return (
               <tr data-chosen={chosen ? '' : undefined}>
                 <td data-label={col.address}>
-                  {titleCase(c.address)}
+                  {isolate(titleCase(c.address), t)}
                   {chosen && <span class="ph-saved"> {t('compare.yourLot')}</span>}
                 </td>
                 <td data-label={col.owner}>
-                  {ownerNames(c.owners) || '—'}
+                  {isolate(ownerNames(c.owners), t) || '—'}
                   <br />
                   <small class="ph-small">{t(isPublic(c.ownerType) ? 'compare.public' : c.ownerType === 'private' ? 'compare.private' : 'compare.unknown')}</small>
                   {x.landBank ? (

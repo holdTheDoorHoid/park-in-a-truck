@@ -9,30 +9,19 @@ import type { Locale } from '../../i18n/locales.ts';
 
 export interface PhaseDef {
   id: string;
+  /** English (the schedule catalog's "phase.<id>.title"); phaseText() gives the reader's language */
   title: string;
   blurb: string;
 }
 
-export const PHASES: PhaseDef[] = [
-  { id: 'organize', title: 'Phase 1: Organize', blurb: 'Assemble your team and set the schedule' },
-  { id: 'prepare-lot', title: 'Phase 2: Prepare the lot', blurb: 'Clear, protect and level the site' },
-  { id: 'layout-gravel', title: 'Phase 3: Layout & gravel base', blurb: 'Stake out beds and elements, install the sub-base' },
-  { id: 'install-edge', title: 'Phase 4: Install the edge', blurb: 'Gabion baskets and wood edging' },
-  { id: 'spread-topsoil', title: 'Phase 5: Spread topsoil', blurb: 'Grade and fill the planting beds' },
-  { id: 'plant', title: 'Phase 6: Plant', blurb: 'Trees, shrubs and perennials go in the ground' },
-  { id: 'install-gravel', title: 'Phase 7: Install the gravel surface', blurb: 'Finish gravel, tamped and level' },
-  { id: 'install-elements', title: 'Phase 8: Install park elements', blurb: 'Benches, tables and structures' },
-];
-
 type ScheduleKey = keyof typeof schedule.messages;
+const PHASE_IDS = ['organize', 'prepare-lot', 'layout-gravel', 'install-edge', 'spread-topsoil', 'plant', 'install-gravel', 'install-elements'];
+const en = (key: string) => String(schedule.messages[key as ScheduleKey] ?? key);
+
+export const PHASES: PhaseDef[] = PHASE_IDS.map((id) => ({ id, title: en(`phase.${id}.title`), blurb: en(`phase.${id}.blurb`) }));
 
 /** A phase's title and blurb in the reader's language (default: the page's). */
 export function phaseText(phase: PhaseDef, locale?: Locale | string): { title: string; blurb: string } {
   const t = getT(locale, schedule);
-  const title = `phase.${phase.id}.title` as ScheduleKey;
-  const blurb = `phase.${phase.id}.blurb` as ScheduleKey;
-  return {
-    title: title in schedule.messages ? t(title) : phase.title,
-    blurb: blurb in schedule.messages ? t(blurb) : phase.blurb,
-  };
+  return { title: t(`phase.${phase.id}.title` as ScheduleKey), blurb: t(`phase.${phase.id}.blurb` as ScheduleKey) };
 }

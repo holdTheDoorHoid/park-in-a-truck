@@ -13,7 +13,7 @@ import { SIZES } from '../../lib/sizing';
 import { sizeOf } from '../../lib/philly/choose';
 import { floodText, titleCase, zoningPlain, sqft } from '../../lib/philly/plain';
 import { lotTypeReasonText } from '../../lib/philly/saved';
-import { words, type PhillyKey } from '../../lib/philly/words';
+import { isolate, words, type PhillyKey } from '../../lib/philly/words';
 import { urlFor } from '../../i18n/url.ts';
 import AerialThumb from './AerialThumb';
 import { lotDrawing, fmtFt, textAngle } from './drawing';
@@ -166,7 +166,7 @@ export default function SiteReport() {
     <div class="ph ph-site-report">
       <p
         class="ph-small"
-        dangerouslySetInnerHTML={{ __html: t.html('report.from', { address: titleCase(lot.address), date: t.date(new Date(lot.fetchedAt), 'long') }) }}
+        dangerouslySetInnerHTML={{ __html: t.html('report.from', { address: isolate(titleCase(lot.address), t), date: t.date(new Date(lot.fetchedAt), 'long') }) }}
       />
       <div class="ph-report">
         <div>
@@ -176,7 +176,7 @@ export default function SiteReport() {
               <ol class="ph-edges">
                 {g.edges.map((e, i) => {
                   const side = e.side ? t(SIDE_NAME[e.side]!) : null;
-                  const street = e.street ? titleCase(e.street) : null;
+                  const street = e.street ? isolate(titleCase(e.street), t) : null;
                   return (
                     <li>
                       <strong>{fmtFt(e.lengthFt)}</strong>
@@ -266,7 +266,7 @@ export default function SiteReport() {
             <dt>{t('report.streetSides')}</dt>
             <dd>
               {g && g.streets.length
-                ? g.streets.map((s) => t('report.streetSide', { street: titleCase(s.name), side: t(SIDE_NAME[s.side]!) })).join('; ')
+                ? g.streets.map((s) => t('report.streetSide', { street: isolate(titleCase(s.name), t), side: t(SIDE_NAME[s.side]!) })).join('; ')
                 : '—'}
             </dd>
             <dt>{t('card.zoning')}</dt>
@@ -276,7 +276,7 @@ export default function SiteReport() {
             {x.historicDistrict && (
               <>
                 <dt>{t('report.historic')}</dt>
-                <dd>{x.historicDistrict}</dd>
+                <dd>{isolate(x.historicDistrict, t)}</dd>
               </>
             )}
           </dl>
@@ -307,9 +307,10 @@ export default function SiteReport() {
                 {nextDoor.length
                   ? t('report.nextDoorValue', {
                       count: nextDoor.length,
+                      // a range of heights reads left to right inside any sentence
                       height:
                         nextDoor[0] !== nextDoor[nextDoor.length - 1]
-                          ? `${t.num(nextDoor[0]!)}–${t.num(nextDoor[nextDoor.length - 1]!)}`
+                          ? isolate(`${t.num(nextDoor[0]!)}–${t.num(nextDoor[nextDoor.length - 1]!)}`, t)
                           : t.num(nextDoor[0]!),
                       storeys: t('report.storeys', { count: storeys(nextDoor[nextDoor.length - 1]!) }),
                     })
@@ -321,7 +322,7 @@ export default function SiteReport() {
               <dt>{t('report.trees')}</dt>
               <dd>
                 {t('report.treesValue', { on: treesOn, near: treesNear.length })}
-                {treesNear.length ? <small> ({[...new Set(treesNear)].slice(0, 4).join(', ')})</small> : null}
+                {treesNear.length ? <small> ({[...new Set(treesNear)].slice(0, 4).map((n) => isolate(n, t)).join(', ')})</small> : null}
               </dd>
             </dl>
           )}

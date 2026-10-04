@@ -12,7 +12,7 @@ import { getField, setField } from '../../lib/project';
 import { nearbyAssets, assetFieldId, assetLine, WORKBOOK_LIST_KEY } from '../../lib/philly/assets';
 import type { Asset, AssetCategoryId, AssetGroup } from '../../lib/philly/types';
 import { distance, titleCase } from '../../lib/philly/plain';
-import { words } from '../../lib/philly/words';
+import { isolate, words } from '../../lib/philly/words';
 import { urlFor } from '../../i18n/url.ts';
 import LotLookup from './LotLookup';
 import { useNearViewport, useProject } from './hooks';
@@ -165,7 +165,7 @@ export default function NeighborhoodAssets() {
             <option value="2640">{t('assets.halfMile')}</option>
           </select>
         </label>
-        <span class="ph-small" dangerouslySetInnerHTML={{ __html: t.html('assets.around', { address: titleCase(lot.address), href: u('lot/') }) }} />
+        <span class="ph-small" dangerouslySetInnerHTML={{ __html: t.html('assets.around', { address: isolate(titleCase(lot.address), t), href: u('lot/') }) }} />
       </div>
 
       {error && (
@@ -225,8 +225,8 @@ export default function NeighborhoodAssets() {
                                   <label>
                                     <input type="checkbox" checked={on} onChange={(e) => toggle(g.id, a, (e.target as HTMLInputElement).checked)} />
                                     <span>
-                                      <strong>{a.label ?? a.name}</strong>
-                                      {a.address ? ` — ${a.address}` : ''}
+                                      <strong>{a.label ?? isolate(a.name, t)}</strong>
+                                      {a.address ? ` — ${isolate(a.address, t)}` : ''}
                                       {a.detail && (
                                         <>
                                           <br />
@@ -239,7 +239,11 @@ export default function NeighborhoodAssets() {
                                           <small class="ph-small">
                                             {a.email && <a href={`mailto:${a.email}`}>{a.email}</a>}
                                             {a.email && (a.phone || a.url) ? ' · ' : ''}
-                                            {a.phone && <a href={`tel:${a.phone.replace(/[^\d+]/g, '')}`}>{a.phone}</a>}
+                                            {a.phone && (
+                                              <a href={`tel:${a.phone.replace(/[^\d+]/g, '')}`} dir="ltr">
+                                                {a.phone}
+                                              </a>
+                                            )}
                                             {a.phone && a.url ? ' · ' : ''}
                                             {a.url && (
                                               <a href={a.url} target="_blank" rel="noopener">

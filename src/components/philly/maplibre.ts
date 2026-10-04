@@ -7,6 +7,24 @@
 import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { AERIAL_ATTRIBUTION, AERIAL_MAX_ZOOM, aerialTiles, BASEMAP_STYLE } from '../../lib/mapstyle';
+import { words } from '../../lib/philly/words';
+
+/** The map's own button names and scale-bar units in the page's language (English: MapLibre's own). */
+export function mapUiLocale(): Record<string, string> | undefined {
+  const t = words();
+  if (t.locale === 'en') return undefined;
+  return {
+    'NavigationControl.ZoomIn': t('map.ui.zoomIn'),
+    'NavigationControl.ZoomOut': t('map.ui.zoomOut'),
+    'NavigationControl.ResetBearing': t('map.ui.resetBearing'),
+    'Popup.Close': t('map.ui.closePopup'),
+    'AttributionControl.ToggleAttribution': t('map.ui.attribution'),
+    'AttributionControl.MapFeedback': t('map.ui.feedback'),
+    'Map.Title': t('map.ui.title'),
+    'ScaleControl.Feet': t('map.ui.feet'),
+    'ScaleControl.Miles': t('map.ui.miles'),
+  };
+}
 
 type ML = typeof import('maplibre-gl');
 let loading: Promise<ML> | null = null;
@@ -32,6 +50,7 @@ export async function createMap(container: HTMLElement, opts: { center?: [number
     interactive: opts.interactive ?? true,
     attributionControl: { compact: true },
     cooperativeGestures: false,
+    ...(mapUiLocale() ? { locale: mapUiLocale() } : {}),
   });
   await new Promise<void>((resolve) => {
     if (map.isStyleLoaded()) resolve();

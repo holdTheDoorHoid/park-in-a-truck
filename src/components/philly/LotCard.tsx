@@ -11,7 +11,7 @@ import { sizeOf } from '../../lib/philly/choose';
 import { links } from '../../lib/philly/endpoints';
 import { feet, floodText, sqft, titleCase, zoningPlain } from '../../lib/philly/plain';
 import { lotTypeReasonText, sourceLabel, warningText } from '../../lib/philly/saved';
-import { words, type PhillyKey } from '../../lib/philly/words';
+import { isolate, words, type PhillyKey } from '../../lib/philly/words';
 import { urlFor } from '../../i18n/url.ts';
 import LotOutline from './LotOutline';
 
@@ -100,11 +100,11 @@ export default function LotCard({ lot, actions, badge, compact, titleFocusable }
       <header class="ph-card-head">
         <div>
           <h3 class="ph-card-title" tabIndex={titleFocusable ? -1 : undefined}>
-            {titleCase(lot.address)}
+            {isolate(titleCase(lot.address), t)}
           </h3>
           <p class="ph-card-sub">
             {[
-              x.planningDistrict && t('card.district', { district: x.planningDistrict }),
+              x.planningDistrict && t('card.district', { district: isolate(x.planningDistrict, t) }),
               x.zip && t('card.zip', { zip: x.zip }),
               lot.opa && t('card.opa', { opa: lot.opa }),
             ]
@@ -124,7 +124,7 @@ export default function LotCard({ lot, actions, badge, compact, titleFocusable }
         <dl class="ph-facts">
           <dt>{t('card.owner')}</dt>
           <dd>
-            {lot.owners.length ? ownerNames(lot.owners) : t('card.notOnRecord')}
+            {lot.owners.length ? isolate(ownerNames(lot.owners), t) : t('card.notOnRecord')}
             <br />
             <small>
               {ownerTypeLabel(lot.ownerType)}
@@ -176,7 +176,7 @@ export default function LotCard({ lot, actions, badge, compact, titleFocusable }
             <>
               <dt>{t('card.mailing')}</dt>
               <dd>
-                {titleCase(x.ownerMailing)} <small>{t('card.asOnFile')}</small>
+                {isolate(titleCase(x.ownerMailing), t)} <small>{t('card.asOnFile')}</small>
               </dd>
             </>
           )}
@@ -204,14 +204,14 @@ export default function LotCard({ lot, actions, badge, compact, titleFocusable }
               <dd>
                 {lot.councilDistrict
                   ? x.councilMember
-                    ? t('card.councilMember', { district: String(lot.councilDistrict), member: x.councilMember })
+                    ? t('card.councilMember', { district: String(lot.councilDistrict), member: isolate(x.councilMember, t) })
                     : t('card.councilDistrict', { district: String(lot.councilDistrict) })
                   : '—'}
               </dd>
               {lot.rcos && lot.rcos.length > 0 && (
                 <>
                   <dt>{t('card.rcos')}</dt>
-                  <dd>{lot.rcos.map((r) => r.name).join(' · ')}</dd>
+                  <dd>{lot.rcos.map((r) => isolate(r.name, t)).join(' · ')}</dd>
                 </>
               )}
               <dt>{t('card.flood')}</dt>

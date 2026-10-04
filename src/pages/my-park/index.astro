@@ -110,6 +110,7 @@ import StepPath from '../../components/site/StepPath.astro';
   import { ownerNames } from '../../lib/philly/owner';
   import { lotGeometry } from '../../lib/philly/choose';
   import { feet } from '../../lib/philly/plain';
+  import { isolate } from '../../lib/philly/words';
   import type { LotRecord } from '../../lib/types';
   import mypark from '../../i18n/messages/en/mypark.ts';
   import workbook from '../../i18n/messages/en/workbook.ts';
@@ -124,6 +125,8 @@ import StepPath from '../../components/site/StepPath.astro';
   const sqft = (n: number) => formatAuto(n, 'sqft', t.locale) ?? '';
   /** A project's name: the starting name is saved in English and shown in the page's language until renamed. */
   const shown = (name: string) => (name === 'My park' ? tw('project.default') : name);
+  /** Names and City data keep their own order inside right-to-left text. */
+  const iso = (s: string) => isolate(s, t);
   /** The heading of each step's answers: "Acquire" (English keeps its old headings, from the step ids). */
   const stepTitles = new Map(localizedSteps(t.locale).map((st) => [st.slug, st.title]));
   const stepHeading = (g: string) => (t.locale === 'en' ? g[0]!.toUpperCase() + g.slice(1) : (stepTitles.get(g) ?? g));
@@ -186,7 +189,7 @@ import StepPath from '../../components/site/StepPath.astro';
     const msg = $('[data-import-msg]');
     try {
       const p = importProject(await f.text());
-      msg.textContent = t('import.opened', { name: shown(p.name) });
+      msg.textContent = t('import.opened', { name: iso(shown(p.name)) });
     } catch (err) {
       // English shows the reason as it comes; other languages say it in their words
       msg.textContent = t.locale === 'en' ? (err as Error).message : t('import.notProject');
@@ -203,7 +206,7 @@ import StepPath from '../../components/site/StepPath.astro';
     const active = $project.get().id;
     ul.innerHTML = list
       .map(
-        (p) => `<li><span>${esc(shown(p.name))}${p.id === active ? ` <strong>${esc(t('list.openNow'))}</strong>` : ''}</span>
+        (p) => `<li><span>${esc(iso(shown(p.name)))}${p.id === active ? ` <strong>${esc(t('list.openNow'))}</strong>` : ''}</span>
         ${p.id === active ? '' : `<button class="btn btn-small" data-open="${p.id}">${esc(t('list.open'))}</button>`}
         <button class="btn btn-small" data-del="${p.id}" aria-label="${esc(t('list.deleteLabel', { name: shown(p.name) }))}">${esc(t('list.delete'))}</button></li>`,
       )
@@ -221,7 +224,7 @@ import StepPath from '../../components/site/StepPath.astro';
     ul.querySelectorAll<HTMLButtonElement>('[data-del]').forEach((b, idx) =>
       b.addEventListener('click', () => {
         const p = list.find((x) => x.id === b.dataset.del);
-        if (!p || !confirm(t('delete.confirm', { name: shown(p.name) }))) return;
+        if (!p || !confirm(t('delete.confirm', { name: iso(shown(p.name)) }))) return;
         deleteProject(p.id);
         const freshItems = ul.querySelectorAll('li');
         const target =
@@ -238,8 +241,8 @@ import StepPath from '../../components/site/StepPath.astro';
     if (document.activeElement !== rename) rename.value = shown(p.name);
     const lot = p.lot;
     $('[data-lot-summary]').innerHTML = lot
-      ? `<dl class="lot"><dt>${esc(t('lot.address'))}</dt><dd>${esc(lot.address)}</dd>
-         <dt>${esc(t('lot.owner'))}</dt><dd>${esc(t('lot.ownerLine', { owner: ownerNames(lot.owners), kind: formatAuto(lot.ownerType, 'ownerType', t.locale) }))}</dd>
+      ? `<dl class="lot"><dt>${esc(t('lot.address'))}</dt><dd>${esc(iso(lot.address))}</dd>
+         <dt>${esc(t('lot.owner'))}</dt><dd>${esc(t('lot.ownerLine', { owner: iso(ownerNames(lot.owners)), kind: formatAuto(lot.ownerType, 'ownerType', t.locale) }))}</dd>
          <dt>${esc(t('lot.size'))}</dt><dd>${esc(lotSizeText(lot))}</dd>
          <dt>${esc(t('lot.zoning'))}</dt><dd>${esc(lot.zoning ?? '—')}</dd></dl>`
       : noLot();

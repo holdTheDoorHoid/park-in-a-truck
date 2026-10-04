@@ -20,7 +20,7 @@ import { distanceFt } from '../../lib/philly/geo';
 import { PhillyError, type AddressSuggestion, type BBox, type VacantLotFeature, type VacantLotProps } from '../../lib/philly/types';
 import { agencyName, agencyOf, classifyOwner, ownerTypeLabel } from '../../lib/philly/owner';
 import { sqft, titleCase, zoningPlain } from '../../lib/philly/plain';
-import { words, type PhillyKey } from '../../lib/philly/words';
+import { isolate, words, type PhillyKey } from '../../lib/philly/words';
 import AddressSearch from './AddressSearch';
 import LotCard from './LotCard';
 import SaveToggle from './SaveToggle';
@@ -100,8 +100,8 @@ function VacantPopup({ p, onDetails }: { p: VacantLotProps; onDetails: (opa: str
   };
   return (
     <div class="ph-popup">
-      <strong>{titleCase(p.address)}</strong>
-      <span>{p.owner ? titleCase(p.owner) : t('popup.ownerMissing')}</span>
+      <strong>{isolate(titleCase(p.address), t)}</strong>
+      <span>{p.owner ? isolate(titleCase(p.owner), t) : t('popup.ownerMissing')}</span>
       <br />
       <small>{ownerTypeLabel(p.ownerType)}</small>
       {p.landBank && (
@@ -330,15 +330,15 @@ export default function LotFinderMap({ height }: { height?: string }) {
       setDetail(lot);
       if (then === 'use') {
         chooseLot(lot);
-        setFlash(t('lookup.nowYourLot', { address: titleCase(lot.address) }));
+        setFlash(t('lookup.nowYourLot', { address: isolate(titleCase(lot.address), t) }));
         return t('popup.saved');
       }
       if (then === 'list') {
         addCandidate(lot);
-        setFlash(t('finder.added', { address: titleCase(lot.address) }));
+        setFlash(t('finder.added', { address: isolate(titleCase(lot.address), t) }));
         return t('popup.added');
       }
-      setFound(titleCase(lot.address));
+      setFound(isolate(titleCase(lot.address), t));
       setTimeout(() => {
         detailRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         if (opts.focus) detailRef.current?.querySelector<HTMLElement>('.ph-card-title')?.focus();
@@ -392,8 +392,8 @@ export default function LotFinderMap({ height }: { height?: string }) {
     flyToBox(block.bbox);
     setStreetMsg(
       block.hundred === 0
-        ? t('street.showingFirst', { street: titleCase(name) })
-        : t('street.showingBlock', { hundred: String(block.hundred), street: titleCase(name) }),
+        ? t('street.showingFirst', { street: isolate(titleCase(name), t) })
+        : t('street.showingBlock', { hundred: String(block.hundred), street: isolate(titleCase(name), t) }),
     );
   }
 
@@ -407,7 +407,7 @@ export default function LotFinderMap({ height }: { height?: string }) {
     try {
       const matches = await findStreet(q);
       if (!matches.length) {
-        setDetailError(new PhillyError('not-found', t('street.notFound', { street: q })));
+        setDetailError(new PhillyError('not-found', t('street.notFound', { street: isolate(q, t) })));
         return;
       }
       const one = matches.length === 1 ? matches[0]! : null;
@@ -439,7 +439,7 @@ export default function LotFinderMap({ height }: { height?: string }) {
     if (typeof s !== 'string' && s.lngLat && map) map.flyTo({ center: s.lngLat, zoom: s.kind === 'intersection' ? 17.5 : 18.5 });
     if (typeof s !== 'string' && s.kind === 'intersection') {
       setFound(null);
-      setStreetMsg(t('street.showingCorner', { corner: titleCase(s.label) }));
+      setStreetMsg(t('street.showingCorner', { corner: isolate(titleCase(s.label), t) }));
       return;
     }
     showDetails(s)
@@ -519,11 +519,11 @@ export default function LotFinderMap({ height }: { height?: string }) {
         )}
         {street && street.matches.length > 1 && (
           <div class="ph-street-pick">
-            <p class="ph-status">{t('street.which', { q: street.q })}</p>
+            <p class="ph-status">{t('street.which', { q: isolate(street.q, t) })}</p>
             <div class="ph-chips">
               {street.matches.map((m) => (
                 <button class="ph-chip" type="button" onClick={() => pickStreetName(m.name)}>
-                  {titleCase(m.name)}
+                  {isolate(titleCase(m.name), t)}
                 </button>
               ))}
             </div>
@@ -531,7 +531,7 @@ export default function LotFinderMap({ height }: { height?: string }) {
         )}
         {one && one.blocks.length > 1 && (
           <div class="ph-street-pick">
-            <p class="ph-status">{t('street.blocks', { street: titleCase(one.name), count: one.blocks.length })}</p>
+            <p class="ph-status">{t('street.blocks', { street: isolate(titleCase(one.name), t), count: one.blocks.length })}</p>
             <div class="ph-chips ph-chips-scroll" role="group" aria-label={t('street.blocksLabel', { street: titleCase(one.name) })}>
               {one.blocks.map((b) => (
                 <button class="ph-chip" type="button" onClick={() => goBlock(one.name, b)}>
@@ -552,8 +552,8 @@ export default function LotFinderMap({ height }: { height?: string }) {
               <div class="ph-chips">
                 {detailError.suggestions.map((s) => (
                   <button class="ph-chip" type="button" onClick={() => goTo(s)}>
-                    {titleCase(s.label)}
-                    {s.owner ? <small> · {titleCase(s.owner)}</small> : null}
+                    {isolate(titleCase(s.label), t)}
+                    {s.owner ? <small> · {isolate(titleCase(s.owner), t)}</small> : null}
                   </button>
                 ))}
               </div>
@@ -620,7 +620,7 @@ export default function LotFinderMap({ height }: { height?: string }) {
                   doneText={t('action.isYourLot')}
                   onClick={() => {
                     chooseLot(detail);
-                    setFlash(t('lookup.nowYourLot', { address: titleCase(detail.address) }));
+                    setFlash(t('lookup.nowYourLot', { address: isolate(titleCase(detail.address), t) }));
                   }}
                 >
                   {t('action.use')}
@@ -630,7 +630,7 @@ export default function LotFinderMap({ height }: { height?: string }) {
                   doneText={t('action.onList')}
                   onClick={() => {
                     addCandidate(detail);
-                    setFlash(t('finder.added', { address: titleCase(detail.address) }));
+                    setFlash(t('finder.added', { address: isolate(titleCase(detail.address), t) }));
                   }}
                 >
                   {t('action.add')}
@@ -658,7 +658,7 @@ export default function LotFinderMap({ height }: { height?: string }) {
             <ul class="ph-inview-list">
               {inView.slice(0, listMax).map((f) => {
                 const p = f.properties;
-                const name = titleCase(p.address) || t('inView.noAddress');
+                const name = isolate(titleCase(p.address), t) || t('inView.noAddress');
                 return (
                   <li key={p.opa ?? String(f.id)}>
                     <span class="ph-swatch" aria-hidden="true" style={`background:${CLASS_STYLE[p.mapClass].fill};opacity:.75`} />

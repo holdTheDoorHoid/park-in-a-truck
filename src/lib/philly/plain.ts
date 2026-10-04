@@ -5,7 +5,7 @@
 // (default: the page's language in the browser, English in Node).
 
 import type { Locale } from '../../i18n/locales.ts';
-import { retranslate, words, type PhillyKey } from './words';
+import { EN, retranslate, words, type PhillyKey } from './words';
 
 const ZONING: [RegExp, PhillyKey][] = [
   [/^RSD/, 'zoning.rsd'],
@@ -90,7 +90,10 @@ export const COUNCIL_MEMBERS: Record<string, string> = {
   '9': 'Anthony Phillips',
   '10': "Brian O'Neill",
 };
-export const COUNCIL_AS_OF = 'January 2024 – January 2028 term';
+/** The term the roster above is for (first month of each end). */
+export const COUNCIL_TERM = { from: '2024-01-01', to: '2028-01-01' };
+/** "January 2024 – January 2028 term" (English; assets.ts words it in the page's language) */
+export const COUNCIL_AS_OF = `${EN.date(COUNCIL_TERM.from, 'month-year')} – ${EN.date(COUNCIL_TERM.to, 'month-year')} term`;
 
 /** Each district member's own page on phlcouncil.com (checked 2026-10-04). */
 export const COUNCIL_PAGES: Record<string, string> = {

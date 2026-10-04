@@ -29,6 +29,17 @@ export default defineMessages('philly', {
   'distance.nextDoor': 'next door',
   /** The letter for north on the arrow of a map or drawing (one letter or character) */
   'map.north': 'N',
+  // The map's own buttons (tooltips and screen-reader names) and its scale bar
+  'map.ui.zoomIn': 'Zoom in',
+  'map.ui.zoomOut': 'Zoom out',
+  'map.ui.resetBearing': 'Drag to rotate map, click to reset north',
+  'map.ui.closePopup': 'Close popup',
+  'map.ui.attribution': 'Toggle attribution',
+  'map.ui.feedback': 'Map feedback',
+  'map.ui.title': 'Map',
+  /** Scale bar units: feet and miles, the way your language abbreviates them */
+  'map.ui.feet': 'ft',
+  'map.ui.miles': 'mi',
 
   // ---- zoning (Philadelphia Zoning Code base districts; the code itself, RSA-5, stays) ----------
   /** "RSA-5 · Residential — single-family attached houses (rowhouses and twins)" */
@@ -443,6 +454,7 @@ export default defineMessages('philly', {
   'sizes.size': 'Size',
   'sizes.long': 'Long edge',
   'sizes.short': 'Short edge',
+  /** A range of lengths: "44–64 ft". In right-to-left languages a dash between two numbers can swap them on screen; write "from {min} to {max}" in your words if it does. */
   'sizes.range': '{min}–{max} ft',
   /** {long} and {short} are lengths like "50.3 ft" */
   'report.tooSmall': 'Your lot ({long} × {short}) is smaller than size A — the <a href="{href}">Park Patch workbook</a> is made for spaces like this.',
@@ -568,7 +580,8 @@ export default defineMessages('philly', {
   'assets.detail.registerListed': 'Philadelphia Register of Historic Places · listed {year}',
   'assets.detail.localDistrict': 'Local historic district',
   'assets.detail.coversLot': 'Covers your lot',
-  'assets.detail.council': 'Council member for the January 2024 – January 2028 term',
+  /** {from} and {to} are months like "January 2024" */
+  'assets.detail.council': 'Council member for the {from} – {to} term',
   /** {name} is a campus building's name */
   'assets.detail.nearestBuilding': 'Nearest building: {name}',
   /** {member} is the Councilmember's name */
