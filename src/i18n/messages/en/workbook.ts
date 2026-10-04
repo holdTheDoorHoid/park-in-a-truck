@@ -73,7 +73,8 @@ export default defineMessages('workbook', {
   'done.badge': '✓ done',
   'progress.of': '{done} of {total}',
   'progress.done': '{done} of {total} done',
-  'progress.total': '{done} of {total} steps done',
+  /** Overall progress on the Steps page: it counts the SUB-steps of all six steps (53 of them), so say sub-steps */
+  'progress.total': '{done} of {total} sub-steps done',
 
   'pdf.label': 'Original workbook page',
   'pdf.page': '(PDF page {page})',
