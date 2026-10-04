@@ -1,8 +1,147 @@
 ---
-// STUB — owned by the content-a workstream, which replaces this file.
-// Content may already place <MeetingFlyer /> in chapters; keep the props optional.
+// Printable flyer for the first community meeting, built from the
+// organize.meeting-* fields, the committee list, and the chosen lot.
+// See src/components/flyer/MeetingFlyerIsland.tsx for the live logic.
+import MeetingFlyerIsland from '../flyer/MeetingFlyerIsland';
 interface Props { [key: string]: unknown }
 ---
-<div class="widget-placeholder" data-widget="MeetingFlyer">
-  <strong>MeetingFlyer</strong> — Printable flyer for your first community meeting.
-</div>
+<MeetingFlyerIsland client:visible />
+
+<style is:global>
+  /* ---- on-screen preview card ---- */
+  .flyer-widget {
+    margin: 1.5em 0;
+  }
+  .flyer-preview-wrap {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 20px;
+    background: var(--paper-2);
+    display: grid;
+    gap: 16px;
+    grid-template-columns: minmax(0, 320px) 1fr;
+    align-items: start;
+  }
+  .flyer-preview {
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    background: #fff;
+    transform-origin: top left;
+    pointer-events: none;
+  }
+  .flyer-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  @media (max-width: 640px) {
+    .flyer-preview-wrap {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ---- the flyer sheet itself (shared by preview + print) ---- */
+  .flyer-sheet {
+    width: 100%;
+    aspect-ratio: 8.5 / 11;
+    padding: 6%;
+    box-sizing: border-box;
+    background: #fff;
+    color: var(--ink);
+    font-family: var(--font-body);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .flyer-eyebrow {
+    margin: 0 0 0.3em;
+    font-weight: 700;
+    font-size: 0.85em;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cyan-ink);
+  }
+  .flyer-headline {
+    margin: 0 0 0.4em;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1.9em;
+    line-height: 1.08;
+  }
+  .flyer-rule {
+    height: 6px;
+    background: var(--ink);
+    margin: 0 0 1em;
+  }
+  .flyer-facts {
+    margin: 0 0 1em;
+    display: grid;
+    gap: 0.7em;
+  }
+  .flyer-facts dt {
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.75em;
+    color: var(--cyan-ink);
+  }
+  .flyer-facts dd {
+    margin: 0;
+    font-size: 1.3em;
+    font-weight: 700;
+  }
+  .flyer-purpose {
+    font-size: 1em;
+    line-height: 1.5;
+    margin: 0 0 1em;
+  }
+  .flyer-contact {
+    margin-top: auto;
+    padding-top: 1em;
+    border-top: 2px solid var(--line);
+  }
+  .flyer-contact-label {
+    margin: 0 0 0.2em;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.75em;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+  .flyer-contact p {
+    margin: 0;
+  }
+  .flyer-credit {
+    margin: 1em 0 0;
+    font-size: 0.72em;
+    color: var(--muted);
+  }
+
+  /* ---- print: only the flyer, at full page size ---- */
+  .flyer-print-root {
+    display: none;
+  }
+  @media print {
+    html.printing-flyer body * {
+      visibility: hidden;
+    }
+    html.printing-flyer .flyer-print-root,
+    html.printing-flyer .flyer-print-root * {
+      visibility: visible;
+    }
+    html.printing-flyer .flyer-print-root {
+      display: block;
+      position: absolute;
+      inset: 0;
+      margin: 0;
+      padding: 0;
+    }
+    html.printing-flyer .flyer-print-root .flyer-sheet {
+      width: 8.5in;
+      height: 11in;
+      aspect-ratio: auto;
+      padding: 0.6in;
+    }
+  }
+</style>
