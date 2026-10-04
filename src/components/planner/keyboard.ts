@@ -1,11 +1,13 @@
 // Keyboard: arrows move the selected thing (by the snap step), R turns it, Ctrl/Cmd+D
 // duplicates it, Delete removes it, Ctrl/Cmd+Z undoes, Ctrl+Shift+Z / Ctrl+Y redoes, Esc
-// deselects, P switches 3D/plan. Only while focus is inside the planner and not in a text
-// field. The same actions back the buttons and the right-click menu.
+// deselects, P switches 3D/plan. While focus is anywhere in the planner (or nowhere, right
+// after using it) and not in a text field; on the "pick from the list" box the arrows keep
+// going through the list. The same actions back the buttons and the right-click menu.
 
 import type { PlannerStore } from '../../lib/planner/store';
 import { deleteExisting, duplicateItem, moveItem, removeItem, updateExisting } from '../../lib/planner/design';
 import { duplicatePlacement } from '../../lib/planner/interact';
+import { catalogEntry, existingMeta } from '../../lib/planner/catalog';
 
 /** Copy the selected park item and put the copy right next to it (then pick the copy). */
 export function duplicateSelected(store: PlannerStore): boolean {
@@ -59,16 +61,38 @@ export function deleteSelected(store: PlannerStore) {
   const sel = store.$selection.get();
   const d = store.$design.get();
   if (!sel || !d) return;
+  const name =
+    sel.kind === 'item'
+      ? catalogEntry(store.$layout.get()?.items.find((x) => x.id === sel.id)?.element ?? '').name
+      : existingMeta(d.existing?.find((x) => x.id === sel.id)?.element ?? '').name;
+  // the button that did it is about to go: keep keyboard focus in the planner (access F2)
+  const was = typeof document !== 'undefined' ? (document.activeElement as HTMLElement | null) : null;
+  const root = was?.closest?.('.pl-root') as HTMLElement | null;
   store.commit(sel.kind === 'item' ? removeItem(d, sel.id) : deleteExisting(d, sel.id));
   store.$selection.set(null);
+  store.$announce.set('');
+  store.$announce.set(`Removed ${name ? name.toLowerCase() : 'it'}. Undo (Ctrl+Z) brings it back.`);
+  if (root)
+    setTimeout(() => {
+      const now = document.activeElement;
+      if (now && now !== document.body && root.contains(now)) return;
+      const to = root.querySelector<HTMLElement>('[data-pl-after-remove]') ?? root.querySelector<HTMLElement>('.pl-canvas');
+      to?.focus({ preventScroll: true });
+    }, 0);
 }
 
 /** keydown handler for the planner root (attached with onKeyDown, so it follows re-renders). */
 export function keyHandler(store: PlannerStore) {
   return (e: KeyboardEvent) => {
     const t = e.target as HTMLElement;
-    if (t.closest('input, textarea, select, [contenteditable]') && !(t as HTMLInputElement).type?.match(/checkbox|radio|button/)) return;
     const mod = e.ctrlKey || e.metaKey;
+    if (t.closest?.('input, textarea, select, [contenteditable]') && !(t as HTMLInputElement).type?.match(/checkbox|radio|button/)) {
+      // the "pick from the list" box: turn, copy and remove the picked thing from there too
+      // (its arrows and letters still go through the list)
+      const list = t.matches('select[data-pl-items]') && store.$selection.get()?.kind === 'item';
+      const ok = list && !e.altKey && ((!mod && (e.key === 'r' || e.key === 'R' || e.key === 'Delete')) || (mod && e.key.toLowerCase() === 'd'));
+      if (!ok) return;
+    }
     if (mod && e.key.toLowerCase() === 'z') {
       e.preventDefault();
       if (e.shiftKey) store.redo();

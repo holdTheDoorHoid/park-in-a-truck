@@ -90,6 +90,8 @@ export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = nu
   const $history = atom({ canUndo: false, canRedo: false });
   /** the panel step the person is on (decides what can be dragged and what's shown) */
   const $step = atom<string>('');
+  /** a short message for screen readers (e.g. what was just removed) */
+  const $announce = atom<string>('');
 
   const past: DesignState[] = [];
   const future: DesignState[] = [];
@@ -383,6 +385,7 @@ export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = nu
     $sunJob,
     $history,
     $step,
+    $announce,
     $terrain,
     $drawing,
     commit,

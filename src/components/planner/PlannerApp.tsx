@@ -31,6 +31,9 @@ const STEP_LABEL: Record<StepId, string> = {
   counts: 'Counts',
 };
 
+/** The planner last clicked or focused (a page can have more than one): it gets keys that land on the page itself. */
+let lastActive: HTMLElement | null = null;
+
 const STEPS: Record<PlannerMode, StepId[]> = {
   full: ['lot', 'size', 'arrange', 'sun', 'counts'],
   design: ['size', 'arrange', 'sun', 'counts'],
@@ -129,6 +132,33 @@ function PlannerInner({ mode = 'design', demo, page = false }: Props) {
   const note = useStore(store.$note);
   const demoSlug = useStore(store.$demo);
   const hasLot = Boolean(useStore($project).lot);
+  const announce = useStore(store.$announce);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  // Keyboard shortcuts work whenever something is picked and focus is in this planner —
+  // not only with the pointer over the 3D view (access-keyboard F2). Keys that land on the
+  // page itself (focus nowhere in particular) go to the planner used last.
+  useEffect(() => {
+    const handle = keyHandler(store);
+    const onKey = (e: KeyboardEvent) => {
+      const root = rootRef.current;
+      if (!root || e.defaultPrevented) return;
+      const t = e.target as Node | null;
+      const loose = (t === document.body || t === document.documentElement || t === null) && lastActive === root && Boolean(store.$selection.get());
+      if ((t && root.contains(t)) || loose) handle(e);
+    };
+    const mark = () => (lastActive = rootRef.current);
+    const root = rootRef.current;
+    root?.addEventListener('pointerdown', mark, true);
+    root?.addEventListener('focusin', mark);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      root?.removeEventListener('pointerdown', mark, true);
+      root?.removeEventListener('focusin', mark);
+      document.removeEventListener('keydown', onKey);
+      if (lastActive === root) lastActive = null;
+    };
+  }, [store, status]);
 
   useEffect(() => {
     // what's shown (markers for things already on the lot) depends on the step
@@ -167,7 +197,10 @@ function PlannerInner({ mode = 'design', demo, page = false }: Props) {
 
   const idx = steps.indexOf(step);
   return (
-    <div class={`pl-root pl-${mode}${page ? ' pl-page' : ''}`} onKeyDown={keyHandler(store)}>
+    <div class={`pl-root pl-${mode}${page ? ' pl-page' : ''}`} ref={rootRef}>
+      <p class="visually-hidden" role="status">
+        {announce}
+      </p>
       <div class="pl-layout">
       <div class="pl-stage">
         <Viewport store={store} mode={mode} />
