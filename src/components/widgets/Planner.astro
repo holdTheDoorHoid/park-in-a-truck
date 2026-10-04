@@ -5,6 +5,8 @@
 //   <Planner mode="site" />   existing conditions + sun & shade (Assess)
 //   <Planner mode="full" />   everything, with the step rail (the /planner page uses this)
 import PlannerApp from '../planner/PlannerApp';
+import LangFallback from '../site/LangFallback.astro';
+import plannerMsgs from '../../i18n/messages/en/planner.ts';
 
 interface Props {
   mode?: 'design' | 'site' | 'full' | 'sun';
@@ -19,9 +21,11 @@ const label =
     : 'The 3D park planner: Park in a Truck pieces fitted to your real lot';
 ---
 <section class="planner-widget no-print" aria-label={label}>
-  <PlannerApp client:only="preact" mode={mode} demo={demo}>
-    <div slot="fallback" class="widget-placeholder">Loading the 3D planner…</div>
-  </PlannerApp>
+  <LangFallback area={plannerMsgs}>
+    <PlannerApp client:only="preact" mode={mode} demo={demo}>
+      <div slot="fallback" class="widget-placeholder">Loading the 3D planner…</div>
+    </PlannerApp>
+  </LangFallback>
   <noscript>
     <p class="widget-placeholder">The 3D planner needs JavaScript. Everything else in this workbook works without it.</p>
   </noscript>

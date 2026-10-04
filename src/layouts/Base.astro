@@ -1,9 +1,13 @@
 ---
 import '../styles/global.css';
+import '../styles/i18n.css';
 import Header from '../components/site/Header.astro';
 import Footer from '../components/site/Footer.astro';
 import { getOutline } from '../lib/outline';
 import { u } from '../lib/url';
+import site from '../i18n/messages/en/site.ts';
+import workbook from '../i18n/messages/en/workbook.ts';
+import { getT, alternates, samePageIn, localeInfo, localizeLinks, OFFERABLE, LOCALES, bundleVersion } from '../i18n/astro.ts';
 
 interface Props {
   title: string;
@@ -11,12 +15,39 @@ interface Props {
   /** full-bleed pages (planner, maps) skip the footer margin */
   bare?: boolean;
 }
-const { title, description = 'Plan, build and care for a neighborhood park with the Park in a Truck toolkit.', bare = false } = Astro.props;
+const t = getT(Astro, site);
+const tw = getT(Astro, workbook);
+const { title, description = t('meta.description'), bare = false } = Astro.props;
 const outline = Object.fromEntries(Object.entries(await getOutline()).map(([k, v]) => [k, v.map((s) => s.id)]));
 const fullTitle = title === 'Park in a Truck' ? title : `${title} · Park in a Truck`;
+
+// Languages: a page in a language whose frame isn't translated yet is still English text, so it is
+// marked lang="en" (screen readers) while links keep it in its own language (data-locale).
+const locale = t.locale;
+const ready = locale === 'en' || OFFERABLE.includes(locale);
+const htmlLang = ready ? t.lang : 'en';
+const dir = ready ? t.dir : 'ltr';
+const alts = alternates(Astro.url.pathname);
+const englishHref = samePageIn(Astro.url.pathname, 'en');
+const doneBadge = `--done-badge: ${JSON.stringify(tw('done.badge'))}`;
+
+// First-visit offer (English pages only): one line in the visitor's browser language, never a switch.
+const offers = locale === 'en'
+  ? Object.fromEntries(
+      OFFERABLE.map((code) => {
+        const ot = getT(code, site);
+        const info = localeInfo(code);
+        return [code, { q: ot('offer.question'), yes: ot('offer.yes'), no: ot('offer.no'), lang: info.lang, dir: info.dir, href: samePageIn(Astro.url.pathname, code) }];
+      }),
+    )
+  : {};
+const matchers = LOCALES.map((l) => [l.code, l.match]);
+// Translated pages: keep every server-rendered page link inside this language, even links in content
+// that is still English (see localizeLinks). English pages stream as usual.
+const body = locale === 'en' ? null : localizeLinks(await Astro.slots.render('default'), locale);
 ---
 <!doctype html>
-<html lang="en">
+<html lang={htmlLang} dir={dir} data-locale={locale} style={doneBadge}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,14 +55,68 @@ const fullTitle = title === 'Park in a Truck' ? title : `${title} · Park in a T
     <meta name="description" content={description} />
     <meta name="robots" content="noindex" />
     <link rel="icon" type="image/svg+xml" href={u('favicon.svg')} />
+    {alts.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
+    <link rel="alternate" hreflang="x-default" href={englishHref} />
     <script is:inline define:vars={{ outline }}>window.__PIAT_OUTLINE__ = outline;</script>
+    {locale !== 'en' && <script is:inline src={u(`i18n/${locale}.js?v=${bundleVersion(locale)}`)}></script>}
   </head>
   <body class={bare ? 'bare' : undefined}>
-    <a class="skip-link" href="#main">Skip to content</a>
+    <a class="skip-link" href="#main">{t('skip')}</a>
     <div id="piat-announce" class="visually-hidden" role="status" aria-live="polite"></div>
+    {locale === 'en' && (
+      <div class="lang-offer no-print" id="lang-offer" hidden>
+        <p class="wrap"><span data-offer-q></span> <a class="btn btn-small btn-primary" data-offer-yes href="#"></a> <button type="button" class="btn btn-small" data-offer-no></button></p>
+      </div>
+      <script is:inline define:vars={{ offers, matchers }}>
+        (function () {
+          var KEY = 'piat:lang';
+          var get = function (s, k) { try { return s.getItem(k); } catch (e) { return null; } };
+          var set = function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} };
+          var saved = get(window.localStorage, KEY);
+          if (saved === 'en' || get(window.sessionStorage, 'piat:lang-peek')) return;
+          var pick = saved && offers[saved] ? saved : null;
+          if (!saved) {
+            var prefs = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || '']);
+            outer: for (var i = 0; i < prefs.length; i++) {
+              var tag = String(prefs[i]).toLowerCase();
+              for (var j = 0; j < matchers.length; j++) {
+                var code = matchers[j][0], m = matchers[j][1];
+                for (var k = 0; k < m.length; k++) {
+                  if (tag === m[k] || tag.indexOf(m[k] + '-') === 0) { pick = code === 'en' ? null : code; break outer; }
+                }
+              }
+            }
+          }
+          var o = pick && offers[pick];
+          var bar = document.getElementById('lang-offer');
+          if (!o || !bar) return;
+          var p = bar.querySelector('p');
+          p.lang = o.lang;
+          p.dir = o.dir;
+          bar.querySelector('[data-offer-q]').textContent = o.q;
+          var yes = bar.querySelector('[data-offer-yes]');
+          yes.textContent = o.yes;
+          yes.href = o.href;
+          yes.hreflang = o.lang;
+          yes.addEventListener('click', function () { set(KEY, pick); yes.href = o.href + location.search + location.hash; });
+          var no = bar.querySelector('[data-offer-no]');
+          no.textContent = o.no;
+          no.addEventListener('click', function () { set(KEY, 'en'); bar.hidden = true; });
+          bar.hidden = false;
+        })();
+      </script>
+    )}
     <Header />
+    {locale !== 'en' && (
+      <div class="lang-notice no-print">
+        <p class="wrap">
+          {ready ? t('notice.machine') : <span lang="en">{t('notice.notReady', { language: localeInfo(locale).name })}</span>}
+          {' '}<a href={englishHref} hreflang="en" data-lang-peek>{t('notice.readEnglish')}</a>
+        </p>
+      </div>
+    )}
     <main id="main">
-      <slot />
+      {body === null ? <slot /> : <Fragment set:html={body} />}
     </main>
     {!bare && <Footer />}
     <script>

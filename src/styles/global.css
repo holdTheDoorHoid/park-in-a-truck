@@ -221,7 +221,7 @@ h4 {
 }
 .prose th,
 .prose td {
-  text-align: left;
+  text-align: start;
   padding: 8px 10px;
   border-bottom: 1px solid var(--line);
 }
@@ -334,11 +334,13 @@ figcaption {
 /* ---- callouts ------------------------------------------------------------ */
 
 .callout {
-  border-left: 6px solid var(--cyan);
+  border-inline-start: 6px solid var(--cyan);
   background: var(--cyan-wash);
   padding: 14px 18px;
   margin: 1.25em 0;
-  border-radius: 0 var(--radius) var(--radius) 0;
+  border-radius: var(--radius);
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
   /* A long unbroken string (a URL typed as plain text, not a link) can
      otherwise force this box — and the whole narrow-column grid it sits
      in — wider than the viewport on mobile. */
@@ -371,7 +373,7 @@ figcaption {
    never reads as part of PiaT's own text. */
 .callout-site {
   border: 2px dashed var(--ink-2);
-  border-left: 6px solid var(--ink);
+  border-inline-start: 6px solid var(--ink);
   border-radius: var(--radius);
   background: var(--paper);
 }
@@ -488,7 +490,7 @@ piat-list input:focus {
 }
 .choice input {
   accent-color: var(--cyan);
-  margin-right: 0.4em;
+  margin-inline-end: 0.4em;
 }
 .choice-desc {
   display: block;
@@ -506,14 +508,16 @@ piat-list table {
   border-collapse: collapse;
 }
 piat-list th {
-  text-align: left;
+  text-align: start;
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  padding: 0 6px 4px 0;
+  padding-block: 0 4px;
+  padding-inline: 0 6px;
 }
 piat-list td {
-  padding: 3px 6px 3px 0;
+  padding-block: 3px;
+  padding-inline: 0 6px;
   vertical-align: top;
 }
 piat-list .row-remove {
@@ -559,7 +563,8 @@ piat-list .row-remove {
   gap: 0.5em;
 }
 .substep[data-state='done'] > h2::after {
-  content: '✓ done';
+  /* --done-badge: the word in the page's language, set on <html> by Base.astro */
+  content: var(--done-badge, '✓ done');
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -567,7 +572,7 @@ piat-list .row-remove {
   border: 2px solid currentColor;
   border-radius: 999px;
   padding: 0.1em 0.6em;
-  margin-left: auto;
+  margin-inline-start: auto;
   white-space: nowrap;
 }
 .substep-done {
@@ -580,7 +585,8 @@ piat-list .row-remove {
   border: 2px solid var(--ink);
   background: #fff;
   border-radius: 999px;
-  padding: 0.5em 1.1em 0.5em 0.6em;
+  padding-block: 0.5em;
+  padding-inline: 0.6em 1.1em;
   font: inherit;
   font-weight: 700;
   cursor: pointer;
@@ -665,7 +671,7 @@ piat-list .row-remove {
 }
 .owner-branch-col ul {
   margin: 0;
-  padding-left: 1.2em;
+  padding-inline-start: 1.2em;
 }
 .owner-branch-col li + li {
   margin-top: 0.5em;

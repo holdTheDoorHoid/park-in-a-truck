@@ -1,35 +1,39 @@
 ---
 // The lumber cut list, straight from the PDF's "mark, label and cut" step.
 import type { GuideCutListItem } from '../../data/guides';
+import guidesMsgs from '../../i18n/messages/en/guides.ts';
+import { getT } from '../../i18n/astro.ts';
 
 interface Props {
   items: GuideCutListItem[];
 }
 const { items } = Astro.props;
+const t = getT(Astro, guidesMsgs);
+const head = { part: t('cut.part'), qty: t('cut.qty'), stock: t('cut.stock'), length: t('cut.length'), notes: t('cut.notes') };
 ---
 
 <table class="cutlist">
-  <caption class="visually-hidden">Cut list</caption>
+  <caption class="visually-hidden">{t('cut')}</caption>
   <thead>
     <tr>
-      <th scope="col">Part</th>
-      <th scope="col">Qty</th>
-      <th scope="col">Stock</th>
-      <th scope="col">Length</th>
-      <th scope="col">Notes</th>
+      <th scope="col">{head.part}</th>
+      <th scope="col">{head.qty}</th>
+      <th scope="col">{head.stock}</th>
+      <th scope="col">{head.length}</th>
+      <th scope="col">{head.notes}</th>
     </tr>
   </thead>
   <tbody>
     {items.map((it) => (
       <tr>
-        <td data-label="Part"><span class="part">{it.part}</span></td>
-        <td data-label="Qty">{it.qty}</td>
-        <td data-label="Stock">{it.stock}</td>
-        <td data-label="Length">{it.lengthIn}"</td>
-        <td data-label="Notes">
+        <td data-label={head.part}><span class="part">{it.part}</span></td>
+        <td data-label={head.qty}>{it.qty}</td>
+        <td data-label={head.stock}>{it.stock}</td>
+        <td data-label={head.length}>{it.lengthIn}"</td>
+        <td data-label={head.notes}>
           {it.notes}
           {it.siteNote && (
-            <span class="site-note"><strong>Note from this site, not Park in a Truck:</strong> {it.siteNote}</span>
+            <span class="site-note"><strong>{t('siteNote')}</strong> {it.siteNote}</span>
           )}
         </td>
       </tr>
@@ -45,15 +49,17 @@ const { items } = Astro.props;
     margin: 0 0 1.25em;
   }
   .cutlist th {
-    text-align: left;
+    text-align: start;
     font-size: 0.78rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    padding: 0 10px 6px 0;
+    padding-block: 0 6px;
+    padding-inline: 0 10px;
     border-bottom: 2px solid var(--ink);
   }
   .cutlist td {
-    padding: 8px 10px 8px 0;
+    padding-block: 8px;
+    padding-inline: 0 10px;
     border-bottom: 1px solid var(--line);
     vertical-align: top;
   }
@@ -73,7 +79,7 @@ const { items } = Astro.props;
     margin-top: 6px;
     padding: 6px 10px;
     border: 2px dashed var(--ink-2);
-    border-left: 4px solid var(--ink);
+    border-inline-start: 4px solid var(--ink);
     border-radius: var(--radius);
     background: var(--paper);
     font-size: 0.88rem;

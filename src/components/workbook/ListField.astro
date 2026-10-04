@@ -1,6 +1,8 @@
 ---
 // A repeatable table of rows, e.g. committee members or candidate lots.
 // Saved as an array of {column-key: value} under `id`.
+import workbook from '../../i18n/messages/en/workbook.ts';
+import { getT } from '../../i18n/astro.ts';
 interface Column {
   key: string;
   label: string;
@@ -15,12 +17,13 @@ interface Props {
   rowName?: string;
   hint?: string;
 }
-const { id, label, columns, min = 3, rowName = 'row', hint } = Astro.props;
+const t = getT(Astro, workbook);
+const { id, label, columns, min = 3, rowName = t('list.row'), hint } = Astro.props;
 ---
 <div class="field" style="max-width:none">
   <span class="field-label">{label}</span>
   <piat-list data-field={id} data-label={label} data-columns={JSON.stringify(columns)} data-min={min} data-row-name={rowName}>
-    <noscript>Turn on JavaScript to fill in this table, or print the original workbook page.</noscript>
+    <noscript>{t('list.noscript')}</noscript>
   </piat-list>
   {hint && <span class="field-hint">{hint}</span>}
 </div>

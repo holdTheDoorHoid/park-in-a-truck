@@ -7,18 +7,21 @@ import { u } from '../../lib/url';
 import type { GuideStep } from '../../data/guides';
 import { imageSize } from './imageSize';
 import Callout from '../workbook/Callout.astro';
+import guidesMsgs from '../../i18n/messages/en/guides.ts';
+import { getT } from '../../i18n/astro.ts';
 
 interface Props {
   step: GuideStep;
 }
 const { step } = Astro.props;
+const t = getT(Astro, guidesMsgs);
 const paragraphs = step.text.split('\n\n');
 ---
 
 <li class="step substep" id={`step-${step.n}`} data-guide-step={step.n}>
   <div class="step-head">
     <span class="step-num" aria-hidden="true">{step.n}</span>
-    <h3>{step.title ?? `Step ${step.n}`}</h3>
+    <h3>{step.title ?? t('step', { n: step.n })}</h3>
   </div>
   <div class="step-body">
     <div class="step-text prose">
@@ -97,13 +100,13 @@ const paragraphs = step.text.split('\n\n');
     color: var(--ink-2);
   }
   .step-tips li {
-    padding-left: 1.3em;
+    padding-inline-start: 1.3em;
     position: relative;
   }
   .step-tips li::before {
     content: '💡';
     position: absolute;
-    left: 0;
+    inset-inline-start: 0;
   }
   .step-tips li + li {
     margin-top: 0.4em;

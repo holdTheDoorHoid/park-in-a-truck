@@ -1,0 +1,16 @@
+---
+// Wraps a part of a page whose text is not translated into this language yet (usually a widget
+// island): marks it lang="en" dir="ltr" so screen readers read it as English and, on Arabic pages,
+// it lays out left to right. Turns itself off as soon as the area has any translation here.
+//
+//   import philly from '../../i18n/messages/en/philly.ts';
+//   <LangFallback area={philly}><LotLookupIsland client:only="preact" /></LangFallback>
+import type { Catalog } from '../../i18n/define.ts';
+import { getT, hasTranslations } from '../../i18n/astro.ts';
+interface Props {
+  area: Catalog;
+}
+const t = getT(Astro, Astro.props.area);
+const english = t.locale !== 'en' && !hasTranslations(t.locale, Astro.props.area.area);
+---
+{english ? <div lang="en" dir="ltr" style="display:contents"><slot /></div> : <slot />}

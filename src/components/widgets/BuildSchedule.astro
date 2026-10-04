@@ -10,6 +10,10 @@
 // so hydration would mismatch. Rendering purely client-side avoids that, at the cost of a
 // blank placeholder until the bundle loads.
 import BuildScheduleIsland from '../schedule/BuildScheduleIsland';
+import LangFallback from '../site/LangFallback.astro';
+import scheduleMsgs from '../../i18n/messages/en/schedule.ts';
 interface Props { [key: string]: unknown }
 ---
-<BuildScheduleIsland client:only="preact" />
+<LangFallback area={scheduleMsgs}>
+  <BuildScheduleIsland client:only="preact" />
+</LangFallback>

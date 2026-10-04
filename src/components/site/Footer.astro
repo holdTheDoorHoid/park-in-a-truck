@@ -1,18 +1,17 @@
 ---
-import { u } from '../../lib/url';
+import site from '../../i18n/messages/en/site.ts';
+import { getT, urlFor } from '../../i18n/astro.ts';
+const t = getT(Astro, site);
+const u = urlFor(t.locale);
 ---
 <footer class="site-footer">
   <div class="wrap cols">
     <div>
       <p class="wordmark-sm">PARK <small>in a</small> TRUCK</p>
-      <p>
-        A do-it-yourself toolkit for neighborhood parks from the Landscape Architecture Program and the Lab for Social
-        and Urban Innovation at Thomas Jefferson University, Philadelphia. Toolkit and workbook content is theirs, used
-        with permission.
-      </p>
+      <p>{t('footer.about')}</p>
     </div>
     <div>
-      <h3 class="footer-heading">Questions?</h3>
+      <h3 class="footer-heading">{t('footer.questions')}</h3>
       <p>
         <a href="mailto:ParkinaTruck@jefferson.edu">ParkinaTruck@jefferson.edu</a><br />
         <a href="mailto:Kimberlee.Douglas@jefferson.edu">Kimberlee.Douglas@jefferson.edu</a><br />
@@ -21,12 +20,9 @@ import { u } from '../../lib/url';
       </p>
     </div>
     <div>
-      <h3 class="footer-heading">About this site</h3>
-      <p>
-        Your answers and designs are saved only in this browser. Use <a href={u('my-park/')}>My park</a> to save a
-        copy or share it with your committee.
-      </p>
-      <p><a href={u('resources/')}>Resources, partners & press</a> · <a href={u('resources/#legal')}>Legal notice</a></p>
+      <h3 class="footer-heading">{t('footer.aboutSite')}</h3>
+      <p set:html={t.html('footer.saved', { href: u('my-park/') })} />
+      <p><a href={u('resources/')}>{t('footer.resources')}</a> · <a href={u('resources/#legal')}>{t('footer.legal')}</a></p>
     </div>
   </div>
 </footer>

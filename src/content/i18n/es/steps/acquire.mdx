@@ -1,0 +1,253 @@
+---
+title: Adquirir
+intro: Busque un lote en su barrio y consiga el derecho legal de convertirlo en un parque.
+sources:
+  - Guía (Toolkit), págs. 24–27 (Busque un lote, ¿Qué lote?, Averigüe quién es el dueño)
+  - Cuaderno de trabajo Adquirir, págs. 1–7
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Choice from '../../../../components/workbook/Choice.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import LotLookup from '../../../../components/widgets/LotLookup.astro';
+import LotFinderMap from '../../../../components/widgets/LotFinderMap.astro';
+
+Quienes quieren crear un parque y todavía no tienen acceso legal a un terreno baldío tienen que encontrar a alguien
+dispuesto a vender o alquilar su lote (o lotes) para el parque. Esto puede ser complicado y tomar tiempo. No existe un
+proceso perfecto, ni una sola manera de hacerlo, ni un resultado garantizado. Este paso le ayudará a encontrar la forma
+de conseguir el terreno para su futuro parque.
+
+## Busque un lote {/* #find-a-lot */}
+
+Los parques urbanos grandes dan muchos beneficios sociales, ecológicos y económicos a los residentes y visitantes de una
+ciudad. Pero si el parque no queda fácil de alcanzar, quizás la gente solo lo visite de vez en cuando. No todos tienen
+carro o transporte público cómodo, ni pueden caminar o ir en bicicleta largas distancias.
+
+Por eso es importante encontrar un lote o espacio cercano para convertirlo en un pequeño parque de barrio. Tiene muchos
+de los beneficios del parque grande **y**, como queda cerca, es fácil llegar. Mientras más se visita un parque de
+barrio, más conocido — y querido — se vuelve. Cuando la gente usa el parque, ese espacio se convierte en un centro
+esencial de la "vida social" que fortalece el sentido de comunidad del barrio.
+
+¿Hay propiedades sin usar en su barrio que estén disponibles legalmente, que sean seguras y que sirvan para un parque?
+¿Puede identificar lotes posibles en su barrio donde le gustaría ver su parque?
+
+<Callout kind="auto" title="Deje que el mapa camine por usted">
+  El mapa de abajo muestra los lotes que la Ciudad tiene registrados como terreno baldío. Haga clic en uno para ver su
+  dueño, su tamaño y su zonificación, y agréguelo a su lista. Aun así, recorra su cuadra: la lista de la Ciudad no
+  incluye algunos lotes e incluye otros que ya se están usando.
+</Callout>
+
+<LotFinderMap />
+
+<Figure
+  src="img/acquire/west-kensington-site.webp"
+  alt="Un lote baldío con césped en West Kensington, Filadelfia, recién cortado y marcado con banderitas de topografía color turquesa en las esquinas, con una pared de estuco, un seto y carros estacionados detrás."
+  caption="El terreno del parque PiaT de West Kensington, antes de la construcción"
+  duo
+/>
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={3} />
+
+## ¿Qué lote? {/* #which-lot */}
+
+Repase los tres tipos de lugares donde podría hacerse un parque de barrio. Recorra su barrio y anote qué propiedades
+poco usadas podrían servir para su parque.
+
+<div class="lot-types">
+  <div>
+    <Figure
+      src="img/acquire/lot-midblock.webp"
+      alt="Ilustración isométrica de un lote baldío a mitad de cuadra: un espacio rectangular y angosto entre dos casas en hilera de una cuadra residencial, en verde y con un solo árbol."
+    />
+    <p class="lot-caption">
+      <strong>Lote a mitad de cuadra (lote baldío).</strong> De forma rectangular y ubicado en medio de una cuadra
+      residencial. Puede tener edificios a cada lado o al fondo. La mayoría de los lotes "baldíos" disponibles en
+      Filadelfia son de este tipo. Puede tener limitaciones para algunos usos de parque por ser angosto o tener poca
+      luz de sol.
+    </p>
+  </div>
+  <div>
+    <Figure
+      src="img/acquire/lot-corner.webp"
+      alt="Ilustración isométrica de un lote baldío de esquina: un espacio rectangular al final de una cuadra residencial, frente a dos calles, en verde y con un solo árbol."
+    />
+    <p class="lot-caption">
+      <strong>Lote de esquina (lote baldío).</strong> De forma rectangular y ubicado al final de una cuadra
+      residencial. Puede tener edificios al costado o al fondo. Estos lotes se ven mucho y suelen recibir más sol.
+    </p>
+  </div>
+  <div>
+    <Figure
+      src="img/acquire/lot-alley.webp"
+      alt="Ilustración isométrica de un pasaje o callejón con servidumbre: un espacio verde largo y muy angosto entre casas en hilera, que atraviesa la cuadra."
+    />
+    <p class="lot-caption">
+      <strong>Pasaje / callejón (servidumbre).</strong> Se reconocen por su forma larga y muy angosta, y muchas veces
+      atraviesan la cuadra de lado a lado. Originalmente se reservaron como paso peatonal entre calles o como
+      servidumbre para servicios públicos.
+    </p>
+  </div>
+</div>
+
+Anote la dirección de cada lote posible. Cuando busca una dirección, el sitio llena por usted el dueño, el tamaño y el
+tipo de lote.
+
+<LotLookup mode="candidates" />
+
+<ListField
+  id="acquire.candidate-notes"
+  label="Notas de su recorrido por el barrio"
+  rowName="lote"
+  min={3}
+  columns={[
+    { key: 'address', label: 'Dirección o ubicación' },
+    { key: 'type', label: 'Tipo de lote', placeholder: 'mitad de cuadra, esquina, callejón' },
+    { key: 'notes', label: 'Lo que notó', placeholder: 'basura, sol, vecinos, uso…' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={3} />
+
+## ¿Quién es el dueño de ese lote? {/* #who-owns-that-lot */}
+
+Cuando ya tenga algunas propiedades poco usadas que podrían servir para su nuevo parque de barrio, el siguiente paso es
+averiguar quién es el dueño. El dueño puede ser una persona, un negocio o una organización sin fines de lucro. También
+puede ser la Ciudad. La forma más confiable de saber quién es el dueño de un lote es revisar los registros de la Ciudad
+de Filadelfia.
+
+Este diagrama muestra cómo averiguar quién es el dueño de un lote y los pasos posibles para conseguir los derechos
+legales — o "titularidad" — para usar la propiedad como parque de barrio.
+
+{/* site-added: the workbook's flowchart reproduced as HTML (not an image of text), steps 1–4 then the public/private branch. */}
+<ol class="flow-steps">
+  <li>
+    <span class="flow-num">1</span>
+    <div><strong>Confirme la dirección.</strong> Verifique la dirección del lote o lotes posibles que anotó.</div>
+  </li>
+  <li>
+    <span class="flow-num">2</span>
+    <div><strong>Busque la propiedad.</strong> Vaya a <a href="https://atlas.phila.gov/" target="_blank" rel="noopener">atlas.phila.gov</a> (en inglés) y escriba la dirección. También puede encontrar el lote acercando el mapa a una calle cercana.</div>
+  </li>
+  <li>
+    <span class="flow-num">3</span>
+    <div><strong>Averigüe quién es el dueño.</strong> Vea el dueño de la propiedad en la sección "Property Assessment" (avalúo de la propiedad) del sitio web.</div>
+  </li>
+</ol>
+
+<div class="owner-branch">
+  <div class="owner-branch-col">
+    <h4>4a. El dueño es… la Ciudad de Filadelfia <span class="muted">(propiedad pública)</span></h4>
+    <p>
+      <strong>Posible compra.</strong> Haga una búsqueda de propiedades para saber si el terreno público está a la
+      venta a través de la Philadelphia Housing Development Corporation (PHDC) y el Philadelphia Land Bank.
+    </p>
+  </div>
+  <div class="owner-branch-col">
+    <h4>4b. El dueño es… una persona, organización o negocio <span class="muted">(propiedad privada)</span></h4>
+    <ul>
+      <li><strong>Posible donación.</strong> Comuníquese con el dueño del terreno para pedirle que done la propiedad para siempre.</li>
+      <li><strong>Posible venta.</strong> Esté atento a un anuncio de venta pública o subasta; en Filadelfia esto puede incluir una venta del Sheriff (Sheriff Sale).</li>
+      <li><strong>Negocie un acuerdo de compra.</strong> Comuníquese con el dueño del terreno y negocie una venta para uso del barrio.</li>
+      <li><strong>Acuerdo de uso en especie.</strong> Hable con el dueño sobre dejar que el barrio use el lote "en especie", mientras él sigue siendo el dueño.</li>
+    </ul>
+  </div>
+</div>
+
+<Callout kind="auto" title="Pasos 1 a 3: los hacemos por usted">
+  Elija el lote que quiere conseguir. El sitio revisa los registros de direcciones y propiedades de la Ciudad (los
+  mismos datos que muestra atlas.phila.gov) y llena abajo el nombre del dueño.
+</Callout>
+
+<LotLookup mode="primary" />
+
+<Field id="acquire.address" label="Dirección de su lote" auto="lot.address" />
+<Field id="acquire.owner" label="Nombre del dueño" auto="lot.owners|owners" />
+<Field id="acquire.owner-type" label="El dueño es…" auto="lot.ownerType|ownerType" />
+
+<PdfPage doc="downloads/workbooks/01-acquire.pdf" page={4} />
+
+## Si el dueño es la Ciudad {/* #if-the-city-owns-it */}
+
+**Posible compra.** En Filadelfia, los terrenos públicos se venden o se alquilan a través de la Philadelphia Housing
+Development Corporation (PHDC) y el Philadelphia Land Bank. Haga una búsqueda de propiedades para saber si el terreno
+público está a la venta.
+
+<p><a class="btn" href="https://phillylandbank.org/community-use-map/" target="_blank" rel="noopener">Buscar en el mapa de Uso Comunitario del Land Bank (en inglés) ↗</a></p>
+
+{/* site-added: the workbook's PHDC link (phdcphila.org/land/buy-land/property-search-map/) is dead; PHDC's search now lives on the Land Bank site. */}
+<p class="muted" style="font-size:0.9rem">La página de búsqueda de la PHDC que menciona el cuaderno de trabajo se mudó: ahora la PHDC y el Philadelphia Land Bank comparten este mapa. Un lote que aparece en color está disponible; el mapa de Uso Comunitario (Community Use) es el que sirve para huertos y espacios abiertos.</p>
+
+<Checklist
+  id="acquire.public-steps"
+  items={[
+    { value: 'searched-phdc', label: 'Busqué el lote en el mapa de búsqueda de propiedades de la PHDC' },
+    { value: 'contacted-phdc', label: 'Me comuniqué con la PHDC / el Land Bank para comprarlo o alquilarlo para un parque' },
+  ]}
+/>
+
+<Field id="acquire.public-notes" label="Lo que le respondieron" type="textarea" />
+
+## Si el dueño es otra persona {/* #if-someone-else-owns-it */}
+
+Cuando el dueño es una persona, organización o negocio, hay cuatro caminos posibles:
+
+- **Posible donación.** Comuníquese con el dueño del terreno para pedirle que done la propiedad para siempre al barrio,
+  para usarla como parque.
+- **Posible venta.** Esté atento a un anuncio de venta pública o subasta de la propiedad. En Filadelfia esto también
+  puede incluir una venta del Sheriff (Sheriff Sale).
+- **Negocie un acuerdo de compra.** Comuníquese con el dueño del terreno y negocie la venta de la propiedad poco usada
+  para uso del barrio.
+- **Acuerdo de uso en especie.** Comuníquese con el dueño del terreno y conversen sobre lo que ganan los dos si deja que
+  el barrio use el lote "en especie" como parque, mientras él sigue siendo el dueño.
+
+<Choice
+  id="acquire.private-path"
+  label="¿Qué camino va a intentar primero?"
+  options={[
+    { value: 'donation', label: 'Donación', desc: 'El dueño le regala el lote al barrio' },
+    { value: 'sale', label: 'Venta pública / venta del Sheriff', desc: 'Esté atento a anuncios y subastas' },
+    { value: 'purchase', label: 'Acuerdo de compra', desc: 'Negocie una venta con el dueño' },
+    { value: 'in-kind', label: 'Acuerdo de uso en especie', desc: 'El dueño se queda con el lote; los vecinos lo usan como parque' },
+  ]}
+/>
+
+<ListField
+  id="acquire.owner-contacts"
+  label="Registro de contactos"
+  rowName="contacto"
+  min={2}
+  columns={[
+    { key: 'date', label: 'Fecha', type: 'date' },
+    { key: 'who', label: 'Con quién habló' },
+    { key: 'outcome', label: 'Qué pasó / siguiente paso' },
+  ]}
+/>
+
+<Callout kind="contact">
+  ¿Se quedó atascado? El equipo de Park in a Truck puede ayudarle a pensar en sus opciones (en inglés):
+  [ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu).
+</Callout>
+
+{/* site-added: a place to record the outcome; no new advice. */}
+## Asegure su lote {/* #secure-your-lot */}
+
+Anote el acuerdo que le da a su grupo el derecho de construir un parque aquí. Guarde una copia con los documentos de su
+comité: la va a necesitar antes de que alguien empiece a cavar en el paso Crear.
+
+<Field
+  id="acquire.agreement"
+  label="Tipo de acuerdo"
+  type="select"
+  options={[
+    { value: 'Purchase', label: 'Compra' },
+    { value: 'Donation', label: 'Donación' },
+    { value: 'Lease', label: 'Alquiler (arrendamiento)' },
+    { value: 'In-kind use agreement', label: 'Acuerdo de uso en especie' },
+    { value: 'Other', label: 'Otro' },
+  ]}
+/>
+<Field id="acquire.agreement-date" label="Fecha de la firma" type="date" />
+<Field id="acquire.agreement-notes" label="Condiciones que hay que recordar" type="textarea" hint="Duración del acuerdo, quién mantiene el lote, seguro, fecha de renovación…" />

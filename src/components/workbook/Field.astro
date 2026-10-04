@@ -2,21 +2,28 @@
 // A workbook blank. Saved in the browser under `id` ("<step>.<name>").
 // `auto` shows a value the site looked up (e.g. "lot.owners|join") until the
 // person types their own. See src/lib/autofill.ts for paths and formats.
+// Select options are saved by VALUE, so translated chapters give
+// { value: '<English>', label: '<translation>' } and saved answers work in every language.
+import workbook from '../../i18n/messages/en/workbook.ts';
+import { getT } from '../../i18n/astro.ts';
+type Option = string | { value: string; label: string };
 interface Props {
   id: string;
   label: string;
   type?: 'text' | 'textarea' | 'number' | 'date' | 'email' | 'tel' | 'url' | 'select';
   hint?: string;
   placeholder?: string;
-  options?: string[];
+  options?: Option[];
   unit?: string;
   auto?: string;
   /** Badge shown while the `auto` value is displayed (default: from City records) */
   autoNote?: string;
   rows?: number;
 }
-const { id, label, type = 'text', hint, placeholder, options = [], unit, auto, autoNote = '✓ Filled in from City records — type to change it', rows = 4 } = Astro.props;
+const t = getT(Astro, workbook);
+const { id, label, type = 'text', hint, placeholder, options = [], unit, auto, autoNote = t('field.auto'), rows = 4 } = Astro.props;
 const inputId = `f-${id.replace(/[^a-z0-9]+/gi, '-')}`;
+const opts = options.map((o) => (typeof o === 'string' ? { value: o, label: o } : o));
 ---
 <div class="field">
   <label class="field-label" for={inputId}>{label}</label>
@@ -24,8 +31,8 @@ const inputId = `f-${id.replace(/[^a-z0-9]+/gi, '-')}`;
     <textarea id={inputId} data-field={id} data-auto={auto} rows={rows} placeholder={placeholder}></textarea>
   ) : type === 'select' ? (
     <select id={inputId} data-field={id} data-auto={auto}>
-      <option value="">Choose…</option>
-      {options.map((o) => <option value={o}>{o}</option>)}
+      <option value="">{t('field.choose')}</option>
+      {opts.map((o) => <option value={o.value}>{o.label}</option>)}
     </select>
   ) : unit ? (
     <span class="field-with-unit">

@@ -3,33 +3,24 @@
 // guides, grouped by category. Owner: guides workstream.
 import Base from '../../layouts/Base.astro';
 import GuideCard from '../../components/guides/GuideCard.astro';
-import { getGuidesByCategory, CATEGORY_LABELS } from '../../data/guides';
+import { getGuidesByCategory } from '../../data/guides';
+import guidesMsgs from '../../i18n/messages/en/guides.ts';
+import { getT } from '../../i18n/astro.ts';
 
 const groups = getGuidesByCategory();
+const t = getT(Astro, guidesMsgs);
 ---
 
-<Base
-  title="Build guides"
-  description="Step-by-step, Ikea-style assembly instructions for Park in a Truck's benches, tables, planters, gabion seating, a shade structure and a stage."
->
+<Base title={t('crumb')} description={t('index.description')}>
   <header class="wrap" style="padding-top:40px">
-    <h1 class="ruled">Build guides</h1>
-    <p class="lede">
-      Now it's time to see how the park elements are built. Some elements have custom instructions, or assemblies —
-      step-by-step guides to help you build them. A bench, for example, comes with an Ikea-like set of building
-      instructions. Other elements come with a design or a suggested way to build them from pre-tested instructions.
-      Still others are simply off-the-shelf products.
-    </p>
-    <p class="prose">
-      Below are the thirteen elements Park in a Truck publishes custom assembly instructions for. Pick one to see its
-      full materials list, cut list and numbered steps with the original diagrams — or download the original PDF.
-      Check off materials and tools as you gather them; your checkmarks are saved in this browser.
-    </p>
+    <h1 class="ruled">{t('crumb')}</h1>
+    <p class="lede">{t('index.lede')}</p>
+    <p class="prose">{t('index.prose')}</p>
   </header>
 
   {groups.map(({ category, guides }) => (
     <section class="wrap category">
-      <h2 class="ruled">{CATEGORY_LABELS[category]}</h2>
+      <h2 class="ruled">{t(`cat.${category}`)}</h2>
       <div class="grid">
         {guides.map((guide) => <GuideCard guide={guide} />)}
       </div>

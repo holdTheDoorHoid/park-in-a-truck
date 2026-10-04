@@ -1,0 +1,8 @@
+---
+// /build/[slug]/ in every other language: the same page, which reads its language from the URL.
+// See src/i18n/routes.ts.
+import Page, { getStaticPaths as english } from '../../build/[slug].astro';
+import { localeStaticPaths } from '../../../i18n/routes.ts';
+export const getStaticPaths = () => localeStaticPaths(english());
+---
+<Page />

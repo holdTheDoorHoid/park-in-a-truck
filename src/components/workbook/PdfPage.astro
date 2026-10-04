@@ -1,16 +1,21 @@
 ---
 // "See this in the original workbook" — links to a page of the original PDF.
 // `doc` is a path under public/ (e.g. "downloads/workbooks/01-acquire.pdf").
+// PiaT's PDFs are English in every language: other languages say so and mark the link hreflang="en".
 import { u } from '../../lib/url';
+import workbook from '../../i18n/messages/en/workbook.ts';
+import { getT } from '../../i18n/astro.ts';
 interface Props {
   doc: string;
   page?: number;
   label?: string;
 }
-const { doc, page, label = 'Original workbook page' } = Astro.props;
+const t = getT(Astro, workbook);
+const { doc, page, label = t('pdf.label') } = Astro.props;
 const href = u(doc) + (page ? `#page=${page}` : '');
+const english = t.locale !== 'en';
 ---
-<p class="pdf-ref no-print"><a href={href} target="_blank" rel="noopener">📄 {label}{page ? ` (PDF page ${page})` : ''}</a></p>
+<p class="pdf-ref no-print"><a href={href} target="_blank" rel="noopener" hreflang={english ? 'en' : undefined}>📄 {label}{page ? ` ${t('pdf.page', { page: String(page) })}` : ''}{english && <span class="file-lang"> · {t('file.english')}</span>}</a></p>
 <style>
   .pdf-ref { font-size: 0.85rem; margin: 0.5em 0 1em; }
   .pdf-ref a { color: var(--muted); }

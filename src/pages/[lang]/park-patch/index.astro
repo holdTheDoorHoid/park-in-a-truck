@@ -1,0 +1,8 @@
+---
+// /park-patch/ in every other language: the same page, which reads its language from the URL.
+// See src/i18n/routes.ts.
+import Page from '../../park-patch/index.astro';
+import { localeStaticPaths } from '../../../i18n/routes.ts';
+export const getStaticPaths = () => localeStaticPaths();
+---
+<Page />

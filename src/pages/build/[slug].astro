@@ -13,32 +13,47 @@ import Download from '../../components/workbook/Download.astro';
 import Callout from '../../components/workbook/Callout.astro';
 import CutListTable from '../../components/guides/CutListTable.astro';
 import StepBlock from '../../components/guides/StepBlock.astro';
-import { getGuides, getGuide, CATEGORY_LABELS } from '../../data/guides';
+import { getGuides, getGuide } from '../../data/guides';
 import GuideViewer from '../../components/guides3d/GuideViewer.astro';
-import { asBuiltText, dimsText } from '../../components/guides/format';
+import { asBuiltText, feetIn } from '../../components/guides/format';
 import { imageSize } from '../../components/guides/imageSize';
-import { u } from '../../lib/url';
+import { u as fileUrl } from '../../lib/url';
 import type { GuideModel } from '../../lib/guides3d/schema';
+import guidesMsgs from '../../i18n/messages/en/guides.ts';
+import { getT, urlFor, localizeGuide } from '../../i18n/astro.ts';
 
 const models = import.meta.glob<GuideModel>('../../data/guides/models/*.json', { eager: true, import: 'default' });
 
 export function getStaticPaths() {
   return getGuides().map((guide) => ({ params: { slug: guide.slug } }));
 }
+// No props: the page is found by its slug. (Declared so the /<lang>/ twin can render it.)
+type Props = Record<string, never>;
 
 const { slug } = Astro.params;
-const guide = getGuide(slug!)!;
+const t = getT(Astro, guidesMsgs);
+const u = urlFor(t.locale);
+// English is the source: checkmarks are saved under the ENGLISH item names, so a list checked
+// off in one language stays checked in every other. Only the text shown is translated.
+const english = getGuide(slug!)!;
+const guide = localizeGuide(english, t.locale);
+const fallback = !guide.translated;
+const contentLang = fallback ? ({ lang: 'en', dir: 'ltr' } as const) : {};
 
-const all = getGuides();
+const all = getGuides().map((g) => localizeGuide(g, t.locale));
 const i = all.findIndex((g) => g.slug === guide.slug);
 const prev = all[i - 1];
 const next = all[i + 1];
+const dims = (d: { length: number; width: number; height: number }) =>
+  t('dims', { length: feetIn(d.length), width: feetIn(d.width), height: feetIn(d.height) });
 
+const englishLines = [...english.materials, ...english.hardware];
 const materialItems = [...guide.materials, ...guide.hardware].map((m, idx) => ({
-  value: `${idx}-${m.item}`,
+  value: `${idx}-${englishLines[idx]!.item}`,
   label: `${m.qty}× ${m.item}${m.size ? ` (${m.size})` : ''}`,
   hint: m.notes,
 }));
+const toolItems = guide.tools.map((label, idx) => ({ value: english.tools[idx]!, label }));
 
 // site-added: where the guide's own materials list doesn't add up, a note marked as ours
 const materialNotes = [...guide.materials, ...guide.hardware]
@@ -50,23 +65,23 @@ const model = Object.values(models).find((m) => m.slug === guide.slug);
 const asBuilt = model?.asBuilt ? asBuiltText(guide.dimensionsIn, model.asBuilt) : '';
 const asBuiltReason = model?.asBuilt?.reason?.trim().replace(/([^.!?])$/, '$1.') ?? '';
 
-const glance: { label: string; value: string }[] = [{ label: 'Size', value: dimsText(guide.dimensionsIn) }];
-if (guide.time) glance.push({ label: 'Time', value: guide.time });
-if (guide.people) glance.push({ label: 'People', value: guide.people });
-if (guide.skill) glance.push({ label: 'Skill', value: guide.skill });
-if (guide.cost) glance.push({ label: 'Cost', value: guide.cost });
+const glance: { label: string; value: string }[] = [{ label: t('glance.size'), value: dims(guide.dimensionsIn) }];
+if (guide.time) glance.push({ label: t('glance.time'), value: guide.time });
+if (guide.people) glance.push({ label: t('glance.people'), value: guide.people });
+if (guide.skill) glance.push({ label: t('glance.skill'), value: guide.skill });
+if (guide.cost) glance.push({ label: t('glance.cost'), value: guide.cost });
 ---
 
 <Base title={guide.title} description={guide.summary}>
   <header class="hero wrap">
     <p class="eyebrow no-print">
-      <a href={u('build/')}>Build guides</a> · {CATEGORY_LABELS[guide.category]}
+      <a href={u('build/')}>{t('crumb')}</a> · {t(`cat.${guide.category}`)}
     </p>
     <div class="hero-grid">
       <div class="hero-media">
-        <img src={u(`img/guides/${guide.slug}/hero.webp`)} alt={`${guide.title}, assembled`} {...(imageSize(`img/guides/${guide.slug}/hero.webp`) ?? {})} />
+        <img src={fileUrl(`img/guides/${guide.slug}/hero.webp`)} alt={t('heroAlt', { title: guide.title })} {...(imageSize(`img/guides/${guide.slug}/hero.webp`) ?? {})} />
       </div>
-      <div class="hero-copy">
+      <div class="hero-copy" {...contentLang}>
         <h1 class="ruled">{guide.title}</h1>
         <p class="lede">{guide.summary}</p>
         <dl class="glance">
@@ -78,24 +93,25 @@ if (guide.cost) glance.push({ label: 'Cost', value: guide.cost });
           ))}
         </dl>
         {asBuilt && (
-          <p class="as-built">
-            {/* site-added: from the 3D model's asBuilt note */}
+          <p class="as-built" lang="en" dir="ltr">
+            {/* site-added: from the 3D model's asBuilt note (English only for now: the model files are data for modellers) */}
             Built from these parts it comes out {asBuilt}. {asBuiltReason}
           </p>
         )}
         <div class="hero-actions no-print">
-          <Download href={guide.pdf} label="Original PDF" />
-          <button class="btn btn-small" type="button" onclick="window.print()">🖨 Print</button>
+          <Download href={guide.pdf} label={t('pdf')} />
+          <button class="btn btn-small" type="button" onclick="window.print()">{t('print')}</button>
         </div>
       </div>
     </div>
+    {fallback && <p class="callout callout-note">{t('notTranslated')}</p>}
   </header>
 
-  <section class="wrap section">
-    <h2 class="ruled">What you need</h2>
+  <section class="wrap section" {...contentLang}>
+    <h2 class="ruled">{t('need')}</h2>
     <div class="need-grid">
       <div>
-        <Checklist id={`build.${guide.slug}.materials`} label="Materials & hardware" items={materialItems} />
+        <Checklist id={`build.${guide.slug}.materials`} label={t('materials')} items={materialItems} />
         {materialNotes.length > 0 && (
           <Callout kind="site">
             {materialNotes.map((m) => (
@@ -105,21 +121,21 @@ if (guide.cost) glance.push({ label: 'Cost', value: guide.cost });
         )}
       </div>
       <div>
-        <Checklist id={`build.${guide.slug}.tools`} label="Tools" items={guide.tools} />
+        <Checklist id={`build.${guide.slug}.tools`} label={t('tools')} items={toolItems} />
       </div>
     </div>
   </section>
 
-  <section class="wrap section">
-    <h2 class="ruled">Cut list</h2>
+  <section class="wrap section" {...contentLang}>
+    <h2 class="ruled">{t('cut')}</h2>
     <CutListTable items={guide.cutList} />
   </section>
 
-  <section class="wrap section">
-    <h2 class="ruled">Steps</h2>
+  <section class="wrap section" {...contentLang}>
+    <h2 class="ruled">{t('steps')}</h2>
     {model ? (
       <div class="steps-layout" data-g3d="pending">
-        <aside class="g3d-col no-print" aria-label={`3D model of the ${guide.title}`}>
+        <aside class="g3d-col no-print" aria-label={t('model', { title: guide.title })}>
           <GuideViewer guide={guide} />
         </aside>
         <ol class="steps">
@@ -144,17 +160,17 @@ if (guide.cost) glance.push({ label: 'Cost', value: guide.cost });
   )}
 
   {(guide.finishing || (guide.safety && guide.safety.length > 0)) && (
-    <section class="wrap section finishing-safety">
+    <section class="wrap section finishing-safety" {...contentLang}>
       {guide.finishing && (
         <div>
-          <h2 class="ruled">Finishing</h2>
+          <h2 class="ruled">{t('finishing')}</h2>
           <div class="prose">
             {guide.finishing.split('\n\n').map((p) => <p>{p}</p>)}
           </div>
         </div>
       )}
       {guide.safety && guide.safety.length > 0 && (
-        <Callout kind="warning" title="Before you begin">
+        <Callout kind="warning" title={t('safety')}>
           <ul>
             {guide.safety.map((s) => <li>{s}</li>)}
           </ul>
@@ -164,8 +180,8 @@ if (guide.cost) glance.push({ label: 'Cost', value: guide.cost });
   )}
 
   {guide.links.length > 0 && (
-    <section class="wrap section no-print">
-      <h2 class="ruled">Supplier & resource links</h2>
+    <section class="wrap section no-print" {...contentLang}>
+      <h2 class="ruled">{t('links')}</h2>
       <ul class="links">
         {guide.links.map((l) => (
           <li><a href={l.url} target="_blank" rel="noopener">{l.label}</a></li>
@@ -175,17 +191,17 @@ if (guide.cost) glance.push({ label: 'Cost', value: guide.cost });
   )}
 
   <section class="wrap section no-print">
-    <p class="muted source">Source: {guide.sourcePages}</p>
-    <Download href={guide.pdf} label={`Download the ${guide.title} PDF`} />
+    <p class="muted source">{t('source', { pages: guide.sourcePages })}</p>
+    <Download href={guide.pdf} label={t('download', { title: guide.title })} />
   </section>
 
-  <nav class="wrap pager no-print" aria-label="Guides">
+  <nav class="wrap pager no-print" aria-label={t('pager')}>
     {prev ? <a class="btn" href={u(`build/${prev.slug}/`)}>← {prev.title}</a> : <span></span>}
     {next ? <a class="btn btn-primary" href={u(`build/${next.slug}/`)}>{next.title} →</a> : <span></span>}
   </nav>
 
   <dialog id="lightbox" class="lightbox no-print">
-    <button type="button" class="lightbox-close" data-close aria-label="Close">✕</button>
+    <button type="button" class="lightbox-close" data-close aria-label={t('close')}>✕</button>
     <img data-lightbox-img alt="" />
   </dialog>
 </Base>
@@ -389,7 +405,7 @@ if (guide.cost) glance.push({ label: 'Cost', value: guide.cost });
   .lightbox-close {
     position: absolute;
     top: 10px;
-    right: 10px;
+    inset-inline-end: 10px;
     z-index: 1;
     width: 2.2em;
     height: 2.2em;

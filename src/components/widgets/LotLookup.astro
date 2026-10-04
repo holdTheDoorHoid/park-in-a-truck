@@ -7,6 +7,8 @@
 //   mode="candidates"  — plus the comparison table of possible lots
 import LotLookupIsland from '../philly/LotLookup.tsx';
 import '../philly/philly.css';
+import LangFallback from '../site/LangFallback.astro';
+import phillyMsgs from '../../i18n/messages/en/philly.ts';
 interface Props {
   mode?: 'primary' | 'candidates';
   [key: string]: unknown;
@@ -14,7 +16,9 @@ interface Props {
 const { mode = 'primary' } = Astro.props;
 ---
 <div class="ph-widget" data-widget="LotLookup">
-  <LotLookupIsland client:only="preact" mode={mode}>
-    <div slot="fallback" class="ph-fallback">Loading the address lookup… (it needs JavaScript)</div>
-  </LotLookupIsland>
+  <LangFallback area={phillyMsgs}>
+    <LotLookupIsland client:only="preact" mode={mode}>
+      <div slot="fallback" class="ph-fallback">Loading the address lookup… (it needs JavaScript)</div>
+    </LotLookupIsland>
+  </LangFallback>
 </div>

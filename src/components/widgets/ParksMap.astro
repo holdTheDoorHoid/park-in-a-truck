@@ -2,6 +2,8 @@
 // Owner: resources workstream.
 import ParksMapIsland from '../parks/ParksMapIsland';
 import { PARKS } from '../../data/parks';
+import LangFallback from '../site/LangFallback.astro';
+import parksMsgs from '../../i18n/messages/en/parks.ts';
 ---
 
 {/* client:idle, not client:visible -- `client:visible` watches the
@@ -13,7 +15,9 @@ import { PARKS } from '../../data/parks';
     client:idle still keeps the ~200kb maplibre-gl bundle out of the initial
     render's critical path (it loads via requestIdleCallback after first
     paint) without depending on that observer. */}
-<ParksMapIsland parks={PARKS} client:idle />
+<LangFallback area={parksMsgs}>
+  <ParksMapIsland parks={PARKS} client:idle />
+</LangFallback>
 {/* The map prints as an empty box (the canvas doesn't reproduce in paged
     output) — swap in a one-line pointer for print instead (block-captain F6). */}
 <p class="print-only">See the interactive map online, or the list of parks below.</p>

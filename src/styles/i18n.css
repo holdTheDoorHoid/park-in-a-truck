@@ -1,0 +1,98 @@
+/* Languages: fonts for other scripts, right-to-left fixes, and the language bars.
+   Imported by src/layouts/Base.astro after global.css.
+
+   Fonts. Work Sans and Alfa Slab One (the PDF look) cover Latin and Vietnamese,
+   so Spanish, French, Portuguese, Haitian Creole, Swahili, Tagalog and Vietnamese
+   keep exactly the English look. They have no Cyrillic, Chinese, Korean or Arabic
+   letters, so those languages list a second font AFTER them: Latin letters and
+   numbers keep the brand fonts, the other script falls through to a font that has it.
+   - Russian: Roboto Slab Black, Cyrillic only (9 KB), for the slab headings; body
+     text uses the system sans (every phone/computer has good Cyrillic).
+   - Arabic: Cairo (31 KB for the Arabic letters), a clean geometric Arabic that is
+     heavy enough for the slab headings.
+   - Chinese and Korean: system fonts only — full CJK fonts are several MB each.
+   @font-face rules cost nothing until a page actually uses the font, so English
+   visitors download none of this. The heavy headings use `font-synthesis: none`
+   so the one-weight Alfa Slab never gets a fake bold while the second font uses
+   its real black weight. */
+
+@import '@fontsource/roboto-slab/cyrillic-900.css';
+@import '@fontsource/roboto-slab/cyrillic-ext-900.css';
+@import '@fontsource-variable/cairo/wght.css';
+
+:root:lang(ru) {
+  --font-body: 'Work Sans Variable', 'Work Sans', system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Alfa Slab One', 'Roboto Slab', 'Rockwell Extra Bold', Georgia, serif;
+}
+:root:lang(zh) {
+  --font-cjk: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans SC', 'Noto Sans SC', sans-serif;
+}
+:root:lang(ko) {
+  --font-cjk: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', 'Noto Sans CJK KR', 'Source Han Sans K', sans-serif;
+}
+:root:is(:lang(zh), :lang(ko)) {
+  --font-body: 'Work Sans Variable', 'Work Sans', var(--font-cjk);
+  --font-display: 'Alfa Slab One', var(--font-cjk);
+}
+:root:lang(ar) {
+  --font-body: 'Work Sans Variable', 'Work Sans', 'Cairo Variable', 'Segoe UI', Tahoma, sans-serif;
+  --font-display: 'Alfa Slab One', 'Cairo Variable', 'Segoe UI', Tahoma, sans-serif;
+}
+:root:is(:lang(ru), :lang(zh), :lang(ko), :lang(ar)) :is(h1, .display, .big-num) {
+  font-weight: 900;
+  font-synthesis: none;
+}
+
+/* Arabic letters join; spacing them apart breaks the words. CJK doesn't need it either. */
+:root:is(:lang(ar), :lang(zh), :lang(ko)) body :not(.wordmark, .wordmark *) {
+  letter-spacing: 0 !important;
+}
+/* Arabic reads better a touch larger and looser. */
+:root:lang(ar) body {
+  line-height: 1.75;
+}
+/* Stacked Vietnamese accents (Ấ, Ể) need room above tight headings. */
+:root:lang(vi) :is(h1, h2, h3, h4, .display) {
+  line-height: 1.3;
+}
+
+/* English text shown inside a right-to-left page (an untranslated chapter) keeps left-to-right. */
+[dir='rtl'] [dir='ltr'] {
+  text-align: start;
+}
+
+/* ---- language bars ------------------------------------------------------- */
+
+/* First-visit offer: one line, in the visitor's language, above the header. */
+.lang-offer {
+  background: var(--cyan-wash);
+  border-bottom: 1px solid var(--cyan);
+}
+.lang-offer p {
+  margin: 0 auto;
+  padding-block: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  font-weight: 600;
+}
+.lang-offer [data-offer-q] {
+  flex: 0 1 auto;
+}
+
+/* "Translated by machine — read it in English", under the header on translated pages. */
+.lang-notice {
+  background: var(--paper-2);
+  border-bottom: 1px solid var(--line);
+  font-size: 0.86rem;
+  color: var(--ink-2);
+}
+.lang-notice p {
+  margin: 0 auto;
+  padding-block: 6px;
+}
+
+.chapter-fallback {
+  font-size: 0.95rem;
+}

@@ -2,21 +2,16 @@
 // tip | note | warning | contact | auto ("the site does this for you")
 // | site (a note from this website, not from Park in a Truck — legal/health
 //   cautions and guide corrections; DESIGN.md §2)
+import workbook from '../../i18n/messages/en/workbook.ts';
+import { getT } from '../../i18n/astro.ts';
 interface Props {
   kind?: 'tip' | 'note' | 'warning' | 'contact' | 'auto' | 'site';
   title?: string;
 }
 const { kind = 'tip', title } = Astro.props;
-const defaults = {
-  tip: 'Tip',
-  note: 'Note',
-  warning: 'Heads up',
-  contact: 'Ask for help',
-  auto: 'Done for you',
-  site: 'Note from this site, not Park in a Truck',
-};
+const t = getT(Astro, workbook);
 ---
 <aside class={`callout callout-${kind}`}>
-  <span class="callout-title">{title ?? defaults[kind]}</span>
+  <span class="callout-title">{title ?? t(`callout.${kind}`)}</span>
   <slot />
 </aside>

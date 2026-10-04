@@ -1,32 +1,63 @@
 ---
-import { u } from '../../lib/url';
+import site from '../../i18n/messages/en/site.ts';
+import workbook from '../../i18n/messages/en/workbook.ts';
+import { getT, urlFor, alternates } from '../../i18n/astro.ts';
+const t = getT(Astro, site);
+const tw = getT(Astro, workbook);
+const u = urlFor(t.locale);
 const path = Astro.url.pathname;
 const nav = [
-  { href: 'steps/', label: 'Steps', match: /\/steps\// },
-  { href: 'lot/', label: 'Find a lot', match: /\/lot\// },
-  { href: 'planner/', label: 'Plan in 3D', match: /\/planner\// },
-  { href: 'build/', label: 'Build guides', match: /\/build\// },
-  { href: 'plants/', label: 'Plants', match: /\/plants\// },
-  { href: 'parks/', label: 'Parks', match: /\/parks\// },
+  { href: 'steps/', label: t('nav.steps'), match: /\/steps\// },
+  { href: 'lot/', label: t('nav.lot'), match: /\/lot\// },
+  { href: 'planner/', label: t('nav.planner'), match: /\/planner\// },
+  { href: 'build/', label: t('nav.build'), match: /\/build\// },
+  { href: 'plants/', label: t('nav.plants'), match: /\/plants\// },
+  { href: 'parks/', label: t('nav.parks'), match: /\/parks\// },
 ];
+// The language box: the same page in every language, each name in its own language.
+const langs = alternates(path);
+const current = langs.find((l) => l.code === t.locale) ?? langs[0]!;
 ---
 <header class="site-header">
   <div class="wrap bar">
-    <a class="wordmark" href={u('')} aria-label="Park in a Truck — home">
+    <a class="wordmark" href={u('')} aria-label={t('header.home')} dir="ltr">
       <span class="w1">PARK</span><span class="w2">in a</span><span class="w1">TRUCK</span>
     </a>
-    <details class="menu">
-      <summary aria-label="Menu"><span aria-hidden="true">☰</span> Menu</summary>
-      <nav aria-label="Main">
-        {nav.map((n) => (
-          <a href={u(n.href)} aria-current={n.match.test(path) ? 'page' : undefined}>{n.label}</a>
-        ))}
-        <a class="my-park" href={u('my-park/')} aria-current={/\/my-park\//.test(path) ? 'page' : undefined}>
-          <span class="dot" aria-hidden="true"></span>
-          <span><span class="visually-hidden">My park: </span><span data-project-name>My park</span></span>
-        </a>
-      </nav>
-    </details>
+    <div class="bar-end">
+      <details class="menu">
+        <summary aria-label={t('header.menu')}><span aria-hidden="true">☰</span> {t('header.menu')}</summary>
+        <nav aria-label={t('nav.label')}>
+          {nav.map((n) => (
+            <a href={u(n.href)} aria-current={n.match.test(path) ? 'page' : undefined}>{n.label}</a>
+          ))}
+          <a class="my-park" href={u('my-park/')} aria-current={/\/my-park\//.test(path) ? 'page' : undefined}>
+            <span class="dot" aria-hidden="true"></span>
+            <span><span class="visually-hidden">{t('nav.myPark')} </span><span data-project-name>{tw('project.default')}</span></span>
+          </a>
+        </nav>
+      </details>
+      <details class="langbox" data-langbox>
+        <summary aria-label={`${t('lang.label')}: ${current.name}`}>
+          <svg class="globe" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="9.2" fill="none" stroke="currentColor" stroke-width="2" />
+            <path d="M2.8 12h18.4M12 2.8c2.6 2.6 3.8 5.7 3.8 9.2s-1.2 6.6-3.8 9.2c-2.6-2.6-3.8-5.7-3.8-9.2S9.4 5.4 12 2.8z" fill="none" stroke="currentColor" stroke-width="2" />
+          </svg>
+          <span class="lang-name" lang={current.lang}>{current.name}</span>
+          <span class="lang-code" aria-hidden="true">{current.code.toUpperCase()}</span>
+        </summary>
+        <div class="langbox-panel">
+          <ul role="list">
+            {langs.map((l) => (
+              <li>
+                <a href={l.href} hreflang={l.lang} lang={l.lang} data-lang-pick={l.code} aria-current={l.code === current.code ? 'true' : undefined}>
+                  {l.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </details>
+    </div>
   </div>
 </header>
 <style>
@@ -45,6 +76,12 @@ const nav = [
     gap: 16px;
     min-height: 64px;
   }
+  .bar-end {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+  }
   .wordmark {
     text-decoration: none;
     color: var(--ink);
@@ -61,16 +98,21 @@ const nav = [
     font-size: 0.75em;
     text-transform: lowercase;
   }
-  .menu summary {
-    display: none;
+  .menu summary,
+  .langbox summary {
     list-style: none;
     cursor: pointer;
     font-weight: 700;
     border: 2px solid var(--ink);
     border-radius: var(--radius);
     padding: 0.35em 0.75em;
+    white-space: nowrap;
   }
-  .menu summary::-webkit-details-marker {
+  .menu summary {
+    display: none;
+  }
+  .menu summary::-webkit-details-marker,
+  .langbox summary::-webkit-details-marker {
     display: none;
   }
   nav {
@@ -99,7 +141,7 @@ const nav = [
     align-items: center;
     gap: 0.45em;
     border: 2px solid var(--ink);
-    margin-left: 6px;
+    margin-inline-start: 6px;
     max-width: 14em;
   }
   .my-park > span:last-child {
@@ -115,6 +157,67 @@ const nav = [
     background: var(--cyan);
     flex: none;
   }
+
+  /* ---- language box (top right) ---- */
+  .langbox {
+    position: relative;
+  }
+  .langbox summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    font-size: 0.92rem;
+    border-color: var(--line);
+  }
+  .langbox summary:hover,
+  .langbox[open] summary {
+    border-color: var(--ink);
+  }
+  .globe {
+    flex: none;
+  }
+  .lang-code {
+    display: none;
+  }
+  .langbox-panel {
+    position: absolute;
+    inset-inline-end: 0;
+    top: calc(100% + 6px);
+    z-index: 60;
+    background: #fff;
+    border: 2px solid var(--ink);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 6px;
+    min-width: 12rem;
+    max-height: min(80vh, 40rem);
+    overflow: auto;
+  }
+  .langbox-panel ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .langbox-panel a {
+    display: block;
+    padding: 0.45em 0.75em;
+    border-radius: var(--radius);
+    border-inline-start: 3px solid transparent;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .langbox-panel a:hover {
+    background: var(--paper-2);
+  }
+  .langbox-panel a[aria-current='true'] {
+    border-inline-start-color: var(--cyan);
+    background: var(--cyan-wash);
+  }
+  .langbox-panel a[aria-current='true']::after {
+    content: ' ✓';
+  }
+
   /* Desktop: the <details> is always open and the summary hidden. */
   @media (min-width: 900px) {
     .menu > nav {
@@ -149,6 +252,22 @@ const nav = [
       min-width: 0;
     }
   }
+  /* Phones: the language box shrinks to the globe and a short code (ES, 中文 stays short anyway). */
+  @media (max-width: 520px) {
+    .bar {
+      gap: 8px;
+    }
+    .lang-name {
+      display: none;
+    }
+    .lang-code {
+      display: inline;
+    }
+    .langbox summary,
+    .menu summary {
+      padding: 0.35em 0.55em;
+    }
+  }
 </style>
 <script>
   // <details> content is hidden when closed; on wide screens keep it open.
@@ -159,4 +278,39 @@ const nav = [
   };
   sync();
   mq.addEventListener('change', sync);
+
+  // Language box: remember the choice (a per-viewer preference, not project data), keep the
+  // place on the page, close on Escape or a click elsewhere.
+  const box = document.querySelector<HTMLDetailsElement>('[data-langbox]');
+  const remember = (k: string, v: string, session = false) => {
+    try {
+      (session ? sessionStorage : localStorage).setItem(k, v);
+    } catch {
+      /* storage blocked: the choice just isn't remembered */
+    }
+  };
+  document.querySelectorAll<HTMLAnchorElement>('[data-lang-pick]').forEach((a) => {
+    a.addEventListener('click', () => {
+      remember('piat:lang', a.dataset.langPick!);
+      a.href = a.href.split(/[?#]/)[0] + location.search + location.hash;
+    });
+  });
+  // "Read it in English" from a translated page: a peek, not a change of language.
+  document.querySelectorAll<HTMLAnchorElement>('[data-lang-peek]').forEach((a) => {
+    a.addEventListener('click', () => {
+      remember('piat:lang-peek', '1', true);
+      a.href = a.href.split(/[?#]/)[0] + location.search + location.hash;
+    });
+  });
+  if (box) {
+    document.addEventListener('click', (e) => {
+      if (box.open && !box.contains(e.target as Node)) box.open = false;
+    });
+    box.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && box.open) {
+        box.open = false;
+        box.querySelector('summary')?.focus();
+      }
+    });
+  }
 </script>
