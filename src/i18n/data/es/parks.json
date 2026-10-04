@@ -3,25 +3,49 @@
     "neighborhood": "Kingsessing, suroeste de Filadelfia",
     "description": "Un huerto comunitario en un lote de esquina recuperado en Kingsessing. Aparece en la guía de Park in a Truck como \"Cecil Street Park\" y se usó como terreno de prueba para la siembra junto con LandHealth Nursery. Desde entonces es parte de una red de hábitats para polinizadores, financiada por el gobierno federal, que une varios terrenos de Park in a Truck en el suroeste de Filadelfia, sembrados con árboles nativos y equináceas. La residente Victoria Miles-Chambliss: \"Nuestra cuadra de verdad ha cambiado desde que pusimos el huerto. Es como un oasis en medio del suroeste de Filadelfia\".",
     "links": [
-      { "label": "Una red de hábitats para pájaros y abejas florece en el suroeste de Filadelfia (Grid Magazine, abril de 2024, en inglés)" },
-      { "label": "Página del programa Park in a Truck (Jefferson, en inglés)" }
+      {
+        "label": "Una red de hábitats para pájaros y abejas florece en el suroeste de Filadelfia (Grid Magazine, abril de 2024)"
+      },
+      {
+        "label": "Página del programa Park in a Truck (Jefferson)"
+      }
     ]
   },
   "melon-street-park": {
     "neighborhood": "Mantua, oeste de Filadelfia",
     "description": "El primer parque de Park in a Truck, inaugurado en octubre de 2019 en un lote baldío de Mantua (unos 2,400 pies²). El presidente de la Mantua Civic Association, DeWayne Drummond: \"El suelo que estamos pisando ahora mismo era un lote baldío. Ahora lo embellecieron los miembros de la comunidad y los jóvenes\". La fundadora, Kim Douglas, lo describe como un parque que \"puede drenar el agua de lluvia, cultivar plantas, dar hábitat a la fauna y recibir espectáculos\".",
     "links": [
-      { "label": "Con el programa Park in a Truck, Jefferson busca ayudar a transformar comunidades con pocos recursos (Jefferson, agosto de 2019, en inglés)" },
-      { "label": "Lotes baldíos se convierten en parques hermosos en barrios de Filadelfia (6abc, julio de 2021, en inglés)" },
-      { "label": "La guía Park in a Truck permite a los miembros de la comunidad transformar lotes vacíos (Jefferson, agosto de 2022, en inglés)" }
+      {
+        "label": "Con el programa Park in a Truck, Jefferson busca ayudar a transformar comunidades con pocos recursos (Jefferson, agosto de 2019)"
+      },
+      {
+        "label": "Lotes baldíos se convierten en parques hermosos en barrios de Filadelfia (6abc, julio de 2021)"
+      },
+      {
+        "label": "La guía Park in a Truck permite a los miembros de la comunidad transformar lotes vacíos (Jefferson, agosto de 2022)"
+      }
+    ],
+    "photos": [
+      {
+        "alt": "Canteros elevados y plantas en flor en el Parque de Melon Street, con casas en hilera de Mantua al fondo",
+        "caption": "Parque de Melon Street, parque comunitario"
+      },
+      {
+        "alt": "Un grupo de niños y adultos alrededor de una maqueta de piezas del parque el día de construcción en el Parque de Melon Street",
+        "caption": "Día de construcción de Park in a Truck en Mantua"
+      }
     ]
   },
   "glenda-anne-memorial-park": {
     "neighborhood": "Kingsessing, suroeste de Filadelfia",
     "description": "Se inauguró el 3 de agosto de 2019 en un lote donde antes se botaba basura, con más de 200 vecinos y funcionarios electos presentes; la familia de Glenda Ann Christopher aceptó el parque en su memoria (la prensa lo escribe \"Glenda Ann Christopher Memorial Park\"). En la primavera de 2023 se agregó un jardín para polinizadores. El organizador Greg Thompson: \"Una o dos semanas después de sembrarlo ya estaban ahí: abejas, pájaros, mariposas y muchos más insectos de los que habíamos visto nunca\". Una segunda inauguración, en junio de 2024, celebró ese jardín. Semaj Flores, joven voluntario: \"Nos metimos en esto por el medio ambiente y por los jóvenes, para ayudar a los niños más pequeños que están pasando por la violencia con armas\".",
     "links": [
-      { "label": "El programa Park in a Truck transforma áreas verdes urbanas en Filadelfia (CBS News Philadelphia, junio de 2024, en inglés)" },
-      { "label": "Una red de hábitats para pájaros y abejas florece en el suroeste de Filadelfia (Grid Magazine, abril de 2024, en inglés)" }
+      {
+        "label": "El programa Park in a Truck transforma áreas verdes urbanas en Filadelfia (CBS News Philadelphia, junio de 2024)"
+      },
+      {
+        "label": "Una red de hábitats para pájaros y abejas florece en el suroeste de Filadelfia (Grid Magazine, abril de 2024)"
+      }
     ]
   },
   "s-60th-greenway": {
@@ -36,7 +60,9 @@
     "neighborhood": "Elmwood Park, suroeste de Filadelfia",
     "description": "Los estudiantes construyeron un jardín para polinizadores y hábitat en Tilden Middle School, como parte de la misma red de polinizadores del suroeste de Filadelfia que incluye Cecil Street Garden, financiada en parte por Pew Charitable Trusts a través de Audubon Mid-Atlantic, con Park in a Truck como socio. A los jóvenes se les paga, por medio del programa de embajadores del parque de PiaT, para mantenerlo y observar a los polinizadores.",
     "links": [
-      { "label": "Una red de hábitats para pájaros y abejas florece en el suroeste de Filadelfia (Grid Magazine, abril de 2024, en inglés)" }
+      {
+        "label": "Una red de hábitats para pájaros y abejas florece en el suroeste de Filadelfia (Grid Magazine, abril de 2024)"
+      }
     ]
   },
   "streetscape-of-brewerytown-garden": {

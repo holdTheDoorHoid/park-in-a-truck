@@ -1,0 +1,197 @@
+{
+  "title": "4' na upuang gabion na may kahoy sa ibabaw",
+  "summary": "Isang 4-talampakang basket na gabion na alambre, puno ng bato at may upuang kahoy na 2x4 sa ibabaw — binubuo at pinupuno sa lote, o binubuo sa ibang lugar at pinupuno sa huli.",
+  "finishing": "Makapagpapatagal sa buhay ng mga bahagi ng inyong parke ang panlabas na pampahid sa kahoy, pero hindi ito kailangan — sadyang idinisenyo ang mga pirasong ito para maging mura, matibay at madaling gawin, kaya maaaring mas praktikal na hayaan na lang ang susunod na henerasyon na gawin silang muli pagdating ng panahon. Kung gusto ninyong lagyan ng stain, pintura o sealant ang kahoy sa ibabaw, tingnan ang mga mapagkukunan tungkol sa pampahid sa ibaba.",
+  "sourcePages": "Tagubilin sa pagbuo ng GABION_BENCH_ASSEMBLY, pp. 1–15 (pabalat; bago kayo magsimula; karaniwang pagpipiliang materyales + kahoy; mga hakbang 1–10; gabay sa pre-drill na butas)",
+  "materials": [
+    {
+      "item": "Metal na 2x2 na welded-wire mesh",
+      "notes": "Mungkahing gagawa nito: Darby and Sons (darbywiremesh.com) o Gabion1.com. Kapag umoorder ng mga pirasong pinutol ayon sa sukat, hilinging putulin ang mga piraso sa tamang laki, saradong piraso, at i-galvanize pagkatapos (galvanized after)."
+    },
+    {
+      "item": "Kahoy na 2x4 — western red cedar, Douglas fir, o pressure-treated pine",
+      "notes": "Cedar: likas na matibay sa panahon at sa pagkabulok, magandang mapulang kulay, hindi kailangan ng sealant; mas mahal — hanapin ang grade na 'knotty' (STK). Douglas fir: katamtamang matibay sa pagkabulok, matibay, mas mura kaysa sa cedar; mabuti kung balak ninyong pintahan. Pressure-treated: pinakamura at matibay sa pagkabulok, pero madalas na mababa o hindi pare-pareho ang kalidad, kailangang patuyuin sa hangin nang 1–4 na buwan bago pintahan, hindi inirerekomenda kung saan nagtatanim ng pagkain. Umorder ng 5–10% na higit sa listahan ng puputulin para sa iba-ibang kalidad ng kahoy at maling pagputol.",
+      "siteNote": "Uubra lang ang 4½ na tabla kung dalawang pirasong 48″ ang makukuha sa bawat 8′ na tabla, at wala nang matitira para sa hiwa ng lagari: kukulangin nang mga ⅛″ ang ikalawang piraso maliban kung medyo mahaba ang tabla. Para sa pitong buong pirasong 48″, isa ang putulin bawat tabla (7 tabla, at ang tatlong pirasong 15″ ay mula sa isang tira) o bumili ng 2x4x10 (4 na tabla)."
+    },
+    {
+      "item": "Pampuno ng gabion",
+      "notes": "Matigas at matulis na materyales na hindi nabubulok o nadudurog sa paglipas ng panahon — batong mula sa quarry, recycled na semento o aspalto mula sa kalsada, o recycled na ladrilyo o hollow block. Huwag gumamit ng pinutol na troso o iba pang organikong materyales. Halo-halong laki mula 2\" pinakamaliit hanggang 12\" pinakamalaki; dapat mas malaki sa 3\" ang mga pirasong nasa labas na mukha."
+    },
+    {
+      "item": "Pang-brace (para sa suporta sa gitna, sa ilalim ng piraso ng frame sa gitna)",
+      "notes": "Isang rolyo ng makinis na galvanized wire na 14 o 16 gauge, o mga sobrang piraso ng 2x2 na wire mesh na hinati gamit ang bolt cutter (sumasaklaw sa buong lapad ng basket, hindi bababa sa 2 kahon / 4\" ang taas)."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Self-driving exterior wood screw"
+    },
+    {
+      "item": "Hog ring"
+    },
+    {
+      "item": "Cable staple"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Frame ng upuang gabion"
+    },
+    {
+      "notes": "Ibabaw + frame ng upuang gabion"
+    },
+    {
+      "notes": "Panel sa ilalim ng gabion, 48\" x 18\""
+    },
+    {
+      "notes": "Gilid ng gabion (mahaba), 48\" x 18\" bawat isa"
+    },
+    {
+      "notes": "Gilid ng gabion (maikli), 18\" x 18\" bawat isa"
+    }
+  ],
+  "tools": [
+    "10\" o 12\" na miter saw (o angkop na lagaring de-kamay)",
+    "Impact driver para sa mga self-driving exterior wood screw",
+    "Drill na may 1/8\" na bit",
+    "Liha, 120 grit",
+    "Iskwala ng karpintero",
+    "Safety goggles + guwantes",
+    "Pliers para sa hog ring",
+    "Bolt cutter",
+    "Martilyo",
+    "4 lb na maso",
+    "Grinder (para kinisin ang anumang matalim na dulo ng alambre)"
+  ],
+  "steps": [
+    {
+      "title": "Markahan, lagyan ng label at putulin ang kahoy at wire mesh",
+      "text": "Markahan, lagyan ng label at putulin ang kahoy nang sunod-sunod mula GB-1 hanggang GB-2 ayon sa haba sa listahan ng puputulin.\n\nPagbukod-bukurin ang inyong 2x2 na wire mesh sa mga tumpok na magkakapareho ang laki at lagyan ng label na 18-4a (ilalim ng gabion), 18-4b (gilid ng gabion, mahaba) at 18-4c (gilid ng gabion, maikli).",
+      "imageAlts": [
+        "Isometric na diagram ng mga pirasong kahoy na GB-1 at GB-2 at ng mga panel na wire mesh na 18-4a, 18-4b at 18-4c, may haba at diagram kung paano magkakatabi ang mga mesh."
+      ],
+      "tips": [
+        "Lagyan ng label ang bawat piraso ng kahoy habang sinusukat at pinuputol ninyo ito.",
+        "Magkaroon ng hiwalay na tumpok ng kahoy para sa GB-1 at GB-2.",
+        "Ang bahagyang paglilija sa mga pinutol na gilid ay nag-aalis ng salubsob at nakatutulong sa pagbuo.",
+        "Gagawa ng higit sa isang gabion? Pinananatiling magkakapareho ang haba ng bawat piraso ng isang stop block sa inyong miter saw."
+      ]
+    },
+    {
+      "title": "I-staple ang mga gilid na wire mesh sa mga dulo ng frame",
+      "text": "Ilagay ang dalawang pirasong GB-2 at dalawang pirasong GB-1 sa patag na ibabaw, at itugma ang mga gilid gaya ng ipinapakita.\n\nTiyaking nakadikit sa kahoy ang mga patayong alambre ng wire mesh ng gabion, at nasa labas ang mga pahalang na alambre (makinis na gilid) na kapareho ng direksiyon ng tabla, para walang matalim na dulo sa labas ng gabion.\n\nIgitna ang dalawang pirasong wire mesh na 18-4c sa pirasong kahoy na GB-1 — dapat may 1.5\" mula sa gilid ng kahoy hanggang sa gilid ng wire mesh.\n\nIkabit ang dalawang pirasong wire mesh na 18-4c at dalawang 18-4b sa kahoy na GB-1 at GB-2 gamit ang martilyo at 32 na 1.5\" na galvanized cable staple — 2 staple bawat piraso ng alambre.",
+      "siteNote": "Binubuo ninyo ang basket na ito nang nakabaligtad: nasa lupa muna ang frame na kahoy at nagiging gilid sa ibabaw ito kapag binaligtad ninyo ang basket sa hakbang 8. Ipinapakita ng 3D model ang upuan na nakatayo nang tama mula umpisa hanggang dulo, kaya laging nasa ibabaw ang frame na kahoy nito.",
+      "imageAlts": [
+        "Diagram ng mga panel na wire mesh na 18-4c at 18-4b na ini-staple sa kahoy na GB-1 at GB-2, may malapitang larawan ng puwesto ng staple at ng 1.5\" na agwat ng mesh."
+      ],
+      "tips": [
+        "Kung magdudugtong kayo ng maraming gabion nang magkakahanay, sa iisang pirasong GB-1 lang i-staple ang metal na mesh."
+      ]
+    },
+    {
+      "title": "Buuin ang frame",
+      "text": "Ilagay ang dalawang pirasong GB-2 sa patag na ibabaw. Ilagay ang dalawang pirasong GB-1 sa pagitan ng mga pirasong GB-2 sa magkabilang dulo, at itugma ang mga gilid gaya ng ipinapakita.\n\nGamitin ang gabay sa pre-drill sa dulo ng packet para mag-pre-drill ng mga butas ng turnilyo, saka ikabit ang kahoy na GB-2 sa mga pirasong GB-1 gamit ang impact driver at 8 na 2.5\" na self-driving exterior wood screw.",
+      "imageAlts": [
+        "Diagram ng dalawang pirasong GB-1 sa dulo at dalawang pirasong GB-2 sa gilid na pinagturnilyo bilang parihabang frame."
+      ],
+      "tips": [
+        "Gumamit ng iskwala ng karpintero para suriin kung tamang anggulo (90°) ang bawat sulok.",
+        "Kung magdudugtong kayo ng maraming gabion, iwanang bukas ang isang dulo — tingnan ang kabanata ng Build para sa ayos."
+      ]
+    },
+    {
+      "title": "Idagdag ang suporta sa gitna",
+      "text": "Ilagay ang isang pirasong GB-1 sa gitna ng frame na ginawa sa hakbang 3.\n\nIkabit ito gamit ang impact driver at 4 na 2.5\" na self-driving exterior wood screw.",
+      "imageAlts": [
+        "Diagram ng pirasong GB-1 na nakagitna sa frame, pantay ang layo mula sa dalawang dulo."
+      ]
+    },
+    {
+      "title": "Isara ang mga sulok ng basket",
+      "text": "Pagdugtungin sa mga sulok ang 2x2 na wire sheet — ang dalawang pirasong 18-4c at dalawang 18-4b — gamit ang hog ring at pliers para sa hog ring, isang hog ring bawat ikalawang butas. Tiyaking may hog ring sa lahat ng sulok at gilid para manatili ang hugis ng basket.",
+      "imageAlts": [
+        "Diagram ng mga hog ring na nagsasara sa mga dugtungan sa sulok ng basket na wire mesh, may malapitang larawan ng hog ring na nagdudugtong sa dalawang gilid ng mesh."
+      ]
+    },
+    {
+      "title": "Lagyan ng brace ang gitna",
+      "text": "Sa gitna ng basket na gabion, sa ilalim ng pirasong GB-1 sa gitna, magdagdag ng pang-brace gamit ang isa sa dalawang paraan: mga sobrang dulong piraso ng 2x2 na wire mesh na hinati gamit ang bolt cutter, o anumang sobrang 2x2 na mesh na sumasaklaw sa buong lapad ng basket (hindi bababa sa 2 kahon, o 4\"+, ang taas).\n\nIkabit ang suporta sa gitna gamit ang hog ring.",
+      "imageAlts": [
+        "Diagram ng isang brace na wire mesh na ikinakabit ng hog ring sa ilalim ng piraso ng frame sa gitna."
+      ]
+    },
+    {
+      "title": "Isara ang ibabaw",
+      "text": "Ilagay ang pirasong wire mesh na 18-4a sa ibabaw ng basket na gabion na ikinabit sa hakbang 5.\n\nIkabit ang piraso sa ibabaw gamit ang hog ring sa apat na gilid at sa brace sa gitna — isang hog ring bawat ikalawang butas ng mesh, at dalawa sa bawat sulok. Handa na ngayong dalhin sa lote ang basket na gabion.",
+      "siteNote": "Ang \"piraso sa ibabaw\" na ito ay ang panel sa ilalim sa listahan ng puputulin (18-4a). Nasa ibabaw ito habang binubuo ninyo at nasa ilalim kapag binaligtad ninyo ang basket sa hakbang 8, at doon ito ipinapakita ng 3D model.",
+      "imageAlts": [
+        "Diagram ng panel na wire mesh na 18-4a sa ibabaw na ikinakabit ng hog ring sa basket, may malapitang larawan ng hog ring sa sulok na nagkakabit sa tatlong piraso ng mesh."
+      ]
+    },
+    {
+      "title": "Ilagay ang basket sa lote",
+      "text": "Baligtarin ang basket na gabion nang 180°. Ilagay ito sa lote na may sapin na graba.\n\nTiyaking tuwid ang basket na gabion gamit ang level.",
+      "imageAlts": [
+        "Diagram na nagpapakita ng basket na gabion na binaligtad at pinatag sa sapin na graba."
+      ],
+      "tips": [
+        "Kung katabi ito ng ibang gabion, gumamit ng tali at line level para manatiling tuwid ang hanay."
+      ]
+    },
+    {
+      "title": "Punuin ang basket",
+      "text": "Ilagay ang gabion sa puwesto nito ayon sa disenyo ng inyong parke. Maglagay ng graba sa ilalim para sa pinong pagsasaayos.\n\nSimula sa pinakamalalaki at pinakapatag na piraso ng pampuno na mayroon kayo, simulang punuin ang gabion mula sa mga gilid, at magpatuloy hanggang mabuo ninyo ang mga gilid.\n\nPunuin ang frame ng natirang pampuno hanggang kapantay ito ng ibabaw ng gilid na kahoy.",
+      "imageAlts": [
+        "Diagram at mga larawang sanggunian ng basket na gabion na pinupuno ng bato, simula sa malalaki at patag na piraso sa mga gilid."
+      ],
+      "tips": [
+        "Maingat na ilagay ang pampuno para hindi mabaluktot ang basket, at tiyaking napuno ang lahat ng puwang para tumibay ito.",
+        "Tingnan ang inyong workbook ng Lumikha, yugto apat, para sa higit pa tungkol sa hakbang na ito."
+      ]
+    },
+    {
+      "title": "Idagdag ang kahoy sa ibabaw at lihahin",
+      "text": "Ilagay ang dalawang pirasong GB-2 sa ibabaw ng frame na ginawa sa hakbang 3, gamit ang gabay sa pre-drill sa dulo ng packet para mag-pre-drill sa kahoy. Unahing ikabit ang dalawang tabla sa dulo gamit ang impact driver at 12 na 2.5\" na self-driving exterior wood screw, at panatilihing kapantay ng kahoy sa ilalim ang gilid.\n\nIlagay nang pantay ang agwat ng natitirang tatlong tablang GB-2 sa pagitan ng dalawang tabla sa dulo at ikabit gamit ang impact driver at 12 pang 2.5\" na self-driving exterior wood screw.\n\nBahagyang lihahin ang magaspang na gilid ng upuang gabion, at tiyaking walang matalim na dulo ng alambre ng gabion — kinisin gamit ang grinder kung may masyadong matalim.",
+      "imageAlts": [
+        "Diagram ng limang tablang GB-2 sa ibabaw na tinuturnilyo sa basket na gabion na may laman, pantay ang agwat."
+      ],
+      "tips": [
+        "Ang pag-pre-drill sa hakbang na ito ay tumutulong para hindi biyakin ng mga turnilyo ang mga tabla.",
+        "Panatilihin ang lahat ng turnilyo na isang lapad ng hinlalaki mula sa gilid ng kahoy."
+      ]
+    },
+    {
+      "title": "Gabay sa pre-drill na butas (template)",
+      "text": "Gupitin ang gabay sa pre-drill na butas sa mga putol-putol na linya. Kapag nagbubutas, itugma ang gilid ng template sa panlabas na gilid ng kahoy bago mag-pre-drill.\n\nHindi lahat ng butas ay ginagamit — hindi lahat ng pattern ay gumagamit ng template. Gamitin ang mga hakbang sa pagbuo sa itaas bilang gabay sa mga butas. Panatilihin ang lahat ng butas na mga isang lapad ng hinlalaki mula sa gilid (mga 1\"), kahit ang mga butas na hindi gumagamit ng template na ito.",
+      "imageAlts": [
+        "Isang template ng gabay sa pre-drill na butas na mapi-print, may limang minarkahang puwesto ng butas at mga linya ng paggupit, at isang malapitang larawan ng layo ng butas mula sa gilid ng tabla."
+      ]
+    }
+  ],
+  "safety": [
+    "Mga rekomendasyong DIY (kayo mismo ang gagawa) lamang ang mga ito — iangkop ang materyales, pagbuo at konstruksiyon sa sarili ninyong proyekto at lote.",
+    "Ipinapalagay sa paggawa nito na may kaunti kayong kaalaman sa mga kagamitang de-kamay at de-kuryente, hardware, pangkabit, kahoy at batayang paraan ng pagbuo.",
+    "Bago gumamit ng anumang de-kuryenteng kagamitan, basahin at sundin ang mga kinakailangan sa kaligtasan ng gumawa nito, at huwag hayaang gumamit ng de-kuryenteng kagamitan ang sinumang hindi pa nakagagawa nito.",
+    "Kayo (ang may-ari) ang mananagot sa anumang building at safety code, permit at pag-apruba ng pamahalaan na kailangan nito.",
+    "Linisin muna ang lote mula sa basura, panganib at mga ayaw na istruktura, at alamin ang anumang utility (kable at tubo) na maaaring maging sagabal bago kayo maghukay.",
+    "Dapat pumirma ng waiver ng boluntaryo ang lahat ng tumutulong sa paggawa.",
+    "Maaaring mag-iwan ng matatalim na dulo ang pinutol na wire mesh at ang pampuno ng gabion — magsuot ng guwantes at safety goggles, at kinisin gamit ang grinder ang anumang matalim na alambre."
+  ],
+  "links": [
+    {
+      "label": "Wire mesh ng Darby and Sons (sa Ingles)"
+    },
+    {
+      "label": "Gabion1.com — 18\" x 18\" na basket na gabion (sa Ingles)"
+    },
+    {
+      "label": "Pagpili ng pinakamahusay na pampahid para sa mga proyekto sa labas (Rockler) (sa Ingles)"
+    },
+    {
+      "label": "Pinakamahusay na pampahid sa kahoy sa labas (Real Milk Paint) (sa Ingles)"
+    },
+    {
+      "label": "Mga pampahid sa kahoy sa labas (Vermont Natural Coatings) (sa Ingles)"
+    }
+  ]
+}

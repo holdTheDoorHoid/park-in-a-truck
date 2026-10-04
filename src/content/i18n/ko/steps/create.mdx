@@ -1,0 +1,464 @@
+---
+title: 만들기
+intro: 주말마다 한 단계씩, 공원을 직접 만들어요.
+sources:
+  - 툴킷 57–59쪽 (만들기, 첫 공원 공사)
+  - 만들기 워크북 1–18쪽
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Choice from '../../../../components/workbook/Choice.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import Download from '../../../../components/workbook/Download.astro';
+import CostEstimator from '../../../../components/widgets/CostEstimator.astro';
+import BuildSchedule from '../../../../components/widgets/BuildSchedule.astro';
+import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
+
+{/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — Create lets you pick build weekends and print an order list with nothing recorded in Acquire; this says so before anyone breaks ground. */}
+<LotAgreementNotice />
+
+공원을 만드는 일은 이웃, 친구, 그리고 다른 사람들을 이어 주는 아주 좋은 방법이에요. 이 과정에는 시간과 힘을 내줄
+수 있는 헌신적인 자원봉사자들이 필요해요. 목공, 조경, 조직, 격려, 이끌기처럼 다양한 재능도 필요하고요. 요리법을
+따르듯 공원 만들기도 순서대로 하는 일이에요. Park in a Truck 공원은 대부분 6–8주말 정도면 완성돼요.
+
+만들기 장은 공원을 짓는 이야기예요. 우리는 이 과정을 여덟 차례의 작업으로 나눴어요. 작업마다 대략 주말 하나면 끝낼
+수 있어요. 실제로 얼마나 걸릴지는 공원 크기와 자원봉사자 수에 따라 달라져요. 작업 순서에는 이유가 있어요. 하나씩
+살펴보고 필요하면 일정을 조정하세요.
+
+이 책은 비용 견적을 이미 내서, 작업마다 주문할 수량과 자재를 알고 있다고 보고 설명해요. 아직 안 했다면 꿈꾸기
+단계로 돌아가 비용 계산기를 쓰세요.
+
+<CostEstimator />
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={3} />
+
+## 자원봉사자 면책 동의서 {/* #volunteer-release-form */}
+
+공원 작업을 할 때는 언제나 현장에 자원봉사자 면책 동의서를 준비해 두세요. 이 동의서는 자원봉사자가 다쳤을 때의
+책임에서 여러분을 면제해 줘요. 공사를 시작하기 전에 모임의 법률 자문과 보험사에 문의하는 것은 여러분의 책임이에요.
+모임을 책임에서 보호하기 위해 추가로 해야 할 일을 알려 줄 수도 있어요. 자원봉사자에게 그날 기대하는 것과 할 일을
+분명하게 알려 주세요. 자기 시간이 보람 있게 쓰였다고 느끼면 다음 주에도 다시 올 가능성이 커요.
+
+<Download href="downloads/forms/volunteer-release-form.pdf" label="자원봉사자 면책 및 책임 면제 동의서" note="자원봉사자마다 한 장. 18세 미만 자원봉사자는 부모나 보호자도 서명해야 해요" />
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={3} />
+
+## 1차 작업: 조직하기 {/* #phase-1-organize */}
+
+어떤 일이든 그렇듯, 첫 번째이자 가장 중요한 단계는 프로젝트를 이끌 사람을 정하고 일정을 세워 팀을 꾸리는 거예요.
+이 역할에 몇 명을 둘지는 프로젝트가 얼마나 복잡하고 큰지에 따라 달라요.
+
+- **공사 관리자.** 자재를 주문하고, 배달 올 때 현장에 있고, 공사하는 날 자원봉사자에게 할 일을 알려 주고, 일정에
+  대해 프로젝트 관리자와 함께 조율해요.
+- **프로젝트 관리자.** 자원봉사자 모집, 소셜 미디어, 음식 주문, 면책 동의서 나눠 주기를 맡고, 재정을 조율하고 일정을
+  관리해요.
+
+<Field id="create.construction-manager" label="공사 관리자" hint="자재 주문, 공사하는 날 진행" />
+<Field id="create.project-manager" label="프로젝트 관리자" hint="자원봉사자, 일정, 재정" />
+
+<ListField
+  id="create.org-chart"
+  label="자원봉사자와 업체"
+  rowName="사람"
+  min={3}
+  columns={[
+    { key: 'name', label: '이름' },
+    { key: 'role', label: '역할', placeholder: '자원봉사자, 업체…' },
+    { key: 'contact', label: '연락처' },
+  ]}
+/>
+
+프로젝트 달력은 일정, 중요한 날짜, 자원봉사자가 일하는 때, 자재가 오기까지 걸리는 시간을 챙기는 아주 좋은
+방법이에요. 계획은 공사 자체만큼 중요해요. 첫걸음을 잘 내디디세요.
+
+<BuildSchedule />
+
+<Download href="downloads/templates/project-calendar.xlsx" label="달력 서식" note="예시 프로젝트 달력과 연락처 목록 — 참고용이니 사본을 만들어 쓰세요" />
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={4} />
+
+## 2차 작업: 부지 준비하기 {/* #phase-2-prepare-the-lot */}
+
+### 순서
+
+**1단계: 평가하기.** 어떤 부지는 다른 곳보다 더 많이 치우거나 땅을 골라야 해서 특수 장비가 필요할 수 있어요. 아래
+일 중 주민들만으로 할 수 없는 것이 있으면 조경 업체에 연락하세요.
+
+- 부지를 어떻게 준비할지 잘 모르겠다면 PiaT 팀([ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu))에
+  현장 방문 상담을 요청하세요.
+- **811**로 Pennsylvania One Call(펜실베이니아 지하 시설 확인 서비스)에 연락해 지하 시설 위치를 표시해 달라고 하세요.
+
+<Field id="create.one-call-address" label="PA One Call 요청에 쓸 주소" auto="lot.address" />
+
+**2단계: 보호하기.** 작은 공구와 장비를 현장에 가져오세요. 나무줄기, 건물, 그 밖에 보호해야 할 것 둘레에 나무
+말뚝으로 공사용 보호 펜스를 세우세요. 부지 둘레와 모든 배수구에 흙탕물·흙 유실 방지 펜스를 설치하세요.
+
+**3단계: 걷어 내기.** 원하지 않는 식물(뿌리까지), 나무 그루터기, 쓰레기, 벽돌·석재 조각을 걷어 내세요. 어떤 식물은
+제때 효과적으로 없애려면 제초제 처리가 필요할 수 있어요. 원래 있는 나무는 줄기에서 적어도 6' 높이까지 가지를 쳐
+주세요. 잔해와 식물은 알맞은 처리장으로 실어 내고, 벽돌·석재 조각은 돌망태 바구니 채움재로 쓰도록 현장에 쌓아 두세요.
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — street trees are the City's; facts checked 2026-10-04 on phila.gov. */}
+<Callout kind="site">
+  가로수(보도에 있는 나무)는 시의 것이에요. 가로수를 가지치기하거나 베어 내려면 Philadelphia Parks & Recreation(필라델피아
+  공원·레크리에이션국)의 허가가 필요하고, 이 기관은 위험한 가로수를 무료로 가지치기하거나 베어 줘요 (311로 요청하세요).
+  시의 [가로수 질문과 답 (영어) ↗](https://www.phila.gov/departments/philadelphia-parks-recreation/street-tree-frequently-asked-questions/)을
+  보세요.
+</Callout>
+
+**4단계: 땅 고르기.** 갈퀴로 땅을 고르며 평평하게 하기 시작하세요. Pennsylvania One Call 표시가 그대로 잘 보이는지
+확인하세요. 흙 높이는 보도 높이와 비슷하게 평평해야 해요.
+
+### 장비와 공구
+
+<Checklist
+  id="create.phase2-tools"
+  items={[
+    { value: 'Shovels', label: '삽' }, { value: 'Wheelbarrows', label: '외바퀴 손수레' }, { value: 'Pick axe', label: '곡괭이' },
+    { value: 'Grading rakes', label: '땅 고르기 갈퀴' }, { value: 'Sledgehammer', label: '큰 망치(해머)' },
+    { value: 'Hand pruners + loppers', label: '전정가위 + 긴 자루 전정가위' }, { value: 'Pruning saws', label: '전정 톱' },
+    { value: 'Spray paint', label: '스프레이 페인트' }, { value: 'Construction fencing', label: '공사용 펜스' },
+    { value: 'Wood posts', label: '나무 말뚝' }, { value: 'Broom', label: '빗자루' }, { value: 'Chainsaw', label: '체인톱' },
+    { value: 'Trash bags', label: '쓰레기봉투' },
+  ]}
+/>
+<Checklist
+  id="create.phase2-tools-optional"
+  label="선택 — 울퉁불퉁한 곳, 콘크리트, 나무 그루터기가 많은 부지용"
+  items={[
+    { value: 'excavator', label: '굴착기', hint: '업체에 맡기기를 권해요' },
+    { value: 'stump-grinder', label: '그루터기 분쇄기', hint: '업체에 맡기기를 권해요' },
+    { value: 'Jack hammer', label: '착암기(잭해머)' }, { value: 'Rototiller', label: '경운기(로터리 틸러)' }, { value: 'Herbicide spray', label: '제초제 분무기' },
+  ]}
+/>
+
+<Figure
+  src="img/create/phase2-reference-photos.webp"
+  alt="부지 준비 참고 사진: 굴착기로 부지를 치우는 모습, 잔디 위의 지하 시설 위치 표시 깃발과 탐지선, 벽돌·석재 잔해를 걷어 내는 자원봉사자들, 연석을 따라 놓인 흙 유실 방지 그물, 갈퀴로 흙을 고르는 자원봉사자"
+/>
+
+### 유용한 링크 (영어 사이트)
+
+- **공구 대여** — 전동 공구는 효율과 안전을 위해 업체에 맡기는 것이 나을 수 있어요.
+  [West Philadelphia Tool Library ↗](https://westphillytools.org) (손 공구만, 1314 S 47th St) ·
+  [OK Rental ↗](https://okrentalsaleservice.com) *(현재 열리지 않는 링크)* (체인톱을 포함한 전동 공구, 640 Main St, Darby) ·
+  [Diamond Tool ↗](https://diamondtool.net/Rentals) *(자동으로 확인하지 못함)* (2800 Grays Ferry Ave)
+- **폐기물과 재활용** — [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/) (3850 W Ford Rd)
+- **나무 가지치기 영상** — [youtube.com/watch?v=pY5A-5gUqwo ↗](https://youtube.com/watch?v=pY5A-5gUqwo)
+- **잡초 구별** — [Philadelphia Orchard Project 잡초 안내 ↗](https://www.phillyorchards.org/resources/)
+- **제초제** (아껴 쓰고, 언제나 라벨의 지시를 따르세요) — 나무 식물의 그루터기에는 피클로람(Picloram), 풀과 나무
+  식물의 잎에는 글리포세이트(Glyphosate), 쑥(mugwort)과 캐나다엉겅퀴에는 클로피랄리드(Clopyralid). 제초제로 다스려야
+  하는 경우가 많은 침입 잡초: 쑥(mugwort), 캐나다엉겅퀴, 호장근(Japanese knotweed), 갈대(phragmites)(풀),
+  꾸지나무(Broussonetia), 가죽나무(Ailanthus), 오동나무(Paulownia), 인동덩굴(Japanese honeysuckle)(나무 — 너무 커서
+  뿌리째 뽑을 수 없을 때만 베고 그루터기를 처리하세요).
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — herbicide labels, restricted-use picloram, 20% vinegar; facts checked 2026-10-04 on epa.gov and npic.orst.edu. */}
+<Callout kind="site">
+  제초제 라벨은 곧 법이에요. 제품을 쓸 수 있는 장소와 라벨에 적힌 보호 장비까지 그대로 따르세요
+  ([EPA (영어) ↗](https://www.epa.gov/pesticide-labels/introduction-pesticide-labels)). 피클로람 제품 상당수는 사용 제한
+  품목이라 인증받은 사람만 사거나 뿌릴 수 있어요
+  ([EPA 목록 (영어) ↗](https://www.epa.gov/pesticide-worker-safety/restricted-use-products-rup-report)). 잡초용으로 파는
+  식초(20% 이상)는 눈을 영구적으로 다치게 할 수 있어요. 보안경과 장갑을 끼세요
+  ([NPIC (영어) ↗](https://npic.orst.edu/faq/vinegar.html)).
+</Callout>
+
+### 다음 작업 준비
+
+프로젝트 달력을 확인하고 필요하면 고치세요. 오는 데 시간이 걸리는 자재나 장비는 미리 사서 배달받고, 3차 작업을 할 수
+있도록 현장을 준비하세요.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={5} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={6} label="참고 사진과 링크 (PDF)" />
+
+## 3차 작업: 배치와 자갈 기초 {/* #phase-3-layout-gravel-base */}
+
+### 순서
+
+**1단계: 자재.** 장비와 공구를 현장에 가져오고, 배달 받을 준비를 하세요. 자갈을 쌓아 둘 곳을 정하고, 되도록 방수포로
+덮으세요. 자갈이 들어갈 대략적인 구역을 스프레이 페인트로 표시하세요. 자리가 부족하면 시와 조율해서 도로에 내려놓도록
+하세요.
+
+<Callout kind="note" title="배달 때문에 도로를 막아야 하나요?">
+  배달 트럭이 짐을 내릴 자리가 있도록 임시 주차 금지 허가를 신청하세요.
+  [phila.gov에서 신청하기 (영어) ↗](https://www.phila.gov/services/cars-parking-transportation/apply-for-a-parking-permit/apply-for-a-temporary-no-parking-permit/)
+</Callout>
+<Field id="create.delivery-address" label="주차 금지 허가에 쓸 주소" auto="lot.address" />
+
+**2단계: 화단과 공원 시설 자리 잡기.** 조사하기 워크북에서 표시한 시작점에서 시작하세요. 평면도를 보고 화단과 공원
+시설 가장자리의 위치와 길이를 확인하세요. 말뚝과 줄로 나중 작업에서 설치할 테두리와 공원 시설의 자리를 표시하세요.
+
+**3단계: 기초층 깔기.** 조립 설명서대로 돌망태 바구니가 놓일 바닥을 준비하세요. 새 공원과 보도의 높이 차이를 맞추도록
+입구를 파내세요. 보도 가장자리에서 적어도 4" 깊이로, 필요한 만큼 경사를 주세요 (남는 흙은 길을 고르거나 식재 구역에
+보태세요). 화단을 뺀 모든 구역에 자갈을 2" 깊이로 펴되, 다음 작업의 테두리가 자갈 위에 놓일 수 있도록 줄보다 6"쯤
+넓게 펴세요. 진동 평판 다짐기로 자갈 위를 적어도 두 번 다지세요.
+
+**4단계: 입구와 정리.** 넘친 자갈을 치우고 공공장소를 깨끗이 하세요.
+
+### 장비, 공구, 자재
+
+<Checklist
+  id="create.phase3-tools"
+  items={[
+    { value: 'Square', label: '직각자' }, { value: 'Measuring tape', label: '줄자' }, { value: 'Shovels', label: '삽' },
+    { value: 'Wheelbarrows', label: '외바퀴 손수레' }, { value: 'Pick axe', label: '곡괭이' }, { value: 'Grading rakes', label: '땅 고르기 갈퀴' },
+    { value: '5 lb hammer', label: '5 lb 망치' }, { value: 'Spray paint', label: '스프레이 페인트' },
+    { value: 'Wood posts and string', label: '나무 말뚝과 줄' }, { value: 'Vibrating plate compactor', label: '진동 평판 다짐기' },
+    { value: 'Broom', label: '빗자루' },
+  ]}
+/>
+<p class="muted">자재: 자갈, 3/4" 도로 기초용 골재.</p>
+
+<Figure
+  src="img/create/phase3-reference-photos.webp"
+  alt="배치와 자갈 기초 참고 사진: 부지 재기, 땅 파기, 기초층 준비, 자갈 배달 트럭, 말뚝과 줄로 부지 자리 잡기, 쌓아 둔 자갈, 손수레로 자갈을 날라 펴는 모습"
+/>
+
+### 유용한 링크 (영어 사이트)
+
+- **따라 하기** — [화단 자리 잡기 ↗](https://lowes.com/n/how-to/create-an-english-style-garden) (1:50–2:40 부분을 보세요) ·
+  [자갈 기초층 깔기 ↗](https://youtube.com/watch?v=tfDEOIAIUwQ)
+- **공구 대여** — [West Philadelphia Tool Library ↗](https://westphillytools.org) ·
+  [OK Rental ↗](https://okrentalsaleservice.com) *(현재 열리지 않는 링크)* · [Diamond Tool ↗](https://diamondtool.net/Rentals) *(자동으로 확인하지 못함)*
+
+### 다음 작업 준비
+
+프로젝트 달력을 확인하고 필요하면 고치세요. 다음 작업에 쓸, 오는 데 시간이 걸리는 자재를 미리 사서 배달받으세요. 4차
+작업을 할 수 있도록 현장을 준비하세요.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={7} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={8} label="참고 사진과 링크 (PDF)" />
+
+## 4차 작업: 가장자리 설치 {/* #phase-4-install-the-edge */}
+
+### 순서
+
+**1단계: 자재.** 가장자리 자재를 가져오세요 (비용 견적과 조립 설명서 참고). 흙 유실 방지 펜스를 걷어 내세요. 나무 보호
+펜스는 가장자리 설치에 방해가 되지 않으면 그대로 두세요.
+
+**2단계: 조립하기.** 돌망태 바구니를 조립하세요 (돌망태 벽 조립 설명서 참고).
+
+**3단계: 설치하기.** 돌망태 바구니가 공원 가장자리를 따라 일직선으로 놓이도록 줄을 띄우세요. 평면도대로 바구니를
+놓고, 바닥에 자갈을 2–3" 채우세요. 바구니끼리 수평과 일직선이 맞도록 조금씩 조정하세요. 테이블이나 벤치처럼 따로
+쓸 때는 위에 수평자를 대 보세요. 필요한 곳에 나무 테두리를 다세요 (나무 테두리 조립 설명서 참고).
+
+### 장비와 자재
+
+<Checklist
+  id="create.phase4-tools"
+  items={[
+    { value: 'Measuring tape', label: '줄자' }, { value: 'Shovels', label: '삽' }, { value: 'Wheelbarrows', label: '외바퀴 손수레' },
+    { value: 'Garden hoes', label: '괭이' }, { value: 'Grading rakes', label: '땅 고르기 갈퀴' },
+    { value: 'Hand tamper', label: '손 다짐기' }, { value: 'Wire cutters', label: '철사 커터' }, { value: 'Sledge hammer', label: '큰 망치(해머)' },
+    { value: 'Level', label: '수평자' }, { value: 'Broom', label: '빗자루' },
+  ]}
+/>
+<p class="muted">자재: 돌망태 바구니, 나무 테두리용 목재와 철물, 돌망태 바구니에 넣을 3" 이상의 큰 벽돌·석재 조각.</p>
+
+<Figure
+  src="img/create/phase4-reference-photos.webp"
+  alt="가장자리 설치 참고 사진: 다 채운 돌망태 바구니 두 개, 그리고 자갈 바닥에 나무 테두리 판재를 대는 자원봉사자"
+/>
+
+### 유용한 링크 (영어 사이트)
+
+- **자재** — [Castor Materials ↗](https://castormaterials.com) (부순 돌, 배달, 3301 S 61st St) ·
+  [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) (부순 돌, 멀칭재, 공구, 4260 Macalester St) ·
+  [Underdog Supply ↗](https://www.underdogsupply.com/) (대량 배달, Conshohocken) ·
+  Galantino Supply Company (장비 대여와 대량 자재, 725 Old Marple Rd, Springfield — (610) 544-2586)
+- **따라 하기** — [돌망태 벽 만들기 ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
+
+### 다음 작업 준비
+
+프로젝트 달력을 확인하고 필요하면 고치세요. 오는 데 시간이 걸리는 자재를 미리 사서 배달받으세요. 5차 작업을 할 수
+있도록 현장을 준비하세요.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={9} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={10} label="참고 사진과 링크 (PDF)" />
+
+## 5차 작업: 겉흙 펴기 {/* #phase-5-spread-topsoil */}
+
+### 순서
+
+**1단계: 자재.** 나무 보호 펜스를 걷어 내세요. 보도나 도로에 겉흙을 쌓아 둘 곳을 정하세요. 도로라면 임시 주차 금지
+허가를 신청하세요 (3차 작업 참고).
+
+**2단계: 흙 깔기.** 원래 흙을 골라서 겉흙을 받을 화단을 준비하세요. 겉흙을 4–6" 깊이쯤 펴고 매끈하게 고르세요.
+
+**3단계: 정리.** 넘친 겉흙을 치우고 공공장소를 깨끗이 하세요.
+
+### 장비와 자재
+
+<Checklist
+  id="create.phase5-tools"
+  items={[{ value: 'Measuring tape', label: '줄자' }, { value: 'Shovels', label: '삽' }, { value: 'Wheelbarrows', label: '외바퀴 손수레' }, { value: 'Grading rakes', label: '땅 고르기 갈퀴' }, { value: 'Garden hoes', label: '괭이' }, { value: 'Broom', label: '빗자루' }]}
+/>
+<p class="muted">자재: 겉흙.</p>
+
+<Figure
+  src="img/create/phase5-reference-photos.webp"
+  alt="겉흙 펴기 참고 사진: 겉흙을 배달하는 덤프트럭, 손으로 흙을 고르는 자원봉사자, 손수레로 겉흙을 나르는 자원봉사자 두 명, 화단에 겉흙을 넣는 자원봉사자"
+/>
+
+### 유용한 링크 (영어 사이트)
+
+- **주문** — [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
+- **따라 하기** — [겉흙 준비하기 ↗](https://youtube.com/watch?v=GcOJ4fDJmpM) · [건강한 식물을 위한 건강한 겉흙 ↗](https://youtube.com/watch?v=7-Tyz7fGeZo)
+
+### 다음 작업 준비
+
+프로젝트 달력을 확인하고 필요하면 고치세요. 오는 데 시간이 걸리는 자재를 미리 사서 배달받으세요. 6차 작업을 할 수
+있도록 현장을 준비하세요.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={11} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={12} label="참고 사진과 링크 (PDF)" />
+
+## 6차 작업: 심기 {/* #phase-6-plant */}
+
+### 순서
+
+**1단계: 식물.** 새로 난 잡초를 없애세요. 식물 배달 일정이 잡혀 있는지, 배달 온 식물을 둘 곳을 정했는지 확인하세요.
+나무와 관목을 심을 자리에 놓아 본 다음, 넘친 흙과 공공장소를 정리하세요.
+
+**2단계: 심기.** 큰 나무부터 심으세요 (아래 심기 상세도 참고). 관목을 심고, 흙을 곱게 고르고, 여러해살이 식물을 심고,
+멀칭재를 4" 깐 다음, 모든 식물에 물을 흠뻑 주세요. 식물이 겨울잠에 들 때까지 일주일에 두 번씩 되풀이하세요.
+
+<Figure
+  src="img/create/phase6-plant-illustration.webp"
+  alt="PLANT(심기)라고 적힌, 완성된 앞마당 공원의 입체 그림. 연립주택 두 채 사이에 나무, 높임 화단, 포장된 모임 공간이 있어요"
+/>
+<Figure
+  src="img/create/phase6-planting-detail.webp"
+  alt="심기 상세도 두 가지: 멀칭재 깊이와 되메우기를 보여 주는 관목/여러해살이 식물 화분 심기 상세도, 그리고 뿌리분 놓기, 지지대 세우기, 멀칭재, 마대 걷어 내기를 보여 주는 나무 심기 상세도"
+/>
+
+### 장비와 자재
+
+<Checklist
+  id="create.phase6-tools"
+  items={[{ value: 'Measuring tape', label: '줄자' }, { value: 'Shovels', label: '삽' }, { value: 'Wheelbarrows', label: '외바퀴 손수레' }, { value: 'Pick axe', label: '곡괭이' }, { value: 'Landscape rakes', label: '조경용 갈퀴' }, { value: 'Spray paint', label: '스프레이 페인트' }, { value: 'Tree stakes and rope', label: '나무 지지대와 밧줄' }, { value: 'Broom', label: '빗자루' }]}
+/>
+<p class="muted">자재: 식물 — 꼭 식물 목록을 참고하세요.</p>
+
+### 유용한 링크 (영어 사이트)
+
+- **식물 일반 정보** — [PHS Gold Medal Plants ↗](https://phsonline.org/for-gardeners/gold-medal-plants) ·
+  [Gardens Alive ↗](https://www.gardensalive.com/) · [North Creek Nurseries ↗](https://www.northcreeknurseries.com/) ·
+  [Missouri Botanical Garden ↗](https://www.missouribotanicalgarden.org/) · [Longwood Gardens 식물 탐색 ↗](https://plantexplorer.longwoodgardens.org/ecmweb/ECM_Home.html) *(현재 열리지 않는 링크)* ·
+  [Arbor Day Foundation ↗](https://www.arborday.org/) · [Penn State Extension 채소 기르기 ↗](https://extension.psu.edu/programs/master-gardener)
+- **PiaT 협력 묘목장** — LandHealth Institute, 4862 Parkside Ave, Philadelphia · (267) 571-5750 ·
+  [landhealthinstitute.org/nursery ↗](https://www.landhealthinstitute.org/nursery)
+- **그 밖의 지역 묘목장** — [Good Host Plants ↗](https://www.goodhostplants.com/) (지역 꽃가루 매개자 식물 전문) ·
+  [Pleasant Run Nursery ↗](https://www.pleasantrunnursery.com/) · [Pinelands Nursery ↗](https://www.pinelandsnursery.com/) ·
+  [Archewild ↗](https://archewild.com/)
+- **과일나무** — [Philadelphia Orchard Project ↗](https://www.phillyorchards.org/) ·
+  [Burpee ↗](https://www.burpee.com/fruit/fruit-trees/) · [Stark Bros ↗](https://www.starkbros.com/products/fruit-trees)
+- **정원 가꾸기 워크숍과 부지 도움** — [Pennsylvania Horticultural Society ↗](https://phsonline.org/) ·
+  [Grounded in Philly ↗](https://groundedinphilly.org/) (법률 도움, 보험, 부지 자료)
+- **따라 하기** — [화분과 알뿌리 심기 도움말 ↗](https://www.gardeners.com/how-to/growing-annual-flowers/5070.html) ·
+  [화분에 든 나무 심기 ↗](https://www.arborday.org/trees/planting/containerized.cfm) ·
+  [관목 심는 법 ↗](https://youtube.com/watch?v=Tim4LEo6l10)
+
+### 다음 작업 준비
+
+프로젝트 달력을 확인하고, 공원 대사(Park Ambassador) 일정을 세워 두세요. 자세한 내용은 가꾸기 단계를 보세요. 멀칭재
+구입처: [Mid Atlantic Pine Straw ↗](https://www.midatlanticpinestraw.com/) ·
+[Underdog Landscape Supply ↗](https://underdogsupply.com) · [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/get-organic-materials/)
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={13} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={14} label="유용한 링크 (PDF)" />
+
+## 7차 작업: 자갈 바닥 깔기 {/* #phase-7-install-the-gravel-surface */}
+
+### 순서
+
+**1단계: 자재.** 아직 쌓아 두지 않았다면 배달 받을 준비를 하세요. 보도나 도로에 자갈을 쌓아 둘 곳을 정하세요 (필요하면
+임시 주차 금지 허가, 3차 작업 참고).
+
+**2단계: 깔기.** 손수레와 조경용 갈퀴로 자갈 바닥을 까세요. 자갈을 2" 깊이쯤 깔고, 남는 것은 고르게 펴세요. 진동 평판
+다짐기로 골재를 다져서 가라앉는 것을 줄이고, 모든 구역을 돌며 평평하고 고른지 확인하세요.
+
+**3단계: 정리.** 넘친 자갈을 치우고 공공장소를 깨끗이 하세요.
+
+### 장비와 자재
+
+<Checklist
+  id="create.phase7-tools"
+  items={[{ value: 'Measuring tape', label: '줄자' }, { value: 'Shovels', label: '삽' }, { value: 'Wheelbarrows', label: '외바퀴 손수레' }, { value: 'Landscape rakes', label: '조경용 갈퀴' }, { value: 'Hand tamper', label: '손 다짐기' }, { value: 'Vibratory plate', label: '진동 평판 다짐기' }, { value: 'Broom', label: '빗자루' }]}
+/>
+<p class="muted">자재: 3/8" 이하의 자갈 (돌가루).</p>
+
+<Figure
+  src="img/create/phase7-reference-photos.webp"
+  alt="자갈 바닥 깔기 참고 사진: 조경용 고르기 갈퀴, 다진 자갈 위의 손 다짐기, 휘발유 진동 평판 다짐기를 모는 자원봉사자"
+/>
+
+### 유용한 링크 (영어 사이트)
+
+- **자재** — [Castor Materials ↗](https://castormaterials.com) · [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) ·
+  Galantino Supply Company ((610) 544-2586) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
+- **따라 하기** — [자갈 깔기 ↗](https://youtube.com/watch?v=t0LWQ_U2z_g)
+
+### 다음 작업 준비
+
+프로젝트 달력을 확인하고 필요하면 고치세요. 오는 데 시간이 걸리는 자재를 미리 사서 배달받으세요. 8차 작업을 할 수
+있도록 현장을 준비하세요.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={15} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={16} label="참고 사진과 링크 (PDF)" />
+
+## 8차 작업: 공원 시설 설치 {/* #phase-8-install-park-elements */}
+
+### 순서
+
+**1단계: 재기.** 조립 설명서를 살펴보고, 공원 시설이 들어갈 자리를 재서 표시하세요.
+
+**2단계: 자재.** 조립 설명서에 나온 자재가 모두 있는지 확인하세요.
+
+**3단계: 조립하기.** 조립 설명서대로 공원 시설을 조립하세요.
+
+**4단계: 설치하기.** 설계 안에 시설을 설치할 자리가 충분한지 확인한 다음, 마지막 자리에 놓으세요. 시설을 미리, 또는
+다른 곳에서 조립할 수도 있고, 그렇게 하기로 정해도 돼요.
+
+<Callout kind="auto">
+  조립 안내서가 있는 시설은 모두 꿈꾸기 단계의 [조립하기](/steps/dream/#assemble) 목록에 연결되어 있어요. 같은
+  안내서가 거기에 있어요.
+</Callout>
+
+### 유용한 링크 (영어 사이트)
+
+- **만드는 법…** (먼저 조립 안내서를 쓰고, 이 영상들은 보조로 쓰세요) — [함께 쓰는 식탁 ↗](https://youtube.com/watch?v=Px2JZs4Q2v4) ·
+  [냉상 ↗](https://youtube.com/watch?v=b75RoDmE9qY) · [높임 화단 ↗](https://youtube.com/watch?v=MBIYebUgVVI) ·
+  [퇴비 통 ↗](https://youtube.com/watch?v=gA6QNLaBEyc) · [화분 작업대 ↗](https://youtube.com/watch?v=E7HumfxE2f4) ·
+  [야외 정원 창고 ↗](https://youtube.com/watch?v=DuQ0N8z6OkI) · [돌망태 벽 ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
+- **목재와 건축 자재** — Woodland Building Supply, 4701 Woodland Ave, Philadelphia — (215) 727-5333 ·
+  C & R Building Supply, 1601 S 49th St, Philadelphia · A&A Lumber (사이프러스), Avondale, PA · Delaware County Lumber, Boothwyn, PA
+
+### 다음 작업 준비
+
+프로젝트 달력을 확인하고 필요하면 고치세요. 공원이 거의 다 됐어요!
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={17} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={18} label="조립 설명서와 링크 (PDF)" />
+
+{/* site-added: the workbook's own contents page lists a Summary, but this working draft doesn't include one — this wrap-up just recaps the 8 phases above as a final checklist. No new advice. */}
+## 요약 {/* #summary */}
+
+<Checklist
+  id="create.summary-checklist"
+  items={[
+    { value: 'phase1', label: '1차 작업: 조직하기', hint: '팀 역할을 나누고 일정을 정했어요' },
+    { value: 'phase2', label: '2차 작업: 부지 준비하기', hint: '치우고, 보호하고, 평평하게 골랐어요' },
+    { value: 'phase3', label: '3차 작업: 배치와 자갈 기초', hint: '화단과 시설 자리를 말뚝으로 표시하고 기초층을 깔았어요' },
+    { value: 'phase4', label: '4차 작업: 가장자리 설치', hint: '돌망태 바구니와 나무 테두리를 놓았어요' },
+    { value: 'phase5', label: '5차 작업: 겉흙 펴기', hint: '화단을 고르고 흙을 채웠어요' },
+    { value: 'phase6', label: '6차 작업: 심기', hint: '나무, 관목, 여러해살이 식물을 땅에 심었어요' },
+    { value: 'phase7', label: '7차 작업: 자갈 바닥 깔기', hint: '마감 자갈을 다지고 평평하게 했어요' },
+    { value: 'phase8', label: '8차 작업: 공원 시설 설치', hint: '벤치, 테이블, 구조물을 조립해서 놓았어요' },
+  ]}
+/>
+
+<Callout kind="tip">
+  공원이 완성됐어요! 공원이 잘 자라도록 가꾸기 단계로 가세요. 물 주기, 잡초 뽑기, 해마다 하는 돌봄 계획이 있어요.
+</Callout>

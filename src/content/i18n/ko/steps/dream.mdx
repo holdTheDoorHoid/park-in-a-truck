@@ -1,0 +1,385 @@
+---
+title: 꿈꾸기
+intro: Park in a Truck만의, 골라서 섞어 쓰는 조각으로 공원을 설계해요.
+sources:
+  - 툴킷 39–55쪽 (꿈꾸기, 테마 디자인, 공원 조각, 골라서 섞기)
+  - 꿈꾸기 워크북 1–20쪽
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Choice from '../../../../components/workbook/Choice.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import Download from '../../../../components/workbook/Download.astro';
+import Planner from '../../../../components/widgets/Planner.astro';
+import CostEstimator from '../../../../components/widgets/CostEstimator.astro';
+import PlantPicker from '../../../../components/widgets/PlantPicker.astro';
+import { ELEMENTS } from '../../../../data/elements';
+import { THEMES, THEME_ORDER } from '../../../../data/themes';
+import { SIZES } from '../../../../lib/sizing';
+import { urlFor } from '../../../../i18n/url.ts';
+export const u = urlFor('ko');
+import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
+
+export const THEME_REQUIREMENTS = {
+  edible: { trees: '나무가 적거나 없음', sun: '양지 또는 대부분 햇빛', lot: '모퉁이 부지에 잘 맞음', volunteers: '자원봉사자가 자주 참여' },
+  sanctuary: { trees: '나무가 얼마나 있든 괜찮음', sun: '햇빛이 얼마나 들든 괜찮음', lot: '블록 중간 또는 모퉁이 부지', volunteers: '자원봉사자 참여가 조금만 필요' },
+  nature: { trees: '나무가 있는 부지에 잘 맞음', sun: '햇빛이 얼마나 들든 괜찮음', lot: '블록 중간 또는 모퉁이 부지', volunteers: '필요한 참여가 적음' },
+  event: { trees: '나무 한두 그루 또는 여러 그루', sun: '햇빛이 얼마나 들든 괜찮음', lot: '모퉁이 부지에 잘 맞음', volunteers: '자원봉사자가 적당히 참여' },
+};
+
+{/* ko: theme names/blurbs and element names, kept the same as src/i18n/data/ko/themes.json and elements.json (a chapter cannot import the overlays). */}
+export const THEME_TEXT = {
+  edible: { name: '먹거리', blurb: '음식을 나누고 이웃과 가까워져요. 과일, 채소, 함께 쓰는 식탁.' },
+  sanctuary: { name: '쉼터', blurb: '혼자 쉬고, 책을 읽고, 작게 모이는 고요한 피난처.' },
+  nature: { name: '자연', blurb: '자생 식물과 서식지, 아이들과 꽃가루 매개자를 위한 놀이.' },
+  event: { name: '행사', blurb: '공연, 장터, 동네 잔치를 위한 공간.' },
+};
+export const ELEMENT_NAMES = {
+  'gabion-wall': '돌망태 벽', 'gabion-bench': '나무 상판 돌망태 벤치', 'gabion-bench-8': "8' 나무 상판 돌망태 벤치", 'gabion-table': '나무 상판 돌망태 테이블',
+  'bench-back': '등받이 벤치', 'bench-4': "4' 벤치 (등받이 없음)", stool: '스툴', 'table-2': "2' 테이블", 'table-4': "4' 테이블", 'table-6': "6' 테이블",
+  'planter-18': '18" 화분 상자 (작은 것)', 'planter-24': '24" 화분 상자 (큰 것)', 'shade-canopy': '그늘막', stage: '무대', workbench: '작업대 / 서서 쓰는 테이블',
+  'rain-barrel': '빗물 통', 'compost-bin': '퇴비 통', 'raised-bed': '높임 화단', 'keyhole-garden': '열쇠 구멍 텃밭 (둥근 높임 화단)', 'cold-frame': '냉상 (작은 온상)',
+  'communal-table': '함께 쓰는 식탁', 'cafe-table': '카페 테이블 + 의자', 'event-tent': '행사용 천막', 'flexible-seating': '옮길 수 있는 의자', 'outdoor-classroom': '야외 교실',
+  'nature-play': '자연 놀이터', birdbath: '새 물그릇', 'bird-accessories': '새집과 모이통', shed: '창고', hammock: '거치대 해먹', 'porch-swing': '거치대 그네 의자',
+  'solar-fountain': '태양광 분수',
+};
+
+{/* The Assemble grid below skips surfaces, plants and existing-conditions markers — only built/bought elements get an assembly link. */}
+export const NOT_BUILT = new Set(['planting-square', 'perennial', 'shrub', 'small-tree', 'large-tree', 'gravel', 'existing-tree', 'downspout', 'wet-area', 'hydrant', 'utility-line']);
+export const ICON_FALLBACK = { 'table-6': 'table-4', 'bench-4': 'bench-back', 'gabion-bench-8': 'gabion-bench' };
+// The workbook's Assemble page shows these elements; newer vocabulary (e.g. cafe-table) has no icon there.
+export const ASSEMBLE_ICONS = new Set(['bench-back','bird-accessories','birdbath','cold-frame','communal-table','compost-bin','event-tent','flexible-seating','gabion-bench','gabion-wall','nature-play','outdoor-classroom','planter-18','planter-24','rain-barrel','raised-bed','shade-canopy','shed','stage','stool','table-2','table-4','workbench']);
+
+{/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — reminds a reader who hasn't recorded a lot agreement yet, before they design and budget for a lot they may not have permission for. */}
+<LotAgreementNotice />
+
+Park in a Truck 공원을 설계하는 일은 새 원피스나 정장을 사는 것과 비슷해요. 먼저 가게에 가서 마네킹을 둘러보며
+마음에 드는 스타일, 색깔, 무늬를 골라요. 물론 옷걸이에 걸려 있을 때 예뻐 보이는 옷이 나에게 맞지 않을 수도 있어요.
+그래서 내 몸과 체형에 맞는 치수를 찾아 입어 봐야 해요. 맞지 않으면 고칠 수 있어요. 마지막으로 액세서리를 더해서
+진짜 내 것으로 만들어요.
+
+옷을 살 때처럼, 공원도 여러분의 스타일과 쓰려는 목적에 맞아야 해요. Park in a Truck 공원에는 네 가지 스타일이
+있어요. 우리는 이것을 **테마**라고 불러요. 먹거리, 쉼터, 자연, 행사예요. 테마마다 가장 잘 어울리는 상황이나 쓰임이
+있어요.
+
+이제 진짜 재미있는 부분이 시작돼요. 바로 우리 공원의 모습을 그려 보는 거예요! 이 단계는 네 가지 테마 디자인 중
+하나를 고르는 것으로 시작해요. 하지만 그건 시작일 뿐이에요. 테마마다 골라서 섞어 쓸 수 있는 **공원 조각**이 있어서,
+내 부지 크기에 맞춘 **맞춤 공원**을 만들 수 있어요.
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={3} />
+
+## 네 가지 테마 {/* #the-four-themes */}
+
+테마마다 공원을 쓰는 방식에 따라 강조하는 점이 달라요. 어떤 테마는 동네 모임에 잘 맞고, 어떤 테마는 혼자 쉬기에 더
+좋아요. 조사하기 요약에 적은 나무 수, 햇빛의 양, 부지 위치를 아래의 일반적인 조건과 비교해 보세요.
+
+모든 공원은 **테두리**, **앞**, **뒤** 세 부분으로 이루어져 있어서, 공원 전체에 테마 하나를 쓰거나, 윗옷과 재킷을
+아래옷과 맞춰 입듯이 여러 테마를 **골라서 섞을** 수 있어요.
+
+### 기본 디자인 요소 (모든 테마)
+
+몇 가지 핵심 요소는 네 테마 모두에 들어가요.
+
+- **돌망태 벽.** 돌을 채운 철망 바구니가 공원의 가장자리를 뚜렷하게 만들어요. 벽돌이나 깨진 콘크리트처럼 주변에서
+  구한 재료로 채우면 비용이 덜 들고 더 지속 가능하게 지을 수 있어요.
+- **벤치.** 앉을 곳이에요. 주민들이 쉽게 꾸밀 수 있어요. 페인트를 칠해도 되고, 비바람에 자연스럽게 바래게 둬도 돼요.
+- **빗물 통.** 모든 공원에는 물이 필요해요. 빗물 통은 빗물을 모아 나무와 꽃에 물을 줄 수 있게 해요.
+- **식물.** 야생 동물을 불러들이고, 생물 다양성을 높이고, 자연 보전에 도움이 되는 자생 식물.
+
+{THEME_ORDER.map((id) => (
+  <div style={`margin:2.5em 0; border-left: 8px solid ${THEMES[id].frame}; padding-left: 1.2em;`}>
+    <h3 style={`color:${THEMES[id].frame}`}>{THEME_TEXT[id].name}</h3>
+    <p>{THEME_TEXT[id].blurb}</p>
+    <Figure
+      src={`img/dream/theme-${id}.webp`}
+      alt={`${THEME_TEXT[id].name} 테마: 공원의 3D 그림과 평면도. 테두리, 앞, 뒤 조각이 테마 색으로 칠해져 있어요`}
+    />
+    <ul class="theme-reqs">
+      <li><strong>나무:</strong> {THEME_REQUIREMENTS[id].trees}</li>
+      <li><strong>햇빛:</strong> {THEME_REQUIREMENTS[id].sun}</li>
+      <li><strong>부지:</strong> {THEME_REQUIREMENTS[id].lot}</li>
+      <li><strong>자원봉사자:</strong> {THEME_REQUIREMENTS[id].volunteers}</li>
+    </ul>
+  </div>
+))}
+
+{/* site-added: Playful Learning is the toolkit's own appendix (linked from its Dream chapter); cross-linking it here matches where the toolkit itself introduces it. */}
+<Callout kind="note" title="아이들을 위한 설계도 생각하나요?">
+  Park in a Truck은 아이들이 배우는 방식에 관한 과학을 평범한 공원 설계에 담는 활동인 **Playful Learning
+  Landscapes**와 손잡았어요. 분류 테이블, 이야기 돌림판, 그림 기호 이야기 짓기 등을 위의 네 가지 테마에 맞춰 넣어요.
+  [놀이 학습 안내 보기 ↗](/playful-learning/)
+</Callout>
+
+<Field
+  id="dream.theme-reasons"
+  label="다른 테마보다 어떤 공원 테마를 더 좋아하는 특별한 이유가 있나요?"
+  type="textarea"
+/>
+<Field
+  id="dream.theme-qualities"
+  label="테마들 가운데 가장 바라는 공원의 특징이 있나요?"
+  type="textarea"
+/>
+<Choice
+  id="dream.preferred-theme"
+  label="가장 원하는 공원 테마는 무엇인가요?"
+  options={[
+    { value: 'edible', label: '먹거리', color: THEMES.edible.frame },
+    { value: 'sanctuary', label: '쉼터', color: THEMES.sanctuary.frame },
+    { value: 'nature', label: '자연', color: THEMES.nature.frame },
+    { value: 'event', label: '행사', color: THEMES.event.frame },
+    { value: 'mix', label: '여러 테마 섞기', desc: '테두리, 앞, 뒤에 서로 다른 테마' },
+  ]}
+/>
+<Choice
+  id="dream.theme-fits-site"
+  label="고른 테마가 조사하기 요약표에 적은 부지의 특징과 잘 맞나요?"
+  options={[
+    { value: 'yes', label: '예', desc: '잘 맞아요. 다음으로 넘어가세요' },
+    { value: 'no', label: '아니요', desc: '공원 테마를 다시 생각해 보세요' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={5} />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={6} label="먹거리 테마 (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={7} label="쉼터 테마 (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={8} label="자연 테마 (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={9} label="행사 테마 (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={10} label="나에게 맞는 테마는? (PDF)" />
+
+## 공원 조각과 쓰는 법 {/* #park-pieces-how-to-use-them */}
+
+공원 설계 틀은 여러 구성 요소, 즉 **공원 조각**으로 이루어져요. 공원 안쪽에 들어가는 앞(FRONT) 조각과 뒤(BACK)
+조각, 그리고 이것들을 담는 테두리(FRAME)가 있어요. 조각마다 네 가지 테마 중 하나로 되어 있고, 모든 조각은 서로 바꿔
+끼울 수 있어서, 테마를 골라 섞거나 공원 전체에 테마 하나를 쓸 수 있어요.
+
+가족사진을 두른 액자처럼, **테두리**는 공원 안쪽을 둘러싸는 경계를 만들어요. 입구, 나무, 그 밖의 시설을 두기 좋은
+곳이에요. 안쪽은 **앞**(공원 입구에 가장 가깝고, 주요 고정 시설이 들어가요)과 **뒤**(보통 더 트여 있어서 자유롭게
+써요)로 나뉘어요.
+
+툴킷의 그림은 사진처럼 3D **입체(axon)** 보기로 그려서 쉽게 떠올릴 수 있게 했어요. 실제로 공원을 배치할 때는 간단한
+지도처럼 보이는 평평한 **평면** 보기를 써요. 두 보기 모두 같은 것을 보여 줘요.
+
+<Figure
+  src="img/dream/park-pieces-frame-front-back.webp"
+  alt="공원의 입체(3D) 보기와 평면 보기를 비교한 그림: 테두리 조각에 앞 조각과 뒤 조각을 합쳐 공원 전체를 만드는 모습을 쌓은 3D 블록과 평평한 평면도로 함께 보여 줘요"
+/>
+
+<Figure
+  src="img/dream/mix-and-match.webp"
+  alt="공원 예시 네 가지. 각각 행사, 쉼터, 먹거리, 자연 등 서로 다른 테마의 테두리, 앞, 뒤 조각을 합쳐, 조각을 섞으면 끝없이 많은 조합이 나온다는 것을 보여 줘요"
+/>
+
+<Callout kind="auto">
+  종이로 골라서 섞으려면 조각을 인쇄하고, 오리고, 테이프로 붙여야 해요. 아래의 설계 도구가 그 일을 대신해 줘요.
+  테두리, 앞, 뒤 테마를 고르면 실제 부지 크기에 딱 맞게 바로 조립해 줘요.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={4} />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={13} label="조각으로 놀아 보기 (PDF)" />
+
+## 공원 설계하기 {/* #design-your-park */}
+
+{/* site-added: mode prop for the planner workstream; placement and surrounding copy are ours. */}
+<Planner mode="design" />
+
+<Callout kind="auto" title="실제 부지에 자동으로 맞춰요">
+  이 설계 도구는 Park in a Truck의 공원 조각을 실제 부지에 맞춰요. 워크북에서 손으로 하는 것과 똑같이 이음 띠로 크기를
+  맞추고, 작업하는 동안 모든 수량을 세어서 아래의 비용 견적과 식물 목록에 바로 쓸 수 있게 해요.
+</Callout>
+
+<details>
+  <summary>종이가 더 좋나요? 공원 조각을 인쇄하세요</summary>
+
+  테마를 살펴본 뒤, 조사하기 요약 페이지에 체크한 글자(크기 A–E)와 부지 위치(블록 안쪽, 또는 도로가 오른쪽이나 왼쪽에
+  있는 모퉁이)를 확인하세요. 아래에서 맞는 내려받기를 누르세요. 그 크기와 부지에 맞는 인쇄용 공원 조각이 담긴 Google
+  Drive 폴더가 열려요.
+
+  <table class="pieces-table">
+    <thead>
+      <tr><th>크기</th><th>블록 안쪽 부지</th><th>모퉁이 부지 — 오른쪽이 도로</th><th>모퉁이 부지 — 왼쪽이 도로</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>A</strong></td><td><a href="https://drive.google.com/open?id=1e3j5d8ZsIxVxsJsdtoosKgMAuCpQwBKo" target="_blank" rel="noopener">내려받기 ↗</a></td><td><a href="https://drive.google.com/open?id=1Txw_BMZlvseeyCetUYbGfVSIu2_eq7HW" target="_blank" rel="noopener">내려받기 ↗</a></td><td><a href="https://drive.google.com/open?id=1LBQG4r2z1geA6rIEyK_GFYGzV4IBQFua" target="_blank" rel="noopener">내려받기 ↗</a></td></tr>
+      <tr><td><strong>B</strong></td><td><a href="https://drive.google.com/open?id=1LC6QvBJ2D-LyhbFGYXsjByiWQaFk06AF" target="_blank" rel="noopener">내려받기 ↗</a></td><td><a href="https://drive.google.com/open?id=1LKVUm28LhzKNqmMPPsufWrxt-xqTyJrk" target="_blank" rel="noopener">내려받기 ↗</a></td><td><a href="https://drive.google.com/open?id=1LQmrAsZd7Aw0M6F2iwFUUWjoUm-uAIFA" target="_blank" rel="noopener">내려받기 ↗</a></td></tr>
+      <tr><td><strong>C</strong></td><td><a href="https://drive.google.com/open?id=1LR04NYM7Ii2srwf4E5tl2t26R8jxdWQr" target="_blank" rel="noopener">내려받기 ↗</a></td><td><a href="https://drive.google.com/open?id=1LSWINYM72UNHj6hGjrsn0S51h2hJL47s" target="_blank" rel="noopener">내려받기 ↗</a></td><td><a href="https://drive.google.com/open?id=1LJCzWBkOh_hG8205xt1sJ17s4jQFD-H-" target="_blank" rel="noopener">내려받기 ↗</a></td></tr>
+      <tr><td><strong>D</strong></td><td><a href="https://drive.google.com/open?id=1LfpisFCCWZwitjJJ2_vpFfv_Pv_pnhMf" target="_blank" rel="noopener">내려받기 ↗</a></td><td><a href="https://drive.google.com/open?id=1LSqUwvHJQd5riQI56GgMO6GgN9LK7-Or" target="_blank" rel="noopener">내려받기 ↗</a></td><td><a href="https://drive.google.com/open?id=1LejWNaZ9sQFiy1P3er03OuwRURV7LNQI" target="_blank" rel="noopener">내려받기 ↗</a></td></tr>
+      <tr><td><strong>E</strong></td><td><a href="https://drive.google.com/open?id=1L-pqs-CuyMjeHE7UgEIDLawzv4ErTA6h" target="_blank" rel="noopener">내려받기 ↗</a></td><td><a href="https://drive.google.com/open?id=1LlyI3QGglqZw5f92aR1WLES7Nuz0gkOC" target="_blank" rel="noopener">내려받기 ↗</a></td><td><a href="https://drive.google.com/open?id=1LiE8uy8Uc-6R55t8cQr2Eg4CGdifcC8J" target="_blank" rel="noopener">내려받기 ↗</a></td></tr>
+    </tbody>
+  </table>
+  <p class="muted">부지 종류 이름은 워크북의 내려받기 페이지를 따랐어요. 조각 세트가 내 모퉁이와 맞지 않으면 다른 쪽을 써 보세요.</p>
+
+  내려받은 조각을 열어 8.5"×11" 종이에 한 면으로 인쇄한 다음, 점선을 따라 오리세요. 종이마다 인쇄된 맞춤 표시로 조각을
+  맞추고 테이프로 붙이세요. 다음 세부 단계로 넘어가서, 붙인 공원을 실제 부지 크기에 맞추세요.
+
+  <PdfPage doc="downloads/workbooks/04-dream.pdf" page={11} label="공원 조각 내려받기 (PDF)" />
+  <PdfPage doc="downloads/workbooks/04-dream.pdf" page={12} label="조각 인쇄하고 오리기 (PDF)" />
+</details>
+
+## 공원 크기 맞추기 {/* #right-size-your-park */}
+
+부지가 조각에 딱 맞으면 기존 조건 넣기로 바로 넘어가세요. 자리가 남으면 이음 띠, 즉 몇 피트의 테두리, 앞 또는 뒤를
+더해서 쓸 수 있는 공간을 모두 쓰도록 공원을 넓히세요.
+
+<table class="size-table">
+  <thead><tr><th>크기</th><th>긴 가장자리</th><th>짧은 가장자리</th></tr></thead>
+  <tbody>
+    {SIZES.map((s) => (
+      <tr><td><strong>{s.id}</strong></td><td>{s.long[0]}–{s.long[1]}피트</td><td>{s.short[0]}–{s.short[1]}피트</td></tr>
+    ))}
+  </tbody>
+</table>
+
+{/* site-added: sizing.ts also flags lots below size A; call that out here since it's the natural place a reader learns their lot doesn't fit the smallest set. */}
+<Callout kind="note" title="크기 A보다 작나요?">
+  크기는 상관없어요. 4×4 땅, 앞마당, 창가 화분이라도 꽃가루 매개자 정원이 될 수 있어요. 아래의 공원 조각 대신
+  [자투리 공원(Park Patch) 안내](/park-patch/)를 쓰세요.
+</Callout>
+
+이음 띠에는 두 가지가 있어요. 앞 조각과 뒤 조각 사이를 잘라 넣는 **길이 이음 띠**는 공원의 긴 가장자리를 따라 길이를
+늘리고, 길이 방향으로 잘라 다듬는 **너비 이음 띠**는 짧은 가장자리를 따라 너비를 늘려요. 두 이음 띠 모두 4피트마다
+검은 점선이, 1피트마다 회색 점선이 있어서 필요한 만큼 정확히 셀 수 있어요.
+
+<Figure
+  src="img/dream/length-seam.webp"
+  alt="길이 이음 띠 그림: 공원의 앞 조각과 뒤 조각 사이 이음 띠의 점선을 세어 자른 다음, 공원 가운데에 이음 띠를 테이프로 붙이고 다시 이어 붙여요"
+/>
+<Figure
+  src="img/dream/width-seam.webp"
+  alt="너비 이음 띠 그림: 공원 길이 방향으로 이어진 이음 띠의 점선을 세어 크기에 맞게 자른 다음, 가운데에 너비 이음 띠를 넣고 양쪽을 다시 테이프로 붙여요"
+/>
+
+<Callout kind="auto">
+  설계 도구가 고른 조각을 부지의 정확한 치수에 맞게 자동으로 늘려 줘요. 자르거나 테이프로 붙일 필요가 없어요.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={14} />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={15} label="길이 이음 띠 (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={16} label="너비 이음 띠 (PDF)" />
+
+## 기존 조건 넣기 {/* #add-existing-conditions */}
+
+조사하기 워크북에서 그린 부지 평면도의 기존 조건을 설계 평면도로 옮기세요. 두 평면도를 나란히 놓고 하나씩 옮겨
+그리세요. 격자가 같으니 칸을 세면 어디에 놓일지 알 수 있어요. 원래 있는 나무가 식재 구역에 놓이면 아주 좋고, 자갈
+위에 놓여도 괜찮아요 (만들기 단계에서 다루는 법을 설명해요). 기존 조건이 설계와 부딪히면, 예를 들어 벤치 위에 나무가
+있다면, 벤치에 X 표시를 해서 없애거나 앞이나 뒤 조각 전체를 옮길 수 있어요. 설계는 틀이에요. 어느 정도 정해져
+있지만, 언제든 더하거나 빼서 나에게 맞게 만들 수 있어요.
+
+<Callout kind="auto">
+  조사하기에서 표시한 원래 있는 나무, 빗물 홈통, 물이 고이는 곳, 소화전, 전선은 이미 설계 도구에 놓여 있어요. 자리가
+  틀린 것은 끌어서 옮기세요.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={17} />
+
+## 조각 수 세기와 비용 {/* #count-your-pieces-cost */}
+
+이제 부지 평면도의 수량을 셀 차례예요. 앞, 뒤, 테두리 조각마다 들어 있는 모든 항목의 수가 적혀 있어서, 비용을
+계산하고 자재를 주문할 수 있어요. 워크북은 이렇게 물어요. 부지의 긴 변(길이)은 몇 피트인가요? 짧은 변(너비)은요?
+초록 식재 칸은 몇 개인가요? 그리고 공원 조각의 범례로 볼 때 시설물은 각각 몇 개인가요?
+
+<CostEstimator />
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — the order list's "fire hydrant opener" items; facts checked 2026-10-04 on water.phila.gov. */}
+<Callout kind="site" title="이 사이트의 안내 (Park in a Truck의 내용이 아님): 소화전">
+  주문 목록에 소화전 여는 도구가 있어요. 필라델피아에서 소화전을 열려면
+  [Philadelphia Water Department(필라델피아 수도국)의 소화전 허가 (영어) ↗](https://water.phila.gov/development/connections/hydrant-permits/)와
+  승인받은 역류 방지 장치(backflow preventer)가 필요해요 (공동체 텃밭은 허가 수수료가 면제돼요). 수도국의
+  [도시 텃밭 안내 (영어) ↗](https://water.phila.gov/urban-garden-guide/)에 텃밭에 물을 대는 다른 방법이 나와 있어요.
+</Callout>
+
+<Download href="downloads/templates/cost-estimator.xlsx" label="비용 계산기" note="원본 스프레드시트 — 수정하려면 사본을 만드세요" />
+
+<details>
+  <summary>종이로 세나요? 합계를 여기에 넣으세요</summary>
+  <Field id="dream.diy-length" label="길이 (부지의 긴 변)" type="number" unit="피트" />
+  <Field id="dream.diy-width" label="너비 (부지의 짧은 변)" type="number" unit="피트" />
+  <Field id="dream.diy-planting-squares" label="식재 칸 (평면도의 초록 칸)" type="number" />
+  <p class="muted">공원 조각에 인쇄된 범례로 시설물을 센 다음, 모두 위의 비용 계산기 스프레드시트에 넣으세요.</p>
+</details>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={18} />
+
+## 식물 수 세기와 고르기 {/* #count-choose-your-plants */}
+
+평면도에서 초록색인 곳은 모두 식재 구역이고, 식재 기호마다 크기가 있어요. 설계에 있는 여러해살이 식물, 관목, 작은
+나무, 큰 나무를 세세요. 여러해살이 식물과 관목은 양지와 그늘을 따로 세요. 실제 식물 품종은 다음에 골라요.
+
+{/* site-added: the six counts show your design's numbers (project.extra.tally) until you type your own; the plant picker below uses the same numbers */}
+<Field id="dream.perennials-sun" label="여러해살이 식물 — 양지의 초록 칸" type="number" unit="칸" auto="extra.tally.plantingSquares.sun" autoNote="✓ 내 설계에서 가져왔어요. 직접 입력해서 바꿀 수 있어요" />
+<Field id="dream.perennials-shade" label="여러해살이 식물 — 그늘의 초록 칸" type="number" unit="칸" auto="extra.tally.plantingSquares.shade" autoNote="✓ 내 설계에서 가져왔어요. 직접 입력해서 바꿀 수 있어요" />
+<Field id="dream.shrubs-sun" label="관목 — 양지" type="number" auto="extra.tally.shrubs.sun" autoNote="✓ 내 설계에서 가져왔어요. 직접 입력해서 바꿀 수 있어요" />
+<Field id="dream.shrubs-shade" label="관목 — 그늘" type="number" auto="extra.tally.shrubs.shade" autoNote="✓ 내 설계에서 가져왔어요. 직접 입력해서 바꿀 수 있어요" />
+<Field id="dream.small-trees" label="작은 나무" type="number" auto="extra.tally.smallTrees" autoNote="✓ 내 설계에서 가져왔어요. 직접 입력해서 바꿀 수 있어요" />
+<Field id="dream.large-trees" label="큰 나무" type="number" auto="extra.tally.largeTrees" autoNote="✓ 내 설계에서 가져왔어요. 직접 입력해서 바꿀 수 있어요" />
+
+<PlantPicker />
+
+테마마다 추천 식물 목록이 있어요. 꼭 따라야 하는 것이 아니라 출발점이에요. 두 테마를 섞는다면 두 목록에서 식물을
+고르세요.
+
+<div class="plant-list-links">
+  <Download href="https://docs.google.com/spreadsheets/d/1QsoQ6KYBT5tVrlAtTxoD5q0yP2YS5Wyt/copy" label="먹거리 식물 목록" />
+  <Download href="https://docs.google.com/spreadsheets/d/1RhCdaiCLbEJD8KXiX7uJMD7xJFRNCERy/copy" label="쉼터 식물 목록" />
+  <Download href="https://docs.google.com/spreadsheets/d/1eEVK3dpBy1-xBFDaACIOTMB2Dd9COGvz/copy" label="자연 식물 목록" />
+  <Download href="https://docs.google.com/spreadsheets/d/1oy_aLqP7RoBcHngZ_uFMl_YBvzJ271MR/copy" label="행사 식물 목록" />
+</div>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={20} label="식물 고르기 (PDF)" />
+
+## 조립하기 {/* #assemble */}
+
+이제 공원 요소를 어떻게 만드는지 볼 차례예요. 어떤 요소에는 이케아 설명서처럼 단계별 전용 조립 설명서가 있고, 어떤
+요소에는 미리 검증된 설명서를 바탕으로 한 추천 디자인이 있고, 어떤 요소는 그냥 시중에서 파는 제품이에요. 아래에서
+요소를 누르세요. 내 공원에 있는 요소라면, 이렇게 만들거나 사면 돼요.
+
+<div class="elements-grid">
+  {Object.values(ELEMENTS)
+    .filter((el) => !NOT_BUILT.has(el.id) && ASSEMBLE_ICONS.has(ICON_FALLBACK[el.id] ?? el.id))
+    .map((el) => {
+      const icon = ICON_FALLBACK[el.id] ?? el.id;
+      const href = el.guide ? u(`build/${el.guide}/`) : el.link;
+      const external = !el.guide;
+      return (
+        <a class="element-card" href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
+          <img src={u(`img/dream/elements/${icon}.webp`)} alt="" width="96" height="72" loading="lazy" />
+          <span>{ELEMENT_NAMES[el.id] ?? el.name}</span>
+        </a>
+      );
+    })}
+</div>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={19} />
+
+## 준비됐나요? {/* #are-you-ready */}
+
+꿈꾸기 워크북을 마친 것을 축하해요! 만들기로 넘어가기 전에 아래 항목을 하나씩 체크하세요.
+
+<Checklist
+  id="dream.ready-checklist"
+  items={[
+    { value: 'theme-review', label: '테마 디자인 살펴보기', hint: '테마를 살펴보고 어떤 테마가 가장 잘 맞는지 정했어요' },
+    { value: 'custom-design', label: '맞춤 설계', hint: '공원 조각으로 이리저리 해 보며 최종 공원 설계를 골랐어요' },
+    { value: 'custom-size', label: '맞춤 크기', hint: '부지의 치수와 기존 시설에 맞게 공원 크기를 맞췄어요' },
+    { value: 'cost-estimate', label: '비용 견적', hint: '조각 수를 세어 비용 계산기에 넣었어요' },
+    { value: 'plant-choice', label: '식물 고르기', hint: '식물 수에 맞춰 식물을 골랐어요' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={20} label="준비됐나요? (PDF)" />
+
+<style>
+  {`
+  .theme-reqs { list-style: none; padding: 0; margin: 0.8em 0 0; font-size: 0.92rem; color: var(--ink-2); display: grid; gap: 0.2em; }
+  .size-table, .pieces-table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.95rem; }
+  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: left; }
+  .elements-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; margin: 1.2em 0; }
+  .element-card { display: flex; flex-direction: column; align-items: center; gap: 0.4em; text-align: center; padding: 10px; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); font-size: 0.85rem; background: #fff; }
+  .element-card:hover { border-color: var(--cyan); box-shadow: var(--shadow); }
+  .element-card img { max-width: 96px; max-height: 72px; width: auto; }
+  .plant-list-links { display: flex; flex-wrap: wrap; gap: 10px; }
+  `}
+</style>

@@ -1,0 +1,116 @@
+// Kiswahili. Msomaji ni "wewe". Glossary: docs/i18n/glossary.md (### sw).
+import type en from '../en/pages.ts';
+import type { Translation } from '../../define.ts';
+
+export default {
+  'home.eyebrow': 'Mwongozo wa kujifanyia mwenyewe wa bustani za mtaa',
+  'home.title': 'Geuza kiwanja kitupu kuwa bustani ya mtaa wako.',
+  'home.lede':
+    'Park in a Truck inakuongoza wewe na majirani zako katika kila hatua — kutafuta kiwanja, kuunda timu, kubuni bustani, kuijenga, na kuiweka ikiwa nzuri. Tovuti hii inaugeuza mwongozo kuwa kitabu cha kazi kinachokuongoza hatua kwa hatua na kinachokutafutia taarifa.',
+  'home.start': 'Anza hapa →',
+  'home.allSteps': 'Tazama hatua zote sita',
+  'home.heroAlt':
+    'Majirani wakishusha vitu kutoka kwenye gari dogo la mizigo lililoandikwa Park in a Truck, wakibeba benchi, wakipanda miti na kulima bustani, na nyuma yao kuna nyumba za safu.',
+  'home.path': 'Njia yako',
+  'home.lotTitle': 'Una kiwanja akilini?',
+  'home.lotLede':
+    'Andika anwani ya Philadelphia. Tutakutafutia mmiliki, ukubwa wa kiwanja, zoning (kanuni za matumizi ya ardhi) na umbo la kiwanja — huhitaji kuchimbua atlas.phila.gov.',
+  'home.tools': 'Zana zinazokufanyia kazi ngumu',
+  'home.tool.lot': 'Tafuta kiwanja',
+  'home.tool.lot.text': 'Ramani ya ardhi tupu iliyo karibu nawe, pamoja na mmiliki, ukubwa na zoning.',
+  'home.tool.planner': 'Panga kwa 3D',
+  'home.tool.planner.text': 'Weka vipande vya bustani vya Park in a Truck kwenye kiwanja chako halisi na uone jua na kivuli.',
+  'home.tool.build': 'Miongozo ya ujenzi',
+  'home.tool.build.text': 'Maelekezo ya hatua kwa hatua ya benchi, meza, masanduku ya mimea, paa la kivuli na zaidi.',
+  'home.tool.plants': 'Mimea',
+  'home.tool.plants.text': 'Orodha za mimea asilia kwa kila mtindo wa bustani, kwa jua na kwa kivuli.',
+  'home.tool.parks': 'Bustani zilizojengwa hadi sasa',
+  'home.tool.parks.text': 'Tazama kile ambacho majirani kote Philadelphia wameshaunda.',
+  'home.tool.myPark': 'Bustani yangu',
+  'home.tool.myPark.text': 'Majibu yako, yamehifadhiwa kwenye kivinjari hiki. Shiriki nakala na kamati yako.',
+
+  'steps.title': 'Hatua',
+  'steps.eyebrow': 'Mchakato wa Park in a Truck',
+  'steps.h1': 'Hatua sita hadi kupata bustani',
+  'steps.lede':
+    'Kila bustani ya Park in a Truck hupitia hatua sita zilezile. Zifuate kwa mpangilio — kila moja hujengwa juu ya iliyotangulia. Weka alama kwenye hatua ndogo zilizokamilika unapoendelea; maendeleo yako yanahifadhiwa kwenye kivinjari hiki.',
+
+  'lot.title': 'Tafuta kiwanja',
+  'lot.description': 'Tafuta mmiliki, ukubwa, zoning na hali ya kuwa tupu ya kiwanja chochote cha Philadelphia, na upitie ardhi tupu kwenye ramani.',
+  'lot.eyebrow': 'Hatua ya 1 · Pata kiwanja',
+  'lot.h1': 'Tafuta kiwanja',
+  'lot.lede':
+    'Andika anwani, au pitia ramani ya ardhi tupu. Tovuti hii inakagua kumbukumbu zilezile za Jiji zinazoonyeshwa na atlas.phila.gov — mmiliki, ukubwa wa kiwanja, zoning, kama ni tupu — na inakuambia ukubwa upi wa Park in a Truck unafaa.',
+  'lot.lookupH2': 'Tafuta anwani',
+  'lot.mapH2': 'Ardhi tupu iliyo karibu nawe',
+  'lot.mapText':
+    'Viwanja ambavyo Jiji limeviorodhesha kama ardhi tupu, vimetiwa rangi kulingana na mmiliki wake. Bofya kimoja uone mmiliki na ukubwa wake, kisha ukihifadhi kama kiwanja cha bustani yako au ukiongeze kwenye orodha yako. Tembea mtaani pia — orodha ya Jiji inakosa baadhi ya viwanja, na ina vingine ambavyo tayari vinatumika.',
+  'lot.compareH2': 'Linganisha viwanja vinavyowezekana',
+  'lot.nextH2': 'Hatua zinazofuata',
+  'lot.next.owner.title': 'Nani anamiliki kiwanja hicho?',
+  'lot.next.owner.text': 'Mmiliki wa umma au binafsi — njia za kupata haki ya kujenga bustani.',
+  'lot.next.organize.title': 'Jipange',
+  'lot.next.organize.text': 'Mashirika ya jamii, shule, bustani na mali nyingine za mtaa zilizo karibu na kiwanja chako.',
+  'lot.next.assess.title': 'Kagua',
+  'lot.next.assess.text': 'Pande zilizopimwa, ramani ya msingi ya kuchapisha, miti na majengo ya jirani.',
+  'lot.next.planner.title': 'Panga kwa 3D',
+  'lot.next.planner.text': 'Weka vipande vya bustani kwenye kiwanja chako na uone jua na kivuli.',
+
+  'myPark.title': 'Bustani yangu',
+  'myPark.eyebrow': 'Imehifadhiwa kwenye kivinjari hiki',
+  'myPark.lede':
+    'Kila kitu unachojaza kwenye tovuti hii kinahifadhiwa hapa, kwenye kifaa hiki tu — hakuna akaunti, hakuna kinachotumwa popote. Ili kufanya kazi na kamati yako, hifadhi faili la mradi na uwatumie; wanaweza kulifungua hapa kwenye kifaa chao wenyewe.',
+  'myPark.storageWarning':
+    'Kivinjari hiki hakiiruhusu tovuti kuhifadhi chochote (dirisha la faragha au data ya tovuti imezuiwa). Hifadhi faili la mradi kabla ya kuondoka, la sivyo majibu yako yatapotea.',
+  'myPark.thisProject': 'Mradi huu',
+  'myPark.nameLabel': 'Jina',
+  'myPark.saveFile': '⬇ Hifadhi faili la mradi',
+  'myPark.openFile': '⬆ Fungua faili la mradi',
+  'myPark.printEverything': '🖨 Chapisha kila kitu',
+  'myPark.allProjects': 'Miradi yote',
+  'myPark.newProjectPlaceholder': 'Jina la mradi mpya',
+  'myPark.newProject': '+ Mradi mpya',
+  'myPark.progress': 'Maendeleo',
+  'myPark.yourLot': 'Kiwanja chako',
+  'myPark.noLotYet': 'Bado hujachagua kiwanja. Tafuta kimoja katika <a href="{href}">Hatua ya 1: Pata kiwanja</a>.',
+  'myPark.yourAnswers': 'Majibu yako',
+  'myPark.nothingFilledIn': 'Bado hakuna kilichojazwa.',
+
+  'planner.title': 'Panga kwa 3D',
+  'planner.description':
+    'Weka vipande vya bustani vya Park in a Truck kwenye kiwanja chako halisi cha Philadelphia, uone jua na kivuli chake, na uhesabu kila kitu kwa ajili ya makadirio ya gharama na orodha za mimea.',
+  'planner.h1': 'Panga bustani yako kwa 3D',
+  'planner.loading': 'Zana ya kupanga inafunguka…',
+  'planner.noscript': 'Zana ya kupanga ya 3D inahitaji JavaScript iwe imewashwa.',
+
+  'resources.title': 'Rasilimali, washirika na habari',
+  'resources.description':
+    'Washirika wa Park in a Truck, habari kuhusu programu, wauzaji, Maktaba kamili ya mwongozo (Toolkit Library), mawasiliano na taarifa ya kisheria.',
+  'resources.eyebrow': 'Zaidi ya vitabu vya kazi',
+  'resources.lede':
+    'Nani anasaidia kujenga bustani hizi, nani ameandika kuzihusu, mahali pa kupata vifaa na mimea, na jinsi ya kuwasiliana na timu ya Park in a Truck.',
+  'resources.sectionsNav': 'Sehemu za ukurasa huu',
+  'resources.sections.partners': 'Washirika',
+  'resources.sections.press': 'Habari na video',
+  'resources.sections.suppliers': 'Wauzaji na viungo vyenye msaada',
+  'resources.sections.toolkitLibrary': 'Maktaba ya mwongozo',
+  'resources.sections.contact': 'Mawasiliano',
+  'resources.sections.acknowledgments': 'Shukrani',
+  'resources.sections.legal': 'Taarifa ya kisheria',
+  'resources.deadHeadsUp': 'Tahadhari',
+  'resources.deadLinks': {
+    one: 'Kiungo {count} kwenye ukurasa huu hakifanyi kazi kwa sasa (kilikaguliwa {date}) — kimeachwa hapa badala ya kuondolewa kimya kimya, na kimewekewa alama hapa chini.',
+    other: 'Viungo {count} kwenye ukurasa huu havifanyi kazi kwa sasa (vilikaguliwa {date}) — vimeachwa hapa badala ya kuondolewa kimya kimya, na vimewekewa alama hapa chini.',
+  },
+  'resources.status.dead': 'kiungo hakifanyi kazi kwa sasa',
+  'resources.status.unverified': 'hakikuweza kuthibitishwa kiotomatiki',
+  'resources.status.unconfirmed': 'haijathibitishwa',
+  'resources.partnersIntro': 'Mashirika yanayosaidia kufanikisha bustani za Park in a Truck.',
+  'resources.videoAlt': 'Video: {title}',
+  'resources.suppliersIntro': 'Vimechukuliwa kutoka kwenye viungo vilivyomo ndani ya vitabu vya kazi vyenyewe, vimepangwa kulingana na matumizi yake.',
+  'resources.contact.email': 'Barua pepe:',
+  'resources.contact.founder': 'Mwanzilishi:',
+  'resources.contact.phone': 'Simu:',
+  'resources.contact.instagram': 'Instagram:',
+  'resources.contact.facebook': 'Facebook:',
+} satisfies Translation<typeof en>;

@@ -1,0 +1,540 @@
+---
+title: Lumikha
+intro: Itayo ang inyong parke, isang yugto bawat weekend.
+sources:
+  - Toolkit pp. 57–59 (Lumikha, Unang Pagtatayo ng Parke)
+  - Workbook ng Create pp. 1–18
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Choice from '../../../../components/workbook/Choice.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import Download from '../../../../components/workbook/Download.astro';
+import CostEstimator from '../../../../components/widgets/CostEstimator.astro';
+import BuildSchedule from '../../../../components/widgets/BuildSchedule.astro';
+import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
+
+{/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — Create lets you pick build weekends and print an order list with nothing recorded in Acquire; this says so before anyone breaks ground. */}
+<LotAgreementNotice />
+
+Ang pagtatayo ng parke ay napakagandang paraan para pag-ugnayin ang mga kapitbahay, kaibigan at iba pa.
+Nangangailangan ang proseso ng masisipag na boluntaryo na kayang magbigay ng oras at lakas, na may iba't ibang
+kasanayan — karpinterya, landscaping, pag-oorganisa, pagpapalakas ng loob, pamumuno. Gaya ng pagsunod sa resipe,
+sunod-sunod na proseso ang pagtatayo ng parke; karamihan sa mga parke ng Park in a Truck ay naitatayo sa mga 6–8 na
+weekend.
+
+Tungkol sa pagtatayo ng inyong parke ang buong kabanatang Lumikha. Hinati namin ang proseso sa walong yugto. Ang
+bawat yugto ay matatapos sa humigit-kumulang isang weekend — makaaapekto ang laki ng inyong parke at ang bilang ng
+mga boluntaryo sa tunay na tagal nito. May dahilan ang pagkakasunod-sunod ng mga yugto; suriin ang bawat isa at
+iayon ang inyong iskedyul kung kailangan.
+
+Ipinapalagay ng aklat na ito na nagawa na ninyo ang tantiya ng gastos at alam na ninyo ang dami at mga materyales na
+kailangan ninyong orderin para sa bawat yugto. Kung hindi pa, bumalik sa hakbang na Mangarap at gamitin ang
+tagatantiya ng gastos.
+
+<CostEstimator />
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={3} />
+
+## Release form ng boluntaryo {/* #volunteer-release-form */}
+
+Siguruhing may mga release form ng boluntaryo sa lote tuwing nagtatrabaho kayo sa parke. Inaalis ng form na ito ang
+inyong pananagutan sa mga pinsala ng inyong mga boluntaryo. Tungkulin ninyong kumonsulta sa mga legal na tagapayo at
+sa kompanya ng insurance ng inyong organisasyon bago magsimula ang konstruksiyon — baka gusto nilang gumawa kayo ng
+karagdagang hakbang para protektahan ang organisasyon sa pananagutan. Bigyan ang inyong mga boluntaryo ng malinaw na
+tagubilin tungkol sa inaasahan at mga gawain sa araw ng trabaho; mas malamang na babalik sila sa mga susunod na
+linggo kapag nararamdaman nilang nagamit nang mabuti ang kanilang oras.
+
+<Download href="downloads/forms/volunteer-release-form.pdf" label="Waiver at release form ng boluntaryo" note="Isa bawat boluntaryo; kailangan ding pumirma ang magulang o tagapag-alaga ng mga boluntaryong wala pang 18" />
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={3} />
+
+## Yugto 1: Mag-organisa {/* #phase-1-organize */}
+
+Gaya ng anumang proseso, ang una at pinakamahalagang hakbang ay organisahin ang inyong grupo sa pamamagitan ng
+pagtukoy sa mga pinuno ng proyekto at pagtatakda ng iskedyul. Kung ilang tao ang itatalaga ninyo sa mga tungkuling
+ito ay depende sa pagiging masalimuot at laki ng inyong proyekto.
+
+- **Construction manager.** Umoorder ng materyales, naroon kapag may delivery, nagbibigay ng tagubilin sa mga
+  boluntaryo sa mga araw ng pagtatayo, at nakikipag-ugnayan sa project manager tungkol sa iskedyul.
+- **Project manager.** Namamahala sa paghahanap ng boluntaryo, social media, pag-order ng pagkain, pamimigay ng
+  waiver, nag-aasikaso ng pananalapi at may hawak ng iskedyul.
+
+<Field id="create.construction-manager" label="Construction manager" hint="Umoorder ng materyales, namamahala sa mga araw ng pagtatayo" />
+<Field id="create.project-manager" label="Project manager" hint="Mga boluntaryo, iskedyul, pananalapi" />
+
+<ListField
+  id="create.org-chart"
+  label="Mga boluntaryo at kontratista"
+  rowName="tao"
+  min={3}
+  columns={[
+    { key: 'name', label: 'Pangalan' },
+    { key: 'role', label: 'Tungkulin', placeholder: 'boluntaryo, kontratista…' },
+    { key: 'contact', label: 'Contact' },
+  ]}
+/>
+
+Napakagandang paraan ang kalendaryo ng proyekto para masubaybayan ang mga iskedyul, mahahalagang petsa, kung kailan
+magtatrabaho ang mga boluntaryo, at gaano katagal bago dumating ang mga materyales. Kasinghalaga ng mismong
+pagtatayo ang pagpaplano — magsimula sa tamang paraan.
+
+<BuildSchedule />
+
+<Download href="downloads/templates/project-calendar.xlsx" label="Template ng kalendaryo" note="Halimbawang kalendaryo ng proyekto at listahan ng contact — para sa sanggunian, gumawa ng sariling kopya" />
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={4} />
+
+## Yugto 2: Ihanda ang lote {/* #phase-2-prepare-the-lot */}
+
+### Mga hakbang
+
+**Hakbang 1: Suriin.** Mas maraming paglilinis o pagpapatag ang kailangan ng ilang lote kaysa sa iba, na maaaring
+mangailangan ng espesyal na makina — makipag-ugnayan sa isang landscape contractor kung hindi kaya ng komunidad
+nang mag-isa ang alinman sa mga sumusunod.
+
+- Makipag-ugnayan sa grupo ng PiaT ([ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu)) para sa
+  pagbisita at konsultasyon sa lote kung hindi kayo sigurado kung paano ihahanda ang inyong lote.
+- Tumawag sa Pennsylvania One Call sa **811** para markahan ang kinaroroonan ng mga utility (kable at tubo sa ilalim
+  ng lupa).
+
+<Field id="create.one-call-address" label="Address para sa inyong request sa PA One Call" auto="lot.address" />
+
+**Hakbang 2: Protektahan.** Magdala ng maliliit na kagamitan sa lote. Maglagay ng pamprotektang bakod ng
+konstruksiyon na may mga posteng kahoy sa paligid ng mga puno, gusali at iba pang bagay na kailangang protektahan.
+Maglagay ng bakod na pangontra sa banlik at pagguho ng lupa sa paligid ng lote at sa lahat ng butas ng kanal.
+
+**Hakbang 3: Pag-aalis.** Alisin ang mga ayaw na halaman (kasama ang mga ugat), tuod ng puno, basura at mga piraso ng
+bato at semento — maaaring kailanganin ng herbicide (pamatay-damo) ang pag-aalis ng ilang halaman para makontrol
+ito nang mabisa at sa tamang oras. Pungusan ang mga punong nandoon na para alisin ang mga sanga sa katawan nito
+hanggang hindi bababa sa 6' ang taas. Hakutin palabas ng lote ang kalat at mga halaman papunta sa tamang tapunan;
+itambak sa lote ang mga piraso ng bato at semento para magamit na pampuno ng mga basket na gabion.
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — street trees are the City's; facts checked 2026-10-04 on phila.gov. */}
+<Callout kind="site">
+  Pag-aari ng Lungsod ang mga puno sa kalye (ang mga nasa bangketa): kailangan ng permit mula sa Philadelphia Parks
+  & Recreation para pungusan o alisin ang isa, at libreng pinupungusan at inaalis ng ahensiyang iyon ang mga
+  mapanganib na puno sa kalye (humiling sa pamamagitan ng 311). Tingnan ang
+  [mga tanong tungkol sa puno sa kalye ↗](https://www.phila.gov/departments/philadelphia-parks-recreation/street-tree-frequently-asked-questions/)
+  ng Lungsod (sa Ingles).
+</Callout>
+
+**Hakbang 4: Pagpapatag ng lote.** Simulang kalaykayin at patagin ang lote. Siguruhing buo at nakikita pa ang anumang
+marka ng Pennsylvania One Call — dapat halos kapantay ng bangketa ang taas ng lupa.
+
+### Mga kagamitan
+
+<Checklist
+  id="create.phase2-tools"
+  items={[
+    { value: 'Shovels', label: 'Pala' },
+    { value: 'Wheelbarrows', label: 'Kartilya' },
+    { value: 'Pick axe', label: 'Piko' },
+    { value: 'Grading rakes', label: 'Kalaykay na pampatag' },
+    { value: 'Sledgehammer', label: 'Maso' },
+    { value: 'Hand pruners + loppers', label: 'Gunting na pampungos + lopper (mahabang gunting)' },
+    { value: 'Pruning saws', label: 'Lagaring pampungos' },
+    { value: 'Spray paint', label: 'Spray paint' },
+    { value: 'Construction fencing', label: 'Bakod ng konstruksiyon' },
+    { value: 'Wood posts', label: 'Mga posteng kahoy' },
+    { value: 'Broom', label: 'Walis' },
+    { value: 'Chainsaw', label: 'Chainsaw' },
+    { value: 'Trash bags', label: 'Mga trash bag' },
+  ]}
+/>
+<Checklist
+  id="create.phase2-tools-optional"
+  label="Hindi kailangan — para sa mga loteng maraming hindi pantay na lupa, semento o tuod ng puno"
+  items={[
+    { value: 'excavator', label: 'Excavator', hint: 'mas mabuting umupa ng kontratista' },
+    { value: 'stump-grinder', label: 'Stump grinder (pandurog ng tuod)', hint: 'mas mabuting umupa ng kontratista' },
+    { value: 'Jack hammer', label: 'Jack hammer' },
+    { value: 'Rototiller', label: 'Rototiller (makinang pambungkal)' },
+    { value: 'Herbicide spray', label: 'Spray ng herbicide' },
+  ]}
+/>
+
+<Figure
+  src="img/create/phase2-reference-photos.webp"
+  alt="Mga larawang sanggunian sa paghahanda ng lote: isang excavator na naglilinis ng lote, isang watawat na marka ng utility at tracer wire sa damuhan, mga boluntaryong nag-aalis ng piraso ng bato at semento, sediment mesh na pangontra sa pagguho sa gilid ng bangketa, at isang boluntaryong nagkakalaykay ng lupa"
+/>
+
+### Mga kapaki-pakinabang na link (sa Ingles)
+
+- **Pag-upa ng kagamitan** — maaaring sulit ang umupa ng kontratista para sa mga power tool, para sa bilis at
+  kaligtasan. [West Philadelphia Tool Library ↗](https://westphillytools.org) (kagamitang de-kamay lang; 1314 S 47th St) ·
+  [OK Rental ↗](https://okrentalsaleservice.com) *(hindi gumagana ang link ngayon)* (mga power tool, kasama ang chainsaw; 640 Main St, Darby) ·
+  [Diamond Tool ↗](https://diamondtool.net/Rentals) *(hindi ma-verify nang awtomatiko)* (2800 Grays Ferry Ave)
+- **Basura at recycling** — [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/) (3850 W Ford Rd)
+- **Video tungkol sa pagpupungos ng puno** — [youtube.com/watch?v=pY5A-5gUqwo ↗](https://youtube.com/watch?v=pY5A-5gUqwo)
+- **Pagkilala sa damong ligaw** — [gabay sa damong ligaw ng Philadelphia Orchard Project ↗](https://www.phillyorchards.org/resources/)
+- **Mga herbicide** (gamitin nang matipid, laging sundin ang tagubilin sa label) — Picloram para ipahid sa tuod ng
+  makahoy na halaman; Glyphosate para i-spray sa dahon ng mga halamang malambot ang tangkay at makahoy; Clopyralid
+  para sa mugwort at Canadian thistle. Mga invasive na damong ligaw na madalas kailanganin ng herbicide: mugwort,
+  Canadian thistle, Japanese knotweed at phragmites (malambot ang tangkay); Broussonetia, Ailanthus, Paulownia at
+  Japanese honeysuckle (makahoy — putulin at gamutin ang tuod kung masyado lang itong malaki para bunutin pati ugat).
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — herbicide labels, restricted-use picloram, 20% vinegar; facts checked 2026-10-04 on epa.gov and npic.orst.edu. */}
+<Callout kind="site">
+  Batas ang label ng herbicide: sundin ito, kasama kung saan maaaring gamitin ang produkto at ang pamprotektang
+  kasuotang nakalista roon ([EPA ↗](https://www.epa.gov/pesticide-labels/introduction-pesticide-labels), sa Ingles).
+  Maraming produktong picloram ang restricted-use at maaari lamang bilhin o gamitin ng isang certified applicator
+  (sertipikadong tagagamit) ([listahan ng EPA ↗](https://www.epa.gov/pesticide-worker-safety/restricted-use-products-rup-report),
+  sa Ingles). Ang sukang ibinebenta para sa damong ligaw (20% o higit pa) ay maaaring permanenteng makasira sa mata:
+  magsuot ng proteksiyon sa mata at guwantes ([NPIC ↗](https://npic.orst.edu/faq/vinegar.html), sa Ingles).
+</Callout>
+
+### Paghahanda sa mga susunod na hakbang
+
+Tingnan ang kalendaryo ng inyong proyekto at baguhin kung kailangan. Bilhin at ipa-deliver ang anumang materyales o
+kagamitang matagal dumating, at siguruhing handa ang lote para sa Yugto 3.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={5} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={6} label="Mga larawang sanggunian at link (PDF)" />
+
+## Yugto 3: Paglalatag at batayang graba {/* #phase-3-layout-gravel-base */}
+
+### Mga hakbang
+
+**Hakbang 1: Materyales.** Dalhin sa lote ang mga kagamitan; maghanda para sa mga delivery. Pumili ng lugar na
+pagtatambakan ng graba at takpan ito ng trapal kung maaari. Markahan ng spray paint ang mga bahaging lalagyan ng
+graba — kung kulang ang espasyo, makipag-ugnayan sa inyong lungsod para mailagay ang delivery sa kalye.
+
+<Callout kind="note" title="Haharangan ang kalye para sa delivery?">
+  Mag-apply ng pansamantalang permit na bawal pumarada (temporary no-parking permit) para may mapagbabaan ang trak ng
+  delivery.
+  [Mag-apply sa phila.gov (sa Ingles) ↗](https://www.phila.gov/services/cars-parking-transportation/apply-for-a-parking-permit/apply-for-a-temporary-no-parking-permit/)
+</Callout>
+<Field id="create.delivery-address" label="Address para sa no-parking permit" auto="lot.address" />
+
+**Hakbang 2: Ilatag ang mga taniman at puwesto ng mga bahagi ng parke.** Magsimula sa panimulang puntong minarkahan
+ninyo sa workbook ng Magsuri. Tingnan ang inyong plano para sa lokasyon at haba ng mga gilid ng taniman at ng mga
+bahagi ng parke. Gumamit ng istaka at tali para markahan ang lokasyon ng mga gilid at bahagi ng parke na idaragdag
+ninyo sa mga susunod na yugto.
+
+**Hakbang 3: Ilagay ang sub-base.** Ihanda ang ibabaw ng lupa para sa mga basket na gabion ayon sa tagubilin sa
+pagbuo. Hukayin ang mga pasukan para sa pagbabago ng taas mula sa bagong parke papunta sa bangketa — hindi bababa sa
+4" ang lalim sa gilid ng bangketa, at patagin kung kailangan (gamitin ang sobrang lupa para patagin ang mga daanan o
+idagdag sa mga taniman). Ikalat ang graba nang 2" ang kapal sa lahat ng bahagi maliban sa mga taniman, mga 6" na mas
+malapad kaysa sa inyong mga tali para maipatong sa graba ang mga gilid sa susunod na yugto. Padaanan ng vibrating
+plate ang graba nang hindi bababa sa dalawang beses.
+
+**Hakbang 4: Mga pasukan at paglilinis.** Linisin ang nalaglag na graba at linisin ang mga pampublikong lugar.
+
+### Mga kagamitan at materyales
+
+<Checklist
+  id="create.phase3-tools"
+  items={[
+    { value: 'Square', label: 'Iskwala' },
+    { value: 'Measuring tape', label: 'Medida' },
+    { value: 'Shovels', label: 'Pala' },
+    { value: 'Wheelbarrows', label: 'Kartilya' },
+    { value: 'Pick axe', label: 'Piko' },
+    { value: 'Grading rakes', label: 'Kalaykay na pampatag' },
+    { value: '5 lb hammer', label: '5 lb na martilyo' },
+    { value: 'Spray paint', label: 'Spray paint' },
+    { value: 'Wood posts and string', label: 'Mga posteng kahoy at tali' },
+    { value: 'Vibrating plate compactor', label: 'Vibrating plate compactor (makinang pansiksik)' },
+    { value: 'Broom', label: 'Walis' },
+  ]}
+/>
+<p class="muted">Materyales: graba, 3/4" na roadbase.</p>
+
+<Figure
+  src="img/create/phase3-reference-photos.webp"
+  alt="Mga larawang sanggunian sa paglalatag at batayang graba: pagsukat sa lote, paghuhukay, paghahanda ng sub-base, isang trak na nagde-deliver ng graba, paglalatag sa lote gamit ang istaka at tali, isang tambak ng graba, pagkakartilya at pagkakalat ng graba"
+/>
+
+### Mga kapaki-pakinabang na link (sa Ingles)
+
+- **Paano gawin** — [Ilatag ang mga taniman ↗](https://lowes.com/n/how-to/create-an-english-style-garden) (panoorin ang 1:50–2:40) ·
+  [Ilagay ang sub-base na graba ↗](https://youtube.com/watch?v=tfDEOIAIUwQ)
+- **Pag-upa ng kagamitan** — [West Philadelphia Tool Library ↗](https://westphillytools.org) ·
+  [OK Rental ↗](https://okrentalsaleservice.com) *(hindi gumagana ang link ngayon)* · [Diamond Tool ↗](https://diamondtool.net/Rentals) *(hindi ma-verify nang awtomatiko)*
+
+### Paghahanda sa mga susunod na hakbang
+
+Tingnan ang kalendaryo ng inyong proyekto at baguhin kung kailangan. Bilhin at ipa-deliver ang mga materyales na
+matagal dumating para sa mga susunod na yugto. Siguruhing handa ang lote para sa Yugto 4.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={7} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={8} label="Mga larawang sanggunian at link (PDF)" />
+
+## Yugto 4: Ilagay ang gilid {/* #phase-4-install-the-edge */}
+
+### Mga hakbang
+
+**Hakbang 1: Materyales.** Dalhin ang mga materyales ng gilid (tingnan ang tantiya ng gastos at ang tagubilin sa
+pagbuo). Alisin ang bakod na pangontra sa pagguho; dapat manatili ang proteksiyon ng mga puno maliban kung
+nakaharang ang lokasyon nito sa paglalagay ng gilid.
+
+**Hakbang 2: Buuin.** Buuin ang mga basket na gabion (tingnan ang tagubilin sa pagbuo ng Gabion Wall).
+
+**Hakbang 3: Paglalagay.** Maglagay ng mga tali para tuwid ang hanay ng mga basket na gabion sa gilid ng parke.
+Ilatag ang mga basket ayon sa inyong plano at punuin ang ilalim nila ng 2–3" ng graba. Gumawa ng maliliit na
+pagsasaayos para pantay at tuwid ang mga basket sa isa't isa — kapag ginagamit nang mag-isa bilang mesa o upuan,
+gumamit ng level sa ibabaw. Magdagdag ng gilid na kahoy kung saan kailangan (tingnan ang tagubilin sa pagbuo ng Wood
+Edging).
+
+### Mga kagamitan at materyales
+
+<Checklist
+  id="create.phase4-tools"
+  items={[
+    { value: 'Measuring tape', label: 'Medida' },
+    { value: 'Shovels', label: 'Pala' },
+    { value: 'Wheelbarrows', label: 'Kartilya' },
+    { value: 'Garden hoes', label: 'Asarol' },
+    { value: 'Grading rakes', label: 'Kalaykay na pampatag' },
+    { value: 'Hand tamper', label: 'Pansiksik na de-kamay (hand tamper)' },
+    { value: 'Wire cutters', label: 'Pamutol ng alambre' },
+    { value: 'Sledge hammer', label: 'Maso' },
+    { value: 'Level', label: 'Level (pantay-tubig)' },
+    { value: 'Broom', label: 'Walis' },
+  ]}
+/>
+<p class="muted">Materyales: mga basket na gabion; kahoy at hardware para sa gilid na kahoy; malalaking piraso ng bato at semento para sa mga basket na gabion, 3" o mas malaki.</p>
+
+<Figure
+  src="img/create/phase4-reference-photos.webp"
+  alt="Mga larawang sanggunian sa paglalagay ng gilid: dalawang basket na gabion na may laman, at isang boluntaryong naglalagay ng tablang gilid na kahoy sa tabi ng graba"
+/>
+
+### Mga kapaki-pakinabang na link (sa Ingles)
+
+- **Materyales** — [Castor Materials ↗](https://castormaterials.com) (dinurog na bato, may delivery; 3301 S 61st St) ·
+  [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) (dinurog na bato, mulch, kagamitan; 4260 Macalester St) ·
+  [Underdog Supply ↗](https://www.underdogsupply.com/) (maramihang delivery; Conshohocken) ·
+  Galantino Supply Company (paupahang kagamitan at maramihang materyales; 725 Old Marple Rd, Springfield — (610) 544-2586)
+- **Paano gawin** — [Magtayo ng pader na gabion ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
+
+### Paghahanda sa mga susunod na hakbang
+
+Tingnan ang kalendaryo ng inyong proyekto at baguhin kung kailangan. Bilhin at ipa-deliver ang mga materyales na
+matagal dumating. Siguruhing handa ang lote para sa Yugto 5.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={9} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={10} label="Mga larawang sanggunian at link (PDF)" />
+
+## Yugto 5: Ikalat ang topsoil {/* #phase-5-spread-topsoil */}
+
+### Mga hakbang
+
+**Hakbang 1: Materyales.** Alisin ang bakod na proteksiyon ng mga puno. Pumili ng lugar na pagtatambakan ng topsoil
+(matabang lupang pang-ibabaw) sa bangketa o sa kalye — kung gayon, mag-apply ng pansamantalang no-parking permit
+(tingnan ang Yugto 3).
+
+**Hakbang 2: Paglalagay ng lupa.** Ihanda ang mga taniman para sa topsoil sa pamamagitan ng pagpapatag ng
+kasalukuyang lupa. Ikalat ang topsoil nang mga 4–6" ang kapal at patagin ito nang makinis.
+
+**Hakbang 3: Paglilinis.** Linisin ang nalaglag na topsoil at linisin ang mga pampublikong lugar.
+
+### Mga kagamitan at materyales
+
+<Checklist
+  id="create.phase5-tools"
+  items={[
+    { value: 'Measuring tape', label: 'Medida' },
+    { value: 'Shovels', label: 'Pala' },
+    { value: 'Wheelbarrows', label: 'Kartilya' },
+    { value: 'Grading rakes', label: 'Kalaykay na pampatag' },
+    { value: 'Garden hoes', label: 'Asarol' },
+    { value: 'Broom', label: 'Walis' },
+  ]}
+/>
+<p class="muted">Materyales: topsoil.</p>
+
+<Figure
+  src="img/create/phase5-reference-photos.webp"
+  alt="Mga larawang sanggunian sa pagkakalat ng topsoil: isang dump truck na nagde-deliver ng topsoil, isang boluntaryong nagpapatag ng lupa nang mano-mano, dalawang boluntaryong naglilipat ng topsoil gamit ang kartilya, at isang boluntaryong naglalagay ng topsoil sa taniman"
+/>
+
+### Mga kapaki-pakinabang na link (sa Ingles)
+
+- **Pag-order** — [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
+- **Paano gawin** — [Ihanda ang topsoil ↗](https://youtube.com/watch?v=GcOJ4fDJmpM) · [Malusog na topsoil para sa malulusog na halaman ↗](https://youtube.com/watch?v=7-Tyz7fGeZo)
+
+### Paghahanda sa mga susunod na hakbang
+
+Tingnan ang kalendaryo ng inyong proyekto at baguhin kung kailangan. Bilhin at ipa-deliver ang mga materyales na
+matagal dumating. Siguruhing handa ang lote para sa Yugto 6.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={11} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={12} label="Mga larawang sanggunian at link (PDF)" />
+
+## Yugto 6: Magtanim {/* #phase-6-plant */}
+
+### Mga hakbang
+
+**Hakbang 1: Mga halaman.** Alisin ang anumang damong ligaw na tumubo. Siguruhing nakaiskedyul ang delivery ng mga
+halaman at may napili kayong lugar na paglalagyan ng mga halamang dumating. Ilatag ang mga puno at palumpong sa
+gustong puwesto, saka linisin ang nalaglag na lupa at ang mga pampublikong lugar.
+
+**Hakbang 2: Pagtatanim.** Unahing itanim ang malalaking puno (tingnan ang detalye ng pagtatanim sa ibaba). Itanim
+ang mga palumpong, pinuhin ang pagpapatag ng lupa, itanim ang mga perennial, maglagay ng 4" na mulch, saka diligang
+mabuti ang lahat ng halaman — ulitin dalawang beses sa isang linggo hanggang mamahinga ang mga halaman sa taglamig.
+
+<Figure
+  src="img/create/phase6-plant-illustration.webp"
+  alt="Axonometric na larawan ng isang tapos nang parke sa harapan, may label na PLANT, may mga puno, nakataas na taniman at isang sementadong lugar ng pagtitipon sa pagitan ng dalawang rowhouse"
+/>
+<Figure
+  src="img/create/phase6-planting-detail.webp"
+  alt="Dalawang diagram ng detalye ng pagtatanim: detalye ng pagtatanim ng palumpong/perennial mula sa paso na nagpapakita ng kapal ng mulch at pantabon na lupa, at detalye ng pagtatanim ng puno na nagpapakita ng puwesto ng bola ng ugat, pagtutukod, mulch at pag-aalis ng sako"
+/>
+
+### Mga kagamitan at materyales
+
+<Checklist
+  id="create.phase6-tools"
+  items={[
+    { value: 'Measuring tape', label: 'Medida' },
+    { value: 'Shovels', label: 'Pala' },
+    { value: 'Wheelbarrows', label: 'Kartilya' },
+    { value: 'Pick axe', label: 'Piko' },
+    { value: 'Landscape rakes', label: 'Landscape rake (malapad na kalaykay)' },
+    { value: 'Spray paint', label: 'Spray paint' },
+    { value: 'Tree stakes and rope', label: 'Tukod ng puno at lubid' },
+    { value: 'Broom', label: 'Walis' },
+  ]}
+/>
+<p class="muted">Materyales: mga halaman — siguruhing tingnan ang inyong listahan ng halaman.</p>
+
+### Mga kapaki-pakinabang na link (sa Ingles)
+
+- **Pangkalahatang impormasyon sa halaman** — [PHS Gold Medal Plants ↗](https://phsonline.org/for-gardeners/gold-medal-plants) ·
+  [Gardens Alive ↗](https://www.gardensalive.com/) · [North Creek Nurseries ↗](https://www.northcreeknurseries.com/) ·
+  [Missouri Botanical Garden ↗](https://www.missouribotanicalgarden.org/) · [Longwood Gardens plant explorer ↗](https://plantexplorer.longwoodgardens.org/ecmweb/ECM_Home.html) *(hindi gumagana ang link ngayon)* ·
+  [Arbor Day Foundation ↗](https://www.arborday.org/) · [Pagtatanim ng gulay, Penn State Extension ↗](https://extension.psu.edu/programs/master-gardener)
+- **Katuwang na nursery ng PiaT** — LandHealth Institute, 4862 Parkside Ave, Philadelphia · (267) 571-5750 ·
+  [landhealthinstitute.org/nursery ↗](https://www.landhealthinstitute.org/nursery)
+- **Iba pang nursery sa rehiyon** — [Good Host Plants ↗](https://www.goodhostplants.com/) (lokal na espesyalista sa pollinator) ·
+  [Pleasant Run Nursery ↗](https://www.pleasantrunnursery.com/) · [Pinelands Nursery ↗](https://www.pinelandsnursery.com/) ·
+  [Archewild ↗](https://archewild.com/)
+- **Mga punong namumunga** — [Philadelphia Orchard Project ↗](https://www.phillyorchards.org/) ·
+  [Burpee ↗](https://www.burpee.com/fruit/fruit-trees/) · [Stark Bros ↗](https://www.starkbros.com/products/fruit-trees)
+- **Mga workshop sa paghahardin at tulong sa lote** — [Pennsylvania Horticultural Society ↗](https://phsonline.org/) ·
+  [Grounded in Philly ↗](https://groundedinphilly.org/) (tulong legal, insurance, datos ng lote)
+- **Paano gawin** — [Payo sa pagtatanim sa paso at ng bulb ↗](https://www.gardeners.com/how-to/growing-annual-flowers/5070.html) ·
+  [Pagtatanim ng punong nasa paso ↗](https://www.arborday.org/trees/planting/containerized.cfm) ·
+  [Paano magtanim ng palumpong ↗](https://youtube.com/watch?v=Tim4LEo6l10)
+
+### Paghahanda sa mga susunod na hakbang
+
+Tingnan ang kalendaryo ng inyong proyekto at siguruhing may iskedyul kayo para sa isang Park Ambassador (sugo ng
+parke) — tingnan ang hakbang na Mag-alaga para sa mga detalye. Mga supplier ng mulch:
+[Mid Atlantic Pine Straw ↗](https://www.midatlanticpinestraw.com/) ·
+[Underdog Landscape Supply ↗](https://underdogsupply.com) · [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/get-organic-materials/)
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={13} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={14} label="Mga kapaki-pakinabang na link (PDF)" />
+
+## Yugto 7: Ilagay ang graba sa ibabaw {/* #phase-7-install-the-gravel-surface */}
+
+### Mga hakbang
+
+**Hakbang 1: Materyales.** Maghanda para sa mga delivery kung hindi pa nakatambak. Pumili ng lugar na pagtatambakan
+ng graba sa bangketa o sa kalye (pansamantalang no-parking permit, kung kailangan — tingnan ang Yugto 3).
+
+**Hakbang 2: Paglalagay.** Ilagay ang graba sa ibabaw gamit ang kartilya at landscape rake. Ilagay ang graba nang
+mga 2" ang kapal, at ikalat nang pantay ang anumang sobra. Siksikin ang graba gamit ang vibratory plate para
+mabawasan ang paglubog, at daanan ang lahat ng bahagi para matiyak na pantay at patag ang mga ito.
+
+**Hakbang 3: Paglilinis.** Linisin ang nalaglag na graba at linisin ang mga pampublikong lugar.
+
+### Mga kagamitan at materyales
+
+<Checklist
+  id="create.phase7-tools"
+  items={[
+    { value: 'Measuring tape', label: 'Medida' },
+    { value: 'Shovels', label: 'Pala' },
+    { value: 'Wheelbarrows', label: 'Kartilya' },
+    { value: 'Landscape rakes', label: 'Landscape rake (malapad na kalaykay)' },
+    { value: 'Hand tamper', label: 'Pansiksik na de-kamay (hand tamper)' },
+    { value: 'Vibratory plate', label: 'Vibratory plate (makinang pansiksik)' },
+    { value: 'Broom', label: 'Walis' },
+  ]}
+/>
+<p class="muted">Materyales: graba, 3/8" o mas maliit (stone dust o pinong durog na bato).</p>
+
+<Figure
+  src="img/create/phase7-reference-photos.webp"
+  alt="Mga larawang sanggunian sa paglalagay ng graba sa ibabaw: isang landscape rake na pampatag, isang hand tamper sa siksik na graba, at isang boluntaryong gumagamit ng vibratory plate compactor na de-gasolina"
+/>
+
+### Mga kapaki-pakinabang na link (sa Ingles)
+
+- **Materyales** — [Castor Materials ↗](https://castormaterials.com) · [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) ·
+  Galantino Supply Company ((610) 544-2586) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
+- **Paano gawin** — [Maglagay ng graba ↗](https://youtube.com/watch?v=t0LWQ_U2z_g)
+
+### Paghahanda sa mga susunod na hakbang
+
+Tingnan ang kalendaryo ng inyong proyekto at baguhin kung kailangan. Bilhin at ipa-deliver ang mga materyales na
+matagal dumating. Siguruhing handa ang lote para sa Yugto 8.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={15} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={16} label="Mga larawang sanggunian at link (PDF)" />
+
+## Yugto 8: Ilagay ang mga bahagi ng parke {/* #phase-8-install-park-elements */}
+
+### Mga hakbang
+
+**Hakbang 1: Sukatin.** Basahin ang inyong mga manwal sa pagbuo at sukatin at markahan kung saan dapat ilagay ang
+mga bahagi ng parke.
+
+**Hakbang 2: Materyales.** Siguruhing nasa inyo ang lahat ng materyales na nakalista sa inyong mga manwal sa pagbuo.
+
+**Hakbang 3: Buuin.** Buuin ang mga bahagi ng inyong parke ayon sa mga manwal sa pagbuo.
+
+**Hakbang 4: Ilagay.** Siguruhing may sapat na puwang sa inyong disenyo para mailagay ang mga bahagi, saka ilagay
+sila sa huling puwesto nila. Maaaring kaya ninyo — o mapili ninyong — buuin nang maaga o sa ibang lugar ang mga
+bahagi.
+
+<Callout kind="auto">
+  Naka-link mula sa grid na [Buuin](/steps/dream/#assemble) ng hakbang na Mangarap ang bawat bahaging may gabay sa
+  pagbuo — doon nakalista ang parehong mga gabay.
+</Callout>
+
+### Mga kapaki-pakinabang na link (sa Ingles)
+
+- **Paano gumawa ng…** (unahin ang mga gabay sa pagbuo; pang-reserba ang mga video na ito) — [Mesang pansama-sama ↗](https://youtube.com/watch?v=Px2JZs4Q2v4) ·
+  [Cold frame ↗](https://youtube.com/watch?v=b75RoDmE9qY) · [Nakataas na taniman ↗](https://youtube.com/watch?v=MBIYebUgVVI) ·
+  [Compost bin ↗](https://youtube.com/watch?v=gA6QNLaBEyc) · [Potting bench (mesang pantanim) ↗](https://youtube.com/watch?v=E7HumfxE2f4) ·
+  [Bodega sa hardin ↗](https://youtube.com/watch?v=DuQ0N8z6OkI) · [Pader na gabion ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
+- **Kahoy at materyales sa pagtatayo** — Woodland Building Supply, 4701 Woodland Ave, Philadelphia — (215) 727-5333 ·
+  C & R Building Supply, 1601 S 49th St, Philadelphia · A&A Lumber (cypress), Avondale, PA · Delaware County Lumber, Boothwyn, PA
+
+### Paghahanda sa mga susunod na hakbang
+
+Tingnan ang kalendaryo ng inyong proyekto at baguhin kung kailangan — malapit nang matapos ang inyong parke!
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={17} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={18} label="Mga tagubilin sa pagbuo at link (PDF)" />
+
+{/* site-added: the workbook's own contents page lists a Summary, but this working draft doesn't include one — this wrap-up just recaps the 8 phases above as a final checklist. No new advice. */}
+## Buod {/* #summary */}
+
+<Checklist
+  id="create.summary-checklist"
+  items={[
+    { value: 'phase1', label: 'Yugto 1: Mag-organisa', hint: 'Naitalaga na ang mga tungkulin sa grupo, naitakda na ang iskedyul' },
+    { value: 'phase2', label: 'Yugto 2: Ihanda ang lote', hint: 'Nalinis, naprotektahan, napatag' },
+    { value: 'phase3', label: 'Yugto 3: Paglalatag at batayang graba', hint: 'Natusukan na ng istaka ang mga taniman at bahagi ng parke, nailagay na ang sub-base' },
+    { value: 'phase4', label: 'Yugto 4: Ilagay ang gilid', hint: 'Nakalagay na ang mga basket na gabion at gilid na kahoy' },
+    { value: 'phase5', label: 'Yugto 5: Ikalat ang topsoil', hint: 'Napatag at napuno na ang mga taniman' },
+    { value: 'phase6', label: 'Yugto 6: Magtanim', hint: 'Nakatanim na sa lupa ang mga puno, palumpong at perennial' },
+    { value: 'phase7', label: 'Yugto 7: Ilagay ang graba sa ibabaw', hint: 'Siniksik at pantay na ang huling patong ng graba' },
+    { value: 'phase8', label: 'Yugto 8: Ilagay ang mga bahagi ng parke', hint: 'Nabuo at nailagay na ang mga upuan, mesa at istruktura' },
+  ]}
+/>
+
+<Callout kind="tip">
+  Naitayo na ang inyong parke! Pumunta sa hakbang na Mag-alaga para mapanatili itong yumayabong — pagdidilig,
+  pagbubunot ng damong ligaw at ang taunang plano ng pag-aalaga.
+</Callout>

@@ -1,0 +1,428 @@
+---
+title: Ota ndoto
+intro: Buni bustani yako kwa vipande vya bustani vya Park in a Truck, vinavyoweza kuchanganywa upendavyo.
+sources:
+  - Mwongozo (Toolkit), uk. 39–55 (Ota ndoto, Miundo kwa mitindo, Vipande vya bustani, Changanya na ulinganishe)
+  - Kitabu cha kazi cha Ota ndoto, uk. 1–20
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Choice from '../../../../components/workbook/Choice.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import Download from '../../../../components/workbook/Download.astro';
+import Planner from '../../../../components/widgets/Planner.astro';
+import CostEstimator from '../../../../components/widgets/CostEstimator.astro';
+import PlantPicker from '../../../../components/widgets/PlantPicker.astro';
+import { ELEMENTS } from '../../../../data/elements';
+import { THEMES, THEME_ORDER } from '../../../../data/themes';
+import { SIZES } from '../../../../lib/sizing';
+import { urlFor } from '../../../../i18n/url.ts';
+export const u = urlFor('sw');
+import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
+
+export const THEME_REQUIREMENTS = {
+  edible: { trees: 'Miti michache au hakuna', sun: 'Jua kamili au jua kwa sehemu kubwa', lot: 'Inafaa sana kiwanja cha kona', volunteers: 'Ushiriki wa mara kwa mara wa watu wa kujitolea' },
+  sanctuary: { trees: 'Kiasi chochote cha miti', sun: 'Kiasi chochote cha jua', lot: 'Kiwanja cha katikati ya mtaa au cha kona', volunteers: 'Ushiriki mdogo wa watu wa kujitolea' },
+  nature: { trees: 'Inafaa sana viwanja vyenye miti', sun: 'Kiasi chochote cha jua', lot: 'Kiwanja cha katikati ya mtaa au cha kona', volunteers: 'Ushiriki mdogo unahitajika' },
+  event: { trees: 'Mti mmoja au miwili, au miti kadhaa', sun: 'Kiasi chochote cha jua', lot: 'Inafaa sana kiwanja cha kona', volunteers: 'Ushiriki wa wastani wa watu wa kujitolea' },
+};
+
+{/* Translated chapters can't import the localized data helpers, so the Swahili theme and element names are repeated here (same text as src/i18n/data/sw/themes.json and elements.json). */}
+export const THEME_SW = {
+  edible: { name: 'Chakula', blurb: 'Kugawana chakula na kujenga urafiki na majirani: matunda, mboga na meza ya pamoja.' },
+  sanctuary: { name: 'Utulivu', blurb: 'Mahali patulivu pa kupumzika peke yako, kusoma na kukutana watu wachache.' },
+  nature: { name: 'Mazingira asilia', blurb: 'Mimea asilia, makazi ya viumbe, na michezo kwa watoto na kwa wachavushaji.' },
+  event: { name: 'Matukio', blurb: 'Nafasi kwa maonyesho, masoko na sherehe za mtaa.' },
+};
+export const ELEMENT_SW = {
+  'gabion-wall': 'Ukuta wa gabioni',
+  'gabion-bench': 'Benchi ya gabioni yenye kiti cha mbao',
+  'gabion-bench-8': "Benchi ya gabioni ya 8' yenye kiti cha mbao",
+  'bench-back': 'Benchi yenye egemeo',
+  'bench-4': "Benchi ya 4' (bila egemeo)",
+  stool: 'Kigoda',
+  'table-2': "Meza ya 2'",
+  'table-4': "Meza ya 4'",
+  'table-6': "Meza ya 6'",
+  'planter-18': 'Sanduku la mimea la 18" (dogo)',
+  'planter-24': 'Sanduku la mimea la 24" (kubwa)',
+  'shade-canopy': 'Paa la kivuli',
+  stage: 'Jukwaa',
+  workbench: 'Meza ya kazi / meza ya kusimama',
+  'rain-barrel': 'Pipa la maji ya mvua',
+  'compost-bin': 'Chombo cha mboji',
+  'raised-bed': 'Tuta lililoinuliwa',
+  'cold-frame': 'Kisanduku cha kukuzia miche (cold frame)',
+  'communal-table': 'Meza ya pamoja',
+  'event-tent': 'Hema la matukio',
+  'flexible-seating': 'Viti vinavyohamishika',
+  'outdoor-classroom': 'Darasa la nje',
+  'nature-play': 'Eneo la kuchezea la asili',
+  birdbath: 'Chombo cha maji cha ndege',
+  'bird-accessories': 'Nyumba na vyombo vya chakula vya ndege',
+  shed: 'Kibanda cha vifaa',
+};
+
+{/* The Assemble grid below skips surfaces, plants and existing-conditions markers — only built/bought elements get an assembly link. */}
+export const NOT_BUILT = new Set(['planting-square', 'perennial', 'shrub', 'small-tree', 'large-tree', 'gravel', 'existing-tree', 'downspout', 'wet-area', 'hydrant', 'utility-line']);
+export const ICON_FALLBACK = { 'table-6': 'table-4', 'bench-4': 'bench-back', 'gabion-bench-8': 'gabion-bench' };
+// The workbook's Assemble page shows these elements; newer vocabulary (e.g. cafe-table) has no icon there.
+export const ASSEMBLE_ICONS = new Set(['bench-back','bird-accessories','birdbath','cold-frame','communal-table','compost-bin','event-tent','flexible-seating','gabion-bench','gabion-wall','nature-play','outdoor-classroom','planter-18','planter-24','rain-barrel','raised-bed','shade-canopy','shed','stage','stool','table-2','table-4','workbench']);
+
+{/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — reminds a reader who hasn't recorded a lot agreement yet, before they design and budget for a lot they may not have permission for. */}
+<LotAgreementNotice />
+
+Kubuni bustani ya Park in a Truck ni kama kununua gauni au suti mpya. Kwanza, unaenda dukani na kuangalia sanamu za
+maonyesho ili kuchagua mtindo, rangi au nakshi unayoipenda. Bila shaka, nguo inayoonekana vizuri ikiwa imetundikwa
+huenda isikufae wewe. Kwa hiyo lazima uitafute nguo hiyo kwa saizi inayokufaa wewe na umbo la mwili wako, kisha
+uijaribu. Kama haikutoshi, unaweza kuirekebisha. Mwishowe, unaongeza mapambo ili iwe yako kweli.
+
+Kama tu unaponunua nguo, bustani yako inahitaji kuendana na ladha yako na matumizi unayokusudia. Bustani za Park in a
+Truck zinakuja kwa aina nne tofauti — tunaziita **mitindo** (themes): Chakula, Utulivu, Mazingira asilia na Matukio.
+Kila mtindo unafaa zaidi kwa tukio au hali fulani.
+
+Sasa, furaha halisi inaanza — kuunda maono ya bustani yako! Hatua hii inaanza kwa kuchagua mojawapo ya miundo minne ya
+mitindo. Hata hivyo, huo ni mwanzo tu: kila mtindo una seti ya **vipande vya bustani** vinavyoweza kuchanganywa na
+kulinganishwa, vinavyokuwezesha kujenga **bustani yako maalum** yenye ukubwa wa kiwanja chako mwenyewe.
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={3} />
+
+## Mitindo minne {/* #the-four-themes */}
+
+Kila mtindo unasisitiza njia tofauti unazoweza kuitumia bustani yako: baadhi inafaa sana kwa mikusanyiko ya mtaa, na
+mingine inafaa zaidi kwa kukaa peke yako. Linganisha idadi ya miti, kiasi cha jua na mahali kiwanja kilipo, kama
+ulivyoandika kwenye Muhtasari wa hatua ya Kagua, na mahitaji ya jumla yaliyo hapa chini.
+
+Kwa kuwa kila bustani ina sehemu tatu — **fremu**, **kipande cha mbele** na **kipande cha nyuma** — unaweza kutumia
+mtindo mmoja kwa bustani nzima, au **kuchanganya** mitindo tofauti, kama unavyolinganisha blauzi na koti na sehemu ya
+chini ya vazi.
+
+### Vitu vya msingi vya muundo (katika kila mtindo)
+
+Vitu vichache muhimu vinaonekana katika mitindo yote minne:
+
+- **Ukuta wa gabioni.** Vikapu vya waya vilivyojazwa mawe huipa bustani mpaka unaoonekana wazi — vijaze kwa vitu
+  unavyovipata, kama matofali na vipande vya zege lililovunjika, ili ujenzi uwe wa gharama ndogo na endelevu zaidi.
+- **Benchi.** Mahali pa kukaa. Jamii yako inaweza kuzipamba upendavyo kwa urahisi: zipake rangi, au ziache
+  zibadilike rangi kwa jua na mvua — njia zote mbili zinafaa.
+- **Pipa la maji ya mvua.** Kila bustani inahitaji maji. Mapipa ya maji ya mvua hukusanya maji ya mvua kwa ajili ya
+  kumwagilia miti na maua.
+- **Mimea.** Mimea asilia inayovutia wanyamapori, inayoongeza bioanuwai na inayosaidia uhifadhi wa mazingira.
+
+{THEME_ORDER.map((id) => (
+  <div style={`margin:2.5em 0; border-left: 8px solid ${THEMES[id].frame}; padding-left: 1.2em;`}>
+    <h3 style={`color:${THEMES[id].frame}`}>{THEME_SW[id].name}</h3>
+    <p>{THEME_SW[id].blurb}</p>
+    <Figure
+      src={`img/dream/theme-${id}.webp`}
+      alt={`Mtindo wa ${THEME_SW[id].name}: michoro ya bustani kwa 3D na kwa mwonekano wa juu, ikionyesha vipande vya fremu, cha mbele na cha nyuma kwa rangi ya mtindo huo`}
+    />
+    <ul class="theme-reqs">
+      <li><strong>Miti:</strong> {THEME_REQUIREMENTS[id].trees}</li>
+      <li><strong>Jua:</strong> {THEME_REQUIREMENTS[id].sun}</li>
+      <li><strong>Kiwanja:</strong> {THEME_REQUIREMENTS[id].lot}</li>
+      <li><strong>Watu wa kujitolea:</strong> {THEME_REQUIREMENTS[id].volunteers}</li>
+    </ul>
+  </div>
+))}
+
+{/* site-added: Playful Learning is the toolkit's own appendix (linked from its Dream chapter); cross-linking it here matches where the toolkit itself introduces it. */}
+<Callout kind="note" title="Unabuni pia kwa ajili ya watoto?">
+  Park in a Truck imeshirikiana na **Playful Learning Landscapes**, mpango unaounganisha sayansi ya jinsi watoto
+  wanavyojifunza na ubunifu wa kawaida wa bustani — meza za kupanga vitu kwa makundi, magurudumu ya hadithi, kusimulia
+  hadithi kwa alama za picha na zaidi, vilivyolinganishwa na kila mmoja wa mitindo minne iliyo hapo juu.
+  [Tazama mwongozo wa Playful Learning ↗](/playful-learning/)
+</Callout>
+
+<Field
+  id="dream.theme-reasons"
+  label="Je, kuna sababu maalum zinazokufanya upende mtindo mmoja wa bustani kuliko mingine?"
+  type="textarea"
+/>
+<Field
+  id="dream.theme-qualities"
+  label="Je, kuna sifa fulani za bustani katika mitindo hii unazozipenda zaidi?"
+  type="textarea"
+/>
+<Choice
+  id="dream.preferred-theme"
+  label="Mtindo wa bustani unaoupenda zaidi ni upi?"
+  options={[
+    { value: 'edible', label: 'Chakula', color: THEMES.edible.frame },
+    { value: 'sanctuary', label: 'Utulivu', color: THEMES.sanctuary.frame },
+    { value: 'nature', label: 'Mazingira asilia', color: THEMES.nature.frame },
+    { value: 'event', label: 'Matukio', color: THEMES.event.frame },
+    { value: 'mix', label: 'Mchanganyiko wa mitindo', desc: 'Mtindo tofauti kwa fremu, kipande cha mbele na cha nyuma' },
+  ]}
+/>
+<Choice
+  id="dream.theme-fits-site"
+  label="Je, mtindo uliouchagua unaendana na sifa za eneo kwenye karatasi yako ya muhtasari wa Kagua?"
+  options={[
+    { value: 'yes', label: 'Ndiyo', desc: 'Unafaa vizuri — endelea mbele' },
+    { value: 'no', label: 'Hapana', desc: 'Tathmini upya mtindo wa bustani yako' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={5} />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={6} label="Mtindo wa Chakula (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={7} label="Mtindo wa Utulivu (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={8} label="Mtindo wa Mazingira asilia (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={9} label="Mtindo wa Matukio (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={10} label="Mtindo upi unakufaa? (PDF)" />
+
+## Vipande vya bustani na jinsi ya kuvitumia {/* #park-pieces-how-to-use-them */}
+
+Kiolezo cha muundo wa bustani yako kimejengwa kwa sehemu tofauti — **vipande vya bustani**. Kuna vipande vya MBELE na
+vya NYUMA kwa ajili ya ndani ya bustani, na FREMU ya kuviweka ndani yake. Kila kipande kinapatikana katika mojawapo ya
+mitindo minne, na kila kipande kinaweza kubadilishana na kingine, kwa hiyo unaweza kuchanganya mitindo au kuchagua
+mtindo mmoja kwa bustani nzima.
+
+Kama fremu inayozunguka picha ya familia, **fremu** huunda mpaka unaozunguka ndani ya bustani — mahali pa kukaribisha
+kwa ajili ya milango ya kuingilia, miti na vitu vingine. Ndani ya bustani kumegawanywa katika **kipande cha mbele**
+(kilicho karibu zaidi na mlango wa bustani, chenye vitu vikuu visivyohamishika) na **kipande cha nyuma** (kwa kawaida
+kiko wazi zaidi, kwa matumizi mbalimbali).
+
+Picha katika mwongozo zinaonyeshwa kwa mwonekano wa 3D unaoitwa **axon**, kama picha ya kamera, ili iwe rahisi
+kuzifikiria. Ili kupanga bustani yako kwa kweli, utatumia mwonekano bapa wa **juu** (plan) unaofanana na ramani rahisi
+— mionekano yote miwili inaonyesha vitu vilevile.
+
+<Figure
+  src="img/dream/park-pieces-frame-front-back.webp"
+  alt="Mchoro unaolinganisha mwonekano wa axon (3D) wa bustani na mwonekano wa juu: kipande cha fremu kinaungana na kipande cha mbele na kipande cha nyuma kujenga bustani nzima, kikionyeshwa kama vitalu vya 3D vilivyopangwa juu ya kingine na kama mchoro bapa"
+/>
+
+<Figure
+  src="img/dream/mix-and-match.webp"
+  alt="Bustani nne za mfano, kila moja ikichanganya fremu, kipande cha mbele na kipande cha nyuma kutoka mitindo tofauti — matukio, utulivu, chakula na mazingira asilia — kuonyesha jinsi vipande vinavyochanganywa kwa njia nyingi zisizo na mwisho"
+/>
+
+<Callout kind="auto">
+  Kwenye karatasi, kuchanganya vipande kunamaanisha kuchapisha, kukata na kuunganisha vipande kwa utepe kwa mkono.
+  Zana ya kupanga iliyo hapa chini inakufanyia kazi hiyo — chagua mtindo wa fremu, wa kipande cha mbele na wa kipande
+  cha nyuma na inaviunganisha mara moja, kwa ukubwa kamili wa kiwanja chako halisi.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={4} />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={13} label="Cheza na vipande (PDF)" />
+
+## Buni bustani yako {/* #design-your-park */}
+
+{/* site-added: mode prop for the planner workstream; placement and surrounding copy are ours. */}
+<Planner mode="design" />
+
+<Callout kind="auto" title="Inaendana na kiwanja chako halisi, yenyewe">
+  Zana ya kupanga inaweka vipande vya bustani vya Park in a Truck kwenye kiwanja chako halisi — inavirekebisha ukubwa
+  kwa kuongeza vipande vya kurefusha (seams) kama kitabu cha kazi kinavyofanya kwa mkono — na inahesabu kila kitu kwa
+  ajili yako unapoendelea, tayari kwa makadirio ya gharama na orodha za mimea zilizo hapa chini.
+</Callout>
+
+<details>
+  <summary>Unapendelea karatasi? Chapisha vipande vya bustani</summary>
+
+  Baada ya kupitia mitindo, angalia herufi uliyoweka alama kwenye ukurasa wa Muhtasari wa Kagua (ukubwa A–E) na mahali
+  kiwanja chako kilipo (katikati ya mtaa, au kwenye kona na barabara upande wako wa kulia au wa kushoto). Bofya kiungo
+  kinacholingana hapa chini — kila kimoja kinafungua folda ya Google Drive yenye vipande vya bustani vya kuchapisha kwa
+  ukubwa huo na aina hiyo ya kiwanja.
+
+  <table class="pieces-table">
+    <thead>
+      <tr><th>Ukubwa</th><th>Kiwanja cha katikati</th><th>Kiwanja cha kona — barabara kulia</th><th>Kiwanja cha kona — barabara kushoto</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>A</strong></td><td><a href="https://drive.google.com/open?id=1e3j5d8ZsIxVxsJsdtoosKgMAuCpQwBKo" target="_blank" rel="noopener">Pakua ↗</a></td><td><a href="https://drive.google.com/open?id=1Txw_BMZlvseeyCetUYbGfVSIu2_eq7HW" target="_blank" rel="noopener">Pakua ↗</a></td><td><a href="https://drive.google.com/open?id=1LBQG4r2z1geA6rIEyK_GFYGzV4IBQFua" target="_blank" rel="noopener">Pakua ↗</a></td></tr>
+      <tr><td><strong>B</strong></td><td><a href="https://drive.google.com/open?id=1LC6QvBJ2D-LyhbFGYXsjByiWQaFk06AF" target="_blank" rel="noopener">Pakua ↗</a></td><td><a href="https://drive.google.com/open?id=1LKVUm28LhzKNqmMPPsufWrxt-xqTyJrk" target="_blank" rel="noopener">Pakua ↗</a></td><td><a href="https://drive.google.com/open?id=1LQmrAsZd7Aw0M6F2iwFUUWjoUm-uAIFA" target="_blank" rel="noopener">Pakua ↗</a></td></tr>
+      <tr><td><strong>C</strong></td><td><a href="https://drive.google.com/open?id=1LR04NYM7Ii2srwf4E5tl2t26R8jxdWQr" target="_blank" rel="noopener">Pakua ↗</a></td><td><a href="https://drive.google.com/open?id=1LSWINYM72UNHj6hGjrsn0S51h2hJL47s" target="_blank" rel="noopener">Pakua ↗</a></td><td><a href="https://drive.google.com/open?id=1LJCzWBkOh_hG8205xt1sJ17s4jQFD-H-" target="_blank" rel="noopener">Pakua ↗</a></td></tr>
+      <tr><td><strong>D</strong></td><td><a href="https://drive.google.com/open?id=1LfpisFCCWZwitjJJ2_vpFfv_Pv_pnhMf" target="_blank" rel="noopener">Pakua ↗</a></td><td><a href="https://drive.google.com/open?id=1LSqUwvHJQd5riQI56GgMO6GgN9LK7-Or" target="_blank" rel="noopener">Pakua ↗</a></td><td><a href="https://drive.google.com/open?id=1LejWNaZ9sQFiy1P3er03OuwRURV7LNQI" target="_blank" rel="noopener">Pakua ↗</a></td></tr>
+      <tr><td><strong>E</strong></td><td><a href="https://drive.google.com/open?id=1L-pqs-CuyMjeHE7UgEIDLawzv4ErTA6h" target="_blank" rel="noopener">Pakua ↗</a></td><td><a href="https://drive.google.com/open?id=1LlyI3QGglqZw5f92aR1WLES7Nuz0gkOC" target="_blank" rel="noopener">Pakua ↗</a></td><td><a href="https://drive.google.com/open?id=1LiE8uy8Uc-6R55t8cQr2Eg4CGdifcC8J" target="_blank" rel="noopener">Pakua ↗</a></td></tr>
+    </tbody>
+  </table>
+  <p class="muted">Majina ya aina za viwanja yanafuata ukurasa wa kupakua wa kitabu cha kazi chenyewe — kama seti ya vipande hailingani na kona yako, jaribu ile nyingine.</p>
+
+  Fungua vipande ulivyopakua na uvichapishe upande mmoja wa karatasi ya 8.5"×11", kisha ukate kufuata mistari ya
+  vistari. Panga vipande kwa kutumia alama za kupangia zilizochapishwa kwenye kila karatasi, na uviunganishe kwa utepe.
+  Endelea na hatua ndogo inayofuata ili kurekebisha ukubwa wa bustani uliyoiunganisha kwa utepe ilingane na kiwanja
+  chako halisi.
+
+  <PdfPage doc="downloads/workbooks/04-dream.pdf" page={11} label="Pakua vipande vya bustani (PDF)" />
+  <PdfPage doc="downloads/workbooks/04-dream.pdf" page={12} label="Chapisha na ukate vipande (PDF)" />
+</details>
+
+## Rekebisha ukubwa wa bustani yako {/* #right-size-your-park */}
+
+Kama kiwanja chako kinatosha vipande vyako kikamilifu, ruka hadi kuongeza hali zilizopo. Kama kuna nafasi ya ziada,
+panua bustani yako kwa kuongeza vipande vya kurefusha (seams) — futi za ziada za fremu, za kipande cha mbele au cha
+nyuma — ili utumie nafasi yote iliyopo.
+
+<table class="size-table">
+  <thead><tr><th>Ukubwa</th><th>Upande mrefu</th><th>Upande mfupi</th></tr></thead>
+  <tbody>
+    {SIZES.map((s) => (
+      <tr><td><strong>{s.id}</strong></td><td>futi {s.long[0]}–{s.long[1]}</td><td>futi {s.short[0]}–{s.short[1]}</td></tr>
+    ))}
+  </tbody>
+</table>
+
+{/* site-added: sizing.ts also flags lots below size A; call that out here since it's the natural place a reader learns their lot doesn't fit the smallest set. */}
+<Callout kind="note" title="Ni kidogo kuliko ukubwa A?">
+  Ukubwa si muhimu. Kipande cha 4×4, uwanja wa mbele ya nyumba au hata sanduku la maua dirishani bado kinaweza kuwa
+  upandaji wa maua kwa ajili ya wachavushaji — tumia [mwongozo wa Park Patch](/park-patch/) badala ya vipande kamili
+  vya bustani vilivyo hapa chini.
+</Callout>
+
+Kuna aina mbili za vipande vya kurefusha: **ukanda wa kurefusha wa urefu**, unaokatwa kati ya kipande cha mbele na
+kipande cha nyuma, huongeza futi kwenye upande mrefu wa bustani; **ukanda wa kurefusha wa upana**, unaokatwa kufuata
+urefu, huongeza futi kwenye upande mfupi. Kanda zote mbili zina mistari myeusi ya vistari kila futi 4 na mistari ya
+kijivu ya vistari kila futi 1, ili uweze kuhesabu hasa kiasi unachohitaji.
+
+<Figure
+  src="img/dream/length-seam.webp"
+  alt="Mchoro wa ukanda wa kurefusha wa urefu: hesabu mistari ya vistari kwenye ukanda ulio kati ya kipande cha mbele na kipande cha nyuma cha bustani, ukate, kisha ubandike ukanda wa upana katikati ya bustani na uunganishe tena kwa utepe"
+/>
+<Figure
+  src="img/dream/width-seam.webp"
+  alt="Mchoro wa ukanda wa kurefusha wa upana: hesabu mistari ya vistari kwenye ukanda unaofuata urefu wa bustani, ukate kwa ukubwa unaotakiwa, kisha uongeze ukanda wa upana katikati na uunganishe pande mbili tena kwa utepe"
+/>
+
+<Callout kind="auto">
+  Zana ya kupanga inavinyoosha vipande ulivyochagua hadi vipimo kamili vya kiwanja chako yenyewe — hakuna haja ya
+  kukata wala kubandika kwa utepe.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={14} />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={15} label="Ukanda wa kurefusha wa urefu (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={16} label="Ukanda wa kurefusha wa upana (PDF)" />
+
+## Ongeza hali zilizopo {/* #add-existing-conditions */}
+
+Hamisha hali zilizopo kutoka kwenye ramani ya eneo uliyochora katika kitabu cha kazi cha Kagua hadi kwenye mchoro wa
+muundo wako. Weka michoro hiyo miwili kando kwa kando na unakili kila kitu — miraba ni ileile, kwa hiyo hesabu tu
+visanduku ili ujue vitu vinaangukia wapi. Kama mti uliopo unaangukia kwenye eneo la kupanda, vizuri sana; kama
+unaangukia kwenye kokoto, hilo pia ni sawa (hatua ya Jenga inaeleza jinsi ya kulishughulikia). Kama hali zilizopo
+zinagongana na muundo wako — kwa mfano mti juu ya benchi — unaweza kuondoa benchi kwa kulikata kwa mstari, au kusogeza
+kipande kizima cha mbele au cha nyuma. Muundo ni kiolezo: hauwezi kubadilika sana, lakini unaweza kuongeza au kuondoa
+vitu wakati wowote ili ukufae.
+
+<Callout kind="auto">
+  Miti iliyopo, mabomba ya maji ya paa, maeneo yanayotuama maji, mabomba ya zimamoto na nyaya za juu ulizoweka alama
+  katika Kagua tayari zimewekwa kwenye zana ya kupanga — buruta chochote kilicho mahali pasipo sahihi.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={17} />
+
+## Hesabu vipande vyako na gharama {/* #count-your-pieces-cost */}
+
+Ni wakati wa kuhesabu vitu vilivyo kwenye ramani ya eneo lako. Kila kipande cha mbele, cha nyuma na cha fremu kina
+hesabu ya vitu vyake vyote, ili uweze kukokotoa gharama na kuagiza vifaa. Kitabu cha kazi kinauliza: upande mrefu wa
+kiwanja chako (urefu) una futi ngapi? Upande mfupi (upana)? Una miraba mingapi ya kijani ya kupanda? Na, ukitumia
+ufunguo ulio kwenye vipande vyako vya bustani, una samani ngapi za kila aina?
+
+<CostEstimator />
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — the order list's "fire hydrant opener" items; facts checked 2026-10-04 on water.phila.gov. */}
+<Callout kind="site" title="Dokezo kutoka tovuti hii, si kutoka Park in a Truck: mabomba ya maji ya zimamoto">
+  Orodha ya kuagiza inapendekeza kifaa cha kufungulia bomba la maji la zimamoto (hydrant). Kufungua bomba la zimamoto
+  huko Philadelphia kunahitaji [kibali cha hydrant cha Philadelphia Water Department ↗](https://water.phila.gov/development/connections/hydrant-permits/)
+  (kwa Kiingereza) na kifaa kilichoidhinishwa cha kuzuia maji kurudi nyuma (backflow preventer) (bustani za jamii
+  hazilipii ada ya kibali). [Mwongozo wa PWD wa bustani za mjini ↗](https://water.phila.gov/urban-garden-guide/)
+  (kwa Kiingereza) unaorodhesha njia nyingine za kupata maji kwa bustani.
+</Callout>
+
+<Download href="downloads/templates/cost-estimator.xlsx" label="Kikadiriaji cha gharama" note="Jedwali halisi (spreadsheet) — tengeneza nakala yako ili uweze kulihariri" />
+
+<details>
+  <summary>Unahesabu kwenye karatasi? Andika jumla zako hapa</summary>
+  <Field id="dream.diy-length" label="Urefu (upande mrefu wa kiwanja chako)" type="number" unit="futi" />
+  <Field id="dream.diy-width" label="Upana (upande mfupi wa kiwanja chako)" type="number" unit="futi" />
+  <Field id="dream.diy-planting-squares" label="Miraba ya kupanda (miraba ya kijani kwenye mchoro wako)" type="number" />
+  <p class="muted">Hesabu samani kwa kutumia ufunguo uliochapishwa kwenye vipande vyako vya bustani, kisha uandike kila kitu kwenye jedwali la kikadiriaji cha gharama lililo hapo juu.</p>
+</details>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={18} />
+
+## Hesabu na uchague mimea yako {/* #count-choose-your-plants */}
+
+Kila mahali penye rangi ya kijani kwenye mchoro wako ni eneo la kupanda, na kila alama ya mmea ina ukubwa wake. Hesabu
+mimea ya kudumu, vichaka, miti midogo na miti mikubwa katika muundo wako — ya jua na ya kivuli kando kando kwa mimea ya
+kudumu na vichaka. Utachagua aina halisi za mimea baadaye.
+
+{/* site-added: the six counts show your design's numbers (project.extra.tally) until you type your own; the plant picker below uses the same numbers */}
+<Field id="dream.perennials-sun" label="Mimea ya kudumu — miraba ya kijani yenye jua" type="number" unit="miraba" auto="extra.tally.plantingSquares.sun" autoNote="✓ Imejazwa kutoka kwenye muundo wako — andika ili kuibadilisha" />
+<Field id="dream.perennials-shade" label="Mimea ya kudumu — miraba ya kijani yenye kivuli" type="number" unit="miraba" auto="extra.tally.plantingSquares.shade" autoNote="✓ Imejazwa kutoka kwenye muundo wako — andika ili kuibadilisha" />
+<Field id="dream.shrubs-sun" label="Vichaka — jua" type="number" auto="extra.tally.shrubs.sun" autoNote="✓ Imejazwa kutoka kwenye muundo wako — andika ili kuibadilisha" />
+<Field id="dream.shrubs-shade" label="Vichaka — kivuli" type="number" auto="extra.tally.shrubs.shade" autoNote="✓ Imejazwa kutoka kwenye muundo wako — andika ili kuibadilisha" />
+<Field id="dream.small-trees" label="Miti midogo" type="number" auto="extra.tally.smallTrees" autoNote="✓ Imejazwa kutoka kwenye muundo wako — andika ili kuibadilisha" />
+<Field id="dream.large-trees" label="Miti mikubwa" type="number" auto="extra.tally.largeTrees" autoNote="✓ Imejazwa kutoka kwenye muundo wako — andika ili kuibadilisha" />
+
+<PlantPicker />
+
+Kila mtindo una orodha yake ya mimea inayopendekezwa — ni mahali pa kuanzia, si lazima. Kama unachanganya mitindo
+miwili, chagua mimea kutoka kwenye orodha zote mbili.
+
+<div class="plant-list-links">
+  <Download href="https://docs.google.com/spreadsheets/d/1QsoQ6KYBT5tVrlAtTxoD5q0yP2YS5Wyt/copy" label="Orodha ya mimea: Chakula" />
+  <Download href="https://docs.google.com/spreadsheets/d/1RhCdaiCLbEJD8KXiX7uJMD7xJFRNCERy/copy" label="Orodha ya mimea: Utulivu" />
+  <Download href="https://docs.google.com/spreadsheets/d/1eEVK3dpBy1-xBFDaACIOTMB2Dd9COGvz/copy" label="Orodha ya mimea: Mazingira asilia" />
+  <Download href="https://docs.google.com/spreadsheets/d/1oy_aLqP7RoBcHngZ_uFMl_YBvzJ271MR/copy" label="Orodha ya mimea: Matukio" />
+</div>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={20} label="Chagua mimea yako (PDF)" />
+
+## Unganisha vitu {/* #assemble */}
+
+Sasa ni wakati wa kuona jinsi vitu vya bustani vinavyojengwa. Baadhi ya vitu vina maelekezo yao maalum ya kuunganisha
+hatua kwa hatua, kama kitabu cha maelekezo cha Ikea; vingine vinakuja na muundo unaopendekezwa kutoka kwa maelekezo
+yaliyokwisha jaribiwa; na vingine ni bidhaa za kununua tu zikiwa tayari. Bofya kitu chochote hapa chini — kama kiko
+kwenye bustani yako, hivi ndivyo unavyokijenga (au kukinunua).
+
+<div class="elements-grid">
+  {Object.values(ELEMENTS)
+    .filter((el) => !NOT_BUILT.has(el.id) && ASSEMBLE_ICONS.has(ICON_FALLBACK[el.id] ?? el.id))
+    .map((el) => {
+      const icon = ICON_FALLBACK[el.id] ?? el.id;
+      const href = el.guide ? u(`build/${el.guide}/`) : el.link;
+      const external = !el.guide;
+      return (
+        <a class="element-card" href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
+          <img src={u(`img/dream/elements/${icon}.webp`)} alt="" width="96" height="72" loading="lazy" />
+          <span>{ELEMENT_SW[el.id] ?? el.name}</span>
+        </a>
+      );
+    })}
+</div>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={19} />
+
+## Uko tayari? {/* #are-you-ready */}
+
+Hongera kwa kumaliza kitabu cha kazi cha Ota ndoto! Weka alama kwenye kila hatua iliyo hapa chini kabla ya kuendelea na
+Jenga.
+
+<Checklist
+  id="dream.ready-checklist"
+  items={[
+    { value: 'theme-review', label: 'Kupitia miundo ya mitindo', hint: 'Umepitia mitindo na kuamua upi unakidhi mahitaji yako vizuri zaidi' },
+    { value: 'custom-design', label: 'Muundo wako maalum', hint: 'Umecheza na vipande vya bustani ili kuchagua muundo wa mwisho wa bustani' },
+    { value: 'custom-size', label: 'Ukubwa wako maalum', hint: 'Umerekebisha ukubwa wa bustani yako ilingane na vipimo vya kiwanja chako na vitu vilivyopo' },
+    { value: 'cost-estimate', label: 'Makadirio ya gharama', hint: 'Umehesabu vipande vyako na kuviandika kwenye kikadiriaji cha gharama' },
+    { value: 'plant-choice', label: 'Uchaguzi wa mimea', hint: 'Umechagua mimea kulingana na hesabu zako za mimea' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={20} label="Uko tayari? (PDF)" />
+
+<style>
+  {`
+  .theme-reqs { list-style: none; padding: 0; margin: 0.8em 0 0; font-size: 0.92rem; color: var(--ink-2); display: grid; gap: 0.2em; }
+  .size-table, .pieces-table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.95rem; }
+  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: left; }
+  .elements-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; margin: 1.2em 0; }
+  .element-card { display: flex; flex-direction: column; align-items: center; gap: 0.4em; text-align: center; padding: 10px; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); font-size: 0.85rem; background: #fff; }
+  .element-card:hover { border-color: var(--cyan); box-shadow: var(--shadow); }
+  .element-card img { max-width: 96px; max-height: 72px; width: auto; }
+  .plant-list-links { display: flex; flex-wrap: wrap; gap: 10px; }
+  `}
+</style>

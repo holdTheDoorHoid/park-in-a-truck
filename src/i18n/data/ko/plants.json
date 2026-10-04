@@ -1,0 +1,457 @@
+{
+  "edible-small-tree-both-serviceberry": {
+    "common": "채진목(serviceberry)",
+    "notes": "먹는 부분: 열매",
+    "matureSize": "20–30피트"
+  },
+  "edible-small-tree-both-redbud": {
+    "common": "캐나다박태기(redbud)",
+    "notes": "먹는 부분: 꽃; 품종: Forest Pansy",
+    "matureSize": "20–25피트"
+  },
+  "edible-small-tree-both-apple": {
+    "common": "사과나무",
+    "notes": "먹는 부분: 열매; 품종: Enterprise",
+    "matureSize": "10–20피트"
+  },
+  "edible-small-tree-both-peach": {
+    "common": "복숭아나무",
+    "notes": "먹는 부분: 열매; 품종: Contender",
+    "matureSize": "10–20피트"
+  },
+  "edible-small-tree-both-pear": {
+    "common": "배나무",
+    "notes": "먹는 부분: 열매; 품종: Golden Russet bosc",
+    "matureSize": "10–20피트"
+  },
+  "edible-small-tree-both-plum": {
+    "common": "자두나무",
+    "notes": "먹는 부분: 열매; 품종: Methly",
+    "matureSize": "10–20피트"
+  },
+  "edible-shrub-sun-red-currant": {
+    "common": "붉은까치밥나무(red currant)",
+    "notes": "먹는 부분: 열매; 품종: Red Lake",
+    "matureSize": "3–4피트"
+  },
+  "edible-shrub-sun-gooseberry": {
+    "common": "구스베리(gooseberry)",
+    "notes": "먹는 부분: 열매; 품종: Black Velvet",
+    "matureSize": "3–4피트"
+  },
+  "edible-shrub-sun-pasture-rose": {
+    "common": "캐롤라이나장미(pasture rose)",
+    "notes": "먹는 부분: 장미 열매(로즈힙), 꽃잎",
+    "matureSize": "3–4피트"
+  },
+  "edible-shrub-sun-low-bush-blueberry": {
+    "common": "로우부시 블루베리(lowbush blueberry)",
+    "notes": "먹는 부분: 열매; 품종: Chippewa",
+    "matureSize": "2–3피트"
+  },
+  "edible-perennial-sun-strawberries": {
+    "common": "딸기",
+    "notes": "먹는 부분: 열매; 품종: Sweet Kiss",
+    "matureSize": "6인치"
+  },
+  "edible-perennial-sun-virginia-strawberry": {
+    "common": "버지니아딸기(Virginia strawberry)",
+    "notes": "먹는 부분: 꽃",
+    "matureSize": "1–2피트"
+  },
+  "edible-perennial-sun-rudbeckia": {
+    "common": "루드베키아(rudbeckia)"
+  },
+  "edible-perennial-sun-prairie-dropseed": {
+    "common": "프레리쥐꼬리새(prairie dropseed)"
+  },
+  "edible-perennial-sun-hairy-field-aster": {
+    "common": "털아스터(hairy field aster)"
+  },
+  "edible-perennial-sun-sedum": {
+    "common": "세덤(sedum)",
+    "notes": "품종: Larinem Park"
+  },
+  "edible-shrub-shade-red-twig-dogwood": {
+    "common": "붉은말채나무(red-twig dogwood)",
+    "notes": "품종: Arctic Fire"
+  },
+  "edible-shrub-shade-arrowwood-viburnum": {
+    "common": "톱니가막살나무(arrowwood viburnum)"
+  },
+  "edible-shrub-shade-lowbush-blueberry": {
+    "common": "로우부시 블루베리(lowbush blueberry)"
+  },
+  "edible-shrub-shade-mountain-laurel": {
+    "common": "칼미아(mountain laurel)",
+    "notes": "품종: Pink Charm"
+  },
+  "edible-perennial-shade-lady-fern": {
+    "common": "서양개고사리(lady fern)"
+  },
+  "edible-perennial-shade-wild-geranium": {
+    "common": "야생 제라늄(wild geranium)"
+  },
+  "edible-perennial-shade-cinnamon-fern": {
+    "common": "꿩고비(cinnamon fern)"
+  },
+  "edible-perennial-shade-jacobs-ladder": {
+    "common": "기는꽃고비(Jacob's ladder)"
+  },
+  "edible-perennial-shade-pennsylvania-sedge": {
+    "common": "펜실베이니아사초(Pennsylvania sedge)"
+  },
+  "edible-perennial-shade-hayscented-fern": {
+    "common": "건초향잔고사리(hay-scented fern)"
+  },
+  "edible-perennial-shade-coral-bells": {
+    "common": "휴케라(coral bells)"
+  },
+  "sanctuary-large-tree-both-burr-oak": {
+    "common": "큰도토리참나무(bur oak)",
+    "notes": "감각 특징: 아름다운 가지 모양",
+    "matureSize": "50–70피트"
+  },
+  "sanctuary-large-tree-both-sweet-birch": {
+    "common": "향자작나무(sweet birch)",
+    "notes": "감각 특징: 매혹적인 꽃 / 향기로움",
+    "matureSize": "30–50피트"
+  },
+  "sanctuary-small-tree-sun-washington-hawthorne": {
+    "common": "워싱턴산사나무(Washington hawthorn)",
+    "notes": "감각 특징: 선명한 빨간 열매",
+    "matureSize": "15–20피트"
+  },
+  "sanctuary-small-tree-sun-sourwood": {
+    "common": "사워우드(sourwood)",
+    "notes": "감각 특징: 이른 단풍",
+    "matureSize": "15–20피트"
+  },
+  "sanctuary-small-tree-sun-fringetree": {
+    "common": "미국이팝나무(fringetree)",
+    "notes": "감각 특징: 6월에 꽃이 펴요 — 향기로운 꽃",
+    "matureSize": "15–20피트"
+  },
+  "sanctuary-shrub-sun-summersweet": {
+    "common": "미국매화오리(summersweet)",
+    "notes": "감각 특징: 향기로운 꽃",
+    "matureSize": "3–4피트"
+  },
+  "sanctuary-shrub-sun-sweetfern": {
+    "common": "스위트펀(sweetfern)",
+    "notes": "감각 특징: 향기로운 잎",
+    "matureSize": "1–2피트"
+  },
+  "sanctuary-shrub-sun-sweetspire": {
+    "common": "이테아(sweetspire)",
+    "notes": "감각 특징: 향기로운 꽃",
+    "matureSize": "3–4피트"
+  },
+  "sanctuary-shrub-sun-swamp-azalea": {
+    "common": "습지철쭉(swamp azalea)",
+    "notes": "감각 특징: 향기로운 꽃",
+    "matureSize": "3–4피트"
+  },
+  "sanctuary-perennial-sun-blue-false-indigo": {
+    "common": "밥티시아(blue false indigo)",
+    "notes": "감각 특징: 달그락거리는 씨앗 꼬투리",
+    "matureSize": "2–3피트"
+  },
+  "sanctuary-perennial-sun-wild-bergamot": {
+    "common": "야생 베르가못(wild bergamot)",
+    "notes": "감각 특징: 향기로운 잎",
+    "matureSize": "2–3피트"
+  },
+  "sanctuary-perennial-sun-sideoats-grama": {
+    "common": "사이드오츠그라마(sideoats grama)",
+    "notes": "감각 특징: 마음을 달래 주는 흔들림 / 소리",
+    "matureSize": "2–3피트"
+  },
+  "sanctuary-perennial-sun-prairie-dropseed": {
+    "common": "프레리쥐꼬리새(prairie dropseed)",
+    "notes": "감각 특징: 향기로운 잎 / 부드러운 질감",
+    "matureSize": "1–2피트"
+  },
+  "sanctuary-perennial-sun-aster": {
+    "common": "뉴잉글랜드아스터(aster)",
+    "notes": "감각 특징: 가을에 꽃이 펴요",
+    "matureSize": "2–3피트"
+  },
+  "sanctuary-perennial-sun-moonbeam-tickseed": {
+    "common": "코레옵시스 'Moonbeam'(Moonbeam tickseed)",
+    "notes": "감각 특징: 꽃이 오래가요",
+    "matureSize": "2–3피트"
+  },
+  "sanctuary-perennial-sun-blazing-star": {
+    "common": "리아트리스(blazing star)",
+    "notes": "감각 특징: 꽃가루 매개자를 불러들여요",
+    "matureSize": "2–3피트"
+  },
+  "sanctuary-perennial-sun-tufted-hairgrass": {
+    "common": "좀새풀(tufted hairgrass)",
+    "notes": "감각 특징: 마음을 달래 주는 흔들림",
+    "matureSize": "1–2피트"
+  },
+  "sanctuary-small-tree-shade-american-hornbeam": {
+    "common": "미국서어나무(American hornbeam)",
+    "notes": "감각 특징: 근육 같은 나무껍질",
+    "matureSize": "15–20피트"
+  },
+  "sanctuary-small-tree-shade-alternate-leaf-dogwood": {
+    "common": "미국층층나무(alternate-leaf dogwood)",
+    "notes": "감각 특징: 향기로운 꽃",
+    "matureSize": "15–20피트"
+  },
+  "sanctuary-small-tree-shade-redbud": {
+    "common": "캐나다박태기(redbud)",
+    "notes": "감각 특징: 이른 봄에 꽃이 펴요",
+    "matureSize": "15–20피트"
+  },
+  "sanctuary-small-tree-shade-witchhazel": {
+    "common": "미국풍년화(witch hazel)",
+    "notes": "감각 특징: 독특하고 향기로운 꽃",
+    "matureSize": "10–15피트"
+  },
+  "sanctuary-shrub-shade-mountain-laurel": {
+    "common": "칼미아(mountain laurel)",
+    "notes": "감각 특징: 늘푸른잎",
+    "matureSize": "2–3피트"
+  },
+  "sanctuary-shrub-shade-witch-alder": {
+    "common": "포더길라(witch alder)",
+    "notes": "감각 특징: 일찍 꽃이 펴요",
+    "matureSize": "3–4피트"
+  },
+  "sanctuary-shrub-shade-new-jersey-tea": {
+    "common": "세아노투스(New Jersey tea)",
+    "notes": "감각 특징: 부드러운 질감",
+    "matureSize": "2–3피트"
+  },
+  "sanctuary-shrub-shade-virginia-sweetspire": {
+    "common": "버지니아이테아(Virginia sweetspire)",
+    "notes": "감각 특징: 아름다운 꽃과 단풍",
+    "matureSize": "1–2피트"
+  },
+  "sanctuary-perennial-shade-lady-fern": {
+    "common": "서양개고사리(lady fern)",
+    "notes": "감각 특징: 부드러운 질감",
+    "matureSize": "2–3피트"
+  },
+  "sanctuary-perennial-shade-pennsylvania-sedge": {
+    "common": "펜실베이니아사초(Pennsylvania sedge)",
+    "notes": "감각 특징: 부드러운 질감",
+    "matureSize": "6인치–1피트"
+  },
+  "sanctuary-perennial-shade-cinnamon-fern": {
+    "common": "꿩고비(cinnamon fern)",
+    "notes": "감각 특징: 부드러운 질감",
+    "matureSize": "2–3피트"
+  },
+  "sanctuary-perennial-shade-fragrant-golden-rod": {
+    "common": "향기미역취(fragrant goldenrod)",
+    "notes": "감각 특징: 향기로운 잎",
+    "matureSize": "2–3피트"
+  },
+  "sanctuary-perennial-shade-shorts-aster": {
+    "common": "쇼츠아스터(Short's aster)",
+    "notes": "감각 특징: 늦게 꽃이 펴요",
+    "matureSize": "3피트"
+  },
+  "sanctuary-perennial-shade-columbine": {
+    "common": "캐나다매발톱(columbine)",
+    "notes": "감각 특징: 일찍 꽃이 펴요",
+    "matureSize": "2–3피트"
+  },
+  "sanctuary-perennial-shade-celadine-poppy": {
+    "common": "숲양귀비(celandine poppy)",
+    "notes": "감각 특징: 일찍 꽃이 펴요",
+    "matureSize": "1–2피트"
+  },
+  "nature-large-tree-both-shingle-oak": {
+    "common": "싱글참나무(shingle oak)"
+  },
+  "nature-large-tree-both-blackgum": {
+    "common": "니사나무(blackgum)"
+  },
+  "nature-large-tree-both-basswood": {
+    "common": "미국피나무(basswood)"
+  },
+  "nature-small-tree-both-american-hornbeam": {
+    "common": "미국서어나무(American hornbeam)"
+  },
+  "nature-small-tree-both-serviceberry": {
+    "common": "채진목(serviceberry)"
+  },
+  "nature-small-tree-both-pagoda-dogwood": {
+    "common": "미국층층나무(pagoda dogwood)"
+  },
+  "nature-small-tree-both-witchhazel": {
+    "common": "미국풍년화(witch hazel)"
+  },
+  "nature-small-tree-both-blackhaw-viburnum": {
+    "common": "자두잎가막살나무(blackhaw viburnum)"
+  },
+  "nature-shrub-sun-dwarf-summersweet": {
+    "common": "왜성 미국매화오리(dwarf summersweet)"
+  },
+  "nature-shrub-sun-sweetfern": {
+    "common": "스위트펀(sweetfern)"
+  },
+  "nature-shrub-sun-sweetspire": {
+    "common": "이테아(sweetspire)",
+    "notes": "품종: Little Henry"
+  },
+  "nature-shrub-sun-eastern-ninebark": {
+    "common": "양국수나무(eastern ninebark)"
+  },
+  "nature-shrub-sun-swamp-azalea": {
+    "common": "습지철쭉(swamp azalea)"
+  },
+  "nature-perennial-sun-bluestar": {
+    "common": "암소니아(bluestar)",
+    "notes": "품종: Storm Cloud"
+  },
+  "nature-perennial-sun-sideoats-grama": {
+    "common": "사이드오츠그라마(sideoats grama)"
+  },
+  "nature-perennial-sun-wild-bergamot": {
+    "common": "야생 베르가못(wild bergamot)"
+  },
+  "nature-perennial-sun-narrow-leaf-mountainmint": {
+    "common": "가는잎마운틴민트(narrow-leaf mountain mint)"
+  },
+  "nature-perennial-sun-rudbeckia": {
+    "common": "루드베키아(rudbeckia)"
+  },
+  "nature-perennial-sun-prairie-dropseed": {
+    "common": "프레리쥐꼬리새(prairie dropseed)"
+  },
+  "nature-perennial-sun-hairy-field-aster": {
+    "common": "털아스터(hairy field aster)"
+  },
+  "nature-perennial-sun-sedum": {
+    "common": "세덤(sedum)",
+    "notes": "품종: Larinem Park"
+  },
+  "nature-shrub-shade-red-twig-dogwood": {
+    "common": "붉은말채나무(red-twig dogwood)",
+    "notes": "품종: Arctic Fire"
+  },
+  "nature-shrub-shade-arrowwood-viburnum": {
+    "common": "톱니가막살나무(arrowwood viburnum)"
+  },
+  "nature-shrub-shade-lowbush-blueberry": {
+    "common": "로우부시 블루베리(lowbush blueberry)"
+  },
+  "nature-shrub-shade-mountain-laurel": {
+    "common": "칼미아(mountain laurel)",
+    "notes": "품종: Pink Charm"
+  },
+  "nature-perennial-shade-lady-fern": {
+    "common": "서양개고사리(lady fern)"
+  },
+  "nature-perennial-shade-wild-geranium": {
+    "common": "야생 제라늄(wild geranium)"
+  },
+  "nature-perennial-shade-cinnamon-fern": {
+    "common": "꿩고비(cinnamon fern)"
+  },
+  "nature-perennial-shade-jacobs-ladder": {
+    "common": "기는꽃고비(Jacob's ladder)"
+  },
+  "nature-perennial-shade-pennsylvania-sedge": {
+    "common": "펜실베이니아사초(Pennsylvania sedge)"
+  },
+  "nature-perennial-shade-hayscented-fern": {
+    "common": "건초향잔고사리(hay-scented fern)"
+  },
+  "nature-perennial-shade-coral-bells": {
+    "common": "휴케라(coral bells)"
+  },
+  "event-large-tree-both-scarlet-oak": {
+    "common": "주홍참나무(scarlet oak)",
+    "matureSize": "40–50피트"
+  },
+  "event-large-tree-both-american-elm": {
+    "common": "미국느릅나무(American elm)",
+    "notes": "품종: Princeton",
+    "matureSize": "50–70피트"
+  },
+  "event-small-tree-both-serviceberry": {
+    "common": "채진목(serviceberry)",
+    "matureSize": "15–20피트"
+  },
+  "event-small-tree-both-alternate-leaf-dogwood": {
+    "common": "미국층층나무(alternate-leaf dogwood)",
+    "matureSize": "15–20피트"
+  },
+  "event-small-tree-both-american-hophornbeam": {
+    "common": "미국새우나무(American hophornbeam)",
+    "matureSize": "15–20피트"
+  },
+  "event-small-tree-both-sassafras": {
+    "common": "사사프라스(sassafras)",
+    "matureSize": "25–35피트"
+  },
+  "event-small-tree-both-redbud": {
+    "common": "캐나다박태기(redbud)",
+    "notes": "품종: Lavender twist",
+    "matureSize": "15–20피트"
+  },
+  "event-perennial-sun-butterflyweed": {
+    "common": "아스클레피아스(butterfly weed)",
+    "matureSize": "2–3피트"
+  },
+  "event-perennial-sun-blue-false-indigo": {
+    "common": "밥티시아(blue false indigo)",
+    "matureSize": "2–3피트"
+  },
+  "event-perennial-sun-plains-coreopsis": {
+    "common": "코레옵시스(plains coreopsis)",
+    "matureSize": "1–2피트"
+  },
+  "event-perennial-sun-love-grass": {
+    "common": "러브그라스(love grass)",
+    "matureSize": "2–3피트"
+  },
+  "event-perennial-sun-black-eyed-susan": {
+    "common": "루드베키아(black-eyed Susan)",
+    "matureSize": "2–3피트"
+  },
+  "event-perennial-sun-wild-pinks": {
+    "common": "캐롤라이나실레네(wild pink)",
+    "matureSize": "1–2피트"
+  },
+  "event-perennial-sun-fragrant-goldenrod": {
+    "common": "향기미역취(fragrant goldenrod)",
+    "matureSize": "1–2피트"
+  },
+  "event-perennial-sun-shorts-aster": {
+    "common": "쇼츠아스터(Short's aster)",
+    "matureSize": "2–3피트"
+  },
+  "event-perennial-shade-prairie-onion": {
+    "common": "초원부추(prairie onion)",
+    "matureSize": "1–2피트"
+  },
+  "event-perennial-shade-lady-fern": {
+    "common": "서양개고사리(lady fern)",
+    "matureSize": "1–2피트"
+  },
+  "event-perennial-shade-bunny-blue-sedge": {
+    "common": "사초 'Bunny Blue'(Bunny Blue sedge)",
+    "matureSize": "6–12인치"
+  },
+  "event-perennial-shade-allen-bush-green-and-gold": {
+    "common": "크리소고눔 'Allen Bush'(green and gold)",
+    "matureSize": "6–12인치"
+  },
+  "event-perennial-shade-wood-fern": {
+    "common": "미국관중(wood fern)",
+    "matureSize": "1–2피트"
+  },
+  "event-perennial-shade-wild-geranium": {
+    "common": "야생 제라늄(wild geranium)",
+    "matureSize": "1–2피트"
+  }
+}

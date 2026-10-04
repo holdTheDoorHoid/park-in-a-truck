@@ -1,0 +1,131 @@
+{
+  "title": "Benchi ya 4' (bila egemeo)",
+  "summary": "Benchi ya futi 4 isiyo na egemeo, yenye kiti cha mbao za vipande, iliyojengwa kwa mbao za 2x4 juu ya fremu rahisi ya miguu iliyo wazi.",
+  "materials": [
+    {
+      "item": "Mbao za 2x4 — mwerezi mwekundu wa magharibi (western red cedar), Douglas fir, au msonobari uliotiwa dawa kwa shinikizo (pressure-treated)",
+      "notes": "Mwerezi (cedar): kwa asili hustahimili hali ya hewa na kuoza, una rangi nzuri nyekundu, ni rahisi kufanyia kazi, hauhitaji dawa ya kuziba (hubadilika kuwa kijivu kwa hali ya hewa); ni ghali zaidi — omba daraja la 'knotty' (STK), ambalo ni rahisi zaidi kuliko daraja safi (clear). Douglas fir: hustahimili kuoza kwa kiasi, ni imara na rahisi kufanyia kazi, ni nafuu kuliko mwerezi, lakini haudumu muda mrefu kama huo — ni chaguo zuri kama unapanga kupaka rangi. Mbao zilizotiwa dawa kwa shinikizo (pressure-treated): hustahimili kuoza na ndizo nafuu zaidi, lakini ubora wa mbao mara nyingi ni duni na haulingani, zinahitaji miezi 1–4 ya kukauka hewani kabla ya kupaka rangi, na hazipendekezwi mahali ambapo chakula kinalimwa. Agiza mbao asilimia 5–10 zaidi ya orodha ya vipande vya kukata, ili kukabiliana na ubora usio sawa wa mbao na mikato isiyo sahihi."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Skrubu za mbao za nje zinazojitoboa"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Juu ya benchi"
+    },
+    {
+      "notes": "Chini ya benchi"
+    },
+    {
+      "notes": "Upande wa benchi"
+    },
+    {
+      "notes": "Upande wa benchi"
+    },
+    {
+      "notes": "Upande wa benchi"
+    },
+    {
+      "notes": "Upande wa benchi"
+    }
+  ],
+  "tools": [
+    "Msumeno wa pembe (miter saw) wa 10\" au 12\" (au msumeno wa mkono unaofaa)",
+    "Bisibisi ya umeme ya kugonga (impact driver) kwa skrubu za mbao za nje zinazojitoboa",
+    "Drili yenye kitobo cha 1/8\" kwa kutoboa matundu mapema",
+    "Sandpaper (karatasi ya kusugua), grit 120",
+    "Skwea ya seremala",
+    "Miwani ya kinga + glavu"
+  ],
+  "steps": [
+    {
+      "title": "Weka alama, andika majina na ukate mbao",
+      "text": "Weka alama, andika majina na ukate mbao kwa mpangilio wa B-1 hadi B-7 kwa urefu ulio kwenye orodha ya vipande vya kukata.\n\nKagua kila kipande cha mbao kuona kasoro kama nyufa, kupinda au kurandwa vibaya, na utupe sehemu hizo za mbao.",
+      "imageAlts": [
+        "Mchoro wa pembe tatu wa vipande vilivyokatwa vya benchi ya 4', B-1 hadi B-6, vikiwa na urefu wake, kuanzia ubao wa juu wa 48\" hadi vitalu vidogo vya 8.5\"."
+      ],
+      "tips": [
+        "Andika jina la kila kipande cha mbao unapokipima na kukikata.",
+        "Weka rundo tofauti la mbao kwa kila kipande, B-1 hadi B-7.",
+        "Kusugua kidogo kingo zilizokatwa kunaondoa vibanzi na kunasaidia kuunganisha.",
+        "Unajenga benchi zaidi ya moja? Kizuizi (stop block) kwenye msumeno wako wa pembe kinafanya kila kipande kiwe na urefu uleule."
+      ]
+    },
+    {
+      "title": "Jenga fremu mbili za pembeni",
+      "text": "Weka vipande viwili vya B-5 juu ya sehemu iliyo sawa. Weka vipande viwili vya B-4 kila upande wa vipande vya B-5, ukilinganisha kingo kama inavyoonyeshwa. Rudia ili kujenga fremu ya pili inayofanana.",
+      "imageAlts": [
+        "Mchoro unaoonyesha mbao mbili za B-4 na mbili za B-5 zilizounganishwa kuwa fremu ya mraba ya pembeni."
+      ],
+      "tips": [
+        "Tumia skwea ya seremala kuhakikisha kila pembe ni pembe mraba (90°) — kama iko mbali sana, kagua tena urefu wa mbao zako.",
+        "Kujenga kiolezo (jig) cha nyuzi 90 kunaweza kusaidia kuunganisha katika hatua hii na inayofuata."
+      ]
+    },
+    {
+      "title": "Ongeza mbao za kiti kwenye kila fremu ya pembeni",
+      "text": "Weka kipande kimoja cha B-3 na vipande vinne vya B-6 juu ya fremu, kama inavyoonyeshwa, ukiacha nafasi ya 1.5\" kati ya vipande viwili vya B-6 (tumia kipande cha ziada cha 2x4 kilichosimamishwa kama kitenganishi).\n\nTumia kiolezo cha kutoboa mapema kilicho mwishoni mwa kijitabu kutoboa matundu ya skrubu mapema, kisha funga mbao kwenye vipande vya B-5 na B-4 kwa bisibisi ya kugonga na skrubu 30 za mbao za nje zinazojitoboa za 2.5\".\n\nRudia kwenye mguu mwingine.",
+      "imageAlts": [
+        "Mchoro wa mbao za B-6 na B-3 zikifungwa kwa skrubu juu ya fremu ya pembeni, ukionyesha nafasi ya kitenganishi ya 1.5\"."
+      ]
+    },
+    {
+      "title": "Unganisha fremu mbili za pembeni",
+      "text": "Weka kipande kimoja cha B-2 kwenye nafasi iliyo chini ya fremu mbili zilizojengwa katika hatua ya 3.\n\nFunga mbao ya B-2 upande wa kushoto na wa kulia kwenye vipande vya B-5 kwa bisibisi ya kugonga na skrubu 4 za mbao za nje zinazojitoboa za 2.5\".",
+      "imageAlts": [
+        "Mchoro wa ubao wa B-2 ukiunganisha fremu mbili za pembeni chini, ukionyesha pembe ya nyuzi 90 kwenye kona."
+      ],
+      "tips": [
+        "Hakikisha upande unabaki kwenye nyuzi 90 kwa kutumia skwea ya seremala."
+      ]
+    },
+    {
+      "title": "Ongeza sehemu ya juu ya kiti",
+      "text": "Weka vipande viwili vya B-1 juu ya fremu iliyojengwa katika hatua ya 4, ukilinganisha kingo zote.\n\nToboa matundu ya skrubu mapema, na ufunge mbao ya B-1 kwa bisibisi ya kugonga na skrubu 12 za mbao za nje zinazojitoboa za 2.5\".",
+      "imageAlts": [
+        "Mchoro wa mbao mbili za kwanza za juu za B-1 zikifungwa kwa skrubu kwenye fremu ya benchi."
+      ],
+      "tips": [
+        "Kuweka upande kwenye nyuzi 90 na kingo zote zikiwa zimelingana kutasaidia benchi kubaki mraba."
+      ]
+    },
+    {
+      "title": "Maliza sehemu ya juu ya kiti na usugue",
+      "text": "Panga vipande vingine vitatu vya katikati vya B-1 vikiwa na nafasi sawa kati ya mbao mbili za pembeni ulizoweka sasa hivi.\n\nToboa matundu ya skrubu mapema, na ufunge mbao ya B-1 kwa bisibisi ya kugonga na skrubu 12 za mbao za nje zinazojitoboa za 2.5\".\n\nSugua kidogo kingo zilizo ngumu za benchi ya 4'.",
+      "imageAlts": [
+        "Mchoro wa mbao zilizobaki za juu za B-1 zikipangwa kwa nafasi sawa na kufungwa kwa skrubu juu ya fremu ya benchi."
+      ]
+    },
+    {
+      "title": "Kiolezo cha kutoboa matundu mapema",
+      "text": "Kata kiolezo cha kutoboa matundu mapema kufuata mistari ya nukta. Unapotoboa, linganisha ukingo wa kiolezo na ukingo wa nje wa mbao kabla ya kutoboa.\n\nSi matundu yote yanatumika — si mipangilio yote inayotumia kiolezo. Tumia hatua za kuunganisha zilizo hapo juu kama mwongozo wako wa matundu. Weka matundu yote umbali wa upana wa kidole gumba hivi kutoka ukingoni (takriban 1\"), hata matundu yasiyotumia kiolezo hiki.",
+      "imageAlts": [
+        "Kiolezo cha kuchapisha cha kutoboa matundu mapema chenye nafasi tano za matundu zilizowekwa alama na mistari ya kukata, pamoja na picha ya karibu inayoonyesha umbali wa matundu kutoka ukingo wa ubao."
+      ]
+    }
+  ],
+  "finishing": "Kupaka mbao dawa ya nje kunaweza kurefusha maisha ya vitu vya bustani yako, lakini si lazima — vitu hivi vimebuniwa kwa makusudi viwe vya gharama ndogo, vya kudumu na rahisi kujenga, kwa hiyo huenda ikawa rahisi zaidi kuacha kizazi kijacho vivijenge upya wakati wake ukifika. Kama unataka kupaka rangi ya mbao, rangi au dawa ya kuziba mbao, angalia viungo vya umaliziaji hapa chini.",
+  "safety": [
+    "Haya ni mapendekezo ya kujifanyia mwenyewe tu — rekebisha vifaa, uunganishaji na ujenzi ili viendane na mradi wako na eneo lako.",
+    "Kujenga kitu hiki kunadhani una ujuzi fulani wa kutumia zana za mkono na za umeme, vyuma vidogo, vifungio, mbao na mbinu za msingi za kuunganisha.",
+    "Kabla ya kutumia mashine yoyote ya umeme, pitia na ufuate masharti ya usalama ya mtengenezaji, na usimruhusu mtu yeyote kutumia zana za umeme kama hajafanya hivyo pia.",
+    "Wewe (mmiliki) unawajibika kwa kanuni zozote za ujenzi na usalama, vibali na idhini za mamlaka ambazo kazi hii inahitaji.",
+    "Kwanza safisha eneo kwa kuondoa takataka, hatari na vitu visivyotakiwa vilivyojengwa, na utambue huduma zozote za chini ya ardhi (mabomba, nyaya) zinazoweza kuingilia kabla ya kuchimba.",
+    "Kila mtu anayesaidia kujenga anapaswa kusaini fomu ya msamaha wa dhima kwa watu wa kujitolea."
+  ],
+  "links": [
+    {
+      "label": "Kuchagua umaliziaji bora kwa kazi za nje (Rockler, kwa Kiingereza)"
+    },
+    {
+      "label": "Umaliziaji bora kwa mbao za nje (Real Milk Paint, kwa Kiingereza)"
+    },
+    {
+      "label": "Rangi na dawa za mbao za nje (Vermont Natural Coatings, kwa Kiingereza)"
+    }
+  ],
+  "sourcePages": "Maelekezo ya kuunganisha 4_BENCH_w_o_BACK, uk. 1–10 (jalada; kabla ya kuanza; mbao zinazochaguliwa mara nyingi; hatua 1–6; kiolezo cha kutoboa matundu mapema)"
+}

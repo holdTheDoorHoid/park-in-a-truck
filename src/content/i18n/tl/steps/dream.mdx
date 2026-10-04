@@ -1,0 +1,439 @@
+---
+title: Mangarap
+intro: Idisenyo ang inyong parke gamit ang sariling mga piraso ng Park in a Truck na puwedeng paghalo-haluin.
+sources:
+  - Toolkit pp. 39–55 (Mangarap, Mga Disenyong may Tema, Mga Piraso ng Parke, Paghaluin at Pagtugmain)
+  - Workbook ng Dream pp. 1–20
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Choice from '../../../../components/workbook/Choice.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import Download from '../../../../components/workbook/Download.astro';
+import Planner from '../../../../components/widgets/Planner.astro';
+import CostEstimator from '../../../../components/widgets/CostEstimator.astro';
+import PlantPicker from '../../../../components/widgets/PlantPicker.astro';
+import { ELEMENTS } from '../../../../data/elements';
+import { THEMES, THEME_ORDER } from '../../../../data/themes';
+import { SIZES } from '../../../../lib/sizing';
+import { urlFor } from '../../../../i18n/url.ts';
+export const u = urlFor('tl');
+import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
+
+export const THEME_REQUIREMENTS = {
+  edible: { trees: 'Kaunti o walang puno', sun: 'Buong araw o halos buong araw', lot: 'Bagay na bagay sa lote sa kanto', volunteers: 'Madalas na pakikilahok ng mga boluntaryo' },
+  sanctuary: { trees: 'Kahit ilang puno', sun: 'Kahit gaano karaming araw', lot: 'Lote sa gitna ng block o sa kanto', volunteers: 'Kaunting pakikilahok ng mga boluntaryo' },
+  nature: { trees: 'Bagay na bagay sa mga loteng may puno', sun: 'Kahit gaano karaming araw', lot: 'Lote sa gitna ng block o sa kanto', volunteers: 'Kaunting pakikilahok lang ang kailangan' },
+  event: { trees: 'Isa o dalawang puno, o ilang puno', sun: 'Kahit gaano karaming araw', lot: 'Bagay na bagay sa lote sa kanto', volunteers: 'Katamtamang pakikilahok ng mga boluntaryo' },
+};
+
+{/* Translated chapters can't import the localized data helpers, so the Tagalog theme and element names are repeated here (same text as src/i18n/data/tl/themes.json and elements.json). */}
+export const THEME_TL = {
+  edible: { name: 'Pagkain', blurb: 'Magbahagi ng pagkain at makipag-ugnayan sa mga kapitbahay — prutas, gulay at isang mesang pansama-sama.' },
+  sanctuary: { name: 'Kanlungan', blurb: 'Isang tahimik na kanlungan para mapag-isa, magbasa at magkaroon ng maliliit na pagtitipon.' },
+  nature: { name: 'Kalikasan', blurb: 'Katutubong halaman, tirahan ng mga hayop, at laruan para sa mga bata at pollinator.' },
+  event: { name: 'Pagtitipon', blurb: 'Espasyo para sa mga pagtatanghal, palengke at pagdiriwang ng kapitbahayan.' },
+};
+export const ELEMENT_TL = {
+  'gabion-wall': 'Pader na gabion',
+  'gabion-bench': 'Upuang gabion na may kahoy sa ibabaw',
+  'gabion-bench-8': "8' na upuang gabion na may kahoy sa ibabaw",
+  'gabion-table': 'Mesang gabion na may kahoy sa ibabaw',
+  'bench-back': 'Upuang may sandalan',
+  'bench-4': "4' na upuan (walang sandalan)",
+  stool: 'Bangkito',
+  'table-2': "2' na mesa",
+  'table-4': "4' na mesa",
+  'table-6': "6' na mesa",
+  'planter-18': '18" na planter box (maliit)',
+  'planter-24': '24" na planter box (malaki)',
+  'shade-canopy': 'Silungan (shade canopy)',
+  stage: 'Entablado',
+  workbench: 'Workbench / mesang tayuan',
+  'rain-barrel': 'Rain barrel (saluran ng ulan)',
+  'compost-bin': 'Compost bin',
+  'raised-bed': 'Nakataas na taniman',
+  'keyhole-garden': 'Keyhole garden (bilog na nakataas na taniman)',
+  'cold-frame': 'Cold frame (maliit na greenhouse)',
+  'communal-table': 'Mesang pansama-sama',
+  'cafe-table': 'Mesa + upuang pang-café',
+  'event-tent': 'Tolda para sa event',
+  'flexible-seating': 'Naiaayos na upuan',
+  'outdoor-classroom': 'Silid-aralan sa labas',
+  'nature-play': 'Laruan sa kalikasan',
+  birdbath: 'Paliguan ng ibon',
+  'bird-accessories': 'Mga bahay at kainan ng ibon',
+  shed: 'Bodega',
+  hammock: 'Duyang nakatayo nang mag-isa',
+  'porch-swing': 'Porch swing na nakatayo nang mag-isa',
+  'solar-fountain': 'Solar na fountain',
+};
+
+{/* The Assemble grid below skips surfaces, plants and existing-conditions markers — only built/bought elements get an assembly link. */}
+export const NOT_BUILT = new Set(['planting-square', 'perennial', 'shrub', 'small-tree', 'large-tree', 'gravel', 'existing-tree', 'downspout', 'wet-area', 'hydrant', 'utility-line']);
+export const ICON_FALLBACK = { 'table-6': 'table-4', 'bench-4': 'bench-back', 'gabion-bench-8': 'gabion-bench' };
+// The workbook's Assemble page shows these elements; newer vocabulary (e.g. cafe-table) has no icon there.
+export const ASSEMBLE_ICONS = new Set(['bench-back','bird-accessories','birdbath','cold-frame','communal-table','compost-bin','event-tent','flexible-seating','gabion-bench','gabion-wall','nature-play','outdoor-classroom','planter-18','planter-24','rain-barrel','raised-bed','shade-canopy','shed','stage','stool','table-2','table-4','workbench']);
+
+{/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — reminds a reader who hasn't recorded a lot agreement yet, before they design and budget for a lot they may not have permission for. */}
+<LotAgreementNotice />
+
+Ang pagdidisenyo ng parke ng Park in a Truck ay parang pagbili ng bagong damit o amerikana. Una, pupunta kayo sa
+tindahan at titingnan ang mga mannequin para pumili ng istilo, kulay o disenyong gusto ninyo. Siyempre, ang
+magandang tingnan sa sabitan ay maaaring hindi bagay sa inyo. Kaya kailangan ninyong hanapin ang amerikana o damit
+na kasya sa inyo at sa hugis ng inyong katawan, saka ninyo ito isusukat. Kung hindi kasya, puwede ninyo itong
+ipaayos. Sa huli, magdaragdag kayo ng mga aksesorya para talagang maging inyo ito.
+
+Gaya ng pamimili ng damit, kailangang bagay ang inyong parke sa inyong istilo at sa balak na gamit nito. May apat
+na istilo ang mga parke ng Park in a Truck — tinatawag namin silang **tema**: Pagkain, Kanlungan, Kalikasan at
+Pagtitipon. Pinakabagay ang bawat isa sa isang partikular na okasyon o sitwasyon.
+
+Ngayon, magsisimula na ang tunay na saya — ang pagbuo ng pangarap para sa inyong parke! Nagsisimula ang hakbang na
+ito sa pagpili ng isa sa apat na disenyong may tema. Pero simula pa lang iyon: bawat tema ay may set ng mga
+**piraso ng parke** (park pieces) na puwedeng paghalo-haluin para makabuo kayo ng **sariling parke** na kasinlaki ng
+inyong lote.
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={3} />
+
+## Ang apat na tema {/* #the-four-themes */}
+
+Binibigyang-diin ng bawat tema ang iba't ibang paraan ng paggamit ninyo sa parke: bagay na bagay ang ilan sa mga
+pagtitipon ng kapitbahayan, habang mas bagay naman ang iba sa pag-iisa. Ihambing ang bilang ng puno, dami ng araw
+at lokasyon ng lote na itinala ninyo sa Buod ng Magsuri sa mga pangkalahatang kailangan sa ibaba.
+
+Dahil may tatlong bahagi ang bawat parke — isang **frame** (palibot), isang **harap** at isang **likod** — puwede
+ninyong gamitin ang iisang tema sa buong parke, o **paghalo-haluin** ang iba't ibang tema, gaya ng pagtutugma ng
+blusa at jacket sa pang-ibaba ng isang kasuotan.
+
+### Mga batayang bahagi ng disenyo (sa bawat tema)
+
+May ilang mahahalagang bahagi na nasa lahat ng apat na tema:
+
+- **Pader na gabion.** Ang mga basket na alambre na puno ng bato ay nagbibigay sa parke ng natatanging gilid —
+  punuin sila ng mga napulot na materyales gaya ng ladrilyo at sirang semento para sa mas mura at mas matatag na
+  konstruksiyon.
+- **Upuan.** Isang lugar na mauupuan, na madaling iangkop ng inyong komunidad. Pintahan sila o hayaang lumuma sa
+  panahon — puwede ang alinman.
+- **Rain barrel.** Kailangan ng tubig ng bawat parke. Nag-iipon ng tubig-ulan ang mga rain barrel (bariles na
+  saluran ng ulan) para sa pagdidilig ng mga puno at bulaklak.
+- **Mga halaman.** Mga katutubong halaman na umaakit ng mga hayop, nagpaparami ng iba't ibang uri ng buhay at
+  tumutulong sa pangangalaga ng kalikasan.
+
+{THEME_ORDER.map((id) => (
+  <div style={`margin:2.5em 0; border-left: 8px solid ${THEMES[id].frame}; padding-left: 1.2em;`}>
+    <h3 style={`color:${THEMES[id].frame}`}>{THEME_TL[id].name}</h3>
+    <p>{THEME_TL[id].blurb}</p>
+    <Figure
+      src={`img/dream/theme-${id}.webp`}
+      alt={`Temang ${THEME_TL[id].name}: mga larawan ng parke sa 3D at sa plan view, kasama ang mga piraso ng frame/harap/likod sa kulay ng tema`}
+    />
+    <ul class="theme-reqs">
+      <li><strong>Mga puno:</strong> {THEME_REQUIREMENTS[id].trees}</li>
+      <li><strong>Araw:</strong> {THEME_REQUIREMENTS[id].sun}</li>
+      <li><strong>Lote:</strong> {THEME_REQUIREMENTS[id].lot}</li>
+      <li><strong>Mga boluntaryo:</strong> {THEME_REQUIREMENTS[id].volunteers}</li>
+    </ul>
+  </div>
+))}
+
+{/* site-added: Playful Learning is the toolkit's own appendix (linked from its Dream chapter); cross-linking it here matches where the toolkit itself introduces it. */}
+<Callout kind="note" title="Nagdidisenyo rin para sa mga bata?">
+  Nakipagtulungan ang Park in a Truck sa **Playful Learning Landscapes**, isang inisyatibang pinagsasama ang agham
+  kung paano natututo ang mga bata at ang disenyo ng pang-araw-araw na parke — mga mesa ng pag-uuri, gulong ng
+  kuwento, pagkukuwento gamit ang mga icon at iba pa, itinugma sa bawat isa sa apat na tema sa itaas.
+  [Tingnan ang gabay ng Playful Learning ↗](/playful-learning/)
+</Callout>
+
+<Field
+  id="dream.theme-reasons"
+  label="May partikular bang dahilan kung bakit mas gusto ninyo ang isang tema ng parke kaysa sa iba?"
+  type="textarea"
+/>
+<Field
+  id="dream.theme-qualities"
+  label="May partikular bang katangian ng parke sa mga tema na pinakagusto ninyo?"
+  type="textarea"
+/>
+<Choice
+  id="dream.preferred-theme"
+  label="Ano ang tema ng parkeng pinakagusto ninyo?"
+  options={[
+    { value: 'edible', label: 'Pagkain', color: THEMES.edible.frame },
+    { value: 'sanctuary', label: 'Kanlungan', color: THEMES.sanctuary.frame },
+    { value: 'nature', label: 'Kalikasan', color: THEMES.nature.frame },
+    { value: 'event', label: 'Pagtitipon', color: THEMES.event.frame },
+    { value: 'mix', label: 'Halo ng mga tema', desc: 'Ibang tema para sa frame, harap at likod' },
+  ]}
+/>
+<Choice
+  id="dream.theme-fits-site"
+  label="Bagay ba ang napili ninyong tema sa mga katangian ng lote sa inyong buod ng Magsuri?"
+  options={[
+    { value: 'yes', label: 'Oo', desc: 'Bagay ito — magpatuloy' },
+    { value: 'no', label: 'Hindi', desc: 'Suriin ulit ang tema ng inyong parke' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={5} />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={6} label="Temang Pagkain (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={7} label="Temang Kanlungan (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={8} label="Temang Kalikasan (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={9} label="Temang Pagtitipon (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={10} label="Aling tema ang bagay sa inyo? (PDF)" />
+
+## Ang mga piraso ng parke at kung paano gamitin ang mga ito {/* #park-pieces-how-to-use-them */}
+
+Binubuo ang template ng disenyo ng inyong parke mula sa iba't ibang bahagi — ang **mga piraso ng parke**. May mga
+pirasong HARAP at LIKOD para sa loob ng parke, at isang FRAME na paglalagyan sa kanila. Ang bawat piraso ay nasa
+isa sa apat na tema, at maaaring pagpalit-palitin ang bawat piraso, kaya puwede ninyong paghalo-haluin ang mga tema
+o pumili ng iisang tema para sa buong parke.
+
+Gaya ng frame sa paligid ng litrato ng pamilya, ang **frame** ang bumubuo sa palibot ng loob ng parke — isang
+magiliw na lugar para sa mga pasukan, puno at iba pang bahagi. Hinahati ang loob sa **harap** (pinakamalapit sa
+pasukan ng parke, kung nasaan ang mga pangunahing nakapirming bahagi) at sa **likod** (karaniwang mas bukas, para sa
+iba't ibang gamit).
+
+Ipinapakita ang mga larawan sa Toolkit sa 3D na **axon** view, gaya ng litrato, para madali itong mailarawan sa
+isip. Para talagang mailatag ang inyong parke, gagamit kayo ng patag na **plan** view na parang simpleng mapa —
+parehong bagay ang ipinapakita ng dalawang tanaw.
+
+<Figure
+  src="img/dream/park-pieces-frame-front-back.webp"
+  alt="Diagram na naghahambing sa axon (3D) view at plan view ng parke: pinagsasama ang isang pirasong frame sa isang pirasong harap at isang pirasong likod para mabuo ang buong parke, ipinapakita bilang magkakapatong na 3D na bloke at bilang patag na plano"
+/>
+
+<Figure
+  src="img/dream/mix-and-match.webp"
+  alt="Apat na halimbawang parke, bawat isa ay pinagsasama ang frame, harap at likod mula sa iba't ibang tema — pagtitipon, kanlungan, pagkain at kalikasan — para ipakita kung paano napaghahalo-halo ang mga piraso sa walang katapusang kombinasyon"
+/>
+
+<Callout kind="auto">
+  Sa papel, ang paghahalo-halo ay nangangahulugang pag-print, paggupit at pagdidikit ng mga piraso nang mano-mano.
+  Ginagawa iyon para sa inyo ng planner sa ibaba — pumili ng tema para sa frame, harap at likod at agad nitong
+  pagsasama-samahin ang mga ito, sa eksaktong laki ng inyong totoong lote.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={4} />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={13} label="Laruin ang mga piraso (PDF)" />
+
+## Idisenyo ang inyong parke {/* #design-your-park */}
+
+{/* site-added: mode prop for the planner workstream; placement and surrounding copy are ours. */}
+<Planner mode="design" />
+
+<Callout kind="auto" title="Kusang ilalapat sa inyong totoong lote">
+  Inilalapat ng planner ang sariling mga piraso ng parke ng Park in a Truck sa inyong totoong lote — iniaayos ang
+  laki nila gamit ang mga dugtong, eksakto gaya ng ginagawa nang mano-mano sa workbook — at binibilang nito ang
+  lahat para sa inyo habang gumagawa kayo, handa para sa tantiya ng gastos at mga listahan ng halaman sa ibaba.
+</Callout>
+
+<details>
+  <summary>Mas gusto ang papel? I-print ang mga piraso ng parke</summary>
+
+  Pagkatapos tingnan ang mga tema, tandaan ang letrang nilagyan ninyo ng tsek sa pahina ng Buod ng Magsuri (laki
+  A–E) at ang lokasyon ng inyong lote (gitna ng block, o kanto na nasa kanan o kaliwa ninyo ang kalye). I-click ang
+  katugmang download sa ibaba — bawat isa ay nagbubukas ng folder sa Google Drive ng mga piraso ng parke na
+  mapi-print para sa lakihang iyon at lote.
+
+  <table class="pieces-table">
+    <thead>
+      <tr><th>Laki</th><th>Lote sa gitna ng block</th><th>Lote sa kanto — kalye sa kanan</th><th>Lote sa kanto — kalye sa kaliwa</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>A</strong></td><td><a href="https://drive.google.com/open?id=1e3j5d8ZsIxVxsJsdtoosKgMAuCpQwBKo" target="_blank" rel="noopener">I-download ↗</a></td><td><a href="https://drive.google.com/open?id=1Txw_BMZlvseeyCetUYbGfVSIu2_eq7HW" target="_blank" rel="noopener">I-download ↗</a></td><td><a href="https://drive.google.com/open?id=1LBQG4r2z1geA6rIEyK_GFYGzV4IBQFua" target="_blank" rel="noopener">I-download ↗</a></td></tr>
+      <tr><td><strong>B</strong></td><td><a href="https://drive.google.com/open?id=1LC6QvBJ2D-LyhbFGYXsjByiWQaFk06AF" target="_blank" rel="noopener">I-download ↗</a></td><td><a href="https://drive.google.com/open?id=1LKVUm28LhzKNqmMPPsufWrxt-xqTyJrk" target="_blank" rel="noopener">I-download ↗</a></td><td><a href="https://drive.google.com/open?id=1LQmrAsZd7Aw0M6F2iwFUUWjoUm-uAIFA" target="_blank" rel="noopener">I-download ↗</a></td></tr>
+      <tr><td><strong>C</strong></td><td><a href="https://drive.google.com/open?id=1LR04NYM7Ii2srwf4E5tl2t26R8jxdWQr" target="_blank" rel="noopener">I-download ↗</a></td><td><a href="https://drive.google.com/open?id=1LSWINYM72UNHj6hGjrsn0S51h2hJL47s" target="_blank" rel="noopener">I-download ↗</a></td><td><a href="https://drive.google.com/open?id=1LJCzWBkOh_hG8205xt1sJ17s4jQFD-H-" target="_blank" rel="noopener">I-download ↗</a></td></tr>
+      <tr><td><strong>D</strong></td><td><a href="https://drive.google.com/open?id=1LfpisFCCWZwitjJJ2_vpFfv_Pv_pnhMf" target="_blank" rel="noopener">I-download ↗</a></td><td><a href="https://drive.google.com/open?id=1LSqUwvHJQd5riQI56GgMO6GgN9LK7-Or" target="_blank" rel="noopener">I-download ↗</a></td><td><a href="https://drive.google.com/open?id=1LejWNaZ9sQFiy1P3er03OuwRURV7LNQI" target="_blank" rel="noopener">I-download ↗</a></td></tr>
+      <tr><td><strong>E</strong></td><td><a href="https://drive.google.com/open?id=1L-pqs-CuyMjeHE7UgEIDLawzv4ErTA6h" target="_blank" rel="noopener">I-download ↗</a></td><td><a href="https://drive.google.com/open?id=1LlyI3QGglqZw5f92aR1WLES7Nuz0gkOC" target="_blank" rel="noopener">I-download ↗</a></td><td><a href="https://drive.google.com/open?id=1LiE8uy8Uc-6R55t8cQr2Eg4CGdifcC8J" target="_blank" rel="noopener">I-download ↗</a></td></tr>
+    </tbody>
+  </table>
+  <p class="muted">Sinusunod ng mga label ng uri ng lote ang sariling pahina ng download ng workbook — kung hindi tugma sa inyong kanto ang isang set ng piraso, subukan ang isa pa.</p>
+
+  Buksan ang mga pirasong na-download ninyo at i-print ang mga ito nang isang panig lang sa 8.5"×11" na papel, saka
+  gupitin sa mga putol-putol na linya. Itugma ang mga piraso gamit ang mga simbolong pantugma na naka-print sa bawat
+  sheet, at pagdikitin ang mga ito ng tape. Magpatuloy sa susunod na maliit na hakbang para iayon ang laki ng
+  pinagdikit na parke sa totoong laki ng inyong lote.
+
+  <PdfPage doc="downloads/workbooks/04-dream.pdf" page={11} label="I-download ang mga piraso ng parke (PDF)" />
+  <PdfPage doc="downloads/workbooks/04-dream.pdf" page={12} label="I-print + gupitin ang mga piraso (PDF)" />
+</details>
+
+## Iayon ang laki ng inyong parke {/* #right-size-your-park */}
+
+Kung eksaktong kasya ang inyong mga piraso sa inyong lote, lumaktaw sa pagdaragdag ng mga kasalukuyang kondisyon.
+Kung may sobrang espasyo, palakihin ang inyong parke sa pagdaragdag ng mga dugtong — mga talampakan ng dagdag na
+frame, harap o likod — para magamit ninyo ang lahat ng espasyo.
+
+<table class="size-table">
+  <thead><tr><th>Laki</th><th>Mahabang gilid</th><th>Maikling gilid</th></tr></thead>
+  <tbody>
+    {SIZES.map((s) => (
+      <tr><td><strong>{s.id}</strong></td><td>{s.long[0]}–{s.long[1]} ft</td><td>{s.short[0]}–{s.short[1]} ft</td></tr>
+    ))}
+  </tbody>
+</table>
+
+{/* site-added: sizing.ts also flags lots below size A; call that out here since it's the natural place a reader learns their lot doesn't fit the smallest set. */}
+<Callout kind="note" title="Mas maliit kaysa laki A?">
+  Hindi mahalaga ang laki. Ang isang 4×4 na pitak, bakuran sa harap o kahit isang window box ay puwede pa ring
+  maging taniman para sa mga pollinator — gamitin ang [gabay ng Park Patch](/park-patch/) sa halip na ang buong mga
+  piraso ng parke sa ibaba.
+</Callout>
+
+May dalawang uri ng dugtong: ang **dugtong sa haba**, na pinuputol sa pagitan ng pirasong harap at likod, ay
+nagdaragdag ng talampakan sa mahabang gilid ng parke; ang **dugtong sa lapad**, na ginugupit sa kahabaan, ay
+nagdaragdag ng talampakan sa maikling gilid. May itim na putol-putol na linya ang dalawang dugtong bawat 4 na
+talampakan at kulay-abong putol-putol na linya bawat 1 talampakan, kaya mabibilang ninyo nang eksakto kung gaano
+karami ang kailangan ninyo.
+
+<Figure
+  src="img/dream/length-seam.webp"
+  alt="Diagram ng dugtong sa haba: bilangin ang mga putol-putol na linya sa dugtong sa pagitan ng pirasong harap at likod ng parke, gupitin ito, saka idikit ang dugtong sa gitna ng parke at idikit itong muli"
+/>
+<Figure
+  src="img/dream/width-seam.webp"
+  alt="Diagram ng dugtong sa lapad: bilangin ang mga putol-putol na linya sa dugtong sa kahabaan ng parke, gupitin ito sa tamang laki, saka idagdag ang dugtong sa lapad sa gitna at idikit muli ang dalawang panig"
+/>
+
+<Callout kind="auto">
+  Kusang iniuunat ng planner ang mga napili ninyong piraso sa eksaktong sukat ng inyong lote — hindi na kailangang
+  gumupit o magdikit.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={14} />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={15} label="Dugtong sa haba (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={16} label="Dugtong sa lapad (PDF)" />
+
+## Idagdag ang mga kasalukuyang kondisyon {/* #add-existing-conditions */}
+
+Ilipat sa plano ng inyong disenyo ang mga kasalukuyang kondisyon mula sa site plan na iginuhit ninyo sa workbook ng
+Magsuri. Pagtabihin ang dalawang plano at kopyahin ang bawat bagay — magkapareho ang mga grid, kaya bilangin lang
+ang mga kahon para malaman kung saan mapupunta ang mga bagay. Kung tumapat sa taniman ang isang punong nandoon na,
+mabuti; kung tumapat ito sa graba, ayos lang din (ipinapaliwanag ng hakbang na Lumikha kung ano ang gagawin). Kung
+sumasalungat sa inyong disenyo ang mga kasalukuyang kondisyon — halimbawa, puno sa ibabaw ng upuan — puwede ninyong
+alisin ang upuan sa pamamagitan ng pag-ekis dito, o ilipat ang buong pirasong harap o likod. Template ang disenyo:
+medyo matigas ito, pero puwede kayong laging magdagdag o mag-alis ng mga bagay para bumagay ito sa inyo.
+
+<Callout kind="auto">
+  Nakalagay na sa planner ang mga punong nandoon na, alulod, basang bahagi, hydrant at kable ng kuryente na
+  minarkahan ninyo sa Magsuri — i-drag ang anumang nasa maling puwesto.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={17} />
+
+## Bilangin ang inyong mga piraso at gastos {/* #count-your-pieces-cost */}
+
+Oras na para bilangin ang laman ng inyong site plan. May bilang ang bawat pirasong harap, likod at frame ng lahat ng
+laman nito, para makuwenta ninyo ang gastos at makaorder ng materyales. Itinatanong ng workbook: ilang talampakan
+ang mahabang gilid ng inyong lote (haba)? Ang maikling gilid (lapad)? Ilan ang inyong berdeng parisukat na taniman?
+At, gamit ang susi sa inyong mga piraso ng parke, ilan ang bawat kagamitan?
+
+<CostEstimator />
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — the order list's "fire hydrant opener" items; facts checked 2026-10-04 on water.phila.gov. */}
+<Callout kind="site" title="Paalala mula sa site na ito, hindi mula sa Park in a Truck: mga fire hydrant">
+  Nagmumungkahi ang listahan ng bibilhin ng pambukas ng fire hydrant. Para magbukas ng fire hydrant sa Philadelphia,
+  kailangan ng [hydrant permit mula sa Philadelphia Water Department ↗](https://water.phila.gov/development/connections/hydrant-permits/)
+  (sa Ingles) at ng aprubadong backflow preventer (hindi kailangang magbayad ng permit fee ang mga hardin ng
+  komunidad). Nakalista sa [urban garden guide ↗](https://water.phila.gov/urban-garden-guide/) (sa Ingles) ng PWD
+  ang iba pang paraan ng pagdadala ng tubig sa isang hardin.
+</Callout>
+
+<Download href="downloads/templates/cost-estimator.xlsx" label="Tagatantiya ng gastos" note="Orihinal na spreadsheet — gumawa ng sariling kopya para ma-edit ito" />
+
+<details>
+  <summary>Binibilang sa papel? Ilagay dito ang inyong kabuuan</summary>
+  <Field id="dream.diy-length" label="Haba (mahabang gilid ng inyong lote)" type="number" unit="ft" />
+  <Field id="dream.diy-width" label="Lapad (maikling gilid ng inyong lote)" type="number" unit="ft" />
+  <Field id="dream.diy-planting-squares" label="Mga parisukat na taniman (berdeng parisukat sa inyong plano)" type="number" />
+  <p class="muted">Bilangin ang mga kagamitan gamit ang susing naka-print sa inyong mga piraso ng parke, saka ilagay ang lahat sa spreadsheet ng tagatantiya ng gastos sa itaas.</p>
+</details>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={18} />
+
+## Bilangin at piliin ang inyong mga halaman {/* #count-choose-your-plants */}
+
+Lahat ng may berde sa inyong plano ay taniman, at may laki ang bawat simbolo ng halaman. Bilangin ang mga perennial,
+palumpong, maliliit na puno at malalaking puno sa inyong disenyo — hiwalay ang araw at lilim para sa mga perennial
+at palumpong. Pipiliin ninyo ang mismong mga uri ng halaman pagkatapos.
+
+{/* site-added: the six counts show your design's numbers (project.extra.tally) until you type your own; the plant picker below uses the same numbers */}
+<Field id="dream.perennials-sun" label="Perennial — berdeng parisukat sa araw" type="number" unit="parisukat" auto="extra.tally.plantingSquares.sun" autoNote="✓ Kinuha mula sa inyong disenyo — mag-type para baguhin" />
+<Field id="dream.perennials-shade" label="Perennial — berdeng parisukat sa lilim" type="number" unit="parisukat" auto="extra.tally.plantingSquares.shade" autoNote="✓ Kinuha mula sa inyong disenyo — mag-type para baguhin" />
+<Field id="dream.shrubs-sun" label="Palumpong — araw" type="number" auto="extra.tally.shrubs.sun" autoNote="✓ Kinuha mula sa inyong disenyo — mag-type para baguhin" />
+<Field id="dream.shrubs-shade" label="Palumpong — lilim" type="number" auto="extra.tally.shrubs.shade" autoNote="✓ Kinuha mula sa inyong disenyo — mag-type para baguhin" />
+<Field id="dream.small-trees" label="Maliliit na puno" type="number" auto="extra.tally.smallTrees" autoNote="✓ Kinuha mula sa inyong disenyo — mag-type para baguhin" />
+<Field id="dream.large-trees" label="Malalaking puno" type="number" auto="extra.tally.largeTrees" autoNote="✓ Kinuha mula sa inyong disenyo — mag-type para baguhin" />
+
+<PlantPicker />
+
+May sariling mungkahing listahan ng halaman ang bawat tema — panimula ito, hindi obligasyon. Kung pinaghahalo ninyo
+ang dalawang tema, pumili ng halaman mula sa dalawang listahan.
+
+<div class="plant-list-links">
+  <Download href="https://docs.google.com/spreadsheets/d/1QsoQ6KYBT5tVrlAtTxoD5q0yP2YS5Wyt/copy" label="Listahan ng halaman: Pagkain" />
+  <Download href="https://docs.google.com/spreadsheets/d/1RhCdaiCLbEJD8KXiX7uJMD7xJFRNCERy/copy" label="Listahan ng halaman: Kanlungan" />
+  <Download href="https://docs.google.com/spreadsheets/d/1eEVK3dpBy1-xBFDaACIOTMB2Dd9COGvz/copy" label="Listahan ng halaman: Kalikasan" />
+  <Download href="https://docs.google.com/spreadsheets/d/1oy_aLqP7RoBcHngZ_uFMl_YBvzJ271MR/copy" label="Listahan ng halaman: Pagtitipon" />
+</div>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={20} label="Piliin ang inyong mga halaman (PDF)" />
+
+## Buuin {/* #assemble */}
+
+Ngayon, oras na para makita kung paano ginagawa ang mga bahagi ng parke. May sariling sunod-sunod na tagubilin sa
+pagbuo ang ilang bahagi, gaya ng manwal ng Ikea; may iba namang may kasamang mungkahing disenyo mula sa mga
+tagubiling nasubukan na; at ang ilan ay mga produktong mabibili nang handa na. I-click ang anumang bahagi sa ibaba —
+kung nasa parke ninyo ito, ganito ito ginagawa (o binibili).
+
+<div class="elements-grid">
+  {Object.values(ELEMENTS)
+    .filter((el) => !NOT_BUILT.has(el.id) && ASSEMBLE_ICONS.has(ICON_FALLBACK[el.id] ?? el.id))
+    .map((el) => {
+      const icon = ICON_FALLBACK[el.id] ?? el.id;
+      const href = el.guide ? u(`build/${el.guide}/`) : el.link;
+      const external = !el.guide;
+      return (
+        <a class="element-card" href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
+          <img src={u(`img/dream/elements/${icon}.webp`)} alt="" width="96" height="72" loading="lazy" />
+          <span>{ELEMENT_TL[el.id] ?? el.name}</span>
+        </a>
+      );
+    })}
+</div>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={19} />
+
+## Handa na ba kayo? {/* #are-you-ready */}
+
+Binabati namin kayo sa pagtatapos ng Workbook ng Mangarap! Lagyan ng tsek ang bawat hakbang sa ibaba bago
+magpatuloy sa Lumikha.
+
+<Checklist
+  id="dream.ready-checklist"
+  items={[
+    { value: 'theme-review', label: 'Pagsusuri ng disenyo ng tema', hint: 'Natingnan na ninyo ang mga tema at napagpasyahan kung alin ang pinakabagay sa inyong pangangailangan' },
+    { value: 'custom-design', label: 'Sariling disenyo', hint: 'Nalaro na ninyo ang mga piraso ng parke para mapili ang huling disenyo ng parke' },
+    { value: 'custom-size', label: 'Sariling laki', hint: 'Naiayon na ninyo ang laki ng parke sa sukat ng inyong lote at sa mga bagay na nandoon na' },
+    { value: 'cost-estimate', label: 'Tantiya ng gastos', hint: 'Nabilang na ninyo ang inyong mga piraso at nailagay sa tagatantiya ng gastos' },
+    { value: 'plant-choice', label: 'Pagpili ng halaman', hint: 'Nakapili na kayo ng halaman batay sa bilang ng inyong halaman' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={20} label="Handa na ba kayo? (PDF)" />
+
+<style>
+  {`
+  .theme-reqs { list-style: none; padding: 0; margin: 0.8em 0 0; font-size: 0.92rem; color: var(--ink-2); display: grid; gap: 0.2em; }
+  .size-table, .pieces-table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.95rem; }
+  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: left; }
+  .elements-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; margin: 1.2em 0; }
+  .element-card { display: flex; flex-direction: column; align-items: center; gap: 0.4em; text-align: center; padding: 10px; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); font-size: 0.85rem; background: #fff; }
+  .element-card:hover { border-color: var(--cyan); box-shadow: var(--shadow); }
+  .element-card img { max-width: 96px; max-height: 72px; width: auto; }
+  .plant-list-links { display: flex; flex-wrap: wrap; gap: 10px; }
+  `}
+</style>

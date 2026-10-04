@@ -1,0 +1,18 @@
+{
+  "edible": {
+    "name": "Chakula",
+    "blurb": "Kugawana chakula na kujenga urafiki na majirani: matunda, mboga na meza ya pamoja."
+  },
+  "sanctuary": {
+    "name": "Utulivu",
+    "blurb": "Mahali patulivu pa kupumzika peke yako, kusoma na kukutana watu wachache."
+  },
+  "nature": {
+    "name": "Mazingira asilia",
+    "blurb": "Mimea asilia, makazi ya viumbe, na michezo kwa watoto na kwa wachavushaji."
+  },
+  "event": {
+    "name": "Matukio",
+    "blurb": "Nafasi kwa maonyesho, masoko na sherehe za mtaa."
+  }
+}

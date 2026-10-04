@@ -1,0 +1,153 @@
+{
+  "title": "Entablado",
+  "summary": "Isang mababang entablado para sa pagtatanghal, 12x8 talampakan, gawa sa 2x4, binubuo ng apat na magkakaparehong frame sa sulok na pinagdugtong sa paligid ng frame sa gitna, may sahig na magkakahanay na tablang 2x4 at nakapatong sa pinatag na batayang graba.",
+  "finishing": "Makapagpapatagal sa buhay ng mga bahagi ng inyong parke ang panlabas na pampahid sa kahoy, pero hindi ito kailangan — sadyang idinisenyo ang mga pirasong ito para maging mura, matibay at madaling gawin, kaya maaaring mas praktikal na hayaan na lang ang susunod na henerasyon na gawin silang muli pagdating ng panahon. Kung gusto ninyong lagyan ng stain, pintura o sealant ang kahoy, tingnan ang mga mapagkukunan tungkol sa pampahid sa ibaba.",
+  "sourcePages": "Tagubilin sa pagbuo ng STAGE (nasa mga link sa p19 ng workbook ng Mangarap — hindi na gumagana ang kopya sa Linktree), pp. 1–12 (pabalat; bago kayo magsimula; karaniwang pagpipiliang kahoy + gastos; mga hakbang 1–7; gabay sa pre-drill na butas)",
+  "materials": [
+    {
+      "item": "Kahoy na 2x4 — western red cedar, Douglas fir, o pressure-treated pine",
+      "notes": "Cedar: likas na matibay sa panahon at sa pagkabulok, magandang mapulang kulay, hindi kailangan ng sealant; mas mahal — hanapin ang grade na 'knotty' (STK). Douglas fir: katamtamang matibay sa pagkabulok, matibay, mas mura kaysa sa cedar; mabuti kung balak ninyong pintahan. Pressure-treated: pinakamura at matibay sa pagkabulok, pero madalas na mababa o hindi pare-pareho ang kalidad, kailangang patuyuin sa hangin nang 1–4 na buwan bago pintahan, hindi inirerekomenda kung saan nagtatanim ng pagkain. Umorder ng hindi bababa sa 5% na higit sa listahan ng puputulin para sa iba-ibang kalidad ng kahoy at maling pagputol.",
+      "siteNote": "Mga 25 ang kailangan ng listahan ng puputulin, hindi 16. Bawat ST-2 na 93″ (11) at ST-3 na 86″ (12) ay kumukuha ng sariling tabla (23 tabla), 2 pa ang kailangan ng walong ST-4 na 14.75″, at ang labindalawang ST-5 na 7.75″ ay mula sa mga tira ng ST-3. Tugma ang teksto ng mga hakbang sa listahan ng puputulin."
+    },
+    {
+      "item": "Kahoy na 2x4 (12' ang haba)"
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Self-driving exterior wood screw"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Harap at sahig ng entablado"
+    },
+    {
+      "notes": "Frame ng entablado"
+    },
+    {
+      "notes": "Frame ng entablado"
+    },
+    {
+      "notes": "Frame ng entablado"
+    },
+    {
+      "notes": "Frame ng entablado"
+    }
+  ],
+  "tools": [
+    "10\" o 12\" na miter saw (o angkop na lagaring de-kamay)",
+    "Impact driver para sa mga self-driving exterior wood screw",
+    "1/4\" na drill bit",
+    "Liha, 120 grit",
+    "Iskwala ng karpintero",
+    "Safety goggles + mask"
+  ],
+  "steps": [
+    {
+      "title": "Markahan, lagyan ng label at putulin ang kahoy",
+      "text": "Markahan, lagyan ng label at putulin ang kahoy nang sunod-sunod mula ST-1 hanggang ST-5 ayon sa haba sa listahan ng puputulin.\n\nSuriin ang bawat piraso ng kahoy kung may depekto gaya ng lamat, pagkabaluktot o hindi pantay na pagkakakatam, at itapon ang mga bahaging iyon ng kahoy.",
+      "imageAlts": [
+        "Isometric na diagram ng limang pinutol na piraso ng entablado, ST-1 hanggang ST-5, may label ang haba, mula sa 144\" na tabla ng sahig hanggang sa 7.75\" na bloke."
+      ],
+      "tips": [
+        "Lagyan ng label ang bawat piraso ng kahoy habang sinusukat at pinuputol ninyo ito.",
+        "Magkaroon ng hiwalay na tumpok ng kahoy para sa bawat piraso, ST-1 hanggang ST-5.",
+        "Ang bahagyang paglilija sa mga pinutol na gilid ay nag-aalis ng salubsob at nakatutulong sa pagbuo.",
+        "Gagawa ng higit sa isang entablado? Pinananatiling magkakapareho ang haba ng bawat piraso ng isang stop block sa inyong miter saw."
+      ]
+    },
+    {
+      "title": "Buuin ang apat na maliit na frame sa sulok",
+      "text": "Ilagay ang dalawang pirasong ST-4 sa patag na ibabaw. Ilagay ang dalawang pirasong ST-3 sa pagitan ng mga pirasong ST-4, at itugma ang mga gilid gaya ng ipinapakita. Ulitin nang tatlo pang beses, para sa apat na magkakaparehong maliit na frame lahat.",
+      "imageAlts": [
+        "Diagram ng dalawang tablang ST-4 at dalawang ST-3 na binuo bilang maliit na parihabang frame, inulit nang apat na beses."
+      ],
+      "tips": [
+        "Dapat patagin hangga't maaari ang graba sa ilalim ng entablado bago ito ilagay sa huling puwesto; makatutulong ang mga concrete block sa pagpapantay ng mabababang bahagi.",
+        "Makatutulong sa pagbuo ang paggawa ng 90-degree na jig."
+      ]
+    },
+    {
+      "title": "Buuin ang apat na frame ng bawat seksiyon",
+      "text": "Ilagay ang dalawang pirasong ST-2 sa ibabaw ng frame na ginawa sa hakbang 2. Ilagay ang dalawang pirasong ST-5 sa pagitan ng mga pirasong ST-2, itugma ang mga gilid gaya ng ipinapakita, at ikabit ang lahat gamit ang impact driver at 44 na 2.5\" na self-driving exterior wood screw.\n\nUlitin nang tatlo pang beses, para sa apat na frame ng seksiyon lahat. Dapat nakaharap sa gitna ng entablado ang apat na frame na ito.",
+      "imageAlts": [
+        "Diagram ng mga tablang ST-2 at ST-5 na idinaragdag sa ibabaw ng bawat maliit na frame sa sulok para mabuo ang isa sa apat na frame ng seksiyon ng entablado."
+      ]
+    },
+    {
+      "title": "Lagyan ng harapang tabla ang bawat frame ng seksiyon",
+      "text": "Simula sa itaas, ilagay ang apat na pirasong ST-1 sa harap at likod ng frame na ginawa sa hakbang 3. Panatilihing kapantay ng itaas ang kahoy, na may 1/4\" na puwang sa pagitan ng bawat pirasong ST-1.\n\nIkabit ang kahoy na ST-1 gamit ang impact driver at 42 na 2.5\" na self-driving exterior wood screw, saka ulitin sa kabilang panig.",
+      "imageAlts": [
+        "Diagram ng mga harapang tablang ST-1 na tinuturnilyo sa harap at likod ng frame ng seksiyon, may 1/4\" na puwang sa pagitan ng mga tabla."
+      ],
+      "tips": [
+        "Gamitin ang inyong iskwala ng karpintero bilang spacer para sa puwang.",
+        "Suriin gamit ang iskwala ng karpintero na nananatiling 90 degrees ang gilid."
+      ]
+    },
+    {
+      "title": "Idagdag ang mga suporta sa gitna",
+      "text": "Ilagay ang dalawang pirasong ST-5 sa mga dulo sa gitna ng frame na ginawa sa hakbang 3. Ilagay ang dalawa pang pirasong ST-5 sa gitna ng frame na binuo sa hakbang 2 at 3.\n\nIkabit ang kahoy na ST-5 gamit ang impact driver at 8 na 2.5\" na self-driving exterior wood screw na ibinabaon nang 45 degrees ang hilig.",
+      "imageAlts": [
+        "Diagram ng mga suportang ST-5 na tinuturnilyo sa gitna at mga dulo ng frame nang 45 degrees ang hilig."
+      ],
+      "tips": [
+        "Makatutulong ang pag-pre-drill sa pagkakabit ng mga turnilyo nang 45 degrees ang hilig."
+      ]
+    },
+    {
+      "title": "Pagdugtungin ang dalawang frame ng seksiyon",
+      "text": "Ilagay ang dalawang pirasong ST-3 sa isang dulo ng frame na binuo sa hakbang 2, na may 1/4\" na puwang sa pagitan ng bawat pirasong ST-3.\n\nIkabit ang kahoy na ST-3 mula sa loob gamit ang impact driver at 8 na 2.5\" na self-driving exterior wood screw nang 45 degrees ang hilig. Gamitin ang pattern ng turnilyo para ikabit ang mga tabla sa kahoy na ST-5 sa gitna gamit ang 6 pang turnilyo.\n\nUlitin sa kabilang panig gamit ang dalawa pang pirasong ST-3.",
+      "imageAlts": [
+        "Diagram ng mga tablang ST-3 na nagdudugtong sa dalawang frame ng seksiyon na may 1/4\" na puwang, tinurnilyo nang 45 degrees ang hilig."
+      ],
+      "tips": [
+        "Makatutulong ang pag-pre-drill sa pagkakabit ng mga turnilyo nang 45 degrees ang hilig."
+      ]
+    },
+    {
+      "title": "Pagdugtungin ang apat na seksiyon",
+      "text": "Ilagay ang tatlong pirasong ST-2 sa pagitan ng apat na seksiyon ng frame, kapantay ng itaas ng kahoy na ST-1 na inilagay sa hakbang 4.\n\nIkabit ang kahoy na ST-2 sa mga pirasong ST-1 gamit ang impact driver at 12 na 2.5\" na self-driving exterior wood screw.",
+      "imageAlts": [
+        "Diagram ng tatlong tablang ST-2 na nagdudugtong sa apat na seksiyon ng entablado, kapantay ng itaas ng frame."
+      ]
+    },
+    {
+      "title": "Lagyan ng sahig ang entablado at lihahin",
+      "text": "Ilagay ang 26 na pirasong ST-1 sa ibabaw ng frame na ginawa sa hakbang 7, itugma ang mga gilid, magkakapantay at pantay ang agwat.\n\nIkabit ang sahig na ST-1 sa bawat soleras (joist) gamit ang inyong pattern ng turnilyo na may 3 butas — 78 na 2.5\" na self-driving exterior wood screw lahat.\n\nBahagyang lihahin ang magaspang na gilid ng entablado.",
+      "imageAlts": [
+        "Diagram ng mga tabla ng sahig na ST-1 na inilalatag nang pantay ang agwat sa ibabaw ng frame ng entablado at tinuturnilyo sa bawat soleras."
+      ],
+      "tips": [
+        "Gamitin ang inyong iskwala ng karpintero bilang spacer."
+      ]
+    },
+    {
+      "title": "Gabay sa pre-drill na butas (template)",
+      "text": "Gupitin ang gabay sa pre-drill na butas sa mga putol-putol na linya. Kapag nagbubutas, itugma ang gilid ng template sa panlabas na gilid ng kahoy bago mag-pre-drill.\n\nHindi lahat ng butas ay ginagamit — hindi lahat ng pattern ay gumagamit ng template. Gamitin ang mga hakbang sa pagbuo sa itaas bilang gabay sa mga butas. Panatilihin ang lahat ng butas na mga isang lapad ng hinlalaki mula sa gilid (mga 1\"), kahit ang mga butas na hindi gumagamit ng template na ito.",
+      "imageAlts": [
+        "Isang template ng gabay sa pre-drill na butas na mapi-print, may limang minarkahang puwesto ng butas at mga linya ng paggupit, at isang malapitang larawan ng layo ng butas mula sa gilid ng tabla."
+      ]
+    }
+  ],
+  "safety": [
+    "Mga rekomendasyong DIY (kayo mismo ang gagawa) lamang ang mga ito — iangkop ang materyales, pagbuo at konstruksiyon sa sarili ninyong proyekto at lote.",
+    "Ipinapalagay sa paggawa nito na may kaunti kayong kaalaman sa mga kagamitang de-kamay at de-kuryente, hardware, pangkabit, kahoy at batayang paraan ng pagbuo.",
+    "Bago gumamit ng anumang de-kuryenteng kagamitan, basahin at sundin ang mga kinakailangan sa kaligtasan ng gumawa nito, at huwag hayaang gumamit ng de-kuryenteng kagamitan ang sinumang hindi pa nakagagawa nito.",
+    "Kayo (ang may-ari) ang mananagot sa anumang building at safety code, permit at pag-apruba ng pamahalaan na kailangan nito.",
+    "Linisin muna ang lote mula sa basura, panganib at mga ayaw na istruktura, at alamin ang anumang utility (kable at tubo) na maaaring maging sagabal bago kayo maghukay.",
+    "Dapat pumirma ng waiver ng boluntaryo ang lahat ng tumutulong sa paggawa."
+  ],
+  "links": [
+    {
+      "label": "Pagpili ng pinakamahusay na pampahid para sa mga proyekto sa labas (Rockler) (sa Ingles)"
+    },
+    {
+      "label": "Pinakamahusay na pampahid sa kahoy sa labas (Real Milk Paint) (sa Ingles)"
+    },
+    {
+      "label": "Mga pampahid sa kahoy sa labas (Vermont Natural Coatings) (sa Ingles)"
+    }
+  ]
+}
