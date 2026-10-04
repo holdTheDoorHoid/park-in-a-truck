@@ -50,6 +50,13 @@ export interface GuideModel {
   cutListScope?: string[];
   /** part label -> the count the model uses instead of the cut list's, with the reason */
   countOverrides?: Record<string, { count: number; reason: string }>;
+  /**
+   * The size the parts actually build, when it differs from the guide's stated
+   * (nominal) dimensions — e.g. a top board sitting on 18" sides makes a 19.5"
+   * bench. The validator checks the model against this instead, and it must stay
+   * within 4" of the stated size. Always give the reason.
+   */
+  asBuilt?: { length: number; width: number; height: number; reason: string };
 }
 
 /** Actual cross-sections of nominal lumber, inches [thickness, width]. */

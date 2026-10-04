@@ -139,10 +139,19 @@ export function validateModel(model: GuideModel & ModelScope, guide: GuideLike, 
 
   // overall size
   const b = modelBounds(model);
-  const want = [guide.dimensionsIn.length, guide.dimensionsIn.height, guide.dimensionsIn.width];
+  const stated = [guide.dimensionsIn.length, guide.dimensionsIn.height, guide.dimensionsIn.width];
+  const ab = model.asBuilt;
+  const want = ab ? [ab.length, ab.height, ab.width] : stated;
   const names = ['length (x)', 'height (y)', 'width (z)'];
+  if (ab) {
+    if (!ab.reason?.trim()) problems.push('asBuilt needs a reason');
+    for (let i = 0; i < 3; i++)
+      if (Math.abs(want[i]! - stated[i]!) > 4)
+        problems.push(`asBuilt ${names[i]} ${want[i]}" is more than 4" from the guide's ${stated[i]}" — check the guide`);
+  }
   for (let i = 0; i < 3; i++)
-    if (Math.abs(b.size[i]! - want[i]!) > 1) problems.push(`overall ${names[i]} is ${b.size[i]!.toFixed(2)}" but the guide says ${want[i]}"`);
+    if (Math.abs(b.size[i]! - want[i]!) > 1)
+      problems.push(`overall ${names[i]} is ${b.size[i]!.toFixed(2)}" but ${ab ? 'asBuilt says' : 'the guide says'} ${want[i]}"`);
   if (Math.abs(b.min[1]) > 0.05) problems.push(`model should stand on the ground (lowest point y=${b.min[1].toFixed(2)})`);
   const mbs = model.bounds;
   if (Math.abs(mbs.length - b.size[0]) > 0.5 || Math.abs(mbs.height - b.size[1]) > 0.5 || Math.abs(mbs.width - b.size[2]) > 0.5)
