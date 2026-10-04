@@ -29,7 +29,8 @@ const head = { part: t('cut.part'), qty: t('cut.qty'), stock: t('cut.stock'), le
         <td data-label={head.part}><span class="part">{it.part}</span></td>
         <td data-label={head.qty}>{it.qty}</td>
         <td data-label={head.stock}>{it.stock}</td>
-        <td data-label={head.length}>{it.lengthIn}"</td>
+        {/* a length reads left to right in every language (45", not "45 on Arabic pages) */}
+        <td data-label={head.length}><span dir="ltr">{it.lengthIn}"</span></td>
         <td data-label={head.notes}>
           {it.notes}
           {it.siteNote && (

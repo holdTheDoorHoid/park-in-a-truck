@@ -48,9 +48,11 @@ const dims = (d: { length: number; width: number; height: number }) =>
   t('dims', { length: feetIn(d.length), width: feetIn(d.width), height: feetIn(d.height) });
 
 const englishLines = [...english.materials, ...english.hardware];
+// Sizes (2x4x8', 2-1/2" x 1/4") read left to right: kept in one piece on right-to-left pages.
+const sizeNote = (size?: string) => (size ? ` (${t.isolate(size)})` : '');
 const materialItems = [...guide.materials, ...guide.hardware].map((m, idx) => ({
   value: `${idx}-${englishLines[idx]!.item}`,
-  label: `${m.qty}× ${m.item}${m.size ? ` (${m.size})` : ''}`,
+  label: `${m.qty}× ${m.item}${sizeNote(m.size)}`,
   hint: m.notes,
 }));
 const toolItems = guide.tools.map((label, idx) => ({ value: english.tools[idx]!, label }));
@@ -58,7 +60,7 @@ const toolItems = guide.tools.map((label, idx) => ({ value: english.tools[idx]!,
 // site-added: where the guide's own materials list doesn't add up, a note marked as ours
 const materialNotes = [...guide.materials, ...guide.hardware]
   .filter((m) => m.siteNote)
-  .map((m) => ({ label: `${m.qty}× ${m.item.split(' — ')[0]}${m.size ? ` (${m.size})` : ''}`, note: m.siteNote! }));
+  .map((m) => ({ label: `${m.qty}× ${m.item.split(' — ')[0]}${sizeNote(m.size)}`, note: m.siteNote! }));
 
 const model = Object.values(models).find((m) => m.slug === guide.slug);
 // site-added: where PiaT's stated size is nominal, say what the parts actually build

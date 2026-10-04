@@ -43,18 +43,21 @@ export function monthName(t: ShadeT, month: number, style: 'long' | 'short' = 'l
   return fmt(info.intl, { month: style }).format(Date.UTC(CAL_YEAR, month - 1, 15));
 }
 
+/** A month's name inside a sentence (lower case where the language writes it so: Vietnamese "tháng 6"). */
+export function monthInSentence(t: ShadeT, month: number): string {
+  const info = localeInfo(t.locale);
+  if (info.months) return info.months[month - 1]!;
+  return t.monthInSentence(new Date(CAL_YEAR, month - 1, 15));
+}
+
 /**
  * A clock time from minutes after midnight, the language's own way: "9 AM", "3:30 PM", "15:30",
  * "오후 3:30". Whole hours drop ":00" (or always, with `hourOnly`). Languages Intl doesn't know
  * get the 24-hour clock.
  */
 export function clockTime(t: ShadeT, minutes: number, hourOnly = false): string {
-  const h = Math.floor(minutes / 60) % 24;
-  const m = Math.round(minutes % 60);
-  const info = localeInfo(t.locale);
-  if (info.months) return `${h}:${String(m).padStart(2, '0')}`;
-  const opts: Intl.DateTimeFormatOptions = hourOnly || !m ? { hour: 'numeric' } : { hour: 'numeric', minute: '2-digit' };
-  return fmt(info.intl, opts).format(Date.UTC(CAL_YEAR, 0, 1, h, m));
+  // the same clock as the planner's (src/i18n/format.ts formatClock)
+  return t.clock(minutes, { minutes: hourOnly ? 'never' : 'auto' });
 }
 
 export const pct = (t: ShadeT, f: number) => t.num(Math.round(f * 100) / 100, { style: 'percent', maximumFractionDigits: 0 });
@@ -65,7 +68,9 @@ export const dirWords = (t: ShadeT, dir: number) => t(`dir.${((dir % 8) + 8) % 8
 /** The label of a summary line: "All year", "June", "June and July", "June to August", "November to February". */
 export function monthsLabel(t: ShadeT, months: number[]): string {
   if (months.length >= 12) return t('months.all');
-  const names = months.map((m) => monthName(t, m));
+  // the label starts the line: the first month as it stands alone, the rest as inside a sentence
+  // ("Tháng 6 và tháng 7" in Vietnamese; the same as before in every other language)
+  const names = months.map((m, i) => (i === 0 ? monthName(t, m) : monthInSentence(t, m)));
   if (names.length <= 2) return t.list(names);
   return t('months.range', { from: names[0], to: names[names.length - 1] });
 }
@@ -88,7 +93,7 @@ export function groupSentences(t: ShadeT, g: MonthGroup): string {
   if (d.before) out.push(t(shadeKey('before', d.before), { dir: dirWords(t, d.before.dir) }));
   if (d.between && d.type === 'sun') out.push(t(shadeKey('between', d.between), { dir: dirWords(t, d.between.dir) }));
   if (d.after) out.push(t(shadeKey('after', d.after), { dir: dirWords(t, d.after.dir) }));
-  return out.join(' ');
+  return t.sentences(out);
 }
 
 /** "June, 3 PM to 3:30 PM" */

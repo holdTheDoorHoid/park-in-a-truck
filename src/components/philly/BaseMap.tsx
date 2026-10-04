@@ -323,7 +323,7 @@ export default function BaseMap() {
       </div>
       <div ref={boxRef}>{drawSvg(screenFont)}</div>
       <p class="ph-small">
-        {note} {t('basemap.rounded', { scale: scaleText })}
+        {t.sentences([note, t('basemap.rounded', { scale: scaleText })])}
       </p>
     </div>
   );

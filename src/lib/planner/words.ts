@@ -50,15 +50,19 @@ export function isolate(s: string, t: PlannerT = pt()): string {
 const YEAR = 2026;
 const dateOf = (month: number, day = 1) => new Date(YEAR, month - 1, day);
 
-/** "3:30 pm" (minutes after midnight, Philadelphia time) */
+/**
+ * "3:30 PM" (minutes after midnight, Philadelphia time) — the language's own clock, the same one
+ * the shade calendar uses (src/i18n/format.ts formatClock). Always with minutes, so the time
+ * doesn't jump in width while the sun slider moves.
+ */
 export function clock(min: number, t: PlannerT = pt()): string {
-  const h = Math.floor(min / 60) % 24;
-  const m = Math.floor(min % 60);
-  return t(h >= 12 ? 'time.pm' : 'time.am', { hour: ((h + 11) % 12) + 1, hour24: h, minute: String(m).padStart(2, '0') });
+  return t.clock(Math.floor(min), { minutes: 'always' });
 }
 
 /** "June" */
 export const monthName = (month: number, t: PlannerT = pt()) => t.date(dateOf(month), 'month');
+/** "June" inside a sentence ("in June"): lower case where the language writes it so (Vietnamese "tháng 6") */
+export const monthInSentence = (month: number, t: PlannerT = pt()) => t.monthInSentence(dateOf(month));
 /** "June 21" */
 export const monthDay = (month: number, day: number, t: PlannerT = pt()) => t.date(dateOf(month, day), 'month-day');
 /** "Jun 21" */
@@ -108,7 +112,7 @@ export function periodLabel(p: SunPeriod, t: PlannerT = pt()): string {
     case 'season':
       return t('period.range', { season: t(SEASON_IN_SENTENCE[p.season]), from: mmdd(SEASONS[p.season].from, t), to: mmdd(SEASONS[p.season].to, t) });
     case 'month':
-      return monthName(p.month, t);
+      return monthInSentence(p.month, t);
     case 'day':
       return monthDayShort(p.month, p.day, t);
   }

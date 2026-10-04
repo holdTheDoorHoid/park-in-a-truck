@@ -22,15 +22,24 @@ export interface LocaleInfo {
   /** Month and weekday names for languages Intl does not know (Haitian Creole). */
   months?: readonly string[];
   weekdays?: readonly string[];
+  /** "and" / "or" for lists, for languages Intl.ListFormat does not know (Haitian Creole). */
+  listAnd?: string;
+  listOr?: string;
+  /** The comma between items of a plain list ("a, b, c"), when it isn't ", " ("、" in Chinese). */
+  listSep?: string;
+  /** Month names are lower case inside a sentence though Intl capitalises them alone (Vietnamese "tháng 6"). */
+  monthLower?: boolean;
+  /** Written without spaces between words and sentences (Chinese): no space after 。, none between two pieces. */
+  noSpaces?: boolean;
 }
 
 export const LOCALES = [
   { code: 'en', lang: 'en', intl: 'en-US', name: 'English', english: 'English', dir: 'ltr', match: ['en'] },
   { code: 'es', lang: 'es', intl: 'es-US', name: 'Español', english: 'Spanish', dir: 'ltr', match: ['es'] },
-  { code: 'zh', lang: 'zh-Hans', intl: 'zh-Hans', name: '中文', english: 'Chinese (Simplified)', dir: 'ltr', match: ['zh'] },
-  { code: 'vi', lang: 'vi', intl: 'vi', name: 'Tiếng Việt', english: 'Vietnamese', dir: 'ltr', match: ['vi'] },
+  { code: 'zh', lang: 'zh-Hans', intl: 'zh-Hans', name: '中文', english: 'Chinese (Simplified)', dir: 'ltr', match: ['zh'], listSep: '、', noSpaces: true },
+  { code: 'vi', lang: 'vi', intl: 'vi', name: 'Tiếng Việt', english: 'Vietnamese', dir: 'ltr', match: ['vi'], monthLower: true },
   { code: 'ru', lang: 'ru', intl: 'ru', name: 'Русский', english: 'Russian', dir: 'ltr', match: ['ru'] },
-  { code: 'ar', lang: 'ar', intl: 'ar-u-nu-latn', name: 'العربية', english: 'Arabic', dir: 'rtl', match: ['ar'] },
+  { code: 'ar', lang: 'ar', intl: 'ar-u-nu-latn', name: 'العربية', english: 'Arabic', dir: 'rtl', match: ['ar'], listSep: '، ' },
   {
     code: 'ht',
     lang: 'ht',
@@ -41,6 +50,8 @@ export const LOCALES = [
     match: ['ht'],
     months: ['janvye', 'fevriye', 'mas', 'avril', 'me', 'jen', 'jiyè', 'out', 'septanm', 'oktòb', 'novanm', 'desanm'],
     weekdays: ['dimanch', 'lendi', 'madi', 'mèkredi', 'jedi', 'vandredi', 'samdi'],
+    listAnd: 'ak',
+    listOr: 'oswa',
   },
   { code: 'fr', lang: 'fr', intl: 'fr', name: 'Français', english: 'French', dir: 'ltr', match: ['fr'] },
   { code: 'pt', lang: 'pt-BR', intl: 'pt-BR', name: 'Português', english: 'Portuguese (Brazil)', dir: 'ltr', match: ['pt'] },

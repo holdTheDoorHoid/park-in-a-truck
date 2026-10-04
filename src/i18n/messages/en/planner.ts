@@ -85,7 +85,7 @@ export default defineMessages('planner', {
   /** Read out after something is removed; {name} is the thing's name in lower case */
   'announce.removed': 'Removed {name}. Undo (Ctrl+Z) brings it back.',
   'announce.removedIt': 'Removed it. Undo (Ctrl+Z) brings it back.',
-  /** A time of day on a 12-hour clock: {hour} 1–12, {minute} two digits. Use {hour24} (0–23) instead of {hour} for a 24-hour clock. */
+  /** Not shown any more (2026-10-04): clock times now follow the language's own clock, like the shade calendar's. No need to translate. */
   'time.am': '{hour}:{minute} am',
   'time.pm': '{hour}:{minute} pm',
   /** Joining the last two items of a list: "May and September" ({first} may itself be a list joined with list.sep) */

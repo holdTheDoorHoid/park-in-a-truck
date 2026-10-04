@@ -73,6 +73,12 @@ describe('chapter comparison', () => {
   it('catches a dropped component', () => {
     expect(compare(GOOD.replace(/<Field id="acquire.address"[^\n]*\n/, ''))).toHaveLength(1);
   });
+  it('lets a translation mark a phone number or address left to right (<bdi>, <span dir="ltr">)', () => {
+    const marked = GOOD.replace('Un texto de introducción', 'Llame al <bdi>(215) 686-1776</bdi> o <span dir="ltr">2233 N Uber St</span>. Un texto de introducción');
+    expect(compare(marked)).toEqual([]);
+    // a span with a class is still structure
+    expect(compare(GOOD.replace('Un texto de introducción', '<span class="flow-num">1</span> Un texto de introducción'))).toHaveLength(1);
+  });
 });
 
 describe('overlay checks', () => {

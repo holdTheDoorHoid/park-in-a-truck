@@ -20,7 +20,7 @@ const sections = [
 ];
 
 const deadCount = deadLinkCount();
-const deadDate = new Date().toISOString().slice(0, 10);
+const deadDate = t.date(new Date().toISOString().slice(0, 10), 'long');
 
 function statusLabel(status: string): string | null {
   if (status === 'dead') return t('resources.status.dead');
@@ -75,7 +75,7 @@ function statusLabel(status: string): string | null {
           <p class="res-meta">
             {item.outlet}
             {item.byline && <> · {item.byline}</>}
-            {item.date && <> · {item.date}</>}
+            {item.date && <> · <time datetime={item.date}>{t.date(item.date, 'long')}</time></>}
           </p>
           {item.note && <p class="res-desc">{item.note}</p>}
         </div>
@@ -118,10 +118,10 @@ function statusLabel(status: string): string | null {
     <h2 id="contact" class="ruled">{sections[4]!.label}</h2>
     <div class="card" style="max-width:32rem">
       <ul class="contact-list">
-        <li><strong>{t('resources.contact.email')}</strong> <a href={`mailto:${RESOURCES.contact.email}`}>{RESOURCES.contact.email}</a></li>
-        <li><strong>{t('resources.contact.founder')}</strong> <a href={`mailto:${RESOURCES.contact.founderEmail}`}>{RESOURCES.contact.founderEmail}</a></li>
-        <li><strong>{t('resources.contact.phone')}</strong> <a href={`tel:${RESOURCES.contact.phone.replace(/[^0-9]/g, '')}`}>{RESOURCES.contact.phone}</a></li>
-        <li><strong>{t('resources.contact.instagram')}</strong> <a href={RESOURCES.contact.instagram.url} target="_blank" rel="noopener noreferrer">{RESOURCES.contact.instagram.handle}</a></li>
+        <li><strong>{t('resources.contact.email')}</strong> <a href={`mailto:${RESOURCES.contact.email}`} dir="ltr">{RESOURCES.contact.email}</a></li>
+        <li><strong>{t('resources.contact.founder')}</strong> <a href={`mailto:${RESOURCES.contact.founderEmail}`} dir="ltr">{RESOURCES.contact.founderEmail}</a></li>
+        <li><strong>{t('resources.contact.phone')}</strong> <a href={`tel:${RESOURCES.contact.phone.replace(/[^0-9]/g, '')}`} dir="ltr">{RESOURCES.contact.phone}</a></li>
+        <li><strong>{t('resources.contact.instagram')}</strong> <a href={RESOURCES.contact.instagram.url} target="_blank" rel="noopener noreferrer" dir="ltr">{RESOURCES.contact.instagram.handle}</a></li>
         <li><strong>{t('resources.contact.facebook')}</strong> <a href={RESOURCES.contact.facebook.url} target="_blank" rel="noopener noreferrer">Park in a Truck</a></li>
       </ul>
     </div>

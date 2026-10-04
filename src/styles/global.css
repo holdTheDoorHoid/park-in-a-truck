@@ -419,6 +419,12 @@ piat-list input {
   min-height: 6em;
   resize: vertical;
 }
+/* Right-to-left pages: what people type takes its direction from its first letter, so an English
+   address ("2233 N Uber St") reads left to right in an Arabic page and Arabic reads right to left.
+   Placeholders keep the page's direction (their addresses are isolated in src/i18n/format.ts). */
+[dir='rtl'] :is(input:not([type]), input[type='text'], input[type='search'], input[type='email'], input[type='url'], input[type='tel'], textarea) {
+  unicode-bidi: plaintext;
+}
 .field input:focus,
 .field select:focus,
 .field textarea:focus,

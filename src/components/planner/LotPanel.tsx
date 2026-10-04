@@ -147,7 +147,7 @@ export function LotPanel({ store }: { store: PlannerStore }) {
         <p class="pl-warn">
           {overhang.items.length
             ? t('lot.overhangItems', { area: overhang.outsideSqFt, count: overhang.items.length })
-            : t('lot.overhang', { area: overhang.outsideSqFt })}{' '}
+            : t('lot.overhang', { area: overhang.outsideSqFt })}{t.space}
           {overhangReason()}
         </p>
       )}

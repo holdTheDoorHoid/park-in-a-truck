@@ -10,6 +10,31 @@ import { getT, localizeKeyed } from '../../i18n/astro.ts';
 
 const t = getT(Astro, parksMsgs);
 const parks = localizeKeyed(PARKS, 'parks', 'id', t.locale);
+
+// The data's "Source:" lines and photo credits are English; put the language's words around the
+// names (papers, people and quoted names stay as they are). Anything not recognised is shown as is.
+function sourceText(source: string): string {
+  return source
+    .split('; ')
+    .map((part) => {
+      const ack = /^Park in a Truck toolkit p\.(\d+) acknowledgments(?: (\(.+\)))?$/.exec(part);
+      if (ack) return t('source.toolkitAck', { page: ack[1]! }) + (ack[2] ? ` ${ack[2]}` : '');
+      const pages = /^Park in a Truck toolkit (pp?)\.(.+)$/.exec(part);
+      if (pages) return pages[1] === 'p' ? t('source.toolkitPage', { page: pages[2]! }) : t('source.toolkitPages', { pages: pages[2]! });
+      const linktree = /^Park in a Truck Linktree( only)?$/.exec(part);
+      if (linktree) return t(linktree[1] ? 'source.linktreeOnly' : 'source.linktree');
+      if (part === 'unconfirmed elsewhere') return t('source.unconfirmedElsewhere');
+      if (part === 'unconfirmed beyond that') return t('source.unconfirmedBeyond');
+      if (part === 'Jefferson news') return t('source.jeffersonNews');
+      return t.isolate(part);
+    })
+    .join('; ');
+}
+function creditText(credit: string): string {
+  if (credit === 'Park in a Truck toolkit') return t('photo.toolkit');
+  const via = /^(.+), via the Park in a Truck toolkit$/.exec(credit);
+  return via ? t('photo.via', { name: via[1]! }) : t.isolate(credit);
+}
 ---
 
 <Base title={t('page.title')} description={t('page.description')}>
@@ -29,7 +54,7 @@ const parks = localizeKeyed(PARKS, 'parks', 'id', t.locale);
                 <figure>
                   <img src={u(photo.src)} alt={photo.alt} loading="lazy" />
                   {(photo.caption || photo.credit) && (
-                    <figcaption>{photo.credit ? t('photo.credit', { caption: photo.caption ?? '', credit: photo.credit }) : photo.caption}</figcaption>
+                    <figcaption>{photo.credit ? t('photo.credit', { caption: photo.caption ?? '', credit: creditText(photo.credit) }) : photo.caption}</figcaption>
                   )}
                 </figure>
               ))}
@@ -38,7 +63,7 @@ const parks = localizeKeyed(PARKS, 'parks', 'id', t.locale);
           <div class="park-card-body">
             <h2>{park.name}</h2>
             <p class="park-meta">
-              {park.address}
+              <bdi>{park.address}</bdi>
               {park.neighborhood && <> · {park.neighborhood}</>}
               {park.year && <> · {t('park.opened', { year: String(park.year) })}</>}
             </p>
@@ -64,7 +89,7 @@ const parks = localizeKeyed(PARKS, 'parks', 'id', t.locale);
               </ul>
             )}
 
-            {park.source && <p class="park-source muted">{t('park.source', { source: park.source })}</p>}
+            {park.source && <p class="park-source muted">{t('park.source', { source: sourceText(park.source) })}</p>}
           </div>
         </article>
       ))}

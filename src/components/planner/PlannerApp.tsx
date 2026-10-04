@@ -208,7 +208,7 @@ function PlannerInner({ mode = 'design', demo, page = false }: Props) {
       <div class="pl-side">
         {demoSlug && (
           <div class="pl-demo-banner" role="status">
-            <span dangerouslySetInnerHTML={{ __html: t.html('demo.banner', { address: isolate(DEMO_LOTS[demoSlug].label) }) }} />{' '}
+            <span dangerouslySetInnerHTML={{ __html: t.html('demo.banner', { address: isolate(DEMO_LOTS[demoSlug].label) }) }} />{t.space}
             {hasLot ? (
               <button type="button" class="pl-link" onClick={() => store.setDemo(null)}>
                 {t('demo.back')}
