@@ -408,49 +408,91 @@ Tone: Standard Kreyòl orthography. **ou** for the reader. Prefer everyday Krey�
 
 Tone: Standard French. **vous**. Keep US units and dates as the site formats them.
 
+*Status: filled in by the t-fr translation round (2026-10-04), which translated the whole site with it.*
+
+Written for French readers in Philadelphia from West Africa, Haiti, Europe and Canada: clear international French,
+**vous**, no France-only or Québec-only slang. Philadelphia = *Philadelphie*. Typography: a non-breaking space
+(U+00A0) before `: ; ? !` and inside « guillemets », everywhere (catalogs, data, chapters); typographic apostrophe ’.
+Money as « 20 $ ». Plurals: French uses `one` for 0 and 1, `other` for the rest.
+
 | English | Translation | Note |
 |---|---|---|
-| Park in a Truck / PiaT |  | |
-| toolkit |  | |
-| workbook |  | |
-| step |  | |
-| sub-step |  | |
-| Mark this step done / done |  | |
-| Start here · Acquire · Organize · Assess · Dream · Create · Sustain |  | |
-| vacant lot |  | |
-| lot |  | |
-| parcel |  | |
-| mid-block lot / corner lot / breezeway, alley |  | |
-| owner (public / private) |  | |
-| zoning |  | |
-| City records / Filled in from City records |  | |
-| City (of Philadelphia) |  | |
-| RCO (Registered Community Organization) |  | |
-| Philadelphia Land Bank |  | |
-| PHDC |  | |
-| Sheriff Sale |  | |
-| purchase / donation / lease / in-kind (use) agreement |  | |
-| park committee |  | |
-| neighbors / neighborhood |  | |
-| park pieces |  | |
-| frame / front / back (pieces) |  | |
-| seam (length seam, width seam) |  | |
-| theme: Edible · Sanctuary · Nature · Event |  | |
-| size A–E |  | |
-| gabion (wall, bench) |  | |
-| build guide |  | |
-| cut list / materials & hardware / tools |  | |
-| 2x4, 2x4x8', BB-1 |  | |
-| full sun / part sun / shade |  | |
-| native plant · perennial · shrub · small tree · large tree |  | |
-| pollinator |  | |
-| stewardship / sustain |  | |
-| My park |  | |
-| project file |  | |
-| Plan in 3D / the planner |  | |
-| Note from this site, not Park in a Truck |  | |
-| in English |  | |
-| ft, in, sq ft, $ |  | |
+| Park in a Truck / PiaT | Park in a Truck / PiaT | Masculine: « le programme Park in a Truck ». |
+| toolkit | la boîte à outils (le *Toolkit*) | Always PiaT's 36-page overview book. Real tools are « outils ». |
+| workbook | cahier (cahier de travail) | « le cahier Acquérir ». |
+| step | étape | |
+| sub-step | sous-étape | |
+| Mark this step done / done | Marquer cette étape comme terminée / terminé(e) | |
+| Start here · Acquire · Organize · Assess · Dream · Create · Sustain | Commencer ici · Acquérir · Organiser · Évaluer · Rêver · Créer · Entretenir | Infinitives, like French menus. |
+| vacant lot | terrain vacant | Not *terrain vague* (France only). |
+| lot | terrain | French *lot* means a batch or a housing plot; avoid it. |
+| parcel | parcelle | |
+| mid-block lot / corner lot / breezeway, alley | terrain en milieu de rue / terrain d'angle / passage, ruelle | Easement = servitude (droit de passage). |
+| owner (public / private) | propriétaire (public / privé) | |
+| zoning | zonage | |
+| City records / Filled in from City records | registres de la Ville / Rempli d'après les registres de la Ville | |
+| City (of Philadelphia) | la Ville (de Philadelphie) | Capital V for the city government. |
+| RCO (Registered Community Organization) | organisation de quartier enregistrée (RCO) | « de quartier » rather than *communautaire* (reads differently in France). |
+| Philadelphia Land Bank | Philadelphia Land Bank (l'organisme de la Ville qui vend et loue les terrains publics) | |
+| PHDC | PHDC | |
+| Sheriff Sale | vente aux enchères du shérif (Sheriff Sale) | |
+| purchase / donation / lease / in-kind (use) agreement | achat / don / bail (location) / accord d'usage en nature | Select options keep the English value. |
+| park committee | comité du parc | |
+| neighbors / neighborhood | voisins / quartier | |
+| park pieces | pièces du parc | The printed cut-out designs. |
+| frame / front / back (pieces) | cadre / pièce avant / pièce arrière | |
+| seam (length seam, width seam) | bande de raccord (en longueur, en largeur) | |
+| theme: Edible · Sanctuary · Nature · Event | Comestible · Refuge · Nature · Événements | « le thème Refuge », « liste de plantes : Comestible ». |
+| size A–E | taille A–E | |
+| gabion (wall, bench) | gabion (mur en gabions, banc en gabions) | The wire basket: cage de gabion. |
+| build guide | guide de construction | Inside a guide: monter, assemblage, étapes. |
+| cut list / materials & hardware / tools | liste de coupe / matériaux et quincaillerie / outils | |
+| 2x4, 2x4x8', BB-1 | 2x4, 2x4x8', BB-1 | Marks ' and " stay as printed in sizes. |
+| full sun / part sun / shade | plein soleil / soleil partiel / ombre | |
+| native plant · perennial · shrub · small tree · large tree | plante indigène · vivace · arbuste · petit arbre · grand arbre | Plant common names: the usual French name where one is well known, otherwise French + English name in brackets so it can be found at a US nursery. |
+| pollinator | pollinisateur | |
+| stewardship / sustain | entretien du parc / entretenir | Survive · Thrive · Socialize = Survivre · S'épanouir · Se retrouver. |
+| My park | Mon parc | |
+| project file | fichier du projet | |
+| Plan in 3D / the planner | Concevoir en 3D / le planificateur 3D | |
+| Note from this site, not Park in a Truck | Note de ce site, et non de Park in a Truck | |
+| in English | en anglais | |
+| ft, in, sq ft, $ | pieds (pi), pouces (po), pieds carrés (pi²), $ | Words in sentences; pi / po / pi² in short labels. |
+
+Extra terms used in the chapters, guides and data (fr only):
+
+| English | Translation | Note |
+|---|---|---|
+| site (the lot being turned into a park) | terrain, site | |
+| volunteers | bénévoles | |
+| councilperson | conseiller municipal / conseillère municipale | |
+| base map / base plan | carte de base / plan de base | |
+| soil / topsoil / soil test | sol, terre / terre végétale / analyse de sol | |
+| mulch | paillis | |
+| planting bed / raised bed / planting square | massif (plate-bande) / bac surélevé / carré de plantation | |
+| gravel / stone dust | gravier / poussière de pierre | |
+| weeds / pre-emergent | mauvaises herbes / herbicide de prélevée | |
+| fire hydrant / hydrant permit / backflow preventer | bouche d'incendie / permis d'utilisation de la bouche d'incendie / clapet anti-retour (backflow preventer) | |
+| street tree | arbre de rue | |
+| temporary no-parking permit | permis temporaire d'interdiction de stationner | |
+| volunteer waiver / release form | formulaire de décharge de responsabilité pour bénévoles | |
+| Park Ambassador | ambassadeur du parc | |
+| phase (Create step) | phase | « Phase 1 : Organiser ». |
+| cost estimate / cost estimator | estimation des coûts / calculateur de coûts | |
+| sun study | étude d'ensoleillement | |
+| bench / stool / table / planter box | banc / tabouret / table / bac à plantes | |
+| shade structure / stage / workbench | structure d'ombrage (auvent) / scène / établi (table haute) | |
+| impact driver / self-driving exterior wood screws | visseuse à percussion / vis à bois d'extérieur autoforeuses | |
+| pre-drill / pre-drilling hole guide | pré-percer / guide de perçage | |
+| miter saw / stop block / jig / spacer | scie à onglets / butée / gabarit / cale | |
+| carpenter's square / level | équerre de charpentier / niveau | |
+| lag screws / carriage bolts / socket wrench | tire-fonds / boulons de carrosserie / clé à douille | |
+| sledgehammer / hammer | masse / marteau | |
+| wire mesh / hog rings / hog ring pliers / cable staples | grillage / agrafes à anneau (hog rings) / pince à agrafes / cavaliers | |
+| bolt cutters / grinder / staple gun | coupe-boulons / meuleuse / agrafeuse | |
+| geotextile fabric | toile géotextile | |
+| pressure-treated / cedar / Douglas fir | traité sous pression / cèdre / douglas (sapin de Douglas) | |
+| flush / square (adj.) | à ras / d'équerre | |
 
 ### pt — Português (Brasil)
 
