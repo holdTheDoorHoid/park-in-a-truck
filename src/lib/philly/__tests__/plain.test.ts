@@ -43,3 +43,18 @@ describe('plain words', () => {
     expect(distance(2640)).toBe('0.5 mi');
   });
 });
+
+describe('usability fixes 2026-10-04', () => {
+  it('never writes "1. mi" (veteran S12)', () => {
+    expect(distance(5300)).toBe('1 mi');
+    expect(distance(5280)).toBe('1 mi');
+    expect(distance(5900)).toBe('1.1 mi');
+    expect(distance(10560)).toBe('2 mi');
+    expect(distance(1320)).toBe('0.25 mi');
+    for (let ft = 1000; ft < 60000; ft += 37) expect(distance(ft)).toMatch(/^\d+(\.\d+)? mi$/);
+  });
+  it('keeps a cut-off "LL" as the City has it, not "Ll" (veteran S4)', () => {
+    expect(titleCase('HOPE STREET DEVELOPERS LL')).toBe('Hope Street Developers LL');
+    expect(titleCase('GEENA LLC')).toBe('Geena LLC');
+  });
+});

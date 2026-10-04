@@ -105,19 +105,92 @@ export const OWNER_TYPE_LABEL: Record<OwnerType, string> = {
   unknown: 'Unknown',
 };
 
+/**
+ * Words that show owner_2 carries on the name in owner_1 rather than naming a
+ * second owner ("REDEVELOPMENT AUTHORITY" + "OF PHILADELPHIA", "ST PAUL BAPTIST" +
+ * "CHURCH", "XYZ HOLDINGS" + "LLC").
+ */
+const CONTINUES =
+  /^(OF|AND|&|FOR|AT|ON|IN|DEPT|DEPARTMENT|DIV|DIVISION|DEV|DEVELOPMENT|AUTH|AUTHORITY|CORP|CORPORATION|INC|INCORPORATED|LLC|L ?L ?C|LP|LLP|LTD|CO|COMPANY|ASSN|ASSOC|ASSOCIATION|TRUST|TRUSTEES?|FOUNDATION|CHURCH|PARTNERS(HIP)?|HOLDINGS?|GROUP|PROPERTIES|TRANSPORT|PASSENGER|INDUSTRIAL|AMERICA|PORT|COMMISSION|COMM)\b/;
+/** owner_1 stops in the middle of a name ("SCHOOL DISTRICT OF", "SECRETARY OF HOUSING AND"). */
+const DANGLES = /\b(OF|AND|&|FOR|THE|AT|IN|ON)$/;
+
+/**
+ * OPA's owner_1 and owner_2 as one line. Two people stay two people
+ * ("HERBERT MITCHELL & VICTORIA"); a name split across the two columns is put
+ * back together ("REDEVELOPMENT AUTHORITY OF PHILADELPHIA"). Any public agency is
+ * one owner, so its two lines are always one name.
+ */
+export function ownerNames(owners: (string | null | undefined)[]): string {
+  const list = owners.map((o) => (o ?? '').replace(/\s+/g, ' ').trim()).filter(Boolean);
+  if (list.length < 2) return list[0] ?? '';
+  const pub = isPublic(classifyOwner(list).type);
+  let out = list[0]!;
+  for (const next of list.slice(1)) {
+    const up = norm(next);
+    const glue = pub || CONTINUES.test(up) || DANGLES.test(norm(out));
+    out = glue ? `${out} ${next}` : `${out} & ${next}`;
+  }
+  return out;
+}
+
 export interface AcquirePath {
-  id: 'purchase-public' | 'donation' | 'sale' | 'purchase' | 'in-kind';
+  id: 'purchase-public' | 'other-agency' | 'donation' | 'sale' | 'purchase' | 'in-kind';
   title: string;
   text: string;
   link?: { label: string; url: string };
 }
 
 /**
- * The ways forward from the Acquire workbook ("Who owns that lot?", p.4), in
- * PiaT's words. Public → potential purchase through PHDC / the Land Bank;
- * private → donation, sale (incl. Sheriff Sale), purchase agreement, in-kind.
+ * Public owners whose land is in the Philadelphia Land Bank's inventory (the City's
+ * LAMAAssets layer behind the Land Bank map lists four agencies: PUB = City,
+ * PLB = Land Bank, PRA = Redevelopment Authority, PHDC). Checked 2026-10-04.
  */
-export function acquirePaths(t: OwnerType): AcquirePath[] {
+export function landBankHandles(t: OwnerType, agencyLabel?: string | null): boolean {
+  if (t === 'city' || t === 'landbank' || t === 'redevelopment') return true;
+  return t === 'other-public' && /\bPHDC\b|Housing Development Corporation/i.test(agencyLabel ?? '');
+}
+
+/** Each separate agency's own website, where there is one obvious place to start. */
+const AGENCY_SITES: [RegExp, string][] = [
+  [/Housing Authority/, 'https://www.pha.phila.gov/'],
+  [/School District/, 'https://www.philasd.org/'],
+  [/SEPTA/, 'https://www.septa.org/'],
+  [/PIDC/, 'https://pidcphila.com/'],
+  [/Parking Authority/, 'https://philapark.org/'],
+  [/Gas Works/, 'https://www.pgworks.com/'],
+];
+
+/** "Philadelphia Housing Authority (PHA)" → "the Philadelphia Housing Authority (PHA)" */
+function theAgency(label: string): string {
+  const plain = label.replace(/ \((regional transit|federal railroad|City-owned utility)\)$/, '');
+  if (/^(SEPTA|Amtrak)\b/.test(plain)) return plain;
+  if (/^Port \/ bridge/.test(plain)) return 'a port or bridge authority';
+  return `the ${plain}`;
+}
+
+/**
+ * The ways forward from the Acquire workbook ("Who owns that lot?", p.4), in
+ * PiaT's words. City land (and the Land Bank, Redevelopment Authority, PHDC) →
+ * potential purchase through PHDC / the Land Bank; another public agency → it is
+ * a separate owner the Land Bank can't sell for; private → donation, sale (incl.
+ * Sheriff Sale), purchase agreement, in-kind.
+ * @param agencyLabel the agency in plain words (LotExtra.ownerLabel), for public owners
+ */
+export function acquirePaths(t: OwnerType, agencyLabel?: string | null): AcquirePath[] {
+  if (isPublic(t) && !landBankHandles(t, agencyLabel)) {
+    const label = agencyLabel && agencyLabel !== 'Unknown' ? agencyLabel : t === 'pha' ? 'Philadelphia Housing Authority (PHA)' : 'this public agency';
+    const site = AGENCY_SITES.find(([re]) => re.test(label))?.[1];
+    const who = label === 'this public agency' ? label : theAgency(label);
+    return [
+      {
+        id: 'other-agency',
+        title: 'Owned by another public agency',
+        text: `This lot belongs to ${who}, a public agency separate from the City. Its land is not sold or leased through PHDC or the Philadelphia Land Bank, and the Land Bank's map won't list it. Contact the landowner — ${who} — about the lot.`,
+        ...(site ? { link: { label: `${label.replace(/ \(.*\)$/, '')} website`, url: site } } : {}),
+      },
+    ];
+  }
   if (isPublic(t)) {
     return [
       {

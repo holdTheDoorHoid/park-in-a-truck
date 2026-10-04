@@ -78,13 +78,30 @@ export const COUNCIL_MEMBERS: Record<string, string> = {
 };
 export const COUNCIL_AS_OF = 'January 2024 – January 2028 term';
 
+/** Each district member's own page on phlcouncil.com (checked 2026-10-04). */
+export const COUNCIL_PAGES: Record<string, string> = {
+  '1': 'https://phlcouncil.com/marksquilla/',
+  '2': 'https://phlcouncil.com/kenyattajohnson/',
+  '3': 'https://phlcouncil.com/jamiegauthier/',
+  '4': 'https://phlcouncil.com/curtisjonesjr/',
+  '5': 'https://phlcouncil.com/jefferyyoungjr/',
+  '6': 'https://phlcouncil.com/michaeldriscoll/',
+  '7': 'https://phlcouncil.com/quetcylozada/',
+  '8': 'https://phlcouncil.com/cindybass/',
+  '9': 'https://phlcouncil.com/anthonyphillips/',
+  '10': 'https://phlcouncil.com/brianoneill/',
+};
+
 /** "N DOVER ST" → "N Dover St" */
 export function titleCase(s: string | null | undefined): string {
   if (!s) return '';
   return s
     .toLowerCase()
     .replace(/(^|[^a-z'’])([a-z])/g, (_, a: string, c: string) => a + c.toUpperCase())
-    .replace(/\b(Ii|Iii|Iv|Llc|Lp|Inc|Usa|Phdc|Pha|Pidc|Septa|Rco|Cdc|Ppr)\b/g, (m) => m.toUpperCase())
+    .replace(/\b(Ii|Iii|Iv|Llc|Llp|Lp|Inc|Usa|Phdc|Pha|Pidc|Septa|Rco|Cdc|Ppr)\b/g, (m) => m.toUpperCase())
+    // OPA cuts long names off at a fixed width: "…DEVELOPERS LL" is a cut-off "LLC"
+    // (probably), but we can't be sure, so keep the letters as the City has them.
+    .replace(/\bLl$/, 'LL')
     .replace(/\b(\d+)(St|Nd|Rd|Th)\b/g, (_, n: string, s: string) => n + s.toLowerCase())
     .replace(/(^|\s)(n|s|e|w)(?=\s)/gi, (_, a: string, d: string) => a + d.toUpperCase())
     .replace(/\b(Pa|Nj|De|Ny|Md)(?= \d{5})/g, (m) => m.toUpperCase());
@@ -106,5 +123,7 @@ export function distance(ft: number | null | undefined): string {
   if (ft == null) return '';
   if (ft < 30) return 'next door';
   if (ft < 1000) return `${Math.round(ft / 10) * 10} ft`;
-  return `${(ft / 5280).toFixed(ft < 5280 ? 2 : 1).replace(/0$/, '')} mi`;
+  // 0.25 mi, 0.5 mi, 1 mi, 1.3 mi — never "1." or "1.0"
+  const mi = Math.round((ft / 5280) * (ft < 5280 ? 100 : 10)) / (ft < 5280 ? 100 : 10);
+  return `${mi} mi`;
 }

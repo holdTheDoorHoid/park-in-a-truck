@@ -21,7 +21,7 @@ import type { LngLat, LotRecord } from '../types';
 import { queryAttrs, queryGeo, type GeoFeature } from './arcgis';
 import { LAYERS, links, type LayerName } from './endpoints';
 import { distToRing, makeProjector, roundTo, type Projector } from './geo';
-import { COUNCIL_AS_OF, COUNCIL_MEMBERS, phone as fmtPhone, titleCase } from './plain';
+import { COUNCIL_AS_OF, COUNCIL_MEMBERS, COUNCIL_PAGES, phone as fmtPhone, titleCase } from './plain';
 import type { Asset, AssetCategoryId, AssetGroup } from './types';
 
 type LotLike = Pick<LotRecord, 'lat' | 'lng'> & Partial<Pick<LotRecord, 'polygon' | 'councilDistrict' | 'rcos' | 'address'>>;
@@ -298,7 +298,15 @@ function radiusFor(id: AssetCategoryId, r: number): number {
   return r;
 }
 
-async function groupItems(id: AssetCategoryId, lot: LotLike, center: LngLat, radiusFt: number, pr: Projector, signal?: AbortSignal): Promise<Asset[]> {
+async function groupItems(
+  id: AssetCategoryId,
+  lot: LotLike,
+  center: LngLat,
+  radiusFt: number,
+  pr: Projector,
+  signal?: AbortSignal,
+  partial?: () => void,
+): Promise<Asset[]> {
   if (id === 'council') {
     const d = lot.councilDistrict;
     if (!d) return [];
@@ -308,7 +316,7 @@ async function groupItems(id: AssetCategoryId, lot: LotLike, center: LngLat, rad
         id: `council:${d}`,
         name: `Council District ${d}${who ? ` — Councilmember ${who}` : ''}`,
         detail: who ? `Council member for the ${COUNCIL_AS_OF}` : undefined,
-        url: links.council,
+        url: COUNCIL_PAGES[d] ?? links.council,
         distanceFt: 0,
       },
     ];
@@ -334,8 +342,14 @@ async function groupItems(id: AssetCategoryId, lot: LotLike, center: LngLat, rad
     }));
   }
   const specs = SPECS[id] ?? [];
-  const lists = await Promise.all(specs.map((sp) => layerAssets(sp, center, radiusFt, pr, signal)));
-  let items = lists.flat();
+  // Groups made of two City layers (gardens, art, historic) show what loaded even if
+  // one layer didn't, and say the list may be incomplete.
+  const settled = await Promise.allSettled(specs.map((sp) => layerAssets(sp, center, radiusFt, pr, signal)));
+  const failed = settled.filter((r): r is PromiseRejectedResult => r.status === 'rejected');
+  if (failed.length && failed.length === settled.length) throw failed[0]!.reason;
+  if (failed.some((f) => (f.reason as { code?: string })?.code === 'aborted')) throw failed.find((f) => (f.reason as { code?: string })?.code === 'aborted')!.reason;
+  if (failed.length) partial?.();
+  let items = settled.flatMap((r) => (r.status === 'fulfilled' ? r.value : []));
   if (id === 'universities') {
     // many buildings per school: keep the nearest building of each
     const best = new Map<string, Asset>();
@@ -371,7 +385,9 @@ export async function nearbyAssets(lot: LotLike, radiusFt = 1320, opts: { signal
       const r = radiusFor(c.id, radiusFt);
       const group: AssetGroup = { ...c, items: [], radiusFt: r, source: SOURCES[c.id], ...(NOTES[c.id] ? { note: NOTES[c.id] } : {}) };
       try {
-        group.items = await groupItems(c.id, lot, center, r, pr, opts.signal);
+        group.items = await groupItems(c.id, lot, center, r, pr, opts.signal, () => {
+          group.warning = "Part of this list couldn't load from the City right now, so it may be missing some places.";
+        });
       } catch (e) {
         if ((e as { code?: string })?.code === 'aborted') throw e;
         group.error = "Couldn't load this list from the City right now.";

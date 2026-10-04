@@ -11,6 +11,7 @@ import { searchAddresses } from '../search';
 import { fetchSurroundings } from '../surroundings';
 import { nearbyAssets } from '../assets';
 import { fetchVacantLots } from '../vacant';
+import { findStreet } from '../streets';
 import { FIXTURE_DIR, type Recorded } from './fixtures';
 
 export const LOTS: { name: string; query: string; why: string }[] = [
@@ -63,6 +64,13 @@ describe.skipIf(!process.env.PHILLY_CAPTURE)('capture City API fixtures (network
     for (const q of ['1322 N Dov', '1322 dover', 'S 60th St & Greenway Ave', '60th and Greenway', '292140710', 'asdfqwer'])
       console.log(q, (await searchAddresses(q)).map((s) => s.label));
     save('search', 'type-ahead', store);
+  });
+
+  it('street-only search (no house number)', { timeout: 60_000 }, async () => {
+    const store: Record<string, Recorded> = {};
+    recorder(store);
+    for (const q of ['N Uber St', 'uber street', 'Nowhereville Rd']) console.log(q, (await findStreet(q)).map((m) => `${m.name}:${m.blocks.length}`));
+    save('streets-uber', 'street names without a house number', store);
   });
 
   it('intersection lookup', { timeout: 60_000 }, async () => {

@@ -107,6 +107,21 @@ import StepPath from '../../components/site/StepPath.astro';
     newProject, switchProject, deleteProject,
   } from '../../lib/project';
   import { formatAuto } from '../../lib/autofill';
+  import { ownerNames } from '../../lib/philly/owner';
+  import { lotGeometry } from '../../lib/philly/choose';
+  import type { LotRecord } from '../../lib/types';
+
+  /** The same lot size every other page shows: measured from the City's parcel outline. */
+  function lotSizeText(lot: LotRecord): string {
+    const g = lotGeometry(lot);
+    if (g) {
+      const ft = (n: number) => (Math.round(n * 10) / 10).toFixed(1);
+      return `${ft(g.widthFt)} ft × ${ft(g.lengthFt)} ft · ${formatAuto(g.areaSqFt, 'sqft')} (measured from the City's parcel outline)`;
+    }
+    if (lot.frontageFt && lot.depthFt)
+      return `${lot.frontageFt} × ${lot.depthFt} ft${lot.areaSqFt ? ` · ${formatAuto(lot.areaSqFt, 'sqft')}` : ''} (City property record)`;
+    return lot.areaSqFt ? `${formatAuto(lot.areaSqFt, 'sqft')}` : '—';
+  }
 
   const $ = <T extends Element>(s: string) => document.querySelector<T>(s)!;
   const esc = (s: unknown) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
@@ -165,8 +180,8 @@ import StepPath from '../../components/site/StepPath.astro';
     const lot = p.lot;
     $('[data-lot-summary]').innerHTML = lot
       ? `<dl class="lot"><dt>Address</dt><dd>${esc(lot.address)}</dd>
-         <dt>Owner</dt><dd>${esc(lot.owners.join(' & '))} — ${esc(formatAuto(lot.ownerType, 'ownerType'))}</dd>
-         <dt>Lot size</dt><dd>${lot.areaSqFt ? esc(formatAuto(lot.areaSqFt, 'sqft')) : '—'}${lot.frontageFt && lot.depthFt ? ` (${lot.frontageFt} × ${lot.depthFt} ft)` : ''}</dd>
+         <dt>Owner</dt><dd>${esc(ownerNames(lot.owners))} — ${esc(formatAuto(lot.ownerType, 'ownerType'))}</dd>
+         <dt>Lot size</dt><dd>${esc(lotSizeText(lot))}</dd>
          <dt>Zoning</dt><dd>${esc(lot.zoning ?? '—')}</dd></dl>`
       : '<p class="muted">No lot chosen yet. Look one up in <a href="../steps/acquire/">Step 1: Acquire</a>.</p>';
 
