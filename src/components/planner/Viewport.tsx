@@ -16,6 +16,7 @@ import { catalogEntry, existingMeta } from '../../lib/planner/catalog';
 import { ELEMENTS } from '../../data/elements';
 import { deleteSelected, duplicateSelected, rotateSelected } from './keyboard';
 import { downloadDataUrl, printPlan } from './exporting';
+import { PlayChip } from './PlayChip';
 
 interface Props {
   store: PlannerStore;
@@ -143,6 +144,10 @@ export function Viewport({ store, mode }: Props) {
               if (!d) return;
               const radiusFt = Math.max(0.5, Math.round(Math.sqrt(polygonArea(outline) / Math.PI) * 10) / 10);
               store.commit(updateExisting(d, id, { outline, radiusFt }));
+            },
+            // sun step: a click on the ground charts that spot's sun through the year
+            onGroundClick: (p) => {
+              if (store.$step.get() === 'sun') store.sun.$spot.set(p);
             },
           });
         } catch (e) {
@@ -319,6 +324,7 @@ export function Viewport({ store, mode }: Props) {
               </div>
             </details>
           </div>
+          <PlayChip store={store} />
           <div class="pl-north" style={{ transform: `rotate(${north}deg)` }} aria-hidden="true" title="North">
             <span>N</span>
           </div>

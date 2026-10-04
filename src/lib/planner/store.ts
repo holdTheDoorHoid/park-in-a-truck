@@ -17,6 +17,7 @@ import { phillyMinutes } from './sun';
 import { measureEdges } from './edges';
 import { bbox, type Vec2 } from './geo';
 import type { SnapStep } from './interact';
+import { createSunView } from './sunview';
 
 export type PlannerMode = 'full' | 'design' | 'site' | 'sun';
 export type Selection = { kind: 'item' | 'existing'; id: string } | null;
@@ -104,6 +105,8 @@ export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = nu
   const $sunData: ReadableAtom<{ spec: GridSpec; hours: Float32Array } | null> = computed([$site, $sunGrid], (site, g) =>
     site && g ? { spec: gridSpecFromSaved(g, site.lf), hours: decodeHours(g.hoursX10) } : null,
   );
+  // shadows workstream: sun hours for any period, the charted spot, play state (sunview.ts)
+  const sun = createSunView({ $site, $design, $sunTime, $sunData });
   // neighbours close enough to touch the park's edges
   const $near: ReadableAtom<{ buildings: Vec2[][]; parcels: Vec2[][] } | null> = computed($site, (site) => {
     if (!site) return null;
@@ -380,6 +383,8 @@ export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = nu
     undo,
     redo,
     computeSun,
+    /** shadows workstream: periods, the charted spot, play state */
+    sun,
     setDemo,
     reload: load,
     flush,
@@ -387,6 +392,7 @@ export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = nu
       flush();
       unProject();
       job?.cancel();
+      sun.destroy();
     },
   };
 }

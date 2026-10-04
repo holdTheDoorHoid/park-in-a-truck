@@ -140,6 +140,11 @@ export interface ExistingItem extends PlacedItem {
   dbhIn?: number | null;
   note?: string;
   /**
+   * Trees only: loses its leaves in winter or keeps them (shadows workstream, 2026-10-04).
+   * Absent = decided from the City's species name, else deciduous (older saved trees).
+   */
+  leafHabit?: 'deciduous' | 'evergreen';
+  /**
    * (terrain, 2026-10-04) A wet area drawn as an outline: its corners in FEET east and north
    * of `lngLat` (the outline's centre), so moving the area only changes `lngLat`. Absent =
    * a circle of `radiusFt` (older saves). `radiusFt` is kept at the outline's equivalent radius.

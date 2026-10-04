@@ -975,6 +975,180 @@
   }
 }
 
+/* ---- sun step: play the day/year, periods, one spot's year (shadows workstream, 2026-10-04) ---- */
+
+.pl-play .pl-seg-small button {
+  min-height: 30px;
+  padding: 0.2em 0.6em;
+}
+.pl-sun-date {
+  font-size: 1.05rem;
+}
+.pl-playchip {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: grid;
+  gap: 1px;
+  padding: 6px 12px 7px;
+  background: rgb(255 255 255 / 0.92);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  pointer-events: none;
+  line-height: 1.2;
+}
+.pl-playchip strong {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.pl-playchip span {
+  font-size: 0.82rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.pl-playchip .pl-playchip-leaf {
+  font-weight: 500;
+  color: var(--muted);
+}
+.pl-habit {
+  margin: 6px 0 2px;
+}
+.pl-habit .pl-keep {
+  margin-left: 0;
+}
+.pl-habit .pl-keep button:last-child[aria-pressed='true'] {
+  background: var(--ink);
+}
+.pl-spot {
+  margin: 6px 0 8px;
+}
+.pl-spot-plot {
+  position: relative;
+}
+.pl-spot svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.pl-spot-grid {
+  stroke: #e4e2dc;
+  stroke-width: 1;
+}
+.pl-spot-base {
+  stroke: #9a9890;
+  stroke-width: 1;
+}
+.pl-spot-tick,
+.pl-spot-x {
+  font-size: 10px;
+  fill: #6b6a64;
+  font-variant-numeric: tabular-nums;
+}
+.pl-spot-x.is-now {
+  fill: var(--ink);
+  font-weight: 800;
+}
+.pl-spot-track {
+  fill: #f4e4c6;
+}
+.pl-spot-bar {
+  fill: #c27c0e;
+}
+.pl-spot-col.is-hover .pl-spot-track {
+  fill: #eed3a2;
+}
+.pl-spot-col.is-hover .pl-spot-bar {
+  fill: #9a6205;
+}
+.pl-spot-six {
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+.pl-spot-six-label {
+  font-size: 10px;
+  font-weight: 800;
+  fill: var(--ink);
+  paint-order: stroke;
+  stroke: #fff;
+  stroke-width: 3px;
+}
+.pl-spot-value {
+  font-size: 10px;
+  font-weight: 800;
+  fill: var(--ink);
+  paint-order: stroke;
+  stroke: #fff;
+  stroke-width: 3px;
+}
+.pl-spot-tip {
+  position: absolute;
+  top: 0;
+  transform: translate(-50%, 0);
+  display: grid;
+  gap: 1px;
+  min-width: 9.5em;
+  padding: 5px 8px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  font-size: 0.78rem;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 2;
+}
+.pl-spot-key {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  vertical-align: -1px;
+  margin-right: 3px;
+}
+.pl-spot-key-bar {
+  background: #c27c0e;
+}
+.pl-spot-key-track {
+  background: #f4e4c6;
+  border: 1px solid #e3cfa7;
+}
+.pl-spot-table summary,
+.pl-assume summary {
+  cursor: pointer;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+.pl-assume {
+  margin: 12px 0 4px;
+  border-top: 1px solid var(--line);
+  padding-top: 8px;
+}
+.pl-assume ul {
+  padding-left: 1.2em;
+  margin: 6px 0;
+}
+.pl-assume li {
+  margin: 3px 0;
+}
+.pl-spot-tick.is-six {
+  fill: var(--ink);
+  font-weight: 800;
+}
+@media (max-width: 640px) {
+  /* below the toolbar on narrow screens */
+  .pl-playchip {
+    top: 54px;
+    padding: 4px 9px 5px;
+  }
+  .pl-playchip strong {
+    font-size: 1.1rem;
+  }
+}
+
 /* ---- terrain (2026-10-04): slope card, drawing a wet area ---- */
 .pl-slope p {
   margin: 0.35em 0;

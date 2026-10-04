@@ -5,10 +5,11 @@ import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { aerialTileUrl } from '../../mapstyle';
 import { lngLatToTile, tileToLngLat, type LocalFrame, type Vec2 } from '../geo';
-import type { Prism } from '../sunhours';
+import { BARE_CROWN_BLOCKING, CROWN_BLOCKING, type Prism } from '../sunhours';
 import type { LocalTree } from '../localsite';
 import type { GroundFn } from '../ground';
 import { skirtGeometry, terrainGeometry } from './terrain';
+import { crownCenterFt, treeLook } from '../treemodel';
 
 export const W = (e: number, n: number, up = 0) => new THREE.Vector3(e, up, -n);
 
@@ -56,10 +57,64 @@ export function buildBuildings(prisms: Prism[]): THREE.Group {
   return group;
 }
 
-// ---- trees (instanced trunk + low-poly crown) ------------------------------------
+// ---- trees (instanced trunk + low-poly crown + bare limbs) -----------------------------
+//
+// Shadows workstream (2026-10-04): crowns cast DAPPLED shadows that match the sun study.
+// The crown is a sphere (radius crownR, centre crownCenterFt() above the ground, exactly
+// where the sun maths puts it). Its shadow is drawn from one shell of the crown with holes
+// punched in a world-space pattern of ~1 ft leaf clumps: each clump is kept with probability
+// = the share of light the crown blocks (60% in leaf, 30% bare, treemodel.ts), so the
+// shadow on the ground lets through the same share of light as the maths counts. The
+// visible crown uses the same pattern (so what you see is what blocks): full and green in
+// leaf, a thin twiggy haze over bare limbs in winter, cones for needle trees.
 
 const trunkGeo = new THREE.CylinderGeometry(0.5, 0.6, 1, 6).translate(0, 0.5, 0);
-const crownGeo = new THREE.IcosahedronGeometry(1, 1);
+
+/** A slightly lumpy unit sphere so crowns read as trees (each vertex pushed in or out a little). */
+function lumpySphere(): THREE.BufferGeometry {
+  const g = new THREE.IcosahedronGeometry(1, 2);
+  const pos = g.getAttribute('position') as THREE.BufferAttribute;
+  for (let i = 0; i < pos.count; i++) {
+    const x = pos.getX(i);
+    const y = pos.getY(i);
+    const z = pos.getZ(i);
+    const n = Math.sin(x * 12.9898 + y * 78.233 + z * 37.719) * 43758.5453;
+    const f = 0.9 + 0.15 * (n - Math.floor(n));
+    pos.setXYZ(i, x * f, y * f, z * f);
+  }
+  return g;
+}
+const crownGeo = lumpySphere();
+
+/** Bare limbs inside a unit crown (centre 0,0,0; the trunk ends at y = −0.4). */
+function limbsGeometry(): THREE.BufferGeometry {
+  const parts: THREE.BufferGeometry[] = [];
+  const up = new THREE.Vector3(0, 1, 0);
+  const seg = (a: THREE.Vector3, b: THREE.Vector3, r0: number, r1: number) => {
+    const d = b.clone().sub(a);
+    const g = new THREE.CylinderGeometry(r1, r0, d.length(), 5, 1, true).translate(0, d.length() / 2, 0);
+    g.applyQuaternion(new THREE.Quaternion().setFromUnitVectors(up, d.normalize()));
+    g.translate(a.x, a.y, a.z);
+    parts.push(g);
+  };
+  const base = new THREE.Vector3(0, -0.45, 0);
+  seg(base, new THREE.Vector3(0.04, 0.8, -0.02), 0.07, 0.015);
+  for (let k = 0; k < 5; k++) {
+    const az = (k * 72 + 20) * (Math.PI / 180);
+    const lift = 0.2 + 0.08 * (k % 3);
+    const start = new THREE.Vector3(0, -0.35 + 0.1 * (k % 2), 0);
+    const tip = new THREE.Vector3(Math.cos(az) * 0.78, lift + 0.15, Math.sin(az) * 0.78);
+    seg(start, tip, 0.05, 0.012);
+    // a fork half-way out, reaching up toward the crown's edge
+    const mid = start.clone().lerp(tip, 0.5);
+    const az2 = az + 0.6;
+    seg(mid, new THREE.Vector3(Math.cos(az2) * 0.55, 0.72, Math.sin(az2) * 0.55), 0.03, 0.01);
+  }
+  const g = mergeGeometries(parts.map((p) => (p.index ? p.toNonIndexed() : p)), false)!;
+  parts.forEach((p) => p.dispose());
+  return g;
+}
+const limbGeo = limbsGeometry();
 
 export interface TreeSpec {
   x: number;
@@ -67,75 +122,233 @@ export interface TreeSpec {
   heightFt: number;
   crownR: number;
   color?: number;
-  /** ground under the trunk, ft above the lot's datum (terrain; default 0) */
+  /** keeps its leaves in winter (treemodel.ts); default deciduous */
+  evergreen?: boolean;
+  /** needle tree: drawn as a cone */
+  conifer?: boolean;
+  /** ground under the trunk, ft above the lot's datum; default: the instances' ground at (x, y) */
   baseFt?: number;
 }
 
+interface TreeUniforms {
+  /** how far into leaf deciduous trees are (0 bare … 1 full leaf) */
+  uLeaf: { value: number };
+  /** 0..1 how far the leaves have turned (colour only) */
+  uAutumn: { value: number };
+  uBlockLeaf: { value: number };
+  uBlockBare: { value: number };
+}
+
+const TREE_VERT_PARS = /* glsl */ `
+attribute vec2 aTree; // x = evergreen, y = needle tree (cone)
+uniform float uLeaf;
+varying vec3 vTreeW;
+varying float vTreeLeaf;
+varying float vTreeEver;
+`;
+const TREE_VERT_MAIN = /* glsl */ `
+if (aTree.y > 0.5) {
+  // a cone: wide at the bottom of the crown, a point at the top
+  float tC = clamp((transformed.y + 1.0) * 0.5, 0.0, 1.0);
+  float rhoC = length(transformed.xz);
+  if (rhoC > 1e-4) transformed.xz *= 0.95 * (1.0 - tC) / rhoC;
+  transformed.y = transformed.y * 1.25 + 0.1;
+}
+{
+  vec4 treeW = vec4(transformed, 1.0);
+  #ifdef USE_INSTANCING
+  treeW = instanceMatrix * treeW;
+  #endif
+  vTreeW = (modelMatrix * treeW).xyz;
+}
+vTreeLeaf = max(aTree.x, uLeaf);
+vTreeEver = aTree.x;
+`;
+const TREE_FRAG_PARS = /* glsl */ `
+uniform float uBlockLeaf;
+uniform float uBlockBare;
+uniform float uAutumn;
+varying vec3 vTreeW;
+varying float vTreeLeaf;
+varying float vTreeEver;
+// "hash without sine" (Dave Hoskins): an even spread of values in [0, 1)
+float treeHash(vec3 p) {
+  p = fract(p * 0.1031);
+  p += dot(p, p.zyx + 31.32);
+  return fract((p.x + p.y) * p.z);
+}
+// leaf clumps about a foot across, with wavy edges (finer twigs when bare)
+float treeDapple(vec3 w, float scale) {
+  vec3 p = w * scale;
+  p += 0.45 * sin(p.yzx * 1.7 + p.zxy * 0.9);
+  return treeHash(floor(p));
+}
+`;
+const TREE_FRAG_DISCARD = /* glsl */ `
+if (treeDapple(vTreeW, vTreeLeaf < 0.5 ? 2.2 : 1.1) >= mix(uBlockBare, uBlockLeaf, vTreeLeaf)) discard;
+`;
+const TREE_FRAG_COLOR = /* glsl */ `
+{
+  vec3 twig = mix(vec3(0.27, 0.24, 0.22), diffuseColor.rgb, 0.12);
+  vec3 turned = mix(diffuseColor.rgb, vec3(0.80, 0.40, 0.10), uAutumn * (1.0 - vTreeEver) * 0.8);
+  diffuseColor.rgb = mix(twig, turned, smoothstep(0.05, 0.75, vTreeLeaf));
+}
+`;
+
+function patchTreeShader(shader: THREE.WebGLProgramParametersWithUniforms, u: TreeUniforms, color: boolean) {
+  Object.assign(shader.uniforms, u);
+  shader.vertexShader = shader.vertexShader
+    .replace('#include <common>', `#include <common>\n${TREE_VERT_PARS}`)
+    .replace('#include <begin_vertex>', `#include <begin_vertex>\n${TREE_VERT_MAIN}`);
+  shader.fragmentShader = shader.fragmentShader
+    .replace('#include <common>', `#include <common>\n${TREE_FRAG_PARS}`)
+    .replace('#include <clipping_planes_fragment>', `#include <clipping_planes_fragment>\n${TREE_FRAG_DISCARD}`);
+  if (color) shader.fragmentShader = shader.fragmentShader.replace('#include <color_fragment>', `#include <color_fragment>\n${TREE_FRAG_COLOR}`);
+}
+
+/** The crown's visible material and the depth material that draws its dappled shadow. */
+function crownMaterials(u: TreeUniforms): { visible: THREE.MeshLambertMaterial; depth: THREE.MeshDepthMaterial } {
+  const visible = new THREE.MeshLambertMaterial({ color: 0xffffff, flatShading: true, side: THREE.DoubleSide });
+  // the shadow comes from one shell of the crown (the side away from the sun), so a ray
+  // through the crown meets the leaf pattern once, as in the sun maths
+  visible.shadowSide = THREE.BackSide;
+  visible.onBeforeCompile = (shader) => patchTreeShader(shader, u, true);
+  visible.customProgramCacheKey = () => 'planner-tree-crown';
+  const depth = new THREE.MeshDepthMaterial();
+  depth.onBeforeCompile = (shader) => patchTreeShader(shader, u, false);
+  depth.customProgramCacheKey = () => 'planner-tree-crown-depth';
+  return { visible, depth };
+}
+
+/** Instanced trees; `group.userData.treeInstances` points back here so the scene can set the season. */
 export class TreeInstances {
   readonly group = new THREE.Group();
   private trunks: THREE.InstancedMesh;
   private crowns: THREE.InstancedMesh;
+  private limbs: THREE.InstancedMesh | null = null;
+  private crownGeo: THREE.BufferGeometry;
+  private look: THREE.InstancedBufferAttribute;
+  private depth: THREE.MeshDepthMaterial | null = null;
+  private readonly u: TreeUniforms = {
+    uLeaf: { value: 1 },
+    uAutumn: { value: 0 },
+    uBlockLeaf: { value: CROWN_BLOCKING },
+    uBlockBare: { value: BARE_CROWN_BLOCKING },
+  };
+  /** ground under the trees (local feet → ft above the lot's datum) */
+  private ground: GroundFn | null = null;
+  private last: (TreeSpec & { id?: string })[] = [];
   ids: string[] = [];
 
   constructor(capacity: number, crownMaterial?: THREE.Material) {
-    this.trunks = new THREE.InstancedMesh(trunkGeo, new THREE.MeshLambertMaterial({ color: COLORS.trunk }), Math.max(1, capacity));
-    this.crowns = new THREE.InstancedMesh(
-      crownGeo,
-      crownMaterial ?? new THREE.MeshLambertMaterial({ color: 0xffffff, flatShading: true }),
-      Math.max(1, capacity),
-    );
-    for (const m of [this.trunks, this.crowns]) {
+    const cap = Math.max(1, capacity);
+    this.crownGeo = crownGeo.clone();
+    this.look = new THREE.InstancedBufferAttribute(new Float32Array(cap * 2), 2);
+    this.crownGeo.setAttribute('aTree', this.look);
+    this.trunks = new THREE.InstancedMesh(trunkGeo, new THREE.MeshLambertMaterial({ color: COLORS.trunk }), cap);
+    let crownMat = crownMaterial;
+    if (!crownMat) {
+      const m = crownMaterials(this.u);
+      crownMat = m.visible;
+      this.depth = m.depth;
+    }
+    this.crowns = new THREE.InstancedMesh(this.crownGeo, crownMat, cap);
+    if (this.depth) this.crowns.customDepthMaterial = this.depth;
+    const meshes = [this.trunks, this.crowns];
+    if (!crownMaterial) {
+      // a custom crown material (the see-through "will be removed" markers) gets no limbs
+      this.limbs = new THREE.InstancedMesh(limbGeo, this.trunks.material, cap);
+      this.limbs.visible = false;
+      meshes.push(this.limbs);
+    }
+    for (const m of meshes) {
       m.castShadow = true;
       m.receiveShadow = true;
       m.count = 0;
       m.frustumCulled = false;
       this.group.add(m);
     }
+    this.group.userData.treeInstances = this;
   }
 
   get pickMesh() {
     return this.crowns;
   }
 
+  /** The ground the trees stand on (redraws them on it). */
+  setGround(g: GroundFn | null) {
+    this.ground = g;
+    if (this.last.length) this.set(this.last);
+  }
+
+  /** The season: how far into leaf deciduous trees are (0..1) and how far the leaves have turned. */
+  setSeason(leaf: number, autumn = 0) {
+    this.u.uLeaf.value = leaf;
+    this.u.uAutumn.value = autumn;
+    if (this.limbs) this.limbs.visible = leaf < 0.97 && this.limbs.count > 0;
+  }
+
   set(trees: (TreeSpec & { id?: string })[]) {
+    this.last = trees;
     const m = new THREE.Matrix4();
     const q = new THREE.Quaternion();
     const c = new THREE.Color();
+    const zero = new THREE.Matrix4().makeScale(0, 0, 0);
     const n = Math.min(trees.length, this.crowns.instanceMatrix.count);
     this.ids = [];
     for (let i = 0; i < n; i++) {
       const t = trees[i]!;
+      const base = t.baseFt ?? this.ground?.(t.x, t.y) ?? 0;
       const r = Math.max(0.6, t.crownR);
-      const cz = Math.max(r * 0.8 + 1.5, t.heightFt - r * 0.9);
+      const cz = crownCenterFt(t.heightFt, r);
       const trunkH = Math.max(1.2, cz - r * 0.4);
       const tw = Math.max(0.35, Math.min(1.6, r * 0.08));
-      const z0 = t.baseFt ?? 0; // terrain: the trunk stands on the ground
-      m.compose(W(t.x, t.y, z0), q, new THREE.Vector3(tw, trunkH, tw));
+      m.compose(W(t.x, t.y, base), q, new THREE.Vector3(tw, trunkH, tw));
       this.trunks.setMatrixAt(i, m);
-      m.compose(W(t.x, t.y, z0 + cz), q, new THREE.Vector3(r, r * 0.85, r));
+      m.compose(W(t.x, t.y, base + cz), q, new THREE.Vector3(r, r, r));
       this.crowns.setMatrixAt(i, m);
-      this.crowns.setColorAt(i, c.set(t.color ?? COLORS.crown));
+      // limbs only in broadleaf deciduous trees (they show when the leaves are off)
+      this.limbs?.setMatrixAt(i, t.evergreen || t.conifer ? zero : m);
+      c.set(t.color ?? COLORS.crown);
+      if (t.evergreen) c.multiplyScalar(0.72);
+      this.crowns.setColorAt(i, c);
+      this.look.setXY(i, t.evergreen ? 1 : 0, t.conifer ? 1 : 0);
       this.ids.push(t.id ?? '');
     }
-    this.trunks.count = n;
-    this.crowns.count = n;
-    this.trunks.instanceMatrix.needsUpdate = true;
-    this.crowns.instanceMatrix.needsUpdate = true;
+    const meshes = [this.trunks, this.crowns, ...(this.limbs ? [this.limbs] : [])];
+    for (const mesh of meshes) {
+      mesh.count = n;
+      mesh.instanceMatrix.needsUpdate = true;
+    }
+    this.look.needsUpdate = true;
     if (this.crowns.instanceColor) this.crowns.instanceColor.needsUpdate = true;
-    for (const m of [this.trunks, this.crowns]) {
-      m.computeBoundingSphere();
-      m.computeBoundingBox();
+    if (this.limbs) this.limbs.visible = this.u.uLeaf.value < 0.97 && n > 0;
+    for (const mesh of meshes) {
+      mesh.computeBoundingSphere();
+      mesh.computeBoundingBox();
     }
   }
 
   dispose() {
     this.trunks.dispose();
     this.crowns.dispose();
+    this.limbs?.dispose();
+    this.crownGeo.dispose();
+    (this.trunks.material as THREE.Material).dispose();
+    if (!this.depth) return;
+    (this.crowns.material as THREE.Material).dispose();
+    this.depth.dispose();
   }
 }
 
+/** City trees around the lot (those standing on it are existing conditions instead). */
 export function cityTreeSpecs(trees: LocalTree[]): TreeSpec[] {
-  return trees.filter((t) => !t.onLot).map((t) => ({ x: t.x, y: t.y, heightFt: t.heightFt, crownR: t.crownR, color: COLORS.crownCity, ...(t.baseFt ? { baseFt: t.baseFt } : {}) }));
+  return trees
+    .filter((t) => !t.onLot)
+    .map((t) => {
+      const look = treeLook(t.species);
+      return { x: t.x, y: t.y, heightFt: t.heightFt, crownR: t.crownR, color: COLORS.crownCity, ...(look.evergreen ? { evergreen: true } : {}), ...(look.conifer ? { conifer: true } : {}) };
+    });
 }
 
 // ---- aerial ground (City 3-inch imagery stitched onto one canvas) -----------------
@@ -331,7 +544,7 @@ export function cellTexture(nx: number, ny: number, fill: (i: number, j: number)
 export function disposeTree(o: THREE.Object3D) {
   o.traverse((c) => {
     const m = c as THREE.Mesh;
-    if (m.geometry && m.geometry !== trunkGeo && m.geometry !== crownGeo) m.geometry.dispose();
+    if (m.geometry && m.geometry !== trunkGeo && m.geometry !== crownGeo && m.geometry !== limbGeo) m.geometry.dispose();
     const mat = m.material as THREE.Material | THREE.Material[] | undefined;
     if (Array.isArray(mat)) mat.forEach((x) => x.dispose());
     else if (mat) {

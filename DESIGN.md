@@ -156,6 +156,13 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
   the class at its centre → sun/shade classes that feed the tally.
   Sun classes: ≥6 h direct sun = sun, 3–6 h = part, <3 h = shade; the workbook's two-way count treats part as shade
   unless the plant list says otherwise.
+  *Trees and seasons (2026-10-04):* a crown blocks 60% of the sun in leaf, 30% bare; deciduous leaves come out
+  Apr 1 – May 1 and fall Oct 25 – Nov 20 (`treemodel.ts`); evergreens (from the City inventory's species name, or
+  the person's choice for trees on the lot) block 60% all year. The 3D view draws the same thing: dappled crown
+  shadows (a leaf-clump pattern whose kept share = the blocking share), bare limbs in winter, cones for needle
+  trees. Ground heights (`ground.ts`) are used for every grid cell, crown and building base. The map can show any
+  period (a day, a month, a season, the growing season, the year); only the growing season is saved and counted.
+  Clicking a spot charts its direct sun month by month.
 - **Build-guide 3D models** (`src/data/guides/models/<slug>.json`, format `src/lib/guides3d/schema.ts`, checked by
   `validate.ts`): on `/build/<slug>/` a 3D model sits beside the steps (sticky column ≥ 1000 px, collapsible sticky
   strip above the steps below that) and builds itself as you scroll — the step at the upper-middle of the readable

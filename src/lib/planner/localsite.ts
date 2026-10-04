@@ -22,8 +22,6 @@ export interface LocalTree {
   dbhIn?: number | null;
   /** trunk stands on (or within 2 ft of) the lot */
   onLot: boolean;
-  /** ground at the trunk, ft above the lot's datum (terrain; absent = 0) */
-  baseFt?: number;
 }
 
 export interface LocalSite {
@@ -138,7 +136,8 @@ export function buildLocalSite(ctx: SiteContext, facts?: SiteFacts): LocalSite {
     const [x, y] = lf.toLocal(t.lngLat);
     const { heightFt, crownR } = treeFromDbh(t.dbhIn, t.heightFt);
     const onLot = pointInPolygon([x, y], parcel) || distanceToRing([x, y], parcel) < 2;
-    return { key: cityTreeKey(t.lngLat), x, y, heightFt, crownR, species: t.species, dbhIn: t.dbhIn, onLot, ...(g ? { baseFt: g.ground(x, y) } : {}) };
+    // (tree bases are raised onto the ground by the tree drawing and the sun maths, from groundOf(site))
+    return { key: cityTreeKey(t.lngLat), x, y, heightFt, crownR, species: t.species, dbhIn: t.dbhIn, onLot };
   });
   const frame = siteFrameFromFacts(facts, lf, { parcel, parcels, buildings: buildings.map((b) => b.ring), streets, address: ctx.lot.address });
   const extentFt = Math.max(180, Math.min(300, Math.max(frame.lengthFt, frame.widthFt) * 2 + 140));

@@ -65,8 +65,11 @@ describe('sun hours', () => {
     const open = computeSunHours({ grid, buildings: [], crowns: [], ...season });
     const daylight = season.samples.filter((x) => x.altitudeDeg > 0.5).reduce((s, x) => s + x.weight, 0) / season.days;
     expect(hoursAt(grid, open, [0, 0])).toBeCloseTo(daylight, 3);
-    // a huge crown overhead: every ray passes through it
-    const shaded = computeSunHours({ grid, buildings: [], crowns: [{ x: 0, y: 0, z: 30, r: 500 }], ...season });
+    // a huge crown overhead: every ray passes through it. An evergreen blocks 60% every day;
+    // since leaf seasons (2026-10-04) a deciduous crown blocks a little less over the growing
+    // season, because the leaves are still coming out on its first two sample days (Apr 15,
+    // Apr 25) — see shadows.test.ts.
+    const shaded = computeSunHours({ grid, buildings: [], crowns: [{ x: 0, y: 0, z: 30, r: 500, evergreen: true }], ...season });
     expect(hoursAt(grid, shaded, [0, 0])).toBeCloseTo(daylight * 0.4, 3);
   });
   it('respects the lot mask and encodes compactly', () => {

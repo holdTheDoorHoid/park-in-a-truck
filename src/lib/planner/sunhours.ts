@@ -3,11 +3,15 @@
 // Worker and in tests.
 //
 // Blocking model (documented choice):
-// - Buildings are prisms (footprint × City height) on flat ground and block fully.
-// - Tree crowns are spheres that let 40% of the light through (60% blocking), the
-//   middle of the 50–80% range usually quoted for summer canopy, and they compound
-//   when a ray passes through more than one crown.
-// - Cells are tested at 1 ft above the ground (perennial height).
+// - Buildings are prisms (footprint × City height) standing on the ground under them
+//   (Prism.baseFt, 0 when the ground is unknown) and block fully.
+// - Tree crowns are spheres. In leaf they let 40% of the light through (60% blocking), the
+//   middle of the 50–80% range usually quoted for summer canopy; bare deciduous crowns let
+//   70% through (30% blocking); evergreens block 60% all year. Each sample carries the
+//   leaf state of its day (see treemodel.ts). Crowns compound when a ray passes through
+//   more than one.
+// - Cells are tested at 1 ft above their own ground (GridSpec.groundFt, perennial height).
+//   With no ground data everything is at 0, exactly as before slopes were added.
 
 import type { LngLat, SiteFacts, SunClass } from '../types';
 import { bearingOf, unitFromBearing, type LocalFrame, type Vec2 } from './geo';
@@ -38,9 +42,11 @@ export interface Prism {
 export interface Crown {
   x: number;
   y: number;
-  /** centre height, ft */
+  /** centre height, ft above the lot's datum (ground under the trunk + crown height) */
   z: number;
   r: number;
+  /** keeps its leaves all year (blocks as in leaf in every season) */
+  evergreen?: boolean;
 }
 
 export interface SunHoursInput {
@@ -50,10 +56,16 @@ export interface SunHoursInput {
   samples: SunSample[];
   days: number;
   sampleHeightFt?: number;
+  /** light a crown in leaf lets through (default 1 − CROWN_BLOCKING) */
   crownTransmit?: number;
+  /** light a bare deciduous crown lets through (default 1 − BARE_CROWN_BLOCKING) */
+  bareCrownTransmit?: number;
 }
 
+/** share of direct sun a crown in leaf blocks */
 export const CROWN_BLOCKING = 0.6;
+/** share of direct sun a bare deciduous crown (branches only) blocks; see treemodel.ts */
+export const BARE_CROWN_BLOCKING = 0.3;
 export const SUN_HOURS = { sun: 6, part: 3 } as const;
 
 interface PreppedPrism {
@@ -83,7 +95,8 @@ function prep(p: Prism): PreppedPrism {
     if (x > maxX) maxX = x;
     if (y > maxY) maxY = y;
   });
-  return { xs, ys, n, h: p.heightFt, minX, minY, maxX, maxY };
+  // h = the roof, ft above the lot's datum
+  return { xs, ys, n, h: (p.baseFt ?? 0) + p.heightFt, minX, minY, maxX, maxY };
 }
 
 function inside(b: PreppedPrism, x: number, y: number): boolean {
@@ -123,15 +136,20 @@ function entry(b: PreppedPrism, x: number, y: number, hx: number, hy: number): n
 export function computeSunHours(input: SunHoursInput, onProgress?: (f: number) => void): Float32Array {
   const { grid, samples, days } = input;
   const z0 = input.sampleHeightFt ?? 1;
-  const transmit = input.crownTransmit ?? 1 - CROWN_BLOCKING;
+  const tLeaf = input.crownTransmit ?? 1 - CROWN_BLOCKING;
+  const tBare = input.bareCrownTransmit ?? 1 - BARE_CROWN_BLOCKING;
   const N = grid.nx * grid.ny;
   const px = new Float64Array(N);
   const py = new Float64Array(N);
+  /** height of each cell's sample point, ft above the datum */
+  const pz = new Float64Array(N);
+  const gf = grid.groundFt;
   const hours = new Float32Array(N);
   let gMinX = Infinity;
   let gMinY = Infinity;
   let gMaxX = -Infinity;
   let gMaxY = -Infinity;
+  let zMin = Infinity;
   for (let j = 0; j < grid.ny; j++) {
     for (let i = 0; i < grid.nx; i++) {
       const k = j * grid.nx + i;
@@ -141,6 +159,8 @@ export function computeSunHours(input: SunHoursInput, onProgress?: (f: number) =
       const y = grid.origin[1] + a * grid.ux[1] + b * grid.uy[1];
       px[k] = x;
       py[k] = y;
+      const g = gf ? gf[k]! : 0;
+      pz[k] = (Number.isFinite(g) ? g : 0) + z0;
       if (grid.mask && !grid.mask[k]) {
         hours[k] = NaN;
         continue;
@@ -149,9 +169,12 @@ export function computeSunHours(input: SunHoursInput, onProgress?: (f: number) =
       if (y < gMinY) gMinY = y;
       if (x > gMaxX) gMaxX = x;
       if (y > gMaxY) gMaxY = y;
+      if (pz[k]! < zMin) zMin = pz[k]!;
     }
   }
-  const prisms = input.buildings.filter((b) => b.ring.length >= 3 && b.heightFt > z0).map(prep);
+  if (zMin === Infinity) zMin = z0;
+  // only buildings whose roof is above the lowest sample point can shade anything
+  const prisms = input.buildings.filter((b) => b.ring.length >= 3 && (b.baseFt ?? 0) + b.heightFt > zMin).map(prep);
   const crowns = input.crowns;
   const lit = new Float32Array(N);
   const relevant: PreppedPrism[] = [];
@@ -167,11 +190,14 @@ export function computeSunHours(input: SunHoursInput, onProgress?: (f: number) =
     const dx = Math.cos(alt) * hx;
     const dy = Math.cos(alt) * hy;
     const dz = Math.sin(alt);
+    // light a deciduous crown lets through on this sample's day
+    const leaf = s.leaf ?? 1;
+    const tDec = leaf >= 1 ? tLeaf : leaf <= 0 ? tBare : tBare + (tLeaf - tBare) * leaf;
 
     // Buildings whose shadow can reach the grid this sample.
     relevant.length = 0;
     for (const b of prisms) {
-      const reach = Math.min((b.h - z0) / tanA, 2000);
+      const reach = Math.min((b.h - zMin) / tanA, 2000);
       const sx0 = Math.min(gMinX, gMinX + hx * reach);
       const sx1 = Math.max(gMaxX, gMaxX + hx * reach);
       const sy0 = Math.min(gMinY, gMinY + hy * reach);
@@ -183,16 +209,19 @@ export function computeSunHours(input: SunHoursInput, onProgress?: (f: number) =
       if (Number.isNaN(hours[k])) continue;
       const x = px[k]!;
       const y = py[k]!;
+      const z = pz[k]!;
       let l = 1;
       for (let bi = 0; bi < relevant.length; bi++) {
         const b = relevant[bi]!;
-        const reach = (b.h - z0) / tanA;
+        if (b.h <= z) continue; // the roof is below this point: the rising ray clears it
+        const reach = (b.h - z) / tanA;
         // quick reject: the ray segment's box vs the footprint's box
         const ex = x + hx * reach;
         const ey = y + hy * reach;
         if (Math.max(x, ex) < b.minX || Math.min(x, ex) > b.maxX || Math.max(y, ey) < b.minY || Math.min(y, ey) > b.maxY) continue;
         const sIn = entry(b, x, y, hx, hy);
-        if (sIn !== Infinity && z0 + sIn * tanA < b.h) {
+        // the ray rises, so where it enters the footprint is its lowest point over the building
+        if (sIn !== Infinity && z + sIn * tanA < b.h) {
           l = 0;
           break;
         }
@@ -202,11 +231,11 @@ export function computeSunHours(input: SunHoursInput, onProgress?: (f: number) =
           const c = crowns[ci]!;
           const ox = x - c.x;
           const oy = y - c.y;
-          const oz = z0 - c.z;
+          const oz = z - c.z;
           const bb = ox * dx + oy * dy + oz * dz;
           const cc = ox * ox + oy * oy + oz * oz - c.r * c.r;
           const disc = bb * bb - cc;
-          if (disc > 0 && -bb + Math.sqrt(disc) > 0) l *= transmit;
+          if (disc > 0 && -bb + Math.sqrt(disc) > 0) l *= c.evergreen ? tLeaf : tDec;
         }
       }
       lit[k] = l;
@@ -243,6 +272,10 @@ export interface SunGrid {
   season: { from: string; to: string; everyDays: number; everyMinutes: number };
   /** fraction of light a tree crown blocks */
   crownBlocking: number;
+  /** fraction a bare deciduous crown blocks (studies before leaf seasons were modelled: none) */
+  bareCrownBlocking?: number;
+  /** when deciduous leaves come out and fall ('MM-DD'); see treemodel.ts */
+  leafSeason?: { outFrom: string; outTo: string; dropFrom: string; dropTo: string };
   thresholds: { sunMinHours: number; partMinHours: number };
   /** share of lot cells in each class (0..1) */
   summary: { sun: number; part: number; shade: number };

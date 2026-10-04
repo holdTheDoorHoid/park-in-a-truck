@@ -297,7 +297,6 @@ describe('the demo lots (recorded lidar)', () => {
       expect(b.heightFt).toBeGreaterThan(7);
     }
     expect(site.terrain?.words.headline).toBeTruthy();
-    expect(site.trees.every((t) => typeof t.baseFt === 'number')).toBe(true);
   });
   it("keeps the City's roof heights: base + height = the City's base elevation + height", () => {
     const flat = buildLocalSite(doverCtx(false));
