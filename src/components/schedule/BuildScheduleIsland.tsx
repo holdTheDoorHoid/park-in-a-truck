@@ -14,7 +14,9 @@ import {
 } from './buildSchedule';
 import { formatLong } from './dates';
 import { downloadIcs } from './ics';
-import { PHASES } from './phases';
+import { PHASES, phaseText } from './phases';
+import schedule from '../../i18n/messages/en/schedule.ts';
+import { getT } from '../../i18n/t.ts';
 
 const EXTRA_KEY = 'buildSchedule';
 
@@ -30,6 +32,7 @@ function update(fn: (state: BuildScheduleState) => BuildScheduleState) {
 }
 
 export default function BuildScheduleIsland() {
+  const t = getT(undefined, schedule);
   const project = useStore($project);
   const state = (project.extra[EXTRA_KEY] as BuildScheduleState | undefined) ?? blankSchedule();
   const slots = useMemo(() => computeSchedule(state), [state]);
@@ -49,8 +52,8 @@ export default function BuildScheduleIsland() {
   const onReset = (phaseId: string) => update((s) => clearOverride(s, phaseId));
 
   const onDownload = () => {
-    const events = scheduleToIcsEvents(slots, lotAddress);
-    downloadIcs('park-build-schedule.ics', 'Park build schedule', events);
+    const events = scheduleToIcsEvents(slots, lotAddress, t.locale);
+    downloadIcs('park-build-schedule.ics', t('ics.buildCalendar'), events);
   };
 
   const hasSchedule = Boolean(state.startDate);
@@ -59,7 +62,7 @@ export default function BuildScheduleIsland() {
     <div class="build-schedule no-print-controls">
       <div class="field">
         <label class="field-label" for="build-start">
-          When do you want to start building?
+          {t('build.start')}
         </label>
         <input
           id="build-start"
@@ -67,10 +70,7 @@ export default function BuildScheduleIsland() {
           value={state.startDate ?? ''}
           onInput={onStart}
         />
-        <span class="field-hint">
-          Pick any date — we'll start the first phase on the Saturday on or after it. Each phase gets its own
-          weekend; you can edit any date or skip a weekend below.
-        </span>
+        <span class="field-hint">{t('build.hint')}</span>
       </div>
 
       {hasSchedule && (
@@ -78,6 +78,7 @@ export default function BuildScheduleIsland() {
           <ol class="phase-list">
             {slots.map((slot, i) => {
               const phase = PHASES[i]!;
+              const text = phaseText(phase, t.locale);
               return (
                 <li class="phase-row" key={phase.id}>
                   <div class="phase-info">
@@ -85,26 +86,26 @@ export default function BuildScheduleIsland() {
                       {i + 1}
                     </span>
                     <div>
-                      <strong>{phase.title}</strong>
-                      <span class="phase-blurb">{phase.blurb}</span>
+                      <strong>{text.title}</strong>
+                      <span class="phase-blurb">{text.blurb}</span>
                     </div>
                   </div>
                   <div class="phase-date">
                     <input
                       type="date"
                       value={slot.date}
-                      aria-label={`Date for ${phase.title}`}
+                      aria-label={t('build.dateFor', { phase: text.title })}
                       onInput={(e) => onEditDate(phase.id, (e.currentTarget as HTMLInputElement).value)}
                     />
-                    <span class="phase-date-long">{slot.date ? formatLong(slot.date) : ''}</span>
+                    <span class="phase-date-long">{slot.date ? formatLong(slot.date, t.locale) : ''}</span>
                     <div class="phase-actions no-print">
                       {slot.overridden ? (
                         <button type="button" class="link-btn" onClick={() => onReset(phase.id)}>
-                          Reset to auto date
+                          {t('build.reset')}
                         </button>
                       ) : (
                         <button type="button" class="link-btn" onClick={() => onSkip(slot.auto)}>
-                          Skip this weekend →
+                          {t('build.skip')}
                         </button>
                       )}
                     </div>
@@ -116,10 +117,10 @@ export default function BuildScheduleIsland() {
 
           {state.skipDates.length > 0 && (
             <div class="skipped-weekends no-print">
-              <span class="field-label">Skipped weekends</span>
+              <span class="field-label">{t('build.skipped')}</span>
               {state.skipDates.map((d) => (
                 <button type="button" class="chip" key={d} onClick={() => onUnskip(d)}>
-                  {formatLong(d)} ✕
+                  {t('build.unskip', { date: formatLong(d, t.locale) })}
                 </button>
               ))}
             </div>
@@ -127,16 +128,14 @@ export default function BuildScheduleIsland() {
 
           <div class="build-schedule-actions no-print">
             <button type="button" class="btn btn-primary" onClick={onDownload}>
-              ⬇ Add to my calendar
+              {t('build.download')}
             </button>
             <button type="button" class="btn" onClick={() => window.print()}>
-              🖨 Print schedule
+              {t('build.print')}
             </button>
           </div>
           {!lotAddress && (
-            <p class="muted no-print">
-              Add your lot's address in Acquire to include it as the location on calendar events.
-            </p>
+            <p class="muted no-print">{t('build.noAddress')}</p>
           )}
         </>
       )}
@@ -160,7 +159,7 @@ export default function BuildScheduleIsland() {
         @media (max-width: 560px) {
           .phase-row { flex-direction: column; align-items: stretch; }
           .phase-date { align-items: stretch; }
-          .phase-date-long { text-align: right; }
+          .phase-date-long { text-align: end; }
         }
         @media print {
           .phase-actions, .no-print { display: none !important; }

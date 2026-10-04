@@ -7,12 +7,14 @@ import SiteReportIsland from '../philly/SiteReport.tsx';
 import '../philly/philly.css';
 import LangFallback from '../site/LangFallback.astro';
 import phillyMsgs from '../../i18n/messages/en/philly.ts';
+import { getT } from '../../i18n/astro.ts';
 interface Props { [key: string]: unknown }
+const t = getT(Astro, phillyMsgs);
 ---
 <div class="ph-widget" data-widget="SiteReport">
   <LangFallback area={phillyMsgs}>
     <SiteReportIsland client:only="preact">
-      <div slot="fallback" class="ph-fallback">Loading your lot's site report… (it needs JavaScript)</div>
+      <div slot="fallback" class="ph-fallback">{t('loading.report')}</div>
     </SiteReportIsland>
   </LangFallback>
 </div>

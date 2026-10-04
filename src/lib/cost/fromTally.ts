@@ -18,6 +18,7 @@
 import { ELEMENTS } from '../../data/elements';
 import type { DesignTally } from '../types';
 import type { CostInputKey, CostInputs } from './model';
+import { EN, bare, type CostKey, type CostT } from './text';
 
 export interface FromTally {
   /** Values the design answers */
@@ -35,7 +36,7 @@ export interface FromTally {
 }
 
 /** Element ids from src/data/elements.ts that feed a cost question one for one (or n for one). */
-const ELEMENT_INPUTS: Partial<Record<CostInputKey, { ids: [string, number][]; note?: string; noteWhen?: string }>> = {
+const ELEMENT_INPUTS: Partial<Record<CostInputKey, { ids: [string, number][]; note?: CostKey; noteWhen?: string }>> = {
   woodToppedGabions: { ids: [['gabion-bench', 1]] },
   gabionBenches8: { ids: [['gabion-bench-8', 1]] },
   benchesWithBack: { ids: [['bench-back', 1]] },
@@ -48,7 +49,7 @@ const ELEMENT_INPUTS: Partial<Record<CostInputKey, { ids: [string, number][]; no
   planters24: { ids: [['planter-24', 1]] },
   workbenches: { ids: [['workbench', 1]] },
   gabionTables: { ids: [['gabion-table', 1]] },
-  longTables: { ids: [['communal-table', 1]], note: 'Your communal tables, priced as the spreadsheet’s long tables.' },
+  longTables: { ids: [['communal-table', 1]], note: 'tally.communal' },
   compostBins: { ids: [['compost-bin', 1]] },
   rainBarrels: { ids: [['rain-barrel', 1]] },
   // the spreadsheet's optional "CAFE TABLES + CHAIRS" (priced); its other cafe-table question is a fixed $0
@@ -84,6 +85,8 @@ const SHADE_SQFT = 8 * 8;
 export function inputsFromTally(
   tally: DesignTally | null | undefined,
   lot?: { lengthFt?: number; widthFt?: number } | null,
+  /** The language of the notes (default English) */
+  t: CostT = EN,
 ): FromTally {
   const inputs: Partial<CostInputs> = {};
   const derived = new Set<CostInputKey>();
@@ -108,7 +111,8 @@ export function inputsFromTally(
     return { list: fp ? Array.from({ length: n }, () => fp) : [], measured: false };
   };
   const squares = ([w, h]: [number, number]) => Math.max(1, Math.round((w * h) / 16));
-  const plural = (n: number, word: string, words = `${word}s`) => `${n} ${n === 1 ? word : words}`;
+  /** A number as the notes always wrote it (no thousands separator) */
+  const num = (v: number) => bare(t, v);
 
   // Park size: the design's final dimensions, else the lot's.
   let sizeFrom: FromTally['sizeFrom'];
@@ -117,8 +121,8 @@ export function inputsFromTally(
     set('shortSideFt', round2(Math.min(tally.lengthFt, tally.widthFt)));
     sizeFrom = 'design';
   } else if (lot?.lengthFt && lot?.widthFt) {
-    set('longSideFt', round2(Math.max(lot.lengthFt, lot.widthFt)), 'From your lot’s measurements.');
-    set('shortSideFt', round2(Math.min(lot.lengthFt, lot.widthFt)), 'From your lot’s measurements.');
+    set('longSideFt', round2(Math.max(lot.lengthFt, lot.widthFt)), t('tally.lot'));
+    set('shortSideFt', round2(Math.min(lot.lengthFt, lot.widthFt)), t('tally.lot'));
     sizeFrom = 'lot';
   }
 
@@ -146,7 +150,7 @@ export function inputsFromTally(
     for (const [key, spec] of Object.entries(ELEMENT_INPUTS) as [CostInputKey, NonNullable<(typeof ELEMENT_INPUTS)[CostInputKey]>][]) {
       const total = spec.ids.reduce((a, [id, mult]) => a + count(id) * mult, 0);
       const showNote = spec.noteWhen ? count(spec.noteWhen) > 0 : total > 0;
-      set(key, total, showNote ? spec.note : undefined);
+      set(key, total, showNote && spec.note ? t(spec.note) : undefined);
     }
 
     // Gabion baskets ("HOW MANY 1' GABION BASKETS", 1'x1'x4' each): the wall drawn
@@ -161,29 +165,25 @@ export function inputsFromTally(
         set(
           'gabionBaskets',
           baskets,
-          wallFt > 0
-            ? `${round2(wallFt)} ft of gabion wall${added > 0 ? ' (with the wall pieces you added)' : ''}: one 4-ft basket per 4 ft, ${plural(courses, 'basket')} high (as the 3D model draws it).`
-            : undefined,
+          wallFt > 0 ? t(added > 0 ? 'tally.gabionWallAdded' : 'tally.gabionWall', { ft: num(round2(wallFt)), count: courses }) : undefined,
         );
     }
 
     // Raised beds: "How many feet are your wood edges?" = the beds' perimeters.
     if (tally.raisedBedEdgeFt !== undefined) {
       used.add('raised-bed');
-      set('raisedBedWoodEdgeFt', round2(tally.raisedBedEdgeFt), tally.raisedBedEdgeFt > 0 ? 'The perimeter of your raised beds.' : undefined);
+      set('raisedBedWoodEdgeFt', round2(tally.raisedBedEdgeFt), tally.raisedBedEdgeFt > 0 ? t('tally.raisedBeds') : undefined);
     }
 
     // Shade canopies -> the Shade guide's 8'x8' structures: each canopy's area / 64 sq ft, rounded up.
     {
       const { list, measured } = sizes('shade-canopy');
       const n = list.reduce((a, [w, h]) => a + Math.ceil(round2((w * h) / SHADE_SQFT)), 0);
-      const drawn = measured && list.length ? ` (${list.map(([w, h]) => `${round2(w)}'x${round2(h)}'`).join(', ')} on your plan)` : '';
+      const drawn = list.map(([w, h]) => `${num(round2(w))}'x${num(round2(h))}'`).join(t('tally.sizesSep'));
       set(
         'shadeStructures',
         n,
-        list.length
-          ? `Your ${plural(list.length, 'shade canopy', 'shade canopies')}${drawn} as the Shade guide’s 8'x8' structure: one per 64 sq ft, rounded up.`
-          : undefined,
+        list.length ? (measured ? t('tally.shadeSized', { count: list.length, sizes: drawn }) : t('tally.shade', { count: list.length })) : undefined,
       );
     }
 
@@ -192,7 +192,7 @@ export function inputsFromTally(
       const n = count('stage');
       const given = tally.itemSizes?.stage;
       const sq = given && given.length === n ? given.reduce((a, s) => a + squares(s), 0) : n;
-      set('stageSquares', sq, n ? "4'x4' squares of stage." : undefined);
+      set('stageSquares', sq, n ? t('tally.stage') : undefined);
     }
 
     // Sheds: 1 square (4'x4') or 2 squares (4'x8').
@@ -202,15 +202,15 @@ export function inputsFromTally(
       const two = list.length - one;
       set('sheds4x4', one);
       set('sheds4x8', two);
-      if (list.length && !measured) notes.sheds4x8 = "Counted as 4'x8' sheds (the planner's shed); move them to 4'x4' if yours are smaller.";
-      if (list.some((s) => squares(s) > 2)) notes.sheds4x8 = 'Sheds bigger than 2 squares are counted here.';
+      if (list.length && !measured) notes.sheds4x8 = t('tally.sheds4x8');
+      if (list.some((s) => squares(s) > 2)) notes.sheds4x8 = t('tally.shedsBig');
     }
 
     // Cold frames: squares of cold frame (a 3'x3' frame fills one square).
     {
       const { list } = sizes('cold-frame');
       const sq = list.reduce((a, s) => a + squares(s), 0);
-      set('coldFrameSquares', sq, sq ? `${plural(list.length, 'cold frame')}, one 4'x4' square each.` : undefined);
+      set('coldFrameSquares', sq, sq ? t('tally.coldFrames', { count: list.length }) : undefined);
     }
 
     // Keyhole gardens by size across: small < 5 ft, medium 5–7 ft, large > 7 ft.
@@ -224,7 +224,7 @@ export function inputsFromTally(
         set('keyholeGardensLarge', across.filter((d) => d > 7).length);
       } else if (n > 0) {
         // sizes unknown: the pieces draw both 5.75-ft and 7.75-ft gardens, so no safe default
-        notes.keyholeGardensMedium = `Your design has ${n} keyhole garden${n === 1 ? '' : 's'}: enter them by size (small under 5 ft, medium 5–7 ft, large over 7 ft across).`;
+        notes.keyholeGardensMedium = t('tally.keyhole', { count: n });
       } else {
         set('keyholeGardensSmall', 0);
         set('keyholeGardensMedium', 0);

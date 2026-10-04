@@ -5,6 +5,8 @@
 import Island from '../cost/CostEstimator';
 import LangFallback from '../site/LangFallback.astro';
 import costMsgs from '../../i18n/messages/en/cost.ts';
+import { getT, localizeGuide } from '../../i18n/astro.ts';
+import { getGuides } from '../../data/guides';
 
 interface Props {
   /** Heading above the estimator (default "Your cost estimate") */
@@ -14,7 +16,11 @@ interface Props {
   [key: string]: unknown;
 }
 const { title, focus } = Astro.props;
+const t = getT(Astro, costMsgs);
+const locale = t.locale;
+// The guides' own titles in this language ("From the … build guide"); their text is not shipped to browsers.
+const guideTitles = Object.fromEntries(getGuides().map((g) => [g.slug, localizeGuide(g, locale).title]));
 ---
 <LangFallback area={costMsgs}>
-  <Island client:only="preact" title={title} focus={focus} />
+  <Island client:only="preact" title={title} focus={focus} locale={locale} guideTitles={guideTitles} />
 </LangFallback>

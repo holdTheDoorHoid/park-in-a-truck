@@ -6,6 +6,7 @@
 import type { DesignTally, SiteFacts } from '../types';
 import { inputsFromTally, type FromTally } from './fromTally';
 import { INPUT_KEYS, defaultInputs, type CostInputKey, type CostInputs } from './model';
+import type { CostT } from './text';
 
 /** project.extra.costInputs */
 export interface SavedCostInputs {
@@ -49,8 +50,9 @@ export function readSaved(raw: unknown): SavedCostInputs {
   return { v: 1, overrides, base: s?.base === 'zero' ? 'zero' : s?.base === 'example' ? 'example' : undefined, unitPrices };
 }
 
-export function resolveInputs(saved: SavedCostInputs, tally: DesignTally | null | undefined, site?: SiteFacts | null): ResolvedInputs {
-  const fromTally = inputsFromTally(tally ?? null, site ?? null);
+/** `t`: the language of the design's notes (default English). */
+export function resolveInputs(saved: SavedCostInputs, tally: DesignTally | null | undefined, site?: SiteFacts | null, t?: CostT): ResolvedInputs {
+  const fromTally = inputsFromTally(tally ?? null, site ?? null, t);
   const hasDesign = Boolean(tally);
   const base = hasDesign ? 'zero' : (saved.base ?? 'example');
   const derived = new Set(fromTally.derived);

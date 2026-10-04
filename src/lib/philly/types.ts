@@ -81,7 +81,7 @@ export interface LotGeometry {
   streets: StreetSide[];
   lotKind: LotKind;
   lotType: LotType;
-  /** Why we guessed that lot type, in plain words */
+  /** Why we guessed that lot type, in plain words (English; lotTypeReasonText() shows it translated) */
   lotTypeReason: string;
   size: { id: SizeId; exact: boolean; tooSmall: boolean; tooBig: boolean };
   /** Corner to start measuring from (workbook "project starting point"): x0 on the street */
@@ -97,7 +97,7 @@ export interface LandBankStatus {
   agency: string | null;
   /** As the Land Bank writes it, e.g. "Owned - On Hold for AHD" */
   status: string;
-  /** In plain words, e.g. "On hold for affordable housing" */
+  /** In plain words, e.g. "On hold for affordable housing" (English; landBankLine() shows it translated) */
   label: string;
   tone: LandBankTone;
   /** A next-door homeowner can apply to buy it as a side yard */
@@ -107,7 +107,7 @@ export interface LandBankStatus {
 /** The friendlier bits kept on LotRecord.extra (all optional). */
 export interface LotExtra {
   geometry?: LotGeometry;
-  /** Agency or owner description, e.g. "Philadelphia Land Bank" */
+  /** Agency or owner description, e.g. "Philadelphia Land Bank" (English; agencyName() shows it translated) */
   ownerLabel?: string;
   /** Mailing address the City has on file for the owner (OPA) */
   ownerMailing?: string | null;
@@ -116,6 +116,7 @@ export interface LotExtra {
   councilMember?: string | null;
   historicSite?: boolean;
   historicDistrict?: string | null;
+  /** English; floodText() shows it translated */
   floodZoneLabel?: string | null;
   /** The parcel outline came from PWD (water-billing) or DOR (deeds) */
   parcelSource?: 'pwd' | 'dor' | null;
@@ -135,7 +136,7 @@ export interface LotExtra {
   landBank?: LandBankStatus | null;
   /** Lot area on the City's property assessment (OPA total_area), sq ft — LotRecord.areaSqFt is the parcel outline's */
   assessedAreaSqFt?: number | null;
-  /** Problems we hit while looking things up (one per failed layer) */
+  /** Problems we hit while looking things up (one per failed layer; English, warningText() shows them translated) */
   warnings?: string[];
 }
 
@@ -251,7 +252,10 @@ export type AssetCategoryId =
 export interface Asset {
   /** stable id within its category (used for "add to our list") */
   id: string;
+  /** The name as saved in the person's list (City data, or English words when the City gives none) */
   name: string;
+  /** What to show instead of `name`, in the page's language, when it differs (council district, unnamed places) */
+  label?: string;
   /** one line of detail: type, contact, designation… */
   detail?: string;
   address?: string;
@@ -265,9 +269,9 @@ export interface Asset {
 
 export interface AssetGroup {
   id: AssetCategoryId;
-  /** heading, e.g. "Registered Community Organizations" */
+  /** heading, e.g. "Registered Community Organizations" (in the page's language) */
   label: string;
-  /** the Organize workbook list this belongs to */
+  /** the Organize workbook list this belongs to (English, used as an id; WORKBOOK_LIST_KEY has its words) */
   workbookList: 'Citizens associations' | 'Local institutions' | 'Neighborhood physical assets';
   items: Asset[];
   /** search radius used, feet */

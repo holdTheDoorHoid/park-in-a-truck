@@ -9,6 +9,7 @@ import type { LngLat, LotRecord } from '../../lib/types';
 import type { LotGeometry, ParcelEdge } from '../../lib/philly/types';
 import { makeProjector } from '../../lib/philly/geo';
 import { lotGeometry } from '../../lib/philly/choose';
+import { feet } from '../../lib/philly/plain';
 
 export type P = [number, number];
 
@@ -94,4 +95,5 @@ export function textAngle(a: P, b: P): number {
   return ang;
 }
 
-export const fmtFt = (n: number) => `${(Math.round(n * 10) / 10).toFixed(1)} ft`;
+/** "14.0 ft", in the page's language (see feet() in src/lib/philly/plain.ts). */
+export const fmtFt = (n: number) => feet(n, 1);

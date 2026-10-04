@@ -17,6 +17,7 @@ import type { Vec2 } from '../../lib/planner/geo';
 import { DEFAULT_SEASON } from '../../lib/planner/sun';
 import { SEASON_LABEL, clock, compassWord, leafWords, mmdd, monthDay, monthDayShort, monthName, periodLabel, pt, type PlannerKey } from '../../lib/planner/words';
 import { SpotChart } from './SpotChart';
+import { ShadeCalendar } from './ShadeCalendar';
 
 const YEAR = 2026;
 
@@ -343,6 +344,7 @@ export function SunPanel({ store }: { store: PlannerStore }) {
         )}
       </p>
       {spotData && <SpotChart data={spotData} where={spotName} month={t.month} />}
+      <ShadeCalendar store={store} />
 
       <details class="pl-assume">
         <summary>{w('sun.assumeTitle')}</summary>
