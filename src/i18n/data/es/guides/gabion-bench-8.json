@@ -1,0 +1,192 @@
+{
+  "title": "Banca de gavión de 8' con asiento de madera",
+  "summary": "Una canasta de gavión de alambre de 8 pies, llena de piedra y con tablas de madera de 2x4 encima: la hermana mayor de la banca de gavión de 4', con tres refuerzos transversales más a lo largo.",
+  "materials": [
+    {
+      "item": "Malla metálica de alambre soldado de 2x2",
+      "notes": "Sugerencias para la fabricación: Darby and Sons (darbywiremesh.com) o Gabion1.com. Cuando pida piezas cortadas a la medida, pida que las corten al tamaño, con los bordes cerrados y galvanizadas después del corte."
+    },
+    {
+      "item": "Madera de 2x4: cedro rojo del oeste, abeto Douglas o pino tratado a presión",
+      "notes": "Cedro: resiste de forma natural la intemperie y la pudrición, tiene un bonito tono rojizo y no necesita sellador; cuesta más. Pida el grado «con nudos» (STK). Abeto Douglas: resiste la pudrición de forma moderada, es fuerte y más barato que el cedro; es bueno si piensa pintar. Tratado a presión: es el más barato y resiste la pudrición, pero muchas veces la calidad es mala y desigual, necesita de 1 a 4 meses secándose al aire antes de pintarlo, y no se recomienda donde se cultivan alimentos. Pida de un 5 a un 10 % más de lo que indica la lista de cortes, por si la madera viene con defectos o se equivoca en un corte."
+    },
+    {
+      "item": "Material de relleno para el gavión",
+      "notes": "Material duro, anguloso e inerte que no se deshaga con el tiempo: piedra de cantera, pavimento reciclado (concreto o asfalto), o ladrillos o bloques de concreto reciclados. No use troncos cortados ni otro material orgánico. Una mezcla de tamaños, de 2\" como mínimo a 12\" como máximo; las piezas de la cara de afuera deben ser de más de 3\"."
+    },
+    {
+      "item": "Material para refuerzo (para los soportes del centro, debajo de las piezas del medio del marco)",
+      "notes": "Un rollo de alambre galvanizado liso calibre 14 o 16, o pedazos sobrantes de la malla de 2x2 cortados por la mitad con un cortapernos (que abarquen todo el ancho de la canasta y tengan por lo menos 2 cuadros / 4\" de alto)."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Tornillos autoperforantes para madera de exterior"
+    },
+    {
+      "item": "Anillos de engrapar (hog rings)"
+    },
+    {
+      "item": "Grapas para cable"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Asiento de la banca de gavión y lados del marco (2 se usan como largueros del marco; las demás forman el asiento de madera)"
+    },
+    {
+      "notes": "Marco de la banca de gavión: tapas de los extremos y refuerzos transversales"
+    },
+    {
+      "notes": "Panel de fondo del gavión, 96\" x 18\""
+    },
+    {
+      "notes": "Lado del gavión (largo), 96\" x 18\" cada uno"
+    },
+    {
+      "notes": "Lado del gavión (corto), 18\" x 18\" cada uno"
+    }
+  ],
+  "tools": [
+    "Sierra ingletadora de 10\" o 12\" (o un serrucho adecuado)",
+    "Atornillador de impacto para los tornillos autoperforantes de exterior",
+    "Taladro con broca de 1/8\"",
+    "Papel de lija, grano 120",
+    "Escuadra de carpintero",
+    "Gafas de seguridad y guantes",
+    "Pinzas para anillos (hog ring pliers)",
+    "Cortapernos",
+    "Martillo",
+    "Esmeriladora (para pulir las puntas filosas del alambre)"
+  ],
+  "steps": [
+    {
+      "title": "Marque, rotule y corte la madera y la malla de alambre",
+      "text": "Marque, rotule y corte la madera en orden, de GB-1 a GB-6, a los largos de la lista de cortes.\n\nSepare la malla de alambre de 2x2 en pilas de piezas del mismo tamaño y rotúlelas 18-8a (fondo del gavión), 18-8b (lado largo del gavión) y 18-8c (lado corto del gavión).",
+      "imageAlts": [
+        "Diagrama isométrico de las piezas de madera GB-1 y GB-2 y de los paneles de malla de alambre 18-8a, 18-8b y 18-8c, con sus largos y un diagrama de cómo se juntan los paneles de malla."
+      ],
+      "tips": [
+        "Rotule cada pieza de madera a medida que la mide y la corta.",
+        "Haga una pila aparte para las piezas GB-1 y GB-2.",
+        "Lijar un poco los bordes cortados quita las astillas y ayuda al armar.",
+        "¿Va a hacer más de una banca de gavión? Un tope en la sierra ingletadora hace que todas las piezas salgan del mismo largo."
+      ]
+    },
+    {
+      "title": "Arme el marco",
+      "text": "Ponga dos piezas GB-1 y dos piezas GB-2 sobre una superficie plana, alineando los bordes como se ve en la imagen.\n\nUse la guía para agujeros al final del paquete para hacer los agujeros guía de los tornillos, y luego fije las piezas GB-1 a las piezas GB-2 con un atornillador de impacto y 8 tornillos autoperforantes de exterior de 2.5\".",
+      "imageAlts": [
+        "Diagrama de dos largueros GB-1 y dos tapas cortas GB-2 de los extremos atornillados en un marco rectangular."
+      ],
+      "tips": [
+        "Use una escuadra de carpintero para comprobar que cada esquina forma un ángulo recto."
+      ],
+      "siteNote": "Esta canasta se arma al revés: el marco de madera empieza en el suelo y se convierte en el borde de arriba cuando voltea la canasta en el paso 7. El modelo 3D muestra la banca derecha todo el tiempo, así que su marco de madera siempre está arriba."
+    },
+    {
+      "title": "Agregue los refuerzos transversales",
+      "text": "Ponga una pieza GB-2 en el medio del marco que armó en el paso 2, y fíjela con un atornillador de impacto y 4 tornillos autoperforantes de exterior de 2.5\".\n\nRepita con otras dos piezas GB-2, colocándolas a la misma distancia entre la pieza GB-2 del medio y cada pieza GB-2 de los extremos. Fije las dos con un atornillador de impacto y otros 8 tornillos autoperforantes de exterior de 2.5\".",
+      "imageAlts": [
+        "Diagrama de tres refuerzos transversales GB-2 más, que se agregan en el medio y a un cuarto de cada extremo del marco largo."
+      ]
+    },
+    {
+      "title": "Engrape y cierre los lados de malla de alambre",
+      "text": "Fije dos piezas de malla 18-8c y dos 18-8b alrededor del marco de piezas GB-2 y GB-1 que armó en el paso 3, con un martillo y 32 grapas para cable galvanizadas de 1.5\": 2 grapas por cada pieza de alambre, un lado a la vez.\n\nUna las piezas 18-8c y 18-8b por las esquinas con anillos de engrapar, un anillo cada dos aberturas, con anillos en todas las esquinas y los bordes.",
+      "imageAlts": [
+        "Diagrama de los paneles de malla 18-8c y 18-8b engrapados alrededor del marco de madera y unidos por las esquinas con anillos de engrapar."
+      ]
+    },
+    {
+      "title": "Refuerce el centro",
+      "text": "En el centro de la canasta de gavión, debajo de la pieza GB-2 del medio, agregue material de refuerzo de una de estas dos maneras: pedazos sobrantes de los extremos de la malla de 2x2 cortados por la mitad con un cortapernos, o cualquier pedazo sobrante de malla de 2x2 que abarque todo el ancho de la canasta (de por lo menos 2 cuadros, o 4\" o más, de alto).\n\nFije la pieza de soporte del medio con anillos de engrapar.",
+      "imageAlts": [
+        "Diagrama de un refuerzo de malla de alambre fijado con anillos de engrapar debajo de la pieza del centro del marco."
+      ]
+    },
+    {
+      "title": "Cierre el panel de fondo",
+      "text": "Ponga el panel de malla 18-8a encima de la canasta de gavión que armó en el paso 5: este será el fondo de la canasta cuando la voltee en el siguiente paso.\n\nFíjelo con anillos de engrapar en los cuatro lados y en los refuerzos del centro: un anillo cada dos aberturas de la malla, y dos en cada esquina. La canasta de gavión ya está lista para llevarla al terreno.",
+      "imageAlts": [
+        "Diagrama del panel de malla 18-8a fijado a la canasta con anillos de engrapar, con un acercamiento de un anillo de esquina que sujeta las tres piezas de malla."
+      ]
+    },
+    {
+      "title": "Coloque la canasta en el terreno",
+      "text": "Gire la canasta de gavión 180°. Colóquela en el terreno sobre una capa de grava.\n\nCompruebe con un nivel que la canasta de gavión quede derecha.",
+      "imageAlts": [
+        "Diagrama de la canasta de gavión girada y nivelada sobre una cama de grava."
+      ],
+      "tips": [
+        "Si está al lado de otros gaviones, use hilo y niveles de hilo para que la fila quede derecha."
+      ]
+    },
+    {
+      "title": "Llene la canasta",
+      "text": "Ponga el gavión en su lugar según el diseño de su parque. Ponga grava debajo para hacer los últimos ajustes.\n\nEmpezando por las piezas de relleno más grandes y planas que tenga, comience a llenar el gavión por los bordes, y siga hasta levantar los lados.\n\nLlene el marco con el relleno que sobre hasta que quede al nivel de la parte de arriba del borde de madera.",
+      "imageAlts": [
+        "Diagrama y fotos de referencia de una canasta de gavión llenándose de piedra, empezando con piezas grandes y planas a lo largo de los bordes."
+      ],
+      "tips": [
+        "Ponga el relleno con cuidado para no deformar la canasta, y asegúrese de llenar todos los huecos para que quede firme.",
+        "Vea la fase cuatro de su cuaderno de trabajo Crear para saber más sobre este paso."
+      ]
+    },
+    {
+      "title": "Agregue las tablas de los extremos del asiento de madera",
+      "text": "Ponga dos piezas GB-1 encima del marco que armó en el paso 3, usando la guía para agujeros al final del paquete para hacer agujeros guía en la madera. Fije primero las dos tablas de los extremos con un atornillador de impacto y 12 tornillos autoperforantes de exterior de 2.5\", con el borde al ras de la madera de abajo.",
+      "imageAlts": [
+        "Diagrama de las dos primeras tablas GB-1 del asiento atornilladas al ras en cada extremo de la canasta de gavión llena."
+      ],
+      "tips": [
+        "Hacer agujeros guía en este paso ayuda a que los tornillos no rajen las tablas."
+      ]
+    },
+    {
+      "title": "Termine el asiento de madera y lije",
+      "text": "Reparta con espacios iguales las otras 3 tablas entre las dos tablas de los extremos. Fije las piezas GB-1 con un atornillador de impacto y 20 tornillos autoperforantes de exterior de 2.5\".\n\nLije un poco los bordes ásperos de la banca de gavión, y asegúrese de que no queden puntas filosas del alambre del gavión: púlalas con una esmeriladora si alguna está muy filosa.",
+      "imageAlts": [
+        "Diagrama de las demás tablas de madera GB-1 del asiento, con espacios iguales, atornilladas sobre la canasta de gavión llena."
+      ],
+      "tips": [
+        "Ponga todos los tornillos a un ancho de pulgar del borde de la madera."
+      ]
+    },
+    {
+      "title": "Guía para hacer agujeros (plantilla)",
+      "text": "Recorte la guía para agujeros por las líneas punteadas. Al taladrar, alinee el borde de la plantilla con el borde de afuera de la madera antes de hacer el agujero guía.\n\nNo se usan todos los agujeros, y no todos los patrones usan la plantilla. Guíese por los pasos de armado de arriba para saber dónde van los agujeros. Haga todos los agujeros a más o menos el ancho de un pulgar del borde (alrededor de 1\"), incluso los que no usan esta plantilla.",
+      "imageAlts": [
+        "Una plantilla imprimible para hacer agujeros guía, con cinco posiciones marcadas y líneas de corte, y un acercamiento que muestra la distancia de los agujeros al borde de la tabla."
+      ]
+    }
+  ],
+  "finishing": "Un tratamiento para madera de exterior puede alargar la vida de los elementos de su parque, pero no hace falta: estas piezas están pensadas para ser baratas, duraderas y fáciles de construir, así que puede ser más práctico dejar que la próxima generación las vuelva a construir cuando llegue el momento. Si quiere teñir, pintar o sellar el asiento de madera, vea los recursos sobre acabados más abajo.",
+  "safety": [
+    "Estas son solo recomendaciones para hacerlo usted mismo: adapte los materiales, el armado y la construcción a su propio proyecto y terreno.",
+    "Construir esto supone que sabe usar herramientas manuales y eléctricas, herrajes, tornillería, madera y técnicas básicas de armado.",
+    "Antes de usar cualquier equipo eléctrico, lea y siga los requisitos de seguridad del fabricante, y no deje que use herramientas eléctricas nadie que no haya hecho lo mismo.",
+    "Usted (el dueño) es responsable de cumplir los códigos de construcción y de seguridad, y de conseguir los permisos y aprobaciones que esto necesite.",
+    "Primero limpie el terreno de basura, peligros y estructuras que no quiera, y averigüe si hay servicios públicos (cables o tuberías) que puedan estorbar antes de excavar.",
+    "Todas las personas que ayuden a construir deben firmar una exención de responsabilidad para voluntarios.",
+    "La malla de alambre cortada y el relleno del gavión pueden dejar puntas filosas: use guantes y gafas de seguridad, y pula con una esmeriladora cualquier alambre filoso."
+  ],
+  "links": [
+    {
+      "label": "Malla de alambre de Darby and Sons (en inglés)"
+    },
+    {
+      "label": "Gabion1.com — canasta de gavión de 18\" x 18\" (en inglés)"
+    },
+    {
+      "label": "Cómo elegir el mejor acabado para proyectos al aire libre (Rockler, en inglés)"
+    },
+    {
+      "label": "El mejor acabado para madera de exterior (Real Milk Paint, en inglés)"
+    },
+    {
+      "label": "Recubrimientos para madera de exterior (Vermont Natural Coatings, en inglés)"
+    }
+  ],
+  "sourcePages": "Instrucciones de armado de 8_GABION_BENCH_ASSEMBLY, págs. 1–15 (portada; antes de empezar; materiales y maderas comunes; pasos 1–10; guía para hacer agujeros). El PDF original rotula por error \"GB-2\" las últimas tablas del asiento de madera en el texto de los pasos 10 y 11 (la señal del diagrama en la página y la lista de cortes confirman que son GB-1), y le pone al panel de alambre que cierra la canasta un rótulo suelto \"BM-3\" en lugar de 18-8a; aquí se corrigieron las dos cosas."
+}

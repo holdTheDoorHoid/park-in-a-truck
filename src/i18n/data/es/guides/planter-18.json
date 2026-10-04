@@ -1,0 +1,142 @@
+{
+  "title": "Jardinera de 18\"",
+  "summary": "Una jardinera de tablillas de 2x4, de 18\" de alto y 18\" de fondo, forrada con tela geotextil. El mismo PDF también explica una versión larga de 18\"x48\", que se arma igual pero con más tablas de frente: vea las notas de los materiales y de la lista de cortes.",
+  "materials": [
+    {
+      "item": "Madera de 2x4: cedro rojo del oeste, abeto Douglas o pino tratado a presión",
+      "notes": "Para la jardinera de 18\"x18\". La jardinera larga de 18\"x48\" lleva 10 tablas. Cedro: resiste de forma natural la intemperie y la pudrición, tiene un bonito tono rojizo, es fácil de trabajar y no necesita sellador; cuesta más. Pida el grado «con nudos» (STK). Abeto Douglas: resiste la pudrición de forma moderada, es fuerte y más barato que el cedro; es buena opción si piensa pintar. Tratado a presión: es el más barato y resiste la pudrición, pero muchas veces la calidad es mala y desigual, necesita de 1 a 4 meses secándose al aire antes de pintarlo, y no se recomienda donde se cultivan alimentos. Pida por lo menos un 5 % más de lo que indica la lista de cortes, por si la madera viene con defectos o se equivoca en un corte."
+    },
+    {
+      "item": "Tela geotextil",
+      "notes": "Dos piezas que se superponen forran el interior de la jardinera para que aguante la tierra y a la vez drene el agua. Para la jardinera de 18\"x18\", corte dos piezas de 18\"x54\". Para la de 18\"x48\", corte una pieza de 48\"x54\" y una de 96\"x18\"."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Tornillos autoperforantes para madera de exterior"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Extremo, frente y fondo de la jardinera"
+    },
+    {
+      "notes": "Extremo, frente y fondo de la jardinera"
+    },
+    {
+      "notes": "Extremo de la jardinera"
+    },
+    {
+      "notes": "Frente y fondo de la jardinera"
+    },
+    {
+      "notes": "Extremo de la jardinera"
+    },
+    {
+      "notes": "Extremo de la jardinera"
+    },
+    {
+      "notes": "Extremo de la jardinera"
+    }
+  ],
+  "tools": [
+    "Sierra ingletadora de 10\" o 12\" (o un serrucho adecuado)",
+    "Atornillador de impacto para los tornillos autoperforantes de exterior",
+    "Taladro con brocas de 1/8\" y 1/4\" para hacer agujeros guía",
+    "Engrapadora (pistola de grapas)",
+    "Papel de lija, grano 120",
+    "Escuadra de carpintero",
+    "Gafas de seguridad y mascarilla"
+  ],
+  "steps": [
+    {
+      "title": "Marque, rotule y corte la madera",
+      "text": "Marque, rotule y corte la madera en orden, de P-1 a P-3 (jardinera de 18\"x18\") o P-1A y de P-1 a P-3 (jardinera de 18\"x48\"), a los largos de la lista de cortes.\n\nRevise cada pieza de madera por si tiene defectos como rajaduras, deformaciones o un cepillado desparejo, y descarte esas partes.",
+      "imageAlts": [
+        "Diagramas isométricos de las piezas cortadas para la jardinera de 18\"x18\" (P-1, P-2, P-3) y para la de 18\"x48\" (P-1A, P-1, P-2, P-3), con sus largos rotulados."
+      ],
+      "tips": [
+        "Rotule cada pieza de madera a medida que la mide y la corta.",
+        "Haga una pila aparte para cada pieza.",
+        "Lijar un poco los bordes cortados quita las astillas y ayuda al armar.",
+        "¿Va a hacer más de una jardinera? Un tope en la sierra ingletadora hace que todas las piezas salgan del mismo largo."
+      ]
+    },
+    {
+      "title": "Arme los dos marcos de los extremos",
+      "text": "Ponga dos piezas P-3 sobre una superficie plana. Ponga dos piezas P-1 a cada lado de las piezas P-3, alineando los bordes como se ve en la imagen. Repita para armar un segundo marco igual.",
+      "imageAlts": [
+        "Diagrama de dos tablas P-1 y dos P-3 armadas en un marco cuadrado para un extremo, para la jardinera de 18\"x18\" y para la de 18\"x48\"."
+      ],
+      "tips": [
+        "Use una escuadra de carpintero para comprobar que cada esquina forma un ángulo recto.",
+        "Hacer una plantilla de 90 grados le ayudará mucho a armar este paso y el siguiente."
+      ]
+    },
+    {
+      "title": "Cubra cada marco de los extremos",
+      "text": "Ponga cinco piezas P-2 encima del marco que armó en el paso 2, dejando un espacio de 1.5\" a los dos lados.\n\nUse la guía para agujeros al final del paquete para hacer los agujeros guía de los tornillos, y luego fije la madera a las piezas P-2 con un atornillador de impacto y 20 tornillos autoperforantes de exterior de 2.5\".\n\nRepita en la otra pata y ponga las dos patas de pie para el siguiente paso.",
+      "imageAlts": [
+        "Diagrama de las tablas P-2 atornilladas sobre cada marco de los extremos, con un espacio de 1.5\" a los dos lados, para la jardinera de 18\"x18\" y para la de 18\"x48\"."
+      ],
+      "tips": [
+        "Use una pieza P-3 de más, de canto, como separador para lograr un espacio parejo de 1.5\"."
+      ]
+    },
+    {
+      "title": "Una los dos marcos de los extremos",
+      "text": "Ponga cinco piezas P-2 (o cinco piezas P-1A, para la jardinera de 18\"x48\") entre los dos extremos de la jardinera.\n\nFije las piezas P-2 o P-1A de cada lado a las piezas de los costados con un atornillador de impacto y 20 tornillos autoperforantes de exterior de 2.5\".\n\nRepita en el lado de atrás de la jardinera.",
+      "imageAlts": [
+        "Diagrama de las tablas de frente P-2 o P-1A que unen los dos marcos de los extremos para formar las paredes de la jardinera."
+      ],
+      "tips": [
+        "Trabaje desde abajo por los dos lados a la vez, y pida a alguien que le ayude a comprobar que el costado se mantenga a 90 grados."
+      ]
+    },
+    {
+      "title": "Agregue el fondo de tablillas",
+      "text": "Ponga cuatro piezas P-2 (o cuatro piezas P-1A, para la jardinera de 18\"x48\") en el fondo del armazón de la jardinera, dejando un espacio de 1/4\" entre cada pieza para que drene el agua.\n\nFije las piezas P-2 o P-1A de cada lado a las piezas de los costados con un atornillador de impacto y 16 tornillos autoperforantes de exterior de 2.5\".",
+      "imageAlts": [
+        "Diagrama de las tablas P-2 o P-1A que forman el fondo de tablillas de la jardinera, con un espacio de drenaje de 1/4\" entre cada tabla."
+      ]
+    },
+    {
+      "title": "Fórrela con tela geotextil y termine",
+      "text": "Voltee el armazón de la jardinera para que quede derecho.\n\nCorte una pieza de tela geotextil de 18\"x54\" (o una de 48\"x54\" para la jardinera de 18\"x48\"). Corte una segunda pieza de 18\"x54\" (o una de 96\"x18\" para la jardinera de 18\"x48\").\n\nCon una engrapadora, fije las dos telas geotextiles superpuestas dentro de la jardinera.\n\nLije un poco los bordes ásperos de la jardinera. ¡Lista! Llévela a su lugar final, llénela con tierra para macetas y siembre.",
+      "imageAlts": [
+        "Diagrama de dos piezas de tela geotextil superpuestas, engrapadas dentro de la jardinera, para los dos tamaños."
+      ],
+      "tips": [
+        "Doble la tela por lo menos 1\" por debajo del borde de arriba antes de engrapar. Engrape a lo largo de la parte de arriba y por las esquinas para que quede bien cerrada."
+      ]
+    },
+    {
+      "title": "Guía para hacer agujeros (plantilla)",
+      "text": "Recorte la guía para agujeros por las líneas punteadas. Al taladrar, alinee el borde de la plantilla con el borde de afuera de la madera antes de hacer el agujero guía.\n\nNo se usan todos los agujeros, y no todos los patrones usan la plantilla. Guíese por los pasos de armado de arriba para saber dónde van los agujeros. Haga todos los agujeros a más o menos el ancho de un pulgar del borde (alrededor de 1\"), incluso los que no usan esta plantilla.",
+      "imageAlts": [
+        "Una plantilla imprimible para hacer agujeros guía, con cinco posiciones marcadas y líneas de corte, y un acercamiento que muestra la distancia de los agujeros al borde de la tabla."
+      ]
+    }
+  ],
+  "finishing": "Un tratamiento para madera de exterior puede alargar la vida de los elementos de su parque, pero no hace falta: estas piezas están pensadas para ser baratas, duraderas y fáciles de construir, así que puede ser más práctico dejar que la próxima generación las vuelva a construir cuando llegue el momento. Si quiere teñir, pintar o sellar la madera, vea los recursos sobre acabados más abajo.",
+  "safety": [
+    "Estas son solo recomendaciones para hacerlo usted mismo: adapte los materiales, el armado y la construcción a su propio proyecto y terreno.",
+    "Construir esto supone que sabe usar herramientas manuales y eléctricas, herrajes, tornillería, madera y técnicas básicas de armado.",
+    "Antes de usar cualquier equipo eléctrico, lea y siga los requisitos de seguridad del fabricante, y no deje que use herramientas eléctricas nadie que no haya hecho lo mismo.",
+    "Usted (el dueño) es responsable de cumplir los códigos de construcción y de seguridad, y de conseguir los permisos y aprobaciones que esto necesite.",
+    "Primero limpie el terreno de basura, peligros y estructuras que no quiera, y averigüe si hay servicios públicos (cables o tuberías) que puedan estorbar antes de excavar.",
+    "Todas las personas que ayuden a construir deben firmar una exención de responsabilidad para voluntarios."
+  ],
+  "links": [
+    {
+      "label": "Cómo elegir el mejor acabado para proyectos al aire libre (Rockler, en inglés)"
+    },
+    {
+      "label": "El mejor acabado para madera de exterior (Real Milk Paint, en inglés)"
+    },
+    {
+      "label": "Recubrimientos para madera de exterior (Vermont Natural Coatings, en inglés)"
+    }
+  ],
+  "sourcePages": "Instrucciones de armado de 18_Planter_Box, págs. 1–10 (portada; antes de empezar; maderas comunes; pasos 1–6, para el armado de 18\"x18\" y de 18\"x48\"; guía para hacer agujeros)"
+}

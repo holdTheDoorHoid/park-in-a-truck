@@ -4,23 +4,26 @@
 // client:only + our own observers: client:visible is unreliable on this site.
 import GuideViewerIsland from './GuideViewerIsland';
 import type { Guide } from '../../data/guides';
+import guidesMsgs from '../../i18n/messages/en/guides.ts';
+import { getT } from '../../i18n/astro.ts';
 import './guide3d.css';
 
 interface Props {
   guide: Guide;
 }
 const { guide } = Astro.props;
+const t = getT(Astro, guidesMsgs);
 const steps = guide.steps.map((s) => ({ n: s.n, title: s.title }));
 const cutList = guide.cutList.map((c) => ({ part: c.part, stock: c.stock, lengthIn: c.lengthIn, notes: c.notes }));
 ---
 
-<GuideViewerIsland client:only="preact" slug={guide.slug} title={guide.title} steps={steps} cutList={cutList}>
+<GuideViewerIsland client:only="preact" slug={guide.slug} title={guide.title} steps={steps} cutList={cutList} locale={t.locale}>
   <div slot="fallback" class="g3d" data-status="waiting">
     <div class="g3d-head">
-      <p class="g3d-where"><span class="g3d-eyebrow">3D model</span><span class="g3d-title">{guide.title}</span></p>
+      <p class="g3d-where"><span class="g3d-eyebrow">{t('g3d.placeholder')}</span><span class="g3d-title">{guide.title}</span></p>
     </div>
     <div class="g3d-body">
-      <div class="g3d-stage-wrap"><div class="g3d-loading">3D model</div></div>
+      <div class="g3d-stage-wrap"><div class="g3d-loading">{t('g3d.placeholder')}</div></div>
     </div>
   </div>
 </GuideViewerIsland>

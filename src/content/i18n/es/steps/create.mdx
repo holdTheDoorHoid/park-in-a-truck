@@ -1,0 +1,531 @@
+---
+title: Crear
+intro: Construya su parque por fases, un fin de semana a la vez.
+sources:
+  - Guía (Toolkit), págs. 57–59 (Crear, Construcción inicial del parque)
+  - Cuaderno de trabajo Crear, págs. 1–18
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Choice from '../../../../components/workbook/Choice.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import Download from '../../../../components/workbook/Download.astro';
+import CostEstimator from '../../../../components/widgets/CostEstimator.astro';
+import BuildSchedule from '../../../../components/widgets/BuildSchedule.astro';
+import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
+
+{/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — Create lets you pick build weekends and print an order list with nothing recorded in Acquire; this says so before anyone breaks ground. */}
+<LotAgreementNotice />
+
+Construir un parque es una gran manera de unir a vecinos, amigos y otras personas. El proceso necesita voluntarios
+comprometidos que puedan dar su tiempo y su energía, con habilidades muy distintas: carpintería, jardinería,
+organización, dar ánimo, dirigir. Como cuando se sigue una receta, construir un parque es una serie de pasos en orden;
+la mayoría de los parques de Park in a Truck se construyen en unos 6 a 8 fines de semana.
+
+El capítulo Crear trata de cómo construir su parque. Dividimos el proceso en ocho fases. Cada fase se puede terminar
+más o menos en un fin de semana; el tamaño de su parque y la cantidad de voluntarios van a influir en cuánto tiempo toma
+de verdad. Las fases están en este orden por una razón: revise cada una y ajuste su calendario según haga falta.
+
+Este cuaderno da por hecho que ya hizo el presupuesto y que sabe las cantidades y los materiales que tiene que pedir
+para cada fase. Si todavía no lo hizo, vuelva al paso Soñar y use la calculadora de costos.
+
+<CostEstimator />
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={3} />
+
+## Formulario de exención para voluntarios {/* #volunteer-release-form */}
+
+Asegúrese de tener formularios de exención de responsabilidad para voluntarios en el terreno cada vez que trabajen en
+el parque. Este formulario lo libera de responsabilidad por las lesiones de sus voluntarios. Es su responsabilidad
+consultar a los asesores legales y a la compañía de seguros de su organización antes de empezar la construcción: quizás
+le pidan tomar otras medidas para proteger a la organización de responsabilidades. Dé a sus voluntarios instrucciones
+claras sobre lo que se espera de ellos y sobre las tareas del día de trabajo; es más probable que vuelvan las semanas
+siguientes si sienten que su tiempo se aprovechó bien.
+
+<Download href="downloads/forms/volunteer-release-form.pdf" label="Formulario de exención y liberación de responsabilidad para voluntarios" note="Uno por voluntario; para los voluntarios menores de 18 años también tiene que firmar el padre, la madre o el tutor" />
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={3} />
+
+## Fase 1: Organizar {/* #phase-1-organize */}
+
+Como en todo proceso, el primer paso, y el más importante, es organizar a su equipo: identificar a los líderes del
+proyecto y fijar un calendario. Cuántas personas asigna a estas funciones depende de lo complejo y lo grande que sea su
+proyecto.
+
+- **Encargado de la construcción.** Pide los materiales, está presente cuando llegan las entregas, da instrucciones a
+  los voluntarios los días de construcción y coordina el calendario con el encargado del proyecto.
+- **Encargado del proyecto.** Se ocupa de conseguir voluntarios, de las redes sociales, de pedir la comida y de repartir
+  los formularios de exención; coordina las finanzas y controla el calendario.
+
+<Field id="create.construction-manager" label="Encargado de la construcción" hint="Pide los materiales, dirige los días de construcción" />
+<Field id="create.project-manager" label="Encargado del proyecto" hint="Voluntarios, calendario, finanzas" />
+
+<ListField
+  id="create.org-chart"
+  label="Voluntarios y contratistas"
+  rowName="persona"
+  min={3}
+  columns={[
+    { key: 'name', label: 'Nombre' },
+    { key: 'role', label: 'Función', placeholder: 'voluntario, contratista…' },
+    { key: 'contact', label: 'Contacto' },
+  ]}
+/>
+
+Un calendario del proyecto es una excelente manera de llevar la cuenta de los horarios, las fechas importantes, cuándo
+van a trabajar los voluntarios y cuánto tardan en llegar los materiales. Planear es tan importante como construir:
+empiece con el pie derecho.
+
+<BuildSchedule />
+
+<Download href="downloads/templates/project-calendar.xlsx" label="Plantilla de calendario" note="Ejemplo de calendario del proyecto y lista de contactos: úselo como referencia y haga su propia copia" />
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={4} />
+
+## Fase 2: Prepare el lote {/* #phase-2-prepare-the-lot */}
+
+### Pasos
+
+**Paso 1: Evalúe.** Algunos terrenos necesitan más limpieza o nivelación que otros, y eso puede requerir maquinaria
+especial: comuníquese con un contratista de jardinería si la comunidad no puede hacer sola alguna de estas tareas.
+
+- Comuníquese con el equipo de PiaT ([ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu), en inglés) para
+  pedir una visita y una consulta en el terreno si no está seguro de cómo prepararlo.
+- Llame a Pennsylvania One Call al **811** para que marquen dónde pasan las líneas de servicios públicos.
+
+<Field id="create.one-call-address" label="Dirección para su solicitud a PA One Call" auto="lot.address" />
+
+**Paso 2: Proteja.** Lleve herramientas pequeñas y equipo al terreno. Ponga una cerca de construcción de protección, con
+postes de madera, alrededor de los troncos de los árboles, los edificios y otras cosas que haya que proteger. Ponga una
+cerca para controlar el sedimento y la erosión alrededor del terreno y en todas las entradas de los desagües.
+
+**Paso 3: Limpieza.** Quite la vegetación que no quiera (con las raíces), los tocones de árboles, la basura y los
+escombros de mampostería; para controlar bien y a tiempo cierta vegetación, quizás haga falta usar herbicida. Pode los
+árboles que ya están para quitar las ramas del tronco hasta por lo menos 6' de alto. Saque del terreno los escombros y
+la vegetación y llévelos al lugar correcto para botarlos; amontone los escombros de mampostería en el terreno para usarlos
+como relleno de las canastas de gavión.
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — street trees are the City's; facts checked 2026-10-04 on phila.gov. */}
+<Callout kind="site">
+  Los árboles de la calle (los que están en la acera) son de la Ciudad: para podar o quitar uno hace falta un permiso de
+  Philadelphia Parks & Recreation, que poda y quita gratis los árboles de la calle peligrosos (pídalo por el 311). Vea
+  las [preguntas sobre los árboles de la calle ↗](https://www.phila.gov/departments/philadelphia-parks-recreation/street-tree-frequently-asked-questions/)
+  de la Ciudad (en inglés).
+</Callout>
+
+**Paso 4: Nivelación del terreno.** Empiece a rastrillar y nivelar el terreno. Asegúrese de que las marcas de
+Pennsylvania One Call sigan en su lugar y se vean bien; el nivel de la tierra debe quedar más o menos al mismo nivel de
+la acera.
+
+### Equipo y herramientas
+
+<Checklist
+  id="create.phase2-tools"
+  items={[
+    { value: 'Shovels', label: 'Palas' },
+    { value: 'Wheelbarrows', label: 'Carretillas' },
+    { value: 'Pick axe', label: 'Pico' },
+    { value: 'Grading rakes', label: 'Rastrillos para nivelar' },
+    { value: 'Sledgehammer', label: 'Mandarria (marro)' },
+    { value: 'Hand pruners + loppers', label: 'Tijeras de podar de mano y de mango largo' },
+    { value: 'Pruning saws', label: 'Serruchos de podar' },
+    { value: 'Spray paint', label: 'Pintura en aerosol' },
+    { value: 'Construction fencing', label: 'Cerca de construcción' },
+    { value: 'Wood posts', label: 'Postes de madera' },
+    { value: 'Broom', label: 'Escoba' },
+    { value: 'Chainsaw', label: 'Motosierra' },
+    { value: 'Trash bags', label: 'Bolsas de basura' },
+  ]}
+/>
+<Checklist
+  id="create.phase2-tools-optional"
+  label="Opcional: para terrenos con muchas superficies desparejas, concreto o tocones de árboles"
+  items={[
+    { value: 'excavator', label: 'Excavadora', hint: 'se recomienda contratar a un contratista' },
+    { value: 'stump-grinder', label: 'Trituradora de tocones', hint: 'se recomienda contratar a un contratista' },
+    { value: 'Jack hammer', label: 'Martillo neumático' },
+    { value: 'Rototiller', label: 'Motocultor' },
+    { value: 'Herbicide spray', label: 'Rociador de herbicida' },
+  ]}
+/>
+
+<Figure
+  src="img/create/phase2-reference-photos.webp"
+  alt="Fotos de referencia para preparar el lote: una excavadora limpiando un terreno, una banderita de marcado de servicios públicos y un cable rastreador sobre el césped, voluntarios sacando escombros de mampostería, una malla para controlar el sedimento a lo largo de un borde de la acera y un voluntario nivelando la tierra con el rastrillo."
+/>
+
+### Enlaces útiles (en inglés)
+
+- **Alquiler de herramientas**: puede valer la pena contratar a un contratista para las herramientas eléctricas, por
+  eficiencia y seguridad.
+  [West Philadelphia Tool Library ↗](https://westphillytools.org) (solo herramientas de mano; 1314 S 47th St) ·
+  [OK Rental ↗](https://okrentalsaleservice.com) *(el enlace no funciona por ahora)* (herramientas eléctricas, incluso motosierras; 640 Main St, Darby) ·
+  [Diamond Tool ↗](https://diamondtool.net/Rentals) *(no se pudo verificar automáticamente)* (2800 Grays Ferry Ave)
+- **Desechos y reciclaje**: [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/) (3850 W Ford Rd)
+- **Video sobre cómo podar árboles**: [youtube.com/watch?v=pY5A-5gUqwo ↗](https://youtube.com/watch?v=pY5A-5gUqwo)
+- **Cómo reconocer las malas hierbas**: [guía de malas hierbas de Philadelphia Orchard Project ↗](https://www.phillyorchards.org/resources/)
+- **Herbicidas** (úselos poco y siga siempre las instrucciones de la etiqueta): picloram para aplicar en los tocones de
+  plantas leñosas; glifosato para aplicar en las hojas de plantas herbáceas y leñosas; clopyralid para la artemisa y el
+  cardo canadiense. Malas hierbas invasoras que muchas veces hay que controlar con herbicida: artemisa, cardo canadiense,
+  hierba nudosa japonesa y phragmites (carrizo) (herbáceas); Broussonetia, Ailanthus, Paulownia y madreselva japonesa
+  (leñosas: corte y trate el tocón solo si es demasiado grande para sacarlo de raíz).
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — herbicide labels, restricted-use picloram, 20% vinegar; facts checked 2026-10-04 on epa.gov and npic.orst.edu. */}
+<Callout kind="site">
+  La etiqueta de un herbicida es la ley: sígala, incluso en dónde se puede usar el producto y en el equipo de protección
+  que indica ([EPA ↗](https://www.epa.gov/pesticide-labels/introduction-pesticide-labels), en inglés). Muchos productos
+  con picloram son de uso restringido y solo los puede comprar o aplicar un aplicador certificado
+  ([lista de la EPA ↗](https://www.epa.gov/pesticide-worker-safety/restricted-use-products-rup-report), en inglés). El
+  vinagre que se vende para matar hierbas (de 20 % o más) puede dañar los ojos para siempre: use protección para los ojos
+  y guantes ([NPIC ↗](https://npic.orst.edu/faq/vinegar.html), en inglés).
+</Callout>
+
+### Prepárese para lo que sigue
+
+Revise el calendario del proyecto y cámbielo si hace falta. Compre y haga llevar los materiales o el equipo que tardan
+en llegar, y asegúrese de que el terreno esté listo para la Fase 3.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={5} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={6} label="Fotos de referencia y enlaces (PDF)" />
+
+## Fase 3: Trazado y base de grava {/* #phase-3-layout-gravel-base */}
+
+### Pasos
+
+**Paso 1: Materiales.** Lleve el equipo y las herramientas al terreno; prepárese para las entregas. Busque un lugar para
+amontonar la grava y cúbrala con una lona si puede. Marque con pintura en aerosol las zonas generales donde va la grava;
+si no hay suficiente espacio, coordine la entrega con su ciudad para que la dejen en la calle.
+
+<Callout kind="note" title="¿Va a bloquear la calle para una entrega?">
+  Pida un permiso temporal de no estacionarse para que el camión de la entrega tenga dónde descargar.
+  [Pídalo en phila.gov (en inglés) ↗](https://www.phila.gov/services/cars-parking-transportation/apply-for-a-parking-permit/apply-for-a-temporary-no-parking-permit/)
+</Callout>
+<Field id="create.delivery-address" label="Dirección para el permiso de no estacionarse" auto="lot.address" />
+
+**Paso 2: Marque dónde van los canteros y los elementos del parque.** Empiece en el punto de partida que marcó en el
+cuaderno de trabajo Evaluar. Guíese por su plano para saber dónde van y cuánto miden los bordes de los canteros y de los
+elementos del parque. Use estacas e hilo para marcar dónde van los bordes y los elementos del parque que va a agregar en
+las fases siguientes.
+
+**Paso 3: Ponga la subbase.** Prepare las superficies del suelo para las canastas de gavión según las instrucciones de
+armado. Excave las entradas para que haya un cambio de nivel entre el parque nuevo y la acera: por lo menos 4" de
+profundidad en el borde de la acera, nivelando según haga falta (use la tierra que sobre para nivelar los senderos o
+para agregarla a las zonas de siembra). Extienda una capa de grava de 2" de espesor en todas las zonas menos en los
+canteros, unas 6" más ancha que sus hilos, para que el borde de la siguiente fase se pueda apoyar encima de la grava.
+Pase una placa vibratoria sobre la grava por lo menos dos veces.
+
+**Paso 4: Entradas y limpieza.** Limpie la grava que haya caído fuera de su lugar y limpie las áreas públicas.
+
+### Equipo, herramientas y materiales
+
+<Checklist
+  id="create.phase3-tools"
+  items={[
+    { value: 'Square', label: 'Escuadra' },
+    { value: 'Measuring tape', label: 'Cinta métrica' },
+    { value: 'Shovels', label: 'Palas' },
+    { value: 'Wheelbarrows', label: 'Carretillas' },
+    { value: 'Pick axe', label: 'Pico' },
+    { value: 'Grading rakes', label: 'Rastrillos para nivelar' },
+    { value: '5 lb hammer', label: 'Marro de 5 lb' },
+    { value: 'Spray paint', label: 'Pintura en aerosol' },
+    { value: 'Wood posts and string', label: 'Estacas de madera e hilo' },
+    { value: 'Vibrating plate compactor', label: 'Compactadora de placa vibratoria' },
+    { value: 'Broom', label: 'Escoba' },
+  ]}
+/>
+<p class="muted">Materiales: grava, base para caminos (roadbase) de 3/4".</p>
+
+<Figure
+  src="img/create/phase3-reference-photos.webp"
+  alt="Fotos de referencia para el trazado y la base de grava: medir el terreno, excavar, preparar la subbase, un camión que trae grava, marcar el terreno con estacas e hilo, un montón de grava, y llevar la grava en carretillas y extenderla."
+/>
+
+### Enlaces útiles (en inglés)
+
+- **Cómo hacerlo**: [Marcar los canteros ↗](https://lowes.com/n/how-to/create-an-english-style-garden) (vea del minuto 1:50 al 2:40) ·
+  [Poner una subbase de grava ↗](https://youtube.com/watch?v=tfDEOIAIUwQ)
+- **Alquiler de herramientas**: [West Philadelphia Tool Library ↗](https://westphillytools.org) ·
+  [OK Rental ↗](https://okrentalsaleservice.com) *(el enlace no funciona por ahora)* · [Diamond Tool ↗](https://diamondtool.net/Rentals) *(no se pudo verificar automáticamente)*
+
+### Prepárese para lo que sigue
+
+Revise el calendario del proyecto y cámbielo si hace falta. Compre y haga llevar los materiales que tardan en llegar
+para las fases siguientes. Asegúrese de que el terreno esté listo para la Fase 4.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={7} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={8} label="Fotos de referencia y enlaces (PDF)" />
+
+## Fase 4: Ponga el borde {/* #phase-4-install-the-edge */}
+
+### Pasos
+
+**Paso 1: Materiales.** Traiga los materiales del borde (vea el presupuesto y las instrucciones de armado). Quite la
+cerca de protección contra la erosión; la protección de los árboles debe quedarse, a menos que estorbe donde va el
+borde.
+
+**Paso 2: Arme.** Arme las canastas de gavión (vea las instrucciones de armado del muro de gavión).
+
+**Paso 3: Instalación.** Ponga hilos para que las canastas de gavión queden en línea recta a lo largo del borde del
+parque. Coloque las canastas según su plano y llene el fondo con 2–3" de grava. Haga pequeños ajustes para que las
+canastas queden niveladas y derechas entre sí; cuando se usan solas, como mesas o bancas, ponga un nivel encima. Agregue
+bordes de madera donde haga falta (vea las instrucciones de armado del borde de madera).
+
+### Equipo y materiales
+
+<Checklist
+  id="create.phase4-tools"
+  items={[
+    { value: 'Measuring tape', label: 'Cinta métrica' },
+    { value: 'Shovels', label: 'Palas' },
+    { value: 'Wheelbarrows', label: 'Carretillas' },
+    { value: 'Garden hoes', label: 'Azadas' },
+    { value: 'Grading rakes', label: 'Rastrillos para nivelar' },
+    { value: 'Hand tamper', label: 'Pisón de mano' },
+    { value: 'Wire cutters', label: 'Cortaalambres' },
+    { value: 'Sledge hammer', label: 'Mandarria (marro)' },
+    { value: 'Level', label: 'Nivel' },
+    { value: 'Broom', label: 'Escoba' },
+  ]}
+/>
+<p class="muted">Materiales: canastas de gavión; madera y herrajes para el borde de madera; piedras o escombros de mampostería grandes para las canastas de gavión, de 3" o más.</p>
+
+<Figure
+  src="img/create/phase4-reference-photos.webp"
+  alt="Fotos de referencia para poner el borde: dos canastas de gavión llenas y un voluntario colocando una tabla de borde de madera junto a una cama de grava."
+/>
+
+### Enlaces útiles (en inglés)
+
+- **Materiales**: [Castor Materials ↗](https://castormaterials.com) (piedra triturada, con entrega; 3301 S 61st St) ·
+  [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) (piedra triturada, mantillo, herramientas; 4260 Macalester St) ·
+  [Underdog Supply ↗](https://www.underdogsupply.com/) (entrega de materiales a granel; Conshohocken) ·
+  Galantino Supply Company (alquiler de equipo y materiales a granel; 725 Old Marple Rd, Springfield — (610) 544-2586)
+- **Cómo hacerlo**: [Construir un muro de gavión ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
+
+### Prepárese para lo que sigue
+
+Revise el calendario del proyecto y cámbielo si hace falta. Compre y haga llevar los materiales que tardan en llegar.
+Asegúrese de que el terreno esté listo para la Fase 5.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={9} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={10} label="Fotos de referencia y enlaces (PDF)" />
+
+## Fase 5: Extienda la tierra negra {/* #phase-5-spread-topsoil */}
+
+### Pasos
+
+**Paso 1: Materiales.** Quite la cerca de protección de los árboles. Busque un lugar en la acera o en la calle para
+amontonar la tierra negra; si es así, pida un permiso temporal de no estacionarse (vea la Fase 3).
+
+**Paso 2: Poner la tierra.** Prepare los canteros para recibir la tierra negra nivelando la tierra que ya hay. Extienda la
+tierra negra con unas 4–6" de espesor y nivélela para que quede pareja.
+
+**Paso 3: Limpieza.** Limpie la tierra negra que haya caído fuera de su lugar y limpie las áreas públicas.
+
+### Equipo y materiales
+
+<Checklist
+  id="create.phase5-tools"
+  items={[
+    { value: 'Measuring tape', label: 'Cinta métrica' },
+    { value: 'Shovels', label: 'Palas' },
+    { value: 'Wheelbarrows', label: 'Carretillas' },
+    { value: 'Grading rakes', label: 'Rastrillos para nivelar' },
+    { value: 'Garden hoes', label: 'Azadas' },
+    { value: 'Broom', label: 'Escoba' },
+  ]}
+/>
+<p class="muted">Materiales: tierra negra (topsoil).</p>
+
+<Figure
+  src="img/create/phase5-reference-photos.webp"
+  alt="Fotos de referencia para extender la tierra negra: un camión de volteo que trae la tierra, un voluntario nivelando la tierra a mano, dos voluntarios llevando tierra en carretilla y un voluntario echando tierra en un cantero."
+/>
+
+### Enlaces útiles (en inglés)
+
+- **Dónde pedirla**: [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
+- **Cómo hacerlo**: [Preparar la tierra negra ↗](https://youtube.com/watch?v=GcOJ4fDJmpM) · [Tierra sana para plantas sanas ↗](https://youtube.com/watch?v=7-Tyz7fGeZo)
+
+### Prepárese para lo que sigue
+
+Revise el calendario del proyecto y cámbielo si hace falta. Compre y haga llevar los materiales que tardan en llegar.
+Asegúrese de que el terreno esté listo para la Fase 6.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={11} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={12} label="Fotos de referencia y enlaces (PDF)" />
+
+## Fase 6: Siembre {/* #phase-6-plant */}
+
+### Pasos
+
+**Paso 1: Plantas.** Quite las malas hierbas que hayan salido. Asegúrese de que las entregas de plantas estén
+programadas y de tener un lugar donde dejar las plantas cuando lleguen. Coloque los árboles y los arbustos donde los
+quiere, y luego limpie la tierra que haya caído fuera de su lugar y las áreas públicas.
+
+**Paso 2: Siembra.** Siembre primero los árboles grandes (vea el detalle de siembra de abajo). Siembre los arbustos,
+nivele bien la tierra, siembre las perennes, ponga 4" de mantillo (mulch) y luego riegue bien todas las plantas; repita dos
+veces por semana hasta que las plantas entren en reposo en el invierno.
+
+<Figure
+  src="img/create/phase6-plant-illustration.webp"
+  alt="Ilustración axonométrica de un parque terminado en un patio de enfrente, con el rótulo SIEMBRE (PLANT), con árboles, canteros elevados y una zona pavimentada para reunirse entre dos casas en hilera."
+/>
+<Figure
+  src="img/create/phase6-planting-detail.webp"
+  alt="Dos diagramas con detalles de siembra: uno para arbustos y perennes en maceta, que muestra el espesor del mantillo y el relleno de tierra, y otro para árboles, que muestra dónde va el cepellón, las estacas, el mantillo y cómo quitar la arpillera."
+/>
+
+### Equipo y materiales
+
+<Checklist
+  id="create.phase6-tools"
+  items={[
+    { value: 'Measuring tape', label: 'Cinta métrica' },
+    { value: 'Shovels', label: 'Palas' },
+    { value: 'Wheelbarrows', label: 'Carretillas' },
+    { value: 'Pick axe', label: 'Pico' },
+    { value: 'Landscape rakes', label: 'Rastrillos de jardinería' },
+    { value: 'Spray paint', label: 'Pintura en aerosol' },
+    { value: 'Tree stakes and rope', label: 'Estacas para árboles y soga' },
+    { value: 'Broom', label: 'Escoba' },
+  ]}
+/>
+<p class="muted">Materiales: plantas; no se olvide de revisar su lista de plantas.</p>
+
+### Enlaces útiles (en inglés)
+
+- **Información general sobre plantas**: [PHS Gold Medal Plants ↗](https://phsonline.org/for-gardeners/gold-medal-plants) ·
+  [Gardens Alive ↗](https://www.gardensalive.com/) · [North Creek Nurseries ↗](https://www.northcreeknurseries.com/) ·
+  [Missouri Botanical Garden ↗](https://www.missouribotanicalgarden.org/) · [Longwood Gardens plant explorer ↗](https://plantexplorer.longwoodgardens.org/ecmweb/ECM_Home.html) *(el enlace no funciona por ahora)* ·
+  [Arbor Day Foundation ↗](https://www.arborday.org/) · [Penn State Extension: huertos de verduras ↗](https://extension.psu.edu/programs/master-gardener)
+- **Vivero socio de PiaT**: LandHealth Institute, 4862 Parkside Ave, Philadelphia · (267) 571-5750 ·
+  [landhealthinstitute.org/nursery ↗](https://www.landhealthinstitute.org/nursery)
+- **Otros viveros de la región**: [Good Host Plants ↗](https://www.goodhostplants.com/) (especialista local en plantas para polinizadores) ·
+  [Pleasant Run Nursery ↗](https://www.pleasantrunnursery.com/) · [Pinelands Nursery ↗](https://www.pinelandsnursery.com/) ·
+  [Archewild ↗](https://archewild.com/)
+- **Árboles frutales**: [Philadelphia Orchard Project ↗](https://www.phillyorchards.org/) ·
+  [Burpee ↗](https://www.burpee.com/fruit/fruit-trees/) · [Stark Bros ↗](https://www.starkbros.com/products/fruit-trees)
+- **Talleres de jardinería y ayuda con el lote**: [Pennsylvania Horticultural Society ↗](https://phsonline.org/) ·
+  [Grounded in Philly ↗](https://groundedinphilly.org/) (ayuda legal, seguros, datos de los lotes)
+- **Cómo hacerlo**: [Consejos para sembrar en macetas y bulbos ↗](https://www.gardeners.com/how-to/growing-annual-flowers/5070.html) ·
+  [Sembrar un árbol que viene en maceta ↗](https://www.arborday.org/trees/planting/containerized.cfm) ·
+  [Cómo sembrar un arbusto ↗](https://youtube.com/watch?v=Tim4LEo6l10)
+
+### Prepárese para lo que sigue
+
+Revise el calendario del proyecto y asegúrese de tener un horario para un embajador del parque (vea los detalles en el
+paso Mantener). Proveedores de mantillo: [Mid Atlantic Pine Straw ↗](https://www.midatlanticpinestraw.com/) ·
+[Underdog Landscape Supply ↗](https://underdogsupply.com) · [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/get-organic-materials/)
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={13} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={14} label="Enlaces útiles (PDF)" />
+
+## Fase 7: Ponga la superficie de grava {/* #phase-7-install-the-gravel-surface */}
+
+### Pasos
+
+**Paso 1: Materiales.** Prepárese para las entregas si todavía no tiene la grava amontonada en el terreno. Busque un
+lugar en la acera o en la calle para amontonar la grava (con un permiso temporal de no estacionarse, si hace falta; vea
+la Fase 3).
+
+**Paso 2: Instalación.** Ponga la superficie de grava con una carretilla y un rastrillo de jardinería. Ponga la grava
+con unas 2" de espesor, repartiendo parejo lo que sobre. Apisone el material con una placa vibratoria para que no se
+hunda después, y pase por todas las zonas para asegurarse de que queden niveladas y parejas.
+
+**Paso 3: Limpieza.** Limpie la grava que haya caído fuera de su lugar y limpie las áreas públicas.
+
+### Equipo y materiales
+
+<Checklist
+  id="create.phase7-tools"
+  items={[
+    { value: 'Measuring tape', label: 'Cinta métrica' },
+    { value: 'Shovels', label: 'Palas' },
+    { value: 'Wheelbarrows', label: 'Carretillas' },
+    { value: 'Landscape rakes', label: 'Rastrillos de jardinería' },
+    { value: 'Hand tamper', label: 'Pisón de mano' },
+    { value: 'Vibratory plate', label: 'Placa vibratoria' },
+    { value: 'Broom', label: 'Escoba' },
+  ]}
+/>
+<p class="muted">Materiales: grava de 3/8" o más fina (polvo de piedra).</p>
+
+<Figure
+  src="img/create/phase7-reference-photos.webp"
+  alt="Fotos de referencia para poner la superficie de grava: un rastrillo para nivelar, un pisón de mano sobre grava compactada y un voluntario usando una compactadora de placa vibratoria de gasolina."
+/>
+
+### Enlaces útiles (en inglés)
+
+- **Materiales**: [Castor Materials ↗](https://castormaterials.com) · [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) ·
+  Galantino Supply Company ((610) 544-2586) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
+- **Cómo hacerlo**: [Poner grava ↗](https://youtube.com/watch?v=t0LWQ_U2z_g)
+
+### Prepárese para lo que sigue
+
+Revise el calendario del proyecto y cámbielo si hace falta. Compre y haga llevar los materiales que tardan en llegar.
+Asegúrese de que el terreno esté listo para la Fase 8.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={15} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={16} label="Fotos de referencia y enlaces (PDF)" />
+
+## Fase 8: Ponga los elementos del parque {/* #phase-8-install-park-elements */}
+
+### Pasos
+
+**Paso 1: Mida.** Revise sus manuales de armado, y mida y marque dónde van los elementos del parque.
+
+**Paso 2: Materiales.** Asegúrese de tener todos los materiales que indican sus manuales de armado.
+
+**Paso 3: Arme.** Arme los elementos del parque según los manuales de armado.
+
+**Paso 4: Instale.** Asegúrese de que haya suficiente espacio en su diseño para poner los elementos, y luego colóquelos
+en su lugar final. Quizás pueda — o prefiera — armar los elementos con tiempo o fuera del terreno.
+
+<Callout kind="auto">
+  Todos los elementos que tienen guía de armado están enlazados desde la cuadrícula [Ármelo](/steps/dream/#assemble) del
+  paso Soñar: ahí están las mismas guías.
+</Callout>
+
+### Enlaces útiles (en inglés)
+
+- **Cómo construir…** (use primero las guías de armado; estos videos son de respaldo): [Mesa comunitaria ↗](https://youtube.com/watch?v=Px2JZs4Q2v4) ·
+  [Cajonera fría ↗](https://youtube.com/watch?v=b75RoDmE9qY) · [Canteros elevados ↗](https://youtube.com/watch?v=MBIYebUgVVI) ·
+  [Composteras ↗](https://youtube.com/watch?v=gA6QNLaBEyc) · [Mesa para trasplantar ↗](https://youtube.com/watch?v=E7HumfxE2f4) ·
+  [Cobertizo de jardín ↗](https://youtube.com/watch?v=DuQ0N8z6OkI) · [Muro de gavión ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
+- **Madera y materiales de construcción**: Woodland Building Supply, 4701 Woodland Ave, Philadelphia — (215) 727-5333 ·
+  C & R Building Supply, 1601 S 49th St, Philadelphia · A&A Lumber (ciprés), Avondale, PA · Delaware County Lumber, Boothwyn, PA
+
+### Prepárese para lo que sigue
+
+Revise el calendario del proyecto y cámbielo si hace falta: ¡su parque está casi listo!
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={17} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={18} label="Instrucciones de armado y enlaces (PDF)" />
+
+{/* site-added: the workbook's own contents page lists a Summary, but this working draft doesn't include one — this wrap-up just recaps the 8 phases above as a final checklist. No new advice. */}
+## Resumen {/* #summary */}
+
+<Checklist
+  id="create.summary-checklist"
+  items={[
+    { value: 'phase1', label: 'Fase 1: Organizar', hint: 'Funciones del equipo asignadas, calendario fijado' },
+    { value: 'phase2', label: 'Fase 2: Prepare el lote', hint: 'Limpio, protegido y nivelado' },
+    { value: 'phase3', label: 'Fase 3: Trazado y base de grava', hint: 'Canteros y elementos marcados con estacas, subbase puesta' },
+    { value: 'phase4', label: 'Fase 4: Ponga el borde', hint: 'Canastas de gavión y bordes de madera puestos' },
+    { value: 'phase5', label: 'Fase 5: Extienda la tierra negra', hint: 'Canteros nivelados y llenos' },
+    { value: 'phase6', label: 'Fase 6: Siembre', hint: 'Árboles, arbustos y perennes sembrados' },
+    { value: 'phase7', label: 'Fase 7: Ponga la superficie de grava', hint: 'Grava final apisonada y nivelada' },
+    { value: 'phase8', label: 'Fase 8: Ponga los elementos del parque', hint: 'Bancas, mesas y estructuras armadas y colocadas' },
+  ]}
+/>
+
+<Callout kind="tip">
+  ¡Su parque está construido! Vaya al paso Mantener para que siga creciendo bonito: el riego, quitar las malas hierbas y
+  el plan de trabajo anual para cuidar el parque.
+</Callout>
