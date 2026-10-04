@@ -152,7 +152,8 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
   detected, flip/rotate by hand); plan view (orthographic, looks like the paper pieces) and 3D view; drag, add,
   remove, rotate items (mouse: drag any item on any step, round handle to turn, drag from the palette to drop,
   right-click/long-press menu, Ctrl+D duplicates — copies keep the original's footprint); existing conditions (trees, downspouts, wet areas, hydrants, utility lines); **sun study**
-  for any date/time and growing-season sun-hours per 4×4 ft square → sun/shade classes that feed the tally.
+  for any date/time and growing-season sun-hours on a 1-ft grid (2-ft on lots over 8,000 sq ft); each 4×4 ft square takes
+  the class at its centre → sun/shade classes that feed the tally.
   Sun classes: ≥6 h direct sun = sun, 3–6 h = part, <3 h = shade; the workbook's two-way count treats part as shade
   unless the plant list says otherwise.
 - **Build-guide 3D models** (`src/data/guides/models/<slug>.json`, format `src/lib/guides3d/schema.ts`, checked by
