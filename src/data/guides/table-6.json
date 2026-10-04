@@ -14,7 +14,7 @@
     }
   ],
   "hardware": [
-    { "item": "Self-driving exterior wood screws", "qty": 92, "size": "2.5\"" }
+    { "item": "Self-driving exterior wood screws", "qty": 92, "size": "2.5\"", "siteNote": "The steps as written use 104 screws, not 92: 30 for each end frame (step 3), 16 in step 4 and 28 in step 5." }
   ],
   "cutList": [
     { "part": "T-1", "qty": 7, "stock": "2x4", "lengthIn": 72, "notes": "Table top" },
@@ -79,7 +79,8 @@
       "text": "Place four more T-1 pieces on top of the frame created in step 4, with both ends overhanging the frame by 12\".\n\nSecure the T-1 lumber with an impact driver and 28 2.5\" self-driving exterior wood screws.\n\nLightly sand the rough edges of the table.",
       "images": ["img/guides/table-6/step-05.webp"],
       "imageAlts": ["Diagram of the remaining T-1 top boards overhanging the table frame by 12\" at each end, spaced equally and screwed down."],
-      "tips": ["Secure the two end pieces flush with the side edges first, then install the three middle pieces with equal gaps between them."]
+      "tips": ["Secure the two end pieces flush with the side edges first, then install the three middle pieces with equal gaps between them."],
+      "siteNote": "The cut list's 7 T-1 make a 7-board top: the 2 from step 4 plus 5 more here, as the cover drawing and the 3D model show (seven 3.5″ boards with small, equal gaps fill the 26″ width). This step's text says four more (6 in all, as its own drawing shows) and its tip says three middle pieces (5 in all)."
     },
     {
       "n": 6,

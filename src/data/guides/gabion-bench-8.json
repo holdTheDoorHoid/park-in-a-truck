@@ -74,7 +74,8 @@
       "text": "Place two GB-1 and two GB-2 pieces on a flat surface, aligning the edges as shown.\n\nUse the pre-drilling guide at the end of the packet to pre-drill your screw holes, then secure the GB-1 lumber into the GB-2 pieces with an impact driver and 8 2.5\" self-driving exterior wood screws.",
       "images": ["img/guides/gabion-bench-8/step-02.webp"],
       "imageAlts": ["Diagram of two long GB-1 rails and two short GB-2 end caps screwed together into a rectangular frame."],
-      "tips": ["Use a carpenter's square to check each corner forms a right angle."]
+      "tips": ["Use a carpenter's square to check each corner forms a right angle."],
+      "siteNote": "You build this basket upside down: the wood frame starts on the ground and becomes the top rim when you turn the basket over in step 7. The 3D model shows the bench right side up the whole way, so its wood frame is always on top."
     },
     {
       "n": 3,

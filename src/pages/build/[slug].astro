@@ -40,6 +40,11 @@ const materialItems = [...guide.materials, ...guide.hardware].map((m, idx) => ({
   hint: m.notes,
 }));
 
+// site-added: where the guide's own materials list doesn't add up, a note marked as ours
+const materialNotes = [...guide.materials, ...guide.hardware]
+  .filter((m) => m.siteNote)
+  .map((m) => ({ label: `${m.qty}× ${m.item.split(' — ')[0]}${m.size ? ` (${m.size})` : ''}`, note: m.siteNote! }));
+
 const model = Object.values(models).find((m) => m.slug === guide.slug);
 // site-added: where PiaT's stated size is nominal, say what the parts actually build
 const asBuilt = model?.asBuilt ? asBuiltText(guide.dimensionsIn, model.asBuilt) : '';
@@ -91,6 +96,13 @@ if (guide.cost) glance.push({ label: 'Cost', value: guide.cost });
     <div class="need-grid">
       <div>
         <Checklist id={`build.${guide.slug}.materials`} label="Materials & hardware" items={materialItems} />
+        {materialNotes.length > 0 && (
+          <Callout kind="site">
+            {materialNotes.map((m) => (
+              <p><strong>{m.label}:</strong> {m.note}</p>
+            ))}
+          </Callout>
+        )}
       </div>
       <div>
         <Checklist id={`build.${guide.slug}.tools`} label="Tools" items={guide.tools} />
