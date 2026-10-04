@@ -1,9 +1,9 @@
 ---
-title: Assess
-intro: Get to know your lot — its sun, soil, surroundings and size — and turn what you find into a base plan.
+title: Avaliar
+intro: Conheça o seu terreno — o sol, o solo, o que há em volta e o tamanho — e transforme o que você descobrir numa planta base.
 sources:
-  - Toolkit pp. 35–37 (Assess, Evaluate the Park Site, Site Characteristics)
-  - Assess Workbook pp. 3–11 (Overview, Site Visit, Measure Your Lot, Diagram Your Lot, Verify Your Diagram, Record Objects, Assess Objects, Base Plan, Are You Ready?)
+  - Guia (Toolkit), pp. 35–37 (Avaliar, Avalie o terreno do parque, Características do terreno)
+  - Caderno de trabalho Avaliar, pp. 3–11 (Visão geral, Visita ao terreno, Meça o seu terreno, Desenhe o seu terreno, Confira o seu desenho, Registre os objetos, Avalie os objetos, Planta base, Tudo pronto?)
 ---
 import Field from '../../../../components/workbook/Field.astro';
 import ListField from '../../../../components/workbook/ListField.astro';
@@ -21,287 +21,287 @@ import LotAgreementNotice from '../../../../components/workbook/LotAgreementNoti
 {/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — reminds a reader who hasn't recorded a lot agreement yet, before they sink time into site visits and soil work on a lot they may not have permission for. */}
 <LotAgreementNotice />
 
-What makes your lot special, and how can you best use these features? This step reviews how to evaluate your lot
-and ensure your park takes advantage of its site conditions.
+O que torna o seu terreno especial, e como aproveitar melhor essas características? Esta etapa mostra como avaliar o
+seu terreno e garantir que o seu parque tire proveito das condições do lugar.
 
-A lot doesn't stand alone — it's part of your community. So assessment needs to include your neighborhood too. Is
-there a unique history or culture that should be reflected in the design? A park that pays homage to a community's
-sense of itself will feel more like an old neighbor rather than a newcomer.
+Um terreno não existe sozinho — ele faz parte da sua comunidade. Por isso a avaliação também precisa incluir o seu
+bairro. Existe uma história ou uma cultura própria que deveria aparecer no desenho? Um parque que homenageia o jeito
+de ser de uma comunidade vai parecer mais um velho vizinho do que um recém-chegado.
 
-Example project sites are used to illustrate the key steps in this process. Of course, your situation will be
-different, depending on the location, shape, and context of your own park site — but this is a great place to
-start.
+Usamos terrenos de exemplo para mostrar as etapas principais deste processo. É claro que a sua situação vai ser
+diferente, dependendo da localização, da forma e do entorno do terreno do seu parque — mas este é um ótimo ponto de
+partida.
 
-<PdfPage doc="downloads/workbooks/03-assess.pdf" page={3} label="Overview" />
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={3} label="Visão geral" />
 
-## Site characteristics {/* #site-characteristics */}
+## Características do terreno {/* #site-characteristics */}
 
-In this step, you will document the physical characteristics of the park site. Is the site sunny or shady? Flat or
-sloped, with existing trees? Or is it across the street from a church? All of these characteristics will influence
-what you can do on the site. For example, suppose you want to grow tomatoes — your site will need to be sunny
-throughout the day.
+Nesta etapa, você vai registrar as características físicas do terreno do parque. O terreno pega sol ou fica na
+sombra? É plano ou inclinado, com árvores? Ou fica do outro lado da rua de uma igreja? Todas essas características
+vão influenciar o que vocês podem fazer no terreno. Por exemplo, se vocês querem plantar tomates, o terreno vai
+precisar pegar sol o dia inteiro.
 
-Visit your park site and carefully document what might affect your park's design. By evaluating the site
-characteristics before designing the park's features, you'll make sure the design is adapted to the site's unique
-conditions.
+Visite o terreno do parque e registre com cuidado tudo o que pode influenciar o desenho do seu parque. Avaliando as
+características do terreno antes de desenhar os elementos do parque, você garante que o desenho se adapte às
+condições únicas do lugar.
 
 <Figure
   src="img/assess/site-characteristics.webp"
-  alt="Isometric illustration of an example project site, highlighted in blue on a residential corner: numbered callouts mark its location on a busy corner, a bus route, a large blank wall, overhead utility lines along the street edge, and a sunny area along the sidewalk."
-  caption="An example project site and the characteristics that make it unique"
+  alt="Ilustração isométrica de um terreno de exemplo, destacado em azul numa esquina residencial: números marcam a localização numa esquina movimentada, uma linha de ônibus, uma grande parede sem janelas, fios elétricos ao longo da rua e uma área com sol ao longo da calçada."
+  caption="Um terreno de exemplo e as características que o tornam único"
 />
 
-This example lot is unique because of: **(1)** its location on a busy corner, **(2)** being on a bus route, **(3)** a
-building with a large blank wall at the end, **(4)** utility lines along the street edge, and **(5)** a sunny area
-along the sidewalk. Your lot will have its own list. Document any cultural or historical features of the space and
-adjacent blocks, too — did an interesting business once occupy the lot? Were there historical events nearby? What
-did the space look like before there were buildings? This is a great way to engage long-time residents and students
-who have the research skills to dive into city archives.
+Este terreno de exemplo é único por causa de: **(1)** a localização numa esquina movimentada, **(2)** estar numa
+linha de ônibus, **(3)** um prédio com uma grande parede sem janelas no fundo, **(4)** fios elétricos ao longo da
+rua e **(5)** uma área com sol ao longo da calçada. O seu terreno vai ter a sua própria lista. Registre também
+qualquer característica cultural ou histórica do espaço e dos quarteirões ao lado — já funcionou algum comércio
+interessante no terreno? Aconteceram fatos históricos por perto? Como era o lugar antes de existirem prédios? Este é
+um ótimo jeito de envolver os moradores mais antigos e os estudantes que sabem pesquisar nos arquivos da cidade.
 
 <Checklist
   id="assess.conditions"
-  label="Conditions to document"
+  label="Condições para registrar"
   items={[
-    { value: 'sidewalks', label: 'Sidewalks and other pavement' },
-    { value: 'utilities', label: 'Visible utilities (overhead and ground)' },
-    { value: 'sun-direction', label: 'General direction of sunrise / sunset' },
-    { value: 'sun-shade-areas', label: 'Areas that are sunny and/or shady' },
-    { value: 'ground-cover', label: 'Areas of gravel, pavement, or bare soil' },
-    { value: 'water-collection', label: 'Areas where water collects after rainfall' },
-    { value: 'adjacent-buildings', label: 'Adjacent buildings' },
-    { value: 'plants', label: 'Shrubs and trees (and their type, if you know it)' },
-    { value: 'structures', label: 'Existing stand-alone structures (sheds, fences)' },
-    { value: 'building-remains', label: 'Building remains (foundation, old wall, etc.)' },
-    { value: 'terrain', label: 'Sloping terrain, mounds and/or large depressions' },
-    { value: 'views', label: 'Good and/or undesirable views' },
-    { value: 'wind', label: 'Windy / breezy areas' },
-    { value: 'sounds', label: 'Primary sounds / potential nuisance areas' },
+    { value: 'sidewalks', label: 'Calçadas e outros pavimentos' },
+    { value: 'utilities', label: 'Redes de serviços visíveis (no alto e no chão)' },
+    { value: 'sun-direction', label: 'De que lado o sol nasce e se põe, mais ou menos' },
+    { value: 'sun-shade-areas', label: 'Áreas com sol e/ou com sombra' },
+    { value: 'ground-cover', label: 'Áreas de brita, pavimento ou terra descoberta' },
+    { value: 'water-collection', label: 'Áreas onde a água se junta depois da chuva' },
+    { value: 'adjacent-buildings', label: 'Prédios ao lado' },
+    { value: 'plants', label: 'Arbustos e árvores (e o tipo, se você souber)' },
+    { value: 'structures', label: 'Estruturas soltas que já existem (depósitos, cercas)' },
+    { value: 'building-remains', label: 'Restos de construções (alicerce, muro velho etc.)' },
+    { value: 'terrain', label: 'Terreno inclinado, montes e/ou buracos grandes' },
+    { value: 'views', label: 'Vistas bonitas e/ou feias' },
+    { value: 'wind', label: 'Áreas com vento / brisa' },
+    { value: 'sounds', label: 'Principais sons / áreas que podem incomodar' },
   ]}
 />
 
-<PdfPage doc="downloads/workbooks/03-assess.pdf" page={3} label="Site Characteristics" />
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={3} label="Características do terreno" />
 
-## Site visit {/* #site-visit */}
+## Visita ao terreno {/* #site-visit */}
 
-The following activities can be done as a group or individually when you visit the park site:
+Estas atividades podem ser feitas em grupo ou sozinho quando você visitar o terreno do parque:
 
-1. **Collect soil samples.** Understanding the soil nutrients is very helpful in determining what may grow best in
-   your park. A simple test for lead will also help ensure your park is safe. Penn State Extension offers a simple
-   soil test procedure: [agsci.psu.edu/aasl/soil-testing](https://agsci.psu.edu/aasl/soil-testing/fertility/soil-fertility-submission-forms).
-2. **Photograph.** We all see the landscape differently, and taking photographs is one way of sharing with others
-   what we see. Set aside 30 minutes to walk around and take photos of the park site and surrounding context. Then
-   share your photos with one another and describe why you took each one.
-3. **Sit and listen.** Sit quietly in the park site and listen with all your senses. What can you hear, smell, and
-   touch? After 30 minutes, record what you sensed. Are there positive senses that can be incorporated into the
-   park design, or negative senses that could be lessened by it? How would it be different on a different day of
-   the week, or time of day or night?
-4. **Measure + evaluate.** Taking measurements of the park site is a way to help understand it in more detail — the
-   next few steps walk through that.
+1. **Recolha amostras de solo.** Conhecer os nutrientes do solo ajuda muito a saber o que pode crescer melhor no seu
+   parque. Um teste simples de chumbo também ajuda a garantir que o seu parque seja seguro. A Penn State Extension
+   oferece um procedimento simples de análise de solo (em inglês): [agsci.psu.edu/aasl/soil-testing](https://agsci.psu.edu/aasl/soil-testing/fertility/soil-fertility-submission-forms).
+2. **Fotografe.** Cada um de nós vê a paisagem de um jeito, e tirar fotos é uma forma de mostrar aos outros o que
+   vemos. Separe 30 minutos para andar e fotografar o terreno do parque e o que há em volta. Depois, mostrem as fotos
+   uns para os outros e contem por que tiraram cada uma.
+3. **Sente e escute.** Sente em silêncio no terreno do parque e preste atenção com todos os sentidos. O que você
+   ouve, cheira e toca? Depois de 30 minutos, anote o que sentiu. Há sensações boas que podem entrar no desenho do
+   parque, ou ruins que o parque poderia diminuir? Como seria num outro dia da semana, ou em outra hora do dia ou da
+   noite?
+4. **Meça + avalie.** Medir o terreno do parque ajuda a entendê-lo em mais detalhe — as próximas etapas mostram como.
 
 {/* site-added: safety note (DESIGN.md §2, 2026-10-04) — Penn State's standard fertility test has no lead in it; facts checked 2026-10-04 on agsci.psu.edu and phila.gov. */}
 <Callout kind="site">
-  Penn State's standard soil fertility test (pH and nutrients) doesn't test for lead. Lead is a separate test on the
-  lab's [environmental soil testing form ↗](https://agsci.psu.edu/aasl/soil-testing/environmental), or any
-  EPA-recognized lab can do it. The City's [lead guide ↗](https://www.phila.gov/guides/lead-guide/where-is-lead/)
-  covers lead in garden soil: covering bare soil, raised beds for food, and testing.
+  A análise de fertilidade do solo padrão da Penn State (pH e nutrientes) não testa chumbo. O chumbo é um teste à
+  parte, no [formulário de análise ambiental do solo ↗](https://agsci.psu.edu/aasl/soil-testing/environmental) do
+  laboratório (em inglês), ou qualquer laboratório reconhecido pela EPA pode fazer. O [guia sobre chumbo da
+  Prefeitura ↗](https://www.phila.gov/guides/lead-guide/where-is-lead/) (em inglês) fala do chumbo na terra de
+  hortas e jardins: cobrir a terra descoberta, canteiros elevados para alimentos e testes.
 </Callout>
 
-<Field id="assess.soil-notes" label="Soil test results" type="textarea" hint="Nutrients, pH, lead — whatever the test comes back with." />
-<Field id="assess.listen-notes" label="What you heard, smelled, and touched" type="textarea" />
+<Field id="assess.soil-notes" label="Resultado da análise de solo" type="textarea" hint="Nutrientes, pH, chumbo — o que vier no resultado." />
+<Field id="assess.listen-notes" label="O que você ouviu, cheirou e tocou" type="textarea" />
 
-<PdfPage doc="downloads/workbooks/03-assess.pdf" page={4} label="Site Visit" />
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={4} label="Visita ao terreno" />
 
-## Measure your lot {/* #measure-your-lot */}
+## Meça o seu terreno {/* #measure-your-lot */}
 
-Follow the steps below to begin making a diagram of the existing park site. This "base map" can then be printed and
-used at the site to record locations of various site elements and important characteristics.
+Siga as etapas abaixo para começar a fazer um desenho do terreno como ele está hoje. Esse "mapa base" pode ser
+impresso e levado ao terreno para anotar onde ficam os vários elementos e as características importantes.
 
-<Callout kind="auto" title="Measured for you">
-  Once you've chosen your lot in Acquire, the site measures it from the City's own parcel map — the edge lengths and
-  area below, and a printable base map, without a trip to Google Maps.
+<Callout kind="auto" title="Medido para você">
+  Depois que você escolhe o seu terreno em Adquirir, o site mede o terreno pelo próprio mapa de lotes da Prefeitura —
+  o comprimento dos lados e a área abaixo, e um mapa base para imprimir, sem precisar ir ao Google Maps.
 </Callout>
 
 <SiteReport />
 <BaseMap />
 
 <details>
-  <summary>Measure it by hand instead</summary>
+  <summary>Medir à mão</summary>
   <ol>
-    <li>Navigate to <a href="https://maps.google.com" target="_blank" rel="noopener">maps.google.com</a>. This site includes aerial photos and tools to measure the property.</li>
-    <li>Enter the address for the property, or the next closest property with a known address. Zoom to the address and notice where the existing sidewalk and corners of the property are located. If exact corners aren't known, estimate for now.</li>
-    <li>Review the aerial photograph and determine a starting point to begin taking measurements — one corner of the park property. Right-click (control-click on Mac) on your starting point and select "Measure distance."</li>
-    <li>Find the next closest corner, move the cursor, and left-click. A distance between the two points will appear. Write this number down.</li>
-    <li>Drag the starting point to the next corner. Write this number down.</li>
-    <li>Repeat for each corner of the park until you have measured each side. The last measurement should be back to the starting point.</li>
+    <li>Entre no <a href="https://maps.google.com" target="_blank" rel="noopener">maps.google.com</a>. Este site tem fotos aéreas e ferramentas para medir o imóvel.</li>
+    <li>Digite o endereço do imóvel, ou do imóvel mais perto com endereço conhecido. Aproxime o mapa no endereço e veja onde ficam a calçada e os cantos do imóvel. Se você não souber os cantos exatos, faça uma estimativa por enquanto.</li>
+    <li>Olhe a foto aérea e escolha um ponto de partida para começar a medir — um canto do terreno do parque. Clique com o botão direito (control + clique no Mac) no ponto de partida e escolha "Medir distância".</li>
+    <li>Ache o canto mais próximo, mova o cursor e clique com o botão esquerdo. Vai aparecer a distância entre os dois pontos. Anote esse número.</li>
+    <li>Arraste o ponto de partida até o próximo canto. Anote esse número.</li>
+    <li>Repita para cada canto do parque até medir todos os lados. A última medida deve voltar até o ponto de partida.</li>
   </ol>
 </details>
 
-<PdfPage doc="downloads/workbooks/03-assess.pdf" page={5} label="Measure Your Lot" />
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={5} label="Meça o seu terreno" />
 
-## Diagram your lot {/* #diagram-your-lot */}
+## Desenhe o seu terreno {/* #diagram-your-lot */}
 
-You will now create a diagram of the current park boundaries. This diagram will be used to record dimensions for
-objects (like trees, etc.) that are on your site. The diagram is a "plan view," viewed from directly above, similar
-to the Google Maps aerial.
+Agora você vai fazer um desenho dos limites atuais do parque. Esse desenho vai servir para anotar as medidas dos
+objetos (como árvores etc.) que estão no seu terreno. O desenho é uma "vista de cima" (planta), visto bem de cima,
+parecido com a foto aérea do Google Maps.
 
-The boundary diagram uses grid paper (also called graph paper) to represent the ground, with each small grid
-segment representing 1 foot of actual length: draw the long side first (the longest edge of the park, from the
-starting point), then the short side at the end of it, then repeat for the other long and short edges.
+O desenho dos limites usa papel quadriculado para representar o chão, e cada quadradinho representa 1 pé de
+comprimento de verdade: desenhe primeiro o lado comprido (o lado mais comprido do parque, a partir do ponto de
+partida), depois o lado curto na ponta dele, e repita para o outro lado comprido e o outro lado curto.
 
 <BaseMap />
 
-<Download href="downloads/forms/assess-grid-sheets.pdf" label="Download grid sheets" note={`1/4" = 1'-0" — tape sheets together for larger lots`} />
+<Download href="downloads/forms/assess-grid-sheets.pdf" label="Baixar folhas quadriculadas" note={`1/4" = 1'-0" — junte as folhas com fita adesiva para terrenos maiores`} />
 
-<PdfPage doc="downloads/workbooks/03-assess.pdf" page={6} label="Diagram Your Lot" />
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={6} label="Desenhe o seu terreno" />
 
-## Verify your diagram {/* #verify-your-diagram */}
+## Confira o seu desenho {/* #verify-your-diagram */}
 
-The next step is to visit the park site to measure and record the length of each property boundary by hand.
-**Field-located dimensions measured on-site should be trusted over digital dimensions.**
+O próximo passo é ir ao terreno do parque para medir à mão e anotar o comprimento de cada limite do imóvel.
+**As medidas feitas no próprio terreno valem mais do que as medidas digitais.**
 
-1. Locate the project starting point — the same location as where you started in Google Maps (or where the site
-   marked it for you).
-2. Using a 100-foot tape measure, measure and record the distance along the long outside edge of the park, corner
-   to corner.
-3. Using a 100-foot tape measure, measure and record the distance along the short outside edge, corner to corner.
-4. Repeat for the other long edge.
-5. Repeat for the other short edge.
+1. Ache o ponto de partida do projeto — o mesmo lugar onde você começou no Google Maps (ou onde o site marcou para
+   você).
+2. Com uma trena de 100 pés, meça e anote a distância ao longo do lado comprido de fora do parque, de canto a canto.
+3. Com uma trena de 100 pés, meça e anote a distância ao longo do lado curto de fora, de canto a canto.
+4. Repita para o outro lado comprido.
+5. Repita para o outro lado curto.
 
 <Checklist
   id="assess.what-to-bring"
-  label="What to bring to the site"
+  label="O que levar ao terreno"
   items={[
-    { value: 'pens', label: 'Pen + notepads' },
-    { value: 'clipboards', label: 'Clipboards' },
-    { value: 'camera', label: 'Camera (phone camera is fine)' },
-    { value: 'tape-100', label: '100 ft measuring tape' },
-    { value: 'tape-long', label: 'Long tape measure (25 ft or more)' },
-    { value: 'survey-plat', label: 'Survey plat' },
-    { value: 'boundary-diagram', label: 'Boundary diagram' },
-    { value: 'flags', label: 'Survey flags or bamboo garden stakes' },
+    { value: 'pens', label: 'Caneta + bloquinhos de anotação' },
+    { value: 'clipboards', label: 'Pranchetas' },
+    { value: 'camera', label: 'Câmera (a do celular serve)' },
+    { value: 'tape-100', label: 'Trena de 100 pés' },
+    { value: 'tape-long', label: 'Trena comprida (25 pés ou mais)' },
+    { value: 'survey-plat', label: 'Planta de levantamento do terreno' },
+    { value: 'boundary-diagram', label: 'Desenho dos limites' },
+    { value: 'flags', label: 'Bandeirinhas de medição ou estacas de bambu de jardim' },
   ]}
 />
 
-<Field id="assess.field-long-edge" label="Field-measured long edge" type="number" unit="ft" />
-<Field id="assess.field-short-edge" label="Field-measured short edge" type="number" unit="ft" />
+<Field id="assess.field-long-edge" label="Lado comprido medido no terreno" type="number" unit="pés" />
+<Field id="assess.field-short-edge" label="Lado curto medido no terreno" type="number" unit="pés" />
 
-<PdfPage doc="downloads/workbooks/03-assess.pdf" page={7} label="Verify Your Diagram" />
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={7} label="Confira o seu desenho" />
 
-## Record & assess objects {/* #record-assess-objects */}
+## Registre e avalie os objetos {/* #record-assess-objects */}
 
-The next step is to record the locations of all objects on the project site, and then assess their condition and
-potential value to the future park. Objects are located by taking two measurements each: distance from the project
-starting point along the edge, and distance from the park edge. This is also a good opportunity to note objects
-immediately adjacent to, but outside, the project site — a utility pole, hydrant, or edge of sidewalk that might
-influence the park plan.
+O próximo passo é anotar onde ficam todos os objetos do terreno e depois avaliar o estado deles e o valor que podem
+ter para o futuro parque. Cada objeto é localizado com duas medidas: a distância a partir do ponto de partida, ao
+longo do lado, e a distância a partir da borda do parque. É também uma boa hora para anotar objetos logo ao lado do
+terreno, mas fora dele — um poste, um hidrante ou a borda da calçada que possam influenciar o plano do parque.
 
-There are many ways to assess an object once it's located: beauty/character, expected longevity, stability,
-potential liability, re-use potential, habitat value, etc. For each one, decide whether it should be kept.
+Há muitos jeitos de avaliar um objeto depois de localizá-lo: beleza/personalidade, quanto tempo deve durar,
+firmeza, risco de acidente ou de responsabilidade, possibilidade de reaproveitar, valor como abrigo para os bichos
+etc. Para cada um, decida se vale a pena manter.
 
 {/* site-added: the planner places kept objects on the real lot and uses them in the sun study. */}
-<Callout kind="auto" title="Place objects on your real lot">
-  <Planner mode="site" /> lets you drop each object onto your lot's actual shape, instead of hand-plotting
-  coordinates on grid paper.
+<Callout kind="auto" title="Coloque os objetos no seu terreno de verdade">
+  <Planner mode="site" /> Aqui você pode colocar cada objeto na forma real do seu terreno, em vez de marcar as
+  coordenadas à mão no papel quadriculado.
 </Callout>
 
 <ListField
   id="assess.objects"
-  label="Objects on the site"
-  rowName="object"
+  label="Objetos no terreno"
+  rowName="objeto"
   min={4}
   columns={[
-    { key: 'object', label: 'Object', placeholder: 'tree, fence, shed, utility pole…' },
-    { key: 'fromStart', label: 'Distance from starting point', type: 'number' },
-    { key: 'fromEdge', label: 'Distance from edge', type: 'number' },
-    { key: 'keep', label: 'Keep?', placeholder: 'yes / no' },
-    { key: 'notes', label: 'Notes' },
+    { key: 'object', label: 'Objeto', placeholder: 'árvore, cerca, depósito, poste…' },
+    { key: 'fromStart', label: 'Distância do ponto de partida', type: 'number' },
+    { key: 'fromEdge', label: 'Distância da borda', type: 'number' },
+    { key: 'keep', label: 'Manter?', placeholder: 'sim / não' },
+    { key: 'notes', label: 'Observações' },
   ]}
 />
 
-<PdfPage doc="downloads/workbooks/03-assess.pdf" page={8} label="Record Objects" />
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={8} label="Registre os objetos" />
 
-## Sun & shade / base plan {/* #sun-shade-base-plan */}
+## Sol e sombra / planta base {/* #sun-shade-base-plan */}
 
-Draw the objects you'd like to keep onto your base plan, the same way you measured them: like a treasure map, place
-a dot or an "X" to mark the spot, with a circle around it sized to its footprint (for a tree or shrub, the circle
-is the approximate edge of the leaf canopy, with a dot at the trunk).
+Desenhe na sua planta base os objetos que você quer manter, do mesmo jeito que mediu: como num mapa do tesouro,
+coloque um ponto ou um "X" para marcar o lugar, com um círculo em volta do tamanho que o objeto ocupa (para uma
+árvore ou um arbusto, o círculo é mais ou menos a borda da copa, com um ponto no tronco).
 
-Then describe the site's conditions on the same diagram:
+Depois, descreva as condições do terreno no mesmo desenho:
 
-- For building shadows, draw the approximate outer edge of the shady area and hatch it in.
-- For buildings, draw the outline and hatch it in.
-- For overhead utilities, label the location above the site.
-- For areas with distinct ground conditions (like wet areas), draw a blob shape at the approximate location.
-- For trees, label with the type of tree if you know it (e.g. "Maple tree").
+- Para a sombra dos prédios, desenhe mais ou menos a borda de fora da área de sombra e preencha com riscos.
+- Para os prédios, desenhe o contorno e preencha com riscos.
+- Para fios e redes no alto, escreva onde passam sobre o terreno.
+- Para áreas com o chão diferente (como áreas encharcadas), desenhe uma mancha mais ou menos no lugar.
+- Para as árvores, escreva o tipo de árvore se você souber (por exemplo, "Bordo").
 
 {/* site-added: real sun and shade from the neighboring buildings' actual heights, any date and time. */}
-<Callout kind="auto" title="Sun and shade from real buildings">
-  <SunStudy /> calculates sun and shade hour-by-hour from your neighbors' actual building heights, for any date and
-  time of year — instead of hand-hatching shadows on grid paper.
+<Callout kind="auto" title="Sol e sombra a partir dos prédios de verdade">
+  <SunStudy /> Aqui o sol e a sombra são calculados hora a hora a partir das alturas reais dos prédios vizinhos,
+  para qualquer data e hora do ano — em vez de riscar as sombras à mão no papel quadriculado.
 </Callout>
 
-<PdfPage doc="downloads/workbooks/03-assess.pdf" page={10} label="Base Plan" />
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={10} label="Planta base" />
 
-## Summary — are you ready? {/* #summary-are-you-ready */}
+## Resumo — tudo pronto? {/* #summary-are-you-ready */}
 
-Summarize your site's key characteristics. These will be used in the next step to help design your park.
+Resuma as principais características do seu terreno. Elas vão ser usadas na próxima etapa para ajudar a desenhar o
+seu parque.
 
 <Field
   id="assess.existing-trees"
-  label="Existing trees?"
+  label="Já tem árvores?"
   type="select"
-  hint="The number of trees — if any — currently on the site. Don't count trees that will be removed."
-  options={['No trees', 'One or two trees', 'Several trees', 'Mostly trees']}
+  hint="Quantas árvores — se houver — estão hoje no terreno. Não conte as árvores que vão ser tiradas."
+  options={[{ value: 'No trees', label: 'Nenhuma árvore' }, { value: 'One or two trees', label: 'Uma ou duas árvores' }, { value: 'Several trees', label: 'Várias árvores' }, { value: 'Mostly trees', label: 'Quase só árvores' }]}
   auto="extra.site.treesKept|treeCount"
 />
 
 <Field
   id="assess.sunlight"
-  label="Amount of sunlight?"
+  label="Quanto sol?"
   type="select"
-  hint="How much sun the site receives in a day."
-  options={['Full sun all day', 'Mostly sun', 'Mostly shade', 'Deep shade all day']}
+  hint="Quanto sol o terreno recebe por dia."
+  options={[{ value: 'Full sun all day', label: 'Sol pleno o dia todo' }, { value: 'Mostly sun', label: 'Sol na maior parte do tempo' }, { value: 'Mostly shade', label: 'Sombra na maior parte do tempo' }, { value: 'Deep shade all day', label: 'Sombra fechada o dia todo' }]}
   auto="extra.site.sunClass|sunClass"
 />
 
 <Field
   id="assess.lot-location"
-  label="Lot location"
+  label="Localização do terreno"
   type="select"
-  hint="Is the lot in the middle of the block, or on a corner? If on a corner, where is the street in relation to the long side?"
-  options={['Mid-block lot', 'Corner lot (street right)', 'Corner lot (street left)']}
+  hint="O terreno fica no meio do quarteirão ou numa esquina? Se for na esquina, onde fica a rua em relação ao lado comprido?"
+  options={[{ value: 'Mid-block lot', label: 'Terreno no meio do quarteirão' }, { value: 'Corner lot (street right)', label: 'Terreno de esquina (rua à direita)' }, { value: 'Corner lot (street left)', label: 'Terreno de esquina (rua à esquerda)' }]}
   auto="extra.site.lotKind|lotKind"
 />
 
-<Field id="assess.long-edge" label="Long edge" type="number" unit="ft" auto="extra.site.lengthFt" />
-<Field id="assess.short-edge" label="Short edge" type="number" unit="ft" auto="extra.site.widthFt" />
+<Field id="assess.long-edge" label="Lado comprido" type="number" unit="pés" auto="extra.site.lengthFt" />
+<Field id="assess.short-edge" label="Lado curto" type="number" unit="pés" auto="extra.site.widthFt" />
 
-<p>How long each side is, and the overall square footage, decides your lot size A–E:</p>
+<p>O comprimento de cada lado e a área total decidem o tamanho do seu terreno, de A a E:</p>
 
 <table>
-  <caption class="visually-hidden">Park size by long and short edge, in feet</caption>
+  <caption class="visually-hidden">Tamanho do parque pelo lado comprido e pelo lado curto, em pés</caption>
   <thead>
     <tr>
-      <th scope="col">Size</th>
-      <th scope="col">Long edge</th>
-      <th scope="col">Short edge</th>
+      <th scope="col">Tamanho</th>
+      <th scope="col">Lado comprido</th>
+      <th scope="col">Lado curto</th>
     </tr>
   </thead>
   <tbody>
-    <tr><th scope="row">A</th><td>44–64 ft</td><td>12–16 ft</td></tr>
-    <tr><th scope="row">B</th><td>64–76 ft</td><td>16–28 ft</td></tr>
-    <tr><th scope="row">C</th><td>76–88 ft</td><td>28–40 ft</td></tr>
-    <tr><th scope="row">D</th><td>88–96 ft</td><td>32–48 ft</td></tr>
-    <tr><th scope="row">E</th><td>80–120 ft</td><td>44–60 ft</td></tr>
+    <tr><th scope="row">A</th><td>44–64 pés</td><td>12–16 pés</td></tr>
+    <tr><th scope="row">B</th><td>64–76 pés</td><td>16–28 pés</td></tr>
+    <tr><th scope="row">C</th><td>76–88 pés</td><td>28–40 pés</td></tr>
+    <tr><th scope="row">D</th><td>88–96 pés</td><td>32–48 pés</td></tr>
+    <tr><th scope="row">E</th><td>80–120 pés</td><td>44–60 pés</td></tr>
   </tbody>
 </table>
 
 <Field
   id="assess.lot-size"
-  label="Your lot size is…"
+  label="O tamanho do seu terreno é…"
   type="select"
   options={['A', 'B', 'C', 'D', 'E']}
   auto="extra.site.sizeId"
 />
 
-<PdfPage doc="downloads/workbooks/03-assess.pdf" page={11} label="Are You Ready?" />
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={11} label="Tudo pronto?" />
