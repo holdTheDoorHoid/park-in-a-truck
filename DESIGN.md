@@ -134,9 +134,14 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
 (`.duo`); isometric line illustrations with cyan fills; one colour per park theme.
 
 - Fonts: Work Sans (the workbooks' face) + Alfa Slab One (stand-in for Rockwell Extra Bold), self-hosted via fontsource.
-- Colours (`src/styles/global.css`): cyan `#00A8E8` for fills/big numbers, `#00709C` for text/links (contrast);
-  themes: Edible `#F05A28`, Sanctuary `#0B4A6B`, Nature `#006B35`, Event `#8E1F6B` (frame/front/back shades in
-  `src/data/themes.ts`).
+- Colours (`src/styles/global.css`): cyan `#00A8E8` for fills only (buttons, bars, badges, pins) — it measures
+  2.70:1 on white, which fails WCAG AA even for large text, so it is never used for text. `#00709C` (`--cyan-ink`)
+  is cyan that passes contrast (5.5:1 on white) and is what every "cyan-looking" piece of text actually uses: the
+  "00"–"06" step numbers, the big chapter-opener numeral (`.big-num`), links, and the default focus ring. Text
+  *on* a cyan fill (primary buttons, the flowchart step circles) uses dark ink instead of white — white only
+  reaches ~3:1 on `#00A8E8`, not enough for normal-size text; ink reaches ~7:1 (found and fixed 2026-10-04,
+  access-keyboard F3). Themes: Edible `#F05A28`, Sanctuary `#0B4A6B`, Nature `#006B35`, Event `#8E1F6B`
+  (frame/front/back shades in `src/data/themes.ts`).
 - Light only (paper look). Mobile first: 16px gutters, no horizontal scroll at 360px.
 - Print: `@media print` produces a filled-in workbook (fields print with their values).
 
@@ -156,6 +161,12 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
   set's nominal size to the real lot with seams exactly as the Dream workbook does (length seam between front and
   back; width seam along the length), apply the person's edits → `ParkLayout` (types.ts). `tally(layout, sun)` →
   `DesignTally` (counts the way "Count your pieces / Count your plants" do).
+  *Built size (fix round 2026-10-04, `pieces/builtsize.ts`):* furniture built to a fixed size (guide furniture,
+  café sets, rain barrels) takes its TRUE size from `elements.ts`, turned the way the drawing runs — not the size
+  it happens to be drawn at (a 4' gabion bench is drawn 4×1.75, 3.75×2, 5×1.75…). Stages are whole 4'×4' squares and
+  shade canopies whole 8'×8' modules (a canopy drawn 8'×4' is one 8'×8' module). Surfaces stretch; sized-to-fit
+  things (raised beds, keyhole gardens, sheds, communal tables, compost bins) keep their drawn size. Item cards, the
+  tally and the 3D view all read the same footprint.
 - **Planner** (`src/lib/planner/`, `Planner` widget): Three.js. Parcel outline + neighboring buildings extruded to
   their City heights + aerial ground image; the park layout placed in the parcel's oriented rectangle (street edge
   detected, flip/rotate by hand); plan view (orthographic, looks like the paper pieces) and 3D view; drag, add,
@@ -185,8 +196,8 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
   view keeps the flat paper-pieces blocks. Pieces with a build guide use the guide's own model JSON at TRUE built
   size, centred on the footprint and never stretched: repeated in modules along the item the way PiaT counts them
   (4' benches/workbenches, stage as 4'×4' squares unless the whole 12'×8' stage fits, shade canopies as 8'×8'
-  modules — a canopy drawn 8'×4' is still one 8'×8' module); a footprint no whole number of modules fits keeps its
-  block (~10% of printed pieces, e.g. a 2-ft "bench with back"). Gabion walls (bands and items) are 12"×12"×48"
+  modules); since built items take their true size in the assembly (above), every guide-built piece of every
+  printed set fits; a footprint no whole number of modules fits would keep its block. Gabion walls (bands and items) are 12"×12"×48"
   baskets of stone, one course, plus one shorter end basket. Items without a guide get simple shapes (`procedural.ts`);
   planted trees share the City trees' drawing. Furniture is built level on the lowest ground under it; surfaces,
   grid, outlines and the selection ring follow the ground. The plain blocks stay underneath, invisible, as what the
@@ -207,6 +218,24 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
   arrows downhill and High/Low marks. Saved for other pages as `extra.site.slope` (`SiteSlopeFacts`).
   Wet areas are drawn as outlines (click/tap round the area; close on the first point, double-click or Enter; Esc
   cancels; drag corners or the + between them); older circle wet areas keep working (`ExistingItem.outline`).
+  *Fix round 2026-10-04 (after usability testing):*
+  - **Fitting the lot** (`lotfit.ts`): "Stretch the pieces to fill my lot" stretches to the largest rectangle, lined
+    up with the site frame, that fits INSIDE the parcel (not the rectangle round it), and the park is placed in it;
+    a size whose printed pieces can't fit says so and offers the size that does. Slide buttons with no room are
+    greyed; "Slide it to fit the lot as well as it can" searches for the least overhang.
+  - **Camera** (`camera.ts`, `scene/xray.ts`): the 3D camera never goes inside a building (it rides over roofs) or
+    below eye height, tilts no lower than ~14° above the horizon, turns round a point near the lot and can't pull
+    back past the aerial. Any part of a building between the camera and the lot (a box round the lot's rectangle,
+    ground to 14 ft up) is drawn as a faint ghost; shadows and sun maths still see every wall.
+  - **Planted trees** in 3D: crown radius = a third of the height (`treemodel.plantedCrownR`), so the crown starts a
+    third of the way up; plan view keeps the drawn canopy. Not in the sun study (City/existing trees unchanged).
+  - **Gabion wall**: Counts lists it in feet; plan view draws the band over the lot line with its basket joints;
+    a click on it says what it is.
+  - **Words**: items say "29 ft from the entrance, 4 ft from the left side"; mid-block lots say whether City
+    buildings actually stand on each side (`neighbours.ts`); touch screens get touch wording.
+  - **Keyboard**: shortcuts work whenever something is picked and focus is in the planner (or on the page right
+    after using it), and R / Delete / Ctrl+D from the item list; after Remove focus goes to the item list (or the 3D
+    view) and a status message says what was removed.
 - **Build-guide 3D models** (`src/data/guides/models/<slug>.json`, format `src/lib/guides3d/schema.ts`, checked by
   `validate.ts`): on `/build/<slug>/` a 3D model sits beside the steps (sticky column ≥ 1000 px, collapsible sticky
   strip above the steps below that) and builds itself as you scroll — the step at the upper-middle of the readable

@@ -20,6 +20,7 @@ import { ELEMENTS } from '../../data/elements';
 import { THEMES, THEME_ORDER } from '../../data/themes';
 import { SIZES } from '../../lib/sizing';
 import { u } from '../../lib/url';
+import LotAgreementNotice from '../../components/workbook/LotAgreementNotice.astro';
 
 export const THEME_REQUIREMENTS = {
   edible: { trees: 'Few or no trees', sun: 'Full sun or mostly sun', lot: 'Well suited for a corner lot', volunteers: 'Frequent volunteer participation' },
@@ -33,6 +34,9 @@ export const NOT_BUILT = new Set(['planting-square', 'perennial', 'shrub', 'smal
 export const ICON_FALLBACK = { 'table-6': 'table-4', 'bench-4': 'bench-back', 'gabion-bench-8': 'gabion-bench' };
 // The workbook's Assemble page shows these elements; newer vocabulary (e.g. cafe-table) has no icon there.
 export const ASSEMBLE_ICONS = new Set(['bench-back','bird-accessories','birdbath','cold-frame','communal-table','compost-bin','event-tent','flexible-seating','gabion-bench','gabion-wall','nature-play','outdoor-classroom','planter-18','planter-24','rain-barrel','raised-bed','shade-canopy','shed','stage','stool','table-2','table-4','workbench']);
+
+{/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — reminds a reader who hasn't recorded a lot agreement yet, before they design and budget for a lot they may not have permission for. */}
+<LotAgreementNotice />
 
 Designing a Park in a Truck park is like buying a new dress or suit. First, you go to the store and check out the
 mannequins to pick out a style, color or pattern that you like. Of course, what looks good hanging on the rack may not

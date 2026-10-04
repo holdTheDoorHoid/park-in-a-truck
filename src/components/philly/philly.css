@@ -552,7 +552,7 @@
 .ph-sizes tr[data-this] td,
 .ph-sizes tr[data-this] th {
   background: var(--cyan);
-  color: #fff;
+  color: var(--ink); /* dark ink on cyan passes contrast (DESIGN §4) */
   font-weight: 800;
 }
 .ph-edges {

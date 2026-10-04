@@ -86,7 +86,7 @@ a:hover {
 }
 
 :focus-visible {
-  outline: 3px solid var(--cyan);
+  outline: 3px solid var(--cyan-ink);
   outline-offset: 2px;
 }
 
@@ -151,7 +151,9 @@ h4 {
 
 .big-num {
   font-family: var(--font-display);
-  color: var(--cyan);
+  /* Pure --cyan text measures 2.70:1 on white, which fails contrast even at
+     this size (large text needs >=3:1). --cyan-ink passes comfortably. */
+  color: var(--cyan-ink);
   font-size: clamp(3rem, 8vw, 5.5rem);
   line-height: 0.9;
 }
@@ -167,6 +169,26 @@ h4 {
   overflow: hidden;
   clip: rect(0 0 0 0);
   white-space: nowrap;
+}
+
+/* "Skip to content": hidden off-screen (not clipped-to-1px, so it can grow
+   back to a normal readable box) until it receives keyboard focus. */
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 8px;
+  transform: translateY(-120%);
+  z-index: 1000;
+  background: var(--ink);
+  color: #fff;
+  font-weight: 700;
+  padding: 0.7em 1.1em;
+  border-radius: 0 0 var(--radius) var(--radius);
+  text-decoration: none;
+  transition: transform 0.1s ease-in;
+}
+.skip-link:focus {
+  transform: translateY(0);
 }
 
 /* ---- layout ------------------------------------------------------------ */
@@ -244,9 +266,12 @@ h4 {
   color: var(--ink);
 }
 .btn-primary {
+  /* Bright "PDF cyan" fill, but white text on it only measures ~3:1 — not
+     enough for normal-size button text (needs 4.5:1). Dark ink text on the
+     bright fill passes comfortably (~7:1) and keeps the brand colour. */
   background: var(--cyan);
   border-color: var(--cyan);
-  color: #fff;
+  color: var(--ink);
 }
 .btn-primary:hover {
   background: var(--cyan-ink);
@@ -618,7 +643,7 @@ piat-list .row-remove {
   height: 2em;
   border-radius: 50%;
   background: var(--cyan);
-  color: #fff;
+  color: var(--ink);
   font-family: var(--font-display);
   display: grid;
   place-items: center;
@@ -684,7 +709,31 @@ piat-list .row-remove {
   a {
     color: inherit;
   }
-  .substep {
-    break-inside: avoid-page;
+  /* block-captain F6: forcing every whole sub-step to avoid a page break
+     pushed each one onto a fresh page if it didn't fit on the one before,
+     leaving the tail of that page blank. Let sub-steps flow across pages
+     normally, and instead keep the small things people fill in from
+     splitting awkwardly across a page boundary. */
+  .field,
+  .choices,
+  .choice,
+  piat-list,
+  .callout,
+  figure {
+    break-inside: avoid;
+  }
+  /* Interactive maps and the 3D planner print as a blank box (WebGL/map
+     canvases aren't reproduced in paged output). This is a safety net for
+     any canvas-based widget that doesn't already hide itself for print (the
+     philly lot-finder/site maps already hide their whole `.ph-map-wrap` via
+     `@media print` in philly.css; the planner has its own richer print mode,
+     `body.pl-printing`, a plan image + a counts table). Hiding only the
+     canvas rather than its wrapper would still leave an empty bordered box
+     the wrapper's own fixed height reserves — widgets that don't already
+     collapse their wrapper for print should do the same (see ParksMap.astro
+     for a worked example).
+  */
+  canvas {
+    display: none !important;
   }
 }

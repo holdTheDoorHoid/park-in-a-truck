@@ -10,6 +10,7 @@ import type { LocalTree } from '../localsite';
 import type { GroundFn } from '../ground';
 import { skirtGeometry, terrainGeometry } from './terrain';
 import { crownCenterFt, treeLook } from '../treemodel';
+import type { Xray } from './xray';
 
 export const W = (e: number, n: number, up = 0) => new THREE.Vector3(e, up, -n);
 
@@ -52,20 +53,33 @@ function extrudePrisms(prisms: Prism[], floorFt?: number): THREE.BufferGeometry 
   return merged;
 }
 
-export function buildBuildings(prisms: Prism[]): THREE.Group {
+/**
+ * Neighbouring buildings as one mesh. With `xray`, whatever hides the lot from the camera
+ * is drawn as a faint ghost instead (scene/xray.ts); shadows still come from every wall.
+ */
+export function buildBuildings(prisms: Prism[], xray?: Xray): THREE.Group {
   const group = new THREE.Group();
   group.name = 'buildings';
   const merged = extrudePrisms(prisms);
   if (!merged) return group;
-  const mesh = new THREE.Mesh(merged, new THREE.MeshLambertMaterial({ color: COLORS.building }));
+  const solid = new THREE.MeshLambertMaterial({ color: COLORS.building });
+  const mesh = new THREE.Mesh(merged, xray ? xray.patch(solid, 'solid') : solid);
   mesh.castShadow = true;
   mesh.receiveShadow = true;
   group.add(mesh);
-  const edges = new THREE.LineSegments(
-    new THREE.EdgesGeometry(merged, 30),
-    new THREE.LineBasicMaterial({ color: COLORS.buildingEdge, transparent: true, opacity: 0.45 }),
-  );
+  const lineMat = new THREE.LineBasicMaterial({ color: COLORS.buildingEdge, transparent: true, opacity: 0.45 });
+  const edges = new THREE.LineSegments(new THREE.EdgesGeometry(merged, 30), xray ? xray.patch(lineMat, 'line') : lineMat);
   group.add(edges);
+  if (xray) {
+    // the see-through part: the same walls, faint, drawn after everything solid
+    const ghost = new THREE.Mesh(
+      merged,
+      xray.patch(new THREE.MeshLambertMaterial({ color: COLORS.building, transparent: true, opacity: 0.2, depthWrite: false }), 'ghost'),
+    );
+    ghost.renderOrder = 10;
+    ghost.name = 'buildings-ghost';
+    group.add(ghost);
+  }
   return group;
 }
 
@@ -73,21 +87,29 @@ export function buildBuildings(prisms: Prism[]): THREE.Group {
  * Taller buildings farther away whose shadow can reach the lot (LocalSite.farBuildings):
  * plainer and a little cooler than the neighbours, mostly off the aerial photo, standing on
  * the plain ground (walls reach down to `floorFt`, its level, so none float). They cast
- * shadows; they don't need to receive any.
+ * shadows; they don't need to receive any. With `xray`, one that hides the lot is drawn
+ * see-through like the neighbours.
  */
-export function buildFarBuildings(prisms: Prism[], floorFt: number): THREE.Group {
+export function buildFarBuildings(prisms: Prism[], floorFt: number, xray?: Xray): THREE.Group {
   const group = new THREE.Group();
   group.name = 'far-buildings';
   const merged = extrudePrisms(prisms, floorFt);
   if (!merged) return group;
-  const mesh = new THREE.Mesh(merged, new THREE.MeshLambertMaterial({ color: COLORS.farBuilding }));
+  const solid = new THREE.MeshLambertMaterial({ color: COLORS.farBuilding });
+  const mesh = new THREE.Mesh(merged, xray ? xray.patch(solid, 'solid') : solid);
   mesh.castShadow = true;
   group.add(mesh);
-  const edges = new THREE.LineSegments(
-    new THREE.EdgesGeometry(merged, 30),
-    new THREE.LineBasicMaterial({ color: COLORS.buildingEdge, transparent: true, opacity: 0.3 }),
-  );
-  group.add(edges);
+  const lineMat = new THREE.LineBasicMaterial({ color: COLORS.buildingEdge, transparent: true, opacity: 0.3 });
+  group.add(new THREE.LineSegments(new THREE.EdgesGeometry(merged, 30), xray ? xray.patch(lineMat, 'line') : lineMat));
+  if (xray) {
+    const ghost = new THREE.Mesh(
+      merged,
+      xray.patch(new THREE.MeshLambertMaterial({ color: COLORS.farBuilding, transparent: true, opacity: 0.2, depthWrite: false }), 'ghost'),
+    );
+    ghost.renderOrder = 10;
+    ghost.name = 'far-buildings-ghost';
+    group.add(ghost);
+  }
   // a darker patch of ground under each one, so they read as standing on the plain ground
   // (beyond the photo the ground is plain and pale, and a bare wall foot looks afloat)
   const pads: THREE.BufferGeometry[] = [];

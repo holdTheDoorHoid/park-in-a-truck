@@ -6,6 +6,10 @@ import { catalogEntry, palette } from '../../lib/planner/catalog';
 import { addItem, resetTemplate } from '../../lib/planner/design';
 import { addPlacement } from '../../lib/planner/interact';
 import { deleteSelected, duplicateSelected, nudgeSelected, rotateSelected } from './keyboard';
+import { itemWhere, uniqueLabels } from '../../lib/planner/where';
+
+/** A touch screen (no mouse, usually no keyboard): touch wording instead of keys and Shift. */
+const touchFirst = () => typeof matchMedia !== 'undefined' && matchMedia('(pointer: coarse)').matches;
 
 /**
  * Press on a palette item and drag it onto the 3D/plan view: the view shows where it
@@ -80,6 +84,9 @@ export function ArrangePanel({ store }: { store: PlannerStore }) {
   const item = sel?.kind === 'item' ? layout.items.find((i) => i.id === sel.id) : undefined;
   const step = snap || 1;
   const changes = d.added.length + d.removed.length + Object.keys(d.moved).length;
+  const touch = touchFirst();
+  // standing at the entrance looking in, the park's y1 side is on your left unless it's flipped
+  const where = (i: (typeof layout.items)[number]) => itemWhere(i, layout.widthFt, !d.flipped);
 
   const add = (element: string) => {
     if (suppressClick.current) return;
@@ -117,8 +124,7 @@ export function ArrangePanel({ store }: { store: PlannerStore }) {
         <div class="pl-card pl-selected">
           <h3 class="pl-h">{catalogEntry(item.element).name}</h3>
           <p class="pl-small muted">
-            {Math.round(item.w * 10) / 10} × {Math.round(item.h * 10) / 10} ft · {SOURCE[item.source ?? ''] ?? item.source} · {Math.round(item.x - item.w / 2)} ft
-            from the entrance
+            {Math.round(item.w * 10) / 10} × {Math.round(item.h * 10) / 10} ft · {SOURCE[item.source ?? ''] ?? item.source} · {where(item)}
           </p>
           {overhang?.items.includes(item.id) && <p class="pl-warn">This sticks out past the lot line.</p>}
           <div class="pl-row">
@@ -146,21 +152,28 @@ export function ArrangePanel({ store }: { store: PlannerStore }) {
               Remove
             </button>
           </div>
-          <p class="pl-small muted">
-            Drag it to move it, or drag the round handle to turn it (it turns in steps; hold Shift to turn freely). Keys: arrows move, R
-            turns, Ctrl+D duplicates, Delete removes, Esc lets go.
-          </p>
+          {touch ? (
+            <p class="pl-small muted">Drag it to move it, or drag the round handle to turn it (it turns a quarter at a time). Hold your finger on it for more.</p>
+          ) : (
+            <p class="pl-small muted">
+              Drag it to move it, or drag the round handle to turn it (it turns in steps; hold Shift to turn freely). Keys: arrows move, R
+              turns, Ctrl+D duplicates, Delete removes, Esc lets go.
+            </p>
+          )}
         </div>
       ) : (
         <p class="pl-small">
-          <strong>Drag</strong> anything in the park to move it. Click it to pick it, then drag its <strong>round handle</strong> to turn it.
-          Right-click it (or hold your finger on it) for more. Switch to <em>Plan</em> view to see it like the paper pieces.
+          <strong>Drag</strong> anything in the park to move it. {touch ? 'Tap' : 'Click'} it to pick it, then drag its <strong>round handle</strong> to turn it.
+          {touch ? ' Hold your finger on it for more.' : ' Right-click it (or hold your finger on it) for more.'} Switch to <em>Plan</em> view to see it like the paper
+          pieces.
         </p>
       )}
 
       <label class="pl-field">
         <span class="pl-small">Or pick from the list</span>
         <select
+          data-pl-items=""
+          data-pl-after-remove=""
           value={item?.id ?? ''}
           onChange={(e) => {
             const v = (e.target as HTMLSelectElement).value;
@@ -171,12 +184,11 @@ export function ArrangePanel({ store }: { store: PlannerStore }) {
           {(['frame', 'front', 'back', 'added'] as const).map((src) => {
             const its = layout.items.filter((i) => (i.source ?? 'added') === src);
             if (!its.length) return null;
+            const labels = uniqueLabels(its.map((i) => `${catalogEntry(i.element).name} — ${where(i)}`));
             return (
               <optgroup label={src === 'added' ? 'Added by you' : `${src[0]!.toUpperCase()}${src.slice(1)} piece`}>
-                {its.map((i) => (
-                  <option value={i.id}>
-                    {catalogEntry(i.element).name} — {Math.max(0, Math.round(i.x))} ft in
-                  </option>
+                {its.map((i, k) => (
+                  <option value={i.id}>{labels[k]}</option>
                 ))}
               </optgroup>
             );
@@ -185,7 +197,9 @@ export function ArrangePanel({ store }: { store: PlannerStore }) {
       </label>
 
       <h3 class="pl-h">Add to your park</h3>
-      <p class="pl-small muted">Drag one onto the park to put it where you want, or click it to add it in the middle.</p>
+      <p class="pl-small muted">
+        {touch ? 'Tap one to add it in the middle of the park, then drag it into place.' : 'Drag one onto the park to put it where you want, or click it to add it in the middle.'}
+      </p>
       {palette().map((g, i) => (
         <details class="pl-palette" open={i === 0}>
           <summary>{g.group}</summary>

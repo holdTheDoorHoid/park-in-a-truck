@@ -127,11 +127,34 @@ import StepPath from '../../components/site/StepPath.astro';
   const esc = (s: unknown) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
   const label = (id: string) =>
     id.split('.').slice(1).join(' ').replace(/[-_]/g, ' ').replace(/^\w/, (c) => c.toUpperCase());
+  /** Briefly announce a status message through the page's shared polite live region. */
+  function announce(text: string) {
+    const el = document.getElementById('piat-announce');
+    if (!el) return;
+    el.textContent = '';
+    setTimeout(() => (el.textContent = text), 30);
+  }
 
   $storageOk.subscribe((ok) => ($('[data-storage-warning]') as HTMLElement).toggleAttribute('hidden', ok));
 
   const rename = $<HTMLInputElement>('[data-rename]');
+  // Save on blur (unchanged) *and* as-you-type (debounced), plus a flush
+  // right before the page navigates away — relying on blur alone meant a
+  // rename typed and then followed straight into a nav link could be lost.
   rename.addEventListener('change', () => renameProject(rename.value));
+  let renameTimer: ReturnType<typeof setTimeout> | undefined;
+  rename.addEventListener('input', () => {
+    clearTimeout(renameTimer);
+    renameTimer = setTimeout(() => renameProject(rename.value), 400);
+  });
+  const flushRename = () => {
+    clearTimeout(renameTimer);
+    if (document.activeElement === rename) renameProject(rename.value);
+  };
+  window.addEventListener('pagehide', flushRename);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') flushRename();
+  });
 
   $('[data-export]').addEventListener('click', () => {
     const { filename, blob } = exportProject();
@@ -166,11 +189,28 @@ import StepPath from '../../components/site/StepPath.astro';
         <button class="btn btn-small" data-del="${p.id}" aria-label="Delete ${esc(p.name)}">Delete</button></li>`,
       )
       .join('');
-    ul.querySelectorAll<HTMLButtonElement>('[data-open]').forEach((b) => b.addEventListener('click', () => switchProject(b.dataset.open!)));
-    ul.querySelectorAll<HTMLButtonElement>('[data-del]').forEach((b) =>
+    // Both buttons below disappear from their own row once clicked (switching
+    // removes "Open", deleting removes the row entirely) — land focus on
+    // whatever's left nearby rather than letting it fall through to <body>.
+    ul.querySelectorAll<HTMLButtonElement>('[data-open]').forEach((b, idx) =>
+      b.addEventListener('click', () => {
+        switchProject(b.dataset.open!);
+        const row = ul.querySelectorAll('li')[idx];
+        (row?.querySelector<HTMLElement>('button') ?? rename)?.focus();
+      }),
+    );
+    ul.querySelectorAll<HTMLButtonElement>('[data-del]').forEach((b, idx) =>
       b.addEventListener('click', () => {
         const p = list.find((x) => x.id === b.dataset.del);
-        if (p && confirm(`Delete “${p.name}” from this browser? This cannot be undone unless you saved a project file.`)) deleteProject(p.id);
+        if (!p || !confirm(`Delete “${p.name}” from this browser? This cannot be undone unless you saved a project file.`)) return;
+        deleteProject(p.id);
+        const freshItems = ul.querySelectorAll('li');
+        const target =
+          freshItems[idx]?.querySelector<HTMLElement>('button') ??
+          freshItems[idx - 1]?.querySelector<HTMLElement>('button') ??
+          $<HTMLElement>('[data-new-name]');
+        target?.focus();
+        announce(`${p.name} deleted.`);
       }),
     );
   });

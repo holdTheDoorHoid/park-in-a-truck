@@ -607,6 +607,9 @@
   background: linear-gradient(90deg, var(--c1) 0 33%, var(--c2) 33% 66%, var(--c3) 66%);
 }
 .pl-theme-chip {
+  /* the hidden radio inside is positioned against the chip, not the page (else it
+     sits below the side panel's scroll area and makes the whole page scroll) */
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -619,6 +622,8 @@
 }
 .pl-theme-chip input {
   position: absolute;
+  inset: 0;
+  margin: 0;
   opacity: 0;
   pointer-events: none;
 }
@@ -1166,5 +1171,5 @@
 .pl-drawbar .pl-drawbar-done:not(:disabled) {
   background: var(--cyan);
   border-color: var(--cyan);
-  color: #fff;
+  color: var(--ink); /* dark ink on cyan passes contrast (DESIGN §4) */
 }

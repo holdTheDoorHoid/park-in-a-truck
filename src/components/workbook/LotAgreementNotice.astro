@@ -1,0 +1,33 @@
+---
+// site-added: a tracking helper, not advice from the workbook. Shown on
+// Assess, Dream and Create when Acquire's "Secure your lot" isn't marked
+// done and no agreement is recorded — shown/hidden and wired up centrally
+// in src/scripts/bind.ts (same place as every other data-* behaviour), so
+// this component is just the markup. Dismissible per project
+// (project.extra.lotNoticeDismissed).
+import { u } from '../../lib/url';
+---
+
+<div class="callout callout-warning lot-agreement-notice" hidden data-lot-agreement-notice>
+  <span class="callout-title">Site note</span>
+  <p>
+    You haven't recorded permission for your lot yet — you will need it before anyone breaks ground. <a href={u('steps/acquire/#secure-your-lot')}>Go to Acquire → Secure your lot</a>.
+  </p>
+  <button type="button" class="btn btn-small" data-dismiss="lot-agreement">Dismiss</button>
+</div>
+
+<style>
+  .lot-agreement-notice {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 16px;
+  }
+  .lot-agreement-notice[hidden] {
+    display: none;
+  }
+  .lot-agreement-notice p {
+    margin: 0;
+    flex: 1 1 20rem;
+  }
+</style>

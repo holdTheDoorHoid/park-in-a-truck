@@ -22,6 +22,8 @@ import { phillyTime, sunPosition } from '../sun';
 import { LIGHT_MIN_DISTANCE_FT, fogFarFt, sunLightRange } from '../sunlight';
 import { decodeGrid } from '../terrain/grid';
 import { centroid } from '../geo';
+import { cameraFloor } from '../camera';
+import { FLAT_GROUND } from '../ground';
 import dover from '../fixtures/dover.json';
 import doverElev from '../fixtures/dover.elevation.json';
 import greenway from '../fixtures/greenway.json';
@@ -253,6 +255,13 @@ describe('the 3D sun light', () => {
     const fog = fogFarFt([tower], 200);
     expect(fog).toBeGreaterThan(Math.hypot(...centroid(tower.ring)));
     expect(fog).toBeLessThanOrEqual(2200);
+  });
+
+  it('the camera rides over a far building as it does over a neighbour (the scene gives it both)', () => {
+    const site = buildLocalSite(ctxOf(dover));
+    const tallest = site.farBuildings!.reduce((a, b) => (a.heightFt > b.heightFt ? a : b));
+    const floor = cameraFloor(FLAT_GROUND, shadeBuildings(site));
+    expect(floor.at(centroid(tallest.ring))).toBeGreaterThan((tallest.baseFt ?? 0) + tallest.heightFt);
   });
 
   it('on the Dover demo lot the light moves out to the far buildings', () => {
