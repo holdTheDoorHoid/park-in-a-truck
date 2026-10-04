@@ -8,11 +8,13 @@ import { queryAttrs, queryGeo } from './arcgis';
 import { LAYERS, sqlString } from './endpoints';
 import { normaliseAddress } from './search';
 import type { BBox } from './types';
+import type { Locale } from '../../i18n/locales.ts';
+import { words } from './words';
 
 export interface StreetBlock {
   /** 2200 for the 2200 block */
   hundred: number;
-  /** "2200 block" */
+  /** "2200 block" (English; blockLabel() gives it in the reader's language) */
   label: string;
   bbox: BBox;
 }
@@ -66,7 +68,14 @@ function blocksOf(features: { geometry: { type: string; coordinates: unknown } |
   }
   return [...by.entries()]
     .sort((a, b) => a[0] - b[0])
-    .map(([hundred, bbox]) => ({ hundred, label: hundred === 0 ? 'First block (under 100)' : `${hundred} block`, bbox }));
+    .map(([hundred, bbox]) => ({ hundred, label: blockLabel(hundred, 'en'), bbox }));
+}
+
+/** "2200 block" / "First block (under 100)" in the reader's language. */
+export function blockLabel(hundred: number, locale?: Locale | string): string {
+  const t = words(locale);
+  // a house number, not a quantity: no "2,200"
+  return hundred === 0 ? t('street.firstBlock') : t('street.block', { hundred: String(hundred) });
 }
 
 /** Every block of one street, by its City name ("N UBER ST"). */

@@ -38,6 +38,12 @@ after the extraction round. Tick them off here.
 - [ ] Clock style differs: the shade calendar shows "3:30 PM" (locale format) while the planner's clock shows
       "3:30 pm" — pick one (probably the locale format everywhere).
 - [ ] New area `shade` (shade calendar, 73 keys) needs translating in every language's second pass.
+- [ ] Timing tests are flaky on a loaded machine ("is quick enough to run on a click" in shadows.test.ts,
+      shadecal.test.ts 300 ms limit) — measure the median of several runs, or skip the time limit when
+      `process.env.CI_SLOW`/load is high; keep a generous ceiling that still catches real regressions.
+- [ ] My park answers summary shows field labels built from saved ids ("Assets rcos") — build a field-label list from
+      the chapters (English will change too — make it read like the chapter labels).
+- [ ] Organize at 360 px scrolls sideways on Arabic (asset map + flyer area).
 
 ## For native-speaker review (per language)
 
