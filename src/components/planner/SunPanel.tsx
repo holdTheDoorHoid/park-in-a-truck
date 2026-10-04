@@ -7,39 +7,39 @@ import type { PlannerStore } from '../../lib/planner/store';
 import { phillyMinutes, phillyTime, sunPosition, sunTimes } from '../../lib/planner/sun';
 import { buildingsChanged, crownsKey, litFractionAt, shadeCrowns, spotMonthlyFor } from '../../lib/planner/sunstudy';
 import { FAR_SHADE_MAX_FT, SURROUNDINGS_RADIUS_FT } from '../../lib/planner/site';
-import { leafFraction, leafWords, LEAF_SEASON } from '../../lib/planner/treemodel';
+import { leafFraction, LEAF_SEASON } from '../../lib/planner/treemodel';
 import { BARE_CROWN_BLOCKING, CROWN_BLOCKING } from '../../lib/planner/sunhours';
-import { MONTHS, MONTHS_SHORT, SEASONS, parsePeriodKey, periodKey, periodLabel, type MonthSun, type SeasonName } from '../../lib/planner/sunperiod';
-import { PLAY_RATES, SPEED_LABEL, advanceDay, advanceYear, dateOfDay, dayOfYear, type PlayMode, type PlaySpeed } from '../../lib/planner/sunplay';
+import { SEASONS, parsePeriodKey, periodKey, type MonthSun, type SeasonName } from '../../lib/planner/sunperiod';
+import { PLAY_RATES, advanceDay, advanceYear, dateOfDay, dayOfYear, type PlayMode, type PlaySpeed } from '../../lib/planner/sunplay';
 import { parkToLocal } from '../../lib/planner/placement';
 import { catalogEntry, existingMeta } from '../../lib/planner/catalog';
 import type { Vec2 } from '../../lib/planner/geo';
+import { DEFAULT_SEASON } from '../../lib/planner/sun';
+import { SEASON_LABEL, clock, compassWord, leafWords, mmdd, monthDay, monthDayShort, monthName, periodLabel, pt, type PlannerKey } from '../../lib/planner/words';
 import { SpotChart } from './SpotChart';
 
 const YEAR = 2026;
-const COMPASS = ['north', 'northeast', 'east', 'southeast', 'south', 'southwest', 'west', 'northwest'];
 
-export function clock(min: number) {
-  const h = Math.floor(min / 60) % 24;
-  const m = Math.floor(min % 60);
-  const ap = h >= 12 ? 'pm' : 'am';
-  return `${((h + 11) % 12) + 1}:${String(m).padStart(2, '0')} ${ap}`;
-}
-
-const PRESETS: [string, number, number][] = [
-  ['First day of spring', 3, 20],
-  ['Longest day', 6, 21],
-  ['First day of fall', 9, 22],
-  ['Shortest day', 12, 21],
+const PRESETS: [PlannerKey, number, number][] = [
+  ['sun.presetSpring', 3, 20],
+  ['sun.presetLongest', 6, 21],
+  ['sun.presetFall', 9, 22],
+  ['sun.presetShortest', 12, 21],
 ];
 
-const mmdd = (s: string) => {
-  const [m, d] = s.split('-').map(Number) as [number, number];
-  return `${MONTHS_SHORT[m - 1]} ${d}`;
-};
-const pct = (f: number) => `${Math.round(f * 100)}%`;
+const SPEED_LABEL: Record<PlaySpeed, PlannerKey> = { slow: 'sun.speedSlow', normal: 'sun.speedNormal', fast: 'sun.speedFast' };
 
-/** where the picked thing stands, local feet */
+const CLASS_TEXT: Record<string, PlannerKey> = {
+  'full-sun': 'sun.classFullSun',
+  'mostly-sun': 'sun.classMostlySun',
+  'mostly-shade': 'sun.classMostlyShade',
+  'deep-shade': 'sun.classDeepShade',
+};
+
+/** 0.29 → 29 (shown as "29%") */
+const pct = (f: number) => Math.round(f * 100);
+
+/** where the picked thing stands, local feet, and what to call it ("where the stool is") */
 function selectionPoint(store: PlannerStore): { p: Vec2; name: string } | null {
   const sel = store.$selection.get();
   const site = store.$site.get();
@@ -47,13 +47,16 @@ function selectionPoint(store: PlannerStore): { p: Vec2; name: string } | null {
   if (sel.kind === 'item') {
     const it = store.$layout.get()?.items.find((x) => x.id === sel.id);
     const pl = store.$placement.get();
-    return it && pl ? { p: parkToLocal(pl, site.frame, [it.x, it.y]), name: catalogEntry(it.element).name.toLowerCase() } : null;
+    return it && pl ? { p: parkToLocal(pl, site.frame, [it.x, it.y]), name: lower(catalogEntry(it.element).name) } : null;
   }
   const e = store.$design.get()?.existing?.find((x) => x.id === sel.id);
-  return e?.lngLat ? { p: site.lf.toLocal(e.lngLat), name: existingMeta(e.element).name.toLowerCase() } : null;
+  return e?.lngLat ? { p: site.lf.toLocal(e.lngLat), name: lower(existingMeta(e.element).name) } : null;
 }
 
+const lower = (s: string) => s.toLocaleLowerCase(pt().lang);
+
 export function SunPanel({ store }: { store: PlannerStore }) {
+  const w = pt();
   const site = useStore(store.$site);
   const t = useStore(store.$sunTime);
   const grid = useStore(store.$sunGrid);
@@ -68,7 +71,7 @@ export function SunPanel({ store }: { store: PlannerStore }) {
   const spotAt = useStore(store.sun.$spotAt);
   const play = useStore(store.sun.$play);
   const root = useRef<HTMLElement>(null);
-  const [spotName, setSpotName] = useState('at the middle of the lot');
+  const [spotName, setSpotName] = useState(() => w('spot.middle'));
   const lat = site?.lf.origin[1] ?? 39.95;
   const lng = site?.lf.origin[0] ?? -75.16;
   const times = sunTimes(YEAR, t.month, t.day, lat, lng);
@@ -140,12 +143,12 @@ export function SunPanel({ store }: { store: PlannerStore }) {
     const p = selectionPoint(store);
     if (p) {
       store.sun.$spot.set(p.p);
-      setSpotName(`where the ${p.name} is`);
+      setSpotName(w('spot.thing', { name: p.name }));
     }
   }, [sel?.id]);
   useEffect(() => {
-    if (!spot) setSpotName('at the middle of the lot');
-    else if (!sel) setSpotName('at the spot you picked');
+    if (!spot) setSpotName(w('spot.middle'));
+    else if (!sel) setSpotName(w('spot.picked'));
   }, [spot]);
   const [spotData, setSpotData] = useState<MonthSun[] | null>(null);
   useEffect(() => {
@@ -160,13 +163,6 @@ export function SunPanel({ store }: { store: PlannerStore }) {
   const stale = Boolean(grid?.inputs.treesKey && nowKey && grid.inputs.treesKey !== nowKey);
   // … or than the buildings around it (far shade: older studies left out the taller ones farther away)
   const buildingsStale = useMemo(() => buildingsChanged(grid, site), [grid, site]);
-  const CLASS_TEXT: Record<string, string> = {
-    'full-sun': 'Full sun — almost all of the lot gets 6 or more hours of direct sun a day.',
-    'mostly-sun': 'Mostly sunny — at least half the lot gets 6 or more hours a day.',
-    'mostly-shade': 'Mostly shady — less than half the lot gets 6 hours a day.',
-    'deep-shade': 'Deep shade — very little of the lot gets 6 hours of sun a day.',
-  };
-
   const growing = period.kind === 'growing';
   const summary = growing ? grid?.summary : periodResult && periodKey(periodResult.period) === periodKey(period) ? periodResult.summary : null;
   const pickPeriod = (k: string) => {
@@ -178,36 +174,34 @@ export function SunPanel({ store }: { store: PlannerStore }) {
 
   return (
     <section class="pl-section" ref={root}>
-      <h3 class="pl-h">Sun and shade</h3>
-      <p class="pl-small">Watch the shadows of the buildings and trees around your lot move through the day and the year.</p>
+      <h3 class="pl-h">{w('sun.title')}</h3>
+      <p class="pl-small">{w('sun.intro')}</p>
       <label class="pl-field">
         {/* while playing, the moving date and clock are not read out 30 times a second */}
         <span class="pl-small" aria-live={quiet}>
-          <strong class="pl-sun-date">
-            {MONTHS[t.month - 1]} {t.day}
-          </strong>{' '}
-          <span class="muted">· {leafWords(t.month, t.day)}</span>
+          <strong class="pl-sun-date">{monthDay(t.month, t.day, w)}</strong>{' '}
+          <span class="muted">· {leafWords(t.month, t.day, w)}</span>
         </span>
         <input
           type="range"
           min={1}
           max={365}
           value={dayOfYear(t.month, t.day)}
-          aria-label="Day of the year"
-          aria-valuetext={`${MONTHS[t.month - 1]} ${t.day}`}
+          aria-label={w('sun.dayOfYear')}
+          aria-valuetext={monthDay(t.month, t.day, w)}
           onInput={(e) => store.$sunTime.set({ ...t, ...dateOfDay(Number((e.target as HTMLInputElement).value)) })}
         />
       </label>
       <div class="pl-chips">
         {PRESETS.map(([name, m, d]) => (
           <button type="button" class="pl-chip" aria-pressed={t.month === m && t.day === d} onClick={() => store.$sunTime.set({ ...t, month: m, day: d })}>
-            {name}
+            {w(name)}
           </button>
         ))}
       </div>
       <label class="pl-field">
         <span class="pl-small" aria-live={quiet}>
-          <strong>{clock(t.minutes)}</strong> <span class="muted">(sunrise {clock(rise)}, sunset {clock(set)})</span>
+          <strong>{clock(t.minutes, w)}</strong> <span class="muted">{w('sun.riseSet', { rise: clock(rise, w), set: clock(set, w) })}</span>
         </span>
         <input
           type="range"
@@ -215,131 +209,119 @@ export function SunPanel({ store }: { store: PlannerStore }) {
           max={Math.ceil(set / 15) * 15 + 15}
           step={15}
           value={t.minutes}
-          aria-label="Time of day"
-          aria-valuetext={clock(t.minutes)}
+          aria-label={w('sun.timeOfDay')}
+          aria-valuetext={clock(t.minutes, w)}
           onInput={(e) => store.$sunTime.set({ ...t, minutes: Number((e.target as HTMLInputElement).value) })}
         />
       </label>
       <div class="pl-row pl-play">
         <button type="button" class="btn btn-small" aria-pressed={play.mode === 'day'} onClick={() => setPlay(play.mode === 'day' ? 'off' : 'day')}>
-          {play.mode === 'day' ? '❚❚ Pause' : '▶ Play the day'}
+          {w(play.mode === 'day' ? 'sun.pause' : 'sun.playDay')}
         </button>
         <button
           type="button"
           class="btn btn-small"
           aria-pressed={play.mode === 'year'}
-          title="Same time of day, through the year"
+          title={w('sun.playYearTitle')}
           onClick={() => setPlay(play.mode === 'year' ? 'off' : 'year')}
         >
-          {play.mode === 'year' ? '❚❚ Pause' : '▶ Play the year'}
+          {w(play.mode === 'year' ? 'sun.pause' : 'sun.playYear')}
         </button>
-        <span class="pl-seg pl-seg-small" role="group" aria-label="Speed">
+        <span class="pl-seg pl-seg-small" role="group" aria-label={w('sun.speed')}>
           {(Object.keys(PLAY_RATES) as PlaySpeed[]).map((s) => (
             <button type="button" aria-pressed={play.speed === s} onClick={() => setPlay(play.mode, s)}>
-              <span class="pl-small">{SPEED_LABEL[s]}</span>
+              <span class="pl-small">{w(SPEED_LABEL[s])}</span>
             </button>
           ))}
         </span>
       </div>
-      {play.mode === 'year' && <p class="pl-small muted">The date moves through the year at {clock(t.minutes)} each day.</p>}
+      {play.mode === 'year' && <p class="pl-small muted">{w('sun.yearAt', { time: clock(t.minutes, w) })}</p>}
       <p class="pl-small muted" aria-live={quiet}>
-        {pos.altitudeDeg > 0
-          ? `The sun is ${Math.round(pos.altitudeDeg)}° up, in the ${COMPASS[Math.round(pos.azimuthDeg / 45) % 8]}.`
-          : 'The sun is down.'}
+        {pos.altitudeDeg > 0 ? w('sun.position', { deg: Math.round(pos.altitudeDeg), compass: compassWord(pos.azimuthDeg, w) }) : w('sun.down')}
       </p>
       {pos.altitudeDeg > 0 && (
         <p class="pl-now" aria-live={quiet ?? 'polite'}>
           <span class="pl-now-bar" aria-hidden="true">
             <span style={{ width: `${Math.round(litNow * 100)}%` }} />
           </span>
-          At this moment about <strong>{Math.round(litNow * 100)}%</strong> of the lot is in direct sun.
+          <span dangerouslySetInnerHTML={{ __html: w.html('sun.litNow', { pct: Math.round(litNow * 100) }) }} />
         </p>
       )}
 
-      <h4 class="pl-h4">Sun hours on the map</h4>
+      <h4 class="pl-h4">{w('sun.mapTitle')}</h4>
       <label class="pl-field">
-        <span class="pl-small">Average hours of direct sun a day over</span>
+        <span class="pl-small">{w('sun.over')}</span>
         <select value={periodKey(period)} onChange={(e) => pickPeriod((e.target as HTMLSelectElement).value)}>
-          <option value="growing">the growing season, Apr 15 – Oct 15</option>
-          <option value={`day:${t.month}-${t.day}`}>this day only ({MONTHS_SHORT[t.month - 1]} {t.day})</option>
-          <optgroup label="A season">
+          <option value="growing">{w('sun.optGrowing', { from: mmdd(DEFAULT_SEASON.from, w), to: mmdd(DEFAULT_SEASON.to, w) })}</option>
+          <option value={`day:${t.month}-${t.day}`}>{w('sun.optDay', { date: monthDayShort(t.month, t.day, w) })}</option>
+          <optgroup label={w('sun.optSeasons')}>
             {(Object.keys(SEASONS) as SeasonName[]).map((s) => (
-              <option value={`season:${s}`}>
-                {SEASONS[s].label} ({mmdd(SEASONS[s].from)} – {mmdd(SEASONS[s].to)})
-              </option>
+              <option value={`season:${s}`}>{w('period.range', { season: w(SEASON_LABEL[s]), from: mmdd(SEASONS[s].from, w), to: mmdd(SEASONS[s].to, w) })}</option>
             ))}
           </optgroup>
-          <optgroup label="A month">
-            {MONTHS.map((m, i) => (
-              <option value={`month:${i + 1}`}>{m}</option>
+          <optgroup label={w('sun.optMonths')}>
+            {Array.from({ length: 12 }, (_, i) => (
+              <option value={`month:${i + 1}`}>{monthName(i + 1, w)}</option>
             ))}
           </optgroup>
-          <option value="year">the whole year</option>
+          <option value="year">{w('sun.optYear')}</option>
         </select>
       </label>
       {growing ? (
         job ? (
           <div class="pl-progress" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(job.progress * 100)}>
             <span style={{ width: `${Math.round(job.progress * 100)}%` }} />
-            <em>Working it out… {Math.round(job.progress * 100)}%</em>
+            <em>{w('sun.working', { pct: Math.round(job.progress * 100) })}</em>
           </div>
         ) : (
           <button type="button" class="btn btn-small btn-primary" onClick={() => store.computeSun()}>
-            {grid ? 'Work it out again' : 'Work out sun hours'}
+            {w(grid ? 'sun.workOutAgain' : 'sun.workOut')}
           </button>
         )
       ) : periodJob ? (
         <div class="pl-progress" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(periodJob.progress * 100)}>
           <span style={{ width: `${Math.round(periodJob.progress * 100)}%` }} />
-          <em>Working out {periodLabel(period)}… {Math.round(periodJob.progress * 100)}%</em>
+          <em>{w('sun.workingPeriod', { period: periodLabel(period, w), pct: Math.round(periodJob.progress * 100) })}</em>
         </div>
       ) : (
         !summary && (
           <button type="button" class="btn btn-small btn-primary" onClick={() => store.sun.recompute()}>
-            Work out sun hours for {periodLabel(period)}
+            {w('sun.workOutPeriod', { period: periodLabel(period, w) })}
           </button>
         )
       )}
-      {growing && stale && !job && <p class="pl-small pl-warn">You've changed what's on the lot since this was worked out — work it out again to include it.</p>}
-      {growing && buildingsStale && !job && (
-        <p class="pl-small pl-warn">
-          {buildingsStale === 'far-added'
-            ? 'Sun hours now also count the shade of taller buildings farther away. This was worked out before that — work it out again to include them (the counts update too).'
-            : "The City's buildings around the lot have changed since this was worked out — work it out again to include them."}
-        </p>
-      )}
+      {growing && stale && !job && <p class="pl-small pl-warn">{w('sun.staleTrees')}</p>}
+      {growing && buildingsStale && !job && <p class="pl-small pl-warn">{w(buildingsStale === 'far-added' ? 'sun.staleFar' : 'sun.staleBuildings')}</p>}
       {summary && (
         <div class="pl-sunsum">
           <ul class="pl-legend">
             <li>
-              <span class="pl-key pl-key-sun" /> Sun — 6 hours or more: <strong>{pct(summary.sun)}</strong> of the lot
+              <span class="pl-key pl-key-sun" /> <span dangerouslySetInnerHTML={{ __html: w.html('sun.legendSun', { pct: pct(summary.sun) }) }} />
             </li>
             <li>
-              <span class="pl-key pl-key-part" /> Part sun — 3 to 6 hours: <strong>{pct(summary.part)}</strong>
+              <span class="pl-key pl-key-part" /> <span dangerouslySetInnerHTML={{ __html: w.html('sun.legendPart', { pct: pct(summary.part) }) }} />
             </li>
             <li>
-              <span class="pl-key pl-key-shade" /> Shade — under 3 hours: <strong>{pct(summary.shade)}</strong>
+              <span class="pl-key pl-key-shade" /> <span dangerouslySetInnerHTML={{ __html: w.html('sun.legendShade', { pct: pct(summary.shade) }) }} />
             </li>
           </ul>
-          {growing && grid && <p class="pl-small">{CLASS_TEXT[grid.sunClass]}</p>}
+          {growing && grid && CLASS_TEXT[grid.sunClass] && <p class="pl-small">{w(CLASS_TEXT[grid.sunClass]!)}</p>}
           <label class="pl-check">
-            <input type="checkbox" checked={show.heat} onChange={() => store.$show.set({ ...show, heat: !show.heat })} /> Show it on the map
+            <input type="checkbox" checked={show.heat} onChange={() => store.$show.set({ ...show, heat: !show.heat })} /> {w('sun.showOnMap')}
           </label>
           {growing ? (
-            <p class="pl-small muted">The counts treat part sun as shade, like the workbook's sun/shade plant count.</p>
+            <p class="pl-small muted">{w('sun.countsTreat')}</p>
           ) : (
-            <p class="pl-small muted">
-              This map shows {periodLabel(period)}. The counts and the Assess summary always use the growing season{grid ? '' : ' (not worked out yet)'}.
-            </p>
+            <p class="pl-small muted">{w(grid ? 'sun.mapShows' : 'sun.mapShowsNotYet', { period: periodLabel(period, w) })}</p>
           )}
         </div>
       )}
 
-      <h4 class="pl-h4">Sun through the year at one spot</h4>
+      <h4 class="pl-h4">{w('sun.spotTitle')}</h4>
       <p class="pl-small">
-        Click or tap a spot on the lot, or pick something on it, to see its sun month by month.{' '}
+        {w('sun.spotHelp')}{' '}
         <button type="button" class="pl-link" onClick={() => store.sun.$spot.set(null)}>
-          Middle of the lot
+          {w('sun.spotMiddle')}
         </button>
         {sel && (
           <>
@@ -351,11 +333,11 @@ export function SunPanel({ store }: { store: PlannerStore }) {
                 const p = selectionPoint(store);
                 if (p) {
                   store.sun.$spot.set(p.p);
-                  setSpotName(`where the ${p.name} is`);
+                  setSpotName(w('spot.thing', { name: p.name }));
                 }
               }}
             >
-              Where the picked thing is
+              {w('sun.spotPicked')}
             </button>
           </>
         )}
@@ -363,24 +345,25 @@ export function SunPanel({ store }: { store: PlannerStore }) {
       {spotData && <SpotChart data={spotData} where={spotName} month={t.month} />}
 
       <details class="pl-assume">
-        <summary>What the sun maps and chart count</summary>
+        <summary>{w('sun.assumeTitle')}</summary>
         <ul class="pl-small">
-          <li>Only direct sun: the hours when nothing stands between the sun and a point 1 ft above the ground. Cloudy days and light bouncing off walls are not counted.</li>
+          <li>{w('sun.assumeDirect')}</li>
           <li>
-            Buildings: every building within about {SURROUNDINGS_RADIUS_FT} ft of the lot, plus taller buildings up to {FAR_SHADE_MAX_FT.toLocaleString('en-US')} ft
-            away whose shadow can reach it{site?.farBuildings?.length ? ` (${site.farBuildings.length} for this lot)` : ''}. Their outlines and heights are the
-            City's, measured from the air (lidar). Each is a flat-topped block at its usual roof height, so pitched roofs and chimneys aren't counted, and
-            neither are walls, fences, billboards or the El.
+            {site?.farBuildings?.length
+              ? w('sun.assumeBuildingsCount', { near: SURROUNDINGS_RADIUS_FT, far: FAR_SHADE_MAX_FT, count: site.farBuildings.length })
+              : w('sun.assumeBuildings', { near: SURROUNDINGS_RADIUS_FT, far: FAR_SHADE_MAX_FT })}{' '}
+            {w('sun.assumeBuildings2')}
           </li>
+          <li>{w('sun.assumeTrees', { inLeaf: pct(CROWN_BLOCKING), bare: pct(BARE_CROWN_BLOCKING) })}</li>
           <li>
-            Trees are the City's street and park trees (their size worked out from trunk width) and the trees marked on the lot. A tree in leaf blocks about{' '}
-            {pct(CROWN_BLOCKING)} of the sun; bare branches about {pct(BARE_CROWN_BLOCKING)}.
+            {w('sun.assumeLeaves', {
+              outFrom: mmdd(LEAF_SEASON.outFrom, w),
+              outTo: mmdd(LEAF_SEASON.outTo, w),
+              dropFrom: mmdd(LEAF_SEASON.dropFrom, w),
+              dropTo: mmdd(LEAF_SEASON.dropTo, w),
+            })}
           </li>
-          <li>
-            Leaves come out between {mmdd(LEAF_SEASON.outFrom)} and {mmdd(LEAF_SEASON.outTo)} and fall between {mmdd(LEAF_SEASON.dropFrom)} and{' '}
-            {mmdd(LEAF_SEASON.dropTo)}. Evergreens (pines, spruces, hollies, southern magnolias…) keep theirs all year.
-          </li>
-          <li>{hasGround ? 'The slope of the ground is included.' : 'The ground is taken as flat (its heights are not known for this lot).'}</li>
+          <li>{w(hasGround ? 'sun.assumeGround' : 'sun.assumeFlat')}</li>
         </ul>
       </details>
     </section>

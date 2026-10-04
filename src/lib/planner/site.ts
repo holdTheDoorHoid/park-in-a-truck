@@ -13,6 +13,7 @@ import {
 } from '../philly';
 import { fetchTerrain, type TerrainData } from './terrain';
 import { decodeGrid, type EncodedGrid } from './terrain/grid';
+import { pt, type PlannerKey } from './words';
 
 export interface SiteBuilding {
   polygon: LngLat[];
@@ -61,10 +62,11 @@ export { FAR_SHADE_MAX_FT, FAR_SHADE_MIN_SUN_DEG };
 
 // ---- demo lots ---------------------------------------------------------------
 
+/** `label` is the address (never translated); `blurb` says what kind of lot it is (planner catalog). */
 export const DEMO_LOTS = {
-  dover: { label: '1322 N Dover St', blurb: 'A narrow lot between rowhouses (North Philadelphia)' },
-  greenway: { label: '2061 S 60th St', blurb: 'A corner lot at Greenway Ave (Southwest Philadelphia)' },
-} as const;
+  dover: { label: '1322 N Dover St', blurb: 'demo.doverBlurb' },
+  greenway: { label: '2061 S 60th St', blurb: 'demo.greenwayBlurb' },
+} as const satisfies Record<string, { label: string; blurb: PlannerKey }>;
 export type DemoSlug = keyof typeof DEMO_LOTS;
 
 interface Fixture {
@@ -121,8 +123,7 @@ export async function fetchSurroundings(lot: LotRecord, radiusFt = SURROUNDINGS_
 }
 
 /** Said when the far buildings could not be loaded (the rest of the lot still works). */
-export const FAR_SHADE_FAILED_NOTE =
-  "Couldn't load the taller buildings farther from your lot, so the sun maps leave out their shade in low morning, evening and winter sun. Reload to try again.";
+export const farShadeFailedNote = (): string => pt()('note.farFailed');
 
 export async function loadSiteContext(lot: LotRecord): Promise<SiteContext> {
   const demo = fixtureFor(lot);
@@ -132,11 +133,11 @@ export async function loadSiteContext(lot: LotRecord): Promise<SiteContext> {
     return { ...f.surroundings, lot: lot.polygon?.length >= 3 ? lot : { ...lot, polygon: f.lot.polygon }, source: 'fixture' };
   }
   if (!lot.polygon || lot.polygon.length < 3) {
-    return { lot, buildings: [], trees: [], parcels: [], streets: [], source: 'none', note: 'This lot has no outline in City records yet, so the planner cannot fit a park to it.' };
+    return { lot, buildings: [], trees: [], parcels: [], streets: [], source: 'none', note: pt()('note.noOutline') };
   }
   try {
     const s = await fetchSurroundings(lot);
-    return { lot, ...s, source: 'city', ...(s.farBuildings ? {} : { note: FAR_SHADE_FAILED_NOTE }) };
+    return { lot, ...s, source: 'city', ...(s.farBuildings ? {} : { note: farShadeFailedNote() }) };
   } catch {
     return {
       lot,
@@ -145,7 +146,7 @@ export async function loadSiteContext(lot: LotRecord): Promise<SiteContext> {
       parcels: [],
       streets: [],
       source: 'none',
-      note: 'Could not reach City records for the buildings and trees around your lot. Check your connection and reload.',
+      note: pt()('note.cityFailed'),
     };
   }
 }

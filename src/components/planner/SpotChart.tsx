@@ -5,8 +5,8 @@
 // same numbers are in the table below the chart.
 import { useState } from 'preact/hooks';
 import type { MonthSun } from '../../lib/planner/sunperiod';
-import { MONTHS, MONTHS_SHORT } from '../../lib/planner/sunperiod';
 import { SUN_HOURS } from '../../lib/planner/sunhours';
+import { listAnd, monthInitial, monthName, oneDecimal, pt, type PlannerT } from '../../lib/planner/words';
 
 const W = 340;
 const H = 190;
@@ -17,7 +17,6 @@ const PH = H - M.t - M.b;
 const band = PW / 12;
 const barW = Math.min(18, band * 0.62);
 const y = (h: number) => M.t + PH - (Math.max(0, Math.min(MAX_H, h)) / MAX_H) * PH;
-const fmt = (h: number) => (Math.round(h * 10) / 10).toFixed(1);
 
 /** a column from the baseline up to `h`, with a 4px rounded top */
 function column(cx: number, h: number): string {
@@ -30,7 +29,7 @@ function column(cx: number, h: number): string {
 }
 
 /** "May to August", "April, May and September" — the months with 6 or more hours */
-export function fullSunMonths(data: MonthSun[]): string {
+export function fullSunMonths(data: MonthSun[], t: PlannerT = pt()): string {
   const ok = data.filter((m) => m.sunHours >= SUN_HOURS.sun).map((m) => m.month);
   if (!ok.length) return '';
   const runs: [number, number][] = [];
@@ -40,19 +39,23 @@ export function fullSunMonths(data: MonthSun[]): string {
     else runs.push([m, m]);
   }
   // three or more months in a row read as a span; one or two are named
-  const words = runs.flatMap(([a, b]) => (b - a >= 2 ? [`${MONTHS[a - 1]} to ${MONTHS[b - 1]}`] : MONTHS.slice(a - 1, b)));
-  return words.length === 1 ? words[0]! : `${words.slice(0, -1).join(', ')} and ${words.at(-1)}`;
+  const words = runs.flatMap(([a, b]) =>
+    b - a >= 2 ? [t('chart.monthRun', { from: monthName(a, t), to: monthName(b, t) })] : Array.from({ length: b - a + 1 }, (_, i) => monthName(a + i, t)),
+  );
+  return listAnd(words, t);
 }
 
 export function SpotChart({ data, where, month }: { data: MonthSun[]; where: string; month: number }) {
+  const t = pt();
+  const fmt = (h: number) => oneDecimal(h, t);
   const [hover, setHover] = useState<number | null>(null);
   const best = data.reduce((a, b) => (b.sunHours > a.sunHours ? b : a), data[0]!);
   const worst = data.reduce((a, b) => (b.sunHours < a.sunHours ? b : a), data[0]!);
-  const full = fullSunMonths(data);
+  const full = fullSunMonths(data, t);
   const label =
-    `Average hours of direct sun a day ${where}, month by month: most in ${MONTHS[best.month - 1]} (${fmt(best.sunHours)} hours), ` +
-    `least in ${MONTHS[worst.month - 1]} (${fmt(worst.sunHours)} hours). ` +
-    (full ? `6 hours or more in ${full}.` : 'No month reaches 6 hours.');
+    t('chart.label', { where, best: monthName(best.month, t), bestHours: fmt(best.sunHours), worst: monthName(worst.month, t), worstHours: fmt(worst.sunHours) }) +
+    ' ' +
+    (full ? t('chart.labelFull', { months: full }) : t('chart.labelNone'));
   const h = hover != null ? data[hover] : null;
   const cur = data[month - 1];
 
@@ -76,7 +79,7 @@ export function SpotChart({ data, where, month }: { data: MonthSun[]; where: str
                 <path class="pl-spot-track" d={column(cx, m.daylightHours)} />
                 {m.sunHours > 0.05 && <path class="pl-spot-bar" d={column(cx, m.sunHours)} />}
                 <text class={`pl-spot-x${i === month - 1 ? ' is-now' : ''}`} x={cx} y={H - 6} text-anchor="middle">
-                  {MONTHS_SHORT[i]![0]}
+                  {monthInitial(i + 1, t)}
                 </text>
                 <rect x={cx - band / 2} y={M.t} width={band} height={PH + 4} fill="transparent" onPointerEnter={() => setHover(i)} onPointerDown={() => setHover(i)} />
               </g>
@@ -85,8 +88,10 @@ export function SpotChart({ data, where, month }: { data: MonthSun[]; where: str
           {/* the workbook's line: 6 hours of direct sun = full sun */}
           <line class="pl-spot-six" x1={M.l} x2={W - M.r + 2} y1={y(SUN_HOURS.sun)} y2={y(SUN_HOURS.sun)} />
           <text class="pl-spot-six-label" x={W - M.r + 4} y={y(SUN_HOURS.sun) - 2}>
-            <tspan x={W - M.r + 4}>full</tspan>
-            <tspan x={W - M.r + 4} dy="11">sun</tspan>
+            <tspan x={W - M.r + 4}>{t('chart.fullLine1')}</tspan>
+            <tspan x={W - M.r + 4} dy="11">
+              {t('chart.fullLine2')}
+            </tspan>
           </text>
           {cur && hover == null && (
             <text class="pl-spot-value" x={M.l + band * (month - 0.5)} y={y(cur.sunHours) - 5} text-anchor="middle">
@@ -96,40 +101,34 @@ export function SpotChart({ data, where, month }: { data: MonthSun[]; where: str
         </svg>
         {h && (
           <div class="pl-spot-tip" style={{ left: `${Math.min(80, Math.max(20, ((M.l + band * (hover! + 0.5)) / W) * 100))}%` }} role="presentation">
-            <strong>{MONTHS[h.month - 1]}</strong>
-            <span>{fmt(h.sunHours)} h of direct sun a day</span>
-            <span class="muted">the sun is up {fmt(h.daylightHours)} h</span>
+            <strong>{monthName(h.month, t)}</strong>
+            <span>{t('chart.tipSun', { hours: fmt(h.sunHours) })}</span>
+            <span class="muted">{t('chart.tipUp', { hours: fmt(h.daylightHours) })}</span>
           </div>
         )}
       </div>
       <figcaption class="pl-small">
-        <span class="pl-spot-key pl-spot-key-bar" aria-hidden="true" /> direct sun {where}{' '}
-        <span class="pl-spot-key pl-spot-key-track" aria-hidden="true" /> hours the sun is up. Hours a day, averaged over each month.
+        <span class="pl-spot-key pl-spot-key-bar" aria-hidden="true" /> {t('chart.keyDirect', { where })}{' '}
+        <span class="pl-spot-key pl-spot-key-track" aria-hidden="true" /> {t('chart.keyUp')} {t('chart.averaged')}
         <br />
-        {full ? (
-          <>
-            6 hours or more (full sun) in <strong>{full}</strong>.
-          </>
-        ) : (
-          <>No month reaches 6 hours of direct sun here.</>
-        )}
+        {full ? <span dangerouslySetInnerHTML={{ __html: t.html('chart.full', { months: full }) }} /> : t('chart.none')}
       </figcaption>
       <details class="pl-spot-table">
-        <summary>Show as a table</summary>
+        <summary>{t('chart.table')}</summary>
         <table class="pl-table">
           <thead>
             <tr>
-              <th scope="col">Month</th>
-              <th scope="col">Direct sun</th>
-              <th scope="col">Sun is up</th>
+              <th scope="col">{t('chart.month')}</th>
+              <th scope="col">{t('chart.direct')}</th>
+              <th scope="col">{t('chart.up')}</th>
             </tr>
           </thead>
           <tbody>
             {data.map((m) => (
               <tr>
-                <th scope="row">{MONTHS[m.month - 1]}</th>
-                <td>{fmt(m.sunHours)} h</td>
-                <td>{fmt(m.daylightHours)} h</td>
+                <th scope="row">{monthName(m.month, t)}</th>
+                <td>{t('chart.hours', { hours: fmt(m.sunHours) })}</td>
+                <td>{t('chart.hours', { hours: fmt(m.daylightHours) })}</td>
               </tr>
             ))}
           </tbody>

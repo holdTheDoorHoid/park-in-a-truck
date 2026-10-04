@@ -8,6 +8,7 @@ import type { PlannerStore } from '../../lib/planner/store';
 import { deleteExisting, duplicateItem, moveItem, removeItem, updateExisting } from '../../lib/planner/design';
 import { duplicatePlacement } from '../../lib/planner/interact';
 import { catalogEntry, existingMeta } from '../../lib/planner/catalog';
+import { pt } from '../../lib/planner/words';
 
 /** Copy the selected park item and put the copy right next to it (then pick the copy). */
 export function duplicateSelected(store: PlannerStore): boolean {
@@ -71,7 +72,8 @@ export function deleteSelected(store: PlannerStore) {
   store.commit(sel.kind === 'item' ? removeItem(d, sel.id) : deleteExisting(d, sel.id));
   store.$selection.set(null);
   store.$announce.set('');
-  store.$announce.set(`Removed ${name ? name.toLowerCase() : 'it'}. Undo (Ctrl+Z) brings it back.`);
+  const t = pt();
+  store.$announce.set(name ? t('announce.removed', { name: name.toLocaleLowerCase(t.lang) }) : t('announce.removedIt'));
   if (root)
     setTimeout(() => {
       const now = document.activeElement;
