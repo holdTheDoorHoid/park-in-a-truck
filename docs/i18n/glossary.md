@@ -193,8 +193,9 @@ Conventions chosen (keep to them):
 - **Philadelphia** stays "Philadelphia" (no Vietnamese spelling). Neighbourhood and street names unchanged.
 - **Units.** Short forms stay as written: `ft`, `in`, `"`, `'`, `ft²`, `$`. In running prose write **feet**, **inch**,
   **feet vuông** (how Vietnamese Americans say them), e.g. "rộng 18 feet". Lumber sizes (2x4) never change.
-- **Numbers** are formatted by the site (vi: 1.234,5). Numbers inside PiaT's own text (sizes, quantities) stay as English
-  writes them.
+- **Numbers** are formatted by the site (vi: 1.234,5). In prose, write thousands the Vietnamese way (2.400 feet vuông),
+  because "2,400" reads as 2.4 to a Vietnamese eye. Measurements, screw and lumber sizes inside PiaT's text keep the US
+  decimal point as printed on hardware and tape measures (1.5", 2.5" vít, 14.75″).
 - **Capital T.** *Thành phố* with a capital T means the City government; *thành phố* is the place.
 
 | English | Translation | Note |
