@@ -9,11 +9,14 @@
 //   .substep-done[data-done]     "Mark this step done" toggle
 //   [data-progress-step="<slug>"] progress text/bars, [data-progress-total] overall
 //   [data-project-name]          the active project's name
+//   [data-lot-agreement-notice]  site-added "no lot agreement recorded yet" banner
+//                                (Assess/Dream/Create); [data-dismiss="lot-agreement"]
+//                                dismisses it for this project
 //
 // Content authors never write this markup by hand; the components in
 // src/components/workbook/ emit it.
 
-import { $project, setField, setDone } from '../lib/project';
+import { $project, setDone, setExtra, setField } from '../lib/project';
 import { resolveAuto } from '../lib/autofill';
 import type { Project } from '../lib/types';
 
@@ -64,6 +67,12 @@ function bindFields(root: ParentNode) {
     el.addEventListener('change', () => {
       if (el.checked) setField(el.dataset.fieldRadio!, el.value);
     });
+  });
+
+  root.querySelectorAll<HTMLButtonElement>('[data-dismiss="lot-agreement"]').forEach((el) => {
+    if (el.dataset.bound) return;
+    el.dataset.bound = '1';
+    el.addEventListener('click', () => setExtra('lotNoticeDismissed', true));
   });
 
   root.querySelectorAll<HTMLElement>('.substep-done[data-done]').forEach((el) => {
@@ -273,6 +282,13 @@ function render(p: Project) {
 
   document.querySelectorAll<HTMLElement>('[data-project-name]').forEach((el) => {
     el.textContent = p.name;
+  });
+
+  // site-added: "you haven't recorded permission for your lot yet" (veteran-organizer D2)
+  document.querySelectorAll<HTMLElement>('[data-lot-agreement-notice]').forEach((el) => {
+    const dismissed = Boolean(p.extra['lotNoticeDismissed']);
+    const secured = Boolean(p.done['acquire/secure-your-lot']) || Boolean(p.fields['acquire.agreement']);
+    el.hidden = dismissed || secured;
   });
 }
 

@@ -709,7 +709,31 @@ piat-list .row-remove {
   a {
     color: inherit;
   }
-  .substep {
-    break-inside: avoid-page;
+  /* block-captain F6: forcing every whole sub-step to avoid a page break
+     pushed each one onto a fresh page if it didn't fit on the one before,
+     leaving the tail of that page blank. Let sub-steps flow across pages
+     normally, and instead keep the small things people fill in from
+     splitting awkwardly across a page boundary. */
+  .field,
+  .choices,
+  .choice,
+  piat-list,
+  .callout,
+  figure {
+    break-inside: avoid;
+  }
+  /* Interactive maps and the 3D planner print as a blank box (WebGL/map
+     canvases aren't reproduced in paged output). This is a safety net for
+     any canvas-based widget that doesn't already hide itself for print (the
+     philly lot-finder/site maps already hide their whole `.ph-map-wrap` via
+     `@media print` in philly.css; the planner has its own richer print mode,
+     `body.pl-printing`, a plan image + a counts table). Hiding only the
+     canvas rather than its wrapper would still leave an empty bordered box
+     the wrapper's own fixed height reserves — widgets that don't already
+     collapse their wrapper for print should do the same (see ParksMap.astro
+     for a worked example).
+  */
+  canvas {
+    display: none !important;
   }
 }

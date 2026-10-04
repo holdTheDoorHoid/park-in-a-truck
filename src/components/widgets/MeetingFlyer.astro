@@ -123,30 +123,14 @@ interface Props { [key: string]: unknown }
     display: none;
   }
   @media print {
-    html.printing-flyer body * {
-      visibility: hidden;
-    }
-    /* `visibility: hidden` keeps every hidden element's own layout height,
-       so without this the rest of the page (everything above and below the
-       flyer in the chapter) still counts toward the printed page count,
-       producing 1 real page plus however many blank ones its hidden height
-       would have needed. Collapsing body's direct children removes that
-       height; `.flyer-print-root` switches to `position: fixed` (below) so
-       it isn't clipped by the `overflow: hidden` this adds to its ancestor. */
-    html.printing-flyer body > * {
-      max-height: 0;
-      overflow: hidden;
-    }
-    html.printing-flyer .flyer-print-root,
-    html.printing-flyer .flyer-print-root * {
-      visibility: visible;
-    }
+    /* The rest of the page is physically detached from the document while
+       printing (MeetingFlyerIsland's printFlyer()) rather than hidden with
+       CSS: Chromium's print/PDF pagination sized the page count from hidden
+       elements' natural (unclipped) height even under `visibility: hidden`
+       or `overflow: hidden`, producing 1 real page plus several blank ones.
+       With the flyer as the document's only content, it just needs showing. */
     html.printing-flyer .flyer-print-root {
       display: block;
-      position: fixed;
-      inset: 0;
-      margin: 0;
-      padding: 0;
     }
     html.printing-flyer .flyer-print-root .flyer-sheet {
       width: 8.5in;

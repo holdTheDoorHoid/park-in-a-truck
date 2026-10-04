@@ -14,6 +14,9 @@ import { PARKS } from '../../data/parks';
     render's critical path (it loads via requestIdleCallback after first
     paint) without depending on that observer. */}
 <ParksMapIsland parks={PARKS} client:idle />
+{/* The map prints as an empty box (the canvas doesn't reproduce in paged
+    output) — swap in a one-line pointer for print instead (block-captain F6). */}
+<p class="print-only">See the interactive map online, or the list of parks below.</p>
 
 <style is:global>
   .parks-map-wrap {
@@ -99,5 +102,22 @@ import { PARKS } from '../../data/parks';
   }
   .maplibregl-ctrl-attrib {
     font-size: 0.7rem;
+  }
+  .print-only {
+    display: none;
+  }
+  @media print {
+    /* The canvas doesn't reproduce in paged output, and this wrapper's fixed
+       height would otherwise leave an empty bordered box; drop it and point
+       at the map online instead (block-captain F6). */
+    .parks-map-wrap {
+      display: none;
+    }
+    .print-only {
+      display: block;
+      margin: 1em 0;
+      font-style: italic;
+      color: var(--muted);
+    }
   }
 </style>
