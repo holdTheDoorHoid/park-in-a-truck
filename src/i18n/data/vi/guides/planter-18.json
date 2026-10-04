@@ -1,0 +1,142 @@
+{
+  "title": "Bồn trồng cây 18\"",
+  "summary": "Một bồn trồng cây ghép thanh nan bằng gỗ 2x4, cao 18\" và sâu 18\", lót vải địa kỹ thuật. Cùng tập PDF này cũng hướng dẫn bản dài 18\"x48\" làm theo cùng cách với nhiều ván mặt hơn — xem ghi chú ở phần vật liệu và danh sách cắt gỗ.",
+  "materials": [
+    {
+      "item": "Gỗ xẻ 2x4 — gỗ tuyết tùng đỏ miền tây (western red cedar), gỗ thông Douglas (Douglas fir) hoặc gỗ thông xử lý áp lực",
+      "notes": "Cho bồn 18\"x18\". Bồn dài 18\"x48\" thì cần 10 tấm ván. Gỗ tuyết tùng: tự nhiên chịu được thời tiết và mục, màu đỏ đẹp, dễ làm, không cần phủ lớp bảo vệ; giá cao hơn — hãy hỏi loại 'có mắt gỗ' (STK). Gỗ thông Douglas: chịu mục ở mức vừa phải, chắc, rẻ hơn gỗ tuyết tùng; là lựa chọn tốt nếu bạn định sơn. Gỗ xử lý áp lực: rẻ nhất và chịu mục, nhưng chất lượng thường kém/không đều, cần phơi khô ngoài không khí 1–4 tháng trước khi sơn, và không nên dùng ở chỗ trồng thực phẩm. Hãy đặt nhiều hơn ít nhất 5% so với danh sách cắt gỗ để phòng gỗ không đều và cắt sai."
+    },
+    {
+      "item": "Vải địa kỹ thuật",
+      "notes": "Hai tấm chồng mí lót bên trong bồn để giữ đất mà vẫn thoát nước. Với bồn 18\"x18\", cắt hai tấm 18\"x54\". Với bồn 18\"x48\", cắt một tấm 48\"x54\" và một tấm 96\"x18\"."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Vít gỗ tự khoan dùng ngoài trời"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Đầu, mặt & đáy bồn"
+    },
+    {
+      "notes": "Đầu, mặt & đáy bồn"
+    },
+    {
+      "notes": "Đầu bồn"
+    },
+    {
+      "notes": "Mặt & đáy bồn"
+    },
+    {
+      "notes": "Đầu bồn"
+    },
+    {
+      "notes": "Đầu bồn"
+    },
+    {
+      "notes": "Đầu bồn"
+    }
+  ],
+  "tools": [
+    "Máy cưa góc (miter saw) 10\" hoặc 12\" (hoặc cưa tay phù hợp)",
+    "Máy bắt vít động lực (impact driver) cho vít gỗ tự khoan dùng ngoài trời",
+    "Máy khoan với mũi khoan 1/8\" và 1/4\" để khoan mồi",
+    "Súng bắn ghim",
+    "Giấy nhám, độ nhám 120",
+    "Thước vuông thợ mộc (ê-ke)",
+    "Kính bảo hộ + khẩu trang"
+  ],
+  "steps": [
+    {
+      "title": "Đánh dấu, ghi nhãn và cắt gỗ",
+      "text": "Đánh dấu, ghi nhãn và cắt gỗ theo thứ tự từ P-1 đến P-3 (bồn 18\"x18\") hoặc P-1A, P-1 đến P-3 (bồn 18\"x48\"), theo chiều dài trong danh sách cắt gỗ.\n\nKiểm tra từng thanh gỗ xem có khuyết điểm như nứt, cong vênh hay bào không đều không, và bỏ những đoạn gỗ đó đi.",
+      "imageAlts": [
+        "Sơ đồ ba chiều các thanh gỗ đã cắt cho cả bồn 18\"x18\" (P-1, P-2, P-3) và bồn 18\"x48\" (P-1A, P-1, P-2, P-3), có ghi chiều dài."
+      ],
+      "tips": [
+        "Ghi nhãn từng thanh gỗ khi bạn đo và cắt.",
+        "Xếp gỗ của mỗi phần thành một đống riêng.",
+        "Chà nhám nhẹ các mép cắt giúp bỏ dằm gỗ và dễ lắp ráp hơn.",
+        "Làm nhiều hơn một bồn trồng cây? Một khối chặn trên máy cưa góc giúp mọi thanh cắt ra đều dài bằng nhau."
+      ]
+    },
+    {
+      "title": "Đóng hai khung đầu ghế",
+      "text": "Đặt hai thanh P-3 trên một mặt phẳng. Đặt hai thanh P-1 ở hai bên của hai thanh P-3, canh các mép như trong hình. Làm lại như vậy để đóng một khung thứ hai giống hệt.",
+      "imageAlts": [
+        "Sơ đồ cho thấy hai thanh P-1 và hai thanh P-3 ghép thành một khung đầu hình vuông, cho cả bồn 18\"x18\" và 18\"x48\"."
+      ],
+      "tips": [
+        "Dùng thước vuông thợ mộc để kiểm tra mỗi góc có vuông không.",
+        "Làm một đồ gá (jig) 90 độ có thể giúp khi lắp bước này và bước tiếp theo."
+      ]
+    },
+    {
+      "title": "Lấp kín mỗi khung đầu",
+      "text": "Đặt năm thanh P-2 lên trên khung đã đóng ở bước 2, chừa khe 1.5\" ở cả hai bên.\n\nDùng mẫu khoan mồi ở cuối tập hướng dẫn để khoan mồi các lỗ vít, rồi bắt chặt gỗ vào các thanh P-2 bằng máy bắt vít động lực và 20 vít gỗ tự khoan dùng ngoài trời dài 2.5\".\n\nLàm lại như vậy với chân bên kia, rồi dựng cả hai chân đứng lên cho bước tiếp theo.",
+      "imageAlts": [
+        "Sơ đồ các thanh P-2 được bắt vít lên mỗi khung đầu với khe 1.5\" ở cả hai bên, vẽ cho cả bồn 18\"x18\" và 18\"x48\"."
+      ],
+      "tips": [
+        "Dùng thêm một thanh gỗ P-3 dựng đứng làm miếng chêm để có khe đều 1.5\"."
+      ]
+    },
+    {
+      "title": "Nối hai khung đầu ghế",
+      "text": "Đặt năm thanh P-2 (hoặc năm thanh P-1A, với bồn 18\"x48\") vào giữa hai đầu của bồn trồng cây.\n\nBắt chặt các thanh P-2 hoặc P-1A ở mỗi bên vào các thanh thành bên bằng máy bắt vít động lực và 20 vít gỗ tự khoan dùng ngoài trời dài 2.5\".\n\nLàm lại như vậy ở mặt sau của bồn trồng cây.",
+      "imageAlts": [
+        "Sơ đồ các tấm ván mặt P-2 hoặc P-1A nối hai khung đầu thành các thành của bồn trồng cây."
+      ],
+      "tips": [
+        "Làm từ dưới lên ở cả hai bên cùng lúc, và nhờ một người phụ kiểm tra thành bên vẫn giữ góc 90 độ."
+      ]
+    },
+    {
+      "title": "Gắn đáy ghép thanh nan",
+      "text": "Đặt bốn thanh P-2 (hoặc bốn thanh P-1A, với bồn 18\"x48\") ở đáy khung bồn trồng cây, chừa khe 1/4\" giữa các thanh để nước thoát được.\n\nBắt chặt các thanh P-2 hoặc P-1A ở mỗi bên vào các thanh thành bên bằng máy bắt vít động lực và 16 vít gỗ tự khoan dùng ngoài trời dài 2.5\".",
+      "imageAlts": [
+        "Sơ đồ các thanh P-2 hoặc P-1A tạo thành đáy ghép thanh nan của bồn, với khe thoát nước 1/4\" giữa các thanh."
+      ]
+    },
+    {
+      "title": "Lót vải địa kỹ thuật và hoàn thiện",
+      "text": "Lật khung bồn trồng cây lại cho đúng chiều.\n\nCắt một tấm vải địa kỹ thuật 18\"x54\" (hoặc một tấm 48\"x54\" với bồn 18\"x48\"). Cắt tấm thứ hai 18\"x54\" (hoặc một tấm 96\"x18\" với bồn 18\"x48\").\n\nDùng súng bắn ghim để ghim chặt các tấm vải địa kỹ thuật chồng mí vào bên trong bồn trồng cây.\n\nChà nhám nhẹ các mép thô của bồn trồng cây. Xong rồi — chuyển bồn đến chỗ cuối cùng, rồi đổ đất trồng vào và trồng cây!",
+      "imageAlts": [
+        "Sơ đồ hai tấm vải địa kỹ thuật chồng mí được ghim vào bên trong bồn trồng cây, vẽ cho cả hai cỡ bồn."
+      ],
+      "tips": [
+        "Gấp mép vải xuống ít nhất 1\" dưới mép trên trước khi ghim. Ghim dọc theo mép trên và xuống các góc để kín nhất."
+      ]
+    },
+    {
+      "title": "Mẫu khoan mồi (khuôn mẫu)",
+      "text": "Cắt mẫu khoan mồi theo đường chấm. Khi khoan, canh mép của khuôn mẫu trùng với mép ngoài của thanh gỗ trước khi khoan mồi.\n\nKhông phải lỗ nào cũng dùng đến — không phải kiểu bắt vít nào cũng dùng khuôn mẫu. Hãy theo các bước lắp ráp ở trên để biết vị trí lỗ. Giữ mọi lỗ cách mép khoảng một bề ngang ngón tay cái (khoảng 1\"), kể cả những lỗ không dùng khuôn mẫu này.",
+      "imageAlts": [
+        "Khuôn mẫu khoan mồi để in, có năm vị trí lỗ được đánh dấu và đường cắt, kèm hình phóng to cho thấy khoảng cách lỗ đến mép ván."
+      ]
+    }
+  ],
+  "finishing": "Xử lý gỗ ngoài trời có thể kéo dài tuổi thọ các món đồ công viên, nhưng không bắt buộc — những món này được thiết kế để rẻ, bền và dễ làm, nên có khi thực tế hơn là cứ để thế hệ sau làm lại khi đến lúc. Nếu bạn muốn nhuộm màu, sơn hay phủ lớp bảo vệ cho gỗ, hãy xem các tài liệu về hoàn thiện bên dưới.",
+  "safety": [
+    "Đây chỉ là những khuyến nghị cho việc tự làm — hãy điều chỉnh vật liệu, cách lắp ráp và cách xây dựng cho phù hợp với dự án và khu đất của bạn.",
+    "Làm món này cần có chút hiểu biết về dụng cụ cầm tay và dụng cụ chạy điện, đồ ngũ kim, vít bu-lông, gỗ xẻ và kỹ thuật lắp ráp cơ bản.",
+    "Trước khi dùng bất kỳ thiết bị chạy điện nào, hãy đọc và làm theo yêu cầu an toàn của nhà sản xuất, và đừng để ai chưa làm như vậy dùng dụng cụ chạy điện.",
+    "Bạn (chủ sở hữu) chịu trách nhiệm về mọi quy chuẩn xây dựng và an toàn, giấy phép và sự chấp thuận của cơ quan quản lý mà việc này cần.",
+    "Trước tiên hãy dọn sạch rác, những thứ nguy hiểm và công trình không cần thiết khỏi khu đất, và xác định mọi đường ống, đường dây có thể bị ảnh hưởng trước khi đào.",
+    "Mọi người phụ giúp xây đều nên ký giấy miễn trách nhiệm cho tình nguyện viên."
+  ],
+  "links": [
+    {
+      "label": "Chọn lớp hoàn thiện tốt nhất cho đồ ngoài trời (Rockler)"
+    },
+    {
+      "label": "Lớp hoàn thiện tốt nhất cho gỗ ngoài trời (Real Milk Paint)"
+    },
+    {
+      "label": "Lớp phủ gỗ ngoài trời (Vermont Natural Coatings)"
+    }
+  ],
+  "sourcePages": "Hướng dẫn lắp ráp 18_Planter_Box, tr. 1–10 (bìa; trước khi bắt đầu; các loại gỗ thường dùng; bước 1–6, cho cả bản lắp 18\"x18\" và 18\"x48\"; mẫu khoan mồi)"
+}

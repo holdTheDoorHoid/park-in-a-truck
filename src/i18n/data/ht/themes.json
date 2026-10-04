@@ -1,0 +1,18 @@
+{
+  "edible": {
+    "name": "Manje",
+    "blurb": "Pataje manje epi fè lyen ak vwazen — fwi, legim ak yon gwo tab pou tout moun."
+  },
+  "sanctuary": {
+    "name": "Refij",
+    "blurb": "Yon kote ki kalm pou w poze poukont ou, li liv epi fè ti rankont."
+  },
+  "nature": {
+    "name": "Lanati",
+    "blurb": "Plant natif, kote pou bèt viv, ak jwèt pou timoun ak polinizatè."
+  },
+  "event": {
+    "name": "Evènman",
+    "blurb": "Espas pou spektak, mache ak fèt nan katye a."
+  }
+}

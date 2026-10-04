@@ -1,0 +1,31 @@
+{
+  "start": {
+    "title": "从这里开始",
+    "tagline": "公园为什么重要，Park in a Truck 怎样运作。"
+  },
+  "acquire": {
+    "title": "获取",
+    "tagline": "找到一块地，并取得使用许可。",
+    "assumes": "您已经读过工具包，但还没有可以使用的地块。"
+  },
+  "organize": {
+    "title": "组织",
+    "tagline": "成立公园委员会，把邻居们召集起来。"
+  },
+  "assess": {
+    "title": "评估",
+    "tagline": "了解您的地块：阳光、土壤和周边环境。"
+  },
+  "dream": {
+    "title": "畅想",
+    "tagline": "用公园图块设计您的公园。"
+  },
+  "create": {
+    "title": "建造",
+    "tagline": "动手建造，每个周末完成一个阶段。"
+  },
+  "sustain": {
+    "title": "维护",
+    "tagline": "照管您的公园，一季又一季。"
+  }
+}
