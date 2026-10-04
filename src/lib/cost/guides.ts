@@ -349,12 +349,13 @@ export function guideLines(slug: GuideSlug, n: number): GuideLine[] {
   const mesh = g.materials.find((x) => /welded-wire mesh/i.test(x.item));
   if (mesh && g.basketCuFt) {
     const len = slug === 'gabion-bench' ? 48 : 96;
+    const gauge = /^\d+ gauge/.exec(mesh.size ?? '')?.[0].concat(' ') ?? '';
     const bracing = g.materials.find((x) => /bracing/i.test(x.item));
     const also = bracing ? ' Also needed: bracing for the center supports — 14 or 16 gauge galvanized wire, or offcuts of the mesh.' : '';
     lines.push(
       len === 48
         ? {
-            item: `Gabion basket 18"x18"x48" (${mesh.size?.split(',')[0] ?? 'welded-wire mesh'} 2"x2" welded-wire mesh)`,
+            item: `Gabion basket 18"x18"x48" (${gauge}welded-wire mesh)`,
             qty: n,
             unit: 'EA',
             price: PRICES.gabionBasket2x18x4,
@@ -363,7 +364,7 @@ export function guideLines(slug: GuideSlug, n: number): GuideLine[] {
             notes: `Priced as the spreadsheet’s basket for 4′ wood-topped gabions (2′x18″x4′).${also}`,
           }
         : {
-            item: `Gabion basket 18"x18"x96" (${mesh.size?.split(',')[0] ?? 'welded-wire mesh'} 2"x2" welded-wire mesh)`,
+            item: `Gabion basket 18"x18"x96" (${gauge}welded-wire mesh)`,
             qty: n,
             unit: 'EA',
             price: null,

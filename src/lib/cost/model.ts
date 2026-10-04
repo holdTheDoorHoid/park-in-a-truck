@@ -1148,7 +1148,7 @@ function compute(answers: CostInputs, fixes: ReadonlySet<FixId>, userPrices: Rec
     const M223 = add('furnishings', '2x4x12', C223, 'ea.', lumber('2x4x12'), lumberPrice('2x4x12') * C223, { group, ...wood('2x4x12'), cells: { qty: 'C223', price: 'L223', total: 'M223' } });
     const M224 = add('furnishings', '2.5" wood screws', C224, 'ea.', P.woodScrew, P.woodScrew.price * C224, { group, material: 'wood-screw', cells: { qty: 'C224', price: 'L224', total: 'M224' } });
     const base = M222 + M223 + M224;
-    const M225 = add('furnishings', 'Plus 20%', 0.2, '', base, base * 0.2, { group, notes: 'The sheet adds 20% to the trellis (unlabelled).', cells: { total: 'M225' } });
+    const M225 = b > 0 ? add('furnishings', 'Plus 20%', 0.2, '', base, base * 0.2, { group, notes: 'The sheet adds 20% to the trellis (unlabelled).', cells: { total: 'M225' } }) : 0;
     M226 = base + M225;
   }
 

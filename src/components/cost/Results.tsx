@@ -21,7 +21,7 @@ function Where({ link, vendor }: { link?: string; vendor?: string }) {
   );
 }
 
-const PLURAL: Record<string, string> = { roll: 'rolls', package: 'packages', can: 'cans', box: 'boxes', trip: 'trips', ton: 'tons', pack: 'packs' };
+const PLURAL: Record<string, string> = { roll: 'rolls', package: 'packages', can: 'cans', box: 'boxes', trip: 'trips', ton: 'tons', pack: 'packs', piece: 'pieces', stage: 'stages' };
 
 /** The sheet's unit, readable: "TONS" -> "tons", "ROLL" -> "rolls", "EA" -> "ea.". */
 export function unitText(unit: string, qty: number): string {

@@ -448,6 +448,8 @@ const META: Record<string, Meta> = {
   'gabion-basket-18x18x48': { section: 'Gabion baskets', label: 'Gabion baskets 18"x18"x48" (welded-wire mesh)', lead: '2-3 weeks', phase: 1 },
   'guide:gabion-basket-18x18x96': { section: 'Gabion baskets', label: 'Gabion baskets 18"x18"x96" (welded-wire mesh)', lead: '2-3 weeks', phase: 1 },
   'guide:deck-blocks': { section: 'Other materials', note: 'Only if needed (Shade guide, step 8).' },
+  'l-bracket-shade': { section: 'Hardware', label: 'L-brackets (the Shade guide gives no size)' },
+  'lag-screw-1-4in-x-1-1-4in': { section: 'Hardware', lead: '2-3 days' },
   'concrete-screw': { section: 'Hardware', label: '2" concrete screws' },
   'bird-bath': { label: 'Bird bath' },
   'cafe-set': { label: 'Cafe tables + chairs' },

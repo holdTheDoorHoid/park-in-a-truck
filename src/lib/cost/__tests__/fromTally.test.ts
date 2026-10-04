@@ -65,13 +65,17 @@ describe('inputsFromTally', () => {
     expect(r.inputs).toMatchObject({
       // 6 added 4-ft gabion-wall pieces = 24 ft -> 6 baskets, one course (elements.ts: 1 ft high)
       gabionBaskets: 6,
-      woodToppedGabions: 3, // one 4' + one 8' (= two 4')
+      woodToppedGabions: 1, // the 4' gabion bench (its guide)
+      gabionBenches8: 1, // the 8' one has its own guide
       benchesWithBack: 2,
       benchesNoBack: 1,
       squareTables: 1,
-      longTables: 3, // 4' + two 6'
+      tables4: 1,
+      tables6: 2,
+      longTables: 0, // no communal tables; 4' and 6' tables are priced from their guides
+      planters18: 2,
       stools: 4,
-      trellises: 1, // one 8'x8' canopy = 64 sq ft -> 1 trellis of 12'x8'
+      shadeStructures: 1, // one 8'x8' canopy = 64 sq ft -> one 8'x8' shade structure (Shade guide)
       compostBins: 1,
       rainBarrels: 2,
       sheds4x4: 0, // the shed's footprint is 8'x4' = 2 squares
@@ -85,7 +89,8 @@ describe('inputsFromTally', () => {
       birdHouses: 3,
       eventTents: 1,
     });
-    expect(r.notes.longTables).toMatch(/long tables/);
+    expect(r.notes.longTables).toBeUndefined();
+    expect(r.derived).not.toContain('trellises'); // the spreadsheet's 12x8 trellis has no element: typed by hand
     expect(r.notes.sheds4x8).toMatch(/4'x4'/);
     expect(r.notes.gabionBaskets).toMatch(/1 basket high/);
   });
@@ -103,10 +108,8 @@ describe('inputsFromTally', () => {
   });
 
   it('reports furnishings the spreadsheet has no question for, ignoring plants and existing conditions', () => {
-    expect(r.unmapped).toEqual([
-      { element: 'planter-18', name: '18" planter box (small)', count: 2 },
-      { element: 'mystery-thing', name: 'mystery-thing', count: 1 },
-    ]);
+    // planters, workbenches, 4'/6' tables and 8' gabion benches are priced from their guides now
+    expect(r.unmapped).toEqual([{ element: 'mystery-thing', name: 'mystery-thing', count: 1 }]);
   });
 
   it('orders long and short sides whichever way the design is turned', () => {
@@ -133,7 +136,7 @@ describe('inputsFromTally', () => {
   it('feeds straight into estimate()', () => {
     const e = estimate(r.inputs);
     expect(e.total).toBeGreaterThan(0);
-    expect(e.lines.some((l) => l.item === 'Perennials' && l.qty === 80)).toBe(true);
+    expect(e.lines.some((l) => l.item === 'Perennials' && l.qty === 100)).toBe(true); // 20 squares x 5
   });
 
   // A tally as the pieces' tally() writes it now: gabion wall and raised-bed feet,
@@ -183,20 +186,22 @@ describe('inputsFromTally', () => {
       keyholeGardensSmall: 1, // 4.5 ft across
       keyholeGardensMedium: 1, // 5.75 ft
       keyholeGardensLarge: 1, // 7.75 ft
-      trellises: 4, // 16x16 = 256 / 96 = 2.67 -> 3; 6x5.5 = 33 / 96 -> 1
+      shadeStructures: 5, // 16x16 = 256 / 64 = 4 of the Shade guide's 8'x8' structures; 6x5.5 = 33 / 64 -> 1
       sheds4x4: 1,
       sheds4x8: 1,
       stageSquares: 9, // 3 squares + 12x8 = 6 squares
       coldFrameSquares: 4,
       optCafeTableSets: 6,
-      longTables: 1,
+      longTables: 1, // the communal table
+      workbenches: 3,
       hammocks: 1,
       porchSwings: 2,
       fountains: 1,
       gabionTables: 2,
     });
-    expect(t.unmapped).toEqual([{ element: 'workbench', name: 'Workbench / standing table', count: 3 }]);
-    expect(t.notes.trellises).toMatch(/2 shade canopies in 12'x8' trellises/);
+    expect(t.unmapped).toEqual([]);
+    expect(t.notes.shadeStructures).toMatch(/2 shade canopies \(16'x16', 6'x5.5' on your plan\) as the Shade guide’s 8'x8' structure/);
+    expect(t.notes.gabionBaskets).toMatch(/grey 1-ft band the park pieces draw along the street edges/);
     expect(t.notes.raisedBedWoodEdgeFt).toMatch(/perimeter/);
   });
 
@@ -205,7 +210,7 @@ describe('inputsFromTally', () => {
     expect(t.manual).toEqual(expect.arrayContaining(['keyholeGardensSmall', 'keyholeGardensMedium', 'keyholeGardensLarge']));
     expect(t.notes.keyholeGardensMedium).toMatch(/3 keyhole gardens: enter them by size/);
     expect(t.inputs.stageSquares).toBe(4); // one 4'x4' square per drawn stage item (elements.ts countAs)
-    expect(t.inputs.trellises).toBe(2); // 8'x8' each -> one trellis each
+    expect(t.inputs.shadeStructures).toBe(2); // 8'x8' each -> one shade structure each
     expect(t.inputs).toMatchObject({ sheds4x4: 0, sheds4x8: 2, coldFrameSquares: 4 });
   });
 
@@ -216,7 +221,9 @@ describe('inputsFromTally', () => {
     expect(total('Cafe tables + chairs')).toBe(6 * 160);
     expect(total('Porch swing')).toBe(2 * 300);
     expect(total('Keyhole gardens, large')).toBe(120);
-    // 9 squares of stage: no cut list in the spreadsheet, so it needs a price
-    expect(e.priceNeeded.map((p) => p.id)).toContain('stage-other');
+    // 9 squares of stage: the 12'x8' one is the Stage guide's stage; the 3 drawn squares have no materials list
+    expect(e.lines.filter((l) => l.guide === 'stage').length).toBeGreaterThan(0);
+    expect(e.lines.find((l) => l.priceId === 'stage-other')!.item).toBe('Stage, 3 squares');
+    expect(e.priceNeeded.find((p) => p.id === 'stage-other')!.qty).toBe(1);
   });
 });
