@@ -16,7 +16,7 @@ import { defaultInputs, estimate, INPUT_KEYS, type CostInputs } from '../model';
 import { costT, EN, unitWord } from '../text';
 
 const wrap = (m: Message): Message =>
-  isPlural(m) ? (Object.fromEntries(Object.entries(m).map(([k, v]) => [k, `⟦${v}⟧`])) as Message) : `⟦${m}⟧`;
+  isPlural(m) ? (Object.fromEntries(Object.entries(m).map(([k, v]) => [k, `⟦${v}⟧`])) as unknown as Message) : `⟦${m}⟧`;
 const pseudo: Messages = Object.fromEntries(Object.entries(cost.messages).map(([k, v]) => [k, wrap(v as Message)]));
 
 beforeAll(() => registerBundle('fr', { msgs: { cost: pseudo }, data: {} }));

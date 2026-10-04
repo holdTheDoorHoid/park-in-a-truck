@@ -646,7 +646,8 @@
 .ce-diff-effect {
   font-weight: 700;
   font-variant-numeric: tabular-nums;
-  white-space: nowrap;
+  /* stays on one line where it fits; longer money formats (Arabic: "3,717.60 US$ → …") may wrap on phones */
+  min-width: 0;
 }
 .ce-kept {
   margin: 0;

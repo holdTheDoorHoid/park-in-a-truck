@@ -5,11 +5,15 @@ import type { ThemeId } from '../../lib/types';
 import PlantPickerIsland from '../plants/PlantPickerIsland';
 import LangFallback from '../site/LangFallback.astro';
 import plantsMsgs from '../../i18n/messages/en/plants.ts';
+import { getT, hasTranslations } from '../../i18n/astro.ts';
 
 interface Props {
   theme?: ThemeId | ThemeId[];
 }
 const { theme } = Astro.props;
+const t = getT(Astro, plantsMsgs);
+// Until the plants area has a translation in this language the island stays English (LangFallback marks it so).
+const locale = hasTranslations(t.locale, 'plants') ? t.locale : 'en';
 ---
 
 {/* client:only, not client:visible -- this island's first render depends on
@@ -19,7 +23,7 @@ const { theme } = Astro.props;
     extra DOM surgery); client:only skips SSR for this component entirely,
     which is fine since the picker is inert without JS anyway. */}
 <LangFallback area={plantsMsgs}>
-  <PlantPickerIsland theme={theme} client:only="preact" />
+  <PlantPickerIsland theme={theme} locale={locale} client:only="preact" />
 </LangFallback>
 
 <style is:global>
@@ -62,7 +66,8 @@ const { theme } = Astro.props;
     border: 2px solid var(--line);
     background: #fff;
     border-radius: 999px;
-    padding: 0.4em 0.9em 0.4em 0.6em;
+    padding-block: 0.4em;
+    padding-inline: 0.6em 0.9em;
     font: inherit;
     font-weight: 600;
     font-size: 0.9rem;

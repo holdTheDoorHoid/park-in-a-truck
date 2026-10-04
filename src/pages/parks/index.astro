@@ -1,24 +1,29 @@
 ---
-// Owner: resources workstream.
+// Owner: resources workstream. Words: the parks catalog (src/i18n/messages/en/parks.ts);
+// descriptions etc. from the parks data overlay (park names and addresses never change).
 import Base from '../../layouts/Base.astro';
 import ParksMap from '../../components/widgets/ParksMap.astro';
 import { PARKS, youtubeThumb, youtubeWatchUrl } from '../../data/parks';
 import { u } from '../../lib/url';
+import parksMsgs from '../../i18n/messages/en/parks.ts';
+import LangFallback from '../../components/site/LangFallback.astro';
+import { getT, localizeKeyed } from '../../i18n/astro.ts';
+
+const t = getT(Astro, parksMsgs);
+const parks = localizeKeyed(PARKS, 'parks', 'id', t.locale);
 ---
 
-<Base title="Parks built so far" description="Real neighborhood parks already built with the Park in a Truck toolkit around Philadelphia.">
+<Base title={t('page.title')} description={t('page.description')}>
+  <LangFallback area={parksMsgs}>
   <section class="wrap" style="padding-top:40px">
-    <p class="eyebrow">Built with Park in a Truck</p>
-    <h1 class="ruled">Parks built so far</h1>
-    <p class="lede">
-      Neighbors have already used this toolkit to build real parks around Philadelphia. Here's where, with what's
-      known about each — click a pin or a card for the story, photos and press.
-    </p>
+    <p class="eyebrow">{t('page.eyebrow')}</p>
+    <h1 class="ruled">{t('page.title')}</h1>
+    <p class="lede">{t('page.lede')}</p>
 
     <ParksMap />
 
     <div class="park-list">
-      {PARKS.map((park) => (
+      {parks.map((park) => (
         <article id={`park-${park.id}`} class="park-card">
           {park.photos.length > 0 && (
             <div class="park-photos">
@@ -26,10 +31,7 @@ import { u } from '../../lib/url';
                 <figure>
                   <img src={u(photo.src)} alt={photo.alt} loading="lazy" />
                   {(photo.caption || photo.credit) && (
-                    <figcaption>
-                      {photo.caption}
-                      {photo.credit && <> — {photo.credit}</>}
-                    </figcaption>
+                    <figcaption>{photo.credit ? t('photo.credit', { caption: photo.caption ?? '', credit: photo.credit }) : photo.caption}</figcaption>
                   )}
                 </figure>
               ))}
@@ -40,7 +42,7 @@ import { u } from '../../lib/url';
             <p class="park-meta">
               {park.address}
               {park.neighborhood && <> · {park.neighborhood}</>}
-              {park.year && <> · opened {park.year}</>}
+              {park.year && <> · {t('park.opened', { year: String(park.year) })}</>}
             </p>
             <p class="prose">{park.description}</p>
 
@@ -48,7 +50,7 @@ import { u } from '../../lib/url';
               <div class="park-videos">
                 {park.videos.map((v) => (
                   <a class="park-video" href={youtubeWatchUrl(v.id)} target="_blank" rel="noopener noreferrer">
-                    <img src={youtubeThumb(v.id)} alt={`Video: ${v.title}`} loading="lazy" />
+                    <img src={youtubeThumb(v.id)} alt={t('video.alt', { title: v.title })} loading="lazy" />
                     <span class="park-video-play" aria-hidden="true">▶</span>
                     <span class="park-video-title">{v.title}{v.channel && <> · {v.channel}</>}</span>
                   </a>
@@ -59,17 +61,18 @@ import { u } from '../../lib/url';
             {park.links.length > 0 && (
               <ul class="park-links">
                 {park.links.map((l) => (
-                  <li><a href={l.url} target="_blank" rel="noopener noreferrer">{l.label}</a></li>
+                  <li><a href={l.url} target="_blank" rel="noopener noreferrer" hreflang="en">{l.label}</a>{t.locale !== 'en' && ` ${t('link.english')}`}</li>
                 ))}
               </ul>
             )}
 
-            {park.source && <p class="park-source muted">Source: {park.source}</p>}
+            {park.source && <p class="park-source muted">{t('park.source', { source: park.source })}</p>}
           </div>
         </article>
       ))}
     </div>
   </section>
+  </LangFallback>
 </Base>
 
 <style>
@@ -134,9 +137,8 @@ import { u } from '../../lib/url';
   }
   .park-video-play {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    inset: 0;
+    margin: auto;
     width: 2.4em;
     height: 2.4em;
     border-radius: 50%;

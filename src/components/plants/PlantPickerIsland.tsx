@@ -14,6 +14,7 @@ import { THEME_ORDER, THEMES } from '../../data/themes';
 import {
   evenSplit,
   plantCounts,
+  PLANTS,
   PLANTS_PER_SQUARE,
   plantsForBucket,
   plantsForType,
@@ -22,9 +23,16 @@ import {
   type PlantPickerState,
   type PlantTargets,
 } from '../../data/plants';
+import plantsMsgs from '../../i18n/messages/en/plants.ts';
+import { getT, type T } from '../../i18n/t.ts';
+import { localizeKeyed, localizeRecord } from '../../i18n/data.ts';
+
+type PlantsT = T<typeof plantsMsgs>;
 
 interface Props {
   theme?: ThemeId | ThemeId[];
+  /** The page's language (the Astro wrapper passes English until the plants area has translations) */
+  locale?: string;
 }
 
 type BucketLight = 'sun' | 'shade';
@@ -42,12 +50,12 @@ interface Bucket {
  * so the boxes and the picker always agree.
  */
 const COUNT_FIELDS = [
-  { key: 'squareSun', id: 'dream.perennials-sun', label: 'Green squares — sun', fromTally: (t: DesignTally) => t.plantingSquares.sun },
-  { key: 'squareShade', id: 'dream.perennials-shade', label: 'Green squares — shade', fromTally: (t: DesignTally) => t.plantingSquares.shade },
-  { key: 'shrubSun', id: 'dream.shrubs-sun', label: 'Shrubs — sun', fromTally: (t: DesignTally) => t.shrubs.sun },
-  { key: 'shrubShade', id: 'dream.shrubs-shade', label: 'Shrubs — shade', fromTally: (t: DesignTally) => t.shrubs.shade },
-  { key: 'smallTree', id: 'dream.small-trees', label: 'Small trees', fromTally: (t: DesignTally) => t.smallTrees },
-  { key: 'largeTree', id: 'dream.large-trees', label: 'Large trees', fromTally: (t: DesignTally) => t.largeTrees },
+  { key: 'squareSun', id: 'dream.perennials-sun', label: 'count.squareSun', fromTally: (t: DesignTally) => t.plantingSquares.sun },
+  { key: 'squareShade', id: 'dream.perennials-shade', label: 'count.squareShade', fromTally: (t: DesignTally) => t.plantingSquares.shade },
+  { key: 'shrubSun', id: 'dream.shrubs-sun', label: 'count.shrubSun', fromTally: (t: DesignTally) => t.shrubs.sun },
+  { key: 'shrubShade', id: 'dream.shrubs-shade', label: 'count.shrubShade', fromTally: (t: DesignTally) => t.shrubs.shade },
+  { key: 'smallTree', id: 'dream.small-trees', label: 'type.smallTree', fromTally: (t: DesignTally) => t.smallTrees },
+  { key: 'largeTree', id: 'dream.large-trees', label: 'type.largeTree', fromTally: (t: DesignTally) => t.largeTrees },
 ] as const;
 type CountKey = (typeof COUNT_FIELDS)[number]['key'];
 
@@ -56,14 +64,14 @@ function themeList(t?: ThemeId | ThemeId[]): ThemeId[] {
   return Array.isArray(t) ? t : [t];
 }
 
-function buildBuckets(themes: ThemeId[], counts: PlantTargets): Bucket[] {
+function buildBuckets(t: PlantsT, themes: ThemeId[], counts: PlantTargets): Bucket[] {
   const defs: { key: string; label: string; light: BucketLight | 'both'; plants: Plant[]; target: number }[] = [
-    { key: 'perennial-sun', label: 'Perennials — sun', light: 'sun', plants: plantsForBucket(themes, 'perennial', 'sun'), target: counts.perennial.sun },
-    { key: 'perennial-shade', label: 'Perennials — shade', light: 'shade', plants: plantsForBucket(themes, 'perennial', 'shade'), target: counts.perennial.shade },
-    { key: 'shrub-sun', label: 'Shrubs — sun', light: 'sun', plants: plantsForBucket(themes, 'shrub', 'sun'), target: counts.shrub.sun },
-    { key: 'shrub-shade', label: 'Shrubs — shade', light: 'shade', plants: plantsForBucket(themes, 'shrub', 'shade'), target: counts.shrub.shade },
-    { key: 'small-tree', label: 'Small trees', light: 'both', plants: plantsForType(themes, 'small-tree'), target: counts.smallTree },
-    { key: 'large-tree', label: 'Large trees', light: 'both', plants: plantsForType(themes, 'large-tree'), target: counts.largeTree },
+    { key: 'perennial-sun', label: t('bucket.perennialSun'), light: 'sun', plants: plantsForBucket(themes, 'perennial', 'sun'), target: counts.perennial.sun },
+    { key: 'perennial-shade', label: t('bucket.perennialShade'), light: 'shade', plants: plantsForBucket(themes, 'perennial', 'shade'), target: counts.perennial.shade },
+    { key: 'shrub-sun', label: t('bucket.shrubSun'), light: 'sun', plants: plantsForBucket(themes, 'shrub', 'sun'), target: counts.shrub.sun },
+    { key: 'shrub-shade', label: t('bucket.shrubShade'), light: 'shade', plants: plantsForBucket(themes, 'shrub', 'shade'), target: counts.shrub.shade },
+    { key: 'small-tree', label: t('type.smallTree'), light: 'both', plants: plantsForType(themes, 'small-tree'), target: counts.smallTree },
+    { key: 'large-tree', label: t('type.largeTree'), light: 'both', plants: plantsForType(themes, 'large-tree'), target: counts.largeTree },
   ];
   return defs.filter((b) => b.plants.length > 0);
 }
@@ -73,7 +81,19 @@ function csvEscape(s: string | number): string {
   return /[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v;
 }
 
-export default function PlantPickerIsland({ theme }: Props) {
+const CSV_TYPE = { 'large-tree': 'csv.type.largeTree', 'small-tree': 'csv.type.smallTree', shrub: 'csv.type.shrub', perennial: 'csv.type.perennial' } as const;
+const CSV_LIGHT = { sun: 'csv.light.sun', shade: 'csv.light.shade', both: 'csv.light.both' } as const;
+
+export default function PlantPickerIsland({ theme, locale }: Props) {
+  const t = useMemo(() => getT(locale, plantsMsgs), [locale]);
+  /** Plant names, notes and sizes in the reader's language (ids, botanical names and prices stay as they are) */
+  const local = useMemo(() => new Map(localizeKeyed(PLANTS, 'plants', 'id', t.locale).map((p) => [p.id, p])), [t]);
+  const themeNames = useMemo(() => localizeRecord(THEMES, 'themes', t.locale), [t]);
+  /** Counts as the picker always wrote them (no thousands separator) */
+  const n = (v: number) => t.num(v, { useGrouping: false });
+  /** Dollars and cents as the picker always wrote them ("$1234.50", no thousands separator) */
+  const usd = (v: number) =>
+    t.num(v, { style: 'currency', currency: 'USD', currencyDisplay: 'narrowSymbol', minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: false });
   const project = useStore($project);
   const tally = project.extra.tally as DesignTally | undefined;
   const saved = project.extra.plants as PlantPickerState | undefined;
@@ -112,7 +132,7 @@ export default function PlantPickerIsland({ theme }: Props) {
     [valuesKey],
   );
 
-  const buckets = useMemo(() => buildBuckets(themes, counts), [themes, counts]);
+  const buckets = useMemo(() => buildBuckets(t, themes, counts), [t, themes, counts]);
 
   // Persist whenever the person's choices actually change, rather than from
   // inside each handler -- handlers below use the *functional* setState form
@@ -157,18 +177,26 @@ export default function PlantPickerIsland({ theme }: Props) {
   const grandCost = selectionCost(selections);
 
   function downloadCsv() {
-    const rows = [['Common name', 'Botanical name', 'Type', 'Light', 'Quantity', 'Unit cost', 'Line cost']];
+    const rows = [[t('csv.common'), t('csv.botanical'), t('csv.type'), t('csv.light'), t('csv.quantity'), t('csv.unitCost'), t('csv.lineCost')]];
     for (const p of allPlants) {
       const q = qty[p.id] ?? 0;
       if (q <= 0) continue;
-      rows.push([p.common, p.botanical, p.type, p.light, String(q), (p.unitCost ?? 0).toFixed(2), ((p.unitCost ?? 0) * q).toFixed(2)]);
+      rows.push([
+        local.get(p.id)?.common ?? p.common,
+        p.botanical,
+        t(CSV_TYPE[p.type]),
+        t(CSV_LIGHT[p.light]),
+        String(q),
+        (p.unitCost ?? 0).toFixed(2),
+        ((p.unitCost ?? 0) * q).toFixed(2),
+      ]);
     }
-    rows.push(['TOTAL', '', '', '', String(grandChosen), '', grandCost.toFixed(2)]);
+    rows.push([t('csv.total'), '', '', '', String(grandChosen), '', grandCost.toFixed(2)]);
     const csv = rows.map((r) => r.map(csvEscape).join(',')).join('\n');
     const blob = new Blob([csv], { type: 'text/csv' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = 'park-in-a-truck-plant-list.csv';
+    a.download = t('picker.csvFile');
     document.body.appendChild(a);
     a.click();
     a.remove();
@@ -178,10 +206,10 @@ export default function PlantPickerIsland({ theme }: Props) {
     <div class="plant-picker">
       <div class="pp-setup no-print">
         <div class="pp-themes">
-          <span class="pp-label">Theme{themes.length > 1 ? 's' : ''}</span>
+          <span class="pp-label">{t('picker.themes', { count: themes.length > 1 ? themes.length : 1 })}</span>
           <div class="pp-theme-chips">
             {THEME_ORDER.map((id) => {
-              const meta = THEMES[id];
+              const meta = themeNames[id];
               const on = themes.includes(id);
               return (
                 <button
@@ -197,29 +225,33 @@ export default function PlantPickerIsland({ theme }: Props) {
               );
             })}
           </div>
-          <p class="field-hint">
-            Mixing two themes? The Dream workbook says that's fine — pick plants from both lists.
-          </p>
+          <p class="field-hint">{t('picker.mixHint')}</p>
         </div>
 
         <div class="pp-counts">
           {tally && (
             <label class="pp-source-toggle">
               <input type="checkbox" checked={!useManual} onChange={(e) => setUseManual(!(e.currentTarget as HTMLInputElement).checked)} />
-              Use the counts from your design
+              {t('picker.useDesign')}
             </label>
           )}
           {fromDesign ? (
             <p class="field-auto" style={{ marginTop: '0.4em' }}>
-              ✓ {anyTyped ? 'From your design and the numbers you typed' : 'Filled in from your design'} —{' '}
-              {counts.perennial.sun + counts.perennial.shade} perennials ({PLANTS_PER_SQUARE} per green square, as in Park in a Truck’s plant lists),{' '}
-              {counts.shrub.sun + counts.shrub.shade} shrubs, {counts.smallTree} small trees, {counts.largeTree} large trees
+              {t(anyTyped ? 'picker.fromDesignTyped' : 'picker.fromDesign', {
+                summary: t('picker.summary', {
+                  perennials: n(counts.perennial.sun + counts.perennial.shade),
+                  per: n(PLANTS_PER_SQUARE),
+                  shrubs: n(counts.shrub.sun + counts.shrub.shade),
+                  small: n(counts.smallTree),
+                  large: n(counts.largeTree),
+                }),
+              })}
             </p>
           ) : (
             <div class="pp-manual-grid">
               {COUNT_FIELDS.map((f) => (
                 <label key={f.key}>
-                  {f.label}
+                  {t(f.label)}
                   <input
                     type="number"
                     min="0"
@@ -238,7 +270,7 @@ export default function PlantPickerIsland({ theme }: Props) {
       </div>
 
       {themes.length === 0 ? (
-        <p class="muted">Choose a theme above to see its plant list.</p>
+        <p class="muted">{t('picker.chooseTheme')}</p>
       ) : (
         <>
           {buckets.map((bucket) => {
@@ -249,38 +281,38 @@ export default function PlantPickerIsland({ theme }: Props) {
                 <header class="pp-bucket-head">
                   <h3>{bucket.label}</h3>
                   <div class="pp-bucket-tally">
-                    <span class={ok ? 'pp-match ok' : 'pp-match'}>
-                      {chosen} of {bucket.target} planned
-                    </span>
+                    <span class={ok ? 'pp-match ok' : 'pp-match'}>{t('picker.planned', { chosen: n(chosen), count: n(bucket.target) })}</span>
                     <div class="no-print pp-bucket-actions">
                       <button type="button" class="btn btn-small" onClick={() => fillEvenly(bucket)}>
-                        Fill evenly
+                        {t('picker.fillEvenly')}
                       </button>
                       <button type="button" class="btn btn-small" onClick={() => clearBucket(bucket)}>
-                        Clear
+                        {t('picker.clear')}
                       </button>
                     </div>
                   </div>
                 </header>
                 <div class="pp-cards">
-                  {bucket.plants.map((p) => (
+                  {bucket.plants.map((plant) => {
+                    const p = local.get(plant.id) ?? plant;
+                    return (
                     <article class="pp-card" key={p.id}>
                       <div class="pp-photo">
-                        {p.photo ? <img src={u(p.photo)} alt={`${p.common} (${p.botanical})`} loading="lazy" /> : <span class="pp-photo-none" aria-hidden="true" />}
+                        {p.photo ? <img src={u(p.photo)} alt={t('photo.alt', { common: p.common, botanical: p.botanical })} loading="lazy" /> : <span class="pp-photo-none" aria-hidden="true" />}
                       </div>
                       <div class="pp-card-body">
                         <p class="pp-common">{p.common}</p>
                         <p class="pp-botanical">{p.botanical}</p>
                         <p class="pp-meta">
-                          {p.matureSize && <>Mature: {p.matureSize}</>}
-                          {p.containerSize && <> · At purchase: {p.containerSize}</>}
+                          {p.matureSize && t('picker.mature', { size: p.matureSize })}
+                          {p.containerSize && ` · ${t('picker.atPurchase', { size: p.containerSize })}`}
                         </p>
                         {p.notes && <p class="pp-notes">{p.notes}</p>}
-                        <p class="pp-cost">${(p.unitCost ?? 0).toFixed(2)} each</p>
+                        <p class="pp-cost">{t('picker.each', { price: usd(p.unitCost ?? 0) })}</p>
                       </div>
                       <div class="pp-qty no-print">
                         <label class="visually-hidden" for={`qty-${p.id}`}>
-                          How many {p.common}?
+                          {t('picker.howMany', { name: p.common })}
                         </label>
                         <input
                           id={`qty-${p.id}`}
@@ -292,23 +324,22 @@ export default function PlantPickerIsland({ theme }: Props) {
                       </div>
                       <div class="pp-qty-print print-only">{qty[p.id] ?? 0}×</div>
                     </article>
-                  ))}
+                    );
+                  })}
                 </div>
               </section>
             );
           })}
 
           <div class="pp-grand">
-            <div>
-              <strong>{grandChosen}</strong> of <strong>{grandTarget}</strong> plants picked
-            </div>
-            <div class="pp-grand-cost">Estimated cost: <strong>${grandCost.toFixed(2)}</strong></div>
+            <div dangerouslySetInnerHTML={{ __html: t.html('picker.picked', { chosen: n(grandChosen), count: n(grandTarget) }) }} />
+            <div class="pp-grand-cost" dangerouslySetInnerHTML={{ __html: t.html('picker.cost', { cost: usd(grandCost) }) }} />
             <div class="no-print pp-grand-actions">
               <button type="button" class="btn" onClick={() => window.print()}>
-                Print shopping list
+                {t('picker.print')}
               </button>
               <button type="button" class="btn btn-primary" onClick={downloadCsv}>
-                Download CSV
+                {t('picker.csv')}
               </button>
             </div>
           </div>
