@@ -628,6 +628,14 @@ export class PlannerScene {
     return kind === 'item' && this.parkState ? this.parkState.map.toPark(p) : p;
   }
 
+  /** Stop the camera's glide after a quick orbit, so the ground stays put under a dragged thing. */
+  private settleCamera() {
+    if (!this.controls.enableDamping) return;
+    this.controls.enableDamping = false;
+    this.controls.update();
+    this.controls.enableDamping = true;
+  }
+
   private setCursor(c: string) {
     if (c === this.cursor) return;
     this.cursor = c;
@@ -669,6 +677,7 @@ export class PlannerScene {
       grabFrame: this.toFrame(hit.kind, g),
       last: { clientX: e.clientX, clientY: e.clientY, shiftKey: e.shiftKey, altKey: e.altKey },
     };
+    this.settleCamera();
     this.controls.enabled = false;
     this.setHover(null);
     this.setCursor('grabbing');
