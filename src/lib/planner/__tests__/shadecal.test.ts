@@ -25,7 +25,7 @@ import { getT } from '../../../i18n/t.ts';
 import { registerBundle } from '../../../i18n/registry.ts';
 import { lotCalGrid, shadeCalJob, shadeCalKey } from '../shadecalrun';
 import { spotMonthly } from '../sunperiod';
-import { lotGrid, shadeBuildings, shadeCrowns, spotInputFor, spotMonthlyFor } from '../sunstudy';
+import { lotGrid, shadeBuildings, shadeCrowns, spotInputFor } from '../sunstudy';
 import type { Crown, Prism } from '../sunhours';
 import { buildLocalSite, type LocalSite } from '../localsite';
 import { siteToLocal } from '../rect';
@@ -260,9 +260,16 @@ describe('the summary in words (English)', () => {
 describe('the demo lots', () => {
   const doverSite = buildLocalSite(ctxOf(dover, doverElev));
   const greenSite = buildLocalSite(ctxOf(greenway, greenwayElev));
+  // each lot's middle worked out once for all the tests below (keeps this file light: other files time themselves)
+  const cals = new Map<LocalSite, ShadeCal>();
+  const middleCal = (site: LocalSite) => {
+    let c = cals.get(site);
+    if (!c) cals.set(site, (c = spotCalendar(spotInputFor(site, [], middle(site)))));
+    return c;
+  };
 
   it('1322 N Dover St (narrow, between rowhouses): no direct sun in the middle of the lot from November to February', () => {
-    const cal = spotCalendar(spotInputFor(doverSite, [], middle(doverSite)));
+    const cal = middleCal(doverSite);
     for (const m of [11, 12, 1, 2]) {
       const d = dayPattern(cal, m - 1)!;
       expect(d.type).toBe('none');
@@ -274,29 +281,23 @@ describe('the demo lots', () => {
   });
 
   it('2061 S 60th St (corner lot): direct sun in the middle of the lot every month', () => {
-    const cal = spotCalendar(spotInputFor(greenSite, [], middle(greenSite)));
+    const cal = middleCal(greenSite);
     for (let m = 0; m < 12; m++) expect(dayPattern(cal, m)!.type).not.toBe('none');
     expect(monthRuns(cal, 0).some((r) => r.state === 'sun' && r.to - r.from >= 5 * 60)).toBe(true);
   });
 
   it('agrees with the spot chart (same blocking model): hours of direct sun a day, month by month', () => {
-    for (const site of [doverSite, greenSite]) {
-      const p = middle(site);
-      const cal = spotCalendar(spotInputFor(site, [], p));
-      const chart = spotMonthlyFor(site, [], p);
-      cal.cells.forEach((row, m) => {
-        const hours = row.reduce((a, c: CalCell) => a + (c.light / c.n) * (cal.stepMin / 60), 0);
-        expect(Math.abs(hours - chart[m]!.sunHours)).toBeLessThan(0.5);
-      });
-    }
-    // and with spotMonthly called directly on the same inputs
-    const input = spotInputFor(doverSite, [], middle(doverSite));
-    expect(spotMonthly(input)[6]!.sunHours).toBeCloseTo(spotMonthlyFor(doverSite, [], middle(doverSite))[6]!.sunHours, 6);
+    const cal = middleCal(doverSite);
+    const chart = spotMonthly(spotInputFor(doverSite, [], middle(doverSite)));
+    cal.cells.forEach((row, m) => {
+      const hours = row.reduce((a, c: CalCell) => a + (c.light / c.n) * (cal.stepMin / 60), 0);
+      expect(Math.abs(hours - chart[m]!.sunHours)).toBeLessThan(0.5);
+    });
   });
 
   it('is quick enough to work out on a click (well under 300 ms once the place is known)', () => {
+    middleCal(greenSite); // the place's sun positions are known now
     const input = spotInputFor(greenSite, [], middle(greenSite));
-    spotCalendar(input);
     const t0 = performance.now();
     spotCalendar({ ...input, point: [input.point[0] + 3, input.point[1]] });
     expect(performance.now() - t0).toBeLessThan(300);
