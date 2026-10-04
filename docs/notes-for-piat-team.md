@@ -43,6 +43,18 @@ Stated sizes vs. what the parts build (found while making the 3D models):
 | Bench + back | 48 × 18.5 × 25 | 48 × 20.8 × 33.8 | 25" is the arm height; the backrest (bracket + boards) rises to ~34" and reclines back |
 | 2' table | cut list: 11 × T-2 | 9 × T-2 | Steps, cover and drawing use 9 (2 in the end frames, 7 on top); 11 also exceeds the lumber in the materials list |
 | 6' table | 7 top boards | 6 or 7 | Cut list and cover say 7; step-5 text and drawing show 6 |
+| 8' gabion bench | cut list: 6 × GB-2 | 5 × GB-2 | 2 end caps + 3 braces; the guide's own step-1 drawing shows a pile of 5 |
+| Shade | cut list: 14 × SS-1 | 32 × SS-1 | 4 legs, 2 top beams, 4 braces, 2 cross beams, 4 long braces, 1 top support, 15 canopy boards |
+| Stage | materials: 16 × 2x4x8' | ~23–25 × 2x4x8' | The 93" and 86" pieces alone need more than 16 boards |
+
+Step-text slips found while modelling (the site follows the cut list and drawings):
+
+- 24" planter: step 2 puts P-2 "on either side" (the drawing needs P-1 stiles with P-2 rails); step 3 calls the slats
+  P-2 (they must be the 21" P-1); steps 4–5 mention "P-3", which this guide doesn't have.
+- 18" planter: step 3 says "frame created in step three".
+- Bench + back: the step-7 tip says "BB-6" where it means BB-2; the step-7 text says "secured in step seven" (step six).
+- 8' gabion bench: the step-10 detail's 1/4" gaps don't fit five boards on the 18" frame (1/8" does).
+- Workbench: the text says the front brace "will overhang slightly", but 41" + 2 × 1.5" = 44" exactly.
 
 ## Cost-estimator spreadsheet
 
