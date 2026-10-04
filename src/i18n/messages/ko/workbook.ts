@@ -28,7 +28,7 @@ export default {
   'done.badge': '✓ 완료',
   'progress.of': '{total}개 중 {done}개',
   'progress.done': '{total}개 중 {done}개 완료',
-  'progress.total': '{total}개 단계 중 {done}개 완료',
+  'progress.total': '세부 단계 {total}개 중 {done}개 완료',
 
   'pdf.label': '원본 워크북 페이지',
   'pdf.page': '(PDF {page}쪽)',
