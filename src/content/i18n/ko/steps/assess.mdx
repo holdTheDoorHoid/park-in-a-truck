@@ -1,0 +1,307 @@
+---
+title: Assess
+intro: Get to know your lot — its sun, soil, surroundings and size — and turn what you find into a base plan.
+sources:
+  - Toolkit pp. 35–37 (Assess, Evaluate the Park Site, Site Characteristics)
+  - Assess Workbook pp. 3–11 (Overview, Site Visit, Measure Your Lot, Diagram Your Lot, Verify Your Diagram, Record Objects, Assess Objects, Base Plan, Are You Ready?)
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import Download from '../../../../components/workbook/Download.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import SiteReport from '../../../../components/widgets/SiteReport.astro';
+import BaseMap from '../../../../components/widgets/BaseMap.astro';
+import Planner from '../../../../components/widgets/Planner.astro';
+import SunStudy from '../../../../components/widgets/SunStudy.astro';
+import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
+
+{/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — reminds a reader who hasn't recorded a lot agreement yet, before they sink time into site visits and soil work on a lot they may not have permission for. */}
+<LotAgreementNotice />
+
+What makes your lot special, and how can you best use these features? This step reviews how to evaluate your lot
+and ensure your park takes advantage of its site conditions.
+
+A lot doesn't stand alone — it's part of your community. So assessment needs to include your neighborhood too. Is
+there a unique history or culture that should be reflected in the design? A park that pays homage to a community's
+sense of itself will feel more like an old neighbor rather than a newcomer.
+
+Example project sites are used to illustrate the key steps in this process. Of course, your situation will be
+different, depending on the location, shape, and context of your own park site — but this is a great place to
+start.
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={3} label="Overview" />
+
+## Site characteristics {/* #site-characteristics */}
+
+In this step, you will document the physical characteristics of the park site. Is the site sunny or shady? Flat or
+sloped, with existing trees? Or is it across the street from a church? All of these characteristics will influence
+what you can do on the site. For example, suppose you want to grow tomatoes — your site will need to be sunny
+throughout the day.
+
+Visit your park site and carefully document what might affect your park's design. By evaluating the site
+characteristics before designing the park's features, you'll make sure the design is adapted to the site's unique
+conditions.
+
+<Figure
+  src="img/assess/site-characteristics.webp"
+  alt="Isometric illustration of an example project site, highlighted in blue on a residential corner: numbered callouts mark its location on a busy corner, a bus route, a large blank wall, overhead utility lines along the street edge, and a sunny area along the sidewalk."
+  caption="An example project site and the characteristics that make it unique"
+/>
+
+This example lot is unique because of: **(1)** its location on a busy corner, **(2)** being on a bus route, **(3)** a
+building with a large blank wall at the end, **(4)** utility lines along the street edge, and **(5)** a sunny area
+along the sidewalk. Your lot will have its own list. Document any cultural or historical features of the space and
+adjacent blocks, too — did an interesting business once occupy the lot? Were there historical events nearby? What
+did the space look like before there were buildings? This is a great way to engage long-time residents and students
+who have the research skills to dive into city archives.
+
+<Checklist
+  id="assess.conditions"
+  label="Conditions to document"
+  items={[
+    { value: 'sidewalks', label: 'Sidewalks and other pavement' },
+    { value: 'utilities', label: 'Visible utilities (overhead and ground)' },
+    { value: 'sun-direction', label: 'General direction of sunrise / sunset' },
+    { value: 'sun-shade-areas', label: 'Areas that are sunny and/or shady' },
+    { value: 'ground-cover', label: 'Areas of gravel, pavement, or bare soil' },
+    { value: 'water-collection', label: 'Areas where water collects after rainfall' },
+    { value: 'adjacent-buildings', label: 'Adjacent buildings' },
+    { value: 'plants', label: 'Shrubs and trees (and their type, if you know it)' },
+    { value: 'structures', label: 'Existing stand-alone structures (sheds, fences)' },
+    { value: 'building-remains', label: 'Building remains (foundation, old wall, etc.)' },
+    { value: 'terrain', label: 'Sloping terrain, mounds and/or large depressions' },
+    { value: 'views', label: 'Good and/or undesirable views' },
+    { value: 'wind', label: 'Windy / breezy areas' },
+    { value: 'sounds', label: 'Primary sounds / potential nuisance areas' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={3} label="Site Characteristics" />
+
+## Site visit {/* #site-visit */}
+
+The following activities can be done as a group or individually when you visit the park site:
+
+1. **Collect soil samples.** Understanding the soil nutrients is very helpful in determining what may grow best in
+   your park. A simple test for lead will also help ensure your park is safe. Penn State Extension offers a simple
+   soil test procedure: [agsci.psu.edu/aasl/soil-testing](https://agsci.psu.edu/aasl/soil-testing/fertility/soil-fertility-submission-forms).
+2. **Photograph.** We all see the landscape differently, and taking photographs is one way of sharing with others
+   what we see. Set aside 30 minutes to walk around and take photos of the park site and surrounding context. Then
+   share your photos with one another and describe why you took each one.
+3. **Sit and listen.** Sit quietly in the park site and listen with all your senses. What can you hear, smell, and
+   touch? After 30 minutes, record what you sensed. Are there positive senses that can be incorporated into the
+   park design, or negative senses that could be lessened by it? How would it be different on a different day of
+   the week, or time of day or night?
+4. **Measure + evaluate.** Taking measurements of the park site is a way to help understand it in more detail — the
+   next few steps walk through that.
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — Penn State's standard fertility test has no lead in it; facts checked 2026-10-04 on agsci.psu.edu and phila.gov. */}
+<Callout kind="site">
+  Penn State's standard soil fertility test (pH and nutrients) doesn't test for lead. Lead is a separate test on the
+  lab's [environmental soil testing form ↗](https://agsci.psu.edu/aasl/soil-testing/environmental), or any
+  EPA-recognized lab can do it. The City's [lead guide ↗](https://www.phila.gov/guides/lead-guide/where-is-lead/)
+  covers lead in garden soil: covering bare soil, raised beds for food, and testing.
+</Callout>
+
+<Field id="assess.soil-notes" label="Soil test results" type="textarea" hint="Nutrients, pH, lead — whatever the test comes back with." />
+<Field id="assess.listen-notes" label="What you heard, smelled, and touched" type="textarea" />
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={4} label="Site Visit" />
+
+## Measure your lot {/* #measure-your-lot */}
+
+Follow the steps below to begin making a diagram of the existing park site. This "base map" can then be printed and
+used at the site to record locations of various site elements and important characteristics.
+
+<Callout kind="auto" title="Measured for you">
+  Once you've chosen your lot in Acquire, the site measures it from the City's own parcel map — the edge lengths and
+  area below, and a printable base map, without a trip to Google Maps.
+</Callout>
+
+<SiteReport />
+<BaseMap />
+
+<details>
+  <summary>Measure it by hand instead</summary>
+  <ol>
+    <li>Navigate to <a href="https://maps.google.com" target="_blank" rel="noopener">maps.google.com</a>. This site includes aerial photos and tools to measure the property.</li>
+    <li>Enter the address for the property, or the next closest property with a known address. Zoom to the address and notice where the existing sidewalk and corners of the property are located. If exact corners aren't known, estimate for now.</li>
+    <li>Review the aerial photograph and determine a starting point to begin taking measurements — one corner of the park property. Right-click (control-click on Mac) on your starting point and select "Measure distance."</li>
+    <li>Find the next closest corner, move the cursor, and left-click. A distance between the two points will appear. Write this number down.</li>
+    <li>Drag the starting point to the next corner. Write this number down.</li>
+    <li>Repeat for each corner of the park until you have measured each side. The last measurement should be back to the starting point.</li>
+  </ol>
+</details>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={5} label="Measure Your Lot" />
+
+## Diagram your lot {/* #diagram-your-lot */}
+
+You will now create a diagram of the current park boundaries. This diagram will be used to record dimensions for
+objects (like trees, etc.) that are on your site. The diagram is a "plan view," viewed from directly above, similar
+to the Google Maps aerial.
+
+The boundary diagram uses grid paper (also called graph paper) to represent the ground, with each small grid
+segment representing 1 foot of actual length: draw the long side first (the longest edge of the park, from the
+starting point), then the short side at the end of it, then repeat for the other long and short edges.
+
+<BaseMap />
+
+<Download href="downloads/forms/assess-grid-sheets.pdf" label="Download grid sheets" note={`1/4" = 1'-0" — tape sheets together for larger lots`} />
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={6} label="Diagram Your Lot" />
+
+## Verify your diagram {/* #verify-your-diagram */}
+
+The next step is to visit the park site to measure and record the length of each property boundary by hand.
+**Field-located dimensions measured on-site should be trusted over digital dimensions.**
+
+1. Locate the project starting point — the same location as where you started in Google Maps (or where the site
+   marked it for you).
+2. Using a 100-foot tape measure, measure and record the distance along the long outside edge of the park, corner
+   to corner.
+3. Using a 100-foot tape measure, measure and record the distance along the short outside edge, corner to corner.
+4. Repeat for the other long edge.
+5. Repeat for the other short edge.
+
+<Checklist
+  id="assess.what-to-bring"
+  label="What to bring to the site"
+  items={[
+    { value: 'pens', label: 'Pen + notepads' },
+    { value: 'clipboards', label: 'Clipboards' },
+    { value: 'camera', label: 'Camera (phone camera is fine)' },
+    { value: 'tape-100', label: '100 ft measuring tape' },
+    { value: 'tape-long', label: 'Long tape measure (25 ft or more)' },
+    { value: 'survey-plat', label: 'Survey plat' },
+    { value: 'boundary-diagram', label: 'Boundary diagram' },
+    { value: 'flags', label: 'Survey flags or bamboo garden stakes' },
+  ]}
+/>
+
+<Field id="assess.field-long-edge" label="Field-measured long edge" type="number" unit="ft" />
+<Field id="assess.field-short-edge" label="Field-measured short edge" type="number" unit="ft" />
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={7} label="Verify Your Diagram" />
+
+## Record & assess objects {/* #record-assess-objects */}
+
+The next step is to record the locations of all objects on the project site, and then assess their condition and
+potential value to the future park. Objects are located by taking two measurements each: distance from the project
+starting point along the edge, and distance from the park edge. This is also a good opportunity to note objects
+immediately adjacent to, but outside, the project site — a utility pole, hydrant, or edge of sidewalk that might
+influence the park plan.
+
+There are many ways to assess an object once it's located: beauty/character, expected longevity, stability,
+potential liability, re-use potential, habitat value, etc. For each one, decide whether it should be kept.
+
+{/* site-added: the planner places kept objects on the real lot and uses them in the sun study. */}
+<Callout kind="auto" title="Place objects on your real lot">
+  <Planner mode="site" /> lets you drop each object onto your lot's actual shape, instead of hand-plotting
+  coordinates on grid paper.
+</Callout>
+
+<ListField
+  id="assess.objects"
+  label="Objects on the site"
+  rowName="object"
+  min={4}
+  columns={[
+    { key: 'object', label: 'Object', placeholder: 'tree, fence, shed, utility pole…' },
+    { key: 'fromStart', label: 'Distance from starting point', type: 'number' },
+    { key: 'fromEdge', label: 'Distance from edge', type: 'number' },
+    { key: 'keep', label: 'Keep?', placeholder: 'yes / no' },
+    { key: 'notes', label: 'Notes' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={8} label="Record Objects" />
+
+## Sun & shade / base plan {/* #sun-shade-base-plan */}
+
+Draw the objects you'd like to keep onto your base plan, the same way you measured them: like a treasure map, place
+a dot or an "X" to mark the spot, with a circle around it sized to its footprint (for a tree or shrub, the circle
+is the approximate edge of the leaf canopy, with a dot at the trunk).
+
+Then describe the site's conditions on the same diagram:
+
+- For building shadows, draw the approximate outer edge of the shady area and hatch it in.
+- For buildings, draw the outline and hatch it in.
+- For overhead utilities, label the location above the site.
+- For areas with distinct ground conditions (like wet areas), draw a blob shape at the approximate location.
+- For trees, label with the type of tree if you know it (e.g. "Maple tree").
+
+{/* site-added: real sun and shade from the neighboring buildings' actual heights, any date and time. */}
+<Callout kind="auto" title="Sun and shade from real buildings">
+  <SunStudy /> calculates sun and shade hour-by-hour from your neighbors' actual building heights, for any date and
+  time of year — instead of hand-hatching shadows on grid paper.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={10} label="Base Plan" />
+
+## Summary — are you ready? {/* #summary-are-you-ready */}
+
+Summarize your site's key characteristics. These will be used in the next step to help design your park.
+
+<Field
+  id="assess.existing-trees"
+  label="Existing trees?"
+  type="select"
+  hint="The number of trees — if any — currently on the site. Don't count trees that will be removed."
+  options={['No trees', 'One or two trees', 'Several trees', 'Mostly trees']}
+  auto="extra.site.treesKept|treeCount"
+/>
+
+<Field
+  id="assess.sunlight"
+  label="Amount of sunlight?"
+  type="select"
+  hint="How much sun the site receives in a day."
+  options={['Full sun all day', 'Mostly sun', 'Mostly shade', 'Deep shade all day']}
+  auto="extra.site.sunClass|sunClass"
+/>
+
+<Field
+  id="assess.lot-location"
+  label="Lot location"
+  type="select"
+  hint="Is the lot in the middle of the block, or on a corner? If on a corner, where is the street in relation to the long side?"
+  options={['Mid-block lot', 'Corner lot (street right)', 'Corner lot (street left)']}
+  auto="extra.site.lotKind|lotKind"
+/>
+
+<Field id="assess.long-edge" label="Long edge" type="number" unit="ft" auto="extra.site.lengthFt" />
+<Field id="assess.short-edge" label="Short edge" type="number" unit="ft" auto="extra.site.widthFt" />
+
+<p>How long each side is, and the overall square footage, decides your lot size A–E:</p>
+
+<table>
+  <caption class="visually-hidden">Park size by long and short edge, in feet</caption>
+  <thead>
+    <tr>
+      <th scope="col">Size</th>
+      <th scope="col">Long edge</th>
+      <th scope="col">Short edge</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">A</th><td>44–64 ft</td><td>12–16 ft</td></tr>
+    <tr><th scope="row">B</th><td>64–76 ft</td><td>16–28 ft</td></tr>
+    <tr><th scope="row">C</th><td>76–88 ft</td><td>28–40 ft</td></tr>
+    <tr><th scope="row">D</th><td>88–96 ft</td><td>32–48 ft</td></tr>
+    <tr><th scope="row">E</th><td>80–120 ft</td><td>44–60 ft</td></tr>
+  </tbody>
+</table>
+
+<Field
+  id="assess.lot-size"
+  label="Your lot size is…"
+  type="select"
+  options={['A', 'B', 'C', 'D', 'E']}
+  auto="extra.site.sizeId"
+/>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={11} label="Are You Ready?" />
