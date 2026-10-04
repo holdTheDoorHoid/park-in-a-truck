@@ -21,7 +21,7 @@ import { u } from '../lib/url';
         </div>
       </div>
       <div class="hero-art" aria-hidden="true">
-        <span class="big-num">01–06</span>
+        <img src={u('img/brand/cover-silhouette.webp')} alt="" width="1600" height="343" />
       </div>
     </div>
   </section>
@@ -76,7 +76,13 @@ import { u } from '../lib/url';
     display: grid;
     place-items: center;
     min-height: 220px;
+    padding: 24px;
     background: var(--cyan-wash);
+    border-radius: var(--radius);
+  }
+  .hero-art img {
+    width: 100%;
+    height: auto;
   }
   .block {
     padding-top: 48px;
