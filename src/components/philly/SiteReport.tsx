@@ -20,8 +20,8 @@ const LOT_TYPE: Record<string, string> = { 'mid-block': 'Mid-block lot', corner:
 const SIDE_NAME: Record<string, string> = {
   x0: 'entrance side',
   x1: 'back',
-  y0: 'right side (standing at the entrance)',
-  y1: 'left side (standing at the entrance)',
+  y0: 'right side as you stand at the entrance',
+  y1: 'left side as you stand at the entrance',
 };
 
 /** Numbered sketch of the lot (edge numbers match the list). */
@@ -217,7 +217,7 @@ export default function SiteReport() {
               )}
             </dd>
             <dt>Street sides</dt>
-            <dd>{g && g.streets.length ? g.streets.map((s) => `${titleCase(s.name)} (${SIDE_NAME[s.side]})`).join('; ') : '—'}</dd>
+            <dd>{g && g.streets.length ? g.streets.map((s) => `${titleCase(s.name)} — ${SIDE_NAME[s.side]}`).join('; ') : '—'}</dd>
             <dt>Zoning</dt>
             <dd>{zoningPlain(lot.zoning) ?? '—'}</dd>
             <dt>Flooding</dt>
