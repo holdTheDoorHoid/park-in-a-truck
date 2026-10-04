@@ -4,7 +4,10 @@
 import * as THREE from 'three';
 import { existingMeta } from '../catalog';
 import type { Vec2 } from '../geo';
-import { COLORS, TreeInstances, W, disposeTree, ribbon } from './builders';
+import { FLAT_GROUND, type GroundFn } from '../ground';
+import { wetAreaPolygon } from '../interact';
+import { COLORS, TreeInstances, W, disposeTree } from './builders';
+import { ON_GROUND, drapedFillGeometry, drapedRibbon } from './terrain';
 import type { Footprint } from './overlays';
 
 export interface ExistingRender {
@@ -22,6 +25,8 @@ export interface ExistingRender {
   widthFt?: number;
   keep?: boolean;
   heightFt?: number;
+  /** a wet area's drawn outline: corners in feet east/north of (x, y); absent = a circle of radiusFt */
+  outline?: [number, number][];
 }
 
 /** The ground a thing covers, for the selection and drag overlays. */
@@ -34,6 +39,12 @@ export function existingFootprint(it: ExistingRender): Footprint {
     case 'existing-tree':
       return { c, xd, yd, hw: it.radiusFt ?? 8, hh: it.radiusFt ?? 8, round: true };
     case 'wet-area':
+      if (it.outline && it.outline.length >= 3) {
+        const poly = wetAreaPolygon(it, c);
+        const xs = poly.map((p) => p[0] - c[0]);
+        const ys = poly.map((p) => p[1] - c[1]);
+        return { c, xd: [1, 0], yd: [0, 1], hw: Math.max(...xs.map(Math.abs)), hh: Math.max(...ys.map(Math.abs)), round: false, poly };
+      }
       return { c, xd, yd, hw: it.radiusFt ?? 5, hh: it.radiusFt ?? 5, round: true };
     case 'old-pavement':
       return { c, xd, yd, hw: (it.lengthFt ?? 10) / 2, hh: (it.widthFt ?? 8) / 2, round: false };
@@ -58,6 +69,13 @@ export class ExistingMeshes {
     24,
     new THREE.MeshBasicMaterial({ color: 0xd0342c, transparent: true, opacity: 0.25, depthWrite: false, wireframe: true }),
   );
+
+  /** terrain: markers lie on the ground, things stand on it */
+  private ground: GroundFn = FLAT_GROUND;
+
+  setGround(g: GroundFn) {
+    this.ground = g;
+  }
 
   constructor() {
     this.group.name = 'existing';
@@ -84,7 +102,10 @@ export class ExistingMeshes {
     const trees: Parameters<TreeInstances['set']>[0] = [];
     const ghosts: Parameters<TreeInstances['set']>[0] = [];
     const lambert = (c: string | number, extra: THREE.MeshLambertMaterialParameters = {}) => new THREE.MeshLambertMaterial({ color: c, ...extra });
+    const gr = this.ground;
+    const ribbon = (pts: Vec2[], width: number, up: number, color: number, closed = true) => drapedRibbon(pts, width, up, color, gr, closed);
     for (const it of items) {
+      const z0 = gr(it.x, it.y);
       const meta = existingMeta(it.element);
       const sel = opts.selected === it.id;
       const add = (o: THREE.Object3D) => {
@@ -95,7 +116,7 @@ export class ExistingMeshes {
       switch (it.element) {
         case 'existing-tree': {
           const r = it.radiusFt ?? 8;
-          const spec = { id: it.id, x: it.x, y: it.y, heightFt: it.heightFt ?? Math.max(15, r * 2.4), crownR: r * 0.85, color: sel ? 0x2fb3e6 : 0x2e8a45 };
+          const spec = { id: it.id, x: it.x, y: it.y, heightFt: it.heightFt ?? Math.max(15, r * 2.4), crownR: r * 0.85, color: sel ? 0x2fb3e6 : 0x2e8a45, baseFt: z0 };
           if (it.keep === false) {
             if (opts.showMarkers) ghosts.push(spec);
           } else trees.push(spec);
@@ -107,40 +128,44 @@ export class ExistingMeshes {
           break;
         }
         case 'wet-area': {
-          const r = it.radiusFt ?? 5;
-          const g = new THREE.CircleGeometry(r, 36).rotateX(-Math.PI / 2);
-          const m = new THREE.Mesh(g, new THREE.MeshBasicMaterial({ color: meta.color, transparent: true, opacity: sel ? 0.55 : 0.38, depthWrite: false }));
-          m.position.copy(W(it.x, it.y, 0.32));
+          // a drawn outline, or a circle (older saves)
+          const poly = wetAreaPolygon(it, [it.x, it.y], 36);
+          const m = new THREE.Mesh(
+            drapedFillGeometry(poly, 0.32, gr),
+            new THREE.MeshBasicMaterial({ color: meta.color, transparent: true, opacity: sel ? 0.55 : 0.38, depthWrite: false, side: THREE.DoubleSide, ...ON_GROUND }),
+          );
           m.renderOrder = 2;
           add(m);
-          const ring = ribbon(circle(r).map(([a, b]) => [a + it.x, b + it.y] as Vec2), 0.25, 0.34, sel ? COLORS.select : 0x1d5f8f);
+          const ring = ribbon(poly, 0.25, 0.34, sel ? COLORS.select : 0x1d5f8f);
           add(ring);
           break;
         }
         case 'downspout': {
           const m = new THREE.Mesh(new THREE.CylinderGeometry(0.25, 0.25, 12, 8).translate(0, 6, 0), lambert(sel ? COLORS.select : meta.color));
-          m.position.copy(W(it.x, it.y, 0));
+          m.position.copy(W(it.x, it.y, z0));
           m.castShadow = true;
           add(m);
-          const splash = new THREE.Mesh(new THREE.CircleGeometry(1.4, 20).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({ color: meta.color, transparent: true, opacity: 0.45 }));
-          splash.position.copy(W(it.x, it.y, 0.33));
+          const splash = new THREE.Mesh(
+            drapedFillGeometry(circle(1.4, 20).map(([a, b]) => [a + it.x, b + it.y] as Vec2), 0.33, gr),
+            new THREE.MeshBasicMaterial({ color: meta.color, transparent: true, opacity: 0.45, side: THREE.DoubleSide, ...ON_GROUND }),
+          );
           add(splash);
           break;
         }
         case 'hydrant': {
           const m = new THREE.Mesh(new THREE.CylinderGeometry(0.45, 0.55, 2.6, 10).translate(0, 1.3, 0), lambert(sel ? COLORS.select : meta.color));
-          m.position.copy(W(it.x, it.y, 0));
+          m.position.copy(W(it.x, it.y, z0));
           m.castShadow = true;
           add(m);
           break;
         }
         case 'utility-pole': {
           const m = new THREE.Mesh(new THREE.CylinderGeometry(0.45, 0.55, 30, 8).translate(0, 15, 0), lambert(sel ? COLORS.select : meta.color));
-          m.position.copy(W(it.x, it.y, 0));
+          m.position.copy(W(it.x, it.y, z0));
           m.castShadow = true;
           add(m);
           const arm = new THREE.Mesh(new THREE.BoxGeometry(6, 0.4, 0.4), lambert(meta.color));
-          arm.position.copy(W(it.x, it.y, 27));
+          arm.position.copy(W(it.x, it.y, z0 + 27));
           arm.rotation.y = (it.rotationDeg * Math.PI) / 180;
           add(arm);
           break;
@@ -156,7 +181,10 @@ export class ExistingMeshes {
           ] as const) {
             const ox = -Math.sin(r) * off;
             const oy = Math.cos(r) * off;
-            const g = new THREE.BufferGeometry().setFromPoints([W(it.x - dx + ox, it.y - dy + oy, h), W(it.x + dx + ox, it.y + dy + oy, h)]);
+            const g = new THREE.BufferGeometry().setFromPoints([
+              W(it.x - dx + ox, it.y - dy + oy, gr(it.x - dx, it.y - dy) + h),
+              W(it.x + dx + ox, it.y + dy + oy, gr(it.x + dx, it.y + dy) + h),
+            ]);
             add(new THREE.Line(g, new THREE.LineBasicMaterial({ color: sel ? COLORS.select : 0x222222 })));
           }
           // where the wires run, drawn on the ground so it reads in plan view
@@ -173,7 +201,7 @@ export class ExistingMeshes {
           add(rb);
           // a thick invisible bar so the wires are easy to click
           const hit = new THREE.Mesh(new THREE.BoxGeometry(L, 1.5, 2), new THREE.MeshBasicMaterial({ visible: false }));
-          hit.position.copy(W(it.x, it.y, 1));
+          hit.position.copy(W(it.x, it.y, z0 + 1));
           hit.rotation.y = r;
           add(hit);
           break;
@@ -182,7 +210,8 @@ export class ExistingMeshes {
           const L = it.lengthFt ?? 10;
           const Wd = it.widthFt ?? 8;
           const m = new THREE.Mesh(new THREE.BoxGeometry(L, 0.3, Wd).translate(0, 0.15, 0), lambert(sel ? 0x8fd3ef : meta.color));
-          m.position.copy(W(it.x, it.y, 0.02));
+          // on a slope the slab sits level at the ground under its middle (slabs are short)
+          m.position.copy(W(it.x, it.y, z0 + 0.02));
           m.rotation.y = (it.rotationDeg * Math.PI) / 180;
           m.receiveShadow = true;
           add(m);

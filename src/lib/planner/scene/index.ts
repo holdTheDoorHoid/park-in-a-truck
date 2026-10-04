@@ -12,12 +12,15 @@ import type { Vec2 } from '../geo';
 import { siteToLocal } from '../rect';
 import { sunPosition } from '../sun';
 import { classify, type GridSpec } from '../sunhours';
-import { COLORS, W, buildAerial, buildBuildings, cellTexture, cityTreeSpecs, disposeTree, quad, ribbon, TreeInstances } from './builders';
+import { COLORS, W, buildAerial, buildBuildings, cellTexture, cityTreeSpecs, disposeTree, quad, TreeInstances, type AerialGround } from './builders';
 import { ParkMeshes, itemFootprint, type ParkMapping } from './park';
 import { ExistingMeshes, existingFootprint, type ExistingRender } from './existing';
 import { Overlays, type Footprint } from './overlays';
 import { catalogEntry } from '../catalog';
-import { DragGesture, isTurnable, turnFromDrag, type Pose } from '../interact';
+import { CLOSE_PX, DragGesture, isTurnable, turnFromDrag, type Pose } from '../interact';
+import { groundOf } from '../ground';
+import { SlopeOverlay, drapedRibbon, rayGround } from './terrain';
+import { OutlineTool } from './outline';
 
 export type ViewMode = '3d' | 'plan';
 export type PickKind = 'item' | 'existing';
@@ -59,6 +62,12 @@ export interface SceneCallbacks {
   onGesture?(g: GestureInfo | null): void;
   /** the camera moved: which way north points on screen (degrees clockwise from up) */
   onCamera?(northDeg: number): void;
+  /** terrain: drawing a wet area's outline — the number of points so far (null = drawing ended) */
+  onDraw?(points: number | null): void;
+  /** terrain: an outline was finished (local feet, at least 3 points) */
+  onDrawDone?(points: Vec2[]): void;
+  /** terrain: corners of an outlined wet area were moved (offsets in feet east/north of its centre) */
+  onOutlineEdit?(id: string, outline: [number, number][]): void;
 }
 
 export interface ParkState {
@@ -92,8 +101,16 @@ export class PlannerScene {
   private park = new ParkMeshes();
   private existing = new ExistingMeshes();
   private heat = new THREE.Group();
-  private planVeil: THREE.Mesh;
-  private aerial: { mesh: THREE.Mesh; dispose: () => void } | null = null;
+  private aerial: AerialGround | null = null;
+  /** plain ground beyond the aerial photo */
+  private outer: THREE.Mesh;
+  /** terrain: contour lines, drain arrows, high/low points */
+  private slope = new SlopeOverlay();
+  private slopeOn = false;
+  /** terrain: drawing a wet area's outline, and moving its corners */
+  private outline = new OutlineTool();
+  private drawDown: { x: number; y: number; id: number; touch: boolean } | null = null;
+  private photoOn = true;
   private dirty = true;
   private raf = 0;
   private visible = true;
@@ -170,16 +187,11 @@ export class PlannerScene {
     outer.position.y = -0.1;
     outer.receiveShadow = true;
     this.scene.add(outer);
+    this.outer = outer;
 
-    this.planVeil = new THREE.Mesh(
-      new THREE.PlaneGeometry(3000, 3000).rotateX(-Math.PI / 2),
-      new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.2, depthWrite: false }),
-    );
-    this.planVeil.position.y = 0.04;
-    this.planVeil.visible = false;
-    this.planVeil.renderOrder = 1;
-
-    this.scene.add(this.siteGroup, this.cityTrees.group, this.park.group, this.existing.group, this.heat, this.planVeil, this.overlays.group);
+    // (the plan view's light veil over the photo is part of the aerial ground: AerialGround.setVeil)
+    this.scene.add(this.siteGroup, this.cityTrees.group, this.park.group, this.existing.group, this.heat, this.overlays.group);
+    this.scene.add(this.slope.group, this.outline.group);
 
     canvas.addEventListener('pointerdown', this.onPointerDown, { capture: true });
     canvas.addEventListener('pointermove', this.onPointerMove);
@@ -187,6 +199,7 @@ export class PlannerScene {
     canvas.addEventListener('pointercancel', this.onPointerCancel);
     canvas.addEventListener('pointerleave', this.onPointerLeave);
     canvas.addEventListener('contextmenu', this.onContextMenu);
+    canvas.addEventListener('dblclick', this.onDblClick);
     window.addEventListener('keydown', this.onKey, { capture: true });
     window.addEventListener('keyup', this.onKey, { capture: true });
     canvas.addEventListener('webglcontextlost', (e) => {
@@ -297,7 +310,9 @@ export class PlannerScene {
     this.cancelDrag();
     this.view = v;
     this.camera = v === '3d' ? this.persp : this.ortho;
-    this.planVeil.visible = v === 'plan' && Boolean(this.aerial?.mesh.visible);
+    // the plan view's light veil over the photo lies on the ground (terrain)
+    this.aerial?.setVeil(v === 'plan');
+    this.slope.setView(v);
     this.resetCamera();
   }
 
@@ -319,16 +334,26 @@ export class PlannerScene {
 
   setSite(site: LocalSite) {
     this.renderer.shadowMap.needsUpdate = true;
+    // the same lot again with its ground heights filled in (terrain loads after the lot): keep the camera
+    const sameLot = this.site?.ctx.lot === site.ctx.lot && this.site?.frame.lengthFt === site.frame.lengthFt;
     this.site = site;
+    const ground = groundOf(site);
+    this.overlays.setGround(ground);
+    this.existing.setGround(ground);
+    this.outline.setGround(ground);
     disposeTree(this.siteGroup);
     this.siteGroup.clear();
     this.aerial?.dispose();
     this.siteGroup.add(buildBuildings(site.buildings));
-    const outline = ribbon(site.parcel, 0.7, 0.45, COLORS.parcel);
+    const outline = drapedRibbon(site.parcel, 0.7, 0.45, COLORS.parcel, ground);
     outline.renderOrder = 4;
     this.siteGroup.add(outline);
-    this.aerial = buildAerial(site.lf, site.extentFt, this.mobile ? 19 : 20, () => this.requestRender());
+    this.aerial = buildAerial(site.lf, site.extentFt, this.mobile ? 19 : 20, () => this.requestRender(), site.ground);
+    this.aerial.setPhoto(this.photoOn);
+    this.aerial.setVeil(this.view === 'plan');
     this.siteGroup.add(this.aerial.mesh);
+    this.outer.position.y = this.aerial.edgeMin - 0.1;
+    this.slope.set(site, this.slopeOn);
     this.cityTrees.set(cityTreeSpecs(site.trees));
     const ext = Math.max(90, Math.max(site.frame.lengthFt, site.frame.widthFt) / 2 + 70);
     const sc = this.sun.shadow.camera;
@@ -340,13 +365,23 @@ export class PlannerScene {
     sc.far = 1400;
     sc.updateProjectionMatrix();
     this.scene.fog = new THREE.Fog(COLORS.sky, site.extentFt * 1.6, site.extentFt * 4);
-    this.resetCamera();
+    if (!sameLot) this.resetCamera();
+    else this.requestRender();
+  }
+
+  /** terrain: show the slope overlay (contour lines, arrows downhill, high and low points) */
+  setSlope(on: boolean) {
+    if (on === this.slopeOn) return;
+    this.slopeOn = on;
+    this.slope.set(this.site, on);
+    this.requestRender();
   }
 
   setShow(flags: { aerial: boolean; cityTrees: boolean }) {
     this.renderer.shadowMap.needsUpdate = true;
-    if (this.aerial) this.aerial.mesh.visible = flags.aerial;
-    this.planVeil.visible = this.view === 'plan' && flags.aerial;
+    // terrain: with the photo off the ground keeps its shape (plain colour)
+    this.photoOn = flags.aerial;
+    this.aerial?.setPhoto(flags.aerial);
     this.cityTrees.group.visible = flags.cityTrees;
     this.requestRender();
   }
@@ -389,6 +424,111 @@ export class PlannerScene {
     this.requestRender();
   }
 
+  /** terrain: corner handles on the picked wet area when it has a drawn outline */
+  private syncOutlineEdit() {
+    const id = this.selected;
+    const saved = id && !this.outline.draft ? this.existingItems.find((x) => x.id === id) : undefined;
+    const now = saved ? this.existingNow().find((x) => x.id === id) : undefined;
+    const ok = saved && now && saved.element === 'wet-area' && saved.outline && saved.outline.length >= 3 && this.cb.canDrag('existing');
+    if (!ok) {
+      if (this.outline.edit) this.outline.setEdit(null);
+      return;
+    }
+    const e = this.outline.edit;
+    if (e && e.id === saved.id && e.center[0] === now.x && e.center[1] === now.y && e.outline === saved.outline) return;
+    this.outline.setEdit({ id: saved.id, center: [now.x, now.y], outline: saved.outline! });
+  }
+
+  // ---- terrain: drawing a wet area's outline ----
+
+  /** Start drawing an outline: taps/clicks on the ground add points (drags still move the camera). */
+  startDrawing() {
+    if (this.outline.draft) return;
+    this.cancelDrag();
+    this.setHover(null);
+    this.outline.start();
+    this.outline.setEdit(null);
+    this.setCursor('crosshair');
+    this.cb.onDraw?.(0);
+    this.requestRender();
+  }
+
+  /** Finish the outline (at least 3 points). Returns false when there are too few. */
+  finishDrawing(): boolean {
+    const d = this.outline.draft;
+    if (!d || !d.canFinish) return false;
+    const pts = d.points.map((p) => [p[0], p[1]] as Vec2);
+    this.outline.stop();
+    this.drawDown = null;
+    this.setCursor('');
+    this.cb.onDrawDone?.(pts);
+    this.cb.onDraw?.(null);
+    this.requestRender();
+    return true;
+  }
+
+  cancelDrawing() {
+    if (!this.outline.draft) return;
+    this.outline.stop();
+    this.drawDown = null;
+    this.setCursor('');
+    this.cb.onDraw?.(null);
+    this.syncOutlineEdit();
+    this.requestRender();
+  }
+
+  undoDrawPoint() {
+    const d = this.outline.draft;
+    if (!d) return;
+    d.undo();
+    this.outline.redraw();
+    this.cb.onDraw?.(d.points.length);
+    this.requestRender();
+  }
+
+  get drawing(): boolean {
+    return Boolean(this.outline.draft);
+  }
+
+  private drawClick(e: PointerAt) {
+    const d = this.outline.draft;
+    const g = this.groundPoint(e);
+    if (!d || !g) return;
+    d.reproject(this.toScreen);
+    const r = d.click(g, [e.clientX, e.clientY], e.pointerType === 'touch' || this.mobile ? CLOSE_PX.touch : CLOSE_PX.mouse);
+    if (r === 'close') {
+      this.finishDrawing();
+      return;
+    }
+    this.outline.setHover(e.pointerType === 'touch' ? null : g, false);
+    this.cb.onDraw?.(d.points.length);
+    this.requestRender();
+  }
+
+  private onDblClick = (e: MouseEvent) => {
+    if (!this.outline.draft) return;
+    e.preventDefault();
+    this.finishDrawing();
+  };
+
+  /** Let go of a wet area's corner: save the new outline (or put it back). */
+  private endCornerDrag(commit: boolean) {
+    const d = this.outline.drag;
+    if (!d) return;
+    const edit = this.outline.edit;
+    try {
+      this.renderer.domElement.releasePointerCapture(d.pointerId);
+    } catch {
+      /* already released */
+    }
+    const res = this.outline.endDrag(commit);
+    if (!this.holdControls) this.controls.enabled = true;
+    this.setCursor('');
+    this.refreshExisting();
+    this.cb.onGesture?.(null);
+    if (res && edit) this.cb.onOutlineEdit?.(edit.id, res);
+  }
+
   setExisting(items: ExistingRender[], showMarkers: boolean) {
     this.existingItems = items;
     this.existingMarkers = showMarkers;
@@ -401,13 +541,21 @@ export class PlannerScene {
   private refreshExisting(shadows = true) {
     if (shadows) this.renderer.shadowMap.needsUpdate = true;
     this.existing.set(this.existingNow(), { showMarkers: this.existingMarkers, selected: this.selected });
+    this.syncOutlineEdit();
     this.refreshOverlay();
   }
 
-  /** existing things with the one being dragged at its preview pose */
+  /** existing things with the one being dragged at its preview pose (and a wet area's corner being moved) */
   private existingNow(): ExistingRender[] {
     const pv = this.existingPreview;
-    return pv ? this.existingItems.map((e) => (e.id === pv.id ? { ...e, x: pv.x, y: pv.y, rotationDeg: pv.rotationDeg } : e)) : this.existingItems;
+    const od = this.outline.drag && this.outline.edit ? { id: this.outline.edit.id, outline: this.outline.drag.outline } : null;
+    if (!pv && !od) return this.existingItems;
+    return this.existingItems.map((e) => {
+      let r = e;
+      if (pv && e.id === pv.id) r = { ...r, x: pv.x, y: pv.y, rotationDeg: pv.rotationDeg };
+      if (od && e.id === od.id) r = { ...r, outline: od.outline };
+      return r;
+    });
   }
 
   /** park items with the one being dragged at its preview pose */
@@ -544,10 +692,19 @@ export class PlannerScene {
 
   private groundPoint(e: PointerAt): Vec2 | null {
     this.raycaster.setFromCamera(this.ndc(e), this.camera);
+    if (this.site?.ground) return rayGround(this.raycaster.ray.origin, this.raycaster.ray.direction, this.site.ground);
     const p = new THREE.Vector3();
     if (!this.raycaster.ray.intersectPlane(this.ground, p)) return null;
     return [p.x, -p.z];
   }
+
+  /** a ground point (local feet) on screen, client pixels (null = behind the camera) */
+  private toScreen = (p: Vec2): Vec2 | null => {
+    const v = W(p[0], p[1], groundOf(this.site)(p[0], p[1])).project(this.camera);
+    if (v.z > 1) return null;
+    const r = this.renderer.domElement.getBoundingClientRect();
+    return [r.left + ((v.x + 1) / 2) * r.width, r.top + ((1 - v.y) / 2) * r.height];
+  };
 
   private pick(e: PointerAt): Picked | null {
     this.raycaster.setFromCamera(this.ndc(e), this.camera);
@@ -650,7 +807,24 @@ export class PlannerScene {
   }
 
   private updateHover(at: PointerAt) {
-    if (this.gesture) return;
+    if (this.gesture || this.outline.drag) return;
+    if (this.outline.draft) {
+      // terrain: the line from the last point follows the mouse; the first point lights up when a click would close
+      const g = this.groundPoint(at);
+      const d = this.outline.draft;
+      d.reproject(this.toScreen);
+      const first = d.points[0] ? this.toScreen(d.points[0]) : null;
+      const hot = d.canFinish && Boolean(first) && Math.hypot(at.clientX - first![0], at.clientY - first![1]) <= CLOSE_PX.mouse;
+      this.outline.setHover(g, hot);
+      this.setCursor(hot ? 'pointer' : 'crosshair');
+      this.requestRender();
+      return;
+    }
+    if (this.outline.edit && this.cb.canDrag('existing') && this.outline.handleAt([at.clientX, at.clientY], this.toScreen, 11)) {
+      this.setCursor('grab');
+      this.setHover(null);
+      return;
+    }
     const onKnob = this.onKnob(at);
     let hit: Picked | null = null;
     if (!onKnob) {
@@ -699,6 +873,13 @@ export class PlannerScene {
 
   private onPointerDown = (e: PointerEvent) => {
     if (e.pointerType === 'touch') this.touches.add(e.pointerId);
+    if (this.outline.drag && e.pointerId !== this.outline.drag.pointerId) {
+      // a second finger while moving a corner: they want to pinch or pan
+      this.endCornerDrag(false);
+      this.holdControls = true;
+      this.controls.enabled = false;
+      return;
+    }
     if (this.gesture && e.pointerId !== this.gesture.pointerId) {
       // a second finger: they want to pinch or pan, not move the thing
       this.endGesture(false);
@@ -713,6 +894,32 @@ export class PlannerScene {
     if (e.button !== 0 && e.pointerType === 'mouse') return;
     // focus the canvas so the planner's keyboard shortcuts work after a click
     if (e.pointerType === 'mouse') this.renderer.domElement.focus({ preventScroll: true });
+    // terrain: drawing an outline — a tap adds a point on release; a drag still moves the camera
+    if (this.outline.draft) {
+      this.drawDown = { x: e.clientX, y: e.clientY, id: e.pointerId, touch: e.pointerType === 'touch' };
+      this.pendingDeselect = null;
+      return;
+    }
+    // terrain: a corner (or the middle of a side) of the picked wet area's outline
+    if (this.outline.edit && this.cb.canDrag('existing')) {
+      const h = this.outline.handleAt([e.clientX, e.clientY], this.toScreen, e.pointerType === 'touch' || this.mobile ? 22 : 11);
+      if (h) {
+        this.pendingDeselect = null;
+        this.settleCamera();
+        this.controls.enabled = false;
+        this.outline.beginDrag(h, e.pointerId);
+        try {
+          this.renderer.domElement.setPointerCapture(e.pointerId);
+        } catch {
+          /* synthetic pointer */
+        }
+        this.setCursor('grabbing');
+        this.cb.onGesture?.({ mode: 'move', over: false });
+        this.refreshExisting();
+        e.stopPropagation();
+        return;
+      }
+    }
     // the turn handle on the selected thing
     const sk = this.selected ? this.kindOf(this.selected) : null;
     if (sk && this.selected && this.cb.canDrag(sk) && this.onKnob(e)) {
@@ -734,6 +941,15 @@ export class PlannerScene {
   private pendingDeselect: { x: number; y: number } | null = null;
 
   private onPointerMove = (e: PointerEvent) => {
+    const od = this.outline.drag;
+    if (od && e.pointerId === od.pointerId) {
+      const g = this.groundPoint(e);
+      if (g) {
+        this.outline.dragTo(g);
+        this.refreshExisting();
+      }
+      return;
+    }
     const gs = this.gesture;
     if (!gs) {
       if (e.pointerType !== 'touch' && e.buttons === 0) this.hoverAt = { clientX: e.clientX, clientY: e.clientY, pointerType: e.pointerType };
@@ -819,6 +1035,7 @@ export class PlannerScene {
   /** Esc, a view switch, a second finger: drop the drag without saving it. */
   cancelDrag() {
     this.endGesture(false);
+    this.endCornerDrag(false);
   }
 
   get dragging(): boolean {
@@ -844,6 +1061,18 @@ export class PlannerScene {
       }
       return;
     }
+    const od = this.outline.drag;
+    if (od && e.pointerId === od.pointerId) {
+      this.endCornerDrag(true);
+      return;
+    }
+    const dd = this.drawDown;
+    if (dd && e.pointerId === dd.id) {
+      this.drawDown = null;
+      // a tap (not a drag of the camera) adds a point
+      if (Math.hypot(e.clientX - dd.x, e.clientY - dd.y) < (dd.touch ? 10 : 5)) this.drawClick(e);
+      return;
+    }
     if (this.pendingDeselect && Math.hypot(e.clientX - this.pendingDeselect.x, e.clientY - this.pendingDeselect.y) < 5) {
       this.cb.onSelect(null);
     }
@@ -861,6 +1090,8 @@ export class PlannerScene {
       if (!this.gesture) this.controls.enabled = true;
     }
     this.pendingDeselect = null;
+    if (this.drawDown?.id === e.pointerId) this.drawDown = null;
+    if (this.outline.drag?.pointerId === e.pointerId) this.endCornerDrag(false);
     if (this.gesture && e.pointerId === this.gesture.pointerId) this.endGesture(false);
   };
 
@@ -878,6 +1109,39 @@ export class PlannerScene {
   };
 
   private onKey = (e: KeyboardEvent) => {
+    // terrain: keys while drawing an outline or moving a corner (not while typing in a field)
+    if ((this.outline.draft || this.outline.drag) && e.type === 'keydown') {
+      const t = e.target as HTMLElement | null;
+      const typing = t?.closest?.('input, textarea, select, [contenteditable]') && !(t as HTMLInputElement).type?.match(/checkbox|radio|button/);
+      if (!typing) {
+        const eat = () => {
+          e.preventDefault();
+          e.stopPropagation();
+        };
+        if (this.outline.drag) {
+          if (e.key === 'Escape') {
+            eat();
+            this.endCornerDrag(false);
+          }
+          return;
+        }
+        if (e.key === 'Escape') {
+          eat();
+          this.cancelDrawing();
+          return;
+        }
+        if (e.key === 'Enter') {
+          eat();
+          this.finishDrawing();
+          return;
+        }
+        if (e.key === 'Backspace' || e.key === 'Delete') {
+          eat();
+          this.undoDrawPoint();
+          return;
+        }
+      }
+    }
     const gs = this.gesture;
     if (!gs) return;
     if (e.type === 'keydown' && e.key === 'Escape') {
@@ -927,6 +1191,12 @@ export class PlannerScene {
       const focus = this.overlays.focus();
       this.camera.updateMatrixWorld();
       this.overlays.layout(focus ? this.feetPerPixel(focus) : 0, this.overlays.handle ? this.measure : null);
+      // terrain: outline handles and slope labels keep one size on screen
+      if (this.site && (this.outline.active || this.slopeOn)) {
+        const fppAt = (p: THREE.Vector3) => this.feetPerPixel(p);
+        this.outline.layout(fppAt);
+        this.slope.layout(fppAt);
+      }
       this.renderer.render(this.scene, this.camera);
       const n = this.northDeg();
       if (Math.abs(n - this.lastNorth) > 0.5) {
@@ -1028,6 +1298,7 @@ export class PlannerScene {
     if (this.gesture) clearTimeout(this.gesture.longPress);
     window.removeEventListener('keydown', this.onKey, { capture: true });
     window.removeEventListener('keyup', this.onKey, { capture: true });
+    this.renderer.domElement.removeEventListener('dblclick', this.onDblClick);
     cancelAnimationFrame(this.raf);
     this.ro.disconnect();
     this.io.disconnect();
@@ -1037,6 +1308,8 @@ export class PlannerScene {
     this.park.dispose();
     this.existing.dispose();
     this.overlays.dispose();
+    this.slope.dispose();
+    this.outline.dispose();
     this.cityTrees.dispose();
     disposeTree(this.heat);
     this.renderer.dispose();

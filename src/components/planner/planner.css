@@ -974,3 +974,23 @@
     display: none !important;
   }
 }
+
+/* ---- terrain (2026-10-04): slope card, drawing a wet area ---- */
+.pl-slope p {
+  margin: 0.35em 0;
+}
+.pl-slope .pl-h4 {
+  margin-top: 0;
+}
+.pl-drawing .pl-h4 {
+  margin-top: 0;
+}
+.pl-drawbar button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.pl-drawbar .pl-drawbar-done:not(:disabled) {
+  background: var(--cyan);
+  border-color: var(--cyan);
+  color: #fff;
+}

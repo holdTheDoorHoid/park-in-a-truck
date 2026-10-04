@@ -37,6 +37,8 @@ export function existingRenders(site: LocalSite, items: ExistingItem[] | undefin
       widthFt: e.widthFt,
       keep: e.keep,
       heightFt: city?.heightFt,
+      // terrain: a wet area drawn as an outline (absent on older saves = a circle)
+      ...(e.outline && e.outline.length >= 3 ? { outline: e.outline } : {}),
     });
   }
   return out;
@@ -102,6 +104,14 @@ export function bindScene(scene: PlannerScene, store: PlannerStore, mode: Planne
 
     const sunData = store.$sunData.get();
     if (changed('heat', sunData, show.heat)) scene.setHeat(sunData, show.heat);
+
+    // terrain: the slope overlay, and drawing a wet area's outline
+    if (changed('slope', show.slope)) scene.setSlope(show.slope);
+    const drawing = store.$drawing.get();
+    if (changed('drawing', drawing)) {
+      if (drawing) scene.startDrawing();
+      else scene.cancelDrawing();
+    }
   };
 
   const schedule = () => {
@@ -109,7 +119,7 @@ export function bindScene(scene: PlannerScene, store: PlannerStore, mode: Planne
     queued = true;
     queueMicrotask(update);
   };
-  const atoms = [store.$site, store.$step, store.$view, store.$show, store.$design, store.$layout, store.$placement, store.$overhang, store.$selection, store.$sunTime, store.$sunData];
+  const atoms = [store.$site, store.$step, store.$view, store.$show, store.$design, store.$layout, store.$placement, store.$overhang, store.$selection, store.$sunTime, store.$sunData, store.$drawing];
   const unsubs = atoms.map((a) => (a as { subscribe: (cb: () => void) => () => void }).subscribe(schedule));
   return () => unsubs.forEach((u) => u());
 }

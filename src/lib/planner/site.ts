@@ -4,6 +4,8 @@
 
 import type { LngLat, LotRecord } from '../types';
 import { fetchSurroundings as phillySurroundings } from '../philly';
+import { fetchTerrain, type TerrainData } from './terrain';
+import { decodeGrid, type EncodedGrid } from './terrain/grid';
 
 export interface SiteBuilding {
   polygon: LngLat[];
@@ -37,6 +39,8 @@ export interface SiteContext extends Surroundings {
   source: 'fixture' | 'city' | 'none';
   /** set when something could not be loaded (shown to the person) */
   note?: string;
+  /** ground heights (terrain); absent = flat. Loaded separately — see loadTerrain() */
+  terrain?: TerrainData | null;
 }
 
 export const SURROUNDINGS_RADIUS_FT = 260;
@@ -65,7 +69,7 @@ export async function loadDemo(slug: DemoSlug): Promise<SiteContext> {
   return { lot: f.lot, ...f.surroundings, source: 'fixture' };
 }
 
-function fixtureFor(lot: LotRecord): DemoSlug | null {
+export function fixtureFor(lot: LotRecord): DemoSlug | null {
   const id = lot.pwdParcelId;
   if (id === 272148 || /^1322 N DOVER ST/i.test(lot.address)) return 'dover';
   if (id === 183108 || /^2061 S 60TH ST/i.test(lot.address)) return 'greenway';
@@ -117,4 +121,30 @@ export async function loadSiteContext(lot: LotRecord): Promise<SiteContext> {
       note: 'Could not reach City records for the buildings and trees around your lot. Check your connection and reload.',
     };
   }
+}
+
+// ---- ground heights (terrain) -------------------------------------------------------
+
+interface TerrainFixture {
+  slug: string;
+  capturedAt: string;
+  grid: EncodedGrid;
+  steepSlope: boolean | null;
+}
+
+async function terrainFixture(slug: DemoSlug): Promise<TerrainData> {
+  const mod = slug === 'dover' ? await import('./fixtures/dover.elevation.json') : await import('./fixtures/greenway.elevation.json');
+  const f = (mod.default ?? mod) as unknown as TerrainFixture;
+  return { grid: decodeGrid(f.grid), steepSlope: f.steepSlope };
+}
+
+/**
+ * Ground heights for a lot: demo lots from fixtures (offline), others from USGS 3DEP (one
+ * request, slow the first time — the planner shows the lot flat until it arrives).
+ */
+export function loadTerrain(lot: LotRecord | null, demo: DemoSlug | null): Promise<TerrainData> | null {
+  const slug = demo ?? (lot ? fixtureFor(lot) : null);
+  if (slug) return terrainFixture(slug);
+  if (!lot?.polygon || lot.polygon.length < 3) return null;
+  return fetchTerrain(lot);
 }

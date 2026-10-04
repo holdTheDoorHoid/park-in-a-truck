@@ -10,8 +10,8 @@ import type { GestureInfo, PlannerScene, PickKind, Picked } from '../../lib/plan
 import type { LayoutItem } from '../../lib/types';
 import { bindScene, snapItem } from './binding';
 import { itemSticksOut, localToPark } from '../../lib/planner/placement';
-import { addItem, moveItem, updateExisting } from '../../lib/planner/design';
-import { dropPlacement, isTurnable } from '../../lib/planner/interact';
+import { addExisting, addItem, moveItem, updateExisting } from '../../lib/planner/design';
+import { dropPlacement, isTurnable, outlineFromPoints, polygonArea } from '../../lib/planner/interact';
 import { catalogEntry, existingMeta } from '../../lib/planner/catalog';
 import { ELEMENTS } from '../../data/elements';
 import { deleteSelected, duplicateSelected, rotateSelected } from './keyboard';
@@ -47,6 +47,8 @@ export function Viewport({ store, mode }: Props) {
   const [north, setNorth] = useState(0);
   const [gesture, setGesture] = useState<GestureInfo | null>(null);
   const [menu, setMenu] = useState<{ x: number; y: number; sel: Picked } | null>(null);
+  /** terrain: points so far while drawing a wet area's outline (null = not drawing) */
+  const [drawCount, setDrawCount] = useState<number | null>(null);
   const view = useStore(store.$view);
   const show = useStore(store.$show);
   const status = useStore(store.$status);
@@ -112,6 +114,36 @@ export function Viewport({ store, mode }: Props) {
             },
             onGesture: (g) => setGesture(g),
             onCamera: (deg) => setNorth(deg),
+            // terrain: wet areas drawn as outlines
+            onDraw: (n) => {
+              setDrawCount(n);
+              // Esc on the map ends the drawing too
+              if (n === null && store.$drawing.get()) store.$drawing.set(null);
+            },
+            onDrawDone: (points) => {
+              const d = store.$design.get();
+              const s = store.$site.get();
+              const replaceId = store.$drawing.get()?.replaceId;
+              store.$drawing.set(null);
+              if (!d || !s) return;
+              const { center, outline, radiusFt } = outlineFromPoints(points);
+              const ll = s.lf.toLngLat(center);
+              const lngLat: [number, number] = [Number(ll[0].toFixed(7)), Number(ll[1].toFixed(7))];
+              if (replaceId && d.existing?.some((e) => e.id === replaceId)) {
+                store.commit(updateExisting(d, replaceId, { lngLat, outline, radiusFt }));
+                store.$selection.set({ kind: 'existing', id: replaceId });
+              } else {
+                const r = addExisting(d, 'wet-area', lngLat);
+                store.commit(updateExisting(r.design, r.id, { outline, radiusFt }));
+                store.$selection.set({ kind: 'existing', id: r.id });
+              }
+            },
+            onOutlineEdit: (id, outline) => {
+              const d = store.$design.get();
+              if (!d) return;
+              const radiusFt = Math.max(0.5, Math.round(Math.sqrt(polygonArea(outline) / Math.PI) * 10) / 10);
+              store.commit(updateExisting(d, id, { outline, radiusFt }));
+            },
           });
         } catch (e) {
           console.error(e);
@@ -197,7 +229,7 @@ export function Viewport({ store, mode }: Props) {
   }, [sel]);
 
   const scene = sceneRef.current;
-  const toggle = (k: 'aerial' | 'heat' | 'cityTrees' | 'grid') => store.$show.set({ ...show, [k]: !show[k] });
+  const toggle = (k: 'aerial' | 'heat' | 'cityTrees' | 'grid' | 'slope') => store.$show.set({ ...show, [k]: !show[k] });
   const picked = store.editable ? describe(store, sel) : null;
   const act = (f: () => void) => () => {
     setMenu(null);
@@ -206,7 +238,14 @@ export function Viewport({ store, mode }: Props) {
   const menuInfo = menu ? describe(store, menu.sel) : null;
 
   let hint: string;
-  if (gesture?.mode === 'move') {
+  if (drawCount !== null) {
+    hint =
+      drawCount < 3
+        ? `${coarse ? 'Tap' : 'Click'} around the wet area, point by point${drawCount ? ` (${drawCount} so far)` : ''}${coarse ? '' : ' · Esc cancels'}`
+        : coarse
+          ? 'Tap the first point (or Finish) to close the outline'
+          : 'Click the first point, double-click or press Enter to finish · Backspace takes back a point · Esc cancels';
+  } else if (gesture?.mode === 'move') {
     hint = gesture.over
       ? 'This would stick out past the lot line (red)' + (coarse ? '' : ' · Esc puts it back')
       : coarse
@@ -264,6 +303,11 @@ export function Viewport({ store, mode }: Props) {
                 <label>
                   <input type="checkbox" checked={show.heat} onChange={() => toggle('heat')} /> Sun-hours map
                 </label>
+                {site.terrain && !site.terrain.slope.flat && (
+                  <label>
+                    <input type="checkbox" checked={show.slope} onChange={() => toggle('slope')} /> Slope lines
+                  </label>
+                )}
                 <button type="button" class="btn btn-small" onClick={() => scene && downloadDataUrl(scene.snapshot(view), `park-${view}.png`)}>
                   Save picture
                 </button>
@@ -279,7 +323,21 @@ export function Viewport({ store, mode }: Props) {
             <span>N</span>
           </div>
           <div class="pl-bottom">
-            {picked && !gesture && (
+            {drawCount !== null && (
+              <div class="pl-selbar pl-drawbar" role="toolbar" aria-label="Drawing a wet area">
+                <span class="pl-selbar-name">Wet area · {drawCount} point{drawCount === 1 ? '' : 's'}</span>
+                <button type="button" disabled={drawCount === 0} onClick={() => scene?.undoDrawPoint()} title="Take back the last point (Backspace)">
+                  ↶ Undo point
+                </button>
+                <button type="button" class="pl-drawbar-done" disabled={drawCount < 3} onClick={() => scene?.finishDrawing()} title="Close the outline (Enter)">
+                  ✓ Finish
+                </button>
+                <button type="button" class="pl-selbar-danger" onClick={() => store.$drawing.set(null)} title="Stop drawing (Esc)">
+                  ✕ Cancel
+                </button>
+              </div>
+            )}
+            {picked && !gesture && drawCount === null && (
               <div class="pl-selbar" role="toolbar" aria-label={`${picked.name} (picked)`}>
                 <span class="pl-selbar-name">{picked.name}</span>
                 {picked.turn && (

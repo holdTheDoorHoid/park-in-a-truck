@@ -7,6 +7,8 @@ import { aerialTileUrl } from '../../mapstyle';
 import { lngLatToTile, tileToLngLat, type LocalFrame, type Vec2 } from '../geo';
 import type { Prism } from '../sunhours';
 import type { LocalTree } from '../localsite';
+import type { GroundFn } from '../ground';
+import { skirtGeometry, terrainGeometry } from './terrain';
 
 export const W = (e: number, n: number, up = 0) => new THREE.Vector3(e, up, -n);
 
@@ -34,6 +36,8 @@ export function buildBuildings(prisms: Prism[]): THREE.Group {
     const shape = new THREE.Shape(b.ring.map(([x, y]) => new THREE.Vector2(x, y)));
     const g = new THREE.ExtrudeGeometry(shape, { depth: b.heightFt, bevelEnabled: false, curveSegments: 1 });
     g.rotateX(-Math.PI / 2); // (x, y, z) -> (x, z, -y): extrusion goes up, y -> -z (north)
+    // terrain: stands on the ground under it (Prism.baseFt; roof at baseFt + heightFt)
+    if (b.baseFt) g.translate(0, b.baseFt, 0);
     geos.push(g.index ? g.toNonIndexed() : g);
   }
   if (!geos.length) return group;
@@ -63,6 +67,8 @@ export interface TreeSpec {
   heightFt: number;
   crownR: number;
   color?: number;
+  /** ground under the trunk, ft above the lot's datum (terrain; default 0) */
+  baseFt?: number;
 }
 
 export class TreeInstances {
@@ -103,9 +109,10 @@ export class TreeInstances {
       const cz = Math.max(r * 0.8 + 1.5, t.heightFt - r * 0.9);
       const trunkH = Math.max(1.2, cz - r * 0.4);
       const tw = Math.max(0.35, Math.min(1.6, r * 0.08));
-      m.compose(W(t.x, t.y, 0), q, new THREE.Vector3(tw, trunkH, tw));
+      const z0 = t.baseFt ?? 0; // terrain: the trunk stands on the ground
+      m.compose(W(t.x, t.y, z0), q, new THREE.Vector3(tw, trunkH, tw));
       this.trunks.setMatrixAt(i, m);
-      m.compose(W(t.x, t.y, cz), q, new THREE.Vector3(r, r * 0.85, r));
+      m.compose(W(t.x, t.y, z0 + cz), q, new THREE.Vector3(r, r * 0.85, r));
       this.crowns.setMatrixAt(i, m);
       this.crowns.setColorAt(i, c.set(t.color ?? COLORS.crown));
       this.ids.push(t.id ?? '');
@@ -128,17 +135,30 @@ export class TreeInstances {
 }
 
 export function cityTreeSpecs(trees: LocalTree[]): TreeSpec[] {
-  return trees.filter((t) => !t.onLot).map((t) => ({ x: t.x, y: t.y, heightFt: t.heightFt, crownR: t.crownR, color: COLORS.crownCity }));
+  return trees.filter((t) => !t.onLot).map((t) => ({ x: t.x, y: t.y, heightFt: t.heightFt, crownR: t.crownR, color: COLORS.crownCity, ...(t.baseFt ? { baseFt: t.baseFt } : {}) }));
 }
 
 // ---- aerial ground (City 3-inch imagery stitched onto one canvas) -----------------
+
+export interface AerialGround {
+  mesh: THREE.Mesh;
+  /** lowest ground along the edge of the photo (the plain ground beyond sits here) */
+  edgeMin: number;
+  /** the photo, or plain ground (the ground keeps its shape either way) */
+  setPhoto(on: boolean): void;
+  /** plan view: a light veil over the photo so the park pieces read clearly */
+  setVeil(on: boolean): void;
+  dispose: () => void;
+}
 
 export function buildAerial(
   lf: LocalFrame,
   extentFt: number,
   zoom: number,
   onUpdate: () => void,
-): { mesh: THREE.Mesh; dispose: () => void } {
+  /** terrain: the ground surface follows it (absent = flat) */
+  ground?: GroundFn,
+): AerialGround {
   const sw = lf.toLngLat([-extentFt, -extentFt]);
   const ne = lf.toLngLat([extentFt, extentFt]);
   const [tx0f, ty0f] = lngLatToTile(sw[0], ne[1], zoom);
@@ -162,14 +182,36 @@ export function buildAerial(
   const east = tileToLngLat(tx1 + 1, ty1 + 1, zoom);
   const [x0, y1] = lf.toLocal([west[0], west[1]]);
   const [x1, y0] = lf.toLocal([east[0], east[1]]);
-  const geo = new THREE.PlaneGeometry(x1 - x0, y1 - y0);
-  geo.rotateX(-Math.PI / 2);
+  let geo: THREE.BufferGeometry;
+  let edgeMin = 0;
+  let skirt: THREE.Mesh | null = null;
   // a little brighter than the photo so cast shadows read clearly against it
   const mat = new THREE.MeshLambertMaterial({ map: tex, color: new THREE.Color(1.35, 1.35, 1.35) });
+  const plain = new THREE.MeshLambertMaterial({ color: COLORS.ground });
+  if (ground) {
+    // terrain: a grid lifted onto the ground, about one vertex per lidar cell
+    const t = terrainGeometry(x0, x1, y0, y1, ground);
+    geo = t.geo;
+    edgeMin = t.edgeMin;
+    skirt = new THREE.Mesh(skirtGeometry(x0, x1, y0, y1, ground, edgeMin - 0.12), plain);
+    skirt.receiveShadow = true;
+  } else {
+    geo = new THREE.PlaneGeometry(x1 - x0, y1 - y0);
+    geo.rotateX(-Math.PI / 2);
+    geo.translate((x0 + x1) / 2, 0, -(y0 + y1) / 2);
+  }
   const mesh = new THREE.Mesh(geo, mat);
-  mesh.position.copy(W((x0 + x1) / 2, (y0 + y1) / 2, 0));
   mesh.receiveShadow = true;
   mesh.name = 'aerial';
+  if (skirt) mesh.add(skirt);
+  const veilMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.2, depthWrite: false });
+  const veil = new THREE.Mesh(geo, veilMat);
+  veil.position.y = 0.04;
+  veil.renderOrder = 1;
+  veil.visible = false;
+  mesh.add(veil);
+  let photo = true;
+  let veilOn = false;
   let alive = true;
   let pending = 0;
   let timer: ReturnType<typeof setTimeout> | undefined;
@@ -197,11 +239,24 @@ export function buildAerial(
   }
   return {
     mesh,
+    edgeMin,
+    setPhoto(on) {
+      photo = on;
+      mesh.material = on ? mat : plain;
+      veil.visible = photo && veilOn;
+    },
+    setVeil(on) {
+      veilOn = on;
+      veil.visible = photo && veilOn;
+    },
     dispose: () => {
       alive = false;
       clearTimeout(timer);
       geo.dispose();
+      skirt?.geometry.dispose();
       mat.dispose();
+      plain.dispose();
+      veilMat.dispose();
       tex.dispose();
     },
   };

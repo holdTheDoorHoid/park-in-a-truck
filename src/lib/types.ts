@@ -139,6 +139,12 @@ export interface ExistingItem extends PlacedItem {
   species?: string | null;
   dbhIn?: number | null;
   note?: string;
+  /**
+   * (terrain, 2026-10-04) A wet area drawn as an outline: its corners in FEET east and north
+   * of `lngLat` (the outline's centre), so moving the area only changes `lngLat`. Absent =
+   * a circle of `radiusFt` (older saves). `radiusFt` is kept at the outline's equivalent radius.
+   */
+  outline?: [number, number][];
 }
 
 /**
@@ -291,6 +297,41 @@ export interface SiteFacts {
   // written by planner (sun study / existing conditions)
   sunClass?: 'full-sun' | 'mostly-sun' | 'mostly-shade' | 'deep-shade';
   treesKept?: number;
+  /** (terrain, 2026-10-04) written by planner when ground heights load: how the lot slopes */
+  slope?: SiteSlopeFacts;
+}
+
+/**
+ * How the lot's ground slopes (USGS 3DEP lidar). Written by the planner (terrain) into
+ * project.extra.site.slope; facts only. Directions are seen from the lot's entrance:
+ * front = the entrance edge on the street, left/right as you stand there looking in.
+ */
+export interface SiteSlopeFacts {
+  /** which lot these facts are for (OPA or PWD parcel id, else address) */
+  lotRef?: string;
+  /** highest minus lowest ground on the lot, feet */
+  fallFt: number;
+  /** slope of the plane that best fits the lot's ground, percent */
+  avgSlopePct: number;
+  /** steepest stretch (over 8 ft), percent — only when notably steeper than average */
+  steepestPct?: number;
+  /** which way rain runs off (absent when practically flat) */
+  drainToward?: 'front' | 'back' | 'left' | 'right' | 'front-left' | 'front-right' | 'back-left' | 'back-right';
+  /** the same as a compass bearing, degrees clockwise from north */
+  drainBearingDeg?: number;
+  flat: boolean;
+  high: LngLat;
+  low: LngLat;
+  /** a low spot inside the lot, lower than anywhere along its edge */
+  dip?: { lngLat: LngLat; depthFt: number };
+  /** the City zoning map's Steep Slope Protection Area touches the lot (Zoning Code 14-704(2)) */
+  steepSlopeArea?: boolean;
+  /** the lot's average ground elevation, feet above sea level (NAVD88) */
+  datumElevFt: number;
+  /** the summary in plain words */
+  summary: string;
+  /** e.g. "USGS 3DEP lidar (2015), 1 m grid" */
+  source: string;
 }
 // project.extra.tally      : DesignTally          (planner)
 // project.extra.sunGrid    : planner-defined       (planner)
