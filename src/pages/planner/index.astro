@@ -1,11 +1,20 @@
 ---
-// STUB — owned by the planner workstream.
+// The full planner: lot → size & themes → arrange → sun & shade → counts.
+// ?demo=dover | ?demo=greenway opens a demo lot; ?step=sun etc. opens a step.
 import Base from '../../layouts/Base.astro';
-import Planner from '../../components/widgets/Planner.astro';
+import PlannerApp from '../../components/planner/PlannerApp';
 ---
-<Base title="Plan in 3D" bare>
-  <section class="wrap" style="padding-top:40px">
-    <h1 class="ruled">Plan in 3D</h1>
-    <Planner />
-  </section>
+<Base title="Plan in 3D" description="Fit Park in a Truck's park pieces to your real Philadelphia lot, see its sun and shade, and count everything for the cost estimate and plant lists." bare>
+  <h1 class="visually-hidden">Plan your park in 3D</h1>
+  <PlannerApp client:only="preact" mode="full" page>
+    <div slot="fallback" class="wrap" style="padding:40px 16px">
+      <p class="eyebrow">Plan in 3D</p>
+      <p>Loading the planner…</p>
+    </div>
+  </PlannerApp>
+  <noscript>
+    <div class="wrap" style="padding:40px 16px">
+      <p>The 3D planner needs JavaScript turned on.</p>
+    </div>
+  </noscript>
 </Base>
