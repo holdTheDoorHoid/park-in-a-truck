@@ -49,7 +49,8 @@
       "qty": 14,
       "stock": "2x4",
       "lengthIn": 96,
-      "notes": "Leg (long), side brace, top brace, and canopy top boards — the PDF's own cut list total (14) is well short of what the step-by-step instructions actually call for across the legs, bracing and canopy decking (the canopy alone uses 15+ boards). Buy extra 2x4x96\" stock and count against the steps below, not just this line."
+      "notes": "Leg (long), side brace, top brace, and canopy top boards",
+      "siteNote": "The guide's cut list says 14, but the steps use 32: 4 legs, 2 top beams, 4 braces, 2 cross beams, 4 long braces, 1 top support and 15 canopy boards. The 47 2x4x8s in the materials list cover all of them plus SS-2 to SS-4."
     },
     {
       "part": "SS-2",

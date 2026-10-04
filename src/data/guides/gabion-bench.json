@@ -17,7 +17,8 @@
       "item": "2x4 dimensional lumber — western red cedar, Douglas fir, or pressure-treated pine",
       "qty": 4.5,
       "size": "2x4x8'",
-      "notes": "Cedar: naturally weather/rot resistant, nice red tone, needs no sealant; costs more — ask for 'knotty' (STK) grade. Douglas fir: moderately rot resistant, strong, cheaper than cedar; good if you plan to paint. Pressure-treated: cheapest and rot resistant, but often poor/inconsistent quality, needs 1–4 months of air-drying before painting, not recommended where food is grown. Order 5–10% more than the cut list to allow for variable lumber quality and incorrect cuts."
+      "notes": "Cedar: naturally weather/rot resistant, nice red tone, needs no sealant; costs more — ask for 'knotty' (STK) grade. Douglas fir: moderately rot resistant, strong, cheaper than cedar; good if you plan to paint. Pressure-treated: cheapest and rot resistant, but often poor/inconsistent quality, needs 1–4 months of air-drying before painting, not recommended where food is grown. Order 5–10% more than the cut list to allow for variable lumber quality and incorrect cuts.",
+      "siteNote": "4½ boards only works if two 48″ pieces come out of each 8′ board, which leaves nothing for the saw cut: the second piece comes out about ⅛″ short unless the board runs long. For seven full 48″ pieces, cut one per board (7 boards, with the three 15″ pieces from one offcut) or buy 2x4x10s (4 boards)."
     },
     {
       "item": "Gabion fill material",
@@ -75,7 +76,8 @@
       "text": "Place two GB-2 pieces and two GB-1 pieces on a flat surface, aligning the edges as shown.\n\nMake sure the verticals on the gabion wire mesh are touching the wood, and the cross pieces (smooth edges) that run the same way as the board are on the outside, to keep sharp edges off the outside of the gabion.\n\nCenter the two 18-4c wire mesh pieces on the GB-1 piece of wood — there should be 1.5\" from the edge of the wood to the edge of the wire mesh.\n\nSecure the two 18-4c and two 18-4b wire mesh pieces onto the GB-1 and GB-2 lumber using a hammer and 32 1.5\" galvanized cable staples — 2 staples per piece of wire.",
       "images": ["img/guides/gabion-bench/step-02.webp"],
       "imageAlts": ["Diagram of 18-4c and 18-4b wire mesh panels being stapled onto GB-1 and GB-2 lumber, with a close-up of staple placement and the 1.5\" mesh offset."],
-      "tips": ["If you're connecting many gabions in a row, only staple the metal mesh to one GB-1 piece."]
+      "tips": ["If you're connecting many gabions in a row, only staple the metal mesh to one GB-1 piece."],
+      "siteNote": "You build this basket upside down: the wood frame starts on the ground and becomes the top rim when you turn the basket over in step 8. The 3D model shows the bench right side up the whole way, so its wood frame is always on top."
     },
     {
       "n": 3,
@@ -114,7 +116,8 @@
       "title": "Close the top",
       "text": "Place the 18-4a wire mesh top piece on top of the gabion basket secured in step 5.\n\nSecure the top piece with hog rings on the four sides and the center brace — one hog ring every other mesh opening, and two at each corner. The gabion basket is now ready to transport to the site.",
       "images": ["img/guides/gabion-bench/step-07.webp"],
-      "imageAlts": ["Diagram of the 18-4a top wire mesh panel being hog-ringed onto the basket, with a close-up of a corner hog ring securing all three mesh pieces."]
+      "imageAlts": ["Diagram of the 18-4a top wire mesh panel being hog-ringed onto the basket, with a close-up of a corner hog ring securing all three mesh pieces."],
+      "siteNote": "This \"top piece\" is the cut list's bottom panel (18-4a). It's on top while you build and underneath once you turn the basket over in step 8, which is where the 3D model shows it."
     },
     {
       "n": 8,
