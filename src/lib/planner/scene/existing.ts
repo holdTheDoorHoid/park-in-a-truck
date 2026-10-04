@@ -22,6 +22,9 @@ export interface ExistingRender {
   widthFt?: number;
   keep?: boolean;
   heightFt?: number;
+  /** trees: keeps its leaves in winter / needle tree (shadows workstream; see treemodel.ts) */
+  evergreen?: boolean;
+  conifer?: boolean;
 }
 
 /** The ground a thing covers, for the selection and drag overlays. */
@@ -95,7 +98,8 @@ export class ExistingMeshes {
       switch (it.element) {
         case 'existing-tree': {
           const r = it.radiusFt ?? 8;
-          const spec = { id: it.id, x: it.x, y: it.y, heightFt: it.heightFt ?? Math.max(15, r * 2.4), crownR: r * 0.85, color: sel ? 0x2fb3e6 : 0x2e8a45 };
+          // the crown is drawn the size the sun study counts it (shadows workstream)
+          const spec = { id: it.id, x: it.x, y: it.y, heightFt: it.heightFt ?? Math.max(15, r * 2.4), crownR: r, color: sel ? 0x2fb3e6 : 0x2e8a45, evergreen: it.evergreen, conifer: it.conifer };
           if (it.keep === false) {
             if (opts.showMarkers) ghosts.push(spec);
           } else trees.push(spec);

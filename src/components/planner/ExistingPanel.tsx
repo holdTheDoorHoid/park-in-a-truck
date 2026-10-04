@@ -6,6 +6,7 @@ import { EXISTING, existingMeta } from '../../lib/planner/catalog';
 import { addExisting, deleteExisting, treesKept, updateExisting } from '../../lib/planner/design';
 import { siteToLocal } from '../../lib/planner/rect';
 import { rotateSelected } from './keyboard';
+import { TreeHabitChoice } from './TreeHabitChoice';
 
 function label(e: ExistingItem) {
   const m = existingMeta(e.element);
@@ -67,6 +68,8 @@ export function ExistingPanel({ store, compact = false }: { store: PlannerStore;
                   onInput={(e) => patch(selected.id, { radiusFt: Number((e.target as HTMLInputElement).value) }, `radiusFt:${selected.id}`)}
                 />
               </label>
+              {/* shadows workstream: evergreen trees shade the lot all winter */}
+              <TreeHabitChoice store={store} item={selected} />
             </>
           )}
           {selected.element === 'wet-area' && (

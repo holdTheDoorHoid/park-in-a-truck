@@ -9,6 +9,7 @@ import { phillyTime } from '../../lib/planner/sun';
 import type { Vec2 } from '../../lib/planner/geo';
 import type { LocalSite } from '../../lib/planner/localsite';
 import type { ExistingItem } from '../../lib/types';
+import { existingTreeLook } from '../../lib/planner/treemodel';
 
 /** Snapping lives with the other drag helpers (src/lib/planner/interact.ts). */
 export { snapItem } from '../../lib/planner/interact';
@@ -25,6 +26,7 @@ export function existingRenders(site: LocalSite, items: ExistingItem[] | undefin
     if (!e.lngLat) continue;
     const [x, y] = site.lf.toLocal(e.lngLat);
     const city = e.cityKey ? site.trees.find((t) => t.key === e.cityKey) : undefined;
+    const look = e.element === 'existing-tree' ? existingTreeLook({ leafHabit: e.leafHabit, species: e.species ?? city?.species }) : null;
     out.push({
       id: e.id,
       element: e.element,
@@ -37,6 +39,8 @@ export function existingRenders(site: LocalSite, items: ExistingItem[] | undefin
       widthFt: e.widthFt,
       keep: e.keep,
       heightFt: city?.heightFt,
+      ...(look?.evergreen ? { evergreen: true } : {}),
+      ...(look?.conifer ? { conifer: true } : {}),
     });
   }
   return out;
@@ -100,8 +104,13 @@ export function bindScene(scene: PlannerScene, store: PlannerStore, mode: Planne
     const t = store.$sunTime.get();
     if (changed('sun', t)) scene.setSun(phillyTime(2026, t.month, t.day, t.minutes));
 
-    const sunData = store.$sunData.get();
+    // the sun-hours map for the chosen period (the growing season unless another is picked)
+    const sunData = store.sun.$heat.get();
     if (changed('heat', sunData, show.heat)) scene.setHeat(sunData, show.heat);
+
+    // the pin on the spot whose year is charted (sun step only)
+    const spot = step === 'sun' ? store.sun.$spotAt.get() : null;
+    if (changed('spot', spot?.[0], spot?.[1])) scene.setSpot(spot);
   };
 
   const schedule = () => {
@@ -109,7 +118,7 @@ export function bindScene(scene: PlannerScene, store: PlannerStore, mode: Planne
     queued = true;
     queueMicrotask(update);
   };
-  const atoms = [store.$site, store.$step, store.$view, store.$show, store.$design, store.$layout, store.$placement, store.$overhang, store.$selection, store.$sunTime, store.$sunData];
+  const atoms = [store.$site, store.$step, store.$view, store.$show, store.$design, store.$layout, store.$placement, store.$overhang, store.$selection, store.$sunTime, store.$sunData, store.sun.$heat, store.sun.$spotAt];
   const unsubs = atoms.map((a) => (a as { subscribe: (cb: () => void) => () => void }).subscribe(schedule));
   return () => unsubs.forEach((u) => u());
 }
