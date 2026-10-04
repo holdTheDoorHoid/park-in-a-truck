@@ -1,0 +1,316 @@
+---
+title: Khảo sát
+intro: Tìm hiểu lô đất của bạn — nắng, đất, những gì xung quanh và kích thước — rồi biến những gì bạn thấy thành một bản vẽ nền.
+sources:
+  - Cẩm nang (Toolkit), tr. 35–37 (Khảo sát, Đánh giá khu đất công viên, Đặc điểm khu đất)
+  - Sổ tay thực hành Khảo sát, tr. 3–11 (Tổng quan, Đi xem khu đất, Đo lô đất, Vẽ sơ đồ lô đất, Kiểm tra lại sơ đồ, Ghi lại các vật, Đánh giá các vật, Bản vẽ nền, Bạn đã sẵn sàng chưa?)
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import Download from '../../../../components/workbook/Download.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import SiteReport from '../../../../components/widgets/SiteReport.astro';
+import BaseMap from '../../../../components/widgets/BaseMap.astro';
+import Planner from '../../../../components/widgets/Planner.astro';
+import SunStudy from '../../../../components/widgets/SunStudy.astro';
+import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
+
+{/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — reminds a reader who hasn't recorded a lot agreement yet, before they sink time into site visits and soil work on a lot they may not have permission for. */}
+<LotAgreementNotice />
+
+Điều gì làm lô đất của bạn đặc biệt, và làm sao tận dụng tốt nhất những đặc điểm đó? Bước này hướng dẫn cách đánh giá
+lô đất và bảo đảm công viên tận dụng được điều kiện của khu đất.
+
+Một lô đất không đứng riêng lẻ — nó là một phần của cộng đồng. Vì vậy việc khảo sát cũng cần bao gồm cả khu phố của
+bạn. Có lịch sử hay văn hóa riêng nào nên được thể hiện trong thiết kế không? Một công viên tôn vinh bản sắc của cộng
+đồng sẽ giống như một người hàng xóm lâu năm hơn là một người mới đến.
+
+Các khu đất dự án mẫu được dùng để minh họa những bước chính trong quá trình này. Dĩ nhiên, hoàn cảnh của bạn sẽ khác,
+tùy theo vị trí, hình dạng và bối cảnh của khu đất công viên của bạn — nhưng đây là một điểm khởi đầu rất tốt.
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={3} label="Tổng quan" />
+
+## Đặc điểm khu đất {/* #site-characteristics */}
+
+Trong bước này, bạn sẽ ghi lại các đặc điểm vật lý của khu đất công viên. Khu đất nhiều nắng hay nhiều bóng râm? Bằng
+phẳng hay dốc, có cây sẵn không? Hay nó nằm đối diện một nhà thờ? Tất cả những đặc điểm này sẽ ảnh hưởng đến những gì
+bạn có thể làm trên khu đất. Ví dụ, nếu bạn muốn trồng cà chua — khu đất của bạn sẽ cần có nắng suốt cả ngày.
+
+Hãy đến khu đất công viên và ghi lại cẩn thận những gì có thể ảnh hưởng đến thiết kế công viên. Khi đánh giá đặc điểm
+khu đất trước khi thiết kế các món đồ của công viên, bạn sẽ bảo đảm thiết kế phù hợp với điều kiện riêng của khu đất.
+
+<Figure
+  src="img/assess/site-characteristics.webp"
+  alt="Hình minh họa ba chiều một khu đất dự án mẫu, tô màu xanh dương ở một góc phố dân cư: các chú thích có đánh số chỉ vị trí của nó ở một góc đường đông xe, một tuyến xe buýt, một bức tường trống lớn, dây điện trên cao dọc mép đường, và một khu vực có nắng dọc vỉa hè."
+  caption="Một khu đất dự án mẫu và những đặc điểm làm nó khác biệt"
+/>
+
+Lô đất mẫu này khác biệt vì: **(1)** nằm ở một góc đường đông xe, **(2)** nằm trên tuyến xe buýt, **(3)** có một tòa
+nhà với bức tường trống lớn ở phía cuối, **(4)** có dây điện dọc mép đường, và **(5)** có một khu vực có nắng dọc vỉa
+hè. Lô đất của bạn sẽ có danh sách riêng. Hãy ghi lại cả những nét văn hóa hay lịch sử của khu đất và các dãy phố kế
+bên — ngày xưa có cửa tiệm nào thú vị từng ở trên lô đất không? Gần đó có từng xảy ra sự kiện lịch sử nào không? Trước
+khi có nhà cửa, nơi này trông ra sao? Đây là cách rất hay để mời những cư dân lâu năm và các bạn học sinh, sinh viên có
+kỹ năng tìm tài liệu cùng lục tìm trong kho lưu trữ của thành phố.
+
+<Checklist
+  id="assess.conditions"
+  label="Những điều kiện cần ghi lại"
+  items={[
+    { value: 'sidewalks', label: 'Vỉa hè và các mặt lát khác' },
+    { value: 'utilities', label: 'Đường điện, nước… nhìn thấy được (trên cao và dưới đất)' },
+    { value: 'sun-direction', label: 'Hướng chung của mặt trời mọc / lặn' },
+    { value: 'sun-shade-areas', label: 'Những chỗ có nắng và/hoặc có bóng râm' },
+    { value: 'ground-cover', label: 'Những chỗ có sỏi, mặt lát hoặc đất trống' },
+    { value: 'water-collection', label: 'Những chỗ nước đọng lại sau mưa' },
+    { value: 'adjacent-buildings', label: 'Những tòa nhà kế bên' },
+    { value: 'plants', label: 'Cây bụi và cây lớn (và loại cây, nếu bạn biết)' },
+    { value: 'structures', label: 'Những công trình đứng riêng có sẵn (nhà kho, hàng rào)' },
+    { value: 'building-remains', label: 'Phần còn lại của nhà cũ (móng nhà, tường cũ, v.v.)' },
+    { value: 'terrain', label: 'Đất dốc, gò đất và/hoặc chỗ trũng lớn' },
+    { value: 'views', label: 'Cảnh nhìn đẹp và/hoặc cảnh không mong muốn' },
+    { value: 'wind', label: 'Những chỗ có gió / thoáng gió' },
+    { value: 'sounds', label: 'Những âm thanh chính / chỗ có thể gây phiền' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={3} label="Đặc điểm khu đất" />
+
+## Đi xem khu đất {/* #site-visit */}
+
+Những việc sau đây có thể làm chung cả nhóm hoặc từng người khi bạn đến khu đất công viên:
+
+1. **Lấy mẫu đất.** Hiểu được chất dinh dưỡng trong đất rất có ích để biết cây gì có thể mọc tốt nhất trong công viên
+   của bạn. Một xét nghiệm chì đơn giản cũng sẽ giúp bảo đảm công viên an toàn. Penn State Extension có một quy trình
+   xét nghiệm đất đơn giản (bằng tiếng Anh): [agsci.psu.edu/aasl/soil-testing](https://agsci.psu.edu/aasl/soil-testing/fertility/soil-fertility-submission-forms).
+2. **Chụp ảnh.** Mỗi người chúng ta nhìn cảnh vật một khác, và chụp ảnh là một cách chia sẻ với người khác những gì
+   mình thấy. Hãy dành 30 phút đi quanh và chụp ảnh khu đất công viên và khung cảnh xung quanh. Rồi cùng chia sẻ ảnh với
+   nhau và kể vì sao bạn chụp từng tấm.
+3. **Ngồi và lắng nghe.** Ngồi yên lặng trên khu đất công viên và lắng nghe bằng mọi giác quan. Bạn nghe, ngửi và chạm
+   thấy những gì? Sau 30 phút, hãy ghi lại những gì bạn cảm nhận được. Có cảm nhận tích cực nào có thể đưa vào thiết kế
+   công viên, hay cảm nhận tiêu cực nào mà thiết kế có thể làm giảm bớt không? Mọi thứ sẽ khác ra sao vào một ngày khác
+   trong tuần, hay vào một giờ khác trong ngày hoặc ban đêm?
+4. **Đo + đánh giá.** Đo đạc khu đất công viên là một cách giúp hiểu nó chi tiết hơn — vài bước tiếp theo sẽ hướng dẫn
+   việc đó.
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — Penn State's standard fertility test has no lead in it; facts checked 2026-10-04 on agsci.psu.edu and phila.gov. */}
+<Callout kind="site">
+  Xét nghiệm độ phì nhiêu tiêu chuẩn của Penn State (độ pH và chất dinh dưỡng) không xét nghiệm chì. Chì là một xét
+  nghiệm riêng, theo [mẫu đơn xét nghiệm đất môi trường ↗](https://agsci.psu.edu/aasl/soil-testing/environmental) của
+  phòng thí nghiệm này (bằng tiếng Anh), hoặc bất kỳ phòng thí nghiệm nào được EPA công nhận cũng làm được.
+  [Hướng dẫn về chì ↗](https://www.phila.gov/guides/lead-guide/where-is-lead/) của Thành phố (bằng tiếng Anh) nói về
+  chì trong đất vườn: phủ kín đất trống, dùng luống trồng nâng cao để trồng thực phẩm, và xét nghiệm.
+</Callout>
+
+<Field id="assess.soil-notes" label="Kết quả xét nghiệm đất" type="textarea" hint="Chất dinh dưỡng, độ pH, chì — bất cứ kết quả nào xét nghiệm trả về." />
+<Field id="assess.listen-notes" label="Những gì bạn đã nghe, ngửi và chạm thấy" type="textarea" />
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={4} label="Đi xem khu đất" />
+
+## Đo lô đất {/* #measure-your-lot */}
+
+Làm theo các bước bên dưới để bắt đầu vẽ sơ đồ khu đất công viên hiện tại. "Bản đồ nền" này có thể in ra và mang theo
+đến khu đất để ghi lại vị trí của các vật và những đặc điểm quan trọng.
+
+<Callout kind="auto" title="Đã đo sẵn cho bạn">
+  Khi bạn đã chọn lô đất ở bước Có được đất, trang web sẽ đo lô đất từ bản đồ thửa đất của chính Thành phố — chiều dài
+  các cạnh và diện tích bên dưới, cùng một bản đồ nền để in, mà không cần mở Google Maps.
+</Callout>
+
+<SiteReport />
+<BaseMap />
+
+<details>
+  <summary>Hoặc tự đo bằng tay</summary>
+  <ol>
+    <li>Vào <a href="https://maps.google.com" target="_blank" rel="noopener">maps.google.com</a>. Trang này có ảnh chụp từ trên không và công cụ để đo bất động sản.</li>
+    <li>Nhập địa chỉ của bất động sản, hoặc của bất động sản gần nhất có địa chỉ rõ ràng. Phóng to đến địa chỉ đó và để ý vị trí vỉa hè hiện có và các góc của bất động sản. Nếu không biết chính xác các góc, tạm thời hãy ước chừng.</li>
+    <li>Xem ảnh chụp từ trên không và chọn một điểm bắt đầu để đo — một góc của khu đất công viên. Bấm chuột phải (trên máy Mac: giữ Control và bấm) vào điểm bắt đầu và chọn "Measure distance" (Đo khoảng cách).</li>
+    <li>Tìm góc gần nhất tiếp theo, di chuyển con trỏ đến đó và bấm chuột trái. Khoảng cách giữa hai điểm sẽ hiện ra. Ghi số này lại.</li>
+    <li>Kéo điểm bắt đầu đến góc tiếp theo. Ghi số này lại.</li>
+    <li>Lặp lại cho từng góc của công viên cho đến khi đo xong mọi cạnh. Lần đo cuối cùng phải quay về điểm bắt đầu.</li>
+  </ol>
+</details>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={5} label="Đo lô đất" />
+
+## Vẽ sơ đồ lô đất {/* #diagram-your-lot */}
+
+Giờ bạn sẽ vẽ sơ đồ ranh giới hiện tại của công viên. Sơ đồ này sẽ được dùng để ghi kích thước và vị trí của những vật
+(như cây, v.v.) có trên khu đất. Sơ đồ là một "mặt bằng", nhìn thẳng từ trên xuống, giống như ảnh chụp từ trên không của
+Google Maps.
+
+Sơ đồ ranh giới dùng giấy kẻ ô (còn gọi là giấy ô li) để thể hiện mặt đất, mỗi ô nhỏ tương ứng với 1 foot chiều dài thật:
+vẽ cạnh dài trước (cạnh dài nhất của công viên, từ điểm bắt đầu), rồi đến cạnh ngắn ở cuối cạnh dài, rồi lặp lại cho
+cạnh dài và cạnh ngắn còn lại.
+
+<BaseMap />
+
+<Download href="downloads/forms/assess-grid-sheets.pdf" label="Tải giấy kẻ ô" note={`1/4" = 1'-0" — dán nhiều tờ lại với nhau cho lô đất lớn hơn`} />
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={6} label="Vẽ sơ đồ lô đất" />
+
+## Kiểm tra lại sơ đồ {/* #verify-your-diagram */}
+
+Bước tiếp theo là đến khu đất công viên để tự đo bằng tay và ghi lại chiều dài của từng cạnh ranh giới.
+**Kích thước đo tại chỗ đáng tin hơn kích thước lấy trên máy.**
+
+1. Tìm điểm bắt đầu của dự án — đúng chỗ bạn đã bắt đầu trên Google Maps (hoặc chỗ trang web đã đánh dấu cho bạn).
+2. Dùng thước dây 100 feet, đo và ghi lại khoảng cách dọc theo cạnh dài bên ngoài của công viên, từ góc này đến góc kia.
+3. Dùng thước dây 100 feet, đo và ghi lại khoảng cách dọc theo cạnh ngắn bên ngoài, từ góc này đến góc kia.
+4. Lặp lại cho cạnh dài còn lại.
+5. Lặp lại cho cạnh ngắn còn lại.
+
+<Checklist
+  id="assess.what-to-bring"
+  label="Những thứ cần mang đến khu đất"
+  items={[
+    { value: 'pens', label: 'Bút + sổ ghi chép' },
+    { value: 'clipboards', label: 'Bìa kẹp hồ sơ' },
+    { value: 'camera', label: 'Máy ảnh (máy ảnh điện thoại cũng được)' },
+    { value: 'tape-100', label: 'Thước dây 100 ft' },
+    { value: 'tape-long', label: 'Thước dây dài (25 ft trở lên)' },
+    { value: 'survey-plat', label: 'Bản đồ đo đạc của lô đất (survey plat)' },
+    { value: 'boundary-diagram', label: 'Sơ đồ ranh giới' },
+    { value: 'flags', label: 'Cờ khảo sát hoặc cọc tre làm vườn' },
+  ]}
+/>
+
+<Field id="assess.field-long-edge" label="Cạnh dài, đo tại chỗ" type="number" unit="ft" />
+<Field id="assess.field-short-edge" label="Cạnh ngắn, đo tại chỗ" type="number" unit="ft" />
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={7} label="Kiểm tra lại sơ đồ" />
+
+## Ghi lại & đánh giá các vật {/* #record-assess-objects */}
+
+Bước tiếp theo là ghi lại vị trí của tất cả các vật trên khu đất dự án, rồi đánh giá tình trạng và giá trị có thể có của
+chúng cho công viên tương lai. Mỗi vật được định vị bằng hai số đo: khoảng cách từ điểm bắt đầu của dự án dọc theo cạnh,
+và khoảng cách từ cạnh công viên. Đây cũng là dịp tốt để ghi lại những vật nằm sát bên nhưng ở ngoài khu đất dự án —
+một cột điện, trụ nước cứu hỏa hay mép vỉa hè có thể ảnh hưởng đến kế hoạch công viên.
+
+Có nhiều cách để đánh giá một vật khi đã định vị được nó: vẻ đẹp/nét riêng, tuổi thọ dự kiến, độ vững chắc, khả năng
+gây rủi ro pháp lý, khả năng dùng lại, giá trị làm nơi sống cho sinh vật, v.v. Với mỗi vật, hãy quyết định có nên giữ lại
+hay không.
+
+{/* site-added: the planner places kept objects on the real lot and uses them in the sun study. */}
+<Callout kind="auto" title="Đặt các vật lên lô đất thật của bạn">
+  <Planner mode="site" /> cho bạn thả từng vật lên đúng hình dạng thật của lô đất, thay vì tự chấm tọa độ trên giấy kẻ ô.
+</Callout>
+
+<ListField
+  id="assess.objects"
+  label="Các vật trên khu đất"
+  rowName="vật"
+  min={4}
+  columns={[
+    { key: 'object', label: 'Vật', placeholder: 'cây, hàng rào, nhà kho, cột điện…' },
+    { key: 'fromStart', label: 'Khoảng cách từ điểm bắt đầu', type: 'number' },
+    { key: 'fromEdge', label: 'Khoảng cách từ cạnh', type: 'number' },
+    { key: 'keep', label: 'Giữ lại?', placeholder: 'có / không' },
+    { key: 'notes', label: 'Ghi chú' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={8} label="Ghi lại các vật" />
+
+## Nắng & bóng râm / bản vẽ nền {/* #sun-shade-base-plan */}
+
+Vẽ những vật bạn muốn giữ lại lên bản vẽ nền, theo đúng cách bạn đã đo: giống như bản đồ kho báu, đánh một dấu chấm hay
+dấu "X" ở đúng chỗ, với một vòng tròn xung quanh có kích thước bằng diện tích nó chiếm (với cây lớn hay cây bụi, vòng
+tròn là mép ước chừng của tán lá, với một dấu chấm ở thân cây).
+
+Rồi mô tả điều kiện của khu đất trên cùng sơ đồ đó:
+
+- Với bóng của các tòa nhà, vẽ mép ngoài ước chừng của vùng bóng râm và gạch chéo bên trong.
+- Với các tòa nhà, vẽ đường viền và gạch chéo bên trong.
+- Với dây điện, cáp trên cao, ghi chú vị trí phía trên khu đất.
+- Với những khu vực có điều kiện mặt đất khác biệt (như chỗ ẩm ướt), vẽ một hình tròn méo ở vị trí ước chừng.
+- Với cây, ghi tên loại cây nếu bạn biết (ví dụ "Cây phong").
+
+{/* site-added: real sun and shade from the neighboring buildings' actual heights, any date and time. */}
+<Callout kind="auto" title="Nắng và bóng râm từ những tòa nhà thật">
+  <SunStudy /> tính nắng và bóng râm theo từng giờ dựa trên chiều cao thật của các tòa nhà kế bên, cho bất kỳ ngày giờ
+  nào trong năm — thay vì tự gạch bóng râm trên giấy kẻ ô.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={10} label="Bản vẽ nền" />
+
+## Tóm tắt — bạn đã sẵn sàng chưa? {/* #summary-are-you-ready */}
+
+Tóm tắt những đặc điểm chính của khu đất. Những điều này sẽ được dùng ở bước tiếp theo để giúp thiết kế công viên.
+
+<Field
+  id="assess.existing-trees"
+  label="Có cây sẵn không?"
+  type="select"
+  hint="Số cây — nếu có — hiện đang có trên khu đất. Đừng đếm những cây sẽ bị đốn bỏ."
+  options={[
+    { value: 'No trees', label: 'Không có cây' },
+    { value: 'One or two trees', label: 'Một hoặc hai cây' },
+    { value: 'Several trees', label: 'Nhiều cây' },
+    { value: 'Mostly trees', label: 'Phần lớn là cây' },
+  ]}
+  auto="extra.site.treesKept|treeCount"
+/>
+
+<Field
+  id="assess.sunlight"
+  label="Lượng nắng?"
+  type="select"
+  hint="Khu đất nhận được bao nhiêu nắng trong một ngày."
+  options={[
+    { value: 'Full sun all day', label: 'Nắng cả ngày' },
+    { value: 'Mostly sun', label: 'Phần lớn có nắng' },
+    { value: 'Mostly shade', label: 'Phần lớn có bóng râm' },
+    { value: 'Deep shade all day', label: 'Bóng râm dày cả ngày' },
+  ]}
+  auto="extra.site.sunClass|sunClass"
+/>
+
+<Field
+  id="assess.lot-location"
+  label="Vị trí lô đất"
+  type="select"
+  hint="Lô đất nằm giữa dãy nhà hay ở góc đường? Nếu ở góc đường, con đường nằm ở phía nào so với cạnh dài?"
+  options={[
+    { value: 'Mid-block lot', label: 'Lô đất giữa dãy nhà' },
+    { value: 'Corner lot (street right)', label: 'Lô đất góc đường (đường bên phải)' },
+    { value: 'Corner lot (street left)', label: 'Lô đất góc đường (đường bên trái)' },
+  ]}
+  auto="extra.site.lotKind|lotKind"
+/>
+
+<Field id="assess.long-edge" label="Cạnh dài" type="number" unit="ft" auto="extra.site.lengthFt" />
+<Field id="assess.short-edge" label="Cạnh ngắn" type="number" unit="ft" auto="extra.site.widthFt" />
+
+<p>Chiều dài mỗi cạnh và tổng diện tích (feet vuông) quyết định cỡ lô đất của bạn, từ A đến E:</p>
+
+<table>
+  <caption class="visually-hidden">Cỡ công viên theo cạnh dài và cạnh ngắn, tính bằng feet</caption>
+  <thead>
+    <tr>
+      <th scope="col">Cỡ</th>
+      <th scope="col">Cạnh dài</th>
+      <th scope="col">Cạnh ngắn</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">A</th><td>44–64 ft</td><td>12–16 ft</td></tr>
+    <tr><th scope="row">B</th><td>64–76 ft</td><td>16–28 ft</td></tr>
+    <tr><th scope="row">C</th><td>76–88 ft</td><td>28–40 ft</td></tr>
+    <tr><th scope="row">D</th><td>88–96 ft</td><td>32–48 ft</td></tr>
+    <tr><th scope="row">E</th><td>80–120 ft</td><td>44–60 ft</td></tr>
+  </tbody>
+</table>
+
+<Field
+  id="assess.lot-size"
+  label="Cỡ lô đất của bạn là…"
+  type="select"
+  options={['A', 'B', 'C', 'D', 'E']}
+  auto="extra.site.sizeId"
+/>
+
+<PdfPage doc="downloads/workbooks/03-assess.pdf" page={11} label="Bạn đã sẵn sàng chưa?" />

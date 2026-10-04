@@ -1,0 +1,241 @@
+---
+title: Bắt đầu từ đây
+intro: Vì sao công viên khu phố quan trọng, Park in a Truck hoạt động ra sao, và sáu bước đưa bạn từ một lô đất trống đến một công viên hoàn chỉnh.
+sources:
+  - Cẩm nang (Toolkit), tr. 7–21 (Lời giới thiệu, Câu chuyện Park in a Truck, Nguyên tắc + Mục tiêu, Vì sao cần công viên?, Một mạng lưới công viên, Loài thụ phấn là gì?, Lớn nhỏ không quan trọng, Các bước của cẩm nang PiaT)
+---
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import ParksMap from '../../../../components/widgets/ParksMap.astro';
+import { urlFor } from '../../../../i18n/url.ts';
+export const u = urlFor('vi');
+
+Cẩm nang (Toolkit) này là sách hướng dẫn "tự làm" dành cho các tình nguyện viên trong cộng đồng muốn đưa thêm thiên
+nhiên vào khu phố của mình. Dù dự án là làm mới một lô đất trống lớn hay một mảnh đất nhỏ trước sân nhà — cuốn sách này
+sẽ hướng dẫn bạn và hàng xóm qua những bước cần thiết: hình dung, thiết kế và xây dựng một công viên khu phố.
+
+Hệ thống Park in a Truck có hai phần chính: cẩm nang này và một bộ sổ tay thực hành. Cẩm nang cho bạn bức tranh toàn
+cảnh về lợi ích của công viên, thông tin về chương trình PiaT, và cái nhìn tổng quát từ đầu đến cuối về một dự án công
+viên. Hãy đọc hết cẩm nang trước khi chuyển sang các sổ tay thực hành, để bạn hiểu rõ hơn toàn bộ quá trình làm công
+viên.
+
+<PdfPage doc="downloads/park-in-a-truck-toolkit.pdf" page={4} label="Lời giới thiệu" />
+
+## Câu chuyện Park in a Truck {/* #the-park-in-a-truck-story */}
+
+Park in a Truck là một sáng kiến của Chương trình Kiến trúc Cảnh quan và Phòng thí nghiệm Đổi mới Đô thị và Xã hội
+(LUSI) thuộc Thomas Jefferson University.
+
+- **Tầm nhìn của chúng tôi:** Những thành phố nơi mọi người cùng tạo dựng, xây dựng và sống trong những cộng đồng bền
+  vững, công bằng, khỏe mạnh và vui vẻ.
+- **Sứ mệnh của chúng tôi:** Hình dung lại cách các mạng lưới xã hội, sinh thái và kinh tế của thành phố được thiết kế,
+  xây dựng và duy trì.
+- **Giải pháp:** Một mạng lưới xanh do cộng đồng vận hành, hình thành qua việc cải tạo các lô đất trống với chi phí
+  thấp và làm nhanh, giúp cải thiện sức khỏe môi trường, xã hội và thể chất ở những khu phố thiếu nguồn lực, giữ cho
+  khu phố được nguyên vẹn, và giúp cư dân dẫn dắt các nỗ lực hồi sinh và tái đầu tư.
+
+Xây công viên là việc tốn kém và phức tạp, thường được làm mà không có sự tham gia và ủng hộ của người dân địa phương.
+PiaT làm theo cách khác:
+
+- **Do cộng đồng dẫn dắt.** Chính cư dân địa phương làm mọi giai đoạn: lên kế hoạch, thực hiện và bảo trì lâu dài công
+  viên của họ. Quá trình này không chỉ tạo ra công viên — mà còn tạo ra cộng đồng.
+- **Tùy chỉnh được.** Qua cẩm nang, cư dân địa phương có đủ mọi thông tin cần thiết cho công viên mới của mình.
+- **Thu hút mọi người.** PiaT cho người trẻ cơ hội dồn sức lực vào những việc tích cực hơn.
+- **Tiết kiệm chi phí.** Để giữ chi phí thấp, cộng đồng tự chọn những thứ mình muốn — bàn cờ, chỗ nướng thịt, bàn ăn
+  ngoài trời, cây xanh, bồn hoa, lối đi bộ, nhà chơi, sân khấu, mái đình có che, khúc gỗ để leo trèo, v.v. — để lắp
+  đặt đơn giản. Không có công trình đắt tiền hay chuyên dụng nào phải chôn xuống đất.
+- **Giao tận nơi.** Mọi thứ cần thiết được chất lên một chiếc xe tải và chở đến tận nơi, nơi các tình nguyện viên
+  trong cộng đồng cùng nhau dựng công viên — như cả làng góp tay dựng nhà.
+- **Giúp người đi sau.** Thành công thì lan tỏa, và PiaT gây dựng một liên minh những người đã từng làm công viên, sẵn
+  lòng giúp lại những ai vừa bắt đầu hành trình làm công viên.
+
+<Figure
+  src="img/toolkit/community-model-making.webp"
+  alt="Các bạn tuổi teen quây quanh một chiếc bàn làm mô hình ngoài trời, sắp xếp những que gỗ nhỏ và một mô hình nhà chim trên mô hình công viên đặt trên bàn, phía sau là hàng rào lưới thép."
+  caption="Melon Street Park, buổi hội thảo hình dung công viên"
+  duo
+/>
+
+> "Park in a Truck giúp các cộng đồng tự làm cho mình tốt đẹp hơn, và thật sự phục vụ cư dân thay vì đẩy họ ra khỏi
+> nơi mình ở."
+>
+> — DeWayne Drummond, Mantua Civic Association
+
+<PdfPage doc="downloads/park-in-a-truck-toolkit.pdf" page={5} label="Câu chuyện Park in a Truck" />
+
+## Nguyên tắc + mục tiêu {/* #guiding-principles-goals */}
+
+Hình dung lại cách các mạng lưới xã hội, sinh thái và kinh tế trong thành phố được thiết kế, xây dựng và duy trì. Đây là
+điều chúng tôi tin tưởng.
+
+- **Thúc đẩy công bằng** qua sự tham gia và quyền tiếp cận — phá vỡ lối ra quyết định bất công vốn có, mở ra những con
+  đường tích cực cho giới trẻ, tạo chỗ cho những mối quan hệ mới và cũ, làm đẹp khu vực và vun đắp niềm tự hào cộng
+  đồng, tạo một "điểm hẹn" cho khu phố qua các sự kiện, hoạt động và những lần gặp gỡ bất chợt.
+- **Tạo cơ hội học hỏi cho mọi người** — rèn kỹ năng lãnh đạo cho học sinh trung học để trở thành "đại sứ công viên",
+  khuyến khích học qua thực hành bằng làm vườn cộng đồng và sự kiện, hợp tác với các trường học và tổ chức giáo dục
+  địa phương để mở lớp và hội thảo, dạy kỹ năng xây dựng thực tế cho cuộc sống và cho việc học nghề.
+- **Tôn trọng và phát huy những thế mạnh, nguồn lực và mạng lưới sẵn có của cộng đồng** — đón nhận nhiều loại sự kiện
+  và hoạt động cộng đồng khác nhau, mở cửa cho tất cả mọi người, vun đắp sự hòa nhập xã hội, khuyến khích nhiều thế hệ
+  cùng tham gia, trân trọng lịch sử của khu phố và văn hóa địa phương.
+- **Kích thích kinh tế địa phương** — dùng vật liệu có nguồn gốc địa phương, bền lâu và không độc hại, làm tăng giá trị
+  bất động sản và kích thích kinh tế địa phương, đưa những lô đất ít được dùng vào sử dụng.
+- **Chống biến đổi khí hậu** — giảm hiệu ứng "đảo nhiệt đô thị" bằng cách trồng cây và tăng nơi sống cho loài thụ phấn,
+  tăng giá trị bất động sản, giảm tác hại của nước mưa chảy tràn/ngập lụt, tạo một mạng lưới công viên để nối những
+  "hòn đảo" nơi sống chất lượng cao, dùng cây bản địa ít cần chăm sóc và có giá trị cao cho động vật hoang dã, dùng
+  cách làm hữu cơ để bỏ hẳn thuốc trừ sâu hóa học, hứng và dùng lại nước mưa.
+- **Nâng cao sức khỏe cộng đồng** — khuyến khích vận động thể chất, tạo chỗ để trồng thực phẩm và kết bạn trong cộng
+  đồng, nuôi dưỡng không gian để thư giãn tinh thần, niềm vui và tình bạn, giúp mọi người đến với không gian ngoài trời
+  dễ dàng và an toàn, tạo cơ hội ngay tại địa phương để gần gũi với thiên nhiên.
+
+<PdfPage doc="downloads/park-in-a-truck-toolkit.pdf" page={6} label="Nguyên tắc + Mục tiêu" />
+
+## Vì sao cần công viên? {/* #why-a-park */}
+
+Hãy hít một hơi thật sâu và tưởng tượng bạn đang ở trong một khu vườn hay ngồi dưới một tán cây xanh lá đang xào xạc
+nhẹ trong gió. Chim hót líu lo, và bạn ngửi thấy hương thơm ngọt ngào của hoa mùa xuân. Có thể bạn nghe tiếng trẻ con
+cười khúc khích thích thú khi nhảy từ hòn đá này sang hòn đá khác, hay tiếng các cụ trò chuyện khe khẽ khi làm vườn
+gần đó. Bạn cảm thấy thế nào?
+
+Ai trong chúng ta cũng biết niềm vui và sự bình yên khi được hòa mình vào thiên nhiên xung quanh. Vì thế không có gì
+lạ khi nghiên cứu khoa học xác nhận rằng chỉ cần sống gần công viên cũng giúp bạn khỏe hơn, và dành thời gian ở công
+viên — dù đi bộ, đạp xe hay chỉ thư giãn — giúp tinh thần và thể chất của bạn tốt hơn.
+
+<Figure
+  src="img/toolkit/melon-park.webp"
+  alt="Hàng xóm quây quần giữa những chiếc ghế dài và bàn gỗ ở Melon Street Park, một công viên Park in a Truck được làm trên một lô đất từng bỏ trống ở Mantua, Philadelphia, xung quanh là hoa cúc mắt đen (black-eyed Susan) và các dãy nhà liền kề."
+  caption="Melon Street Park, Mantua, Philadelphia"
+  credit="Matthew Tucker"
+  duo
+/>
+
+> "Park in a Truck là một quá trình trao sức mạnh cho các cộng đồng để thay đổi khu phố của mình, từng lô đất một."
+>
+> — Người sáng lập PiaT, Kim Douglas
+
+Ở trang tiếp theo là bốn cách khác nhau mà mỗi người có thể cảm nhận lợi ích của công viên khu phố:
+
+- **Lợi ích xã hội.** Công viên đưa mọi người ra khỏi nhà. Đó là nơi tụ họp tiện lợi — để uống cà phê, chơi cờ hay dự
+  các sự kiện có tổ chức của khu phố: nơi để được an toàn, nơi để lớn lên, nguồn lực để chia sẻ, nơi để gặp gỡ. Chính
+  việc cùng nhau xây công viên giúp gắn kết cộng đồng. Để chia sẻ. Để hàn gắn. Để ăn mừng.
+- **Lợi ích kinh tế.** Công viên có thể giúp kích thích kinh tế địa phương. Công viên có thể trở thành chợ phiên tạm
+  thời, nơi cư dân bán đồ thủ công của mình. Các cửa hàng địa phương làm ăn khấm khá khi công viên gần đó thu hút khách
+  ghé thăm và khách mua hàng: nhiều người qua lại hơn, hỗ trợ thợ thủ công địa phương, hỗ trợ việc buôn bán lưu động,
+  giảm chi phí năng lượng, tích trữ CO₂. Công viên còn làm tăng giá trị bất động sản, thu hút những gia đình đang tìm
+  một khu phố ít đông đúc hơn, có nhiều mảng xanh và tiện ích hơn.
+- **Lợi ích sinh thái.** Không gian xanh dù lớn hay nhỏ đều mang lại những lợi ích quan trọng cho môi trường. Công viên
+  nhỏ có thể là nơi sống quý giá cho động vật hoang dã tại chỗ và di cư, và là khu vực quan trọng cho các loài thụ
+  phấn: không khí sạch hơn, tuần hoàn chất dinh dưỡng, nơi sống cho động vật hoang dã, tăng đa dạng sinh học, nước mưa
+  thấm xuống đất. Không gian xanh rất cần thiết để hút nước và giảm ngập lụt trong thành phố. Tất cả những điều này
+  giúp giảm nhẹ biến đổi khí hậu.
+- **Lợi ích sức khỏe.** Được ở gần không gian xanh giúp tăng sức khỏe tinh thần và cảm giác an lành, nhiều hơn cả lợi
+  ích của riêng việc vận động thể chất. Công viên giúp giảm huyết áp, tăng sự gắn kết xã hội và khuyến khích những thói
+  quen tốt cho sức khỏe: không khí sạch, nhiệt độ thấp hơn, vận động nhiều hơn, dễ chịu hơn, bớt căng thẳng. Lợi ích
+  cho các gia đình thu nhập thấp còn lớn hơn nữa. Mỗi ngày một công viên, khỏi phải gặp bác sĩ.
+
+<Callout kind="note">
+  Ở vài trang tiếp theo bạn sẽ thấy những lợi ích này liên kết với nhau ra sao — một mạng lưới công viên, loài thụ phấn
+  cần gì, và vì sao ngay cả mảnh đất nhỏ nhất cũng có thể thành một "Park Patch" (mảnh vườn công viên).
+</Callout>
+
+<PdfPage doc="downloads/park-in-a-truck-toolkit.pdf" page={8} label="Vì sao cần công viên?" />
+
+## Một mạng lưới công viên {/* #a-network-of-parks */}
+
+Không khí sạch, nước sạch và việc bảo vệ những không gian xanh ít ỏi là điều sống còn cho các khu phố đô thị khỏe mạnh.
+Đáng tiếc là nhiều khu đô thị có một lịch sử dài bị ô nhiễm, quản lý nước mặt kém và bỏ mặc không gian mở, nhưng lại
+thiếu nguồn lực để khắc phục những vấn đề này. Khi khơi dậy mong muốn thay đổi khu phố của chính cư dân, cộng đồng có
+thể đóng vai trò quan trọng trong việc tạo ra môi trường đô thị lành mạnh, đưa thiên nhiên trở lại thành phố. Sáng
+kiến Park in a Truck có nhiều mục tiêu, nhưng một trong những mục tiêu quan trọng nhất là giúp các cộng đồng xây dựng
+những ốc đảo thiên nhiên bền vững giữa lòng thành phố.
+
+Khi được kết nối thành một mạng lưới xanh khắp thành phố, mỗi công viên do Park in a Truck thiết kế tạo ra những hành
+lang sinh sống cho động vật hoang dã và những "hòn đảo" xanh giúp hạ nhiệt độ ngoài trời cao do hiệu ứng "đảo nhiệt đô
+thị" gây ra. Những sáng kiến xanh do cộng đồng dẫn dắt là một cách quan trọng để tạo ra những công viên đa dạng sinh học
+và dễ đến hơn cho nhiều người, giúp chuyển sang một xã hội bền vững hơn, ít khí thải carbon hơn.
+
+**PiaT giúp các cộng đồng tạo dựng, xây dựng và sống trong những cộng đồng bền vững, công bằng, khỏe mạnh và vui vẻ.**
+
+{/* site-added: parks already built, mapped from the project list PiaT and partners maintain. */}
+<Callout kind="auto" title="Xem mạng lưới">
+  Những công viên PiaT đã được làm khắp Philadelphia, vẽ trên bản đồ từ danh sách dự án.
+</Callout>
+
+<ParksMap />
+
+<PdfPage doc="downloads/park-in-a-truck-toolkit.pdf" page={9} label="Một 'mạng lưới' công viên" />
+
+## Loài thụ phấn là gì? {/* #what-is-a-pollinator */}
+
+Thụ phấn rất quan trọng cho một hệ sinh thái vững mạnh, khỏe mạnh. Cứ ba miếng thức ăn bạn ăn thì có một miếng nhờ vào
+các loài thụ phấn. Táo, hạnh nhân, cam, bơ, đào, lê, mận, anh đào, cỏ linh lăng, việt quất, vani, nam việt quất, cà
+chua, kiwi, sung, cà phê, dâu tây, mâm xôi đen, mâm xôi đỏ, chanh vàng, chanh xanh, cà tím, quất, xuân đào, nho và ca
+cao (sô-cô-la) đều cần đến chúng.
+
+Loài thụ phấn là một phần thiết yếu, sống còn của quá trình thụ phấn — đó là những con vật và côn trùng giúp đưa phấn
+hoa đến nơi cần đến. Chim, ong, bướm, dơi và nhiều sinh vật khác là loài thụ phấn.
+
+Thụ phấn là phần thiết yếu trong việc sinh sản của cây. Phấn hoa từ bao phấn của hoa (phần đực của cây) cọ hoặc rơi
+lên mình một con vật thụ phấn. Con vật đó mang phấn hoa sang một bông hoa khác, nơi phấn hoa dính vào đầu nhụy (phần
+cái). Bông hoa đã được thụ phấn sau đó sẽ cho ra trái và hạt.
+
+Bạn có biết vì sao một số loài ong kêu vo ve không? Một số cây, như cà chua và việt quất, nhả phấn hoa qua hai lỗ nhỏ
+xíu trên mỗi bao phấn. Ong cắn vào bao phấn, bám chặt, rồi rung cánh vo ve để lắc phấn hoa ra khỏi hoa.
+
+<PdfPage doc="downloads/park-in-a-truck-toolkit.pdf" page={10} label="Loài thụ phấn là gì?" />
+
+## Lớn nhỏ không quan trọng {/* #size-doesnt-matter */}
+
+Đừng bị kẹt vào ý nghĩ rằng công viên phải lớn. Ngay cả mảnh đất nhỏ nhất cũng có thể thành một không gian thiên nhiên
+— nơi chim, ong và các loài thụ phấn khác tìm được một bông hoa ngon lành để làm công việc của mình. Một ô đất 4×4 trước
+sân hay thậm chí một bồn hoa bên cửa sổ cũng có thể mang lại nhiều lợi ích giống như một công viên lớn hơn. Chúng tôi
+gọi những chỗ này là **Park Patch** (mảnh vườn công viên).
+
+Park Patch giống như vườn nhà…nhưng hơn thế. Chúng là một phần của mạng lưới công viên trong cộng đồng hay khắp thành
+phố, nối kết con người và loài thụ phấn để cải thiện môi trường và chất lượng cuộc sống của mọi người. Loài thụ phấn
+cần thức ăn, nước, chỗ trú…và cần có nhau. Park Patch là khởi đầu của một điều lớn lao hơn.
+
+Park Patch là một cách tuyệt vời để thật sự xắn tay áo làm đất. Hãy rèn luyện kỹ năng và truyền cảm hứng cho hàng xóm
+— làm một Park Patch!
+
+<p><a class="btn" href={u('park-patch/')}>Xem Sổ tay thực hành Park Patch ↗</a></p>
+
+<PdfPage doc="downloads/park-in-a-truck-toolkit.pdf" page={10} label="Lớn nhỏ không quan trọng" />
+
+## Sáu bước {/* #the-six-steps */}
+
+Vậy làm sao để cộng đồng của bạn có một công viên mới? Một cách là đến gặp nghị viên của khu vực và tìm cách để thành
+phố xây công viên cho bạn. Nhưng việc đó có thể mất nhiều năm lên kế hoạch, và công viên thì tốn kém. Thay vào đó, sẽ
+ra sao nếu một cộng đồng có thể tự thiết kế và xây công viên của mình? Đó chính là điều mà cẩm nang Park in a Truck giúp
+bạn làm. Nghiên cứu cho thấy những dự án làm công viên do cộng đồng dẫn dắt giúp tăng niềm tự hào, sức mạnh tự chủ và
+sự an toàn của cộng đồng.
+
+Cuốn sách này mô tả các bước chính để làm công viên trong sáu chương: Có được đất, Tổ chức, Khảo sát, Mơ ước, Xây dựng
+và Duy trì. Mỗi chương cho bạn hiểu tổng quát về bước đó. Rồi khi bạn sẵn sàng bắt tay vào làm, hãy mở sổ tay thực
+hành của chương đó để đi vào chi tiết.
+
+<ul class="prose">
+  <li><strong><a href={u('steps/acquire/')}>Có được đất</a></strong> — Cách có được một lô đất.</li>
+  <li><strong><a href={u('steps/organize/')}>Tổ chức</a></strong> — Cách lập ban công viên.</li>
+  <li><strong><a href={u('steps/assess/')}>Khảo sát</a></strong> — Cách khảo sát lô đất của bạn.</li>
+  <li><strong><a href={u('steps/dream/')}>Mơ ước</a></strong> — Cách thiết kế công viên của bạn.</li>
+  <li><strong><a href={u('steps/create/')}>Xây dựng</a></strong> — Cách xây công viên của bạn.</li>
+  <li><strong><a href={u('steps/sustain/')}>Duy trì</a></strong> — Cách bảo trì công viên của bạn.</li>
+</ul>
+
+<PdfPage doc="downloads/park-in-a-truck-toolkit.pdf" page={11} label="Các bước của cẩm nang PiaT" />
+
+## Thông báo pháp lý {/* #legal-notice */}
+
+Những khuyến nghị trong cẩm nang này dựa trên cách làm tiêu chuẩn trong chế tác và xây dựng. Thomas Jefferson
+University, Phòng thí nghiệm Đổi mới Xã hội (Lab for Social Innovation), Park in a Truck, cùng giảng viên, nhân viên và
+những người cộng tác với họ không bảo đảm về độ chính xác, kết quả có thể đạt được hay độ tin cậy của những khuyến nghị
+này, và không chịu trách nhiệm về thiệt hại hay thương tích cho người hoặc tài sản phát sinh từ việc dùng chúng. Dùng
+những khuyến nghị này nghĩa là bạn chấp nhận điều đó. Toàn văn thông báo pháp lý nằm ở trang
+<a href={u('resources/#legal')}>Tài liệu</a>.
+
+Cẩm nang này là một tài liệu đang được hoàn thiện — một trong nhiều phiên bản sẽ được phát hành. Mỗi buổi họp cộng
+đồng, mỗi lần ra cửa hàng vật liệu xây dựng, và mỗi công viên được xây đều cho ta thêm bài học. Xin hãy chia sẻ suy
+nghĩ, câu hỏi hay ý tưởng của bạn (bằng tiếng Anh): [ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu).
+
+<PdfPage doc="downloads/park-in-a-truck-toolkit.pdf" page={3} label="Thông báo pháp lý" />
