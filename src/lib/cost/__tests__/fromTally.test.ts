@@ -201,7 +201,7 @@ describe('inputsFromTally', () => {
     });
     expect(t.unmapped).toEqual([]);
     expect(t.notes.shadeStructures).toMatch(/2 shade canopies \(16'x16', 6'x5.5' on your plan\) as the Shade guide’s 8'x8' structure/);
-    expect(t.notes.gabionBaskets).toMatch(/grey 1-ft band the park pieces draw along the street edges/);
+    expect(t.notes.gabionBaskets).toBe('80 ft of gabion wall: one 4-ft basket per 4 ft, 1 basket high (as the 3D model draws it).');
     expect(t.notes.raisedBedWoodEdgeFt).toMatch(/perimeter/);
   });
 

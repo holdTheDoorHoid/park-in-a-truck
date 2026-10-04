@@ -162,7 +162,7 @@ export function inputsFromTally(
           'gabionBaskets',
           baskets,
           wallFt > 0
-            ? `${round2(wallFt)} ft of gabion wall — the grey 1-ft band the park pieces draw along the street edges${added > 0 ? ', plus the wall pieces you added' : ''}: one 4-ft basket per 4 ft, ${plural(courses, 'basket')} high (as the 3D model draws it).`
+            ? `${round2(wallFt)} ft of gabion wall${added > 0 ? ' (with the wall pieces you added)' : ''}: one 4-ft basket per 4 ft, ${plural(courses, 'basket')} high (as the 3D model draws it).`
             : undefined,
         );
     }
@@ -192,7 +192,7 @@ export function inputsFromTally(
       const n = count('stage');
       const given = tally.itemSizes?.stage;
       const sq = given && given.length === n ? given.reduce((a, s) => a + squares(s), 0) : n;
-      set('stageSquares', sq, n ? "4'x4' squares of stage. The Stage build guide's 12'x8' stage is 6 squares." : undefined);
+      set('stageSquares', sq, n ? "4'x4' squares of stage." : undefined);
     }
 
     // Sheds: 1 square (4'x4') or 2 squares (4'x8').

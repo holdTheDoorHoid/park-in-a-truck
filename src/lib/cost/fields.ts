@@ -70,7 +70,7 @@ export const FIELD_GROUPS: FieldGroup[] = [
       {
         key: 'gabionBaskets',
         label: "How many 1' gabion baskets do you have?",
-        hint: 'For the gabion wall: the grey 1-ft band the park pieces draw along the street edges. One 4-ft basket per 4 ft of wall.',
+        hint: 'For the gabion wall: the grey 1-ft band the park pieces draw along the street edges.',
       },
       { key: 'raisedBedWoodEdgeFt', label: 'Do you have raised beds? How many feet are your wood edges?', unit: 'ft', decimal: true, unpriced: 'Not priced: the spreadsheet has no calculation for raised-bed wood edges.' },
       { key: 'raisedBedGabionConnections', label: 'How many connections to gabions do you have?' },

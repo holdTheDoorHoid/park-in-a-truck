@@ -427,6 +427,7 @@
 }
 .ce-guide-link {
   display: block;
+  font-family: var(--font-body);
   font-size: 0.8rem;
   font-weight: 600;
   margin-top: 2px;
