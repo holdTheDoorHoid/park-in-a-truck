@@ -1,9 +1,9 @@
 ---
-title: Create
-intro: Build your park, one weekend phase at a time.
+title: Lumikha
+intro: Itayo ang inyong parke, isang yugto bawat weekend.
 sources:
-  - Toolkit pp. 57–59 (Create, Initial Park Construction)
-  - Create Workbook pp. 1–18
+  - Toolkit pp. 57–59 (Lumikha, Unang Pagtatayo ng Parke)
+  - Workbook ng Create pp. 1–18
 ---
 import Field from '../../../../components/workbook/Field.astro';
 import ListField from '../../../../components/workbook/ListField.astro';
@@ -20,449 +20,521 @@ import LotAgreementNotice from '../../../../components/workbook/LotAgreementNoti
 {/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — Create lets you pick build weekends and print an order list with nothing recorded in Acquire; this says so before anyone breaks ground. */}
 <LotAgreementNotice />
 
-Building a park is a great way to connect neighbors, friends and others. The process requires dedicated volunteers
-who can give their time and energy, with a wide variety of skills — carpentry, landscaping, organizing, encouraging,
-leading. Like following a recipe, park building is a step-by-step sequence; most Park in a Truck parks go up in about
-6–8 weekends.
+Ang pagtatayo ng parke ay napakagandang paraan para pag-ugnayin ang mga kapitbahay, kaibigan at iba pa.
+Nangangailangan ang proseso ng masisipag na boluntaryo na kayang magbigay ng oras at lakas, na may iba't ibang
+kasanayan — karpinterya, landscaping, pag-oorganisa, pagpapalakas ng loob, pamumuno. Gaya ng pagsunod sa resipe,
+sunud-sunod na proseso ang pagtatayo ng parke; karamihan sa mga parke ng Park in a Truck ay naitatayo sa mga 6–8 na
+weekend.
 
-The Create chapter is all about building your park. We broke the process down into eight phases. Each phase can be
-completed in roughly a weekend — the size of your park and number of volunteers will affect how long it actually
-takes. The phases are ordered for a reason; review each one and adjust your schedule as needed.
+Tungkol sa pagtatayo ng inyong parke ang buong kabanatang Lumikha. Hinati namin ang proseso sa walong yugto. Ang
+bawat yugto ay matatapos sa humigit-kumulang isang weekend — makaaapekto ang laki ng inyong parke at ang bilang ng
+mga boluntaryo sa tunay na tagal nito. May dahilan ang pagkakasunod-sunod ng mga yugto; suriin ang bawat isa at
+iayon ang inyong iskedyul kung kailangan.
 
-This book assumes you've done the cost estimate and know the quantities and materials you'll need to order for each
-phase. If you haven't, go back to the Dream step and use the cost estimator.
+Ipinapalagay ng aklat na ito na nagawa na ninyo ang tantiya ng gastos at alam na ninyo ang dami at mga materyales na
+kailangan ninyong orderin para sa bawat yugto. Kung hindi pa, bumalik sa hakbang na Mangarap at gamitin ang
+tagatantiya ng gastos.
 
 <CostEstimator />
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={3} />
 
-## Volunteer release form {/* #volunteer-release-form */}
+## Release form ng boluntaryo {/* #volunteer-release-form */}
 
-Make sure you have volunteer release forms available at the site whenever you're working on the park. This form
-releases you from liability for injuries to your volunteers. It's your responsibility to consult your organization's
-legal advisors and insurance carrier before starting construction — they may want you to take additional steps to
-protect the organization from liability. Give your volunteers clear instructions about expectations and tasks for the
-work day; they're more likely to come back in future weeks when they feel their time was put to good use.
+Siguruhing may mga release form ng boluntaryo sa lote tuwing nagtatrabaho kayo sa parke. Inaalis ng form na ito ang
+inyong pananagutan sa mga pinsala ng inyong mga boluntaryo. Tungkulin ninyong kumonsulta sa mga legal na tagapayo at
+sa kompanya ng insurance ng inyong organisasyon bago magsimula ang konstruksiyon — baka gusto nilang gumawa kayo ng
+karagdagang hakbang para protektahan ang organisasyon sa pananagutan. Bigyan ang inyong mga boluntaryo ng malinaw na
+tagubilin tungkol sa inaasahan at mga gawain sa araw ng trabaho; mas malamang na babalik sila sa mga susunod na
+linggo kapag nararamdaman nilang nagamit nang mabuti ang kanilang oras.
 
-<Download href="downloads/forms/volunteer-release-form.pdf" label="Volunteer waiver and release form" note="One per volunteer; a parent or guardian must also sign for volunteers under 18" />
+<Download href="downloads/forms/volunteer-release-form.pdf" label="Waiver at release form ng boluntaryo" note="Isa bawat boluntaryo; kailangan ding pumirma ang magulang o tagapag-alaga ng mga boluntaryong wala pang 18" />
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={3} />
 
-## Phase 1: Organize {/* #phase-1-organize */}
+## Yugto 1: Mag-organisa {/* #phase-1-organize */}
 
-As in any process, the first and most important step is to organize your team by identifying project leaders and
-establishing a schedule. How many people you assign to these roles depends on the complexity and size of your
-project.
+Gaya ng anumang proseso, ang una at pinakamahalagang hakbang ay organisahin ang inyong grupo sa pamamagitan ng
+pagtukoy sa mga pinuno ng proyekto at pagtatakda ng iskedyul. Kung ilang tao ang itatalaga ninyo sa mga tungkuling
+ito ay depende sa pagiging masalimuot at laki ng inyong proyekto.
 
-- **Construction manager.** Orders materials, is there for deliveries, gives instructions to volunteers on build
-  days, and coordinates with the project manager on schedule.
-- **Project manager.** In charge of getting volunteers, social media, ordering food, handing out waivers, coordinates
-  finances and controls the schedule.
+- **Construction manager.** Umoorder ng materyales, naroon kapag may delivery, nagbibigay ng tagubilin sa mga
+  boluntaryo sa mga araw ng pagtatayo, at nakikipag-ugnayan sa project manager tungkol sa iskedyul.
+- **Project manager.** Namamahala sa paghahanap ng boluntaryo, social media, pag-order ng pagkain, pamimigay ng
+  waiver, nag-aasikaso ng pananalapi at may hawak ng iskedyul.
 
-<Field id="create.construction-manager" label="Construction manager" hint="Orders materials, runs build days" />
-<Field id="create.project-manager" label="Project manager" hint="Volunteers, schedule, finances" />
+<Field id="create.construction-manager" label="Construction manager" hint="Umoorder ng materyales, namamahala sa mga araw ng pagtatayo" />
+<Field id="create.project-manager" label="Project manager" hint="Mga boluntaryo, iskedyul, pananalapi" />
 
 <ListField
   id="create.org-chart"
-  label="Volunteers & contractors"
-  rowName="person"
+  label="Mga boluntaryo at kontratista"
+  rowName="tao"
   min={3}
   columns={[
-    { key: 'name', label: 'Name' },
-    { key: 'role', label: 'Role', placeholder: 'volunteer, contractor…' },
+    { key: 'name', label: 'Pangalan' },
+    { key: 'role', label: 'Tungkulin', placeholder: 'boluntaryo, kontratista…' },
     { key: 'contact', label: 'Contact' },
   ]}
 />
 
-A project calendar is an excellent way to keep track of schedules, important dates, when volunteers will be working,
-and lead times for materials. Planning is as important as the building process itself — start off on the right foot.
+Napakagandang paraan ang kalendaryo ng proyekto para masubaybayan ang mga iskedyul, mahahalagang petsa, kung kailan
+magtatrabaho ang mga boluntaryo, at gaano katagal bago dumating ang mga materyales. Kasinghalaga ng mismong
+pagtatayo ang pagpaplano — magsimula sa tamang paraan.
 
 <BuildSchedule />
 
-<Download href="downloads/templates/project-calendar.xlsx" label="Calendar template" note="Sample project calendar and contact list — for reference, make your own copy" />
+<Download href="downloads/templates/project-calendar.xlsx" label="Template ng kalendaryo" note="Halimbawang kalendaryo ng proyekto at listahan ng contact — para sa sanggunian, gumawa ng sariling kopya" />
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={4} />
 
-## Phase 2: Prepare the lot {/* #phase-2-prepare-the-lot */}
+## Yugto 2: Ihanda ang lote {/* #phase-2-prepare-the-lot */}
 
-### Steps
+### Mga hakbang
 
-**Step 1: Evaluate.** Some sites need more clearing or grading than others, which can require special machinery —
-contact a landscape contractor if any of the following can't be done by the community alone.
+**Hakbang 1: Suriin.** Mas maraming paglilinis o pagpapatag ang kailangan ng ilang lote kaysa sa iba, na maaaring
+mangailangan ng espesyal na makina — makipag-ugnayan sa isang landscape contractor kung hindi kaya ng komunidad
+nang mag-isa ang alinman sa mga sumusunod.
 
-- Contact the PiaT team ([ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu)) for a site visit
-  consultation if you're unsure how to prepare your site.
-- Contact Pennsylvania One Call at **811** to mark utility locations.
+- Makipag-ugnayan sa grupo ng PiaT ([ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu)) para sa
+  pagbisita at konsultasyon sa lote kung hindi kayo sigurado kung paano ihahanda ang inyong lote.
+- Tumawag sa Pennsylvania One Call sa **811** para markahan ang kinaroroonan ng mga utility (kable at tubo sa ilalim
+  ng lupa).
 
-<Field id="create.one-call-address" label="Address for your PA One Call request" auto="lot.address" />
+<Field id="create.one-call-address" label="Address para sa inyong request sa PA One Call" auto="lot.address" />
 
-**Step 2: Protect.** Bring small tools and equipment to the site. Set up protective construction fencing with wood
-posts at tree trunks, buildings and other items that need protection. Install silt/erosion control fencing around
-the site and at all drain inlets.
+**Hakbang 2: Protektahan.** Magdala ng maliliit na kagamitan sa lote. Maglagay ng pamprotektang bakod ng
+konstruksiyon na may mga posteng kahoy sa paligid ng mga puno, gusali at iba pang bagay na kailangang protektahan.
+Maglagay ng bakod na pangontra sa banlik at pagguho ng lupa sa paligid ng lote at sa lahat ng butas ng kanal.
 
-**Step 3: Removal.** Remove unwanted vegetation (including roots), tree stumps, trash and masonry materials — some
-vegetation removal may require herbicide treatment to control effectively in a timely manner. Prune existing trees to
-remove limbs from the trunk to at least 6' high. Haul debris and vegetation off site to the proper dumping location;
-stockpile masonry materials on site to use as gabion basket fill.
+**Hakbang 3: Pag-aalis.** Alisin ang mga ayaw na halaman (kasama ang mga ugat), tuod ng puno, basura at mga piraso ng
+bato at semento — maaaring kailanganin ng herbicide (pamatay-damo) ang pag-aalis ng ilang halaman para makontrol
+ito nang mabisa at sa tamang oras. Pungusan ang mga punong nandoon na para alisin ang mga sanga sa katawan nito
+hanggang hindi bababa sa 6' ang taas. Hakutin palabas ng lote ang kalat at mga halaman papunta sa tamang tapunan;
+itambak sa lote ang mga piraso ng bato at semento para magamit na pampuno ng mga basket na gabion.
 
 {/* site-added: safety note (DESIGN.md §2, 2026-10-04) — street trees are the City's; facts checked 2026-10-04 on phila.gov. */}
 <Callout kind="site">
-  Street trees (the ones in the sidewalk) belong to the City: pruning or removing one needs a permit from Philadelphia
-  Parks & Recreation, which prunes and removes hazardous street trees for free (ask through 311). See the City's
-  [street tree questions ↗](https://www.phila.gov/departments/philadelphia-parks-recreation/street-tree-frequently-asked-questions/).
+  Pag-aari ng Lungsod ang mga puno sa kalye (ang mga nasa bangketa): kailangan ng permit mula sa Philadelphia Parks
+  & Recreation para pungusan o alisin ang isa, at libreng pinupungusan at inaalis ng ahensiyang iyon ang mga
+  mapanganib na puno sa kalye (humiling sa pamamagitan ng 311). Tingnan ang
+  [mga tanong tungkol sa puno sa kalye ↗](https://www.phila.gov/departments/philadelphia-parks-recreation/street-tree-frequently-asked-questions/)
+  ng Lungsod (sa Ingles).
 </Callout>
 
-**Step 4: Site leveling.** Begin grade raking and leveling the site. Make sure any Pennsylvania One Call markings are
-still intact and visible — soil grade should be relatively level with the sidewalk grade.
+**Hakbang 4: Pagpapatag ng lote.** Simulang kalaykayin at patagin ang lote. Siguruhing buo at nakikita pa ang anumang
+marka ng Pennsylvania One Call — dapat halos kapantay ng bangketa ang taas ng lupa.
 
-### Equipment & tools
+### Mga kagamitan
 
 <Checklist
   id="create.phase2-tools"
   items={[
-    'Shovels', 'Wheelbarrows', 'Pick axe', 'Grading rakes', 'Sledgehammer',
-    'Hand pruners + loppers', 'Pruning saws', 'Spray paint', 'Construction fencing',
-    'Wood posts', 'Broom', 'Chainsaw', 'Trash bags',
+    { value: 'Shovels', label: 'Pala' },
+    { value: 'Wheelbarrows', label: 'Kartilya' },
+    { value: 'Pick axe', label: 'Piko' },
+    { value: 'Grading rakes', label: 'Kalaykay na pampatag' },
+    { value: 'Sledgehammer', label: 'Maso' },
+    { value: 'Hand pruners + loppers', label: 'Gunting na pampungos + lopper (mahabang gunting)' },
+    { value: 'Pruning saws', label: 'Lagaring pampungos' },
+    { value: 'Spray paint', label: 'Spray paint' },
+    { value: 'Construction fencing', label: 'Bakod ng konstruksiyon' },
+    { value: 'Wood posts', label: 'Mga posteng kahoy' },
+    { value: 'Broom', label: 'Walis' },
+    { value: 'Chainsaw', label: 'Chainsaw' },
+    { value: 'Trash bags', label: 'Mga trash bag' },
   ]}
 />
 <Checklist
   id="create.phase2-tools-optional"
-  label="Optional — for sites with large amounts of uneven surfaces, concrete, or tree stumps"
+  label="Hindi kailangan — para sa mga loteng maraming hindi pantay na lupa, semento o tuod ng puno"
   items={[
-    { value: 'excavator', label: 'Excavator', hint: 'hired contractor recommended' },
-    { value: 'stump-grinder', label: 'Stump grinder', hint: 'hired contractor recommended' },
-    'Jack hammer', 'Rototiller', 'Herbicide spray',
+    { value: 'excavator', label: 'Excavator', hint: 'mas mabuting umupa ng kontratista' },
+    { value: 'stump-grinder', label: 'Stump grinder (pandurog ng tuod)', hint: 'mas mabuting umupa ng kontratista' },
+    { value: 'Jack hammer', label: 'Jack hammer' },
+    { value: 'Rototiller', label: 'Rototiller (makinang pambungkal)' },
+    { value: 'Herbicide spray', label: 'Spray ng herbicide' },
   ]}
 />
 
 <Figure
   src="img/create/phase2-reference-photos.webp"
-  alt="Reference photos for preparing the lot: an excavator clearing a site, a utility locate flag and tracer wire on a lawn, volunteers removing masonry rubble, erosion-control sediment mesh along a curb, and a volunteer grade-raking soil"
+  alt="Mga larawang sanggunian sa paghahanda ng lote: isang excavator na naglilinis ng lote, isang watawat na marka ng utility at tracer wire sa damuhan, mga boluntaryong nag-aalis ng piraso ng bato at semento, sediment mesh na pangontra sa pagguho sa gilid ng bangketa, at isang boluntaryong nagkakalaykay ng lupa"
 />
 
-### Useful links
+### Mga kapaki-pakinabang na link (sa Ingles)
 
-- **Tool rental** — may be worth hiring a contractor for power tools, for efficiency and safety.
-  [West Philadelphia Tool Library ↗](https://westphillytools.org) (hand tools only; 1314 S 47th St) ·
-  [OK Rental ↗](https://okrentalsaleservice.com) *(link currently dead)* (power tools, including chainsaws; 640 Main St, Darby) ·
-  [Diamond Tool ↗](https://diamondtool.net/Rentals) *(could not verify automatically)* (2800 Grays Ferry Ave)
-- **Waste & recycling** — [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/) (3850 W Ford Rd)
-- **Tree pruning video** — [youtube.com/watch?v=pY5A-5gUqwo ↗](https://youtube.com/watch?v=pY5A-5gUqwo)
-- **Weed ID** — [Philadelphia Orchard Project weed guide ↗](https://www.phillyorchards.org/resources/)
-- **Herbicides** (use sparingly, always follow label instructions) — Picloram for stump application on woody plants;
-  Glyphosate for foliar application on herbaceous and woody plants; Clopyralid for mugwort and Canadian thistle.
-  Invasive weeds that often need herbicide control: mugwort, Canadian thistle, Japanese knotweed and phragmites
-  (herbaceous); Broussonetia, Ailanthus, Paulownia and Japanese honeysuckle (woody — cut and treat the stump only if
-  too large to remove by the roots).
+- **Pag-upa ng kagamitan** — maaaring sulit ang umupa ng kontratista para sa mga power tool, para sa bilis at
+  kaligtasan. [West Philadelphia Tool Library ↗](https://westphillytools.org) (kagamitang de-kamay lang; 1314 S 47th St) ·
+  [OK Rental ↗](https://okrentalsaleservice.com) *(hindi gumagana ang link ngayon)* (mga power tool, kasama ang chainsaw; 640 Main St, Darby) ·
+  [Diamond Tool ↗](https://diamondtool.net/Rentals) *(hindi ma-verify nang awtomatiko)* (2800 Grays Ferry Ave)
+- **Basura at recycling** — [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/) (3850 W Ford Rd)
+- **Video tungkol sa pagpupungos ng puno** — [youtube.com/watch?v=pY5A-5gUqwo ↗](https://youtube.com/watch?v=pY5A-5gUqwo)
+- **Pagkilala sa damong ligaw** — [gabay sa damong ligaw ng Philadelphia Orchard Project ↗](https://www.phillyorchards.org/resources/)
+- **Mga herbicide** (gamitin nang matipid, laging sundin ang tagubilin sa label) — Picloram para ipahid sa tuod ng
+  makahoy na halaman; Glyphosate para i-spray sa dahon ng mga halamang malambot ang tangkay at makahoy; Clopyralid
+  para sa mugwort at Canadian thistle. Mga invasive na damong ligaw na madalas kailanganin ng herbicide: mugwort,
+  Canadian thistle, Japanese knotweed at phragmites (malambot ang tangkay); Broussonetia, Ailanthus, Paulownia at
+  Japanese honeysuckle (makahoy — putulin at gamutin ang tuod kung masyado lang itong malaki para bunutin pati ugat).
 
 {/* site-added: safety note (DESIGN.md §2, 2026-10-04) — herbicide labels, restricted-use picloram, 20% vinegar; facts checked 2026-10-04 on epa.gov and npic.orst.edu. */}
 <Callout kind="site">
-  A herbicide's label is the law: follow it, including where you may use the product and the protective gear it
-  lists ([EPA ↗](https://www.epa.gov/pesticide-labels/introduction-pesticide-labels)). Many picloram products are
-  restricted-use and may only be bought or applied by a certified applicator
-  ([EPA's list ↗](https://www.epa.gov/pesticide-worker-safety/restricted-use-products-rup-report)). Vinegar sold for
-  weeds (20% or more) can permanently damage eyes: wear eye protection and gloves
-  ([NPIC ↗](https://npic.orst.edu/faq/vinegar.html)).
+  Batas ang label ng herbicide: sundin ito, kasama kung saan maaaring gamitin ang produkto at ang pamprotektang
+  kasuotang nakalista roon ([EPA ↗](https://www.epa.gov/pesticide-labels/introduction-pesticide-labels), sa Ingles).
+  Maraming produktong picloram ang restricted-use at maaari lamang bilhin o gamitin ng isang certified applicator
+  (sertipikadong tagagamit) ([listahan ng EPA ↗](https://www.epa.gov/pesticide-worker-safety/restricted-use-products-rup-report),
+  sa Ingles). Ang sukang ibinebenta para sa damong ligaw (20% o higit pa) ay maaaring permanenteng makasira sa mata:
+  magsuot ng proteksiyon sa mata at guwantes ([NPIC ↗](https://npic.orst.edu/faq/vinegar.html), sa Ingles).
 </Callout>
 
-### Preparation for next steps
+### Paghahanda sa mga susunod na hakbang
 
-Check your project calendar and revise as needed. Purchase and deliver any materials or equipment with lead times,
-and make sure the site is prepared for Phase 3.
+Tingnan ang kalendaryo ng inyong proyekto at baguhin kung kailangan. Bilhin at ipa-deliver ang anumang materyales o
+kagamitang matagal dumating, at siguruhing handa ang lote para sa Yugto 3.
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={5} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={6} label="Reference photos & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={6} label="Mga larawang sanggunian at link (PDF)" />
 
-## Phase 3: Layout & gravel base {/* #phase-3-layout-gravel-base */}
+## Yugto 3: Paglalatag at batayang graba {/* #phase-3-layout-gravel-base */}
 
-### Steps
+### Mga hakbang
 
-**Step 1: Materials.** Bring equipment and tools to the site; prepare for deliveries. Locate a stockpile area for
-gravel and cover it with a tarp if possible. Mark the general areas to receive gravel in spray paint — if there's not
-enough room, coordinate the delivery with your city to have it placed in the street.
+**Hakbang 1: Materyales.** Dalhin sa lote ang mga kagamitan; maghanda para sa mga delivery. Pumili ng lugar na
+pagtatambakan ng graba at takpan ito ng trapal kung maaari. Markahan ng spray paint ang mga bahaging lalagyan ng
+graba — kung kulang ang espasyo, makipag-ugnayan sa inyong lungsod para mailagay ang delivery sa kalye.
 
-<Callout kind="note" title="Blocking the street for a delivery?">
-  Apply for a temporary no-parking permit so the delivery truck has somewhere to unload.
-  [Apply on phila.gov ↗](https://www.phila.gov/services/cars-parking-transportation/apply-for-a-parking-permit/apply-for-a-temporary-no-parking-permit/)
+<Callout kind="note" title="Haharangan ang kalye para sa delivery?">
+  Mag-apply ng pansamantalang permit na bawal pumarada (temporary no-parking permit) para may mapagbabaan ang trak ng
+  delivery.
+  [Mag-apply sa phila.gov (sa Ingles) ↗](https://www.phila.gov/services/cars-parking-transportation/apply-for-a-parking-permit/apply-for-a-temporary-no-parking-permit/)
 </Callout>
-<Field id="create.delivery-address" label="Address for the no-parking permit" auto="lot.address" />
+<Field id="create.delivery-address" label="Address para sa no-parking permit" auto="lot.address" />
 
-**Step 2: Layout planting beds & park element locations.** Begin at the starting point you marked in the Assess
-workbook. Refer to your plan for the locations and lengths of planting-bed and park-element edges. Use stakes and
-string line to mark the locations of edging and park elements you'll add in later phases.
+**Hakbang 2: Ilatag ang mga taniman at puwesto ng mga bahagi ng parke.** Magsimula sa panimulang puntong minarkahan
+ninyo sa workbook ng Magsuri. Tingnan ang inyong plano para sa lokasyon at haba ng mga gilid ng taniman at ng mga
+bahagi ng parke. Gumamit ng istaka at tali para markahan ang lokasyon ng mga gilid at bahagi ng parke na idaragdag
+ninyo sa mga susunod na yugto.
 
-**Step 3: Install sub base.** Prepare ground surfaces for gabion baskets per the assembly instructions. Dig out
-entrances to allow for the change in level from the new park to the sidewalk — minimum 4" deep at the sidewalk edge,
-grading as needed (use excess soil to level pathways or add to planting areas). Spread gravel 2" deep in all areas
-except plant beds, about 6" wider than your string lines so the edging in the next phase can sit on top of the
-gravel. Run a vibrating plate over the gravel at least twice.
+**Hakbang 3: Ilagay ang sub-base.** Ihanda ang ibabaw ng lupa para sa mga basket na gabion ayon sa tagubilin sa
+pagbuo. Hukayin ang mga pasukan para sa pagbabago ng taas mula sa bagong parke papunta sa bangketa — hindi bababa sa
+4" ang lalim sa gilid ng bangketa, at patagin kung kailangan (gamitin ang sobrang lupa para patagin ang mga daanan o
+idagdag sa mga taniman). Ikalat ang graba nang 2" ang kapal sa lahat ng bahagi maliban sa mga taniman, mga 6" na mas
+malapad kaysa sa inyong mga tali para maipatong sa graba ang mga gilid sa susunod na yugto. Padaanan ng vibrating
+plate ang graba nang hindi bababa sa dalawang beses.
 
-**Step 4: Entrances & cleanup.** Clean up overspill of gravel and clean up public areas.
+**Hakbang 4: Mga pasukan at paglilinis.** Linisin ang nalaglag na graba at linisin ang mga pampublikong lugar.
 
-### Equipment, tools & materials
+### Mga kagamitan at materyales
 
 <Checklist
   id="create.phase3-tools"
   items={[
-    'Square', 'Measuring tape', 'Shovels', 'Wheelbarrows', 'Pick axe', 'Grading rakes',
-    '5 lb hammer', 'Spray paint', 'Wood posts and string', 'Vibrating plate compactor', 'Broom',
+    { value: 'Square', label: 'Iskwala' },
+    { value: 'Measuring tape', label: 'Medida' },
+    { value: 'Shovels', label: 'Pala' },
+    { value: 'Wheelbarrows', label: 'Kartilya' },
+    { value: 'Pick axe', label: 'Piko' },
+    { value: 'Grading rakes', label: 'Kalaykay na pampatag' },
+    { value: '5 lb hammer', label: '5 lb na martilyo' },
+    { value: 'Spray paint', label: 'Spray paint' },
+    { value: 'Wood posts and string', label: 'Mga posteng kahoy at tali' },
+    { value: 'Vibrating plate compactor', label: 'Vibrating plate compactor (makinang pansiksik)' },
+    { value: 'Broom', label: 'Walis' },
   ]}
 />
-<p class="muted">Materials: gravel, 3/4" roadbase.</p>
+<p class="muted">Materyales: graba, 3/4" na roadbase.</p>
 
 <Figure
   src="img/create/phase3-reference-photos.webp"
-  alt="Reference photos for layout and gravel base: measuring the site, digging, prepping the sub base, a gravel delivery truck, laying out the site with stakes and string, a gravel stockpile, wheelbarrowing and spreading gravel"
+  alt="Mga larawang sanggunian sa paglalatag at batayang graba: pagsukat sa lote, paghuhukay, paghahanda ng sub-base, isang trak na nagde-deliver ng graba, paglalatag sa lote gamit ang istaka at tali, isang tambak ng graba, pagkakartilya at pagkakalat ng graba"
 />
 
-### Useful links
+### Mga kapaki-pakinabang na link (sa Ingles)
 
-- **How-to** — [Lay out planting beds ↗](https://lowes.com/n/how-to/create-an-english-style-garden) (watch 1:50–2:40) ·
-  [Install gravel sub-base ↗](https://youtube.com/watch?v=tfDEOIAIUwQ)
-- **Tool rental** — [West Philadelphia Tool Library ↗](https://westphillytools.org) ·
-  [OK Rental ↗](https://okrentalsaleservice.com) *(link currently dead)* · [Diamond Tool ↗](https://diamondtool.net/Rentals) *(could not verify automatically)*
+- **Paano gawin** — [Ilatag ang mga taniman ↗](https://lowes.com/n/how-to/create-an-english-style-garden) (panoorin ang 1:50–2:40) ·
+  [Ilagay ang sub-base na graba ↗](https://youtube.com/watch?v=tfDEOIAIUwQ)
+- **Pag-upa ng kagamitan** — [West Philadelphia Tool Library ↗](https://westphillytools.org) ·
+  [OK Rental ↗](https://okrentalsaleservice.com) *(hindi gumagana ang link ngayon)* · [Diamond Tool ↗](https://diamondtool.net/Rentals) *(hindi ma-verify nang awtomatiko)*
 
-### Preparation for next steps
+### Paghahanda sa mga susunod na hakbang
 
-Check your project calendar and revise as needed. Purchase and deliver materials with lead times for the next
-phases. Make sure the site is prepared for Phase 4.
+Tingnan ang kalendaryo ng inyong proyekto at baguhin kung kailangan. Bilhin at ipa-deliver ang mga materyales na
+matagal dumating para sa mga susunod na yugto. Siguruhing handa ang lote para sa Yugto 4.
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={7} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={8} label="Reference photos & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={8} label="Mga larawang sanggunian at link (PDF)" />
 
-## Phase 4: Install the edge {/* #phase-4-install-the-edge */}
+## Yugto 4: Ilagay ang gilid {/* #phase-4-install-the-edge */}
 
-### Steps
+### Mga hakbang
 
-**Step 1: Materials.** Bring your edge materials (see the cost estimate and assembly instructions). Remove the
-erosion-protection fence; tree protection should stay unless its location interferes with edge installation.
+**Hakbang 1: Materyales.** Dalhin ang mga materyales ng gilid (tingnan ang tantiya ng gastos at ang tagubilin sa
+pagbuo). Alisin ang bakod na pangontra sa pagguho; dapat manatili ang proteksiyon ng mga puno maliban kung
+nakaharang ang lokasyon nito sa paglalagay ng gilid.
 
-**Step 2: Assemble.** Assemble gabion baskets (refer to your Gabion Wall assembly instructions).
+**Hakbang 2: Buuin.** Buuin ang mga basket na gabion (tingnan ang tagubilin sa pagbuo ng Gabion Wall).
 
-**Step 3: Installation.** Set up string lines so gabion baskets sit in a straight line along the park edge. Lay out
-the baskets according to your plan and fill the bottoms with 2–3" of gravel. Make small adjustments so the baskets
-are level and straight relative to each other — when used alone as tables or benches, use a leveling tool on top.
-Add wood edges where needed (see the Wood Edging assembly instructions).
+**Hakbang 3: Paglalagay.** Maglagay ng mga tali para tuwid ang hanay ng mga basket na gabion sa gilid ng parke.
+Ilatag ang mga basket ayon sa inyong plano at punuin ang ilalim nila ng 2–3" ng graba. Gumawa ng maliliit na
+pagsasaayos para pantay at tuwid ang mga basket sa isa't isa — kapag ginagamit nang mag-isa bilang mesa o upuan,
+gumamit ng level sa ibabaw. Magdagdag ng gilid na kahoy kung saan kailangan (tingnan ang tagubilin sa pagbuo ng Wood
+Edging).
 
-### Equipment & materials
+### Mga kagamitan at materyales
 
 <Checklist
   id="create.phase4-tools"
   items={[
-    'Measuring tape', 'Shovels', 'Wheelbarrows', 'Garden hoes', 'Grading rakes',
-    'Hand tamper', 'Wire cutters', 'Sledge hammer', 'Level', 'Broom',
+    { value: 'Measuring tape', label: 'Medida' },
+    { value: 'Shovels', label: 'Pala' },
+    { value: 'Wheelbarrows', label: 'Kartilya' },
+    { value: 'Garden hoes', label: 'Asarol' },
+    { value: 'Grading rakes', label: 'Kalaykay na pampatag' },
+    { value: 'Hand tamper', label: 'Pansiksik na de-kamay (hand tamper)' },
+    { value: 'Wire cutters', label: 'Pamutol ng alambre' },
+    { value: 'Sledge hammer', label: 'Maso' },
+    { value: 'Level', label: 'Level (pantay-tubig)' },
+    { value: 'Broom', label: 'Walis' },
   ]}
 />
-<p class="muted">Materials: gabion baskets; lumber and hardware for wood edge; large masonry material for gabion baskets, 3" or larger.</p>
+<p class="muted">Materyales: mga basket na gabion; kahoy at hardware para sa gilid na kahoy; malalaking piraso ng bato at semento para sa mga basket na gabion, 3" o mas malaki.</p>
 
 <Figure
   src="img/create/phase4-reference-photos.webp"
-  alt="Reference photos for installing the edge: two filled gabion baskets, and a volunteer setting a wood edge board against a gravel bed"
+  alt="Mga larawang sanggunian sa paglalagay ng gilid: dalawang basket na gabion na may laman, at isang boluntaryong naglalagay ng tablang gilid na kahoy sa tabi ng graba"
 />
 
-### Useful links
+### Mga kapaki-pakinabang na link (sa Ingles)
 
-- **Materials** — [Castor Materials ↗](https://castormaterials.com) (crushed stone, delivery; 3301 S 61st St) ·
-  [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) (crushed stone, mulch, tools; 4260 Macalester St) ·
-  [Underdog Supply ↗](https://www.underdogsupply.com/) (bulk delivery; Conshohocken) ·
-  Galantino Supply Company (rental equipment and bulk materials; 725 Old Marple Rd, Springfield — (610) 544-2586)
-- **How-to** — [Build a gabion wall ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
+- **Materyales** — [Castor Materials ↗](https://castormaterials.com) (dinurog na bato, may delivery; 3301 S 61st St) ·
+  [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) (dinurog na bato, mulch, kagamitan; 4260 Macalester St) ·
+  [Underdog Supply ↗](https://www.underdogsupply.com/) (maramihang delivery; Conshohocken) ·
+  Galantino Supply Company (paupahang kagamitan at maramihang materyales; 725 Old Marple Rd, Springfield — (610) 544-2586)
+- **Paano gawin** — [Magtayo ng pader na gabion ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
 
-### Preparation for next steps
+### Paghahanda sa mga susunod na hakbang
 
-Check your project calendar and revise as needed. Purchase and deliver materials with lead times. Make sure the site
-is prepared for Phase 5.
+Tingnan ang kalendaryo ng inyong proyekto at baguhin kung kailangan. Bilhin at ipa-deliver ang mga materyales na
+matagal dumating. Siguruhing handa ang lote para sa Yugto 5.
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={9} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={10} label="Reference photos & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={10} label="Mga larawang sanggunian at link (PDF)" />
 
-## Phase 5: Spread topsoil {/* #phase-5-spread-topsoil */}
+## Yugto 5: Ikalat ang topsoil {/* #phase-5-spread-topsoil */}
 
-### Steps
+### Mga hakbang
 
-**Step 1: Materials.** Remove the tree protection fence. Locate a stockpile area for topsoil on the sidewalk or
-street — if so, apply for a temporary no-parking permit (see Phase 3).
+**Hakbang 1: Materyales.** Alisin ang bakod na proteksiyon ng mga puno. Pumili ng lugar na pagtatambakan ng topsoil
+(matabang lupang pang-ibabaw) sa bangketa o sa kalye — kung gayon, mag-apply ng pansamantalang no-parking permit
+(tingnan ang Yugto 3).
 
-**Step 2: Soil installation.** Prepare planting beds to receive topsoil by grading the existing soil. Spread topsoil
-approximately 4–6" deep and grade it for smoothness.
+**Hakbang 2: Paglalagay ng lupa.** Ihanda ang mga taniman para sa topsoil sa pamamagitan ng pagpapatag ng
+kasalukuyang lupa. Ikalat ang topsoil nang mga 4–6" ang kapal at patagin ito nang makinis.
 
-**Step 3: Clean up.** Clean up overspill of topsoil and clean up public areas.
+**Hakbang 3: Paglilinis.** Linisin ang nalaglag na topsoil at linisin ang mga pampublikong lugar.
 
-### Equipment & materials
+### Mga kagamitan at materyales
 
 <Checklist
   id="create.phase5-tools"
-  items={['Measuring tape', 'Shovels', 'Wheelbarrows', 'Grading rakes', 'Garden hoes', 'Broom']}
+  items={[
+    { value: 'Measuring tape', label: 'Medida' },
+    { value: 'Shovels', label: 'Pala' },
+    { value: 'Wheelbarrows', label: 'Kartilya' },
+    { value: 'Grading rakes', label: 'Kalaykay na pampatag' },
+    { value: 'Garden hoes', label: 'Asarol' },
+    { value: 'Broom', label: 'Walis' },
+  ]}
 />
-<p class="muted">Materials: topsoil.</p>
+<p class="muted">Materyales: topsoil.</p>
 
 <Figure
   src="img/create/phase5-reference-photos.webp"
-  alt="Reference photos for spreading topsoil: a dump truck delivering topsoil, a volunteer grading soil by hand, two volunteers moving topsoil by wheelbarrow, and a volunteer placing topsoil in a bed"
+  alt="Mga larawang sanggunian sa pagkakalat ng topsoil: isang dump truck na nagde-deliver ng topsoil, isang boluntaryong nagpapatag ng lupa nang mano-mano, dalawang boluntaryong naglilipat ng topsoil gamit ang kartilya, at isang boluntaryong naglalagay ng topsoil sa taniman"
 />
 
-### Useful links
+### Mga kapaki-pakinabang na link (sa Ingles)
 
-- **Ordering** — [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
-- **How-to** — [Prep topsoil ↗](https://youtube.com/watch?v=GcOJ4fDJmpM) · [Healthy topsoil for healthy plants ↗](https://youtube.com/watch?v=7-Tyz7fGeZo)
+- **Pag-order** — [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
+- **Paano gawin** — [Ihanda ang topsoil ↗](https://youtube.com/watch?v=GcOJ4fDJmpM) · [Malusog na topsoil para sa malulusog na halaman ↗](https://youtube.com/watch?v=7-Tyz7fGeZo)
 
-### Preparation for next steps
+### Paghahanda sa mga susunod na hakbang
 
-Check your project calendar and revise as needed. Purchase and deliver materials with lead times. Make sure the site
-is prepared for Phase 6.
+Tingnan ang kalendaryo ng inyong proyekto at baguhin kung kailangan. Bilhin at ipa-deliver ang mga materyales na
+matagal dumating. Siguruhing handa ang lote para sa Yugto 6.
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={11} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={12} label="Reference photos & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={12} label="Mga larawang sanggunian at link (PDF)" />
 
-## Phase 6: Plant {/* #phase-6-plant */}
+## Yugto 6: Magtanim {/* #phase-6-plant */}
 
-### Steps
+### Mga hakbang
 
-**Step 1: Plants.** Remove any weeds that have emerged. Make sure plant deliveries are scheduled and you've located a
-plant delivery staging area. Lay out trees and shrubs in their desired locations, then clean up overspill of soil and
-public areas.
+**Hakbang 1: Mga halaman.** Alisin ang anumang damong ligaw na tumubo. Siguruhing nakaiskedyul ang delivery ng mga
+halaman at may napili kayong lugar na paglalagyan ng mga halamang dumating. Ilatag ang mga puno at palumpong sa
+gustong puwesto, saka linisin ang nalaglag na lupa at ang mga pampublikong lugar.
 
-**Step 2: Installation.** Install large trees first (see the planting detail below). Install shrubs, fine-grade the
-soil, plant perennials, install 4" of mulch, then water all plants thoroughly — repeat twice a week until the plants
-go dormant for winter.
+**Hakbang 2: Pagtatanim.** Unahing itanim ang malalaking puno (tingnan ang detalye ng pagtatanim sa ibaba). Itanim
+ang mga palumpong, pinuhin ang pagpapatag ng lupa, itanim ang mga perennial, maglagay ng 4" na mulch, saka diligang
+mabuti ang lahat ng halaman — ulitin dalawang beses sa isang linggo hanggang mamahinga ang mga halaman sa taglamig.
 
 <Figure
   src="img/create/phase6-plant-illustration.webp"
-  alt="Axonometric illustration of a finished front-yard park, labelled PLANT, with trees, raised planting beds and a paved gathering area between two rowhouses"
+  alt="Axonometric na larawan ng isang tapos nang parke sa harapan, may label na PLANT, may mga puno, nakataas na taniman at isang sementadong lugar ng pagtitipon sa pagitan ng dalawang rowhouse"
 />
 <Figure
   src="img/create/phase6-planting-detail.webp"
-  alt="Two planting detail diagrams: a shrub/perennial container planting detail showing mulch depth and backfill, and a tree planting detail showing root-ball placement, staking, mulch and burlap removal"
+  alt="Dalawang diagram ng detalye ng pagtatanim: detalye ng pagtatanim ng palumpong/perennial mula sa paso na nagpapakita ng kapal ng mulch at pantabon na lupa, at detalye ng pagtatanim ng puno na nagpapakita ng puwesto ng bola ng ugat, pagtutukod, mulch at pag-aalis ng sako"
 />
 
-### Equipment & materials
+### Mga kagamitan at materyales
 
 <Checklist
   id="create.phase6-tools"
-  items={['Measuring tape', 'Shovels', 'Wheelbarrows', 'Pick axe', 'Landscape rakes', 'Spray paint', 'Tree stakes and rope', 'Broom']}
+  items={[
+    { value: 'Measuring tape', label: 'Medida' },
+    { value: 'Shovels', label: 'Pala' },
+    { value: 'Wheelbarrows', label: 'Kartilya' },
+    { value: 'Pick axe', label: 'Piko' },
+    { value: 'Landscape rakes', label: 'Landscape rake (malapad na kalaykay)' },
+    { value: 'Spray paint', label: 'Spray paint' },
+    { value: 'Tree stakes and rope', label: 'Tukod ng puno at lubid' },
+    { value: 'Broom', label: 'Walis' },
+  ]}
 />
-<p class="muted">Materials: plants — be sure to reference your plant list.</p>
+<p class="muted">Materyales: mga halaman — siguruhing tingnan ang inyong listahan ng halaman.</p>
 
-### Useful links
+### Mga kapaki-pakinabang na link (sa Ingles)
 
-- **General plant info** — [PHS Gold Medal Plants ↗](https://phsonline.org/for-gardeners/gold-medal-plants) ·
+- **Pangkalahatang impormasyon sa halaman** — [PHS Gold Medal Plants ↗](https://phsonline.org/for-gardeners/gold-medal-plants) ·
   [Gardens Alive ↗](https://www.gardensalive.com/) · [North Creek Nurseries ↗](https://www.northcreeknurseries.com/) ·
-  [Missouri Botanical Garden ↗](https://www.missouribotanicalgarden.org/) · [Longwood Gardens plant explorer ↗](https://plantexplorer.longwoodgardens.org/ecmweb/ECM_Home.html) *(link currently dead)* ·
-  [Arbor Day Foundation ↗](https://www.arborday.org/) · [Penn State Extension vegetable gardening ↗](https://extension.psu.edu/programs/master-gardener)
-- **PiaT partner nursery** — LandHealth Institute, 4862 Parkside Ave, Philadelphia · (267) 571-5750 ·
+  [Missouri Botanical Garden ↗](https://www.missouribotanicalgarden.org/) · [Longwood Gardens plant explorer ↗](https://plantexplorer.longwoodgardens.org/ecmweb/ECM_Home.html) *(hindi gumagana ang link ngayon)* ·
+  [Arbor Day Foundation ↗](https://www.arborday.org/) · [Pagtatanim ng gulay, Penn State Extension ↗](https://extension.psu.edu/programs/master-gardener)
+- **Katuwang na nursery ng PiaT** — LandHealth Institute, 4862 Parkside Ave, Philadelphia · (267) 571-5750 ·
   [landhealthinstitute.org/nursery ↗](https://www.landhealthinstitute.org/nursery)
-- **Other regional nurseries** — [Good Host Plants ↗](https://www.goodhostplants.com/) (local pollinator specialist) ·
+- **Iba pang nursery sa rehiyon** — [Good Host Plants ↗](https://www.goodhostplants.com/) (lokal na espesyalista sa pollinator) ·
   [Pleasant Run Nursery ↗](https://www.pleasantrunnursery.com/) · [Pinelands Nursery ↗](https://www.pinelandsnursery.com/) ·
   [Archewild ↗](https://archewild.com/)
-- **Fruit trees** — [Philadelphia Orchard Project ↗](https://www.phillyorchards.org/) ·
+- **Mga punong namumunga** — [Philadelphia Orchard Project ↗](https://www.phillyorchards.org/) ·
   [Burpee ↗](https://www.burpee.com/fruit/fruit-trees/) · [Stark Bros ↗](https://www.starkbros.com/products/fruit-trees)
-- **Gardening workshops & lot help** — [Pennsylvania Horticultural Society ↗](https://phsonline.org/) ·
-  [Grounded in Philly ↗](https://groundedinphilly.org/) (legal help, insurance, lot data)
-- **How-to** — [Container & bulb planting tips ↗](https://www.gardeners.com/how-to/growing-annual-flowers/5070.html) ·
-  [Containerized tree planting ↗](https://www.arborday.org/trees/planting/containerized.cfm) ·
-  [How to plant a shrub ↗](https://youtube.com/watch?v=Tim4LEo6l10)
+- **Mga workshop sa paghahardin at tulong sa lote** — [Pennsylvania Horticultural Society ↗](https://phsonline.org/) ·
+  [Grounded in Philly ↗](https://groundedinphilly.org/) (tulong legal, insurance, datos ng lote)
+- **Paano gawin** — [Payo sa pagtatanim sa paso at ng bulb ↗](https://www.gardeners.com/how-to/growing-annual-flowers/5070.html) ·
+  [Pagtatanim ng punong nasa paso ↗](https://www.arborday.org/trees/planting/containerized.cfm) ·
+  [Paano magtanim ng palumpong ↗](https://youtube.com/watch?v=Tim4LEo6l10)
 
-### Preparation for next steps
+### Paghahanda sa mga susunod na hakbang
 
-Check your project calendar and make sure you have a schedule for a Park Ambassador — see the Sustain step for
-details. Mulch suppliers: [Mid Atlantic Pine Straw ↗](https://www.midatlanticpinestraw.com/) ·
+Tingnan ang kalendaryo ng inyong proyekto at siguruhing may iskedyul kayo para sa isang Park Ambassador (sugo ng
+parke) — tingnan ang hakbang na Mag-alaga para sa mga detalye. Mga supplier ng mulch:
+[Mid Atlantic Pine Straw ↗](https://www.midatlanticpinestraw.com/) ·
 [Underdog Landscape Supply ↗](https://underdogsupply.com) · [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/get-organic-materials/)
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={13} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={14} label="Useful links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={14} label="Mga kapaki-pakinabang na link (PDF)" />
 
-## Phase 7: Install the gravel surface {/* #phase-7-install-the-gravel-surface */}
+## Yugto 7: Ilagay ang graba sa ibabaw {/* #phase-7-install-the-gravel-surface */}
 
-### Steps
+### Mga hakbang
 
-**Step 1: Materials.** Prepare for deliveries if not already stockpiled. Locate a stockpile area for gravel on the
-sidewalk or street (temporary no-parking permit, if needed — see Phase 3).
+**Hakbang 1: Materyales.** Maghanda para sa mga delivery kung hindi pa nakatambak. Pumili ng lugar na pagtatambakan
+ng graba sa bangketa o sa kalye (pansamantalang no-parking permit, kung kailangan — tingnan ang Yugto 3).
 
-**Step 2: Installation.** Install the gravel surface using a wheelbarrow and landscape rake. Install gravel
-approximately 2" deep, spreading any excess evenly. Tamp down the aggregate with a vibratory plate to reduce
-settling, and move through all areas to make sure they're level and even.
+**Hakbang 2: Paglalagay.** Ilagay ang graba sa ibabaw gamit ang kartilya at landscape rake. Ilagay ang graba nang
+mga 2" ang kapal, at ikalat nang pantay ang anumang sobra. Siksikin ang graba gamit ang vibratory plate para
+mabawasan ang paglubog, at daanan ang lahat ng bahagi para matiyak na pantay at patag ang mga ito.
 
-**Step 3: Clean up.** Clean up overspill of gravel and clean up public areas.
+**Hakbang 3: Paglilinis.** Linisin ang nalaglag na graba at linisin ang mga pampublikong lugar.
 
-### Equipment & materials
+### Mga kagamitan at materyales
 
 <Checklist
   id="create.phase7-tools"
-  items={['Measuring tape', 'Shovels', 'Wheelbarrows', 'Landscape rakes', 'Hand tamper', 'Vibratory plate', 'Broom']}
+  items={[
+    { value: 'Measuring tape', label: 'Medida' },
+    { value: 'Shovels', label: 'Pala' },
+    { value: 'Wheelbarrows', label: 'Kartilya' },
+    { value: 'Landscape rakes', label: 'Landscape rake (malapad na kalaykay)' },
+    { value: 'Hand tamper', label: 'Pansiksik na de-kamay (hand tamper)' },
+    { value: 'Vibratory plate', label: 'Vibratory plate (makinang pansiksik)' },
+    { value: 'Broom', label: 'Walis' },
+  ]}
 />
-<p class="muted">Materials: gravel, 3/8" or smaller (stone dust).</p>
+<p class="muted">Materyales: graba, 3/8" o mas maliit (stone dust o pinong durog na bato).</p>
 
 <Figure
   src="img/create/phase7-reference-photos.webp"
-  alt="Reference photos for installing the gravel surface: a landscape grading rake, a hand tamper on packed gravel, and a volunteer running a gas-powered vibratory plate compactor"
+  alt="Mga larawang sanggunian sa paglalagay ng graba sa ibabaw: isang landscape rake na pampatag, isang hand tamper sa siksik na graba, at isang boluntaryong gumagamit ng vibratory plate compactor na de-gasolina"
 />
 
-### Useful links
+### Mga kapaki-pakinabang na link (sa Ingles)
 
-- **Materials** — [Castor Materials ↗](https://castormaterials.com) · [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) ·
+- **Materyales** — [Castor Materials ↗](https://castormaterials.com) · [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) ·
   Galantino Supply Company ((610) 544-2586) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
-- **How-to** — [Install gravel ↗](https://youtube.com/watch?v=t0LWQ_U2z_g)
+- **Paano gawin** — [Maglagay ng graba ↗](https://youtube.com/watch?v=t0LWQ_U2z_g)
 
-### Preparation for next steps
+### Paghahanda sa mga susunod na hakbang
 
-Check your project calendar and revise as needed. Purchase and deliver materials with lead times. Make sure the site
-is prepared for Phase 8.
+Tingnan ang kalendaryo ng inyong proyekto at baguhin kung kailangan. Bilhin at ipa-deliver ang mga materyales na
+matagal dumating. Siguruhing handa ang lote para sa Yugto 8.
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={15} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={16} label="Reference photos & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={16} label="Mga larawang sanggunian at link (PDF)" />
 
-## Phase 8: Install park elements {/* #phase-8-install-park-elements */}
+## Yugto 8: Ilagay ang mga bahagi ng parke {/* #phase-8-install-park-elements */}
 
-### Steps
+### Mga hakbang
 
-**Step 1: Measure.** Review your assembly manuals and measure and mark out where your park elements need to go.
+**Hakbang 1: Sukatin.** Basahin ang inyong mga manwal sa pagbuo at sukatin at markahan kung saan dapat ilagay ang
+mga bahagi ng parke.
 
-**Step 2: Materials.** Make sure you have all the materials outlined in your assembly manuals.
+**Hakbang 2: Materyales.** Siguruhing nasa inyo ang lahat ng materyales na nakalista sa inyong mga manwal sa pagbuo.
 
-**Step 3: Assemble.** Assemble your park elements according to the assembly manuals.
+**Hakbang 3: Buuin.** Buuin ang mga bahagi ng inyong parke ayon sa mga manwal sa pagbuo.
 
-**Step 4: Install.** Make sure you have proper room within your design to install the elements, then locate them in
-their final positions. You may be able to — or choose to — assemble elements ahead of time or off site.
+**Hakbang 4: Ilagay.** Siguruhing may sapat na puwang sa inyong disenyo para mailagay ang mga bahagi, saka ilagay
+sila sa huling puwesto nila. Maaaring kaya ninyo — o mapili ninyong — buuin nang maaga o sa ibang lugar ang mga
+bahagi.
 
 <Callout kind="auto">
-  Every element with an assembly guide is linked from the Dream step's [Assemble](/steps/dream/#assemble) grid — the
-  same guides are listed there.
+  Naka-link mula sa grid na [Buuin](/steps/dream/#assemble) ng hakbang na Mangarap ang bawat bahaging may gabay sa
+  pagbuo — doon nakalista ang parehong mga gabay.
 </Callout>
 
-### Useful links
+### Mga kapaki-pakinabang na link (sa Ingles)
 
-- **How-to build a…** (use the assembly guides first; these videos are backup) — [Communal table ↗](https://youtube.com/watch?v=Px2JZs4Q2v4) ·
-  [Cold frame ↗](https://youtube.com/watch?v=b75RoDmE9qY) · [Raised garden beds ↗](https://youtube.com/watch?v=MBIYebUgVVI) ·
-  [Compost bins ↗](https://youtube.com/watch?v=gA6QNLaBEyc) · [Potting bench ↗](https://youtube.com/watch?v=E7HumfxE2f4) ·
-  [Outdoor garden shed ↗](https://youtube.com/watch?v=DuQ0N8z6OkI) · [Gabion wall ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
-- **Lumber & building materials** — Woodland Building Supply, 4701 Woodland Ave, Philadelphia — (215) 727-5333 ·
+- **Paano gumawa ng…** (unahin ang mga gabay sa pagbuo; pang-reserba ang mga video na ito) — [Mesang pansama-sama ↗](https://youtube.com/watch?v=Px2JZs4Q2v4) ·
+  [Cold frame ↗](https://youtube.com/watch?v=b75RoDmE9qY) · [Nakataas na taniman ↗](https://youtube.com/watch?v=MBIYebUgVVI) ·
+  [Compost bin ↗](https://youtube.com/watch?v=gA6QNLaBEyc) · [Potting bench (mesang pantanim) ↗](https://youtube.com/watch?v=E7HumfxE2f4) ·
+  [Bodega sa hardin ↗](https://youtube.com/watch?v=DuQ0N8z6OkI) · [Pader na gabion ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
+- **Kahoy at materyales sa pagtatayo** — Woodland Building Supply, 4701 Woodland Ave, Philadelphia — (215) 727-5333 ·
   C & R Building Supply, 1601 S 49th St, Philadelphia · A&A Lumber (cypress), Avondale, PA · Delaware County Lumber, Boothwyn, PA
 
-### Preparation for next steps
+### Paghahanda sa mga susunod na hakbang
 
-Check your project calendar and revise as needed — your park is almost done!
+Tingnan ang kalendaryo ng inyong proyekto at baguhin kung kailangan — malapit nang matapos ang inyong parke!
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={17} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={18} label="Assembly instructions & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={18} label="Mga tagubilin sa pagbuo at link (PDF)" />
 
 {/* site-added: the workbook's own contents page lists a Summary, but this working draft doesn't include one — this wrap-up just recaps the 8 phases above as a final checklist. No new advice. */}
-## Summary {/* #summary */}
+## Buod {/* #summary */}
 
 <Checklist
   id="create.summary-checklist"
   items={[
-    { value: 'phase1', label: 'Phase 1: Organize', hint: 'Team roles assigned, schedule set' },
-    { value: 'phase2', label: 'Phase 2: Prepare the lot', hint: 'Cleared, protected, leveled' },
-    { value: 'phase3', label: 'Phase 3: Layout & gravel base', hint: 'Beds and elements staked out, sub-base in' },
-    { value: 'phase4', label: 'Phase 4: Install the edge', hint: 'Gabion baskets and wood edging set' },
-    { value: 'phase5', label: 'Phase 5: Spread topsoil', hint: 'Planting beds graded and filled' },
-    { value: 'phase6', label: 'Phase 6: Plant', hint: 'Trees, shrubs and perennials in the ground' },
-    { value: 'phase7', label: 'Phase 7: Install the gravel surface', hint: 'Finish gravel tamped and level' },
-    { value: 'phase8', label: 'Phase 8: Install park elements', hint: 'Benches, tables and structures assembled and placed' },
+    { value: 'phase1', label: 'Yugto 1: Mag-organisa', hint: 'Naitalaga na ang mga tungkulin sa grupo, naitakda na ang iskedyul' },
+    { value: 'phase2', label: 'Yugto 2: Ihanda ang lote', hint: 'Nalinis, naprotektahan, napatag' },
+    { value: 'phase3', label: 'Yugto 3: Paglalatag at batayang graba', hint: 'Natusukan na ng istaka ang mga taniman at bahagi ng parke, nailagay na ang sub-base' },
+    { value: 'phase4', label: 'Yugto 4: Ilagay ang gilid', hint: 'Nakalagay na ang mga basket na gabion at gilid na kahoy' },
+    { value: 'phase5', label: 'Yugto 5: Ikalat ang topsoil', hint: 'Napatag at napuno na ang mga taniman' },
+    { value: 'phase6', label: 'Yugto 6: Magtanim', hint: 'Nakatanim na sa lupa ang mga puno, palumpong at perennial' },
+    { value: 'phase7', label: 'Yugto 7: Ilagay ang graba sa ibabaw', hint: 'Siniksik at pantay na ang huling patong ng graba' },
+    { value: 'phase8', label: 'Yugto 8: Ilagay ang mga bahagi ng parke', hint: 'Nabuo at nailagay na ang mga upuan, mesa at istruktura' },
   ]}
 />
 
 <Callout kind="tip">
-  Your park is built! Head to the Sustain step to keep it thriving — watering, weeding and the annual stewardship
-  workplan.
+  Naitayo na ang inyong parke! Pumunta sa hakbang na Mag-alaga para mapanatili itong yumayabong — pagdidilig,
+  pagbubunot ng damong ligaw at ang taunang plano ng pag-aalaga.
 </Callout>
