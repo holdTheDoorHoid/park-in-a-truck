@@ -7,12 +7,12 @@ export default {
   'page.description': 'De vrais parcs de quartier déjà construits avec la boîte à outils Park in a Truck, un peu partout à Philadelphie.',
   'page.eyebrow': 'Construits avec Park in a Truck',
   'page.lede':
-    'Des voisins ont déjà utilisé cette boîte à outils pour construire de vrais parcs un peu partout à Philadelphie. Voici où, avec ce que l’on sait de chacun : cliquez sur un repère ou sur une fiche pour l’histoire, les photos et les articles de presse.',
+    'Des voisins ont déjà utilisé cette boîte à outils pour construire de vrais parcs un peu partout à Philadelphie. Voici où, avec ce que l’on sait de chacun : cliquez sur un repère ou sur une fiche pour l’histoire, les photos et les articles de presse.',
   'park.opened': 'ouvert en {year}',
   'photo.credit': '{caption} — {credit}',
-  'video.alt': 'Vidéo : {title}',
+  'video.alt': 'Vidéo : {title}',
   'link.english': '(en anglais)',
-  'park.source': 'Source : {source}',
+  'park.source': 'Source : {source}',
 
   'map.label': 'Carte des parcs construits avec Park in a Truck',
   'map.details': 'Voir les détails',

@@ -48,7 +48,7 @@ export default {
 
   'notice.title': 'Note de ce site',
   'notice.lot':
-    'Vous n’avez pas encore noté l’autorisation d’utiliser votre terrain : il vous la faudra avant que quiconque commence les travaux. <a href="{href}">Aller à Acquérir → Sécuriser votre terrain</a>.',
+    'Vous n’avez pas encore noté l’autorisation d’utiliser votre terrain : il vous la faudra avant que quiconque commence les travaux. <a href="{href}">Aller à Acquérir → Sécuriser votre terrain</a>.',
   'notice.dismiss': 'Fermer',
 
   'auto.owner.city': 'Ville de Philadelphie (public)',
