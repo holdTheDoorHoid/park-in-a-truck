@@ -297,6 +297,21 @@ Conventions chosen (keep to them):
 | (added) raised bed | luống trồng nâng cao | |
 | (added) committee meeting / community meeting | cuộc họp ban công viên / buổi họp cộng đồng | |
 | (added) volunteer | tình nguyện viên | |
+| (added, 2nd pass) cost spreadsheet / the sheet | bảng tính (của Park in a Truck) | the estimate the site makes = bảng ước tính |
+| (added) contingency / tool rental | dự phòng / thuê dụng cụ | |
+| (added) hardscape / softscape | nền cứng / nền mềm | explain once: (bê tông, nhựa đường…) / (đất) |
+| (added) off-the-shelf | mua sẵn | |
+| (added) order list / price needed | danh sách đặt hàng / cần giá | |
+| (added) the planner's steps | Lô đất · Cỡ & chủ đề · Bố trí · Đã có gì · Nắng & bóng râm · Đếm | |
+| (added) Plan view / 3D view | Mặt bằng / 3D | |
+| (added) direct sun / dappled shade | nắng trực tiếp / bóng râm lốm đốm | |
+| (added) growing season | mùa cây phát triển | |
+| (added) compass words | bắc, đông bắc, đông, … ; "to the south" = "ở phía nam" | map letter for north = "B" |
+| (added) clock times | 12-hour with SA/CH ("3:30 CH") in the planner | the checker rejects {hour24}; the shade calendar uses the locale's own clock |
+| (added) mile / cubic yard | dặm / CY (yard khối) | |
+| (added) Land Bank "side-yard eligible" | có thể mua làm sân bên | |
+| (added) RCO, Councilmember, council district | RCO, nghị viên, quận hội đồng thành phố | |
+| (added) Survive / Thrive / Socialize (stewardship) | Sống sót / Phát triển tốt / Gặp gỡ | same as the Sustain chapter |
 
 ### ru — Русский
 
