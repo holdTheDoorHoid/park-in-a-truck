@@ -33,7 +33,7 @@ const COLORS: Record<AssetCategoryId, string> = {
 
 const LISTS: AssetGroup['workbookList'][] = ['Citizens associations', 'Local institutions', 'Neighborhood physical assets'];
 
-function AssetsMap({ lot, groups }: { lot: { lng: number; lat: number; polygon: [number, number][] }; groups: AssetGroup[] }) {
+function AssetsMap({ lot, groups, radiusFt }: { lot: { lng: number; lat: number; polygon: [number, number][] }; groups: AssetGroup[]; radiusFt: number }) {
   const [ref, near] = useNearViewport<HTMLDivElement>();
   const el = useRef<HTMLDivElement>(null);
   const map = useRef<MLMap | null>(null);
@@ -65,6 +65,17 @@ function AssetsMap({ lot, groups }: { lot: { lng: number; lat: number; polygon: 
           source: 'assets',
           paint: { 'circle-color': ['get', 'color'], 'circle-radius': 6, 'circle-stroke-color': '#fff', 'circle-stroke-width': 2 },
         });
+        m.addSource('lot-pt', { type: 'geojson', data: { type: 'Feature', properties: {}, geometry: { type: 'Point', coordinates: [lot.lng, lot.lat] } } });
+        m.addLayer({
+          id: 'lot-pt',
+          type: 'circle',
+          source: 'lot-pt',
+          paint: { 'circle-color': '#00A8E8', 'circle-radius': 9, 'circle-stroke-color': '#111', 'circle-stroke-width': 3 },
+        });
+        // Show the lot and everything within the search radius (far-off hospitals/colleges may sit outside).
+        const b = new ml.LngLatBounds([lot.lng, lot.lat], [lot.lng, lot.lat]);
+        for (const g of groups) for (const a of g.items) if (a.lngLat && (a.distanceFt ?? 0) <= radiusFt) b.extend(a.lngLat);
+        m.fitBounds(b, { padding: 40, maxZoom: 17, duration: 0 });
         m.on('click', 'assets', (e) => {
           const f = e.features?.[0];
           if (f) new ml.Popup({ closeButton: false }).setLngLat(e.lngLat).setText(String(f.properties.name)).addTo(m);
@@ -78,7 +89,7 @@ function AssetsMap({ lot, groups }: { lot: { lng: number; lat: number; polygon: 
   useEffect(() => () => map.current?.remove(), []);
   return (
     <div ref={ref} class="ph-map-wrap">
-      <div ref={el} class="ph-map ph-map-small" role="region" aria-label="Map of the assets listed below around your lot (blue)" />
+      <div ref={el} class="ph-map ph-map-small" role="region" aria-label="Map of the assets listed below; your lot is the blue dot" />
       {failed && <p class="ph-small" style="padding:8px">The map couldn't load; the lists below still work.</p>}
     </div>
   );
@@ -157,7 +168,7 @@ export default function NeighborhoodAssets() {
 
       {groups && (
         <>
-          <AssetsMap lot={lot} groups={groups} />
+          <AssetsMap lot={lot} groups={groups} radiusFt={radius} />
           {LISTS.map((list) => (
             <section aria-label={list}>
               <p class="ph-workbook-list">{list}</p>

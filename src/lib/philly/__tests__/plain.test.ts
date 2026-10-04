@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { distance, floodPlain, normaliseZoning, titleCase, zoningPlain } from '../plain';
 import { normaliseAddress } from '../search';
+import { formatAuto } from '../../autofill';
 
 describe('plain words', () => {
   it('normalises zoning codes the way the Zoning Code writes them', () => {
@@ -30,6 +31,11 @@ describe('plain words', () => {
   it('normalises typed addresses toward OPA style', () => {
     expect(normaliseAddress('1322 North Dover Street, Philadelphia PA 19121')).toBe('1322 N DOVER ST');
     expect(normaliseAddress('1322 n dov')).toBe('1322 N DOV');
+  });
+  it('adds autofill formats for zoning, size and lot kind', () => {
+    expect(formatAuto('RSA5', 'zoning')).toMatch(/^RSA-5 · Residential/);
+    expect(formatAuto('B', 'size')).toBe('Size B');
+    expect(formatAuto('corner-left', 'lotKind')).toMatch(/left/);
   });
   it('formats distances', () => {
     expect(distance(0)).toBe('next door');

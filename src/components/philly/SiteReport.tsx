@@ -29,9 +29,22 @@ function Sketch({ lot }: { lot: LotRecord }) {
   const d = lotDrawing(lot);
   if (!d) return null;
   const { maxX, maxY } = d.bounds;
-  const pad = Math.max(maxX, maxY) * 0.18 + 4;
-  const vb = `${-pad} ${-pad} ${maxX + 2 * pad} ${maxY + 2 * pad}`;
+  let pad = Math.max(maxX, maxY) * 0.18 + 4;
   const fs = Math.max(maxX, maxY) / 16 + 1.5;
+  // Number badges just outside each side; nudge outward until they don't overlap (short jogs).
+  const badges: { e: (typeof d.edges)[number]; at: [number, number] }[] = [];
+  for (const e of d.edges) {
+    let k = 1.1;
+    let at: [number, number] = [e.mid[0] + e.out[0] * fs * k, e.mid[1] + e.out[1] * fs * k];
+    for (let i = 0; i < 8 && badges.some((b) => Math.hypot(b.at[0] - at[0], b.at[1] - at[1]) < fs * 1.6); i++) {
+      k += 1.4;
+      at = [e.mid[0] + e.out[0] * fs * k, e.mid[1] + e.out[1] * fs * k];
+    }
+    badges.push({ e, at });
+  }
+  const reach = Math.max(0, ...badges.map((b) => Math.max(-b.at[0], -b.at[1], b.at[0] - maxX, b.at[1] - maxY))) + fs;
+  pad = Math.max(pad, reach);
+  const vb = `${-pad} ${-pad} ${maxX + 2 * pad} ${maxY + 2 * pad}`;
   return (
     <svg class="ph-outline" viewBox={vb} role="img" aria-label="Sketch of the lot with its sides numbered to match the list of measurements" style="max-height:260px">
       <polygon points={d.polygon.map((p) => p.join(',')).join(' ')} fill="#e3f5fc" stroke="#111" stroke-width={fs / 6} stroke-linejoin="round" />
@@ -40,8 +53,8 @@ function Sketch({ lot }: { lot: LotRecord }) {
         .map((e) => (
           <line x1={e.a[0]} y1={e.a[1]} x2={e.b[0]} y2={e.b[1]} stroke="#00709c" stroke-width={fs / 2.2} stroke-linecap="round" />
         ))}
-      {d.edges.map((e) => (
-        <g transform={`translate(${e.mid[0] + e.out[0] * fs * 1.1},${e.mid[1] + e.out[1] * fs * 1.1})`}>
+      {badges.map(({ e, at }) => (
+        <g transform={`translate(${at[0]},${at[1]})`}>
           <circle r={fs * 0.75} fill="#111" />
           <text text-anchor="middle" dy={fs * 0.35} font-size={fs} font-weight="700" fill="#fff">
             {e.n}

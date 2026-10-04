@@ -30,7 +30,7 @@ export default function LotLookup({ mode = 'primary' }: Props) {
   const [flash, setFlash] = useState<string | null>(null);
   const ctrl = useRef<AbortController | null>(null);
 
-  const run = async (q: LotQuery) => {
+  const run = async (q: LotQuery, opts: { refresh?: boolean } = {}) => {
     ctrl.current?.abort();
     const c = new AbortController();
     ctrl.current = c;
@@ -40,7 +40,12 @@ export default function LotLookup({ mode = 'primary' }: Props) {
     setLastQuery(q);
     try {
       const r = await lookupLot(q, { signal: c.signal });
-      if (!c.signal.aborted) setResult(r);
+      if (c.signal.aborted) return;
+      if (opts.refresh && project.lot && project.lot.address === r.address) {
+        // "Refresh from City records": update the saved lot in place
+        chooseLot(r);
+        setFlash('Updated from City records.');
+      } else setResult(r);
     } catch (e) {
       if (c.signal.aborted) return;
       setResult(null);
@@ -100,7 +105,7 @@ export default function LotLookup({ mode = 'primary' }: Props) {
                 <button class="btn" type="button" onClick={() => setSearching(true)}>
                   Look up a different lot
                 </button>
-                <button class="btn" type="button" onClick={() => run({ opa: chosen!.opa! })} disabled={!chosen!.opa}>
+                <button class="btn" type="button" onClick={() => run({ opa: chosen!.opa! }, { refresh: true })} disabled={!chosen!.opa}>
                   Refresh from City records
                 </button>
                 <a class="btn" href={u('lot/')}>

@@ -15,8 +15,10 @@ import type { AddressSuggestion, BBox, VacantLotCollection, VacantLotFeature } f
 
 const TILE_LNG = 0.006;
 const TILE_LAT = 0.0045;
-/** More tiles than this in view → ask the person to zoom in. */
-export const MAX_TILES = 16;
+/** At most this many tiles per view (nearest the centre first); more → "zoom in". */
+export const MAX_TILES = 20;
+/** An area this big is a crawl, not a neighbourhood: refuse outright. */
+const REFUSE_TILES = 80;
 
 interface VacantAttrs {
   objectid: number;
@@ -73,8 +75,17 @@ export function vacantFeature(f: { id?: number | string; geometry: unknown; prop
  * `truncated` is true when the area is too big to show everything.
  */
 export async function fetchVacantLots(bbox: BBox, opts: { signal?: AbortSignal } = {}): Promise<VacantLotCollection> {
-  const tiles = tilesFor(bbox);
-  if (tiles.length > MAX_TILES) return { type: 'FeatureCollection', features: [], truncated: true };
+  let tiles = tilesFor(bbox);
+  if (tiles.length > REFUSE_TILES) return { type: 'FeatureCollection', features: [], truncated: true };
+  let dropped = false;
+  if (tiles.length > MAX_TILES) {
+    // a big screen at street level: load the middle of the view first
+    const cx = (bbox[0] + bbox[2]) / 2;
+    const cy = (bbox[1] + bbox[3]) / 2;
+    const d = (t: BBox) => Math.hypot((t[0] + t[2]) / 2 - cx, ((t[1] + t[3]) / 2 - cy) * 1.3);
+    tiles = tiles.sort((a, b) => d(a) - d(b)).slice(0, MAX_TILES);
+    dropped = true;
+  }
   const results = await Promise.all(
     tiles.map((t) =>
       queryGeo<VacantAttrs>(
@@ -91,7 +102,7 @@ export async function fetchVacantLots(bbox: BBox, opts: { signal?: AbortSignal }
   );
   const seen = new Set<string | number>();
   const features: VacantLotFeature[] = [];
-  let truncated = false;
+  let truncated = dropped;
   for (const r of results) {
     truncated ||= r.truncated;
     for (const f of r.features) {

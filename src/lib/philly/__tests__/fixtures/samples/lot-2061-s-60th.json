@@ -1,0 +1,246 @@
+{
+ "query": "2061 S 60th St",
+ "address": "2061 S 60TH ST",
+ "opa": "401089400",
+ "pwdParcelId": 183108,
+ "dorParcelId": "028S220048",
+ "lat": 39.9316077145205,
+ "lng": -75.22879998056915,
+ "owners": [
+  "BRIDGES MARGARET"
+ ],
+ "ownerType": "private",
+ "category": "VACANT LAND",
+ "buildingDescription": "VACANT LAND RESIDE < ACRE",
+ "zoning": "CMX-1",
+ "areaSqFt": 1488,
+ "frontageFt": 22,
+ "depthFt": 69,
+ "marketValue": 38400,
+ "lastSale": {
+  "date": "1986-10-15T04:00:00Z",
+  "price": 26000
+ },
+ "vacantLand": true,
+ "polygon": [
+  [
+   -75.2286925,
+   39.931657
+  ],
+  [
+   -75.2286835,
+   39.9316497
+  ],
+  [
+   -75.2288678,
+   39.93152
+  ],
+  [
+   -75.2288773,
+   39.931528
+  ],
+  [
+   -75.2289195,
+   39.9315635
+  ],
+  [
+   -75.2287349,
+   39.9316919
+  ]
+ ],
+ "lotType": "corner",
+ "councilDistrict": "2",
+ "rcos": [
+  {
+   "name": "Eastwick Friends & Neighbors Coalition",
+   "contact": "Ramona Rousseau-Reid",
+   "email": "rousseau_reid@yahoo.com",
+   "phone": "2673121510",
+   "website": "www.EastwickFriends.wordpress.com"
+  },
+  {
+   "name": "Empowered Community Development Corporation",
+   "contact": "Shawana Mitchell",
+   "email": "staff@empoweredcdc.com",
+   "phone": "2158967104",
+   "website": "https://ecdcphl.org"
+  },
+  {
+   "name": "40th Ward Republicans",
+   "contact": "Craig Melidosian",
+   "email": "craigsolve@aol.com",
+   "phone": "2158681268",
+   "website": "https://tinyurl.com/ewbnbarb"
+  },
+  {
+   "name": "Paschall Betterment League, Inc",
+   "contact": "Gloria Renee Kellam",
+   "email": "gloriakellam@verizon.net",
+   "phone": "2153136723"
+  },
+  {
+   "name": "Eastwick United CDC",
+   "contact": "Tedd Pickett",
+   "email": "tpickett@eastwickunited.org",
+   "phone": "2159086713",
+   "website": "https://eastwickunited.org/"
+  },
+  {
+   "name": "ACANA CDC- United Southwest Neighbors",
+   "contact": "Voffee Jabateh",
+   "email": "voffeejabateh@acanaus.org",
+   "phone": "4844320932"
+  }
+ ],
+ "floodZone": "X",
+ "fetchedAt": "2026-10-04T14:42:51.431Z",
+ "sources": [
+  {
+   "label": "This property on atlas.phila.gov",
+   "url": "https://atlas.phila.gov/2061%20S%2060TH%20ST/property"
+  },
+  {
+   "label": "Property assessment (property.phila.gov)",
+   "url": "https://property.phila.gov/?p=401089400"
+  },
+  {
+   "label": "Zoning on atlas.phila.gov",
+   "url": "https://atlas.phila.gov/2061%20S%2060TH%20ST/zoning"
+  },
+  {
+   "label": "Registered Community Organizations (City of Philadelphia)",
+   "url": "https://www.phila.gov/programs/registered-community-organizations-rcos/"
+  }
+ ],
+ "extra": {
+  "geometry": {
+   "lengthFt": 70,
+   "widthFt": 21.5,
+   "areaSqFt": 1487,
+   "rect": {
+    "center": [
+     -75.2288015,
+     39.9316066
+    ],
+    "bearingDeg": 47.57
+   },
+   "rectCorners": [
+    [
+     -75.22886782584742,
+     39.93151998181004
+    ],
+    [
+     -75.2286835,
+     39.9316497
+    ],
+    [
+     -75.22873517415259,
+     39.93169321818996
+    ],
+    [
+     -75.2289195,
+     39.9315635
+    ]
+   ],
+   "rectangularity": 0.988,
+   "irregular": false,
+   "edges": [
+    {
+     "from": [
+      -75.2288678,
+      39.93152
+     ],
+     "to": [
+      -75.2286835,
+      39.9316497
+     ],
+     "lengthFt": 70,
+     "bearingDeg": 47.6,
+     "side": "y0",
+     "street": "GREENWAY AVE"
+    },
+    {
+     "from": [
+      -75.2286835,
+      39.9316497
+     ],
+     "to": [
+      -75.2287349,
+      39.9316919
+     ],
+     "lengthFt": 21.1,
+     "bearingDeg": 316.8,
+     "side": "x1",
+     "street": null
+    },
+    {
+     "from": [
+      -75.2287349,
+      39.9316919
+     ],
+     "to": [
+      -75.2289195,
+      39.9315635
+     ],
+     "lengthFt": 69.8,
+     "bearingDeg": 227.9,
+     "side": "y1",
+     "street": null
+    },
+    {
+     "from": [
+      -75.2289195,
+      39.9315635
+     ],
+     "to": [
+      -75.2288678,
+      39.93152
+     ],
+     "lengthFt": 21.5,
+     "bearingDeg": 137.5,
+     "side": "x0",
+     "street": "S 60TH ST"
+    }
+   ],
+   "streetEdges": [
+    "x0",
+    "y0"
+   ],
+   "streets": [
+    {
+     "side": "x0",
+     "name": "S 60TH ST",
+     "distanceFt": 28.4
+    },
+    {
+     "side": "y0",
+     "name": "GREENWAY AVE",
+     "distanceFt": 35.5
+    }
+   ],
+   "lotKind": "corner-right",
+   "lotType": "corner",
+   "lotTypeReason": "Streets on two sides: S 60th St and Greenway Ave.",
+   "size": {
+    "id": "B",
+    "exact": true,
+    "tooSmall": false,
+    "tooBig": false
+   },
+   "startCorner": [
+    -75.2288678,
+    39.93152
+   ]
+  },
+  "ownerLabel": "BRIDGES MARGARET",
+  "ownerMailing": "2061 S 60TH ST, PHILADELPHIA PA 19142-2401",
+  "vacancyScore": 0.5,
+  "councilMember": "Kenyatta Johnson",
+  "historicSite": false,
+  "historicDistrict": null,
+  "floodZoneLabel": "Zone X — minimal flood risk",
+  "parcelSource": "pwd",
+  "zip": "19142",
+  "neighborhood": "Lower Southwest"
+ }
+}
