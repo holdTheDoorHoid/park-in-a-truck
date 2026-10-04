@@ -82,6 +82,11 @@ after the extraction round. Tick them off here.
 - [ ] (phase B) English `progress.total` says "0 of 53 steps done" but counts sub-steps — fix the English and tell
       translators (ko already says sub-steps).
 - [ ] (optional) Korean particle helper after placeholders ("{name}을(를)") — translators wrote both forms.
+- [ ] `src/lib/planner/shadewords.ts:56`: in 24-hour languages whole hours print as a bare "9"/"15" without ":00"
+      — in Swahili "saa 9" reads as 3 o'clock (Swahili time). Always print minutes.
+- [ ] (phase B) ListField `rowName` goes into "+ Add {row}" / "{row} removed" — languages with noun-class or gender
+      agreement (sw, pt, fr, ar) need whole-sentence messages per list instead of a slotted noun.
+- [x] ListFormat for sw: Node and Chrome already give "a, b na c" (ht still needs a fallback).
 
 ## For native-speaker review (per language)
 
@@ -162,3 +167,12 @@ after the extraction round. Tick them off here.
   꾸지나무) and safety notes; legal notice (resources legal.text, start.mdx 법적 고지); guide hardware words (호그링, U자 못,
   래그 스크루, 각도 절단기, 적삼목/미송); code-assembled sentences (cost.ts fix.* / guide.reason.*, planner.ts slope.*,
   shade.ts sum.*).
+
+### Swahili (sw)
+- `start.mdx` "Kwa nini bustani?" proverb ("Bustani kila siku, daktari mbali"), fruit loanwords (pichi, pea, plamu,
+  kamkwati), chavulio/stigma; step names "Jipange", "Ota ndoto"; themes "Utulivu", "Mazingira asilia"; `create.mdx`
+  tool checklists (sepetu, sururu, kishindilio, mashine ya kushindilia inayotetemeka) and Phase 2 herbicide/weed
+  paragraph (mbigili wa Kanada, matete); guide hardware words (bisibisi ya umeme ya kugonga, pete za kubana, kizuizi,
+  skwea ya seremala); `plants.json` names; legal text (start.mdx, resources legal.text); in-kind = "makubaliano ya
+  kutumia bila kodi"; long explanations in cost.ts fix.*/note.*, philly.ts zoning.*/landBank.*, planner.ts slope.*,
+  shade.ts summaries.
