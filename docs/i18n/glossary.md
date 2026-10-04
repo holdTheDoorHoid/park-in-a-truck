@@ -724,49 +724,92 @@ Extra terms used in the chapters, guides and data (pt only):
 
 Tone: Standard (East African) Swahili, plain. **wewe** for one reader, **ninyi** for the group.
 
+*Status: filled in by t-sw (2026-10-04).* Kiswahili sanifu that readers from Kenya, Tanzania, Uganda and the DRC
+all read; short sentences, everyday words. **The reader is always "wewe"** (singular: *Tafuta kiwanja*, *kamati
+yako*), also when PiaT's "you" means the whole group; where it helps, name the group (*wewe na majirani zako*).
+Plural forms (*ninyi*: *Kubalianeni*, *Pangeni*, *mtahitaji*) only where the action can only be done together, as in
+the meeting tips in Organize, and on the meeting flyer, which speaks to the whole street (*Mnaalikwa*). Standard
+spelling *ninyi* (not *nyinyi*). Numbers follow the noun: *futi 10*, *inchi 2*, *hatua 3
+kati ya 7*. Lumber sizes and measurements copied from PiaT's drawings stay as printed (2x4x8', 2.5") so they match
+the pictures. Philadelphia stays *Philadelphia*. A technical word with no common Swahili equivalent gets a short
+Swahili explanation and the English in brackets the first time on a page: *matandazo (mulch)*, *gabioni (gabion)*.
+
 | English | Translation | Note |
 |---|---|---|
-| Park in a Truck / PiaT |  | |
-| toolkit |  | |
-| workbook |  | |
-| step |  | |
-| sub-step |  | |
-| Mark this step done / done |  | |
-| Start here · Acquire · Organize · Assess · Dream · Create · Sustain |  | |
-| vacant lot |  | |
-| lot |  | |
-| parcel |  | |
-| mid-block lot / corner lot / breezeway, alley |  | |
-| owner (public / private) |  | |
-| zoning |  | |
-| City records / Filled in from City records |  | |
-| City (of Philadelphia) |  | |
-| RCO (Registered Community Organization) |  | |
-| Philadelphia Land Bank |  | |
-| PHDC |  | |
-| Sheriff Sale |  | |
-| purchase / donation / lease / in-kind (use) agreement |  | |
-| park committee |  | |
-| neighbors / neighborhood |  | |
-| park pieces |  | |
-| frame / front / back (pieces) |  | |
-| seam (length seam, width seam) |  | |
-| theme: Edible · Sanctuary · Nature · Event |  | |
-| size A–E |  | |
-| gabion (wall, bench) |  | |
-| build guide |  | |
-| cut list / materials & hardware / tools |  | |
-| 2x4, 2x4x8', BB-1 |  | |
-| full sun / part sun / shade |  | |
-| native plant · perennial · shrub · small tree · large tree |  | |
-| pollinator |  | |
-| stewardship / sustain |  | |
-| My park |  | |
-| project file |  | |
-| Plan in 3D / the planner |  | |
-| Note from this site, not Park in a Truck |  | |
-| in English |  | |
-| ft, in, sq ft, $ |  | |
+| Park in a Truck / PiaT | Park in a Truck / PiaT | Never translated. |
+| toolkit | mwongozo (Toolkit) | "Mwongozo" alone means PiaT's Toolkit; a furniture guide is always *mwongozo wa ujenzi*. "(Toolkit)" the first time on a page. |
+| workbook | kitabu cha kazi (pl. vitabu vya kazi) | "Kitabu cha kazi cha Pata kiwanja" = the Acquire workbook. |
+| step | hatua | "Hatua ya 1: Pata kiwanja". |
+| sub-step | hatua ndogo | |
+| Mark this step done / done | Weka alama: imekamilika / imekamilika | |
+| Start here · Acquire · Organize · Assess · Dream · Create · Sustain | Anza hapa · Pata kiwanja · Jipange · Kagua · Ota ndoto · Jenga · Tunza | "Pata" alone is too vague, so *Pata kiwanja*. *Jipange* = "get organized" (committee, neighbours). *Ota* alone also means "to sprout", so *Ota ndoto*. *Jenga* because the step is building the park. |
+| vacant lot | kiwanja kitupu (pl. viwanja vitupu) | = a plot with no building on it, not in use. |
+| lot | kiwanja (pl. viwanja) | The usual East African word for a plot of land. *eneo* for "the site" in general. |
+| parcel | kipande cha ardhi (parcel) | The City's record word; "(parcel)" once per page. |
+| mid-block lot / corner lot / breezeway, alley | kiwanja cha katikati ya mtaa / kiwanja cha kona / njia ya kupita kati ya nyumba (breezeway), uchochoro | US "block" = *mtaa* (the row of houses between two cross streets). |
+| owner (public / private) | mmiliki (wa umma / binafsi) | |
+| zoning | kanuni za matumizi ya ardhi (zoning) | Short label: *Zoning*. Codes like RSA-5 unchanged. |
+| City records / Filled in from City records | kumbukumbu za Jiji / Imejazwa kutoka kumbukumbu za Jiji | |
+| City (of Philadelphia) | Jiji (la Philadelphia), serikali ya Jiji | Capital J when it means the city government. |
+| RCO (Registered Community Organization) | shirika la jamii lililosajiliwa (RCO) | |
+| Philadelphia Land Bank | Philadelphia Land Bank (taasisi ya Jiji inayouza na kukodisha ardhi ya umma) | Explanation once per page. |
+| PHDC | PHDC | |
+| Sheriff Sale | mnada wa Sheriff (Sheriff Sale) | *mnada* = public auction. |
+| purchase / donation / lease / in-kind (use) agreement | kununua / kupewa kama zawadi (mchango) / kukodisha / makubaliano ya kutumia bila kodi (in-kind) | Select options keep the English value. "In-kind": the owner keeps the lot, neighbours use it and care for it instead of paying rent. |
+| park committee | kamati ya bustani | |
+| neighbors / neighborhood | majirani / mtaa | *mtaa* = the neighbourhood you live in. |
+| park | bustani (ya mtaa) | *bustani* = park or garden; *hifadhi* / *mbuga* are national parks and reserves, so not used. |
+| park pieces | vipande vya bustani | PiaT's printed cut-outs. |
+| frame / front / back (pieces) | fremu / kipande cha mbele / kipande cha nyuma | *fremu* = the border piece. |
+| seam (length seam, width seam) | ukanda wa kurefusha (wa urefu, wa upana) | Strips that stretch the design. |
+| theme: Edible · Sanctuary · Nature · Event | Chakula · Utulivu · Mazingira asilia · Matukio | "theme" = *mtindo* (pl. *mitindo*): "mtindo wa Chakula", "Orodha ya mimea: Utulivu". *Kimbilio* (refuge) sounds like a shelter for refugees, so *Utulivu* (calm). |
+| size A–E | ukubwa A–E | Latin letters. |
+| gabion (wall, bench) | gabioni (ukuta wa gabioni, benchi ya gabioni) | Explain once: kikapu cha waya kilichojazwa mawe. |
+| build guide | mwongozo wa ujenzi (pl. miongozo ya ujenzi) | Header menu only: *Ujenzi* (the full term pushes *Bustani yangu* to a second row at 1366 px). |
+| cut list / materials & hardware / tools | orodha ya vipande vya kukata / vifaa na vyuma vidogo / zana | *vyuma vidogo* = screws, bolts, brackets (hardware). |
+| 2x4, 2x4x8', BB-1 | 2x4, 2x4x8', BB-1 | Lumber sizes are said in English in US stores. "ubao wa 2x4" where a noun is needed. |
+| full sun / part sun / shade | jua kamili / jua kiasi / kivuli | |
+| native plant · perennial · shrub · small tree · large tree | mmea asilia · mmea wa kudumu · kichaka · mti mdogo · mti mkubwa | *mmea asilia* = a plant that comes from this region (Philadelphia), explain once. *mmea wa kudumu* = comes back every year. |
+| pollinator | mchavushaji (pl. wachavushaji) | Explain once: nyuki, vipepeo, ndege, popo… wanaobeba chavua. |
+| stewardship / sustain | utunzaji wa bustani / tunza | |
+| My park | Bustani yangu | |
+| project file | faili la mradi | |
+| Plan in 3D / the planner | Panga kwa 3D / zana ya kupanga (planner) | |
+| Plan view / 3D view | mwonekano wa juu (Plan) / mwonekano wa 3D | Buttons: *Juu* · *3D*. |
+| sun hours / growing season | saa za jua / msimu wa kukua | |
+| wet area | eneo linalotuama maji | |
+| lidar | lidar (vipimo vya urefu vilivyochukuliwa kwa leza kutoka ndegeni) | Explanation once. |
+| Note from this site, not Park in a Truck | Dokezo kutoka tovuti hii, si kutoka Park in a Truck | |
+| in English | kwa Kiingereza | "(kwa Kiingereza)" after links. |
+| ft, in, sq ft, $ | futi, inchi, futi za mraba, $ | Number after the unit word: *futi 10*, *futi za mraba 400*. Drawings' marks (4', 2.5") stay as printed. |
+| *(sw only)* site (the lot being turned into a park) | eneo / kiwanja | |
+| *(sw only)* base map | ramani ya msingi | |
+| *(sw only)* soil / topsoil / soil test | udongo / udongo wa juu / kipimo cha udongo | |
+| *(sw only)* mulch · compost | matandazo (mulch) · mboji (compost) | |
+| *(sw only)* planting bed · raised bed · planting square | kitalu · tuta lililoinuliwa (raised bed) · mraba wa kupanda | |
+| *(sw only)* gravel · stone dust | kokoto · vumbi la mawe | |
+| *(sw only)* weeds · herbicide · pre-emergent | magugu · dawa ya kuua magugu · dawa ya kuzuia magugu kuota (pre-emergent) | |
+| *(sw only)* fire hydrant · street tree | bomba la maji la zimamoto (hydrant) · mti wa barabarani | |
+| *(sw only)* volunteer | mtu wa kujitolea (pl. watu wa kujitolea) | |
+| *(sw only)* bench · stool · table · planter box | benchi · kigoda · meza · sanduku la mimea | |
+| *(sw only)* shade canopy · stage · workbench | paa la kivuli · jukwaa · meza ya kazi | |
+| *(sw only)* lumber · board · part (BB-1) | mbao · ubao · kipande | |
+| *(sw only)* screw · bolt · nut · washer | skrubu · boliti · nati · washa | |
+| *(sw only)* drill · impact driver · miter saw | drili · bisibisi ya umeme ya kugonga (impact driver) · msumeno wa pembe (miter saw) | |
+| *(sw only)* level · carpenter's square · tape measure | kipima-usawa (level) · skwea ya seremala · tepu ya kupimia | |
+| *(sw only)* pre-drill · spacer · stop block · jig · flush | toboa tundu la kuongoza · kitenganishi (spacer) · kizuizi (stop block) · kiolezo (jig) · sawasawa (flush) | |
+| *(sw only)* pressure-treated wood · cedar | mbao zilizotiwa dawa (pressure-treated) · mwerezi (cedar) | |
+| *(sw only)* wire mesh · hog rings | wavu wa waya · pete za kubana (hog rings) | |
+| *(sw only)* phase (Create step) | awamu | "Awamu ya 1". |
+| *(sw only)* permit · insurance · grant | kibali · bima · ruzuku | |
+| *(sw only)* councilperson · meeting · flyer | diwani · mkutano · kipeperushi | |
+| *(sw only)* cost estimate | makadirio ya gharama | |
+| *(sw only)* Park Patch | Park Patch | Program name, kept; explain once: kipande kidogo cha bustani nyumbani. |
+| *(sw only)* the cost spreadsheet ("the sheet") · contingency | jedwali (la gharama) · akiba ya dharura | Tab names (INSERT HERE, ORDER LIST) stay. |
+| *(sw only)* hardscape · softscape | sakafu ngumu (zege, lami) · ardhi laini (udongo) | |
+| *(sw only)* block (the 2200 block of a street) | sehemu ya mtaa ("Sehemu ya 2200") | |
+| *(sw only)* fern · sedge | kangaga · nyasi (sedge) | Plant names: Swahili description + English name in brackets for the nursery ("Kangaga (lady fern)"). Needs a native check. |
+| *(sw only)* clock times | 12-hour "3:30 PM" in the planner (as on US clocks); the shade calendar gets Intl's 24-hour "15:30" | Never "saa 3" with a 12-hour clock: East African readers would read it as Swahili time (= 9 o'clock). |
 
 ### ko — 한국어
 

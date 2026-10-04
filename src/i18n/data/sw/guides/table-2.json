@@ -1,0 +1,121 @@
+{
+  "title": "Meza ya 2'",
+  "summary": "Meza ndogo ya mraba ya mbao za 2x4, ndogo kuliko zote kati ya ukubwa tatu wa meza, yenye ukubwa unaolingana na kigoda na mabenchi.",
+  "materials": [
+    {
+      "item": "Mbao za 2x4 — mwerezi mwekundu wa magharibi (western red cedar), Douglas fir, au msonobari uliotiwa dawa kwa shinikizo (pressure-treated)",
+      "notes": "Mwerezi (cedar): kwa asili hustahimili hali ya hewa na kuoza, una rangi nzuri nyekundu, ni rahisi kufanyia kazi, hauhitaji dawa ya kuziba (hubadilika kuwa kijivu kwa hali ya hewa); ni ghali zaidi — omba daraja la 'knotty' (STK), ambalo ni rahisi zaidi kuliko daraja safi (clear). Douglas fir: hustahimili kuoza kwa kiasi, ni imara na rahisi kufanyia kazi, ni nafuu kuliko mwerezi, lakini haudumu muda mrefu kama huo — ni chaguo zuri kama unapanga kupaka rangi. Mbao zilizotiwa dawa kwa shinikizo (pressure-treated): hustahimili kuoza na ndizo nafuu zaidi, lakini ubora wa mbao mara nyingi ni duni na haulingani, zinahitaji miezi 1–4 ya kukauka hewani kabla ya kupaka rangi, na hazipendekezwi mahali ambapo chakula kinalimwa. Agiza mbao asilimia 5–10 zaidi ya orodha ya vipande vya kukata, ili kukabiliana na ubora usio sawa wa mbao na mikato isiyo sahihi."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Skrubu za mbao za nje zinazojitoboa"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Upande wa meza"
+    },
+    {
+      "notes": "Juu ya meza"
+    },
+    {
+      "notes": "Mbele ya meza"
+    },
+    {
+      "notes": "Upande wa meza"
+    },
+    {
+      "notes": "Upande wa meza"
+    },
+    {
+      "notes": "Upande wa meza"
+    }
+  ],
+  "tools": [
+    "Msumeno wa pembe (miter saw) wa 10\" au 12\" (au msumeno wa mkono unaofaa)",
+    "Bisibisi ya umeme ya kugonga (impact driver) kwa skrubu za mbao za nje zinazojitoboa",
+    "Drili yenye kitobo cha 1/8\" kwa kutoboa matundu mapema",
+    "Sandpaper (karatasi ya kusugua), grit 120",
+    "Skwea ya seremala",
+    "Miwani ya kinga + glavu"
+  ],
+  "steps": [
+    {
+      "title": "Weka alama, andika majina na ukate mbao",
+      "text": "Weka alama, andika majina na ukate mbao kwa mpangilio wa T-1 hadi T-6 kwa urefu ulio kwenye orodha ya vipande vya kukata.\n\nKagua kila kipande cha mbao kuona kasoro kama nyufa, kupinda au kurandwa vibaya, na utupe sehemu hizo za mbao.",
+      "imageAlts": [
+        "Mchoro wa pembe tatu wa vipande sita vilivyokatwa vya meza ya 2', T-1 hadi T-6, vikiwa na urefu wake, kuanzia mbao za 27\" hadi vitalu vidogo vya 12\"."
+      ],
+      "tips": [
+        "Andika jina la kila kipande cha mbao unapokipima na kukikata.",
+        "Weka rundo tofauti la mbao kwa kila kipande, T-1 hadi T-6.",
+        "Kusugua kidogo kingo zilizokatwa kunaondoa vibanzi na kunasaidia kuunganisha.",
+        "Unajenga meza zaidi ya moja? Kizuizi (stop block) kwenye msumeno wako wa pembe kinafanya kila kipande kiwe na urefu uleule."
+      ]
+    },
+    {
+      "title": "Jenga fremu mbili za pembeni",
+      "text": "Weka vipande viwili vya T-5 juu ya sehemu iliyo sawa. Weka vipande viwili vya T-1 kila upande wa vipande vya T-5, ukilinganisha kingo kama inavyoonyeshwa. Rudia ili kujenga fremu ya pili inayofanana.",
+      "imageAlts": [
+        "Mchoro unaoonyesha mbao mbili za T-1 na mbili za T-5 zilizounganishwa kuwa fremu ya mraba ya pembeni."
+      ],
+      "tips": [
+        "Tumia skwea ya seremala kuhakikisha kila pembe ni pembe mraba (90°) — kama iko mbali sana, kagua tena urefu wa mbao zako.",
+        "Kujenga kiolezo (jig) cha nyuzi 90 kunaweza kusaidia kuunganisha katika hatua hii na inayofuata."
+      ]
+    },
+    {
+      "title": "Ongeza vishikizo vya miguu kwenye kila fremu ya pembeni",
+      "text": "Weka kipande kimoja cha T-2, viwili vya T-4 na viwili vya T-6 juu ya fremu iliyojengwa katika hatua ya 2. Ili kuhakikisha nafasi ya 1.5\" kati ya vipande viwili vya T-6, tumia kipande cha ziada cha 2x4 kilichosimamishwa kama kitenganishi.\n\nTumia kiolezo cha kutoboa mapema kilicho mwishoni mwa kijitabu kutoboa matundu ya skrubu mapema, kisha funga mbao kwenye vipande vya T-2, T-4 na T-6 kwa bisibisi ya kugonga na skrubu 30 za mbao za nje zinazojitoboa za 2.5\".\n\nRudia kwenye mguu mwingine, kisha simamisha miguu yote miwili kwa ajili ya hatua inayofuata.",
+      "imageAlts": [
+        "Mchoro wa mbao za T-2, T-4 na T-6 zikifungwa kwa skrubu juu ya fremu ya pembeni, ukionyesha nafasi ya kitenganishi ya 1.5\"."
+      ]
+    },
+    {
+      "title": "Unganisha fremu mbili za pembeni",
+      "text": "Weka kipande kimoja cha T-3 kwenye nafasi iliyo chini ya fremu mbili zilizojengwa katika hatua ya 3.\n\nWeka vipande viwili vya T-2 juu ya meza kwenye kingo mbili, kama inavyoonyeshwa — hakikisha viko sawasawa na ukingo wa miguu, jambo linaloifanya meza ibaki mraba — na uvifunge kwa skrubu 12 za mbao za nje zinazojitoboa za 2.5\".\n\nFunga mbao ya T-3 upande wa kushoto na wa kulia kwenye vipande vya T-1 kwa bisibisi ya kugonga na skrubu 4 za mbao za nje zinazojitoboa za 2.5\".",
+      "imageAlts": [
+        "Mchoro wa ubao wa T-3 ukiunganisha fremu mbili za pembeni chini, na mbao za juu za T-2 zikiwa sawasawa na miguu."
+      ],
+      "tips": [
+        "Hakikisha upande unabaki kwenye nyuzi 90 kwa kutumia skwea ya seremala."
+      ]
+    },
+    {
+      "title": "Ongeza sehemu ya juu ya meza na usugue",
+      "text": "Weka vipande vitano vya T-2 juu ya fremu iliyojengwa katika hatua ya 4, ukilinganisha kingo zote na kuacha nafasi sawa kati ya vipande vyote.\n\nFunga kwa bisibisi ya kugonga na skrubu 20 za mbao za nje zinazojitoboa za 2.5\".\n\nSugua kidogo kingo zilizo ngumu za meza.",
+      "imageAlts": [
+        "Mchoro wa mbao zilizobaki za juu za T-2 zikipangwa kwa nafasi sawa na kufungwa kwa skrubu juu ya fremu ya meza."
+      ]
+    },
+    {
+      "title": "Kiolezo cha kutoboa matundu mapema",
+      "text": "Kata kiolezo cha kutoboa matundu mapema kufuata mistari ya nukta. Unapotoboa, linganisha ukingo wa kiolezo na ukingo wa nje wa mbao kabla ya kutoboa.\n\nSi matundu yote yanatumika — si mipangilio yote inayotumia kiolezo. Tumia hatua za kuunganisha zilizo hapo juu kama mwongozo wako wa matundu. Weka matundu yote umbali wa upana wa kidole gumba hivi kutoka ukingoni (takriban 1\"), hata matundu yasiyotumia kiolezo hiki.",
+      "imageAlts": [
+        "Kiolezo cha kuchapisha cha kutoboa matundu mapema chenye nafasi tano za matundu zilizowekwa alama na mistari ya kukata, pamoja na picha ya karibu inayoonyesha umbali wa matundu kutoka ukingo wa ubao."
+      ]
+    }
+  ],
+  "finishing": "Kupaka mbao dawa ya nje kunaweza kurefusha maisha ya vitu vya bustani yako, lakini si lazima — vitu hivi vimebuniwa kwa makusudi viwe vya gharama ndogo, vya kudumu na rahisi kujenga, kwa hiyo huenda ikawa rahisi zaidi kuacha kizazi kijacho vivijenge upya wakati wake ukifika. Kama unataka kupaka rangi ya mbao, rangi au dawa ya kuziba mbao, angalia viungo vya umaliziaji hapa chini.",
+  "safety": [
+    "Haya ni mapendekezo ya kujifanyia mwenyewe tu — rekebisha vifaa, uunganishaji na ujenzi ili viendane na mradi wako na eneo lako.",
+    "Kujenga kitu hiki kunadhani una ujuzi fulani wa kutumia zana za mkono na za umeme, vyuma vidogo, vifungio, mbao na mbinu za msingi za kuunganisha.",
+    "Kabla ya kutumia mashine yoyote ya umeme, pitia na ufuate masharti ya usalama ya mtengenezaji, na usimruhusu mtu yeyote kutumia zana za umeme kama hajafanya hivyo pia.",
+    "Wewe (mmiliki) unawajibika kwa kanuni zozote za ujenzi na usalama, vibali na idhini za mamlaka ambazo kazi hii inahitaji.",
+    "Kwanza safisha eneo kwa kuondoa takataka, hatari na vitu visivyotakiwa vilivyojengwa, na utambue huduma zozote za chini ya ardhi (mabomba, nyaya) zinazoweza kuingilia kabla ya kuchimba.",
+    "Kila mtu anayesaidia kujenga anapaswa kusaini fomu ya msamaha wa dhima kwa watu wa kujitolea."
+  ],
+  "links": [
+    {
+      "label": "Kuchagua umaliziaji bora kwa kazi za nje (Rockler, kwa Kiingereza)"
+    },
+    {
+      "label": "Umaliziaji bora kwa mbao za nje (Real Milk Paint, kwa Kiingereza)"
+    },
+    {
+      "label": "Rangi na dawa za mbao za nje (Vermont Natural Coatings, kwa Kiingereza)"
+    }
+  ],
+  "sourcePages": "Maelekezo ya kuunganisha 2_TABLE, uk. 1–9 (jalada; kabla ya kuanza; mbao zinazochaguliwa mara nyingi; hatua 1–5; kiolezo cha kutoboa matundu mapema)"
+}

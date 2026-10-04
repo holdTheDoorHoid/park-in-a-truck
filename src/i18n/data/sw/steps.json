@@ -1,0 +1,31 @@
+{
+  "start": {
+    "title": "Anza hapa",
+    "tagline": "Kwa nini bustani ni muhimu, na jinsi Park in a Truck inavyofanya kazi."
+  },
+  "acquire": {
+    "title": "Pata kiwanja",
+    "tagline": "Tafuta kiwanja na upate ruhusa ya kukitumia.",
+    "assumes": "Umeshasoma mwongozo, na bado huna kiwanja unachoweza kutumia."
+  },
+  "organize": {
+    "title": "Jipange",
+    "tagline": "Unda kamati ya bustani na uwakusanye majirani zako."
+  },
+  "assess": {
+    "title": "Kagua",
+    "tagline": "Kijue kiwanja chako: jua, udongo na mazingira yake."
+  },
+  "dream": {
+    "title": "Ota ndoto",
+    "tagline": "Buni bustani yako kwa vipande vya bustani."
+  },
+  "create": {
+    "title": "Jenga",
+    "tagline": "Ijenge kwa awamu, wikendi moja baada ya nyingine."
+  },
+  "sustain": {
+    "title": "Tunza",
+    "tagline": "Itunze bustani yako, msimu baada ya msimu."
+  }
+}

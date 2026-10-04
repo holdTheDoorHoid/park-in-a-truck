@@ -1,0 +1,529 @@
+---
+title: Jenga
+intro: Jenga bustani yako kwa awamu, wikendi moja baada ya nyingine.
+sources:
+  - Mwongozo (Toolkit), uk. 57–59 (Jenga, Ujenzi wa kwanza wa bustani)
+  - Kitabu cha kazi cha Jenga, uk. 1–18
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Choice from '../../../../components/workbook/Choice.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import Download from '../../../../components/workbook/Download.astro';
+import CostEstimator from '../../../../components/widgets/CostEstimator.astro';
+import BuildSchedule from '../../../../components/widgets/BuildSchedule.astro';
+import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
+
+{/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — Create lets you pick build weekends and print an order list with nothing recorded in Acquire; this says so before anyone breaks ground. */}
+<LotAgreementNotice />
+
+Kujenga bustani ni njia nzuri ya kuwaunganisha majirani, marafiki na watu wengine. Mchakato huu unahitaji watu wa
+kujitolea walio tayari kutoa muda na nguvu zao, wenye ujuzi wa aina nyingi — useremala, utunzaji wa mandhari ya
+bustani, kuandaa, kuwatia watu moyo, kuongoza. Kama kufuata maelekezo ya mapishi, kujenga bustani ni mfululizo wa
+hatua moja baada ya nyingine; bustani nyingi za Park in a Truck hujengwa ndani ya wikendi 6–8 hivi.
+
+Sura ya Jenga inahusu kujenga bustani yako. Tumeugawa mchakato katika awamu nane. Kila awamu inaweza kukamilika katika
+wikendi moja hivi — ukubwa wa bustani yako na idadi ya watu wa kujitolea vitaathiri muda halisi utakaochukua. Awamu
+zimepangwa kwa mpangilio huu kwa sababu maalum; pitia kila moja na urekebishe ratiba yako inapohitajika.
+
+Kitabu hiki kinadhani kwamba umeshafanya makadirio ya gharama na unajua kiasi na vifaa utakavyohitaji kuagiza kwa kila
+awamu. Kama bado, rudi kwenye hatua ya Ota ndoto na utumie kikadiriaji cha gharama.
+
+<CostEstimator />
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={3} />
+
+## Fomu ya msamaha wa dhima kwa watu wa kujitolea {/* #volunteer-release-form */}
+
+Hakikisha una fomu za msamaha wa dhima (release forms) kwa watu wa kujitolea kwenye eneo kila mnapofanya kazi ya
+bustani. Fomu hii inakuondolea dhima ya majeraha yanayowapata watu wako wa kujitolea. Ni wajibu wako kushauriana na
+washauri wa kisheria na kampuni ya bima ya kikundi chako kabla ya kuanza ujenzi — huenda wakataka uchukue hatua za
+ziada kulinda kikundi dhidi ya dhima. Wape watu wako wa kujitolea maelekezo yaliyo wazi kuhusu kinachotarajiwa na kazi
+za siku hiyo; wana uwezekano mkubwa zaidi wa kurudi wiki zinazofuata wanapohisi kwamba muda wao ulitumika vizuri.
+
+<Download href="downloads/forms/volunteer-release-form.pdf" label="Fomu ya msamaha wa dhima kwa watu wa kujitolea" note="Fomu moja kwa kila mtu wa kujitolea; kwa walio chini ya miaka 18, mzazi au mlezi lazima asaini pia" />
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={3} />
+
+## Awamu ya 1: Jipange {/* #phase-1-organize */}
+
+Kama katika mchakato wowote, hatua ya kwanza na muhimu zaidi ni kuipanga timu yako kwa kuwachagua viongozi wa mradi na
+kuweka ratiba. Idadi ya watu mtakaowapa kazi hizi inategemea jinsi mradi wenu ulivyo mgumu na mkubwa.
+
+- **Msimamizi wa ujenzi.** Anaagiza vifaa, yupo vifaa vinapoletwa, anawapa watu wa kujitolea maelekezo siku za ujenzi,
+  na anashirikiana na msimamizi wa mradi kuhusu ratiba.
+- **Msimamizi wa mradi.** Anahusika na kupata watu wa kujitolea, mitandao ya kijamii, kuagiza chakula, kugawa fomu za
+  msamaha wa dhima, anaratibu fedha na anasimamia ratiba.
+
+<Field id="create.construction-manager" label="Msimamizi wa ujenzi" hint="Anaagiza vifaa, anaongoza siku za ujenzi" />
+<Field id="create.project-manager" label="Msimamizi wa mradi" hint="Watu wa kujitolea, ratiba, fedha" />
+
+<ListField
+  id="create.org-chart"
+  label="Watu wa kujitolea na wakandarasi"
+  rowName="mtu"
+  min={3}
+  columns={[
+    { key: 'name', label: 'Jina' },
+    { key: 'role', label: 'Kazi', placeholder: 'mtu wa kujitolea, mkandarasi…' },
+    { key: 'contact', label: 'Mawasiliano' },
+  ]}
+/>
+
+Kalenda ya mradi ni njia bora ya kufuatilia ratiba, tarehe muhimu, lini watu wa kujitolea watafanya kazi, na muda
+unaohitajika kabla vifaa havijafika. Kupanga ni muhimu kama ujenzi wenyewe — anza vizuri.
+
+<BuildSchedule />
+
+<Download href="downloads/templates/project-calendar.xlsx" label="Kiolezo cha kalenda" note="Mfano wa kalenda ya mradi na orodha ya mawasiliano — kwa marejeo, tengeneza nakala yako mwenyewe" />
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={4} />
+
+## Awamu ya 2: Andaa kiwanja {/* #phase-2-prepare-the-lot */}
+
+### Hatua
+
+**Hatua ya 1: Tathmini.** Maeneo mengine yanahitaji kusafishwa au kusawazishwa zaidi kuliko mengine, jambo ambalo
+linaweza kuhitaji mashine maalum — wasiliana na mkandarasi wa mandhari ya bustani kama chochote kati ya yafuatayo
+hakiwezi kufanywa na jamii peke yake.
+
+- Wasiliana na timu ya PiaT ([ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu)) kwa ushauri wa
+  kutembelea eneo kama huna uhakika jinsi ya kuandaa eneo lako.
+- Wasiliana na Pennsylvania One Call kwa namba **811** ili waweke alama mahali mabomba na nyaya za chini ya ardhi
+  zilipo.
+
+<Field id="create.one-call-address" label="Anwani ya ombi lako la PA One Call" auto="lot.address" />
+
+**Hatua ya 2: Linda.** Leta zana ndogo na vifaa kwenye eneo. Weka uzio wa kinga wa ujenzi wenye nguzo za mbao kuzunguka
+mashina ya miti, majengo na vitu vingine vinavyohitaji kulindwa. Weka uzio wa kuzuia tope na mmomonyoko wa udongo
+kuzunguka eneo na kwenye mifereji yote ya maji.
+
+**Hatua ya 3: Kuondoa.** Ondoa mimea isiyotakiwa (pamoja na mizizi), visiki vya miti, takataka na vifusi vya matofali
+na mawe — baadhi ya mimea inaweza kuhitaji dawa ya kuua magugu ili kuidhibiti vizuri kwa wakati. Pogoa miti iliyopo
+ili kuondoa matawi kwenye shina hadi kimo cha angalau futi 6 (6'). Beba vifusi na mimea nje ya eneo hadi mahali
+panapofaa pa kutupa; weka vifusi vya matofali na mawe kwenye eneo ili vitumike kujaza vikapu vya gabioni.
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — street trees are the City's; facts checked 2026-10-04 on phila.gov. */}
+<Callout kind="site">
+  Miti ya barabarani (ile iliyo kwenye njia ya watembea kwa miguu) ni mali ya Jiji: kuipogoa au kuiondoa kunahitaji
+  kibali kutoka Philadelphia Parks & Recreation, ambayo hupogoa na kuondoa bila malipo miti ya barabarani iliyo hatari
+  (omba kupitia 311). Angalia [maswali kuhusu miti ya barabarani ↗](https://www.phila.gov/departments/philadelphia-parks-recreation/street-tree-frequently-asked-questions/)
+  ya Jiji (kwa Kiingereza).
+</Callout>
+
+**Hatua ya 4: Kusawazisha eneo.** Anza kusawazisha udongo kwa reki. Hakikisha alama zozote za Pennsylvania One Call
+bado zipo na zinaonekana — usawa wa udongo unapaswa kukaribiana na usawa wa njia ya watembea kwa miguu.
+
+### Vifaa na zana
+
+<Checklist
+  id="create.phase2-tools"
+  items={[
+    { value: 'Shovels', label: 'Sepetu (makoleo)' },
+    { value: 'Wheelbarrows', label: 'Matoroli' },
+    { value: 'Pick axe', label: 'Sururu' },
+    { value: 'Grading rakes', label: 'Reki za kusawazisha' },
+    { value: 'Sledgehammer', label: 'Nyundo nzito' },
+    { value: 'Hand pruners + loppers', label: 'Makasi ya kupogolea, ya mkono na ya mikono mirefu' },
+    { value: 'Pruning saws', label: 'Misumeno ya kupogolea' },
+    { value: 'Spray paint', label: 'Rangi ya kupuliza' },
+    { value: 'Construction fencing', label: 'Uzio wa muda wa ujenzi' },
+    { value: 'Wood posts', label: 'Nguzo za mbao' },
+    { value: 'Broom', label: 'Fagio' },
+    { value: 'Chainsaw', label: 'Msumeno wa mnyororo (chainsaw)' },
+    { value: 'Trash bags', label: 'Mifuko ya takataka' },
+  ]}
+/>
+<Checklist
+  id="create.phase2-tools-optional"
+  label="Si lazima — kwa maeneo yenye sehemu nyingi zisizo sawa, zege, au visiki vya miti"
+  items={[
+    { value: 'excavator', label: 'Mashine ya kuchimba (excavator)', hint: 'inashauriwa kukodi mkandarasi' },
+    { value: 'stump-grinder', label: 'Mashine ya kusaga visiki', hint: 'inashauriwa kukodi mkandarasi' },
+    { value: 'Jack hammer', label: 'Nyundo ya umeme ya kuvunja zege (jackhammer)' },
+    { value: 'Rototiller', label: 'Mashine ya kulimia udongo (rototiller)' },
+    { value: 'Herbicide spray', label: 'Dawa ya kuua magugu ya kunyunyiza' },
+  ]}
+/>
+
+<Figure
+  src="img/create/phase2-reference-photos.webp"
+  alt="Picha za mfano za kuandaa kiwanja: mashine ya kuchimba ikisafisha eneo, kibendera cha alama ya huduma za chini ya ardhi na waya wa kufuatilia kwenye nyasi, watu wa kujitolea wakiondoa vifusi vya matofali, wavu wa kuzuia mmomonyoko kando ya ukingo wa barabara, na mtu wa kujitolea akisawazisha udongo kwa reki"
+/>
+
+### Viungo vyenye msaada
+
+- **Kukodi zana** — huenda ikafaa kukodi mkandarasi kwa zana za umeme, ili kazi iende haraka na kwa usalama.
+  [West Philadelphia Tool Library ↗](https://westphillytools.org) (zana za mkono tu; 1314 S 47th St) ·
+  [OK Rental ↗](https://okrentalsaleservice.com) *(kiungo hakifanyi kazi kwa sasa)* (zana za umeme, pamoja na misumeno ya mnyororo; 640 Main St, Darby) ·
+  [Diamond Tool ↗](https://diamondtool.net/Rentals) *(hakikuweza kuthibitishwa kiotomatiki)* (2800 Grays Ferry Ave)
+- **Taka na urejelezaji** — [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/) (3850 W Ford Rd)
+- **Video ya kupogoa miti** — [youtube.com/watch?v=pY5A-5gUqwo ↗](https://youtube.com/watch?v=pY5A-5gUqwo)
+- **Kutambua magugu** — [mwongozo wa magugu wa Philadelphia Orchard Project ↗](https://www.phillyorchards.org/resources/)
+- **Dawa za kuua magugu** (zitumie kwa kiasi kidogo, fuata maelekezo ya lebo kila mara) — Picloram kupaka kwenye
+  visiki vya mimea yenye miti; Glyphosate kunyunyiza kwenye majani ya mimea laini na yenye miti; Clopyralid kwa mugwort
+  na mbigili wa Kanada (Canadian thistle). Magugu vamizi ambayo mara nyingi yanahitaji kudhibitiwa kwa dawa: mugwort,
+  mbigili wa Kanada, Japanese knotweed na matete (phragmites) (mimea laini); Broussonetia, Ailanthus, Paulownia na
+  Japanese honeysuckle (mimea yenye miti — kata na utie dawa kwenye kisiki tu kama ni mkubwa mno kung'olewa na
+  mizizi yake).
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — herbicide labels, restricted-use picloram, 20% vinegar; facts checked 2026-10-04 on epa.gov and npic.orst.edu. */}
+<Callout kind="site">
+  Lebo ya dawa ya kuua magugu ni sheria: ifuate, pamoja na mahali unaporuhusiwa kutumia dawa hiyo na vifaa vya kujikinga
+  inavyoorodhesha ([EPA ↗](https://www.epa.gov/pesticide-labels/introduction-pesticide-labels), kwa Kiingereza). Bidhaa
+  nyingi za picloram ni za matumizi yenye vikwazo (restricted-use) na zinaweza kununuliwa au kutumiwa tu na mtu
+  aliyethibitishwa kuzitumia ([orodha ya EPA ↗](https://www.epa.gov/pesticide-worker-safety/restricted-use-products-rup-report),
+  kwa Kiingereza). Siki inayouzwa kwa ajili ya magugu (asilimia 20 au zaidi) inaweza kuharibu macho kabisa: vaa kinga
+  ya macho na glavu ([NPIC ↗](https://npic.orst.edu/faq/vinegar.html), kwa Kiingereza).
+</Callout>
+
+### Maandalizi ya hatua zinazofuata
+
+Angalia kalenda ya mradi wako na uirekebishe inapohitajika. Nunua na uletewe vifaa au mashine zozote zinazochukua muda
+kufika, na uhakikishe eneo liko tayari kwa Awamu ya 3.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={5} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={6} label="Picha za mfano na viungo (PDF)" />
+
+## Awamu ya 3: Kupanga eneo na msingi wa kokoto {/* #phase-3-layout-gravel-base */}
+
+### Hatua
+
+**Hatua ya 1: Vifaa.** Leta mashine na zana kwenye eneo; jiandae kupokea vifaa vinavyoletwa. Tafuta mahali pa kurundika
+kokoto na uzifunike kwa turubai ikiwezekana. Weka alama kwa rangi ya kupuliza kwenye maeneo yatakayowekwa kokoto —
+kama hakuna nafasi ya kutosha, panga na serikali ya jiji lako ili kokoto zishushwe barabarani.
+
+<Callout kind="note" title="Unafunga barabara kwa ajili ya kushusha vifaa?">
+  Omba kibali cha muda cha kuzuia maegesho ili lori la kuleta vifaa lipate mahali pa kushusha mzigo.
+  [Omba kwenye phila.gov ↗](https://www.phila.gov/services/cars-parking-transportation/apply-for-a-parking-permit/apply-for-a-temporary-no-parking-permit/) (kwa Kiingereza)
+</Callout>
+<Field id="create.delivery-address" label="Anwani ya kibali cha kuzuia maegesho" auto="lot.address" />
+
+**Hatua ya 2: Panga mahali pa vitalu vya kupanda na vitu vya bustani.** Anza kwenye mahali pa kuanzia ulipoweka alama
+katika kitabu cha kazi cha Kagua. Angalia mchoro wako kujua mahali na urefu wa kingo za vitalu vya kupanda na za vitu
+vya bustani. Tumia vigingi na kamba kuweka alama mahali pa kingo na vitu vya bustani utakavyoviongeza katika awamu
+zinazofuata.
+
+**Hatua ya 3: Weka msingi wa chini.** Andaa sakafu ya ardhi kwa ajili ya vikapu vya gabioni kufuata maelekezo ya
+kuunganisha. Chimba milango ya kuingilia ili kuruhusu tofauti ya kimo kati ya bustani mpya na njia ya watembea kwa
+miguu — angalau inchi 4 kwa kina kwenye ukingo wa njia ya watembea kwa miguu, ukisawazisha inapohitajika (tumia udongo
+wa ziada kusawazisha njia au uuongeze kwenye maeneo ya kupanda). Tandaza kokoto kwa kina cha inchi 2 kwenye maeneo
+yote isipokuwa vitalu vya mimea, upana wa takriban inchi 6 zaidi ya kamba zako, ili kingo za awamu inayofuata ziweze
+kukaa juu ya kokoto. Pitisha mashine ya kushindilia inayotetemeka juu ya kokoto angalau mara mbili.
+
+**Hatua ya 4: Milango ya kuingilia na usafi.** Safisha kokoto zilizomwagika nje na safisha maeneo ya umma.
+
+### Vifaa, zana na malighafi
+
+<Checklist
+  id="create.phase3-tools"
+  items={[
+    { value: 'Square', label: 'Skwea' },
+    { value: 'Measuring tape', label: 'Tepu ya kupimia' },
+    { value: 'Shovels', label: 'Sepetu (makoleo)' },
+    { value: 'Wheelbarrows', label: 'Matoroli' },
+    { value: 'Pick axe', label: 'Sururu' },
+    { value: 'Grading rakes', label: 'Reki za kusawazisha' },
+    { value: '5 lb hammer', label: 'Nyundo ya pauni 5' },
+    { value: 'Spray paint', label: 'Rangi ya kupuliza' },
+    { value: 'Wood posts and string', label: 'Vigingi vya mbao na kamba' },
+    { value: 'Vibrating plate compactor', label: 'Mashine ya kushindilia inayotetemeka (plate compactor)' },
+    { value: 'Broom', label: 'Fagio' },
+  ]}
+/>
+<p class="muted">Malighafi: kokoto, kokoto za msingi wa barabara za 3/4" (roadbase).</p>
+
+<Figure
+  src="img/create/phase3-reference-photos.webp"
+  alt="Picha za mfano za kupanga eneo na msingi wa kokoto: kupima eneo, kuchimba, kuandaa msingi wa chini, lori la kuleta kokoto, kupanga eneo kwa vigingi na kamba, rundo la kokoto, kubeba kokoto kwa toroli na kuzitandaza"
+/>
+
+### Viungo vyenye msaada
+
+- **Jinsi ya kufanya** — [Panga vitalu vya kupanda ↗](https://lowes.com/n/how-to/create-an-english-style-garden) (tazama 1:50–2:40) ·
+  [Weka msingi wa chini wa kokoto ↗](https://youtube.com/watch?v=tfDEOIAIUwQ) (kwa Kiingereza)
+- **Kukodi zana** — [West Philadelphia Tool Library ↗](https://westphillytools.org) ·
+  [OK Rental ↗](https://okrentalsaleservice.com) *(kiungo hakifanyi kazi kwa sasa)* · [Diamond Tool ↗](https://diamondtool.net/Rentals) *(hakikuweza kuthibitishwa kiotomatiki)*
+
+### Maandalizi ya hatua zinazofuata
+
+Angalia kalenda ya mradi wako na uirekebishe inapohitajika. Nunua na uletewe vifaa vinavyochukua muda kufika kwa ajili
+ya awamu zinazofuata. Hakikisha eneo liko tayari kwa Awamu ya 4.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={7} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={8} label="Picha za mfano na viungo (PDF)" />
+
+## Awamu ya 4: Weka ukingo {/* #phase-4-install-the-edge */}
+
+### Hatua
+
+**Hatua ya 1: Vifaa.** Leta vifaa vya ukingo (angalia makadirio ya gharama na maelekezo ya kuunganisha). Ondoa uzio wa
+kuzuia mmomonyoko; kinga ya miti ibaki isipokuwa kama mahali ilipo panazuia kuweka ukingo.
+
+**Hatua ya 2: Unganisha.** Unganisha vikapu vya gabioni (angalia maelekezo yako ya kuunganisha ukuta wa gabioni).
+
+**Hatua ya 3: Kuweka.** Weka kamba ili vikapu vya gabioni vikae kwenye mstari ulionyooka kando ya ukingo wa bustani.
+Panga vikapu kufuata mchoro wako na ujaze sehemu zao za chini kwa kokoto za inchi 2–3. Fanya marekebisho madogo ili
+vikapu viwe sawa na vimenyooka kwa kulinganisha kimoja na kingine — vinapotumika peke yake kama meza au benchi, tumia
+kipima-usawa juu yake. Ongeza kingo za mbao inapohitajika (angalia maelekezo ya kuunganisha ya ukingo wa mbao).
+
+### Vifaa na malighafi
+
+<Checklist
+  id="create.phase4-tools"
+  items={[
+    { value: 'Measuring tape', label: 'Tepu ya kupimia' },
+    { value: 'Shovels', label: 'Sepetu (makoleo)' },
+    { value: 'Wheelbarrows', label: 'Matoroli' },
+    { value: 'Garden hoes', label: 'Majembe ya bustani' },
+    { value: 'Grading rakes', label: 'Reki za kusawazisha' },
+    { value: 'Hand tamper', label: 'Kishindilio cha mkono (tamper)' },
+    { value: 'Wire cutters', label: 'Koleo za kukata waya' },
+    { value: 'Sledge hammer', label: 'Nyundo nzito' },
+    { value: 'Level', label: 'Kipima-usawa (level)' },
+    { value: 'Broom', label: 'Fagio' },
+  ]}
+/>
+<p class="muted">Malighafi: vikapu vya gabioni; mbao na vyuma vidogo kwa ajili ya ukingo wa mbao; vifusi vikubwa vya matofali na mawe kwa ajili ya vikapu vya gabioni, vya inchi 3 au zaidi.</p>
+
+<Figure
+  src="img/create/phase4-reference-photos.webp"
+  alt="Picha za mfano za kuweka ukingo: vikapu viwili vya gabioni vilivyojazwa, na mtu wa kujitolea akiweka ubao wa ukingo kando ya tuta la kokoto"
+/>
+
+### Viungo vyenye msaada
+
+- **Malighafi** — [Castor Materials ↗](https://castormaterials.com) (mawe yaliyosagwa, wanaleta; 3301 S 61st St) ·
+  [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) (mawe yaliyosagwa, matandazo, zana; 4260 Macalester St) ·
+  [Underdog Supply ↗](https://www.underdogsupply.com/) (huleta kwa wingi; Conshohocken) ·
+  Galantino Supply Company (mashine za kukodi na malighafi kwa wingi; 725 Old Marple Rd, Springfield — (610) 544-2586)
+- **Jinsi ya kufanya** — [Jenga ukuta wa gabioni ↗](https://youtube.com/watch?v=QFjEWnA3Mtc) (kwa Kiingereza)
+
+### Maandalizi ya hatua zinazofuata
+
+Angalia kalenda ya mradi wako na uirekebishe inapohitajika. Nunua na uletewe vifaa vinavyochukua muda kufika. Hakikisha
+eneo liko tayari kwa Awamu ya 5.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={9} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={10} label="Picha za mfano na viungo (PDF)" />
+
+## Awamu ya 5: Tandaza udongo wa juu {/* #phase-5-spread-topsoil */}
+
+### Hatua
+
+**Hatua ya 1: Vifaa.** Ondoa uzio wa kinga ya miti. Tafuta mahali pa kurundika udongo wa juu wenye rutuba (topsoil)
+kwenye njia ya watembea kwa miguu au barabarani — kama ni hivyo, omba kibali cha muda cha kuzuia maegesho (angalia
+Awamu ya 3).
+
+**Hatua ya 2: Kuweka udongo.** Andaa vitalu vya kupanda kwa ajili ya kupokea udongo wa juu kwa kusawazisha udongo
+uliopo. Tandaza udongo wa juu kwa kina cha takriban inchi 4–6 na uusawazishe uwe laini.
+
+**Hatua ya 3: Usafi.** Safisha udongo uliomwagika nje na safisha maeneo ya umma.
+
+### Vifaa na malighafi
+
+<Checklist
+  id="create.phase5-tools"
+  items={[
+    { value: 'Measuring tape', label: 'Tepu ya kupimia' },
+    { value: 'Shovels', label: 'Sepetu (makoleo)' },
+    { value: 'Wheelbarrows', label: 'Matoroli' },
+    { value: 'Grading rakes', label: 'Reki za kusawazisha' },
+    { value: 'Garden hoes', label: 'Majembe ya bustani' },
+    { value: 'Broom', label: 'Fagio' },
+  ]}
+/>
+<p class="muted">Malighafi: udongo wa juu (topsoil).</p>
+
+<Figure
+  src="img/create/phase5-reference-photos.webp"
+  alt="Picha za mfano za kutandaza udongo wa juu: lori la kumwaga likileta udongo wa juu, mtu wa kujitolea akisawazisha udongo kwa mkono, watu wawili wa kujitolea wakihamisha udongo wa juu kwa toroli, na mtu wa kujitolea akiweka udongo wa juu kwenye kitalu"
+/>
+
+### Viungo vyenye msaada
+
+- **Kuagiza** — [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
+- **Jinsi ya kufanya** — [Andaa udongo wa juu ↗](https://youtube.com/watch?v=GcOJ4fDJmpM) · [Udongo wa juu wenye afya kwa mimea yenye afya ↗](https://youtube.com/watch?v=7-Tyz7fGeZo) (kwa Kiingereza)
+
+### Maandalizi ya hatua zinazofuata
+
+Angalia kalenda ya mradi wako na uirekebishe inapohitajika. Nunua na uletewe vifaa vinavyochukua muda kufika. Hakikisha
+eneo liko tayari kwa Awamu ya 6.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={11} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={12} label="Picha za mfano na viungo (PDF)" />
+
+## Awamu ya 6: Panda {/* #phase-6-plant */}
+
+### Hatua
+
+**Hatua ya 1: Mimea.** Ondoa magugu yoyote yaliyoota. Hakikisha uletaji wa mimea umepangwa na umetafuta mahali pa
+kupokea na kuweka mimea inapoletwa. Panga miti na vichaka mahali unapotaka viwe, kisha safisha udongo uliomwagika nje
+na maeneo ya umma.
+
+**Hatua ya 2: Kupanda.** Panda miti mikubwa kwanza (angalia mchoro wa jinsi ya kupanda hapa chini). Panda vichaka,
+sawazisha udongo vizuri, panda mimea ya kudumu, weka matandazo (mulch) ya inchi 4, kisha mwagilia mimea yote maji ya
+kutosha — rudia mara mbili kwa wiki hadi mimea ilale (isimame kukua) kwa ajili ya majira ya baridi.
+
+<Figure
+  src="img/create/phase6-plant-illustration.webp"
+  alt="Mchoro wa pembe tatu wa bustani iliyokamilika mbele ya nyumba, ulioandikwa PLANT (panda), wenye miti, vitalu vya kupanda vilivyoinuliwa na eneo la kukusanyika lenye sakafu ngumu kati ya nyumba mbili za safu"
+/>
+<Figure
+  src="img/create/phase6-planting-detail.webp"
+  alt="Michoro miwili ya jinsi ya kupanda: mmoja wa kupanda kichaka au mmea wa kudumu kutoka kwenye chombo, ukionyesha kina cha matandazo na udongo wa kujazia, na mwingine wa kupanda mti, ukionyesha mahali pa kuweka mzizi na udongo wake, vigingi, matandazo na kuondoa gunia"
+/>
+
+### Vifaa na malighafi
+
+<Checklist
+  id="create.phase6-tools"
+  items={[
+    { value: 'Measuring tape', label: 'Tepu ya kupimia' },
+    { value: 'Shovels', label: 'Sepetu (makoleo)' },
+    { value: 'Wheelbarrows', label: 'Matoroli' },
+    { value: 'Pick axe', label: 'Sururu' },
+    { value: 'Landscape rakes', label: 'Reki za bustani' },
+    { value: 'Spray paint', label: 'Rangi ya kupuliza' },
+    { value: 'Tree stakes and rope', label: 'Vigingi vya miti na kamba' },
+    { value: 'Broom', label: 'Fagio' },
+  ]}
+/>
+<p class="muted">Malighafi: mimea — hakikisha unaangalia orodha yako ya mimea.</p>
+
+### Viungo vyenye msaada
+
+- **Taarifa za jumla za mimea** — [PHS Gold Medal Plants ↗](https://phsonline.org/for-gardeners/gold-medal-plants) ·
+  [Gardens Alive ↗](https://www.gardensalive.com/) · [North Creek Nurseries ↗](https://www.northcreeknurseries.com/) ·
+  [Missouri Botanical Garden ↗](https://www.missouribotanicalgarden.org/) · [Longwood Gardens plant explorer ↗](https://plantexplorer.longwoodgardens.org/ecmweb/ECM_Home.html) *(kiungo hakifanyi kazi kwa sasa)* ·
+  [Arbor Day Foundation ↗](https://www.arborday.org/) · [Penn State Extension, kilimo cha mboga ↗](https://extension.psu.edu/programs/master-gardener) (zote kwa Kiingereza)
+- **Kitalu cha miche mshirika wa PiaT** — LandHealth Institute, 4862 Parkside Ave, Philadelphia · (267) 571-5750 ·
+  [landhealthinstitute.org/nursery ↗](https://www.landhealthinstitute.org/nursery)
+- **Vitalu vingine vya miche vya eneo hili** — [Good Host Plants ↗](https://www.goodhostplants.com/) (wataalamu wa eneo wa mimea ya wachavushaji) ·
+  [Pleasant Run Nursery ↗](https://www.pleasantrunnursery.com/) · [Pinelands Nursery ↗](https://www.pinelandsnursery.com/) ·
+  [Archewild ↗](https://archewild.com/)
+- **Miti ya matunda** — [Philadelphia Orchard Project ↗](https://www.phillyorchards.org/) ·
+  [Burpee ↗](https://www.burpee.com/fruit/fruit-trees/) · [Stark Bros ↗](https://www.starkbros.com/products/fruit-trees)
+- **Warsha za bustani na msaada wa viwanja** — [Pennsylvania Horticultural Society ↗](https://phsonline.org/) ·
+  [Grounded in Philly ↗](https://groundedinphilly.org/) (msaada wa kisheria, bima, taarifa za viwanja)
+- **Jinsi ya kufanya** — [Vidokezo vya kupanda kwenye vyombo na kupanda vitunguu vya maua ↗](https://www.gardeners.com/how-to/growing-annual-flowers/5070.html) ·
+  [Kupanda mti kutoka kwenye chombo ↗](https://www.arborday.org/trees/planting/containerized.cfm) ·
+  [Jinsi ya kupanda kichaka ↗](https://youtube.com/watch?v=Tim4LEo6l10) (kwa Kiingereza)
+
+### Maandalizi ya hatua zinazofuata
+
+Angalia kalenda ya mradi wako na uhakikishe una ratiba ya Balozi wa Bustani (Park Ambassador) — angalia hatua ya Tunza
+kwa maelezo zaidi. Wauzaji wa matandazo: [Mid Atlantic Pine Straw ↗](https://www.midatlanticpinestraw.com/) ·
+[Underdog Landscape Supply ↗](https://underdogsupply.com) · [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/get-organic-materials/)
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={13} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={14} label="Viungo vyenye msaada (PDF)" />
+
+## Awamu ya 7: Weka sakafu ya kokoto {/* #phase-7-install-the-gravel-surface */}
+
+### Hatua
+
+**Hatua ya 1: Vifaa.** Jiandae kupokea vifaa vinavyoletwa kama bado havijarundikwa kwenye eneo. Tafuta mahali pa
+kurundika kokoto kwenye njia ya watembea kwa miguu au barabarani (kibali cha muda cha kuzuia maegesho, kama
+kinahitajika — angalia Awamu ya 3).
+
+**Hatua ya 2: Kuweka.** Weka sakafu ya kokoto kwa kutumia toroli na reki ya bustani. Weka kokoto kwa kina cha takriban
+inchi 2, ukitandaza zilizozidi kwa usawa. Shindilia kokoto kwa mashine ya kushindilia inayotetemeka ili kupunguza
+kutitia, na upite kila sehemu kuhakikisha zote ziko sawa na tambarare.
+
+**Hatua ya 3: Usafi.** Safisha kokoto zilizomwagika nje na safisha maeneo ya umma.
+
+### Vifaa na malighafi
+
+<Checklist
+  id="create.phase7-tools"
+  items={[
+    { value: 'Measuring tape', label: 'Tepu ya kupimia' },
+    { value: 'Shovels', label: 'Sepetu (makoleo)' },
+    { value: 'Wheelbarrows', label: 'Matoroli' },
+    { value: 'Landscape rakes', label: 'Reki za bustani' },
+    { value: 'Hand tamper', label: 'Kishindilio cha mkono (tamper)' },
+    { value: 'Vibratory plate', label: 'Mashine ya kushindilia inayotetemeka' },
+    { value: 'Broom', label: 'Fagio' },
+  ]}
+/>
+<p class="muted">Malighafi: kokoto za 3/8" au ndogo zaidi (vumbi la mawe).</p>
+
+<Figure
+  src="img/create/phase7-reference-photos.webp"
+  alt="Picha za mfano za kuweka sakafu ya kokoto: reki ya bustani ya kusawazisha, kishindilio cha mkono juu ya kokoto zilizoshindiliwa, na mtu wa kujitolea akiendesha mashine ya kushindilia inayotetemeka inayotumia petroli"
+/>
+
+### Viungo vyenye msaada
+
+- **Malighafi** — [Castor Materials ↗](https://castormaterials.com) · [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) ·
+  Galantino Supply Company ((610) 544-2586) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
+- **Jinsi ya kufanya** — [Weka kokoto ↗](https://youtube.com/watch?v=t0LWQ_U2z_g) (kwa Kiingereza)
+
+### Maandalizi ya hatua zinazofuata
+
+Angalia kalenda ya mradi wako na uirekebishe inapohitajika. Nunua na uletewe vifaa vinavyochukua muda kufika. Hakikisha
+eneo liko tayari kwa Awamu ya 8.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={15} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={16} label="Picha za mfano na viungo (PDF)" />
+
+## Awamu ya 8: Weka vitu vya bustani {/* #phase-8-install-park-elements */}
+
+### Hatua
+
+**Hatua ya 1: Pima.** Pitia vitabu vyako vya maelekezo ya kuunganisha, kisha upime na uweke alama mahali vitu vya
+bustani vinapotakiwa kukaa.
+
+**Hatua ya 2: Vifaa.** Hakikisha una vifaa vyote vilivyoorodheshwa katika vitabu vyako vya maelekezo ya kuunganisha.
+
+**Hatua ya 3: Unganisha.** Unganisha vitu vya bustani yako kufuata vitabu vya maelekezo ya kuunganisha.
+
+**Hatua ya 4: Weka.** Hakikisha kuna nafasi ya kutosha katika muundo wako ya kuweka vitu hivyo, kisha uviweke mahali
+pake pa mwisho. Huenda ukaweza — au ukaamua — kuunganisha vitu mapema au mahali pengine nje ya eneo.
+
+<Callout kind="auto">
+  Kila kitu chenye mwongozo wa kuunganisha kimeunganishwa kutoka kwenye jedwali la [Unganisha vitu](/steps/dream/#assemble)
+  la hatua ya Ota ndoto — miongozo ileile imeorodheshwa hapo.
+</Callout>
+
+### Viungo vyenye msaada
+
+- **Jinsi ya kujenga…** (tumia miongozo ya kuunganisha kwanza; video hizi ni za ziada) — [Meza ya pamoja ↗](https://youtube.com/watch?v=Px2JZs4Q2v4) ·
+  [Kisanduku cha kukuzia miche (cold frame) ↗](https://youtube.com/watch?v=b75RoDmE9qY) · [Matuta yaliyoinuliwa ↗](https://youtube.com/watch?v=MBIYebUgVVI) ·
+  [Vyombo vya mboji ↗](https://youtube.com/watch?v=gA6QNLaBEyc) · [Meza ya kuhamishia miche kwenye vyungu ↗](https://youtube.com/watch?v=E7HumfxE2f4) ·
+  [Kibanda cha vifaa vya bustani ↗](https://youtube.com/watch?v=DuQ0N8z6OkI) · [Ukuta wa gabioni ↗](https://youtube.com/watch?v=QFjEWnA3Mtc) (zote kwa Kiingereza)
+- **Mbao na vifaa vya ujenzi** — Woodland Building Supply, 4701 Woodland Ave, Philadelphia — (215) 727-5333 ·
+  C & R Building Supply, 1601 S 49th St, Philadelphia · A&A Lumber (mbao za cypress), Avondale, PA · Delaware County Lumber, Boothwyn, PA
+
+### Maandalizi ya hatua zinazofuata
+
+Angalia kalenda ya mradi wako na uirekebishe inapohitajika — bustani yako karibu imekamilika!
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={17} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={18} label="Maelekezo ya kuunganisha na viungo (PDF)" />
+
+{/* site-added: the workbook's own contents page lists a Summary, but this working draft doesn't include one — this wrap-up just recaps the 8 phases above as a final checklist. No new advice. */}
+## Muhtasari {/* #summary */}
+
+<Checklist
+  id="create.summary-checklist"
+  items={[
+    { value: 'phase1', label: 'Awamu ya 1: Jipange', hint: 'Kazi za timu zimegawiwa, ratiba imewekwa' },
+    { value: 'phase2', label: 'Awamu ya 2: Andaa kiwanja', hint: 'Kimesafishwa, kimelindwa, kimesawazishwa' },
+    { value: 'phase3', label: 'Awamu ya 3: Kupanga eneo na msingi wa kokoto', hint: 'Vitalu na vitu vimewekewa vigingi, msingi wa chini umewekwa' },
+    { value: 'phase4', label: 'Awamu ya 4: Weka ukingo', hint: 'Vikapu vya gabioni na ukingo wa mbao vimewekwa' },
+    { value: 'phase5', label: 'Awamu ya 5: Tandaza udongo wa juu', hint: 'Vitalu vya kupanda vimesawazishwa na kujazwa' },
+    { value: 'phase6', label: 'Awamu ya 6: Panda', hint: 'Miti, vichaka na mimea ya kudumu imepandwa ardhini' },
+    { value: 'phase7', label: 'Awamu ya 7: Weka sakafu ya kokoto', hint: 'Kokoto za juu zimeshindiliwa na ziko sawa' },
+    { value: 'phase8', label: 'Awamu ya 8: Weka vitu vya bustani', hint: 'Benchi, meza na vitu vingine vimeunganishwa na kuwekwa' },
+  ]}
+/>
+
+<Callout kind="tip">
+  Bustani yako imejengwa! Nenda kwenye hatua ya Tunza ili iendelee kustawi — kumwagilia, kung'oa magugu na mpango wa
+  kazi wa kila mwaka wa utunzaji.
+</Callout>
