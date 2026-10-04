@@ -118,6 +118,8 @@ function PlannerInner({ mode = 'design', demo, page = false }: Props) {
         }
       });
     }
+    // debugging and the headless checks: the store of the last planner made
+    if (import.meta.env.DEV) (window as unknown as { __plannerStore?: unknown }).__plannerStore = st;
     return st;
   }, []);
   useEffect(() => () => store.destroy(), [store]);

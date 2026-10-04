@@ -7,6 +7,7 @@
 import type { DesignState, LngLat } from '../types';
 import { bearingOf, distanceToRing, pointInPolygon, type LocalFrame, type Vec2 } from './geo';
 import { siteToLocal, localToSite, type SiteFrame } from './rect';
+import type { FitArea } from './lotfit';
 
 export type Turn = 0 | 1 | 2 | 3;
 
@@ -27,19 +28,21 @@ export function makePlacement(
   turn: Turn = 0,
   flip = false,
   shift: Vec2 = [0, 0],
+  /** where on the lot the park may go (site feet): the largest rectangle inside the parcel; default the whole frame */
+  area?: FitArea,
 ): ParkPlacement {
-  const Ls = frame.lengthFt;
-  const Ws = frame.widthFt;
+  const A = area ?? { x0: 0, y0: 0, lengthFt: frame.lengthFt, widthFt: frame.widthFt };
   // F mirrors y about the park's long centre line; R turns by 90°·turn (counter-clockwise).
   const f = flip ? -1 : 1;
   const cos = [1, 0, -1, 0][turn]!;
   const sin = [0, 1, 0, -1][turn]!;
   // M = R·F
   const m: [number, number, number, number] = [cos, -sin * f, sin, cos * f];
-  // Where the park's centre goes: keep the entrance on the site's entrance edge when
-  // the park runs the same way as the lot; centre it otherwise.
+  // Where the park's centre goes: keep the entrance on the entrance end of the area
+  // when the park runs the same way as the lot; centre it otherwise.
+  const cy = A.y0 + A.widthFt / 2;
   const anchor: Vec2 =
-    turn === 0 ? [parkL / 2, Ws / 2] : turn === 2 ? [Ls - parkL / 2, Ws / 2] : [Ls / 2, Ws / 2];
+    turn === 0 ? [A.x0 + parkL / 2, cy] : turn === 2 ? [A.x0 + A.lengthFt - parkL / 2, cy] : [A.x0 + A.lengthFt / 2, cy];
   anchor[0] += shift[0];
   anchor[1] += shift[1];
   const c: Vec2 = [parkL / 2, parkW / 2];
