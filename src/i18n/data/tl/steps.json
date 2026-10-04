@@ -1,0 +1,31 @@
+{
+  "start": {
+    "title": "Magsimula rito",
+    "tagline": "Bakit mahalaga ang mga parke at paano gumagana ang Park in a Truck."
+  },
+  "acquire": {
+    "title": "Kumuha ng lote",
+    "tagline": "Maghanap ng lote at kumuha ng pahintulot na gamitin ito.",
+    "assumes": "Nabasa na ninyo ang Toolkit at wala pa kayong loteng magagamit."
+  },
+  "organize": {
+    "title": "Mag-organisa",
+    "tagline": "Bumuo ng komite ng parke at tipunin ang inyong mga kapitbahay."
+  },
+  "assess": {
+    "title": "Magsuri",
+    "tagline": "Kilalanin ang inyong lote: araw, lupa at paligid."
+  },
+  "dream": {
+    "title": "Mangarap",
+    "tagline": "Idisenyo ang inyong parke gamit ang mga piraso ng parke."
+  },
+  "create": {
+    "title": "Lumikha",
+    "tagline": "Itayo ito, isang yugto bawat weekend."
+  },
+  "sustain": {
+    "title": "Mag-alaga",
+    "tagline": "Alagaan ang inyong parke, bawat panahon."
+  }
+}

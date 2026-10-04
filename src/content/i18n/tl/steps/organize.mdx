@@ -1,0 +1,228 @@
+---
+title: Mag-organisa
+intro: Bumuo ng komite ng parke, hanapin ang mga yaman ng inyong kapitbahayan, at tipunin ang mga taong magpapatupad ng parke.
+sources:
+  - Toolkit pp. 29–33 (Mag-organisa, Bumuo ng Komite ng Parke, Alamin ang mga Yaman ng Kapitbahayan)
+  - Workbook ng Organize pp. 3–6 (Pangkalahatang-ideya, Pagkilala sa mga Yaman ng Komunidad, Mga Yaman ng Kapitbahayan, Mag-organisa ng Pulong, Handa na ba Kayo?)
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import NeighborhoodAssets from '../../../../components/widgets/NeighborhoodAssets.astro';
+import MeetingFlyer from '../../../../components/widgets/MeetingFlyer.astro';
+
+Hindi basta-basta nagkakaroon ng parke. Pagtutulungan ito ng grupo, at malaki ang ganti. Ang komunidad na
+nagtutulungan sa isang proyekto ng parke ay nagtatayo ng higit pa sa parke — pinatitibay nila ang ugnayan ng
+komunidad, lumilikha ng makabuluhang trabaho para sa mga kabataan sa lugar, at nagbibigay ng pagmamalaki sa lahat.
+Pinagbubuklod ng pagtatayo ng parke ang mga tao sa iisang layunin. At kapag tapos na, sasabihin nila, "nagawa
+natin!"
+
+Nasa puso ng bawat matagumpay na proyekto ng parke ang isang grupo ng masisipag at mahuhusay na residenteng mula
+sa iba't ibang pinagmulan, na nagtutulungan bilang isang koponan. Ang Komite ng Parke na ito ang mamumuno sa
+paglikha ng inyong parke. Mainam kung kinakatawan ng mga boluntaryong ito ang iba't ibang grupong gagamit ng parke
+— bata at matanda, iba't ibang lahi at etnisidad, propesyonal at manggagawa, may-ari ng bahay at umuupa. Dapat
+silang sumasalamin sa inyong komunidad. Isipin din ang kanilang mga talento. Ang pagkakaroon ng mga taong may
+iba't ibang talento at karanasan — mga marunong magtayo, may kaalaman sa batas, may koneksiyon sa pulitika,
+community organizer, pari o pastor, mga palakaibigan, atbp. — ay magpapalaki sa inyong tsansang magtagumpay.
+
+<Callout kind="note">
+  Para sa higit pa tungkol sa pag-oorganisa ng grupo ng komunidad, tingnan ang{' '}
+  <a href="http://tupress.temple.edu/book/0872" target="_blank" rel="noopener"><em>City Parks Handbook</em></a> ng
+  Pennsylvania Horticultural Society at ang{' '}
+  <a href="https://www.nrpa.org/uploadedFiles/Americas_Backyard/park-advocate-handbook-100711.pdf" target="_blank" rel="noopener"><em>Park Advocate Handbook</em></a>
+  ng National Recreation and Park Association (parehong sa Ingles).
+</Callout>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={3} label="Pangkalahatang-ideya" />
+
+## Bumuo ng komite ng parke {/* #create-a-park-committee */}
+
+Kapag nabuo na, ang unang gawain ng komite ay alamin at itala kung ano ang natatangi sa inyong kapitbahayan at sa
+lote ng parke. Ilista sa ibaba ang mga kasapi ng inyong komite — sino sila, paano sila makokontak, at ano ang
+maiaambag nila sa grupo.
+
+<ListField
+  id="organize.committee-members"
+  label="Mga kasapi ng komite ng parke"
+  rowName="kasapi"
+  min={3}
+  columns={[
+    { key: 'name', label: 'Pangalan' },
+    { key: 'phone', label: 'Telepono', type: 'tel' },
+    { key: 'email', label: 'Email', type: 'email' },
+    { key: 'role', label: 'Tungkulin / kasanayan', placeholder: 'pag-oorganisa, karpinterya, pangangalap ng pondo…' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={3} label="Pangkalahatang-ideya" />
+
+## Alamin ang mga yaman ng komunidad {/* #identify-community-assets */}
+
+Ngayon, isipin natin ang mga tao sa inyong kapitbahayan at ang kanilang natatanging kasanayan — mahilig ba silang
+magluto? Mag-organisa ng event? Maghardin? Mahilig sa kasaysayan at kayang magsaliksik tungkol sa kapitbahayan?
+Lahat ng ito ay maaaring maging mahalaga at kapaki-pakinabang na kasanayan para maidisenyo, maitayo at maalagaan
+ang parke. Kailangan lang ninyong ilista ang mga ito para malaman ninyo kung sino ang malalapitan para sa iba't
+ibang gawain sa proseso ng parke.
+
+Sa inyong unang pulong ng komunidad, hilingin sa mga tao na isulat ang kanilang mga kaugnay na kasanayan sa isang
+sign-up sheet. Lagyan ng tsek ang mga kasanayang mayroon na ang inyong komite:
+
+<Checklist
+  id="organize.individual-skills"
+  label="Listahan ng kasanayan ng bawat isa"
+  items={[
+    { value: 'project-manager', label: 'Project manager na mangangasiwa sa pagtatayo ng parke' },
+    { value: 'organizing', label: 'Pag-oorganisa ng proseso ng parke / disenyo at pagtatayo' },
+    { value: 'carpentry', label: 'Karpinterya' },
+    { value: 'masonry', label: 'Pagmamason' },
+    { value: 'gardening', label: 'Paghahardin / pag-aalaga ng parke' },
+    { value: 'planting', label: 'Pagtatanim ng puno, palumpong, bulaklak' },
+    { value: 'building', label: 'Pagtulong sa pagtatayo ng parke' },
+    { value: 'fundraising', label: 'Pangangalap ng pondo' },
+    { value: 'bookkeeping', label: 'Pag-iingat ng talaan ng pera (bookkeeping)' },
+    { value: 'babysitting', label: 'Pag-aalaga ng bata' },
+    { value: 'food', label: 'Pagkain para sa mga pulong / pagtatayo ng parke' },
+    { value: 'artist', label: 'Alagad ng sining' },
+    { value: 'photography', label: 'Pagkuha ng litrato' },
+    { value: 'music', label: 'Musika para sa mga araw ng pagtatayo ng parke — DJ' },
+    { value: 'media', label: 'Pag-abot sa media — Facebook, Instagram, Twitter' },
+    { value: 'history', label: 'Mahilig sa kasaysayan' },
+    { value: 'other', label: 'Iba pa' },
+  ]}
+/>
+
+{/* site-added: a printable version of the same list, for a paper sign-up sheet at an in-person meeting. */}
+<Callout kind="tip" title="Pag-print ng sign-up sheet">
+  Kailangan ba ninyo ng papel na sign-up sheet para sa pulong? I-print ang pahinang ito — ipi-print ang checklist sa
+  itaas nang may mga blangkong kahon na malalagyan ng tsek ng mga kapitbahay, katabi ng kanilang pangalan at contact
+  info.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={3} label="Pagkilala sa mga Yaman ng Komunidad" />
+
+## Mga yaman ng kapitbahayan {/* #neighborhood-assets */}
+
+Isa pang mahalagang hakbang sa inyong paglalakbay sa pagtatayo ng parke ang pagkilala sa mga natatanging katangian
+ng inyong kapitbahayan at lote ng parke. Maglaan ng oras para huminto at hanapin ang maraming palatandaan na
+nagpapaespesyal sa inyong kapitbahayan sa sarili nitong paraan. May likas na halaga ang bawat kapitbahayan na
+nagmumula sa sarili nitong kasaysayan at kultura. Ang pagkilala at paggamit sa mga yamang ito ay magpapalakas sa
+inyong proyekto ng parke at magbibigay-inspirasyon sa komunidad na ituring itong kanila.
+
+Kaya paano natin makikilala ang mga yaman at lakas? Isipin ang inyong kapitbahayan at ang kasaysayan at kultura
+nito — ano ang mga espesyal na lugar? Saan gustong magtipon ng mga tao? May mahahalagang pangyayari bang naganap
+sa inyong kapitbahayan? Ano ang dating nakatayo kung nasaan ngayon ang inyong parke?
+
+<Callout kind="auto" title="Mga organisasyon sa malapit, hinanap para sa inyo">
+  Ilagay ang address ng inyong lote at kukunin ng site ang mga kalapit na Registered Community Organization (RCO),
+  paaralan, aklatan, parke, hardin at iba pang yaman ng kapitbahayan na nakalista sa Lungsod — para masimulan ninyo
+  ang listahan sa mga nandiyan na.
+</Callout>
+
+<NeighborhoodAssets />
+
+Susunod, ilista ang lahat ng samahan ng mamamayan at lokal na asosasyon na maaaring maging katuwang at magbigay ng
+suporta — pera, tulong na hindi pera (in-kind), o lugar na mabibilhan ng materyales ng parke sa lugar:
+
+<ListField
+  id="organize.citizens-associations"
+  label="Listahan ng mga samahan ng mamamayan"
+  rowName="grupo"
+  min={2}
+  columns={[
+    { key: 'type', label: 'Uri', placeholder: 'simbahan, block captain, RCO, grupong pangkultura…' },
+    { key: 'name', label: 'Pangalan' },
+    { key: 'contact', label: 'Contact' },
+  ]}
+/>
+
+<ListField
+  id="organize.physical-assets"
+  label="Mga pisikal na yaman ng kapitbahayan"
+  rowName="yaman"
+  min={2}
+  columns={[
+    { key: 'type', label: 'Uri', placeholder: 'palatandaan, mural, tanawin ng kalye, lugar ng pagtitipon…' },
+    { key: 'description', label: 'Paglalarawan' },
+  ]}
+/>
+
+<ListField
+  id="organize.local-institutions"
+  label="Mga lokal na institusyon"
+  rowName="institusyon"
+  min={2}
+  columns={[
+    { key: 'type', label: 'Uri', placeholder: 'negosyo, paaralan, aklatan, ospital, unibersidad…' },
+    { key: 'name', label: 'Pangalan' },
+    { key: 'contact', label: 'Contact' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={4} label="Mga Yaman ng Kapitbahayan" />
+
+## Mag-organisa ng pulong {/* #organize-a-meeting */}
+
+Ang pagdaraos ng pampublikong pulong ay napakagandang paraan para bumuo ng kampanya o makakuha ng mas maraming
+kasali sa inyong grupo. Narito ang ilang ideya para matulungan ang inyong grupo na mag-organisa ng pulong na
+kawili-wili, bukas sa lahat at maayos ang daloy.
+
+- **Gawing simple.** Huwag pagsiksikin ang napakaraming bagay. Gamitin ang pulong para ibahagi ang batayang
+  impormasyon tungkol sa gusto ninyong gawin, hikayatin ang iba na ibahagi ang kanilang opinyon at ideya, at kunin
+  ang contact details ng mga taong maaaring gustong sumali sa hinaharap.
+- **Ipaalam nang mabuti.** Siguruhing malinaw sa flyer ang petsa, oras at lugar, at malinaw kung tungkol saan ang
+  pulong. Nakatutulong ang mga flyer, poster, post sa social media at ang lokal na newsletter ng komunidad.
+- **Mag-alok ng pang-akit.** Libreng meryenda, isang video o tagapagsalita, o pag-aalaga ng bata ng mga estudyanteng
+  boluntaryo — makatutulong ito para maglaan ng oras ang mga tao na dumalo.
+- **Pag-isipan ang agenda.** Pagbati at pagpapakilala; ipaliwanag kung sino ang nagpatawag ng pulong at bakit;
+  ilahad kung bakit ipinatawag ang pulong; pag-isipang anyayahan ang isang taong nakapagtayo na ng parke para
+  ibahagi ang kanyang karanasan (gawing maikli — hindi dapat lektyur ang unang pulong na ito); hilingin sa grupo ng
+  Park in a Truck sa Jefferson na magpadala ng tagapagsalita.
+- **Bigyan ng pagkakataong magsalita ang mga tao.** Maaaring may tumutol sa parke — hayaang ipahayag ng mga tao ang
+  kanilang pananaw at bumuo ng pagkakasundo sa posibleng lokasyon ng parke, nang hindi nalulunod sa mga detalye.
+- **Sabihin kung ano ang susunod.** Ibuod ang mga ideyang nabanggit, at kung maliit ang pulong, magpasya kung anong
+  aksiyon talaga ang gagawin — kasama kung sino ang gagawa nito.
+- **Pamunuan ang pulong.** Pagkasunduan nang maaga kung sino ang mamumuno. Ang tungkulin niya: panatilihin ang
+  pulong sa paksa, tiyaking may pagkakataong magsalita ang mga tao, at panatilihing magiliw at bukas ang
+  kapaligiran.
+- **Magtala ng minutes.** Pagpasyahan bago ang pulong kung sino ang magtatala ng minutes (hindi ang parehong taong
+  namumuno). Dapat may malinaw na tala ang minutes ng anumang napagpasyahan, at kung sino ang pumayag na gumawa ng
+  aling gawain.
+- **Kunin ang mga pangalan at address.** Maghanda nang maaga ng sign-up sheet para makaugnayan ninyo ang lahat ng
+  gustong manatiling kasali.
+- **Planuhin ang susunod na pulong.** Magtakda ng petsa at lugar ng susunod na pulong ng inyong grupo bago matapos
+  ang pulong na ito, at ipamahagi ito para makabalik ang mga tao.
+
+<Field id="organize.meeting-date" label="Petsa ng pulong" type="date" />
+<Field id="organize.meeting-time" label="Oras ng pulong" type="text" placeholder="hal. 6:30 PM" />
+<Field id="organize.meeting-place" label="Lugar ng pulong" type="text" placeholder="address o pangalan ng lugar" />
+<Field id="organize.meeting-purpose" label="Layunin ng pulong" type="textarea" hint="Ang gusto ninyong gawin, at ang hinihiling ninyo sa mga kapitbahay." />
+
+<MeetingFlyer />
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={5} label="Mag-organisa ng Pulong" />
+
+## Handa na ba kayo? {/* #are-you-ready */}
+
+Paano ninyo malalaman kung nakabuo kayo ng komite ng parke na kumpleto ang kakayahan? Basahin ang listahan sa
+ibaba at lagyan ng tsek ang kahon kapag nakita na ninyo ang mga taong iyon o kakayahang iyon sa inyong komite. Ang
+pinakamahalagang bahagi ng pag-oorganisa ay patunayan sa inyong sarili na kaya ninyong pagsamahin ang lahat ng
+kailangan para sa isang parke ng kapitbahayan — tinitiyak ng paglalagay ng tsek sa bawat kahon na handa na ang
+inyong organisasyon na magpatuloy sa susunod na kabanata.
+
+<Checklist
+  id="organize.readiness"
+  label="Checklist ng kahandaan ng organisasyon"
+  items={[
+    { value: 'committee-formed', label: 'Nakabuo na ba kayo ng komite ng masisipag na kapitbahay na gagabay sa kabuuang pagpaplano ng parke?' },
+    { value: 'financial-standing', label: 'May kakayahan bang pinansiyal o linya ng credit ang inyong organisasyon para sa mga gastos na kaugnay ng parke, gaya ng pagkuha ng ari-arian, pag-aalaga, mga event, atbp.?' },
+    { value: 'fundraising', label: 'Kaya ba ng inyong organisasyon na makalikom ng pondong kailangan para sa patuloy na suportang pinansiyal sa parke?' },
+    { value: 'community-engagement', label: 'Kaya ba ng inyong organisasyon na pukawin ang interes ng kapitbahayan, mag-organisa ng mga event at iba pang gawaing pang-komunidad?' },
+    { value: 'skilled-trades', label: 'May access ba ang inyong organisasyon sa iba\'t ibang kasanayan at karanasan — karpintero, mason o iba pang manggagawa — na maibabahagi ang kaalaman nila sa pagtatayo at pag-aalaga ng parke?' },
+    { value: 'initial-meetings', label: 'Nakapagdaos na ba ang inyong organisasyon ng mga unang pulong at event ng komunidad para makakuha ng suporta at pagkakasundo para sa posibleng parke?' },
+    { value: 'social-media', label: 'Nakagawa na ba ang inyong organisasyon ng online page para sa mga mensahe, anunsiyo at iba pa (Facebook, Instagram, atbp.), na may natatanging hashtag para makilala ang proyekto ng inyong parke?' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={6} label="Handa na ba Kayo?" />

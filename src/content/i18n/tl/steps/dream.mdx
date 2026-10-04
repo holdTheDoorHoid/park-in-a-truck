@@ -1,0 +1,378 @@
+---
+title: Dream
+intro: Design your park with Park in a Truck's own mix-and-match pieces.
+sources:
+  - Toolkit pp. 39–55 (Dream, Themed Designs, Park Pieces, Mix and Match)
+  - Dream Workbook pp. 1–20
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Choice from '../../../../components/workbook/Choice.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import Download from '../../../../components/workbook/Download.astro';
+import Planner from '../../../../components/widgets/Planner.astro';
+import CostEstimator from '../../../../components/widgets/CostEstimator.astro';
+import PlantPicker from '../../../../components/widgets/PlantPicker.astro';
+import { ELEMENTS } from '../../../../data/elements';
+import { THEMES, THEME_ORDER } from '../../../../data/themes';
+import { SIZES } from '../../../../lib/sizing';
+import { urlFor } from '../../../../i18n/url.ts';
+export const u = urlFor('tl');
+import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
+
+export const THEME_REQUIREMENTS = {
+  edible: { trees: 'Few or no trees', sun: 'Full sun or mostly sun', lot: 'Well suited for a corner lot', volunteers: 'Frequent volunteer participation' },
+  sanctuary: { trees: 'Any amount of trees', sun: 'Any amount of sun', lot: 'Mid-block or corner lot', volunteers: 'Minimal volunteer participation' },
+  nature: { trees: 'Well suited for lots with trees', sun: 'Any amount of sun', lot: 'Mid-block or corner lot', volunteers: 'Minimal required participation' },
+  event: { trees: 'One/two trees or several trees', sun: 'Any amount of sun', lot: 'Well suited for a corner lot', volunteers: 'Moderate volunteer participation' },
+};
+
+{/* The Assemble grid below skips surfaces, plants and existing-conditions markers — only built/bought elements get an assembly link. */}
+export const NOT_BUILT = new Set(['planting-square', 'perennial', 'shrub', 'small-tree', 'large-tree', 'gravel', 'existing-tree', 'downspout', 'wet-area', 'hydrant', 'utility-line']);
+export const ICON_FALLBACK = { 'table-6': 'table-4', 'bench-4': 'bench-back', 'gabion-bench-8': 'gabion-bench' };
+// The workbook's Assemble page shows these elements; newer vocabulary (e.g. cafe-table) has no icon there.
+export const ASSEMBLE_ICONS = new Set(['bench-back','bird-accessories','birdbath','cold-frame','communal-table','compost-bin','event-tent','flexible-seating','gabion-bench','gabion-wall','nature-play','outdoor-classroom','planter-18','planter-24','rain-barrel','raised-bed','shade-canopy','shed','stage','stool','table-2','table-4','workbench']);
+
+{/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — reminds a reader who hasn't recorded a lot agreement yet, before they design and budget for a lot they may not have permission for. */}
+<LotAgreementNotice />
+
+Designing a Park in a Truck park is like buying a new dress or suit. First, you go to the store and check out the
+mannequins to pick out a style, color or pattern that you like. Of course, what looks good hanging on the rack may not
+work for you. So you must find the suit or dress in a size that fits you and your body type, then you try it on. If it
+doesn't fit, you can alter it. Finally, you add accessories to truly customize it.
+
+Just like clothes shopping, your park needs to suit your style and the intended use. Park in a Truck parks come in
+four different styles — we call them **themes**: Edible, Sanctuary, Nature and Event. Each one is best suited for a
+specific occasion or situation.
+
+Now, the real fun begins — creating a vision for your park! This step starts with choosing one of the four themed
+designs. However, that's just the beginning: each theme includes a set of mix-and-match **park pieces** that let you
+build a **custom park** sized to your own lot.
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={3} />
+
+## The four themes {/* #the-four-themes */}
+
+Each theme emphasizes different ways you may use your park: some are well suited for neighborhood gatherings, while
+others are better suited for solitude. Compare the number of trees, amount of sun and lot location you recorded on
+your Assess Summary with the general requirements below.
+
+Since every park has three parts — a **frame**, a **front** and a **back** — you can use one theme across the whole
+park, or **mix and match** different themes, the same way you'd pair a top and jacket with the bottom of an outfit.
+
+### Base design elements (every theme)
+
+A few key elements appear in all four themes:
+
+- **Gabion wall.** Wire baskets filled with stone give the park a distinct edge — fill them with found materials like
+  brick and broken concrete for lower-cost, more sustainable construction.
+- **Bench.** A place to sit, easily customized by your community. Paint them or let them weather — either works.
+- **Rain barrel.** Every park needs water. Rain barrels collect stormwater for watering trees and flowers.
+- **Plants.** Native plants that attract wildlife, increase biodiversity and promote conservation.
+
+{THEME_ORDER.map((id) => (
+  <div style={`margin:2.5em 0; border-left: 8px solid ${THEMES[id].frame}; padding-left: 1.2em;`}>
+    <h3 style={`color:${THEMES[id].frame}`}>{THEMES[id].name}</h3>
+    <p>{THEMES[id].blurb}</p>
+    <Figure
+      src={`img/dream/theme-${id}.webp`}
+      alt={`${THEMES[id].name} theme: 3D and plan-view illustrations of the park, with the frame/front/back pieces shown in the theme's color`}
+    />
+    <ul class="theme-reqs">
+      <li><strong>Trees:</strong> {THEME_REQUIREMENTS[id].trees}</li>
+      <li><strong>Sun:</strong> {THEME_REQUIREMENTS[id].sun}</li>
+      <li><strong>Lot:</strong> {THEME_REQUIREMENTS[id].lot}</li>
+      <li><strong>Volunteers:</strong> {THEME_REQUIREMENTS[id].volunteers}</li>
+    </ul>
+  </div>
+))}
+
+{/* site-added: Playful Learning is the toolkit's own appendix (linked from its Dream chapter); cross-linking it here matches where the toolkit itself introduces it. */}
+<Callout kind="note" title="Designing for kids, too?">
+  Park in a Truck has teamed up with **Playful Learning Landscapes**, an initiative that blends the science of how
+  children learn with everyday park design — sorting tables, story wheels, icon storytelling and more, matched to
+  each of the four themes above.
+  [See the Playful Learning guide ↗](/playful-learning/)
+</Callout>
+
+<Field
+  id="dream.theme-reasons"
+  label="Are there particular reasons why you prefer one park theme more than the others?"
+  type="textarea"
+/>
+<Field
+  id="dream.theme-qualities"
+  label="Are there specific park qualities in the themes that are most desirable to you?"
+  type="textarea"
+/>
+<Choice
+  id="dream.preferred-theme"
+  label="What is your preferred park theme?"
+  options={[
+    { value: 'edible', label: 'Edible', color: THEMES.edible.frame },
+    { value: 'sanctuary', label: 'Sanctuary', color: THEMES.sanctuary.frame },
+    { value: 'nature', label: 'Nature', color: THEMES.nature.frame },
+    { value: 'event', label: 'Event', color: THEMES.event.frame },
+    { value: 'mix', label: 'A mix of themes', desc: 'Different theme for frame, front and back' },
+  ]}
+/>
+<Choice
+  id="dream.theme-fits-site"
+  label="Does the theme you chose work with the site characteristics on your Assess summary sheet?"
+  options={[
+    { value: 'yes', label: 'Yes', desc: "It's a good fit — move ahead" },
+    { value: 'no', label: 'No', desc: 'Re-evaluate your park theme' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={5} />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={6} label="Edible theme (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={7} label="Sanctuary theme (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={8} label="Nature theme (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={9} label="Event theme (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={10} label="Which theme is right for you? (PDF)" />
+
+## Park pieces & how to use them {/* #park-pieces-how-to-use-them */}
+
+Your park design template is built from different components — **park pieces**. There are FRONT and BACK pieces for
+the park's interior, and a FRAME to put them in. Each piece comes in one of the four themes, and every piece is
+interchangeable, so you can mix and match between themes or choose one theme for the whole park.
+
+Like the frame around a family photo, the **frame** creates the border around the park's interior — a welcoming
+location for entrances, trees and other features. The interior is divided into the **front** (closest to the park
+entrance, holding the major fixed elements) and the **back** (typically more open, for flexible use).
+
+Images in the toolkit are shown in 3D **axon** view, like a photograph, to make them easy to picture. To actually lay
+out your park you'll use a flat **plan** view that looks like a simple map — both views show the same things.
+
+<Figure
+  src="img/dream/park-pieces-frame-front-back.webp"
+  alt="Diagram comparing the park's axon (3D) view and plan view: a frame piece combines with a front and a back piece to build the full park, shown both as stacked 3D blocks and as a flat plan"
+/>
+
+<Figure
+  src="img/dream/mix-and-match.webp"
+  alt="Four example parks, each combining a frame, front and back piece from different themes — event, sanctuary, edible and nature — to show how pieces mix and match into endless combinations"
+/>
+
+<Callout kind="auto">
+  On paper, mixing and matching means printing, cutting and taping pieces together by hand. The planner below does
+  that part for you — pick a frame, front and back theme and it assembles them instantly, in the exact size of your
+  real lot.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={4} />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={13} label="Play with the pieces (PDF)" />
+
+## Design your park {/* #design-your-park */}
+
+{/* site-added: mode prop for the planner workstream; placement and surrounding copy are ours. */}
+<Planner mode="design" />
+
+<Callout kind="auto" title="Fits your real lot, automatically">
+  The planner fits Park in a Truck's own park pieces to your real lot — right-sizing them with seams exactly the way
+  the workbook does by hand — and counts everything for you as you go, ready for the cost estimate and plant lists
+  below.
+</Callout>
+
+<details>
+  <summary>Prefer paper? Print the park pieces</summary>
+
+  After reviewing the themes, note the letter you checked on your Assess Summary page (size A–E) and your lot
+  location (interior, or corner with the street on your right or left). Click the matching download below — each
+  opens a Google Drive folder of printable park pieces for that size and lot.
+
+  <table class="pieces-table">
+    <thead>
+      <tr><th>Size</th><th>Interior lot</th><th>Corner lot — street on the right</th><th>Corner lot — street on the left</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>A</strong></td><td><a href="https://drive.google.com/open?id=1e3j5d8ZsIxVxsJsdtoosKgMAuCpQwBKo" target="_blank" rel="noopener">Download ↗</a></td><td><a href="https://drive.google.com/open?id=1Txw_BMZlvseeyCetUYbGfVSIu2_eq7HW" target="_blank" rel="noopener">Download ↗</a></td><td><a href="https://drive.google.com/open?id=1LBQG4r2z1geA6rIEyK_GFYGzV4IBQFua" target="_blank" rel="noopener">Download ↗</a></td></tr>
+      <tr><td><strong>B</strong></td><td><a href="https://drive.google.com/open?id=1LC6QvBJ2D-LyhbFGYXsjByiWQaFk06AF" target="_blank" rel="noopener">Download ↗</a></td><td><a href="https://drive.google.com/open?id=1LKVUm28LhzKNqmMPPsufWrxt-xqTyJrk" target="_blank" rel="noopener">Download ↗</a></td><td><a href="https://drive.google.com/open?id=1LQmrAsZd7Aw0M6F2iwFUUWjoUm-uAIFA" target="_blank" rel="noopener">Download ↗</a></td></tr>
+      <tr><td><strong>C</strong></td><td><a href="https://drive.google.com/open?id=1LR04NYM7Ii2srwf4E5tl2t26R8jxdWQr" target="_blank" rel="noopener">Download ↗</a></td><td><a href="https://drive.google.com/open?id=1LSWINYM72UNHj6hGjrsn0S51h2hJL47s" target="_blank" rel="noopener">Download ↗</a></td><td><a href="https://drive.google.com/open?id=1LJCzWBkOh_hG8205xt1sJ17s4jQFD-H-" target="_blank" rel="noopener">Download ↗</a></td></tr>
+      <tr><td><strong>D</strong></td><td><a href="https://drive.google.com/open?id=1LfpisFCCWZwitjJJ2_vpFfv_Pv_pnhMf" target="_blank" rel="noopener">Download ↗</a></td><td><a href="https://drive.google.com/open?id=1LSqUwvHJQd5riQI56GgMO6GgN9LK7-Or" target="_blank" rel="noopener">Download ↗</a></td><td><a href="https://drive.google.com/open?id=1LejWNaZ9sQFiy1P3er03OuwRURV7LNQI" target="_blank" rel="noopener">Download ↗</a></td></tr>
+      <tr><td><strong>E</strong></td><td><a href="https://drive.google.com/open?id=1L-pqs-CuyMjeHE7UgEIDLawzv4ErTA6h" target="_blank" rel="noopener">Download ↗</a></td><td><a href="https://drive.google.com/open?id=1LlyI3QGglqZw5f92aR1WLES7Nuz0gkOC" target="_blank" rel="noopener">Download ↗</a></td><td><a href="https://drive.google.com/open?id=1LiE8uy8Uc-6R55t8cQr2Eg4CGdifcC8J" target="_blank" rel="noopener">Download ↗</a></td></tr>
+    </tbody>
+  </table>
+  <p class="muted">Lot-kind labels follow the workbook's own download page — if a piece set doesn't match your corner, try the other one.</p>
+
+  Open the pieces you downloaded and print them single-sided on 8.5"×11" paper, then cut along the dashed lines.
+  Align the pieces using the align symbols printed on each sheet, and tape them together. Keep going to the next
+  sub-step to right-size the taped-together park to your actual lot.
+
+  <PdfPage doc="downloads/workbooks/04-dream.pdf" page={11} label="Download the park pieces (PDF)" />
+  <PdfPage doc="downloads/workbooks/04-dream.pdf" page={12} label="Print + cut the pieces (PDF)" />
+</details>
+
+## Right size your park {/* #right-size-your-park */}
+
+If your lot perfectly fits your pieces, skip ahead to adding your existing conditions. If there's extra room, expand
+your park by adding seams — feet of extra frame, front or back — so you use all the available space.
+
+<table class="size-table">
+  <thead><tr><th>Size</th><th>Long edge</th><th>Short edge</th></tr></thead>
+  <tbody>
+    {SIZES.map((s) => (
+      <tr><td><strong>{s.id}</strong></td><td>{s.long[0]}–{s.long[1]} ft</td><td>{s.short[0]}–{s.short[1]} ft</td></tr>
+    ))}
+  </tbody>
+</table>
+
+{/* site-added: sizing.ts also flags lots below size A; call that out here since it's the natural place a reader learns their lot doesn't fit the smallest set. */}
+<Callout kind="note" title="Smaller than size A?">
+  Size doesn't matter. A 4×4 plot, a front yard or even a window box can still become a pollinator planting — use the
+  [Park Patch guide](/park-patch/) instead of the full park pieces below.
+</Callout>
+
+There are two kinds of seams: a **length seam**, cut between the front and back piece, adds feet along the park's
+long edge; a **width seam**, trimmed along the length, adds feet along the short edge. Both seams have black dashed
+lines marking every 4 feet and grey dashed lines marking every 1 foot, so you can count out exactly how much you
+need.
+
+<Figure
+  src="img/dream/length-seam.webp"
+  alt="Length seam diagram: count the dashed lines on the seam between the park's front and back piece, cut it, then tape the width seam into the middle of the park and tape it back together"
+/>
+<Figure
+  src="img/dream/width-seam.webp"
+  alt="Width seam diagram: count the dashed lines on the seam running the length of the park, cut it down to size, then add the width seam in the middle and tape the two sides back together"
+/>
+
+<Callout kind="auto">
+  The planner stretches your chosen pieces to your lot's exact dimensions automatically — no cutting or taping
+  required.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={14} />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={15} label="Length seam (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={16} label="Width seam (PDF)" />
+
+## Add existing conditions {/* #add-existing-conditions */}
+
+Transfer the existing conditions from the site plan you drew in the Assess workbook onto your design plan. Place the
+two plans side by side and copy each feature over — the grids are the same, so just count the boxes to find where
+things land. If an existing tree lands in a planting area, great; if it lands in gravel, that's fine too (the Create
+step explains how to handle it). If your existing conditions clash with your design — a tree on top of a bench, say —
+you can remove the bench by crossing it out, or shift the whole front or back piece. The design is a template: it's
+somewhat rigid, but you can always add or remove things to make it work for you.
+
+<Callout kind="auto">
+  Existing trees, downspouts, wet areas, hydrants and utility lines you marked in Assess are already placed on the
+  planner — drag anything that's in the wrong spot.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={17} />
+
+## Count your pieces & cost {/* #count-your-pieces-cost */}
+
+It's time to tally your site plan. Each front, back and frame piece has a tally of all its items, so you can
+calculate the cost and order materials. The workbook asks: how many feet is the long side of your lot (length)? The
+short side (width)? How many green planting squares do you have? And, using the key in your park pieces, how many of
+each furnishing?
+
+<CostEstimator />
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — the order list's "fire hydrant opener" items; facts checked 2026-10-04 on water.phila.gov. */}
+<Callout kind="site" title="Note from this site, not Park in a Truck: fire hydrants">
+  The order list suggests a fire hydrant opener. Opening a fire hydrant in Philadelphia needs a
+  [Philadelphia Water Department hydrant permit ↗](https://water.phila.gov/development/connections/hydrant-permits/)
+  and an approved backflow preventer (community gardens are exempt from the permit fee). PWD's
+  [urban garden guide ↗](https://water.phila.gov/urban-garden-guide/) lists the other ways to get water to a garden.
+</Callout>
+
+<Download href="downloads/templates/cost-estimator.xlsx" label="Cost estimator" note="Original spreadsheet — make your own copy to edit it" />
+
+<details>
+  <summary>Counting on paper? Enter your totals here</summary>
+  <Field id="dream.diy-length" label="Length (long side of your lot)" type="number" unit="ft" />
+  <Field id="dream.diy-width" label="Width (short side of your lot)" type="number" unit="ft" />
+  <Field id="dream.diy-planting-squares" label="Planting squares (green squares on your plan)" type="number" />
+  <p class="muted">Count furnishings using the key printed on your park pieces, then enter everything into the cost estimator spreadsheet above.</p>
+</details>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={18} />
+
+## Count & choose your plants {/* #count-choose-your-plants */}
+
+Everywhere there's green on your plan is a planting area, and each planting symbol has a size. Count up the
+perennials, shrubs, small trees and big trees in your design — sun and shade separately for perennials and shrubs.
+You'll pick the actual plant varieties next.
+
+{/* site-added: the six counts show your design's numbers (project.extra.tally) until you type your own; the plant picker below uses the same numbers */}
+<Field id="dream.perennials-sun" label="Perennials — green squares in sun" type="number" unit="squares" auto="extra.tally.plantingSquares.sun" autoNote="✓ Filled in from your design — type to change it" />
+<Field id="dream.perennials-shade" label="Perennials — green squares in shade" type="number" unit="squares" auto="extra.tally.plantingSquares.shade" autoNote="✓ Filled in from your design — type to change it" />
+<Field id="dream.shrubs-sun" label="Shrubs — sun" type="number" auto="extra.tally.shrubs.sun" autoNote="✓ Filled in from your design — type to change it" />
+<Field id="dream.shrubs-shade" label="Shrubs — shade" type="number" auto="extra.tally.shrubs.shade" autoNote="✓ Filled in from your design — type to change it" />
+<Field id="dream.small-trees" label="Small trees" type="number" auto="extra.tally.smallTrees" autoNote="✓ Filled in from your design — type to change it" />
+<Field id="dream.large-trees" label="Large trees" type="number" auto="extra.tally.largeTrees" autoNote="✓ Filled in from your design — type to change it" />
+
+<PlantPicker />
+
+Each theme has its own suggested plant list — a starting point, not a requirement. If you're mixing two themes, pick
+plants from both lists.
+
+<div class="plant-list-links">
+  <Download href="https://docs.google.com/spreadsheets/d/1QsoQ6KYBT5tVrlAtTxoD5q0yP2YS5Wyt/copy" label="Edible plant list" />
+  <Download href="https://docs.google.com/spreadsheets/d/1RhCdaiCLbEJD8KXiX7uJMD7xJFRNCERy/copy" label="Sanctuary plant list" />
+  <Download href="https://docs.google.com/spreadsheets/d/1eEVK3dpBy1-xBFDaACIOTMB2Dd9COGvz/copy" label="Nature plant list" />
+  <Download href="https://docs.google.com/spreadsheets/d/1oy_aLqP7RoBcHngZ_uFMl_YBvzJ271MR/copy" label="Event plant list" />
+</div>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={20} label="Choose your plants (PDF)" />
+
+## Assemble {/* #assemble */}
+
+Now it's time to see how the park elements are built. Some elements have custom step-by-step assembly instructions,
+like an Ikea manual; others come with a suggested design from pre-tested instructions; and some are simply
+off-the-shelf products. Click any element below — if you have it in your park, this is how you build (or buy) it.
+
+<div class="elements-grid">
+  {Object.values(ELEMENTS)
+    .filter((el) => !NOT_BUILT.has(el.id) && ASSEMBLE_ICONS.has(ICON_FALLBACK[el.id] ?? el.id))
+    .map((el) => {
+      const icon = ICON_FALLBACK[el.id] ?? el.id;
+      const href = el.guide ? u(`build/${el.guide}/`) : el.link;
+      const external = !el.guide;
+      return (
+        <a class="element-card" href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
+          <img src={u(`img/dream/elements/${icon}.webp`)} alt="" width="96" height="72" loading="lazy" />
+          <span>{el.name}</span>
+        </a>
+      );
+    })}
+</div>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={19} />
+
+## Are you ready? {/* #are-you-ready */}
+
+Congratulations for completing the Dream Workbook! Check off each step below before moving on to Create.
+
+<Checklist
+  id="dream.ready-checklist"
+  items={[
+    { value: 'theme-review', label: 'Theme design review', hint: "You've reviewed the themes and decided which best fits your needs" },
+    { value: 'custom-design', label: 'Custom design', hint: "You've played with the park pieces to choose a final park design" },
+    { value: 'custom-size', label: 'Custom size', hint: "You've right-sized your park to your lot's dimensions and existing features" },
+    { value: 'cost-estimate', label: 'Cost estimate', hint: "You've counted your pieces and entered them into the cost estimator" },
+    { value: 'plant-choice', label: 'Plant choice', hint: "You've chosen plants based on your plant counts" },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={20} label="Are you ready? (PDF)" />
+
+<style>
+  {`
+  .theme-reqs { list-style: none; padding: 0; margin: 0.8em 0 0; font-size: 0.92rem; color: var(--ink-2); display: grid; gap: 0.2em; }
+  .size-table, .pieces-table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.95rem; }
+  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: left; }
+  .elements-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; margin: 1.2em 0; }
+  .element-card { display: flex; flex-direction: column; align-items: center; gap: 0.4em; text-align: center; padding: 10px; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); font-size: 0.85rem; background: #fff; }
+  .element-card:hover { border-color: var(--cyan); box-shadow: var(--shadow); }
+  .element-card img { max-width: 96px; max-height: 72px; width: auto; }
+  .plant-list-links { display: flex; flex-wrap: wrap; gap: 10px; }
+  `}
+</style>
