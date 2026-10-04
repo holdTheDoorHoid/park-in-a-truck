@@ -1,17 +1,18 @@
 // SEAM: the park design model. Everything the planner needs from the pieces
-// workstream goes through this file.
-//
-// To switch to the real park pieces, change the import below to
-//   import { assemble, loadSet, tally } from '../pieces';
-// (src/lib/pieces/ exports the same three functions). `nominalOf` reads the set's
-// nominal size; adjust it if the real PieceSet names it differently.
+// workstream goes through this file: PiaT's own printed park pieces, extracted to
+// data (src/data/pieces/*.json), assembled with seams (src/lib/pieces/assemble.ts)
+// and counted the way the Dream workbook counts them (src/lib/pieces/tally.ts).
 
-import { assemble, loadSet, tally, type PieceSet, type SunAt } from './placeholder-layout';
-import type { DesignState, DesignTally, LotKind, ParkLayout, SizeId } from '../types';
+import { assemble } from '../pieces/assemble';
+import { tally } from '../pieces/tally';
+import { loadPieceSet as loadSet, type PieceSet } from '../../data/pieces';
+import type { DesignState, DesignTally, LotKind, ParkLayout, SizeId, SunClass } from '../types';
+
+type SunAt = (x: number, y: number) => SunClass;
 
 export type { PieceSet, SunAt };
 
-export const USING_PLACEHOLDER_PIECES = true;
+export const USING_PLACEHOLDER_PIECES = false;
 
 const sets = new Map<string, Promise<PieceSet>>();
 
