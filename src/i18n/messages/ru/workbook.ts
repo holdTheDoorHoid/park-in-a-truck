@@ -25,8 +25,8 @@ export default {
   'list.removed': 'Удалено: {row}.',
   'list.cell': '{label}, строка {n}',
 
-  'done.mark': 'Отметить пункт как выполненный',
-  'done.done': 'Выполнено — отличная работа!',
+  'done.mark': 'Отметить как выполненное',
+  'done.done': 'Выполнено — отлично!',
   'done.badge': '✓ выполнено',
   'progress.of': '{done} из {total}',
   'progress.done': 'выполнено {done} из {total}',
@@ -37,7 +37,7 @@ export default {
   'file.english': 'на английском',
   'figure.credit': 'Фото: {credit}',
 
-  'chapter.pdf': '📄 Исходная рабочая тетрадь (PDF)',
+  'chapter.pdf': '📄 Рабочая тетрадь (PDF)',
   'chapter.print': '🖨 Распечатать мои ответы',
   'chapter.toc': 'В этом шаге',
   'chapter.pager': 'Шаги',

@@ -240,8 +240,8 @@ The City as a government is «город» / «городские власти»
 | workbook | рабочая тетрадь | |
 | step | шаг | «Шаг 1: Приобрести» |
 | sub-step | пункт | a task inside a step: «3 из 7 пунктов выполнено» |
-| Mark this step done / done | Отметить пункт как выполненный / выполнено | the toggle sits at the end of a sub-step, so «пункт» |
-| Start here · Acquire · Organize · Assess · Dream · Create · Sustain | Начните здесь · Приобрести · Организовать · Оценить · Мечтать · Создать · Поддерживать | |
+| Mark this step done / done | Отметить как выполненное / выполнено | the toggle sits at the end of a sub-step; no noun keeps it on one line at 360 px |
+| Start here · Acquire · Organize · Assess · Dream · Create · Sustain | Начните здесь · Приобрести · Собрать команду · Оценить · Мечтать · Создать · Ухаживать | «Организовать» and «Поддерживать» overflow the step-path cards at 360 px, so the plainer «Собрать команду» (wraps on two lines) and «Ухаживать» |
 | vacant lot | пустующий участок (пустырь) | «пустырь» where it reads naturally (headlines) |
 | lot | участок | |
 | parcel | земельный участок (parcel) | the City's record word; «(parcel)» once per page |
@@ -263,13 +263,13 @@ The City as a government is «город» / «городские власти»
 | theme: Edible · Sanctuary · Nature · Event | Съедобный сад · Тихий уголок · Природа · Мероприятия | «Убежище» sounds like a shelter, so «Тихий уголок» |
 | size A–E | размер A–E | Latin letters |
 | gabion (wall, bench) | габион (габионная стенка, скамья-габион) | |
-| build guide | инструкция по сборке | |
+| build guide | инструкция по сборке | header menu item only: «Как собрать» (the full term pushes «Мой парк» to a second row at 1366 px) |
 | cut list / materials & hardware / tools | список распила / материалы и крепёж / инструменты | part labels like BB-1 unchanged |
 | 2x4, 2x4x8', BB-1 | 2x4, 2x4x8', BB-1 | «брус 2x4» where a noun is needed |
 | full sun / part sun / shade | полное солнце / полутень / тень | the usual Russian gardening classes |
 | native plant · perennial · shrub · small tree · large tree | местное растение · многолетник · кустарник · небольшое дерево · крупное дерево | |
 | pollinator | опылитель | |
-| stewardship / sustain | уход за парком / поддерживать | |
+| stewardship / sustain | уход за парком / ухаживать | |
 | My park | Мой парк | |
 | project file | файл проекта | |
 | Plan in 3D / the planner | План в 3D / планировщик | |

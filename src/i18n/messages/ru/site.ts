@@ -13,7 +13,7 @@ export default {
   'nav.steps': 'Шаги',
   'nav.lot': 'Найти участок',
   'nav.planner': 'План в 3D',
-  'nav.build': 'Инструкции по сборке',
+  'nav.build': 'Как собрать',
   'nav.plants': 'Растения',
   'nav.parks': 'Парки',
   'nav.myPark': 'Мой парк:',
