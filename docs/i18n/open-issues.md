@@ -32,12 +32,12 @@ after the extraction round. Tick them off here.
 - [x] Header menu wraps to two lines at ~1000–1150 px in es/vi (layout, not wording) — make the header degrade
       gracefully (smaller gap, or switch to the menu button earlier).
 - [x] Park Patch and Playful Learning "original PDF" buttons don't add "in English" like chapter PDF links.
-- [ ] Overlays for themes/elements/plants/parks are not read by /plants/ and /parks/ yet (x-cost extraction may fix).
+- [x] Overlays for themes/elements/plants/parks are not read by /plants/ and /parks/ yet (x-cost extraction may fix).
 - [x] /playful-learning/ scrolls sideways at 360 px in every language (elements table: 406 px in English).
 - [x] 3D guide viewer at 360 px: control buttons wrap and cover the help text (English too).
 - [x] Clock style differs: the shade calendar shows "3:30 PM" (locale format) while the planner's clock shows
       "3:30 pm" — pick one (probably the locale format everywhere).
-- [ ] New area `shade` (shade calendar, 73 keys) needs translating in every language's second pass.
+- [x] New area `shade` (shade calendar, 73 keys) needs translating in every language's second pass.
 - [x] Timing tests are flaky on a loaded machine ("is quick enough to run on a click" in shadows.test.ts,
       shadecal.test.ts 300 ms limit) — measure the median of several runs, or skip the time limit when
       `process.env.CI_SLOW`/load is high; keep a generous ceiling that still catches real regressions.
