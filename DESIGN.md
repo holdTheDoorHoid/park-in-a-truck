@@ -124,7 +124,9 @@ How-to for extraction and translation agents: `docs/i18n/HOW-TO-TRANSLATE.md`; t
   (`i18n/server.ts`); in the browser a translated page loads `/i18n/<lang>.js` (one language, cached) before islands run.
 - **Chapters:** `src/content/i18n/<lang>/steps/<slug>.mdx`; every `##` carries its English id
   (`## Busque un lote {/* #find-a-lot */}`, read by `rehype-substeps.mjs`). Missing chapter → English with a notice,
-  marked `lang="en"`. Translated MDX links stay in the language (`export const u = urlFor('<lang>')`, rehype-base).
+  marked `lang="en"`. Translated MDX links stay in the language (`export const u = urlFor('<lang>')`, rehype-base);
+  on every translated page `Base.astro` also moves leftover server-rendered page links into the language
+  (`localizeLinks`; links with `hreflang` are deliberate language switches and stay).
 - **Data:** per-language overlays `src/i18n/data/<lang>/…json` carry only translated text; allowed fields per dataset in
   `src/i18n/datasets.ts`; merged by `src/i18n/data.ts`. English stays the source.
 - **Saved progress is language-free:** field ids, option/checklist values (`{ value: English, label }`), sub-step ids

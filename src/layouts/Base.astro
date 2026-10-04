@@ -7,7 +7,7 @@ import { getOutline } from '../lib/outline';
 import { u } from '../lib/url';
 import site from '../i18n/messages/en/site.ts';
 import workbook from '../i18n/messages/en/workbook.ts';
-import { getT, alternates, samePageIn, localeInfo, OFFERABLE, LOCALES, bundleVersion } from '../i18n/astro.ts';
+import { getT, alternates, samePageIn, localeInfo, localizeLinks, OFFERABLE, LOCALES, bundleVersion } from '../i18n/astro.ts';
 
 interface Props {
   title: string;
@@ -42,6 +42,9 @@ const offers = locale === 'en'
     )
   : {};
 const matchers = LOCALES.map((l) => [l.code, l.match]);
+// Translated pages: keep every server-rendered page link inside this language, even links in content
+// that is still English (see localizeLinks). English pages stream as usual.
+const body = locale === 'en' ? null : localizeLinks(await Astro.slots.render('default'), locale);
 ---
 <!doctype html>
 <html lang={htmlLang} dir={dir} data-locale={locale} style={doneBadge}>
@@ -113,7 +116,7 @@ const matchers = LOCALES.map((l) => [l.code, l.match]);
       </div>
     )}
     <main id="main">
-      <slot />
+      {body === null ? <slot /> : <Fragment set:html={body} />}
     </main>
     {!bare && <Footer />}
     <script>

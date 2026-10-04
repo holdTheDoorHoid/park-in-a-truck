@@ -38,6 +38,27 @@ export function samePageIn(pathname: string, target: Locale | string): string {
   return baseUrl(localizeRest(splitPath(pathname).rest, target));
 }
 
+/**
+ * Safety net for server-rendered HTML on a translated page: page links that still point at English
+ * (an English chapter shown as fallback, a page not extracted yet, links inside data) get the language
+ * prefix. Only <a href> to site pages; files, other sites, and links marked hreflang (language
+ * switches, "read it in English") are left alone. Base.astro runs this over every translated page body.
+ */
+export function localizeLinks(html: string, locale: Locale | string, base = baseUrl('')): string {
+  if (locale === DEFAULT_LOCALE) return html;
+  const locales = LOCALES.map((l) => l.code).filter((c) => c !== DEFAULT_LOCALE);
+  return html.replace(/<a\b[^>]*>/gi, (tag) => {
+    if (/\shreflang=/i.test(tag)) return tag;
+    return tag.replace(/(\shref=)(["'])([^"']*)\2/i, (whole, attr: string, q: string, href: string) => {
+      if (!href.startsWith(base) || href.startsWith('//')) return whole;
+      const rest = href.slice(base.length);
+      const first = rest.split(/[/?#]/)[0] ?? '';
+      if (isAssetPath(rest) || (locales as string[]).includes(first) || rest.startsWith('i18n/') || rest.startsWith('dev/')) return whole;
+      return `${attr}${q}${base}${locale}/${rest}${q}`;
+    });
+  });
+}
+
 /** Every language's URL for this page, for <link rel="alternate" hreflang> and the language box. */
 export function alternates(pathname: string): { code: Locale; lang: string; name: string; href: string }[] {
   return LOCALES.map((l) => ({ code: l.code, lang: l.lang, name: l.name, href: samePageIn(pathname, l.code) }));

@@ -1,7 +1,7 @@
 import { describe, expect, it, beforeAll } from 'vitest';
 import { interpolate, formatNumber, formatMoney, formatDate, choosePlural, placeholdersOf, tagsOf } from '../format';
 import { splitPath, matchBrowserLanguages, LOCALES } from '../locales';
-import { localizeRest, isAssetPath } from '../url';
+import { localizeRest, isAssetPath, localizeLinks } from '../url';
 import { overlay, localizeKeyed, localizedSteps, localizeGuide } from '../data';
 import { getT } from '../t';
 import { registerBundle } from '../registry';
@@ -87,6 +87,14 @@ describe('locales and links', () => {
     expect(localizeRest('img/a.webp', 'es')).toBe('img/a.webp');
     expect(localizeRest('steps/', 'en')).toBe('steps/');
     expect(isAssetPath('dev/model-check/?slug=a.b')).toBe(false);
+  });
+  it('keeps server-rendered page links in the language (safety net), never files or language switches', () => {
+    const html = '<a href="/steps/dream/">a</a><a class="x" href="/downloads/a.pdf">b</a><a href="/es/lot/">c</a><a href="/" hreflang="en">d</a><a href="https://x.org/">e</a><a href="#t">f</a><a href="/resources/#legal">g</a>';
+    expect(localizeLinks(html, 'es', '/')).toBe(
+      '<a href="/es/steps/dream/">a</a><a class="x" href="/downloads/a.pdf">b</a><a href="/es/lot/">c</a><a href="/" hreflang="en">d</a><a href="https://x.org/">e</a><a href="#t">f</a><a href="/es/resources/#legal">g</a>',
+    );
+    expect(localizeLinks('<a href="/park-in-a-truck/lot/">x</a>', 'ar', '/park-in-a-truck/')).toBe('<a href="/park-in-a-truck/ar/lot/">x</a>');
+    expect(localizeLinks(html, 'en', '/')).toBe(html);
   });
   it('matches browser languages to ours; English first means no offer', () => {
     expect(matchBrowserLanguages(['es-MX', 'en-US'])).toBe('es');

@@ -138,6 +138,10 @@ Overlays marked `client: true` in datasets.ts are shipped to browsers in `/i18n/
 
 - Page links: `urlFor(locale)` (`u('steps/')` → `/es/steps/`). Files (`downloads/…pdf`, `img/…`) never
   get a language prefix — use `u()` from `src/lib/url.ts` or the same `urlFor` (it leaves files alone).
+  Safety net: on translated pages `Base.astro` also rewrites any server-rendered `<a href>` that still points
+  at an English page (`localizeLinks`), so un-extracted pages and English fallback chapters stay in the
+  language. It cannot see links an island draws in the browser — those must use `urlFor`. Mark a link that
+  should deliberately go to another language with `hreflang`.
 - PiaT's PDFs stay English. `<PdfPage>` and `<Download>` add "· in English" and `hreflang="en"`
   automatically on other languages. Links to English-only websites: add "(in English)" in the text.
 - A new page in `src/pages/` needs its twin in `src/pages/[lang]/` (copy any twin, fix the import path).
