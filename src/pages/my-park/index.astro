@@ -299,7 +299,8 @@ const labelsJson = JSON.stringify({ fields: fieldLabels, groups: groupTitles }).
     for (const [k, v] of Object.entries(p.fields)) (groups[k.split('.')[0]!] ??= []).push([k, v]);
     const order = ['start', 'acquire', 'organize', 'assess', 'dream', 'create', 'sustain'];
     const html = Object.keys(groups)
-      .sort((a, b) => order.indexOf(a) - order.indexOf(b))
+      // the six steps in order, then Park Patch and the build guides
+      .sort((a, b) => (order.indexOf(a) + 1 || 99) - (order.indexOf(b) + 1 || 99))
       .map((g) => {
         const rows = groups[g]!.map(([k, v]) => {
           const val = Array.isArray(v)
