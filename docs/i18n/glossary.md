@@ -592,7 +592,7 @@ Extra terms used in the chapters, guides and data (pt only):
 | pre-drill | fazer furo-guia | |
 | miter saw / stop block / jig / spacer | serra de esquadria / batente / gabarito / espaçador | |
 | carpenter's square / level | esquadro de carpinteiro / nível | |
-| lag screws / carriage bolts / socket wrench | parafusos sextavados (lag screws) / parafusos francês (carriage bolts) / chave de catraca | |
+| lag screws / carriage bolts / socket wrench | parafusos sextavados (lag screws) / parafusos tipo francês (carriage bolts) / chave de catraca | |
 | sledgehammer | marreta | |
 | wire mesh / hog rings / hog ring pliers / cable staples | tela de arame / argolas de fixação (hog rings) / alicate para argolas / grampos para cabo | |
 | bolt cutters / grinder / staple gun | alicate corta-vergalhão / esmerilhadeira / grampeador | |

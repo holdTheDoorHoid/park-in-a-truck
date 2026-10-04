@@ -17,7 +17,7 @@
       "item": "Parafusos sextavados para madeira, uso externo (lag screws)"
     },
     {
-      "item": "Parafusos francês para área externa, com porcas e arruelas"
+      "item": "Parafusos tipo francês para área externa, com porcas e arruelas"
     },
     {
       "item": "Suportes do encosto"
@@ -53,7 +53,7 @@
     "Lixa, grão 120",
     "Esquadro de carpinteiro",
     "Óculos de proteção + luvas",
-    "Chave de catraca (para os parafusos francês e os parafusos sextavados)"
+    "Chave de catraca (para os parafusos tipo francês e os parafusos sextavados)"
   ],
   "safety": [
     "Estas são apenas recomendações para quem faz por conta própria — adapte o material, a montagem e a construção ao seu projeto e ao seu terreno.",
@@ -114,7 +114,7 @@
     },
     {
       "title": "Parafuse os suportes do encosto",
-      "text": "Coloque os dois suportes do encosto dos dois lados da madeira BB-1, a 5\" das pontas para dentro, como mostra o desenho.\n\nMarque e faça furos-guia atravessando a madeira BB-1, alinhados com os suportes, depois prenda os suportes do encosto embaixo das peças BB-1 com uma chave de catraca e quatro parafusos francês para área externa de 1/4\" x 2-1/2\", com porcas e arruelas.",
+      "text": "Coloque os dois suportes do encosto dos dois lados da madeira BB-1, a 5\" das pontas para dentro, como mostra o desenho.\n\nMarque e faça furos-guia atravessando a madeira BB-1, alinhados com os suportes, depois prenda os suportes do encosto embaixo das peças BB-1 com uma chave de catraca e quatro parafusos tipo francês para área externa de 1/4\" x 2-1/2\", com porcas e arruelas.",
       "imageAlts": [
         "Desenho de dois suportes do encosto parafusados embaixo das tábuas do assento, a 5\" de cada ponta."
       ],

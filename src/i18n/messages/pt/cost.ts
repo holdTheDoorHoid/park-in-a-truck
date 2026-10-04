@@ -284,7 +284,7 @@ export default {
   'line.woodScrews': 'Parafusos para madeira de 2.5"',
   'line.backrestBrackets': 'Suportes do encosto',
   'line.lagScrews': 'Parafusos sextavados (lag screws) de 1/4" x 1 1/2"',
-  'line.carriageBolts': 'Parafusos francês para área externa de 1/4" x 2 1/2" + porcas + arruelas',
+  'line.carriageBolts': 'Parafusos tipo francês para área externa de 1/4" x 2 1/2" + porcas + arruelas',
   'line.weldedMesh': 'Tela de arame soldada 2"x2", diâmetro .16-.19',
   'line.sidePanels': 'Painéis laterais de 22"x24"',
   'line.bottomPanel': 'Painel do fundo de 22"x22"',
