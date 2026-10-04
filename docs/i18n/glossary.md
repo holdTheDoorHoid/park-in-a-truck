@@ -180,49 +180,75 @@ Tone: Simplified Chinese (Mainland conventions). Address the reader as **您** i
 
 Tone: Southern/standard Vietnamese as used in Philadelphia's Vietnamese community. **bạn** for instructions (friendly, neutral); **quý vị** when addressing a group on the flyer. Full diacritics always.
 
+*Status: filled in by t-vi (the Vietnamese translation).*
+
+Conventions chosen (keep to them):
+
+- **Pronouns.** The reader is **bạn** everywhere on the site (chapters, guides, buttons, notices, legal text). The
+  meeting flyer speaks to a whole street, so it uses **quý vị** ("Trân trọng kính mời quý vị"). The site talking about
+  itself is **chúng tôi** ("chúng tôi tìm chủ sở hữu…"); the neighbours together are **chúng ta** ("khu phố chúng ta").
+  Never "anh/chị", "em", "mày", "ông/bà" for the reader.
+- **Imperatives** are softened with **hãy** where a sentence would otherwise sound curt; buttons stay bare verbs
+  ("Thêm", "In", "Xóa").
+- **Philadelphia** stays "Philadelphia" (no Vietnamese spelling). Neighbourhood and street names unchanged.
+- **Units.** Short forms stay as written: `ft`, `in`, `"`, `'`, `ft²`, `$`. In running prose write **feet**, **inch**,
+  **feet vuông** (how Vietnamese Americans say them), e.g. "rộng 18 feet". Lumber sizes (2x4) never change.
+- **Numbers** are formatted by the site (vi: 1.234,5). Numbers inside PiaT's own text (sizes, quantities) stay as English
+  writes them.
+- **Capital T.** *Thành phố* with a capital T means the City government; *thành phố* is the place.
+
 | English | Translation | Note |
 |---|---|---|
-| Park in a Truck / PiaT |  | |
-| toolkit |  | |
-| workbook |  | |
-| step |  | |
-| sub-step |  | |
-| Mark this step done / done |  | |
-| Start here · Acquire · Organize · Assess · Dream · Create · Sustain |  | |
-| vacant lot |  | |
-| lot |  | |
-| parcel |  | |
-| mid-block lot / corner lot / breezeway, alley |  | |
-| owner (public / private) |  | |
-| zoning |  | |
-| City records / Filled in from City records |  | |
-| City (of Philadelphia) |  | |
-| RCO (Registered Community Organization) |  | |
-| Philadelphia Land Bank |  | |
-| PHDC |  | |
-| Sheriff Sale |  | |
-| purchase / donation / lease / in-kind (use) agreement |  | |
-| park committee |  | |
-| neighbors / neighborhood |  | |
-| park pieces |  | |
-| frame / front / back (pieces) |  | |
-| seam (length seam, width seam) |  | |
-| theme: Edible · Sanctuary · Nature · Event |  | |
-| size A–E |  | |
-| gabion (wall, bench) |  | |
-| build guide |  | |
-| cut list / materials & hardware / tools |  | |
-| 2x4, 2x4x8', BB-1 |  | |
-| full sun / part sun / shade |  | |
-| native plant · perennial · shrub · small tree · large tree |  | |
-| pollinator |  | |
-| stewardship / sustain |  | |
-| My park |  | |
-| project file |  | |
-| Plan in 3D / the planner |  | |
-| Note from this site, not Park in a Truck |  | |
-| in English |  | |
-| ft, in, sq ft, $ |  | |
+| Park in a Truck / PiaT | Park in a Truck / PiaT | never translated |
+| toolkit | cẩm nang (Toolkit) | "cẩm nang" = handbook; add "(Toolkit)" on first mention per page |
+| workbook | sổ tay thực hành | the booklet you write in; "sách bài tập" sounds like school homework |
+| step | bước | |
+| sub-step | bước nhỏ | |
+| Mark this step done / done | Đánh dấu bước này đã xong / xong | badge "✓ xong" |
+| Start here · Acquire · Organize · Assess · Dream · Create · Sustain | Bắt đầu từ đây · Có được đất · Tổ chức · Khảo sát · Mơ ước · Xây dựng · Duy trì | "Có được đất" = obtain the land (finding it AND getting the right to use it); "Khảo sát" (survey the site) reads more naturally than "Đánh giá" for sun/soil/surroundings |
+| vacant lot | lô đất trống | |
+| lot | lô đất | "lô" alone in tight UI |
+| parcel | thửa đất | the City's property-record word |
+| mid-block lot / corner lot / breezeway, alley | lô đất giữa dãy nhà / lô đất góc đường / lối đi xuyên khối nhà, hẻm | easement = "đất dành cho lối đi chung (easement)" |
+| owner (public / private) | chủ sở hữu (công / tư nhân) | "chủ đất" is fine in casual sentences |
+| zoning | phân vùng (zoning) | add "(zoning)" once per page; codes like RSA-5 unchanged |
+| City records / Filled in from City records | hồ sơ của Thành phố / Điền sẵn từ hồ sơ của Thành phố | |
+| City (of Philadelphia) | Thành phố (Philadelphia) | capital T = the city government |
+| RCO (Registered Community Organization) | tổ chức cộng đồng đã đăng ký (RCO) | |
+| Philadelphia Land Bank | Philadelphia Land Bank (cơ quan của Thành phố bán và cho thuê đất công) | explain once per page |
+| PHDC | PHDC | Philadelphia Housing Development Corporation, kept in English |
+| Sheriff Sale | phiên đấu giá của cảnh sát trưởng (Sheriff Sale) | |
+| purchase / donation / lease / in-kind (use) agreement | mua / hiến tặng / thuê / thỏa thuận cho sử dụng đất (in-kind) | in-kind: the owner keeps the lot and lets neighbours use it |
+| park committee | ban công viên | "ban" as in "ban điều hành"; short and common |
+| neighbors / neighborhood | hàng xóm, bà con lối xóm / khu phố | "bà con" where English is warm and plural |
+| park pieces | mảnh ghép công viên | |
+| frame / front / back (pieces) | khung / mảnh trước / mảnh sau | |
+| seam (length seam, width seam) | dải nối (dải nối chiều dài, dải nối chiều rộng) | |
+| theme: Edible · Sanctuary · Nature · Event | chủ đề: Vườn ăn được · Chốn an yên · Thiên nhiên · Sự kiện | bare "Ăn được" reads as an adjective fragment, so Edible = "edible garden" |
+| size A–E | cỡ A–E | letters unchanged |
+| gabion (wall, bench) | rọ đá (gabion) — tường rọ đá, ghế rọ đá | add "(gabion)" once per page |
+| build guide | hướng dẫn lắp ráp | |
+| cut list / materials & hardware / tools | danh sách cắt gỗ / vật liệu & đồ ngũ kim / dụng cụ | "đồ ngũ kim" = screws, bolts, brackets |
+| 2x4, 2x4x8', BB-1 | 2x4, 2x4x8', BB-1 | never translated |
+| full sun / part sun / shade | nắng cả ngày / nắng một phần / bóng râm | "nắng toàn phần" in plant lists is also understood, but keep "nắng cả ngày" |
+| native plant · perennial · shrub · small tree · large tree | cây bản địa · cây lâu năm · cây bụi · cây nhỏ · cây lớn | |
+| pollinator | loài thụ phấn | bees, butterflies… = "ong, bướm…" |
+| stewardship / sustain | chăm sóc lâu dài / duy trì | |
+| My park | Công viên của tôi | |
+| project file | tệp dự án | |
+| Plan in 3D / the planner | Thiết kế 3D / công cụ thiết kế 3D | |
+| Note from this site, not Park in a Truck | Ghi chú của trang web này, không phải của Park in a Truck | |
+| in English | bằng tiếng Anh | after links: "(bằng tiếng Anh)" |
+| ft, in, sq ft, $ | ft, in, ft², $ — in prose: feet, inch, feet vuông | see Units above |
+| (added) build / assemble | đóng, lắp ráp | "đóng" for making wooden furniture (đóng ghế); "lắp ráp" for putting parts together |
+| (added) lumber / board | gỗ xẻ / tấm ván | |
+| (added) screw / bolt / washer / nut | vít / bu-lông / long đền / đai ốc | |
+| (added) planter box | bồn trồng cây | |
+| (added) shade canopy / shade structure | mái che nắng | |
+| (added) stage | sân khấu | |
+| (added) raised bed | luống trồng nâng cao | |
+| (added) committee meeting / community meeting | cuộc họp ban công viên / buổi họp cộng đồng | |
+| (added) volunteer | tình nguyện viên | |
 
 ### ru — Русский
 
