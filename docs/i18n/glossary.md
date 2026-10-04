@@ -613,49 +613,76 @@ Tone: Standard (East African) Swahili, plain. **wewe** for one reader, **ninyi**
 
 Tone: Polite informal style (**해요체**) for UI and instructions; plain, friendly. 필라델피아.
 
+*Status: filled in by t-ko (the Korean translation, 2026-10-04).*
+
+Conventions chosen (keep to them):
+
+- **Register.** 해요체 everywhere a person is spoken to: menus, buttons, notices, chapters, guides, the planner
+  ("부지를 찾아요", "저장하세요"). **합니다체** only for formal notices: the legal notice (`start.mdx` "법적 고지",
+  `resources.json` legal.text) and the meeting flyer's invitation line ("초대합니다"), where Korean community
+  notices are normally formal. Buttons and menu items are bare nouns or short verb stems ("저장", "인쇄", "부지 찾기").
+- **Pronouns.** Korean drops "you"; where one is needed, **여러분** (warm, plural) — never 당신. Neighbours together
+  are **우리** ("우리 동네"). The site speaking of itself: "이 사이트".
+- **Spacing (띄어쓰기)** follows the standard rules; a Latin word or code is spaced like a Korean word
+  ("RCO에 연락해요", "BB-1 조각"). Particles attach to the preceding word, including after Latin text and numbers
+  ("Park in a Truck의", "2x4를"). Choose particles for how the Latin word is read aloud (PiaT = 피아트 → "PiaT는").
+- **Punctuation.** Western punctuation (. , ? !), straight quotes as in English UI ("…"); · for lists of names; no
+  full-width punctuation.
+- **Units.** Short forms as printed: `ft`, `in`, `"`, `'`, `sq ft`, `$`. In prose: **피트**, **인치**, **제곱피트**
+  ("너비 18피트", "2,400제곱피트"); number and unit written together. Lumber and screw sizes (2x4, 2.5") never change.
+- **Philadelphia** = 필라델피아; the City as government = **시** ("시 기록", "시에 문의해요"), or **필라델피아시**.
+  Neighbourhood and street names stay in English letters.
+- **English-only names** stay in English letters; when a Korean reader needs the meaning, add it once in brackets
+  ("Philadelphia Land Bank(필라델피아시 토지은행)"). Website labels the reader will see on English sites stay English
+  with the Korean meaning in brackets.
+
 | English | Translation | Note |
 |---|---|---|
-| Park in a Truck / PiaT |  | |
-| toolkit |  | |
-| workbook |  | |
-| step |  | |
-| sub-step |  | |
-| Mark this step done / done |  | |
-| Start here · Acquire · Organize · Assess · Dream · Create · Sustain |  | |
-| vacant lot |  | |
-| lot |  | |
-| parcel |  | |
-| mid-block lot / corner lot / breezeway, alley |  | |
-| owner (public / private) |  | |
-| zoning |  | |
-| City records / Filled in from City records |  | |
-| City (of Philadelphia) |  | |
-| RCO (Registered Community Organization) |  | |
-| Philadelphia Land Bank |  | |
-| PHDC |  | |
-| Sheriff Sale |  | |
-| purchase / donation / lease / in-kind (use) agreement |  | |
-| park committee |  | |
-| neighbors / neighborhood |  | |
-| park pieces |  | |
-| frame / front / back (pieces) |  | |
-| seam (length seam, width seam) |  | |
-| theme: Edible · Sanctuary · Nature · Event |  | |
-| size A–E |  | |
-| gabion (wall, bench) |  | |
-| build guide |  | |
-| cut list / materials & hardware / tools |  | |
-| 2x4, 2x4x8', BB-1 |  | |
-| full sun / part sun / shade |  | |
-| native plant · perennial · shrub · small tree · large tree |  | |
-| pollinator |  | |
-| stewardship / sustain |  | |
-| My park |  | |
-| project file |  | |
-| Plan in 3D / the planner |  | |
-| Note from this site, not Park in a Truck |  | |
-| in English |  | |
-| ft, in, sq ft, $ |  | |
+| Park in a Truck / PiaT | Park in a Truck / PiaT | never translated or transliterated |
+| toolkit | 툴킷 | PiaT's 36-page overview book. "툴킷" is the usual Korean word for an NGO toolkit; a furniture guide is always "제작 안내서", so the two never collide. |
+| workbook | 워크북 | the booklet you write in. 활동지 = a single worksheet (too small); 연습장 = school notebook. |
+| step | 단계 | "1단계: 확보하기" |
+| sub-step | 세부 단계 | |
+| Mark this step done / done | 완료로 표시 / 완료 | badge "✓ 완료" |
+| Start here · Acquire · Organize · Assess · Dream · Create · Sustain | 시작하기 · 확보하기 · 조직하기 · 조사하기 · 꿈꾸기 · 만들기 · 가꾸기 | all -기 forms, like Korean community curricula ("마을 만들기"). 확보하기 = secure the land (find it AND get the right to use it); 조사하기 (survey the site) is plainer than 평가하기 for sun/soil/surroundings; 가꾸기 (tend, cultivate) is warmer than 유지하기 and is what Koreans say of gardens and parks. |
+| vacant lot | 공터 | "빈 땅" in warm sentences |
+| lot | 부지 | "땅" in plain sentences ("땅 주인"). |
+| parcel | 필지 | the land-registry word; used where the City's property records are meant |
+| mid-block lot / corner lot / breezeway, alley | 블록 중간 부지 / 모퉁이 부지 / 건물 사이 통로, 골목 | easement = 통행 지역권(easement) |
+| owner (public / private) | 소유자 (공공 / 민간) | "땅 주인" in casual sentences |
+| zoning | 용도지역(zoning) | add "(zoning)" once per page; codes like RSA-5 unchanged |
+| City records / Filled in from City records | 시 기록 / 시 기록에서 가져옴 | |
+| City (of Philadelphia) | 시 (필라델피아시) | 시 = the city government; the place = 필라델피아 |
+| RCO (Registered Community Organization) | 등록 지역 단체(RCO) | explain once per page |
+| Philadelphia Land Bank | Philadelphia Land Bank(공공 토지를 팔거나 임대하는 시 기관) | explain once per page |
+| PHDC | PHDC | Philadelphia Housing Development Corporation(필라델피아 주택개발공사) on first mention |
+| Sheriff Sale | 보안관 경매(Sheriff Sale) | |
+| purchase / donation / lease / in-kind (use) agreement | 매입 / 기부 / 임대 / 무상 사용 협약 | in-kind: no money changes hands; the owner keeps the lot and lets neighbours use it. Select options keep the English value. |
+| park committee | 공원 위원회 | |
+| neighbors / neighborhood | 이웃 / 동네 | "이웃 주민" where English is plural and formal |
+| park pieces | 공원 조각 | the printed cut-out designs |
+| frame / front / back (pieces) | 테두리 / 앞 조각 / 뒤 조각 | |
+| seam (length seam, width seam) | 이음 띠 (길이 이음 띠, 너비 이음 띠) | |
+| theme: Edible · Sanctuary · Nature · Event | 먹거리 · 쉼터 · 자연 · 행사 | "먹거리 테마", "식물 목록: 쉼터". 쉼터 = a calm refuge. |
+| size A–E | 크기 A–E | "크기 C" |
+| gabion (wall, bench) | 돌망태(개비온) — 돌망태 벽, 돌망태 벤치 | 돌망태 is the plain Korean word; add "(개비온)" once per page |
+| build guide | 제작 안내서 | inside a guide: 조립, 만들기 |
+| cut list / materials & hardware / tools | 재단 목록 / 자재와 철물 / 공구 | 철물 = screws, bolts, brackets |
+| 2x4, 2x4x8', BB-1 | 2x4, 2x4x8', BB-1 | never translated |
+| full sun / part sun / shade | 양지 / 반양지 / 그늘 | standard Korean garden-centre words |
+| native plant · perennial · shrub · small tree · large tree | 자생 식물 · 여러해살이 식물 · 관목 · 작은 나무 · 큰 나무 | 자생 식물 = native to this region (here: the US Mid-Atlantic) |
+| pollinator | 꽃가루 매개자 | explain once: 벌, 나비, 새, 박쥐처럼 꽃가루를 옮기는 동물 |
+| stewardship / sustain | 돌봄 / 가꾸기 | Survive · Thrive · Socialize = 살아남기 · 잘 자라기 · 함께 어울리기 |
+| My park | 내 공원 | |
+| project file | 프로젝트 파일 | |
+| Plan in 3D / the planner | 3D 설계 / 3D 설계 도구 | |
+| Plan view / 3D view | 평면도 / 3D 보기 | button "평면" |
+| sun hours / growing season | 일조 시간 / 생장기 | 생장기 = Apr 15 – Oct 15 here |
+| wet area | 물이 고이는 곳 | |
+| lidar | 라이다(lidar) | explain once: 비행기에서 레이저로 잰 높이 |
+| Note from this site, not Park in a Truck | 이 사이트의 안내 (Park in a Truck의 내용이 아님) | |
+| in English | 영어 | after links: "(영어)" |
+| ft, in, sq ft, $ | 피트, 인치, 제곱피트, $ | short forms ft, in, sq ft as printed; see Units above |
 
 ### tl — Tagalog
 

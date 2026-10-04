@@ -1,0 +1,115 @@
+// 한국어 — 독립 페이지의 글: 홈, 단계 목록, 부지, 내 공원, 3D 설계, 자료. 해요체. 용어집: docs/i18n/glossary.md
+import type en from '../en/pages.ts';
+import type { Translation } from '../../define.ts';
+
+export default {
+  'home.eyebrow': '직접 만드는 동네 공원 툴킷',
+  'home.title': '공터를 우리 동네 공원으로 바꿔요.',
+  'home.lede':
+    'Park in a Truck은 여러분과 이웃이 모든 단계를 함께 해 나가도록 도와요. 부지를 찾고, 팀을 꾸리고, 공원을 설계하고, 직접 만들고, 아름답게 가꾸는 일까지요. 이 사이트는 툴킷을 단계별 대화형 워크북으로 바꾸고, 필요한 조회도 대신 해 드려요.',
+  'home.start': '여기서 시작하기 →',
+  'home.allSteps': '여섯 단계 모두 보기',
+  'home.heroAlt':
+    'Park in a Truck이라고 적힌 픽업트럭에서 이웃들이 짐을 내리며 벤치를 나르고, 나무를 심고, 정원을 가꾸는 모습. 뒤로 연립주택이 보여요.',
+  'home.path': '여러분의 길',
+  'home.lotTitle': '생각해 둔 부지가 있나요?',
+  'home.lotLede':
+    '필라델피아 주소를 입력하세요. 소유자, 부지 크기, 용도지역(zoning), 부지 경계를 찾아 드려요. atlas.phila.gov를 일일이 뒤질 필요가 없어요.',
+  'home.tools': '수고를 덜어 주는 도구',
+  'home.tool.lot': '부지 찾기',
+  'home.tool.lot.text': '근처 공터 지도: 소유자, 크기, 용도지역까지 보여요.',
+  'home.tool.planner': '3D 설계',
+  'home.tool.planner.text': 'Park in a Truck 공원 조각을 실제 부지에 맞춰 보고, 햇빛과 그늘을 확인해요.',
+  'home.tool.build': '제작 안내서',
+  'home.tool.build.text': '벤치, 테이블, 화분 상자, 그늘막 등을 만드는 단계별 설명이에요.',
+  'home.tool.plants': '식물',
+  'home.tool.plants.text': '공원 테마별, 양지와 그늘별 자생 식물 목록이에요.',
+  'home.tool.parks': '지금까지 만든 공원',
+  'home.tool.parks.text': '필라델피아 곳곳의 이웃들이 이미 만든 공원을 둘러보세요.',
+  'home.tool.myPark': '내 공원',
+  'home.tool.myPark.text': '이 브라우저에 저장된 내 답변이에요. 위원회와 사본을 공유하세요.',
+
+  'steps.title': '단계',
+  'steps.eyebrow': 'Park in a Truck 진행 과정',
+  'steps.h1': '공원까지 여섯 단계',
+  'steps.lede':
+    'Park in a Truck 공원은 모두 같은 여섯 단계를 거쳐요. 순서대로 진행하세요. 각 단계는 앞 단계를 바탕으로 해요. 세부 단계를 마칠 때마다 완료로 표시하세요. 진행 상황은 이 브라우저에 저장돼요.',
+
+  'lot.title': '부지 찾기',
+  'lot.description': '필라델피아 부지의 소유자, 크기, 용도지역, 공터 여부를 조회하고, 지도에서 공터를 둘러보세요.',
+  'lot.eyebrow': '1단계 · 확보하기',
+  'lot.h1': '부지 찾기',
+  'lot.lede':
+    '주소를 입력하거나 공터 지도를 둘러보세요. 이 사이트는 atlas.phila.gov가 보여 주는 것과 같은 시 기록(소유자, 부지 크기, 용도지역, 공터 여부)을 확인하고, 어떤 Park in a Truck 크기가 맞는지 알려 줘요.',
+  'lot.lookupH2': '주소 조회',
+  'lot.mapH2': '근처 공터',
+  'lot.mapText':
+    '시가 공터로 분류한 부지를 소유자별 색으로 보여 줘요. 부지를 누르면 소유자와 크기가 보이고, 공원 부지로 저장하거나 후보 목록에 넣을 수 있어요. 직접 동네를 걸어 보는 것도 잊지 마세요. 시 목록에는 빠진 부지도 있고, 이미 쓰이고 있는 부지가 들어 있기도 해요.',
+  'lot.compareH2': '후보 부지 비교',
+  'lot.nextH2': '다음 단계',
+  'lot.next.owner.title': '이 부지의 주인은 누구일까요?',
+  'lot.next.owner.text': '공공 소유인지 민간 소유인지에 따라 공원을 만들 권리를 얻는 방법이 달라요.',
+  'lot.next.organize.title': '조직하기',
+  'lot.next.organize.text': '부지 근처의 지역 단체, 학교, 텃밭과 그 밖의 자원.',
+  'lot.next.assess.title': '조사하기',
+  'lot.next.assess.text': '잰 경계 길이, 인쇄용 기본 지도, 나무와 이웃 건물.',
+  'lot.next.planner.title': '3D 설계',
+  'lot.next.planner.text': '공원 조각을 부지에 맞추고 햇빛과 그늘을 확인해요.',
+
+  'myPark.title': '내 공원',
+  'myPark.eyebrow': '이 브라우저에 저장됨',
+  'myPark.lede':
+    '이 사이트에서 입력한 모든 내용은 여기, 이 기기에만 저장돼요. 계정도 없고, 어디로도 보내지 않아요. 위원회와 함께 작업하려면 프로젝트 파일을 저장해서 보내 주세요. 위원들은 자기 기기에서 이 페이지로 파일을 열 수 있어요.',
+  'myPark.storageWarning':
+    '이 브라우저는 사이트가 아무것도 저장하지 못하게 하고 있어요(사생활 보호 창이거나 사이트 데이터가 차단됨). 떠나기 전에 프로젝트 파일을 저장하세요. 그렇지 않으면 답변이 사라져요.',
+  'myPark.thisProject': '이 프로젝트',
+  'myPark.nameLabel': '이름',
+  'myPark.saveFile': '⬇ 프로젝트 파일 저장',
+  'myPark.openFile': '⬆ 프로젝트 파일 열기',
+  'myPark.printEverything': '🖨 전체 인쇄',
+  'myPark.allProjects': '모든 프로젝트',
+  'myPark.newProjectPlaceholder': '새 프로젝트 이름',
+  'myPark.newProject': '+ 새 프로젝트',
+  'myPark.progress': '진행 상황',
+  'myPark.yourLot': '내 부지',
+  'myPark.noLotYet': '아직 고른 부지가 없어요. <a href="{href}">1단계: 확보하기</a>에서 찾아보세요.',
+  'myPark.yourAnswers': '내 답변',
+  'myPark.nothingFilledIn': '아직 입력한 내용이 없어요.',
+
+  'planner.title': '3D 설계',
+  'planner.description':
+    'Park in a Truck의 공원 조각을 실제 필라델피아 부지에 맞추고, 햇빛과 그늘을 확인하고, 비용 견적과 식물 목록에 필요한 수량을 세어요.',
+  'planner.h1': '3D로 공원 설계하기',
+  'planner.loading': '3D 설계 도구를 불러오는 중…',
+  'planner.noscript': '3D 설계 도구를 쓰려면 JavaScript를 켜야 해요.',
+
+  'resources.title': '자료, 협력 단체, 언론 보도',
+  'resources.description':
+    'Park in a Truck의 협력 단체, 언론 보도, 자재 구입처, 전체 툴킷 자료실, 연락처와 법적 고지.',
+  'resources.eyebrow': '워크북 너머',
+  'resources.lede':
+    '이 공원들을 함께 만드는 곳, 공원을 다룬 기사, 자재와 식물을 구하는 곳, 그리고 Park in a Truck 팀에 연락하는 방법이에요.',
+  'resources.sectionsNav': '이 페이지의 섹션',
+  'resources.sections.partners': '협력 단체',
+  'resources.sections.press': '주요 언론 보도와 영상',
+  'resources.sections.suppliers': '구입처와 유용한 링크',
+  'resources.sections.toolkitLibrary': '툴킷 자료실',
+  'resources.sections.contact': '연락처',
+  'resources.sections.acknowledgments': '감사의 말',
+  'resources.sections.legal': '법적 고지',
+  'resources.deadHeadsUp': '알려 드려요',
+  'resources.deadLinks': {
+    other: '이 페이지의 링크 {count}개가 현재 열리지 않아요({date} 확인). 조용히 지우지 않고 남겨 두었으며, 아래에 표시해 두었어요.',
+  },
+  'resources.status.dead': '현재 열리지 않는 링크',
+  'resources.status.unverified': '자동으로 확인하지 못함',
+  'resources.status.unconfirmed': '확인되지 않음',
+  'resources.partnersIntro': 'Park in a Truck 공원이 만들어지도록 돕는 단체들이에요.',
+  'resources.videoAlt': '영상: {title}',
+  'resources.suppliersIntro': '워크북 안에 있던 링크를 모아 쓰임새별로 묶었어요.',
+  'resources.contact.email': '이메일:',
+  'resources.contact.founder': '설립자:',
+  'resources.contact.phone': '전화:',
+  'resources.contact.instagram': 'Instagram:',
+  'resources.contact.facebook': 'Facebook:',
+} satisfies Translation<typeof en>;
