@@ -32,6 +32,8 @@ The owner has permission from PiaT to use all of their content.
 | Saving | **Browser only** (localStorage) + export/import a project file + print. No accounts, no server. |
 | Wording | **PiaT's own words, made web-friendly**: split into steps, blanks → fields, typos fixed, each step links to the original PDF page. Not a rewrite. No new advice. |
 | Tech | **TypeScript + Astro + Three.js** (chosen over Rust/WASM for ecosystem and maintainability by Jefferson). |
+| Furniture order list (2026-10-04) | **From each build guide's own materials list**, priced with the spreadsheet's prices ("price needed" where none). The spreadsheet's furniture lines disagree with the guides; its faithful "sheet" mode stays for tests. |
+| Safety notes (2026-10-04) | Where PiaT's text could get people into **legal or health trouble** (hydrant without a permit, lead testing, street-tree pruning, herbicides), add a **short note clearly marked as from this site**, linking the official source. Everything else goes to the PiaT notes. |
 
 Also: the user wants every lookup automated "as much as possible… a streamline for activists to get the
 information they need to get something done."
