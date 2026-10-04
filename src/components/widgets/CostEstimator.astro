@@ -13,4 +13,4 @@ interface Props {
 }
 const { title, focus } = Astro.props;
 ---
-<Island client:visible title={title} focus={focus} />
+<Island client:only="preact" title={title} focus={focus} />

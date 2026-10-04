@@ -64,6 +64,13 @@ export function formatAuto(v: unknown, fmt?: string): string | null {
       return OWNER_TYPES[String(v)] ?? String(v);
     case 'lotType':
       return LOT_TYPES[String(v)] ?? String(v);
+    // Assess summary: trees kept on the lot (planner) -> the workbook's choices.
+    // "Mostly trees" can't be told from a count, so the person picks that one.
+    case 'treeCount': {
+      const n = Number(v);
+      if (!Number.isFinite(n)) return null;
+      return n <= 0 ? 'No trees' : n <= 2 ? 'One or two trees' : 'Several trees';
+    }
     case 'sunClass':
       return SUN_CLASSES[String(v)] ?? String(v);
     // added by philly-data

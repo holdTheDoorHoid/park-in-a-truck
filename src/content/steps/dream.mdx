@@ -31,6 +31,8 @@ export const THEME_REQUIREMENTS = {
 {/* The Assemble grid below skips surfaces, plants and existing-conditions markers — only built/bought elements get an assembly link. */}
 export const NOT_BUILT = new Set(['planting-square', 'perennial', 'shrub', 'small-tree', 'large-tree', 'gravel', 'existing-tree', 'downspout', 'wet-area', 'hydrant', 'utility-line']);
 export const ICON_FALLBACK = { 'table-6': 'table-4', 'bench-4': 'bench-back', 'gabion-bench-8': 'gabion-bench' };
+// The workbook's Assemble page shows these elements; newer vocabulary (e.g. cafe-table) has no icon there.
+export const ASSEMBLE_ICONS = new Set(['bench-back','bird-accessories','birdbath','cold-frame','communal-table','compost-bin','event-tent','flexible-seating','gabion-bench','gabion-wall','nature-play','outdoor-classroom','planter-18','planter-24','rain-barrel','raised-bed','shade-canopy','shed','stage','stool','table-2','table-4','workbench']);
 
 Designing a Park in a Truck park is like buying a new dress or suit. First, you go to the store and check out the
 mannequins to pick out a style, color or pattern that you like. Of course, what looks good hanging on the rack may not
@@ -315,7 +317,7 @@ off-the-shelf products. Click any element below — if you have it in your park,
 
 <div class="elements-grid">
   {Object.values(ELEMENTS)
-    .filter((el) => !NOT_BUILT.has(el.id))
+    .filter((el) => !NOT_BUILT.has(el.id) && ASSEMBLE_ICONS.has(ICON_FALLBACK[el.id] ?? el.id))
     .map((el) => {
       const icon = ICON_FALLBACK[el.id] ?? el.id;
       const href = el.guide ? u(`build/${el.guide}/`) : el.link;

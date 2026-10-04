@@ -23,3 +23,12 @@ describe('fitSize', () => {
     expect(fitSize(36, 90).size).toBe('D');
   });
 });
+
+import { formatAuto } from '../autofill';
+describe('treeCount autofill', () => {
+  it('maps kept-tree counts to the Assess summary choices', () => {
+    expect(formatAuto(0, 'treeCount')).toBe('No trees');
+    expect(formatAuto(2, 'treeCount')).toBe('One or two trees');
+    expect(formatAuto(5, 'treeCount')).toBe('Several trees');
+  });
+});

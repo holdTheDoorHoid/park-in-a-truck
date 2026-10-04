@@ -61,6 +61,9 @@ export default function AddressSearch({
   }, [q]);
 
   const pick = (s: AddressSuggestion | string) => {
+    // Filling the box with the picked address must not start a new search
+    // (that would reopen the list over the result card).
+    typed.current = false;
     setOpen(false);
     if (typeof s !== 'string') setText(s.kind === 'address' ? titleCase(s.label) : titleCase(s.label));
     onPick(s);
