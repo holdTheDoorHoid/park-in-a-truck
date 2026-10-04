@@ -45,6 +45,11 @@ export default {
   'chapter.notTranslated':
     'Chapit sa a poko tradui, se pou sa li parèt an anglè. Repons ou yo anrejistre menm jan an nan tout lang.',
 
+  'notice.title': 'Nòt sit la',
+  'notice.lot':
+    'Ou poko note pèmisyon pou teren ou an — w ap bezwen l anvan nenpòt moun kòmanse fouye tè a. <a href="{href}">Ale nan Jwenn teren → Sere teren ou an</a>.',
+  'notice.dismiss': 'Fèmen',
+
   'auto.owner.city': 'Vil Filadèlfi (piblik)',
   'auto.owner.landbank': 'Philadelphia Land Bank (piblik)',
   'auto.owner.pha': 'Philadelphia Housing Authority, ajans lojman Vil la (piblik)',

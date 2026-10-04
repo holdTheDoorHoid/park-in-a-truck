@@ -1,0 +1,132 @@
+{
+  "title": "Bancada / Mesa alta",
+  "summary": "Uma mesa alta para trabalhar em pé e mexer com vasos e mudas, com pés de 4x4, três níveis de prateleira embaixo e um tampo de cinco tábuas. O desenho original não tem medidas, então estas medidas gerais foram calculadas a partir da lista de cortes e das etapas de montagem, e não tiradas da capa.",
+  "finishing": "Todas as bordas e superfícies devem ser lixadas de leve para tirar farpas ou bordas ásperas.\n\nCedro: não precisa de acabamento — com o tempo fica cinza-claro. Se você quiser manter a cor de quando foi montado, use um stain alquídico à base de água, incolor, que penetra na madeira, ou pinte com um sistema de primer/tinta/selador.\n\nTratada em autoclave: não precisa de acabamento. Se você quiser cor, deixe secar ao ar por vários meses até a água não formar mais gotinhas na superfície; lixe usando máscara para não respirar o pó da madeira tratada. Use primer + tinta para área externa e sele com verniz poliuretano náutico (spar urethane) à base de água.\n\nPinho ou pinus secado em estufa: precisa de um stain com selador, ou de um sistema de primer/tinta/selador, para não se desgastar rápido com o tempo. Também pode ser pintado seguindo as etapas da madeira tratada acima.",
+  "sourcePages": "Instruções de montagem WORKBENCH/STANDING TABLE (encontradas nos links da p. 19 do caderno de trabalho Sonhar), pp. 1–11 (capa; antes de começar; madeira + ferragens + ferramentas; etapas 1–6; acabamentos e revestimentos)",
+  "materials": [
+    {
+      "item": "Madeira 4x4 — cedro, tratada em autoclave ou pinus, aparelhada nos 4 lados (S4S), classe nº 1"
+    },
+    {
+      "item": "Madeira 2x4 — cedro, tratada em autoclave ou pinus, aparelhada nos 4 lados (S4S), classe nº 1"
+    },
+    {
+      "item": "Madeira 2x4 — cedro, tratada em autoclave ou pinus, aparelhada nos 4 lados (S4S), classe nº 1"
+    },
+    {
+      "item": "Madeira 2x4 — cedro, tratada em autoclave ou pinus, aparelhada nos 4 lados (S4S), classe nº 1"
+    },
+    {
+      "item": "Madeira 2x6 — cedro, tratada em autoclave ou pinus, aparelhada nos 4 lados (S4S), classe nº 1"
+    },
+    {
+      "item": "Madeira 1x6 — cedro, tratada em autoclave ou pinus, aparelhada nos 4 lados (S4S), classe nº 1"
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Parafusos autoatarraxantes para madeira, uso externo"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Travessa lateral"
+    },
+    {
+      "notes": "Travessa de trás"
+    },
+    {
+      "notes": "Travessa da frente"
+    },
+    {
+      "notes": "Prateleiras da mesa (2 tábuas por prateleira, 3 níveis de prateleira)"
+    },
+    {
+      "notes": "Pés da mesa"
+    },
+    {
+      "notes": "Tampo da mesa, tábuas largas (bordas de fora e meio)"
+    },
+    {
+      "notes": "Tampo da mesa, tábuas estreitas (entre as tábuas largas)"
+    }
+  ],
+  "tools": [
+    "Serra elétrica (de bancada ou manual)",
+    "Parafusadeira de impacto para os parafusos autoatarraxantes para madeira",
+    "Esquadro de carpinteiro",
+    "Óculos de proteção + máscara"
+  ],
+  "safety": [
+    "Estas são apenas recomendações para quem faz por conta própria — adapte o material, a montagem e a construção ao seu projeto e ao seu terreno.",
+    "Construir isto exige algum conhecimento prático de ferramentas manuais e elétricas, ferragens, parafusos e fixadores, madeira e técnicas básicas de montagem.",
+    "Antes de usar qualquer equipamento elétrico, leia e siga as regras de segurança do fabricante, e não deixe ninguém usar ferramentas elétricas sem ter feito o mesmo.",
+    "Você (o dono) é responsável por cumprir todas as normas de construção e de segurança, licenças e aprovações oficiais que isto exigir.",
+    "Primeiro, limpe o terreno de lixo, perigos e estruturas indesejadas, e descubra se há redes de serviços (água, gás, luz) que possam atrapalhar antes de cavar.",
+    "Todos que ajudarem na construção devem assinar um termo de responsabilidade para voluntários."
+  ],
+  "steps": [
+    {
+      "title": "Marque, identifique e corte a madeira",
+      "text": "Marque, identifique e corte a madeira nos comprimentos da lista de cortes: travessas laterais A-1, travessas de trás A-2, travessa da frente A-3, prateleiras da mesa A-4, pés da mesa A-5, tábuas largas do tampo B-1 e tábuas estreitas do tampo B-2.",
+      "imageAlts": [
+        "Desenho isométrico das sete peças cortadas da bancada, de A-1 a A-5 e B-1, B-2, com os comprimentos indicados."
+      ],
+      "tips": [
+        "Ajuda escrever a letra da peça em cada pedaço de madeira na hora de marcar, para você conferir se tem todas as peças.",
+        "Deixe uma pilha de madeira separada para cada letra."
+      ]
+    },
+    {
+      "title": "Monte a estrutura principal",
+      "text": "Coloque uma peça de 2\"x4\"x20\" (A-1) sobre uma superfície plana. Perpendicular à borda comprida dela, meça 41\" e coloque uma segunda peça de 2\"x4\"x20\" (A-1). Coloque uma peça de 2\"x4\"x41\" (A-2) entre as bordas de trás das duas peças A-1, e prenda com uma parafusadeira de impacto e quatro parafusos autoatarraxantes para madeira, uso externo, de 3\".\n\nColoque uma peça de 2\"x4\"x44\" (A-3) atravessada na frente das duas peças A-1 — ela vai passar um pouco delas — e prenda com mais quatro parafusos de 3\".",
+      "imageAlts": [
+        "Desenho de duas travessas laterais A-1 ligadas por uma travessa de trás A-2 e uma travessa da frente A-3, formando uma estrutura retangular."
+      ],
+      "tips": [
+        "Use um esquadro de carpinteiro para conferir se a estrutura está no esquadro antes de prender as travessas de trás e da frente."
+      ]
+    },
+    {
+      "title": "Coloque os pés",
+      "text": "Coloque um pé de 4\"x4\"x34\" (A-5) em cada um dos quatro cantos da estrutura da mesa alta montada na etapa 2.\n\nPrenda os pés com uma parafusadeira de impacto e dezesseis parafusos autoatarraxantes para madeira, uso externo, de 3\" — na frente, atrás, à esquerda e à direita de cada pé.",
+      "imageAlts": [
+        "Desenho de quatro pés A-5 sendo parafusados nos cantos da estrutura pela frente, por trás e pelos dois lados."
+      ],
+      "tips": [
+        "Use um esquadro de carpinteiro para conferir se cada pé está no esquadro com a estrutura antes de prendê-lo."
+      ]
+    },
+    {
+      "title": "Monte mais cinco peças de estrutura e prenda a primeira",
+      "text": "Monte mais cinco peças de estrutura do mesmo jeito da etapa 2 — uma travessa de trás A-2 entre duas travessas laterais A-1, presas com quatro parafusos de 3\" cada (estas não levam travessa da frente).\n\nColoque uma dessas peças de estrutura na parte de baixo da estrutura da mesa alta, 2\" acima do chão, e prenda-a com uma parafusadeira de impacto e doze parafusos autoatarraxantes para madeira, uso externo, de 3\".",
+      "imageAlts": [
+        "Desenho de uma segunda peça de estrutura, sem travessa da frente, sendo parafusada nos pés perto do chão."
+      ],
+      "tips": [
+        "Use um pedaço de 2x4 que sobrou como espaçador ao posicionar cada estrutura de apoio das prateleiras junto aos pés."
+      ]
+    },
+    {
+      "title": "Coloque a primeira prateleira",
+      "text": "Coloque uma das peças de estrutura que sobraram 2\" acima da que foi colocada na etapa anterior, e prenda-a com uma parafusadeira de impacto e doze parafusos autoatarraxantes para madeira, uso externo, de 3\".\n\nColoque duas tábuas de 1\"x6\"x48\" (A-4) lado a lado em cima da estrutura presa, e prenda-as com uma parafusadeira de impacto e oito parafusos autoatarraxantes para madeira, uso externo, de 3\".",
+      "imageAlts": [
+        "Desenho de outra peça de estrutura presa 2\" acima da anterior, com duas tábuas de prateleira A-4 parafusadas em cima dela."
+      ]
+    },
+    {
+      "title": "Coloque a segunda e a terceira prateleiras",
+      "text": "Coloque outra peça de estrutura 2\" acima da anterior e prenda-a com doze parafusos de 3\". Coloque mais duas tábuas A-4 em cima e prenda com oito parafusos de 3\" — esta é a segunda prateleira.\n\nRepita mais uma vez para a terceira prateleira: outra peça de estrutura, doze parafusos, mais duas tábuas A-4, oito parafusos.\n\nPor fim, coloque a última peça de estrutura 2\" acima da última prateleira e prenda-a com doze parafusos autoatarraxantes para madeira, uso externo, de 3\" — esta segura o tampo da mesa e não leva tábuas de prateleira.",
+      "imageAlts": [
+        "Desenho mostrando mais dois níveis de prateleira sendo colocados acima do primeiro, cada um montado do mesmo jeito, com uma última peça de estrutura sem prateleira em cima."
+      ]
+    },
+    {
+      "title": "Coloque o tampo da mesa",
+      "text": "Coloque uma tábua de 2\"x6\"x48\" (B-1) no meio da mesa alta, passando 2\" do lado esquerdo e do direito, e prenda-a com uma parafusadeira de impacto e quatro parafusos autoatarraxantes para madeira, uso externo, de 3\".\n\nColoque uma tábua de 2\"x4\"x48\" (B-2) de cada lado da tábua do meio e prenda com mais quatro parafusos de 3\".\n\nColoque mais uma tábua de 2\"x6\"x48\" (B-1) de cada lado das peças B-2 e prenda com mais quatro parafusos de 3\", completando o tampo de cinco tábuas.",
+      "imageAlts": [
+        "Desenho do tampo de cinco tábuas sendo montado: uma tábua larga B-1 no meio, tábuas estreitas B-2 dos dois lados, e tábuas largas B-1 nas bordas de fora."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,271 @@
+---
+title: Cuidar
+intro: Cuide do seu parque, estação após estação.
+sources:
+  - Guia (Toolkit), pp. 61–65 (Cuidar, Plano anual de cuidados com o parque, Atividades de cuidado com o parque, Embaixadores do Parque)
+  - Caderno de trabalho Cuidar, pp. 1–7
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import Download from '../../../../components/workbook/Download.astro';
+import StewardshipCalendar from '../../../../components/widgets/StewardshipCalendar.astro';
+
+Os parques do Park in a Truck querem ser um oásis na cidade, cheio de plantas e árvores que alimentam todos que os
+visitam — inclusive os pássaros, as abelhas, as borboletas, os morcegos e os outros polinizadores de que as plantas
+dependem. Como um bebê, o seu parque precisa de muito amor e atenção nos primeiros anos de vida para sobreviver,
+prosperar e virar um lugar de convivência!
+
+Esta etapa é dividida em três categorias, e o melhor é que cada uma seja coordenada por uma pessoa:
+
+- **Sobreviver** — a única categoria *essencial*. Regar e tirar o mato toda semana nos dois primeiros anos. Se
+  ninguém da comunidade puder assumir isso, vocês vão precisar contratar alguém enquanto o parque é "bebê".
+- **Prosperar** — um esforço extra, opcional: plantas anuais, bulbos e começar uma horta a partir de sementes.
+- **Conviver** — fica totalmente a critério de vocês: os eventos e encontros que transformam o parque num ponto de
+  encontro.
+
+<PdfPage doc="downloads/workbooks/06-sustain.pdf" page={3} />
+
+## Regar e tirar o mato toda semana {/* #water-weed-every-week */}
+
+**Regar.** Regue as plantas toda semana nos dois primeiros anos. Preste atenção para ver se elas precisam de mais ou
+de menos água:
+
+- Se as 2 polegadas de cima da terra estiverem secas, é hora de regar.
+- Se as plantas estiverem visivelmente murchas, é hora de regar.
+- Use um guia de chuva para acompanhar quanta água as plantas estão recebendo.
+
+Se for preciso regar, molhe bem toda a área plantada — deixe uma mangueira porosa (de gotejamento) ligada por 3
+horas, ou regue à mão, devagar para a água não escorrer, e por tempo suficiente para ela entrar de 6 a 8 polegadas na
+terra.
+
+<Callout kind="tip">
+  [Dicas de rega + guia de chuva ↗](https://gardenerspath.com/how-to/hacks/use-rain-gauge/) ·
+  [Dicas gerais de rega ↗](https://youtu.be/ueQCiSD5AdM) (em inglês)
+</Callout>
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — watering from a hydrant needs a PWD permit; facts checked 2026-10-04 on water.phila.gov. */}
+<Callout kind="site">
+  Para regar com água de um hidrante é preciso uma
+  [licença de hidrante do Philadelphia Water Department ↗](https://water.phila.gov/development/connections/hydrant-permits/)
+  (em inglês) e uma válvula de retenção aprovada (as hortas comunitárias não pagam a taxa da licença). O
+  [guia de hortas urbanas do PWD ↗](https://water.phila.gov/urban-garden-guide/) (em inglês) mostra os outros jeitos
+  de levar água até uma horta.
+</Callout>
+
+**Tirar o mato.** É preciso tirar o mato toda semana, de 15 de abril até outubro, pelo menos nos dois primeiros anos.
+
+- Use um herbicida pré-emergente nos canteiros para controlar o mato (veja a limpeza de cada estação, abaixo).
+- Em vez de arrancar o mato, experimente borrifar uma solução de vinagre a 20%. Se estiver difícil, peça ajuda ao
+  viveiro do seu bairro.
+- Consulte sites sobre ervas daninhas ou um aplicativo como o PlantSnap para reconhecer plantas e mato.
+
+<Callout kind="tip">
+  [Pré-emergente para canteiros de flores ↗](https://www.amazon.com/dp/B003S3U02E/) ·
+  [Pré-emergente para hortas ↗](https://www.amazon.com/dp/B083PKMJTM/) ·
+  [Vinagre a 20% ↗](https://www.amazon.com/Green-Gobbler-Vinegar-Glyphosate-Herbicide/dp/B09HDFQ531/) ·
+  [Ervas daninhas comuns (USDA) ↗](https://www.nrcs.usda.gov/Internet/FSE_DOCUMENTS/nrcs142p2_017662.pdf) *(link fora do ar no momento)*
+  (em inglês)
+</Callout>
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — 20% vinegar is far stronger than kitchen vinegar; facts checked 2026-10-04 on npic.orst.edu. */}
+<Callout kind="site">
+  O vinagre vendido para matar mato (20% ou mais) é muito mais forte que o vinagre de cozinha (cerca de 5%): ele pode
+  causar danos permanentes aos olhos e queimar a pele. Siga o rótulo do produto e use proteção para os olhos e luvas
+  ([National Pesticide Information Center ↗](https://npic.orst.edu/faq/vinegar.html), em inglês).
+</Callout>
+
+<PdfPage doc="downloads/workbooks/06-sustain.pdf" page={4} />
+
+## Cuidados do mês e limpeza de cada estação {/* #monthly-care-seasonal-cleanup */}
+
+Uma vez por mês, ande pelo parque e confira:
+
+<Checklist
+  id="sustain.monthly-inspection"
+  items={[
+    { value: 'Insect or disease infestation', label: 'Insetos ou doenças atacando as plantas' },
+    { value: 'Evidence of weeds', label: 'Sinais de mato' },
+    { value: 'Condition of mulch', label: 'Estado da cobertura morta' },
+    { value: 'Evidence of dead or dying plants', label: 'Sinais de plantas mortas ou morrendo' },
+    { value: 'Cleanup of trash and debris', label: 'Limpeza de lixo e entulho' },
+    { value: 'Keep track of the success or failure of plantings', label: 'Acompanhar quais plantios deram certo e quais não deram' },
+  ]}
+/>
+
+### Cobertura morta
+
+Cubra todos os canteiros com composto de folhas ou com casca de madeira de lei triturada três vezes e bem curtida, e
+mantenha uma camada de 2 a 3 polegadas — tomando cuidado para não exagerar. Tenha cuidado especial em volta das
+árvores: o jeito errado é amontoar a cobertura no tronco, como a encosta de uma montanha; o jeito certo é uma rosca
+achatada, com uma polegada ou mais de espaço livre entre a cobertura e o tronco. Cobertura encostada no tronco pode
+apodrecer a casca e deixar a árvore exposta a insetos, doenças e até à morte.
+
+<Callout kind="tip">[Como colocar cobertura morta ↗](https://skh.com/thedirt/how-to-lay-mulch/) (em inglês)</Callout>
+
+### Poda
+
+Use ferramentas manuais para podar todos os arbustos — não use aparadores elétricos. Pode arbustos e árvores só
+quando for necessário, para guiar a forma que eles vão ter, ou para tirar partes mortas ou doentes. Pode e apare os
+galhos para deixar uma altura livre de no mínimo 7 pés sobre os caminhos e de 13 pés sobre ruas e entradas de
+garagem.
+
+<Callout kind="tip">[Como podar como um profissional ↗](https://youtube.com/watch?v=BE2K_mCIppM) (em inglês)</Callout>
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — street trees are the City's; facts checked 2026-10-04 on phila.gov. */}
+<Callout kind="site">
+  As árvores da calçada pertencem à Prefeitura: para podar ou tirar uma delas é preciso uma licença do Philadelphia
+  Parks & Recreation. Veja as
+  [perguntas sobre árvores de rua da Prefeitura ↗](https://www.phila.gov/departments/philadelphia-parks-recreation/street-tree-frequently-asked-questions/)
+  (em inglês).
+</Callout>
+
+### Controle de pragas
+
+O parque foi desenhado para atrair polinizadores, que ajudam a controlar as pragas. Às vezes, mesmo assim, é preciso
+uma mãozinha humana — se você vir algo estranho nas plantas, investigue: tire fotos, pesquise na internet e/ou fale
+com o viveiro do seu bairro.
+
+<Callout kind="tip">[Guia de pragas e doenças ↗](https://extension.psu.edu/trees-lawns-and-landscaping/home-gardening/pests-and-diseases) (em inglês)</Callout>
+
+### Limpeza de cada estação
+
+<Checklist
+  id="sustain.spring-cleanup"
+  label="Primavera"
+  items={[
+    { value: 'Lightly rake out beds', label: 'Passar o rastelo de leve nos canteiros' },
+    { value: 'Cut back any unsightly perennials', label: 'Cortar as perenes que estiverem feias' },
+    { value: 'Apply pre-emergent per package directions; spray weeds with 20% vinegar', label: 'Aplicar o pré-emergente seguindo as instruções da embalagem; borrifar vinagre a 20% no mato' },
+    { value: "Mulch beds (see 'mulching' above)", label: 'Cobrir os canteiros com cobertura morta (veja "Cobertura morta" acima)' },
+    { value: 'Add pansies and cool-season annuals for early spring color, if desired', label: 'Plantar amores-perfeitos e anuais de clima frio para ter cor no começo da primavera, se quiser' },
+  ]}
+/>
+<Checklist
+  id="sustain.late-summer-cleanup"
+  label="Fim do verão"
+  items={[
+    { value: 'Prune evergreen shrubs', label: 'Podar os arbustos sempre-verdes' },
+    { value: 'Apply pre-emergent per package directions; spray weeds with 20% vinegar', label: 'Aplicar o pré-emergente seguindo as instruções da embalagem; borrifar vinagre a 20% no mato' },
+  ]}
+/>
+<Checklist
+  id="sustain.fall-cleanup"
+  label="Outono"
+  items={[
+    { value: 'Inspect plant areas to make sure weeds are eradicated', label: 'Vistoriar as áreas plantadas para ter certeza de que o mato foi eliminado' },
+    { value: 'Prune shrubs and trees after leaves have fallen, so you can see the structure of the plant', label: 'Podar arbustos e árvores depois que as folhas caírem, para enxergar a forma da planta' },
+    { value: 'leave-perennials', label: 'Não cortar as perenes', hint: 'muitos polinizadores usam os caules para hibernar' },
+    { value: 'Prune flowering shrubs after they have flowered', label: 'Podar os arbustos de flor depois da floração' },
+    { value: "Mulch beds, or plan to mulch in spring (see 'mulching' above)", label: 'Cobrir os canteiros com cobertura morta, ou planejar fazer isso na primavera (veja "Cobertura morta" acima)' },
+    { value: 'Water trees deeply before the ground freezes', label: 'Regar bem fundo as árvores antes de o chão congelar' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/06-sustain.pdf" page={5} />
+
+## Plante mais: sementes, bulbos e plantas anuais {/* #grow-more-seeds-bulbs-annuals */}
+
+Se vocês toparem um pouco de esforço extra, veja como fazer o seu parque prosperar de verdade. As plantas anuais dão
+flores vistosas que florescem a estação inteira, mas não voltam no ano seguinte. Os bulbos, como tulipas e narcisos,
+costumam voltar todo ano e trazem cor no começo da estação. Começar uma horta a partir de sementes, dentro de casa, é
+um jeito barato de plantar exatamente o que vocês querem.
+
+**Sementes.** Leia catálogos de sementes para decidir o que plantar e como cuidar. Encomende sementes de verduras e
+de plantas anuais. Semeie dentro de casa para a horta, depois passe as mudas para as jardineiras quando o tempo
+esquentar.
+
+**Bulbos.** Encomende os bulbos e guarde em lugar fresco e seco. Plante os bulbos entre o Halloween e o Dia de Ação
+de Graças. Adube 4–6 semanas antes de quando devem florir. Tire as flores murchas depois da floração (corte as
+cabeças das flores que já passaram). Espere as folhas ficarem amarelas e depois tire a planta inteira.
+
+**Anuais.** Compre as flores anuais que vocês quiserem. Plante em abril se a primavera estiver quente, ou em junho se
+estiver fria. Mantenha bem regadas e fique de olho nas pragas — tire as folhas atacadas se precisar.
+
+<PdfPage doc="downloads/workbooks/06-sustain.pdf" page={6} />
+
+## Conviver {/* #socialize */}
+
+Esta parte fica totalmente a critério de vocês. Em vez de um calendário detalhado para seguir, vocês decidem quais
+atividades oferecer! Algumas ideias de outros parques do Park in a Truck: um evento para observar pássaros, uma
+comemoração do Dia da Terra, um acampamento de natureza no verão, uma inauguração com corte de fita, um mutirão de
+limpeza do bairro ou uma reunião de informações sobre o parque a cada estação.
+
+<ListField
+  id="sustain.events"
+  label="O que vocês gostariam de fazer, e quando?"
+  rowName="evento"
+  min={3}
+  columns={[
+    { key: 'season', label: 'Estação', placeholder: 'inverno, primavera, verão, outono' },
+    { key: 'activity', label: 'Atividade' },
+    { key: 'who', label: 'Quem vai organizar' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/06-sustain.pdf" page={7} />
+
+## O seu plano anual {/* #your-annual-workplan */}
+
+As orientações acima são uma base para a manutenção do seu parque ao longo das estações — são as tarefas que vocês
+precisam fazer, por mês, por estação e por ano. Vá marcando à medida que fizer; o mais importante é simplesmente
+tirar o mato e regar.
+
+<StewardshipCalendar />
+
+## Programa Embaixadores do Parque {/* #park-ambassador-program */}
+
+Recomendamos muito o programa Embaixadores do Parque, que contrata jovens do bairro para ajudar a cuidar do parque e
+a organizar atividades nele. Os Embaixadores do Parque:
+
+- Criam um parque seguro, limpo e acessível para todos.
+- Planejam atividades divertidas para moradores de todas as idades.
+- Mantêm o parque limpo e arrumado.
+- Garantem que o parque seja um oásis verde acolhedor.
+
+Criamos um Guia dos Embaixadores do Parque — um programa passo a passo e um guia de recursos para ajudar os
+Embaixadores do Parque a cuidar do novo parque e organizar atividades nele, e um lugar para registrar o que acontece
+lá. Os jovens embaixadores trabalham junto com uma pessoa da comunidade, que é a mentora e a guia deles durante todo
+o processo.
+
+<Figure
+  src="img/sustain/ambassador-guidebook-cover.webp"
+  alt="Capa do Park Ambassadors Guidebook (Guia dos Embaixadores do Parque): programa e guia de recursos, ilustrada com a silhueta de uma fileira de árvores e de crianças brincando num parque"
+/>
+
+<Download href="downloads/park-ambassador-booklet.pdf" label="Guia dos Embaixadores do Parque" note="Programa e guia de recursos" />
+
+{/* site-added: tracking helper, not a new program requirement. */}
+<Field id="sustain.ambassador-mentor" label="Mentor da comunidade para o(s) seu(s) Embaixador(es) do Parque" hint="O adulto que guia os jovens embaixadores durante o programa" />
+
+## Links úteis {/* #helpful-links */}
+
+Todos os links desta lista são de sites em inglês.
+
+- **Informações gerais sobre plantas** — [PHS Gold Medal Plants ↗](https://phsonline.org/for-gardeners/gold-medal-plants) ·
+  [Gardens Alive ↗](https://www.gardensalive.com/) · [North Creek Nurseries ↗](https://www.northcreeknurseries.com/) ·
+  [Buscador de plantas do Missouri Botanical Garden ↗](http://www.missouribotanicalgarden.org/plantfinder/plantfindersearch.aspx) ·
+  [Longwood Gardens plant explorer ↗](https://plantexplorer.longwoodgardens.org/ecmweb/FindPlant.html) *(link fora do ar no momento)* ·
+  [Arbor Day Foundation ↗](https://www.arborday.org/) ·
+  [Guia de plantio da Penn State ↗](https://extension.psu.edu/programs/master-gardener/counties/philadelphia/hotline/master-gardeners-philadelphia-planting-guide)
+- **Oficinas e ajuda com o terreno** — [Pennsylvania Horticultural Society ↗](https://phsonline.org/) ·
+  [Grounded in Philly ↗](https://groundedinphilly.org/) (ajuda jurídica, dados de terrenos, seguro, composto) ·
+  [Greensgrow ↗](https://www.greensgrow.org/about-us/) *(link fora do ar no momento)* (fazenda urbana educativa)
+- **Plantas invasoras** — [Brandywine Conservancy ↗](https://www.brandywine.org/conservancy/resources/invasive-plants)
+- **Cuidados com árvores, arbustos e perenes** — [Plantar árvores que vêm em vaso ↗](https://www.arborday.org/trees/planting/containerized.cfm) ·
+  [Como plantar uma árvore ↗](https://youtube.com/watch?v=QYmgrw0PgLU) · [Como plantar um arbusto ↗](https://youtube.com/watch?v=Tim4LEo6l10) ·
+  [Como podar um arbusto ↗](https://www.gardenersworld.com/how-to/grow-plants/the-basics-of-shrub-pruning/)
+- **Árvores frutíferas** — [Cuidados com frutíferas da Arbor Day Foundation ↗](https://www.arborday.org/trees/fruit/) ·
+  [Philadelphia Orchard Project ↗](https://www.phillyorchards.org/)
+- **Solo, compostagem e adubação** — [Análise de solo da Penn State ↗](https://extension.psu.edu/soil-testing) ·
+  [O básico da compostagem ↗](https://www.youtube.com/watch?v=0hPCkEaMkQU) ·
+  [Penn State: como promover a saúde das plantas ↗](https://extension.psu.edu/promote-plant-health) ·
+  [Como cobrir o seu jardim com cobertura morta ↗](https://www.goodhousekeeping.com/home/gardening/a20706549/how-to-mulch-your-garden/)
+
+<Callout kind="contact">
+  Dúvidas pelo caminho? A equipe do Park in a Truck pode ajudar (em inglês):
+  [ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu).
+</Callout>

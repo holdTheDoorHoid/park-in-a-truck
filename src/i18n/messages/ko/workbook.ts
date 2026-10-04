@@ -1,0 +1,78 @@
+// 한국어 — 워크북 구성 요소, 장 페이지, "완료로 표시" 버튼과 진행 상황, 시 기록에서 가져온 값. 해요체. 용어집: docs/i18n/glossary.md
+import type en from '../en/workbook.ts';
+import type { Translation } from '../../define.ts';
+
+export default {
+  'project.default': '내 공원',
+
+  'callout.tip': '도움말',
+  'callout.note': '참고',
+  'callout.warning': '주의',
+  'callout.contact': '도움 요청',
+  'callout.auto': '자동으로 해 드려요',
+  'callout.site': '이 사이트의 안내 (Park in a Truck의 내용이 아님)',
+
+  'field.choose': '선택하세요…',
+  'field.auto': '✓ 시 기록에서 가져왔어요. 직접 입력해서 바꿀 수 있어요',
+  'list.noscript': '이 표를 채우려면 JavaScript를 켜거나, 원본 워크북 페이지를 인쇄하세요.',
+  'list.row': '행',
+  'list.add': '+ {row} 추가',
+  'list.fillFirst': '위의 {row} 칸부터 채우거나 내용을 적어 주세요.',
+  'list.remove': '삭제',
+  'list.removeRow': '{n}행 삭제',
+  'list.removed': '{row} 삭제됨.',
+  'list.cell': '{label}, {n}행',
+
+  'done.mark': '이 단계 완료로 표시',
+  'done.done': '완료 — 수고했어요!',
+  'done.badge': '✓ 완료',
+  'progress.of': '{total}개 중 {done}개',
+  'progress.done': '{total}개 중 {done}개 완료',
+  'progress.total': '세부 단계 {total}개 중 {done}개 완료',
+
+  'pdf.label': '원본 워크북 페이지',
+  'pdf.page': '(PDF {page}쪽)',
+  'file.english': '영어',
+  'figure.credit': '사진: {credit}',
+
+  'chapter.pdf': '📄 원본 워크북 (PDF)',
+  'chapter.print': '🖨 내 답변 인쇄',
+  'chapter.toc': '이 단계의 내용',
+  'chapter.pager': '단계',
+  'chapter.prev': '← {title}',
+  'chapter.prevStep': '← {n}단계: {title}',
+  'chapter.next': '다음: {n}단계 — {title} →',
+  'chapter.notTranslated': '이 장은 아직 번역되지 않아 영어로 보여요. 답변은 어느 언어에서나 똑같이 저장돼요.',
+
+  'notice.title': '사이트 안내',
+  'notice.lot':
+    '아직 부지 사용 허락을 기록하지 않았어요. 땅을 파기 전에 꼭 있어야 해요. <a href="{href}">확보하기 → 부지 확정하기로 가기</a>.',
+  'notice.dismiss': '닫기',
+
+  'auto.owner.city': '필라델피아시 (공공)',
+  'auto.owner.landbank': 'Philadelphia Land Bank (공공)',
+  'auto.owner.pha': 'Philadelphia Housing Authority (공공)',
+  'auto.owner.redevelopment': 'Philadelphia Redevelopment Authority (공공)',
+  'auto.owner.other-public': '다른 공공 기관',
+  'auto.owner.private': '민간 소유자 (개인, 단체 또는 기업)',
+  'auto.owner.unknown': '알 수 없음',
+  'auto.lot.mid-block': '블록 중간 부지',
+  'auto.lot.corner': '모퉁이 부지',
+  'auto.lot.alley': '건물 사이 통로 / 골목 / 통행 지역권',
+  'auto.lot.unknown': '잘 모르겠음',
+  'auto.sun.full-sun': '하루 종일 햇빛',
+  'auto.sun.mostly-sun': '대부분 햇빛',
+  'auto.sun.mostly-shade': '대부분 그늘',
+  'auto.sun.deep-shade': '하루 종일 짙은 그늘',
+  'auto.kind.interior': '블록 중간 부지',
+  'auto.kind.corner-right': '모퉁이 부지 (오른쪽이 도로)',
+  'auto.kind.corner-left': '모퉁이 부지 (왼쪽이 도로)',
+  'auto.trees.none': '나무 없음',
+  'auto.trees.few': '나무 한두 그루',
+  'auto.trees.several': '나무 여러 그루',
+  'auto.yes': '예',
+  'auto.no': '아니요',
+  'auto.sqft': '{n}제곱피트',
+  'auto.ft': '{n}피트',
+  'auto.size': '크기 {size}',
+} satisfies Translation<typeof en>;

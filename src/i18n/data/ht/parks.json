@@ -3,25 +3,49 @@
     "neighborhood": "Kingsessing, Sidwès Filadèlfi",
     "description": "Yon jaden kominotè sou yon teren nan kwen nan Kingsessing yo te repran. Gid Park in a Truck la rele l \"Cecil Street Park\", epi yo te sèvi avè l kòm teren pou teste plantasyon ansanm ak LandHealth Nursery. Depi lè sa a, li vin fè pati yon rezo kote pou polinizatè viv, gouvènman federal la finanse, ki konekte plizyè teren Park in a Truck nan Sidwès Filadèlfi. Yo plante pyebwa natif ak echinacea ladan l. Victoria Miles-Chambliss, ki rete nan katye a: \"Blòk nou an chanje anpil depi nou fè jaden an. Se tankou yon oazis nan mitan Sidwès Filadèlfi.\"",
     "links": [
-      { "label": "Yon rezo kote pou zwazo ak myèl ap fleri nan Sidwès Filadèlfi (Grid Magazine, avril 2024, an anglè)" },
-      { "label": "Paj pwogram Park in a Truck la (Jefferson, an anglè)" }
+      {
+        "label": "Yon rezo kote pou zwazo ak myèl ap fleri nan Sidwès Filadèlfi (Grid Magazine, avril 2024)"
+      },
+      {
+        "label": "Paj pwogram Park in a Truck la (Jefferson)"
+      }
     ]
   },
   "melon-street-park": {
     "neighborhood": "Mantua, Lwès Filadèlfi",
     "description": "Premye pak Park in a Truck te janm fè, ki louvri an oktòb 2019 sou yon teren vid nan Mantua (apeprè 2,400 pye kare). DeWayne Drummond, prezidan Mantua Civic Association: \"Tè n kanpe sou li kounye a a, se te yon teren vid. Kounye a, manm kominote a ak jèn yo fè l bèl.\" Fondatè a, Kim Douglas, dekri l kòm yon pak ki \"ka absòbe dlo lapli, fè plant pouse, bay bèt sovaj kote pou yo viv, epi resevwa amizman.\"",
     "links": [
-      { "label": "Avèk pwogram Park in a Truck, Jefferson vle ede transfòme kominote ki pa jwenn ase sèvis (Jefferson, out 2019, an anglè)" },
-      { "label": "Teren vid tounen bèl pak nan katye Filadèlfi (6abc, jiyè 2021, an anglè)" },
-      { "label": "Gid Park in a Truck la pèmèt manm kominote yo transfòme teren vid (Jefferson, out 2022, an anglè)" }
+      {
+        "label": "Avèk pwogram Park in a Truck, Jefferson vle ede transfòme kominote ki pa jwenn ase sèvis (Jefferson, out 2019)"
+      },
+      {
+        "label": "Teren vid tounen bèl pak nan katye Filadèlfi (6abc, jiyè 2021)"
+      },
+      {
+        "label": "Gid Park in a Truck la pèmèt manm kominote yo transfòme teren vid (Jefferson, out 2022)"
+      }
+    ],
+    "photos": [
+      {
+        "alt": "Kabann jaden wo ak plant ki fleri nan Melon Street Park, ak kay kole youn ak lòt Mantua yo dèyè",
+        "caption": "Melon Street Park, pak kominotè"
+      },
+      {
+        "alt": "Yon gwoup timoun ak granmoun ki rasanble bò yon maket moso pak nan jou konstriksyon an nan Melon Street Park",
+        "caption": "Jou konstriksyon Park in a Truck nan Mantua"
+      }
     ]
   },
   "glenda-anne-memorial-park": {
     "neighborhood": "Kingsessing, Sidwès Filadèlfi",
     "description": "Yo inogire l 3 out 2019 sou yon teren kote moun te konn jete fatra, ak plis pase 200 vwazen ak ofisyèl eli ki te la; fanmi Glenda Ann Christopher te aksepte pak la kòm yon souvni pou li (laprès ekri non an \"Glenda Ann Christopher Memorial Park\"). Yo te ajoute yon jaden pou polinizatè nan prentan 2023 — òganizatè Greg Thompson: \"Yon semèn oswa de apre nou te plante l, yo te la — myèl, zwazo, papiyon ak plis ensèk pase nou te janm wè.\" Yon dezyèm inogirasyon an jen 2024 te fete nouvo jaden sa a; jèn volontè Semaj Flores: \"Nou te antre ladan l pou anviwònman an, epi pou jèn yo ka ede timoun ki pi piti k ap viv ak vyolans zam.\"",
     "links": [
-      { "label": "Pwogram Park in a Truck transfòme espas vèt nan Filadèlfi (CBS News Philadelphia, jen 2024, an anglè)" },
-      { "label": "Yon rezo kote pou zwazo ak myèl ap fleri nan Sidwès Filadèlfi (Grid Magazine, avril 2024, an anglè)" }
+      {
+        "label": "Pwogram Park in a Truck transfòme espas vèt nan Filadèlfi (CBS News Philadelphia, jen 2024)"
+      },
+      {
+        "label": "Yon rezo kote pou zwazo ak myèl ap fleri nan Sidwès Filadèlfi (Grid Magazine, avril 2024)"
+      }
     ]
   },
   "s-60th-greenway": {
@@ -38,7 +62,9 @@
     "neighborhood": "Elmwood Park, Sidwès Filadèlfi",
     "description": "Elèv yo te bati yon jaden pou polinizatè ak bèt nan Tilden Middle School, kòm pati menm rezo polinizatè Sidwès Filadèlfi a ki gen ladan l Cecil Street Garden. Pew Charitable Trusts finanse l an pati, atravè Audubon Mid-Atlantic, ak Park in a Truck kòm patnè. Pwogram Anbasadè pak PiaT la peye jèn yo pou yo pran swen l epi pou yo swiv polinizatè yo.",
     "links": [
-      { "label": "Yon rezo kote pou zwazo ak myèl ap fleri nan Sidwès Filadèlfi (Grid Magazine, avril 2024, an anglè)" }
+      {
+        "label": "Yon rezo kote pou zwazo ak myèl ap fleri nan Sidwès Filadèlfi (Grid Magazine, avril 2024)"
+      }
     ]
   },
   "streetscape-of-brewerytown-garden": {

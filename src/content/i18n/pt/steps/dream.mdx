@@ -1,0 +1,441 @@
+---
+title: Sonhar
+intro: Desenhe o seu parque com as peças do próprio Park in a Truck, que você pode misturar e combinar.
+sources:
+  - Guia (Toolkit), pp. 39–55 (Sonhar, Desenhos por tema, Peças do parque, Misture e combine)
+  - Caderno de trabalho Sonhar, pp. 1–20
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Choice from '../../../../components/workbook/Choice.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import Download from '../../../../components/workbook/Download.astro';
+import Planner from '../../../../components/widgets/Planner.astro';
+import CostEstimator from '../../../../components/widgets/CostEstimator.astro';
+import PlantPicker from '../../../../components/widgets/PlantPicker.astro';
+import { ELEMENTS } from '../../../../data/elements';
+import { THEMES, THEME_ORDER } from '../../../../data/themes';
+import { SIZES } from '../../../../lib/sizing';
+import { urlFor } from '../../../../i18n/url.ts';
+export const u = urlFor('pt');
+import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
+
+export const THEME_REQUIREMENTS = {
+  edible: { trees: 'Poucas árvores ou nenhuma', sun: 'Sol pleno ou sol na maior parte do tempo', lot: 'Combina bem com um terreno de esquina', volunteers: 'Participação frequente de voluntários' },
+  sanctuary: { trees: 'Qualquer quantidade de árvores', sun: 'Qualquer quantidade de sol', lot: 'Terreno no meio do quarteirão ou de esquina', volunteers: 'Pouca participação de voluntários' },
+  nature: { trees: 'Combina bem com terrenos que têm árvores', sun: 'Qualquer quantidade de sol', lot: 'Terreno no meio do quarteirão ou de esquina', volunteers: 'Precisa de pouca participação' },
+  event: { trees: 'Uma ou duas árvores, ou várias árvores', sun: 'Qualquer quantidade de sol', lot: 'Combina bem com um terreno de esquina', volunteers: 'Participação média de voluntários' },
+};
+
+{/* Translated chapters can't import the localized data helpers, so the Portuguese theme and element names are repeated here (same text as src/i18n/data/pt/themes.json and elements.json). */}
+export const THEME_TEXT = {
+  edible: { name: 'Comestível', blurb: 'Dividir comida e se aproximar dos vizinhos — frutas, verduras e uma mesa comunitária.' },
+  sanctuary: { name: 'Refúgio', blurb: 'Um lugar calmo para ficar sozinho, ler e fazer pequenos encontros.' },
+  nature: { name: 'Natureza', blurb: 'Plantas nativas, abrigo para os bichos e brincadeira para as crianças e os polinizadores.' },
+  event: { name: 'Eventos', blurb: 'Espaço para apresentações, feirinhas e festas do bairro.' },
+};
+export const ELEMENT_NAMES = {
+  "gabion-wall": "Muro de gabião",
+  "gabion-bench": "Banco de gabião com assento de madeira",
+  "gabion-bench-8": "Banco de gabião de 8' com assento de madeira",
+  "gabion-table": "Mesa de gabião com tampo de madeira",
+  "bench-back": "Banco com encosto",
+  "bench-4": "Banco de 4' (sem encosto)",
+  stool: "Banquinho",
+  "table-2": "Mesa de 2'",
+  "table-4": "Mesa de 4'",
+  "table-6": "Mesa de 6'",
+  "planter-18": "Jardineira de 18\" (pequena)",
+  "planter-24": "Jardineira de 24\" (grande)",
+  "shade-canopy": "Cobertura de sombra",
+  stage: "Palco",
+  workbench: "Bancada / mesa alta",
+  "rain-barrel": "Barril de chuva",
+  "compost-bin": "Composteira",
+  "raised-bed": "Canteiro elevado",
+  "keyhole-garden": "Horta buraco de fechadura (canteiro elevado redondo)",
+  "cold-frame": "Estufinha (caixa de cultivo com tampa)",
+  "communal-table": "Mesa comunitária",
+  "cafe-table": "Mesinha com cadeiras",
+  "event-tent": "Tenda para eventos",
+  "flexible-seating": "Assentos móveis",
+  "outdoor-classroom": "Sala de aula ao ar livre",
+  "nature-play": "Área de brincar na natureza",
+  birdbath: "Bebedouro para pássaros",
+  "bird-accessories": "Casinhas e comedouros para pássaros",
+  shed: "Depósito de ferramentas",
+  hammock: "Rede com suporte próprio",
+  "porch-swing": "Balanço de varanda com suporte próprio",
+  "solar-fountain": "Fonte solar",
+  "planting-square": "Quadrado de plantio (4×4 pés)",
+  perennial: "Perene",
+  shrub: "Arbusto",
+  "small-tree": "Árvore pequena",
+  "large-tree": "Árvore grande",
+  gravel: "Piso de brita",
+  "existing-tree": "Árvore que já existe",
+  downspout: "Calha do vizinho",
+  "wet-area": "Área que às vezes fica encharcada",
+  hydrant: "Hidrante",
+  "utility-line": "Fios elétricos no alto",
+};
+
+{/* The Assemble grid below skips surfaces, plants and existing-conditions markers — only built/bought elements get an assembly link. */}
+export const NOT_BUILT = new Set(['planting-square', 'perennial', 'shrub', 'small-tree', 'large-tree', 'gravel', 'existing-tree', 'downspout', 'wet-area', 'hydrant', 'utility-line']);
+export const ICON_FALLBACK = { 'table-6': 'table-4', 'bench-4': 'bench-back', 'gabion-bench-8': 'gabion-bench' };
+// The workbook's Assemble page shows these elements; newer vocabulary (e.g. cafe-table) has no icon there.
+export const ASSEMBLE_ICONS = new Set(['bench-back','bird-accessories','birdbath','cold-frame','communal-table','compost-bin','event-tent','flexible-seating','gabion-bench','gabion-wall','nature-play','outdoor-classroom','planter-18','planter-24','rain-barrel','raised-bed','shade-canopy','shed','stage','stool','table-2','table-4','workbench']);
+
+{/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — reminds a reader who hasn't recorded a lot agreement yet, before they design and budget for a lot they may not have permission for. */}
+<LotAgreementNotice />
+
+Desenhar um parque do Park in a Truck é como comprar um vestido ou um terno novo. Primeiro, você vai à loja e olha os
+manequins para escolher um estilo, uma cor ou uma estampa de que goste. É claro que o que fica bonito no cabide pode
+não ficar bem em você. Então você precisa achar o terno ou o vestido no tamanho certo para você e para o seu corpo, e
+aí experimentar. Se não servir, dá para ajustar. Por fim, você acrescenta os acessórios para deixá-lo do seu jeito.
+
+Como na compra de roupas, o seu parque precisa combinar com o seu estilo e com o uso que vocês querem dar a ele. Os
+parques do Park in a Truck vêm em quatro estilos diferentes — que chamamos de **temas**: Comestível, Refúgio,
+Natureza e Eventos. Cada um combina melhor com uma ocasião ou situação.
+
+Agora começa a parte mais divertida — imaginar o seu parque! Esta etapa começa com a escolha de um dos quatro
+desenhos por tema. Mas isso é só o começo: cada tema tem um conjunto de **peças do parque** para misturar e
+combinar, que permitem montar um **parque sob medida**, no tamanho do seu terreno.
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={3} />
+
+## Os quatro temas {/* #the-four-themes */}
+
+Cada tema valoriza um jeito diferente de usar o parque: alguns combinam com encontros do bairro, outros são melhores
+para ficar sozinho. Compare a quantidade de árvores, a quantidade de sol e a localização do terreno que você anotou
+no seu Resumo da etapa Avaliar com as exigências gerais abaixo.
+
+Como todo parque tem três partes — uma **moldura**, uma **frente** e um **fundo** —, você pode usar um só tema no
+parque todo, ou **misturar e combinar** temas diferentes, do mesmo jeito que você combina uma blusa e um casaco com a
+calça ou a saia de uma roupa.
+
+### Elementos do desenho básico (em todos os temas)
+
+Alguns elementos principais aparecem nos quatro temas:
+
+- **Muro de gabião.** Gaiolas de arame cheias de pedra dão ao parque uma borda bem marcada — encha-as com materiais
+  que você encontrar, como tijolos e pedaços de concreto, para uma construção mais barata e mais sustentável.
+- **Banco.** Um lugar para sentar, fácil de personalizar pela sua comunidade. Pinte os bancos ou deixe o tempo agir
+  — as duas coisas funcionam.
+- **Barril de chuva.** Todo parque precisa de água. Os barris de chuva recolhem a água da chuva para regar as árvores
+  e as flores.
+- **Plantas.** Plantas nativas que atraem os bichos, aumentam a biodiversidade e ajudam a conservar a natureza.
+
+{THEME_ORDER.map((id) => (
+  <div style={`margin:2.5em 0; border-left: 8px solid ${THEMES[id].frame}; padding-left: 1.2em;`}>
+    <h3 style={`color:${THEMES[id].frame}`}>{THEME_TEXT[id].name}</h3>
+    <p>{THEME_TEXT[id].blurb}</p>
+    <Figure
+      src={`img/dream/theme-${id}.webp`}
+      alt={`Tema ${THEME_TEXT[id].name}: ilustrações do parque em 3D e em vista de cima, com as peças de moldura, frente e fundo na cor do tema`}
+    />
+    <ul class="theme-reqs">
+      <li><strong>Árvores:</strong> {THEME_REQUIREMENTS[id].trees}</li>
+      <li><strong>Sol:</strong> {THEME_REQUIREMENTS[id].sun}</li>
+      <li><strong>Terreno:</strong> {THEME_REQUIREMENTS[id].lot}</li>
+      <li><strong>Voluntários:</strong> {THEME_REQUIREMENTS[id].volunteers}</li>
+    </ul>
+  </div>
+))}
+
+{/* site-added: Playful Learning is the toolkit's own appendix (linked from its Dream chapter); cross-linking it here matches where the toolkit itself introduces it. */}
+<Callout kind="note" title="Vai desenhar pensando nas crianças também?">
+  O Park in a Truck fez uma parceria com o **Playful Learning Landscapes**, uma iniciativa que junta a ciência de
+  como as crianças aprendem com o desenho de parques do dia a dia — mesas de separar, rodas das histórias, histórias
+  com ícones e muito mais, combinando com cada um dos quatro temas acima.
+  [Veja o guia do Playful Learning ↗](/playful-learning/)
+</Callout>
+
+<Field
+  id="dream.theme-reasons"
+  label="Há motivos específicos para vocês preferirem um tema de parque mais do que os outros?"
+  type="textarea"
+/>
+<Field
+  id="dream.theme-qualities"
+  label="Há qualidades específicas de parque nos temas que vocês mais desejam?"
+  type="textarea"
+/>
+<Choice
+  id="dream.preferred-theme"
+  label="Qual é o tema de parque preferido de vocês?"
+  options={[
+    { value: 'edible', label: 'Comestível', color: THEMES.edible.frame },
+    { value: 'sanctuary', label: 'Refúgio', color: THEMES.sanctuary.frame },
+    { value: 'nature', label: 'Natureza', color: THEMES.nature.frame },
+    { value: 'event', label: 'Eventos', color: THEMES.event.frame },
+    { value: 'mix', label: 'Uma mistura de temas', desc: 'Um tema diferente para a moldura, a frente e o fundo' },
+  ]}
+/>
+<Choice
+  id="dream.theme-fits-site"
+  label="O tema que vocês escolheram combina com as características do terreno na folha de resumo da etapa Avaliar?"
+  options={[
+    { value: 'yes', label: 'Sim', desc: 'Combina bem — sigam em frente' },
+    { value: 'no', label: 'Não', desc: 'Repensem o tema do parque' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={5} />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={6} label="Tema Comestível (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={7} label="Tema Refúgio (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={8} label="Tema Natureza (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={9} label="Tema Eventos (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={10} label="Qual tema é o certo para vocês? (PDF)" />
+
+## As peças do parque e como usá-las {/* #park-pieces-how-to-use-them */}
+
+O modelo de desenho do seu parque é feito de partes diferentes — as **peças do parque**. Há peças de FRENTE e de
+FUNDO para o interior do parque, e uma MOLDURA onde encaixá-las. Cada peça vem num dos quatro temas, e todas as peças
+podem ser trocadas entre si, então você pode misturar e combinar temas ou escolher um só tema para o parque todo.
+
+Como a moldura em volta de uma foto de família, a **moldura** forma a borda em volta do interior do parque — um
+lugar acolhedor para entradas, árvores e outros elementos. O interior é dividido em **frente** (mais perto da
+entrada do parque, com os principais elementos fixos) e **fundo** (geralmente mais aberto, para usos variados).
+
+As imagens do guia aparecem em vista **axonométrica** 3D, como uma fotografia, para ficarem fáceis de imaginar. Para
+desenhar o seu parque de verdade, você vai usar uma **planta** (vista de cima), plana, que parece um mapa simples —
+as duas vistas mostram as mesmas coisas.
+
+<Figure
+  src="img/dream/park-pieces-frame-front-back.webp"
+  alt="Desenho comparando a vista axonométrica (3D) e a vista de cima do parque: uma peça de moldura se junta a uma peça de frente e a uma de fundo para formar o parque inteiro, mostradas como blocos 3D empilhados e como planta plana"
+/>
+
+<Figure
+  src="img/dream/mix-and-match.webp"
+  alt="Quatro parques de exemplo, cada um juntando uma moldura, uma frente e um fundo de temas diferentes — eventos, refúgio, comestível e natureza — para mostrar como as peças se misturam e combinam de infinitas maneiras"
+/>
+
+<Callout kind="auto">
+  No papel, misturar e combinar significa imprimir, recortar e colar as peças com fita à mão. O planejador abaixo faz
+  essa parte por você — escolha o tema da moldura, da frente e do fundo e ele monta tudo na hora, no tamanho exato do
+  seu terreno de verdade.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={4} />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={13} label="Brinque com as peças (PDF)" />
+
+## Desenhe o seu parque {/* #design-your-park */}
+
+{/* site-added: mode prop for the planner workstream; placement and surrounding copy are ours. */}
+<Planner mode="design" />
+
+<Callout kind="auto" title="Encaixa no seu terreno de verdade, automaticamente">
+  O planejador encaixa as próprias peças do Park in a Truck no seu terreno de verdade — ajustando o tamanho com
+  faixas de emenda, do mesmo jeito que o caderno de trabalho faz à mão — e conta tudo para você enquanto você
+  desenha, pronto para o orçamento e as listas de plantas abaixo.
+</Callout>
+
+<details>
+  <summary>Prefere papel? Imprima as peças do parque</summary>
+
+  Depois de ver os temas, confira a letra que você marcou na página de Resumo da etapa Avaliar (tamanho A–E) e a
+  localização do seu terreno (no meio do quarteirão, ou de esquina com a rua à direita ou à esquerda). Clique no link
+  certo abaixo — cada um abre uma pasta do Google Drive com as peças do parque para imprimir naquele tamanho e tipo
+  de terreno.
+
+  <table class="pieces-table">
+    <thead>
+      <tr><th>Tamanho</th><th>Terreno no meio do quarteirão</th><th>Terreno de esquina — rua à direita</th><th>Terreno de esquina — rua à esquerda</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>A</strong></td><td><a href="https://drive.google.com/open?id=1e3j5d8ZsIxVxsJsdtoosKgMAuCpQwBKo" target="_blank" rel="noopener">Baixar ↗</a></td><td><a href="https://drive.google.com/open?id=1Txw_BMZlvseeyCetUYbGfVSIu2_eq7HW" target="_blank" rel="noopener">Baixar ↗</a></td><td><a href="https://drive.google.com/open?id=1LBQG4r2z1geA6rIEyK_GFYGzV4IBQFua" target="_blank" rel="noopener">Baixar ↗</a></td></tr>
+      <tr><td><strong>B</strong></td><td><a href="https://drive.google.com/open?id=1LC6QvBJ2D-LyhbFGYXsjByiWQaFk06AF" target="_blank" rel="noopener">Baixar ↗</a></td><td><a href="https://drive.google.com/open?id=1LKVUm28LhzKNqmMPPsufWrxt-xqTyJrk" target="_blank" rel="noopener">Baixar ↗</a></td><td><a href="https://drive.google.com/open?id=1LQmrAsZd7Aw0M6F2iwFUUWjoUm-uAIFA" target="_blank" rel="noopener">Baixar ↗</a></td></tr>
+      <tr><td><strong>C</strong></td><td><a href="https://drive.google.com/open?id=1LR04NYM7Ii2srwf4E5tl2t26R8jxdWQr" target="_blank" rel="noopener">Baixar ↗</a></td><td><a href="https://drive.google.com/open?id=1LSWINYM72UNHj6hGjrsn0S51h2hJL47s" target="_blank" rel="noopener">Baixar ↗</a></td><td><a href="https://drive.google.com/open?id=1LJCzWBkOh_hG8205xt1sJ17s4jQFD-H-" target="_blank" rel="noopener">Baixar ↗</a></td></tr>
+      <tr><td><strong>D</strong></td><td><a href="https://drive.google.com/open?id=1LfpisFCCWZwitjJJ2_vpFfv_Pv_pnhMf" target="_blank" rel="noopener">Baixar ↗</a></td><td><a href="https://drive.google.com/open?id=1LSqUwvHJQd5riQI56GgMO6GgN9LK7-Or" target="_blank" rel="noopener">Baixar ↗</a></td><td><a href="https://drive.google.com/open?id=1LejWNaZ9sQFiy1P3er03OuwRURV7LNQI" target="_blank" rel="noopener">Baixar ↗</a></td></tr>
+      <tr><td><strong>E</strong></td><td><a href="https://drive.google.com/open?id=1L-pqs-CuyMjeHE7UgEIDLawzv4ErTA6h" target="_blank" rel="noopener">Baixar ↗</a></td><td><a href="https://drive.google.com/open?id=1LlyI3QGglqZw5f92aR1WLES7Nuz0gkOC" target="_blank" rel="noopener">Baixar ↗</a></td><td><a href="https://drive.google.com/open?id=1LiE8uy8Uc-6R55t8cQr2Eg4CGdifcC8J" target="_blank" rel="noopener">Baixar ↗</a></td></tr>
+    </tbody>
+  </table>
+  <p class="muted">Os nomes dos tipos de terreno seguem a própria página de download do caderno de trabalho — se um conjunto de peças não combinar com a sua esquina, tente o outro.</p>
+
+  Abra as peças que você baixou e imprima-as só de um lado, em papel de 8.5"×11", depois recorte pelas linhas
+  tracejadas. Alinhe as peças usando os símbolos de alinhamento impressos em cada folha, e junte com fita adesiva.
+  Siga para a próxima subetapa para ajustar o parque montado ao tamanho real do seu terreno.
+
+  <PdfPage doc="downloads/workbooks/04-dream.pdf" page={11} label="Baixe as peças do parque (PDF)" />
+  <PdfPage doc="downloads/workbooks/04-dream.pdf" page={12} label="Imprima + recorte as peças (PDF)" />
+</details>
+
+## Ajuste o tamanho do seu parque {/* #right-size-your-park */}
+
+Se as peças cabem certinho no seu terreno, pule para a parte de acrescentar o que já existe no terreno. Se sobrar
+espaço, aumente o parque acrescentando faixas de emenda — pés a mais de moldura, de frente ou de fundo — para usar
+todo o espaço disponível.
+
+<table class="size-table">
+  <thead><tr><th>Tamanho</th><th>Lado comprido</th><th>Lado curto</th></tr></thead>
+  <tbody>
+    {SIZES.map((s) => (
+      <tr><td><strong>{s.id}</strong></td><td>{s.long[0]}–{s.long[1]} pés</td><td>{s.short[0]}–{s.short[1]} pés</td></tr>
+    ))}
+  </tbody>
+</table>
+
+{/* site-added: sizing.ts also flags lots below size A; call that out here since it's the natural place a reader learns their lot doesn't fit the smallest set. */}
+<Callout kind="note" title="Menor que o tamanho A?">
+  O tamanho não importa. Um canteiro de 4×4, um jardim na frente de casa ou até uma floreira de janela ainda podem
+  virar um plantio para polinizadores — use o [guia Park Patch](/park-patch/) em vez das peças do parque completo
+  abaixo.
+</Callout>
+
+Há dois tipos de faixa de emenda: a **faixa de emenda no comprimento**, cortada entre a peça da frente e a peça do
+fundo, acrescenta pés ao longo do lado comprido do parque; a **faixa de emenda na largura**, aparada ao longo do
+comprimento, acrescenta pés ao longo do lado curto. As duas têm linhas tracejadas pretas a cada 4 pés e linhas
+tracejadas cinza a cada 1 pé, para você contar exatamente quanto precisa.
+
+<Figure
+  src="img/dream/length-seam.webp"
+  alt="Desenho da faixa de emenda no comprimento: conte as linhas tracejadas da faixa entre a peça da frente e a do fundo do parque, recorte, depois cole com fita a faixa de emenda na largura no meio do parque e junte tudo de novo"
+/>
+<Figure
+  src="img/dream/width-seam.webp"
+  alt="Desenho da faixa de emenda na largura: conte as linhas tracejadas da faixa ao longo do comprimento do parque, recorte no tamanho certo, depois coloque a faixa de emenda na largura no meio e junte os dois lados com fita"
+/>
+
+<Callout kind="auto">
+  O planejador estica automaticamente as peças que você escolheu até as medidas exatas do seu terreno — sem recortar
+  nem colar com fita.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={14} />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={15} label="Faixa de emenda no comprimento (PDF)" />
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={16} label="Faixa de emenda na largura (PDF)" />
+
+## Acrescente o que já existe no terreno {/* #add-existing-conditions */}
+
+Passe para o seu desenho o que já existe no terreno, a partir da planta que você desenhou no caderno de trabalho
+Avaliar. Coloque as duas plantas lado a lado e copie cada elemento — as grades são iguais, então é só contar os
+quadradinhos para saber onde cada coisa fica. Se uma árvore que já existe cair numa área de plantio, ótimo; se cair
+na brita, tudo bem também (a etapa Criar explica o que fazer). Se o que já existe no terreno não combinar com o seu
+desenho — uma árvore em cima de um banco, por exemplo —, você pode tirar o banco riscando-o, ou mudar de lugar a peça
+da frente ou do fundo inteira. O desenho é um modelo: ele é um pouco rígido, mas você sempre pode acrescentar ou
+tirar coisas para ele funcionar para vocês.
+
+<Callout kind="auto">
+  As árvores, calhas, áreas encharcadas, hidrantes e fios que você marcou em Avaliar já estão colocados no
+  planejador — arraste o que estiver no lugar errado.
+</Callout>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={17} />
+
+## Conte as suas peças e o custo {/* #count-your-pieces-cost */}
+
+É hora de fazer a contagem da sua planta. Cada peça de frente, de fundo e de moldura tem uma contagem de todos os
+seus itens, para você calcular o custo e comprar os materiais. O caderno de trabalho pergunta: quantos pés tem o lado
+comprido do seu terreno (comprimento)? E o lado curto (largura)? Quantos quadrados verdes de plantio vocês têm? E,
+usando a legenda das suas peças do parque, quantos de cada móvel?
+
+<CostEstimator />
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — the order list's "fire hydrant opener" items; facts checked 2026-10-04 on water.phila.gov. */}
+<Callout kind="site" title="Nota deste site, não do Park in a Truck: hidrantes">
+  A lista de compras sugere um abridor de hidrante. Para abrir um hidrante na Filadélfia, é preciso uma
+  [licença de hidrante do Philadelphia Water Department ↗](https://water.phila.gov/development/connections/hydrant-permits/)
+  (em inglês) e uma válvula de retenção aprovada (as hortas comunitárias não pagam a taxa da licença). O
+  [guia de hortas urbanas do PWD ↗](https://water.phila.gov/urban-garden-guide/) (em inglês) mostra os outros jeitos
+  de levar água até uma horta.
+</Callout>
+
+<Download href="downloads/templates/cost-estimator.xlsx" label="Calculadora de custos" note="Planilha original — faça a sua própria cópia para editar" />
+
+<details>
+  <summary>Contando no papel? Coloque os seus totais aqui</summary>
+  <Field id="dream.diy-length" label="Comprimento (lado comprido do seu terreno)" type="number" unit="pés" />
+  <Field id="dream.diy-width" label="Largura (lado curto do seu terreno)" type="number" unit="pés" />
+  <Field id="dream.diy-planting-squares" label="Quadrados de plantio (quadrados verdes na sua planta)" type="number" />
+  <p class="muted">Conte os móveis usando a legenda impressa nas suas peças do parque, depois coloque tudo na planilha da calculadora de custos acima.</p>
+</details>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={18} />
+
+## Conte e escolha as suas plantas {/* #count-choose-your-plants */}
+
+Tudo o que está verde na sua planta é área de plantio, e cada símbolo de planta tem um tamanho. Conte as perenes, os
+arbustos, as árvores pequenas e as árvores grandes do seu desenho — sol e sombra separados para as perenes e os
+arbustos. Você vai escolher as variedades de planta em seguida.
+
+{/* site-added: the six counts show your design's numbers (project.extra.tally) until you type your own; the plant picker below uses the same numbers */}
+<Field id="dream.perennials-sun" label="Perenes — quadrados verdes no sol" type="number" unit="quadrados" auto="extra.tally.plantingSquares.sun" autoNote="✓ Preenchido a partir do seu desenho — digite para mudar" />
+<Field id="dream.perennials-shade" label="Perenes — quadrados verdes na sombra" type="number" unit="quadrados" auto="extra.tally.plantingSquares.shade" autoNote="✓ Preenchido a partir do seu desenho — digite para mudar" />
+<Field id="dream.shrubs-sun" label="Arbustos — sol" type="number" auto="extra.tally.shrubs.sun" autoNote="✓ Preenchido a partir do seu desenho — digite para mudar" />
+<Field id="dream.shrubs-shade" label="Arbustos — sombra" type="number" auto="extra.tally.shrubs.shade" autoNote="✓ Preenchido a partir do seu desenho — digite para mudar" />
+<Field id="dream.small-trees" label="Árvores pequenas" type="number" auto="extra.tally.smallTrees" autoNote="✓ Preenchido a partir do seu desenho — digite para mudar" />
+<Field id="dream.large-trees" label="Árvores grandes" type="number" auto="extra.tally.largeTrees" autoNote="✓ Preenchido a partir do seu desenho — digite para mudar" />
+
+<PlantPicker />
+
+Cada tema tem a sua própria lista de plantas sugeridas — um ponto de partida, não uma obrigação. Se você está
+misturando dois temas, escolha plantas das duas listas.
+
+<div class="plant-list-links">
+  <Download href="https://docs.google.com/spreadsheets/d/1QsoQ6KYBT5tVrlAtTxoD5q0yP2YS5Wyt/copy" label="Lista de plantas Comestível" />
+  <Download href="https://docs.google.com/spreadsheets/d/1RhCdaiCLbEJD8KXiX7uJMD7xJFRNCERy/copy" label="Lista de plantas Refúgio" />
+  <Download href="https://docs.google.com/spreadsheets/d/1eEVK3dpBy1-xBFDaACIOTMB2Dd9COGvz/copy" label="Lista de plantas Natureza" />
+  <Download href="https://docs.google.com/spreadsheets/d/1oy_aLqP7RoBcHngZ_uFMl_YBvzJ271MR/copy" label="Lista de plantas Eventos" />
+</div>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={20} label="Escolha as suas plantas (PDF)" />
+
+## Monte {/* #assemble */}
+
+Agora é hora de ver como os elementos do parque são construídos. Alguns elementos têm instruções de montagem
+próprias, passo a passo, como um manual da Ikea; outros vêm com um desenho sugerido, a partir de instruções já
+testadas; e alguns são simplesmente produtos prontos, de loja. Clique em qualquer elemento abaixo — se ele está no
+seu parque, é assim que você o constrói (ou compra).
+
+<div class="elements-grid">
+  {Object.values(ELEMENTS)
+    .filter((el) => !NOT_BUILT.has(el.id) && ASSEMBLE_ICONS.has(ICON_FALLBACK[el.id] ?? el.id))
+    .map((el) => {
+      const icon = ICON_FALLBACK[el.id] ?? el.id;
+      const href = el.guide ? u(`build/${el.guide}/`) : el.link;
+      const external = !el.guide;
+      return (
+        <a class="element-card" href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
+          <img src={u(`img/dream/elements/${icon}.webp`)} alt="" width="96" height="72" loading="lazy" />
+          <span>{ELEMENT_NAMES[el.id] ?? el.name}</span>
+        </a>
+      );
+    })}
+</div>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={19} />
+
+## Tudo pronto? {/* #are-you-ready */}
+
+Parabéns por terminar o caderno de trabalho Sonhar! Marque cada item abaixo antes de seguir para Criar.
+
+<Checklist
+  id="dream.ready-checklist"
+  items={[
+    { value: 'theme-review', label: 'Revisão dos temas', hint: 'Vocês viram os temas e decidiram qual combina mais com o que precisam' },
+    { value: 'custom-design', label: 'Desenho sob medida', hint: 'Vocês brincaram com as peças do parque para escolher o desenho final do parque' },
+    { value: 'custom-size', label: 'Tamanho sob medida', hint: 'Vocês ajustaram o parque às medidas do terreno e ao que já existe nele' },
+    { value: 'cost-estimate', label: 'Orçamento', hint: 'Vocês contaram as peças e colocaram tudo na calculadora de custos' },
+    { value: 'plant-choice', label: 'Escolha das plantas', hint: 'Vocês escolheram as plantas a partir da contagem de plantas' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/04-dream.pdf" page={20} label="Tudo pronto? (PDF)" />
+
+<style>
+  {`
+  .theme-reqs { list-style: none; padding: 0; margin: 0.8em 0 0; font-size: 0.92rem; color: var(--ink-2); display: grid; gap: 0.2em; }
+  .size-table, .pieces-table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.95rem; }
+  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: left; }
+  .elements-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; margin: 1.2em 0; }
+  .element-card { display: flex; flex-direction: column; align-items: center; gap: 0.4em; text-align: center; padding: 10px; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); font-size: 0.85rem; background: #fff; }
+  .element-card:hover { border-color: var(--cyan); box-shadow: var(--shadow); }
+  .element-card img { max-width: 96px; max-height: 72px; width: auto; }
+  .plant-list-links { display: flex; flex-wrap: wrap; gap: 10px; }
+  `}
+</style>
