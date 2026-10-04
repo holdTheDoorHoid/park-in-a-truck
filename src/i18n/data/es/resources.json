@@ -1,0 +1,571 @@
+{
+  "partners": [
+    {
+      "description": "Junto con PiaT, amplía las opciones de diseños de parques."
+    },
+    {
+      "description": "El brazo de educación y difusión de la Comisión de Planificación de la Ciudad de Filadelfia; ofrece un curso de ocho semanas sobre cómo funcionan la planificación y el desarrollo de la ciudad."
+    },
+    {
+      "description": "La organización local sin fines de lucro que financió el primer parque de Park in a Truck. (El enlace que pone la propia guía para este crédito en realidad lleva a communityprogress.org, una organización nacional sin fines de lucro sobre bancos de terrenos; probablemente el enlace y el texto no coinciden en el PDF original, así que aquí no se da ninguna dirección web hasta confirmarlo.)"
+    },
+    {
+      "description": "Agencia de bienes raíces local de Filadelfia que atiende la zona del oeste de Filadelfia."
+    },
+    {
+      "description": "Trabaja con PiaT en infraestructura verde: comuníquese con ellos para que le ayuden a desconectar los bajantes de agua o a agregar un jardín de lluvia a su parque."
+    },
+    {
+      "description": "Un líder en la conservación de terrenos urbanos; un fideicomiso comunitario de terrenos para huertos y otros espacios abiertos."
+    },
+    {
+      "description": "Socio, corporación de desarrollo comunitario (grupo \"PARTNERS\" de Linktree). Por ahora su sitio web muestra una página que no funciona: se confirmó que está caído, no que bloquee las consultas automáticas."
+    },
+    {
+      "description": "Financiador."
+    },
+    {
+      "description": "Socio para los permisos, los terrenos y los datos de la Ciudad."
+    },
+    {
+      "description": "Socio para el hábitat y la siembra."
+    },
+    {
+      "description": "Socio para el hábitat y los jardines para polinizadores en varios parques ya construidos."
+    },
+    {
+      "description": "Financiador."
+    },
+    {
+      "description": "Socio para el cuaderno de trabajo Playful Learning Landscapes."
+    },
+    {
+      "description": "Financiador."
+    },
+    {
+      "description": "Herramienta de la Ciudad para transformar una propiedad baldía."
+    }
+  ],
+  "press": [
+    {
+      "title": "Con el programa Park in a Truck, Jefferson busca ayudar a transformar comunidades con pocos recursos"
+    },
+    {
+      "title": "La iniciativa Park in a Truck recibe el reconocimiento \"Social Good\" de la revista Fast Company"
+    },
+    {
+      "title": "Park in a Truck recibe el premio Groundbreaker 2020 de Green Building United"
+    },
+    {
+      "title": "\"Park in a Truck\" es como Ikea, pero para construir parques de barrio"
+    },
+    {
+      "title": "Lotes baldíos se convierten en parques hermosos en barrios de Filadelfia"
+    },
+    {
+      "title": "El programa Park in a Truck transforma áreas verdes urbanas en Filadelfia con la ayuda de los jóvenes del barrio"
+    },
+    {
+      "title": "ASLA Spotlight — primavera de 2025"
+    },
+    {
+      "title": "Park in a Truck"
+    },
+    {
+      "title": "Transformar los barrios, un parque a la vez: hecho por la comunidad, para la comunidad"
+    },
+    {
+      "title": "Instrucciones de armado de Park in a Truck de Jefferson, n.º 1"
+    },
+    {
+      "title": "Instrucciones de armado de Park in a Truck de Jefferson, n.º 2"
+    }
+  ],
+  "supplierGroups": [
+    {
+      "label": "Alquiler de herramientas",
+      "items": [
+        {
+          "title": "West Philadelphia Tool Library",
+          "note": "Herramientas de mano; trabaja con Philadelphia Orchard Project y también da clases para aprender habilidades."
+        },
+        {
+          "title": "Diamond Tool (alquiler de herramientas eléctricas)",
+          "note": "Parece que ahora es parte de White Cap; bloquea las consultas automáticas."
+        },
+        {
+          "title": "OK Rental Sales & Service",
+          "note": "Ya no funciona ninguna de las direcciones web que PiaT ha dado para esta tienda de alquiler de Darby, PA (okrentalsaleservice.com, okrental1.com)."
+        }
+      ]
+    },
+    {
+      "label": "Desechos y reciclaje",
+      "items": [
+        {
+          "title": "Fairmount Park Organic Recycling Center",
+          "note": "3850 W Ford Rd: compost, astillas de madera, mantillo y estiércol a muy bajo costo."
+        },
+        {
+          "title": "Richard S. Burns & Co. (materiales reciclados)",
+          "note": "4300 Rising Sun Ave: lugar para botar desechos y productos reciclados a la venta."
+        }
+      ]
+    },
+    {
+      "label": "Viveros y plantas",
+      "items": [
+        {
+          "title": "LandHealth Institute Nursery (Philaflora)"
+        },
+        {
+          "title": "Good Host Plants",
+          "note": "Especialista local en plantas para polinizadores."
+        },
+        {
+          "title": "Pleasant Run Nursery",
+          "note": "Plantas ornamentales de buena calidad y variedades nativas; en NJ, entrega con un mínimo de $1,250."
+        },
+        {
+          "title": "Pinelands Nursery",
+          "note": "Plantas para restauración de la ecorregión local; el sitio responde de forma rara a las consultas automáticas, pero es muy probable que esté funcionando."
+        },
+        {
+          "title": "Archewild",
+          "note": "Plantas para restauración de la ecorregión local."
+        },
+        {
+          "title": "North Creek Nurseries"
+        },
+        {
+          "title": "Gardens Alive",
+          "note": "El certificado de seguridad (TLS) del sitio está vencido por ahora: el navegador le va a mostrar una advertencia."
+        },
+        {
+          "title": "Burpee — árboles frutales"
+        },
+        {
+          "title": "Stark Bro's — árboles frutales"
+        },
+        {
+          "title": "Gurney's — frutas y bayas"
+        },
+        {
+          "title": "Willis Orchards — árboles frutales"
+        },
+        {
+          "title": "PHS Gold Medal Plants (plantas medalla de oro de PHS)"
+        },
+        {
+          "title": "Philly Orchard Project — recursos"
+        }
+      ]
+    },
+    {
+      "label": "Madera y materiales de construcción",
+      "items": [
+        {
+          "title": "D&S Supply",
+          "note": "4260 Macalester St: materiales de jardinería, mantillo y herramientas."
+        },
+        {
+          "title": "Underdog Landscape Supply",
+          "note": "701 Washington St, Conshohocken: tierra negra, mantillo, compost."
+        },
+        {
+          "title": "Mid Atlantic Pine Straw"
+        },
+        {
+          "title": "Woodland Building Supply",
+          "note": "4701 Woodland Ave, Filadelfia."
+        },
+        {
+          "title": "C&R Building Supply",
+          "note": "1601 S 49th St, Filadelfia."
+        },
+        {
+          "title": "A&A Lumber",
+          "note": "Madera de ciprés, Avondale PA."
+        },
+        {
+          "title": "Delaware County Supply"
+        },
+        {
+          "title": "Castor Materials",
+          "note": "3301 S 61st St: piedra triturada, tierra negra; hacen entregas."
+        },
+        {
+          "title": "Rockler — cómo elegir el mejor acabado para proyectos al aire libre"
+        },
+        {
+          "title": "Real Milk Paint (RMP Finishes) — el mejor acabado para madera de exterior"
+        },
+        {
+          "title": "Vermont Natural Coatings — acabados para exterior"
+        },
+        {
+          "title": "Hairpin Legs — soportes de respaldo y herrajes"
+        }
+      ]
+    },
+    {
+      "label": "Gaviones y piedra",
+      "items": [
+        {
+          "title": "Gabion1.com"
+        },
+        {
+          "title": "Darby Wire Mesh",
+          "note": "Bloquea las consultas automáticas; la dirección web está registrada y funciona."
+        },
+        {
+          "title": "Cómo construir un muro de gavión (Gardendrum)"
+        }
+      ]
+    },
+    {
+      "label": "Videos de cómo hacerlo",
+      "items": [
+        {
+          "title": "Cómo podar un árbol"
+        },
+        {
+          "title": "Cómo sembrar un árbol"
+        },
+        {
+          "title": "Cómo sembrar un arbusto"
+        },
+        {
+          "title": "Borde de madera"
+        },
+        {
+          "title": "Cómo construir un muro de gavión"
+        },
+        {
+          "title": "Cómo construir una mesa comunitaria"
+        },
+        {
+          "title": "Cómo construir una cajonera fría"
+        },
+        {
+          "title": "Cómo construir canteros elevados"
+        },
+        {
+          "title": "Pode como un profesional"
+        },
+        {
+          "title": "Guía de riego y del agua de lluvia"
+        }
+      ]
+    },
+    {
+      "label": "Recursos para aprender",
+      "items": [
+        {
+          "title": "Penn State Extension — análisis de suelo"
+        },
+        {
+          "title": "Penn State Extension — formularios para el análisis de fertilidad del suelo"
+        },
+        {
+          "title": "Penn State Extension — plagas y enfermedades"
+        },
+        {
+          "title": "Penn State Extension — programa Master Gardener"
+        },
+        {
+          "title": "Missouri Botanical Garden — buscador de plantas (Plant Finder)"
+        },
+        {
+          "title": "Arbor Day Foundation"
+        },
+        {
+          "title": "Arbor Day — cómo sembrar un árbol que viene en maceta"
+        },
+        {
+          "title": "Arbor Day — árboles frutales"
+        },
+        {
+          "title": "Pennsylvania Horticultural Society (PHS)",
+          "note": "Talleres, información sobre huertos comunitarios, programa de barriles de lluvia."
+        },
+        {
+          "title": "Grounded in Philly",
+          "note": "Ayuda legal, datos y guías para conseguir un lote y quedarse con él."
+        },
+        {
+          "title": "Philly Orchard Project"
+        },
+        {
+          "title": "Soil Generation",
+          "note": "Coalición dirigida por personas negras y latinas para que la comunidad controle la tierra y los alimentos."
+        },
+        {
+          "title": "Park Advocate Handbook (NRPA)"
+        },
+        {
+          "title": "The PHS City Parks Handbook (Temple University Press)"
+        },
+        {
+          "title": "Vacant Lot Activation Toolkit (Trust South LA)"
+        },
+        {
+          "title": "Green2015: An Action Plan for the First 500 Acres (plan de acción para los primeros 500 acres)",
+          "note": "Plan de PennPraxis para Philadelphia Parks & Recreation."
+        },
+        {
+          "title": "PlantSnap (aplicación para identificar plantas y malas hierbas)"
+        },
+        {
+          "title": "Gardener's Path — cómo usar un medidor de lluvia"
+        },
+        {
+          "title": "Cómo poner mantillo (SKH)"
+        },
+        {
+          "title": "Herbicida a base de vinagre (ejemplo de producto)",
+          "note": "La única fuente que se encontró para este producto en particular; el enlace no es una recomendación."
+        }
+      ]
+    },
+    {
+      "label": "Programas de la Ciudad de Filadelfia",
+      "items": [
+        {
+          "title": "Atlas Philadelphia (búsqueda de propiedades)"
+        },
+        {
+          "title": "Mapa de dueños de las parcelas de Filadelfia (ArcGIS)"
+        },
+        {
+          "title": "Organizaciones comunitarias registradas (RCO)"
+        },
+        {
+          "title": "Permiso temporal de no estacionarse"
+        },
+        {
+          "title": "Green City, Clean Waters — subvención para el agua de lluvia y los jardines de lluvia"
+        }
+      ]
+    }
+  ],
+  "toolkitLibrary": {
+    "intro": "¡Bienvenido a la biblioteca de la guía! Aquí tiene muchos recursos y enlaces con más información, organizados por capítulo.",
+    "sections": [
+      {
+        "title": "Introducción",
+        "entries": [
+          {
+            "title": "Para reducir la pobreza, los esfuerzos del Concejo Municipal deberían incluir más áreas verdes (The Inquirer)"
+          },
+          {
+            "title": "Promovamos la salud y las áreas verdes, un lote vacío a la vez (The Inquirer)"
+          },
+          {
+            "title": "Gangsta Gardener — Ron Finley"
+          },
+          {
+            "title": "Just Bees And Things And Flowers: cómo las jardineras negras sobrevivirán la crisis del COVID-19 (Essence)"
+          },
+          {
+            "title": "Black Girls with Gardens"
+          },
+          {
+            "title": "Farming While Black — Leah Penniman"
+          }
+        ]
+      },
+      {
+        "title": "01 Adquirir",
+        "entries": [
+          {
+            "title": "The PHS City Parks Handbook ($13.95)"
+          },
+          {
+            "title": "Park Advocate Handbook (gratis)"
+          },
+          {
+            "title": "Atlas Philadelphia"
+          },
+          {
+            "title": "Citizens Planning Institute"
+          },
+          {
+            "title": "Green2015: An Action Plan for the First 500 Acres (plan de acción para los primeros 500 acres)"
+          },
+          {
+            "title": "Grounded in Philly"
+          },
+          {
+            "title": "Neighborhood Gardens Trust"
+          },
+          {
+            "title": "Soil Generation"
+          }
+        ]
+      },
+      {
+        "title": "02 Organizar",
+        "entries": [
+          {
+            "title": "The PHS City Parks Handbook"
+          },
+          {
+            "title": "Vacant Lot Activation Toolkit (Free Lots Angeles)"
+          }
+        ]
+      },
+      {
+        "title": "03 Evaluar",
+        "entries": [
+          {
+            "title": "Penn State Extension — análisis de suelo"
+          }
+        ]
+      },
+      {
+        "title": "04 Soñar",
+        "entries": [
+          {
+            "title": "Gardens Alive"
+          },
+          {
+            "title": "North Creek Nurseries"
+          },
+          {
+            "title": "Missouri Botanical Garden — buscador de plantas (Plant Finder)"
+          },
+          {
+            "title": "Longwood Gardens — búsqueda de plantas"
+          },
+          {
+            "title": "Arbor Day Foundation"
+          },
+          {
+            "title": "Penn State Master Gardeners — guía de siembra para Filadelfia"
+          }
+        ]
+      },
+      {
+        "title": "05 Crear",
+        "entries": [
+          {
+            "title": "Woodland Building Supply"
+          },
+          {
+            "title": "C&R Building Supply"
+          },
+          {
+            "title": "A&A Lumber"
+          },
+          {
+            "title": "Philly Reclaim"
+          },
+          {
+            "title": "PowerCorpsPHL"
+          },
+          {
+            "title": "Burpee — árboles frutales"
+          },
+          {
+            "title": "Stark Bro's — árboles frutales"
+          },
+          {
+            "title": "Gurney's — frutas y bayas"
+          },
+          {
+            "title": "Willis Orchards — árboles frutales"
+          },
+          {
+            "title": "Good Host Plants"
+          },
+          {
+            "title": "LandHealth Institute Nursery (Philaflora)"
+          },
+          {
+            "title": "Pleasant Run Nursery"
+          },
+          {
+            "title": "Pinelands Nursery"
+          },
+          {
+            "title": "Archewild"
+          },
+          {
+            "title": "Underdog Landscape Supply"
+          },
+          {
+            "title": "Castor Materials"
+          },
+          {
+            "title": "D&S Supply"
+          },
+          {
+            "title": "Richard S. Burns & Co."
+          },
+          {
+            "title": "West Philadelphia Tool Library"
+          },
+          {
+            "title": "Diamond Tool"
+          },
+          {
+            "title": "Fairmount Park Organic Recycling Center"
+          }
+        ]
+      },
+      {
+        "title": "06 Mantener",
+        "entries": [
+          {
+            "title": "Pennsylvania Horticultural Society"
+          },
+          {
+            "title": "Grounded in Philly"
+          },
+          {
+            "title": "Greensgrow"
+          },
+          {
+            "title": "Brandywine Conservancy — plantas invasoras"
+          },
+          {
+            "title": "Cómo sembrar un árbol que viene en maceta (Arbor Day)"
+          },
+          {
+            "title": "Cómo sembrar un arbusto (video)"
+          },
+          {
+            "title": "Cómo podar un árbol (video)"
+          },
+          {
+            "title": "Cómo podar un arbusto (Gardeners' World)"
+          },
+          {
+            "title": "Arbor Day Foundation — árboles frutales"
+          },
+          {
+            "title": "Philadelphia Orchard Project"
+          },
+          {
+            "title": "Lo básico del compost (video)"
+          },
+          {
+            "title": "Cómo abonar (Penn State Extension)"
+          },
+          {
+            "title": "Cómo poner mantillo en su jardín (Good Housekeeping)"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgments": {
+    "lead": "El Programa de Arquitectura del Paisaje y el Laboratorio de Innovación Social y Urbana, Thomas Jefferson University",
+    "note": "Este sitio convierte la guía, los cuadernos de trabajo y las listas de plantas de Park in a Truck en una versión guiada e interactiva, con permiso de Park in a Truck / Thomas Jefferson University. Todos los textos originales, las ilustraciones y las fotos son de ellos."
+  },
+  "legal": {
+    "title": "Aviso legal",
+    "text": "Las recomendaciones que se incluyen aquí se basan en prácticas comunes de fabricación y construcción. En ningún caso Thomas Jefferson University (TJU), el Lab For Social Innovation de TJU, Park-in-a-Truck ni su personal docente, empleados o afiliados serán responsables de ningún daño ni lesión a personas, ni de daños a la propiedad, que resulten del uso de estas recomendaciones. Thomas Jefferson University (TJU), el Lab For Social Innovation de TJU, Park-in-a-Truck y su personal docente, empleados y/o afiliados no dan ninguna garantía, expresa ni implícita, y por la presente rechazan y niegan toda otra garantía, incluidas, entre otras, las garantías o condiciones implícitas de comerciabilidad, de idoneidad para un fin determinado o de no infracción de la propiedad intelectual u otra violación de derechos. Además, Thomas Jefferson University (TJU), el Lab For Social Innovation de TJU, Park-in-a-Truck y/o su personal docente, empleados o afiliados no garantizan ni declaran nada sobre la exactitud, los resultados probables ni la confiabilidad del uso de estas recomendaciones. Usar estas recomendaciones significa que usted acepta lo anterior."
+  }
+}

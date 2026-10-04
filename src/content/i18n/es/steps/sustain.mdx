@@ -1,0 +1,273 @@
+---
+title: Mantener
+intro: Cuide su parque, temporada tras temporada.
+sources:
+  - Guía (Toolkit), págs. 61–65 (Mantener, Plan de trabajo anual para cuidar el parque, Actividades para cuidar el parque, Embajadores del parque)
+  - Cuaderno de trabajo Mantener, págs. 1–7
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import Download from '../../../../components/workbook/Download.astro';
+import StewardshipCalendar from '../../../../components/widgets/StewardshipCalendar.astro';
+
+Los parques de Park in a Truck buscan ser un oasis urbano lleno de plantas y árboles que alimentan a todos los que los
+visitan, incluidos los pájaros, las abejas, las mariposas, los murciélagos y los otros polinizadores de los que dependen
+las plantas. Como un bebé, su parque necesita mucho amor y atención en sus primeros años de vida para sobrevivir,
+prosperar y hacerse sociable.
+
+Este paso se divide en tres categorías, y lo mejor es que una persona coordine cada una:
+
+- **Sobrevivir**: la única categoría *indispensable*. Regar y quitar las malas hierbas cada semana durante los primeros
+  dos años. Si nadie de la comunidad puede encargarse de esto, va a tener que contratar a alguien mientras el parque
+  es pequeño.
+- **Prosperar**: un esfuerzo extra que es opcional: plantas anuales, bulbos y empezar un huerto de semillas.
+- **Convivir**: depende totalmente de ustedes: los eventos y las reuniones que convierten su parque en un lugar de
+  encuentro.
+
+<PdfPage doc="downloads/workbooks/06-sustain.pdf" page={3} />
+
+## Riegue y quite las malas hierbas cada semana {/* #water-weed-every-week */}
+
+**Riego.** Riegue sus plantas cada semana durante los primeros dos años. Fíjese si necesitan más o menos agua:
+
+- Si las primeras 2 pulgadas de tierra están secas, es hora de regar.
+- Si se nota que las plantas están marchitas, es hora de regar.
+- Use un medidor de lluvia para saber cuánta agua reciben sus plantas.
+
+Si tiene que regar, empape bien la zona de siembra: deje correr el agua durante 3 horas con una manguera de goteo
+(manguera porosa), o riegue a mano, lo bastante despacio para que el agua no se escurra y el tiempo suficiente para que
+entre de 6 a 8 pulgadas en la tierra.
+
+<Callout kind="tip">
+  [Consejos de riego y guía del medidor de lluvia (en inglés) ↗](https://gardenerspath.com/how-to/hacks/use-rain-gauge/) ·
+  [Consejos generales de riego (en inglés) ↗](https://youtu.be/ueQCiSD5AdM)
+</Callout>
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — watering from a hydrant needs a PWD permit; facts checked 2026-10-04 on water.phila.gov. */}
+<Callout kind="site">
+  Para regar con agua de un hidrante hace falta un
+  [permiso de hidrante del Philadelphia Water Department ↗](https://water.phila.gov/development/connections/hydrant-permits/)
+  (en inglés) y una válvula antirretorno (backflow preventer) aprobada (los huertos comunitarios no pagan la tarifa del
+  permiso). La [guía de huertos urbanos ↗](https://water.phila.gov/urban-garden-guide/) del PWD (en inglés) explica las
+  otras maneras de llevar agua a un huerto.
+</Callout>
+
+**Quitar las malas hierbas.** Hay que quitar las malas hierbas cada semana, del 15 de abril a octubre, por lo menos
+durante los primeros dos años.
+
+- Use un preemergente en sus canteros para controlar las malas hierbas (vea la limpieza de cada temporada, más abajo).
+- En lugar de arrancar las malas hierbas, pruebe rociarlas con una solución de vinagre al 20 %. Si tiene problemas,
+  consulte a su vivero local.
+- Consulte recursos en internet sobre malas hierbas, o una aplicación como PlantSnap, para identificar las plantas y las
+  malas hierbas.
+
+<Callout kind="tip">
+  [Preemergente para canteros de flores (en inglés) ↗](https://www.amazon.com/dp/B003S3U02E/) ·
+  [Preemergente para huertos de verduras (en inglés) ↗](https://www.amazon.com/dp/B083PKMJTM/) ·
+  [Vinagre al 20 % (en inglés) ↗](https://www.amazon.com/Green-Gobbler-Vinegar-Glyphosate-Herbicide/dp/B09HDFQ531/) ·
+  [Malas hierbas comunes (USDA, en inglés) ↗](https://www.nrcs.usda.gov/Internet/FSE_DOCUMENTS/nrcs142p2_017662.pdf) *(el enlace no funciona por ahora)*
+</Callout>
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — 20% vinegar is far stronger than kitchen vinegar; facts checked 2026-10-04 on npic.orst.edu. */}
+<Callout kind="site">
+  El vinagre que se vende para matar hierbas (de 20 % o más) es mucho más fuerte que el vinagre de cocina (más o menos
+  5 %): puede dañar los ojos para siempre y quemar la piel. Siga la etiqueta del producto y use protección para los ojos
+  y guantes ([National Pesticide Information Center ↗](https://npic.orst.edu/faq/vinegar.html), en inglés).
+</Callout>
+
+<PdfPage doc="downloads/workbooks/06-sustain.pdf" page={4} />
+
+## Cuidado de cada mes y limpieza de cada temporada {/* #monthly-care-seasonal-cleanup */}
+
+Una vez al mes, recorra el parque y revise lo siguiente:
+
+<Checklist
+  id="sustain.monthly-inspection"
+  items={[
+    { value: 'Insect or disease infestation', label: 'Plagas de insectos o enfermedades' },
+    { value: 'Evidence of weeds', label: 'Señales de malas hierbas' },
+    { value: 'Condition of mulch', label: 'Estado del mantillo (mulch)' },
+    { value: 'Evidence of dead or dying plants', label: 'Señales de plantas muertas o que se están muriendo' },
+    { value: 'Cleanup of trash and debris', label: 'Limpieza de basura y escombros' },
+    { value: 'Keep track of the success or failure of plantings', label: 'Anotar qué plantas prendieron y cuáles no' },
+  ]}
+/>
+
+### Mantillo
+
+Cubra todos los canteros con mantillo de hojas descompuestas o con mantillo de madera dura bien maduro y triturado tres
+veces, y manténgalo con un espesor de 2 a 3 pulgadas, con cuidado de no poner demasiado. Tenga mucho cuidado al poner
+mantillo alrededor de los árboles: la forma equivocada es amontonarlo contra el tronco como la ladera de una montaña; la
+forma correcta es como una dona plana, dejando una pulgada o más de espacio libre entre el mantillo y el tronco. Si el
+mantillo queda tocando el tronco, puede pudrir la corteza y dejar al árbol expuesto a daños de insectos, a enfermedades
+y hasta a la muerte.
+
+<Callout kind="tip">[Cómo poner mantillo (en inglés) ↗](https://skh.com/thedirt/how-to-lay-mulch/)</Callout>
+
+### Poda
+
+Use herramientas de podar de mano para podar todos los arbustos; no use podadoras eléctricas. Pode los arbustos y los
+árboles solo cuando haga falta para guiar su forma en el futuro, o para quitar partes muertas o enfermas. Pode y recorte
+las ramas para dejar un espacio libre de por lo menos 7 pies de alto sobre los senderos y de 13 pies sobre las calles y
+las entradas de carros.
+
+<Callout kind="tip">[Cómo podar como un profesional (en inglés) ↗](https://youtube.com/watch?v=BE2K_mCIppM)</Callout>
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — street trees are the City's; facts checked 2026-10-04 on phila.gov. */}
+<Callout kind="site">
+  Los árboles de la calle (los que están en la acera) son de la Ciudad: para podar o quitar uno hace falta un permiso de
+  Philadelphia Parks & Recreation. Vea las
+  [preguntas sobre los árboles de la calle ↗](https://www.phila.gov/departments/philadelphia-parks-recreation/street-tree-frequently-asked-questions/)
+  de la Ciudad (en inglés).
+</Callout>
+
+### Control de plagas
+
+El parque está diseñado para atraer a los polinizadores, que ayudan a controlar las plagas. Aun así, a veces hace falta
+que una persona intervenga: si ve algo raro en sus plantas, averigüe qué es: tome fotos, busque en internet y/o
+comuníquese con su vivero local.
+
+<Callout kind="tip">[Guía de plagas y enfermedades (en inglés) ↗](https://extension.psu.edu/trees-lawns-and-landscaping/home-gardening/pests-and-diseases)</Callout>
+
+### Limpieza de cada temporada
+
+<Checklist
+  id="sustain.spring-cleanup"
+  label="Primavera"
+  items={[
+    { value: 'Lightly rake out beds', label: 'Rastrillar los canteros con suavidad' },
+    { value: 'Cut back any unsightly perennials', label: 'Recortar las perennes que se vean feas' },
+    { value: 'Apply pre-emergent per package directions; spray weeds with 20% vinegar', label: 'Poner preemergente según las instrucciones del paquete; rociar las malas hierbas con vinagre al 20 %' },
+    { value: "Mulch beds (see 'mulching' above)", label: 'Poner mantillo en los canteros (vea "Mantillo", arriba)' },
+    { value: 'Add pansies and cool-season annuals for early spring color, if desired', label: 'Si quiere, agregar pensamientos y otras anuales de clima fresco para tener color a comienzos de la primavera' },
+  ]}
+/>
+<Checklist
+  id="sustain.late-summer-cleanup"
+  label="Final del verano"
+  items={[
+    { value: 'Prune evergreen shrubs', label: 'Podar los arbustos de hoja perenne' },
+    { value: 'Apply pre-emergent per package directions; spray weeds with 20% vinegar', label: 'Poner preemergente según las instrucciones del paquete; rociar las malas hierbas con vinagre al 20 %' },
+  ]}
+/>
+<Checklist
+  id="sustain.fall-cleanup"
+  label="Otoño"
+  items={[
+    { value: 'Inspect plant areas to make sure weeds are eradicated', label: 'Revisar las zonas de siembra para asegurarse de que no queden malas hierbas' },
+    { value: 'Prune shrubs and trees after leaves have fallen, so you can see the structure of the plant', label: 'Podar los arbustos y los árboles cuando se les hayan caído las hojas, para poder ver la forma de la planta' },
+    { value: 'leave-perennials', label: 'No recortar las perennes', hint: 'muchos polinizadores usan los tallos para pasar el invierno' },
+    { value: 'Prune flowering shrubs after they have flowered', label: 'Podar los arbustos de flor después de que hayan florecido' },
+    { value: "Mulch beds, or plan to mulch in spring (see 'mulching' above)", label: 'Poner mantillo en los canteros, o planear ponerlo en la primavera (vea "Mantillo", arriba)' },
+    { value: 'Water trees deeply before the ground freezes', label: 'Regar bien a fondo los árboles antes de que se congele la tierra' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/06-sustain.pdf" page={5} />
+
+## Haga crecer más: semillas, bulbos y anuales {/* #grow-more-seeds-bulbs-annuals */}
+
+Si está dispuesto a hacer un pequeño esfuerzo extra, así puede hacer que su parque de verdad prospere. Las plantas
+anuales dan flores vistosas que florecen toda la temporada, pero no vuelven al año siguiente. Los bulbos, como los
+tulipanes y los narcisos, por lo general vuelven cada año y dan color a comienzos de la temporada. Empezar un huerto de
+verduras con semillas dentro de la casa es una forma económica de cultivar exactamente lo que quiere.
+
+**Semillas.** Lea catálogos de semillas para decidir qué cultivar y cómo cuidarlo. Pida semillas de verduras y de
+plantas anuales. Para un huerto comestible, empiece las semillas dentro de la casa y luego páselas a las jardineras
+cuando el tiempo se ponga más caliente.
+
+**Bulbos.** Pida los bulbos y guárdelos en un lugar fresco y seco. Siembre los bulbos entre Halloween y el Día de
+Acción de Gracias. Abónelos de 4 a 6 semanas antes de cuando espera que florezcan. Quite las flores marchitas después de
+que florezcan. Espere a que las hojas se pongan amarillas y luego saque la planta entera.
+
+**Anuales.** Compre las flores anuales que quiera. Siémbrelas en abril si la primavera está caliente, o en junio si
+está fresca. Manténgalas bien regadas y esté atento a las plagas; quite las hojas con plaga si hace falta.
+
+<PdfPage doc="downloads/workbooks/06-sustain.pdf" page={6} />
+
+## Convivir {/* #socialize */}
+
+Esta parte depende totalmente de ustedes. En lugar de un calendario detallado que seguir, ¡ustedes deciden qué
+actividades ofrecer! Algunas ideas de otros parques de Park in a Truck: un evento para observar pájaros, una celebración
+del Día de la Tierra, un campamento de verano sobre la naturaleza, una inauguración con corte de cinta, una limpieza
+comunitaria o una reunión de información sobre el parque cada temporada.
+
+<ListField
+  id="sustain.events"
+  label="¿Qué les gustaría hacer, y cuándo?"
+  rowName="evento"
+  min={3}
+  columns={[
+    { key: 'season', label: 'Temporada', placeholder: 'invierno, primavera, verano, otoño' },
+    { key: 'activity', label: 'Actividad' },
+    { key: 'who', label: 'Quién lo organiza' },
+  ]}
+/>
+
+<PdfPage doc="downloads/workbooks/06-sustain.pdf" page={7} />
+
+## Su plan de trabajo anual {/* #your-annual-workplan */}
+
+Las pautas de arriba son una base para el mantenimiento de su parque en cada temporada: son las tareas que tiene que
+hacer, por mes, por temporada y por año. Márquelas a medida que las haga; lo más importante es, simplemente, quitar las
+malas hierbas y regar.
+
+<StewardshipCalendar />
+
+## Programa de embajadores del parque {/* #park-ambassador-program */}
+
+Recomendamos mucho el programa de embajadores del parque, que contrata a jóvenes del barrio para ayudar a mantener el
+parque y organizar actividades en él. Los embajadores del parque:
+
+- Crean un parque seguro, limpio y accesible para todos.
+- Planean actividades divertidas para los residentes de la comunidad de todas las edades.
+- Mantienen el parque limpio y ordenado.
+- Se aseguran de que el parque sea un oasis verde y acogedor.
+
+Preparamos una Guía para embajadores del parque (Park Ambassador Guidebook): un programa de estudio paso a paso y una
+guía de recursos para ayudar a los embajadores del parque a mantener el parque nuevo y organizar actividades en él, y
+un lugar donde anotar lo que pasa allí. Los jóvenes embajadores trabajan de cerca con un miembro de la comunidad, que
+es su mentor y los guía durante todo el proceso.
+
+<Figure
+  src="img/sustain/ambassador-guidebook-cover.webp"
+  alt="Portada de la Guía para embajadores del parque (Park Ambassadors Guidebook: Curriculum & Resource Guide), ilustrada con una silueta de árboles y niños jugando en un parque."
+/>
+
+<Download href="downloads/park-ambassador-booklet.pdf" label="Guía para embajadores del parque" note="Programa de estudio y guía de recursos" />
+
+{/* site-added: tracking helper, not a new program requirement. */}
+<Field id="sustain.ambassador-mentor" label="Mentor de la comunidad para su(s) embajador(es) del parque" hint="El adulto que guía a los jóvenes embajadores durante el programa" />
+
+## Enlaces útiles {/* #helpful-links */}
+
+Todos estos sitios están en inglés.
+
+- **Información general sobre plantas**: [PHS Gold Medal Plants ↗](https://phsonline.org/for-gardeners/gold-medal-plants) ·
+  [Gardens Alive ↗](https://www.gardensalive.com/) · [North Creek Nurseries ↗](https://www.northcreeknurseries.com/) ·
+  [buscador de plantas del Missouri Botanical Garden ↗](http://www.missouribotanicalgarden.org/plantfinder/plantfindersearch.aspx) ·
+  [Longwood Gardens plant explorer ↗](https://plantexplorer.longwoodgardens.org/ecmweb/FindPlant.html) *(el enlace no funciona por ahora)* ·
+  [Arbor Day Foundation ↗](https://www.arborday.org/) ·
+  [guía de siembra de Penn State ↗](https://extension.psu.edu/programs/master-gardener/counties/philadelphia/hotline/master-gardeners-philadelphia-planting-guide)
+- **Talleres y ayuda con el lote**: [Pennsylvania Horticultural Society ↗](https://phsonline.org/) ·
+  [Grounded in Philly ↗](https://groundedinphilly.org/) (ayuda legal, datos de los lotes, seguros, compost) ·
+  [Greensgrow ↗](https://www.greensgrow.org/about-us/) *(el enlace no funciona por ahora)* (granja urbana educativa)
+- **Plantas invasoras**: [Brandywine Conservancy ↗](https://www.brandywine.org/conservancy/resources/invasive-plants)
+- **Cuidado de árboles, arbustos y perennes**: [Sembrar un árbol que viene en maceta ↗](https://www.arborday.org/trees/planting/containerized.cfm) ·
+  [Cómo sembrar un árbol ↗](https://youtube.com/watch?v=QYmgrw0PgLU) · [Cómo sembrar un arbusto ↗](https://youtube.com/watch?v=Tim4LEo6l10) ·
+  [Cómo podar un arbusto ↗](https://www.gardenersworld.com/how-to/grow-plants/the-basics-of-shrub-pruning/)
+- **Árboles frutales**: [cuidado de frutales de la Arbor Day Foundation ↗](https://www.arborday.org/trees/fruit/) ·
+  [Philadelphia Orchard Project ↗](https://www.phillyorchards.org/)
+- **Suelo, compost y abono**: [análisis de suelo de Penn State ↗](https://extension.psu.edu/soil-testing) ·
+  [Lo básico del compost ↗](https://www.youtube.com/watch?v=0hPCkEaMkQU) ·
+  [Penn State: cómo ayudar a que las plantas estén sanas ↗](https://extension.psu.edu/promote-plant-health) ·
+  [Cómo poner mantillo en su jardín ↗](https://www.goodhousekeeping.com/home/gardening/a20706549/how-to-mulch-your-garden/)
+
+<Callout kind="contact">
+  ¿Tiene preguntas en el camino? El equipo de Park in a Truck puede ayudarle (en inglés):
+  [ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu).
+</Callout>
