@@ -8,6 +8,8 @@
 // `keyBy`: the overlay is an object keyed by that field of each English item (order-proof),
 //          e.g. plants.json overlay = { "<plant id>": { "common": "…" } }.
 // Without keyBy, arrays line up by position (guide steps, materials, tools…).
+// A name ending in "/*" is one overlay per English file: "guides/*" ↔ src/data/guides/<slug>.json,
+// "models/*" ↔ src/data/guides/models/<slug>.json.
 // `fields`: the only paths an overlay may set. "a[]" = every item of array a; "a[].b" = field b
 //          of every item. The checker (src/i18n/check.ts) rejects anything else.
 //
@@ -46,11 +48,16 @@ export const DATASETS: DatasetSpec[] = [
       'skill',
       'cost',
       'materials[].item',
+      /** only sizes with words ("8' long, cut to size"); plain sizes like 2x4x8' stay as they are */
+      'materials[].size',
       'materials[].notes',
       'materials[].siteNote',
       'hardware[].item',
+      'hardware[].size',
       'hardware[].notes',
       'hardware[].siteNote',
+      /** only stock with words ("2x2 welded-wire mesh"); lumber like 2x4 stays as it is */
+      'cutList[].stock',
       'cutList[].notes',
       'cutList[].siteNote',
       'tools[]',
@@ -67,6 +74,13 @@ export const DATASETS: DatasetSpec[] = [
     client: false,
   },
   {
+    // the 3D models' note on why the built size differs from the guide's (src/data/guides/models/)
+    name: 'models/*',
+    source: 'src/data/guides/models/*.json',
+    fields: ['asBuilt.reason'],
+    client: false,
+  },
+  {
     name: 'themes',
     source: 'src/data/themes.ts',
     exportName: 'THEMES',
@@ -77,7 +91,8 @@ export const DATASETS: DatasetSpec[] = [
     name: 'elements',
     source: 'src/data/elements.ts',
     exportName: 'ELEMENTS',
-    fields: ['*.name', '*.countAs'],
+    // (countAs is a developer note nothing displays: not translated)
+    fields: ['*.name'],
     client: true,
   },
   {
@@ -102,12 +117,14 @@ export const DATASETS: DatasetSpec[] = [
     fields: [
       'partners[].description',
       'press[].title',
+      'press[].note',
       'supplierGroups[].label',
       'supplierGroups[].items[].title',
       'supplierGroups[].items[].note',
       'toolkitLibrary.intro',
       'toolkitLibrary.sections[].title',
       'toolkitLibrary.sections[].entries[].title',
+      'toolkitLibrary.sections[].entries[].description',
       'acknowledgments.lead',
       'acknowledgments.note',
       'legal.title',

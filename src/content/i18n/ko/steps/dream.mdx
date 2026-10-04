@@ -21,6 +21,9 @@ import { THEMES, THEME_ORDER } from '../../../../data/themes';
 import { SIZES } from '../../../../lib/sizing';
 import { urlFor } from '../../../../i18n/url.ts';
 export const u = urlFor('ko');
+import { localizeRecord } from '../../../../i18n/data.ts';
+export const THEME_TEXT = localizeRecord(THEMES, 'themes', 'ko');
+export const ELEMENT_TEXT = localizeRecord(ELEMENTS, 'elements', 'ko');
 import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
 
 export const THEME_REQUIREMENTS = {
@@ -30,22 +33,6 @@ export const THEME_REQUIREMENTS = {
   event: { trees: '나무 한두 그루 또는 여러 그루', sun: '햇빛이 얼마나 들든 괜찮음', lot: '모퉁이 부지에 잘 맞음', volunteers: '자원봉사자가 적당히 참여' },
 };
 
-{/* ko: theme names/blurbs and element names, kept the same as src/i18n/data/ko/themes.json and elements.json (a chapter cannot import the overlays). */}
-export const THEME_TEXT = {
-  edible: { name: '먹거리', blurb: '음식을 나누고 이웃과 가까워져요. 과일, 채소, 함께 쓰는 식탁.' },
-  sanctuary: { name: '쉼터', blurb: '혼자 쉬고, 책을 읽고, 작게 모이는 고요한 피난처.' },
-  nature: { name: '자연', blurb: '자생 식물과 서식지, 아이들과 꽃가루 매개자를 위한 놀이.' },
-  event: { name: '행사', blurb: '공연, 장터, 동네 잔치를 위한 공간.' },
-};
-export const ELEMENT_NAMES = {
-  'gabion-wall': '돌망태 벽', 'gabion-bench': '나무 상판 돌망태 벤치', 'gabion-bench-8': "8' 나무 상판 돌망태 벤치", 'gabion-table': '나무 상판 돌망태 테이블',
-  'bench-back': '등받이 벤치', 'bench-4': "4' 벤치 (등받이 없음)", stool: '스툴', 'table-2': "2' 테이블", 'table-4': "4' 테이블", 'table-6': "6' 테이블",
-  'planter-18': '18" 화분 상자 (작은 것)', 'planter-24': '24" 화분 상자 (큰 것)', 'shade-canopy': '그늘막', stage: '무대', workbench: '작업대 / 서서 쓰는 테이블',
-  'rain-barrel': '빗물 통', 'compost-bin': '퇴비 통', 'raised-bed': '높임 화단', 'keyhole-garden': '열쇠 구멍 텃밭 (둥근 높임 화단)', 'cold-frame': '냉상 (작은 온상)',
-  'communal-table': '함께 쓰는 식탁', 'cafe-table': '카페 테이블 + 의자', 'event-tent': '행사용 천막', 'flexible-seating': '옮길 수 있는 의자', 'outdoor-classroom': '야외 교실',
-  'nature-play': '자연 놀이터', birdbath: '새 물그릇', 'bird-accessories': '새집과 모이통', shed: '창고', hammock: '거치대 해먹', 'porch-swing': '거치대 그네 의자',
-  'solar-fountain': '태양광 분수',
-};
 
 {/* The Assemble grid below skips surfaces, plants and existing-conditions markers — only built/bought elements get an assembly link. */}
 export const NOT_BUILT = new Set(['planting-square', 'perennial', 'shrub', 'small-tree', 'large-tree', 'gravel', 'existing-tree', 'downspout', 'wet-area', 'hydrant', 'utility-line']);
@@ -90,7 +77,7 @@ Park in a Truck 공원을 설계하는 일은 새 원피스나 정장을 사는 
 - **식물.** 야생 동물을 불러들이고, 생물 다양성을 높이고, 자연 보전에 도움이 되는 자생 식물.
 
 {THEME_ORDER.map((id) => (
-  <div style={`margin:2.5em 0; border-left: 8px solid ${THEMES[id].frame}; padding-left: 1.2em;`}>
+  <div style={`margin:2.5em 0; border-inline-start: 8px solid ${THEMES[id].frame}; padding-inline-start: 1.2em;`}>
     <h3 style={`color:${THEMES[id].frame}`}>{THEME_TEXT[id].name}</h3>
     <p>{THEME_TEXT[id].blurb}</p>
     <Figure
@@ -337,7 +324,7 @@ Park in a Truck 공원을 설계하는 일은 새 원피스나 정장을 사는 
 요소를 누르세요. 내 공원에 있는 요소라면, 이렇게 만들거나 사면 돼요.
 
 <div class="elements-grid">
-  {Object.values(ELEMENTS)
+  {Object.values(ELEMENT_TEXT)
     .filter((el) => !NOT_BUILT.has(el.id) && ASSEMBLE_ICONS.has(ICON_FALLBACK[el.id] ?? el.id))
     .map((el) => {
       const icon = ICON_FALLBACK[el.id] ?? el.id;
@@ -346,7 +333,7 @@ Park in a Truck 공원을 설계하는 일은 새 원피스나 정장을 사는 
       return (
         <a class="element-card" href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
           <img src={u(`img/dream/elements/${icon}.webp`)} alt="" width="96" height="72" loading="lazy" />
-          <span>{ELEMENT_NAMES[el.id] ?? el.name}</span>
+          <span>{el.name}</span>
         </a>
       );
     })}
@@ -375,7 +362,7 @@ Park in a Truck 공원을 설계하는 일은 새 원피스나 정장을 사는 
   {`
   .theme-reqs { list-style: none; padding: 0; margin: 0.8em 0 0; font-size: 0.92rem; color: var(--ink-2); display: grid; gap: 0.2em; }
   .size-table, .pieces-table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.95rem; }
-  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: left; }
+  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: start; }
   .elements-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; margin: 1.2em 0; }
   .element-card { display: flex; flex-direction: column; align-items: center; gap: 0.4em; text-align: center; padding: 10px; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); font-size: 0.85rem; background: #fff; }
   .element-card:hover { border-color: var(--cyan); box-shadow: var(--shadow); }

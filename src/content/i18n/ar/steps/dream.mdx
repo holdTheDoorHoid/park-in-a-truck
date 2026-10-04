@@ -21,14 +21,16 @@ import { THEMES, THEME_ORDER } from '../../../../data/themes';
 import { SIZES } from '../../../../lib/sizing';
 import { urlFor } from '../../../../i18n/url.ts';
 export const u = urlFor('ar');
+import { localizeRecord } from '../../../../i18n/data.ts';
+export const THEME_TEXT = localizeRecord(THEMES, 'themes', 'ar');
+export const ELEMENT_TEXT = localizeRecord(ELEMENTS, 'elements', 'ar');
 import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
 
-{/* Arabic: the theme names and blurbs below repeat src/i18n/data/ar/themes.json, because a translated chapter cannot import the localized THEMES (see the t-ar report). */}
 export const THEME_REQUIREMENTS = {
-  edible: { name: 'صالحة للأكل', blurb: 'شارِك الطعام وتعرَّف على جيرانك: فواكه وخضروات وطاولة مشتركة.', trees: 'أشجار قليلة أو لا أشجار', sun: 'شمس كاملة أو شمس في معظم الوقت', lot: 'مناسبة جدًّا لقطعة على الزاوية', volunteers: 'مشاركة متكررة من المتطوعين' },
-  sanctuary: { name: 'ملاذ', blurb: 'ملجأ هادئ للخلوة والقراءة واللقاءات الصغيرة.', trees: 'أي عدد من الأشجار', sun: 'أي كمية من الشمس', lot: 'قطعة في منتصف الشارع أو على الزاوية', volunteers: 'مشاركة قليلة من المتطوعين' },
-  nature: { name: 'طبيعة', blurb: 'نباتات محلية وموائل طبيعية ولعب للأطفال وللمُلقِّحات.', trees: 'مناسبة جدًّا لقطع الأرض التي فيها أشجار', sun: 'أي كمية من الشمس', lot: 'قطعة في منتصف الشارع أو على الزاوية', volunteers: 'لا تحتاج إلا إلى مشاركة قليلة' },
-  event: { name: 'فعاليات', blurb: 'مساحة للعروض والأسواق واحتفالات الحي.', trees: 'شجرة أو شجرتان، أو عدة أشجار', sun: 'أي كمية من الشمس', lot: 'مناسبة جدًّا لقطعة على الزاوية', volunteers: 'مشاركة متوسطة من المتطوعين' },
+  edible: { trees: 'أشجار قليلة أو لا أشجار', sun: 'شمس كاملة أو شمس في معظم الوقت', lot: 'مناسبة جدًّا لقطعة على الزاوية', volunteers: 'مشاركة متكررة من المتطوعين' },
+  sanctuary: { trees: 'أي عدد من الأشجار', sun: 'أي كمية من الشمس', lot: 'قطعة في منتصف الشارع أو على الزاوية', volunteers: 'مشاركة قليلة من المتطوعين' },
+  nature: { trees: 'مناسبة جدًّا لقطع الأرض التي فيها أشجار', sun: 'أي كمية من الشمس', lot: 'قطعة في منتصف الشارع أو على الزاوية', volunteers: 'لا تحتاج إلا إلى مشاركة قليلة' },
+  event: { trees: 'شجرة أو شجرتان، أو عدة أشجار', sun: 'أي كمية من الشمس', lot: 'مناسبة جدًّا لقطعة على الزاوية', volunteers: 'مشاركة متوسطة من المتطوعين' },
 };
 
 {/* The Assemble grid below skips surfaces, plants and existing-conditions markers — only built/bought elements get an assembly link. */}
@@ -36,17 +38,6 @@ export const NOT_BUILT = new Set(['planting-square', 'perennial', 'shrub', 'smal
 export const ICON_FALLBACK = { 'table-6': 'table-4', 'bench-4': 'bench-back', 'gabion-bench-8': 'gabion-bench' };
 // The workbook's Assemble page shows these elements; newer vocabulary (e.g. cafe-table) has no icon there.
 export const ASSEMBLE_ICONS = new Set(['bench-back','bird-accessories','birdbath','cold-frame','communal-table','compost-bin','event-tent','flexible-seating','gabion-bench','gabion-wall','nature-play','outdoor-classroom','planter-18','planter-24','rain-barrel','raised-bed','shade-canopy','shed','stage','stool','table-2','table-4','workbench']);
-// Arabic names for the Assemble grid (same as src/i18n/data/ar/elements.json); English is the fallback.
-export const ELEMENT_NAMES = {
-  'bench-back': 'مقعد بظهر', 'bench-4': 'مقعد بطول 4 أقدام (بلا ظهر)', 'bird-accessories': 'بيوت الطيور ومعالفها',
-  'birdbath': 'حوض ماء للطيور', 'cold-frame': 'إطار بارد لحماية الشتلات', 'communal-table': 'طاولة مشتركة',
-  'compost-bin': 'حاوية سماد عضوي (كومبوست)', 'event-tent': 'خيمة فعاليات', 'flexible-seating': 'مقاعد متنقلة',
-  'gabion-bench': 'مقعد جابيون بسطح خشبي', 'gabion-bench-8': 'مقعد جابيون بسطح خشبي بطول 8 أقدام', 'gabion-wall': 'جدار جابيون',
-  'nature-play': 'ركن اللعب في الطبيعة', 'outdoor-classroom': 'فصل دراسي في الهواء الطلق', 'planter-18': 'حوض زرع 18 بوصة (صغير)',
-  'planter-24': 'حوض زرع 24 بوصة (كبير)', 'rain-barrel': 'برميل لجمع مياه المطر', 'raised-bed': 'حوض زراعة مرتفع',
-  'shade-canopy': 'مظلة', 'shed': 'سقيفة للتخزين', 'stage': 'مسرح', 'stool': 'كرسي بلا ظهر', 'table-2': 'طاولة بطول قدمين',
-  'table-4': 'طاولة بطول 4 أقدام', 'table-6': 'طاولة بطول 6 أقدام', 'workbench': 'طاولة عمل / طاولة للوقوف',
-};
 
 {/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — reminds a reader who hasn't recorded a lot agreement yet, before they design and budget for a lot they may not have permission for. */}
 <LotAgreementNotice />
@@ -83,11 +74,11 @@ export const ELEMENT_NAMES = {
 
 {THEME_ORDER.map((id) => (
   <div style={`margin:2.5em 0; border-inline-start: 8px solid ${THEMES[id].frame}; padding-inline-start: 1.2em;`}>
-    <h3 style={`color:${THEMES[id].frame}`}>{THEME_REQUIREMENTS[id].name}</h3>
-    <p>{THEME_REQUIREMENTS[id].blurb}</p>
+    <h3 style={`color:${THEMES[id].frame}`}>{THEME_TEXT[id].name}</h3>
+    <p>{THEME_TEXT[id].blurb}</p>
     <Figure
       src={`img/dream/theme-${id}.webp`}
-      alt={`نمط «${THEME_REQUIREMENTS[id].name}»: رسوم ثلاثية الأبعاد ومخطط علوي للحديقة، تظهر فيها قطع الإطار والقطعة الأمامية والقطعة الخلفية بلون النمط`}
+      alt={`نمط «${THEME_TEXT[id].name}»: رسوم ثلاثية الأبعاد ومخطط علوي للحديقة، تظهر فيها قطع الإطار والقطعة الأمامية والقطعة الخلفية بلون النمط`}
     />
     <ul class="theme-reqs">
       <li><strong>الأشجار:</strong> {THEME_REQUIREMENTS[id].trees}</li>
@@ -330,7 +321,7 @@ export const ELEMENT_NAMES = {
 في حديقتك، فهذه طريقة بنائه (أو شرائه).
 
 <div class="elements-grid">
-  {Object.values(ELEMENTS)
+  {Object.values(ELEMENT_TEXT)
     .filter((el) => !NOT_BUILT.has(el.id) && ASSEMBLE_ICONS.has(ICON_FALLBACK[el.id] ?? el.id))
     .map((el) => {
       const icon = ICON_FALLBACK[el.id] ?? el.id;
@@ -339,7 +330,7 @@ export const ELEMENT_NAMES = {
       return (
         <a class="element-card" href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
           <img src={u(`img/dream/elements/${icon}.webp`)} alt="" width="96" height="72" loading="lazy" />
-          <span>{ELEMENT_NAMES[el.id] ?? el.name}</span>
+          <span>{el.name}</span>
         </a>
       );
     })}

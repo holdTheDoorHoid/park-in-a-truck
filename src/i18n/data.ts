@@ -67,3 +67,13 @@ export function localizeGuide(guide: Guide, locale: Locale | string): Guide & { 
   const o = getOverlay(locale, `guides/${guide.slug}`);
   return { ...(o ? overlay(guide, o) : guide), translated: locale === DEFAULT_LOCALE || Boolean(o) };
 }
+
+/**
+ * A guide's 3D model note ("why it builds bigger than stated") in `locale`, and whether it is
+ * translated (overlay `models/<slug>`: { "asBuilt": { "reason": "…" } }).
+ */
+export function localizedModelReason(slug: string, reason: string, locale: Locale | string): { text: string; translated: boolean } {
+  const o = getOverlay(locale, `models/${slug}`) as { asBuilt?: { reason?: unknown } } | undefined;
+  const r = o?.asBuilt?.reason;
+  return typeof r === 'string' && r.trim() ? { text: r, translated: true } : { text: reason, translated: locale === DEFAULT_LOCALE };
+}

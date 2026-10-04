@@ -21,6 +21,9 @@ import { THEMES, THEME_ORDER } from '../../../../data/themes';
 import { SIZES } from '../../../../lib/sizing';
 import { urlFor } from '../../../../i18n/url.ts';
 export const u = urlFor('ru');
+import { localizeRecord } from '../../../../i18n/data.ts';
+export const THEME_TEXT = localizeRecord(THEMES, 'themes', 'ru');
+export const ELEMENT_TEXT = localizeRecord(ELEMENTS, 'elements', 'ru');
 import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
 
 export const THEME_REQUIREMENTS = {
@@ -30,21 +33,6 @@ export const THEME_REQUIREMENTS = {
   event: { trees: 'Одно-два дерева или несколько деревьев', sun: 'Сколько угодно солнца', lot: 'Хорошо подходит для углового участка', volunteers: 'Волонтёры нужны время от времени' },
 };
 
-{/* Russian theme and element names for the expressions below (the same words as src/i18n/data/ru/themes.json and elements.json; this chapter reads THEMES / ELEMENTS straight from the English data). */}
-export const THEME_TEXT = {
-  edible: { name: 'Съедобный сад', blurb: 'Делитесь едой и общайтесь с соседями — фрукты, овощи и общий стол.' },
-  sanctuary: { name: 'Тихий уголок', blurb: 'Спокойное место, чтобы побыть одному, почитать или собраться небольшой компанией.' },
-  nature: { name: 'Природа', blurb: 'Местные растения, жильё для животных и место для игр — для детей и опылителей.' },
-  event: { name: 'Мероприятия', blurb: 'Место для выступлений, ярмарок и праздников всего района.' },
-};
-export const ELEMENT_NAMES = {
-  'gabion-wall': 'Габионная стенка', 'gabion-bench': 'Скамья-габион с деревянным сиденьем', 'gabion-bench-8': 'Скамья-габион 8\' с деревянным сиденьем',
-  'gabion-table': 'Стол-габион с деревянной столешницей', 'bench-back': 'Скамейка со спинкой', 'bench-4': 'Скамейка 4\' (без спинки)', stool: 'Табурет',
-  'table-2': 'Стол 2\'', 'table-4': 'Стол 4\'', 'table-6': 'Стол 6\'', 'planter-18': 'Ящик для растений 18" (малый)', 'planter-24': 'Ящик для растений 24" (большой)',
-  'shade-canopy': 'Навес от солнца', stage: 'Сцена', workbench: 'Верстак / стол для работы стоя', 'rain-barrel': 'Бочка для дождевой воды', 'compost-bin': 'Компостный ящик',
-  'raised-bed': 'Приподнятая грядка', 'cold-frame': 'Парник', 'communal-table': 'Общий стол', 'event-tent': 'Шатёр для мероприятий', 'flexible-seating': 'Переносные сиденья',
-  'outdoor-classroom': 'Класс под открытым небом', 'nature-play': 'Природная игровая площадка', birdbath: 'Поилка для птиц', 'bird-accessories': 'Скворечники и кормушки', shed: 'Сарай',
-};
 
 {/* The Assemble grid below skips surfaces, plants and existing-conditions markers — only built/bought elements get an assembly link. */}
 export const NOT_BUILT = new Set(['planting-square', 'perennial', 'shrub', 'small-tree', 'large-tree', 'gravel', 'existing-tree', 'downspout', 'wet-area', 'hydrant', 'utility-line']);
@@ -93,7 +81,7 @@ Truck бывают четырёх разных стилей — мы назыв�
   сохранять.
 
 {THEME_ORDER.map((id) => (
-  <div style={`margin:2.5em 0; border-left: 8px solid ${THEMES[id].frame}; padding-left: 1.2em;`}>
+  <div style={`margin:2.5em 0; border-inline-start: 8px solid ${THEMES[id].frame}; padding-inline-start: 1.2em;`}>
     <h3 style={`color:${THEMES[id].frame}`}>{THEME_TEXT[id].name}</h3>
     <p>{THEME_TEXT[id].blurb}</p>
     <Figure
@@ -351,7 +339,7 @@ Truck бывают четырёх разных стилей — мы назыв�
 товары из магазина. Нажмите на любой элемент ниже: если он есть в вашем парке, вот как его построить (или купить).
 
 <div class="elements-grid">
-  {Object.values(ELEMENTS)
+  {Object.values(ELEMENT_TEXT)
     .filter((el) => !NOT_BUILT.has(el.id) && ASSEMBLE_ICONS.has(ICON_FALLBACK[el.id] ?? el.id))
     .map((el) => {
       const icon = ICON_FALLBACK[el.id] ?? el.id;
@@ -360,7 +348,7 @@ Truck бывают четырёх разных стилей — мы назыв�
       return (
         <a class="element-card" href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
           <img src={u(`img/dream/elements/${icon}.webp`)} alt="" width="96" height="72" loading="lazy" />
-          <span>{ELEMENT_NAMES[el.id] ?? el.name}</span>
+          <span>{el.name}</span>
         </a>
       );
     })}
@@ -389,7 +377,7 @@ Truck бывают четырёх разных стилей — мы назыв�
   {`
   .theme-reqs { list-style: none; padding: 0; margin: 0.8em 0 0; font-size: 0.92rem; color: var(--ink-2); display: grid; gap: 0.2em; }
   .size-table, .pieces-table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.95rem; }
-  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: left; }
+  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: start; }
   .elements-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; margin: 1.2em 0; }
   .element-card { display: flex; flex-direction: column; align-items: center; gap: 0.4em; text-align: center; padding: 10px; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); font-size: 0.85rem; background: #fff; }
   .element-card:hover { border-color: var(--cyan); box-shadow: var(--shadow); }

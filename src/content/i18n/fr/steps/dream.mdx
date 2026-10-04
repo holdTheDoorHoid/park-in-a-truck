@@ -21,6 +21,9 @@ import { THEMES, THEME_ORDER } from '../../../../data/themes';
 import { SIZES } from '../../../../lib/sizing';
 import { urlFor } from '../../../../i18n/url.ts';
 export const u = urlFor('fr');
+import { localizeRecord } from '../../../../i18n/data.ts';
+export const THEME_TEXT = localizeRecord(THEMES, 'themes', 'fr');
+export const ELEMENT_TEXT = localizeRecord(ELEMENTS, 'elements', 'fr');
 import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
 
 export const THEME_REQUIREMENTS = {
@@ -30,41 +33,6 @@ export const THEME_REQUIREMENTS = {
   event: { trees: 'Un ou deux arbres, ou plusieurs arbres', sun: 'N’importe quelle quantité de soleil', lot: 'Idéal pour un terrain d’angle', volunteers: 'Participation moyenne de bénévoles' },
 };
 
-{/* Translated chapters can't import the localized data helpers, so the French theme and element names are repeated here (same text as src/i18n/data/fr/themes.json and elements.json). */}
-export const THEME_FR = {
-  edible: { name: 'Comestible', blurb: 'Partager de la nourriture et créer des liens avec les voisins : fruits, légumes et une table commune.' },
-  sanctuary: { name: 'Refuge', blurb: 'Un havre de calme pour être seul, lire et se retrouver en petits groupes.' },
-  nature: { name: 'Nature', blurb: 'Des plantes indigènes, un habitat et des jeux pour les enfants et les pollinisateurs.' },
-  event: { name: 'Événements', blurb: 'De l’espace pour des spectacles, des marchés et des fêtes de quartier.' },
-};
-export const ELEMENT_FR = {
-  'gabion-wall': 'Mur en gabions',
-  'gabion-bench': 'Banc en gabions avec assise en bois',
-  'gabion-bench-8': "Banc en gabions de 8' avec assise en bois",
-  'bench-back': 'Banc avec dossier',
-  'bench-4': "Banc de 4' (sans dossier)",
-  stool: 'Tabouret',
-  'table-2': "Table de 2'",
-  'table-4': "Table de 4'",
-  'table-6': "Table de 6'",
-  'planter-18': 'Bac à plantes de 18" (petit)',
-  'planter-24': 'Bac à plantes de 24" (grand)',
-  'shade-canopy': 'Auvent d’ombrage',
-  stage: 'Scène',
-  workbench: 'Établi / table haute',
-  'rain-barrel': 'Récupérateur d’eau de pluie',
-  'compost-bin': 'Bac à compost',
-  'raised-bed': 'Bac surélevé',
-  'cold-frame': 'Châssis froid (mini-serre)',
-  'communal-table': 'Table commune',
-  'event-tent': 'Tente pour événements',
-  'flexible-seating': 'Sièges mobiles',
-  'outdoor-classroom': 'Classe en plein air',
-  'nature-play': 'Aire de jeux nature',
-  birdbath: 'Bain d’oiseaux',
-  'bird-accessories': 'Nichoirs et mangeoires à oiseaux',
-  shed: 'Cabane de rangement',
-};
 
 {/* The Assemble grid below skips surfaces, plants and existing-conditions markers — only built/bought elements get an assembly link. */}
 export const NOT_BUILT = new Set(['planting-square', 'perennial', 'shrub', 'small-tree', 'large-tree', 'gravel', 'existing-tree', 'downspout', 'wet-area', 'hydrant', 'utility-line']);
@@ -117,12 +85,12 @@ Quelques éléments clés se retrouvent dans les quatre thèmes :
   la nature.
 
 {THEME_ORDER.map((id) => (
-  <div style={`margin:2.5em 0; border-left: 8px solid ${THEMES[id].frame}; padding-left: 1.2em;`}>
-    <h3 style={`color:${THEMES[id].frame}`}>{THEME_FR[id].name}</h3>
-    <p>{THEME_FR[id].blurb}</p>
+  <div style={`margin:2.5em 0; border-inline-start: 8px solid ${THEMES[id].frame}; padding-inline-start: 1.2em;`}>
+    <h3 style={`color:${THEMES[id].frame}`}>{THEME_TEXT[id].name}</h3>
+    <p>{THEME_TEXT[id].blurb}</p>
     <Figure
       src={`img/dream/theme-${id}.webp`}
-      alt={`Thème ${THEME_FR[id].name} : dessins du parc en 3D et en vue en plan, avec les pièces cadre, avant et arrière dans la couleur du thème`}
+      alt={`Thème ${THEME_TEXT[id].name} : dessins du parc en 3D et en vue en plan, avec les pièces cadre, avant et arrière dans la couleur du thème`}
     />
     <ul class="theme-reqs">
       <li><strong>Arbres :</strong> {THEME_REQUIREMENTS[id].trees}</li>
@@ -383,7 +351,7 @@ d’instructions déjà testées ; et certains sont simplement des produits tou
 n’importe quel élément ci-dessous : si vous l’avez dans votre parc, voici comment le construire (ou l’acheter).
 
 <div class="elements-grid">
-  {Object.values(ELEMENTS)
+  {Object.values(ELEMENT_TEXT)
     .filter((el) => !NOT_BUILT.has(el.id) && ASSEMBLE_ICONS.has(ICON_FALLBACK[el.id] ?? el.id))
     .map((el) => {
       const icon = ICON_FALLBACK[el.id] ?? el.id;
@@ -392,7 +360,7 @@ n’importe quel élément ci-dessous : si vous l’avez dans votre parc, voici
       return (
         <a class="element-card" href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
           <img src={u(`img/dream/elements/${icon}.webp`)} alt="" width="96" height="72" loading="lazy" />
-          <span>{ELEMENT_FR[el.id] ?? el.name}</span>
+          <span>{el.name}</span>
         </a>
       );
     })}
@@ -421,7 +389,7 @@ Félicitations, vous avez terminé le cahier Rêver ! Cochez chaque étape ci-d
   {`
   .theme-reqs { list-style: none; padding: 0; margin: 0.8em 0 0; font-size: 0.92rem; color: var(--ink-2); display: grid; gap: 0.2em; }
   .size-table, .pieces-table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.95rem; }
-  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: left; }
+  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: start; }
   .elements-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; margin: 1.2em 0; }
   .element-card { display: flex; flex-direction: column; align-items: center; gap: 0.4em; text-align: center; padding: 10px; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); font-size: 0.85rem; background: #fff; }
   .element-card:hover { border-color: var(--cyan); box-shadow: var(--shadow); }

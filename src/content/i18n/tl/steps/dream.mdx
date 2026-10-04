@@ -21,6 +21,9 @@ import { THEMES, THEME_ORDER } from '../../../../data/themes';
 import { SIZES } from '../../../../lib/sizing';
 import { urlFor } from '../../../../i18n/url.ts';
 export const u = urlFor('tl');
+import { localizeRecord } from '../../../../i18n/data.ts';
+export const THEME_TEXT = localizeRecord(THEMES, 'themes', 'tl');
+export const ELEMENT_TEXT = localizeRecord(ELEMENTS, 'elements', 'tl');
 import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
 
 export const THEME_REQUIREMENTS = {
@@ -30,47 +33,6 @@ export const THEME_REQUIREMENTS = {
   event: { trees: 'Isa o dalawang puno, o ilang puno', sun: 'Kahit gaano karaming araw', lot: 'Bagay na bagay sa lote sa kanto', volunteers: 'Katamtamang pakikilahok ng mga boluntaryo' },
 };
 
-{/* Translated chapters can't import the localized data helpers, so the Tagalog theme and element names are repeated here (same text as src/i18n/data/tl/themes.json and elements.json). */}
-export const THEME_TL = {
-  edible: { name: 'Pagkain', blurb: 'Magbahagi ng pagkain at makipag-ugnayan sa mga kapitbahay — prutas, gulay at isang mesang pansama-sama.' },
-  sanctuary: { name: 'Kanlungan', blurb: 'Isang tahimik na kanlungan para mapag-isa, magbasa at magkaroon ng maliliit na pagtitipon.' },
-  nature: { name: 'Kalikasan', blurb: 'Katutubong halaman, tirahan ng mga hayop, at laruan para sa mga bata at pollinator.' },
-  event: { name: 'Pagtitipon', blurb: 'Espasyo para sa mga pagtatanghal, palengke at pagdiriwang ng kapitbahayan.' },
-};
-export const ELEMENT_TL = {
-  'gabion-wall': 'Pader na gabion',
-  'gabion-bench': 'Upuang gabion na may kahoy sa ibabaw',
-  'gabion-bench-8': "8' na upuang gabion na may kahoy sa ibabaw",
-  'gabion-table': 'Mesang gabion na may kahoy sa ibabaw',
-  'bench-back': 'Upuang may sandalan',
-  'bench-4': "4' na upuan (walang sandalan)",
-  stool: 'Bangkito',
-  'table-2': "2' na mesa",
-  'table-4': "4' na mesa",
-  'table-6': "6' na mesa",
-  'planter-18': '18" na planter box (maliit)',
-  'planter-24': '24" na planter box (malaki)',
-  'shade-canopy': 'Silungan (shade canopy)',
-  stage: 'Entablado',
-  workbench: 'Workbench / mesang tayuan',
-  'rain-barrel': 'Rain barrel (saluran ng ulan)',
-  'compost-bin': 'Compost bin',
-  'raised-bed': 'Nakataas na taniman',
-  'keyhole-garden': 'Keyhole garden (bilog na nakataas na taniman)',
-  'cold-frame': 'Cold frame (maliit na greenhouse)',
-  'communal-table': 'Mesang pansama-sama',
-  'cafe-table': 'Mesa + upuang pang-café',
-  'event-tent': 'Tolda para sa event',
-  'flexible-seating': 'Naiaayos na upuan',
-  'outdoor-classroom': 'Silid-aralan sa labas',
-  'nature-play': 'Laruan sa kalikasan',
-  birdbath: 'Paliguan ng ibon',
-  'bird-accessories': 'Mga bahay at kainan ng ibon',
-  shed: 'Bodega',
-  hammock: 'Duyang nakatayo nang mag-isa',
-  'porch-swing': 'Porch swing na nakatayo nang mag-isa',
-  'solar-fountain': 'Solar na fountain',
-};
 
 {/* The Assemble grid below skips surfaces, plants and existing-conditions markers — only built/bought elements get an assembly link. */}
 export const NOT_BUILT = new Set(['planting-square', 'perennial', 'shrub', 'small-tree', 'large-tree', 'gravel', 'existing-tree', 'downspout', 'wet-area', 'hydrant', 'utility-line']);
@@ -123,12 +85,12 @@ May ilang mahahalagang bahagi na nasa lahat ng apat na tema:
   tumutulong sa pangangalaga ng kalikasan.
 
 {THEME_ORDER.map((id) => (
-  <div style={`margin:2.5em 0; border-left: 8px solid ${THEMES[id].frame}; padding-left: 1.2em;`}>
-    <h3 style={`color:${THEMES[id].frame}`}>{THEME_TL[id].name}</h3>
-    <p>{THEME_TL[id].blurb}</p>
+  <div style={`margin:2.5em 0; border-inline-start: 8px solid ${THEMES[id].frame}; padding-inline-start: 1.2em;`}>
+    <h3 style={`color:${THEMES[id].frame}`}>{THEME_TEXT[id].name}</h3>
+    <p>{THEME_TEXT[id].blurb}</p>
     <Figure
       src={`img/dream/theme-${id}.webp`}
-      alt={`Temang ${THEME_TL[id].name}: mga larawan ng parke sa 3D at sa plan view, kasama ang mga piraso ng frame/harap/likod sa kulay ng tema`}
+      alt={`Temang ${THEME_TEXT[id].name}: mga larawan ng parke sa 3D at sa plan view, kasama ang mga piraso ng frame/harap/likod sa kulay ng tema`}
     />
     <ul class="theme-reqs">
       <li><strong>Mga puno:</strong> {THEME_REQUIREMENTS[id].trees}</li>
@@ -390,7 +352,7 @@ tagubiling nasubukan na; at ang ilan ay mga produktong mabibili nang handa na. I
 kung nasa parke ninyo ito, ganito ito ginagawa (o binibili).
 
 <div class="elements-grid">
-  {Object.values(ELEMENTS)
+  {Object.values(ELEMENT_TEXT)
     .filter((el) => !NOT_BUILT.has(el.id) && ASSEMBLE_ICONS.has(ICON_FALLBACK[el.id] ?? el.id))
     .map((el) => {
       const icon = ICON_FALLBACK[el.id] ?? el.id;
@@ -399,7 +361,7 @@ kung nasa parke ninyo ito, ganito ito ginagawa (o binibili).
       return (
         <a class="element-card" href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
           <img src={u(`img/dream/elements/${icon}.webp`)} alt="" width="96" height="72" loading="lazy" />
-          <span>{ELEMENT_TL[el.id] ?? el.name}</span>
+          <span>{el.name}</span>
         </a>
       );
     })}
@@ -429,7 +391,7 @@ magpatuloy sa Lumikha.
   {`
   .theme-reqs { list-style: none; padding: 0; margin: 0.8em 0 0; font-size: 0.92rem; color: var(--ink-2); display: grid; gap: 0.2em; }
   .size-table, .pieces-table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.95rem; }
-  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: left; }
+  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: start; }
   .elements-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; margin: 1.2em 0; }
   .element-card { display: flex; flex-direction: column; align-items: center; gap: 0.4em; text-align: center; padding: 10px; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); font-size: 0.85rem; background: #fff; }
   .element-card:hover { border-color: var(--cyan); box-shadow: var(--shadow); }
