@@ -1,0 +1,140 @@
+/** @jsxImportSource preact */
+// Address type-ahead (accessible combobox). Suggestions from searchAddresses():
+// AIS for full addresses, intersections and OPA numbers; the City property list
+// for half-typed streets.
+
+import { useEffect, useId, useRef, useState } from 'preact/hooks';
+import { searchAddresses } from '../../lib/philly/search';
+import type { AddressSuggestion } from '../../lib/philly/types';
+import { titleCase } from '../../lib/philly/plain';
+import { useDebounced } from './hooks';
+
+interface Props {
+  label?: string;
+  hint?: string;
+  placeholder?: string;
+  buttonLabel?: string;
+  busy?: boolean;
+  /** called with a picked suggestion, or the raw text when the person presses Enter / the button */
+  onPick: (q: AddressSuggestion | string) => void;
+  initial?: string;
+}
+
+export default function AddressSearch({
+  label = 'Address',
+  hint = 'A Philadelphia street address, a corner like "60th & Greenway", or a 9-digit OPA number.',
+  placeholder = 'e.g. 1322 N Dover St',
+  buttonLabel = 'Look up',
+  busy,
+  onPick,
+  initial = '',
+}: Props) {
+  const id = useId();
+  const [text, setText] = useState(initial);
+  const [items, setItems] = useState<AddressSuggestion[]>([]);
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState(-1);
+  const [problem, setProblem] = useState<string | null>(null);
+  const q = useDebounced(text, 300);
+  const typed = useRef(false);
+
+  useEffect(() => {
+    if (!typed.current) return;
+    const ctrl = new AbortController();
+    if (q.trim().length < 3) {
+      setItems([]);
+      return;
+    }
+    searchAddresses(q, { signal: ctrl.signal })
+      .then((s) => {
+        setItems(s);
+        setActive(-1);
+        setOpen(s.length > 0);
+        setProblem(null);
+      })
+      .catch((e) => {
+        if (e?.code === 'aborted') return;
+        setItems([]);
+        setProblem(e?.message ?? 'The City address service is not answering right now.');
+      });
+    return () => ctrl.abort();
+  }, [q]);
+
+  const pick = (s: AddressSuggestion | string) => {
+    setOpen(false);
+    if (typeof s !== 'string') setText(s.kind === 'address' ? titleCase(s.label) : titleCase(s.label));
+    onPick(s);
+  };
+
+  const onKey = (e: KeyboardEvent) => {
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setOpen(items.length > 0);
+      setActive((a) => Math.min(items.length - 1, a + 1));
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setActive((a) => Math.max(-1, a - 1));
+    } else if (e.key === 'Escape') {
+      setOpen(false);
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (open && active >= 0 && items[active]) pick(items[active]!);
+      else if (text.trim()) pick(text.trim());
+    }
+  };
+
+  const listId = `${id}-list`;
+  return (
+    <div class="ph-search">
+      <label class="ph-label" for={`${id}-in`}>
+        {label}
+      </label>
+      <div class="ph-search-row">
+        <input
+          id={`${id}-in`}
+          type="search"
+          role="combobox"
+          aria-autocomplete="list"
+          aria-expanded={open}
+          aria-controls={listId}
+          aria-activedescendant={open && active >= 0 ? `${id}-o${active}` : undefined}
+          autocomplete="off"
+          spellcheck={false}
+          placeholder={placeholder}
+          value={text}
+          onInput={(e) => {
+            typed.current = true;
+            setText((e.target as HTMLInputElement).value);
+          }}
+          onKeyDown={onKey}
+          onFocus={() => items.length && setOpen(true)}
+          onBlur={() => setTimeout(() => setOpen(false), 150)}
+        />
+        <button class="btn btn-primary" type="button" disabled={busy || !text.trim()} onClick={() => text.trim() && pick(text.trim())}>
+          {busy ? <span class="ph-spinner" aria-hidden="true" /> : null}
+          {buttonLabel}
+        </button>
+      </div>
+      {open && items.length > 0 && (
+        <ul class="ph-list" id={listId} role="listbox" aria-label="Matching addresses">
+          {items.map((s, i) => (
+            <li
+              id={`${id}-o${i}`}
+              role="option"
+              aria-selected={i === active}
+              onMouseDown={(e) => {
+                e.preventDefault();
+                pick(s);
+              }}
+            >
+              {s.kind === 'intersection' ? '✚ ' : ''}
+              {titleCase(s.label)}
+              <small>{s.kind === 'intersection' ? 'Street corner — shows lots nearby' : s.owner ? `Owner: ${s.owner}` : ''}</small>
+            </li>
+          ))}
+        </ul>
+      )}
+      {problem ? <span class="ph-hint" role="status">{problem}</span> : hint ? <span class="ph-hint">{hint}</span> : null}
+    </div>
+  );
+}

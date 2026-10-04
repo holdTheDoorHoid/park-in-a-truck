@@ -1,8 +1,14 @@
 ---
-// STUB — owned by the philly-data workstream, which replaces this file.
-// Content may already place <SiteReport /> in chapters; keep the props optional.
+// Assess: everything the City's records say about the chosen lot — measured
+// edges, area, long/short edge, park size A–E (this lot highlighted), lot type,
+// street edges, zoning, flood zone, City trees, neighboring building heights,
+// and a small aerial photo. Needs a chosen lot (project.lot).
+import SiteReportIsland from '../philly/SiteReport.tsx';
+import '../philly/philly.css';
 interface Props { [key: string]: unknown }
 ---
-<div class="widget-placeholder" data-widget="SiteReport">
-  <strong>SiteReport</strong> — Everything the City knows about your lot, laid out like the Assess workbook pages.
+<div class="ph-widget" data-widget="SiteReport">
+  <SiteReportIsland client:only="preact">
+    <div slot="fallback" class="ph-fallback">Loading your lot's site report… (it needs JavaScript)</div>
+  </SiteReportIsland>
 </div>

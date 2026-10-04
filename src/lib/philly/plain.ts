@@ -86,7 +86,15 @@ export function titleCase(s: string | null | undefined): string {
     .replace(/(^|[^a-z'’])([a-z])/g, (_, a: string, c: string) => a + c.toUpperCase())
     .replace(/\b(Ii|Iii|Iv|Llc|Lp|Inc|Usa|Phdc|Pha|Pidc|Septa|Rco|Cdc|Ppr)\b/g, (m) => m.toUpperCase())
     .replace(/\b(\d+)(St|Nd|Rd|Th)\b/g, (_, n: string, s: string) => n + s.toLowerCase())
-    .replace(/(^|\s)(n|s|e|w)(?=\s)/gi, (_, a: string, d: string) => a + d.toUpperCase());
+    .replace(/(^|\s)(n|s|e|w)(?=\s)/gi, (_, a: string, d: string) => a + d.toUpperCase())
+    .replace(/\b(Pa|Nj|De|Ny|Md)(?= \d{5})/g, (m) => m.toUpperCase());
+}
+
+/** "2152350353" → "(215) 235-0353"; anything else is returned as given. */
+export function phone(p: string | null | undefined): string {
+  if (!p) return '';
+  const d = p.replace(/\D/g, '').replace(/^1(?=\d{10}$)/, '');
+  return d.length === 10 ? `(${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6)}` : p.trim();
 }
 
 /** 1234.5 → "1,235 sq ft" */

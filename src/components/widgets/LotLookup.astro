@@ -1,8 +1,20 @@
 ---
-// STUB — owned by the philly-data workstream, which replaces this file.
-// Content may already place <LotLookup /> in chapters; keep the props optional.
-interface Props { [key: string]: unknown }
+// Look up a Philadelphia address: owner (public/private + what that means for
+// acquiring it), lot size and park size A–E, zoning, vacancy, lot type, outline.
+// "Use this as my park lot" saves it as the project's lot (Acquire fields with
+// auto="lot.*" fill themselves); "Add to my list" saves it as a candidate.
+//   mode="primary"     (default) — the chosen lot
+//   mode="candidates"  — plus the comparison table of possible lots
+import LotLookupIsland from '../philly/LotLookup.tsx';
+import '../philly/philly.css';
+interface Props {
+  mode?: 'primary' | 'candidates';
+  [key: string]: unknown;
+}
+const { mode = 'primary' } = Astro.props;
 ---
-<div class="widget-placeholder" data-widget="LotLookup">
-  <strong>LotLookup</strong> — Look up a Philadelphia address: owner, lot size, zoning, vacancy, outline — saved to your project.
+<div class="ph-widget" data-widget="LotLookup">
+  <LotLookupIsland client:only="preact" mode={mode}>
+    <div slot="fallback" class="ph-fallback">Loading the address lookup… (it needs JavaScript)</div>
+  </LotLookupIsland>
 </div>

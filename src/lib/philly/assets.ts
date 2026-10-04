@@ -21,7 +21,7 @@ import type { LngLat, LotRecord } from '../types';
 import { queryAttrs, queryGeo, type GeoFeature } from './arcgis';
 import { LAYERS, links, type LayerName } from './endpoints';
 import { distToRing, makeProjector, roundTo, type Projector } from './geo';
-import { COUNCIL_AS_OF, COUNCIL_MEMBERS, titleCase } from './plain';
+import { COUNCIL_AS_OF, COUNCIL_MEMBERS, phone as fmtPhone, titleCase } from './plain';
 import type { Asset, AssetCategoryId, AssetGroup } from './types';
 
 type LotLike = Pick<LotRecord, 'lat' | 'lng'> & Partial<Pick<LotRecord, 'polygon' | 'councilDistrict' | 'rcos' | 'address'>>;
@@ -151,7 +151,7 @@ const SPECS: Partial<Record<AssetCategoryId, LayerSpec[]>> = {
         name: titleCase(s(p.school_name_label) ?? s(p.school_name) ?? 'School'),
         detail: [s(p.type_specific) && titleCase(s(p.type_specific)), s(p.grade_level) && titleCase(s(p.grade_level))].filter(Boolean).join(' · ') || undefined,
         address: s(p.street_address) && titleCase(s(p.street_address)),
-        phone: s(p.phone_number),
+        phone: fmtPhone(s(p.phone_number)) || undefined,
       }),
     },
   ],
@@ -163,7 +163,7 @@ const SPECS: Partial<Record<AssetCategoryId, LayerSpec[]>> = {
         name: s(p.building) ?? 'Library',
         detail: 'Free Library of Philadelphia',
         address: s(p.address),
-        phone: s(p.phone_number),
+        phone: fmtPhone(s(p.phone_number)) || undefined,
         url: url(p.library_url),
       }),
     },
@@ -189,7 +189,7 @@ const SPECS: Partial<Record<AssetCategoryId, LayerSpec[]>> = {
         name: s(p.hospital_name) ?? 'Hospital',
         detail: s(p.hospital_type),
         address: s(p.street_address),
-        phone: s(p.phone_number),
+        phone: fmtPhone(s(p.phone_number)) || undefined,
       }),
     },
   ],
@@ -327,7 +327,7 @@ async function groupItems(id: AssetCategoryId, lot: LotLike, center: LngLat, rad
       id: `rco:${r.name}`,
       name: r.name,
       email: r.email,
-      phone: r.phone,
+      phone: fmtPhone(r.phone) || undefined,
       url: url(r.website),
       distanceFt: 0,
       detail: 'Covers your lot',
