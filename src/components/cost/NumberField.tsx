@@ -5,10 +5,11 @@
 
 import { useState } from 'preact/hooks';
 import type { CostField } from '../../lib/cost/fields';
-import { fmtN } from '../../lib/cost/model';
 import type { ValueSource } from '../../lib/cost/state';
+import type { CostKey, CostT } from '../../lib/cost/text';
 
 interface Props {
+  t: CostT;
   field: CostField;
   idBase: string;
   value: number;
@@ -20,22 +21,22 @@ interface Props {
   onChange: (v: number | undefined) => void;
 }
 
-const BADGE: Record<ValueSource, string | null> = {
-  design: 'From your design',
-  lot: 'From your lot',
-  example: 'Spreadsheet example',
-  you: 'Your number',
+const BADGE: Record<ValueSource, CostKey | null> = {
+  design: 'ui.badge.design',
+  lot: 'ui.badge.lot',
+  example: 'ui.badge.example',
+  you: 'ui.badge.you',
   blank: null,
 };
 
-const RESET: Record<Exclude<ValueSource, 'you'>, string> = {
-  design: 'Reset to design',
-  lot: 'Reset to lot',
-  example: 'Reset to example',
-  blank: 'Clear',
+const RESET: Record<Exclude<ValueSource, 'you'>, CostKey> = {
+  design: 'ui.reset.design',
+  lot: 'ui.reset.lot',
+  example: 'ui.reset.example',
+  blank: 'ui.reset.blank',
 };
 
-export default function NumberField({ field, idBase, value, source, fallback, fallbackSource, derivedNote, onChange }: Props) {
+export default function NumberField({ t, field, idBase, value, source, fallback, fallbackSource, derivedNote, onChange }: Props) {
   const [draft, setDraft] = useState<string | null>(null);
   const [invalid, setInvalid] = useState(false);
   const id = `${idBase}-${field.key}`;
@@ -60,7 +61,9 @@ export default function NumberField({ field, idBase, value, source, fallback, fa
     setInvalid(false);
   }
 
-  const badge = BADGE[source];
+  const badgeKey = BADGE[source];
+  const badge = badgeKey && t(badgeKey);
+  const unit = field.unit === 'ft' ? t('ui.unit.ft') : field.unit === 'squares' ? t('ui.unit.squares') : field.unit;
   const describedBy = field.hint || field.unpriced || derivedNote || invalid ? hintId : undefined;
   return (
     <div class={`ce-field ce-src-${source}`}>
@@ -83,19 +86,19 @@ export default function NumberField({ field, idBase, value, source, fallback, fa
             onInput={input}
             onBlur={blur}
           />
-          {field.unit && field.unit !== '$' && <span class="ce-unit">{field.unit}</span>}
+          {unit && field.unit !== '$' && <span class="ce-unit">{unit}</span>}
         </span>
         {badge && <span class={`ce-badge ce-badge-${source}`}>{source === 'you' ? '✎ ' : source === 'example' ? '' : '✓ '}{badge}</span>}
         {source === 'you' && (
-          <button type="button" class="ce-reset" onClick={() => onChange(undefined)} title={`Back to ${fmtN(fallback)}`}>
-            ↺ {RESET[fallbackSource]}
-            {fallbackSource !== 'blank' && <span class="visually-hidden"> ({fmtN(fallback)})</span>}
+          <button type="button" class="ce-reset" onClick={() => onChange(undefined)} title={t('ui.backTo', { value: fallback })}>
+            ↺ {t(RESET[fallbackSource])}
+            {fallbackSource !== 'blank' && <span class="visually-hidden"> ({t.num(fallback)})</span>}
           </button>
         )}
       </div>
       {describedBy && (
         <p class="ce-hint" id={hintId}>
-          {invalid && <span class="ce-invalid">Enter a number of 0 or more. </span>}
+          {invalid && <span class="ce-invalid">{t('ui.invalid')} </span>}
           {field.hint && <span>{field.hint} </span>}
           {derivedNote && <span>{derivedNote} </span>}
           {field.unpriced && <span class="ce-unpriced">⚠ {field.unpriced}</span>}

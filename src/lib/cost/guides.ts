@@ -17,6 +17,7 @@
 
 import { boardsForCopies, extraBoards, KERF } from './boards';
 import { LUMBER, PRICES, UNPRICED_LUMBER_LINKS, type Price } from './prices';
+import { EN, bare, price, type CostKey, type CostT } from './text';
 import type { GuideCutListItem, GuideMaterial } from '../../data/guides';
 
 import { cutList as benchBackCut, hardware as benchBackHw, materials as benchBackMat, title as benchBackTitle } from '../../data/guides/bench-back.json';
@@ -50,50 +51,58 @@ export type GuideSlug =
 
 export interface GuideSpec {
   slug: GuideSlug;
-  /** The guide's title ("Bench + Back") */
+  /** The guide's title ("Bench + Back"), in English (the guides overlay translates it) */
   title: string;
-  /** One piece, as the estimate names it */
+  /** One piece, as the estimate names it (English; `pieceName` gives it in other languages) */
   name: string;
-  /** One piece in a sentence ("bench"), for "16 per stage (32 for 2)" */
+  /** One piece in a sentence ("bench"), for "16 per stage (32 for 2)" (English) */
   one: string;
+  /** The cost catalog's keys for `name` and `one` */
+  keys: { name: CostKey; one: CostKey };
   materials: GuideMaterial[];
   hardware: GuideMaterial[];
   cutList: GuideCutListItem[];
   /** Cut-list parts for the box size the planner draws (planter guides cover two boxes) */
   scope?: (part: string) => boolean;
   /**
-   * Parts the guide's steps use a different number of than its cut list says,
-   * with the reason (the 3D models' countOverrides; a test keeps them in step).
+   * Parts the guide's steps use a different number of than its cut list says
+   * (the 3D models' countOverrides; a test keeps them in step). `drawings`: the
+   * guide's drawings use that number too.
    */
-  stepCounts?: Record<string, { count: number; reason: string }>;
+  stepCounts?: Record<string, { count: number; drawings?: true }>;
   /** Gabion benches: the basket's inside volume, cubic feet (from the guide's mesh panels) */
   basketCuFt?: number;
 }
 
 const m = (x: unknown) => x as GuideMaterial[];
+/** A piece's name and its word in a sentence, from the cost catalog (stored in English). */
+const piece = (name: CostKey, one: CostKey) => ({ name: EN(name), one: EN(one), keys: { name, one } });
+
+/** A piece's name in the reader's language ("Bench with back"). */
+export function pieceName(slug: GuideSlug, t: CostT = EN): string {
+  return t(GUIDES[slug].keys.name);
+}
 const c = (x: unknown) => x as GuideCutListItem[];
 
 export const GUIDES: Record<GuideSlug, GuideSpec> = {
-  'bench-back': { slug: 'bench-back', title: benchBackTitle, name: 'Bench with back', one: 'bench', materials: m(benchBackMat), hardware: m(benchBackHw), cutList: c(benchBackCut) },
-  'bench-4': { slug: 'bench-4', title: bench4Title, name: "4' bench without back", one: 'bench', materials: m(bench4Mat), hardware: m(bench4Hw), cutList: c(bench4Cut) },
-  stool: { slug: 'stool', title: stoolTitle, name: 'Stool', one: 'stool', materials: m(stoolMat), hardware: m(stoolHw), cutList: c(stoolCut) },
+  'bench-back': { slug: 'bench-back', title: benchBackTitle, ...piece('piece.benchBack', 'guide.one.bench'), materials: m(benchBackMat), hardware: m(benchBackHw), cutList: c(benchBackCut) },
+  'bench-4': { slug: 'bench-4', title: bench4Title, ...piece('piece.bench4', 'guide.one.bench'), materials: m(bench4Mat), hardware: m(bench4Hw), cutList: c(bench4Cut) },
+  stool: { slug: 'stool', title: stoolTitle, ...piece('piece.stool', 'guide.one.stool'), materials: m(stoolMat), hardware: m(stoolHw), cutList: c(stoolCut) },
   'table-2': {
     slug: 'table-2',
     title: table2Title,
-    name: "2' table",
-    one: 'table',
+    ...piece('piece.table2', 'guide.one.table'),
     materials: m(table2Mat),
     hardware: m(table2Hw),
     cutList: c(table2Cut),
-    stepCounts: { 'T-2': { count: 9, reason: 'its steps and drawings use 9' } },
+    stepCounts: { 'T-2': { count: 9, drawings: true } },
   },
-  'table-4': { slug: 'table-4', title: table4Title, name: "4' table", one: 'table', materials: m(table4Mat), hardware: m(table4Hw), cutList: c(table4Cut) },
-  'table-6': { slug: 'table-6', title: table6Title, name: "6' table", one: 'table', materials: m(table6Mat), hardware: m(table6Hw), cutList: c(table6Cut) },
+  'table-4': { slug: 'table-4', title: table4Title, ...piece('piece.table4', 'guide.one.table'), materials: m(table4Mat), hardware: m(table4Hw), cutList: c(table4Cut) },
+  'table-6': { slug: 'table-6', title: table6Title, ...piece('piece.table6', 'guide.one.table'), materials: m(table6Mat), hardware: m(table6Hw), cutList: c(table6Cut) },
   'planter-18': {
     slug: 'planter-18',
     title: planter18Title,
-    name: '18" planter box',
-    one: 'planter',
+    ...piece('piece.planter18', 'guide.one.planter'),
     materials: m(planter18Mat),
     hardware: m(planter18Hw),
     cutList: c(planter18Cut),
@@ -102,8 +111,7 @@ export const GUIDES: Record<GuideSlug, GuideSpec> = {
   'planter-24': {
     slug: 'planter-24',
     title: planter24Title,
-    name: '24" planter box',
-    one: 'planter',
+    ...piece('piece.planter24', 'guide.one.planter'),
     materials: m(planter24Mat),
     hardware: m(planter24Hw),
     cutList: c(planter24Cut),
@@ -112,8 +120,7 @@ export const GUIDES: Record<GuideSlug, GuideSpec> = {
   'gabion-bench': {
     slug: 'gabion-bench',
     title: gabion4Title,
-    name: "4' wood-topped gabion bench",
-    one: 'bench',
+    ...piece('piece.gabionBench', 'guide.one.bench'),
     materials: m(gabion4Mat),
     hardware: m(gabion4Hw),
     cutList: c(gabion4Cut),
@@ -122,26 +129,24 @@ export const GUIDES: Record<GuideSlug, GuideSpec> = {
   'gabion-bench-8': {
     slug: 'gabion-bench-8',
     title: gabion8Title,
-    name: "8' wood-topped gabion bench",
-    one: 'bench',
+    ...piece('piece.gabionBench8', 'guide.one.bench'),
     materials: m(gabion8Mat),
     hardware: m(gabion8Hw),
     cutList: c(gabion8Cut),
-    stepCounts: { 'GB-2': { count: 5, reason: 'its steps use 5' } },
+    stepCounts: { 'GB-2': { count: 5 } },
     basketCuFt: (96 * 18 * 18) / 1728,
   },
   shade: {
     slug: 'shade',
     title: shadeTitle,
-    name: "8'x8' shade structure",
-    one: 'structure',
+    ...piece('piece.shade', 'guide.one.structure'),
     materials: m(shadeMat),
     hardware: m(shadeHw),
     cutList: c(shadeCut),
-    stepCounts: { 'SS-1': { count: 32, reason: 'its steps use 32' } },
+    stepCounts: { 'SS-1': { count: 32 } },
   },
-  stage: { slug: 'stage', title: stageTitle, name: "12'x8' stage", one: 'stage', materials: m(stageMat), hardware: m(stageHw), cutList: c(stageCut) },
-  workbench: { slug: 'workbench', title: workbenchTitle, name: 'Workbench', one: 'workbench', materials: m(workbenchMat), hardware: m(workbenchHw), cutList: c(workbenchCut) },
+  stage: { slug: 'stage', title: stageTitle, ...piece('piece.stage', 'guide.one.stage'), materials: m(stageMat), hardware: m(stageHw), cutList: c(stageCut) },
+  workbench: { slug: 'workbench', title: workbenchTitle, ...piece('piece.workbench', 'guide.one.workbench'), materials: m(workbenchMat), hardware: m(workbenchHw), cutList: c(workbenchCut) },
 };
 
 /** One line of a guide's order, before the estimate prices it. */
@@ -159,10 +164,9 @@ export interface GuideLine {
   notes?: string;
 }
 
-const fmt = (v: number) => (Number.isInteger(v) ? String(v) : String(Math.round(v * 100) / 100));
-const inch = (v: number) => `${fmt(v)}″`;
-const ft = (inches: number) => `${fmt(inches / 12)}′`;
-const NUM = ['', 'one', 'two', 'three', 'four', 'five', 'six'];
+const inch = (t: CostT, v: number) => `${bare(t, v)}″`;
+const ft = (t: CostT, inches: number) => `${bare(t, inches / 12)}′`;
+const NUM: Partial<Record<number, CostKey>> = { 2: 'guide.num.2', 3: 'guide.num.3', 4: 'guide.num.4', 5: 'guide.num.5', 6: 'guide.num.6' };
 
 /** "2x4x8'" or "2x4x8'-0"" → { stock: '2x4', size: '2x4x8', lengthIn: 96 } */
 function lumberSize(s: string | undefined): { stock: string; size: string; lengthIn: number } | undefined {
@@ -184,21 +188,22 @@ function pieces(g: GuideSpec, steps: boolean): Record<string, number[]> {
 }
 
 /** Why a cut list needs more boards than its list says, in a builder's words. */
-function whyShort(lengths: number[], L: number, tightToo: boolean): string {
+function whyShort(t: CostT, lengths: number[], L: number, tightToo: boolean): string {
   const distinct = [...new Set(lengths)].sort((a, b) => b - a);
   // a length that would fit k times without saw cuts, but not with them
   const tight = !tightToo ? undefined : distinct.find((p) => Math.floor(L / p + 1e-9) >= 2 && Math.floor((L + KERF) / (p + KERF) + 1e-9) < Math.floor(L / p + 1e-9));
   if (tight !== undefined) {
     const k = Math.floor(L / tight + 1e-9);
-    return `${NUM[k] ?? k} ${inch(tight)} pieces don’t fit on one ${ft(L)} board once ⅛″ is allowed for each saw cut`;
+    const word = NUM[k];
+    return t('guide.reason.tight', { count: k, number: word ? t(word) : bare(t, k), length: inch(t, tight), board: ft(t, L) });
   }
   const long = distinct.filter((p) => 2 * p + KERF > L);
-  if (long.length) return `each ${long.map(inch).join(' and ')} piece takes a whole ${ft(L)} board`;
-  return 'counted from the cut list, allowing ⅛″ for each saw cut';
+  if (long.length) return t('guide.reason.long', { lengths: long.map((p) => inch(t, p)).join(t('guide.reason.and')), board: ft(t, L) });
+  return t('guide.reason.counted');
 }
 
 /** Boards to buy for `n` pieces of one lumber size: the guide's list, or what its cut list needs if that is more. */
-function lumberLines(g: GuideSpec, n: number): GuideLine[] {
+function lumberLines(g: GuideSpec, n: number, t: CostT): GuideLine[] {
   const lines: GuideLine[] = [];
   const steps = pieces(g, true);
   const literal = pieces(g, false);
@@ -237,11 +242,13 @@ function lumberLines(g: GuideSpec, n: number): GuideLine[] {
       const o = order.get(s.size)!;
       if (o.qty <= 0) continue;
       const notes: string[] = [];
-      const per = n > 1 ? ` per ${g.one} (${fmt(x.qty * n)} for ${n})` : '';
       if (o.qty > o.list) {
         // with several lengths listed, only the pieces that need this length explain it
-        const reason = sizes.length === 1 ? whyShort(cut, s.lengthIn, true) : whyShort(cut.filter((p) => p <= s.lengthIn), s.lengthIn, false);
-        notes.push(`The guide’s list says ${fmt(x.qty)}${per}; its cut list needs ${fmt(o.qty)}: ${reason}.`);
+        const reason = sizes.length === 1 ? whyShort(t, cut, s.lengthIn, true) : whyShort(t, cut.filter((p) => p <= s.lengthIn), s.lengthIn, false);
+        const vars = { list: bare(t, x.qty), need: bare(t, o.qty), reason };
+        notes.push(
+          n > 1 ? t('guide.note.shortPer', { ...vars, one: t(g.keys.one), total: bare(t, x.qty * n), count: bare(t, n) }) : t('guide.note.short', vars),
+        );
       }
       // parts whose count the steps change, when that changes the boards
       if (g.stepCounts && sizes.length === 1) {
@@ -250,9 +257,15 @@ function lumberLines(g: GuideSpec, n: number): GuideLine[] {
           for (const [part, sc] of Object.entries(g.stepCounts)) {
             const was = g.cutList.find((cc) => cc.part === part);
             if (!was || was.stock !== stock) continue;
-            notes.push(
-              `The guide’s cut list says ${was.qty} × ${part}, but ${sc.reason}${o.qty === o.list ? `; the ${fmt(o.list)} boards on its list cover them` : ''}.`,
-            );
+            const covered = o.qty === o.list;
+            const key = sc.drawings
+              ? covered
+                ? 'guide.note.stepsDrawingsCovered'
+                : 'guide.note.stepsDrawings'
+              : covered
+                ? 'guide.note.stepsCovered'
+                : 'guide.note.steps';
+            notes.push(t(key, { listed: bare(t, was.qty), part, count: bare(t, sc.count), boards: bare(t, o.list) }));
           }
       }
       const price = LUMBER[s.size] ?? null;
@@ -279,7 +292,7 @@ const slugId = (s: string) =>
     .replace(/^-|-$/g, '');
 
 /** Hardware and the other materials, matched to the spreadsheet's prices by what they are. */
-function otherLine(g: GuideSpec, x: GuideMaterial, n: number): GuideLine | null {
+function otherLine(g: GuideSpec, x: GuideMaterial, n: number, t: CostT): GuideLine | null {
   const item = x.item.toLowerCase();
   const size = x.size ?? '';
   const qty = Math.ceil(x.qty * n - 1e-9);
@@ -296,42 +309,45 @@ function otherLine(g: GuideSpec, x: GuideMaterial, n: number): GuideLine | null 
   });
 
   if (item.includes('wood screw') && !item.includes('lag')) {
-    if (size === '2.5"') return { item: '2.5" wood screws', qty, unit: 'ea.', price: P.woodScrew, material: 'wood-screw', link: P.woodScrew.link };
-    return needed(`${size} self-driving exterior wood screws`, `screw-${slugId(size)}`, { notes: `The spreadsheet prices only 2.5″ wood screws.` });
+    if (size === '2.5"') return { item: t('line.woodScrews'), qty, unit: 'ea.', price: P.woodScrew, material: 'wood-screw', link: P.woodScrew.link };
+    return needed(t('guide.item.screws', { size }), `screw-${slugId(size)}`, { notes: t('guide.note.screws') });
   }
   if (item.includes('lag')) {
     if (size.startsWith('1/4"'))
       return {
-        item: `${size.replace(/-/g, ' ')} lag screws`,
+        item: t('guide.item.lagScrews', { size: size.replace(/-/g, ' ') }),
         qty,
         unit: 'ea.',
         price: P.lagScrew,
         material: `lag-screw-${slugId(size)}`,
-        notes: `The guide’s ${size} lag screws, at the spreadsheet’s price for this bench’s lag screws (it lists them as 1/4″ x 1 1/2″).`,
+        notes: t('guide.note.lagSamePrice', { size }),
       };
-    return needed(`${size} lag screws`, `lag-screw-${slugId(size)}`, { notes: 'The spreadsheet has no price for lag screws this size.' });
+    return needed(t('guide.item.lagScrews', { size }), `lag-screw-${slugId(size)}`, { notes: t('guide.note.lagNoPrice') });
   }
   if (item.includes('carriage bolt'))
-    return { item: '1/4" x 2 1/2" exterior carriage bolts + nuts + washers', qty, unit: 'ea.', price: P.carriageBolt, material: 'carriage-bolt', link: P.carriageBolt.link };
-  if (item.includes('backrest bracket')) return { item: 'Backrest brackets', qty, unit: 'ea.', price: P.backrestBracket, material: 'backrest-bracket', link: P.backrestBracket.link };
+    return { item: t('line.carriageBolts'), qty, unit: 'ea.', price: P.carriageBolt, material: 'carriage-bolt', link: P.carriageBolt.link };
+  if (item.includes('backrest bracket')) return { item: t('line.backrestBrackets'), qty, unit: 'ea.', price: P.backrestBracket, material: 'backrest-bracket', link: P.backrestBracket.link };
   if (item.includes('l bracket') || item.includes('l-bracket'))
     return {
-      item: 'L-brackets',
+      item: t('line.lBrackets'),
       qty,
       unit: 'ea.',
       price: { ...P.lBracket, link: undefined, alt: undefined },
       material: `l-bracket-${g.slug}`,
-      notes: 'The guide gives no size; priced at the spreadsheet’s L-bracket price.',
+      notes: t('guide.note.lBrackets'),
     };
-  if (item.includes('hog ring')) return needed(`${size} hog rings`, 'hog-rings');
-  if (item.includes('cable staple')) return needed(`${size} cable staples`, 'cable-staples');
-  if (item.includes('j hook')) return needed(`${size} J hooks`, 'j-hooks');
-  if (item.includes('deck block')) return needed('Concrete deck blocks', 'deck-blocks', { notes: 'Only if needed: where a post lands in a planting bed (step 8).' });
+  if (item.includes('hog ring')) return needed(t('guide.item.hogRings', { size }), 'hog-rings');
+  if (item.includes('cable staple')) return needed(t('guide.item.cableStaples', { size }), 'cable-staples');
+  if (item.includes('j hook')) return needed(t('guide.item.jHooks', { size }), 'j-hooks');
+  if (item.includes('deck block')) return needed(t('guide.item.deckBlocks'), 'deck-blocks', { notes: t('guide.note.deckBlocks') });
   if (item.includes('geotextile')) {
     // "For the 24"x24" box, cut two 24"x72" pieces."
     const box = g.slug === 'planter-18' ? '18"x18"' : '24"x24"';
     const piece = new RegExp(`${box} box, cut two (\\d+"x\\d+")`).exec(x.notes ?? '')?.[1];
-    return needed(`Geotextile fabric${piece ? `, ${piece} pieces` : ''}`, `fabric-${slugId(piece ?? 'piece')}`, { unit: 'piece', notes: 'Two overlapping pieces line each box.' });
+    return needed(piece ? t('guide.item.fabricPieces', { size: piece }) : t('guide.item.fabric'), `fabric-${slugId(piece ?? 'piece')}`, {
+      unit: 'piece',
+      notes: t('guide.note.fabric'),
+    });
   }
   return null; // lumber, mesh, fill and bracing are handled by guideLines()
 }
@@ -340,7 +356,7 @@ function otherLine(g: GuideSpec, x: GuideMaterial, n: number): GuideLine | null 
  * What to order for `n` pieces built from one guide, in the guide's order:
  * lumber (checked against the cut list), basket and fill, then hardware.
  */
-export function guideLines(slug: GuideSlug, n: number): GuideLine[] {
+export function guideLines(slug: GuideSlug, n: number, t: CostT = EN): GuideLine[] {
   if (n <= 0) return [];
   const g = GUIDES[slug];
   const lines: GuideLine[] = [];
@@ -349,47 +365,48 @@ export function guideLines(slug: GuideSlug, n: number): GuideLine[] {
   const mesh = g.materials.find((x) => /welded-wire mesh/i.test(x.item));
   if (mesh && g.basketCuFt) {
     const len = slug === 'gabion-bench' ? 48 : 96;
-    const gauge = /^\d+ gauge/.exec(mesh.size ?? '')?.[0].concat(' ') ?? '';
+    const gauge = /^(\d+) gauge/.exec(mesh.size ?? '')?.[1];
+    const basket = (size: string) => (gauge ? t('guide.item.basket', { size, gauge }) : t('guide.item.basketNoGauge', { size }));
     const bracing = g.materials.find((x) => /bracing/i.test(x.item));
-    const also = bracing ? ' Also needed: bracing for the center supports — 14 or 16 gauge galvanized wire, or offcuts of the mesh.' : '';
+    const withBracing = (note: string) => (bracing ? `${note} ${t('guide.note.bracing')}` : note);
     lines.push(
       len === 48
         ? {
-            item: `Gabion basket 18"x18"x48" (${gauge}welded-wire mesh)`,
+            item: basket('18"x18"x48"'),
             qty: n,
             unit: 'EA',
             price: PRICES.gabionBasket2x18x4,
             material: 'gabion-basket-18x18x48',
             link: mesh.link,
-            notes: `Priced as the spreadsheet’s basket for 4′ wood-topped gabions (2′x18″x4′).${also}`,
+            notes: withBracing(t('guide.note.basket4')),
           }
         : {
-            item: `Gabion basket 18"x18"x96" (${gauge}welded-wire mesh)`,
+            item: basket('18"x18"x96"'),
             qty: n,
             unit: 'EA',
             price: null,
             material: 'guide:gabion-basket-18x18x96',
             priceId: 'guide:gabion-basket-18x18x96',
             link: mesh.link,
-            notes: `The spreadsheet prices only a 4′ basket (${'$'}${PRICES.gabionBasket2x18x4.price}).${also}`,
+            notes: withBracing(t('guide.note.basket8', { price: price(t, PRICES.gabionBasket2x18x4.price) })),
           },
     );
     const cuFt = g.basketCuFt * n;
     const tons = Math.ceil(Math.round((cuFt / 27) * 1.4 * 1e9) / 1e9);
     lines.push({
-      item: '1-3" stone fill',
+      item: t('line.stoneFill'),
       qty: tons,
       unit: 'TONS',
       price: PRICES.stoneFill,
       material: 'stone-fill',
       link: PRICES.stoneFill.link,
-      notes: `${fmt(g.basketCuFt)} cu ft per basket, 1.4 tons per cubic yard (the spreadsheet’s rule). The guide’s fill: quarried rock, recycled concrete, asphalt or brick.`,
+      notes: t('guide.note.fill', { cuft: bare(t, g.basketCuFt) }),
     });
   }
 
-  lines.push(...lumberLines(g, n));
+  lines.push(...lumberLines(g, n, t));
   for (const x of [...g.materials, ...g.hardware]) {
-    const l = otherLine(g, x, n);
+    const l = otherLine(g, x, n, t);
     if (l) lines.push(l);
   }
   return lines;
