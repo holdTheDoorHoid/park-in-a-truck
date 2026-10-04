@@ -65,6 +65,8 @@ after the extraction round. Tick them off here.
 - [ ] Plant picker shows the pot size in English ("Al comprarla: Quart") — `containerSize` not translatable in
       datasets.ts (phase B, or map the few sizes to catalog words).
 - [ ] Organize scrolls sideways at 360 px in English too (393 px; step-contents box + text column), not only Arabic.
+- [ ] Planner month chart labels columns with each month's first letter — in Creole August (out) and October
+      (oktòb) both show "O"; use a per-locale short/narrow month that stays distinct (or two letters where needed).
 
 ## For native-speaker review (per language)
 
@@ -99,6 +101,11 @@ after the extraction round. Tick them off here.
 - Build-guide tool and hardware words (machin vis a enpak, bag metal, sèjan, konpaktè a men, mas); `start.mdx`
   "Kisa yon polinizatè ye?" fruit list (pwa = pear or beans); plant-name hints; "Avi legal" + resources legal text;
   the site's safety notes in create/sustain (meaning must stay exact); the 6C names in `playful.ts`.
+
+### Haitian Creole (ht) — second pass
+- `cost.ts` fix.* / note.* / warn.* sentences and hardware names (ekè metal an L, rale angrenaj, chajè konpak);
+  `philly.ts` zoning.* meanings and Land Bank statuses; `planner.ts` slope.* and sun.assume* small print; `shade.ts`
+  summaries ("bilding ki {dir} yo"); `schedule.ts` task lines.
 
 ### Russian (ru)
 - Legal notice (`resources.json` legal.text, `start.mdx` «Правовая информация»); `create.mdx` Этап 2 «Гербициды»;
