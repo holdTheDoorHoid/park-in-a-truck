@@ -1,0 +1,571 @@
+{
+  "partners": [
+    {
+      "description": "Kwa ushirikiano na PiaT, inaongeza aina za miundo ya bustani zinazopatikana."
+    },
+    {
+      "description": "Kitengo cha elimu na uhamasishaji cha Philadelphia City Planning Commission; kinaendesha kozi ya wiki nane kuhusu jinsi mipango na maendeleo ya jiji yanavyofanya kazi."
+    },
+    {
+      "description": "Shirika lisilo la kibiashara la eneo hili lililofadhili bustani ya kwanza ya Park in a Truck. (Kiungo cha mwongozo wenyewe kwa shukrani hii kwa kweli kinaelekeza kwenye communityprogress.org, shirika la kitaifa lisilo la kibiashara linalohusu benki za ardhi — huenda ni kutolingana kwa kiungo na maelezo katika PDF ya asili, kwa hiyo hakuna anwani ya tovuti inayotolewa hapa hadi hilo lithibitishwe.)"
+    },
+    {
+      "description": "Kampuni ya udalali wa nyumba na ardhi ya Philadelphia inayohudumia eneo la magharibi mwa Philadelphia."
+    },
+    {
+      "description": "Inashirikiana na PiaT katika miundombinu ya kijani — wasiliana nao kwa msaada wa kutenganisha mabomba ya maji ya paa na mfumo wa maji taka, au kuongeza bustani ya maji ya mvua kwenye bustani yako."
+    },
+    {
+      "description": "Kiongozi katika kuhifadhi ardhi ya mjini; dhamana ya ardhi ya jamii (community land trust) kwa bustani za jamii na maeneo mengine ya wazi."
+    },
+    {
+      "description": "Mshirika ambaye ni shirika la maendeleo ya jamii (kundi la \"PARTNERS\" kwenye Linktree). Tovuti yake kwa sasa inaonyesha ukurasa ulioharibika — imethibitishwa kuwa haifanyi kazi, si kizuizi cha programu za kiotomatiki."
+    },
+    {
+      "description": "Mfadhili."
+    },
+    {
+      "description": "Mshirika kwa vibali, ardhi na taarifa za Jiji."
+    },
+    {
+      "description": "Mshirika wa makazi ya viumbe na upandaji."
+    },
+    {
+      "description": "Mshirika wa makazi ya viumbe na bustani za wachavushaji katika bustani kadhaa zilizojengwa."
+    },
+    {
+      "description": "Mfadhili."
+    },
+    {
+      "description": "Mshirika wa kitabu cha kazi cha Playful Learning Landscapes."
+    },
+    {
+      "description": "Mfadhili."
+    },
+    {
+      "description": "Zana ya Jiji ya kubadilisha mali iliyo tupu."
+    }
+  ],
+  "press": [
+    {
+      "title": "Kupitia programu ya Park in a Truck, Jefferson inalenga kusaidia kubadilisha jamii zisizohudumiwa vya kutosha"
+    },
+    {
+      "title": "Mpango wa Park in a Truck wapata tuzo ya 'Social Good' kutoka jarida la Fast Company"
+    },
+    {
+      "title": "Park in a Truck yapewa tuzo ya Groundbreaker ya 2020 ya Green Building United"
+    },
+    {
+      "title": "'Park in a Truck' ni kama Ikea, lakini kwa kujenga bustani za mtaa"
+    },
+    {
+      "title": "Viwanja vitupu vinageuka kuwa bustani nzuri katika mitaa ya Philadelphia"
+    },
+    {
+      "title": "Programu ya Park in a Truck inabadilisha maeneo ya kijani ya mjini huko Philadelphia kwa msaada wa vijana wa mtaa"
+    },
+    {
+      "title": "ASLA Spotlight — majira ya kuchipua 2025"
+    },
+    {
+      "title": "Park in a Truck"
+    },
+    {
+      "title": "Kubadilisha mitaa, bustani moja baada ya nyingine — imejengwa na jamii, kwa ajili ya jamii"
+    },
+    {
+      "title": "Maelekezo ya kuunganisha ya Park in a Truck ya Jefferson, #1"
+    },
+    {
+      "title": "Maelekezo ya kuunganisha ya Park in a Truck ya Jefferson, #2"
+    }
+  ],
+  "supplierGroups": [
+    {
+      "label": "Kukodi zana",
+      "items": [
+        {
+          "title": "West Philadelphia Tool Library",
+          "note": "Zana za mkono; inashirikiana na Philadelphia Orchard Project na pia inaendesha madarasa ya ujuzi."
+        },
+        {
+          "title": "Diamond Tool (kukodi zana za umeme)",
+          "note": "Inaonekana imeunganishwa na White Cap; inazuia ukaguzi wa kiotomatiki."
+        },
+        {
+          "title": "OK Rental Sales & Service",
+          "note": "Hakuna kati ya anwani za tovuti ambazo PiaT imewahi kuorodhesha kwa duka hili la kukodisha la Darby, PA (okrentalsaleservice.com, okrental1.com) inayofanya kazi tena."
+        }
+      ]
+    },
+    {
+      "label": "Taka na urejelezaji",
+      "items": [
+        {
+          "title": "Fairmount Park Organic Recycling Center",
+          "note": "3850 W Ford Rd — mboji, vipande vya mbao, matandazo, samadi kwa gharama ndogo sana."
+        },
+        {
+          "title": "Richard S. Burns & Co. (vifaa vilivyorejelezwa)",
+          "note": "4300 Rising Sun Ave — mahali pa kutupa taka + bidhaa zilizorejelezwa zinazouzwa."
+        }
+      ]
+    },
+    {
+      "label": "Vitalu vya miche na mimea",
+      "items": [
+        {
+          "title": "LandHealth Institute Nursery (Philaflora)"
+        },
+        {
+          "title": "Good Host Plants",
+          "note": "Wataalamu wa eneo hili wa mimea ya wachavushaji."
+        },
+        {
+          "title": "Pleasant Run Nursery",
+          "note": "Mimea ya mapambo yenye ubora wa juu na aina za mimea asilia; NJ, wanaleta kwa oda ya angalau $1,250."
+        },
+        {
+          "title": "Pinelands Nursery",
+          "note": "Mimea ya kurejesha mazingira ya kanda hii ya ikolojia; tovuti inatoa jibu lisilo la kawaida kwa ukaguzi wa kiotomatiki lakini kuna uwezekano mkubwa inafanya kazi."
+        },
+        {
+          "title": "Archewild",
+          "note": "Mimea ya kurejesha mazingira ya kanda hii ya ikolojia."
+        },
+        {
+          "title": "North Creek Nurseries"
+        },
+        {
+          "title": "Gardens Alive",
+          "note": "Cheti cha usalama (TLS) cha tovuti kimeisha muda kwa sasa — tarajia onyo kutoka kwa kivinjari."
+        },
+        {
+          "title": "Burpee — miti ya matunda"
+        },
+        {
+          "title": "Stark Bro's — miti ya matunda"
+        },
+        {
+          "title": "Gurney's — matunda na beri"
+        },
+        {
+          "title": "Willis Orchards — miti ya matunda"
+        },
+        {
+          "title": "PHS Gold Medal Plants"
+        },
+        {
+          "title": "Philly Orchard Project — rasilimali"
+        }
+      ]
+    },
+    {
+      "label": "Mbao na vifaa vya ujenzi",
+      "items": [
+        {
+          "title": "D&S Supply",
+          "note": "4260 Macalester St — vifaa vya mandhari ya bustani, matandazo na zana."
+        },
+        {
+          "title": "Underdog Landscape Supply",
+          "note": "701 Washington St, Conshohocken — udongo wa juu, matandazo, mboji."
+        },
+        {
+          "title": "Mid Atlantic Pine Straw"
+        },
+        {
+          "title": "Woodland Building Supply",
+          "note": "4701 Woodland Ave, Phila."
+        },
+        {
+          "title": "C&R Building Supply",
+          "note": "1601 S 49th St, Phila."
+        },
+        {
+          "title": "A&A Lumber",
+          "note": "Mbao za cypress, Avondale PA."
+        },
+        {
+          "title": "Delaware County Supply"
+        },
+        {
+          "title": "Castor Materials",
+          "note": "3301 S 61st St — mawe yaliyosagwa, udongo wa juu, wanaleta."
+        },
+        {
+          "title": "Rockler — kuchagua umaliziaji bora kwa kazi za nje"
+        },
+        {
+          "title": "Real Milk Paint (RMP Finishes) — umaliziaji bora kwa mbao za nje"
+        },
+        {
+          "title": "Vermont Natural Coatings — rangi na dawa za nje"
+        },
+        {
+          "title": "Hairpin Legs — mabano ya kitanda/egemeo"
+        }
+      ]
+    },
+    {
+      "label": "Gabioni na mawe",
+      "items": [
+        {
+          "title": "Gabion1.com"
+        },
+        {
+          "title": "Darby Wire Mesh",
+          "note": "Inazuia ukaguzi wa kiotomatiki; anwani ya tovuti imesajiliwa na inafanya kazi."
+        },
+        {
+          "title": "Jinsi ya kujenga ukuta wa gabioni (Gardendrum)"
+        }
+      ]
+    },
+    {
+      "label": "Video za jinsi ya kufanya",
+      "items": [
+        {
+          "title": "Jinsi ya kupogoa mti"
+        },
+        {
+          "title": "Jinsi ya kupanda mti"
+        },
+        {
+          "title": "Jinsi ya kupanda kichaka"
+        },
+        {
+          "title": "Kingo za mbao"
+        },
+        {
+          "title": "Kujenga ukuta wa gabioni"
+        },
+        {
+          "title": "Kujenga meza ya pamoja"
+        },
+        {
+          "title": "Kujenga kisanduku cha kukuzia miche (cold frame)"
+        },
+        {
+          "title": "Kujenga matuta ya bustani yaliyoinuliwa"
+        },
+        {
+          "title": "Pogoa kama mtaalamu"
+        },
+        {
+          "title": "Mwongozo wa kumwagilia na maji ya mvua"
+        }
+      ]
+    },
+    {
+      "label": "Vyanzo vya kujifunza",
+      "items": [
+        {
+          "title": "Penn State Extension — kupima udongo"
+        },
+        {
+          "title": "Penn State Extension — fomu za kupeleka sampuli za rutuba ya udongo"
+        },
+        {
+          "title": "Penn State Extension — wadudu na magonjwa"
+        },
+        {
+          "title": "Penn State Extension — programu ya Master Gardener"
+        },
+        {
+          "title": "Missouri Botanical Garden — kitafuta-mimea (Plant Finder)"
+        },
+        {
+          "title": "Arbor Day Foundation"
+        },
+        {
+          "title": "Arbor Day — jinsi ya kupanda mti kutoka kwenye chombo"
+        },
+        {
+          "title": "Arbor Day — miti ya matunda"
+        },
+        {
+          "title": "Pennsylvania Horticultural Society (PHS)",
+          "note": "Warsha, taarifa za bustani za jamii, programu ya mapipa ya maji ya mvua (Rain Barrel)."
+        },
+        {
+          "title": "Grounded in Philly",
+          "note": "Msaada wa kisheria, taarifa na miongozo ya kupata/kubaki na kiwanja."
+        },
+        {
+          "title": "Philly Orchard Project"
+        },
+        {
+          "title": "Soil Generation",
+          "note": "Muungano unaoongozwa na watu Weusi na wa asili nyingine za rangi kwa ajili ya jamii kudhibiti ardhi na chakula chake."
+        },
+        {
+          "title": "Park Advocate Handbook (NRPA)"
+        },
+        {
+          "title": "The PHS City Parks Handbook (Temple University Press)"
+        },
+        {
+          "title": "Vacant Lot Activation Toolkit (Trust South LA)"
+        },
+        {
+          "title": "Green2015: An Action Plan for the First 500 Acres (mpango wa ekari 500 za kwanza)",
+          "note": "Mpango wa PennPraxis kwa ajili ya Philadelphia Parks & Recreation."
+        },
+        {
+          "title": "PlantSnap (programu ya simu ya kutambua mimea na magugu)"
+        },
+        {
+          "title": "Gardener's Path — kutumia kipimo cha mvua"
+        },
+        {
+          "title": "Jinsi ya kuweka matandazo (SKH)"
+        },
+        {
+          "title": "Dawa ya kuua magugu ya siki (mfano wa bidhaa)",
+          "note": "Chanzo pekee kilichopatikana kwa bidhaa hii mahususi; kimeunganishwa bila kuipendekeza."
+        }
+      ]
+    },
+    {
+      "label": "Programu za Jiji la Philadelphia",
+      "items": [
+        {
+          "title": "Atlas Philadelphia (kutafuta mali)"
+        },
+        {
+          "title": "Ramani ya umiliki wa vipande vya ardhi vya Philadelphia (ArcGIS)"
+        },
+        {
+          "title": "Mashirika ya jamii yaliyosajiliwa (RCO)"
+        },
+        {
+          "title": "Kibali cha muda cha kuzuia maegesho (Temporary No-Parking Permit)"
+        },
+        {
+          "title": "Green City, Clean Waters — ruzuku ya maji ya mvua/bustani ya maji ya mvua"
+        }
+      ]
+    }
+  ],
+  "toolkitLibrary": {
+    "intro": "Karibu kwenye maktaba ya mwongozo! Kurasa zifuatazo zina rasilimali na viungo vingi kwa taarifa zaidi, vimepangwa kwa sura.",
+    "sections": [
+      {
+        "title": "Utangulizi",
+        "entries": [
+          {
+            "title": "Ili kupunguza umaskini, juhudi za Baraza la Jiji zinapaswa kujumuisha maeneo zaidi ya kijani (The Inquirer)"
+          },
+          {
+            "title": "Tukuze afya na maeneo ya kijani, kiwanja kimoja kitupu baada ya kingine (The Inquirer)"
+          },
+          {
+            "title": "Gangsta Gardener — Ron Finley"
+          },
+          {
+            "title": "Just Bees And Things And Flowers: jinsi wanawake Weusi wakulima wa bustani watakavyostahimili janga la COVID-19 (Essence)"
+          },
+          {
+            "title": "Black Girls with Gardens"
+          },
+          {
+            "title": "Farming While Black — Leah Penniman"
+          }
+        ]
+      },
+      {
+        "title": "01 Pata kiwanja",
+        "entries": [
+          {
+            "title": "The PHS City Parks Handbook ($13.95)"
+          },
+          {
+            "title": "Park Advocate Handbook (bure)"
+          },
+          {
+            "title": "Atlas Philadelphia"
+          },
+          {
+            "title": "Citizens Planning Institute"
+          },
+          {
+            "title": "Green2015: An Action Plan for the First 500 Acres (mpango wa ekari 500 za kwanza)"
+          },
+          {
+            "title": "Grounded in Philly"
+          },
+          {
+            "title": "Neighborhood Gardens Trust"
+          },
+          {
+            "title": "Soil Generation"
+          }
+        ]
+      },
+      {
+        "title": "02 Jipange",
+        "entries": [
+          {
+            "title": "The PHS City Parks Handbook"
+          },
+          {
+            "title": "Vacant Lot Activation Toolkit (Free Lots Angeles)"
+          }
+        ]
+      },
+      {
+        "title": "03 Kagua",
+        "entries": [
+          {
+            "title": "Penn State Extension — kupima udongo"
+          }
+        ]
+      },
+      {
+        "title": "04 Ota ndoto",
+        "entries": [
+          {
+            "title": "Gardens Alive"
+          },
+          {
+            "title": "North Creek Nurseries"
+          },
+          {
+            "title": "Missouri Botanical Garden — kitafuta-mimea (Plant Finder)"
+          },
+          {
+            "title": "Longwood Gardens — kutafuta mimea"
+          },
+          {
+            "title": "Arbor Day Foundation"
+          },
+          {
+            "title": "Penn State Master Gardeners — mwongozo wa kupanda wa Philadelphia"
+          }
+        ]
+      },
+      {
+        "title": "05 Jenga",
+        "entries": [
+          {
+            "title": "Woodland Building Supply"
+          },
+          {
+            "title": "C&R Building Supply"
+          },
+          {
+            "title": "A&A Lumber"
+          },
+          {
+            "title": "Philly Reclaim"
+          },
+          {
+            "title": "PowerCorpsPHL"
+          },
+          {
+            "title": "Burpee — miti ya matunda"
+          },
+          {
+            "title": "Stark Bro's — miti ya matunda"
+          },
+          {
+            "title": "Gurney's — matunda na beri"
+          },
+          {
+            "title": "Willis Orchards — miti ya matunda"
+          },
+          {
+            "title": "Good Host Plants"
+          },
+          {
+            "title": "LandHealth Institute Nursery (Philaflora)"
+          },
+          {
+            "title": "Pleasant Run Nursery"
+          },
+          {
+            "title": "Pinelands Nursery"
+          },
+          {
+            "title": "Archewild"
+          },
+          {
+            "title": "Underdog Landscape Supply"
+          },
+          {
+            "title": "Castor Materials"
+          },
+          {
+            "title": "D&S Supply"
+          },
+          {
+            "title": "Richard S. Burns & Co."
+          },
+          {
+            "title": "West Philadelphia Tool Library"
+          },
+          {
+            "title": "Diamond Tool"
+          },
+          {
+            "title": "Fairmount Park Organic Recycling Center"
+          }
+        ]
+      },
+      {
+        "title": "06 Tunza",
+        "entries": [
+          {
+            "title": "Pennsylvania Horticultural Society"
+          },
+          {
+            "title": "Grounded in Philly"
+          },
+          {
+            "title": "Greensgrow"
+          },
+          {
+            "title": "Brandywine Conservancy — mimea vamizi"
+          },
+          {
+            "title": "Jinsi ya kupanda mti kutoka kwenye chombo (Arbor Day)"
+          },
+          {
+            "title": "Jinsi ya kupanda kichaka (video)"
+          },
+          {
+            "title": "Jinsi ya kupogoa mti (video)"
+          },
+          {
+            "title": "Jinsi ya kupogoa kichaka (Gardeners' World)"
+          },
+          {
+            "title": "Arbor Day Foundation — miti ya matunda"
+          },
+          {
+            "title": "Philadelphia Orchard Project"
+          },
+          {
+            "title": "Misingi ya kutengeneza mboji (video)"
+          },
+          {
+            "title": "Kuweka mbolea (Penn State Extension)"
+          },
+          {
+            "title": "Jinsi ya kuweka matandazo kwenye bustani yako (Good Housekeeping)"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgments": {
+    "lead": "Programu ya Usanifu wa Mandhari (Landscape Architecture Program) + Maabara ya Ubunifu wa Kijamii na Mijini (Lab for Social and Urban Innovation), Thomas Jefferson University",
+    "note": "Tovuti hii inageuza mwongozo, vitabu vya kazi na orodha za mimea za Park in a Truck yenyewe kuwa toleo shirikishi linalokuongoza hatua kwa hatua, kwa ruhusa ya Park in a Truck / Thomas Jefferson University. Maneno yote ya asili, michoro na picha ni yao."
+  },
+  "legal": {
+    "title": "Taarifa ya kisheria",
+    "text": "Mapendekezo yaliyomo humu yanatokana na mbinu za kawaida za utengenezaji na ujenzi. Kwa hali yoyote ile, Thomas Jefferson University (TJU), Maabara ya Ubunifu wa Kijamii ya TJU (Lab For Social Innovation), Park-in-a-Truck, na/au wahadhiri, wafanyakazi au washirika wake hawatawajibika kwa hasara yoyote au majeraha kwa mtu au uharibifu wa mali unaotokana na matumizi ya mapendekezo haya. Thomas Jefferson University (TJU), Maabara ya Ubunifu wa Kijamii ya TJU, Park-in-a-Truck, au wahadhiri, wafanyakazi na/au washirika wake hawatoi dhamana yoyote, iwe ya wazi au ya kudokezwa, na kwa hili wanakana na kubatilisha dhamana nyingine zote, ikiwa ni pamoja na, bila kikomo, dhamana au masharti ya kudokezwa ya kufaa kuuzwa, kufaa kwa matumizi maalum, au kutokiuka haki miliki au ukiukaji mwingine wa haki. Zaidi ya hayo, Thomas Jefferson University (TJU), Maabara ya Ubunifu wa Kijamii ya TJU, Park-in-a-Truck, na/au wahadhiri, wafanyakazi au washirika wake hawahakikishi wala kutoa uwakilishi wowote kuhusu usahihi, matokeo yanayotarajiwa, au uaminifu wa matumizi ya mapendekezo haya. Matumizi ya mapendekezo haya yanamaanisha kwamba unakubali yaliyotajwa hapo juu."
+  }
+}
