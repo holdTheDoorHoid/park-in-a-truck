@@ -1,0 +1,142 @@
+{
+  "title": "Bwat plant 18\"",
+  "summary": "Yon bwat plant an ti planch 2x4, 18\" wotè ak 18\" fon, ak twal jeyotekstil anndan l. Menm PDF la montre tou yon vèsyon long 18\"x48\" ki fèt menm jan ak plis planch devan — gade nòt materyèl yo ak lis koupe a.",
+  "materials": [
+    {
+      "item": "Bwa 2x4 (dimensional lumber) — sèd wouj (western red cedar), sapen Douglas (Douglas fir), oswa bwa pen trete anba presyon (pressure-treated)",
+      "notes": "Pou bwat 18\"x18\" la. Bwat long 18\"x48\" la pran 10 planch pito. Sèd: natirèlman li reziste ak move tan ak pouriti, li gen yon bèl koulè wouj, li fasil pou travay, li pa bezwen vèni; li koute pi chè — mande kalite \"knotty\" (STK, ak ne). Sapen Douglas: li reziste yon ti jan ak pouriti, li solid, li pi bon mache pase sèd; se yon bon chwa si ou gen lide pentire l. Bwa trete anba presyon: se li ki pi bon mache epi li reziste ak pouriti, men kalite l souvan pa bon/pa menm, li bezwen 1–4 mwa pou l seche nan lè a anvan ou pentire l, epi yo pa rekòmande l kote w ap plante manje. Kòmande omwen 5% plis pase lis koupe a, pou kalite bwa ki pa menm ak koupe ki pa bon."
+    },
+    {
+      "item": "Twal jeyotekstil (geotextile fabric)",
+      "notes": "De moso ki kouvri youn sou lòt kouvri anndan bwat la pou l kenbe tè a pandan dlo a ka koule soti. Pou bwat 18\"x18\" la, koupe de moso 18\"x54\". Pou bwat 18\"x48\" la, koupe yon moso 48\"x54\" ak yon moso 96\"x18\"."
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Vis bwa pou deyò ki antre poukont yo (self-driving)"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Bout, devan + anba bwat plant lan"
+    },
+    {
+      "notes": "Bout, devan + anba bwat plant lan"
+    },
+    {
+      "notes": "Bout bwat plant lan"
+    },
+    {
+      "notes": "Devan + anba bwat plant lan"
+    },
+    {
+      "notes": "Bout bwat plant lan"
+    },
+    {
+      "notes": "Bout bwat plant lan"
+    },
+    {
+      "notes": "Bout bwat plant lan"
+    }
+  ],
+  "tools": [
+    "Si onglè 10\" oswa 12\" (miter saw), oswa yon bon si a men",
+    "Machin vis a enpak (impact driver) pou vis bwa ki antre poukont yo",
+    "Dril ak mèch 1/8\" ak 1/4\" pou fè ti twou davans",
+    "Pistolè agraf (staple gun)",
+    "Papye sab, gren 120",
+    "Ekè chapantye",
+    "Linèt pwoteksyon + mask"
+  ],
+  "steps": [
+    {
+      "title": "Make, mete non sou bwa a epi koupe l",
+      "text": "Make, mete non sou bwa a epi koupe l nan lòd, depi P-1 rive P-3 (bwat 18\"x18\") oswa P-1A, P-1 rive P-3 (bwat 18\"x48\"), nan longè ki nan lis koupe a.\n\nVerifye chak moso bwa pou wè si li gen defo tankou fant, bwa ki tòde oswa ki pa rabote egal, epi jete pati sa yo.",
+      "imageAlts": [
+        "Dyagram izometrik moso koupe yo pou tou de bwat yo, 18\"x18\" (P-1, P-2, P-3) ak 18\"x48\" (P-1A, P-1, P-2, P-3), ak longè yo make."
+      ],
+      "tips": [
+        "Ekri non chak moso bwa pandan w ap mezire l epi koupe l.",
+        "Fè yon pil apa pou chak pyès.",
+        "Lè ou pase papye sab dousman sou bò ou koupe yo, sa retire ti pikan bwa yo epi sa ede pou monte l.",
+        "W ap bati plis pase yon bwat plant? Yon ti blòk kanpe (stop block) sou si onglè a fè tout moso yo soti menm longè."
+      ]
+    },
+    {
+      "title": "Bati de kad bout yo",
+      "text": "Mete de moso P-3 sou yon sifas plat. Mete de moso P-1 sou chak bò moso P-3 yo, epi aliyen bò yo jan sa montre a. Refè sa pou bati yon dezyèm kad ki menm jan.",
+      "imageAlts": [
+        "Dyagram ki montre de planch P-1 ak de planch P-3 ki monte an yon kad kare pou bout la, pou tou de bwat 18\"x18\" ak 18\"x48\" yo."
+      ],
+      "tips": [
+        "Sèvi ak yon ekè chapantye pou verifye chak kwen fè yon ang dwat.",
+        "Si ou fè yon gabari 90 degre, sa ka ede w pou monte etap sa a ak pwochen an."
+      ]
+    },
+    {
+      "title": "Ranpli chak kad bout",
+      "text": "Mete senk moso P-2 sou tèt kad ou te fè nan etap 2 a, ak yon espas 1.5\" sou tou de bò yo.\n\nSèvi ak gid twou ki nan fen pakèt la pou fè ti twou davans pou vis yo, apre sa fikse bwa a nan moso P-2 yo ak yon machin vis a enpak ak 20 vis bwa pou deyò 2.5\" ki antre poukont yo.\n\nRefè sa sou lòt pye a, epi kanpe tou de pye yo pou pwochen etap la.",
+      "imageAlts": [
+        "Dyagram planch P-2 k ap vise sou chak kad bout ak yon espas 1.5\" sou tou de bò yo, pou tou de bwat 18\"x18\" ak 18\"x48\" yo."
+      ],
+      "tips": [
+        "Sèvi ak yon moso P-3 an plis, kanpe sou bout li, kòm kal pou jwenn yon espas 1.5\" egal."
+      ]
+    },
+    {
+      "title": "Konekte de kad bout yo",
+      "text": "Mete senk moso P-2 (oswa senk moso P-1A, pou bwat 18\"x48\" la) ant de bout bwat plant lan.\n\nFikse bwa P-2 oswa P-1A yo sou chak bò nan moso bò yo ak yon machin vis a enpak ak 20 vis bwa pou deyò 2.5\" ki antre poukont yo.\n\nRefè sa sou bò dèyè bwat plant lan.",
+      "imageAlts": [
+        "Dyagram planch devan P-2 oswa P-1A ki konekte de kad bout yo pou fè mi bwat plant lan."
+      ],
+      "tips": [
+        "Travay depi anba sou tou de bò yo an menm tan, epi mande yon moun ede w verifye bò a rete a 90 degre."
+      ]
+    },
+    {
+      "title": "Ajoute fon an ti planch lan",
+      "text": "Mete kat moso P-2 (oswa kat moso P-1A, pou bwat 18\"x48\" la) anba kad bwat plant lan, epi kite yon espas 1/4\" ant chak moso pou dlo a ka koule.\n\nFikse bwa P-2 oswa P-1A yo sou chak bò nan moso bò yo ak yon machin vis a enpak ak 16 vis bwa pou deyò 2.5\" ki antre poukont yo.",
+      "imageAlts": [
+        "Dyagram planch P-2 oswa P-1A ki fè fon an ti planch bwat plant lan, ak yon espas 1/4\" pou dlo koule ant chak planch."
+      ]
+    },
+    {
+      "title": "Mete twal jeyotekstil anndan l epi fini",
+      "text": "Vire kad bwat plant lan pou l kanpe dwat.\n\nKoupe yon moso twal jeyotekstil 18\"x54\" (oswa yon moso 48\"x54\" pou bwat 18\"x48\" la). Koupe yon dezyèm moso 18\"x54\" (oswa yon moso 96\"x18\" pou bwat 18\"x48\" la).\n\nSèvi ak yon pistolè agraf pou fikse twal jeyotekstil yo, youn sou lòt, anndan bwat plant lan.\n\nPase papye sab dousman sou bò ki graje yo sou bwat plant lan. Li pare — pote l nan plas final li, apre sa plen li ak tè pou po epi plante!",
+      "imageAlts": [
+        "Dyagram de moso twal jeyotekstil ki kouvri youn sou lòt k ap agrafe anndan bwat plant lan, pou tou de gwosè bwat yo."
+      ],
+      "tips": [
+        "Pliye twal la omwen 1\" anba bò anwo a anvan ou agrafe l. Agrafe l sou tout bò anwo a ak desann nan kwen yo pou l byen sele."
+      ]
+    },
+    {
+      "title": "Gid twou pou fè davans (gabari)",
+      "text": "Koupe gid twou a sou liy pwentiye yo. Lè w ap fè twou, aliyen bò gabari a ak bò deyò bwa a anvan ou fè ti twou davans lan.\n\nSe pa tout twou yo ou sèvi — se pa tout modèl ki sèvi ak gabari a. Swiv etap montaj ki anwo yo pou konnen ki kote pou fè twou yo. Kenbe tout twou yo apeprè lajè yon pous dwèt (apeprè 1\") depi bò a, menm twou ki pa sèvi ak gabari sa a.",
+      "imageAlts": [
+        "Yon gabari gid twou ou ka enprime, ak senk plas twou make ak liy pou koupe, plis yon gwo plan ki montre distans twou yo depi bò planch lan."
+      ]
+    }
+  ],
+  "finishing": "Yon tretman pou bwa deyò ka fè eleman pak ou yo dire pi lontan, men li pa nesesè — moso sa yo fèt espre pou yo pa koute chè, pou yo dire epi pou yo fasil pou bati, kidonk li ka pi pratik pou kite pwochen jenerasyon an rebati yo lè lè a rive. Si ou vle tenti, pentire oswa vèni bwa a, gade resous pou fini ki anba yo.",
+  "safety": [
+    "Sa yo se sèlman rekòmandasyon pou moun ki fè l ak pwòp men yo — adapte materyèl la, montaj la ak konstriksyon an ak pwòp pwojè pa w ak teren pa w.",
+    "Pou bati sa a, ou bezwen konn kèk bagay sou zouti men ak zouti elektrik, pyès metal, vis ak boulon, bwa ak teknik montaj debaz.",
+    "Anvan ou sèvi ak nenpòt zouti elektrik, li epi swiv kondisyon sekirite fabrikan an mande, epi pa kite pèsonn sèvi ak zouti elektrik si yo pa fè menm bagay la.",
+    "Ou menm (mèt la) responsab pou tout règ konstriksyon ak sekirite, pèmi ak otorizasyon ofisyèl sa a bezwen.",
+    "Anvan, netwaye teren an: retire fatra, danje ak estrikti ou pa vle, epi chèche konnen kote fil ak tiyo sèvis piblik ki ta ka jennen yo pase anvan ou fouye.",
+    "Tout moun k ap ede bati dwe siyen yon fòm egzonerasyon pou volontè."
+  ],
+  "links": [
+    {
+      "label": "Chwazi pi bon fini pou pwojè deyò (Rockler, an anglè)"
+    },
+    {
+      "label": "Pi bon fini pou bwa deyò (Real Milk Paint, an anglè)"
+    },
+    {
+      "label": "Kouch pwoteksyon pou bwa deyò (Vermont Natural Coatings, an anglè)"
+    }
+  ],
+  "sourcePages": "Enstriksyon montaj 18_Planter_Box, paj 1–10 (kouvèti; anvan ou kòmanse; chwa bwa ki pi kouran; etap 1–6, pou tou de montaj 18\"x18\" ak 18\"x48\" yo; gid twou pou fè davans)"
+}
