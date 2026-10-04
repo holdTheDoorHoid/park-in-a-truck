@@ -297,6 +297,21 @@ Conventions chosen (keep to them):
 | (added) raised bed | luống trồng nâng cao | |
 | (added) committee meeting / community meeting | cuộc họp ban công viên / buổi họp cộng đồng | |
 | (added) volunteer | tình nguyện viên | |
+| (added, 2nd pass) cost spreadsheet / the sheet | bảng tính (của Park in a Truck) | the estimate the site makes = bảng ước tính |
+| (added) contingency / tool rental | dự phòng / thuê dụng cụ | |
+| (added) hardscape / softscape | nền cứng / nền mềm | explain once: (bê tông, nhựa đường…) / (đất) |
+| (added) off-the-shelf | mua sẵn | |
+| (added) order list / price needed | danh sách đặt hàng / cần giá | |
+| (added) the planner's steps | Lô đất · Cỡ & chủ đề · Bố trí · Đã có gì · Nắng & bóng râm · Đếm | |
+| (added) Plan view / 3D view | Mặt bằng / 3D | |
+| (added) direct sun / dappled shade | nắng trực tiếp / bóng râm lốm đốm | |
+| (added) growing season | mùa cây phát triển | |
+| (added) compass words | bắc, đông bắc, đông, … ; "to the south" = "ở phía nam" | map letter for north = "B" |
+| (added) clock times | 12-hour with SA/CH ("3:30 CH") in the planner | the checker rejects {hour24}; the shade calendar uses the locale's own clock |
+| (added) mile / cubic yard | dặm / CY (yard khối) | |
+| (added) Land Bank "side-yard eligible" | có thể mua làm sân bên | |
+| (added) RCO, Councilmember, council district | RCO, nghị viên, quận hội đồng thành phố | |
+| (added) Survive / Thrive / Socialize (stewardship) | Sống sót / Phát triển tốt / Gặp gỡ | same as the Sustain chapter |
 
 ### ru — Русский
 
@@ -367,51 +382,53 @@ The City as a government is «город» / «городские власти»
 
 Tone: Modern Standard Arabic kept simple. Address one reader with the masculine-singular imperative (the usual generic form); Western digits (1, 2, 3). Arrows point the reading direction: "next" is ←. فيلادلفيا.
 
-*Status: partly filled in by i18n-core (Arabic home page).*
+*Status: filled in by i18n-core (home page) and t-ar (whole site, 2026-10-04).*
 
 | English | Translation | Note |
 |---|---|---|
-| Park in a Truck / PiaT | Park in a Truck / PiaT | |
-| toolkit | الدليل | |
-| workbook | كراسة العمل | |
+| Park in a Truck / PiaT | Park in a Truck / PiaT | Latin letters, never transliterated. |
+| toolkit | الدليل | "الدليل (Toolkit)" in a chapter's sources line. |
+| workbook | كراسة العمل | Plural كراسات العمل. "the Dream workbook" = كراسة عمل «الحلم». |
 | step | خطوة | |
 | sub-step | خطوة فرعية | |
 | Mark this step done / done | ضع علامة: أُنجزت هذه الخطوة / أُنجزت | |
-| Start here · Acquire · Organize · Assess · Dream · Create · Sustain | ابدأ من هنا · الحصول على قطعة أرض · التنظيم · التقييم · الحلم · البناء · الرعاية | |
+| Start here · Acquire · Organize · Assess · Dream · Create · Sustain | ابدأ من هنا · الحصول على قطعة أرض · التنظيم · التقييم · الحلم · البناء · الرعاية | In running text the step name goes in «» quotes: خطوة «البناء». |
 | vacant lot | قطعة أرض فارغة | |
-| lot | قطعة أرض | |
+| lot | قطعة أرض | Short form after first mention: القطعة. |
 | parcel | قطعة أرض مسجلة (parcel) | |
-| mid-block lot / corner lot / breezeway, alley | قطعة في منتصف الشارع / قطعة على الزاوية / ممر | |
-| owner (public / private) | المالك (عام / خاص) | |
+| mid-block lot / corner lot / breezeway, alley | قطعة في منتصف الشارع / قطعة على الزاوية / ممر، زقاق | easement = حق مرور. |
+| owner (public / private) | المالك (ملكية عامة / ملكية خاصة) | |
 | zoning | التصنيف العمراني (التقسيم) | |
-| City records / Filled in from City records | سجلات المدينة | |
+| City records / Filled in from City records | سجلات المدينة / مأخوذ من سجلات المدينة | |
 | City (of Philadelphia) | المدينة (مدينة فيلادلفيا) | |
 | RCO (Registered Community Organization) | منظمة مجتمعية مسجّلة (RCO) | |
 | Philadelphia Land Bank | Philadelphia Land Bank (بنك الأراضي في المدينة) | |
-| PHDC | PHDC | |
+| PHDC | PHDC (مؤسسة فيلادلفيا لتطوير الإسكان) | Explained once per page. |
 | Sheriff Sale | مزاد الشريف (Sheriff Sale) | |
 | purchase / donation / lease / in-kind (use) agreement | شراء / تبرّع / إيجار / اتفاق انتفاع عيني | |
 | park committee | لجنة الحديقة | |
-| neighbors / neighborhood | الجيران / الحي | |
+| neighbors / neighborhood | الجيران / الحي | "community" (the people) = أهل الحي or المجتمع. |
 | park pieces | قطع الحديقة | |
 | frame / front / back (pieces) | الإطار / القطعة الأمامية / القطعة الخلفية | |
-| seam (length seam, width seam) | شريط وصل | |
-| theme: Edible · Sanctuary · Nature · Event | صالحة للأكل · ملاذ · طبيعة · فعاليات | |
+| seam (length seam, width seam) | شريط وصل (شريط وصل للطول، شريط وصل للعرض) | |
+| theme: Edible · Sanctuary · Nature · Event | صالحة للأكل · ملاذ · طبيعة · فعاليات | "theme" = نمط (plural أنماط); names in «» in running text: نمط «ملاذ». |
 | size A–E | الحجم A–E | |
-| gabion (wall, bench) | قفص حجري (جابيون) | |
-| build guide | دليل البناء | |
+| gabion (wall, bench) | قفص حجري (جابيون) | Explained once; in names and steps just جابيون: جدار جابيون، مقعد جابيون، قفص الجابيون. |
+| build guide | دليل البناء | Plural أدلة البناء. |
 | cut list / materials & hardware / tools | قائمة القطع / المواد والعُدد / الأدوات | |
-| 2x4, 2x4x8', BB-1 | 2x4, 2x4x8', BB-1 | |
+| 2x4, 2x4x8', BB-1 | 2x4, 2x4x8', BB-1 | Inside a sentence, a length goes in words: "2x4 بطول 20 بوصة" for 2"x4"x20". |
 | full sun / part sun / shade | شمس كاملة / شمس جزئية / ظل | |
-| native plant · perennial · shrub · small tree · large tree | نبات محلي · نبات معمّر · شجيرة · شجرة صغيرة · شجرة كبيرة | |
-| pollinator | المُلقِّحات | |
-| stewardship / sustain | رعاية الحديقة | |
+| native plant · perennial · shrub · small tree · large tree | نبات محلي · نبات معمّر · شجيرة · شجرة صغيرة · شجرة كبيرة | annual = نبات حولي; bulb = بصلة (أبصال). |
+| pollinator | مُلقِّح (المُلقِّحات) | |
+| stewardship / sustain | رعاية الحديقة / الرعاية | |
 | My park | حديقتي | |
 | project file | ملف المشروع | |
 | Plan in 3D / the planner | التصميم ثلاثي الأبعاد / أداة التخطيط | |
 | Note from this site, not Park in a Truck | ملاحظة من هذا الموقع، وليست من Park in a Truck | |
-| in English | بالإنجليزية | |
-| ft, in, sq ft, $ | قدم، بوصة، قدم مربع، $ | |
+| in English | بالإنجليزية | Added as "(بالإنجليزية)" after English-only links. |
+| ft, in, sq ft, $ | قدم، بوصة، قدم مربع، $ / دولار | Write the unit as a word after the number, never the ' and " marks (they flip around in right-to-left text): 6 أقدام، 2.5 بوصة، 12 قدمًا. Plural: 1 قدم، قدمان، 3–10 أقدام، 11+ قدمًا (same for بوصة/بوصات). Dimensions with ×: 18 × 48 بوصة. |
+
+Extra terms used consistently (not in the English table): mulch = غطاء التربة (المالتش) · topsoil = التربة السطحية · gravel = الحصى · weeds = الأعشاب الضارة · pre-emergent = مبيد وقائي قبل الإنبات · impact driver = المفك الصدمي · self-driving exterior wood screws = براغي خشب خارجية ذاتية الحفر · carpenter's square = زاوية النجار القائمة · miter saw = منشار الزوايا · pre-drill = يحفر مسبقًا · hog rings = حلقات التثبيت · geotextile fabric = قماش جيوتكستايل · Park Ambassador = سفير الحديقة (Park Ambassador) · Park Patch = رقعة الحديقة (Park Patch) · street tree = شجرة الشارع · fire hydrant = صنبور إطفاء الحرائق · downspout = مزراب · volunteer waiver = نموذج التنازل وإخلاء المسؤولية للمتطوعين · build day = يوم البناء. Planner and cost: the spreadsheet (PiaT's cost sheet) = الجدول · contingency = احتياطي للطوارئ · tool rental = تأجير الأدوات · price needed = يحتاج إلى سعر · order list = قائمة الطلب · hardscape / softscape = أرض صلبة / أرض لينة · block (of a street, "the 2200 block") = مقطع (مقطع 2200) · dappled shade = ظل متقطع · compass points with the article (الشمال، الجنوب الغربي) · degrees as words (90 درجة; the ° sign flips) · counts that need a plural use "label: {count}" (عدد البنود: 3) so every Arabic plural form is grammatical.
 
 ### ht — Kreyòl ayisyen
 
@@ -493,49 +510,91 @@ Added in the second pass (planner, City-data widgets, cost estimator, shade cale
 
 Tone: Standard French. **vous**. Keep US units and dates as the site formats them.
 
+*Status: filled in by the t-fr translation round (2026-10-04), which translated the whole site with it.*
+
+Written for French readers in Philadelphia from West Africa, Haiti, Europe and Canada: clear international French,
+**vous**, no France-only or Québec-only slang. Philadelphia = *Philadelphie*. Typography: a non-breaking space
+(U+00A0) before `: ; ? !` and inside « guillemets », everywhere (catalogs, data, chapters); typographic apostrophe ’.
+Money as « 20 $ ». Plurals: French uses `one` for 0 and 1, `other` for the rest.
+
 | English | Translation | Note |
 |---|---|---|
-| Park in a Truck / PiaT |  | |
-| toolkit |  | |
-| workbook |  | |
-| step |  | |
-| sub-step |  | |
-| Mark this step done / done |  | |
-| Start here · Acquire · Organize · Assess · Dream · Create · Sustain |  | |
-| vacant lot |  | |
-| lot |  | |
-| parcel |  | |
-| mid-block lot / corner lot / breezeway, alley |  | |
-| owner (public / private) |  | |
-| zoning |  | |
-| City records / Filled in from City records |  | |
-| City (of Philadelphia) |  | |
-| RCO (Registered Community Organization) |  | |
-| Philadelphia Land Bank |  | |
-| PHDC |  | |
-| Sheriff Sale |  | |
-| purchase / donation / lease / in-kind (use) agreement |  | |
-| park committee |  | |
-| neighbors / neighborhood |  | |
-| park pieces |  | |
-| frame / front / back (pieces) |  | |
-| seam (length seam, width seam) |  | |
-| theme: Edible · Sanctuary · Nature · Event |  | |
-| size A–E |  | |
-| gabion (wall, bench) |  | |
-| build guide |  | |
-| cut list / materials & hardware / tools |  | |
-| 2x4, 2x4x8', BB-1 |  | |
-| full sun / part sun / shade |  | |
-| native plant · perennial · shrub · small tree · large tree |  | |
-| pollinator |  | |
-| stewardship / sustain |  | |
-| My park |  | |
-| project file |  | |
-| Plan in 3D / the planner |  | |
-| Note from this site, not Park in a Truck |  | |
-| in English |  | |
-| ft, in, sq ft, $ |  | |
+| Park in a Truck / PiaT | Park in a Truck / PiaT | Masculine: « le programme Park in a Truck ». |
+| toolkit | la boîte à outils (le *Toolkit*) | Always PiaT's 36-page overview book. Real tools are « outils ». |
+| workbook | cahier (cahier de travail) | « le cahier Acquérir ». |
+| step | étape | |
+| sub-step | sous-étape | |
+| Mark this step done / done | Marquer cette étape comme terminée / terminé(e) | |
+| Start here · Acquire · Organize · Assess · Dream · Create · Sustain | Commencer ici · Acquérir · Organiser · Évaluer · Rêver · Créer · Entretenir | Infinitives, like French menus. |
+| vacant lot | terrain vacant | Not *terrain vague* (France only). |
+| lot | terrain | French *lot* means a batch or a housing plot; avoid it. |
+| parcel | parcelle | |
+| mid-block lot / corner lot / breezeway, alley | terrain en milieu de rue / terrain d'angle / passage, ruelle | Easement = servitude (droit de passage). |
+| owner (public / private) | propriétaire (public / privé) | |
+| zoning | zonage | |
+| City records / Filled in from City records | registres de la Ville / Rempli d'après les registres de la Ville | |
+| City (of Philadelphia) | la Ville (de Philadelphie) | Capital V for the city government. |
+| RCO (Registered Community Organization) | organisation de quartier enregistrée (RCO) | « de quartier » rather than *communautaire* (reads differently in France). |
+| Philadelphia Land Bank | Philadelphia Land Bank (l'organisme de la Ville qui vend et loue les terrains publics) | |
+| PHDC | PHDC | |
+| Sheriff Sale | vente aux enchères du shérif (Sheriff Sale) | |
+| purchase / donation / lease / in-kind (use) agreement | achat / don / bail (location) / accord d'usage en nature | Select options keep the English value. |
+| park committee | comité du parc | |
+| neighbors / neighborhood | voisins / quartier | |
+| park pieces | pièces du parc | The printed cut-out designs. |
+| frame / front / back (pieces) | cadre / pièce avant / pièce arrière | |
+| seam (length seam, width seam) | bande de raccord (en longueur, en largeur) | |
+| theme: Edible · Sanctuary · Nature · Event | Comestible · Refuge · Nature · Événements | « le thème Refuge », « liste de plantes : Comestible ». |
+| size A–E | taille A–E | |
+| gabion (wall, bench) | gabion (mur en gabions, banc en gabions) | The wire basket: cage de gabion. |
+| build guide | guide de montage | Shorter than « guide de construction » (keeps the header menu on one line); PiaT calls them assembly instructions. Inside a guide: monter, construire, étapes. |
+| cut list / materials & hardware / tools | liste de coupe / matériaux et quincaillerie / outils | |
+| 2x4, 2x4x8', BB-1 | 2x4, 2x4x8', BB-1 | Marks ' and " stay as printed in sizes. |
+| full sun / part sun / shade | plein soleil / soleil partiel / ombre | |
+| native plant · perennial · shrub · small tree · large tree | plante indigène · vivace · arbuste · petit arbre · grand arbre | Plant common names: the usual French name where one is well known, otherwise French + English name in brackets so it can be found at a US nursery. |
+| pollinator | pollinisateur | |
+| stewardship / sustain | entretien du parc / entretenir | Survive · Thrive · Socialize = Survivre · S'épanouir · Se retrouver. |
+| My park | Mon parc | |
+| project file | fichier du projet | |
+| Plan in 3D / the planner | Plan en 3D / le planificateur 3D | « Plan en 3D » in menus and titles (short enough for the header); « concevoir en 3D » in sentences. |
+| Note from this site, not Park in a Truck | Note de ce site, et non de Park in a Truck | |
+| in English | en anglais | |
+| ft, in, sq ft, $ | pieds (pi), pouces (po), pieds carrés (pi²), $ | Words in sentences; pi / po / pi² in short labels. |
+
+Extra terms used in the chapters, guides and data (fr only):
+
+| English | Translation | Note |
+|---|---|---|
+| site (the lot being turned into a park) | terrain, site | |
+| volunteers | bénévoles | |
+| councilperson | conseiller municipal / conseillère municipale | |
+| base map / base plan | carte de base / plan de base | |
+| soil / topsoil / soil test | sol, terre / terre végétale / analyse de sol | |
+| mulch | paillis | |
+| planting bed / raised bed / planting square | massif (plate-bande) / bac surélevé / carré de plantation | |
+| gravel / stone dust | gravier / poussière de pierre | |
+| weeds / pre-emergent | mauvaises herbes / herbicide de prélevée | |
+| fire hydrant / hydrant permit / backflow preventer | bouche d'incendie / permis d'utilisation de la bouche d'incendie / clapet anti-retour (backflow preventer) | |
+| street tree | arbre de rue | |
+| temporary no-parking permit | permis temporaire d'interdiction de stationner | |
+| volunteer waiver / release form | formulaire de décharge de responsabilité pour bénévoles | |
+| Park Ambassador | ambassadeur du parc | |
+| phase (Create step) | phase | « Phase 1 : Organiser ». |
+| cost estimate / cost estimator | estimation des coûts / calculateur de coûts | |
+| sun study | étude d'ensoleillement | |
+| bench / stool / table / planter box | banc / tabouret / table / bac à plantes | |
+| shade structure / stage / workbench | structure d'ombrage (auvent) / scène / établi (table haute) | |
+| impact driver / self-driving exterior wood screws | visseuse à percussion / vis à bois d'extérieur autoforeuses | |
+| pre-drill / pre-drilling hole guide | pré-percer / guide de perçage | |
+| miter saw / stop block / jig / spacer | scie à onglets / butée / gabarit / cale | |
+| carpenter's square / level | équerre de charpentier / niveau | |
+| lag screws / carriage bolts / socket wrench | tire-fonds / boulons de carrosserie / clé à douille | |
+| sledgehammer / hammer | masse / marteau | |
+| wire mesh / hog rings / hog ring pliers / cable staples | grillage / agrafes à anneau (hog rings) / pince à agrafes / cavaliers | |
+| bolt cutters / grinder / staple gun | coupe-boulons / meuleuse / agrafeuse | |
+| geotextile fabric | toile géotextile | |
+| pressure-treated / cedar / Douglas fir | traité sous pression / cèdre / douglas (sapin de Douglas) | |
+| flush / square (adj.) | à ras / d'équerre | |
 
 ### pt — Português (Brasil)
 
