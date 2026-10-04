@@ -8,6 +8,7 @@ import Base from '../../layouts/Base.astro';
 import Figure from '../../components/workbook/Figure.astro';
 import Download from '../../components/workbook/Download.astro';
 import { THEMES } from '../../data/themes';
+import type { ThemeId } from '../../lib/types';
 import { u } from '../../lib/url';
 
 const PRINCIPLES = [
@@ -40,7 +41,7 @@ const ELEMENTS_TABLE = [
   { name: 'Story Wheel', text: 'A spinning wheel provides prompts for children to invent stories, solo or with peers.', skills: 'Communication, Creative Innovation, Collaboration' },
 ];
 
-const BY_THEME = [
+const BY_THEME: { theme: ThemeId; features: string }[] = [
   { theme: 'edible', features: 'Sorting Tables, Story Wheel, Giant Ruler, Icon Storytelling' },
   { theme: 'sanctuary', features: 'Puzzle Wall, Color-Theory Trellis, Icon Storytelling, Color Flower Sculpture' },
   { theme: 'nature', features: 'I-Spy Mural, Jumping Feet, Sorting Tables, Shape Games' },
