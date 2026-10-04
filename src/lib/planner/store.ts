@@ -235,7 +235,7 @@ export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = nu
       const ctx: SiteContext = slug ? await loadDemo(slug) : await loadSiteContext(lot!);
       if (token !== loadToken) return;
       // a cached answer is instant: give it a moment before showing the lot without it
-      const early = terrainP ? await within(terrainP, slug ? 4000 : 700) : null;
+      const early = terrainP ? await within(terrainP, slug ? 4000 : 500) : null;
       if (token !== loadToken) return;
       lot = ctx.lot;
       if (!ctx.lot.polygon || ctx.lot.polygon.length < 3) {

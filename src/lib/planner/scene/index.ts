@@ -1055,7 +1055,8 @@ export class PlannerScene {
       // right-click without dragging (a right-drag slides the camera): the little menu
       const rd = this.rightDown;
       this.rightDown = null;
-      if (rd && Math.hypot(e.clientX - rd.x, e.clientY - rd.y) < 5) {
+      // (not while drawing an outline)
+      if (rd && !this.outline.draft && Math.hypot(e.clientX - rd.x, e.clientY - rd.y) < 5) {
         const hit = this.pick(e);
         if (hit && this.cb.canDrag(hit.kind)) {
           this.cb.onSelect(hit);
