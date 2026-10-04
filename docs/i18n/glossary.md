@@ -362,6 +362,13 @@ The City as a government is «город» / «городские власти»
 | *(ru only)* volunteer waiver / release form | отказ от претензий для волонтёров | |
 | *(ru only)* Park Ambassador | посол парка (Park Ambassador) | |
 | *(ru only)* topsoil · mulch · gravel | плодородный грунт · мульча · гравий | |
+| *(ru only)* planner steps: Your lot · Size & themes · Arrange · What's there · Sun & shade · Counts | Участок · Размер и темы · Схема · Что там есть · Солнце и тень · Итоги | «Расстановка» and «Подсчёт» overflow the step rail |
+| *(ru only)* the (cost) spreadsheet · order list · contingency · tool rental | таблица (расчёта стоимости) · список заказа · резерв (на непредвиденное) · прокат инструментов | tab names INSERT HERE, ORDER LIST stay |
+| *(ru only)* hardscape / softscape | твёрдое покрытие / мягкий грунт | |
+| *(ru only)* growing season · direct sun · dappled shade | сезон роста · прямое солнце · рассеянная тень | |
+| *(ru only)* side-yard eligible · on hold (Land Bank) | можно как боковой двор · зарезервирован | |
+| *(ru only)* flood zone · Council district · planning district | зона затопления · округ городского совета · район планирования | |
+| *(ru only)* time of day | 12-hour «до полудня / после полудня» in the planner | Russian uses 24 h; the checker rejects {hour24} (reported) |
 
 ### ar — العربية
 
