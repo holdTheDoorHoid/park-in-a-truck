@@ -1,9 +1,9 @@
 ---
-title: Organize
-intro: Build a park committee, find your neighborhood's assets, and rally the people who will make the park happen.
+title: Jipange
+intro: Unda kamati ya bustani, tambua mali na nguvu za mtaa wako, na uwakusanye watu watakaoifanya bustani itokee.
 sources:
-  - Toolkit pp. 29–33 (Organize, Create a Park Committee, Identify Neighborhood Assets)
-  - Organize Workbook pp. 3–6 (Overview, Identifying Community Assets, Neighborhood Assets, Organize a Meeting, Are You Ready?)
+  - Mwongozo (Toolkit), uk. 29–33 (Jipange, Unda kamati ya bustani, Tambua mali za mtaa)
+  - Kitabu cha kazi cha Jipange, uk. 3–6 (Muhtasari, Kutambua mali za jamii, Mali za mtaa, Andaa mkutano, Uko tayari?)
 ---
 import Field from '../../../../components/workbook/Field.astro';
 import ListField from '../../../../components/workbook/ListField.astro';
@@ -13,204 +13,207 @@ import PdfPage from '../../../../components/workbook/PdfPage.astro';
 import NeighborhoodAssets from '../../../../components/widgets/NeighborhoodAssets.astro';
 import MeetingFlyer from '../../../../components/widgets/MeetingFlyer.astro';
 
-Parks don't just happen. They are a team effort, with great dividends. A community working together on a park
-project builds more than a park — they're building stronger community bonds, creating engaging employment
-opportunities for local youth, and making everyone proud. Park building brings people together around a common
-cause. And when it's done, they will say, "we did it!"
+Bustani hazitokei zenyewe tu. Ni kazi ya timu, yenye faida kubwa. Jamii inayoshirikiana katika mradi wa bustani
+hujenga zaidi ya bustani — inajenga mahusiano imara zaidi ya jamii, inaunda nafasi za kazi zenye kuvutia kwa vijana
+wa eneo, na inamfanya kila mtu ajivunie. Kujenga bustani huwaleta watu pamoja kwa lengo moja. Na kazi ikiisha,
+watasema, "tumeweza!"
 
-At the core of every successful park project is a diverse and talented group of committed residents working
-together as a team. This Park Committee will lead your park creation effort. Ideally, these volunteers represent
-the various groups who will use the park — young, old, different racial and ethnic groups, professional, working
-class, homeowners and renters. They should look like your community. Additionally, think about their talents.
-Having people with different talents and experience — builders, legal knowledge, political connections, community
-organizers, clergy, social butterflies, etc. — will increase your chances of success.
+Kiini cha kila mradi wa bustani uliofanikiwa ni kikundi cha wakazi waliojitolea, wa aina mbalimbali na wenye vipaji,
+wanaofanya kazi pamoja kama timu. Kamati hii ya bustani itaongoza juhudi zenu za kuunda bustani. Kwa hakika, watu hawa
+wa kujitolea wanapaswa kuwakilisha makundi mbalimbali yatakayotumia bustani — vijana, wazee, watu wa rangi na asili
+mbalimbali, wataalamu, wafanyakazi, wenye nyumba na wapangaji. Wanapaswa kufanana na jamii yenu. Zaidi ya hapo,
+fikiria vipaji vyao. Kuwa na watu wenye vipaji na uzoefu tofauti — mafundi wa ujenzi, wenye ujuzi wa sheria, wenye
+uhusiano na wanasiasa, waandaaji wa jamii, viongozi wa dini, watu wanaopenda kujumuika na wengine, n.k. — kutaongeza
+nafasi yenu ya kufanikiwa.
 
 <Callout kind="note">
-  For more on organizing a community group, see the Pennsylvania Horticultural Society's{' '}
-  <a href="http://tupress.temple.edu/book/0872" target="_blank" rel="noopener"><em>City Parks Handbook</em></a> and
-  the National Recreation and Park Association's{' '}
-  <a href="https://www.nrpa.org/uploadedFiles/Americas_Backyard/park-advocate-handbook-100711.pdf" target="_blank" rel="noopener"><em>Park Advocate Handbook</em></a>.
+  Kwa maelezo zaidi kuhusu kuandaa kikundi cha jamii, angalia kitabu cha Pennsylvania Horticultural Society,{' '}
+  <a href="http://tupress.temple.edu/book/0872" target="_blank" rel="noopener"><em>City Parks Handbook</em></a> (kwa Kiingereza), na
+  kitabu cha National Recreation and Park Association,{' '}
+  <a href="https://www.nrpa.org/uploadedFiles/Americas_Backyard/park-advocate-handbook-100711.pdf" target="_blank" rel="noopener"><em>Park Advocate Handbook</em></a> (kwa Kiingereza).
 </Callout>
 
-<PdfPage doc="downloads/workbooks/02-organize.pdf" page={3} label="Overview" />
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={3} label="Muhtasari" />
 
-## Create a park committee {/* #create-a-park-committee */}
+## Unda kamati ya bustani {/* #create-a-park-committee */}
 
-Once formed, the committee's first task is to identify and document what is unique about your neighborhood and
-park site. List your committee members below — who they are, how to reach them, and what they bring to the team.
+Kamati ikishaundwa, kazi yake ya kwanza ni kutambua na kuandika kile kilicho cha kipekee kuhusu mtaa wenu na eneo la
+bustani. Orodhesha wanakamati wako hapa chini — ni akina nani, jinsi ya kuwafikia, na kile wanacholeta kwenye timu.
 
 <ListField
   id="organize.committee-members"
-  label="Park committee members"
-  rowName="member"
+  label="Wanakamati wa bustani"
+  rowName="mwanakamati"
   min={3}
   columns={[
-    { key: 'name', label: 'Name' },
-    { key: 'phone', label: 'Phone', type: 'tel' },
-    { key: 'email', label: 'Email', type: 'email' },
-    { key: 'role', label: 'Role / skills', placeholder: 'organizing, carpentry, fundraising…' },
+    { key: 'name', label: 'Jina' },
+    { key: 'phone', label: 'Simu', type: 'tel' },
+    { key: 'email', label: 'Barua pepe', type: 'email' },
+    { key: 'role', label: 'Kazi / ujuzi', placeholder: 'kuandaa, useremala, kuchangisha fedha…' },
   ]}
 />
 
-<PdfPage doc="downloads/workbooks/02-organize.pdf" page={3} label="Overview" />
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={3} label="Muhtasari" />
 
-## Identify community assets {/* #identify-community-assets */}
+## Tambua mali na nguvu za jamii {/* #identify-community-assets */}
 
-Now let's think about the people in your neighborhood and their unique skill sets — do they like to cook? Organize
-events? Garden? Love history and could do research on the neighborhood? All of these can translate into valuable
-and useful skills to help get the park designed, built and maintained. You just need to list them so you know who
-you might tap to help with different jobs in the park process.
+Sasa tufikirie watu wa mtaa wako na ujuzi wao wa kipekee — wanapenda kupika? Kuandaa matukio? Kulima bustani?
+Wanapenda historia na wanaweza kufanya utafiti kuhusu mtaa? Yote haya yanaweza kuwa ujuzi wa thamani na wenye manufaa
+katika kusaidia bustani ibuniwe, ijengwe na itunzwe. Unahitaji tu kuyaorodhesha ili ujue ni nani unayeweza kumwomba
+msaada katika kazi mbalimbali za mchakato wa bustani.
 
-At your first community meeting, ask folks to write down their related skills on a sign-up sheet. Check off the
-skills your committee already has:
+Katika mkutano wako wa kwanza wa jamii, waombe watu waandike ujuzi wao unaohusika kwenye karatasi ya kujiandikisha.
+Weka alama kwenye ujuzi ambao kamati yako tayari inao:
 
 <Checklist
   id="organize.individual-skills"
-  label="Individual skill list"
+  label="Orodha ya ujuzi wa watu binafsi"
   items={[
-    { value: 'project-manager', label: 'Project manager to oversee building of park' },
-    { value: 'organizing', label: 'Organizing the park / design-build process' },
-    { value: 'carpentry', label: 'Carpentry' },
-    { value: 'masonry', label: 'Masonry' },
-    { value: 'gardening', label: 'Gardening / maintenance for park' },
-    { value: 'planting', label: 'Planting trees, shrubs, flowers' },
-    { value: 'building', label: 'Helping to build the park' },
-    { value: 'fundraising', label: 'Fundraising' },
-    { value: 'bookkeeping', label: 'Bookkeeping' },
-    { value: 'babysitting', label: 'Babysitting' },
-    { value: 'food', label: 'Food for meetings / building park' },
-    { value: 'artist', label: 'Artist' },
-    { value: 'photography', label: 'Photography' },
-    { value: 'music', label: 'Music for park build days — DJ' },
-    { value: 'media', label: 'Media outreach — Facebook, Instagram, Twitter' },
-    { value: 'history', label: 'History buff' },
-    { value: 'other', label: 'Other' },
+    { value: 'project-manager', label: 'Msimamizi wa mradi wa kusimamia ujenzi wa bustani' },
+    { value: 'organizing', label: 'Kupanga bustani / mchakato wa kubuni na kujenga' },
+    { value: 'carpentry', label: 'Useremala' },
+    { value: 'masonry', label: 'Uashi (kazi ya matofali na mawe)' },
+    { value: 'gardening', label: 'Kulima bustani / kutunza bustani' },
+    { value: 'planting', label: 'Kupanda miti, vichaka, maua' },
+    { value: 'building', label: 'Kusaidia kujenga bustani' },
+    { value: 'fundraising', label: 'Kuchangisha fedha' },
+    { value: 'bookkeeping', label: 'Utunzaji wa hesabu' },
+    { value: 'babysitting', label: 'Kulea watoto wakati wa shughuli' },
+    { value: 'food', label: 'Chakula kwa mikutano / siku za ujenzi' },
+    { value: 'artist', label: 'Msanii' },
+    { value: 'photography', label: 'Upigaji picha' },
+    { value: 'music', label: 'Muziki kwa siku za ujenzi — DJ' },
+    { value: 'media', label: 'Kutangaza kwenye mitandao — Facebook, Instagram, Twitter' },
+    { value: 'history', label: 'Mpenzi wa historia' },
+    { value: 'other', label: 'Mengineyo' },
   ]}
 />
 
 {/* site-added: a printable version of the same list, for a paper sign-up sheet at an in-person meeting. */}
-<Callout kind="tip" title="Printing a sign-up sheet">
-  Need a paper sign-up sheet for a meeting instead? Print this page — the checklist above prints with blank boxes
-  neighbors can check by hand, right next to their name and contact info.
+<Callout kind="tip" title="Kuchapisha karatasi ya kujiandikisha">
+  Unahitaji karatasi ya kujiandikisha kwa ajili ya mkutano? Chapisha ukurasa huu — orodha iliyo hapo juu huchapishwa
+  na visanduku vitupu ambavyo majirani wanaweza kuweka alama kwa mkono, kando ya jina lao na namna ya kuwasiliana nao.
 </Callout>
 
-<PdfPage doc="downloads/workbooks/02-organize.pdf" page={3} label="Identifying Community Assets" />
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={3} label="Kutambua mali za jamii" />
 
-## Neighborhood assets {/* #neighborhood-assets */}
+## Mali na nguvu za mtaa {/* #neighborhood-assets */}
 
-Another critical step in your park-building journey is identifying the unique features of your neighborhood and
-park site. Take time to stop and look for the abundance of clues that make your neighborhood special in its own
-way. Every neighborhood has inherent value born of its own history and culture. Identifying and tapping into these
-assets will strengthen your park project and inspire community ownership.
+Hatua nyingine muhimu katika safari yako ya kujenga bustani ni kutambua sifa za kipekee za mtaa wako na za eneo la
+bustani. Chukua muda wa kusimama na kutafuta ishara nyingi zinazofanya mtaa wako uwe maalum kwa njia yake. Kila mtaa
+una thamani yake inayotokana na historia na utamaduni wake. Kutambua na kutumia mali hizi kutaimarisha mradi wako wa
+bustani na kuwatia watu moyo wa kuiona bustani kuwa yao.
 
-So how do we identify assets and strengths? Think about your neighborhood and its history and culture — what are
-the special places? Where do people like to congregate? Were there important events that happened in your
-neighborhood? What once stood where your park is located?
+Kwa hiyo tunatambuaje mali na nguvu za mtaa? Fikiria mtaa wako na historia na utamaduni wake — ni mahali gani
+maalum? Watu hupenda kukusanyika wapi? Je, kuna matukio muhimu yaliyotokea katika mtaa wako? Ni nini kilichokuwa
+mahali ambapo bustani yako iko sasa?
 
-<Callout kind="auto" title="Nearby organizations, found for you">
-  Enter your lot's address and the site pulls nearby Registered Community Organizations, schools, libraries, parks,
-  gardens and other City-listed neighborhood assets — so you start your list with who's already there.
+<Callout kind="auto" title="Mashirika ya karibu, yametafutwa kwa ajili yako">
+  Andika anwani ya kiwanja chako, na tovuti hii italeta mashirika ya jamii yaliyosajiliwa (RCO) yaliyo karibu, shule,
+  maktaba, bustani za umma, bustani za jamii na mali nyingine za mtaa zilizoorodheshwa na Jiji — ili uanze orodha yako
+  ukijua nani tayari yupo.
 </Callout>
 
 <NeighborhoodAssets />
 
-Next, list all citizen and local associations that might be partners and provide support — monetary, in-kind, or a
-place to buy park materials locally:
+Kisha, orodhesha vyama vyote vya wananchi na vya eneo ambavyo vinaweza kuwa washirika na kutoa msaada — wa fedha, wa
+vitu au huduma (in-kind), au mahali pa kununua vifaa vya bustani karibu:
 
 <ListField
   id="organize.citizens-associations"
-  label="Citizens associations asset list"
-  rowName="group"
+  label="Orodha ya vyama vya wananchi"
+  rowName="kikundi"
   min={2}
   columns={[
-    { key: 'type', label: 'Type', placeholder: 'church, block captain, RCO, cultural group…' },
-    { key: 'name', label: 'Name' },
-    { key: 'contact', label: 'Contact' },
+    { key: 'type', label: 'Aina', placeholder: 'kanisa, kiongozi wa mtaa (block captain), RCO, kikundi cha utamaduni…' },
+    { key: 'name', label: 'Jina' },
+    { key: 'contact', label: 'Mawasiliano' },
   ]}
 />
 
 <ListField
   id="organize.physical-assets"
-  label="Neighborhood physical assets"
-  rowName="asset"
+  label="Mali zinazoonekana za mtaa"
+  rowName="mali"
   min={2}
   columns={[
-    { key: 'type', label: 'Type', placeholder: 'landmark, mural, streetscape, gathering place…' },
-    { key: 'description', label: 'Description' },
+    { key: 'type', label: 'Aina', placeholder: 'alama maarufu, mchoro wa ukutani, mandhari ya barabara, mahali pa kukutania…' },
+    { key: 'description', label: 'Maelezo' },
   ]}
 />
 
 <ListField
   id="organize.local-institutions"
-  label="Local institutions"
-  rowName="institution"
+  label="Taasisi za eneo"
+  rowName="taasisi"
   min={2}
   columns={[
-    { key: 'type', label: 'Type', placeholder: 'business, school, library, hospital, university…' },
-    { key: 'name', label: 'Name' },
-    { key: 'contact', label: 'Contact' },
+    { key: 'type', label: 'Aina', placeholder: 'biashara, shule, maktaba, hospitali, chuo kikuu…' },
+    { key: 'name', label: 'Jina' },
+    { key: 'contact', label: 'Mawasiliano' },
   ]}
 />
 
-<PdfPage doc="downloads/workbooks/02-organize.pdf" page={4} label="Neighborhood Assets" />
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={4} label="Mali za mtaa" />
 
-## Organize a meeting {/* #organize-a-meeting */}
+## Andaa mkutano {/* #organize-a-meeting */}
 
-Holding a public meeting can be a really good way of building a campaign or getting more people involved in your
-group. Here are a few ideas to help your community group organize a meeting that is interesting, accessible and
-runs smoothly.
+Kufanya mkutano wa wazi kunaweza kuwa njia nzuri sana ya kuanzisha kampeni au kuwashirikisha watu zaidi katika kikundi
+chako. Haya ni mawazo machache ya kusaidia kikundi chako cha jamii kuandaa mkutano wenye kuvutia, unaofikika kwa wote
+na unaoendeshwa vizuri.
 
-- **Keep it simple.** Don't try to cram in too much. Use the meeting to share basic information about what you
-  want to do, encourage others to share their opinions and ideas, and gain contact details of people who may wish
-  to be involved in the future.
-- **Publicize it well.** Make sure the date, time and place are clearly shown on the flyer, and that it's clear
-  what the meeting is about. Flyers, posters, social media posts, and your local community newsletter all help.
-- **Offer an incentive.** Free refreshments, a video or speaker, or childcare with student volunteers can help
-  people make the time to come.
-- **Think about the agenda.** Welcome and introductions; explain who called the meeting and why; outline why the
-  meeting has been called; consider asking someone who has built a park to share their insights (keep it brief —
-  this first meeting shouldn't be a lecture); ask the Park in a Truck team at Jefferson to provide a speaker.
-- **Give people a chance to share.** There may be opposition to a park — let people air their views and build
-  consensus on the possible park location, without getting bogged down in the details.
-- **Say what happens next.** Summarize the ideas raised, and if the meeting is small, reach decisions about what
-  action is actually going to be taken — including who is going to do it.
-- **Chair the meeting.** Agree beforehand who will chair. Their job: keep the meeting on topic, make sure people get
-  a chance to have their say, and keep the atmosphere welcoming and open.
-- **Take minutes.** Decide who will take minutes before the meeting (not the same person as the chair). Minutes
-  should include a clear note of any decisions made, and who has agreed to take on which jobs.
-- **Gather names and addresses.** Prepare a sign-up sheet in advance so you can keep in touch with everyone who
-  wants to stay involved.
-- **Plan your next meeting.** Fix a date and venue for your group's next meeting before this one ends, and
-  distribute it so people can come back.
+- **Ufanye uwe rahisi.** Usijaribu kujaza mambo mengi mno. Tumia mkutano kueleza taarifa za msingi kuhusu kile
+  mnachotaka kufanya, kuwahimiza wengine kutoa maoni na mawazo yao, na kupata namna ya kuwasiliana na watu ambao
+  huenda wakataka kushiriki baadaye.
+- **Utangaze vizuri.** Hakikisha tarehe, saa na mahali vimeonyeshwa wazi kwenye kipeperushi, na kwamba ni wazi
+  mkutano unahusu nini. Vipeperushi, mabango, machapisho kwenye mitandao ya kijamii, na jarida la jamii la eneo lako
+  vyote husaidia.
+- **Toa kivutio.** Viburudisho vya bure, video au mzungumzaji, au huduma ya kulea watoto inayotolewa na wanafunzi wa
+  kujitolea vinaweza kuwasaidia watu kupata muda wa kuja.
+- **Fikiria ajenda.** Makaribisho na kujitambulisha; eleza nani aliitisha mkutano na kwa nini; eleza kwa ufupi kwa nini
+  mkutano umeitishwa; fikiria kumwomba mtu aliyewahi kujenga bustani aeleze uzoefu wake (kwa ufupi — mkutano huu wa
+  kwanza usiwe hotuba ndefu); iombe timu ya Park in a Truck ya Jefferson ikuletee mzungumzaji.
+- **Wape watu nafasi ya kuchangia.** Huenda kukawa na upinzani dhidi ya bustani — waache watu waeleze maoni yao na
+  mjenge makubaliano kuhusu mahali bustani inapoweza kuwa, bila kukwama kwenye mambo madogo madogo.
+- **Eleza kinachofuata.** Toa muhtasari wa mawazo yaliyotolewa, na kama mkutano ni mdogo, fikieni maamuzi kuhusu hatua
+  zitakazochukuliwa kweli — pamoja na nani atazichukua.
+- **Ongoza mkutano.** Kubalianeni kabla ni nani atakayekuwa mwenyekiti. Kazi yake: kuweka mkutano kwenye mada,
+  kuhakikisha watu wanapata nafasi ya kusema, na kudumisha hali ya ukaribisho na uwazi.
+- **Andika kumbukumbu za mkutano.** Amueni kabla ya mkutano ni nani atakayeandika kumbukumbu (asiwe mtu yuleyule
+  aliye mwenyekiti). Kumbukumbu zinapaswa kuonyesha wazi maamuzi yaliyofanywa, na nani amekubali kufanya kazi zipi.
+- **Kusanya majina na anwani.** Andaa karatasi ya kujiandikisha mapema ili uweze kuwasiliana na kila mtu anayetaka
+  kuendelea kushiriki.
+- **Panga mkutano wenu unaofuata.** Pangeni tarehe na mahali pa mkutano unaofuata wa kikundi chenu kabla mkutano huu
+  haujaisha, na wajulisheni watu ili waweze kurudi.
 
-<Field id="organize.meeting-date" label="Meeting date" type="date" />
-<Field id="organize.meeting-time" label="Meeting time" type="text" placeholder="e.g. 6:30 PM" />
-<Field id="organize.meeting-place" label="Meeting place" type="text" placeholder="address or venue name" />
-<Field id="organize.meeting-purpose" label="Purpose of the meeting" type="textarea" hint="What you want to do, and what you're asking neighbors for." />
+<Field id="organize.meeting-date" label="Tarehe ya mkutano" type="date" />
+<Field id="organize.meeting-time" label="Saa ya mkutano" type="text" placeholder="mfano: 6:30 PM (saa 12:30 jioni)" />
+<Field id="organize.meeting-place" label="Mahali pa mkutano" type="text" placeholder="anwani au jina la mahali" />
+<Field id="organize.meeting-purpose" label="Lengo la mkutano" type="textarea" hint="Mnachotaka kufanya, na mnachowaomba majirani." />
 
 <MeetingFlyer />
 
-<PdfPage doc="downloads/workbooks/02-organize.pdf" page={5} label="Organize a Meeting" />
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={5} label="Andaa mkutano" />
 
-## Are you ready? {/* #are-you-ready */}
+## Uko tayari? {/* #are-you-ready */}
 
-How do you know if you have created a well-rounded park committee? Read the list below and check the box when you
-identify those people or capabilities in your committee. The most important aspect of organizing is to prove to
-yourself that you can orchestrate all that is needed for a neighborhood park — checking each box ensures your
-organization is ready to move on to the next chapter.
+Utajuaje kama umeunda kamati ya bustani iliyokamilika vizuri? Soma orodha iliyo hapa chini na uweke alama kwenye
+kisanduku unapowatambua watu hao au uwezo huo katika kamati yako. Jambo muhimu zaidi katika kujipanga ni kujithibitishia
+kwamba unaweza kuratibu kila kinachohitajika kwa bustani ya mtaa — kuweka alama kwenye kila kisanduku kunahakikisha
+kikundi chako kiko tayari kuendelea na sura inayofuata.
 
 <Checklist
   id="organize.readiness"
-  label="Organization readiness checklist"
+  label="Orodha ya utayari wa kikundi"
   items={[
-    { value: 'committee-formed', label: 'Have you formed a committee of dedicated neighbors to guide the overall park planning efforts?' },
-    { value: 'financial-standing', label: 'Does your organization have financial standing or a line of credit to support park-related costs, such as property acquisition, maintenance, events, etc.?' },
-    { value: 'fundraising', label: 'Does your organization have the ability to raise funds necessary to sustain financial support for the park?' },
-    { value: 'community-engagement', label: 'Does your organization have the ability to generate neighborhood interest, organize events and other community engagement activities?' },
-    { value: 'skilled-trades', label: 'Does your organization have access to a variety of skills and experience — carpenters, masons, or other trades — who can offer their knowledge during park construction and maintenance?' },
-    { value: 'initial-meetings', label: 'Has your organization held initial meetings and community events to generate support and consensus for a potential park?' },
-    { value: 'social-media', label: 'Has your organization formed an online page for messaging, announcements and more (Facebook, Instagram, etc.), with a unique hashtag to identify and brand your park project?' },
+    { value: 'committee-formed', label: 'Je, mmeunda kamati ya majirani waliojitolea kuongoza juhudi zote za kupanga bustani?' },
+    { value: 'financial-standing', label: 'Je, kikundi chenu kina uwezo wa kifedha au mkopo wa kugharamia mambo ya bustani, kama kununua ardhi, utunzaji, matukio, n.k.?' },
+    { value: 'fundraising', label: 'Je, kikundi chenu kina uwezo wa kuchangisha fedha zinazohitajika ili kuendelea kuisaidia bustani kifedha?' },
+    { value: 'community-engagement', label: 'Je, kikundi chenu kina uwezo wa kuamsha hamu ya mtaa, kuandaa matukio na shughuli nyingine za kuishirikisha jamii?' },
+    { value: 'skilled-trades', label: 'Je, kikundi chenu kinaweza kupata watu wenye ujuzi na uzoefu wa aina mbalimbali — maseremala, waashi au mafundi wengine — wanaoweza kutoa ujuzi wao wakati wa kujenga na kutunza bustani?' },
+    { value: 'initial-meetings', label: 'Je, kikundi chenu kimefanya mikutano ya kwanza na matukio ya jamii ili kupata uungwaji mkono na makubaliano kuhusu bustani inayowezekana?' },
+    { value: 'social-media', label: 'Je, kikundi chenu kimeunda ukurasa mtandaoni kwa ujumbe, matangazo na mengineyo (Facebook, Instagram, n.k.), wenye hashtag ya kipekee ya kutambulisha mradi wenu wa bustani?' },
   ]}
 />
 
-<PdfPage doc="downloads/workbooks/02-organize.pdf" page={6} label="Are You Ready?" />
+<PdfPage doc="downloads/workbooks/02-organize.pdf" page={6} label="Uko tayari?" />
