@@ -85,11 +85,11 @@ export default {
   'agencyIn.pgw': 'Philadelphia Gas Works',
   'agencyIn.amtrak': 'Amtrak',
   'agencyIn.named': '{name}',
-  'agencyIn.unknown': 'это государственное ведомство',
+  'agencyIn.unknown': 'государственное ведомство, название которого не указано',
 
   'paths.otherAgency.title': 'Владелец — другое государственное ведомство',
   'paths.otherAgency.text':
-    'Владелец этого участка — {agency}, государственное ведомство, отдельное от города. Его землю не продают и не сдают в аренду через PHDC или Philadelphia Land Bank, и на карте Land Bank этого участка не будет. Свяжитесь с владельцем участка ({agency}) насчёт участка.',
+    'Владелец этого участка — {agency}. Это государственная организация, отдельная от города: её землю не продают и не сдают в аренду через PHDC или Philadelphia Land Bank, и на карте Land Bank этого участка не будет. Свяжитесь с владельцем — {agency} — насчёт участка.',
   'paths.otherAgency.link': 'Сайт: {agency} (на английском)',
   'paths.purchasePublic.title': 'Возможна покупка',
   'paths.purchasePublic.text':
