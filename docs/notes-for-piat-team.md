@@ -21,14 +21,15 @@ step text disagrees with the cut list or drawings.
 | Acquire workbook p.4 and toolkit → phdcphila.org/land/buy-land/property-search-map/ | 404 | Links the Philadelphia Land Bank's Community Use map: phillylandbank.org/community-use-map/ |
 | Dream workbook p.19 → "GABION WALL" and "SHADE CANOPY" | Both open the same generic "12-inch gabion basket assembly" document | Gabion wall has no guide page; shade uses the real SHADE assembly from the Linktree |
 | Partner list → Empowered CDC | 404 | Shown, marked "link currently dead" |
-| Toolkit suppliers and Create (Phase 2) → OK Rental Sales & Service | Site gone (domain no longer resolves) | Marked "link currently dead" on Resources; Create still links it unmarked |
+| Toolkit suppliers and Create (Phase 2) → OK Rental Sales & Service | Site gone (domain no longer resolves) | Marked "link currently dead" on Resources and now in Create too |
 | Toolkit acknowledgments → Greenfield Foundation | Link points to an unrelated nonprofit | Shown without a link |
-| Create and Sustain → Longwood Gardens plant explorer | Connection refused; the tool looks retired | Linked unmarked in the steps; Resources says it appears retired |
-| Sustain → Greensgrow "about us" page | The site's hosting has expired (404) | Linked unmarked |
-| Create and Sustain → Gardens Alive | The site's security certificate has expired, so browsers warn | Linked unmarked in the steps; Resources warns |
-| Sustain → USDA NRCS "Common weeds" PDF | Fails to load | Linked unmarked |
-| Create (tool rental) and the cost estimator's order list ("fire hydrant opener" items) → Diamond Tool | Every link now redirects to a generic White Cap page | Linked unmarked in Create and the order list; Resources marks it "unverified" |
+| Create and Sustain → Longwood Gardens plant explorer | Connection refused; the tool looks retired | Marked "link currently dead" in both steps now; Resources says it appears retired |
+| Sustain → Greensgrow "about us" page | The site's hosting has expired (404) | Marked "link currently dead" |
+| Create and Sustain → Gardens Alive | The site's security certificate has expired, so browsers warn | Linked unmarked in the steps (Resources treats it as live with a warning, not dead, so the steps match that call) |
+| Sustain → USDA NRCS "Common weeds" PDF | Fails to load | Marked "link currently dead" |
+| Create (tool rental) → Diamond Tool | Every link now redirects to a generic White Cap page | Marked "could not verify automatically" in Create, matching Resources' "unverified"; the cost estimator's order list ("fire hydrant opener" items, `src/lib/cost/orderList.ts`) still links it unmarked — out of this round's scope |
 | Sustain → Amazon pre-emergent (B083PKMJTM); order list → Amazon silt fence (B00HL2EABU) | Returned "not found" to an automated check while other Amazon links worked; not confirmed by hand | Linked unmarked |
+| Assess, "Site visit" → the Penn State soil-test link | The printed text reads "agsci.psu.edu/aasl/soil-testing", but the link goes to `…/fertility/soil-fertility-submission-forms` (the standard fertility test, not a lead test). This is PiaT's own PDF link, not a web-conversion error — `source/pdf_links.json` shows the Assess workbook's PDF hyperlinks that exact URI to that exact target. | Left as PiaT printed it; the lead-in-soil site note right below it links the correct environmental/lead test form separately |
 
 The jefferson.edu toolkit page still serves the 2022 workbooks; the Linktree versions (2023–2026) are newer.
 Links were checked on 4 October 2026.
