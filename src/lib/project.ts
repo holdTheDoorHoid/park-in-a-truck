@@ -3,7 +3,8 @@
 // one is active. Everything else on the site reads and writes through here.
 
 import { atom, computed } from 'nanostores';
-import type { DesignState, FieldValue, LotRecord, Project } from './types';
+import type { DesignState, FieldValue, LotRecord, Project, SiteFacts } from './types';
+import { fitSize } from './sizing';
 
 const KEY = 'piat:v1';
 const FILE_KIND = 'park-in-a-truck-project';
@@ -62,7 +63,20 @@ function normalise(p: Project): Project {
   p.candidates ??= [];
   p.design ??= null;
   p.extra ??= {};
+  refitSize(p);
   return p;
+}
+
+/**
+ * Saves from before 2026-10-04 may hold a park size whose printed pieces are bigger
+ * than the lot (the old "closest fit"). Work it out again from the saved edges.
+ */
+function refitSize(p: Project) {
+  const site = p.extra.site as SiteFacts | undefined;
+  if (!site?.lengthFt || !site.widthFt || !site.sizeId) return;
+  const f = fitSize(site.lengthFt, site.widthFt);
+  if (f.size === site.sizeId && f.exact === site.sizeExact) return;
+  p.extra.site = { ...site, sizeId: f.size, sizeExact: f.exact, tooSmall: f.tooSmall, tooBig: f.tooBig };
 }
 
 export const $saved = atom<Saved>(typeof window === 'undefined' ? fresh() : load());

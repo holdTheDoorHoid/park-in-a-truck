@@ -6,7 +6,8 @@ import { fetchSurroundings } from '../surroundings';
 import { nearbyAssets, ASSET_CATEGORIES, assetFieldId, assetLine } from '../assets';
 import { fetchVacantLots, tilesFor } from '../vacant';
 import { distanceFt } from '../geo';
-import { useFixtures } from './fixtures';
+import { allFixtures, useFixtures } from './fixtures';
+import { setFetch } from '../http';
 
 let fx: ReturnType<typeof useFixtures>;
 beforeAll(() => {
@@ -54,6 +55,8 @@ describe('nearbyAssets', () => {
     const by = Object.fromEntries(groups.map((g) => [g.id, g]));
     expect(by.rcos!.items.map((i) => i.name)).toContain('Brewerytown Sharswood Community Civic Association');
     expect(by.council!.items[0]!.name).toBe('Council District 5 — Councilmember Jeffery Young Jr.');
+    // the member's own page, not the Council home page (veteran S14)
+    expect(by.council!.items[0]!.url).toBe('https://phlcouncil.com/jefferyyoungjr/');
     expect(by.schools!.items[0]!.name).toBe('Robert Morris School');
     expect(by.gardens!.items[0]!.name).toBe('Brewerytown Garden');
     expect(by.parks!.items.map((i) => i.name)).toContain('Athletic Recreation Center');
@@ -66,6 +69,26 @@ describe('nearbyAssets', () => {
     // a multi-part historic district is measured to its nearest part
     const paving = by.historic!.items.find((i) => /Paving/.test(i.name))!;
     expect(paving.distanceFt).toBeLessThan(1320);
+  });
+  it('a group made of two layers still shows the layer that loaded (veteran S7)', async () => {
+    const lot = await lookupLot('1322 N Dover St');
+    const all = new Map<string, unknown>();
+    for (const f of allFixtures()) for (const [u, r] of Object.entries(f.responses)) all.set(u, r);
+    setFetch(async (url: string) => {
+      if (url.includes('PPR_Urban_Agriculture_Projects')) throw new Error('offline');
+      const r = all.get(url) as { status: number; body: unknown } | undefined;
+      if (!r) throw new Error(`no fixture: ${url}`);
+      const text = JSON.stringify(r.body);
+      return { ok: r.status < 300, status: r.status, json: async () => JSON.parse(text), text: async () => text };
+    });
+    try {
+      const [gardens] = await nearbyAssets(lot, 1320, { only: ['gardens'] });
+      expect(gardens!.error).toBeUndefined();
+      expect(gardens!.warning).toMatch(/Part of this list/);
+      expect(gardens!.items[0]!.name).toBe('Brewerytown Garden');
+    } finally {
+      fx = useFixtures();
+    }
   });
   it('saves as readable lines under organize.assets-<category>', () => {
     expect(assetFieldId('schools')).toBe('organize.assets-schools');

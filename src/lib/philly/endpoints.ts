@@ -23,6 +23,9 @@ export const ARCGIS = 'https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/
  *   Registered_Community_Gardens, PPR_Urban_Agriculture_Projects,
  *   Percent_for_Art_Public, PPR_Art_Monuments_point, Historic_sites_PhilReg,
  *   HistoricDistricts_Local, Hospitals, Universities_Colleges   (Organize assets)
+ * - LAMAAssets               the Philadelphia Land Bank's inventory of public land
+ *                            (City, Land Bank, Redevelopment Authority, PHDC) with its
+ *                            availability status — the data behind the Land Bank's map
  */
 export const LAYERS = {
   vacantLand: 'Vacant_Indicators_Land',
@@ -45,6 +48,7 @@ export const LAYERS = {
   historicDistricts: 'HistoricDistricts_Local',
   hospitals: 'Hospitals',
   universities: 'Universities_Colleges',
+  landBank: 'LAMAAssets',
 } as const;
 export type LayerName = (typeof LAYERS)[keyof typeof LAYERS];
 
@@ -130,6 +134,9 @@ export const links = {
    *  (404, 2026-10-04); PHDC's search moved to the Land Bank's site. This is its Community Use
    *  map — lots available for gardens and open space. */
   phdcSearch: 'https://phillylandbank.org/community-use-map/',
+  /** The Land Bank's map of all its properties with their status (same data as LAMAAssets). */
+  landBankMap: 'https://phillylandbank.org/view-properties-map/',
+  landBankSideYards: 'https://phillylandbank.org/side-or-rear-yards/',
   rcos: 'https://www.phila.gov/programs/registered-community-organizations-rcos/',
   council: 'https://phlcouncil.com/',
   historic: 'https://www.phila.gov/departments/philadelphia-historical-commission/',

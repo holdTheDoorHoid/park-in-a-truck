@@ -3,11 +3,12 @@
 // ("Filled from City records") until the person types their own answer.
 //
 // Path: dotted path from the project root (lot.*, design.*, extra.*, fields.*).
-// Format (optional, after |): join, sqft, ft, money, date, yesno, ownerType, lotType,
+// Format (optional, after |): join, owners, sqft, ft, money, date, yesno, ownerType, lotType,
 // zoning ("RSA5" → "RSA-5 · Residential — …"), size ("B" → "Size B"), lotKind.
 
 import type { Project } from './types';
 import { zoningPlain } from './philly/plain';
+import { ownerNames } from './philly/owner';
 
 const OWNER_TYPES: Record<string, string> = {
   city: 'City of Philadelphia (public)',
@@ -50,6 +51,10 @@ export function formatAuto(v: unknown, fmt?: string): string | null {
   switch (fmt) {
     case 'join':
       return Array.isArray(v) ? v.filter(Boolean).join(' & ') : String(v);
+    // OPA's owner_1 + owner_2: "&" between two people, but one agency name split across
+    // the two columns stays one name (philly-data)
+    case 'owners':
+      return Array.isArray(v) ? ownerNames(v as string[]) || null : String(v);
     case 'sqft':
       return `${Math.round(Number(v)).toLocaleString('en-US')} sq ft`;
     case 'ft':

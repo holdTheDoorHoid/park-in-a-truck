@@ -88,6 +88,22 @@ export interface LotGeometry {
   startCorner: LngLat;
 }
 
+/** How the Land Bank's status reads at a glance (map colour, badge). */
+export type LandBankTone = 'available' | 'hold' | 'unavailable' | 'unknown';
+
+/** One property in the Philadelphia Land Bank's inventory (LAMAAssets). */
+export interface LandBankStatus {
+  /** PUB (City), PLB (Land Bank), PRA (Redevelopment Authority) or PHDC */
+  agency: string | null;
+  /** As the Land Bank writes it, e.g. "Owned - On Hold for AHD" */
+  status: string;
+  /** In plain words, e.g. "On hold for affordable housing" */
+  label: string;
+  tone: LandBankTone;
+  /** A next-door homeowner can apply to buy it as a side yard */
+  sideYard: boolean | null;
+}
+
 /** The friendlier bits kept on LotRecord.extra (all optional). */
 export interface LotExtra {
   geometry?: LotGeometry;
@@ -104,7 +120,21 @@ export interface LotExtra {
   /** The parcel outline came from PWD (water-billing) or DOR (deeds) */
   parcelSource?: 'pwd' | 'dor' | null;
   zip?: string | null;
+  /**
+   * Older saves only: AIS's PhillyRising area or planning district. PhillyRising
+   * areas are named after playgrounds ("Penrose" in North Philadelphia), so this is
+   * no longer shown; see planningDistrict.
+   */
   neighborhood?: string | null;
+  /** City planning district from AIS, e.g. "Lower North" */
+  planningDistrict?: string | null;
+  /**
+   * The Land Bank's status for this property (LAMAAssets). null = checked, not in the
+   * Land Bank's inventory; missing = not checked (older saves, or the layer failed).
+   */
+  landBank?: LandBankStatus | null;
+  /** Lot area on the City's property assessment (OPA total_area), sq ft — LotRecord.areaSqFt is the parcel outline's */
+  assessedAreaSqFt?: number | null;
   /** Problems we hit while looking things up (one per failed layer) */
   warnings?: string[];
 }
@@ -178,6 +208,13 @@ export interface VacantLotProps {
   buildingDesc: string | null;
   /** City vacancy score 0–1 */
   vacancyScore: number | null;
+  /** The Land Bank's status, when the lot is in its inventory and the status could be loaded */
+  landBank?: LandBankStatus | null;
+  /**
+   * Map colour group: Land Bank lists it as available / Land Bank lists it with another
+   * status / public but not in the Land Bank's list / private. 'public' = status not loaded.
+   */
+  mapClass: 'lb-available' | 'lb-other' | 'agency' | 'public' | 'private';
 }
 
 export interface VacantLotFeature {
@@ -192,6 +229,8 @@ export interface VacantLotCollection {
   features: VacantLotFeature[];
   /** true when the City capped the answer; zoom in to see everything */
   truncated: boolean;
+  /** false when the Land Bank's statuses couldn't be loaded (public lots then show as plain "public") */
+  landBankLoaded?: boolean;
 }
 
 // ---- neighbourhood assets (Organize) ------------------------------------------------
@@ -238,6 +277,8 @@ export interface AssetGroup {
   note?: string;
   /** set when this layer could not be loaded */
   error?: string;
+  /** set when one of the group's layers could not be loaded (the rest is shown) */
+  warning?: string;
 }
 
 // ---- errors ------------------------------------------------------------------------------

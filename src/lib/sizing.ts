@@ -1,6 +1,11 @@
 // Park sizes A–E from the Assess workbook summary ("Are you ready?", p.11)
 // and the Dream workbook ("Right size your park"). Each size has a range for
 // the LONG edge (L) and the SHORT edge (W), in feet.
+//
+// The pieces are printed at the bottom of each range; the Dream workbook grows
+// them with seams ("if there's extra room, expand by adding seams") and never
+// shrinks them. So a size only fits a lot when the lot is at least that size's
+// minimum in BOTH directions.
 
 import type { SizeId } from './types';
 
@@ -32,11 +37,16 @@ function gap(v: number, [lo, hi]: [number, number]) {
   return v < lo ? lo - v : v > hi ? v - hi : 0;
 }
 
+/** The lot is at least this size's printed pieces in both directions. */
+export function holds(s: SizeRange, long: number, short: number): boolean {
+  return long >= s.long[0] && short >= s.short[0];
+}
+
 /** Pick the park size for a lot. Inputs in feet; order does not matter. */
 export function fitSize(a: number, b: number): SizeFit {
   const long = Math.max(a, b);
   const short = Math.min(a, b);
-  const tooSmall = long < SIZES[0]!.long[0] || short < SIZES[0]!.short[0];
+  const tooSmall = !holds(SIZES[0]!, long, short);
   const tooBig = long > 120 || short > 60;
   const exact = SIZES.filter((s) => gap(long, s.long) === 0 && gap(short, s.short) === 0);
   if (exact.length) {
@@ -48,16 +58,10 @@ export function fitSize(a: number, b: number): SizeFit {
     );
     return { size: exact[0]!.id, exact: true, tooSmall: false, tooBig: false };
   }
-  // Otherwise the nearest size, weighting the short edge double because the
-  // pieces can be stretched along their length more easily than across.
-  let best = SIZES[0]!;
-  let bestScore = Infinity;
-  for (const s of SIZES) {
-    const score = gap(long, s.long) + 2 * gap(short, s.short);
-    if (score < bestScore) {
-      bestScore = score;
-      best = s;
-    }
-  }
+  // Otherwise the biggest set whose printed pieces still fit inside the lot;
+  // seams then grow it to the lot. A lot smaller than A gets A as the nearest
+  // (and the Park Patch suggestion).
+  const fits = SIZES.filter((s) => holds(s, long, short));
+  const best = fits.length ? fits[fits.length - 1]! : SIZES[0]!;
   return { size: best.id, exact: false, tooSmall, tooBig };
 }

@@ -10,10 +10,11 @@ import type { LotExtra, Surroundings } from '../../lib/philly/types';
 import { fetchSurroundings } from '../../lib/philly/surroundings';
 import { distToRing, makeProjector } from '../../lib/philly/geo';
 import { SIZES } from '../../lib/sizing';
+import { sizeOf } from '../../lib/philly/choose';
 import { titleCase, zoningPlain, sqft } from '../../lib/philly/plain';
 import { u } from '../../lib/url';
 import AerialThumb from './AerialThumb';
-import { lotDrawing, fmtFt } from './drawing';
+import { lotDrawing, fmtFt, textAngle } from './drawing';
 import { useProject } from './hooks';
 
 const LOT_TYPE: Record<string, string> = { 'mid-block': 'Mid-block lot', corner: 'Corner lot', alley: 'Breezeway / alley', unknown: 'Not sure' };
@@ -46,13 +47,39 @@ function Sketch({ lot }: { lot: LotRecord }) {
   pad = Math.max(pad, reach);
   const vb = `${-pad} ${-pad} ${maxX + 2 * pad} ${maxY + 2 * pad}`;
   return (
-    <svg class="ph-outline" viewBox={vb} role="img" aria-label="Sketch of the lot with its sides numbered to match the list of measurements" style="max-height:260px">
+    <svg
+      class="ph-outline"
+      viewBox={vb}
+      role="img"
+      aria-label={`Sketch of the lot with its sides numbered to match the list of measurements, drawn as you stand at the entrance${d.g.streets[0] ? ` on ${titleCase(d.g.streets[0].name)}` : ''}; the arrow points north`}
+      style="max-height:260px"
+    >
       <polygon points={d.polygon.map((p) => p.join(',')).join(' ')} fill="#e3f5fc" stroke="#111" stroke-width={fs / 6} stroke-linejoin="round" />
       {d.edges
         .filter((e) => e.street)
         .map((e) => (
           <line x1={e.a[0]} y1={e.a[1]} x2={e.b[0]} y2={e.b[1]} stroke="#00709c" stroke-width={fs / 2.2} stroke-linecap="round" />
         ))}
+      {/* the street's name along each street side, inside the lot, so the sketch can be matched to the photo */}
+      {d.edges
+        .filter((e) => e.street && e.lengthFt >= 8)
+        .map((e) => {
+          const at: [number, number] = [e.mid[0] - e.out[0] * fs * 1.1, e.mid[1] - e.out[1] * fs * 1.1];
+          return (
+            <text
+              x={at[0]}
+              y={at[1]}
+              transform={`rotate(${textAngle(e.a, e.b)},${at[0]},${at[1]})`}
+              text-anchor="middle"
+              dominant-baseline="middle"
+              font-size={fs * 0.8}
+              font-weight="700"
+              fill="#00709c"
+            >
+              {titleCase(e.street!)}
+            </text>
+          );
+        })}
       {badges.map(({ e, at }) => (
         <g transform={`translate(${at[0]},${at[1]})`}>
           <circle r={fs * 0.75} fill="#111" />
@@ -64,6 +91,9 @@ function Sketch({ lot }: { lot: LotRecord }) {
       <circle cx={d.start[0]} cy={d.start[1]} r={fs * 0.45} fill="#00A8E8" stroke="#111" stroke-width={fs / 10} />
       <g transform={`translate(${maxX + pad * 0.55},${-pad * 0.45}) rotate(${d.northDeg})`} aria-hidden="true">
         <path d={`M0,${-fs * 1.2} L${fs * 0.5},${fs * 0.5} L0,${fs * 0.15} L${-fs * 0.5},${fs * 0.5}Z`} fill="#111" />
+        <text y={-fs * 1.45} text-anchor="middle" font-size={fs * 0.85} font-weight="700" fill="#111" transform={`rotate(${-d.northDeg},0,${-fs * 1.75})`}>
+          N
+        </text>
       </g>
     </svg>
   );
@@ -96,6 +126,9 @@ export default function SiteReport() {
 
   const x = (lot.extra ?? {}) as LotExtra;
   const g = x.geometry;
+  const size = g ? sizeOf(g) : null;
+  // lots saved before 2026-10-04 kept the assessment's area in lot.areaSqFt
+  const assessed = x.assessedAreaSqFt !== undefined ? x.assessedAreaSqFt : lot.areaSqFt;
 
   // neighbours and trees from the surroundings
   let nextDoor: number[] = [];
@@ -122,6 +155,7 @@ export default function SiteReport() {
     }
   }
   const storeys = (h: number) => Math.max(1, Math.round(h / 11));
+  const drawing = lotDrawing(lot);
 
   return (
     <div class="ph ph-site-report">
@@ -146,14 +180,19 @@ export default function SiteReport() {
                 ))}
               </ol>
               <dl class="ph-facts" style="margin-top:12px">
-                <dt>Long edge</dt>
-                <dd>{fmtFt(g.lengthFt)}</dd>
-                <dt>Short edge</dt>
-                <dd>{fmtFt(g.widthFt)}</dd>
+                <dt>Long × short edge</dt>
+                <dd>
+                  {fmtFt(g.lengthFt)} × {fmtFt(g.widthFt)}
+                  <br />
+                  <small>
+                    The smallest rectangle the lot fits in — what the park sizes below are measured against. It can be a few inches longer
+                    than the sides above when the lot isn't quite square.
+                  </small>
+                </dd>
                 <dt>Area</dt>
                 <dd>
-                  {sqft(g.areaSqFt)}
-                  {lot.areaSqFt && Math.abs(lot.areaSqFt - g.areaSqFt) > 50 ? <small> (City assessment says {sqft(lot.areaSqFt)})</small> : null}
+                  {sqft(g.areaSqFt)} <small>(from the parcel outline)</small>
+                  {assessed && Math.abs(assessed - g.areaSqFt) > 50 ? <small> · the City's tax assessment says {sqft(assessed)}</small> : null}
                 </dd>
                 {g.irregular && (
                   <>
@@ -182,7 +221,7 @@ export default function SiteReport() {
             </thead>
             <tbody>
               {SIZES.map((s) => (
-                <tr data-this={g && g.size.id === s.id && !g.size.tooSmall && !g.size.tooBig ? '' : undefined}>
+                <tr data-this={size && size.id === s.id && !size.tooSmall && !size.tooBig ? '' : undefined}>
                   <th scope="row">{s.id}</th>
                   <td>
                     {s.long[0]}–{s.long[1]} ft
@@ -194,13 +233,13 @@ export default function SiteReport() {
               ))}
             </tbody>
           </table>
-          {g && (
+          {g && size && (
             <p class="ph-small">
-              {g.size.tooSmall
+              {size.tooSmall
                 ? <>Your lot ({fmtFt(g.lengthFt)} × {fmtFt(g.widthFt)}) is smaller than size A — the <a href={u('park-patch/')}>Park Patch workbook</a> is made for spaces like this.</>
-                : g.size.tooBig
+                : size.tooBig
                   ? `Your lot (${fmtFt(g.lengthFt)} × ${fmtFt(g.widthFt)}) is bigger than size E — start from E and expand.`
-                  : `Your lot (${fmtFt(g.lengthFt)} × ${fmtFt(g.widthFt)}) is size ${g.size.id}${g.size.exact ? '' : ' (closest fit)'}.`}
+                  : `Your lot (${fmtFt(g.lengthFt)} × ${fmtFt(g.widthFt)}) is size ${size.id}${size.exact ? '' : ' (closest fit — the biggest set whose pieces fit inside the lot)'}.`}
             </p>
           )}
 
@@ -234,8 +273,15 @@ export default function SiteReport() {
         <div>
           <Sketch lot={lot} />
           <div style="margin-top:12px">
-            <AerialThumb polygon={lot.polygon} label={`Aerial photo of ${titleCase(lot.address)} with the lot outlined`} />
+            <AerialThumb
+              polygon={lot.polygon}
+              rotateDeg={drawing?.northDeg}
+              label={`Aerial photo of ${titleCase(lot.address)} with the lot outlined, turned to match the sketch above`}
+            />
           </div>
+          {drawing && (
+            <p class="ph-small">The photo is turned to match the sketch, as you stand at the entrance. The arrows point north.</p>
+          )}
           <h3>Around the lot</h3>
           {aroundErr && <p class="ph-small">{aroundErr}</p>}
           {!around && !aroundErr && (

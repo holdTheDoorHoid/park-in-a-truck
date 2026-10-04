@@ -5,7 +5,10 @@
 import type { ComponentChildren } from 'preact';
 import type { LotRecord } from '../../lib/types';
 import type { LotExtra } from '../../lib/philly/types';
-import { acquirePaths, isPublic, OWNER_TYPE_LABEL } from '../../lib/philly/owner';
+import { acquirePaths, isPublic, landBankHandles, ownerNames, OWNER_TYPE_LABEL } from '../../lib/philly/owner';
+import { landBankLine, SIDE_YARD_MEANS } from '../../lib/philly/landbank';
+import { sizeOf } from '../../lib/philly/choose';
+import { links } from '../../lib/philly/endpoints';
 import { feet, sqft, titleCase, zoningPlain } from '../../lib/philly/plain';
 import LotOutline from './LotOutline';
 import { u } from '../../lib/url';
@@ -39,14 +42,15 @@ export function sizeLine(lot: LotRecord): ComponentChildren {
 export function parkSizeLine(lot: LotRecord): ComponentChildren {
   const g = (lot.extra as LotExtra | undefined)?.geometry;
   if (!g) return '—';
-  if (g.size.tooSmall)
+  const size = sizeOf(g);
+  if (size.tooSmall)
     return (
       <>
         Smaller than size A — the <a href={u('park-patch/')}>Park Patch workbook</a> fits small spaces better.{' '}
-        <small>(Nearest: size {g.size.id})</small>
+        <small>(Nearest: size {size.id})</small>
       </>
     );
-  if (g.size.tooBig)
+  if (size.tooBig)
     return (
       <>
         Bigger than size E — start from size E and expand. <small>(Dream workbook)</small>
@@ -54,8 +58,9 @@ export function parkSizeLine(lot: LotRecord): ComponentChildren {
     );
   return (
     <>
-      <strong>Size {g.size.id}</strong>
-      {g.size.exact ? '' : ' (closest fit)'} <small>— the Park in a Truck piece set for this lot</small>
+      <strong>Size {size.id}</strong>
+      {size.exact ? '' : ' (closest fit — the biggest set whose pieces fit inside the lot)'}{' '}
+      <small>— the Park in a Truck piece set for this lot</small>
     </>
   );
 }
@@ -68,20 +73,28 @@ interface Props {
   badge?: ComponentChildren;
   /** hide the next-steps box (e.g. in the map popup) */
   compact?: boolean;
+  /** let a script move keyboard focus to the card's heading (after "Details") */
+  titleFocusable?: boolean;
 }
 
-export default function LotCard({ lot, actions, badge, compact }: Props) {
+export default function LotCard({ lot, actions, badge, compact, titleFocusable }: Props) {
   const x = (lot.extra ?? {}) as LotExtra;
   const g = x.geometry;
   const pub = isPublic(lot.ownerType);
-  const paths = acquirePaths(lot.ownerType);
+  const paths = acquirePaths(lot.ownerType, x.ownerLabel);
+  const lb = x.landBank;
+  const sold = !pub && lot.lastSale?.date ? new Date(lot.lastSale.date) : null;
   return (
     <article class="ph-card" aria-label={`City records for ${titleCase(lot.address)}`}>
       <header class="ph-card-head">
         <div>
-          <h3 class="ph-card-title">{titleCase(lot.address)}</h3>
+          <h3 class="ph-card-title" tabIndex={titleFocusable ? -1 : undefined}>
+            {titleCase(lot.address)}
+          </h3>
           <p class="ph-card-sub">
-            {[x.neighborhood, x.zip && `Philadelphia ${x.zip}`, lot.opa && `OPA #${lot.opa}`].filter(Boolean).join(' · ')}
+            {[x.planningDistrict && `${x.planningDistrict} planning district`, x.zip && `Philadelphia ${x.zip}`, lot.opa && `OPA #${lot.opa}`]
+              .filter(Boolean)
+              .join(' · ')}
           </p>
         </div>
         <div>
@@ -94,13 +107,55 @@ export default function LotCard({ lot, actions, badge, compact }: Props) {
         <dl class="ph-facts">
           <dt>Owner</dt>
           <dd>
-            {lot.owners.length ? lot.owners.join(' & ') : 'Not on record'}
+            {lot.owners.length ? ownerNames(lot.owners) : 'Not on record'}
             <br />
             <small>
               {OWNER_TYPE_LABEL[lot.ownerType]}
               {lot.ownerType === 'other-public' && x.ownerLabel ? ` — ${x.ownerLabel}` : ''}
             </small>
           </dd>
+          {lb || (pub && lb === null) ? (
+            <>
+              <dt>Land Bank status</dt>
+              <dd>
+                {lb ? (
+                  <>
+                    <span class={`ph-lb ph-lb-${lb.tone}`}>{landBankLine(lb)}</span>
+                    {lb.sideYard && (
+                      <>
+                        <br />
+                        <small>{SIDE_YARD_MEANS}</small>
+                      </>
+                    )}
+                  </>
+                ) : landBankHandles(lot.ownerType, x.ownerLabel) ? (
+                  "Not in the Land Bank's inventory of public land"
+                ) : (
+                  "Not in the Land Bank's inventory — a separate agency owns it"
+                )}
+                {(lb || landBankHandles(lot.ownerType, x.ownerLabel)) && (
+                  <>
+                    <br />
+                    <small>
+                      From the Land Bank's own property list.{' '}
+                      <a href={links.landBankMap} target="_blank" rel="noopener">
+                        Land Bank property map ↗
+                      </a>
+                    </small>
+                  </>
+                )}
+              </dd>
+            </>
+          ) : null}
+          {sold && !Number.isNaN(sold.getTime()) && (
+            <>
+              <dt>Last sold</dt>
+              <dd>
+                {sold.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' })}{' '}
+                <small>(City property records)</small>
+              </dd>
+            </>
+          )}
           {!pub && x.ownerMailing && (
             <>
               <dt>Owner's mailing address</dt>
@@ -132,7 +187,7 @@ export default function LotCard({ lot, actions, badge, compact }: Props) {
               : lot.category === 'VACANT LAND'
                 ? "Recorded as vacant land, but not on the City's current vacant-land list (it may be in use)"
                 : lot.vacantLand === false
-                  ? `Not on the City's vacant-land list${lot.buildingDescription ? ` · ${titleCase(lot.buildingDescription)}` : ''}`
+                  ? `Not on the City's vacant-land list${lot.category ? ` (the property record lists it as ${lot.category.toLowerCase().replace(/\s+/g, ' ').trim()})` : ''}`
                   : '—'}
           </dd>
           {!compact && (
