@@ -1,0 +1,470 @@
+---
+title: Создать
+intro: Постройте свой парк по частям — по одному этапу за выходные.
+sources:
+  - Руководство (Toolkit), стр. 57–59 (Создать, Первое строительство парка)
+  - Рабочая тетрадь «Создать», стр. 1–18
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Choice from '../../../../components/workbook/Choice.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import Download from '../../../../components/workbook/Download.astro';
+import CostEstimator from '../../../../components/widgets/CostEstimator.astro';
+import BuildSchedule from '../../../../components/widgets/BuildSchedule.astro';
+import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
+
+{/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — Create lets you pick build weekends and print an order list with nothing recorded in Acquire; this says so before anyone breaks ground. */}
+<LotAgreementNotice />
+
+Строительство парка — отличный способ сблизить соседей, друзей и других людей. Для этого нужны преданные делу
+волонтёры, готовые отдать своё время и силы, с самыми разными умениями: плотницкое дело, озеленение, организация,
+умение подбодрить и повести за собой. Как приготовление блюда по рецепту, строительство парка идёт шаг за шагом;
+большинство парков Park in a Truck строятся примерно за 6–8 выходных.
+
+Глава «Создать» целиком о том, как построить парк. Мы разбили работу на восемь этапов. Каждый этап можно выполнить
+примерно за одни выходные — сколько времени уйдёт на самом деле, зависит от размера парка и числа волонтёров. Этапы
+идут именно в таком порядке не случайно; просмотрите каждый и при необходимости поправьте свой график.
+
+Эта книга исходит из того, что вы уже рассчитали стоимость и знаете, какие материалы и в каком количестве нужно
+заказать на каждый этап. Если нет, вернитесь к шагу «Мечтать» и воспользуйтесь расчётом стоимости.
+
+<CostEstimator />
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={3} />
+
+## Бланк отказа от претензий для волонтёров {/* #volunteer-release-form */}
+
+Всякий раз, когда вы работаете в парке, держите на участке бланки отказа от претензий для волонтёров. Этот бланк
+освобождает вас от ответственности за травмы волонтёров. До начала строительства вы обязаны посоветоваться с юристами
+своей организации и со страховой компанией — возможно, они попросят принять дополнительные меры, чтобы защитить
+организацию от ответственности. Дайте волонтёрам понятные указания: чего от них ждут и какие задачи в этот рабочий
+день. Люди охотнее вернутся в следующие недели, если почувствуют, что их время потрачено с пользой.
+
+<Download href="downloads/forms/volunteer-release-form.pdf" label="Бланк отказа от претензий для волонтёров" note="По одному на каждого волонтёра; за волонтёров младше 18 лет также должен расписаться родитель или опекун" />
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={3} />
+
+## Этап 1: Организация {/* #phase-1-organize */}
+
+Как и в любом деле, первый и самый важный шаг — организовать команду: назначить руководителей проекта и составить
+график. Сколько человек назначить на эти роли, зависит от сложности и размера проекта.
+
+- **Руководитель строительства.** Заказывает материалы, встречает доставки, даёт указания волонтёрам в дни
+  строительства и согласует график с руководителем проекта.
+- **Руководитель проекта.** Отвечает за привлечение волонтёров, соцсети, заказ еды, раздачу бланков отказа от
+  претензий, следит за финансами и графиком.
+
+<Field id="create.construction-manager" label="Руководитель строительства" hint="Заказывает материалы, ведёт дни строительства" />
+<Field id="create.project-manager" label="Руководитель проекта" hint="Волонтёры, график, финансы" />
+
+<ListField
+  id="create.org-chart"
+  label="Волонтёры и подрядчики"
+  rowName="участник"
+  min={3}
+  columns={[
+    { key: 'name', label: 'Имя' },
+    { key: 'role', label: 'Роль', placeholder: 'волонтёр, подрядчик…' },
+    { key: 'contact', label: 'Контакт' },
+  ]}
+/>
+
+Календарь проекта — отличный способ следить за графиком, важными датами, днями работы волонтёров и сроками поставки
+материалов. Планирование так же важно, как само строительство, — начните правильно.
+
+<BuildSchedule />
+
+<Download href="downloads/templates/project-calendar.xlsx" label="Шаблон календаря" note="Пример календаря проекта и списка контактов — для образца; сделайте свою копию" />
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={4} />
+
+## Этап 2: Подготовка участка {/* #phase-2-prepare-the-lot */}
+
+### Шаги
+
+**Шаг 1: Оцените.** Некоторые участки нужно больше расчищать или выравнивать, чем другие, и для этого может
+понадобиться специальная техника — если жители не справятся сами с чем-то из перечисленного ниже, обратитесь к
+подрядчику по благоустройству.
+
+- Если не уверены, как подготовить участок, свяжитесь с командой PiaT
+  ([ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu)) и попросите приехать на консультацию.
+- Позвоните в Pennsylvania One Call по номеру **811**, чтобы на участке отметили, где проходят подземные
+  коммуникации.
+
+<Field id="create.one-call-address" label="Адрес для заявки в PA One Call" auto="lot.address" />
+
+**Шаг 2: Защитите.** Привезите на участок мелкий инструмент и оборудование. Поставьте защитное строительное
+ограждение на деревянных столбиках вокруг стволов деревьев, у зданий и других объектов, которые нужно защитить.
+Установите ограждение от смыва грунта и эрозии по периметру участка и у всех ливнёвок.
+
+**Шаг 3: Расчистка.** Уберите ненужную растительность (вместе с корнями), пни, мусор и куски кладки — чтобы вовремя
+и надёжно избавиться от некоторых растений, может понадобиться гербицид. Обрежьте существующие деревья: уберите
+ветки со ствола как минимум до высоты 6 футов. Вывезите мусор и растительность с участка в подходящее место для
+отходов; куски кладки сложите на участке — ими потом заполните габионные корзины.
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — street trees are the City's; facts checked 2026-10-04 on phila.gov. */}
+<Callout kind="site">
+  Уличные деревья (те, что растут в тротуаре) принадлежат городу: чтобы обрезать или удалить такое дерево, нужно
+  разрешение от Philadelphia Parks & Recreation, а опасные уличные деревья эта служба обрезает и удаляет бесплатно
+  (обращайтесь через 311). См. [вопросы и ответы города об уличных деревьях ↗](https://www.phila.gov/departments/philadelphia-parks-recreation/street-tree-frequently-asked-questions/)
+  (на английском).
+</Callout>
+
+**Шаг 4: Выравнивание участка.** Начните разравнивать участок граблями. Следите, чтобы метки Pennsylvania One Call
+оставались целыми и заметными; уровень земли должен быть примерно вровень с тротуаром.
+
+### Оборудование и инструменты
+
+<Checklist
+  id="create.phase2-tools"
+  items={[
+    { value: 'Shovels', label: 'Лопаты' }, { value: 'Wheelbarrows', label: 'Тачки' }, { value: 'Pick axe', label: 'Кирка' }, { value: 'Grading rakes', label: 'Грабли для выравнивания' }, { value: 'Sledgehammer', label: 'Кувалда' },
+    { value: 'Hand pruners + loppers', label: 'Секатор и сучкорез' }, { value: 'Pruning saws', label: 'Садовые пилы' }, { value: 'Spray paint', label: 'Краска в баллончике' }, { value: 'Construction fencing', label: 'Строительное ограждение' },
+    { value: 'Wood posts', label: 'Деревянные столбики' }, { value: 'Broom', label: 'Метла' }, { value: 'Chainsaw', label: 'Бензопила' }, { value: 'Trash bags', label: 'Мешки для мусора' },
+  ]}
+/>
+<Checklist
+  id="create.phase2-tools-optional"
+  label="По желанию — для участков, где много неровностей, бетона или пней"
+  items={[
+    { value: 'excavator', label: 'Экскаватор', hint: 'лучше нанять подрядчика' },
+    { value: 'stump-grinder', label: 'Измельчитель пней', hint: 'лучше нанять подрядчика' },
+    { value: 'Jack hammer', label: 'Отбойный молоток' }, { value: 'Rototiller', label: 'Мотокультиватор' }, { value: 'Herbicide spray', label: 'Гербицид в распылителе' },
+  ]}
+/>
+
+<Figure
+  src="img/create/phase2-reference-photos.webp"
+  alt="Фото для примера, как готовить участок: экскаватор расчищает участок, флажок разметки коммуникаций и сигнальный провод на газоне, волонтёры убирают обломки кладки, сетка от смыва грунта вдоль бордюра, волонтёр разравнивает землю граблями"
+/>
+
+### Полезные ссылки (на английском)
+
+- **Прокат инструментов** — для электроинструмента, возможно, стоит нанять подрядчика: так быстрее и безопаснее.
+  [West Philadelphia Tool Library ↗](https://westphillytools.org) (только ручной инструмент; 1314 S 47th St) ·
+  [OK Rental ↗](https://okrentalsaleservice.com) *(ссылка сейчас не работает)* (электроинструмент, в том числе бензопилы; 640 Main St, Darby) ·
+  [Diamond Tool ↗](https://diamondtool.net/Rentals) *(не удалось проверить автоматически)* (2800 Grays Ferry Ave)
+- **Отходы и переработка** — [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/) (3850 W Ford Rd)
+- **Видео об обрезке деревьев** — [youtube.com/watch?v=pY5A-5gUqwo ↗](https://youtube.com/watch?v=pY5A-5gUqwo)
+- **Как распознать сорняки** — [справочник сорняков Philadelphia Orchard Project ↗](https://www.phillyorchards.org/resources/)
+- **Гербициды** (используйте понемногу и всегда по инструкции на этикетке) — пиклорам (Picloram) для обработки пней
+  древесных растений; глифосат (Glyphosate) для обработки листьев травянистых и древесных растений; клопиралид
+  (Clopyralid) против полыни и бодяка полевого (канадского осота). Инвазивные сорняки, против которых часто нужны
+  гербициды: полынь, бодяк полевой, японский горец (рейнутрия) и тростник (фрагмитес) (травянистые); бруссонетия
+  (Broussonetia), айлант (Ailanthus), павловния (Paulownia) и японская жимолость (древесные — спилите и обработайте
+  пень, только если растение слишком большое, чтобы выкорчевать его с корнями).
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — herbicide labels, restricted-use picloram, 20% vinegar; facts checked 2026-10-04 on epa.gov and npic.orst.edu. */}
+<Callout kind="site">
+  Этикетка гербицида — это закон: соблюдайте её, в том числе где можно применять средство и какую защитную
+  экипировку она требует ([EPA ↗](https://www.epa.gov/pesticide-labels/introduction-pesticide-labels), на
+  английском). Многие средства с пиклорамом относятся к средствам ограниченного применения: покупать и применять их
+  может только сертифицированный специалист ([список EPA ↗](https://www.epa.gov/pesticide-worker-safety/restricted-use-products-rup-report),
+  на английском). Уксус, который продают против сорняков (20% и крепче), может навсегда повредить глаза: надевайте
+  защитные очки и перчатки ([NPIC ↗](https://npic.orst.edu/faq/vinegar.html), на английском).
+</Callout>
+
+### Подготовка к следующим шагам
+
+Сверьтесь с календарём проекта и при необходимости поправьте его. Купите и закажите доставку материалов и
+оборудования, которые нужно ждать, и убедитесь, что участок готов к этапу 3.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={5} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={6} label="Фото для примера и ссылки (PDF)" />
+
+## Этап 3: Разметка и гравийное основание {/* #phase-3-layout-gravel-base */}
+
+### Шаги
+
+**Шаг 1: Материалы.** Привезите на участок оборудование и инструменты; подготовьтесь к доставкам. Выберите место,
+куда сложить гравий, и по возможности накройте его брезентом. Отметьте краской из баллончика примерные места, куда
+пойдёт гравий; если места не хватает, договоритесь с городом, чтобы гравий выгрузили на проезжую часть.
+
+<Callout kind="note" title="Перекрываете улицу для доставки?">
+  Подайте заявку на временное разрешение «стоянка запрещена», чтобы грузовику с доставкой было где разгрузиться.
+  [Подать заявку на phila.gov (на английском) ↗](https://www.phila.gov/services/cars-parking-transportation/apply-for-a-parking-permit/apply-for-a-temporary-no-parking-permit/)
+</Callout>
+<Field id="create.delivery-address" label="Адрес для разрешения «стоянка запрещена»" auto="lot.address" />
+
+**Шаг 2: Разметьте грядки и места для элементов парка.** Начните с начальной точки, которую вы отметили в рабочей
+тетради «Оценить». Смотрите на свой план, где проходят и какой длины края грядок и элементов парка. Колышками и
+шнуром отметьте, где будут бортики и элементы парка, которые вы добавите на следующих этапах.
+
+**Шаг 3: Уложите нижнее основание.** Подготовьте поверхность земли под габионные корзины по инструкции по сборке.
+Выкопайте землю у входов, чтобы сгладить перепад высоты между новым парком и тротуаром, — у края тротуара не меньше
+4 дюймов в глубину, выравнивая по мере необходимости (лишнюю землю используйте, чтобы выровнять дорожки, или добавьте
+на места посадок). Насыпьте гравий слоем 2 дюйма везде, кроме грядок, примерно на 6 дюймов шире разметки шнуром,
+чтобы бортики на следующем этапе легли поверх гравия. Пройдите по гравию виброплитой не меньше двух раз.
+
+**Шаг 4: Входы и уборка.** Уберите рассыпанный гравий и наведите порядок на общественных местах.
+
+### Оборудование, инструменты и материалы
+
+<Checklist
+  id="create.phase3-tools"
+  items={[
+    { value: 'Square', label: 'Угольник' }, { value: 'Measuring tape', label: 'Рулетка' }, { value: 'Shovels', label: 'Лопаты' }, { value: 'Wheelbarrows', label: 'Тачки' }, { value: 'Pick axe', label: 'Кирка' }, { value: 'Grading rakes', label: 'Грабли для выравнивания' },
+    { value: '5 lb hammer', label: 'Молот весом 5 фунтов' }, { value: 'Spray paint', label: 'Краска в баллончике' }, { value: 'Wood posts and string', label: 'Деревянные колышки и шнур' }, { value: 'Vibrating plate compactor', label: 'Виброплита' }, { value: 'Broom', label: 'Метла' },
+  ]}
+/>
+<p class="muted">Материалы: гравий, щебёночная смесь для основания дорог 3/4".</p>
+
+<Figure
+  src="img/create/phase3-reference-photos.webp"
+  alt="Фото для примера, как делать разметку и гравийное основание: измерение участка, земляные работы, подготовка нижнего основания, грузовик с гравием, разметка участка колышками и шнуром, куча гравия, гравий возят тачками и разравнивают"
+/>
+
+### Полезные ссылки (на английском)
+
+- **Как это делается** — [Разметка грядок ↗](https://lowes.com/n/how-to/create-an-english-style-garden) (смотрите с 1:50 до 2:40) ·
+  [Укладка гравийного основания ↗](https://youtube.com/watch?v=tfDEOIAIUwQ)
+- **Прокат инструментов** — [West Philadelphia Tool Library ↗](https://westphillytools.org) ·
+  [OK Rental ↗](https://okrentalsaleservice.com) *(ссылка сейчас не работает)* · [Diamond Tool ↗](https://diamondtool.net/Rentals) *(не удалось проверить автоматически)*
+
+### Подготовка к следующим шагам
+
+Сверьтесь с календарём проекта и при необходимости поправьте его. Купите и закажите доставку материалов, которые
+нужно ждать, для следующих этапов. Убедитесь, что участок готов к этапу 4.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={7} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={8} label="Фото для примера и ссылки (PDF)" />
+
+## Этап 4: Установка границы {/* #phase-4-install-the-edge */}
+
+### Шаги
+
+**Шаг 1: Материалы.** Привезите материалы для границы (см. расчёт стоимости и инструкции по сборке). Снимите
+ограждение от эрозии; защиту деревьев оставьте, если только она не мешает ставить границу.
+
+**Шаг 2: Сборка.** Соберите габионные корзины (см. инструкцию по сборке габионной стенки).
+
+**Шаг 3: Установка.** Натяните шнуры, чтобы габионные корзины стояли ровной линией вдоль края парка. Расставьте
+корзины по плану и насыпьте на дно гравий слоем 2–3 дюйма. Немного подвиньте корзины, чтобы они стояли ровно и в
+линию друг с другом; если корзина стоит отдельно как стол или скамья, проверьте её сверху уровнем. Где нужно,
+добавьте деревянные бортики (см. инструкцию по сборке деревянного бортика).
+
+### Оборудование и материалы
+
+<Checklist
+  id="create.phase4-tools"
+  items={[
+    { value: 'Measuring tape', label: 'Рулетка' }, { value: 'Shovels', label: 'Лопаты' }, { value: 'Wheelbarrows', label: 'Тачки' }, { value: 'Garden hoes', label: 'Садовые тяпки' }, { value: 'Grading rakes', label: 'Грабли для выравнивания' },
+    { value: 'Hand tamper', label: 'Ручная трамбовка' }, { value: 'Wire cutters', label: 'Кусачки' }, { value: 'Sledge hammer', label: 'Кувалда' }, { value: 'Level', label: 'Уровень' }, { value: 'Broom', label: 'Метла' },
+  ]}
+/>
+<p class="muted">Материалы: габионные корзины; пиломатериалы и крепёж для деревянного бортика; крупные куски кладки для габионных корзин, от 3 дюймов и больше.</p>
+
+<Figure
+  src="img/create/phase4-reference-photos.webp"
+  alt="Фото для примера, как ставить границу: две заполненные габионные корзины и волонтёр ставит доску деревянного бортика вдоль гравийной полосы"
+/>
+
+### Полезные ссылки (на английском)
+
+- **Материалы** — [Castor Materials ↗](https://castormaterials.com) (щебень, доставка; 3301 S 61st St) ·
+  [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) (щебень, мульча, инструменты; 4260 Macalester St) ·
+  [Underdog Supply ↗](https://www.underdogsupply.com/) (доставка насыпных материалов; Conshohocken) ·
+  Galantino Supply Company (прокат техники и насыпные материалы; 725 Old Marple Rd, Springfield — (610) 544-2586)
+- **Как это делается** — [Как построить габионную стенку ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
+
+### Подготовка к следующим шагам
+
+Сверьтесь с календарём проекта и при необходимости поправьте его. Купите и закажите доставку материалов, которые
+нужно ждать. Убедитесь, что участок готов к этапу 5.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={9} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={10} label="Фото для примера и ссылки (PDF)" />
+
+## Этап 5: Плодородный грунт {/* #phase-5-spread-topsoil */}
+
+### Шаги
+
+**Шаг 1: Материалы.** Снимите ограждение вокруг деревьев. Выберите место на тротуаре или проезжей части, куда
+сложить плодородный грунт; если так, подайте заявку на временное разрешение «стоянка запрещена» (см. этап 3).
+
+**Шаг 2: Укладка грунта.** Подготовьте грядки к засыпке плодородного грунта, выровняв имеющуюся землю. Насыпьте
+плодородный грунт слоем примерно 4–6 дюймов и разровняйте его.
+
+**Шаг 3: Уборка.** Уберите рассыпанный грунт и наведите порядок на общественных местах.
+
+### Оборудование и материалы
+
+<Checklist
+  id="create.phase5-tools"
+  items={[{ value: 'Measuring tape', label: 'Рулетка' }, { value: 'Shovels', label: 'Лопаты' }, { value: 'Wheelbarrows', label: 'Тачки' }, { value: 'Grading rakes', label: 'Грабли для выравнивания' }, { value: 'Garden hoes', label: 'Садовые тяпки' }, { value: 'Broom', label: 'Метла' }]}
+/>
+<p class="muted">Материалы: плодородный грунт.</p>
+
+<Figure
+  src="img/create/phase5-reference-photos.webp"
+  alt="Фото для примера, как насыпать плодородный грунт: самосвал привёз грунт, волонтёр разравнивает землю вручную, двое волонтёров возят грунт тачкой, волонтёр насыпает грунт на грядку"
+/>
+
+### Полезные ссылки (на английском)
+
+- **Заказ** — [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
+- **Как это делается** — [Подготовка плодородного грунта ↗](https://youtube.com/watch?v=GcOJ4fDJmpM) · [Здоровый грунт для здоровых растений ↗](https://youtube.com/watch?v=7-Tyz7fGeZo)
+
+### Подготовка к следующим шагам
+
+Сверьтесь с календарём проекта и при необходимости поправьте его. Купите и закажите доставку материалов, которые
+нужно ждать. Убедитесь, что участок готов к этапу 6.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={11} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={12} label="Фото для примера и ссылки (PDF)" />
+
+## Этап 6: Посадка {/* #phase-6-plant */}
+
+### Шаги
+
+**Шаг 1: Растения.** Удалите все сорняки, которые успели прорасти. Убедитесь, что доставка растений назначена и вы
+выбрали место, куда их выгрузить. Разложите деревья и кустарники там, где они должны расти, затем уберите
+рассыпанную землю и наведите порядок на общественных местах.
+
+**Шаг 2: Посадка.** Сначала посадите крупные деревья (см. схему посадки ниже). Посадите кустарники, тщательно
+разровняйте землю, посадите многолетники, насыпьте мульчу слоем 4 дюйма, затем хорошо полейте все растения —
+повторяйте полив два раза в неделю, пока растения не уйдут на зиму в состояние покоя.
+
+<Figure
+  src="img/create/phase6-plant-illustration.webp"
+  alt="Аксонометрическая схема готового парка перед домами с надписью PLANT (посадка): деревья, приподнятые грядки и мощёное место для встреч между двумя рядовыми домами"
+/>
+<Figure
+  src="img/create/phase6-planting-detail.webp"
+  alt="Две схемы посадки: посадка кустарника или многолетника из контейнера — с толщиной мульчи и обратной засыпкой, и посадка дерева — где ставить ком с корнями, подвязка к кольям, мульча и снятие мешковины"
+/>
+
+### Оборудование и материалы
+
+<Checklist
+  id="create.phase6-tools"
+  items={[{ value: 'Measuring tape', label: 'Рулетка' }, { value: 'Shovels', label: 'Лопаты' }, { value: 'Wheelbarrows', label: 'Тачки' }, { value: 'Pick axe', label: 'Кирка' }, { value: 'Landscape rakes', label: 'Широкие грабли' }, { value: 'Spray paint', label: 'Краска в баллончике' }, { value: 'Tree stakes and rope', label: 'Колья и верёвка для деревьев' }, { value: 'Broom', label: 'Метла' }]}
+/>
+<p class="muted">Материалы: растения — обязательно сверяйтесь со своим списком растений.</p>
+
+### Полезные ссылки (на английском)
+
+- **Общие сведения о растениях** — [PHS Gold Medal Plants ↗](https://phsonline.org/for-gardeners/gold-medal-plants) ·
+  [Gardens Alive ↗](https://www.gardensalive.com/) · [North Creek Nurseries ↗](https://www.northcreeknurseries.com/) ·
+  [Missouri Botanical Garden ↗](https://www.missouribotanicalgarden.org/) · [Longwood Gardens plant explorer ↗](https://plantexplorer.longwoodgardens.org/ecmweb/ECM_Home.html) *(ссылка сейчас не работает)* ·
+  [Arbor Day Foundation ↗](https://www.arborday.org/) · [Penn State Extension: выращивание овощей ↗](https://extension.psu.edu/programs/master-gardener)
+- **Питомник-партнёр PiaT** — LandHealth Institute, 4862 Parkside Ave, Philadelphia · (267) 571-5750 ·
+  [landhealthinstitute.org/nursery ↗](https://www.landhealthinstitute.org/nursery)
+- **Другие питомники региона** — [Good Host Plants ↗](https://www.goodhostplants.com/) (местные специалисты по растениям для опылителей) ·
+  [Pleasant Run Nursery ↗](https://www.pleasantrunnursery.com/) · [Pinelands Nursery ↗](https://www.pinelandsnursery.com/) ·
+  [Archewild ↗](https://archewild.com/)
+- **Плодовые деревья** — [Philadelphia Orchard Project ↗](https://www.phillyorchards.org/) ·
+  [Burpee ↗](https://www.burpee.com/fruit/fruit-trees/) · [Stark Bros ↗](https://www.starkbros.com/products/fruit-trees)
+- **Садовые мастер-классы и помощь с участком** — [Pennsylvania Horticultural Society ↗](https://phsonline.org/) ·
+  [Grounded in Philly ↗](https://groundedinphilly.org/) (юридическая помощь, страхование, данные об участках)
+- **Как это делается** — [Советы по посадке из контейнеров и луковиц ↗](https://www.gardeners.com/how-to/growing-annual-flowers/5070.html) ·
+  [Посадка дерева из контейнера ↗](https://www.arborday.org/trees/planting/containerized.cfm) ·
+  [Как посадить куст ↗](https://youtube.com/watch?v=Tim4LEo6l10)
+
+### Подготовка к следующим шагам
+
+Сверьтесь с календарём проекта и убедитесь, что у вас есть график для посла парка (Park Ambassador) — подробнее в
+шаге «Поддерживать». Где взять мульчу: [Mid Atlantic Pine Straw ↗](https://www.midatlanticpinestraw.com/) ·
+[Underdog Landscape Supply ↗](https://underdogsupply.com) · [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/get-organic-materials/)
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={13} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={14} label="Полезные ссылки (PDF)" />
+
+## Этап 7: Гравийное покрытие {/* #phase-7-install-the-gravel-surface */}
+
+### Шаги
+
+**Шаг 1: Материалы.** Подготовьтесь к доставкам, если материалы ещё не сложены на месте. Выберите место на тротуаре
+или проезжей части, куда сложить гравий (если нужно, получите временное разрешение «стоянка запрещена» — см. этап 3).
+
+**Шаг 2: Укладка.** Уложите гравийное покрытие с помощью тачки и широких граблей. Насыпьте гравий слоем примерно
+2 дюйма, равномерно распределяя излишки. Утрамбуйте его виброплитой, чтобы он меньше оседал, и пройдите по всем
+местам, чтобы они были ровными.
+
+**Шаг 3: Уборка.** Уберите рассыпанный гравий и наведите порядок на общественных местах.
+
+### Оборудование и материалы
+
+<Checklist
+  id="create.phase7-tools"
+  items={[{ value: 'Measuring tape', label: 'Рулетка' }, { value: 'Shovels', label: 'Лопаты' }, { value: 'Wheelbarrows', label: 'Тачки' }, { value: 'Landscape rakes', label: 'Широкие грабли' }, { value: 'Hand tamper', label: 'Ручная трамбовка' }, { value: 'Vibratory plate', label: 'Виброплита' }, { value: 'Broom', label: 'Метла' }]}
+/>
+<p class="muted">Материалы: гравий фракции 3/8" или мельче (каменная пыль, отсев).</p>
+
+<Figure
+  src="img/create/phase7-reference-photos.webp"
+  alt="Фото для примера, как укладывать гравийное покрытие: широкие грабли для выравнивания, ручная трамбовка на утрамбованном гравии и волонтёр с бензиновой виброплитой"
+/>
+
+### Полезные ссылки (на английском)
+
+- **Материалы** — [Castor Materials ↗](https://castormaterials.com) · [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) ·
+  Galantino Supply Company ((610) 544-2586) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
+- **Как это делается** — [Укладка гравия ↗](https://youtube.com/watch?v=t0LWQ_U2z_g)
+
+### Подготовка к следующим шагам
+
+Сверьтесь с календарём проекта и при необходимости поправьте его. Купите и закажите доставку материалов, которые
+нужно ждать. Убедитесь, что участок готов к этапу 8.
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={15} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={16} label="Фото для примера и ссылки (PDF)" />
+
+## Этап 8: Установка элементов парка {/* #phase-8-install-park-elements */}
+
+### Шаги
+
+**Шаг 1: Измерьте.** Просмотрите инструкции по сборке, измерьте и разметьте, где должны стоять элементы парка.
+
+**Шаг 2: Материалы.** Убедитесь, что у вас есть все материалы, указанные в инструкциях по сборке.
+
+**Шаг 3: Сборка.** Соберите элементы парка по инструкциям по сборке.
+
+**Шаг 4: Установка.** Убедитесь, что в вашем проекте хватает места для элементов, затем поставьте их на
+окончательные места. Возможно, элементы удастся — или вы решите — собрать заранее или в другом месте.
+
+<Callout kind="auto">
+  Каждый элемент, для которого есть инструкция по сборке, есть в разделе [«Соберите»](/steps/dream/#assemble) шага
+  «Мечтать» — там перечислены те же инструкции.
+</Callout>
+
+### Полезные ссылки (на английском)
+
+- **Как построить…** (сначала пользуйтесь инструкциями по сборке; эти видео — запасной вариант) — [Общий стол ↗](https://youtube.com/watch?v=Px2JZs4Q2v4) ·
+  [Парник ↗](https://youtube.com/watch?v=b75RoDmE9qY) · [Приподнятые грядки ↗](https://youtube.com/watch?v=MBIYebUgVVI) ·
+  [Компостные ящики ↗](https://youtube.com/watch?v=gA6QNLaBEyc) · [Стол для пересадки растений ↗](https://youtube.com/watch?v=E7HumfxE2f4) ·
+  [Садовый сарай ↗](https://youtube.com/watch?v=DuQ0N8z6OkI) · [Габионная стенка ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
+- **Пиломатериалы и стройматериалы** — Woodland Building Supply, 4701 Woodland Ave, Philadelphia — (215) 727-5333 ·
+  C & R Building Supply, 1601 S 49th St, Philadelphia · A&A Lumber (кипарис), Avondale, PA · Delaware County Lumber, Boothwyn, PA
+
+### Подготовка к следующим шагам
+
+Сверьтесь с календарём проекта и при необходимости поправьте его — ваш парк почти готов!
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={17} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={18} label="Инструкции по сборке и ссылки (PDF)" />
+
+{/* site-added: the workbook's own contents page lists a Summary, but this working draft doesn't include one — this wrap-up just recaps the 8 phases above as a final checklist. No new advice. */}
+## Итоги {/* #summary */}
+
+<Checklist
+  id="create.summary-checklist"
+  items={[
+    { value: 'phase1', label: 'Этап 1: Организация', hint: 'Роли в команде распределены, график составлен' },
+    { value: 'phase2', label: 'Этап 2: Подготовка участка', hint: 'Расчищен, защищён, выровнен' },
+    { value: 'phase3', label: 'Этап 3: Разметка и гравийное основание', hint: 'Грядки и элементы размечены колышками, нижнее основание уложено' },
+    { value: 'phase4', label: 'Этап 4: Установка границы', hint: 'Габионные корзины и деревянные бортики на месте' },
+    { value: 'phase5', label: 'Этап 5: Плодородный грунт', hint: 'Грядки выровнены и засыпаны' },
+    { value: 'phase6', label: 'Этап 6: Посадка', hint: 'Деревья, кустарники и многолетники в земле' },
+    { value: 'phase7', label: 'Этап 7: Гравийное покрытие', hint: 'Верхний слой гравия утрамбован и ровный' },
+    { value: 'phase8', label: 'Этап 8: Установка элементов парка', hint: 'Скамейки, столы и сооружения собраны и расставлены' },
+  ]}
+/>
+
+<Callout kind="tip">
+  Ваш парк построен! Переходите к шагу «Поддерживать», чтобы парк процветал: полив, прополка и годовой план ухода.
+</Callout>
