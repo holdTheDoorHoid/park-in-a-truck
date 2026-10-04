@@ -26,6 +26,7 @@ import { FrameWatch, initialQuality, lower, pinnedQuality } from '../furniture/q
 import type { Quality } from '../furniture/modelparts';
 import { drapedLines, drapedQuad, drapedRibbon, drapedShape, needsDrape } from '../furniture/drape';
 import { gabionTexture, stoneBoxGeometry } from '../furniture/stone';
+import { plantedCrownR } from '../treemodel';
 
 export interface ParkMapping {
   toLocal: (p: Vec2) => Vec2;
@@ -534,9 +535,17 @@ export class ParkMeshes {
       switch (e.shape) {
         case 'tree-small':
         case 'tree-large':
-          // the shared tree drawing (City trees look and shade the same); it finds the ground itself
-          trees.push({ id: it.id, x: c[0], y: c[1], heightFt: it.heightFt ?? e.heightFt, crownR: (it.w || e.w) / 2, color: new THREE.Color(tint(e.color)).getHex() });
+        {
+          // the shared tree drawing (City trees look and shade the same); it finds the ground itself.
+          // 3D: a believable tree, not a lollipop — the crown spreads two-thirds of the tree's
+          // height and starts a third of the way up (crownCenterFt puts its centre at H − r).
+          // Plan view keeps the canopy as drawn on the paper pieces. (Planted trees are not in
+          // the sun study, so this changes no sun hours.)
+          const H = it.heightFt ?? e.heightFt;
+          const crownR = plantedCrownR(H, (it.w || e.w) / 2, this.mode);
+          trees.push({ id: it.id, x: c[0], y: c[1], heightFt: H, crownR, color: new THREE.Color(tint(e.color)).getHex() });
           break;
+        }
         case 'shrub': {
           // drawn as the real plant (3D), it is picked at the plant's size, not the dot's
           const rr = (real ? Math.max(it.w || e.w, ELEMENTS[it.element]?.footprintFt?.[0] ?? 0) : it.w || e.w) / 2;

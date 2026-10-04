@@ -50,3 +50,20 @@ describe('see-through neighbours: what hides the lot', () => {
     expect(hidesBox([0, 0, 5], [-20, 0, 10], box)).toBe(false);
   });
 });
+
+describe('planted trees look like trees (not lollipops)', async () => {
+  const { plantedCrownR, crownCenterFt } = await import('../treemodel');
+  it('the crown starts about a third of the way up and spreads in proportion to the height', () => {
+    for (const [H, drawnR] of [
+      [15, 1.9],
+      [35, 4.5],
+    ]) {
+      const r = plantedCrownR(H, drawnR, '3d');
+      const base = crownCenterFt(H, r) - r;
+      expect(base / H).toBeCloseTo(1 / 3, 2);
+      expect((2 * r) / H).toBeCloseTo(2 / 3, 2);
+    }
+    // plan view keeps the canopy drawn on the paper pieces
+    expect(plantedCrownR(35, 4.5, 'plan')).toBe(4.5);
+  });
+});
