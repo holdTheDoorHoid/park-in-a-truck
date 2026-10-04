@@ -6,6 +6,7 @@
 import { u } from '../../lib/url';
 import type { GuideStep } from '../../data/guides';
 import { imageSize } from './imageSize';
+import Callout from '../workbook/Callout.astro';
 
 interface Props {
   step: GuideStep;
@@ -26,6 +27,12 @@ const paragraphs = step.text.split('\n\n');
         <ul class="step-tips">
           {step.tips.map((tip) => <li>{tip}</li>)}
         </ul>
+      )}
+      {step.siteNote && (
+        /* site-added: where the step text disagrees with the cut list, drawing or 3D model */
+        <Callout kind="site">
+          <p>{step.siteNote}</p>
+        </Callout>
       )}
     </div>
     <div class="step-images">

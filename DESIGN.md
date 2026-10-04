@@ -95,10 +95,14 @@ Islands read/write via the exported functions and the `$project` store; never to
 ### Fields (components/workbook)
 
 `<Field id label type? hint? options? unit? auto? />`, `<ListField id label columns min rowName />`,
-`<Checklist id items />`, `<Choice id label options />`, `<Callout kind="tip|note|warning|contact|auto">`,
+`<Checklist id items />`, `<Choice id label options />`, `<Callout kind="tip|note|warning|contact|auto|site">`,
 `<Figure src alt caption? credit? duo? />`, `<PdfPage doc page />`, `<Download href label note? />`.
 `auto` shows a looked-up value with a "Filled in from City records" badge until the person types their own
 (paths & formats: src/lib/autofill.ts). Widgets that render fields later dispatch `piat:bind` on their root.
+`kind="site"` is the dashed "Note from this site, not Park in a Truck" box for the §2 safety notes (each 1–3
+sentences, linking the official source, marked `{/* site-added: … */}`). Build guides use the same box through
+`siteNote` on a step, a materials line or a cut-list line (`src/data/guides/index.ts`) where PiaT's text disagrees with
+its own cut list or drawings.
 
 ### Widgets
 
