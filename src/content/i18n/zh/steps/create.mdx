@@ -1,0 +1,409 @@
+---
+title: 建造
+intro: 动手建造您的公园，每个周末完成一个阶段。
+sources:
+  - 工具包第57–59页（建造、公园初期施工）
+  - 建造工作手册第1–18页
+---
+import Field from '../../../../components/workbook/Field.astro';
+import ListField from '../../../../components/workbook/ListField.astro';
+import Choice from '../../../../components/workbook/Choice.astro';
+import Checklist from '../../../../components/workbook/Checklist.astro';
+import Callout from '../../../../components/workbook/Callout.astro';
+import Figure from '../../../../components/workbook/Figure.astro';
+import PdfPage from '../../../../components/workbook/PdfPage.astro';
+import Download from '../../../../components/workbook/Download.astro';
+import CostEstimator from '../../../../components/widgets/CostEstimator.astro';
+import BuildSchedule from '../../../../components/widgets/BuildSchedule.astro';
+import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
+
+{/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — Create lets you pick build weekends and print an order list with nothing recorded in Acquire; this says so before anyone breaks ground. */}
+<LotAgreementNotice />
+
+建造公园是把邻居、朋友和其他人联系在一起的好办法。这个过程需要热心的志愿者，他们愿意付出时间和精力，并具备各种各样的技能——木工、园林绿化、组织、鼓舞士气、带领大家。就像照着菜谱做菜一样，建造公园也要一步一步按顺序来；大多数 Park in a Truck 公园大约用6–8个周末就能建成。
+
+“建造”这一章讲的全是怎样建造您的公园。我们把整个过程分成八个阶段。每个阶段大约一个周末就能完成——公园的大小和志愿者的人数会影响实际要用多长时间。各阶段的先后顺序是有道理的；请逐一看一遍，并根据需要调整您的日程。
+
+本手册假定您已经做好了费用估算，知道每个阶段需要订购哪些材料、要多少。如果还没有，请回到“畅想”这一步，使用费用估算工具。
+
+<CostEstimator />
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={3} />
+
+## 志愿者免责表 {/* #volunteer-release-form */}
+
+每次在公园施工时，都要确保现场备有志愿者免责表。这份表格让您不必为志愿者受伤承担责任。开工之前，您有责任咨询您团体的法律顾问和保险公司——他们可能希望您采取额外的措施，保护团体免于承担责任。给志愿者清楚说明当天工作的要求和任务；如果志愿者觉得自己的时间用得有价值，以后几周就更可能再来。
+
+<Download href="downloads/forms/volunteer-release-form.pdf" label="志愿者弃权及免责表" note="每位志愿者一份；未满18岁的志愿者还必须由父母或监护人签字" />
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={3} />
+
+## 第1阶段：组织 {/* #phase-1-organize */}
+
+和任何工作一样，第一步也是最重要的一步，就是组织好您的团队：确定项目负责人，定好日程。这些角色要安排几个人，取决于项目的复杂程度和规模。
+
+- **施工经理**。订购材料，送货时在场，在施工日给志愿者讲解任务，并和项目经理协调日程。
+- **项目经理**。负责招募志愿者、社交媒体、订餐、发放弃权书，协调财务，并掌控日程。
+
+<Field id="create.construction-manager" label="施工经理" hint="订购材料，主持施工日" />
+<Field id="create.project-manager" label="项目经理" hint="志愿者、日程、财务" />
+
+<ListField
+  id="create.org-chart"
+  label="志愿者和承包商"
+  rowName="人员"
+  min={3}
+  columns={[
+    { key: 'name', label: '姓名' },
+    { key: 'role', label: '角色', placeholder: '志愿者、承包商…' },
+    { key: 'contact', label: '联系方式' },
+  ]}
+/>
+
+项目日历是掌握日程、重要日期、志愿者工作时间和材料订货周期的好工具。规划和施工本身一样重要——开个好头。
+
+<BuildSchedule />
+
+<Download href="downloads/templates/project-calendar.xlsx" label="日历模板" note="项目日历和联系人名单示例——仅供参考，请另存一份自己的副本" />
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={4} />
+
+## 第2阶段：整理地块 {/* #phase-2-prepare-the-lot */}
+
+### 步骤
+
+**第1步：评估**。有些地块比别的需要更多的清理或平整，可能要用专门的机械——如果下面哪项工作社区自己做不了，请联系园林绿化承包商。
+
+- 如果不确定怎样整理您的地块，请联系 PiaT 团队（[ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu)），请他们到现场咨询。
+- 拨打 **811** 联系 Pennsylvania One Call，请他们标出地下管线的位置。
+
+<Field id="create.one-call-address" label="向 PA One Call 申请时填写的地址" auto="lot.address" />
+
+**第2步：保护**。把小型工具和设备带到现场。在树干、建筑和其他需要保护的东西周围，用木桩架起施工防护围栏。在场地四周和所有排水口处，安装防淤泥／防水土流失围栏。
+
+**第3步：清除**。清除不要的植物（包括根）、树桩、垃圾和砖石材料——有些植物要用除草剂处理，才能及时有效地控制住。修剪现有的树，把树干上6'以下的枝条去掉。把垃圾和植物残枝运出场地，送到合适的倾倒地点；砖石材料堆放在现场，以后用来填石笼。
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — street trees are the City's; facts checked 2026-10-04 on phila.gov. */}
+<Callout kind="site">
+  行道树（种在人行道上的树）属于市政府：修剪或移除行道树，需要费城公园及休闲局（Philadelphia Parks & Recreation）的许可。该局会免费修剪和移除有危险的行道树（可通过311申请）。请参阅市政府的[行道树常见问题（英文）↗](https://www.phila.gov/departments/philadelphia-parks-recreation/street-tree-frequently-asked-questions/)。
+</Callout>
+
+**第4步：平整场地**。开始用耙子耙平场地。确保 Pennsylvania One Call 留下的标记都还完好、看得见——土面应该和人行道的高度大致持平。
+
+### 设备和工具
+
+<Checklist
+  id="create.phase2-tools"
+  items={[
+    { value: 'Shovels', label: '铁锹' }, { value: 'Wheelbarrows', label: '独轮手推车' }, { value: 'Pick axe', label: '鹤嘴锄' },
+    { value: 'Grading rakes', label: '平地耙' }, { value: 'Sledgehammer', label: '大锤' },
+    { value: 'Hand pruners + loppers', label: '修枝剪和长柄修枝剪' }, { value: 'Pruning saws', label: '修枝锯' },
+    { value: 'Spray paint', label: '喷漆' }, { value: 'Construction fencing', label: '施工围栏' },
+    { value: 'Wood posts', label: '木桩' }, { value: 'Broom', label: '扫帚' }, { value: 'Chainsaw', label: '链锯' },
+    { value: 'Trash bags', label: '垃圾袋' },
+  ]}
+/>
+<Checklist
+  id="create.phase2-tools-optional"
+  label="可选——适用于大面积地面不平、有混凝土或树桩的场地"
+  items={[
+    { value: 'excavator', label: '挖掘机', hint: '建议请承包商' },
+    { value: 'stump-grinder', label: '树桩粉碎机', hint: '建议请承包商' },
+    { value: 'Jack hammer', label: '风镐' }, { value: 'Rototiller', label: '旋耕机' }, { value: 'Herbicide spray', label: '除草剂喷雾' },
+  ]}
+/>
+
+<Figure
+  src="img/create/phase2-reference-photos.webp"
+  alt="整理地块的参考照片：一台挖掘机正在清理场地，草坪上插着地下管线定位小旗和示踪线，志愿者在清除碎砖石，路缘边铺着防水土流失的拦泥网，一位志愿者在用耙子耙平泥土"
+/>
+
+### 实用链接（英文网站）
+
+- **工具租借**——用电动工具时，为了效率和安全，可能值得请承包商。[West Philadelphia Tool Library ↗](https://westphillytools.org)（只有手动工具；1314 S 47th St）·
+  [OK Rental ↗](https://okrentalsaleservice.com) *（链接目前已失效）*（电动工具，包括链锯；640 Main St, Darby）·
+  [Diamond Tool ↗](https://diamondtool.net/Rentals) *（无法自动核实）*（2800 Grays Ferry Ave）
+- **废物和回收**——[Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/)（3850 W Ford Rd）
+- **修剪树木视频**——[youtube.com/watch?v=pY5A-5gUqwo ↗](https://youtube.com/watch?v=pY5A-5gUqwo)
+- **识别杂草**——[Philadelphia Orchard Project 杂草指南 ↗](https://www.phillyorchards.org/resources/)
+- **除草剂**（尽量少用，务必按照标签说明使用）——毒莠定（Picloram）用于涂抹木本植物的树桩；草甘膦（Glyphosate）用于喷洒草本和木本植物的叶子；二氯吡啶酸（Clopyralid）用于艾蒿（mugwort）和加拿大蓟（Canadian thistle）。常常需要用除草剂控制的入侵杂草有：艾蒿、加拿大蓟、虎杖（Japanese knotweed）和芦苇（phragmites）（草本）；构树（Broussonetia）、臭椿（Ailanthus）、泡桐（Paulownia）和日本金银花（Japanese honeysuckle）（木本——只有在太大、无法连根拔除时，才砍掉并处理树桩）。
+
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — herbicide labels, restricted-use picloram, 20% vinegar; facts checked 2026-10-04 on epa.gov and npic.orst.edu. */}
+<Callout kind="site">
+  除草剂的标签具有法律效力：必须遵守，包括可以在哪里使用这种产品，以及标签上列出的防护用品（[EPA（英文）↗](https://www.epa.gov/pesticide-labels/introduction-pesticide-labels)）。许多毒莠定产品属于限制使用类，只有持证施药人员才能购买或使用（[EPA 的清单（英文）↗](https://www.epa.gov/pesticide-worker-safety/restricted-use-products-rup-report)）。用来除草的醋（浓度20%或以上）可能永久伤害眼睛：请戴好护目镜和手套（[NPIC（英文）↗](https://npic.orst.edu/faq/vinegar.html)）。
+</Callout>
+
+### 为下一阶段做准备
+
+查看项目日历，根据需要修改。需要提前订货的材料或设备，要提前购买并送到现场；确保场地已为第3阶段做好准备。
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={5} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={6} label="参考照片和链接" />
+
+## 第3阶段：放线和碎石基层 {/* #phase-3-layout-gravel-base */}
+
+### 步骤
+
+**第1步：材料**。把设备和工具带到现场；做好收货准备。找一个堆放碎石的地方，尽量用防水布盖好。用喷漆标出需要铺碎石的大致区域——如果地方不够，就和市政府协调，把货卸在街上。
+
+<Callout kind="note" title="送货要占用街道？">
+  申请临时禁止停车许可，让送货卡车有地方卸货。[在 phila.gov 上申请（英文）↗](https://www.phila.gov/services/cars-parking-transportation/apply-for-a-parking-permit/apply-for-a-temporary-no-parking-permit/)
+</Callout>
+<Field id="create.delivery-address" label="申请禁止停车许可时填写的地址" auto="lot.address" />
+
+**第2步：标出种植床和公园设施的位置**。从您在评估工作手册里标出的起点开始。按照设计图上种植床和公园设施边线的位置和长度来做。用木桩和拉线标出以后几个阶段要加的镶边和公园设施的位置。
+
+**第3步：铺设底基层**。按照组装说明，为石笼准备好地面。挖出入口，以便新公园和人行道之间的高差能够过渡——人行道边缘处至少挖深4"，根据需要找坡（多余的土可以用来垫平小路，或加到种植区里）。除种植床以外，所有区域都铺2"厚的碎石，比拉线宽出大约6"，这样下一阶段的镶边就能放在碎石上面。用平板振动夯在碎石上至少压两遍。
+
+**第4步：入口和清理**。清理撒到外面的碎石，并把公共区域打扫干净。
+
+### 设备、工具和材料
+
+<Checklist
+  id="create.phase3-tools"
+  items={[
+    { value: 'Square', label: '直角尺' }, { value: 'Measuring tape', label: '卷尺' }, { value: 'Shovels', label: '铁锹' },
+    { value: 'Wheelbarrows', label: '独轮手推车' }, { value: 'Pick axe', label: '鹤嘴锄' }, { value: 'Grading rakes', label: '平地耙' },
+    { value: '5 lb hammer', label: '5磅锤' }, { value: 'Spray paint', label: '喷漆' }, { value: 'Wood posts and string', label: '木桩和拉线' },
+    { value: 'Vibrating plate compactor', label: '平板振动夯' }, { value: 'Broom', label: '扫帚' },
+  ]}
+/>
+<p class="muted">材料：碎石，3/4" 路基石料。</p>
+
+<Figure
+  src="img/create/phase3-reference-photos.webp"
+  alt="放线和碎石基层的参考照片：测量场地、挖土、准备底基层、一辆碎石运输车、用木桩和拉线放线、一堆碎石、用独轮车运碎石并摊铺"
+/>
+
+### 实用链接（英文网站）
+
+- **操作方法**——[布置种植床 ↗](https://lowes.com/n/how-to/create-an-english-style-garden)（看1:50–2:40）·
+  [铺设碎石底基层 ↗](https://youtube.com/watch?v=tfDEOIAIUwQ)
+- **工具租借**——[West Philadelphia Tool Library ↗](https://westphillytools.org) ·
+  [OK Rental ↗](https://okrentalsaleservice.com) *（链接目前已失效）* · [Diamond Tool ↗](https://diamondtool.net/Rentals) *（无法自动核实）*
+
+### 为下一阶段做准备
+
+查看项目日历，根据需要修改。后面几个阶段需要提前订货的材料，要提前购买并送到现场。确保场地已为第4阶段做好准备。
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={7} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={8} label="参考照片和链接" />
+
+## 第4阶段：安装边界 {/* #phase-4-install-the-edge */}
+
+### 步骤
+
+**第1步：材料**。把边界用的材料带来（见费用估算和组装说明）。拆掉防水土流失围栏；树木防护围栏应当保留，除非它的位置妨碍安装边界。
+
+**第2步：组装**。组装石笼（参照石笼墙的组装说明）。
+
+**第3步：安装**。拉好线，让石笼沿着公园边缘排成一条直线。按照设计图摆好石笼，底部先填2–3"的碎石。稍作调整，让石笼彼此对齐、保持水平——单独用作桌子或长椅时，要在顶上用水平仪检查。需要的地方加上木镶边（见木镶边的组装说明）。
+
+### 设备和材料
+
+<Checklist
+  id="create.phase4-tools"
+  items={[
+    { value: 'Measuring tape', label: '卷尺' }, { value: 'Shovels', label: '铁锹' }, { value: 'Wheelbarrows', label: '独轮手推车' },
+    { value: 'Garden hoes', label: '园艺锄' }, { value: 'Grading rakes', label: '平地耙' },
+    { value: 'Hand tamper', label: '手动夯' }, { value: 'Wire cutters', label: '钢丝钳' }, { value: 'Sledge hammer', label: '大锤' },
+    { value: 'Level', label: '水平仪' }, { value: 'Broom', label: '扫帚' },
+  ]}
+/>
+<p class="muted">材料：石笼；木镶边用的木料和五金件；填石笼用的大块砖石材料，3"或更大。</p>
+
+<Figure
+  src="img/create/phase4-reference-photos.webp"
+  alt="安装边界的参考照片：两个填好的石笼，以及一位志愿者把木镶边板靠着碎石床立好"
+/>
+
+### 实用链接（英文网站）
+
+- **材料**——[Castor Materials ↗](https://castormaterials.com)（碎石，可送货；3301 S 61st St）·
+  [D&S Supply ↗](https://www.ds-supply.com/landscape-supply)（碎石、覆盖物、工具；4260 Macalester St）·
+  [Underdog Supply ↗](https://www.underdogsupply.com/)（大宗送货；Conshohocken）·
+  Galantino Supply Company（租借设备和大宗材料；725 Old Marple Rd, Springfield——(610) 544-2586）
+- **操作方法**——[建造石笼墙 ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
+
+### 为下一阶段做准备
+
+查看项目日历，根据需要修改。需要提前订货的材料，要提前购买并送到现场。确保场地已为第5阶段做好准备。
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={9} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={10} label="参考照片和链接" />
+
+## 第5阶段：铺表土 {/* #phase-5-spread-topsoil */}
+
+### 步骤
+
+**第1步：材料**。拆掉树木防护围栏。在人行道或街上找一个堆放表土的地方——如果堆在那里，要申请临时禁止停车许可（见第3阶段）。
+
+**第2步：铺土**。先把现有的土找平，为种植床铺表土做好准备。表土铺大约4–6"厚，并耙平整。
+
+**第3步：清理**。清理撒到外面的表土，并把公共区域打扫干净。
+
+### 设备和材料
+
+<Checklist
+  id="create.phase5-tools"
+  items={[{ value: 'Measuring tape', label: '卷尺' }, { value: 'Shovels', label: '铁锹' }, { value: 'Wheelbarrows', label: '独轮手推车' }, { value: 'Grading rakes', label: '平地耙' }, { value: 'Garden hoes', label: '园艺锄' }, { value: 'Broom', label: '扫帚' }]}
+/>
+<p class="muted">材料：表土。</p>
+
+<Figure
+  src="img/create/phase5-reference-photos.webp"
+  alt="铺表土的参考照片：一辆自卸车运来表土，一位志愿者用手工耙平泥土，两位志愿者用独轮车运表土，一位志愿者往种植床里填表土"
+/>
+
+### 实用链接（英文网站）
+
+- **订购**——[D&S Supply ↗](https://www.ds-supply.com/landscape-supply) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
+- **操作方法**——[准备表土 ↗](https://youtube.com/watch?v=GcOJ4fDJmpM) · [健康的表土，健康的植物 ↗](https://youtube.com/watch?v=7-Tyz7fGeZo)
+
+### 为下一阶段做准备
+
+查看项目日历，根据需要修改。需要提前订货的材料，要提前购买并送到现场。确保场地已为第6阶段做好准备。
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={11} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={12} label="参考照片和链接" />
+
+## 第6阶段：种植 {/* #phase-6-plant */}
+
+### 步骤
+
+**第1步：植物**。拔掉已经冒出来的杂草。确保已经安排好植物送货，并找好了植物送到后的临时摆放区。把树木和灌木摆到想种的位置，然后清理撒到外面的泥土，并把公共区域打扫干净。
+
+**第2步：种植**。先种大型树（见下面的种植详图）。再种灌木，把土细细耙平，种多年生植物，铺4"厚的覆盖物，然后把所有植物都浇透水——每周浇两次，直到植物进入冬季休眠。
+
+<Figure
+  src="img/create/phase6-plant-illustration.webp"
+  alt="一座建好的前院公园的轴测图，标有 PLANT（种植）字样，两栋联排房屋之间有树木、高架种植床和一片铺装的聚会区"
+/>
+<Figure
+  src="img/create/phase6-planting-detail.webp"
+  alt="两张种植详图：一张是灌木／多年生植物的容器苗种植详图，标出覆盖物厚度和回填土；另一张是树木种植详图，标出土球的位置、支撑桩、覆盖物和去除麻布"
+/>
+
+### 设备和材料
+
+<Checklist
+  id="create.phase6-tools"
+  items={[{ value: 'Measuring tape', label: '卷尺' }, { value: 'Shovels', label: '铁锹' }, { value: 'Wheelbarrows', label: '独轮手推车' }, { value: 'Pick axe', label: '鹤嘴锄' }, { value: 'Landscape rakes', label: '园林耙' }, { value: 'Spray paint', label: '喷漆' }, { value: 'Tree stakes and rope', label: '树木支撑桩和绳子' }, { value: 'Broom', label: '扫帚' }]}
+/>
+<p class="muted">材料：植物——一定要对照您的植物清单。</p>
+
+### 实用链接（英文网站）
+
+- **植物常识**——[PHS Gold Medal Plants ↗](https://phsonline.org/for-gardeners/gold-medal-plants) ·
+  [Gardens Alive ↗](https://www.gardensalive.com/) · [North Creek Nurseries ↗](https://www.northcreeknurseries.com/) ·
+  [Missouri Botanical Garden ↗](https://www.missouribotanicalgarden.org/) · [Longwood Gardens 植物查询 ↗](https://plantexplorer.longwoodgardens.org/ecmweb/ECM_Home.html) *（链接目前已失效）* ·
+  [Arbor Day Foundation ↗](https://www.arborday.org/) · [Penn State Extension 蔬菜种植 ↗](https://extension.psu.edu/programs/master-gardener)
+- **PiaT 合作苗圃**——LandHealth Institute，4862 Parkside Ave, Philadelphia · (267) 571-5750 ·
+  [landhealthinstitute.org/nursery ↗](https://www.landhealthinstitute.org/nursery)
+- **本地区的其他苗圃**——[Good Host Plants ↗](https://www.goodhostplants.com/)（本地传粉植物专家）·
+  [Pleasant Run Nursery ↗](https://www.pleasantrunnursery.com/) · [Pinelands Nursery ↗](https://www.pinelandsnursery.com/) ·
+  [Archewild ↗](https://archewild.com/)
+- **果树**——[Philadelphia Orchard Project ↗](https://www.phillyorchards.org/) ·
+  [Burpee ↗](https://www.burpee.com/fruit/fruit-trees/) · [Stark Bros ↗](https://www.starkbros.com/products/fruit-trees)
+- **园艺工作坊和地块方面的帮助**——[Pennsylvania Horticultural Society ↗](https://phsonline.org/) ·
+  [Grounded in Philly ↗](https://groundedinphilly.org/)（法律帮助、保险、地块数据）
+- **操作方法**——[容器苗和球根种植小贴士 ↗](https://www.gardeners.com/how-to/growing-annual-flowers/5070.html) ·
+  [容器苗树木种植 ↗](https://www.arborday.org/trees/planting/containerized.cfm) ·
+  [怎样种灌木 ↗](https://youtube.com/watch?v=Tim4LEo6l10)
+
+### 为下一阶段做准备
+
+查看项目日历，确保已经为公园大使（Park Ambassador）排好日程——详情见“维护”这一步。覆盖物供应商（英文网站）：[Mid Atlantic Pine Straw ↗](https://www.midatlanticpinestraw.com/) ·
+[Underdog Landscape Supply ↗](https://underdogsupply.com) · [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/get-organic-materials/)
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={13} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={14} label="实用链接" />
+
+## 第7阶段：铺碎石地面 {/* #phase-7-install-the-gravel-surface */}
+
+### 步骤
+
+**第1步：材料**。如果碎石还没有堆放在现场，要做好收货准备。在人行道或街上找一个堆放碎石的地方（如有需要，申请临时禁止停车许可——见第3阶段）。
+
+**第2步：铺设**。用独轮手推车和园林耙铺碎石地面。碎石铺大约2"厚，多出来的要均匀摊开。用平板振动夯把骨料压实，减少沉降，并把所有区域都走一遍，确保平整均匀。
+
+**第3步：清理**。清理撒到外面的碎石，并把公共区域打扫干净。
+
+### 设备和材料
+
+<Checklist
+  id="create.phase7-tools"
+  items={[{ value: 'Measuring tape', label: '卷尺' }, { value: 'Shovels', label: '铁锹' }, { value: 'Wheelbarrows', label: '独轮手推车' }, { value: 'Landscape rakes', label: '园林耙' }, { value: 'Hand tamper', label: '手动夯' }, { value: 'Vibratory plate', label: '平板振动夯' }, { value: 'Broom', label: '扫帚' }]}
+/>
+<p class="muted">材料：碎石，3/8"或更小（石粉）。</p>
+
+<Figure
+  src="img/create/phase7-reference-photos.webp"
+  alt="铺碎石地面的参考照片：一把园林平地耙，压实的碎石上放着一个手动夯，一位志愿者在操作汽油平板振动夯"
+/>
+
+### 实用链接（英文网站）
+
+- **材料**——[Castor Materials ↗](https://castormaterials.com) · [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) ·
+  Galantino Supply Company（(610) 544-2586）· [Underdog Landscape Supply ↗](https://underdogsupply.com)
+- **操作方法**——[铺碎石 ↗](https://youtube.com/watch?v=t0LWQ_U2z_g)
+
+### 为下一阶段做准备
+
+查看项目日历，根据需要修改。需要提前订货的材料，要提前购买并送到现场。确保场地已为第8阶段做好准备。
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={15} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={16} label="参考照片和链接" />
+
+## 第8阶段：安装公园设施 {/* #phase-8-install-park-elements */}
+
+### 步骤
+
+**第1步：测量**。看一遍组装说明，测量并标出各种公园设施要放的位置。
+
+**第2步：材料**。确保组装说明里列出的材料您都备齐了。
+
+**第3步：组装**。按照组装说明组装公园设施。
+
+**第4步：安装**。确保设计中留有足够的空间来安装这些设施，然后把它们放到最终的位置。您也可以——或者选择——提前组装好，或在别处组装好再运来。
+
+<Callout kind="auto">
+  每一种有组装指南的设施，都可以从“畅想”这一步的[组装](/steps/dream/#assemble)网格里找到链接——那里列出的是同样的指南。
+</Callout>
+
+### 实用链接（英文网站）
+
+- **怎样做一个……**（先看组装指南；这些视频只作备用）——[公共长桌 ↗](https://youtube.com/watch?v=Px2JZs4Q2v4) ·
+  [冷床 ↗](https://youtube.com/watch?v=b75RoDmE9qY) · [高架种植床 ↗](https://youtube.com/watch?v=MBIYebUgVVI) ·
+  [堆肥箱 ↗](https://youtube.com/watch?v=gA6QNLaBEyc) · [盆栽工作台 ↗](https://youtube.com/watch?v=E7HumfxE2f4) ·
+  [户外园艺工具棚 ↗](https://youtube.com/watch?v=DuQ0N8z6OkI) · [石笼墙 ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
+- **木料和建材**——Woodland Building Supply，4701 Woodland Ave, Philadelphia——(215) 727-5333 ·
+  C & R Building Supply，1601 S 49th St, Philadelphia · A&A Lumber（柏木），Avondale, PA · Delaware County Lumber，Boothwyn, PA
+
+### 为下一阶段做准备
+
+查看项目日历，根据需要修改——您的公园就快建好了！
+
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={17} />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={18} label="组装说明和链接" />
+
+{/* site-added: the workbook's own contents page lists a Summary, but this working draft doesn't include one — this wrap-up just recaps the 8 phases above as a final checklist. No new advice. */}
+## 小结 {/* #summary */}
+
+<Checklist
+  id="create.summary-checklist"
+  items={[
+    { value: 'phase1', label: '第1阶段：组织', hint: '团队角色已分配，日程已定好' },
+    { value: 'phase2', label: '第2阶段：整理地块', hint: '已清理、已保护、已平整' },
+    { value: 'phase3', label: '第3阶段：放线和碎石基层', hint: '种植床和设施位置已用木桩标出，底基层已铺好' },
+    { value: 'phase4', label: '第4阶段：安装边界', hint: '石笼和木镶边已安装好' },
+    { value: 'phase5', label: '第5阶段：铺表土', hint: '种植床已找平并填好土' },
+    { value: 'phase6', label: '第6阶段：种植', hint: '树木、灌木和多年生植物都已种下' },
+    { value: 'phase7', label: '第7阶段：铺碎石地面', hint: '面层碎石已压实、平整' },
+    { value: 'phase8', label: '第8阶段：安装公园设施', hint: '长椅、桌子和构筑物已组装好并摆放到位' },
+  ]}
+/>
+
+<Callout kind="tip">
+  您的公园建好了！请前往“维护”这一步，让公园一直生机勃勃——浇水、除草，以及年度照管工作计划。
+</Callout>

@@ -166,49 +166,58 @@ Extra terms used in the chapters, guides and data (es only; they may belong in t
 
 Tone: Simplified Chinese (Mainland conventions). Address the reader as **您** in instructions; short sentences. Keep Latin-script proper nouns as they are; Philadelphia = 费城.
 
+Written standard Chinese (书面语) that Mandarin and Cantonese readers can both read; warm but plain. Full-width
+punctuation in Chinese sentences （，。：；？！“”）; addresses, codes and numbers stay as written. No spaces between
+Chinese characters; a space on each side of a Latin-script word or code (Park in a Truck、RCO、BB-1), none between a
+number and its Chinese unit (4英尺). Buttons and menu items: 2–6 characters where possible.
+
+*Status: filled in by t-zh.*
+
 | English | Translation | Note |
 |---|---|---|
-| Park in a Truck / PiaT |  | |
-| toolkit |  | |
-| workbook |  | |
-| step |  | |
-| sub-step |  | |
-| Mark this step done / done |  | |
-| Start here · Acquire · Organize · Assess · Dream · Create · Sustain |  | |
-| vacant lot |  | |
-| lot |  | |
-| parcel |  | |
-| mid-block lot / corner lot / breezeway, alley |  | |
-| owner (public / private) |  | |
-| zoning |  | |
-| City records / Filled in from City records |  | |
-| City (of Philadelphia) |  | |
-| RCO (Registered Community Organization) |  | |
-| Philadelphia Land Bank |  | |
-| PHDC |  | |
-| Sheriff Sale |  | |
-| purchase / donation / lease / in-kind (use) agreement |  | |
-| park committee |  | |
-| neighbors / neighborhood |  | |
-| park pieces |  | |
-| frame / front / back (pieces) |  | |
-| seam (length seam, width seam) |  | |
-| theme: Edible · Sanctuary · Nature · Event |  | |
-| size A–E |  | |
-| gabion (wall, bench) |  | |
-| build guide |  | |
-| cut list / materials & hardware / tools |  | |
-| 2x4, 2x4x8', BB-1 |  | |
-| full sun / part sun / shade |  | |
-| native plant · perennial · shrub · small tree · large tree |  | |
-| pollinator |  | |
-| stewardship / sustain |  | |
-| My park |  | |
-| project file |  | |
-| Plan in 3D / the planner |  | |
-| Note from this site, not Park in a Truck |  | |
-| in English |  | |
-| ft, in, sq ft, $ |  | |
+| Park in a Truck / PiaT | Park in a Truck / PiaT | Never translated. |
+| toolkit | 工具包 | The usual NGO word for "toolkit"; first mention may add （Toolkit）. Not 工具手册 (too close to 工作手册). |
+| workbook | 工作手册 | e.g. 获取工作手册 (Acquire Workbook). Not 练习册 (school homework) or 工作簿 (Excel). |
+| step | 步骤 | 第1步 when numbered. |
+| sub-step | 小步骤 | 子步骤 is too technical. |
+| Mark this step done / done | 将此步骤标为完成 / 已完成 | Badge: ✓ 已完成 |
+| Start here · Acquire · Organize · Assess · Dream · Create · Sustain | 从这里开始 · 获取 · 组织 · 评估 · 畅想 · 建造 · 维护 | 畅想 ("imagine freely") reads better as a step than 梦想; 建造 because the step is building the park. |
+| vacant lot | 空地 | |
+| lot | 地块 | |
+| parcel | 登记地块 | The City's property-record unit; plainer than 宗地. |
+| mid-block lot / corner lot / breezeway, alley | 街区中段地块 / 街角地块 / 过道、小巷 | easement = 通行权地带 |
+| owner (public / private) | 业主（公有 / 私有） | |
+| zoning | 用地分区 | Short form 分区 in tight space; codes (RSA-5) unchanged. |
+| City records / Filled in from City records | 市政府记录 / 已根据市政府记录填写 | |
+| City (of Philadelphia) | 市政府（费城市政府） | When "City" means the government. The place = 费城. |
+| RCO (Registered Community Organization) | 注册社区组织（RCO） | |
+| Philadelphia Land Bank | Philadelphia Land Bank（费城土地银行，市政府出售和出租公有土地的机构） | Explain once per page. |
+| PHDC | PHDC | Philadelphia Housing Development Corporation（费城住房发展公司） on first mention. |
+| Sheriff Sale | 警长拍卖（Sheriff Sale） | "Sheriff" = 警长 in US Chinese usage. |
+| purchase / donation / lease / in-kind (use) agreement | 购买 / 捐赠 / 租赁 / 实物使用协议 | in-kind = no money changes hands, cf. 实物捐赠. |
+| park committee | 公园委员会 | |
+| neighbors / neighborhood | 邻居 / 社区 | 街坊 in warm, informal lines. |
+| park pieces | 公园图块 | The printed cut-out designs. |
+| frame / front / back (pieces) | 边框 / 前部图块 / 后部图块 | Short: 边框 · 前部 · 后部 |
+| seam (length seam, width seam) | 接缝条（长度接缝条、宽度接缝条） | |
+| theme: Edible · Sanctuary · Nature · Event | 可食 · 宁静 · 自然 · 活动 | 可食 as in 可食景观; 宁静 for "a calm refuge". |
+| size A–E | 尺寸 A–E | "Size C" = 尺寸 C |
+| gabion (wall, bench) | 石笼（石笼墙、石笼长椅） | Standard term. |
+| build guide | 制作指南 | Covers furniture and structures. |
+| cut list / materials & hardware / tools | 切割清单 / 材料和五金件 / 工具 | |
+| 2x4, 2x4x8', BB-1 | 2x4, 2x4x8', BB-1 | Never translated. |
+| full sun / part sun / shade | 全日照 / 半日照 / 背阴 | |
+| native plant · perennial · shrub · small tree · large tree | 本土植物 · 多年生植物 · 灌木 · 小型树 · 大型树 | |
+| pollinator | 传粉者 | Bees, butterflies, birds, bats. |
+| stewardship / sustain | 照管 / 维护 | |
+| My park | 我的公园 | |
+| project file | 项目文件 | |
+| Plan in 3D / the planner | 3D 规划 / 规划工具 | |
+| Note from this site, not Park in a Truck | 本网站的说明，并非来自 Park in a Truck | |
+| in English | 英文 | After links: （英文）. |
+| ft, in, sq ft, $ | 英尺, 英寸, 平方英尺, $（美元） | Inside build steps where English writes 2.5", keep 2.5" as written. |
+| *Park Patch* (not in the English table) | 公园小块地（Park Patch） | PiaT's small-space pollinator planting; first mention keeps the English name in brackets. |
+| *Playful Learning (Landscapes)* (not in the English table) | 玩中学（Playful Learning）; Playful Learning Landscapes（PLL） | The approach = 玩中学; the organisation's name stays English. |
 
 ### vi — Tiếng Việt
 
