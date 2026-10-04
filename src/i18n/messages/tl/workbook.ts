@@ -29,7 +29,7 @@ export default {
   'done.badge': '✓ tapos na',
   'progress.of': '{done} sa {total}',
   'progress.done': '{done} sa {total} ang tapos na',
-  'progress.total': '{done} sa {total} hakbang ang tapos na',
+  'progress.total': '{done} sa {total} maliit na hakbang ang tapos na',
 
   'pdf.label': 'Orihinal na pahina ng workbook',
   'pdf.page': '(pahina {page} ng PDF)',
