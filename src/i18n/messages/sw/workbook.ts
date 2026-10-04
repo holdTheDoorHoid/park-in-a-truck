@@ -45,6 +45,11 @@ export default {
   'chapter.next': 'Inayofuata: Hatua ya {n} — {title} →',
   'chapter.notTranslated': 'Sura hii bado haijatafsiriwa, kwa hiyo inaonyeshwa kwa Kiingereza. Majibu yako huhifadhiwa kwa njia ileile katika kila lugha.',
 
+  'notice.title': 'Dokezo la tovuti',
+  'notice.lot':
+    'Bado hujaandika ruhusa ya kutumia kiwanja chako — utaihitaji kabla mtu yeyote hajaanza kuchimba ardhi. <a href="{href}">Nenda kwenye Pata kiwanja → Hakikisha kiwanja chako</a>.',
+  'notice.dismiss': 'Funga',
+
   'auto.owner.city': 'Jiji la Philadelphia (umma)',
   'auto.owner.landbank': 'Philadelphia Land Bank (umma)',
   'auto.owner.pha': 'Philadelphia Housing Authority (umma)',
