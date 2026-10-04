@@ -90,6 +90,23 @@
   font-size: 0.8rem;
 }
 
+/* Land Bank status (LAMAAssets) — a word plus a colour, never colour alone */
+.ph-lb {
+  font-weight: 700;
+}
+.ph-lb-available {
+  color: var(--ok);
+}
+.ph-lb-hold {
+  color: var(--warn);
+}
+.ph-lb-unavailable {
+  color: #8a1c14;
+}
+.ph-lb-unknown {
+  color: var(--muted);
+}
+
 /* ---- messages ------------------------------------------------------------------- */
 
 .ph-status {
@@ -366,11 +383,20 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  align-items: flex-end;
+  align-items: flex-start;
   margin-bottom: 10px;
 }
 .ph-map-bar .ph-search {
   flex: 1 1 260px;
+}
+/* line the buttons up with the address box, not with the hint under it */
+.ph-map-bar > .btn {
+  margin-top: var(--ph-label-h, 1.85rem);
+}
+@media (max-width: 600px) {
+  .ph-map-bar > .btn {
+    margin-top: 0;
+  }
 }
 .ph-map-note {
   position: absolute;
@@ -389,6 +415,76 @@
   max-width: calc(100% - 20px);
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.ph-map-status:empty {
+  display: none;
+}
+.ph-map-status {
+  margin: -4px 0 10px;
+  max-width: 48rem;
+}
+.ph-map-status .ph-status {
+  margin: 0.3em 0;
+}
+.ph-street-pick {
+  margin: 0.3em 0 0.6em;
+}
+.ph-chips-scroll {
+  max-height: 9.5rem;
+  overflow-y: auto;
+  padding: 2px;
+}
+.ph-map:focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: -3px;
+}
+.ph-map-loading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  color: var(--muted);
+  pointer-events: none;
+}
+.ph-inview {
+  margin-top: 1.2em;
+}
+.ph-inview-h {
+  font-size: 1rem;
+  margin: 0 0 0.3em;
+}
+.ph-inview-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5em 0;
+  border-top: 1px solid var(--line);
+}
+.ph-inview-list li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+.ph-inview-list .ph-swatch {
+  flex: none;
+  margin: 0;
+}
+.ph-inview-text {
+  flex: 1 1 14rem;
+  line-height: 1.35;
+}
+.ph-inview-list .ph-row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.ph-card-title:focus {
+  outline: 3px solid var(--cyan);
+  outline-offset: 2px;
 }
 .ph-legend {
   display: flex;

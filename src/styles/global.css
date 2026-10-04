@@ -342,6 +342,14 @@ figcaption {
   border-color: var(--ink);
   background: var(--paper-2);
 }
+/* A note from this website, not from Park in a Truck: dashed, on white, so it
+   never reads as part of PiaT's own text. */
+.callout-site {
+  border: 2px dashed var(--ink-2);
+  border-left: 6px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--paper);
+}
 
 /* ---- form fields (workbook blanks) ---------------------------------------- */
 

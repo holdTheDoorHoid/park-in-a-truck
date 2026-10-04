@@ -270,6 +270,14 @@ each furnishing?
 
 <CostEstimator />
 
+{/* site-added: safety note (DESIGN.md §2, 2026-10-04) — the order list's "fire hydrant opener" items; facts checked 2026-10-04 on water.phila.gov. */}
+<Callout kind="site" title="Note from this site, not Park in a Truck: fire hydrants">
+  The order list suggests a fire hydrant opener. Opening a fire hydrant in Philadelphia needs a
+  [Philadelphia Water Department hydrant permit ↗](https://water.phila.gov/development/connections/hydrant-permits/)
+  and an approved backflow preventer (community gardens are exempt from the permit fee). PWD's
+  [urban garden guide ↗](https://water.phila.gov/urban-garden-guide/) lists the other ways to get water to a garden.
+</Callout>
+
 <Download href="downloads/templates/cost-estimator.xlsx" label="Cost estimator" note="Original spreadsheet — make your own copy to edit it" />
 
 <details>
@@ -288,12 +296,13 @@ Everywhere there's green on your plan is a planting area, and each planting symb
 perennials, shrubs, small trees and big trees in your design — sun and shade separately for perennials and shrubs.
 You'll pick the actual plant varieties next.
 
-<Field id="dream.perennials-sun" label="Perennials — sun" type="number" unit="squares" />
-<Field id="dream.perennials-shade" label="Perennials — shade" type="number" unit="squares" />
-<Field id="dream.shrubs-sun" label="Shrubs — sun" type="number" />
-<Field id="dream.shrubs-shade" label="Shrubs — shade" type="number" />
-<Field id="dream.small-trees" label="Small trees" type="number" />
-<Field id="dream.large-trees" label="Large trees" type="number" />
+{/* site-added: the six counts show your design's numbers (project.extra.tally) until you type your own; the plant picker below uses the same numbers */}
+<Field id="dream.perennials-sun" label="Perennials — green squares in sun" type="number" unit="squares" auto="extra.tally.plantingSquares.sun" autoNote="✓ Filled in from your design — type to change it" />
+<Field id="dream.perennials-shade" label="Perennials — green squares in shade" type="number" unit="squares" auto="extra.tally.plantingSquares.shade" autoNote="✓ Filled in from your design — type to change it" />
+<Field id="dream.shrubs-sun" label="Shrubs — sun" type="number" auto="extra.tally.shrubs.sun" autoNote="✓ Filled in from your design — type to change it" />
+<Field id="dream.shrubs-shade" label="Shrubs — shade" type="number" auto="extra.tally.shrubs.shade" autoNote="✓ Filled in from your design — type to change it" />
+<Field id="dream.small-trees" label="Small trees" type="number" auto="extra.tally.smallTrees" autoNote="✓ Filled in from your design — type to change it" />
+<Field id="dream.large-trees" label="Large trees" type="number" auto="extra.tally.largeTrees" autoNote="✓ Filled in from your design — type to change it" />
 
 <PlantPicker />
 

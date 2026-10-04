@@ -3,7 +3,7 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { lookupLot } from '../lookup';
 import { searchAddresses } from '../search';
 import { siteFactsFromLot, mergeSiteFacts, lotGeometry } from '../choose';
-import { PhillyError } from '../types';
+import { PhillyError, type LotExtra } from '../types';
 import { useFixtures } from './fixtures';
 import type { LotRecord } from '../../types';
 
@@ -27,7 +27,14 @@ describe('lookupLot — 1322 N Dover St (City-owned, mid-block)', () => {
     expect(r.ownerType).toBe('city');
     expect(r.category).toBe('VACANT LAND');
     expect(r.zoning).toBe('RSA-5');
-    expect(r.areaSqFt).toBe(700);
+    // One lot size everywhere (usability test 2026-10-04): the parcel outline's area; the
+    // assessment's 700 sq ft is kept beside it.
+    expect(r.areaSqFt).toBe(lotGeometry(r)!.areaSqFt);
+    expect(r.areaSqFt).toBe(701);
+    expect((r.extra as LotExtra).assessedAreaSqFt).toBe(700);
+    // planning district, not AIS's PhillyRising area (veteran S5)
+    expect((r.extra as LotExtra).planningDistrict).toBe('Lower North');
+    expect((r.extra as LotExtra).neighborhood).toBeUndefined();
     expect(r.councilDistrict).toBe('5');
     expect(r.rcos?.map((x) => x.name)).toContain('Brewerytown Sharswood Community Civic Association');
     expect(r.floodZone).toBe('X');

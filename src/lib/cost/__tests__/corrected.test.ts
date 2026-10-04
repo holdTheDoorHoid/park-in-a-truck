@@ -9,10 +9,18 @@
 //
 // Part 2 proves each correction on its own: the same answers with that one fix
 // switched off must differ by exactly what the fix is about.
+//
+// Part 1 uses the corrections to the spreadsheet's own lines (SHEET_FIXES). The two
+// corrections that bring in other PiaT sources — perennials per square from the plant
+// lists, furniture from the build guides — are worked by hand in guides.test.ts and
+// below ("the default estimate").
 
 import { describe, expect, it } from 'vitest';
 import { ALL_FIXES, FIXES, type FixId } from '../corrections';
 import { emptyInputs, estimate, type CostInputs } from '../model';
+
+/** Every correction to the spreadsheet's own lines: all fixes but the two that use other PiaT sources. */
+const SHEET_FIXES = ALL_FIXES.filter((f) => f !== 'perennialsPerSquare' && f !== 'guideMaterials');
 
 interface Fixture {
   name: string;
@@ -171,7 +179,7 @@ describe('corrected estimate, worked by hand from each fixture', () => {
       const f = fixtures[name]!;
       expect(h.sheetF142).toBeCloseTo(f.insertHere.F142 as number, 6);
       near(h.sheetF142 + h.changes.reduce((a, b) => a + b, 0), h.corrected, 'hand arithmetic');
-      const e = estimate(f.inputs);
+      const e = estimate(f.inputs, { fixes: SHEET_FIXES });
       near(e.summary.totalCosts, h.corrected, 'TOTAL COSTS');
       near(e.summary.toolRental, h.corrected * 0.15, 'tool rental 15%');
       near(e.summary.contingency, h.corrected * 0.2, 'contingency 20%');
@@ -186,17 +194,46 @@ describe('corrected estimate, worked by hand from each fixture', () => {
     });
   }
 
-  it('the sample park: $6,789.96 instead of the spreadsheet’s $6,482.80', () => {
-    const e = estimate(fixtures['sheet-defaults']!.inputs);
+  it('the sample park, spreadsheet lines corrected: $6,789.96 instead of the spreadsheet’s $6,482.80', () => {
+    const e = estimate(fixtures['sheet-defaults']!.inputs, { fixes: SHEET_FIXES });
     near(e.total, 6789.96);
     near(e.corrections!.sheetTotal, 6482.8);
   });
 });
 
+describe('the default estimate (every correction)', () => {
+  it('the sample park: $6,884.46 — 5 perennials per square adds 7 × $10', () => {
+    // no furniture with a build guide (gabion tables, trellises and long tables have none)
+    const e = estimate(fixtures['sheet-defaults']!.inputs);
+    near(e.summary.totalCosts, 5029.6 + 70);
+    near(e.total, 6884.46); // 5,099.60 + 764.94 + 1,019.92
+    expect(e.lines.find((l) => l.item === 'Perennials')!.qty).toBe(35);
+  });
+
+  for (const name of Object.keys(HAND))
+    it(`${name}: order list = total costs, effects add up, totals are sums of whole cents`, () => {
+      const f = fixtures[name]!;
+      const e = estimate(f.inputs);
+      near(e.orderList.total, e.summary.totalCosts, 'order list total');
+      const c = e.corrections!;
+      near(c.sheetTotal + c.fixes.reduce((a, x) => a + x.effect, 0) + c.pricesAdded, e.total, 'effects add up');
+      const cents = (v: number) => Math.abs(v * 100 - Math.round(v * 100)) < 1e-6;
+      for (const l of e.lines) expect(cents(l.total), `${l.item} ${l.total}`).toBe(true);
+      const s = e.summary;
+      expect(cents(s.totalCosts) && cents(s.toolRental) && cents(s.contingency)).toBe(true);
+      // the final cost is exactly the sum of the rounded parts shown above it (A14: was a cent off)
+      expect(Math.round(e.total * 100)).toBe(Math.round(s.totalCosts * 100) + Math.round(s.toolRental * 100) + Math.round(s.contingency * 100) + Math.round(s.otherCosts * 100));
+    });
+});
+
 // ---- one correction at a time --------------------------------------------------
 
-const without = (id: FixId) => ALL_FIXES.filter((f) => f !== id);
-const both = (i: Partial<CostInputs>, id: FixId) => ({ on: estimate(i), off: estimate(i, { fixes: without(id) }) });
+const without = (id: FixId, base: readonly FixId[] = ALL_FIXES) => base.filter((f) => f !== id);
+/** The answers with every fix in `base`, and with `id` switched off. */
+const both = (i: Partial<CostInputs>, id: FixId, base: readonly FixId[] = ALL_FIXES) => ({
+  on: estimate(i, { fixes: base }),
+  off: estimate(i, { fixes: without(id, base) }),
+});
 const park: Partial<CostInputs> = { ...emptyInputs, longSideFt: 50, shortSideFt: 20 };
 
 describe('each correction changes what it should', () => {
@@ -249,7 +286,7 @@ describe('each correction changes what it should', () => {
   });
 
   it('woodToppedGabions: priced from the sheet’s rows 90–97 instead of #REF!', () => {
-    const { on, off } = both({ ...park, woodToppedGabions: 1 }, 'woodToppedGabions');
+    const { on, off } = both({ ...park, woodToppedGabions: 1 }, 'woodToppedGabions', SHEET_FIXES);
     // basket $120 + stone 12 cu ft / 27 x 1.4 = 0.62 -> 1 ton $52.50 + 2x4x8 5.5 -> 6 x $5 + 36 screws x $0.17
     near(on.summary.woodToppedGabions!, 120 + 52.5 + 30 + 6.12);
     expect(off.summary.woodToppedGabions).toBeNull();
@@ -273,7 +310,7 @@ describe('each correction changes what it should', () => {
   });
 
   it('stageCutLists: the 16-foot and 8-foot stages read their own rows', () => {
-    const s16 = both({ ...park, stageSquares: 4 }, 'stageCutLists');
+    const s16 = both({ ...park, stageSquares: 4 }, 'stageCutLists', SHEET_FIXES);
     const qty = (e: ReturnType<typeof estimate>, item: string) => e.lines.filter((l) => l.group?.startsWith('Stage') && l.item === item).reduce((a, l) => a + l.qty, 0);
     expect(qty(s16.on, '1x6x16')).toBe(6);
     expect(qty(s16.off, '1x6x16')).toBe(1);
@@ -282,13 +319,13 @@ describe('each correction changes what it should', () => {
     expect(qty(s16.on, '2.5" wood screws')).toBe(164);
     expect(qty(s16.off, '2.5" wood screws')).toBe(124);
     near(s16.on.summary.stage - s16.off.summary.stage, 24 * 5 + 40 * 0.17);
-    const s8 = both({ ...park, stageSquares: 2 }, 'stageCutLists');
+    const s8 = both({ ...park, stageSquares: 2 }, 'stageCutLists', SHEET_FIXES);
     expect(qty(s8.on, '2.5" wood screws')).toBe(92);
     expect(qty(s8.off, '2.5" wood screws')).toBe(24);
   });
 
   it('samePrice: items priced elsewhere in the sheet get that price', () => {
-    const { on, off } = both({ ...park, benchesWithBackAndArms: 2, cafeTableSets: 1 }, 'samePrice');
+    const { on, off } = both({ ...park, benchesWithBackAndArms: 2, cafeTableSets: 1 }, 'samePrice', SHEET_FIXES);
     const arms2x4 = (e: ReturnType<typeof estimate>) => e.lines.find((l) => l.group === "4' bench with back and armrests" && l.item === '2x4x8')!;
     expect(arms2x4(on).unitPrice).toBe(5);
     expect(arms2x4(off).unitPrice).toBe(0);
@@ -313,16 +350,16 @@ describe('each correction changes what it should', () => {
 
   it('priceNeeded: unpriced items are asked for and left out until priced', () => {
     const i = { ...park, benchesWithBack: 1, stageSquares: 5, cisterns4x8: 1 };
-    const e = estimate(i);
+    const e = estimate(i, { fixes: SHEET_FIXES });
     expect(e.priceNeeded.map((p) => p.id)).toEqual(['lumber:4x4x6', 'lumber:2x10x8', 'lumber:2x6x8', 'lumber:2x8x8', 'stage-other', 'cistern-4x8']);
     const missing = e.lines.filter((l) => l.needsPrice);
     expect(missing.length).toBe(6);
     expect(missing.every((l) => !l.inTotal && l.total === 0)).toBe(true);
-    const off = estimate(i, { fixes: without('priceNeeded') });
+    const off = estimate(i, { fixes: without('priceNeeded', SHEET_FIXES) });
     expect(off.priceNeeded).toEqual([]);
     near(off.total, e.total); // they were $0 in the sheet too
     // fill in two prices: they join the total (x 1.35 for tool rental and contingency)
-    const priced = estimate(i, { unitPrices: { 'lumber:4x4x6': 12, 'cistern-4x8': 400 } });
+    const priced = estimate(i, { fixes: SHEET_FIXES, unitPrices: { 'lumber:4x4x6': 12, 'cistern-4x8': 400 } });
     near(priced.total - e.total, (12 + 400) * 1.35);
     near(priced.corrections!.pricesAdded, (12 + 400) * 1.35);
     expect(priced.priceNeeded.find((p) => p.id === 'lumber:4x4x6')!.price).toBe(12);
@@ -333,7 +370,7 @@ describe('each correction changes what it should', () => {
 
   it('orderList: built from the estimate’s lines, so it matches the total costs', () => {
     const i = { ...park, gabionTables: 1, benchesWithBackAndArms: 1, stageSquares: 3, solarLights: 20, plantingSquares: 4, outerEdgeFt: 20, outerEdgeOnHardscapeFt: 20 };
-    const { on, off } = both(i, 'orderList');
+    const { on, off } = both(i, 'orderList', SHEET_FIXES);
     near(on.orderList.total, on.summary.totalCosts);
     expect(Math.abs(off.orderList.total - off.summary.totalCosts)).toBeGreaterThan(1);
     const row = (e: ReturnType<typeof estimate>, item: string) => e.orderList.rows.find((r) => r.item === item);
@@ -348,7 +385,7 @@ describe('each correction changes what it should', () => {
     expect(row(on, '1/4" x 1 1/2" lag screws')!.qty).toBe(6);
     // corner braces, plants and erosion control are in the total; no unlabelled $175
     expect(row(on, 'Corner braces')!.inTotal).toBe(true);
-    expect(row(on, 'Perennials')!.total).toBe(160);
+    expect(row(on, 'Perennials')!.total).toBe(160); // 4 squares x 4 (the spreadsheet's rule: perennialsPerSquare is off here)
     expect(row(on, 'Erosion control')!.total).toBe(100);
     expect(on.orderList.extras.some((x) => x.amount === 175)).toBe(false);
     // solar lights at the estimate's price: 2 packs of 16 x $40
@@ -358,6 +395,28 @@ describe('each correction changes what it should', () => {
     expect(row(on, '2x4x8')!.qty).toBe(
       on.lines.filter((l) => l.material === 'lumber:2x4x8').reduce((a, l) => a + l.qty, 0),
     );
+  });
+
+  it('perennialsPerSquare: 5 per planting square, as in the plant lists', () => {
+    const { on, off } = both({ ...park, plantingSquares: 32 }, 'perennialsPerSquare');
+    expect(on.summary.perennials).toBe(160);
+    expect(off.summary.perennials).toBe(128); // the cost spreadsheet's C30 = squares x 4
+    near(on.summary.planting - off.summary.planting, 32 * 10);
+  });
+
+  it('guideMaterials: furniture from the build guides instead of the spreadsheet’s furniture lines', () => {
+    const i = { ...park, benchesWithBack: 4, stageSquares: 6, shadeStructures: 1, tables6: 1, planters24: 2 };
+    const { on, off } = both(i, 'guideMaterials');
+    const g = (e: ReturnType<typeof estimate>, slug: string) => e.lines.filter((l) => l.guide === slug);
+    expect(g(on, 'bench-back').length).toBeGreaterThan(0);
+    expect(off.lines.some((l) => l.guide)).toBe(false);
+    // without it: the spreadsheet's bench (4x4x6, 2x10x8 … need prices), a 6-square stage it has no cut list for,
+    // the shade structure as a 12x8 trellis, the 6' table as a $100 long table, and planters not priced at all
+    expect(off.priceNeeded.map((p) => p.id)).toEqual(['lumber:4x4x6', 'lumber:2x10x8', 'lumber:2x6x8', 'lumber:2x8x8', 'stage-other']);
+    expect(off.lines.find((l) => l.item === 'Long tables (materials)')!.qty).toBe(1);
+    expect(off.lines.filter((l) => l.group === '12x8 trellis').length).toBe(4);
+    expect(on.priceNeeded.map((p) => p.id)).not.toContain('stage-other');
+    expect(on.lines.some((l) => l.group === '12x8 trellis' || l.item === 'Long tables (materials)')).toBe(false);
   });
 
   it('sheet mode is untouched by all of this', () => {

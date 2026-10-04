@@ -22,6 +22,8 @@ export type FixId =
   | 'samePrice'
   | 'wholeUnits'
   | 'priceNeeded'
+  | 'perennialsPerSquare'
+  | 'guideMaterials'
   | 'orderList';
 
 export interface FixMeta {
@@ -106,15 +108,35 @@ export const FIXES: FixMeta[] = [
       'Lumber sizes the spreadsheet has no price for, cisterns and stages of other sizes are listed as “price needed”. Fill in a price and it is added to the total.',
   },
   {
+    id: 'perennialsPerSquare',
+    label: 'Perennials: 5 per planting square, as in the plant lists',
+    detail:
+      'The cost spreadsheet counts 4 perennials in every planting square (INSERT HERE C30). Park in a Truck’s four plant-list spreadsheets — the ones you choose your plants with — count 5 (their INSERT HERE: green squares × 5), and so does the plant picker. The estimate now uses 5, so the budget matches the plants you will buy.',
+  },
+  {
+    id: 'guideMaterials',
+    label: 'Furniture from the build guides',
+    detail:
+      'Benches, stools, tables, planters, gabion benches, the workbench, the shade structure and the stage are priced from each Park in a Truck build guide’s own materials and hardware lists, at the spreadsheet’s prices; anything the spreadsheet has no price for is “price needed”. The spreadsheet’s own furniture lines disagree with the guides (its bench with back lists 4x4, 2x10, 2x6 and 2x8 lumber the guide never uses). Where a guide’s cut list needs more boards than its materials list says, the estimate orders what the cut list needs and the line says why (counted with ⅛″ per saw cut; the stage needs 25 2x4x8s, not 16). A 12\'x8\' stage is the Stage guide’s stage (6 squares); shade canopies are counted in the Shade guide’s 8\'x8\' structures; 4\' and 6\' tables, planters, workbenches and 8\' gabion benches, which the spreadsheet has no question for, are priced too.',
+  },
+  {
     id: 'orderList',
     label: 'Order list matches the estimate',
     orderListOnly: true,
     detail:
-      'The spreadsheet’s order list read the wrong rows for staples and gabion-table panels, never found the lag screws (different spelling), priced solar lights differently, left out erosion control, the edging hardware, plants, corner braces and the off-the-shelf items, and added an unlabelled $175. It is now built from the same lines as the estimate, so its total equals the estimate’s total costs.',
+      'The spreadsheet’s order list read the wrong rows for staples and gabion-table panels, never found the lag screws (different spelling), priced solar lights differently, left out erosion control, the edging hardware, plants, corner braces and the off-the-shelf items, and added an unlabelled $175. It is now built from the same lines as the estimate, so its total equals the estimate’s total costs. The same item from different pieces is one row; different products the spreadsheet gives the same name (its two L-brackets) stay separate, and links the spreadsheet points at a different lumber size are flagged.',
   },
 ];
 
 export const ALL_FIXES: FixId[] = FIXES.map((f) => f.id);
+
+/**
+ * Perennials in one 4' x 4' planting square: 5 in Park in a Truck's four plant-list
+ * spreadsheets (INSERT HERE, "# of squares" × 5) and the plant picker
+ * (src/data/plants.ts PLANTS_PER_SQUARE; a test keeps the two equal), 4 in the
+ * cost spreadsheet (INSERT HERE C30).
+ */
+export const PERENNIALS_PER_SQUARE = 5;
 
 /** Assumptions kept as the spreadsheet has them (not clearly errors). */
 export const KEPT_ASSUMPTIONS: string[] = [
@@ -123,7 +145,8 @@ export const KEPT_ASSUMPTIONS: string[] = [
   'Prices are the spreadsheet’s, including a large tree ($75) costing less than a small one ($100), and 1x6x12 boards at $4 for edges but $10 for the stage.',
   'Stakes: one per 20 sq ft (the spreadsheet’s “squares” here are the area ÷ 4).',
   'Gravel edges: the 1x4x12 count includes the 2x4 count, and the supports are worked out for the whole edge (the spreadsheet lists no softscape supports for gravel edges).',
-  'The trellis gets 20% extra lumber and screws; the 12\' stage uses a fixed 34 screws.',
-  'Compost bins are priced by their chicken wire only; benches without backs, 2\' tables and stools use the spreadsheet’s short material lists.',
+  'The 12x8 trellis gets 20% extra lumber and screws.',
+  'Compost bins are priced by their chicken wire only; wood-topped gabion tables, long (communal) tables, keyhole gardens and the 12x8 trellis, which have no build guide, use the spreadsheet’s own lines.',
+  'Mulch is the spreadsheet’s 2″ over the planting squares, although the Create workbook says to install 4″; the mulch line shows what 4″ would need.',
   'Raised-bed wood edges have no calculation in the spreadsheet, so they are not priced.',
 ];

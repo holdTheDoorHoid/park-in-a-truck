@@ -18,6 +18,8 @@ interface Props {
   /** called with a picked suggestion, or the raw text when the person presses Enter / the button */
   onPick: (q: AddressSuggestion | string) => void;
   initial?: string;
+  /** what the form is for, for screen readers' list of landmarks */
+  formLabel?: string;
 }
 
 export default function AddressSearch({
@@ -28,6 +30,7 @@ export default function AddressSearch({
   busy,
   onPick,
   initial = '',
+  formLabel,
 }: Props) {
   const id = useId();
   const [text, setText] = useState(initial);
@@ -53,7 +56,7 @@ export default function AddressSearch({
         setProblem(null);
       })
       .catch((e) => {
-        if (e?.code === 'aborted') return;
+        if (e?.code === 'aborted' || e?.name === 'AbortError' || ctrl.signal.aborted) return;
         setItems([]);
         setProblem(e?.message ?? 'The City address service is not answering right now.');
       });
@@ -78,6 +81,8 @@ export default function AddressSearch({
       e.preventDefault();
       setActive((a) => Math.max(-1, a - 1));
     } else if (e.key === 'Escape') {
+      // first Escape closes the list and keeps what was typed (a search box would clear it)
+      if (open) e.preventDefault();
       setOpen(false);
     } else if (e.key === 'Enter') {
       e.preventDefault();
@@ -87,8 +92,18 @@ export default function AddressSearch({
   };
 
   const listId = `${id}-list`;
+  const hintId = `${id}-hint`;
   return (
-    <div class="ph-search">
+    // A real form: the button submits it, so clicking it and pressing Enter always do the same thing.
+    <form
+      class="ph-search"
+      role="search"
+      aria-label={formLabel ?? label}
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (text.trim() && !busy) pick(text.trim());
+      }}
+    >
       <label class="ph-label" for={`${id}-in`}>
         {label}
       </label>
@@ -101,6 +116,7 @@ export default function AddressSearch({
           aria-expanded={open}
           aria-controls={listId}
           aria-activedescendant={open && active >= 0 ? `${id}-o${active}` : undefined}
+          aria-describedby={problem || hint ? hintId : undefined}
           autocomplete="off"
           spellcheck={false}
           placeholder={placeholder}
@@ -113,7 +129,7 @@ export default function AddressSearch({
           onFocus={() => items.length && setOpen(true)}
           onBlur={() => setTimeout(() => setOpen(false), 150)}
         />
-        <button class="btn btn-primary" type="button" disabled={busy || !text.trim()} onClick={() => text.trim() && pick(text.trim())}>
+        <button class="btn btn-primary" type="submit" disabled={busy || !text.trim()}>
           {busy ? <span class="ph-spinner" aria-hidden="true" /> : null}
           {buttonLabel}
         </button>
@@ -137,7 +153,15 @@ export default function AddressSearch({
           ))}
         </ul>
       )}
-      {problem ? <span class="ph-hint" role="status">{problem}</span> : hint ? <span class="ph-hint">{hint}</span> : null}
-    </div>
+      {problem ? (
+        <span class="ph-hint" role="status" id={hintId}>
+          {problem}
+        </span>
+      ) : hint ? (
+        <span class="ph-hint" id={hintId}>
+          {hint}
+        </span>
+      ) : null}
+    </form>
   );
 }

@@ -163,7 +163,7 @@ This flowchart shows how to determine who owns a lot and the possible steps to a
 <LotLookup mode="primary" />
 
 <Field id="acquire.address" label="Street address of your lot" auto="lot.address" />
-<Field id="acquire.owner" label="Owner name" auto="lot.owners|join" />
+<Field id="acquire.owner" label="Owner name" auto="lot.owners|owners" />
 <Field id="acquire.owner-type" label="Owner is…" auto="lot.ownerType|ownerType" />
 
 <PdfPage doc="downloads/workbooks/01-acquire.pdf" page={4} />

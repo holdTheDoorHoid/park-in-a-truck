@@ -34,6 +34,7 @@ The owner has permission from PiaT to use all of their content.
 | Tech | **TypeScript + Astro + Three.js** (chosen over Rust/WASM for ecosystem and maintainability by Jefferson). |
 | Furniture order list (2026-10-04) | **From each build guide's own materials list**, priced with the spreadsheet's prices ("price needed" where none). The spreadsheet's furniture lines disagree with the guides; its faithful "sheet" mode stays for tests. |
 | Safety notes (2026-10-04) | Where PiaT's text could get people into **legal or health trouble** (hydrant without a permit, lead testing, street-tree pruning, herbicides), add a **short note clearly marked as from this site**, linking the official source. Everything else goes to the PiaT notes. |
+| Languages (2026-10-04) | **English + 11**: Spanish, Chinese (Simplified), Vietnamese, Russian, Arabic (right-to-left), Haitian Creole, French, Portuguese, Swahili (phila.gov's nine) + Korean and Tagalog. **Translated into the site** ahead of time (no live Google Translate), with a shared glossary; every translated page says it was machine-translated and links the English. A language box in the header (top right); on a first visit in another browser language the site **offers** that language in one line, never switches by itself; the choice is remembered. The meeting flyer can print in any site language **or two side by side**. PiaT's original PDFs stay English. |
 
 Also: the user wants every lookup automated "as much as possible… a streamline for activists to get the
 information they need to get something done."
@@ -95,10 +96,14 @@ Islands read/write via the exported functions and the `$project` store; never to
 ### Fields (components/workbook)
 
 `<Field id label type? hint? options? unit? auto? />`, `<ListField id label columns min rowName />`,
-`<Checklist id items />`, `<Choice id label options />`, `<Callout kind="tip|note|warning|contact|auto">`,
+`<Checklist id items />`, `<Choice id label options />`, `<Callout kind="tip|note|warning|contact|auto|site">`,
 `<Figure src alt caption? credit? duo? />`, `<PdfPage doc page />`, `<Download href label note? />`.
 `auto` shows a looked-up value with a "Filled in from City records" badge until the person types their own
 (paths & formats: src/lib/autofill.ts). Widgets that render fields later dispatch `piat:bind` on their root.
+`kind="site"` is the dashed "Note from this site, not Park in a Truck" box for the §2 safety notes (each 1–3
+sentences, linking the official source, marked `{/* site-added: … */}`). Build guides use the same box through
+`siteNote` on a step, a materials line or a cut-list line (`src/data/guides/index.ts`) where PiaT's text disagrees with
+its own cut list or drawings.
 
 ### Widgets
 
@@ -138,7 +143,9 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
 ## 5. Park pieces, sizes, planner
 
 - **Sizes A–E** (`src/lib/sizing.ts`): long/short edge ranges from Assess p.11. Lots smaller than A → suggest the
-  Park Patch workbook; bigger than E → E + expansion.
+  Park Patch workbook; bigger than E → E + expansion. A lot between ranges gets the *biggest set whose printed pieces
+  fit inside it in both directions* (seams only ever add feet — never a set bigger than the lot; fixed 2026-10-04,
+  saved projects are re-fitted on load in `project.ts`).
 - **Piece sets**: `source/linked/04_Dream_WORKBOOK_p11_<SIZE>__*.pdf`, one per size × lot kind
   (interior / corner street-left / corner street-right), drawn at **1/4" = 1'-0" (18 pt per foot)** on a 4-ft grid.
   Each theme has a FRAME, FRONT and BACK piece plus length/width SEAM strips. Extracted to
@@ -229,9 +236,10 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
 
 | Workbook asks | Site does | Data |
 |---|---|---|
-| Acquire: walk the neighborhood, list possible lots | Vacant-land map around an address; click to add as candidate | ArcGIS `Vacant_Indicators_Land` |
+| Acquire: walk the neighborhood, list possible lots | Vacant-land map around an address or a street's block (street name alone → its blocks); click a lot, or pick it from the list of lots in view (keyboard way), to add as candidate | ArcGIS `Vacant_Indicators_Land`, `Street_Centerline` |
 | Acquire: which lot type? | Guess mid-block / corner / alley from parcel geometry + streets | parcels, street centerlines |
-| Acquire: atlas.phila.gov → owner | Address search → owner, public/private, purchase paths | AIS, Carto `opa_properties_public` |
+| Acquire: atlas.phila.gov → owner | Address search → owner, public/private, purchase paths (City / Land Bank / PRA / PHDC land → the workbook's PHDC–Land Bank path; PHA, School District and other separate agencies → "contact that agency") | AIS, Carto `opa_properties_public` |
+| Acquire: "do a property search to find out if public land is available" | The Land Bank's own status on cards, compare table and map (available / on hold / applicant in process / not available, side-yard eligible) | ArcGIS `LAMAAssets` (agencies PUB, PLB, PRA, PHDC; `status_1`, `sideyardeligible`, keyed by `opabrt`) |
 | Organize: list neighborhood assets & associations | Nearby RCOs, council district, schools, libraries, rec centers, parks, community gardens, murals, historic sites | ArcGIS/Carto layers |
 | Assess: measure the lot in Google Maps | Edge lengths and area from the parcel polygon | `pwd_parcels` / `DOR_Parcel` |
 | Assess: draw the lot on grid paper | Printable base map on a 1-ft/4-ft grid with dimensions and starting point | parcel polygon |
@@ -241,7 +249,7 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
 | Assess: sloping terrain, where water collects | Slope summary, contour lines and arrows downhill; wet areas drawn as outlines | USGS 3DEP lidar (2015), `Zoning_SteepSlopeProtectArea_r` |
 | Assess summary: trees, sun, lot location, size A–E | Filled in automatically | all of the above |
 | Dream: print pieces, cut seams, tape, count squares | Planner does it on the real lot; counts automatic | pieces JSON |
-| Dream: cost-estimator spreadsheet | Live estimate + order list from the design | ported spreadsheet |
+| Dream: cost-estimator spreadsheet | Live estimate + order list from the design; furniture from the build guides | ported spreadsheet + guides |
 | Dream: plant-list spreadsheets | Plant picker sized to sun/shade counts | plant lists |
 | Create: calendar template | Build schedule from a start date, .ics export | phases |
 | Create: temporary no-parking permit, PA One Call 811 | Linked at the right phase with the lot address filled in | links |

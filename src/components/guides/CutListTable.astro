@@ -26,7 +26,12 @@ const { items } = Astro.props;
         <td data-label="Qty">{it.qty}</td>
         <td data-label="Stock">{it.stock}</td>
         <td data-label="Length">{it.lengthIn}"</td>
-        <td data-label="Notes">{it.notes}</td>
+        <td data-label="Notes">
+          {it.notes}
+          {it.siteNote && (
+            <span class="site-note"><strong>Note from this site, not Park in a Truck:</strong> {it.siteNote}</span>
+          )}
+        </td>
       </tr>
     ))}
   </tbody>
@@ -61,6 +66,17 @@ const { items } = Astro.props;
     padding: 0.1em 0.5em;
     font-size: 0.85rem;
     white-space: nowrap;
+  }
+  /* matches the dashed "Note from this site" callout (global.css .callout-site) */
+  .site-note {
+    display: block;
+    margin-top: 6px;
+    padding: 6px 10px;
+    border: 2px dashed var(--ink-2);
+    border-left: 4px solid var(--ink);
+    border-radius: var(--radius);
+    background: var(--paper);
+    font-size: 0.88rem;
   }
   @media (max-width: 640px) {
     .cutlist thead {

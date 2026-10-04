@@ -9,9 +9,10 @@ import type { LngLat } from '../types';
 import { queryGeo } from './arcgis';
 import { LAYERS } from './endpoints';
 import { distanceFt, largestOuterRing, makeProjector, signedArea } from './geo';
-import { classifyOwner, isPublic } from './owner';
+import { landBankStatusesIn } from './landbank';
+import { classifyOwner, isPublic, landBankHandles } from './owner';
 import { normaliseZoning } from './plain';
-import type { AddressSuggestion, BBox, VacantLotCollection, VacantLotFeature } from './types';
+import type { AddressSuggestion, BBox, LandBankStatus, VacantLotCollection, VacantLotFeature, VacantLotProps } from './types';
 
 const TILE_LNG = 0.006;
 const TILE_LAT = 0.0045;
@@ -45,23 +46,39 @@ export function tilesFor(b: BBox): BBox[] {
   return out;
 }
 
-export function vacantFeature(f: { id?: number | string; geometry: unknown; properties: VacantAttrs }): VacantLotFeature | null {
+/**
+ * Map colour group for a vacant lot. `lb` is the Land Bank's inventory for the area
+ * (undefined when it couldn't be loaded).
+ */
+export function mapClassOf(p: Pick<VacantLotProps, 'opa' | 'ownerType' | 'isPublic'>, agencyLabel: string, lb?: Map<string, LandBankStatus>): VacantLotProps['mapClass'] {
+  const status = p.opa ? lb?.get(p.opa) : undefined;
+  if (status) return status.tone === 'available' ? 'lb-available' : 'lb-other';
+  if (!p.isPublic) return 'private';
+  if (!landBankHandles(p.ownerType, agencyLabel)) return 'agency';
+  return lb ? 'lb-other' : 'public';
+}
+
+export function vacantFeature(f: { id?: number | string; geometry: unknown; properties: VacantAttrs }, lb?: Map<string, LandBankStatus>): VacantLotFeature | null {
   const ring = largestOuterRing(f.geometry as never);
   if (ring.length < 3) return null;
   const p = f.properties;
   const owner = [p.owner1, p.owner2].filter(Boolean).join(' ');
   const cls = classifyOwner([p.owner1, p.owner2]);
+  const opa = p.opa_id || null;
+  const pub = isPublic(cls.type);
   const pr = makeProjector(ring[0]!);
   return {
     type: 'Feature',
     id: p.opa_id ?? f.id ?? p.objectid,
     geometry: { type: 'Polygon', coordinates: [[...ring, ring[0]!]] },
     properties: {
-      opa: p.opa_id || null,
+      opa,
       address: p.address ?? '',
       owner,
       ownerType: cls.type,
-      isPublic: isPublic(cls.type),
+      isPublic: pub,
+      landBank: opa && lb ? lb.get(opa) ?? null : undefined,
+      mapClass: mapClassOf({ opa, ownerType: cls.type, isPublic: pub }, cls.label, lb),
       areaSqFt: Math.round(Math.abs(signedArea(ring.map(pr.toXY)))),
       zoning: normaliseZoning(p.zoningbasedistrict),
       buildingDesc: p.bldg_desc,
@@ -86,7 +103,7 @@ export async function fetchVacantLots(bbox: BBox, opts: { signal?: AbortSignal }
     tiles = tiles.sort((a, b) => d(a) - d(b)).slice(0, MAX_TILES);
     dropped = true;
   }
-  const results = await Promise.all(
+  const vacantP = Promise.all(
     tiles.map((t) =>
       queryGeo<VacantAttrs>(
         LAYERS.vacantLand,
@@ -100,19 +117,25 @@ export async function fetchVacantLots(bbox: BBox, opts: { signal?: AbortSignal }
       ),
     ),
   );
+  // The Land Bank's statuses for the same tiles, alongside (small, attributes only).
+  // If they fail the map still works; public lots then show as plain "public".
+  const lbP = Promise.all(tiles.map((t) => landBankStatusesIn(t, opts)))
+    .then((maps) => new Map(maps.flatMap((m) => [...m])))
+    .catch(() => undefined);
+  const [results, lb] = await Promise.all([vacantP, lbP]);
   const seen = new Set<string | number>();
   const features: VacantLotFeature[] = [];
   let truncated = dropped;
   for (const r of results) {
     truncated ||= r.truncated;
     for (const f of r.features) {
-      const v = vacantFeature(f as never);
+      const v = vacantFeature(f as never, lb);
       if (!v || seen.has(v.id!)) continue;
       seen.add(v.id!);
       features.push(v);
     }
   }
-  return { type: 'FeatureCollection', features, truncated };
+  return { type: 'FeatureCollection', features, truncated, landBankLoaded: Boolean(lb) };
 }
 
 /** Vacant lots nearest a point (for "which lot near this corner?"). */

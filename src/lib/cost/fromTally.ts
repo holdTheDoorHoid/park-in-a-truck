@@ -6,10 +6,14 @@
 //
 // Sizes: the tally counts items by element id. Where the spreadsheet asks by
 // size (keyhole gardens) or by 4x4 squares (sheds, stages, cold frames) or the
-// unit differs (shade canopies -> 12'x8' trellises), the item sizes come from
-// DesignTally.itemSizes when the tally carries them, else from the footprints
-// in src/data/elements.ts (and its countAs notes). Keyhole-garden sizes have
-// no safe default, so without itemSizes they stay manual.
+// unit differs (shade canopies -> the Shade guide's 8'x8' structures), the item
+// sizes come from DesignTally.itemSizes when the tally carries them, else from
+// the footprints in src/data/elements.ts (and its countAs notes). Keyhole-garden
+// sizes have no safe default, so without itemSizes they stay manual.
+//
+// Furniture with a build guide but no spreadsheet question (4' and 6' tables,
+// planters, workbenches, 8' gabion benches, shade structures) fills the
+// site-added questions (model.ts SITE_INPUTS), priced from the guides.
 
 import { ELEMENTS } from '../../data/elements';
 import type { DesignTally } from '../types';
@@ -32,16 +36,19 @@ export interface FromTally {
 
 /** Element ids from src/data/elements.ts that feed a cost question one for one (or n for one). */
 const ELEMENT_INPUTS: Partial<Record<CostInputKey, { ids: [string, number][]; note?: string; noteWhen?: string }>> = {
-  woodToppedGabions: { ids: [['gabion-bench', 1], ['gabion-bench-8', 2]], note: "Counted in 4' modules; an 8' gabion bench is two.", noteWhen: 'gabion-bench-8' },
-  benchesWithBack: { ids: [['bench-back', 1]], note: "Counted in 4' benches.", noteWhen: 'bench-back' },
+  woodToppedGabions: { ids: [['gabion-bench', 1]] },
+  gabionBenches8: { ids: [['gabion-bench-8', 1]] },
+  benchesWithBack: { ids: [['bench-back', 1]] },
   benchesNoBack: { ids: [['bench-4', 1]] },
   squareTables: { ids: [['table-2', 1]] },
+  tables4: { ids: [['table-4', 1]] },
+  tables6: { ids: [['table-6', 1]] },
   stools: { ids: [['stool', 1]] },
+  planters18: { ids: [['planter-18', 1]] },
+  planters24: { ids: [['planter-24', 1]] },
+  workbenches: { ids: [['workbench', 1]] },
   gabionTables: { ids: [['gabion-table', 1]] },
-  longTables: {
-    ids: [['table-4', 1], ['table-6', 1], ['communal-table', 1]],
-    note: "4' and 6' tables and communal tables are priced as the spreadsheet’s long tables.",
-  },
+  longTables: { ids: [['communal-table', 1]], note: 'Your communal tables, priced as the spreadsheet’s long tables.' },
   compostBins: { ids: [['compost-bin', 1]] },
   rainBarrels: { ids: [['rain-barrel', 1]] },
   // the spreadsheet's optional "CAFE TABLES + CHAIRS" (priced); its other cafe-table question is a fixed $0
@@ -71,8 +78,8 @@ const ALWAYS_MANUAL: CostInputKey[] = [
 /** Element kinds that are furniture or structures (plants, surfaces and existing conditions are counted elsewhere). */
 const BUILT_KINDS = new Set(['furnishing', 'structure', 'water', 'habitat']);
 
-/** Square feet of a 12' x 8' trellis — the unit the spreadsheet prices shade structures in. */
-const TRELLIS_SQFT = 12 * 8;
+/** Square feet of the Shade guide's 8' x 8' structure (elements.ts countAs: area / 64). */
+const SHADE_SQFT = 8 * 8;
 
 export function inputsFromTally(
   tally: DesignTally | null | undefined,
@@ -154,7 +161,9 @@ export function inputsFromTally(
         set(
           'gabionBaskets',
           baskets,
-          wallFt > 0 ? `${round2(wallFt)} ft of gabion wall: one 4-ft basket per 4 ft, ${plural(courses, 'basket')} high (as the 3D model draws it).` : undefined,
+          wallFt > 0
+            ? `${round2(wallFt)} ft of gabion wall${added > 0 ? ' (with the wall pieces you added)' : ''}: one 4-ft basket per 4 ft, ${plural(courses, 'basket')} high (as the 3D model draws it).`
+            : undefined,
         );
     }
 
@@ -164,15 +173,16 @@ export function inputsFromTally(
       set('raisedBedWoodEdgeFt', round2(tally.raisedBedEdgeFt), tally.raisedBedEdgeFt > 0 ? 'The perimeter of your raised beds.' : undefined);
     }
 
-    // Shade canopies -> the spreadsheet's 12'x8' trellis: each canopy's area / 96 sq ft, rounded up.
+    // Shade canopies -> the Shade guide's 8'x8' structures: each canopy's area / 64 sq ft, rounded up.
     {
       const { list, measured } = sizes('shade-canopy');
-      const n = list.reduce((a, [w, h]) => a + Math.ceil(round2((w * h) / TRELLIS_SQFT)), 0);
+      const n = list.reduce((a, [w, h]) => a + Math.ceil(round2((w * h) / SHADE_SQFT)), 0);
+      const drawn = measured && list.length ? ` (${list.map(([w, h]) => `${round2(w)}'x${round2(h)}'`).join(', ')} on your plan)` : '';
       set(
-        'trellises',
+        'shadeStructures',
         n,
         list.length
-          ? `Your ${plural(list.length, 'shade canopy', 'shade canopies')}${measured ? '' : " (8'x8' each)"} in 12'x8' trellises, the size the spreadsheet prices.`
+          ? `Your ${plural(list.length, 'shade canopy', 'shade canopies')}${drawn} as the Shade guide’s 8'x8' structure: one per 64 sq ft, rounded up.`
           : undefined,
       );
     }
@@ -268,6 +278,13 @@ const emptyKeys: Record<CostInputKey, 0> = {
   gabionTables: 0,
   stageSquares: 0,
   trellises: 0,
+  gabionBenches8: 0,
+  tables4: 0,
+  tables6: 0,
+  planters18: 0,
+  planters24: 0,
+  workbenches: 0,
+  shadeStructures: 0,
   longTables: 0,
   compostBins: 0,
   keyholeGardensLarge: 0,

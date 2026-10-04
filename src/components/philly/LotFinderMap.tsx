@@ -1,7 +1,9 @@
 /** @jsxImportSource preact */
 // LotFinderMap — "walk the neighborhood" on a map: the City's vacant-land list
-// coloured public vs private, your lot and your list highlighted. Click a lot
-// for owner and size, then "Use this as my park lot" or "Add to my list".
+// coloured by owner and by the Land Bank's own status, your lot and your list
+// highlighted. Click a lot (or pick it from the list under the map — the keyboard
+// way) for owner and size, then "Use this as my park lot" or "Add to my list".
+// A street name with no house number offers that street's blocks.
 
 import { render, type VNode } from 'preact';
 import type { Feature, FeatureCollection } from 'geojson';
@@ -12,17 +14,28 @@ import { addCandidate } from '../../lib/project';
 import { fetchVacantLots } from '../../lib/philly/vacant';
 import { lookupLot, type LotQuery } from '../../lib/philly/lookup';
 import { chooseLot } from '../../lib/philly/choose';
-import { PhillyError, type AddressSuggestion, type BBox, type VacantLotProps } from '../../lib/philly/types';
-import { OWNER_TYPE_LABEL } from '../../lib/philly/owner';
+import { findStreet, looksLikeStreetOnly, type StreetBlock, type StreetMatch } from '../../lib/philly/streets';
+import { landBankLine } from '../../lib/philly/landbank';
+import { distanceFt } from '../../lib/philly/geo';
+import { PhillyError, type AddressSuggestion, type BBox, type VacantLotFeature, type VacantLotProps } from '../../lib/philly/types';
+import { classifyOwner, OWNER_TYPE_LABEL } from '../../lib/philly/owner';
 import { sqft, titleCase, zoningPlain } from '../../lib/philly/plain';
 import AddressSearch from './AddressSearch';
 import LotCard from './LotCard';
+import SaveToggle from './SaveToggle';
 import { useNearViewport, useProject } from './hooks';
 import { addAerial, createMap, setAerial } from './maplibre';
 
 const MIN_ZOOM = 16;
-const PUBLIC = '#00A8E8';
-const PRIVATE = '#F05A28';
+/** Map colours by VacantLotProps.mapClass (fill, outline). Words in the legend and list say the same. */
+const CLASS_STYLE: Record<VacantLotProps['mapClass'], { fill: string; line: string; label: string }> = {
+  'lb-available': { fill: '#00A8E8', line: '#00709C', label: 'Public — the Land Bank lists it as available' },
+  'lb-other': { fill: '#7D8B95', line: '#3E4A52', label: 'Public — on hold, in process or not available (Land Bank)' },
+  agency: { fill: '#0B4A6B', line: '#062B3E', label: 'Public — another agency owns it (not sold through the Land Bank)' },
+  public: { fill: '#00A8E8', line: '#00709C', label: 'Vacant — public owner' },
+  private: { fill: '#F05A28', line: '#A63A12', label: 'Vacant — private owner' },
+};
+const LIST_STEP = 10;
 
 type FC = FeatureCollection;
 const emptyFC: FC = { type: 'FeatureCollection', features: [] };
@@ -37,6 +50,25 @@ function myLotsFC(lot: LotRecord | null, candidates: LotRecord[]): FC {
   if (lot && lot.polygon.length >= 3)
     feats.push({ type: 'Feature', properties: { kind: 'chosen', address: lot.address }, geometry: { type: 'Polygon', coordinates: [[...lot.polygon, lot.polygon[0]!]] } });
   return { type: 'FeatureCollection', features: feats };
+}
+
+/** "Public — City of Philadelphia" / "Private owner" for one vacant lot, in a few words. */
+function ownerShort(p: VacantLotProps): string {
+  if (!p.isPublic) return 'Private owner';
+  if (p.ownerType === 'other-public') return classifyOwner([p.owner]).label.replace(/ \((regional transit|federal railroad|City-owned utility)\)$/, '');
+  return OWNER_TYPE_LABEL[p.ownerType].replace(/ \(public\)$/, '');
+}
+
+function centroid(f: VacantLotFeature): LngLat {
+  const ring = f.geometry.coordinates[0]!;
+  const n = Math.max(1, ring.length - 1);
+  let x = 0;
+  let y = 0;
+  for (let i = 0; i < n; i++) {
+    x += ring[i]![0];
+    y += ring[i]![1];
+  }
+  return [x / n, y / n];
 }
 
 /** Popup body for a vacant lot (rendered with Preact into the MapLibre popup). */
@@ -61,6 +93,14 @@ function VacantPopup({ p, onDetails }: { p: VacantLotProps; onDetails: (opa: str
       <span>{p.owner ? titleCase(p.owner) : 'Owner not listed'}</span>
       <br />
       <small>{OWNER_TYPE_LABEL[p.ownerType]}</small>
+      {p.landBank && (
+        <>
+          <br />
+          <small>
+            Land Bank: <span class={`ph-lb ph-lb-${p.landBank.tone}`}>{landBankLine(p.landBank)}</span>
+          </small>
+        </>
+      )}
       <br />
       <small>
         {sqft(p.areaSqFt)}
@@ -98,6 +138,7 @@ function SpotPopup({ onLook }: { onLook: () => void }) {
 export default function LotFinderMap({ height }: { height?: string }) {
   const project = useProject();
   const [wrapRef, near] = useNearViewport<HTMLDivElement>();
+  const [forced, setForced] = useState(false);
   const mapEl = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MLMap | null>(null);
   const mlRef = useRef<typeof import('maplibre-gl') | null>(null);
@@ -110,12 +151,20 @@ export default function LotFinderMap({ height }: { height?: string }) {
   const [detailBusy, setDetailBusy] = useState(false);
   const [detailError, setDetailError] = useState<PhillyError | null>(null);
   const [flash, setFlash] = useState<string | null>(null);
+  const [found, setFound] = useState<string | null>(null);
+  const [street, setStreet] = useState<{ q: string; matches: StreetMatch[] } | null>(null);
+  const [streetMsg, setStreetMsg] = useState<string | null>(null);
+  const [lbLoaded, setLbLoaded] = useState(true);
+  const [inView, setInView] = useState<VacantLotFeature[] | null>(null);
+  const [listMax, setListMax] = useState(LIST_STEP);
   const fetchCtrl = useRef<AbortController | null>(null);
   const detailRef = useRef<HTMLDivElement>(null);
+  const loaded = useRef(new Map<string, VacantLotFeature>());
+  const lastFC = useRef<VacantLotFeature[]>([]);
 
-  // --- create the map when it scrolls into view ---------------------------------------
+  // --- create the map when it scrolls into view (or gets keyboard focus) ----------------
   useEffect(() => {
-    if (!near || mapRef.current || !mapEl.current) return;
+    if (!(near || forced) || mapRef.current || !mapEl.current) return;
     let cancelled = false;
     const lot = project.lot ?? project.candidates[0] ?? null;
     const center: [number, number] | undefined = lot ? [lot.lng, lot.lat] : undefined;
@@ -127,20 +176,29 @@ export default function LotFinderMap({ height }: { height?: string }) {
         if (import.meta.env.DEV) (window as unknown as { __phLotFinderMap?: MLMap }).__phLotFinderMap = map;
         map.addControl(new ml.NavigationControl({ showCompass: false }), 'top-right');
         map.addControl(new ml.ScaleControl({ unit: 'imperial' }), 'bottom-left');
+        map
+          .getCanvas()
+          .setAttribute('aria-label', 'Map of vacant land. Arrow keys move the map, plus and minus zoom. The same lots are listed below the map.');
         addAerial(map, false);
         map.addSource('vacant', { type: 'geojson', data: emptyFC });
         map.addSource('mylots', { type: 'geojson', data: myLotsFC(project.lot, project.candidates) });
-        map.addLayer({
-          id: 'vacant-fill',
-          type: 'fill',
-          source: 'vacant',
-          paint: { 'fill-color': ['case', ['get', 'isPublic'], PUBLIC, PRIVATE], 'fill-opacity': 0.45 },
-        });
+        const byClass = (k: 'fill' | 'line') =>
+          ['match', ['get', 'mapClass'], ...Object.entries(CLASS_STYLE).flatMap(([c, s]) => [c, s[k]]), CLASS_STYLE.private[k]] as never;
+        map.addLayer({ id: 'vacant-fill', type: 'fill', source: 'vacant', paint: { 'fill-color': byClass('fill'), 'fill-opacity': 0.5 } });
         map.addLayer({
           id: 'vacant-line',
           type: 'line',
           source: 'vacant',
-          paint: { 'line-color': ['case', ['get', 'isPublic'], '#00709C', '#A63A12'], 'line-width': 1 },
+          filter: ['!=', ['get', 'mapClass'], 'lb-other'],
+          paint: { 'line-color': byClass('line'), 'line-width': 1 },
+        });
+        // on hold / in process / not available: a dashed edge, so it isn't told apart by colour alone
+        map.addLayer({
+          id: 'vacant-line-dash',
+          type: 'line',
+          source: 'vacant',
+          filter: ['==', ['get', 'mapClass'], 'lb-other'],
+          paint: { 'line-color': CLASS_STYLE['lb-other'].line, 'line-width': 1.5, 'line-dasharray': [2, 1.5] },
         });
         map.addLayer({
           id: 'mylots-fill',
@@ -173,13 +231,15 @@ export default function LotFinderMap({ height }: { height?: string }) {
         });
         setZoom(map.getZoom());
         setReady(true);
+        // keyboard focus was on the placeholder: hand it to the map itself
+        if (document.activeElement === mapEl.current) map.getCanvas().focus();
         loadVacant();
       })
       .catch(() => setMapError("The map couldn't load (the basemap service may be unreachable). You can still look lots up by address."));
     return () => {
       cancelled = true;
     };
-  }, [near]);
+  }, [near, forced]);
 
   useEffect(() => () => mapRef.current?.remove(), []);
 
@@ -193,11 +253,33 @@ export default function LotFinderMap({ height }: { height?: string }) {
     if (mapRef.current) setAerial(mapRef.current, aerial);
   }, [aerial, ready]);
 
+  /** The loaded lots inside the current view, nearest the middle first. */
+  function refreshList() {
+    const map = mapRef.current;
+    if (!map) return;
+    if (map.getZoom() < MIN_ZOOM) {
+      setInView(null);
+      return;
+    }
+    const b = map.getBounds();
+    const c = map.getCenter();
+    const mid: LngLat = [c.lng, c.lat];
+    const rows = lastFC.current
+      .map((f) => ({ f, at: centroid(f) }))
+      .filter(({ at }) => at[0] >= b.getWest() && at[0] <= b.getEast() && at[1] >= b.getSouth() && at[1] <= b.getNorth())
+      .map(({ f, at }) => ({ f, d: distanceFt(mid, at) }))
+      .sort((a, z) => a.d - z.d)
+      .map(({ f }) => f);
+    setInView(rows);
+    setListMax(LIST_STEP);
+  }
+
   async function loadVacant() {
     const map = mapRef.current;
     if (!map) return;
     if (map.getZoom() < MIN_ZOOM) {
       setNote('Zoom in to see vacant lots');
+      setInView(null);
       return;
     }
     const b = map.getBounds();
@@ -209,8 +291,17 @@ export default function LotFinderMap({ height }: { height?: string }) {
     try {
       const fc = await fetchVacantLots(bbox, { signal: ctrl.signal });
       if (ctrl.signal.aborted) return;
-      (map.getSource('vacant') as GeoJSONSource).setData(fc as unknown as FC);
+      lastFC.current = fc.features;
+      for (const f of fc.features) if (f.properties.opa) loaded.current.set(f.properties.opa, f);
+      // MapLibre keeps flat properties only; the full record stays in `loaded` for popups and the list
+      const flat: FC = {
+        type: 'FeatureCollection',
+        features: fc.features.map((f) => ({ ...f, properties: { ...f.properties, landBank: null } })) as unknown as Feature[],
+      };
+      (map.getSource('vacant') as GeoJSONSource).setData(flat);
+      setLbLoaded(fc.landBankLoaded !== false);
       setNote(fc.truncated ? 'Zoom in to see every vacant lot here' : fc.features.length ? null : 'No lots on the City vacant list here');
+      refreshList();
     } catch (e) {
       if ((e as PhillyError).code === 'aborted' || ctrl.signal.aborted) return;
       setNote("Couldn't load vacant lots — the City map service may be busy");
@@ -218,10 +309,11 @@ export default function LotFinderMap({ height }: { height?: string }) {
   }
 
   // --- details / actions ------------------------------------------------------------------
-  async function showDetails(q: LotQuery, then?: 'use' | 'list'): Promise<string> {
+  async function showDetails(q: LotQuery, then?: 'use' | 'list', opts: { focus?: boolean } = {}): Promise<string> {
     setDetailBusy(true);
     setDetailError(null);
     setFlash(null);
+    setFound(null);
     try {
       const lot = await lookupLot(q);
       setDetail(lot);
@@ -235,7 +327,11 @@ export default function LotFinderMap({ height }: { height?: string }) {
         setFlash(`Added ${titleCase(lot.address)} to your list.`);
         return '✓ Added to your list';
       }
-      setTimeout(() => detailRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+      setFound(titleCase(lot.address));
+      setTimeout(() => {
+        detailRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        if (opts.focus) detailRef.current?.querySelector<HTMLElement>('.ph-card-title')?.focus();
+      }, 50);
       return 'Details are below the map.';
     } catch (e) {
       const err = e instanceof PhillyError ? e : new PhillyError('city-down', 'Something went wrong. Try again in a minute.');
@@ -259,24 +355,97 @@ export default function LotFinderMap({ height }: { height?: string }) {
     const hit = map.queryRenderedFeatures(e.point, { layers: ['vacant-fill'] })[0];
     const ll: [number, number] = [e.lngLat.lng, e.lngLat.lat];
     if (hit) {
-      popupAt(ll, <VacantPopup p={hit.properties as unknown as VacantLotProps} onDetails={(opa, then) => showDetails({ opa }, then)} />);
+      const flat = hit.properties as unknown as VacantLotProps;
+      const p = (flat.opa && loaded.current.get(String(flat.opa))?.properties) || { ...flat, landBank: null };
+      popupAt(ll, <VacantPopup p={p} onDetails={(opa, then) => showDetails({ opa }, then)} />);
     } else if (map.getZoom() >= 17) {
       popupAt(ll, <SpotPopup onLook={() => showDetails({ lngLat: ll as LngLat }).catch(() => undefined)} />);
     }
   }
 
+  function flyToBox(b: BBox, minZoom = MIN_ZOOM + 0.5) {
+    const map = mapRef.current;
+    if (!map) return;
+    const cam = map.cameraForBounds(
+      [
+        [b[0], b[1]],
+        [b[2], b[3]],
+      ],
+      { padding: 50, maxZoom: 18.5 },
+    );
+    const center = cam?.center ?? [(b[0] + b[2]) / 2, (b[1] + b[3]) / 2];
+    map.flyTo({ center: center as [number, number], zoom: Math.max(minZoom, cam?.zoom ?? 17.5) });
+  }
+
+  function goBlock(name: string, block: StreetBlock) {
+    flyToBox(block.bbox);
+    setStreetMsg(`Showing the ${block.hundred === 0 ? 'first block' : `${block.hundred} block`} of ${titleCase(name)}. Vacant lots on the City's list are coloured, and listed under the map.`);
+  }
+
+  async function goStreet(q: string) {
+    setStreet(null);
+    setStreetMsg(null);
+    setDetailError(null);
+    setFlash(null);
+    setFound(null);
+    setDetailBusy(true);
+    try {
+      const matches = await findStreet(q);
+      if (!matches.length) {
+        setDetailError(
+          new PhillyError(
+            'not-found',
+            `We couldn't find a street called "${q}" on the City's street map. Check the spelling, or type a full address like "2233 N Uber St".`,
+          ),
+        );
+        return;
+      }
+      const one = matches.length === 1 ? matches[0]! : null;
+      if (one && one.blocks.length === 1) {
+        setStreet({ q, matches });
+        goBlock(one.name, one.blocks[0]!);
+        return;
+      }
+      setStreet({ q, matches });
+    } catch (e) {
+      setDetailError(e instanceof PhillyError ? e : new PhillyError('city-down', 'Something went wrong. Try again in a minute.'));
+    } finally {
+      setDetailBusy(false);
+    }
+  }
+
+  async function pickStreetName(name: string) {
+    await goStreet(name);
+  }
+
   function goTo(s: AddressSuggestion | string) {
     const map = mapRef.current;
+    setStreet(null);
+    setStreetMsg(null);
+    if (typeof s === 'string' && looksLikeStreetOnly(s)) {
+      void goStreet(s);
+      return;
+    }
     if (typeof s !== 'string' && s.lngLat && map) map.flyTo({ center: s.lngLat, zoom: s.kind === 'intersection' ? 17.5 : 18.5 });
-    if (typeof s !== 'string' && s.kind === 'intersection') return;
+    if (typeof s !== 'string' && s.kind === 'intersection') {
+      setFound(null);
+      setStreetMsg(`Showing the corner of ${titleCase(s.label)}. Vacant lots near it are coloured, and listed under the map.`);
+      return;
+    }
     showDetails(s)
       .then(() => undefined)
       .catch(() => undefined);
   }
 
-  // when a looked-up lot arrives, centre on it
+  // when a looked-up lot arrives, centre on it — unless it is already in view up close
+  // (picked from the map or the list: moving would reshuffle the list under the person)
   useEffect(() => {
-    if (detail && mapRef.current) mapRef.current.flyTo({ center: [detail.lng, detail.lat], zoom: Math.max(mapRef.current.getZoom(), 18) });
+    const map = mapRef.current;
+    if (!detail || !map) return;
+    const b = map.getBounds();
+    const inside = detail.lng > b.getWest() && detail.lng < b.getEast() && detail.lat > b.getSouth() && detail.lat < b.getNorth();
+    if (inside && map.getZoom() >= 17) return;
+    map.flyTo({ center: [detail.lng, detail.lat], zoom: Math.max(map.getZoom(), 18) });
   }, [detail]);
 
   function nearMe() {
@@ -293,11 +462,22 @@ export default function LotFinderMap({ height }: { height?: string }) {
   }
 
   const showNote = note ?? (ready && zoom < MIN_ZOOM ? 'Zoom in to see vacant lots' : null);
+  const one = street?.matches.length === 1 ? street.matches[0]! : null;
+  const isListed = (opa: string | null) => Boolean(opa && project.candidates.some((c) => c.opa === opa));
+  const legend = lbLoaded ? (['lb-available', 'lb-other', 'agency', 'private'] as const) : (['public', 'private'] as const);
 
   return (
-    <div class="ph ph-finder" ref={wrapRef}>
+    <div class="ph ph-finder" ref={wrapRef} id="vacant-map">
       <div class="ph-map-bar">
-        <AddressSearch label="Go to an address or corner" buttonLabel="Go" hint="" busy={detailBusy} onPick={goTo} />
+        <AddressSearch
+          label="Go to an address or corner"
+          placeholder="e.g. 2233 N Uber St, N Uber St, or 22nd & Diamond"
+          hint="Takes the map there. Only know the street? Type its name and pick your block."
+          formLabel="Move the vacant-land map"
+          buttonLabel="Go"
+          busy={detailBusy}
+          onPick={goTo}
+        />
         <button class="btn" type="button" onClick={nearMe} disabled={!ready}>
           📍 Near me
         </button>
@@ -305,42 +485,9 @@ export default function LotFinderMap({ height }: { height?: string }) {
           {aerial ? 'Street map' : 'Aerial photo'}
         </button>
       </div>
-      <div class="ph-map-wrap">
-        {showNote && <div class="ph-map-note">{showNote}</div>}
-        <div
-          ref={mapEl}
-          class="ph-map"
-          style={height ? `height:${height}` : undefined}
-          role="region"
-          aria-label="Map of vacant land. Click a coloured lot to see its owner and size."
-        />
-        {mapError && (
-          <div class="ph-error" style="position:absolute;inset:auto 10px 10px 10px">
-            {mapError}
-          </div>
-        )}
-      </div>
-      <div class="ph-legend" aria-label="Map legend">
-        <span>
-          <span class="ph-swatch" style={`background:${PUBLIC};opacity:.7`} />
-          Vacant — public owner
-        </span>
-        <span>
-          <span class="ph-swatch" style={`background:${PRIVATE};opacity:.7`} />
-          Vacant — private owner
-        </span>
-        <span>
-          <span class="ph-swatch" style="border-color:#111;border-width:3px" />
-          Your park lot
-        </span>
-        <span>
-          <span class="ph-swatch" style="border:2px dashed #111" />
-          Your list
-        </span>
-        <span class="ph-small">Vacant lots appear when you zoom in close. Source: City of Philadelphia vacant-land list.</span>
-      </div>
 
-      <div ref={detailRef} aria-live="polite">
+      {/* Feedback right under the box, where people are looking (novice-phone F1, block-captain F1) */}
+      <div class="ph-map-status" aria-live="polite">
         {detailBusy && (
           <p class="ph-status">
             <span class="ph-spinner" aria-hidden="true" />
@@ -348,9 +495,55 @@ export default function LotFinderMap({ height }: { height?: string }) {
           </p>
         )}
         {flash && <p class="ph-status ph-saved">✓ {flash}</p>}
+        {found && !detailBusy && (
+          <p class="ph-status">
+            Found <strong>{found}</strong> — the map is on it, and{' '}
+            <a
+              href="#ph-finder-detail"
+              onClick={(e) => {
+                e.preventDefault();
+                detailRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                detailRef.current?.querySelector<HTMLElement>('.ph-card-title')?.focus();
+              }}
+            >
+              its details are under the map ↓
+            </a>
+          </p>
+        )}
+        {street && street.matches.length > 1 && (
+          <div class="ph-street-pick">
+            <p class="ph-status">More than one street matches "{street.q}". Which one?</p>
+            <div class="ph-chips">
+              {street.matches.map((m) => (
+                <button class="ph-chip" type="button" onClick={() => pickStreetName(m.name)}>
+                  {titleCase(m.name)}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+        {one && one.blocks.length > 1 && (
+          <div class="ph-street-pick">
+            <p class="ph-status">
+              {titleCase(one.name)} has {one.blocks.length} blocks on the City's street map. Which block is yours? (The 2200 block is house numbers
+              2200–2299.)
+            </p>
+            <div class="ph-chips ph-chips-scroll" role="group" aria-label={`Blocks of ${titleCase(one.name)}`}>
+              {one.blocks.map((b) => (
+                <button class="ph-chip" type="button" onClick={() => goBlock(one.name, b)}>
+                  {b.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+        {streetMsg && <p class="ph-status">{streetMsg}</p>}
         {detailError && (
           <div class="ph-error" role="alert">
             <p>{detailError.message}</p>
+            {detailError.code === 'not-found' && !street && (
+              <p class="ph-small">Only know the street? Type just its name, like "N Uber St", and pick your block.</p>
+            )}
             {detailError.suggestions.length > 0 && (
               <div class="ph-chips">
                 {detailError.suggestions.map((s) => (
@@ -363,44 +556,160 @@ export default function LotFinderMap({ height }: { height?: string }) {
             )}
           </div>
         )}
+      </div>
+
+      <div class="ph-map-wrap">
+        {showNote && <div class="ph-map-note">{showNote}</div>}
+        <div
+          ref={mapEl}
+          class="ph-map"
+          style={height ? `height:${height}` : undefined}
+          role="region"
+          aria-label="Map of vacant land. Click a coloured lot to see its owner and size, or use the list below the map."
+          // Until the map has loaded, this box holds its place in the tab order (access-keyboard F6);
+          // focusing it loads the map and hands focus on to it.
+          tabIndex={ready ? -1 : 0}
+          onFocus={() => !ready && setForced(true)}
+        />
+        {!ready && !mapError && (near || forced) && (
+          <p class="ph-map-loading" aria-hidden="true">
+            Loading the map…
+          </p>
+        )}
+        {mapError && (
+          <div class="ph-error" style="position:absolute;inset:auto 10px 10px 10px">
+            {mapError}
+          </div>
+        )}
+      </div>
+      <div class="ph-legend" aria-label="Map legend">
+        {legend.map((c) => (
+          <span>
+            <span
+              class="ph-swatch"
+              style={`background:${CLASS_STYLE[c].fill};opacity:.75;${c === 'lb-other' ? `border:2px dashed ${CLASS_STYLE[c].line}` : ''}`}
+            />
+            {CLASS_STYLE[c].label}
+          </span>
+        ))}
+        <span>
+          <span class="ph-swatch" style="border-color:#111;border-width:3px" />
+          Your park lot
+        </span>
+        <span>
+          <span class="ph-swatch" style="border:2px dashed #111" />
+          Your list
+        </span>
+        <span class="ph-small">
+          Vacant lots appear when you zoom in close. Source: City of Philadelphia vacant-land list
+          {lbLoaded ? "; Land Bank status from the Land Bank's own property list" : ". The Land Bank's status couldn't load right now"}.
+        </span>
+      </div>
+
+      <div ref={detailRef} id="ph-finder-detail">
         {detail && !detailBusy && (
           <LotCard
             lot={detail}
+            titleFocusable
             actions={
               <>
-                {project.lot?.address === detail.address ? (
-                  <span class="ph-saved">✓ This is your park lot</span>
-                ) : (
-                  <button
-                    class="btn btn-primary"
-                    type="button"
-                    onClick={() => {
-                      chooseLot(detail);
-                      setFlash(`${titleCase(detail.address)} is now your park lot.`);
-                    }}
-                  >
-                    Use this as my park lot
-                  </button>
-                )}
-                {project.candidates.some((c) => c.address === detail.address) ? (
-                  <span class="ph-saved">✓ On your list</span>
-                ) : (
-                  <button
-                    class="btn"
-                    type="button"
-                    onClick={() => {
-                      addCandidate(detail);
-                      setFlash(`Added ${titleCase(detail.address)} to your list.`);
-                    }}
-                  >
-                    + Add to my list
-                  </button>
-                )}
+                <SaveToggle
+                  primary
+                  done={project.lot?.address === detail.address}
+                  doneText="✓ This is your park lot"
+                  onClick={() => {
+                    chooseLot(detail);
+                    setFlash(`${titleCase(detail.address)} is now your park lot.`);
+                  }}
+                >
+                  Use this as my park lot
+                </SaveToggle>
+                <SaveToggle
+                  done={project.candidates.some((c) => c.address === detail.address)}
+                  doneText="✓ On your list"
+                  onClick={() => {
+                    addCandidate(detail);
+                    setFlash(`Added ${titleCase(detail.address)} to your list.`);
+                  }}
+                >
+                  + Add to my list
+                </SaveToggle>
               </>
             }
           />
         )}
       </div>
+
+      {/* The keyboard (and small-screen) way to pick a lot: the lots on the map, as a list (access-keyboard F5) */}
+      <section class="ph-inview" aria-labelledby="ph-inview-h">
+        <h3 id="ph-inview-h" class="ph-inview-h">
+          Vacant lots on the map now{inView ? ` (${inView.length})` : ''}
+        </h3>
+        {!ready ? (
+          <p class="ph-small">The list appears once the map has loaded.</p>
+        ) : !inView ? (
+          <p class="ph-small">Zoom in on a few blocks, or type an address or street above, to list the vacant lots there.</p>
+        ) : inView.length === 0 ? (
+          <p class="ph-small">No lots on the City's vacant-land list in this part of the map.</p>
+        ) : (
+          <>
+            <p class="ph-small">Nearest the middle of the map first. Move the map to change the list.</p>
+            <ul class="ph-inview-list">
+              {inView.slice(0, listMax).map((f) => {
+                const p = f.properties;
+                const name = titleCase(p.address) || 'Lot without an address';
+                return (
+                  <li key={p.opa ?? String(f.id)}>
+                    <span class="ph-swatch" aria-hidden="true" style={`background:${CLASS_STYLE[p.mapClass].fill};opacity:.75`} />
+                    <span class="ph-inview-text">
+                      <strong>{name}</strong>
+                      <br />
+                      <small>
+                        {ownerShort(p)}
+                        {p.landBank ? (
+                          <>
+                            {' · Land Bank: '}
+                            <span class={`ph-lb ph-lb-${p.landBank.tone}`}>{landBankLine(p.landBank)}</span>
+                          </>
+                        ) : p.mapClass === 'agency' ? (
+                          ' · not through the Land Bank'
+                        ) : null}
+                        {p.areaSqFt ? ` · ${sqft(p.areaSqFt)}` : ''}
+                      </small>
+                    </span>
+                    <span class="ph-row-actions">
+                      <button
+                        class="btn btn-small"
+                        type="button"
+                        disabled={!p.opa || detailBusy}
+                        aria-label={`Details for ${name}`}
+                        onClick={() => p.opa && showDetails({ opa: p.opa }, undefined, { focus: true }).catch(() => undefined)}
+                      >
+                        Details
+                      </button>
+                      <SaveToggle
+                        small
+                        done={isListed(p.opa)}
+                        doneText="✓ On your list"
+                        disabled={!p.opa || detailBusy}
+                        label={`Add ${name} to my list`}
+                        onClick={() => p.opa && showDetails({ opa: p.opa }, 'list').catch(() => undefined)}
+                      >
+                        + Add to my list
+                      </SaveToggle>
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+            {inView.length > listMax && (
+              <button class="btn btn-small" type="button" onClick={() => setListMax(listMax + LIST_STEP)}>
+                Show {Math.min(LIST_STEP, inView.length - listMax)} more
+              </button>
+            )}
+          </>
+        )}
+      </section>
     </div>
   );
 }

@@ -9,6 +9,7 @@ import {
   CATEGORIES,
   INPUT_CELLS,
   INPUT_KEYS,
+  SITE_INPUTS,
   SUMMARY_CELLS,
   defaultInputs,
   emptyInputs,
@@ -44,7 +45,7 @@ describe('fixtures', () => {
   });
   it('the sheet-defaults fixture uses defaultInputs', () => {
     const f = fixtures.find((x) => x.name === 'sheet-defaults')!;
-    expect(f.inputs).toEqual(defaultInputs);
+    expect(normaliseInputs(f.inputs)).toEqual(defaultInputs);
   });
 });
 
@@ -53,8 +54,11 @@ for (const f of fixtures) {
     const e = estimate(f.inputs, { mode: 'sheet' });
 
     it('writes the same answer cells as the model', () => {
-      expect(f.cells).toEqual(INPUT_CELLS);
-      expect(Object.keys(f.inputs).sort()).toEqual([...INPUT_KEYS].sort());
+      // the site-added questions (furniture with a build guide) have no cell in the spreadsheet
+      const sheetCells = Object.fromEntries(Object.entries(INPUT_CELLS).filter(([k]) => !SITE_INPUTS.includes(k as keyof CostInputs)));
+      expect(f.cells).toEqual(sheetCells);
+      expect(Object.keys(f.inputs).sort()).toEqual(INPUT_KEYS.filter((k) => !SITE_INPUTS.includes(k)).sort());
+      for (const k of SITE_INPUTS) expect(INPUT_CELLS[k]).toBeNull();
     });
 
     it('matches every INSERT HERE summary cell', () => {

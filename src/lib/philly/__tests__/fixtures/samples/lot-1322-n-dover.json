@@ -13,7 +13,7 @@
  "category": "VACANT LAND",
  "buildingDescription": "VACANT LAND RESIDE < ACRE",
  "zoning": "RSA-5",
- "areaSqFt": 700,
+ "areaSqFt": 701,
  "frontageFt": 14,
  "depthFt": 50,
  "marketValue": 56000,
@@ -58,7 +58,7 @@
   }
  ],
  "floodZone": "X",
- "fetchedAt": "2026-10-04T14:42:51.258Z",
+ "fetchedAt": "2026-10-04T20:00:18.443Z",
  "sources": [
   {
    "label": "This property on atlas.phila.gov",
@@ -73,8 +73,8 @@
    "url": "https://atlas.phila.gov/1322%20N%20DOVER%20ST/zoning"
   },
   {
-   "label": "Philadelphia Land Bank",
-   "url": "https://www.phila.gov/departments/philadelphia-land-bank/"
+   "label": "Philadelphia Land Bank's property map",
+   "url": "https://phillylandbank.org/view-properties-map/"
   },
   {
    "label": "Registered Community Organizations (City of Philadelphia)",
@@ -204,6 +204,14 @@
   "floodZoneLabel": "Zone X — minimal flood risk",
   "parcelSource": "pwd",
   "zip": "19121",
-  "neighborhood": "Brewerytown"
+  "planningDistrict": "Lower North",
+  "landBank": {
+   "agency": "PUB",
+   "status": "Owned - On Hold for AHD",
+   "label": "On hold for affordable housing",
+   "tone": "hold",
+   "sideYard": true
+  },
+  "assessedAreaSqFt": 700
  }
 }

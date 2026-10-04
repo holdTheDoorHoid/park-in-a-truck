@@ -6,22 +6,33 @@
 import { addCandidate, getExtra, setExtra, setLot } from '../project';
 import { fitSize } from '../sizing';
 import type { LotRecord, SiteFacts } from '../types';
-import type { LotExtra } from './types';
+import type { LotExtra, LotGeometry } from './types';
 
 /** The geometry facts stored on a LotRecord by lookupLot(). */
 export function lotGeometry(lot: LotRecord | null | undefined) {
   return ((lot?.extra ?? {}) as LotExtra).geometry ?? null;
 }
 
+/**
+ * The park size for a lot's measured rectangle, worked out now rather than read from
+ * the saved record: lots saved before 2026-10-04 carry a "closest fit" that could be
+ * bigger than the lot (sizing.ts).
+ */
+export function sizeOf(g: Pick<LotGeometry, 'lengthFt' | 'widthFt'>): LotGeometry['size'] {
+  const f = fitSize(g.lengthFt, g.widthFt);
+  return { id: f.size, exact: f.exact, tooSmall: f.tooSmall, tooBig: f.tooBig };
+}
+
 /** The lot fields of SiteFacts for a looked-up lot (pure; no saving). */
 export function siteFactsFromLot(lot: LotRecord): SiteFacts {
   const g = lotGeometry(lot);
   if (g) {
+    const size = sizeOf(g);
     return {
-      sizeId: g.size.id,
-      sizeExact: g.size.exact,
-      tooSmall: g.size.tooSmall,
-      tooBig: g.size.tooBig,
+      sizeId: size.id,
+      sizeExact: size.exact,
+      tooSmall: size.tooSmall,
+      tooBig: size.tooBig,
       lengthFt: g.lengthFt,
       widthFt: g.widthFt,
       rect: { center: g.rect.center, bearingDeg: g.rect.bearingDeg },

@@ -38,6 +38,7 @@ export interface LotRecord {
   category?: string | null;
   buildingDescription?: string | null;
   zoning?: string | null;
+  /** Lot area, sq ft: from the parcel outline when there is one (the size every page shows), else the assessment's */
   areaSqFt?: number | null;
   frontageFt?: number | null;
   depthFt?: number | null;

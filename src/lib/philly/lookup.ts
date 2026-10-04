@@ -9,6 +9,7 @@
 //     → ArcGIS: Vacant_Indicators_Land (on the City's vacant list?),
 //       Zoning_RCO (community organizations), fema_floodplain_2023
 //     → ArcGIS: neighbouring PWD_PARCELS + Street_Centerline → lot shape analysis
+//     → ArcGIS: LAMAAssets — the Land Bank's own status for public land
 //
 // Which parcel outline? The City has two:
 //   - PWD parcels (Water Department billing parcels) are keyed 1:1 to OPA
@@ -27,10 +28,11 @@ import { cartoUrl, LAYERS, links, sqlString } from './endpoints';
 import { bboxOf, largestOuterRing } from './geo';
 import { getJSON } from './http';
 import { analyseLot, type ShapeStreet } from './lotshape';
-import { classifyOwner, isPublic } from './owner';
+import { landBankStatus } from './landbank';
+import { classifyOwner, isPublic, landBankHandles } from './owner';
 import { COUNCIL_MEMBERS, floodPlain, normaliseZoning } from './plain';
 import { normaliseAddress, prefixSearch, searchAddresses } from './search';
-import { PhillyError, type AddressSuggestion, type LotExtra } from './types';
+import { PhillyError, type AddressSuggestion, type LandBankStatus, type LotExtra } from './types';
 import { vacantLotsNear } from './vacant';
 
 export type LotQuery = string | { opa: string } | { lngLat: LngLat } | AddressSuggestion;
@@ -218,6 +220,9 @@ export async function lookupLot(query: LotQuery, opts: LookupOpts = {}): Promise
         'community organizations (RCOs)',
       )
     : Promise.resolve([]);
+  const landBankP = opa
+    ? soft<LandBankStatus | null | undefined>(landBankStatus(opa, { signal }), undefined, warnings, "the Land Bank's status for this lot")
+    : Promise.resolve(undefined);
   const floodP = point
     ? soft(
         queryAttrs<{ fld_zone: string | null; zone_subty: string | null }>(LAYERS.flood, { point, outFields: ['fld_zone', 'zone_subty'] }, { signal }),
@@ -271,7 +276,7 @@ export async function lookupLot(query: LotQuery, opts: LookupOpts = {}): Promise
     });
   }
 
-  const [vacant, rcos, flood] = await Promise.all([vacantP, rcoP, floodP]);
+  const [vacant, rcos, flood, landBank] = await Promise.all([vacantP, rcoP, floodP, landBankP]);
 
   const owners = row ? [row.owner_1, row.owner_2].filter((o): o is string => Boolean(o && o.trim())) : (p?.opa_owners ?? []);
   const cls = classifyOwner(owners);
@@ -290,7 +295,11 @@ export async function lookupLot(query: LotQuery, opts: LookupOpts = {}): Promise
     floodZoneLabel: floodPlain(zoneRow?.fld_zone ?? null, zoneRow?.zone_subty ?? null),
     parcelSource,
     zip: row?.zip_code ?? p?.zip_code ?? null,
-    neighborhood: (p?.philly_rising_area as string) || (p?.planning_district as string) || null,
+    // Not AIS's philly_rising_area: those areas are named after playgrounds (2537 N 11th St
+    // is in "Penrose", after Penrose Playground — not the Penrose neighbourhood by the airport).
+    planningDistrict: (p?.planning_district as string) || null,
+    ...(landBank !== undefined ? { landBank } : {}),
+    assessedAreaSqFt: row?.total_area ?? null,
     warnings: warnings.length ? warnings : undefined,
   };
 
@@ -298,7 +307,9 @@ export async function lookupLot(query: LotQuery, opts: LookupOpts = {}): Promise
     { label: 'This property on atlas.phila.gov', url: links.atlas(address) },
     ...(opa ? [{ label: 'Property assessment (property.phila.gov)', url: links.property(opa) }] : []),
     { label: 'Zoning on atlas.phila.gov', url: links.atlasZoning(address) },
-    ...(isPublic(cls.type) ? [{ label: 'Philadelphia Land Bank', url: links.landBank }] : []),
+    ...(landBank || (isPublic(cls.type) && landBankHandles(cls.type, cls.label))
+      ? [{ label: "Philadelphia Land Bank's property map", url: links.landBankMap }]
+      : []),
     ...(rcos.length ? [{ label: 'Registered Community Organizations (City of Philadelphia)', url: links.rcos }] : []),
   ];
 
@@ -315,7 +326,9 @@ export async function lookupLot(query: LotQuery, opts: LookupOpts = {}): Promise
     category: row?.category_code_description ?? null,
     buildingDescription: row?.building_code_description ?? null,
     zoning: normaliseZoning(p?.zoning || row?.zoning),
-    areaSqFt: row?.total_area || geometry?.areaSqFt || null,
+    // One lot size everywhere: the parcel outline's area (what every page measures);
+    // the assessment's figure is kept in extra.assessedAreaSqFt.
+    areaSqFt: geometry?.areaSqFt || row?.total_area || null,
     frontageFt: row?.frontage ?? null,
     depthFt: row?.depth ?? null,
     marketValue: row?.market_value ?? null,
