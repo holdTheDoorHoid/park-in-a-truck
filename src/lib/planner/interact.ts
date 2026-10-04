@@ -221,3 +221,155 @@ export class DragGesture {
     return this.start;
   }
 }
+
+// ---- wet areas drawn as outlines (terrain, 2026-10-04) --------------------------------
+//
+// Click (tap) around the area point by point; finish by clicking the first point again,
+// double-clicking, Enter or the Finish button; Esc cancels. The outline is saved as
+// corners in feet east/north of its centre (ExistingItem.outline), so dragging the area
+// only changes its lngLat. Older saves have a circle (radiusFt) and still work.
+
+/** How close (screen px) a click must be to the first point to close the outline. */
+export const CLOSE_PX = { mouse: 12, touch: 24 } as const;
+
+/** An outline being drawn: points in local feet, plus where each was clicked on screen. */
+export class PolygonDraft {
+  points: Vec2[] = [];
+  private screen: Vec2[] = [];
+
+  get canFinish(): boolean {
+    return this.points.length >= 3;
+  }
+
+  /**
+   * A click at ground point `p` (local feet), screen position `at`. Returns 'close' when it
+   * lands on the first point (and there are enough points to make an area), 'skip' for the
+   * second click of a double-click (on top of the last point), else 'add'.
+   */
+  click(p: Vec2, at: Vec2, closePx: number = CLOSE_PX.mouse): 'add' | 'close' | 'skip' {
+    const n = this.points.length;
+    if (n >= 3 && Math.hypot(at[0] - this.screen[0]![0], at[1] - this.screen[0]![1]) <= closePx) return 'close';
+    if (n && Math.hypot(at[0] - this.screen[n - 1]![0], at[1] - this.screen[n - 1]![1]) < 6) return 'skip';
+    this.points.push([p[0], p[1]]);
+    this.screen.push([at[0], at[1]]);
+    return 'add';
+  }
+
+  /** The camera moved: screen positions of the points so far (for closing on the first one). */
+  reproject(toScreen: (p: Vec2) => Vec2 | null) {
+    this.screen = this.points.map((p) => toScreen(p) ?? [Infinity, Infinity]);
+  }
+
+  undo() {
+    this.points.pop();
+    this.screen.pop();
+  }
+}
+
+/** Shoelace area (absolute), square feet. */
+export function polygonArea(pts: Vec2[]): number {
+  let a = 0;
+  for (let i = 0; i < pts.length; i++) {
+    const p = pts[i]!;
+    const q = pts[(i + 1) % pts.length]!;
+    a += p[0] * q[1] - q[0] * p[1];
+  }
+  return Math.abs(a) / 2;
+}
+
+/** Area centroid (falls back to the vertex average for degenerate outlines). */
+export function polygonCentroid(pts: Vec2[]): Vec2 {
+  let a = 0;
+  let cx = 0;
+  let cy = 0;
+  for (let i = 0; i < pts.length; i++) {
+    const p = pts[i]!;
+    const q = pts[(i + 1) % pts.length]!;
+    const f = p[0] * q[1] - q[0] * p[1];
+    a += f;
+    cx += (p[0] + q[0]) * f;
+    cy += (p[1] + q[1]) * f;
+  }
+  if (Math.abs(a) < 1e-9) {
+    const n = pts.length || 1;
+    return [pts.reduce((s, p) => s + p[0], 0) / n, pts.reduce((s, p) => s + p[1], 0) / n];
+  }
+  return [cx / (3 * a), cy / (3 * a)];
+}
+
+/**
+ * A drawn outline (local feet) as it is saved: its centre, and the corners as offsets in
+ * feet east/north of it (0.1 ft), with near-duplicate corners dropped; `radiusFt` is the
+ * radius of a circle of the same area (for anything that only knows circles).
+ */
+export function outlineFromPoints(points: Vec2[]): { center: Vec2; outline: [number, number][]; radiusFt: number } {
+  const pts: Vec2[] = [];
+  for (const p of points) {
+    const last = pts[pts.length - 1];
+    if (!last || Math.hypot(p[0] - last[0], p[1] - last[1]) >= 0.2) pts.push(p);
+  }
+  if (pts.length > 3 && Math.hypot(pts[0]![0] - pts[pts.length - 1]![0], pts[0]![1] - pts[pts.length - 1]![1]) < 0.2) pts.pop();
+  const center = polygonCentroid(pts);
+  const outline = pts.map(([x, y]) => [Math.round((x - center[0]) * 10) / 10, Math.round((y - center[1]) * 10) / 10] as [number, number]);
+  return { center, outline, radiusFt: Math.max(0.5, Math.round(Math.sqrt(polygonArea(pts) / Math.PI) * 10) / 10) };
+}
+
+/** The ground a wet area covers, local feet: its drawn outline, or (older saves) a circle. */
+export function wetAreaPolygon(it: { outline?: [number, number][] | null; radiusFt?: number }, center: Vec2, segments = 32): Vec2[] {
+  if (it.outline && it.outline.length >= 3) return it.outline.map(([dx, dy]) => [center[0] + dx, center[1] + dy] as Vec2);
+  const r = it.radiusFt ?? 5;
+  return Array.from({ length: segments }, (_, i) => {
+    const a = (i / segments) * Math.PI * 2;
+    return [center[0] + r * Math.cos(a), center[1] + r * Math.sin(a)] as Vec2;
+  });
+}
+
+/** An outline with one corner moved to `p` (offsets from `center`). */
+export function moveCorner(outline: [number, number][], i: number, p: Vec2, center: Vec2): [number, number][] {
+  return outline.map((o, k) => (k === i ? [Math.round((p[0] - center[0]) * 10) / 10, Math.round((p[1] - center[1]) * 10) / 10] : o));
+}
+
+/** An outline with a new corner at `p` inserted after corner `i`. */
+export function insertCorner(outline: [number, number][], i: number, p: Vec2, center: Vec2): [number, number][] {
+  const out = outline.slice();
+  out.splice(i + 1, 0, [Math.round((p[0] - center[0]) * 10) / 10, Math.round((p[1] - center[1]) * 10) / 10]);
+  return out;
+}
+
+/** The polygon pushed outward by `pad` feet (mitred corners, capped), for selection rings. */
+export function padPolygon(pts: Vec2[], pad: number): Vec2[] {
+  const n = pts.length;
+  if (n < 3 || !pad) return pts;
+  const ccw = polygonSignedArea(pts) > 0;
+  return pts.map((p, i) => {
+    const a = pts[(i - 1 + n) % n]!;
+    const b = pts[(i + 1) % n]!;
+    const n1 = outward(a, p, ccw);
+    const n2 = outward(p, b, ccw);
+    let mx = n1[0] + n2[0];
+    let my = n1[1] + n2[1];
+    const m = Math.hypot(mx, my) || 1;
+    mx /= m;
+    my /= m;
+    const cos = Math.max(0.35, mx * n1[0] + my * n1[1]);
+    return [p[0] + (mx * pad) / cos, p[1] + (my * pad) / cos] as Vec2;
+  });
+}
+
+function polygonSignedArea(pts: Vec2[]): number {
+  let a = 0;
+  for (let i = 0; i < pts.length; i++) {
+    const p = pts[i]!;
+    const q = pts[(i + 1) % pts.length]!;
+    a += p[0] * q[1] - q[0] * p[1];
+  }
+  return a / 2;
+}
+
+function outward(a: Vec2, b: Vec2, ccw: boolean): Vec2 {
+  const dx = b[0] - a[0];
+  const dy = b[1] - a[1];
+  const L = Math.hypot(dx, dy) || 1;
+  // outside of a CCW ring is to the right of each edge
+  return ccw ? [dy / L, -dx / L] : [-dy / L, dx / L];
+}

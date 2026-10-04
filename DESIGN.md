@@ -175,6 +175,22 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
   planted trees share the City trees' drawing. Furniture is built level on the lowest ground under it; surfaces,
   grid, outlines and the selection ring follow the ground. The plain blocks stay underneath, invisible, as what the
   mouse picks. Detail steps down (high → low → blocks) when frames stay slow; `?furniture=high|low|blocks` pins it.
+  *Ground and slope (terrain, 2026-10-04):* ground heights come from USGS 3DEP lidar (Philadelphia: flown 2015,
+  1 m grid, NAVD88) — one `exportImage` request per lot for a ±310 ft square (raw floats, ≈140 KB), cached for the
+  session; demo lots use recorded fixtures (`fixtures/<slug>.elevation.json`, `capture_elevation.py`). The service
+  is slow for a new area (5–15 s), so the lot shows flat first and the ground fills in; if it fails the lot stays
+  flat with a one-line note. Datum = the lot's average elevation (`ground.ts`); the ground between lidar cells is
+  bilinear. Buildings stand on the LOWEST ground along their outline — the City's `base_elevation` matches that
+  (median 0.15–0.37 ft on 230 buildings around four lots, vs 1–2 ft for the mean ground), so City heights are
+  measured from it; walls reach down to it and roofs stay where the City puts them. The aerial ground, lot line,
+  markers and selection lie on the ground (one draping helper for everything: `furniture/drape.ts`; one ground-picking
+  path for drags, drawing and spot clicks); the plain ground beyond the photo sits below its lowest point; no vertical exaggeration (contour lines show subtle slopes instead).
+  Slope summary (`terrain/slope.ts`): fall, average slope (fitted plane), steepest 8-ft stretch, which way rain
+  runs (front = entrance edge on the street; left/right as you stand there looking in), any dip lower than the
+  lot's whole edge, and the City zoning map's Steep Slope Protection Area; plan-view overlay with contour lines,
+  arrows downhill and High/Low marks. Saved for other pages as `extra.site.slope` (`SiteSlopeFacts`).
+  Wet areas are drawn as outlines (click/tap round the area; close on the first point, double-click or Enter; Esc
+  cancels; drag corners or the + between them); older circle wet areas keep working (`ExistingItem.outline`).
 - **Build-guide 3D models** (`src/data/guides/models/<slug>.json`, format `src/lib/guides3d/schema.ts`, checked by
   `validate.ts`): on `/build/<slug>/` a 3D model sits beside the steps (sticky column ≥ 1000 px, collapsible sticky
   strip above the steps below that) and builds itself as you scroll — the step at the upper-middle of the readable
@@ -198,6 +214,7 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
 | Assess: note sun/shade, adjacent buildings | Sun study from real building heights | `LI_BUILDING_FOOTPRINTS` (`approx_hgt`, `max_hgt`) |
 | Assess: record existing trees/objects | Street & park trees pre-placed from City inventory; click to add others | `ppr_tree_inventory_2025` |
 | Assess: flooding / wet areas | FEMA flood zone flag | `fema_floodplain_2023` |
+| Assess: sloping terrain, where water collects | Slope summary, contour lines and arrows downhill; wet areas drawn as outlines | USGS 3DEP lidar (2015), `Zoning_SteepSlopeProtectArea_r` |
 | Assess summary: trees, sun, lot location, size A–E | Filled in automatically | all of the above |
 | Dream: print pieces, cut seams, tape, count squares | Planner does it on the real lot; counts automatic | pieces JSON |
 | Dream: cost-estimator spreadsheet | Live estimate + order list from the design | ported spreadsheet |
@@ -217,6 +234,7 @@ Be polite: debounce, cache per session, never bulk-crawl.
 |---|---|---|
 | `extra.site` (size A–E, edges, oriented rect, street edges, lot kind) | philly-data (on choosing a lot) | planner, Assess summary, pieces |
 | `extra.site.sunClass`, `extra.site.treesKept` | planner | Assess summary |
+| `extra.site.slope` (SiteSlopeFacts) | planner (terrain) | any page (no workbook field asks for it yet) |
 | `extra.tally` (DesignTally) | planner | cost, plants, Dream counts |
 | `extra.sunGrid` | planner | plants |
 | `extra.costInputs` | cost | — |

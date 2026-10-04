@@ -5,7 +5,8 @@
 import { atom, computed, type ReadableAtom } from 'nanostores';
 import type { DesignState, DesignTally, LotRecord, ParkLayout, SiteFacts } from '../types';
 import { $project, getExtra, setDesign, setExtra } from '../project';
-import { loadDemo, loadSiteContext, type DemoSlug, type SiteContext } from './site';
+import { loadDemo, loadSiteContext, loadTerrain, type DemoSlug, type SiteContext } from './site';
+import { slopeFacts } from './terrain';
 import { buildLocalSite, type LocalSite } from './localsite';
 import { buildLayout, getPieceSet, nominalOf, tallyLayout, type PieceSet } from './park';
 import { baseFootprint, computeOverhang, makePlacement, parkToLocal, placementSummary, type Overhang, type ParkPlacement } from './placement';
@@ -27,7 +28,17 @@ export interface ShowFlags {
   heat: boolean;
   cityTrees: boolean;
   grid: boolean;
+  /** terrain: contour lines, arrows downhill, high and low points */
+  slope: boolean;
 }
+
+/** terrain: where the lot's ground heights are (they arrive after the lot; until then it's flat) */
+export interface TerrainStatus {
+  status: 'none' | 'loading' | 'ready' | 'failed';
+}
+
+/** terrain: drawing a wet area's outline on the view (replaceId = redraw that one) */
+export type Drawing = { replaceId?: string } | null;
 
 export interface SunTime {
   month: number;
@@ -53,6 +64,11 @@ export interface ViewportBridge {
   clearDrop(): void;
 }
 
+/** A promise's value if it settles within `ms`, else null (errors count as null). */
+function within<T>(p: Promise<T>, ms: number): Promise<T | null> {
+  return Promise.race([p.catch(() => null), new Promise<null>((r) => setTimeout(() => r(null), ms))]);
+}
+
 export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = null) {
   const $status = atom<'no-lot' | 'loading' | 'ready' | 'error'>('loading');
   const $note = atom<string | null>(null);
@@ -62,7 +78,9 @@ export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = nu
   const $set = atom<PieceSet | null>(null);
   const $selection = atom<Selection>(null);
   const $view = atom<View>('3d');
-  const $show = atom<ShowFlags>({ aerial: true, heat: mode === 'sun', cityTrees: true, grid: true });
+  const $show = atom<ShowFlags>({ aerial: true, heat: mode === 'sun', cityTrees: true, grid: true, slope: false });
+  const $terrain = atom<TerrainStatus>({ status: 'none' });
+  const $drawing = atom<Drawing>(null);
   /** grid snap for dragging and the arrow keys (0 = off) */
   const $snap = atom<SnapStep>(1);
   const $sunTime = atom<SunTime>(todaySunTime());
@@ -208,8 +226,16 @@ export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = nu
     }
     $status.set('loading');
     $note.set(null);
+    $drawing.set(null);
+    // terrain: ground heights load alongside the lot (slow the first time for a new lot);
+    // the lot shows flat until they arrive, then the scene fills them in
+    const terrainP = loadTerrain(slug ? null : lot, slug);
+    $terrain.set({ status: terrainP ? 'loading' : 'none' });
     try {
       const ctx: SiteContext = slug ? await loadDemo(slug) : await loadSiteContext(lot!);
+      if (token !== loadToken) return;
+      // a cached answer is instant: give it a moment before showing the lot without it
+      const early = terrainP ? await within(terrainP, slug ? 4000 : 500) : null;
       if (token !== loadToken) return;
       lot = ctx.lot;
       if (!ctx.lot.polygon || ctx.lot.polygon.length < 3) {
@@ -218,7 +244,7 @@ export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = nu
         return;
       }
       const facts = slug ? undefined : getExtra<SiteFacts>('site');
-      const site = buildLocalSite(ctx, facts);
+      const site = buildLocalSite(early ? { ...ctx, terrain: early } : ctx, facts);
       $note.set(ctx.note ?? null);
       past.length = 0;
       future.length = 0;
@@ -232,12 +258,36 @@ export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = nu
       $sunGrid.set(g && g.v === 1 && (!g.lotRef || g.lotRef === lotRef(lot)) ? g : null);
       $status.set('ready');
       if (!saved && persist()) scheduleSave();
+      if (early) terrainReady(site);
+      else if (terrainP) {
+        terrainP
+          .then((t) => {
+            if (token !== loadToken || $site.get()?.ctx.lot !== ctx.lot) return;
+            const next = buildLocalSite({ ...ctx, terrain: t }, facts);
+            $site.set(next);
+            terrainReady(next);
+          })
+          .catch((e) => {
+            if (token !== loadToken) return;
+            console.warn('ground heights', e);
+            $terrain.set({ status: 'failed' });
+          });
+      }
     } catch (e) {
       if (token !== loadToken) return;
       console.error(e);
       $note.set('Something went wrong loading this lot. Try reloading the page.');
       $status.set('error');
     }
+  }
+
+  /** terrain: ground heights arrived — say so, and keep the slope facts for other pages */
+  function terrainReady(site: LocalSite) {
+    $terrain.set({ status: site.terrain ? 'ready' : 'failed' });
+    if (!site.terrain || !persist()) return;
+    const f = (getExtra<SiteFacts>('site') ?? {}) as SiteFacts;
+    const sf = slopeFacts(site.terrain, site.lf, lotRef(site.ctx.lot));
+    if (JSON.stringify(f.slope) !== JSON.stringify(sf)) setExtra('site', { ...f, slope: sf });
   }
 
   // Follow the project: a new lot chosen elsewhere, or the design changed by another
@@ -327,6 +377,8 @@ export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = nu
     $sunJob,
     $history,
     $step,
+    $terrain,
+    $drawing,
     commit,
     undo,
     redo,

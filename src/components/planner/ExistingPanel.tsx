@@ -6,6 +6,7 @@ import { EXISTING, existingMeta } from '../../lib/planner/catalog';
 import { addExisting, deleteExisting, treesKept, updateExisting } from '../../lib/planner/design';
 import { siteToLocal } from '../../lib/planner/rect';
 import { rotateSelected } from './keyboard';
+import { SlopeCard } from './SlopeCard';
 import { TreeHabitChoice } from './TreeHabitChoice';
 
 function label(e: ExistingItem) {
@@ -18,12 +19,24 @@ export function ExistingPanel({ store, compact = false }: { store: PlannerStore;
   const site = useStore(store.$site);
   const d = useStore(store.$design);
   const sel = useStore(store.$selection);
+  const drawing = useStore(store.$drawing);
   if (!site || !d) return null;
   const items = d.existing ?? [];
   const selected = sel?.kind === 'existing' ? items.find((e) => e.id === sel.id) : undefined;
   const cityNear = site.trees.filter((t) => !t.onLot).length;
 
+  // terrain: a wet area is drawn as an outline on the map, point by point
+  const draw = (replaceId?: string) => {
+    store.$selection.set(null);
+    store.$view.set('plan');
+    store.$drawing.set(replaceId ? { replaceId } : {});
+  };
+
   const add = (element: string) => {
+    if (element === 'wet-area' && store.editable) {
+      draw();
+      return;
+    }
     const f = site.frame;
     const n = items.length;
     // start in the middle of the lot, a little apart from the last one
@@ -41,15 +54,30 @@ export function ExistingPanel({ store, compact = false }: { store: PlannerStore;
       <p class="pl-small">
         Mark what's already there: trees, a neighbor's downspout, spots that get wet, hydrants, poles and wires, old pavement.
         {cityNear ? ` The ${cityNear} street tree${cityNear > 1 ? 's' : ''} nearby come from the City's tree inventory.` : ''} Add a thing, then drag it to
-        where it really is.
+        where it really is; an area that gets wet you draw around on the map.
       </p>
+      <SlopeCard store={store} compact={compact} />
       <div class="pl-chips">
         {EXISTING.map((m) => (
-          <button type="button" class="pl-chip" onClick={() => add(m.id)}>
+          <button type="button" class="pl-chip" onClick={() => add(m.id)} aria-pressed={m.id === 'wet-area' && drawing ? true : undefined}>
             + {m.name}
           </button>
         ))}
       </div>
+      {drawing && (
+        <div class="pl-card pl-selected pl-drawing" role="status">
+          <h4 class="pl-h4">{drawing.replaceId ? 'Redraw the wet area' : 'Draw the area that gets wet'}</h4>
+          <p class="pl-small">
+            Click (or tap) on the map around the spot that gets wet, point by point. To finish, click the first point again, double-click, or
+            press Enter — or use “Finish” on the map. Esc cancels.
+          </p>
+          <div class="pl-row">
+            <button type="button" class="btn btn-small" onClick={() => store.$drawing.set(null)}>
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
 
       {selected && (
         <div class="pl-card pl-selected">
@@ -72,11 +100,36 @@ export function ExistingPanel({ store, compact = false }: { store: PlannerStore;
               <TreeHabitChoice store={store} item={selected} />
             </>
           )}
-          {selected.element === 'wet-area' && (
-            <label class="pl-field">
-              <span class="pl-small">About {Math.round((selected.radiusFt ?? 5) * 2)} ft across</span>
-              <input type="range" min={1} max={20} step={0.5} value={selected.radiusFt ?? 5} onInput={(e) => patch(selected.id, { radiusFt: Number((e.target as HTMLInputElement).value) }, `radiusFt:${selected.id}`)} />
-            </label>
+          {selected.element === 'wet-area' && selected.outline && selected.outline.length >= 3 && (
+            <>
+              <p class="pl-small">
+                About {Math.round(Math.PI * (selected.radiusFt ?? 5) ** 2)} sq ft. Drag the area to move it; drag a corner to reshape it, or the
+                small + between two corners to add one.
+              </p>
+              {store.editable && (
+                <div class="pl-row">
+                  <button type="button" class="btn btn-small" onClick={() => draw(selected.id)}>
+                    Redraw its outline
+                  </button>
+                </div>
+              )}
+            </>
+          )}
+          {selected.element === 'wet-area' && !(selected.outline && selected.outline.length >= 3) && (
+            <>
+              {/* older saves: a circle */}
+              <label class="pl-field">
+                <span class="pl-small">About {Math.round((selected.radiusFt ?? 5) * 2)} ft across</span>
+                <input type="range" min={1} max={20} step={0.5} value={selected.radiusFt ?? 5} onInput={(e) => patch(selected.id, { radiusFt: Number((e.target as HTMLInputElement).value) }, `radiusFt:${selected.id}`)} />
+              </label>
+              {store.editable && (
+                <div class="pl-row">
+                  <button type="button" class="btn btn-small" onClick={() => draw(selected.id)}>
+                    Draw its outline instead
+                  </button>
+                </div>
+              )}
+            </>
           )}
           {(selected.element === 'utility-line' || selected.element === 'old-pavement') && (
             <label class="pl-field">

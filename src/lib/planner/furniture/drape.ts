@@ -61,8 +61,26 @@ function along(a: Vec2, b: Vec2, step: number): Vec2[] {
   return Array.from({ length: n + 1 }, (_, i) => [a[0] + ((b[0] - a[0]) * i) / n, a[1] + ((b[1] - a[1]) * i) / n] as Vec2);
 }
 
+/**
+ * Material settings for drawings that lie on the ground (terrain, 2026-10-04): pulls them a
+ * little toward the camera, so the ground mesh — a few cm off the smooth ground here and
+ * there between its vertices — never covers them.
+ */
+export const ON_GROUND: Pick<THREE.MeshBasicMaterialParameters, 'polygonOffset' | 'polygonOffsetFactor' | 'polygonOffsetUnits'> = {
+  polygonOffset: true,
+  polygonOffsetFactor: -2,
+  polygonOffsetUnits: -4,
+};
+
 /** A flat ribbon `width` feet wide along a ring, following the ground (like builders.ribbon). */
 export function drapedRibbon(ring: Vec2[], width: number, up: number, ground: GroundFn, color: number, closed = true, step = 2): THREE.Mesh {
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.Float32BufferAttribute(ribbonPositions(ring, width, up, ground, closed, step), 3));
+  return new THREE.Mesh(g, new THREE.MeshBasicMaterial({ color, side: THREE.DoubleSide }));
+}
+
+/** The triangle positions of drapedRibbon (for merging many ribbons into one mesh). */
+export function ribbonPositions(ring: Vec2[], width: number, up: number, ground: GroundFn, closed = true, step = 2): number[] {
   const pos: number[] = [];
   const n = ring.length;
   const count = closed ? n : n - 1;
@@ -94,9 +112,7 @@ export function drapedRibbon(ring: Vec2[], width: number, up: number, ground: Gr
       }
     }
   }
-  const g = new THREE.BufferGeometry();
-  g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
-  return new THREE.Mesh(g, new THREE.MeshBasicMaterial({ color, side: THREE.DoubleSide }));
+  return pos;
 }
 
 /** A textured quad (uv (0,0)…(1,1) on four local corners) cut into a grid that follows the ground. */

@@ -7,7 +7,8 @@ import * as THREE from 'three';
 import type { Vec2 } from '../geo';
 import { W, disposeTree, ribbon } from './builders';
 import type { GroundFn } from '../ground';
-import { drapedRibbon, drapedShape, needsDrape } from '../furniture/drape';
+import { padPolygon } from '../interact';
+import { ON_GROUND, drapedRibbon, drapedShape, needsDrape } from '../furniture/drape';
 
 /** A thing's footprint on the ground, in local feet. */
 export interface Footprint {
@@ -18,6 +19,8 @@ export interface Footprint {
   hw: number;
   hh: number;
   round: boolean;
+  /** an outlined thing (a drawn wet area): its corners, local feet — used instead of the box/circle */
+  poly?: Vec2[];
 }
 
 export interface OverlayState {
@@ -32,6 +35,7 @@ const RED = 0xd0342c;
 const HOVER = 0x5cc8f0;
 
 function outline(f: Footprint, pad: number): Vec2[] {
+  if (f.poly && f.poly.length >= 3) return padPolygon(f.poly, pad);
   if (f.round) {
     const r = Math.max(f.hw, f.hh) + pad;
     return Array.from({ length: 48 }, (_, i) => {
@@ -57,7 +61,7 @@ function fill(pts: Vec2[], up: number, color: number, opacity: number, ground: G
     g = new THREE.ShapeGeometry(new THREE.Shape(pts.map(([x, y]) => new THREE.Vector2(x, y))));
     g.rotateX(-Math.PI / 2);
   }
-  const m = new THREE.Mesh(g, new THREE.MeshBasicMaterial({ color, transparent: true, opacity, depthWrite: false, side: THREE.DoubleSide }));
+  const m = new THREE.Mesh(g, new THREE.MeshBasicMaterial({ color, transparent: true, opacity, depthWrite: false, side: THREE.DoubleSide, ...(ground ? ON_GROUND : {}) }));
   m.position.y = ground ? 0 : up;
   m.renderOrder = 6;
   return m;
