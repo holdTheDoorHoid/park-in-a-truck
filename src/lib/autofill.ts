@@ -5,87 +5,70 @@
 // Path: dotted path from the project root (lot.*, design.*, extra.*, fields.*).
 // Format (optional, after |): join, sqft, ft, money, date, yesno, ownerType, lotType,
 // zoning ("RSA5" → "RSA-5 · Residential — …"), size ("B" → "Size B"), lotKind.
+//
+// Words come from the "workbook" catalog (src/i18n/messages/<lang>/workbook.ts) in the
+// requested language. Select fields always ask for English: their options are saved by
+// their English value and only SHOW a translated label.
 
 import type { Project } from './types';
 import { zoningPlain } from './philly/plain';
+import workbook from '../i18n/messages/en/workbook.ts';
+import { getT } from '../i18n/t.ts';
+import type { Locale } from '../i18n/locales.ts';
 
-const OWNER_TYPES: Record<string, string> = {
-  city: 'City of Philadelphia (public)',
-  landbank: 'Philadelphia Land Bank (public)',
-  pha: 'Philadelphia Housing Authority (public)',
-  redevelopment: 'Philadelphia Redevelopment Authority (public)',
-  'other-public': 'Another public agency',
-  private: 'Private owner (person, organization or business)',
-  unknown: 'Unknown',
-};
-
-const LOT_TYPES: Record<string, string> = {
-  'mid-block': 'Mid-block lot',
-  corner: 'Corner lot',
-  alley: 'Breezeway / alley / easement',
-  unknown: 'Not sure',
-};
-
-// Assess summary ("Are you ready?"): SiteFacts.sunClass -> the workbook's own wording.
-const SUN_CLASSES: Record<string, string> = {
-  'full-sun': 'Full sun all day',
-  'mostly-sun': 'Mostly sun',
-  'mostly-shade': 'Mostly shade',
-  'deep-shade': 'Deep shade all day',
-};
-
-// Assess summary: SiteFacts.lotKind -> the workbook's own wording.
-const LOT_KINDS: Record<string, string> = {
-  interior: 'Mid-block lot',
-  'corner-right': 'Corner lot (street right)',
-  'corner-left': 'Corner lot (street left)',
-};
+type WB = keyof typeof workbook.messages;
+const has = (k: string): k is WB => k in workbook.messages;
 
 function get(obj: unknown, path: string): unknown {
   return path.split('.').reduce<unknown>((o, k) => (o == null ? undefined : (o as Record<string, unknown>)[k]), obj);
 }
 
-export function formatAuto(v: unknown, fmt?: string): string | null {
+export function formatAuto(v: unknown, fmt?: string, locale: Locale | string = 'en'): string | null {
   if (v === undefined || v === null || v === '') return null;
+  const t = getT(locale, workbook);
+  const word = (key: string) => (has(key) ? t(key) : String(v));
   switch (fmt) {
     case 'join':
+      // "&" reads the same in every language and keeps owner names exactly as the City lists them
       return Array.isArray(v) ? v.filter(Boolean).join(' & ') : String(v);
     case 'sqft':
-      return `${Math.round(Number(v)).toLocaleString('en-US')} sq ft`;
+      return t('auto.sqft', { n: Math.round(Number(v)) });
     case 'ft':
-      return `${Math.round(Number(v) * 10) / 10} ft`;
+      return t('auto.ft', { n: Math.round(Number(v) * 10) / 10 });
     case 'money':
-      return Number(v).toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+      return t.money(Number(v));
     case 'date':
-      return new Date(String(v)).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      return t.date(String(v), 'long');
     case 'yesno':
-      return v ? 'Yes' : 'No';
+      return v ? t('auto.yes') : t('auto.no');
     case 'ownerType':
-      return OWNER_TYPES[String(v)] ?? String(v);
+      return word(`auto.owner.${String(v)}`);
     case 'lotType':
-      return LOT_TYPES[String(v)] ?? String(v);
+      return word(`auto.lot.${String(v)}`);
     // Assess summary: trees kept on the lot (planner) -> the workbook's choices.
     // "Mostly trees" can't be told from a count, so the person picks that one.
     case 'treeCount': {
       const n = Number(v);
       if (!Number.isFinite(n)) return null;
-      return n <= 0 ? 'No trees' : n <= 2 ? 'One or two trees' : 'Several trees';
+      return t(n <= 0 ? 'auto.trees.none' : n <= 2 ? 'auto.trees.few' : 'auto.trees.several');
     }
+    // Assess summary ("Are you ready?"): SiteFacts.sunClass -> the workbook's own wording.
     case 'sunClass':
-      return SUN_CLASSES[String(v)] ?? String(v);
+      return word(`auto.sun.${String(v)}`);
     // added by philly-data
     case 'zoning':
       return zoningPlain(String(v)) ?? String(v);
     case 'size':
-      return `Size ${String(v)}`;
+      return t('auto.size', { size: String(v) });
+    // Assess summary: SiteFacts.lotKind -> the workbook's own wording.
     case 'lotKind':
-      return LOT_KINDS[String(v)] ?? String(v);
+      return word(`auto.kind.${String(v)}`);
     default:
       return Array.isArray(v) ? v.join(', ') : String(v);
   }
 }
 
-export function resolveAuto(p: Project, spec: string): string | null {
+export function resolveAuto(p: Project, spec: string, locale: Locale | string = 'en'): string | null {
   const [path, fmt] = spec.split('|');
-  return formatAuto(get(p, path!.trim()), fmt?.trim());
+  return formatAuto(get(p, path!.trim()), fmt?.trim(), locale);
 }

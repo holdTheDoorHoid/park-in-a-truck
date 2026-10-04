@@ -1,9 +1,10 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection, getEntry, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import StepPath from '../../components/site/StepPath.astro';
-import { STEPS, stepBySlug } from '../../data/steps';
-import { u } from '../../lib/url';
+import workbook from '../../i18n/messages/en/workbook.ts';
+import { getT, urlFor, localizedSteps } from '../../i18n/astro.ts';
+import { u as fileUrl } from '../../lib/url';
 
 export async function getStaticPaths() {
   const entries = await getCollection('steps');
@@ -11,49 +12,59 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const meta = stepBySlug(entry.id)!;
-const { Content, headings } = await render(entry);
+const t = getT(Astro, workbook);
+const u = urlFor(t.locale);
+const STEPS = localizedSteps(t.locale);
+// The chapter in this page's language (src/content/i18n/<lang>/steps/<slug>.mdx), or English with a notice.
+const translated = t.locale === 'en' ? undefined : await getEntry('stepsI18n', `${t.locale}/steps/${entry.id}`);
+const shown = translated ?? entry;
+const fallback = t.locale !== 'en' && !translated;
+const meta = STEPS.find((s) => s.slug === entry.id)!;
+const { Content, headings } = await render(shown);
 const subs = headings.filter((h) => h.depth === 2).map((h) => ({ id: h.slug.replace(/-title$/, ''), title: h.text }));
 const i = STEPS.findIndex((s) => s.slug === meta.slug);
 const prev = STEPS[i - 1];
 const next = STEPS[i + 1];
+// English text inside a page in another language keeps its own language and direction.
+const contentLang = fallback ? ({ lang: 'en', dir: 'ltr' } as const) : {};
 ---
-<Base title={entry.data.title} description={meta.tagline}>
+<Base title={shown.data.title} description={meta.tagline}>
   <header class="chapter-head">
     <div class="wrap">
       <div class="head-row">
-        <h1 class="ruled">{entry.data.title}</h1>
+        <h1 class="ruled" {...contentLang}>{shown.data.title}</h1>
         <span class="big-num" aria-hidden="true">{String(meta.n).padStart(2, '0')}</span>
       </div>
-      <p class="lede">{entry.data.intro ?? meta.tagline}</p>
+      <p class="lede" {...contentLang}>{shown.data.intro ?? meta.tagline}</p>
       {meta.assumes && <p class="muted assumes">{meta.assumes}</p>}
+      {fallback && <p class="callout callout-note chapter-fallback">{t('chapter.notTranslated')}</p>}
       <div class="head-actions no-print">
-        {meta.pdf && <a class="btn btn-small" href={u(meta.pdf)} target="_blank" rel="noopener">📄 Original workbook (PDF)</a>}
-        <button class="btn btn-small" type="button" onclick="window.print()">🖨 Print my answers</button>
+        {meta.pdf && <a class="btn btn-small" href={fileUrl(meta.pdf)} target="_blank" rel="noopener" hreflang={t.locale !== 'en' ? 'en' : undefined}>{t('chapter.pdf')}{t.locale !== 'en' && ` · ${t('file.english')}`}</a>}
+        <button class="btn btn-small" type="button" onclick="window.print()">{t('chapter.print')}</button>
       </div>
     </div>
   </header>
 
   <div class="wrap chapter">
-    <nav class="step-toc no-print" aria-label="In this step">
-      <p class="eyebrow">In this step</p>
-      <ol>
+    <nav class="step-toc no-print" aria-label={t('chapter.toc')}>
+      <p class="eyebrow">{t('chapter.toc')}</p>
+      <ol {...contentLang}>
         {subs.map((s) => (
           <li>
             <a href={`#${s.id}`} data-toc-done={`${meta.slug}/${s.id}`}>{s.title}</a>
           </li>
         ))}
       </ol>
-      <p class="toc-progress" data-progress-step={meta.slug}><span data-progress-text></span> done</p>
+      <p class="toc-progress" data-progress-step={meta.slug}><span data-progress-text data-progress-msg="progress.done"></span></p>
     </nav>
-    <article class="prose chapter-body">
+    <article class="prose chapter-body" {...contentLang}>
       <Content />
     </article>
   </div>
 
-  <nav class="wrap pager no-print" aria-label="Steps">
-    {prev ? <a class="btn" href={u(`steps/${prev.slug}/`)}>← {prev.n ? `Step ${prev.n}: ` : ''}{prev.title}</a> : <span></span>}
-    {next && <a class="btn btn-primary" href={u(`steps/${next.slug}/`)}>Next: Step {next.n} — {next.title} →</a>}
+  <nav class="wrap pager no-print" aria-label={t('chapter.pager')}>
+    {prev ? <a class="btn" href={u(`steps/${prev.slug}/`)}>{prev.n ? t('chapter.prevStep', { n: prev.n, title: prev.title }) : t('chapter.prev', { title: prev.title })}</a> : <span></span>}
+    {next && <a class="btn btn-primary" href={u(`steps/${next.slug}/`)}>{t('chapter.next', { n: next.n, title: next.title })}</a>}
   </nav>
   <section class="wrap no-print" style="margin-top:40px">
     <StepPath current={meta.slug} compact />

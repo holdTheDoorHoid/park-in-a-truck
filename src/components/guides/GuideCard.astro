@@ -1,21 +1,26 @@
 ---
 // A card for the /build/ grid: thumbnail, title, dimensions.
-import { u } from '../../lib/url';
-import { dimsText } from './format';
+import { u as fileUrl } from '../../lib/url';
+import { feetIn } from './format';
 import type { Guide } from '../../data/guides';
+import guidesMsgs from '../../i18n/messages/en/guides.ts';
+import { getT, urlFor, localizeGuide } from '../../i18n/astro.ts';
 
 interface Props {
   guide: Guide;
 }
-const { guide } = Astro.props;
+const t = getT(Astro, guidesMsgs);
+const u = urlFor(t.locale);
+const guide = localizeGuide(Astro.props.guide, t.locale);
+const d = guide.dimensionsIn;
 ---
 
 <a class="card card-link guide-card" href={u(`build/${guide.slug}/`)}>
   <div class="thumb">
-    <img src={u(`img/guides/${guide.slug}/thumb.webp`)} alt={`${guide.title}, assembled`} loading="lazy" decoding="async" />
+    <img src={fileUrl(`img/guides/${guide.slug}/thumb.webp`)} alt={t('heroAlt', { title: guide.title })} loading="lazy" decoding="async" />
   </div>
   <h3>{guide.title}</h3>
-  <p class="dims">{dimsText(guide.dimensionsIn)}</p>
+  <p class="dims">{t('dims', { length: feetIn(d.length), width: feetIn(d.width), height: feetIn(d.height) })}</p>
   <p class="summary">{guide.summary}</p>
 </a>
 

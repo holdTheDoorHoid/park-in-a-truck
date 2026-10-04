@@ -1,6 +1,9 @@
 ---
 // A download button for a PiaT file (template, form, spreadsheet, guide).
+// PiaT's files are English in every language: other languages say so (hreflang="en").
 import { u } from '../../lib/url';
+import workbook from '../../i18n/messages/en/workbook.ts';
+import { getT } from '../../i18n/astro.ts';
 interface Props {
   href: string;
   label: string;
@@ -8,10 +11,12 @@ interface Props {
 }
 const { href, label, note } = Astro.props;
 const ext = (href.split('?')[0]!.split('.').pop() || '').toUpperCase();
+const t = getT(Astro, workbook);
+const english = t.locale !== 'en';
 ---
 <p class="download">
-  <a class="btn" href={u(href)} download={!/^https?:/.test(href) ? '' : undefined} target={/^https?:/.test(href) ? '_blank' : undefined} rel="noopener">
-    ⬇ {label}{ext && ext.length <= 4 && <span class="muted"> ({ext})</span>}
+  <a class="btn" href={u(href)} download={!/^https?:/.test(href) ? '' : undefined} target={/^https?:/.test(href) ? '_blank' : undefined} rel="noopener" hreflang={english ? 'en' : undefined}>
+    ⬇ {label}{ext && ext.length <= 4 && <span class="muted"> ({ext}{english && ` · ${t('file.english')}`})</span>}
   </a>
-  {note && <span class="muted" style="margin-left:0.6em;font-size:0.9rem">{note}</span>}
+  {note && <span class="muted" style="margin-inline-start:0.6em;font-size:0.9rem">{note}</span>}
 </p>

@@ -8,6 +8,10 @@
 //   <piat-list data-field="<id>" data-columns='[{key,label,type?}]' data-min="3">
 //   .substep-done[data-done]     "Mark this step done" toggle
 //   [data-progress-step="<slug>"] progress text/bars, [data-progress-total] overall
+//                                ([data-progress-text][data-progress-msg="<workbook key>"] picks the wording)
+//
+// Text comes from the "workbook" catalog in the page's language (<html data-locale>).
+// Values saved by fields never depend on the language.
 //   [data-project-name]          the active project's name
 //
 // Content authors never write this markup by hand; the components in
@@ -16,6 +20,10 @@
 import { $project, setField, setDone } from '../lib/project';
 import { resolveAuto } from '../lib/autofill';
 import type { Project } from '../lib/types';
+import workbook from '../i18n/messages/en/workbook.ts';
+import { getT } from '../i18n/t.ts';
+
+const t = getT(undefined, workbook);
 
 type Col = { key: string; label: string; type?: string; placeholder?: string };
 
@@ -60,7 +68,8 @@ function bindFields(root: ParentNode) {
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'done-toggle';
-    btn.innerHTML = '<span class="box" aria-hidden="true"></span><span class="label">Mark this step done</span>';
+    btn.innerHTML = '<span class="box" aria-hidden="true"></span><span class="label"></span>';
+    btn.querySelector('.label')!.textContent = t('done.mark');
     btn.addEventListener('click', () => {
       const id = el.dataset.done!;
       setDone(id, btn.getAttribute('aria-pressed') !== 'true');
@@ -116,7 +125,8 @@ function renderLists(p: Project) {
       htr.append(th);
     }
     const thx = document.createElement('th');
-    thx.innerHTML = '<span class="visually-hidden">Remove</span>';
+    thx.innerHTML = '<span class="visually-hidden"></span>';
+    thx.firstElementChild!.textContent = t('list.remove');
     htr.append(thx);
     thead.append(htr);
     table.append(thead);
@@ -132,7 +142,7 @@ function renderLists(p: Project) {
         inp.dataset.col = c.key;
         inp.value = r[c.key] ?? '';
         inp.placeholder = c.placeholder || '';
-        inp.setAttribute('aria-label', `${c.label}, row ${i + 1}`);
+        inp.setAttribute('aria-label', t('list.cell', { label: c.label, n: i + 1 }));
         inp.addEventListener('input', save);
         td.append(inp);
         tr.append(td);
@@ -142,7 +152,7 @@ function renderLists(p: Project) {
       rm.type = 'button';
       rm.className = 'row-remove';
       rm.textContent = '×';
-      rm.setAttribute('aria-label', `Remove row ${i + 1}`);
+      rm.setAttribute('aria-label', t('list.removeRow', { n: i + 1 }));
       rm.addEventListener('click', () => {
         tr.remove();
         host.dataset.rows = '';
@@ -156,7 +166,7 @@ function renderLists(p: Project) {
     const add = document.createElement('button');
     add.type = 'button';
     add.className = 'btn btn-small';
-    add.textContent = `+ Add ${host.dataset.rowName || 'row'}`;
+    add.textContent = t('list.add', { row: host.dataset.rowName || t('list.row') });
     add.addEventListener('click', () => {
       blankRows.set(host, (blankRows.get(host) ?? 0) + 1);
       renderLists($project.get());
@@ -164,6 +174,12 @@ function renderLists(p: Project) {
     });
     host.replaceChildren(table, add);
   });
+}
+
+type ProgressKey = 'progress.of' | 'progress.done' | 'progress.total';
+function progressKey(el: HTMLElement, fallback: ProgressKey): ProgressKey {
+  const k = el.dataset.progressMsg;
+  return k === 'progress.of' || k === 'progress.done' || k === 'progress.total' ? k : fallback;
 }
 
 function render(p: Project) {
@@ -180,7 +196,9 @@ function render(p: Project) {
       if (badge) badge.hidden = true;
       return;
     }
-    const auto = el.dataset.auto ? resolveAuto(p, el.dataset.auto) : null;
+    // A select's options are saved by their English value, so its auto value stays English
+    // (the option shows the translated label); text boxes show it in the page's language.
+    const auto = el.dataset.auto ? resolveAuto(p, el.dataset.auto, el instanceof HTMLSelectElement ? 'en' : t.locale) : null;
     el.value = auto ?? '';
     if (auto) wrap?.setAttribute('data-autofilled', '');
     else wrap?.removeAttribute('data-autofilled');
@@ -203,7 +221,7 @@ function render(p: Project) {
     const btn = el.querySelector('button');
     btn?.setAttribute('aria-pressed', String(on));
     const label = btn?.querySelector('.label');
-    if (label) label.textContent = on ? 'Done — nice work!' : 'Mark this step done';
+    if (label) label.textContent = on ? t('done.done') : t('done.mark');
     const box = btn?.querySelector('.box');
     if (box) box.textContent = on ? '✓' : '';
     el.closest<HTMLElement>('.substep')?.setAttribute('data-state', on ? 'done' : 'open');
@@ -223,14 +241,14 @@ function render(p: Project) {
     document.querySelectorAll<HTMLElement>(`[data-progress-step="${step}"]`).forEach((el) => {
       el.style.setProperty('--pct', subs.length ? String(n / subs.length) : '0');
       el.dataset.state = n === 0 ? 'todo' : n === subs.length ? 'done' : 'doing';
-      const t = el.querySelector('[data-progress-text]');
-      if (t) t.textContent = `${n} of ${subs.length}`;
+      const txt = el.querySelector<HTMLElement>('[data-progress-text]');
+      if (txt) txt.textContent = t(progressKey(txt, 'progress.of'), { done: n, total: subs.length });
     });
   }
   document.querySelectorAll<HTMLElement>('[data-progress-total]').forEach((el) => {
     el.style.setProperty('--pct', all ? String(allDone / all) : '0');
-    const t = el.querySelector('[data-progress-text]');
-    if (t) t.textContent = `${allDone} of ${all} steps done`;
+    const txt = el.querySelector<HTMLElement>('[data-progress-text]');
+    if (txt) txt.textContent = t(progressKey(txt, 'progress.total'), { done: allDone, total: all });
   });
 
   document.querySelectorAll<HTMLElement>('[data-project-name]').forEach((el) => {

@@ -1,12 +1,15 @@
 ---
 // The six-step path (plus "Start here"), with live progress from the saved project.
-import { STEPS } from '../../data/steps';
-import { u } from '../../lib/url';
+import site from '../../i18n/messages/en/site.ts';
+import { getT, urlFor, localizedSteps } from '../../i18n/astro.ts';
 interface Props {
   current?: string;
   compact?: boolean;
 }
 const { current, compact = false } = Astro.props;
+const t = getT(Astro, site);
+const u = urlFor(t.locale);
+const STEPS = localizedSteps(t.locale);
 const ICON: Record<string, string> = {
   start: 'img/brand/step-start.webp',
   acquire: 'img/brand/step-acquire.webp',
@@ -26,7 +29,7 @@ const ICON: Record<string, string> = {
         <span class="title">{s.title}</span>
         {!compact && <span class="tag">{s.tagline}</span>}
         <span class="bar" aria-hidden="true"><span></span></span>
-        <span class="count"><span data-progress-text>—</span><span class="visually-hidden"> sub-steps done</span></span>
+        <span class="count"><span data-progress-text>—</span><span class="visually-hidden"> {t('path.subDone')}</span></span>
       </a>
     </li>
   ))}
@@ -60,6 +63,9 @@ const ICON: Record<string, string> = {
     object-fit: contain;
     object-position: left center;
     margin-bottom: 4px;
+  }
+  :global([dir='rtl']) .step-icon {
+    object-position: right center;
   }
   .compact .step-icon {
     max-width: 72px;

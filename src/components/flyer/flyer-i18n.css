@@ -1,0 +1,47 @@
+/* The flyer's language layouts (added with the language work; the sheet's own look and print
+   rules stay in src/components/widgets/MeetingFlyer.astro). One language = one column; two
+   languages = two columns side by side on the same sheet, each in its own language and
+   direction (Arabic reads right to left in its column). */
+
+.flyer-col {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+.flyer-two .flyer-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 5%;
+  flex: 1;
+  min-height: 0;
+}
+.flyer-two .flyer-col {
+  font-size: 0.8em;
+  overflow-wrap: anywhere;
+}
+.flyer-two .flyer-col + .flyer-col {
+  border-inline-start: 2px solid var(--line);
+  padding-inline-start: 5%;
+}
+.flyer-two .flyer-headline {
+  font-size: 1.65em;
+}
+.flyer-langs {
+  display: grid;
+  gap: 4px;
+  width: 100%;
+}
+.flyer-langs .field {
+  margin-bottom: 0.6em;
+}
+.flyer-langs select,
+.flyer-langs textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 1rem;
+  padding: 0.45em 0.6em;
+  border: 2px solid #9a9a9a;
+  border-radius: var(--radius);
+  background: #fff;
+}
