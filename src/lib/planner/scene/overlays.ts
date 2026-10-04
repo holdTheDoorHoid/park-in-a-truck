@@ -6,6 +6,8 @@
 import * as THREE from 'three';
 import type { Vec2 } from '../geo';
 import { W, disposeTree, ribbon } from './builders';
+import type { GroundFn } from '../ground';
+import { drapedRibbon, drapedShape, needsDrape } from '../furniture/drape';
 
 /** A thing's footprint on the ground, in local feet. */
 export interface Footprint {
@@ -47,24 +49,30 @@ function outline(f: Footprint, pad: number): Vec2[] {
   ] as Vec2[]).map(([a, b]) => [f.c[0] + a * f.xd[0] + b * f.yd[0], f.c[1] + a * f.xd[1] + b * f.yd[1]] as Vec2);
 }
 
-function fill(pts: Vec2[], up: number, color: number, opacity: number): THREE.Mesh {
-  const g = new THREE.ShapeGeometry(new THREE.Shape(pts.map(([x, y]) => new THREE.Vector2(x, y))));
-  g.rotateX(-Math.PI / 2);
+/** `ground`: heights on a sloping lot (furniture agent); null = flat, drawn as before */
+function fill(pts: Vec2[], up: number, color: number, opacity: number, ground: GroundFn | null = null): THREE.Mesh {
+  let g: THREE.BufferGeometry;
+  if (ground) g = drapedShape(pts, ground, up);
+  else {
+    g = new THREE.ShapeGeometry(new THREE.Shape(pts.map(([x, y]) => new THREE.Vector2(x, y))));
+    g.rotateX(-Math.PI / 2);
+  }
   const m = new THREE.Mesh(g, new THREE.MeshBasicMaterial({ color, transparent: true, opacity, depthWrite: false, side: THREE.DoubleSide }));
-  m.position.y = up;
+  m.position.y = ground ? 0 : up;
   m.renderOrder = 6;
   return m;
 }
 
 /** A ring drawn twice: solid where it can be seen, faint where something stands in front of it. */
-function ring(pts: Vec2[], width: number, up: number, color: number, opacity = 1, xray = 0.4): THREE.Object3D[] {
-  const solid = ribbon(pts, width, up, color);
+function ring(pts: Vec2[], width: number, up: number, color: number, opacity = 1, xray = 0.4, ground: GroundFn | null = null): THREE.Object3D[] {
+  const band = () => (ground ? drapedRibbon(pts, width, up, ground, color) : ribbon(pts, width, up, color));
+  const solid = band();
   const sm = solid.material as THREE.MeshBasicMaterial;
   sm.transparent = opacity < 1;
   sm.opacity = opacity;
   solid.renderOrder = 7;
   if (!xray) return [solid];
-  const ghost = ribbon(pts, width, up, color);
+  const ghost = band();
   const gm = ghost.material as THREE.MeshBasicMaterial;
   gm.transparent = true;
   gm.opacity = xray;
@@ -134,7 +142,7 @@ export function handlePlacement(f: Footprint, measure: Measure | null, minPx = 2
   return { R: r + Math.min(40, Math.max(1.4, minPx / px)), dir: dirs[i]! };
 }
 
-const W2 = (p: Vec2, up: number) => W(p[0], p[1], up);
+const W2 = (p: Vec2, up: number, ground: GroundFn | null = null) => W(p[0], p[1], up + (ground ? ground(p[0], p[1]) : 0));
 
 export class Overlays {
   readonly group = new THREE.Group();
@@ -155,6 +163,14 @@ export class Overlays {
     this.group.add(this.parts, this.knob);
   }
 
+  /** furniture agent: follow the ground on sloping lots (flat ground: drawn as before) */
+  setGround(g: GroundFn | null | undefined) {
+    this.ground = needsDrape(g) ? g : null;
+    this.builtFor = null;
+  }
+
+  private ground: GroundFn | null = null;
+
   set(s: OverlayState) {
     this.state = s;
     this.builtFor = null;
@@ -168,7 +184,7 @@ export class Overlays {
 
   private knobAtFor(f: Footprint, measure: Measure | null) {
     const { R, dir } = handlePlacement(f, measure);
-    return W2([f.c[0] + R * dir[0], f.c[1] + R * dir[1]], 0.9);
+    return W2([f.c[0] + R * dir[0], f.c[1] + R * dir[1]], 0.9, this.ground);
   }
 
   /** the thing the turn handle is on (for measuring it on screen) */
@@ -179,7 +195,7 @@ export class Overlays {
   /** The point whose on-screen scale matters (the selected thing, else the hovered one). */
   focus(): THREE.Vector3 | null {
     const f = this.state.selected?.f ?? this.state.hover;
-    return f ? W2(f.c, 0) : null;
+    return f ? W2(f.c, 0, this.ground) : null;
   }
 
   /**
@@ -203,13 +219,14 @@ export class Overlays {
     disposeTree(this.parts);
     this.parts.clear();
     const add = (...o: THREE.Object3D[]) => this.parts.add(...o);
-    if (st.hover) add(...ring(outline(st.hover, 0.35), Math.max(0.3, 2.5 * fpp), 0.44, HOVER, 0.95, 0.35));
+    const gr = this.ground;
+    if (st.hover) add(...ring(outline(st.hover, 0.35), Math.max(0.3, 2.5 * fpp), 0.44, HOVER, 0.95, 0.35, gr));
     if (st.selected) {
       const { f, over, dragging } = st.selected;
       const col = over ? RED : CYAN;
       // the footprint: where it stands (or will land, while dragging)
-      add(fill(outline(f, 0.15), 0.21, col, dragging ? 0.34 : over ? 0.3 : 0.22));
-      add(...ring(outline(f, 0.45), Math.max(dragging ? 0.4 : 0.55, (dragging ? 3 : 3.5) * fpp), 0.46, col, 1, 0.5));
+      add(fill(outline(f, 0.15), 0.21, col, dragging ? 0.34 : over ? 0.3 : 0.22, gr));
+      add(...ring(outline(f, 0.45), Math.max(dragging ? 0.4 : 0.55, (dragging ? 3 : 3.5) * fpp), 0.46, col, 1, 0.5, gr));
     }
     if (st.handle && hp) {
       const f = st.handle;
@@ -218,8 +235,8 @@ export class Overlays {
         const a = (i / 72) * Math.PI * 2;
         return [f.c[0] + R * Math.cos(a), f.c[1] + R * Math.sin(a)] as Vec2;
       });
-      add(...ring(circle, Math.max(0.18, 2 * fpp), 0.5, CYAN, 0.75, 0.3));
-      this.knobAt = W2([f.c[0] + R * dir[0], f.c[1] + R * dir[1]], 0.9);
+      add(...ring(circle, Math.max(0.18, 2 * fpp), 0.5, CYAN, 0.75, 0.3, gr));
+      this.knobAt = W2([f.c[0] + R * dir[0], f.c[1] + R * dir[1]], 0.9, gr);
       this.knob.position.copy(this.knobAt);
       this.knob.visible = true;
     } else {
