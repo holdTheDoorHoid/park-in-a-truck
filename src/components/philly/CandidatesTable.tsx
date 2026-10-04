@@ -8,8 +8,9 @@ import { isPublic, ownerNames } from '../../lib/philly/owner';
 import { landBankLine } from '../../lib/philly/landbank';
 import { sizeOf } from '../../lib/philly/choose';
 import { feet, sqft, titleCase } from '../../lib/philly/plain';
+import { isolate, words, type PhillyKey } from '../../lib/philly/words';
 
-const LOT_TYPE: Record<string, string> = { 'mid-block': 'Mid-block', corner: 'Corner', alley: 'Breezeway / alley', unknown: '—' };
+const LOT_TYPE: Record<string, PhillyKey | null> = { 'mid-block': 'compare.midBlock', corner: 'compare.corner', alley: 'lotType.alley', unknown: null };
 
 interface Props {
   candidates: LotRecord[];
@@ -19,24 +20,33 @@ interface Props {
 }
 
 export default function CandidatesTable({ candidates, chosenAddress, onChoose, onRemove }: Props) {
-  if (!candidates.length)
-    return <p class="ph-small">Your list of possible lots is empty. Look up an address above, or add lots from the map.</p>;
+  const t = words();
+  if (!candidates.length) return <p class="ph-small">{t('compare.empty')}</p>;
+  const col = {
+    address: t('compare.address'),
+    owner: t('card.owner'),
+    lotSize: t('card.lotSize'),
+    parkSize: t('card.parkSize'),
+    lotType: t('card.lotType'),
+    zoning: t('card.zoning'),
+    vacant: t('compare.vacantList'),
+  };
   return (
     <div>
-      <h4 style="margin:1.2em 0 0.3em">Your possible lots ({candidates.length})</h4>
+      <h4 style="margin:1.2em 0 0.3em">{t('compare.title', { count: candidates.length })}</h4>
       <table class="ph-compare">
-        <caption class="visually-hidden">Possible park lots compared</caption>
+        <caption class="visually-hidden">{t('compare.caption')}</caption>
         <thead>
           <tr>
-            <th scope="col">Address</th>
-            <th scope="col">Owner</th>
-            <th scope="col">Lot size</th>
-            <th scope="col">Park size</th>
-            <th scope="col">Lot type</th>
-            <th scope="col">Zoning</th>
-            <th scope="col">Vacant list</th>
+            <th scope="col">{col.address}</th>
+            <th scope="col">{col.owner}</th>
+            <th scope="col">{col.lotSize}</th>
+            <th scope="col">{col.parkSize}</th>
+            <th scope="col">{col.lotType}</th>
+            <th scope="col">{col.zoning}</th>
+            <th scope="col">{col.vacant}</th>
             <th scope="col">
-              <span class="visually-hidden">Actions</span>
+              <span class="visually-hidden">{t('compare.actions')}</span>
             </th>
           </tr>
         </thead>
@@ -46,48 +56,58 @@ export default function CandidatesTable({ candidates, chosenAddress, onChoose, o
             const g = x.geometry;
             const size = g ? sizeOf(g) : null;
             const chosen = c.address === chosenAddress;
+            const type = LOT_TYPE[c.lotType ?? 'unknown'];
             return (
               <tr data-chosen={chosen ? '' : undefined}>
-                <td data-label="Address">
-                  {titleCase(c.address)}
-                  {chosen && <span class="ph-saved"> ✓ your lot</span>}
+                <td data-label={col.address}>
+                  {isolate(titleCase(c.address), t)}
+                  {chosen && <span class="ph-saved"> {t('compare.yourLot')}</span>}
                 </td>
-                <td data-label="Owner">
-                  {ownerNames(c.owners) || '—'}
+                <td data-label={col.owner}>
+                  {isolate(ownerNames(c.owners), t) || '—'}
                   <br />
-                  <small class="ph-small">{isPublic(c.ownerType) ? 'Public' : c.ownerType === 'private' ? 'Private' : 'Unknown'}</small>
+                  <small class="ph-small">{t(isPublic(c.ownerType) ? 'compare.public' : c.ownerType === 'private' ? 'compare.private' : 'compare.unknown')}</small>
                   {x.landBank ? (
                     <>
                       <br />
                       <small class="ph-small">
-                        Land Bank: <span class={`ph-lb ph-lb-${x.landBank.tone}`}>{landBankLine(x.landBank)}</span>
+                        {t('landBank.prefix')} <span class={`ph-lb ph-lb-${x.landBank.tone}`}>{landBankLine(x.landBank)}</span>
                       </small>
                     </>
                   ) : x.landBank === null && isPublic(c.ownerType) ? (
                     <>
                       <br />
-                      <small class="ph-small">Not in the Land Bank's inventory</small>
+                      <small class="ph-small">{t('compare.notInInventory')}</small>
                     </>
                   ) : null}
                 </td>
-                <td data-label="Lot size">
-                  {g ? `${feet(g.widthFt, 0)} × ${feet(g.lengthFt, 0)}` : c.frontageFt && c.depthFt ? `${c.frontageFt} × ${c.depthFt} ft` : '—'}
+                <td data-label={col.lotSize}>
+                  {g
+                    ? t('compare.size', { width: feet(g.widthFt, 0), length: feet(g.lengthFt, 0) })
+                    : c.frontageFt && c.depthFt
+                      ? t('size.recordShort', { frontage: String(c.frontageFt), depth: String(c.depthFt) })
+                      : '—'}
                   <br />
                   <small class="ph-small">{sqft(g?.areaSqFt ?? c.areaSqFt)}</small>
                 </td>
-                <td data-label="Park size">{size ? (size.tooSmall ? 'Under A (Park Patch)' : size.tooBig ? 'Over E' : size.id) : '—'}</td>
-                <td data-label="Lot type">{LOT_TYPE[c.lotType ?? 'unknown']}</td>
-                <td data-label="Zoning">{c.zoning ?? '—'}</td>
-                <td data-label="Vacant list">{c.vacantLand ? 'Yes' : c.vacantLand === false ? 'No' : '—'}</td>
+                <td data-label={col.parkSize}>{size ? (size.tooSmall ? t('compare.underA') : size.tooBig ? t('compare.overE') : size.id) : '—'}</td>
+                <td data-label={col.lotType}>{type ? t(type) : '—'}</td>
+                <td data-label={col.zoning}>{c.zoning ?? '—'}</td>
+                <td data-label={col.vacant}>{c.vacantLand ? t('compare.yes') : c.vacantLand === false ? t('compare.no') : '—'}</td>
                 <td>
                   <div class="ph-row-actions">
                     {!chosen && (
                       <button class="btn btn-small btn-primary" type="button" onClick={() => onChoose(c)}>
-                        Make this my lot
+                        {t('compare.make')}
                       </button>
                     )}
-                    <button class="btn btn-small" type="button" aria-label={`Remove ${titleCase(c.address)} from the list`} onClick={() => onRemove(c.address)}>
-                      Remove
+                    <button
+                      class="btn btn-small"
+                      type="button"
+                      aria-label={t('compare.removeLabel', { address: titleCase(c.address) })}
+                      onClick={() => onRemove(c.address)}
+                    >
+                      {t('compare.remove')}
                     </button>
                   </div>
                 </td>

@@ -13,6 +13,7 @@
 // - Tests swap `fetch` with setFetch() and never touch the network.
 
 import { PhillyError } from './types';
+import { words, type PhillyKey } from './words';
 
 type FetchFn = (url: string, init?: { signal?: AbortSignal }) => Promise<{
   ok: boolean;
@@ -75,12 +76,21 @@ export interface GetOpts {
   timeoutMs?: number;
 }
 
-/** Which City service a URL belongs to, for friendly messages. */
+/** Which City service a URL belongs to, for friendly messages (in the page's language). */
 export function serviceName(url: string): string {
-  if (url.includes('api.phila.gov/ais')) return 'the City address service (AIS)';
-  if (url.includes('phl.carto.com')) return 'the City property database (OPA)';
-  if (url.includes('arcgis')) return 'the City map service';
-  return 'a City service';
+  return words()(serviceKey(url));
+}
+function serviceKey(url: string): PhillyKey {
+  if (url.includes('api.phila.gov/ais')) return 'service.ais';
+  if (url.includes('phl.carto.com')) return 'service.opa';
+  if (url.includes('arcgis')) return 'service.arcgis';
+  return 'service.other';
+}
+
+/** A friendly message about a City service, in the page's language. */
+function says(key: PhillyKey, url: string, vars: Record<string, string | number> = {}): string {
+  const service = serviceName(url);
+  return words()(key, { service, Service: capital(service), ...vars });
 }
 
 /**
@@ -107,12 +117,8 @@ export async function getJSON<T = unknown>(url: string, opts: GetOpts = {}): Pro
       try {
         res = await doFetch(url, { signal: ctrl.signal });
       } catch (e) {
-        if (opts.signal?.aborted) throw new PhillyError('aborted', 'Cancelled.');
-        const down = new PhillyError(
-          'city-down',
-          `We couldn't reach ${serviceName(url)}. It may be busy or down — try again in a minute. Anything you typed is still saved.`,
-          { cause: e },
-        );
+        if (opts.signal?.aborted) throw new PhillyError('aborted', words()('error.cancelled'));
+        const down = new PhillyError('city-down', says('http.unreachable', url), { cause: e });
         // a request that already waited out the timeout isn't tried again
         throw ctrl.signal.aborted ? down : retryable(down);
       }
@@ -123,10 +129,7 @@ export async function getJSON<T = unknown>(url: string, opts: GetOpts = {}): Pro
         return v as unknown as T;
       }
       if (!res.ok) {
-        const err = new PhillyError(
-          'city-down',
-          `${capital(serviceName(url))} answered with an error (${res.status}). Try again in a minute. Anything you typed is still saved.`,
-        );
+        const err = new PhillyError('city-down', says('http.status', url, { status: String(res.status) }));
         throw res.status >= 500 || res.status === 400 || res.status === 408 || res.status === 429 ? retryable(err) : err;
       }
       let text: string;
@@ -134,23 +137,19 @@ export async function getJSON<T = unknown>(url: string, opts: GetOpts = {}): Pro
         text = await res.text();
       } catch (e) {
         // cancelled while the answer was still arriving
-        if (opts.signal?.aborted) throw new PhillyError('aborted', 'Cancelled.');
-        throw retryable(new PhillyError('city-down', `${capital(serviceName(url))} stopped answering. Try again in a minute.`, { cause: e }));
+        if (opts.signal?.aborted) throw new PhillyError('aborted', words()('error.cancelled'));
+        throw retryable(new PhillyError('city-down', says('http.stopped', url), { cause: e }));
       }
       let body: unknown;
       try {
         body = JSON.parse(text);
       } catch (e) {
-        throw retryable(new PhillyError('city-down', `${capital(serviceName(url))} sent something we couldn't read. Try again in a minute.`, { cause: e }));
+        throw retryable(new PhillyError('city-down', says('http.unreadable', url), { cause: e }));
       }
       const err = (body as { error?: { message?: string } | string[] })?.error;
       if (err) {
-        throw retryable(
-          new PhillyError(
-            'city-down',
-            `${capital(serviceName(url))} reported a problem${typeof err === 'object' && !Array.isArray(err) && err.message ? ` (${err.message})` : ''}. Try again in a minute.`,
-          ),
-        );
+        const detail = typeof err === 'object' && !Array.isArray(err) && err.message ? err.message : '';
+        throw retryable(new PhillyError('city-down', detail ? says('http.problemDetail', url, { detail }) : says('http.problem', url)));
       }
       memory.set(url, body);
       ssSet(url, text);
@@ -167,7 +166,7 @@ export async function getJSON<T = unknown>(url: string, opts: GetOpts = {}): Pro
     } catch (e) {
       if (!RETRY.has(e as object) || opts.signal?.aborted) throw e;
       await new Promise((r) => setTimeout(r, RETRY_AFTER_MS));
-      if (opts.signal?.aborted) throw new PhillyError('aborted', 'Cancelled.');
+      if (opts.signal?.aborted) throw new PhillyError('aborted', words()('error.cancelled'));
       return once();
     }
   });

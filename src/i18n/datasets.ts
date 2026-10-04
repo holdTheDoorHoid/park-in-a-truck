@@ -92,8 +92,8 @@ export const DATASETS: DatasetSpec[] = [
     name: 'parks',
     source: 'src/data/parks.json',
     keyBy: 'id',
-    // park names and addresses are proper nouns and stay as they are
-    fields: ['description', 'neighborhood', 'links[].label'],
+    // park names and addresses are proper nouns and stay as they are (photo credits are names too)
+    fields: ['description', 'neighborhood', 'links[].label', 'photos[].alt', 'photos[].caption'],
     client: true,
   },
   {

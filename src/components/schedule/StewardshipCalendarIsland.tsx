@@ -1,10 +1,11 @@
 import { useStore } from '@nanostores/preact';
 import { useState } from 'preact/hooks';
 import { $project, getExtra, setExtra } from '../../lib/project';
-import { MONTH_NAMES } from './dates';
+import { monthName } from './dates';
 import { downloadIcs } from './ics';
 import {
-  CATEGORY_LABEL,
+  categoryLabel,
+  taskLabel,
   blankStewardship,
   instancesForMonth,
   isChecked,
@@ -12,6 +13,8 @@ import {
   stewardshipToIcsEvents,
   type StewardshipState,
 } from './stewardship';
+import schedule from '../../i18n/messages/en/schedule.ts';
+import { getT } from '../../i18n/t.ts';
 
 const EXTRA_KEY = 'stewardship';
 const THIS_YEAR = new Date().getFullYear();
@@ -28,6 +31,7 @@ function update(fn: (state: StewardshipState) => StewardshipState) {
 }
 
 export default function StewardshipCalendarIsland() {
+  const t = getT(undefined, schedule);
   const project = useStore($project);
   const state = (project.extra[EXTRA_KEY] as StewardshipState | undefined) ?? blankStewardship();
   const [year, setYear] = useState(THIS_YEAR);
@@ -38,35 +42,35 @@ export default function StewardshipCalendarIsland() {
 
   const onToggle = (key: string, checked: boolean) => update((s) => setChecked(s, year, key, checked));
 
-  const onDownload = () => downloadIcs(`park-stewardship-${year}.ics`, `Park stewardship ${year}`, stewardshipToIcsEvents(year));
+  const onDownload = () =>
+    downloadIcs(`park-stewardship-${year}.ics`, t('ics.stewardCalendar', { year: String(year) }), stewardshipToIcsEvents(year, t.locale));
 
   return (
     <div class="stewardship-calendar">
       <div class="steward-toolbar no-print">
         <div class="year-switch">
-          <button type="button" class="btn btn-small" onClick={() => setYear((y) => y - 1)} aria-label="Previous year">
-            ←
+          <button type="button" class="btn btn-small" onClick={() => setYear((y) => y - 1)} aria-label={t('calendar.prevYear')}>
+            {t('calendar.prev')}
           </button>
           <strong>{year}</strong>
-          <button type="button" class="btn btn-small" onClick={() => setYear((y) => y + 1)} aria-label="Next year">
-            →
+          <button type="button" class="btn btn-small" onClick={() => setYear((y) => y + 1)} aria-label={t('calendar.nextYear')}>
+            {t('calendar.next')}
           </button>
         </div>
-        <span class="steward-progress">
-          {done} of {total} done in {year}
-        </span>
+        <span class="steward-progress">{t('calendar.progress', { done, total, year: String(year) })}</span>
         <div class="steward-actions">
           <button type="button" class="btn btn-primary btn-small" onClick={onDownload}>
-            ⬇ Add reminders to my calendar
+            {t('calendar.download')}
           </button>
           <button type="button" class="btn btn-small" onClick={() => window.print()}>
-            🖨 Print
+            {t('calendar.print')}
           </button>
         </div>
       </div>
 
       <div class="month-grid">
-        {MONTH_NAMES.map((name, m) => {
+        {Array.from({ length: 12 }, (_, m) => {
+          const name = monthName(m, t.locale);
           const items = instancesForMonth(m);
           const isCurrent = year === THIS_YEAR && m === THIS_MONTH;
           const isOpen = openMonth === m;
@@ -81,11 +85,9 @@ export default function StewardshipCalendarIsland() {
               >
                 <span>
                   {name}
-                  {isCurrent && <span class="current-badge">now</span>}
+                  {isCurrent && <span class="current-badge">{t('calendar.now')}</span>}
                 </span>
-                <span class="month-count">
-                  {monthDone}/{items.length}
-                </span>
+                <span class="month-count">{t('calendar.monthCount', { done: monthDone, total: items.length })}</span>
               </button>
               <ul class={`task-list${isOpen ? '' : ' is-collapsed'}`}>
                 {items.map((it) => (
@@ -97,8 +99,8 @@ export default function StewardshipCalendarIsland() {
                         onChange={(e) => onToggle(it.key, (e.currentTarget as HTMLInputElement).checked)}
                       />
                       <span>
-                        <span class="task-category">{CATEGORY_LABEL[it.category]}</span>
-                        {it.label}
+                        <span class="task-category">{categoryLabel(it.category, t.locale)}</span>
+                        {taskLabel(it, t.locale)}
                       </span>
                     </label>
                   </li>
@@ -118,8 +120,8 @@ export default function StewardshipCalendarIsland() {
         .month-grid { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
         .month-card { border: 1px solid var(--line); border-radius: var(--radius); background: #fff; overflow: hidden; }
         .month-card.is-current { border-color: var(--cyan); box-shadow: 0 0 0 2px var(--cyan-wash); }
-        .month-head { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 12px 14px; border: 0; background: none; font: inherit; font-weight: 700; cursor: pointer; text-align: left; }
-        .current-badge { margin-left: 0.5em; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--cyan-ink); border: 1px solid var(--cyan-ink); border-radius: 999px; padding: 0.1em 0.5em; }
+        .month-head { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 12px 14px; border: 0; background: none; font: inherit; font-weight: 700; cursor: pointer; text-align: start; }
+        .current-badge { margin-inline-start: 0.5em; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--cyan-ink); border: 1px solid var(--cyan-ink); border-radius: 999px; padding: 0.1em 0.5em; }
         .month-count { font-weight: 400; color: var(--muted); font-size: 0.85rem; }
         .task-list { list-style: none; margin: 0; padding: 0 14px 12px; display: grid; gap: 6px; }
         .task-list.is-collapsed { display: none; }

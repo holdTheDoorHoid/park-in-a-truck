@@ -234,6 +234,23 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
   are drawn plainer in 3D on the plain ground, and the 3D sun light stands beyond the farthest of them
   (`sunlight.ts`; the shadow camera stays as wide as before). Saved studies carry `inputs.buildingsKey`; one saved
   before far shade says it is out of date when the lot has far buildings. Demo fixtures: `capture_far.test.ts`.
+  *Shade calendar (2026-10-04, `shadecal.ts`, `ShadeCalendar.tsx`, words in area `shade`):* under the spot's month
+  chart (same spot), a grid of 12 months × half-hours of Philadelphia clock time (with daylight saving; columns trimmed to
+  the half-hours the sun is ever up, about 5:30 am–8:30 pm). Each square traces 8 days of the month × 3 moments in the
+  half-hour through the SAME sun maths (`computeSunHours` with a per-sample hook, `spotInputFor`: buildings near and far,
+  crowns by leaf season, ground) and counts direct sun / dappled (through crowns) / building / sun down (below 0.5°);
+  it is drawn as those shares stacked (amber, light blue with dots, navy, pale grey; CVD-checked all pairs). A square is
+  "sun" when half or more of its sun-up traces are direct. Summary above it: months whose typical days match (spells of
+  sun within an hour, same kind of shade from within one compass point) are told together, also across the new year;
+  each line says when the sun comes (one or two spells, "on and off" for more) and what shades the spot before, between
+  and after — buildings, trees or both, and from where (the circular mean of the sun's bearing while blocked). Facts
+  only. A click/tap or Enter on a square sets the date (15th) and time (middle of the half-hour), stops playing, and
+  rings that square; arrow keys/Home/End/PageUp/PageDown move (role="grid", roving focus); "Show as a table" lists
+  each month's spans. "Whole lot" shows the share of the lot in direct sun per square (2-ft cells, 4 days × 2 moments,
+  navy→amber ramp; ~0.3–1 s of work, in the worker). Runs in a Web Worker that stays alive between spots (cached per spot
+  and trees, a new spot replaces the old job). Right to left: the grid follows the page (months and morning on the
+  right in Arabic), like the Sun panel's own time slider; until the `shade` area has a translation it is English
+  throughout, month names and times included. Screens: `docs/planner/shadecal-*.webp`.
   *Furniture in 3D (2026-10-04, `src/lib/planner/furniture/`):* the 3D view draws items as the real thing; plan
   view keeps the flat paper-pieces blocks. Pieces with a build guide use the guide's own model JSON at TRUE built
   size, centred on the footprint and never stretched: repeated in modules along the item the way PiaT counts them

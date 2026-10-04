@@ -8,7 +8,7 @@ import { siteToLocal } from './rect';
 import { groundOf } from './ground';
 import { DEFAULT_SEASON, seasonSamples, type SeasonOptions } from './sun';
 import { LEAF_SEASON, crownCenterFt, existingTreeLook, treeLook } from './treemodel';
-import { periodSamples, spotMonthly, type MonthSun, type SunPeriod } from './sunperiod';
+import { periodSamples, spotMonthly, type MonthSun, type SpotInput, type SunPeriod } from './sunperiod';
 import {
   BARE_CROWN_BLOCKING,
   CROWN_BLOCKING,
@@ -239,16 +239,21 @@ export function runPeriodStudy(
   };
 }
 
-/** Month-by-month direct sun at one spot on the lot (local feet). */
-export function spotMonthlyFor(site: LocalSite, existing: ExistingItem[] | undefined, point: Vec2): MonthSun[] {
-  return spotMonthly({
+/** What the sun maths needs for one spot on the lot (local feet): the spot chart and the shade calendar. */
+export function spotInputFor(site: LocalSite, existing: ExistingItem[] | undefined, point: Vec2): SpotInput {
+  return {
     point,
     groundFt: groundOf(site)(point[0], point[1]),
     buildings: shadeBuildings(site),
     crowns: shadeCrowns(site, existing),
     lat: site.lf.origin[1],
     lng: site.lf.origin[0],
-  });
+  };
+}
+
+/** Month-by-month direct sun at one spot on the lot (local feet). */
+export function spotMonthlyFor(site: LocalSite, existing: ExistingItem[] | undefined, point: Vec2): MonthSun[] {
+  return spotMonthly(spotInputFor(site, existing, point));
 }
 
 /** A sunAt(x, y) for the tally from a saved grid; `toLocal` maps park-local feet to local feet. */

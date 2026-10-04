@@ -8,12 +8,17 @@ import { loadMaplibre } from '../philly/maplibre';
 import { BASEMAP_ATTRIBUTION, BASEMAP_STYLE } from '../../lib/mapstyle';
 import { u } from '../../lib/url';
 import type { Park } from '../../data/parks';
+import parksMsgs from '../../i18n/messages/en/parks.ts';
+import { getT } from '../../i18n/t.ts';
 
 interface Props {
   parks: Park[];
+  /** The page's language (passed by the Astro wrapper, so the server renders the same words) */
+  locale?: string;
 }
 
-export default function ParksMapIsland({ parks }: Props) {
+export default function ParksMapIsland({ parks, locale }: Props) {
+  const t = getT(locale, parksMsgs);
   const mapEl = useRef<HTMLDivElement>(null);
   const [activeId, setActiveId] = useState<string | null>(null);
 
@@ -63,7 +68,7 @@ export default function ParksMapIsland({ parks }: Props) {
 
   return (
     <div class="parks-map-wrap">
-      <div class="parks-map" ref={mapEl} role="application" aria-label="Map of parks built with Park in a Truck"></div>
+      <div class="parks-map" ref={mapEl} role="application" aria-label={t('map.label')}></div>
       {active && (
         <div class="parks-map-card">
           {active.photos[0] && <img src={u(active.photos[0].src)} alt={active.photos[0].alt} loading="lazy" />}
@@ -71,10 +76,10 @@ export default function ParksMapIsland({ parks }: Props) {
             <p class="parks-map-card-name">{active.name}</p>
             <p class="parks-map-card-addr">{active.address}</p>
             <a class="btn btn-small" href={`#park-${active.id}`}>
-              View details
+              {t('map.details')}
             </a>
           </div>
-          <button type="button" class="parks-map-card-close" aria-label="Close" onClick={() => setActiveId(null)}>
+          <button type="button" class="parks-map-card-close" aria-label={t('map.close')} onClick={() => setActiveId(null)}>
             ×
           </button>
         </div>
