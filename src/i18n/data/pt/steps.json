@@ -1,0 +1,31 @@
+{
+  "start": {
+    "title": "Comece aqui",
+    "tagline": "Por que os parques importam e como funciona o Park in a Truck."
+  },
+  "acquire": {
+    "title": "Adquirir",
+    "tagline": "Ache um terreno e consiga permissão para usá-lo.",
+    "assumes": "Você já leu o guia e ainda não tem um terreno que possa usar."
+  },
+  "organize": {
+    "title": "Organizar",
+    "tagline": "Forme uma comissão do parque e reúna os seus vizinhos."
+  },
+  "assess": {
+    "title": "Avaliar",
+    "tagline": "Conheça o seu terreno: o sol, o solo e o que há em volta."
+  },
+  "dream": {
+    "title": "Sonhar",
+    "tagline": "Desenhe o seu parque com as peças do parque."
+  },
+  "create": {
+    "title": "Criar",
+    "tagline": "Construa por fases, um fim de semana de cada vez."
+  },
+  "sustain": {
+    "title": "Cuidar",
+    "tagline": "Cuide do seu parque, estação após estação."
+  }
+}
