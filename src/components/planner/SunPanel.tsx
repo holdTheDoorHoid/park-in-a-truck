@@ -15,6 +15,7 @@ import { parkToLocal } from '../../lib/planner/placement';
 import { catalogEntry, existingMeta } from '../../lib/planner/catalog';
 import type { Vec2 } from '../../lib/planner/geo';
 import { SpotChart } from './SpotChart';
+import { ShadeCalendar } from './ShadeCalendar';
 
 const YEAR = 2026;
 const COMPASS = ['north', 'northeast', 'east', 'southeast', 'south', 'southwest', 'west', 'northwest'];
@@ -361,6 +362,7 @@ export function SunPanel({ store }: { store: PlannerStore }) {
         )}
       </p>
       {spotData && <SpotChart data={spotData} where={spotName} month={t.month} />}
+      <ShadeCalendar store={store} />
 
       <details class="pl-assume">
         <summary>What the sun maps and chart count</summary>
