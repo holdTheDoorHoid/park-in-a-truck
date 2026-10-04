@@ -1,9 +1,9 @@
 ---
-title: Create
-intro: Build your park, one weekend phase at a time.
+title: Xây dựng
+intro: Xây công viên của bạn, từng giai đoạn, mỗi giai đoạn một cuối tuần.
 sources:
-  - Toolkit pp. 57–59 (Create, Initial Park Construction)
-  - Create Workbook pp. 1–18
+  - Cẩm nang (Toolkit), tr. 57–59 (Xây dựng, Xây dựng công viên ban đầu)
+  - Sổ tay thực hành Xây dựng, tr. 1–18
 ---
 import Field from '../../../../components/workbook/Field.astro';
 import ListField from '../../../../components/workbook/ListField.astro';
@@ -20,449 +20,498 @@ import LotAgreementNotice from '../../../../components/workbook/LotAgreementNoti
 {/* site-added: tracking helper (veteran-organizer D2, 2026-10-04) — Create lets you pick build weekends and print an order list with nothing recorded in Acquire; this says so before anyone breaks ground. */}
 <LotAgreementNotice />
 
-Building a park is a great way to connect neighbors, friends and others. The process requires dedicated volunteers
-who can give their time and energy, with a wide variety of skills — carpentry, landscaping, organizing, encouraging,
-leading. Like following a recipe, park building is a step-by-step sequence; most Park in a Truck parks go up in about
-6–8 weekends.
+Xây công viên là một cách tuyệt vời để kết nối hàng xóm, bạn bè và nhiều người khác. Quá trình này cần những tình
+nguyện viên tận tâm có thể bỏ thời gian và công sức, với nhiều kỹ năng khác nhau — làm mộc, làm cảnh quan, tổ chức,
+động viên, dẫn dắt. Giống như làm theo một công thức nấu ăn, xây công viên là một chuỗi bước nối tiếp nhau; phần lớn
+công viên Park in a Truck được dựng xong trong khoảng 6–8 cuối tuần.
 
-The Create chapter is all about building your park. We broke the process down into eight phases. Each phase can be
-completed in roughly a weekend — the size of your park and number of volunteers will affect how long it actually
-takes. The phases are ordered for a reason; review each one and adjust your schedule as needed.
+Chương Xây dựng nói về việc xây công viên của bạn. Chúng tôi chia quá trình thành tám giai đoạn. Mỗi giai đoạn có thể
+làm xong trong khoảng một cuối tuần — kích thước công viên và số tình nguyện viên sẽ ảnh hưởng đến thời gian thực tế. Các
+giai đoạn được sắp xếp theo thứ tự có lý do; hãy xem qua từng giai đoạn và điều chỉnh lịch khi cần.
 
-This book assumes you've done the cost estimate and know the quantities and materials you'll need to order for each
-phase. If you haven't, go back to the Dream step and use the cost estimator.
+Cuốn sổ này cho rằng bạn đã làm bảng ước tính chi phí và biết số lượng cùng vật liệu cần đặt mua cho từng giai đoạn. Nếu
+chưa, hãy quay lại bước Mơ ước và dùng bảng ước tính chi phí.
 
 <CostEstimator />
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={3} />
 
-## Volunteer release form {/* #volunteer-release-form */}
+## Giấy miễn trách nhiệm cho tình nguyện viên {/* #volunteer-release-form */}
 
-Make sure you have volunteer release forms available at the site whenever you're working on the park. This form
-releases you from liability for injuries to your volunteers. It's your responsibility to consult your organization's
-legal advisors and insurance carrier before starting construction — they may want you to take additional steps to
-protect the organization from liability. Give your volunteers clear instructions about expectations and tasks for the
-work day; they're more likely to come back in future weeks when they feel their time was put to good use.
+Bảo đảm luôn có sẵn giấy miễn trách nhiệm cho tình nguyện viên ở khu đất mỗi khi làm việc ở công viên. Giấy này miễn
+cho bạn trách nhiệm pháp lý khi tình nguyện viên bị thương. Bạn có trách nhiệm hỏi ý kiến cố vấn pháp lý và công ty bảo
+hiểm của tổ chức trước khi bắt đầu xây dựng — họ có thể muốn bạn làm thêm những bước khác để bảo vệ tổ chức khỏi trách
+nhiệm pháp lý. Hãy hướng dẫn rõ ràng cho tình nguyện viên về những điều cần biết và công việc trong ngày; họ dễ quay lại
+những tuần sau hơn khi thấy thời gian của mình được dùng đúng chỗ.
 
-<Download href="downloads/forms/volunteer-release-form.pdf" label="Volunteer waiver and release form" note="One per volunteer; a parent or guardian must also sign for volunteers under 18" />
+<Download href="downloads/forms/volunteer-release-form.pdf" label="Giấy miễn trách nhiệm cho tình nguyện viên" note="Mỗi tình nguyện viên một tờ; tình nguyện viên dưới 18 tuổi cần cha mẹ hoặc người giám hộ ký thêm" />
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={3} />
 
-## Phase 1: Organize {/* #phase-1-organize */}
+## Giai đoạn 1: Tổ chức {/* #phase-1-organize */}
 
-As in any process, the first and most important step is to organize your team by identifying project leaders and
-establishing a schedule. How many people you assign to these roles depends on the complexity and size of your
-project.
+Như mọi quá trình khác, bước đầu tiên và quan trọng nhất là tổ chức nhóm của bạn bằng cách chọn ra những người phụ
+trách dự án và lập lịch làm việc. Cần bao nhiêu người cho các vai trò này tùy vào mức phức tạp và quy mô dự án.
 
-- **Construction manager.** Orders materials, is there for deliveries, gives instructions to volunteers on build
-  days, and coordinates with the project manager on schedule.
-- **Project manager.** In charge of getting volunteers, social media, ordering food, handing out waivers, coordinates
-  finances and controls the schedule.
+- **Người quản lý thi công.** Đặt mua vật liệu, có mặt khi giao hàng, hướng dẫn tình nguyện viên trong những ngày xây,
+  và phối hợp lịch với người quản lý dự án.
+- **Người quản lý dự án.** Lo tìm tình nguyện viên, mạng xã hội, đặt đồ ăn, phát giấy miễn trách nhiệm, điều phối tài
+  chính và nắm lịch làm việc.
 
-<Field id="create.construction-manager" label="Construction manager" hint="Orders materials, runs build days" />
-<Field id="create.project-manager" label="Project manager" hint="Volunteers, schedule, finances" />
+<Field id="create.construction-manager" label="Người quản lý thi công" hint="Đặt mua vật liệu, điều hành ngày xây" />
+<Field id="create.project-manager" label="Người quản lý dự án" hint="Tình nguyện viên, lịch làm việc, tài chính" />
 
 <ListField
   id="create.org-chart"
-  label="Volunteers & contractors"
-  rowName="person"
+  label="Tình nguyện viên & nhà thầu"
+  rowName="người"
   min={3}
   columns={[
-    { key: 'name', label: 'Name' },
-    { key: 'role', label: 'Role', placeholder: 'volunteer, contractor…' },
-    { key: 'contact', label: 'Contact' },
+    { key: 'name', label: 'Tên' },
+    { key: 'role', label: 'Vai trò', placeholder: 'tình nguyện viên, nhà thầu…' },
+    { key: 'contact', label: 'Liên lạc' },
   ]}
 />
 
-A project calendar is an excellent way to keep track of schedules, important dates, when volunteers will be working,
-and lead times for materials. Planning is as important as the building process itself — start off on the right foot.
+Lịch dự án là cách rất tốt để theo dõi lịch làm việc, những ngày quan trọng, lúc nào tình nguyện viên làm việc, và thời
+gian chờ giao vật liệu. Lên kế hoạch cũng quan trọng như chính việc xây — hãy khởi đầu cho đúng.
 
 <BuildSchedule />
 
-<Download href="downloads/templates/project-calendar.xlsx" label="Calendar template" note="Sample project calendar and contact list — for reference, make your own copy" />
+<Download href="downloads/templates/project-calendar.xlsx" label="Mẫu lịch" note="Lịch dự án và danh sách liên lạc mẫu — để tham khảo, hãy tạo bản sao của riêng bạn" />
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={4} />
 
-## Phase 2: Prepare the lot {/* #phase-2-prepare-the-lot */}
+## Giai đoạn 2: Chuẩn bị lô đất {/* #phase-2-prepare-the-lot */}
 
-### Steps
+### Các bước
 
-**Step 1: Evaluate.** Some sites need more clearing or grading than others, which can require special machinery —
-contact a landscape contractor if any of the following can't be done by the community alone.
+**Bước 1: Đánh giá.** Có khu đất cần dọn dẹp hay san lấp nhiều hơn những khu khác, có thể cần máy móc chuyên dụng — hãy
+liên lạc một nhà thầu cảnh quan nếu cộng đồng không tự làm được bất kỳ việc nào dưới đây.
 
-- Contact the PiaT team ([ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu)) for a site visit
-  consultation if you're unsure how to prepare your site.
-- Contact Pennsylvania One Call at **811** to mark utility locations.
+- Liên lạc nhóm PiaT ([ParkinaTruck@jefferson.edu](mailto:ParkinaTruck@jefferson.edu), bằng tiếng Anh) để được đến xem
+  và tư vấn tại khu đất nếu bạn không chắc nên chuẩn bị khu đất thế nào.
+- Gọi Pennsylvania One Call ở số **811** để họ đánh dấu vị trí các đường ống, đường dây ngầm.
 
-<Field id="create.one-call-address" label="Address for your PA One Call request" auto="lot.address" />
+<Field id="create.one-call-address" label="Địa chỉ cho yêu cầu gửi PA One Call" auto="lot.address" />
 
-**Step 2: Protect.** Bring small tools and equipment to the site. Set up protective construction fencing with wood
-posts at tree trunks, buildings and other items that need protection. Install silt/erosion control fencing around
-the site and at all drain inlets.
+**Bước 2: Bảo vệ.** Mang dụng cụ nhỏ và thiết bị đến khu đất. Dựng hàng rào bảo vệ công trình với cọc gỗ quanh thân cây,
+tòa nhà và những thứ khác cần bảo vệ. Lắp hàng rào chắn bùn/chống xói mòn quanh khu đất và ở tất cả các miệng cống thoát
+nước.
 
-**Step 3: Removal.** Remove unwanted vegetation (including roots), tree stumps, trash and masonry materials — some
-vegetation removal may require herbicide treatment to control effectively in a timely manner. Prune existing trees to
-remove limbs from the trunk to at least 6' high. Haul debris and vegetation off site to the proper dumping location;
-stockpile masonry materials on site to use as gabion basket fill.
+**Bước 3: Dọn bỏ.** Dọn bỏ cây cỏ không mong muốn (cả rễ), gốc cây, rác và gạch đá vụn — muốn dọn một số loại cây cỏ cho
+hiệu quả và kịp thời có thể phải dùng thuốc diệt cỏ. Tỉa những cây có sẵn để bỏ các cành trên thân cho đến độ cao ít nhất
+6'. Chở rác và cây cỏ ra khỏi khu đất đến đúng nơi đổ rác; gom gạch đá thành đống ngay tại khu đất để dùng làm đá nhồi
+rọ đá (gabion).
 
 {/* site-added: safety note (DESIGN.md §2, 2026-10-04) — street trees are the City's; facts checked 2026-10-04 on phila.gov. */}
 <Callout kind="site">
-  Street trees (the ones in the sidewalk) belong to the City: pruning or removing one needs a permit from Philadelphia
-  Parks & Recreation, which prunes and removes hazardous street trees for free (ask through 311). See the City's
-  [street tree questions ↗](https://www.phila.gov/departments/philadelphia-parks-recreation/street-tree-frequently-asked-questions/).
+  Cây đường phố (cây trồng trên vỉa hè) thuộc về Thành phố: muốn tỉa hay đốn một cây thì cần giấy phép của Philadelphia
+  Parks & Recreation, cơ quan này tỉa và đốn miễn phí những cây đường phố nguy hiểm (hãy yêu cầu qua số 311). Xem
+  [câu hỏi thường gặp về cây đường phố ↗](https://www.phila.gov/departments/philadelphia-parks-recreation/street-tree-frequently-asked-questions/)
+  của Thành phố (bằng tiếng Anh).
 </Callout>
 
-**Step 4: Site leveling.** Begin grade raking and leveling the site. Make sure any Pennsylvania One Call markings are
-still intact and visible — soil grade should be relatively level with the sidewalk grade.
+**Bước 4: San phẳng khu đất.** Bắt đầu cào san và làm phẳng khu đất. Bảo đảm các dấu đánh của Pennsylvania One Call vẫn
+còn nguyên và nhìn thấy được — mặt đất nên tương đối ngang bằng với mặt vỉa hè.
 
-### Equipment & tools
+### Thiết bị & dụng cụ
 
 <Checklist
   id="create.phase2-tools"
   items={[
-    'Shovels', 'Wheelbarrows', 'Pick axe', 'Grading rakes', 'Sledgehammer',
-    'Hand pruners + loppers', 'Pruning saws', 'Spray paint', 'Construction fencing',
-    'Wood posts', 'Broom', 'Chainsaw', 'Trash bags',
+    { value: 'Shovels', label: 'Xẻng' },
+    { value: 'Wheelbarrows', label: 'Xe cút kít' },
+    { value: 'Pick axe', label: 'Cuốc chim' },
+    { value: 'Grading rakes', label: 'Cào san đất' },
+    { value: 'Sledgehammer', label: 'Búa tạ' },
+    { value: 'Hand pruners + loppers', label: 'Kéo tỉa cành cầm tay + kéo cắt cành cán dài' },
+    { value: 'Pruning saws', label: 'Cưa tỉa cành' },
+    { value: 'Spray paint', label: 'Sơn xịt' },
+    { value: 'Construction fencing', label: 'Hàng rào công trình' },
+    { value: 'Wood posts', label: 'Cọc gỗ' },
+    { value: 'Broom', label: 'Chổi' },
+    { value: 'Chainsaw', label: 'Cưa máy' },
+    { value: 'Trash bags', label: 'Bao rác' },
   ]}
 />
 <Checklist
   id="create.phase2-tools-optional"
-  label="Optional — for sites with large amounts of uneven surfaces, concrete, or tree stumps"
+  label="Không bắt buộc — cho khu đất có nhiều chỗ lồi lõm, bê tông hoặc gốc cây"
   items={[
-    { value: 'excavator', label: 'Excavator', hint: 'hired contractor recommended' },
-    { value: 'stump-grinder', label: 'Stump grinder', hint: 'hired contractor recommended' },
-    'Jack hammer', 'Rototiller', 'Herbicide spray',
+    { value: 'excavator', label: 'Máy đào', hint: 'nên thuê nhà thầu' },
+    { value: 'stump-grinder', label: 'Máy xay gốc cây', hint: 'nên thuê nhà thầu' },
+    { value: 'Jack hammer', label: 'Búa khoan phá bê tông' },
+    { value: 'Rototiller', label: 'Máy xới đất' },
+    { value: 'Herbicide spray', label: 'Bình xịt thuốc diệt cỏ' },
   ]}
 />
 
 <Figure
   src="img/create/phase2-reference-photos.webp"
-  alt="Reference photos for preparing the lot: an excavator clearing a site, a utility locate flag and tracer wire on a lawn, volunteers removing masonry rubble, erosion-control sediment mesh along a curb, and a volunteer grade-raking soil"
+  alt="Ảnh tham khảo cho việc chuẩn bị lô đất: một máy đào đang dọn khu đất, một cờ đánh dấu đường ngầm và dây dò trên bãi cỏ, tình nguyện viên dọn gạch đá vụn, lưới chắn bùn chống xói mòn dọc lề đường, và một tình nguyện viên đang cào san đất"
 />
 
-### Useful links
+### Liên kết hữu ích (bằng tiếng Anh)
 
-- **Tool rental** — may be worth hiring a contractor for power tools, for efficiency and safety.
-  [West Philadelphia Tool Library ↗](https://westphillytools.org) (hand tools only; 1314 S 47th St) ·
-  [OK Rental ↗](https://okrentalsaleservice.com) *(link currently dead)* (power tools, including chainsaws; 640 Main St, Darby) ·
-  [Diamond Tool ↗](https://diamondtool.net/Rentals) *(could not verify automatically)* (2800 Grays Ferry Ave)
-- **Waste & recycling** — [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/) (3850 W Ford Rd)
-- **Tree pruning video** — [youtube.com/watch?v=pY5A-5gUqwo ↗](https://youtube.com/watch?v=pY5A-5gUqwo)
-- **Weed ID** — [Philadelphia Orchard Project weed guide ↗](https://www.phillyorchards.org/resources/)
-- **Herbicides** (use sparingly, always follow label instructions) — Picloram for stump application on woody plants;
-  Glyphosate for foliar application on herbaceous and woody plants; Clopyralid for mugwort and Canadian thistle.
-  Invasive weeds that often need herbicide control: mugwort, Canadian thistle, Japanese knotweed and phragmites
-  (herbaceous); Broussonetia, Ailanthus, Paulownia and Japanese honeysuckle (woody — cut and treat the stump only if
-  too large to remove by the roots).
+- **Thuê dụng cụ** — có thể nên thuê nhà thầu cho các dụng cụ chạy điện, để nhanh và an toàn hơn.
+  [West Philadelphia Tool Library ↗](https://westphillytools.org) (chỉ dụng cụ cầm tay; 1314 S 47th St) ·
+  [OK Rental ↗](https://okrentalsaleservice.com) *(liên kết hiện không vào được)* (dụng cụ chạy điện, kể cả cưa máy; 640 Main St, Darby) ·
+  [Diamond Tool ↗](https://diamondtool.net/Rentals) *(chưa kiểm tra tự động được)* (2800 Grays Ferry Ave)
+- **Rác & tái chế** — [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/) (3850 W Ford Rd)
+- **Video tỉa cây** — [youtube.com/watch?v=pY5A-5gUqwo ↗](https://youtube.com/watch?v=pY5A-5gUqwo)
+- **Nhận biết cỏ dại** — [hướng dẫn về cỏ dại của Philadelphia Orchard Project ↗](https://www.phillyorchards.org/resources/)
+- **Thuốc diệt cỏ** (dùng dè xẻn, luôn làm theo hướng dẫn trên nhãn) — Picloram để bôi lên gốc cây thân gỗ vừa cắt;
+  Glyphosate để phun lên lá cây thân thảo và cây thân gỗ; Clopyralid cho ngải cứu dại (mugwort) và cây kế Canada
+  (Canadian thistle). Những loài cỏ dại xâm lấn thường phải dùng thuốc diệt cỏ: ngải cứu dại, cây kế Canada, cây cốt khí
+  Nhật (Japanese knotweed) và sậy phragmites (cây thân thảo); Broussonetia, Ailanthus, Paulownia và kim ngân Nhật
+  (Japanese honeysuckle) (cây thân gỗ — cắt và xử lý gốc chỉ khi cây quá lớn không nhổ cả rễ được).
 
 {/* site-added: safety note (DESIGN.md §2, 2026-10-04) — herbicide labels, restricted-use picloram, 20% vinegar; facts checked 2026-10-04 on epa.gov and npic.orst.edu. */}
 <Callout kind="site">
-  A herbicide's label is the law: follow it, including where you may use the product and the protective gear it
-  lists ([EPA ↗](https://www.epa.gov/pesticide-labels/introduction-pesticide-labels)). Many picloram products are
-  restricted-use and may only be bought or applied by a certified applicator
-  ([EPA's list ↗](https://www.epa.gov/pesticide-worker-safety/restricted-use-products-rup-report)). Vinegar sold for
-  weeds (20% or more) can permanently damage eyes: wear eye protection and gloves
-  ([NPIC ↗](https://npic.orst.edu/faq/vinegar.html)).
+  Nhãn thuốc diệt cỏ là luật: hãy làm theo nhãn, kể cả chỗ được phép dùng sản phẩm và đồ bảo hộ ghi trên nhãn
+  ([EPA ↗](https://www.epa.gov/pesticide-labels/introduction-pesticide-labels), bằng tiếng Anh). Nhiều sản phẩm picloram
+  bị hạn chế sử dụng và chỉ người phun thuốc có chứng chỉ mới được mua hoặc phun
+  ([danh sách của EPA ↗](https://www.epa.gov/pesticide-worker-safety/restricted-use-products-rup-report), bằng tiếng
+  Anh). Giấm bán để diệt cỏ (từ 20% trở lên) có thể làm hỏng mắt vĩnh viễn: hãy đeo kính bảo hộ và găng tay
+  ([NPIC ↗](https://npic.orst.edu/faq/vinegar.html), bằng tiếng Anh).
 </Callout>
 
-### Preparation for next steps
+### Chuẩn bị cho các bước tiếp theo
 
-Check your project calendar and revise as needed. Purchase and deliver any materials or equipment with lead times,
-and make sure the site is prepared for Phase 3.
+Xem lại lịch dự án và sửa khi cần. Mua và cho giao những vật liệu hay thiết bị cần thời gian chờ, và bảo đảm khu đất đã
+sẵn sàng cho Giai đoạn 3.
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={5} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={6} label="Reference photos & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={6} label="Ảnh tham khảo & liên kết (PDF)" />
 
-## Phase 3: Layout & gravel base {/* #phase-3-layout-gravel-base */}
+## Giai đoạn 3: Định vị & lớp sỏi nền {/* #phase-3-layout-gravel-base */}
 
-### Steps
+### Các bước
 
-**Step 1: Materials.** Bring equipment and tools to the site; prepare for deliveries. Locate a stockpile area for
-gravel and cover it with a tarp if possible. Mark the general areas to receive gravel in spray paint — if there's not
-enough room, coordinate the delivery with your city to have it placed in the street.
+**Bước 1: Vật liệu.** Mang thiết bị và dụng cụ đến khu đất; chuẩn bị nhận hàng. Chọn một chỗ để đổ đống sỏi và phủ bạt
+lên nếu được. Dùng sơn xịt đánh dấu các khu vực sẽ rải sỏi — nếu không đủ chỗ, hãy phối hợp với thành phố để hàng được
+đổ xuống lòng đường.
 
-<Callout kind="note" title="Blocking the street for a delivery?">
-  Apply for a temporary no-parking permit so the delivery truck has somewhere to unload.
-  [Apply on phila.gov ↗](https://www.phila.gov/services/cars-parking-transportation/apply-for-a-parking-permit/apply-for-a-temporary-no-parking-permit/)
+<Callout kind="note" title="Chặn đường để nhận hàng?">
+  Hãy xin giấy phép cấm đậu xe tạm thời để xe tải giao hàng có chỗ dỡ hàng.
+  [Xin trên phila.gov ↗](https://www.phila.gov/services/cars-parking-transportation/apply-for-a-parking-permit/apply-for-a-temporary-no-parking-permit/) (bằng tiếng Anh)
 </Callout>
-<Field id="create.delivery-address" label="Address for the no-parking permit" auto="lot.address" />
+<Field id="create.delivery-address" label="Địa chỉ cho giấy phép cấm đậu xe" auto="lot.address" />
 
-**Step 2: Layout planting beds & park element locations.** Begin at the starting point you marked in the Assess
-workbook. Refer to your plan for the locations and lengths of planting-bed and park-element edges. Use stakes and
-string line to mark the locations of edging and park elements you'll add in later phases.
+**Bước 2: Định vị luống trồng cây & vị trí các món đồ công viên.** Bắt đầu từ điểm bắt đầu bạn đã đánh dấu trong sổ tay
+thực hành Khảo sát. Xem bản vẽ để biết vị trí và chiều dài các mép của luống trồng cây và các món đồ công viên. Dùng cọc
+và dây căng để đánh dấu vị trí của viền và các món đồ công viên mà bạn sẽ thêm ở những giai đoạn sau.
 
-**Step 3: Install sub base.** Prepare ground surfaces for gabion baskets per the assembly instructions. Dig out
-entrances to allow for the change in level from the new park to the sidewalk — minimum 4" deep at the sidewalk edge,
-grading as needed (use excess soil to level pathways or add to planting areas). Spread gravel 2" deep in all areas
-except plant beds, about 6" wider than your string lines so the edging in the next phase can sit on top of the
-gravel. Run a vibrating plate over the gravel at least twice.
+**Bước 3: Làm lớp nền.** Chuẩn bị mặt đất cho rọ đá theo hướng dẫn lắp ráp. Đào các lối vào để chừa chênh lệch độ cao
+giữa công viên mới và vỉa hè — sâu tối thiểu 4" ở mép vỉa hè, san dốc khi cần (dùng đất dư để san phẳng lối đi hoặc đổ
+thêm vào khu trồng cây). Rải sỏi dày 2" ở mọi chỗ trừ luống trồng cây, rộng hơn dây căng khoảng 6" để phần viền ở giai
+đoạn sau có thể đặt lên trên lớp sỏi. Cho máy đầm rung chạy trên lớp sỏi ít nhất hai lần.
 
-**Step 4: Entrances & cleanup.** Clean up overspill of gravel and clean up public areas.
+**Bước 4: Lối vào & dọn dẹp.** Dọn sỏi rơi vãi và dọn sạch các khu vực công cộng.
 
-### Equipment, tools & materials
+### Thiết bị, dụng cụ & vật liệu
 
 <Checklist
   id="create.phase3-tools"
   items={[
-    'Square', 'Measuring tape', 'Shovels', 'Wheelbarrows', 'Pick axe', 'Grading rakes',
-    '5 lb hammer', 'Spray paint', 'Wood posts and string', 'Vibrating plate compactor', 'Broom',
+    { value: 'Square', label: 'Thước vuông (ê-ke)' },
+    { value: 'Measuring tape', label: 'Thước dây' },
+    { value: 'Shovels', label: 'Xẻng' },
+    { value: 'Wheelbarrows', label: 'Xe cút kít' },
+    { value: 'Pick axe', label: 'Cuốc chim' },
+    { value: 'Grading rakes', label: 'Cào san đất' },
+    { value: '5 lb hammer', label: 'Búa 5 lb' },
+    { value: 'Spray paint', label: 'Sơn xịt' },
+    { value: 'Wood posts and string', label: 'Cọc gỗ và dây căng' },
+    { value: 'Vibrating plate compactor', label: 'Máy đầm rung (đầm bàn)' },
+    { value: 'Broom', label: 'Chổi' },
   ]}
 />
-<p class="muted">Materials: gravel, 3/4" roadbase.</p>
+<p class="muted">Vật liệu: sỏi, đá nền đường 3/4" (roadbase).</p>
 
 <Figure
   src="img/create/phase3-reference-photos.webp"
-  alt="Reference photos for layout and gravel base: measuring the site, digging, prepping the sub base, a gravel delivery truck, laying out the site with stakes and string, a gravel stockpile, wheelbarrowing and spreading gravel"
+  alt="Ảnh tham khảo cho việc định vị và lớp sỏi nền: đo khu đất, đào đất, chuẩn bị lớp nền, một xe tải giao sỏi, định vị khu đất bằng cọc và dây căng, một đống sỏi, chở sỏi bằng xe cút kít và rải sỏi"
 />
 
-### Useful links
+### Liên kết hữu ích (bằng tiếng Anh)
 
-- **How-to** — [Lay out planting beds ↗](https://lowes.com/n/how-to/create-an-english-style-garden) (watch 1:50–2:40) ·
-  [Install gravel sub-base ↗](https://youtube.com/watch?v=tfDEOIAIUwQ)
-- **Tool rental** — [West Philadelphia Tool Library ↗](https://westphillytools.org) ·
-  [OK Rental ↗](https://okrentalsaleservice.com) *(link currently dead)* · [Diamond Tool ↗](https://diamondtool.net/Rentals) *(could not verify automatically)*
+- **Cách làm** — [Định vị luống trồng cây ↗](https://lowes.com/n/how-to/create-an-english-style-garden) (xem từ 1:50 đến 2:40) ·
+  [Làm lớp sỏi nền ↗](https://youtube.com/watch?v=tfDEOIAIUwQ)
+- **Thuê dụng cụ** — [West Philadelphia Tool Library ↗](https://westphillytools.org) ·
+  [OK Rental ↗](https://okrentalsaleservice.com) *(liên kết hiện không vào được)* · [Diamond Tool ↗](https://diamondtool.net/Rentals) *(chưa kiểm tra tự động được)*
 
-### Preparation for next steps
+### Chuẩn bị cho các bước tiếp theo
 
-Check your project calendar and revise as needed. Purchase and deliver materials with lead times for the next
-phases. Make sure the site is prepared for Phase 4.
+Xem lại lịch dự án và sửa khi cần. Mua và cho giao những vật liệu cần thời gian chờ cho các giai đoạn sau. Bảo đảm khu
+đất đã sẵn sàng cho Giai đoạn 4.
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={7} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={8} label="Reference photos & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={8} label="Ảnh tham khảo & liên kết (PDF)" />
 
-## Phase 4: Install the edge {/* #phase-4-install-the-edge */}
+## Giai đoạn 4: Làm viền {/* #phase-4-install-the-edge */}
 
-### Steps
+### Các bước
 
-**Step 1: Materials.** Bring your edge materials (see the cost estimate and assembly instructions). Remove the
-erosion-protection fence; tree protection should stay unless its location interferes with edge installation.
+**Bước 1: Vật liệu.** Mang vật liệu làm viền đến (xem bảng ước tính chi phí và hướng dẫn lắp ráp). Gỡ hàng rào chống xói
+mòn; hàng rào bảo vệ cây nên để lại, trừ khi nó vướng chỗ làm viền.
 
-**Step 2: Assemble.** Assemble gabion baskets (refer to your Gabion Wall assembly instructions).
+**Bước 2: Lắp ráp.** Lắp các rọ đá (xem hướng dẫn lắp ráp Tường rọ đá).
 
-**Step 3: Installation.** Set up string lines so gabion baskets sit in a straight line along the park edge. Lay out
-the baskets according to your plan and fill the bottoms with 2–3" of gravel. Make small adjustments so the baskets
-are level and straight relative to each other — when used alone as tables or benches, use a leveling tool on top.
-Add wood edges where needed (see the Wood Edging assembly instructions).
+**Bước 3: Lắp đặt.** Căng dây để các rọ đá nằm thẳng hàng dọc theo mép công viên. Đặt các rọ theo bản vẽ và rải 2–3"
+sỏi xuống đáy. Chỉnh từng chút để các rọ nằm ngang bằng và thẳng hàng với nhau — khi dùng riêng làm bàn hay ghế, hãy đặt
+thước thủy lên mặt trên để kiểm tra. Thêm viền gỗ ở chỗ cần (xem hướng dẫn lắp ráp Viền gỗ).
 
-### Equipment & materials
+### Thiết bị & vật liệu
 
 <Checklist
   id="create.phase4-tools"
   items={[
-    'Measuring tape', 'Shovels', 'Wheelbarrows', 'Garden hoes', 'Grading rakes',
-    'Hand tamper', 'Wire cutters', 'Sledge hammer', 'Level', 'Broom',
+    { value: 'Measuring tape', label: 'Thước dây' },
+    { value: 'Shovels', label: 'Xẻng' },
+    { value: 'Wheelbarrows', label: 'Xe cút kít' },
+    { value: 'Garden hoes', label: 'Cuốc làm vườn' },
+    { value: 'Grading rakes', label: 'Cào san đất' },
+    { value: 'Hand tamper', label: 'Đầm tay' },
+    { value: 'Wire cutters', label: 'Kìm cắt dây thép' },
+    { value: 'Sledge hammer', label: 'Búa tạ' },
+    { value: 'Level', label: 'Thước thủy (ni-vô)' },
+    { value: 'Broom', label: 'Chổi' },
   ]}
 />
-<p class="muted">Materials: gabion baskets; lumber and hardware for wood edge; large masonry material for gabion baskets, 3" or larger.</p>
+<p class="muted">Vật liệu: rọ đá; gỗ xẻ và đồ ngũ kim cho viền gỗ; gạch đá lớn để nhồi rọ, từ 3" trở lên.</p>
 
 <Figure
   src="img/create/phase4-reference-photos.webp"
-  alt="Reference photos for installing the edge: two filled gabion baskets, and a volunteer setting a wood edge board against a gravel bed"
+  alt="Ảnh tham khảo cho việc làm viền: hai rọ đá đã nhồi đầy, và một tình nguyện viên đang đặt tấm gỗ viền sát vào một luống sỏi"
 />
 
-### Useful links
+### Liên kết hữu ích (bằng tiếng Anh)
 
-- **Materials** — [Castor Materials ↗](https://castormaterials.com) (crushed stone, delivery; 3301 S 61st St) ·
-  [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) (crushed stone, mulch, tools; 4260 Macalester St) ·
-  [Underdog Supply ↗](https://www.underdogsupply.com/) (bulk delivery; Conshohocken) ·
-  Galantino Supply Company (rental equipment and bulk materials; 725 Old Marple Rd, Springfield — (610) 544-2586)
-- **How-to** — [Build a gabion wall ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
+- **Vật liệu** — [Castor Materials ↗](https://castormaterials.com) (đá dăm, có giao hàng; 3301 S 61st St) ·
+  [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) (đá dăm, lớp phủ gốc, dụng cụ; 4260 Macalester St) ·
+  [Underdog Supply ↗](https://www.underdogsupply.com/) (giao số lượng lớn; Conshohocken) ·
+  Galantino Supply Company (cho thuê thiết bị và vật liệu số lượng lớn; 725 Old Marple Rd, Springfield — (610) 544-2586)
+- **Cách làm** — [Xây tường rọ đá ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
 
-### Preparation for next steps
+### Chuẩn bị cho các bước tiếp theo
 
-Check your project calendar and revise as needed. Purchase and deliver materials with lead times. Make sure the site
-is prepared for Phase 5.
+Xem lại lịch dự án và sửa khi cần. Mua và cho giao những vật liệu cần thời gian chờ. Bảo đảm khu đất đã sẵn sàng cho
+Giai đoạn 5.
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={9} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={10} label="Reference photos & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={10} label="Ảnh tham khảo & liên kết (PDF)" />
 
-## Phase 5: Spread topsoil {/* #phase-5-spread-topsoil */}
+## Giai đoạn 5: Rải đất mặt {/* #phase-5-spread-topsoil */}
 
-### Steps
+### Các bước
 
-**Step 1: Materials.** Remove the tree protection fence. Locate a stockpile area for topsoil on the sidewalk or
-street — if so, apply for a temporary no-parking permit (see Phase 3).
+**Bước 1: Vật liệu.** Gỡ hàng rào bảo vệ cây. Chọn chỗ đổ đống đất mặt trên vỉa hè hoặc lòng đường — nếu vậy, hãy xin
+giấy phép cấm đậu xe tạm thời (xem Giai đoạn 3).
 
-**Step 2: Soil installation.** Prepare planting beds to receive topsoil by grading the existing soil. Spread topsoil
-approximately 4–6" deep and grade it for smoothness.
+**Bước 2: Đổ đất.** Chuẩn bị các luống trồng cây để nhận đất mặt bằng cách san lớp đất có sẵn. Rải đất mặt dày khoảng
+4–6" và san cho phẳng.
 
-**Step 3: Clean up.** Clean up overspill of topsoil and clean up public areas.
+**Bước 3: Dọn dẹp.** Dọn đất rơi vãi và dọn sạch các khu vực công cộng.
 
-### Equipment & materials
+### Thiết bị & vật liệu
 
 <Checklist
   id="create.phase5-tools"
-  items={['Measuring tape', 'Shovels', 'Wheelbarrows', 'Grading rakes', 'Garden hoes', 'Broom']}
+  items={[
+    { value: 'Measuring tape', label: 'Thước dây' },
+    { value: 'Shovels', label: 'Xẻng' },
+    { value: 'Wheelbarrows', label: 'Xe cút kít' },
+    { value: 'Grading rakes', label: 'Cào san đất' },
+    { value: 'Garden hoes', label: 'Cuốc làm vườn' },
+    { value: 'Broom', label: 'Chổi' },
+  ]}
 />
-<p class="muted">Materials: topsoil.</p>
+<p class="muted">Vật liệu: đất mặt.</p>
 
 <Figure
   src="img/create/phase5-reference-photos.webp"
-  alt="Reference photos for spreading topsoil: a dump truck delivering topsoil, a volunteer grading soil by hand, two volunteers moving topsoil by wheelbarrow, and a volunteer placing topsoil in a bed"
+  alt="Ảnh tham khảo cho việc rải đất mặt: một xe ben giao đất mặt, một tình nguyện viên san đất bằng tay, hai tình nguyện viên chở đất bằng xe cút kít, và một tình nguyện viên đổ đất vào luống"
 />
 
-### Useful links
+### Liên kết hữu ích (bằng tiếng Anh)
 
-- **Ordering** — [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
-- **How-to** — [Prep topsoil ↗](https://youtube.com/watch?v=GcOJ4fDJmpM) · [Healthy topsoil for healthy plants ↗](https://youtube.com/watch?v=7-Tyz7fGeZo)
+- **Đặt hàng** — [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
+- **Cách làm** — [Chuẩn bị đất mặt ↗](https://youtube.com/watch?v=GcOJ4fDJmpM) · [Đất mặt tốt cho cây khỏe ↗](https://youtube.com/watch?v=7-Tyz7fGeZo)
 
-### Preparation for next steps
+### Chuẩn bị cho các bước tiếp theo
 
-Check your project calendar and revise as needed. Purchase and deliver materials with lead times. Make sure the site
-is prepared for Phase 6.
+Xem lại lịch dự án và sửa khi cần. Mua và cho giao những vật liệu cần thời gian chờ. Bảo đảm khu đất đã sẵn sàng cho
+Giai đoạn 6.
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={11} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={12} label="Reference photos & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={12} label="Ảnh tham khảo & liên kết (PDF)" />
 
-## Phase 6: Plant {/* #phase-6-plant */}
+## Giai đoạn 6: Trồng cây {/* #phase-6-plant */}
 
-### Steps
+### Các bước
 
-**Step 1: Plants.** Remove any weeds that have emerged. Make sure plant deliveries are scheduled and you've located a
-plant delivery staging area. Lay out trees and shrubs in their desired locations, then clean up overspill of soil and
-public areas.
+**Bước 1: Cây.** Nhổ hết cỏ dại đã mọc lên. Bảo đảm đã hẹn lịch giao cây và đã chọn chỗ tập kết cây khi giao tới. Đặt
+cây lớn và cây bụi vào đúng chỗ muốn trồng, rồi dọn đất rơi vãi và các khu vực công cộng.
 
-**Step 2: Installation.** Install large trees first (see the planting detail below). Install shrubs, fine-grade the
-soil, plant perennials, install 4" of mulch, then water all plants thoroughly — repeat twice a week until the plants
-go dormant for winter.
+**Bước 2: Trồng.** Trồng cây lớn trước (xem hình chi tiết cách trồng bên dưới). Trồng cây bụi, san mịn đất, trồng cây
+lâu năm, phủ 4" lớp phủ gốc (mulch), rồi tưới thật đẫm cho tất cả cây — lặp lại hai lần một tuần cho đến khi cây ngủ
+đông.
 
 <Figure
   src="img/create/phase6-plant-illustration.webp"
-  alt="Axonometric illustration of a finished front-yard park, labelled PLANT, with trees, raised planting beds and a paved gathering area between two rowhouses"
+  alt="Hình minh họa ba chiều một công viên sân trước đã hoàn thành, có chữ PLANT (TRỒNG CÂY), với cây, các luống trồng cây nâng cao và một khu tụ họp lát nền giữa hai dãy nhà liền kề"
 />
 <Figure
   src="img/create/phase6-planting-detail.webp"
-  alt="Two planting detail diagrams: a shrub/perennial container planting detail showing mulch depth and backfill, and a tree planting detail showing root-ball placement, staking, mulch and burlap removal"
+  alt="Hai hình chi tiết cách trồng: chi tiết trồng cây bụi/cây lâu năm từ chậu, cho thấy độ dày lớp phủ gốc và đất lấp, và chi tiết trồng cây lớn, cho thấy cách đặt bầu rễ, cọc chống, lớp phủ gốc và việc gỡ bỏ bao bố"
 />
 
-### Equipment & materials
+### Thiết bị & vật liệu
 
 <Checklist
   id="create.phase6-tools"
-  items={['Measuring tape', 'Shovels', 'Wheelbarrows', 'Pick axe', 'Landscape rakes', 'Spray paint', 'Tree stakes and rope', 'Broom']}
+  items={[
+    { value: 'Measuring tape', label: 'Thước dây' },
+    { value: 'Shovels', label: 'Xẻng' },
+    { value: 'Wheelbarrows', label: 'Xe cút kít' },
+    { value: 'Pick axe', label: 'Cuốc chim' },
+    { value: 'Landscape rakes', label: 'Cào làm vườn' },
+    { value: 'Spray paint', label: 'Sơn xịt' },
+    { value: 'Tree stakes and rope', label: 'Cọc chống cây và dây' },
+    { value: 'Broom', label: 'Chổi' },
+  ]}
 />
-<p class="muted">Materials: plants — be sure to reference your plant list.</p>
+<p class="muted">Vật liệu: cây — nhớ xem lại danh sách cây của bạn.</p>
 
-### Useful links
+### Liên kết hữu ích (bằng tiếng Anh)
 
-- **General plant info** — [PHS Gold Medal Plants ↗](https://phsonline.org/for-gardeners/gold-medal-plants) ·
+- **Thông tin chung về cây** — [PHS Gold Medal Plants ↗](https://phsonline.org/for-gardeners/gold-medal-plants) ·
   [Gardens Alive ↗](https://www.gardensalive.com/) · [North Creek Nurseries ↗](https://www.northcreeknurseries.com/) ·
-  [Missouri Botanical Garden ↗](https://www.missouribotanicalgarden.org/) · [Longwood Gardens plant explorer ↗](https://plantexplorer.longwoodgardens.org/ecmweb/ECM_Home.html) *(link currently dead)* ·
-  [Arbor Day Foundation ↗](https://www.arborday.org/) · [Penn State Extension vegetable gardening ↗](https://extension.psu.edu/programs/master-gardener)
-- **PiaT partner nursery** — LandHealth Institute, 4862 Parkside Ave, Philadelphia · (267) 571-5750 ·
+  [Missouri Botanical Garden ↗](https://www.missouribotanicalgarden.org/) · [Longwood Gardens plant explorer ↗](https://plantexplorer.longwoodgardens.org/ecmweb/ECM_Home.html) *(liên kết hiện không vào được)* ·
+  [Arbor Day Foundation ↗](https://www.arborday.org/) · [Penn State Extension — trồng rau ↗](https://extension.psu.edu/programs/master-gardener)
+- **Vườn ươm đối tác của PiaT** — LandHealth Institute, 4862 Parkside Ave, Philadelphia · (267) 571-5750 ·
   [landhealthinstitute.org/nursery ↗](https://www.landhealthinstitute.org/nursery)
-- **Other regional nurseries** — [Good Host Plants ↗](https://www.goodhostplants.com/) (local pollinator specialist) ·
+- **Các vườn ươm khác trong vùng** — [Good Host Plants ↗](https://www.goodhostplants.com/) (chuyên cây cho loài thụ phấn ở địa phương) ·
   [Pleasant Run Nursery ↗](https://www.pleasantrunnursery.com/) · [Pinelands Nursery ↗](https://www.pinelandsnursery.com/) ·
   [Archewild ↗](https://archewild.com/)
-- **Fruit trees** — [Philadelphia Orchard Project ↗](https://www.phillyorchards.org/) ·
+- **Cây ăn trái** — [Philadelphia Orchard Project ↗](https://www.phillyorchards.org/) ·
   [Burpee ↗](https://www.burpee.com/fruit/fruit-trees/) · [Stark Bros ↗](https://www.starkbros.com/products/fruit-trees)
-- **Gardening workshops & lot help** — [Pennsylvania Horticultural Society ↗](https://phsonline.org/) ·
-  [Grounded in Philly ↗](https://groundedinphilly.org/) (legal help, insurance, lot data)
-- **How-to** — [Container & bulb planting tips ↗](https://www.gardeners.com/how-to/growing-annual-flowers/5070.html) ·
-  [Containerized tree planting ↗](https://www.arborday.org/trees/planting/containerized.cfm) ·
-  [How to plant a shrub ↗](https://youtube.com/watch?v=Tim4LEo6l10)
+- **Lớp học làm vườn & hỗ trợ về lô đất** — [Pennsylvania Horticultural Society ↗](https://phsonline.org/) ·
+  [Grounded in Philly ↗](https://groundedinphilly.org/) (trợ giúp pháp lý, bảo hiểm, dữ liệu lô đất)
+- **Cách làm** — [Mẹo trồng cây trong chậu & trồng củ ↗](https://www.gardeners.com/how-to/growing-annual-flowers/5070.html) ·
+  [Trồng cây lớn từ chậu ↗](https://www.arborday.org/trees/planting/containerized.cfm) ·
+  [Cách trồng một cây bụi ↗](https://youtube.com/watch?v=Tim4LEo6l10)
 
-### Preparation for next steps
+### Chuẩn bị cho các bước tiếp theo
 
-Check your project calendar and make sure you have a schedule for a Park Ambassador — see the Sustain step for
-details. Mulch suppliers: [Mid Atlantic Pine Straw ↗](https://www.midatlanticpinestraw.com/) ·
+Xem lại lịch dự án và bảo đảm bạn đã có lịch cho một Đại sứ Công viên — xem bước Duy trì để biết chi tiết. Nơi cung cấp
+lớp phủ gốc: [Mid Atlantic Pine Straw ↗](https://www.midatlanticpinestraw.com/) ·
 [Underdog Landscape Supply ↗](https://underdogsupply.com) · [Fairmount Park Organic Recycling Center ↗](https://www.phila.gov/services/trees-parks-the-environment/get-organic-materials/)
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={13} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={14} label="Useful links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={14} label="Liên kết hữu ích (PDF)" />
 
-## Phase 7: Install the gravel surface {/* #phase-7-install-the-gravel-surface */}
+## Giai đoạn 7: Làm mặt sỏi {/* #phase-7-install-the-gravel-surface */}
 
-### Steps
+### Các bước
 
-**Step 1: Materials.** Prepare for deliveries if not already stockpiled. Locate a stockpile area for gravel on the
-sidewalk or street (temporary no-parking permit, if needed — see Phase 3).
+**Bước 1: Vật liệu.** Chuẩn bị nhận hàng nếu sỏi chưa được đổ sẵn. Chọn chỗ đổ đống sỏi trên vỉa hè hoặc lòng đường
+(xin giấy phép cấm đậu xe tạm thời nếu cần — xem Giai đoạn 3).
 
-**Step 2: Installation.** Install the gravel surface using a wheelbarrow and landscape rake. Install gravel
-approximately 2" deep, spreading any excess evenly. Tamp down the aggregate with a vibratory plate to reduce
-settling, and move through all areas to make sure they're level and even.
+**Bước 2: Rải sỏi.** Rải mặt sỏi bằng xe cút kít và cào làm vườn. Rải sỏi dày khoảng 2", phần dư thì rải đều ra. Dùng
+máy đầm rung nén chặt lớp đá để bớt lún, và đi qua mọi khu vực để bảo đảm mặt sỏi phẳng và đều.
 
-**Step 3: Clean up.** Clean up overspill of gravel and clean up public areas.
+**Bước 3: Dọn dẹp.** Dọn sỏi rơi vãi và dọn sạch các khu vực công cộng.
 
-### Equipment & materials
+### Thiết bị & vật liệu
 
 <Checklist
   id="create.phase7-tools"
-  items={['Measuring tape', 'Shovels', 'Wheelbarrows', 'Landscape rakes', 'Hand tamper', 'Vibratory plate', 'Broom']}
+  items={[
+    { value: 'Measuring tape', label: 'Thước dây' },
+    { value: 'Shovels', label: 'Xẻng' },
+    { value: 'Wheelbarrows', label: 'Xe cút kít' },
+    { value: 'Landscape rakes', label: 'Cào làm vườn' },
+    { value: 'Hand tamper', label: 'Đầm tay' },
+    { value: 'Vibratory plate', label: 'Máy đầm rung' },
+    { value: 'Broom', label: 'Chổi' },
+  ]}
 />
-<p class="muted">Materials: gravel, 3/8" or smaller (stone dust).</p>
+<p class="muted">Vật liệu: sỏi, cỡ 3/8" hoặc nhỏ hơn (bột đá).</p>
 
 <Figure
   src="img/create/phase7-reference-photos.webp"
-  alt="Reference photos for installing the gravel surface: a landscape grading rake, a hand tamper on packed gravel, and a volunteer running a gas-powered vibratory plate compactor"
+  alt="Ảnh tham khảo cho việc làm mặt sỏi: một cây cào san làm vườn, một cây đầm tay trên lớp sỏi đã nén, và một tình nguyện viên đang chạy máy đầm rung chạy xăng"
 />
 
-### Useful links
+### Liên kết hữu ích (bằng tiếng Anh)
 
-- **Materials** — [Castor Materials ↗](https://castormaterials.com) · [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) ·
+- **Vật liệu** — [Castor Materials ↗](https://castormaterials.com) · [D&S Supply ↗](https://www.ds-supply.com/landscape-supply) ·
   Galantino Supply Company ((610) 544-2586) · [Underdog Landscape Supply ↗](https://underdogsupply.com)
-- **How-to** — [Install gravel ↗](https://youtube.com/watch?v=t0LWQ_U2z_g)
+- **Cách làm** — [Rải sỏi ↗](https://youtube.com/watch?v=t0LWQ_U2z_g)
 
-### Preparation for next steps
+### Chuẩn bị cho các bước tiếp theo
 
-Check your project calendar and revise as needed. Purchase and deliver materials with lead times. Make sure the site
-is prepared for Phase 8.
+Xem lại lịch dự án và sửa khi cần. Mua và cho giao những vật liệu cần thời gian chờ. Bảo đảm khu đất đã sẵn sàng cho
+Giai đoạn 8.
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={15} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={16} label="Reference photos & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={16} label="Ảnh tham khảo & liên kết (PDF)" />
 
-## Phase 8: Install park elements {/* #phase-8-install-park-elements */}
+## Giai đoạn 8: Lắp đặt các món đồ công viên {/* #phase-8-install-park-elements */}
 
-### Steps
+### Các bước
 
-**Step 1: Measure.** Review your assembly manuals and measure and mark out where your park elements need to go.
+**Bước 1: Đo.** Xem lại các sách hướng dẫn lắp ráp, đo và đánh dấu chỗ đặt các món đồ công viên.
 
-**Step 2: Materials.** Make sure you have all the materials outlined in your assembly manuals.
+**Bước 2: Vật liệu.** Bảo đảm bạn có đủ mọi vật liệu ghi trong các sách hướng dẫn lắp ráp.
 
-**Step 3: Assemble.** Assemble your park elements according to the assembly manuals.
+**Bước 3: Lắp ráp.** Lắp ráp các món đồ công viên theo sách hướng dẫn lắp ráp.
 
-**Step 4: Install.** Make sure you have proper room within your design to install the elements, then locate them in
-their final positions. You may be able to — or choose to — assemble elements ahead of time or off site.
+**Bước 4: Lắp đặt.** Bảo đảm thiết kế của bạn có đủ chỗ để đặt các món đồ, rồi đưa chúng vào vị trí cuối cùng. Bạn có
+thể — hoặc chọn — lắp ráp các món đồ trước hoặc ở nơi khác.
 
 <Callout kind="auto">
-  Every element with an assembly guide is linked from the Dream step's [Assemble](/steps/dream/#assemble) grid — the
-  same guides are listed there.
+  Mọi món đồ có hướng dẫn lắp ráp đều có liên kết trong bảng [Lắp ráp](/steps/dream/#assemble) của bước Mơ ước — các
+  hướng dẫn đó được liệt kê ở đấy.
 </Callout>
 
-### Useful links
+### Liên kết hữu ích (bằng tiếng Anh)
 
-- **How-to build a…** (use the assembly guides first; these videos are backup) — [Communal table ↗](https://youtube.com/watch?v=Px2JZs4Q2v4) ·
-  [Cold frame ↗](https://youtube.com/watch?v=b75RoDmE9qY) · [Raised garden beds ↗](https://youtube.com/watch?v=MBIYebUgVVI) ·
-  [Compost bins ↗](https://youtube.com/watch?v=gA6QNLaBEyc) · [Potting bench ↗](https://youtube.com/watch?v=E7HumfxE2f4) ·
-  [Outdoor garden shed ↗](https://youtube.com/watch?v=DuQ0N8z6OkI) · [Gabion wall ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
-- **Lumber & building materials** — Woodland Building Supply, 4701 Woodland Ave, Philadelphia — (215) 727-5333 ·
-  C & R Building Supply, 1601 S 49th St, Philadelphia · A&A Lumber (cypress), Avondale, PA · Delaware County Lumber, Boothwyn, PA
+- **Cách làm một…** (hãy dùng các hướng dẫn lắp ráp trước; những video này chỉ để dự phòng) — [Bàn chung ↗](https://youtube.com/watch?v=Px2JZs4Q2v4) ·
+  [Khung ươm cây ↗](https://youtube.com/watch?v=b75RoDmE9qY) · [Luống trồng nâng cao ↗](https://youtube.com/watch?v=MBIYebUgVVI) ·
+  [Thùng ủ phân ↗](https://youtube.com/watch?v=gA6QNLaBEyc) · [Bàn làm vườn ↗](https://youtube.com/watch?v=E7HumfxE2f4) ·
+  [Nhà kho ngoài vườn ↗](https://youtube.com/watch?v=DuQ0N8z6OkI) · [Tường rọ đá ↗](https://youtube.com/watch?v=QFjEWnA3Mtc)
+- **Gỗ xẻ & vật liệu xây dựng** — Woodland Building Supply, 4701 Woodland Ave, Philadelphia — (215) 727-5333 ·
+  C & R Building Supply, 1601 S 49th St, Philadelphia · A&A Lumber (gỗ bách), Avondale, PA · Delaware County Lumber, Boothwyn, PA
 
-### Preparation for next steps
+### Chuẩn bị cho các bước tiếp theo
 
-Check your project calendar and revise as needed — your park is almost done!
+Xem lại lịch dự án và sửa khi cần — công viên của bạn sắp xong rồi!
 
 <PdfPage doc="downloads/workbooks/05-create.pdf" page={17} />
-<PdfPage doc="downloads/workbooks/05-create.pdf" page={18} label="Assembly instructions & links (PDF)" />
+<PdfPage doc="downloads/workbooks/05-create.pdf" page={18} label="Hướng dẫn lắp ráp & liên kết (PDF)" />
 
 {/* site-added: the workbook's own contents page lists a Summary, but this working draft doesn't include one — this wrap-up just recaps the 8 phases above as a final checklist. No new advice. */}
-## Summary {/* #summary */}
+## Tóm tắt {/* #summary */}
 
 <Checklist
   id="create.summary-checklist"
   items={[
-    { value: 'phase1', label: 'Phase 1: Organize', hint: 'Team roles assigned, schedule set' },
-    { value: 'phase2', label: 'Phase 2: Prepare the lot', hint: 'Cleared, protected, leveled' },
-    { value: 'phase3', label: 'Phase 3: Layout & gravel base', hint: 'Beds and elements staked out, sub-base in' },
-    { value: 'phase4', label: 'Phase 4: Install the edge', hint: 'Gabion baskets and wood edging set' },
-    { value: 'phase5', label: 'Phase 5: Spread topsoil', hint: 'Planting beds graded and filled' },
-    { value: 'phase6', label: 'Phase 6: Plant', hint: 'Trees, shrubs and perennials in the ground' },
-    { value: 'phase7', label: 'Phase 7: Install the gravel surface', hint: 'Finish gravel tamped and level' },
-    { value: 'phase8', label: 'Phase 8: Install park elements', hint: 'Benches, tables and structures assembled and placed' },
+    { value: 'phase1', label: 'Giai đoạn 1: Tổ chức', hint: 'Đã phân vai trong nhóm, đã lập lịch' },
+    { value: 'phase2', label: 'Giai đoạn 2: Chuẩn bị lô đất', hint: 'Đã dọn sạch, bảo vệ, san phẳng' },
+    { value: 'phase3', label: 'Giai đoạn 3: Định vị & lớp sỏi nền', hint: 'Đã cắm cọc định vị luống và các món đồ, đã làm lớp nền' },
+    { value: 'phase4', label: 'Giai đoạn 4: Làm viền', hint: 'Đã đặt rọ đá và viền gỗ' },
+    { value: 'phase5', label: 'Giai đoạn 5: Rải đất mặt', hint: 'Đã san và đổ đầy các luống trồng cây' },
+    { value: 'phase6', label: 'Giai đoạn 6: Trồng cây', hint: 'Cây lớn, cây bụi và cây lâu năm đã xuống đất' },
+    { value: 'phase7', label: 'Giai đoạn 7: Làm mặt sỏi', hint: 'Lớp sỏi mặt đã nén chặt và phẳng' },
+    { value: 'phase8', label: 'Giai đoạn 8: Lắp đặt các món đồ công viên', hint: 'Ghế dài, bàn và các công trình đã lắp ráp và đặt vào chỗ' },
   ]}
 />
 
 <Callout kind="tip">
-  Your park is built! Head to the Sustain step to keep it thriving — watering, weeding and the annual stewardship
-  workplan.
+  Công viên của bạn đã xây xong! Hãy sang bước Duy trì để giữ cho công viên luôn tươi tốt — tưới nước, nhổ cỏ và kế
+  hoạch chăm sóc hằng năm.
 </Callout>
