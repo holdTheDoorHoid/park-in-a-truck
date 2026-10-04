@@ -68,6 +68,9 @@ after the extraction round. Tick them off here.
 - [ ] Planner month chart labels columns with each month's first letter — in Creole August (out) and October
       (oktòb) both show "O"; use a per-locale short/narrow month that stays distinct (or two letters where needed).
 - [ ] Build schedule (Create) at 360 px: big empty gap between each phase title and its date box (English too).
+- [ ] Code joins translated sentences with a space — Chinese shows "。 在那之前" (shade summary, planner slope and
+      existing-items text, lot card "可以考虑购买。 费城…"). Use a per-locale sentence joiner (no space for zh, and
+      check ko/ar).
 
 ## For native-speaker review (per language)
 
@@ -92,6 +95,10 @@ after the extraction round. Tick them off here.
 ### Russian (ru) — second pass
 - `cost.ts` fix.* / kept.* explanations and `order.tool.hydrantNote` (safety note — exact meaning); `philly.ts`
   zoning.*, flood zones, `paths.otherAgency.text`; `planner.ts` slope.* (case endings); `shade.ts` sum.* lines.
+
+### Chinese (zh) — second pass
+- `cost.ts` fix.* / kept.* and guide.note.short* / guide.reason.* (assembled from pieces); `philly.ts` zoning.* and
+  landBank.*; `planner.ts` slope.falls / slope.dip and sun.assume*; `shade.ts` sum.* (joined by code).
 
 ### Vietnamese (vi)
 - Step names "Có được đất" (Acquire), "Khảo sát" (Assess); theme names "Vườn ăn được", "Chốn an yên";
