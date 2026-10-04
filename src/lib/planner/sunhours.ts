@@ -23,12 +23,16 @@ export interface GridSpec {
   ny: number;
   /** 1 = cell is part of the lot (others are skipped), row-major y rows of x */
   mask?: Uint8Array;
+  /** ground height of each cell, ft above the lot's datum (row-major like mask); absent = flat */
+  groundFt?: Float32Array;
 }
 
 export interface Prism {
   /** open ring, local feet */
   ring: Vec2[];
   heightFt: number;
+  /** ground height under the building, ft above the lot's datum (default 0); the top is baseFt + heightFt */
+  baseFt?: number;
 }
 
 export interface Crown {

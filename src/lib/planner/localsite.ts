@@ -1,6 +1,7 @@
 // The site in local feet: the lot outline, its oriented rectangle/site frame, and
 // neighbouring buildings and City trees ready for the 3D scene and the sun study.
 
+import type { GroundFn } from './ground';
 import type { SiteFacts } from '../types';
 import { area, centroid, distanceToRing, distanceToSegment, makeFrame, openRing, pointInPolygon, signedArea, type LocalFrame, type Vec2 } from './geo';
 import { siteFrameFromFacts, type SiteFrame } from './rect';
@@ -33,6 +34,10 @@ export interface LocalSite {
   streets: { name?: string | null; line: Vec2[] }[];
   /** half-size of the square the scene covers, ft */
   extentFt: number;
+  /** ground height (ft above the lot's datum) at a local point; absent = flat. See ground.ts */
+  ground?: GroundFn;
+  /** elevation of the datum, ft above sea level (NAVD88), when terrain is known */
+  datumElevFt?: number;
 }
 
 /** Keep the part of `ring` on the left of the directed line a→b (Sutherland–Hodgman, one edge). */
