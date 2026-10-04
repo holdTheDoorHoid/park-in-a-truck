@@ -1,0 +1,247 @@
+{
+  "partners": [
+    { "description": "Ansanm ak PiaT, li ogmante chwa desen pak yo." },
+    { "description": "Branch edikasyon ak sansibilizasyon Philadelphia City Planning Commission (komisyon planifikasyon Vil la); li bay yon kou uit semèn sou kijan planifikasyon ak devlopman vil la mache." },
+    { "description": "Òganizasyon lokal san bi likratif ki te finanse premye pak Park in a Truck la. (Lyen gid la mete pou remèsiman sa a voye an reyalite sou communityprogress.org, yon òganizasyon nasyonal san bi likratif sou bank tè — sanble se yon erè ant lyen an ak tèks la nan PDF orijinal la, kidonk nou pa bay okenn lyen isit la jiskaske sa konfime.)" },
+    { "description": "Ajans imobilye lokal Filadèlfi ki sèvi zòn Lwès Filadèlfi." },
+    { "description": "Patnè PiaT pou enfrastrikti vèt — kontakte yo pou èd pou dekonekte tiyo goutyè oswa pou ajoute yon jaden dlo lapli (rain garden) nan pak ou a." },
+    { "description": "Yon lidè nan prezève tè nan vil la; yon fondasyon kominotè ki kenbe tè pou jaden ak lòt espas louvri." },
+    { "description": "Patnè, kòporasyon devlopman kominotè (gwoup \"PARTNERS\" sou Linktree). Sit la bay yon paj ki pa mache kounye a — nou konfime li mouri, se pa yon blokaj kont robo." },
+    { "description": "Bayè lajan." },
+    { "description": "Patnè pou pèmi, tè ak done Vil la." },
+    { "description": "Patnè pou kote bèt viv ak plantasyon." },
+    { "description": "Patnè pou kote bèt viv ak jaden polinizatè nan plizyè pak ki deja bati." },
+    { "description": "Bayè lajan." },
+    { "description": "Patnè pou kaye travay Playful Learning Landscapes la." },
+    { "description": "Bayè lajan." },
+    { "description": "Zouti Vil la pou transfòme yon pwopriyete vid." }
+  ],
+  "press": [
+    { "title": "Avèk pwogram Park in a Truck, Jefferson vle ede transfòme kominote ki pa jwenn ase sèvis (an anglè)" },
+    { "title": "Inisyativ Park in a Truck resevwa rekonesans \"Social Good\" nan magazin Fast Company (an anglè)" },
+    { "title": "Park in a Truck resevwa prim Groundbreaker 2020 Green Building United (an anglè)" },
+    { "title": "\"Park in a Truck\" se tankou Ikea, men pou bati pak nan katye (an anglè)" },
+    { "title": "Teren vid tounen bèl pak nan katye Filadèlfi (an anglè)" },
+    { "title": "Pwogram Park in a Truck transfòme espas vèt nan Filadèlfi avèk èd jèn nan katye yo (an anglè)" },
+    { "title": "ASLA Spotlight — prentan 2025 (an anglè)" },
+    { "title": "Park in a Truck (videyo an anglè)" },
+    { "title": "Transfòme katye yo, yon pak apre lòt — kominote a bati l, pou kominote a (videyo an anglè)" },
+    { "title": "Enstriksyon montaj Park in a Truck Jefferson #1 (videyo an anglè)" },
+    { "title": "Enstriksyon montaj Park in a Truck Jefferson #2 (videyo an anglè)" }
+  ],
+  "supplierGroups": [
+    {
+      "label": "Lwe zouti",
+      "items": [
+        { "title": "West Philadelphia Tool Library", "note": "Zouti men; li travay ak Philadelphia Orchard Project epi li bay kou pou aprann metye tou." },
+        { "title": "Diamond Tool (lwe zouti elektrik)", "note": "Sanble li vin fè pati White Cap; li bloke verifikasyon otomatik." },
+        { "title": "OK Rental Sales & Service", "note": "Okenn nan non domèn PiaT te janm bay pou magazen lokasyon sa a nan Darby, PA (okrentalsaleservice.com, okrental1.com) pa mache ankò." }
+      ]
+    },
+    {
+      "label": "Fatra ak resiklaj",
+      "items": [
+        { "title": "Fairmount Park Organic Recycling Center", "note": "3850 W Ford Rd — konpòs, ti moso bwa, mulch, fimye, pou ti kras lajan." },
+        { "title": "Richard S. Burns & Co. (materyèl resikle)", "note": "4300 Rising Sun Ave — kote pou jete fatra + pwodui resikle pou vann." }
+      ]
+    },
+    {
+      "label": "Pepinyè ak plant",
+      "items": [
+        { "title": "LandHealth Institute Nursery (Philaflora)" },
+        { "title": "Good Host Plants", "note": "Espesyalis lokal pou plant polinizatè." },
+        { "title": "Pleasant Run Nursery", "note": "Bon jan plant dekorasyon ak varyete plant natif; New Jersey, livrezon pou $1,250 minimòm." },
+        { "title": "Pinelands Nursery", "note": "Plant pou restore lanati rejyon an; sit la bay yon repons ki pa nòmal pou verifikasyon otomatik, men li gen anpil chans li mache." },
+        { "title": "Archewild", "note": "Plant pou restore lanati rejyon an." },
+        { "title": "North Creek Nurseries" },
+        { "title": "Gardens Alive", "note": "Sètifika TLS sit la ekspire kounye a — navigatè w ap ba ou yon avètisman." },
+        { "title": "Burpee — pyebwa fwi" },
+        { "title": "Stark Bro's — pyebwa fwi" },
+        { "title": "Gurney's — fwi ak ti fwi (berries)" },
+        { "title": "Willis Orchards — pyebwa fwi" },
+        { "title": "PHS Gold Medal Plants" },
+        { "title": "Philly Orchard Project — resous" }
+      ]
+    },
+    {
+      "label": "Bwa ak materyèl konstriksyon",
+      "items": [
+        { "title": "D&S Supply", "note": "4260 Macalester St — materyèl peyizaj, mulch ak zouti." },
+        { "title": "Underdog Landscape Supply", "note": "701 Washington St, Conshohocken — tè nwa, mulch, konpòs." },
+        { "title": "Mid Atlantic Pine Straw" },
+        { "title": "Woodland Building Supply", "note": "4701 Woodland Ave, Filadèlfi." },
+        { "title": "C&R Building Supply", "note": "1601 S 49th St, Filadèlfi." },
+        { "title": "A&A Lumber", "note": "Bwa sipre, Avondale PA." },
+        { "title": "Delaware County Supply" },
+        { "title": "Castor Materials", "note": "3301 S 61st St — wòch kraze, tè nwa, yo ka livre." },
+        { "title": "Rockler — chwazi pi bon fini pou pwojè deyò (an anglè)" },
+        { "title": "Real Milk Paint (RMP Finishes) — pi bon fini pou bwa deyò (an anglè)" },
+        { "title": "Vermont Natural Coatings — fini pou deyò" },
+        { "title": "Hairpin Legs — pyès metal pou do ban (bed bracket/backrest)" }
+      ]
+    },
+    {
+      "label": "Gabyon ak wòch",
+      "items": [
+        { "title": "Gabion1.com" },
+        { "title": "Darby Wire Mesh", "note": "Li bloke verifikasyon otomatik; non domèn nan anrejistre epi li mache." },
+        { "title": "Kijan pou bati yon mi gabyon (Gardendrum, an anglè)" }
+      ]
+    },
+    {
+      "label": "Videyo pou aprann (an anglè)",
+      "items": [
+        { "title": "Kijan pou taye yon pyebwa" },
+        { "title": "Kijan pou plante yon pyebwa" },
+        { "title": "Kijan pou plante yon touf bwa" },
+        { "title": "Bòdi an bwa" },
+        { "title": "Bati yon mi gabyon" },
+        { "title": "Bati yon gwo tab pou tout moun" },
+        { "title": "Bati yon bwat vit pou plant (cold frame)" },
+        { "title": "Bati kabann jaden wo" },
+        { "title": "Taye tankou yon pwofesyonèl" },
+        { "title": "Gid pou wouze ak dlo lapli" }
+      ]
+    },
+    {
+      "label": "Resous pou aprann (an anglè)",
+      "items": [
+        { "title": "Penn State Extension — tès tè" },
+        { "title": "Penn State Extension — fòm pou voye tès fètilite tè" },
+        { "title": "Penn State Extension — ensèk nuizib ak maladi" },
+        { "title": "Penn State Extension — pwogram Master Gardener" },
+        { "title": "Missouri Botanical Garden — Plant Finder (zouti pou chèche plant)" },
+        { "title": "Arbor Day Foundation" },
+        { "title": "Arbor Day — kijan pou plante yon pyebwa ki soti nan po" },
+        { "title": "Arbor Day — pyebwa fwi" },
+        { "title": "Pennsylvania Horticultural Society (PHS)", "note": "Atelye, enfòmasyon sou jaden kominotè, pwogram Barik dlo lapli (Rain Barrel)." },
+        { "title": "Grounded in Philly", "note": "Èd legal, done ak gid pou jwenn oswa kenbe yon teren." },
+        { "title": "Philly Orchard Project" },
+        { "title": "Soil Generation", "note": "Kowalisyon moun Nwa ak moun Bren dirije, pou kominote a kontwole tè ak manje." },
+        { "title": "Park Advocate Handbook (NRPA)" },
+        { "title": "The PHS City Parks Handbook (Temple University Press)" },
+        { "title": "Vacant Lot Activation Toolkit (Trust South LA)" },
+        { "title": "Green2015: An Action Plan for the First 500 Acres", "note": "Plan PennPraxis pou Philadelphia Parks & Recreation." },
+        { "title": "PlantSnap (aplikasyon pou rekonèt plant ak move zèb)" },
+        { "title": "Gardener's Path — sèvi ak yon mezi dlo lapli" },
+        { "title": "Kijan pou mete mulch (SKH)" },
+        { "title": "Pwodui pou touye move zèb ak vinèg (egzanp pwodui)", "note": "Se sèl sous nou jwenn pou pwodui sa a; lyen an la san nou pa rekòmande l." }
+      ]
+    },
+    {
+      "label": "Pwogram Vil Filadèlfi (an anglè)",
+      "items": [
+        { "title": "Atlas Philadelphia (chèche yon pwopriyete)" },
+        { "title": "Kat pwopriyetè pasèl nan Filadèlfi (ArcGIS)" },
+        { "title": "Òganizasyon kominotè ki anrejistre (RCO)" },
+        { "title": "Pèmi tanporè pou pa estasyone (Temporary No-Parking Permit)" },
+        { "title": "Green City, Clean Waters — sibvansyon pou dlo lapli / jaden dlo lapli" }
+      ]
+    }
+  ],
+  "toolkitLibrary": {
+    "intro": "Byenvini nan bibliyotèk gid la! Paj sa yo gen anpil resous ak lyen pou plis enfòmasyon, ranje pa chapit. Pifò resous yo an anglè.",
+    "sections": [
+      {
+        "title": "Entwodiksyon",
+        "entries": [
+          { "title": "Pou diminye povrete, efò Konsèy Minisipal la dwe gen plis espas vèt ladan yo (The Inquirer, an anglè)" },
+          { "title": "Ann ankouraje sante ak espas vèt, yon teren vid apre lòt (The Inquirer, an anglè)" },
+          { "title": "Gangsta Gardener — Ron Finley" },
+          { "title": "Just Bees And Things And Flowers: kijan fanm Nwa ki fè jaden ap siviv nan kriz COVID-19 la (Essence, an anglè)" },
+          { "title": "Black Girls with Gardens" },
+          { "title": "Farming While Black — Leah Penniman" }
+        ]
+      },
+      {
+        "title": "01 Jwenn teren",
+        "entries": [
+          { "title": "The PHS City Parks Handbook ($13.95)" },
+          { "title": "Park Advocate Handbook (gratis)" },
+          { "title": "Atlas Philadelphia" },
+          { "title": "Citizens Planning Institute" },
+          { "title": "Green2015: An Action Plan for the First 500 Acres" },
+          { "title": "Grounded in Philly" },
+          { "title": "Neighborhood Gardens Trust" },
+          { "title": "Soil Generation" }
+        ]
+      },
+      {
+        "title": "02 Òganize",
+        "entries": [
+          { "title": "The PHS City Parks Handbook" },
+          { "title": "Vacant Lot Activation Toolkit (Free Lots Angeles)" }
+        ]
+      },
+      {
+        "title": "03 Evalye",
+        "entries": [
+          { "title": "Penn State Extension — tès tè" }
+        ]
+      },
+      {
+        "title": "04 Reve",
+        "entries": [
+          { "title": "Gardens Alive" },
+          { "title": "North Creek Nurseries" },
+          { "title": "Missouri Botanical Garden Plant Finder" },
+          { "title": "Rechèch plant Longwood Gardens" },
+          { "title": "Arbor Day Foundation" },
+          { "title": "Penn State Master Gardeners — gid plantasyon pou Filadèlfi" }
+        ]
+      },
+      {
+        "title": "05 Kreye",
+        "entries": [
+          { "title": "Woodland Building Supply" },
+          { "title": "C&R Building Supply" },
+          { "title": "A&A Lumber" },
+          { "title": "Philly Reclaim" },
+          { "title": "PowerCorpsPHL" },
+          { "title": "Burpee — pyebwa fwi" },
+          { "title": "Stark Bro's — pyebwa fwi" },
+          { "title": "Gurney's — fwi ak ti fwi (berries)" },
+          { "title": "Willis Orchards — pyebwa fwi" },
+          { "title": "Good Host Plants" },
+          { "title": "LandHealth Institute Nursery (Philaflora)" },
+          { "title": "Pleasant Run Nursery" },
+          { "title": "Pinelands Nursery" },
+          { "title": "Archewild" },
+          { "title": "Underdog Landscape Supply" },
+          { "title": "Castor Materials" },
+          { "title": "D&S Supply" },
+          { "title": "Richard S. Burns & Co." },
+          { "title": "West Philadelphia Tool Library" },
+          { "title": "Diamond Tool" },
+          { "title": "Fairmount Park Organic Recycling Center" }
+        ]
+      },
+      {
+        "title": "06 Pran swen",
+        "entries": [
+          { "title": "Pennsylvania Horticultural Society" },
+          { "title": "Grounded in Philly" },
+          { "title": "Greensgrow" },
+          { "title": "Brandywine Conservancy — plant anvayisan" },
+          { "title": "Kijan pou plante yon pyebwa ki soti nan po (Arbor Day)" },
+          { "title": "Kijan pou plante yon touf bwa (videyo)" },
+          { "title": "Kijan pou taye yon pyebwa (videyo)" },
+          { "title": "Kijan pou taye yon touf bwa (Gardeners' World)" },
+          { "title": "Arbor Day Foundation — pyebwa fwi" },
+          { "title": "Philadelphia Orchard Project" },
+          { "title": "Baz pou fè konpòs (videyo)" },
+          { "title": "Mete angrè (Penn State Extension)" },
+          { "title": "Kijan pou mete mulch nan jaden ou (Good Housekeeping)" }
+        ]
+      }
+    ]
+  },
+  "acknowledgments": {
+    "lead": "Pwogram Achitekti Peyizaj la + Laboratwa pou Inovasyon Sosyal ak Vil (Lab for Social and Urban Innovation), Thomas Jefferson University",
+    "note": "Sit sa a fè pwòp gid Park in a Truck la, kaye travay li yo ak lis plant li yo tounen yon vèsyon entèaktif ki gide w, avèk pèmisyon Park in a Truck / Thomas Jefferson University. Tout tèks orijinal yo, desen yo ak foto yo se pou yo."
+  },
+  "legal": {
+    "title": "Avi legal",
+    "text": "Rekòmandasyon ki nan dokiman sa a baze sou fason yo konn fabrike ak bati bagay nòmalman. Thomas Jefferson University (TJU), Laboratwa pou Inovasyon Sosyal TJU a (Lab For Social Innovation), Park-in-a-Truck, ak/oswa pwofesè, anplwaye oswa patnè yo, pa responsab okenn jan pou domaj oswa blesi moun oswa domaj byen ki ta soti nan itilizasyon rekòmandasyon sa yo. Thomas Jefferson University (TJU), Laboratwa pou Inovasyon Sosyal TJU a, Park-in-a-Truck, oswa pwofesè, anplwaye ak/oswa patnè yo pa bay okenn garanti, ni klè ni sou-entandi, epi yo rejte epi anile tout lòt garanti, sa vle di san limit, garanti oswa kondisyon sou-entandi sou kalite pou vann, sou si li bon pou yon itilizasyon presi, oswa sou si li pa vyole pwopriyete entelektyèl oswa lòt dwa. Anplis, Thomas Jefferson University (TJU), Laboratwa pou Inovasyon Sosyal TJU a, Park-in-a-Truck, ak/oswa pwofesè, anplwaye oswa patnè yo pa garanti epi yo pa fè okenn deklarasyon sou jan rekòmandasyon sa yo egzat, sou rezilta yo ka bay, ni sou jan yo fyab lè ou sèvi ak yo. Lè w sèvi ak rekòmandasyon sa yo, sa vle di ou rekonèt tout sa ki di anwo a."
+  }
+}
