@@ -61,37 +61,45 @@ describe('inputsFromTally', () => {
     });
   });
 
-  it('counts furnishings by element id', () => {
+  it('counts furnishings by element id, sizing them from elements.ts when the tally has no sizes', () => {
     expect(r.inputs).toMatchObject({
-      gabionBaskets: 6,
+      // 6 added 4-ft gabion-wall pieces = 24 ft -> 6 baskets a course x 2 courses (elements.ts: 2 ft high)
+      gabionBaskets: 12,
       woodToppedGabions: 3, // one 4' + one 8' (= two 4')
       benchesWithBack: 2,
       benchesNoBack: 1,
       squareTables: 1,
       longTables: 3, // 4' + two 6'
       stools: 4,
-      trellises: 1,
+      trellises: 1, // one 8'x8' canopy = 64 sq ft -> 1 trellis of 12'x8'
       compostBins: 1,
       rainBarrels: 2,
-      sheds4x4: 1,
-      sheds4x8: 0,
-      coldFrameSquares: 2,
+      sheds4x4: 0, // the shed's footprint is 8'x4' = 2 squares
+      sheds4x8: 1,
+      coldFrameSquares: 1, // a 3'x3' cold frame fills one 4'x4' square
+      stageSquares: 0,
+      keyholeGardensSmall: 0,
+      keyholeGardensMedium: 0,
+      keyholeGardensLarge: 0,
       birdBaths: 1,
       birdHouses: 3,
       eventTents: 1,
     });
     expect(r.notes.longTables).toMatch(/long tables/);
-    expect(r.notes.sheds4x4).toMatch(/4'x8'/);
+    expect(r.notes.sheds4x8).toMatch(/4'x4'/);
+    expect(r.notes.gabionBaskets).toMatch(/2 baskets high/);
   });
 
   it('splits every question into derived or manual, never both', () => {
     const d = new Set(r.derived);
     const m = new Set(r.manual);
     for (const k of INPUT_KEYS) expect(d.has(k) !== m.has(k), k).toBe(true);
-    for (const k of ['keyholeGardensLarge', 'cisterns4x4', 'otherCosts', 'benchesWithBackAndArms', 'gabionTables', 'solarLights'] as const)
+    for (const k of ['cisterns4x4', 'otherCosts', 'benchesWithBackAndArms', 'solarLights', 'trashCans', 'adirondackChairs', 'cafeTableSets', 'outerEdgeGabionConnections', 'raisedBedGabionConnections'] as const)
       expect(m.has(k), k).toBe(true);
-    // No footprint for the stage in elements.ts yet, so its squares stay manual.
-    expect(m.has('stageSquares')).toBe(true);
+    // derivable now that the pieces have ids and footprints for them
+    for (const k of ['stageSquares', 'gabionTables', 'optCafeTableSets', 'hammocks', 'porchSwings', 'fountains', 'keyholeGardensMedium'] as const) expect(d.has(k), k).toBe(true);
+    // this older tally has no raised-bed feet, so that question stays manual
+    expect(m.has('raisedBedWoodEdgeFt')).toBe(true);
   });
 
   it('reports furnishings the spreadsheet has no question for, ignoring plants and existing conditions', () => {
@@ -126,5 +134,89 @@ describe('inputsFromTally', () => {
     const e = estimate(r.inputs);
     expect(e.total).toBeGreaterThan(0);
     expect(e.lines.some((l) => l.item === 'Perennials' && l.qty === 80)).toBe(true);
+  });
+
+  // A tally as the pieces' tally() writes it now: gabion wall and raised-bed feet,
+  // the new element ids, and (when it carries them) each sized item's footprint.
+  const pieces: DesignTally = {
+    lengthFt: 88,
+    widthFt: 32,
+    plantingSquares: { sun: 30, shade: 12 },
+    naturePlaySquares: 0,
+    shrubs: { sun: 10, shade: 4 },
+    smallTrees: 3,
+    largeTrees: 2,
+    gravelEdgeFt: { hardscape: 0, softscape: 210 },
+    outerEdgeFt: { hardscape: 0, softscape: 60 },
+    gabionWallFt: 80,
+    raisedBedEdgeFt: 45.13,
+    items: {
+      'keyhole-garden': 3,
+      'shade-canopy': 2,
+      shed: 2,
+      stage: 4,
+      'cold-frame': 4,
+      'cafe-table': 6,
+      'communal-table': 1,
+      hammock: 1,
+      'porch-swing': 2,
+      'solar-fountain': 1,
+      'gabion-table': 2,
+      'raised-bed': 2,
+      workbench: 3,
+    },
+    itemSizes: {
+      'keyhole-garden': [[5.75, 5.75], [7.75, 7.75], [4.5, 4.5]],
+      'shade-canopy': [[16, 16], [6, 5.5]],
+      shed: [[4, 4], [8, 4]],
+      stage: [[4, 4], [4, 4], [4, 4], [12, 8]], // three drawn squares + one 12'x8' stage added in the planner
+      'cold-frame': [[3, 3], [3, 3], [3, 3], [3, 3]],
+    },
+    themes: ['edible', 'event'],
+  };
+
+  it('uses the pieces’ tally: wall and bed feet, new ids, sizes', () => {
+    const t = inputsFromTally(pieces);
+    expect(t.inputs).toMatchObject({
+      gabionBaskets: 40, // 80 ft / 4 = 20 baskets a course x 2 courses
+      raisedBedWoodEdgeFt: 45.13,
+      keyholeGardensSmall: 1, // 4.5 ft across
+      keyholeGardensMedium: 1, // 5.75 ft
+      keyholeGardensLarge: 1, // 7.75 ft
+      trellises: 4, // 16x16 = 256 / 96 = 2.67 -> 3; 6x5.5 = 33 / 96 -> 1
+      sheds4x4: 1,
+      sheds4x8: 1,
+      stageSquares: 9, // 3 squares + 12x8 = 6 squares
+      coldFrameSquares: 4,
+      optCafeTableSets: 6,
+      longTables: 1,
+      hammocks: 1,
+      porchSwings: 2,
+      fountains: 1,
+      gabionTables: 2,
+    });
+    expect(t.unmapped).toEqual([{ element: 'workbench', name: 'Workbench / standing table', count: 3 }]);
+    expect(t.notes.trellises).toMatch(/2 shade canopies in 12'x8' trellises/);
+    expect(t.notes.raisedBedWoodEdgeFt).toMatch(/perimeter/);
+  });
+
+  it('asks for keyhole-garden sizes when the tally has none, and counts stage items as 4-ft squares', () => {
+    const t = inputsFromTally({ ...pieces, itemSizes: undefined });
+    expect(t.manual).toEqual(expect.arrayContaining(['keyholeGardensSmall', 'keyholeGardensMedium', 'keyholeGardensLarge']));
+    expect(t.notes.keyholeGardensMedium).toMatch(/3 keyhole gardens: enter them by size/);
+    expect(t.inputs.stageSquares).toBe(4); // one 4'x4' square per drawn stage item (elements.ts countAs)
+    expect(t.inputs.trellises).toBe(2); // 8'x8' each -> one trellis each
+    expect(t.inputs).toMatchObject({ sheds4x4: 0, sheds4x8: 2, coldFrameSquares: 4 });
+  });
+
+  it('prices the pieces’ tally in the estimate', () => {
+    const e = estimate(inputsFromTally(pieces).inputs);
+    const total = (item: string) => e.lines.filter((l) => l.item === item).reduce((a, l) => a + l.total, 0);
+    expect(total("1'x1'x4' 5 gauge baskets")).toBe(40 * 70);
+    expect(total('Cafe tables + chairs')).toBe(6 * 160);
+    expect(total('Porch swing')).toBe(2 * 300);
+    expect(total('Keyhole gardens, large')).toBe(120);
+    // 9 squares of stage: no cut list in the spreadsheet, so it needs a price
+    expect(e.priceNeeded.map((p) => p.id)).toContain('stage-other');
   });
 });

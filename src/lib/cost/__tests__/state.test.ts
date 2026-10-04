@@ -45,7 +45,8 @@ describe('resolveInputs', () => {
     expect(r.hasDesign).toBe(true);
     expect(r.values).toMatchObject({ longSideFt: 64, shortSideFt: 20, plantingSquares: 8, shrubs: 3, benchesWithBack: 1, longTables: 0 });
     expect(r.source.plantingSquares).toBe('design');
-    expect(r.source.keyholeGardensLarge).toBe('blank'); // design present: manual questions start at zero, not the example
+    expect(r.source.trashCans).toBe('blank'); // design present: manual questions start at zero, not the example
+    expect(r.source.keyholeGardensLarge).toBe('design'); // the design has none: 0, from the design
 
     saved = withOverride(saved, 'plantingSquares', 12);
     r = resolveInputs(saved, tally);
