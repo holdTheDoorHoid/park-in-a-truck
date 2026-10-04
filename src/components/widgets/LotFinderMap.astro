@@ -1,8 +1,18 @@
 ---
-// STUB — owned by the philly-data workstream, which replaces this file.
-// Content may already place <LotFinderMap /> in chapters; keep the props optional.
-interface Props { [key: string]: unknown }
+// Map of the City's vacant-land list around the project lot (or wherever the
+// person searches / their location), coloured public vs private owner. Click a
+// lot → owner, size, "Use this as my park lot" / "Add to my list". Aerial toggle.
+import LotFinderMapIsland from '../philly/LotFinderMap.tsx';
+import '../philly/philly.css';
+interface Props {
+  /** CSS height of the map, e.g. "70vh" (default: min(70vh, 560px)) */
+  height?: string;
+  [key: string]: unknown;
+}
+const { height } = Astro.props;
 ---
-<div class="widget-placeholder" data-widget="LotFinderMap">
-  <strong>LotFinderMap</strong> — Map of vacant lots near you, with owner type and size.
+<div class="ph-widget" data-widget="LotFinderMap">
+  <LotFinderMapIsland client:only="preact" height={height}>
+    <div slot="fallback" class="ph-fallback" style="min-height:420px">Loading the vacant-land map… (it needs JavaScript)</div>
+  </LotFinderMapIsland>
 </div>

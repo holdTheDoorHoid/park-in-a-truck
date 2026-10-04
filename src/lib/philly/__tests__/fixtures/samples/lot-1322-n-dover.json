@@ -1,0 +1,209 @@
+{
+ "query": "1322 N Dover St",
+ "address": "1322 N DOVER ST",
+ "opa": "292140710",
+ "pwdParcelId": 272148,
+ "dorParcelId": "010N200061",
+ "lat": 39.97675376507071,
+ "lng": -75.18253402487314,
+ "owners": [
+  "CITY OF PHILA"
+ ],
+ "ownerType": "city",
+ "category": "VACANT LAND",
+ "buildingDescription": "VACANT LAND RESIDE < ACRE",
+ "zoning": "RSA-5",
+ "areaSqFt": 700,
+ "frontageFt": 14,
+ "depthFt": 50,
+ "marketValue": 56000,
+ "lastSale": {
+  "date": "1985-12-23T05:00:00Z",
+  "price": 1
+ },
+ "vacantLand": false,
+ "polygon": [
+  [
+   -75.1824442,
+   39.9767601
+  ],
+  [
+   -75.1824517,
+   39.9767217
+  ],
+  [
+   -75.1826277,
+   39.9767449
+  ],
+  [
+   -75.1826207,
+   39.9767825
+  ]
+ ],
+ "lotType": "mid-block",
+ "councilDistrict": "5",
+ "rcos": [
+  {
+   "name": "Brewerytown Sharswood Community Civic Association",
+   "contact": "Doris Aldridge",
+   "email": "brew.sharsnas@gmail.com",
+   "phone": "2678584246",
+   "website": "https://www.brewerytownsharswood.org"
+  },
+  {
+   "name": "Celestial Community Development Corporation",
+   "contact": "Michelle Brownlee",
+   "email": "celestialcdc@gmail.com",
+   "phone": "2152350353"
+  }
+ ],
+ "floodZone": "X",
+ "fetchedAt": "2026-10-04T14:42:51.258Z",
+ "sources": [
+  {
+   "label": "This property on atlas.phila.gov",
+   "url": "https://atlas.phila.gov/1322%20N%20DOVER%20ST/property"
+  },
+  {
+   "label": "Property assessment (property.phila.gov)",
+   "url": "https://property.phila.gov/?p=292140710"
+  },
+  {
+   "label": "Zoning on atlas.phila.gov",
+   "url": "https://atlas.phila.gov/1322%20N%20DOVER%20ST/zoning"
+  },
+  {
+   "label": "Philadelphia Land Bank",
+   "url": "https://www.phila.gov/departments/philadelphia-land-bank/"
+  },
+  {
+   "label": "Registered Community Organizations (City of Philadelphia)",
+   "url": "https://www.phila.gov/programs/registered-community-organizations-rcos/"
+  }
+ ],
+ "extra": {
+  "geometry": {
+   "lengthFt": 50.3,
+   "widthFt": 14.1,
+   "areaSqFt": 701,
+   "rect": {
+    "center": [
+     -75.1825362,
+     39.9767521
+    ],
+    "bearingDeg": 279.37
+   },
+   "rectCorners": [
+    [
+     -75.1824434856388,
+     39.97676000933886
+    ],
+    [
+     -75.1826207,
+     39.9767825
+    ],
+    [
+     -75.1826289143612,
+     39.97674419066114
+    ],
+    [
+     -75.1824517,
+     39.9767217
+    ]
+   ],
+   "rectangularity": 0.984,
+   "irregular": false,
+   "edges": [
+    {
+     "from": [
+      -75.1824442,
+      39.9767601
+     ],
+     "to": [
+      -75.1826207,
+      39.9767825
+     ],
+     "lengthFt": 50.1,
+     "bearingDeg": 279.4,
+     "side": "y0",
+     "street": null
+    },
+    {
+     "from": [
+      -75.1826207,
+      39.9767825
+     ],
+     "to": [
+      -75.1826277,
+      39.9767449
+     ],
+     "lengthFt": 13.8,
+     "bearingDeg": 188.2,
+     "side": "x1",
+     "street": null
+    },
+    {
+     "from": [
+      -75.1826277,
+      39.9767449
+     ],
+     "to": [
+      -75.1824517,
+      39.9767217
+     ],
+     "lengthFt": 50,
+     "bearingDeg": 99.7,
+     "side": "y1",
+     "street": null
+    },
+    {
+     "from": [
+      -75.1824517,
+      39.9767217
+     ],
+     "to": [
+      -75.1824442,
+      39.9767601
+     ],
+     "lengthFt": 14.1,
+     "bearingDeg": 8.5,
+     "side": "x0",
+     "street": "N DOVER ST"
+    }
+   ],
+   "streetEdges": [
+    "x0"
+   ],
+   "streets": [
+    {
+     "side": "x0",
+     "name": "N DOVER ST",
+     "distanceFt": 13.1
+    }
+   ],
+   "lotKind": "interior",
+   "lotType": "mid-block",
+   "lotTypeReason": "Faces one street (N Dover St) with neighbors on the other sides.",
+   "size": {
+    "id": "A",
+    "exact": true,
+    "tooSmall": false,
+    "tooBig": false
+   },
+   "startCorner": [
+    -75.1824442,
+    39.9767601
+   ]
+  },
+  "ownerLabel": "City of Philadelphia",
+  "ownerMailing": "DEPT OF PUBLIC PROPERTY, MUNICIPAL SERVICES BLDG, 1401 JOHN F KENNEDY BLVD, PHILADELPHIA PA 19102",
+  "vacancyScore": null,
+  "councilMember": "Jeffery Young Jr.",
+  "historicSite": false,
+  "historicDistrict": null,
+  "floodZoneLabel": "Zone X — minimal flood risk",
+  "parcelSource": "pwd",
+  "zip": "19121",
+  "neighborhood": "Brewerytown"
+ }
+}

@@ -3,9 +3,11 @@
 // ("Filled from City records") until the person types their own answer.
 //
 // Path: dotted path from the project root (lot.*, design.*, extra.*, fields.*).
-// Format (optional, after |): join, sqft, ft, money, date, yesno, ownerType, lotType.
+// Format (optional, after |): join, sqft, ft, money, date, yesno, ownerType, lotType,
+// zoning ("RSA5" → "RSA-5 · Residential — …"), size ("B" → "Size B"), lotKind.
 
 import type { Project } from './types';
+import { zoningPlain } from './philly/plain';
 
 const OWNER_TYPES: Record<string, string> = {
   city: 'City of Philadelphia (public)',
@@ -64,6 +66,11 @@ export function formatAuto(v: unknown, fmt?: string): string | null {
       return LOT_TYPES[String(v)] ?? String(v);
     case 'sunClass':
       return SUN_CLASSES[String(v)] ?? String(v);
+    // added by philly-data
+    case 'zoning':
+      return zoningPlain(String(v)) ?? String(v);
+    case 'size':
+      return `Size ${String(v)}`;
     case 'lotKind':
       return LOT_KINDS[String(v)] ?? String(v);
     default:

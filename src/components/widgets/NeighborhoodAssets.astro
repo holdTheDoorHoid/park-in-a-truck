@@ -1,8 +1,16 @@
 ---
-// STUB — owned by the philly-data workstream, which replaces this file.
-// Content may already place <NeighborhoodAssets /> in chapters; keep the props optional.
+// Organize: community organizations (RCOs), council district & member, park
+// friends groups, schools, libraries, rec centers & parks, hospitals, colleges,
+// community gardens, public art, historic places near the chosen lot, grouped
+// like the workbook's lists. Ticked items are saved as string[] fields
+// "organize.assets-<category>" (rcos, council, friends, schools, libraries,
+// parks, hospitals, universities, gardens, art, historic) and print on My park.
+import NeighborhoodAssetsIsland from '../philly/NeighborhoodAssets.tsx';
+import '../philly/philly.css';
 interface Props { [key: string]: unknown }
 ---
-<div class="widget-placeholder" data-widget="NeighborhoodAssets">
-  <strong>NeighborhoodAssets</strong> — Neighborhood assets near your lot: community organizations, schools, libraries, parks, gardens, murals.
+<div class="ph-widget" data-widget="NeighborhoodAssets">
+  <NeighborhoodAssetsIsland client:only="preact">
+    <div slot="fallback" class="ph-fallback">Loading neighborhood assets… (it needs JavaScript)</div>
+  </NeighborhoodAssetsIsland>
 </div>
