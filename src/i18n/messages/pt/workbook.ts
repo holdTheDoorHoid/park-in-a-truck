@@ -70,4 +70,9 @@ export default {
   'auto.sqft': '{n} pés²',
   'auto.ft': '{n} pés',
   'auto.size': 'Tamanho {size}',
+
+  'notice.title': 'Nota do site',
+  'notice.lot':
+    'Você ainda não registrou a permissão para usar o seu terreno — vai precisar dela antes de qualquer pessoa começar a mexer na terra. <a href="{href}">Ir para Adquirir → Garanta o seu terreno</a>.',
+  'notice.dismiss': 'Fechar',
 } satisfies Translation<typeof en>;
