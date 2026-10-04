@@ -75,6 +75,13 @@ after the extraction round. Tick them off here.
       `common.ft`, philly `unit.ft`…) → "a 1 pés" in Portuguese; make them `{count}` plurals and update every language.
 - [ ] (phase B) Planner sentences slot bare phrases into others (`slope.place*` after from/to/near, `spot.thing {name}`,
       `view.picked`) — Romance languages need articles/gender; give translators whole-sentence variants per place.
+- [ ] Korean words break mid-word at line ends (home headline "동 / 네", body, planner panel) — add
+      `:root:lang(ko) body { word-break: keep-all; overflow-wrap: anywhere; }` in `src/styles/i18n.css` (tested).
+- [ ] 3D guide viewer tooltips: `KIND_NAMES` in `src/lib/guides3d/labels.ts` ("Board", "Wire mesh", "Part") are
+      hard-coded English — new `guides` keys.
+- [ ] (phase B) English `progress.total` says "0 of 53 steps done" but counts sub-steps — fix the English and tell
+      translators (ko already says sub-steps).
+- [ ] (optional) Korean particle helper after placeholders ("{name}을(를)") — translators wrote both forms.
 
 ## For native-speaker review (per language)
 
@@ -148,3 +155,10 @@ after the extraction round. Tick them off here.
   alicate corta-vergalhão), "com nós", "tratada em autoclave"; `plants.json` descriptive names with English in
   brackets; `create.mdx` Phase 2 herbicide/weed names and safety notes; `start.mdx` "Why a park?" closing line,
   "Aviso legal" + resources legal text; `playful.ts` "Aprender Brincando" and the 6Cs ("Pensamento crítico").
+
+### Korean (ko)
+- Step names (확보하기, 조사하기, 가꾸기), 자투리 공원 (Park Patch), phase = 차 작업; made-up plant names (큰도토리참나무,
+  향자작나무, 건초향잔고사리, 초원부추, 털아스터, 톱니가막살나무); `create.mdx` Phase 2 herbicide/weed names (쑥, 호장근,
+  꾸지나무) and safety notes; legal notice (resources legal.text, start.mdx 법적 고지); guide hardware words (호그링, U자 못,
+  래그 스크루, 각도 절단기, 적삼목/미송); code-assembled sentences (cost.ts fix.* / guide.reason.*, planner.ts slope.*,
+  shade.ts sum.*).
