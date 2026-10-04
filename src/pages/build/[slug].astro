@@ -62,7 +62,7 @@ const materialNotes = [...guide.materials, ...guide.hardware]
 
 const model = Object.values(models).find((m) => m.slug === guide.slug);
 // site-added: where PiaT's stated size is nominal, say what the parts actually build
-const asBuilt = model?.asBuilt ? asBuiltText(guide.dimensionsIn, model.asBuilt) : '';
+const asBuilt = model?.asBuilt ? asBuiltText(guide.dimensionsIn, model.asBuilt, t) : '';
 const asBuiltReason = model?.asBuilt?.reason?.trim().replace(/([^.!?])$/, '$1.') ?? '';
 
 const glance: { label: string; value: string }[] = [{ label: t('glance.size'), value: dims(guide.dimensionsIn) }];
@@ -93,9 +93,11 @@ if (guide.cost) glance.push({ label: t('glance.cost'), value: guide.cost });
           ))}
         </dl>
         {asBuilt && (
-          <p class="as-built" lang="en" dir="ltr">
-            {/* site-added: from the 3D model's asBuilt note (English only for now: the model files are data for modellers) */}
-            Built from these parts it comes out {asBuilt}. {asBuiltReason}
+          <p class="as-built">
+            {t('asBuilt', { size: asBuilt })}
+            {/* site-added: the reason comes from the 3D model's own note (English only for
+                now: the model files are data for modellers), so it's marked English on its own. */}
+            {asBuiltReason && <span lang="en" dir="ltr">{' '}{asBuiltReason}</span>}
           </p>
         )}
         <div class="hero-actions no-print">
