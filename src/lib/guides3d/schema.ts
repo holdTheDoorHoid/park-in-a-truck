@@ -51,6 +51,13 @@ export interface GuideModel {
   /** part label -> the count the model uses instead of the cut list's, with the reason */
   countOverrides?: Record<string, { count: number; reason: string }>;
   /**
+   * The size the parts actually build, when it differs from the guide's stated
+   * (nominal) dimensions — e.g. a top board sitting on 18" sides makes a 19.5"
+   * bench. The validator checks the model against this instead, and it must stay
+   * within 4" of the stated size. Always give the reason.
+   */
+  asBuilt?: { length: number; width: number; height: number; reason: string };
+  /**
    * Which guide step the viewer shows as the "cut pile" (every board laid flat
    * in rows and labelled). Default: detected — step 1 or 2 when its title reads
    * like "Mark, label and cut the lumber" and the model adds no parts in it.

@@ -58,4 +58,10 @@ describe('validateModel', () => {
     expect(p).toMatch(/cut to 10/);
     expect(p).toMatch(/step 7/);
   });
+  it('uses asBuilt (with a reason) instead of the stated size', () => {
+    const taller: GuideModel = { ...model, parts: [board('X-1#1', [0, 0.75, 0]), board('X-1#2', [0, 3.75, 0])], bounds: { length: 10, width: 3.5, height: 4.5 } };
+    expect(validateModel(taller, guide).join('\n')).toMatch(/height \(y\) is 4.50/);
+    expect(validateModel({ ...taller, asBuilt: { length: 10, width: 3.5, height: 4.5, reason: 'second board sits on spacers' } }, guide)).toEqual([]);
+    expect(validateModel({ ...taller, asBuilt: { length: 10, width: 3.5, height: 4.5, reason: ' ' } }, guide).join()).toMatch(/needs a reason/);
+  });
 });
