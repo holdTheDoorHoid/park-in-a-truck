@@ -12,7 +12,7 @@ import { u } from '../../lib/url';
       </p>
     </div>
     <div>
-      <h4>Questions?</h4>
+      <h3 class="footer-heading">Questions?</h3>
       <p>
         <a href="mailto:ParkinaTruck@jefferson.edu">ParkinaTruck@jefferson.edu</a><br />
         <a href="mailto:Kimberlee.Douglas@jefferson.edu">Kimberlee.Douglas@jefferson.edu</a><br />
@@ -21,7 +21,7 @@ import { u } from '../../lib/url';
       </p>
     </div>
     <div>
-      <h4>About this site</h4>
+      <h3 class="footer-heading">About this site</h3>
       <p>
         Your answers and designs are saved only in this browser. Use <a href={u('my-park/')}>My park</a> to save a
         copy or share it with your committee.
@@ -52,7 +52,14 @@ import { u } from '../../lib/url';
     font-weight: 600;
     font-size: 0.75em;
   }
-  h4 {
+  /* Semantically an h3 (the page has no h3 above it — skipping straight to
+     h4 broke "jump by heading level" screen-reader navigation), styled to
+     keep the small uppercase look the footer always had. */
+  .footer-heading {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
     margin-bottom: 0.4em;
   }
   p {

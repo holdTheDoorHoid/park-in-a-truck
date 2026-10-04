@@ -134,9 +134,14 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
 (`.duo`); isometric line illustrations with cyan fills; one colour per park theme.
 
 - Fonts: Work Sans (the workbooks' face) + Alfa Slab One (stand-in for Rockwell Extra Bold), self-hosted via fontsource.
-- Colours (`src/styles/global.css`): cyan `#00A8E8` for fills/big numbers, `#00709C` for text/links (contrast);
-  themes: Edible `#F05A28`, Sanctuary `#0B4A6B`, Nature `#006B35`, Event `#8E1F6B` (frame/front/back shades in
-  `src/data/themes.ts`).
+- Colours (`src/styles/global.css`): cyan `#00A8E8` for fills only (buttons, bars, badges, pins) — it measures
+  2.70:1 on white, which fails WCAG AA even for large text, so it is never used for text. `#00709C` (`--cyan-ink`)
+  is cyan that passes contrast (5.5:1 on white) and is what every "cyan-looking" piece of text actually uses: the
+  "00"–"06" step numbers, the big chapter-opener numeral (`.big-num`), links, and the default focus ring. Text
+  *on* a cyan fill (primary buttons, the flowchart step circles) uses dark ink instead of white — white only
+  reaches ~3:1 on `#00A8E8`, not enough for normal-size text; ink reaches ~7:1 (found and fixed 2026-10-04,
+  access-keyboard F3). Themes: Edible `#F05A28`, Sanctuary `#0B4A6B`, Nature `#006B35`, Event `#8E1F6B`
+  (frame/front/back shades in `src/data/themes.ts`).
 - Light only (paper look). Mobile first: 16px gutters, no horizontal scroll at 360px.
 - Print: `@media print` produces a filled-in workbook (fields print with their values).
 

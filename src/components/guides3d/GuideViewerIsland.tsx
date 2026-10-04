@@ -335,7 +335,8 @@ export default function GuideViewerIsland({ slug, title, steps, cutList }: Props
             <span class="g3d-short">Reset</span>
           </button>
         </div>
-        <p class="g3d-help">Drag to turn it. Click it, then scroll to zoom. Point at a board to see its size.</p>
+        <p class="g3d-help g3d-help-mouse">Drag to turn it. Click it, then scroll to zoom. Point at a board to see its size.</p>
+        <p class="g3d-help g3d-help-touch">Drag to turn it. Tap it, then pinch to zoom. Tap a board to see its size.</p>
       </div>
     </div>
   );

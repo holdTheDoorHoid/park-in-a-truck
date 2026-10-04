@@ -29,7 +29,7 @@ describe('as-built note', () => {
   });
   it('names only the dimensions that differ', () => {
     expect(asBuiltText({ length: 48, width: 18, height: 18 }, { length: 48, width: 18, height: 19.5 })).toBe('about 19½″ tall');
-    expect(asBuiltText({ length: 96, width: 96, height: 96 }, { length: 96, width: 99, height: 97.5 })).toBe('about 8′-3″ wide and 8′-1½″ tall');
+    expect(asBuiltText({ length: 96, width: 96, height: 96 }, { length: 96, width: 99, height: 97.5 })).toBe('about 8′-3″ deep and 8′-1½″ tall');
     expect(asBuiltText({ length: 48, width: 18, height: 18 }, { length: 48.1, width: 18, height: 18 })).toBe('');
   });
 });
