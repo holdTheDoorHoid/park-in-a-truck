@@ -5,6 +5,7 @@ import * as THREE from 'three';
 import { existingMeta } from '../catalog';
 import type { Vec2 } from '../geo';
 import { COLORS, TreeInstances, W, disposeTree, ribbon } from './builders';
+import type { Footprint } from './overlays';
 
 export interface ExistingRender {
   id: string;
@@ -12,12 +13,37 @@ export interface ExistingRender {
   /** local feet */
   x: number;
   y: number;
+  /** on screen: counter-clockwise from east */
   rotationDeg: number;
+  /** as saved: relative to the lot's long side (what turning changes) */
+  ownRotationDeg?: number;
   radiusFt?: number;
   lengthFt?: number;
   widthFt?: number;
   keep?: boolean;
   heightFt?: number;
+}
+
+/** The ground a thing covers, for the selection and drag overlays. */
+export function existingFootprint(it: ExistingRender): Footprint {
+  const r = (it.rotationDeg * Math.PI) / 180;
+  const xd: Vec2 = [Math.cos(r), Math.sin(r)];
+  const yd: Vec2 = [-Math.sin(r), Math.cos(r)];
+  const c: Vec2 = [it.x, it.y];
+  switch (it.element) {
+    case 'existing-tree':
+      return { c, xd, yd, hw: it.radiusFt ?? 8, hh: it.radiusFt ?? 8, round: true };
+    case 'wet-area':
+      return { c, xd, yd, hw: it.radiusFt ?? 5, hh: it.radiusFt ?? 5, round: true };
+    case 'old-pavement':
+      return { c, xd, yd, hw: (it.lengthFt ?? 10) / 2, hh: (it.widthFt ?? 8) / 2, round: false };
+    case 'utility-line':
+      return { c, xd, yd, hw: (it.lengthFt ?? 30) / 2, hh: 0.8, round: false };
+    case 'utility-pole':
+      return { c, xd, yd, hw: 3, hh: 0.6, round: false };
+    default:
+      return { c, xd, yd, hw: 1.2, hh: 1.2, round: true };
+  }
 }
 
 function circle(r: number, seg = 40): Vec2[] {
@@ -41,10 +67,10 @@ export class ExistingMeshes {
     this.group.add(this.parts, this.trees.group, this.ghost.group);
   }
 
-  pickables(): { object: THREE.Object3D; idOf: (instanceId?: number) => string | undefined }[] {
-    const out: { object: THREE.Object3D; idOf: (i?: number) => string | undefined }[] = [
-      { object: this.trees.pickMesh, idOf: (i) => (i == null ? undefined : this.trees.ids[i]) },
-      { object: this.ghost.pickMesh, idOf: (i) => (i == null ? undefined : this.ghost.ids[i]) },
+  pickables(): { object: THREE.Object3D; idOf: (instanceId?: number) => string | undefined; soft?: boolean }[] {
+    const out: { object: THREE.Object3D; idOf: (i?: number) => string | undefined; soft?: boolean }[] = [
+      { object: this.trees.pickMesh, idOf: (i) => (i == null ? undefined : this.trees.ids[i]), soft: true },
+      { object: this.ghost.pickMesh, idOf: (i) => (i == null ? undefined : this.ghost.ids[i]), soft: true },
     ];
     this.parts.traverse((o) => {
       if (o.userData.pickId) out.push({ object: o, idOf: () => o.userData.pickId });

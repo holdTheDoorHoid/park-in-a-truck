@@ -129,7 +129,7 @@ function PlannerInner({ mode = 'design', demo, page = false }: Props) {
   const hasLot = Boolean(useStore($project).lot);
 
   useEffect(() => {
-    // what can be dragged (and what's shown) depends on the step
+    // what's shown (markers for things already on the lot) depends on the step
     store.$step.set(step);
     store.$selection.set(null);
   }, [step]);
@@ -165,7 +165,7 @@ function PlannerInner({ mode = 'design', demo, page = false }: Props) {
 
   const idx = steps.indexOf(step);
   return (
-    <div class={`pl-root pl-${mode}${page ? ' pl-page' : ''}`} onKeyDown={keyHandler(store, step)}>
+    <div class={`pl-root pl-${mode}${page ? ' pl-page' : ''}`} onKeyDown={keyHandler(store)}>
       <div class="pl-layout">
       <div class="pl-stage">
         <Viewport store={store} mode={mode} />

@@ -8,13 +8,14 @@ import { $project, getExtra, setDesign, setExtra } from '../project';
 import { loadDemo, loadSiteContext, type DemoSlug, type SiteContext } from './site';
 import { buildLocalSite, type LocalSite } from './localsite';
 import { buildLayout, getPieceSet, nominalOf, tallyLayout, type PieceSet } from './park';
-import { computeOverhang, makePlacement, parkToLocal, placementSummary, type Overhang, type ParkPlacement } from './placement';
+import { baseFootprint, computeOverhang, makePlacement, parkToLocal, placementSummary, type Overhang, type ParkPlacement } from './placement';
 import { adaptToSite, lotRef, newDesign, normaliseDesign, parkDims, syncExistingXY, treesKept } from './design';
 import { makeSunAt, runSunStudy } from './sunstudy';
 import { decodeHours, gridSpecFromSaved, type GridSpec, type SunGrid } from './sunhours';
 import { phillyMinutes } from './sun';
 import { measureEdges } from './edges';
 import { bbox, type Vec2 } from './geo';
+import type { SnapStep } from './interact';
 
 export type PlannerMode = 'full' | 'design' | 'site' | 'sun';
 export type Selection = { kind: 'item' | 'existing'; id: string } | null;
@@ -39,11 +40,16 @@ function todaySunTime(): SunTime {
   return { month: d.getMonth() + 1, day: d.getDate(), minutes: m < 7 * 60 || m > 19 * 60 ? 15 * 60 : Math.round(m / 15) * 15 };
 }
 
-/** What has to fit on the lot: a tree's trunk, not its crown. */
-function baseFootprint<T extends { element: string; w: number; h: number }>(it: T): T {
-  if (it.element === 'small-tree' || it.element === 'large-tree') return { ...it, w: 2, h: 2 };
-  if (it.element === 'shrub' || it.element === 'perennial') return { ...it, w: it.w * 0.5, h: it.h * 0.5 };
-  return it;
+/**
+ * What the 3D view offers the side panel while it is on screen: dropping a palette
+ * item onto the park at a screen point (the palette drag).
+ */
+export interface ViewportBridge {
+  /** show where `element` would land at this screen point; false = not over the view */
+  dropPreview(element: string, clientX: number, clientY: number): boolean;
+  /** add it there; false = not over the view (nothing added) */
+  drop(element: string, clientX: number, clientY: number): boolean;
+  clearDrop(): void;
 }
 
 export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = null) {
@@ -56,7 +62,8 @@ export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = nu
   const $selection = atom<Selection>(null);
   const $view = atom<View>('3d');
   const $show = atom<ShowFlags>({ aerial: true, heat: mode === 'sun', cityTrees: true, grid: true });
-  const $snap = atom<1 | 4>(1);
+  /** grid snap for dragging and the arrow keys (0 = off) */
+  const $snap = atom<SnapStep>(1);
   const $sunTime = atom<SunTime>(todaySunTime());
   const $sunGrid = atom<SunGrid | null>(null);
   const $sunJob = atom<{ progress: number } | null>(null);
@@ -293,6 +300,10 @@ export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = nu
 
   return {
     mode,
+    /** can things be picked up and moved? (everywhere but the sun-only widget) */
+    editable: mode !== 'sun',
+    /** set by the Viewport while it is mounted */
+    bridge: { viewport: null as ViewportBridge | null },
     $status,
     $note,
     $demo,

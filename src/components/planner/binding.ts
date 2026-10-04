@@ -1,25 +1,17 @@
 // Keeps a PlannerScene in step with a planner store: one batched update per tick that
 // only pushes what changed.
 
-import type { LayoutItem } from '../../lib/types';
 import type { PlannerMode, PlannerStore } from '../../lib/planner/store';
 import type { PlannerScene, ParkState } from '../../lib/planner/scene';
 import type { ExistingRender } from '../../lib/planner/scene/existing';
-import { parkDirToLocal, parkToLocal } from '../../lib/planner/placement';
+import { localToPark, parkDirToLocal, parkToLocal } from '../../lib/planner/placement';
 import { phillyTime } from '../../lib/planner/sun';
 import type { Vec2 } from '../../lib/planner/geo';
 import type { LocalSite } from '../../lib/planner/localsite';
 import type { ExistingItem } from '../../lib/types';
 
-/** Snap an item so its footprint edges land on the grid (1 or 4 ft), keeping it near the park. */
-export function snapItem(it: Pick<LayoutItem, 'w' | 'h' | 'rotationDeg'>, p: Vec2, step: number, L: number, Wd: number): Vec2 {
-  const turned = Math.round(Math.abs(it.rotationDeg) / 90) % 2 === 1;
-  const hw = (turned ? it.h : it.w) / 2;
-  const hh = (turned ? it.w : it.h) / 2;
-  const sx = Math.round((p[0] - hw) / step) * step + hw;
-  const sy = Math.round((p[1] - hh) / step) * step + hh;
-  return [Math.max(-hw, Math.min(L + hw, sx)), Math.max(-hh, Math.min(Wd + hh, sy))];
-}
+/** Snapping lives with the other drag helpers (src/lib/planner/interact.ts). */
+export { snapItem } from '../../lib/planner/interact';
 
 /** angle (deg, counter-clockwise from east) of the lot's long axis */
 export function frameAngle(site: LocalSite): number {
@@ -39,6 +31,7 @@ export function existingRenders(site: LocalSite, items: ExistingItem[] | undefin
       x,
       y,
       rotationDeg: (e.rotationDeg ?? 0) + fa,
+      ownRotationDeg: e.rotationDeg ?? 0,
       radiusFt: e.radiusFt,
       lengthFt: e.lengthFt,
       widthFt: e.widthFt,
@@ -84,6 +77,7 @@ export function bindScene(scene: PlannerScene, store: PlannerStore, mode: Planne
         const map = {
           toLocal: (p: Vec2) => parkToLocal(pl, site.frame, p),
           dirToLocal: (d: Vec2) => parkDirToLocal(pl, site.frame, d),
+          toPark: (p: Vec2) => localToPark(pl, site.frame, p),
         };
         const state: ParkState = {
           layout,
