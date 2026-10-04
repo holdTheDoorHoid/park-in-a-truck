@@ -29,7 +29,7 @@ export default {
   'done.badge': '✓ imekamilika',
   'progress.of': '{done} kati ya {total}',
   'progress.done': '{done} kati ya {total} zimekamilika',
-  'progress.total': 'Hatua {done} kati ya {total} zimekamilika',
+  'progress.total': 'Hatua ndogo {done} kati ya {total} zimekamilika',
 
   'pdf.label': 'Ukurasa halisi wa kitabu cha kazi',
   'pdf.page': '(PDF, uk. {page})',
