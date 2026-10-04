@@ -1,0 +1,153 @@
+{
+  "title": "Escenario",
+  "summary": "Una plataforma baja de 2x4 para presentaciones, de 12x8 pies, armada con cuatro marcos de esquina iguales unidos alrededor de un marco central, cubierta con tablas de 2x4 con espacios entre ellas y puesta sobre una base de grava nivelada.",
+  "materials": [
+    {
+      "item": "Madera de 2x4: cedro rojo del oeste, abeto Douglas o pino tratado a presión",
+      "notes": "Cedro: resiste de forma natural la intemperie y la pudrición, tiene un bonito tono rojizo y no necesita sellador; cuesta más. Pida el grado «con nudos» (STK). Abeto Douglas: resiste la pudrición de forma moderada, es fuerte y más barato que el cedro; es bueno si piensa pintar. Tratado a presión: es el más barato y resiste la pudrición, pero muchas veces la calidad es mala y desigual, necesita de 1 a 4 meses secándose al aire antes de pintarlo, y no se recomienda donde se cultivan alimentos. Pida por lo menos un 5 % más de lo que indica la lista de cortes, por si la madera viene con defectos o se equivoca en un corte.",
+      "siteNote": "La lista de cortes necesita unas 25, no 16. Cada ST-2 de 93″ (11) y cada ST-3 de 86″ (12) necesita su propia tabla (23 tablas), las ocho ST-4 de 14.75″ necesitan 2 más, y las doce ST-5 de 7.75″ salen de los sobrantes de las ST-3. El texto de los pasos coincide con la lista de cortes."
+    },
+    {
+      "item": "Madera de 2x4 (en largos de 12')"
+    }
+  ],
+  "hardware": [
+    {
+      "item": "Tornillos autoperforantes para madera de exterior"
+    }
+  ],
+  "cutList": [
+    {
+      "notes": "Frente y piso del escenario"
+    },
+    {
+      "notes": "Armazón del escenario"
+    },
+    {
+      "notes": "Armazón del escenario"
+    },
+    {
+      "notes": "Armazón del escenario"
+    },
+    {
+      "notes": "Armazón del escenario"
+    }
+  ],
+  "tools": [
+    "Sierra ingletadora de 10\" o 12\" (o un serrucho adecuado)",
+    "Atornillador de impacto para los tornillos autoperforantes de exterior",
+    "Broca de 1/4\"",
+    "Papel de lija, grano 120",
+    "Escuadra de carpintero",
+    "Gafas de seguridad y mascarilla"
+  ],
+  "steps": [
+    {
+      "title": "Marque, rotule y corte la madera",
+      "text": "Marque, rotule y corte la madera en orden, de ST-1 a ST-5, a los largos de la lista de cortes.\n\nRevise cada pieza de madera por si tiene defectos como rajaduras, deformaciones o un cepillado desparejo, y descarte esas partes.",
+      "imageAlts": [
+        "Diagrama isométrico de las cinco piezas cortadas del escenario, de ST-1 a ST-5, con sus largos rotulados, desde tablas de piso de 144\" hasta bloques de 7.75\"."
+      ],
+      "tips": [
+        "Rotule cada pieza de madera a medida que la mide y la corta.",
+        "Haga una pila aparte para cada pieza, de ST-1 a ST-5.",
+        "Lijar un poco los bordes cortados quita las astillas y ayuda al armar.",
+        "¿Va a hacer más de un escenario? Un tope en la sierra ingletadora hace que todas las piezas salgan del mismo largo."
+      ]
+    },
+    {
+      "title": "Arme cuatro marcos pequeños de esquina",
+      "text": "Ponga dos piezas ST-4 sobre una superficie plana. Ponga dos piezas ST-3 entre las piezas ST-4, alineando los bordes como se ve en la imagen. Repita tres veces más, para tener cuatro marcos pequeños iguales en total.",
+      "imageAlts": [
+        "Diagrama de dos tablas ST-4 y dos ST-3 armadas en un marco rectangular pequeño, repetido cuatro veces."
+      ],
+      "tips": [
+        "La superficie de grava debajo del escenario debe quedar lo más nivelada posible antes de colocarlo en su lugar final; los bloques de concreto pueden ayudar a nivelar las partes bajas.",
+        "Hacer una plantilla de 90 grados le ayudará a armarlo."
+      ]
+    },
+    {
+      "title": "Arme los cuatro marcos de sección",
+      "text": "Ponga dos piezas ST-2 encima del marco que armó en el paso 2. Ponga dos piezas ST-5 entre las piezas ST-2, alineando los bordes como se ve en la imagen, y fije todo con un atornillador de impacto y 44 tornillos autoperforantes de exterior de 2.5\".\n\nRepita tres veces más, para tener cuatro marcos de sección en total. Los cuatro marcos deben quedar mirando hacia el centro del escenario.",
+      "imageAlts": [
+        "Diagrama de las tablas ST-2 y ST-5 que se agregan encima de cada marco pequeño de esquina para armar uno de los cuatro marcos de sección del escenario."
+      ]
+    },
+    {
+      "title": "Cubra el frente de cada marco de sección",
+      "text": "Empezando por arriba, ponga cuatro piezas ST-1 en el frente y en la parte de atrás del marco que armó en el paso 3. Mantenga la madera al ras de la parte de arriba, con un espacio de 1/4\" entre cada pieza ST-1.\n\nFije las piezas ST-1 con un atornillador de impacto y 42 tornillos autoperforantes de exterior de 2.5\", y luego repita del otro lado.",
+      "imageAlts": [
+        "Diagrama de las tablas de frente ST-1 atornilladas en el frente y en la parte de atrás de un marco de sección, con un espacio de 1/4\" entre tablas."
+      ],
+      "tips": [
+        "Use su escuadra de carpintero como separador para el espacio.",
+        "Compruebe con una escuadra de carpintero que el costado se mantenga a 90 grados."
+      ]
+    },
+    {
+      "title": "Agregue los refuerzos del centro",
+      "text": "Ponga dos piezas ST-5 en los extremos, en el medio del marco que armó en el paso 3. Ponga otras dos piezas ST-5 en el medio del marco que armó en los pasos 2 y 3.\n\nFije las piezas ST-5 con un atornillador de impacto y 8 tornillos autoperforantes de exterior de 2.5\" metidos en un ángulo de 45 grados.",
+      "imageAlts": [
+        "Diagrama de los refuerzos ST-5 atornillados en el centro y en los extremos del marco, en un ángulo de 45 grados."
+      ],
+      "tips": [
+        "Hacer agujeros guía le ayudará a meter los tornillos en un ángulo de 45 grados."
+      ]
+    },
+    {
+      "title": "Una dos marcos de sección",
+      "text": "Ponga dos piezas ST-3 en un extremo del marco que armó en el paso 2, con un espacio de 1/4\" entre cada pieza ST-3.\n\nFije las piezas ST-3 desde adentro con un atornillador de impacto y 8 tornillos autoperforantes de exterior de 2.5\" en un ángulo de 45 grados. Siga el patrón de tornillos para fijar las tablas a la pieza ST-5 del centro con 6 tornillos más.\n\nRepita del otro lado con otras dos piezas ST-3.",
+      "imageAlts": [
+        "Diagrama de las tablas ST-3 que unen dos marcos de sección, con un espacio de 1/4\", atornilladas en un ángulo de 45 grados."
+      ],
+      "tips": [
+        "Hacer agujeros guía le ayudará a meter los tornillos en un ángulo de 45 grados."
+      ]
+    },
+    {
+      "title": "Una las cuatro secciones",
+      "text": "Ponga tres piezas ST-2 entre las cuatro secciones del armazón, al ras de la parte de arriba de las piezas ST-1 que puso en el paso 4.\n\nFije las piezas ST-2 a las piezas ST-1 con un atornillador de impacto y 12 tornillos autoperforantes de exterior de 2.5\".",
+      "imageAlts": [
+        "Diagrama de tres tablas ST-2 que unen las cuatro secciones del escenario, al ras de la parte de arriba del armazón."
+      ]
+    },
+    {
+      "title": "Ponga el piso del escenario y lije",
+      "text": "Ponga 26 piezas ST-1 encima del armazón que armó en el paso 7, alineando los bordes, al ras y con espacios iguales.\n\nFije las tablas ST-1 del piso en cada viga con su patrón de 3 tornillos: 78 tornillos autoperforantes de exterior de 2.5\" en total.\n\nLije un poco los bordes ásperos del escenario.",
+      "imageAlts": [
+        "Diagrama de las tablas ST-1 del piso puestas con espacios iguales a lo ancho de la parte de arriba del armazón del escenario y atornilladas en cada viga."
+      ],
+      "tips": [
+        "Use su escuadra de carpintero como separador."
+      ]
+    },
+    {
+      "title": "Guía para hacer agujeros (plantilla)",
+      "text": "Recorte la guía para agujeros por las líneas punteadas. Al taladrar, alinee el borde de la plantilla con el borde de afuera de la madera antes de hacer el agujero guía.\n\nNo se usan todos los agujeros, y no todos los patrones usan la plantilla. Guíese por los pasos de armado de arriba para saber dónde van los agujeros. Haga todos los agujeros a más o menos el ancho de un pulgar del borde (alrededor de 1\"), incluso los que no usan esta plantilla.",
+      "imageAlts": [
+        "Una plantilla imprimible para hacer agujeros guía, con cinco posiciones marcadas y líneas de corte, y un acercamiento que muestra la distancia de los agujeros al borde de la tabla."
+      ]
+    }
+  ],
+  "finishing": "Un tratamiento para madera de exterior puede alargar la vida de los elementos de su parque, pero no hace falta: estas piezas están pensadas para ser baratas, duraderas y fáciles de construir, así que puede ser más práctico dejar que la próxima generación las vuelva a construir cuando llegue el momento. Si quiere teñir, pintar o sellar la madera, vea los recursos sobre acabados más abajo.",
+  "safety": [
+    "Estas son solo recomendaciones para hacerlo usted mismo: adapte los materiales, el armado y la construcción a su propio proyecto y terreno.",
+    "Construir esto supone que sabe usar herramientas manuales y eléctricas, herrajes, tornillería, madera y técnicas básicas de armado.",
+    "Antes de usar cualquier equipo eléctrico, lea y siga los requisitos de seguridad del fabricante, y no deje que use herramientas eléctricas nadie que no haya hecho lo mismo.",
+    "Usted (el dueño) es responsable de cumplir los códigos de construcción y de seguridad, y de conseguir los permisos y aprobaciones que esto necesite.",
+    "Primero limpie el terreno de basura, peligros y estructuras que no quiera, y averigüe si hay servicios públicos (cables o tuberías) que puedan estorbar antes de excavar.",
+    "Todas las personas que ayuden a construir deben firmar una exención de responsabilidad para voluntarios."
+  ],
+  "links": [
+    {
+      "label": "Cómo elegir el mejor acabado para proyectos al aire libre (Rockler, en inglés)"
+    },
+    {
+      "label": "El mejor acabado para madera de exterior (Real Milk Paint, en inglés)"
+    },
+    {
+      "label": "Recubrimientos para madera de exterior (Vermont Natural Coatings, en inglés)"
+    }
+  ],
+  "sourcePages": "Instrucciones de armado de STAGE (están entre los enlaces de la pág. 19 del cuaderno de trabajo Soñar; la copia de Linktree ya no funciona), págs. 1–12 (portada; antes de empezar; maderas comunes y costo; pasos 1–7; guía para hacer agujeros)"
+}

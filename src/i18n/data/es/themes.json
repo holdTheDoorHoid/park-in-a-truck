@@ -1,0 +1,18 @@
+{
+  "edible": {
+    "name": "Comestible",
+    "blurb": "Compartir comida y conectar con los vecinos: frutas, verduras y una mesa comunitaria."
+  },
+  "sanctuary": {
+    "name": "Santuario",
+    "blurb": "Un refugio tranquilo para estar a solas, leer y hacer reuniones pequeñas."
+  },
+  "nature": {
+    "name": "Naturaleza",
+    "blurb": "Plantas nativas, hábitat y juego para los niños y los polinizadores."
+  },
+  "event": {
+    "name": "Eventos",
+    "blurb": "Espacio para presentaciones, mercados y celebraciones del barrio."
+  }
+}

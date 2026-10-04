@@ -1,6 +1,7 @@
-// Area "guides": the build-guide pages (src/pages/build/, src/components/guides/).
-// The guides' own text (steps, materials, tools…) is DATA, translated in
-// src/i18n/data/<locale>/guides/<slug>.json — not here.
+// Area "guides": the build-guide pages (src/pages/build/, src/components/guides/,
+// src/components/guides3d/). The guides' own text (steps, materials, tools…) is DATA,
+// translated in src/i18n/data/<locale>/guides/<slug>.json — not here. Part labels
+// (BB-1) and lumber sizes (2x4) stay English everywhere, including in the 3D viewer.
 import { defineMessages } from '../../define.ts';
 
 export default defineMessages('guides', {
@@ -19,6 +20,11 @@ export default defineMessages('guides', {
   'glance.skill': 'Skill',
   'glance.cost': 'Cost',
   'asBuilt': 'Built from these parts it comes out {size}.',
+  /** Joined with t.list() into "about 19½″ tall", "about 8′ long and 3′ deep"… */
+  'asBuilt.long': '{n} long',
+  'asBuilt.deep': '{n} deep',
+  'asBuilt.tall': '{n} tall',
+  'asBuilt.about': 'about {list}',
   'pdf': 'Original PDF',
   'print': '🖨 Print',
 
@@ -43,6 +49,32 @@ export default defineMessages('guides', {
   'pager': 'Guides',
   'close': 'Close',
   'notTranslated': 'This guide has not been translated yet, so it is shown in English.',
+
+  // guides3d: the 3D assembly viewer beside a build guide's steps.
+  'g3d.placeholder': '3D model',
+  'g3d.loading': 'Loading the 3D model…',
+  'g3d.stepOf': 'Step {n} of {total}',
+  'g3d.playingAll': 'Play all steps',
+  'g3d.starting': 'Starting…',
+  'g3d.finishedPiece': 'The finished piece',
+  'g3d.scrollPrompt': 'Scroll through the steps to watch it go together',
+  'g3d.stateFlat': 'Every cut board laid out flat and labelled.',
+  'g3d.stateAdds': 'Step {n} adds {adds}.',
+  'g3d.stateWhole': 'The whole piece.',
+  'g3d.describe': '{model}. {state} Drag or use the arrow keys to turn it; plus and minus zoom.',
+  'g3d.show': 'Show 3D',
+  'g3d.hide': 'Hide 3D',
+  'g3d.replayLong': 'Replay step',
+  'g3d.replayShort': 'Replay',
+  'g3d.stop': 'Stop',
+  'g3d.playAll': 'Play all',
+  'g3d.explodedLong': 'Exploded view',
+  'g3d.explodeShort': 'Explode',
+  'g3d.resetLong': 'Reset view',
+  'g3d.resetShort': 'Reset',
+  'g3d.controls': '3D model controls',
+  'g3d.helpMouse': 'Drag to turn it. Click it, then scroll to zoom. Point at a board to see its size.',
+  'g3d.helpTouch': 'Drag to turn it. Tap it, then pinch to zoom. Tap a board to see its size.',
 
   'index.description':
     "Step-by-step, Ikea-style assembly instructions for Park in a Truck's benches, tables, planters, gabion seating, a shade structure and a stage.",
