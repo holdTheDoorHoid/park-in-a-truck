@@ -35,6 +35,9 @@ after the extraction round. Tick them off here.
 - [ ] Overlays for themes/elements/plants/parks are not read by /plants/ and /parks/ yet (x-cost extraction may fix).
 - [ ] /playful-learning/ scrolls sideways at 360 px in every language (elements table: 406 px in English).
 - [ ] 3D guide viewer at 360 px: control buttons wrap and cover the help text (English too).
+- [ ] Clock style differs: the shade calendar shows "3:30 PM" (locale format) while the planner's clock shows
+      "3:30 pm" — pick one (probably the locale format everywhere).
+- [ ] New area `shade` (shade calendar, 73 keys) needs translating in every language's second pass.
 
 ## For native-speaker review (per language)
 
