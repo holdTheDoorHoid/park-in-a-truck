@@ -10,9 +10,12 @@ import type { LayoutItem, ParkLayout, ThemeId } from '../../types';
 import type { LocalSite } from '../localsite';
 import type { Vec2 } from '../geo';
 import { siteToLocal } from '../rect';
-import { sunPosition } from '../sun';
-import { classify, type GridSpec } from '../sunhours';
-import { COLORS, W, buildAerial, buildBuildings, cellTexture, cityTreeSpecs, disposeTree, quad, ribbon, TreeInstances } from './builders';
+import { phillyDate, sunPosition } from '../sun';
+import type { GridSpec } from '../sunhours';
+import { COLORS, W, buildAerial, buildBuildings, cityTreeSpecs, disposeTree, ribbon, TreeInstances } from './builders';
+import { groundOf } from '../ground';
+import { autumnTint, leafFraction } from '../treemodel';
+import { heatMesh, spotMarker } from './sunlayers';
 import { ParkMeshes, itemFootprint, type ParkMapping } from './park';
 import { ExistingMeshes, existingFootprint, type ExistingRender } from './existing';
 import { Overlays, type Footprint } from './overlays';
@@ -60,6 +63,8 @@ export interface SceneCallbacks {
   onGesture?(g: GestureInfo | null): void;
   /** the camera moved: which way north points on screen (degrees clockwise from up) */
   onCamera?(northDeg: number): void;
+  /** a click or tap on empty ground (no drag): the ground point, local feet (sun step: chart that spot) */
+  onGroundClick?(p: Vec2): void;
 }
 
 export interface ParkState {
@@ -93,6 +98,8 @@ export class PlannerScene {
   private park = new ParkMeshes();
   private existing = new ExistingMeshes();
   private heat = new THREE.Group();
+  /** the spot whose sun through the year is charted (shadows workstream) */
+  private spot = new THREE.Group();
   private planVeil: THREE.Mesh;
   private aerial: { mesh: THREE.Mesh; dispose: () => void } | null = null;
   private dirty = true;
@@ -180,7 +187,7 @@ export class PlannerScene {
     this.planVeil.visible = false;
     this.planVeil.renderOrder = 1;
 
-    this.scene.add(this.siteGroup, this.cityTrees.group, this.park.group, this.existing.group, this.heat, this.planVeil, this.overlays.group);
+    this.scene.add(this.siteGroup, this.cityTrees.group, this.park.group, this.existing.group, this.heat, this.spot, this.planVeil, this.overlays.group);
 
     canvas.addEventListener('pointerdown', this.onPointerDown, { capture: true });
     canvas.addEventListener('pointermove', this.onPointerMove);
@@ -338,6 +345,10 @@ export class PlannerScene {
     this.siteGroup.add(outline);
     this.aerial = buildAerial(site.lf, site.extentFt, this.mobile ? 19 : 20, () => this.requestRender());
     this.siteGroup.add(this.aerial.mesh);
+    // trees stand on the ground under their trunks (City trees and trees on the lot)
+    const ground = site.ground ? groundOf(site) : null;
+    this.cityTrees.setGround(ground);
+    this.existing.group.traverse((o) => (o.userData.treeInstances as TreeInstances | undefined)?.setGround(ground));
     this.cityTrees.set(cityTreeSpecs(site.trees));
     this.overlays.setGround(groundOf(site));
     const ext = Math.max(90, Math.max(site.frame.lengthFt, site.frame.widthFt) / 2 + 70);
@@ -509,35 +520,28 @@ export class PlannerScene {
     this.sun.color.setRGB(1, 1 - 0.18 * warm, 1 - 0.38 * warm);
     this.hemi.intensity = 0.7 + 0.25 * up;
     (this.scene.background as THREE.Color).set(p.altitudeDeg > 0 ? COLORS.sky : 0xc8d2dc);
+    // the trees' season on that date: bare in winter, in leaf in summer (treemodel.ts)
+    const { month, day } = phillyDate(date);
+    const leaf = leafFraction(month, day);
+    const autumn = autumnTint(month, day);
+    this.scene.traverse((o) => (o.userData.treeInstances as TreeInstances | undefined)?.setSeason(leaf, autumn));
     this.requestRender();
     return p;
   }
 
+  /** The sun-hours map over the lot (draped over the ground when its heights are known). */
   setHeat(data: { spec: GridSpec; hours: Float32Array } | null, visible: boolean) {
     disposeTree(this.heat);
     this.heat.clear();
-    if (!data || !visible) {
-      this.requestRender();
-      return;
-    }
-    const { spec, hours } = data;
-    const col = (h: number) => {
-      if (Number.isNaN(h)) return null;
-      const c = classify(h);
-      return c === 'sun' ? 'rgba(255,176,0,0.78)' : c === 'part' ? 'rgba(126,196,230,0.8)' : 'rgba(36,64,128,0.82)';
-    };
-    const tex = cellTexture(spec.nx, spec.ny, (i, j) => col(hours[j * spec.nx + i]!));
-    const corner = (a: number, b: number): Vec2 => [
-      spec.origin[0] + a * spec.cellFt * spec.ux[0] + b * spec.cellFt * spec.uy[0],
-      spec.origin[1] + a * spec.cellFt * spec.ux[1] + b * spec.cellFt * spec.uy[1],
-    ];
-    const q = quad(
-      [corner(0, 0), corner(spec.nx, 0), corner(spec.nx, spec.ny), corner(0, spec.ny)],
-      0.62,
-      new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false, side: THREE.DoubleSide }),
-    );
-    q.renderOrder = 5;
-    this.heat.add(q);
+    if (data && visible) this.heat.add(heatMesh(data.spec, data.hours, this.site?.ground ? groundOf(this.site) : null));
+    this.requestRender();
+  }
+
+  /** The pin on the spot whose sun through the year is charted (null = none). */
+  setSpot(p: Vec2 | null) {
+    disposeTree(this.spot);
+    this.spot.clear();
+    if (p && this.site) this.spot.add(spotMarker(p, groundOf(this.site)));
     this.requestRender();
   }
 
@@ -871,6 +875,9 @@ export class PlannerScene {
     }
     if (this.pendingDeselect && Math.hypot(e.clientX - this.pendingDeselect.x, e.clientY - this.pendingDeselect.y) < 5) {
       this.cb.onSelect(null);
+      // a plain click on the ground (shadows workstream: the sun step charts that spot)
+      const g = this.cb.onGroundClick ? this.groundPoint(e) : null;
+      if (g) this.cb.onGroundClick!(g);
     }
     this.pendingDeselect = null;
     const gs = this.gesture;
@@ -1070,6 +1077,7 @@ export class PlannerScene {
     this.overlays.dispose();
     this.cityTrees.dispose();
     disposeTree(this.heat);
+    disposeTree(this.spot);
     this.renderer.dispose();
     this.renderer.domElement.remove();
   }

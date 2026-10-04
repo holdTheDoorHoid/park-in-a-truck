@@ -16,6 +16,7 @@ import { catalogEntry, existingMeta } from '../../lib/planner/catalog';
 import { ELEMENTS } from '../../data/elements';
 import { deleteSelected, duplicateSelected, rotateSelected } from './keyboard';
 import { downloadDataUrl, printPlan } from './exporting';
+import { PlayChip } from './PlayChip';
 
 interface Props {
   store: PlannerStore;
@@ -112,6 +113,10 @@ export function Viewport({ store, mode }: Props) {
             },
             onGesture: (g) => setGesture(g),
             onCamera: (deg) => setNorth(deg),
+            // sun step: a click on the ground charts that spot's sun through the year
+            onGroundClick: (p) => {
+              if (store.$step.get() === 'sun') store.sun.$spot.set(p);
+            },
           });
         } catch (e) {
           console.error(e);
@@ -275,6 +280,7 @@ export function Viewport({ store, mode }: Props) {
               </div>
             </details>
           </div>
+          <PlayChip store={store} />
           <div class="pl-north" style={{ transform: `rotate(${north}deg)` }} aria-hidden="true" title="North">
             <span>N</span>
           </div>
