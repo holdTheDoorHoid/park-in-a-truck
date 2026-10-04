@@ -11,6 +11,7 @@
 
 import { u as baseUrl } from '../lib/url';
 import { DEFAULT_LOCALE, LOCALES, splitPath, type Locale } from './locales.ts';
+import { escapeHtml } from './format.ts';
 
 /** A path to a file (has an extension), not a page route. */
 export function isAssetPath(path: string): boolean {
@@ -62,4 +63,24 @@ export function localizeLinks(html: string, locale: Locale | string, base = base
 /** Every language's URL for this page, for <link rel="alternate" hreflang> and the language box. */
 export function alternates(pathname: string): { code: Locale; lang: string; name: string; href: string }[] {
   return LOCALES.map((l) => ({ code: l.code, lang: l.lang, name: l.name, href: samePageIn(pathname, l.code) }));
+}
+
+/**
+ * A message that carries markdown links ("… [Go to Sustain →](/steps/sustain/)", kept from PiaT's
+ * text) as HTML for `set:html`: the words escaped, site pages in the reader's language, other sites
+ * in a new tab.
+ */
+export function markdownLinks(text: string, locale: Locale | string): string {
+  const u = urlFor(locale);
+  let out = '';
+  let last = 0;
+  for (const m of text.matchAll(/\[([^\]]+)\]\(([^)\s]+)\)/g)) {
+    const [whole, label, href] = m as unknown as [string, string, string];
+    out += escapeHtml(text.slice(last, m.index));
+    const external = /^(https?:|mailto:)/.test(href);
+    const url = external ? href : u(href.replace(/^\//, ''));
+    out += `<a href="${escapeHtml(url)}"${/^https?:/.test(href) ? ' target="_blank" rel="noopener"' : ''}>${escapeHtml(label)}</a>`;
+    last = m.index! + whole.length;
+  }
+  return out + escapeHtml(text.slice(last));
 }

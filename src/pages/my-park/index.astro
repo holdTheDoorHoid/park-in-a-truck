@@ -1,13 +1,49 @@
 ---
 import Base from '../../layouts/Base.astro';
 import StepPath from '../../components/site/StepPath.astro';
+import { getCollection } from 'astro:content';
 import pages from '../../i18n/messages/en/pages.ts';
 import workbook from '../../i18n/messages/en/workbook.ts';
-import { getT, urlFor } from '../../i18n/astro.ts';
+import philly from '../../i18n/messages/en/philly.ts';
+import patch from '../../i18n/messages/en/patch.ts';
+import guidesMsgs from '../../i18n/messages/en/guides.ts';
+import site from '../../i18n/messages/en/site.ts';
+import { getT, urlFor, localizeGuide } from '../../i18n/astro.ts';
+import { chapterFieldLabels } from '../../i18n/mdx.ts';
+import { ASSET_CATEGORIES, assetFieldId } from '../../lib/philly/assets';
+import { getGuides } from '../../data/guides';
 
 const t = getT(Astro, pages);
 const tw = getT(Astro, workbook);
 const u = urlFor(t.locale);
+
+// The answers summary shows each saved answer under its field's own label, in the reader's language:
+// the labels the chapters give their fields (the translated chapter where there is one), then the
+// fields other pages and widgets save. Unknown ids fall back to a label made from the id.
+const tp = getT(Astro, philly);
+const tpatch = getT(Astro, patch);
+const tg = getT(Astro, guidesMsgs);
+const ts = getT(Astro, site);
+const fieldLabels: Record<string, string> = {};
+for (const e of await getCollection('steps')) Object.assign(fieldLabels, chapterFieldLabels(e.body ?? ''));
+for (const e of await getCollection('stepsI18n')) if (e.id.startsWith(`${t.locale}/`)) Object.assign(fieldLabels, chapterFieldLabels(e.body ?? ''));
+for (const c of ASSET_CATEGORIES) fieldLabels[assetFieldId(c.id)] ??= tp(`assets.cat.${c.id}`);
+Object.assign(fieldLabels, {
+  'patch.length': tpatch('yourArea.lengthLabel'),
+  'patch.width': tpatch('yourArea.widthLabel'),
+  'patch.sun-area': tpatch('yourArea.sunLabel'),
+  'patch.shade-area': tpatch('yourArea.shadeLabel'),
+  'patch.palette': tpatch('palette.chooseLabel'),
+  'patch.maintenance-ongoing': tpatch('maintenance.secondSeason'),
+  'patch.ready-checklist': tpatch('ready.title'),
+});
+for (const g of getGuides().map((x) => localizeGuide(x, t.locale))) {
+  fieldLabels[`build.${g.slug}.materials`] = `${g.title} · ${tg('materials')}`;
+  fieldLabels[`build.${g.slug}.tools`] = `${g.title} · ${tg('tools')}`;
+}
+const groupTitles = { patch: tpatch('title'), build: ts('nav.build') };
+// JSON for the page script (`<` escaped so nothing in a label can end the <script>)
+const labelsJson = JSON.stringify({ fields: fieldLabels, groups: groupTitles }).replace(/</g, '\\u003c');
 ---
 <Base title={t('myPark.title')}>
   <section class="wrap" style="padding-top:40px">
@@ -47,6 +83,7 @@ const u = urlFor(t.locale);
 
     <h2 class="ruled" style="margin-top:40px">{t('myPark.yourAnswers')}</h2>
     <div data-answers><p class="muted">{t('myPark.nothingFilledIn')}</p></div>
+    <script is:inline type="application/json" id="field-labels" set:html={labelsJson} />
   </section>
 </Base>
 <style>
@@ -132,7 +169,7 @@ const u = urlFor(t.locale);
   const iso = (s: string) => isolate(s, t);
   /** The heading of each step's answers: "Acquire" (English keeps its old headings, from the step ids). */
   const stepTitles = new Map(localizedSteps(t.locale).map((st) => [st.slug, st.title]));
-  const stepHeading = (g: string) => (t.locale === 'en' ? g[0]!.toUpperCase() + g.slice(1) : (stepTitles.get(g) ?? g));
+  const stepHeading = (g: string) => known.groups?.[g] ?? (t.locale === 'en' ? g[0]!.toUpperCase() + g.slice(1) : (stepTitles.get(g) ?? g));
 
   /** The same lot size every other page shows: measured from the City's parcel outline. */
   function lotSizeText(lot: LotRecord): string {
@@ -149,8 +186,16 @@ const u = urlFor(t.locale);
 
   const $ = <T extends Element>(s: string) => document.querySelector<T>(s)!;
   const esc = (s: unknown) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
+  /** Field labels and group headings written by the page at build time, in the page's language */
+  const known = (() => {
+    try {
+      return JSON.parse(document.getElementById('field-labels')?.textContent ?? '{}') as { fields?: Record<string, string>; groups?: Record<string, string> };
+    } catch {
+      return {};
+    }
+  })();
   const label = (id: string) =>
-    id.split('.').slice(1).join(' ').replace(/[-_]/g, ' ').replace(/^\w/, (c) => c.toUpperCase());
+    known.fields?.[id] ?? id.split('.').slice(1).join(' ').replace(/[-_]/g, ' ').replace(/^\w/, (c) => c.toUpperCase());
   /** Briefly announce a status message through the page's shared polite live region. */
   function announce(text: string) {
     const el = document.getElementById('piat-announce');

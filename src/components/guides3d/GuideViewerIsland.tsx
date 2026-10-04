@@ -23,6 +23,18 @@ type Viewer = InstanceType<ViewerModule['AssemblyViewer']>;
 
 const models = import.meta.glob<GuideModel>('../../data/guides/models/*.json', { import: 'default' });
 
+/** The tooltip's part kinds (src/lib/guides3d/schema.ts PartKind) → their names in the guides catalog */
+const KIND_KEYS: Record<string, keyof (typeof guidesMsgs)['messages']> = {
+  lumber: 'g3d.kind.lumber',
+  sheet: 'g3d.kind.sheet',
+  mesh: 'g3d.kind.mesh',
+  'stone-fill': 'g3d.kind.stoneFill',
+  bracket: 'g3d.kind.bracket',
+  fastener: 'g3d.kind.fastener',
+  fabric: 'g3d.kind.fabric',
+  other: 'g3d.kind.other',
+};
+
 interface Props {
   slug: string;
   title: string;
@@ -162,6 +174,7 @@ export default function GuideViewerIsland({ slug, title, steps, cutList, locale 
             model,
             steps,
             cutList,
+            kindName: (kind) => t(KIND_KEYS[kind] ?? 'g3d.kind.other'),
             reducedMotion: reduce.matches,
             view: viewOf(s),
             onError: turnOff,

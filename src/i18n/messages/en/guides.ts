@@ -75,6 +75,16 @@ export default defineMessages('guides', {
   'g3d.controls': '3D model controls',
   'g3d.helpMouse': 'Drag to turn it. Click it, then scroll to zoom. Point at a board to see its size.',
   'g3d.helpTouch': 'Drag to turn it. Tap it, then pinch to zoom. Tap a board to see its size.',
+  /** What kind of part the pointer is on, in the model's tooltip ("Board · 2x4 × 25″") when the part has no label of its own */
+  'g3d.kind.lumber': 'Board',
+  'g3d.kind.sheet': 'Sheet',
+  'g3d.kind.mesh': 'Wire mesh',
+  'g3d.kind.stoneFill': 'Stone fill',
+  'g3d.kind.bracket': 'Bracket',
+  'g3d.kind.fastener': 'Fastener',
+  'g3d.kind.fabric': 'Fabric',
+  /** Any other part */
+  'g3d.kind.other': 'Part',
 
   'index.description':
     "Step-by-step, Ikea-style assembly instructions for Park in a Truck's benches, tables, planters, gabion seating, a shade structure and a stage.",

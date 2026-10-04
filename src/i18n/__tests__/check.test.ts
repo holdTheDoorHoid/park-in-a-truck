@@ -100,3 +100,13 @@ describe('overlay checks', () => {
     expect(run({ tools: ['a', 'b'] }).errors[0]).toMatch(/2 items, English has 1/);
   });
 });
+
+describe('field labels for the My park summary', () => {
+  it('reads every plain-string field label by id, translated chapters too', async () => {
+    const { chapterFieldLabels } = await import('../mdx');
+    expect(chapterFieldLabels(GOOD.split('---\n').slice(2).join('---\n'))).toEqual({ 'acquire.address': 'Dirección', 'acquire.agreement': 'Tipo' });
+    expect(chapterFieldLabels('<Checklist\n  id="organize.readiness"\n  label="Organization readiness checklist"\n  items={[]}\n/>\n')).toEqual({
+      'organize.readiness': 'Organization readiness checklist',
+    });
+  });
+});
