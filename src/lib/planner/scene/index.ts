@@ -25,6 +25,8 @@ import { groundOf } from '../ground';
 import { SlopeOverlay, rayGround } from './terrain';
 import { ON_GROUND, drapedRibbon } from '../furniture/drape';
 import { OutlineTool } from './outline';
+import { AreaTool, type AreaView } from './areatool';
+import type { FitArea } from '../lotfit';
 import { Xray, lotBox } from './xray';
 import { pt } from '../words';
 import { cameraFloor, cameraLimits, type CameraFloor } from '../camera';
@@ -38,11 +40,14 @@ export interface Picked {
 
 /** What the person is doing with the mouse right now (for the on-screen hint). */
 export interface GestureInfo {
-  mode: 'move' | 'turn';
+  /** 'area': dragging the part of the lot the park uses (Size step) */
+  mode: 'move' | 'turn' | 'area';
   /** it would hang off the lot where it is now */
   over: boolean;
   /** turning: the angle it would be left at (its own frame, degrees) */
   deg?: number;
+  /** dragging the part: its size now, feet along and across the lot */
+  area?: { lengthFt: number; widthFt: number };
 }
 
 type PointerAt = { clientX: number; clientY: number; shiftKey?: boolean; altKey?: boolean; pointerType?: string };
@@ -77,6 +82,8 @@ export interface SceneCallbacks {
   onOutlineEdit?(id: string, outline: [number, number][]): void;
   /** a click or tap on empty ground (no drag): the ground point, local feet (sun step: chart that spot) */
   onGroundClick?(p: Vec2): void;
+  /** part of the lot: a drag of its sides, corners or middle finished (site feet). One call = one undo step. */
+  onAreaEdit?(area: FitArea): void;
 }
 
 export interface ParkState {
@@ -122,6 +129,8 @@ export class PlannerScene {
   private slopeOn = false;
   /** terrain: drawing a wet area's outline, and moving its corners */
   private outline = new OutlineTool();
+  /** part of the lot: the cyan part on the Size step, its handles, and the dimming round it */
+  private area = new AreaTool();
   /** neighbours that hide the lot are drawn see-through; the camera stays out of them (F3) */
   private xray = new Xray();
   private camFloor: CameraFloor | null = null;
@@ -206,7 +215,7 @@ export class PlannerScene {
 
     // (the plan view's light veil over the photo is part of the aerial ground: AerialGround.setVeil)
     this.scene.add(this.siteGroup, this.cityTrees.group, this.park.group, this.existing.group, this.heat, this.spot, this.overlays.group);
-    this.scene.add(this.slope.group, this.outline.group);
+    this.scene.add(this.slope.group, this.outline.group, this.area.group);
 
     canvas.addEventListener('pointerdown', this.onPointerDown, { capture: true });
     canvas.addEventListener('pointermove', this.onPointerMove);
@@ -389,6 +398,7 @@ export class PlannerScene {
     this.overlays.setGround(ground);
     this.existing.setGround(ground);
     this.outline.setGround(ground);
+    this.area.setGround(ground);
     disposeTree(this.siteGroup);
     this.siteGroup.clear();
     this.aerial?.dispose();
@@ -593,6 +603,36 @@ export class PlannerScene {
     this.refreshExisting();
     this.cb.onGesture?.(null);
     if (res && edit) this.cb.onOutlineEdit?.(edit.id, res);
+  }
+
+  /** Part of the lot: show the part with its handles (Size step), or nothing (null). */
+  setArea(v: AreaView | null) {
+    if (!v && this.area.drag) this.endAreaDrag(false);
+    this.area.set(v);
+    this.requestRender();
+  }
+
+  /** Let go of the part's handle: save the new part (or put it back). */
+  private endAreaDrag(commit: boolean) {
+    const d = this.area.drag;
+    if (!d) return;
+    try {
+      this.renderer.domElement.releasePointerCapture(d.pointerId);
+    } catch {
+      /* already released */
+    }
+    const res = this.area.endDrag(commit);
+    if (!this.holdControls) this.controls.enabled = true;
+    this.setCursor('');
+    this.cb.onGesture?.(null);
+    this.requestRender();
+    if (res) this.cb.onAreaEdit?.(res);
+  }
+
+  /** the hint line while the part is dragged: its size, long side first */
+  private areaGesture(): GestureInfo {
+    const a = this.area.live;
+    return { mode: 'area', over: false, area: a ? { lengthFt: a.lengthFt, widthFt: a.widthFt } : undefined };
   }
 
   setExisting(items: ExistingRender[], showMarkers: boolean) {
@@ -868,7 +908,7 @@ export class PlannerScene {
   }
 
   private updateHover(at: PointerAt) {
-    if (this.gesture || this.outline.drag) return;
+    if (this.gesture || this.outline.drag || this.area.drag) return;
     if (this.outline.draft) {
       // terrain: the line from the last point follows the mouse; the first point lights up when a click would close
       const g = this.groundPoint(at);
@@ -883,6 +923,14 @@ export class PlannerScene {
     }
     if (this.outline.edit && this.cb.canDrag('existing') && this.outline.handleAt([at.clientX, at.clientY], this.toScreen, 11)) {
       this.setCursor('grab');
+      this.setHover(null);
+      return;
+    }
+    // part of the lot: its handles (a press anywhere else still picks the park's things)
+    const ah = this.area.view ? this.area.handleAt([at.clientX, at.clientY], this.toScreen, 11) : null;
+    if (ah) {
+      this.setCursor(ah.kind === 'move' ? 'move' : 'grab');
+      if (this.overlays.setKnobHot(false)) this.requestRender();
       this.setHover(null);
       return;
     }
@@ -941,6 +989,13 @@ export class PlannerScene {
       this.controls.enabled = false;
       return;
     }
+    if (this.area.drag && e.pointerId !== this.area.drag.pointerId) {
+      // a second finger while moving the part: they want to pinch or pan
+      this.endAreaDrag(false);
+      this.holdControls = true;
+      this.controls.enabled = false;
+      return;
+    }
     if (this.gesture && e.pointerId !== this.gesture.pointerId) {
       // a second finger: they want to pinch or pan, not move the thing
       this.endGesture(false);
@@ -981,6 +1036,28 @@ export class PlannerScene {
         return;
       }
     }
+    // part of the lot (Size step): a side, a corner or the middle handle of the part
+    if (this.area.view) {
+      const h = this.area.handleAt([e.clientX, e.clientY], this.toScreen, e.pointerType === 'touch' || this.mobile ? 22 : 11);
+      const g = h ? this.groundPoint(e) : null;
+      if (h && g) {
+        this.pendingDeselect = null;
+        this.settleCamera();
+        this.controls.enabled = false;
+        this.area.beginDrag(h, g, e.pointerId);
+        try {
+          this.renderer.domElement.setPointerCapture(e.pointerId);
+        } catch {
+          /* synthetic pointer */
+        }
+        this.setHover(null);
+        this.setCursor('grabbing');
+        this.cb.onGesture?.(this.areaGesture());
+        this.requestRender();
+        e.stopPropagation();
+        return;
+      }
+    }
     // the turn handle on the selected thing
     const sk = this.selected ? this.kindOf(this.selected) : null;
     if (sk && this.selected && this.cb.canDrag(sk) && this.onKnob(e)) {
@@ -1002,6 +1079,15 @@ export class PlannerScene {
   private pendingDeselect: { x: number; y: number } | null = null;
 
   private onPointerMove = (e: PointerEvent) => {
+    const ad = this.area.drag;
+    if (ad && e.pointerId === ad.pointerId) {
+      const g = this.groundPoint(e);
+      if (g && this.area.dragTo(g)) {
+        this.cb.onGesture?.(this.areaGesture());
+        this.requestRender();
+      }
+      return;
+    }
     const od = this.outline.drag;
     if (od && e.pointerId === od.pointerId) {
       const g = this.groundPoint(e);
@@ -1097,6 +1183,7 @@ export class PlannerScene {
   cancelDrag() {
     this.endGesture(false);
     this.endCornerDrag(false);
+    this.endAreaDrag(false);
   }
 
   get dragging(): boolean {
@@ -1128,6 +1215,12 @@ export class PlannerScene {
       this.endCornerDrag(true);
       return;
     }
+    const ad = this.area.drag;
+    if (ad && e.pointerId === ad.pointerId) {
+      this.endAreaDrag(true);
+      if (e.pointerType !== 'touch') this.updateHover(e);
+      return;
+    }
     const dd = this.drawDown;
     if (dd && e.pointerId === dd.id) {
       this.drawDown = null;
@@ -1157,6 +1250,7 @@ export class PlannerScene {
     this.pendingDeselect = null;
     if (this.drawDown?.id === e.pointerId) this.drawDown = null;
     if (this.outline.drag?.pointerId === e.pointerId) this.endCornerDrag(false);
+    if (this.area.drag?.pointerId === e.pointerId) this.endAreaDrag(false);
     if (this.gesture && e.pointerId === this.gesture.pointerId) this.endGesture(false);
   };
 
@@ -1174,6 +1268,13 @@ export class PlannerScene {
   };
 
   private onKey = (e: KeyboardEvent) => {
+    // part of the lot: Esc while dragging the part puts it back
+    if (this.area.drag && e.type === 'keydown' && e.key === 'Escape') {
+      e.preventDefault();
+      e.stopPropagation();
+      this.endAreaDrag(false);
+      return;
+    }
     // terrain: keys while drawing an outline or moving a corner (not while typing in a field)
     if ((this.outline.draft || this.outline.drag) && e.type === 'keydown') {
       const t = e.target as HTMLElement | null;
@@ -1257,10 +1358,11 @@ export class PlannerScene {
       this.camera.updateMatrixWorld();
       this.overlays.layout(focus ? this.feetPerPixel(focus) : 0, this.overlays.handle ? this.measure : null);
       // terrain: outline handles and slope labels keep one size on screen
-      if (this.site && (this.outline.active || this.slopeOn)) {
+      if (this.site && (this.outline.active || this.slopeOn || this.area.view)) {
         const fppAt = (p: THREE.Vector3) => this.feetPerPixel(p);
         this.outline.layout(fppAt);
         this.slope.layout(fppAt);
+        this.area.layout(fppAt);
       }
       this.renderer.render(this.scene, this.camera);
       // furniture: steps its detail down if frames stay slow while the view moves
@@ -1313,8 +1415,9 @@ export class PlannerScene {
   /** PNG of the current view (or another one), as a data URL. */
   snapshot(view: ViewMode = this.view, size?: { w: number; h: number }): string {
     const prevView = this.view;
-    // pictures and the printed plan show the park, not the mouse handles
+    // pictures and the printed plan show the park, not the mouse handles (nor the part's handles and dimming)
     this.overlays.group.visible = false;
+    this.area.group.visible = false;
     const keep = { pos: this.persp.position.clone(), target: this.controls.target.clone() };
     if (view !== prevView) this.setView(view);
     const o = this.ortho;
@@ -1360,6 +1463,7 @@ export class PlannerScene {
       }
     }
     this.overlays.group.visible = true;
+    this.area.group.visible = true;
     this.requestRender();
     return url;
   }
@@ -1381,6 +1485,7 @@ export class PlannerScene {
     this.overlays.dispose();
     this.slope.dispose();
     this.outline.dispose();
+    this.area.dispose();
     this.cityTrees.dispose();
     disposeTree(this.heat);
     disposeTree(this.spot);

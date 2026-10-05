@@ -10,7 +10,10 @@ import type { GestureInfo, PlannerScene, PickKind, Picked } from '../../lib/plan
 import type { LayoutItem } from '../../lib/types';
 import { bindScene, snapItem } from './binding';
 import { itemSticksOut, localToPark } from '../../lib/planner/placement';
-import { addExisting, addItem, moveItem, updateExisting } from '../../lib/planner/design';
+import { addExisting, addItem, moveItem, setPart, updateExisting } from '../../lib/planner/design';
+import { partOf } from '../../lib/planner/area';
+import { getExtra } from '../../lib/project';
+import type { SiteFacts } from '../../lib/types';
 import { dropPlacement, isTurnable, outlineFromPoints, polygonArea } from '../../lib/planner/interact';
 import { catalogEntry, existingMeta } from '../../lib/planner/catalog';
 import { ELEMENTS } from '../../data/elements';
@@ -61,7 +64,8 @@ export function Viewport({ store, mode }: Props) {
   const status = useStore(store.$status);
   const site = useStore(store.$site);
   const sel = useStore(store.$selection);
-  useStore(store.$design);
+  const design = useStore(store.$design);
+  const step = useStore(store.$step);
   const coarse = useMemo(() => typeof matchMedia !== 'undefined' && matchMedia('(pointer: coarse)').matches, []);
   const t = pt();
 
@@ -151,6 +155,13 @@ export function Viewport({ store, mode }: Props) {
               if (!d) return;
               const radiusFt = Math.max(0.5, Math.round(Math.sqrt(polygonArea(outline) / Math.PI) * 10) / 10);
               store.commit(updateExisting(d, id, { outline, radiusFt }));
+            },
+            // part of the lot: a drag of its sides, corners or middle (one undo step)
+            onAreaEdit: (area) => {
+              const d = store.$design.get();
+              const s = store.$site.get();
+              if (!d || !s) return;
+              store.commit(setPart(d, { area }, s, store.$demo.get() ? undefined : getExtra<SiteFacts>('site')));
             },
             // sun step: a click on the ground charts that spot's sun through the year
             onGroundClick: (p) => {
@@ -283,12 +294,18 @@ export function Viewport({ store, mode }: Props) {
             ? t('hint.drawClickCount', { count: drawCount })
             : t('hint.drawClick')
         : t(coarse ? 'hint.closeTap' : 'hint.closeClick');
+  } else if (gesture?.mode === 'area') {
+    const a = gesture.area;
+    const dims = a ? { length: Math.round(Math.max(a.lengthFt, a.widthFt)), width: Math.round(Math.min(a.lengthFt, a.widthFt)) } : { length: 0, width: 0 };
+    hint = t(coarse ? 'hint.areaDragTouch' : 'hint.areaDrag', dims);
   } else if (gesture?.mode === 'move') {
     hint = gesture.over ? t(coarse ? 'hint.overTouch' : 'hint.overMouse') : t(coarse ? 'hint.liftTouch' : 'hint.letGo');
   } else if (gesture?.mode === 'turn') {
     hint = t(coarse ? 'hint.turnedTouch' : 'hint.turnedMouse', { deg: Math.round(gesture.deg ?? 0) });
   } else if (!store.editable) {
     hint = t(view === 'plan' ? 'hint.lookPlan' : 'hint.look3d');
+  } else if (step === 'size' && partOf(design)) {
+    hint = t(coarse ? 'hint.areaTouch' : 'hint.areaMouse');
   } else if (coarse) {
     hint = t(view === 'plan' ? 'hint.touchPlan' : 'hint.touch3d');
   } else {

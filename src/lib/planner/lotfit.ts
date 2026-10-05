@@ -19,14 +19,39 @@ export interface FitArea {
 /** How far over the line still counts as on the lot — the same allowance as the overhang check. */
 export const FIT_TOLERANCE_FT = 0.35;
 
+/** How far a spot may be inside a building's outline and still count as open ground (part of the lot). */
+export const OBSTACLE_TOLERANCE_FT = 0.5;
+
 /**
  * The largest rectangle lined up with the site frame that fits inside the parcel (local
  * feet). Found on a fine grid (¼ ft; ½ ft on big lots) with the "largest rectangle in a
  * histogram" method, so it works for any lot shape.
+ *
+ * `obstacles` (part of the lot, 2026-10-04): outlines (local feet) the rectangle must keep
+ * out of — the buildings standing on the lot — so it finds the biggest stretch of OPEN
+ * ground. A grid corner more than `obstacleTol` inside one of them is not usable.
  */
-export function inscribedRect(frame: SiteFrame, parcelLocal: Vec2[], tol = FIT_TOLERANCE_FT): FitArea {
+export function inscribedRect(
+  frame: SiteFrame,
+  parcelLocal: Vec2[],
+  tol = FIT_TOLERANCE_FT,
+  obstacles: Vec2[][] = [],
+  obstacleTol = OBSTACLE_TOLERANCE_FT,
+): FitArea {
   const ring = parcelLocal.map((p) => localToSite(frame, p));
   if (ring.length < 3) return { x0: 0, y0: 0, lengthFt: frame.lengthFt, widthFt: frame.widthFt };
+  const blocks = obstacles
+    .filter((r) => r.length >= 3)
+    .map((r) => {
+      const s = r.map((p) => localToSite(frame, p));
+      const xs = s.map((p) => p[0]);
+      const ys = s.map((p) => p[1]);
+      return { ring: s, minX: Math.min(...xs), maxX: Math.max(...xs), minY: Math.min(...ys), maxY: Math.max(...ys) };
+    });
+  const blocked = (p: Vec2) =>
+    blocks.some(
+      (b) => p[0] > b.minX && p[0] < b.maxX && p[1] > b.minY && p[1] < b.maxY && pointInPolygon(p, b.ring) && distanceToRing(p, b.ring) > obstacleTol,
+    );
   let minX = Infinity;
   let minY = Infinity;
   let maxX = -Infinity;
@@ -46,7 +71,7 @@ export function inscribedRect(frame: SiteFrame, parcelLocal: Vec2[], tol = FIT_T
   for (let j = 0; j <= ny; j++)
     for (let i = 0; i <= nx; i++) {
       const p: Vec2 = [minX + i * cell, minY + j * cell];
-      corner[j * cx + i] = pointInPolygon(p, ring) || distanceToRing(p, ring) <= tol ? 1 : 0;
+      corner[j * cx + i] = (pointInPolygon(p, ring) || distanceToRing(p, ring) <= tol) && !blocked(p) ? 1 : 0;
     }
   const ok = (i: number, j: number) => corner[j * cx + i]! & corner[j * cx + i + 1]! & corner[(j + 1) * cx + i]! & corner[(j + 1) * cx + i + 1]!;
   const heights = new Int32Array(nx);

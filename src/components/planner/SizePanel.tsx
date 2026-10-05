@@ -9,6 +9,8 @@ import { getExtra } from '../../lib/project';
 import type { SiteFacts } from '../../lib/types';
 import { localizeRecord } from '../../i18n/data';
 import { pt, type PlannerKey } from '../../lib/planner/words';
+import { partOf, stretchTo } from '../../lib/planner/area';
+import { PartPicker } from './PartPicker';
 
 const PIECES: { key: 'frame' | 'front' | 'back'; label: PlannerKey; hint: PlannerKey }[] = [
   { key: 'frame', label: 'size.frame', hint: 'size.frameHint' },
@@ -31,25 +33,37 @@ export function SizePanel({ store }: { store: PlannerStore }) {
   const t = pt();
   // theme names and blurbs in the page's language (the theme ids stay as they are)
   const themes = localizeRecord(THEMES, 'themes', t.locale);
-  // the largest rectangle that fits inside the lot (build-lead A6)
-  const stretch = parkDims(true, { lengthFt: 0, widthFt: 0 }, fitArea ?? site.frame);
+  // the largest rectangle that fits inside the lot (build-lead A6), or the part of the lot the park uses
+  const part = partOf(d);
+  const stretch = parkDims(true, { lengthFt: 0, widthFt: 0 }, stretchTo(d, fitArea ?? site.frame));
   const facts = store.$demo.get() ? undefined : getExtra<SiteFacts>('site');
-  const fit = fitSize(site.frame.lengthFt, site.frame.widthFt);
+  // (a part: its own size, never the whole lot's)
+  const fit = part ? fitSize(part.lengthFt, part.widthFt) : fitSize(site.frame.lengthFt, site.frame.widthFt);
   const one = d.frame === d.front && d.front === d.back ? d.frame : null;
   const pickTheme = (patch: Partial<Record<'frame' | 'front' | 'back', ThemeId>>) => store.commit(setThemes(d, patch));
   const cur = SIZES.find((s) => s.id === d.size)!;
-  const lotDims = { length: Math.round(site.frame.lengthFt), width: Math.round(site.frame.widthFt), size: fit.size };
+  const lotDims = part
+    ? { length: Math.round(Math.max(part.lengthFt, part.widthFt)), width: Math.round(Math.min(part.lengthFt, part.widthFt)), size: fit.size }
+    : { length: Math.round(site.frame.lengthFt), width: Math.round(site.frame.widthFt), size: fit.size };
+  const intro: PlannerKey = part
+    ? fit.tooBig
+      ? 'size.introPartTooBig'
+      : 'size.introPart'
+    : fit.tooSmall
+      ? 'size.introTooSmall'
+      : fit.tooBig
+        ? 'size.introTooBig'
+        : 'size.intro';
 
   return (
     <section class="pl-section">
       <h3 class="pl-h">{t('size.title')}</h3>
-      <p
-        class="pl-small"
-        dangerouslySetInnerHTML={{ __html: t.html(fit.tooSmall ? 'size.introTooSmall' : fit.tooBig ? 'size.introTooBig' : 'size.intro', lotDims) }}
-      />
+      {/* part of the lot (2026-10-04): first, because the size depends on it */}
+      <PartPicker store={store} />
+      <p class="pl-small" dangerouslySetInnerHTML={{ __html: t.html(intro, lotDims) }} />
       <div class="pl-chips" role="radiogroup" aria-label={t('size.title')}>
         <button type="button" role="radio" aria-checked={Boolean(d.sizeAuto)} class="pl-chip" onClick={() => store.commit(setSize(d, 'auto', site, facts))}>
-          {t('size.fitMine', { size: fit.size })}
+          {t(part ? 'size.fitPart' : 'size.fitMine', { size: fit.size })}
         </button>
         {SIZES.map((s) => (
           <button
@@ -69,10 +83,10 @@ export function SizePanel({ store }: { store: PlannerStore }) {
       </p>
 
       <fieldset class="pl-fieldset">
-        <legend>{t('size.stretchLegend')}</legend>
+        <legend>{t(part ? 'size.stretchLegendPart' : 'size.stretchLegend')}</legend>
         <label class="pl-radio">
           <input type="radio" name="pl-fit" checked={d.fitToLot !== false} onChange={() => store.commit({ ...d, fitToLot: true, updatedAt: new Date().toISOString() })} />
-          {t('size.stretch', { length: stretch.lengthFt, width: stretch.widthFt })}
+          {t(part ? 'size.stretchPart' : 'size.stretch', { length: stretch.lengthFt, width: stretch.widthFt })}
         </label>
         <label class="pl-radio">
           <input type="radio" name="pl-fit" checked={d.fitToLot === false} onChange={() => store.commit({ ...d, fitToLot: false, updatedAt: new Date().toISOString() })} />

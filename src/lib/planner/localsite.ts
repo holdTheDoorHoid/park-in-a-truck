@@ -32,6 +32,12 @@ export interface LocalSite {
   frame: SiteFrame;
   buildings: Prism[];
   /**
+   * (part of the lot, 2026-10-04) City footprints standing ON the lot, left out of `buildings`
+   * (the planner treats the lot as vacant). Only used to start "Just part of it" on the open
+   * ground beside them (area.ts openGround). Local feet. Absent = none.
+   */
+  lotBuildings?: Vec2[][];
+  /**
    * Taller buildings farther away whose shadow can reach the lot (SiteContext.farBuildings).
    * They count for the sun (see shadeBuildings in sunstudy.ts) and are drawn plainer in 3D;
    * nothing else (street edges, neighbours, the camera) looks at them.
@@ -118,13 +124,17 @@ export function buildLocalSite(ctx: SiteContext, facts?: SiteFacts): LocalSite {
   const g = ctx.terrain ? makeGround(ctx.terrain, lf, parcel) : null;
 
   const buildings: Prism[] = [];
+  const lotBuildings: Vec2[][] = [];
   for (const b of ctx.buildings) {
     const ring = openRing(b.polygon).map(lf.toLocal);
     if (ring.length < 3) continue;
     // A footprint that sits on the lot is a building that has since come down (the lot is
     // vacant): leave it out.
     const bc = centroid(ring);
-    if (pointInPolygon(bc, parcel) && area(ring) > 30) continue;
+    if (pointInPolygon(bc, parcel) && area(ring) > 30) {
+      lotBuildings.push(ring);
+      continue;
+    }
     const trimmed = trimToLot(ring, parcel);
     if (trimmed.length < 3 || area(trimmed) < 4) continue;
     const heightFt = Math.max(8, b.heightFt || 25);
@@ -167,6 +177,7 @@ export function buildLocalSite(ctx: SiteContext, facts?: SiteFacts): LocalSite {
   const extentFt = Math.max(180, Math.min(300, Math.max(frame.lengthFt, frame.widthFt) * 2 + 140));
   const site: LocalSite = { ctx, lf, parcel, areaSqFt: area(parcel), frame, buildings, trees, parcels, streets, extentFt };
   if (farBuildings.length) site.farBuildings = farBuildings;
+  if (lotBuildings.length) site.lotBuildings = lotBuildings;
   if (g && ctx.terrain) {
     site.ground = g.ground;
     site.datumElevFt = g.datumElevFt;

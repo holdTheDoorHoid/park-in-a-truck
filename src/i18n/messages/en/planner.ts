@@ -149,6 +149,9 @@ export default defineMessages('planner', {
   'lot.trySmaller': 'Try a smaller size in Size & themes.',
   'lot.overhangShape': "Your lot isn't a perfect rectangle — move or remove what sticks out in “Arrange”, or slide the park.",
   'lot.useSize': 'Use size {size} — it fits inside your lot',
+  /** (part of the lot) the park uses just part of the lot; "Size & themes" is the next step's name */
+  'lot.partNote': 'The park uses just part of the lot (about {length} × {width} ft). Change it in Size & themes.',
+  'lot.overhangPart': 'The park is bigger than the part of the lot you picked — change the part or the size in Size & themes.',
   'lot.choose': 'Choose a different lot',
 
   // ---- Size & themes (SizePanel) ----
@@ -182,6 +185,48 @@ export default defineMessages('planner', {
   'size.frontHint': '— the part by the entrance',
   'size.back': 'Back',
   'size.backHint': '— the far end',
+  // (part of the lot, 2026-10-04) the same sentences when the park uses just part of the lot
+  'size.introPart':
+    "Park in a Truck's pieces come in five sizes. The part of the lot you picked is about {length} × {width} ft, which fits <strong>size {size}</strong>.",
+  'size.introPartTooBig':
+    "Park in a Truck's pieces come in five sizes. The part of the lot you picked is about {length} × {width} ft, which fits <strong>size {size}</strong> — it is bigger than size E, so use E and add more, or make two parks.",
+  /** Chip that picks the size that fits the part of the lot; {size} is a letter A–E */
+  'size.fitPart': 'Fit the part I picked ({size})',
+  'size.stretchLegendPart': 'Stretch to the part?',
+  'size.stretchPart': 'Stretch the pieces to fill the part I picked ({length} × {width} ft — like adding the seams)',
+
+  // ---- Part of the lot (PartPicker, top of Size & themes; 2026-10-04) ----
+  // For lots where a building is in use but there's a side yard or open ground beside it.
+  // "The part" = the rectangle of the lot the park will use, shown on the view in cyan.
+  'area.legend': 'How much of the lot will the park use?',
+  'area.whole': 'The whole lot',
+  'area.part': 'Just part of it — a side yard, or the open ground beside a building',
+  /** Shown on computers (mouse). "cyan" = the bright blue the part is outlined in */
+  'area.hintMouse': 'Drag the cyan sides or corners to the part you can use. Drag the round middle handle to move it.',
+  /** Shown on phones and tablets */
+  'area.hintTouch': 'Drag the cyan sides or corners with a finger to the part you can use. Drag the round middle handle to move it.',
+  /** {length} is the long side, {width} the short side */
+  'area.dims': 'This part: {length} ft × {width} ft ({area} sq ft)',
+  /** Labels of the two number boxes (whole feet) */
+  'area.along': 'Along the lot (ft)',
+  'area.across': 'Across the lot (ft)',
+  'area.slideGroup': 'Move the part on the lot, 1 foot at a time',
+  'area.slideLabel': 'Move the part:',
+  /** Names of the four arrow buttons (the arrows themselves stay as they are) */
+  'area.slideFront': 'Move the part toward the entrance',
+  'area.slideBack': 'Move the part toward the back',
+  'area.slideLeft': 'Move the part to the left',
+  'area.slideRight': 'Move the part to the right',
+  'area.noRoom': 'No room to move it this way: the part already reaches the edge',
+  'area.turned': 'Turned the park to run the long way along this part.',
+  /** {minLength} × {minWidth}: size A's printed pieces, in feet */
+  'area.tooSmall':
+    'This part is smaller than the smallest pieces (size A, {minLength} × {minWidth} ft), so the park will reach past it. The <a href="{href}">Park Patch workbook</a> fits small spaces better.',
+  'area.past': 'The park ({length} × {width} ft) is bigger than this part, so it reaches past it.',
+  'area.turnAlong': 'Turn the park to run along this part',
+  /** {size} is a size letter A–E */
+  'area.useSize': 'Use size {size} — it fits this part',
+  'area.reset': 'Start again from the open ground',
 
   // ---- Arrange (ArrangePanel) ----
   'arrange.undo': '↶ Undo',
@@ -694,6 +739,12 @@ export default defineMessages('planner', {
   'hint.touch3d': 'Drag things to move them · hold one for more · drag empty ground to look around',
   'hint.mousePlan': 'Drag things to move them · drag the round handle to turn · drag empty ground to move the map · scroll to zoom',
   'hint.mouse3d': 'Drag things to move them · drag the round handle to turn · drag empty ground to look around · scroll to zoom',
+  /** (part of the lot) on Size & themes while the park uses part of the lot */
+  'hint.areaMouse': 'Drag the cyan sides, corners or middle handle to change the part · drag things to move them · drag empty ground to look around',
+  'hint.areaTouch': 'Drag the cyan sides, corners or middle handle to change the part · drag empty ground to look around',
+  /** while dragging the part; {length} × {width} is the part's size in feet, long side first */
+  'hint.areaDrag': 'This part: {length} ft × {width} ft · let go to keep it · Esc puts it back',
+  'hint.areaDragTouch': 'This part: {length} ft × {width} ft · lift your finger to keep it',
   /** The bar shown while drawing a wet area's outline */
   'draw.toolbar': 'Drawing a wet area',
   'draw.points': { one: 'Wet area · {count} point', other: 'Wet area · {count} points' },

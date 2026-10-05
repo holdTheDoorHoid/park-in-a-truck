@@ -7,7 +7,8 @@ import type { LocalSite } from './localsite';
 import { existingMeta } from './catalog';
 import { localToPark, type ParkPlacement } from './placement';
 import type { SiteFrame } from './rect';
-import { fitFeet } from './lotfit';
+import { fitFeet, type FitArea } from './lotfit';
+import { partOf, runsAcross, turnForArea } from './area';
 
 export const DEFAULT_THEME: ThemeId = 'nature';
 
@@ -21,6 +22,15 @@ export const newId = (prefix: string) => `${prefix}:${Date.now().toString(36)}${
 
 export function autoSize(frame: Pick<SiteFrame, 'lengthFt' | 'widthFt'>, facts?: SiteFacts): SizeId {
   return facts?.sizeId ?? fitSize(frame.lengthFt, frame.widthFt).size;
+}
+
+/**
+ * The automatic size for this design: from the part of the lot it uses (part of the lot,
+ * 2026-10-04) — never the whole lot's saved size, which is for the whole lot — else the lot's.
+ */
+export function autoSizeFor(d: Pick<DesignState, 'useArea' | 'area'>, frame: Pick<SiteFrame, 'lengthFt' | 'widthFt'>, facts?: SiteFacts): SizeId {
+  const a = partOf(d);
+  return a ? fitSize(a.lengthFt, a.widthFt).size : autoSize(frame, facts);
 }
 
 /**
@@ -84,10 +94,11 @@ export function adaptToSite(d0: DesignState, site: LocalSite, facts?: SiteFacts)
   const ref = lotRef(site.ctx.lot);
   if (d.lotRef && d.lotRef !== ref) {
     // Same person, different lot: keep their choices, drop what belonged to the old lot.
-    d = { ...d, lotRef: ref, placement: undefined, shiftFt: undefined, existing: (d.existing ?? []).filter((e) => !e.lngLat && e.origin !== 'city') };
+    // (the part of the lot belonged to the old lot too)
+    d = { ...d, lotRef: ref, placement: undefined, shiftFt: undefined, area: undefined, useArea: undefined, existing: (d.existing ?? []).filter((e) => !e.lngLat && e.origin !== 'city') };
   }
   if (!d.lotRef) d = { ...d, lotRef: ref };
-  if (d.sizeAuto) d = { ...d, size: autoSize(site.frame, facts) };
+  if (d.sizeAuto) d = { ...d, size: autoSizeFor(d, site.frame, facts) };
   if (d.lotKindAuto) d = { ...d, lotKind: site.frame.lotKind };
   return withCityTrees(d, site);
 }
@@ -193,8 +204,30 @@ export function setThemes(d: DesignState, t: Partial<Pick<DesignState, 'frame' |
 }
 
 export function setSize(d: DesignState, size: SizeId | 'auto', site: LocalSite, facts?: SiteFacts): DesignState {
-  if (size === 'auto') return touch({ ...d, sizeAuto: true, size: autoSize(site.frame, facts) });
+  if (size === 'auto') return touch({ ...d, sizeAuto: true, size: autoSizeFor(d, site.frame, facts) });
   return touch({ ...d, sizeAuto: false, size });
+}
+
+/**
+ * Part of the lot (2026-10-04): switch between the whole lot and a part, or change the part.
+ * The park starts again in its space (any slide is dropped); an automatic size follows the
+ * space; and when a part's long side runs the other way to the park, the park turns a
+ * quarter to run along it (dragging the part was the person's own doing). Going back to the
+ * whole lot undoes a quarter turn made for a part that ran across it. The part is kept either way.
+ */
+export function setPart(d: DesignState, patch: { useArea?: boolean; area?: FitArea }, site: Pick<LocalSite, 'frame'>, facts?: SiteFacts): DesignState {
+  let n: DesignState = { ...d, ...patch, shiftFt: [0, 0] };
+  const a = partOf(n);
+  const turn = n.turn ?? 0;
+  if (a) {
+    const t = turnForArea(a, turn, n.lotKind);
+    if (t !== null) n = { ...n, turn: t };
+  } else {
+    const was = partOf(d);
+    if (was && runsAcross(was) && turn % 2 === 1) n = { ...n, turn: 0 };
+  }
+  if (n.sizeAuto) n = { ...n, size: autoSizeFor(n, site.frame, facts) };
+  return touch(n);
 }
 
 export function setLotKind(d: DesignState, k: LotKind | 'auto', site: LocalSite): DesignState {

@@ -19,6 +19,7 @@ import { bbox, type Vec2 } from './geo';
 import type { SnapStep } from './interact';
 import { createSunView } from './sunview';
 import { inscribedRect, type FitArea } from './lotfit';
+import { clampArea, openGround, partOf, sameArea, stretchTo } from './area';
 import { pt } from './words';
 
 export type PlannerMode = 'full' | 'design' | 'site' | 'sun';
@@ -99,8 +100,20 @@ export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = nu
   const persist = () => !$demo.get();
 
   // ---- derived ----
-  /** where the park may go: the largest rectangle inside the parcel (build-lead A6) */
-  const $fit: ReadableAtom<FitArea | null> = computed($site, (site) => (site ? inscribedRect(site.frame, site.parcel) : null));
+  /** the largest rectangle inside the parcel (build-lead A6); worked out once per lot */
+  const $lotFit: ReadableAtom<FitArea | null> = computed($site, (site) => (site ? inscribedRect(site.frame, site.parcel) : null));
+  /** where the park goes (site feet): the part of the lot the design uses, else the lot's own fit */
+  function fitFor(d: DesignState | null, site: LocalSite | null): FitArea | null {
+    const a = partOf(d);
+    return a && site ? clampArea(a, site.frame) : $lotFit.get();
+  }
+  // (the same object while the rectangle stays the same, so the placement isn't worked out again on every edit)
+  let lastFit: FitArea | null = null;
+  const $fit: ReadableAtom<FitArea | null> = computed([$lotFit, $design, $site], (_lot, d, site) => {
+    const f = fitFor(d, site);
+    if (f !== lastFit && !sameArea(f, lastFit)) lastFit = f;
+    return lastFit;
+  });
   const $layout: ReadableAtom<ParkLayout | null> = computed([$design, $set], (d, set) => (d && set ? buildLayout(set, d) : null));
   const $placement: ReadableAtom<ParkPlacement | null> = computed([$site, $design, $layout, $fit], (site, d, layout, fit) =>
     site && d && layout
@@ -154,7 +167,8 @@ export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = nu
     const site = $site.get();
     const set = $set.get();
     if (!site || !set || `${d.size}-${d.lotKind}` !== `${set.size}-${set.lotKind}`) return d;
-    const dims = parkDims(d.fitToLot !== false, nominalOf(set), $fit.get() ?? site.frame);
+    // (from the design given: it isn't in $design yet, so $fit may still be the old one)
+    const dims = parkDims(d.fitToLot !== false, nominalOf(set), stretchTo(d, fitFor(d, site) ?? site.frame));
     return dims.lengthFt === d.lengthFt && dims.widthFt === d.widthFt ? d : { ...d, ...dims };
   }
 
@@ -364,6 +378,18 @@ export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = nu
       });
   }
 
+  /** part of the lot: where "Just part of it" starts — the biggest stretch of open ground (worked out once per lot) */
+  let openMemo: { site: LocalSite; area: FitArea } | null = null;
+  function openArea(): FitArea | null {
+    const site = $site.get();
+    if (!site) return null;
+    if (openMemo?.site !== site) {
+      const blocks = [...site.buildings.map((b) => b.ring), ...(site.lotBuildings ?? [])];
+      openMemo = { site, area: openGround(site.frame, site.parcel, blocks) };
+    }
+    return openMemo.area;
+  }
+
   function setDemo(slug: DemoSlug | null) {
     flush();
     $demo.set(slug);
@@ -385,6 +411,7 @@ export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = nu
     $design,
     $set,
     $layout,
+    $lotFit,
     $fit,
     $placement,
     $overhang,
@@ -406,6 +433,7 @@ export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = nu
     undo,
     redo,
     computeSun,
+    openArea,
     /** shadows workstream: periods, the charted spot, play state */
     sun,
     setDemo,
