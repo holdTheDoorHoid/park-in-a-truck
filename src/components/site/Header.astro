@@ -5,7 +5,11 @@ import { getT, urlFor, alternates } from '../../i18n/astro.ts';
 const t = getT(Astro, site);
 const tw = getT(Astro, workbook);
 const u = urlFor(t.locale);
-const path = Astro.url.pathname;
+interface Props {
+  /** The page the language box links to in each language (default: this page; Base passes `langPath`). */
+  path?: string;
+}
+const { path = Astro.url.pathname } = Astro.props;
 const nav = [
   { href: 'steps/', label: t('nav.steps'), match: /\/steps\// },
   { href: 'lot/', label: t('nav.lot'), match: /\/lot\// },

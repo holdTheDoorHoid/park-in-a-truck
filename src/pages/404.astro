@@ -1,0 +1,101 @@
+---
+// The "page not found" page. GitHub Pages serves dist/404.html for ANY address under the site that
+// has no file, keeping the address the visitor typed — so every link here is base-prefixed and
+// absolute (urlFor / u), never relative. There is one 404 page for the whole site (no /<lang>/
+// twin; the i18n checker knows): it is English, and when the address was in another language
+// (/park-in-a-truck/es/…) a small script shows that language's section instead, with links to that
+// language's pages. Words: area `pages`, keys `notFound.*`; a language without them yet shows the
+// English words with its own links, like every untranslated page.
+import Base from '../layouts/Base.astro';
+import pages from '../i18n/messages/en/pages.ts';
+import { getT, urlFor } from '../i18n/astro.ts';
+import { OTHER_LOCALES, localeInfo } from '../i18n/locales.ts';
+import { u as fileUrl } from '../lib/url';
+
+type Props = Record<string, never>;
+
+const t = getT('en', pages);
+const sections = [
+  { code: 'en', t, u: urlFor('en') },
+  ...OTHER_LOCALES.map((code) => ({ code, t: getT(code, pages), u: urlFor(code) })),
+].map((s) => {
+  const own = s.t.has('notFound.title');
+  const info = localeInfo(s.code);
+  // Not translated yet: English words, so the buttons also name the language they lead to.
+  return { ...s, own, lang: own ? info.lang : 'en', dir: own ? info.dir : 'ltr', name: info.name, nameLang: info.lang };
+});
+const base = fileUrl('');
+---
+<Base title={t('notFound.title')} langPath={base}>
+  {sections.map((s) => (
+    <section class="wrap nf" data-nf={s.code} lang={s.lang} dir={s.dir} hidden={s.code !== 'en'} data-title={`${s.t('notFound.title')} · Park in a Truck`}>
+      <div class="nf-head">
+        <h1 class="ruled">{s.t('notFound.title')}</h1>
+        <span class="big-num" aria-hidden="true">404</span>
+      </div>
+      <p class="lede">{s.t('notFound.lede')}</p>
+      <p class="nf-cta">
+        {/* one <span> per label: .btn is a flex box, which would drop the spaces round the "·" */}
+        <a class="btn btn-primary" href={s.u('')}><span>{s.t('notFound.home')}{!s.own && <> · <span lang={s.nameLang}>{s.name}</span></>}</span></a>
+        <a class="btn" href={s.u('steps/')}><span>{s.t('notFound.steps')}{!s.own && <> · <span lang={s.nameLang}>{s.name}</span></>}</span></a>
+      </p>
+      <p set:html={s.t.html('notFound.saved', { href: s.u('my-park/') })} />
+      {s.code !== 'en' && (
+        <p class="nf-english">
+          <a href={base} hreflang="en" lang="en" dir="ltr">English</a>
+        </p>
+      )}
+    </section>
+  ))}
+  <div class="nf-art" aria-hidden="true">
+    <img src={fileUrl('img/brand/cover-silhouette.webp')} alt="" width="1600" height="343" />
+  </div>
+  <script is:inline define:vars={{ base }}>
+    (function () {
+      var path = location.pathname;
+      if (path.indexOf(base) !== 0) return;
+      var code = path.slice(base.length).split('/')[0].toLowerCase();
+      var mine = /^[a-z]{2,3}$/.test(code) && code !== 'en' && document.querySelector('[data-nf="' + code + '"]');
+      if (!mine) return;
+      document.querySelector('[data-nf="en"]').hidden = true;
+      mine.hidden = false;
+      document.title = mine.getAttribute('data-title');
+    })();
+  </script>
+</Base>
+<style>
+  .nf {
+    padding-block: 40px 8px;
+  }
+  .nf-head {
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+  }
+  .nf-head h1 {
+    flex: 1;
+    margin: 0;
+  }
+  .nf-head .big-num {
+    border-bottom: 6px solid var(--ink);
+    padding-bottom: 0.05em;
+  }
+  .nf .lede {
+    margin-top: 20px;
+  }
+  .nf-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-block: 24px;
+  }
+  .nf-english {
+    font-size: 0.95rem;
+  }
+  .nf-art img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: 32px;
+  }
+</style>

@@ -35,7 +35,7 @@ import dover from '../fixtures/dover.json';
 import doverElev from '../fixtures/dover.elevation.json';
 import greenway from '../fixtures/greenway.json';
 import greenwayElev from '../fixtures/greenway.elevation.json';
-import { fastestMs } from '../../__tests__/timing';
+import { expectUnder, fastestMs } from '../../__tests__/timing';
 
 const PHL = { lat: 39.9526, lng: -75.1652 };
 const en = shadeT('en');
@@ -302,7 +302,7 @@ describe('the demo lots', () => {
     const input = spotInputFor(greenSite, [], middle(greenSite));
     // aim: under 300 ms; the fastest of a few runs, against a ceiling a busy machine still meets
     const ms = fastestMs((i) => spotCalendar({ ...input, point: [input.point[0] + 3 + i * 0.5, input.point[1]] }), 300);
-    expect(ms).toBeLessThan(900);
+    expectUnder(ms, 900);
   });
 
   it('the whole lot: share of the lot in direct sun per square, in a few seconds', () => {
@@ -314,7 +314,7 @@ describe('the demo lots', () => {
     expect(count(grid.mask) / count(fine.mask)).toBeGreaterThan(0.2);
     expect(count(grid.mask) / count(fine.mask)).toBeLessThan(0.3);
     const cal = lotCalendar({ grid, buildings: shadeBuildings(doverSite), crowns: shadeCrowns(doverSite), ...PHL });
-    expect(performance.now() - t0).toBeLessThan(5000);
+    expectUnder(performance.now() - t0, 5000);
     expect(cal.kind).toBe('lot');
     const share = (m: number, min: number) => {
       const c = at(cal, m, min);
