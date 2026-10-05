@@ -4,7 +4,8 @@
   "materials": [
     {
       "item": "Malla metálica de alambre soldado de 2x2",
-      "notes": "Sugerencias para la fabricación: Darby and Sons (darbywiremesh.com) o Gabion1.com. Cuando pida piezas cortadas a la medida, pida que las corten al tamaño, con los bordes cerrados y galvanizadas después del corte."
+      "notes": "Sugerencias para la fabricación: Darby and Sons (darbywiremesh.com) o Gabion1.com. Cuando pida piezas cortadas a la medida, pida que las corten al tamaño, con los bordes cerrados y galvanizadas después del corte.",
+      "size": "calibre 8 (3/16\" de diámetro), galvanizada, aberturas de 2\""
     },
     {
       "item": "Madera de 2x4: cedro rojo del oeste, abeto Douglas o pino tratado a presión",
@@ -38,13 +39,16 @@
       "notes": "Marco de la banca de gavión: tapas de los extremos y refuerzos transversales"
     },
     {
-      "notes": "Panel de fondo del gavión, 96\" x 18\""
+      "notes": "Panel de fondo del gavión, 96\" x 18\"",
+      "stock": "malla de alambre soldado de 2x2"
     },
     {
-      "notes": "Lado del gavión (largo), 96\" x 18\" cada uno"
+      "notes": "Lado del gavión (largo), 96\" x 18\" cada uno",
+      "stock": "malla de alambre soldado de 2x2"
     },
     {
-      "notes": "Lado del gavión (corto), 18\" x 18\" cada uno"
+      "notes": "Lado del gavión (corto), 18\" x 18\" cada uno",
+      "stock": "malla de alambre soldado de 2x2"
     }
   ],
   "tools": [

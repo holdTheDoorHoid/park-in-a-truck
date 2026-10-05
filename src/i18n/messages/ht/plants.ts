@@ -53,6 +53,8 @@ export default {
   'picker.clear': 'Efase',
   'picker.mature': 'Lè l fin grandi: {size}',
   'picker.atPurchase': 'Lè w achte l: {size}',
+  'pot.quart': 'Ka galon',
+  'pot.oneQuart': '1 ka galon',
   'picker.each': '{price} chak',
   'picker.howMany': 'Konbyen {name}?',
   'picker.picked': '<strong>{chosen}</strong> sou <strong>{count}</strong> plant chwazi',

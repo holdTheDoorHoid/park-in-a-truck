@@ -12,6 +12,8 @@ export default {
   'loading.basemap': 'Desenhando o seu mapa base… (precisa de JavaScript)',
 
   'unit.mi': { other: '{n} mi' },
+  'unit.ft': { one: '{n} pé', other: '{n} pés' },
+  'unit.sqft': { one: '{n} pé²', other: '{n} pés²' },
   'distance.nextDoor': 'ao lado',
   'map.north': 'N',
   'map.ui.zoomIn': 'Aproximar',
