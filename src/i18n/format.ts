@@ -53,9 +53,10 @@ export function stripIsolates(s: string): string {
 /**
  * Philadelphia addresses written into a right-to-left message ("2233 N Uber St", "22nd & Diamond",
  * "4862 Parkside Ave, Philadelphia"): a house number followed by English words. Without help the
- * number lands on the wrong side ("N Uber St 2233"). Never inside a word, a URL or an id.
+ * number lands on the wrong side ("N Uber St 2233"). Never inside a word, a URL or an id, nor
+ * again where the text already isolates it.
  */
-const ADDRESS_RUN = /(?<![\p{L}\p{N}_./=?&#:-])\d+(?:st|nd|rd|th)?(?:(?: +& +| +|, +)(?:[A-Z][A-Za-z]*|\d+(?:st|nd|rd|th)))+(?![\p{L}\p{N}])/gu;
+const ADDRESS_RUN = /(?<![\p{L}\p{N}_./=?&#:\u2066-\u2068-])\d+(?:st|nd|rd|th)?(?:(?: +& +| +|, +)(?:[A-Z][A-Za-z]*|\d+(?:st|nd|rd|th)))+(?![\p{L}\p{N}])/gu;
 export function isolateAddresses(locale: Locale | string, text: string): string {
   return isRtl(locale) ? text.replace(ADDRESS_RUN, (m) => `${LRI}${m}${PDI}`) : text;
 }

@@ -11,6 +11,7 @@
 
 import { DEFAULT_LOCALE, type Locale } from './locales.ts';
 import { bundleFor } from './registry.ts';
+import { isolateAddresses } from './format.ts';
 import { STEPS, type StepMeta } from '../data/steps';
 import type { Guide } from '../data/guides';
 
@@ -19,22 +20,30 @@ type Plain = string | number | boolean | null | undefined | Plain[] | { [k: stri
 /**
  * Deep-merge translated strings onto `base`. Only strings are replaced; keys and array items the
  * English data lacks are ignored; null/missing keeps English. Arrays line up by position.
+ * `text` adjusts each translated string on its way in (see `prose`).
  */
-export function overlay<T>(base: T, patch: unknown): T {
+export function overlay<T>(base: T, patch: unknown, text: (s: string) => string = (s) => s): T {
   if (patch === undefined || patch === null) return base;
-  if (typeof base === 'string') return (typeof patch === 'string' && patch.trim() ? patch : base) as T;
+  if (typeof base === 'string') return (typeof patch === 'string' && patch.trim() ? text(patch) : base) as T;
   if (Array.isArray(base)) {
     if (!Array.isArray(patch)) return base;
-    return base.map((item, i) => overlay(item, patch[i])) as T;
+    return base.map((item, i) => overlay(item, patch[i], text)) as T;
   }
   if (base && typeof base === 'object') {
     if (typeof patch !== 'object' || Array.isArray(patch)) return base;
     const out: Record<string, unknown> = { ...(base as Record<string, unknown>) };
-    for (const k of Object.keys(out)) if (k in (patch as object)) out[k] = overlay(out[k], (patch as Record<string, Plain>)[k]);
+    for (const k of Object.keys(out)) if (k in (patch as object)) out[k] = overlay(out[k], (patch as Record<string, Plain>)[k], text);
     return out as T;
   }
   return base;
 }
+
+/**
+ * Translated text from data, ready for the page: on right-to-left pages an address written into it
+ * ("4300 Rising Sun Ave — …", "في 27th & Master St") keeps its order, so translators don't have to
+ * mark it (the same rule as addresses written into a message). Unchanged in left-to-right languages.
+ */
+const prose = (locale: Locale | string) => (s: string) => isolateAddresses(locale, s);
 
 export function getOverlay(locale: Locale | string, name: string): unknown {
   if (locale === DEFAULT_LOCALE) return undefined;
@@ -45,13 +54,13 @@ export function getOverlay(locale: Locale | string, name: string): unknown {
 export function localizeKeyed<T extends object>(list: T[], name: string, key: keyof T & string, locale: Locale | string): T[] {
   const o = getOverlay(locale, name) as Record<string, unknown> | undefined;
   if (!o) return list;
-  return list.map((item) => overlay(item, o[String(item[key])]));
+  return list.map((item) => overlay(item, o[String(item[key])], prose(locale)));
 }
 
 /** A record keyed by id (THEMES, ELEMENTS): overlay = { [id]: partial value }. */
 export function localizeRecord<T extends object>(record: T, name: string, locale: Locale | string): T {
   const o = getOverlay(locale, name);
-  return o ? overlay(record, o) : record;
+  return o ? overlay(record, o, prose(locale)) : record;
 }
 
 export function localizedSteps(locale: Locale | string): StepMeta[] {
@@ -65,7 +74,7 @@ export function localizedStep(slug: string, locale: Locale | string): StepMeta |
 /** The guide in `locale`, plus whether that language has its own text for it. */
 export function localizeGuide(guide: Guide, locale: Locale | string): Guide & { translated: boolean } {
   const o = getOverlay(locale, `guides/${guide.slug}`);
-  return { ...(o ? overlay(guide, o) : guide), translated: locale === DEFAULT_LOCALE || Boolean(o) };
+  return { ...(o ? overlay(guide, o, prose(locale)) : guide), translated: locale === DEFAULT_LOCALE || Boolean(o) };
 }
 
 /**
