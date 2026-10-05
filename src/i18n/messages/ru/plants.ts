@@ -59,7 +59,7 @@ export default {
   'picker.clear': 'Очистить',
   'picker.mature': 'Взрослое: {size}',
   'picker.atPurchase': 'При покупке: {size}',
-  'pot.quart': 'Кварта',
+  'pot.quart': 'кварта',
   'pot.oneQuart': '1 кварта',
   'picker.each': '{price} за штуку',
   'picker.howMany': 'Сколько штук: {name}?',

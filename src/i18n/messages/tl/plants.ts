@@ -54,7 +54,7 @@ export default {
   'picker.clear': 'Burahin',
   'picker.mature': 'Paglaki: {size}',
   'picker.atPurchase': 'Pagkabili: {size}',
-  'pot.quart': 'Quart',
+  'pot.quart': 'quart',
   'pot.oneQuart': '1 quart',
   'picker.each': '{price} bawat isa',
   'picker.howMany': 'Ilang {name}?',
