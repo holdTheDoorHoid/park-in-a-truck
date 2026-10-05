@@ -70,6 +70,15 @@ export default {
   'g3d.controls': '3D 모델 조작',
   'g3d.helpMouse': '끌어서 돌려 보세요. 모델을 누른 다음 스크롤하면 확대·축소돼요. 판재에 마우스를 올리면 크기가 보여요.',
   'g3d.helpTouch': '끌어서 돌려 보세요. 모델을 누른 다음 두 손가락으로 확대·축소해요. 판재를 누르면 크기가 보여요.',
+  // 3D 모델 툴팁의 부품 종류 (부품에 이름표가 없을 때): "판재 · 2x4 × 25″"
+  'g3d.kind.lumber': '판재',
+  'g3d.kind.sheet': '판',
+  'g3d.kind.mesh': '철망',
+  'g3d.kind.stoneFill': '채움 돌',
+  'g3d.kind.bracket': '브래킷',
+  'g3d.kind.fastener': '고정 철물',
+  'g3d.kind.fabric': '천',
+  'g3d.kind.other': '부품',
 
   'index.description':
     'Park in a Truck의 벤치, 테이블, 화분 상자, 돌망태(개비온) 의자, 그늘막 구조물, 무대를 만드는 이케아식 단계별 조립 설명서예요.',

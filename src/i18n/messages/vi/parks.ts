@@ -13,6 +13,17 @@ export default {
   'video.alt': 'Video: {title}',
   'link.english': '(bằng tiếng Anh)',
   'park.source': 'Nguồn: {source}',
+  // các phần của dòng "Nguồn:" và ghi công ảnh (tên báo và tên người giữ nguyên)
+  'source.toolkitPage': 'cẩm nang Park in a Truck, trang {page}',
+  'source.toolkitPages': 'cẩm nang Park in a Truck, trang {pages}',
+  'source.toolkitAck': 'cẩm nang Park in a Truck, phần cảm ơn ở trang {page}',
+  'source.linktree': 'Linktree của Park in a Truck',
+  'source.linktreeOnly': 'chỉ có trên Linktree của Park in a Truck',
+  'source.unconfirmedElsewhere': 'chưa được nguồn nào khác xác nhận',
+  'source.unconfirmedBeyond': 'ngoài ra chưa được xác nhận',
+  'source.jeffersonNews': 'tin tức của Jefferson',
+  'photo.via': 'ảnh của {name}, từ cẩm nang Park in a Truck',
+  'photo.toolkit': 'cẩm nang Park in a Truck',
 
   'map.label': 'Bản đồ các công viên làm với Park in a Truck',
   'map.details': 'Xem chi tiết',
