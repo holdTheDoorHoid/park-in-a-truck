@@ -5,6 +5,7 @@ import { LOCALES } from '../locales';
 import { getT } from '../t';
 import { registerBundle } from '../registry';
 import { defineMessages } from '../define';
+import { localizeRecord } from '../data';
 
 const F = '\u2068';
 const L = '\u2066';
@@ -40,6 +41,14 @@ describe('right-to-left: inserted values keep their own order', () => {
     // not sizes, ranges, lumber or URLs
     for (const s of ['2.5 بوصة', '1–4 أشهر', 'خشب 2x4', '[فيديو](https://www.youtube.com/watch?v=-5gk2yVAQtM)', 'atlas.phila.gov/2233 N']) expect(isolateAddresses('ar', s)).toBe(s);
     expect(isolateAddresses('en', 'e.g. 2233 N Uber St')).toBe('e.g. 2233 N Uber St');
+    // already isolated by hand: not wrapped twice
+    expect(isolateAddresses('ar', `${L}4300 Rising Sun Ave, Phila · 215-324-6377${P} — مواد`)).toBe(`${L}4300 Rising Sun Ave, Phila · 215-324-6377${P} — مواد`);
+  });
+  it('isolates addresses in translated data too, so translators need not mark them', () => {
+    registerBundle('ar', { msgs: {}, data: { 'rtl-data': { note: '4300 Rising Sun Ave — مكب', items: [{ text: 'في 27th & Master St، حديقة' }] } } });
+    const en = { note: '4300 Rising Sun Ave — dump', items: [{ text: 'at 27th & Master St, a garden' }] };
+    expect(localizeRecord(en, 'rtl-data', 'ar')).toEqual({ note: `${L}4300 Rising Sun Ave${P} — مكب`, items: [{ text: `في ${L}27th & Master St${P}، حديقة` }] });
+    expect(localizeRecord(en, 'rtl-data', 'en')).toBe(en);
   });
   it('t.isolate for values that are not placeholders; stripIsolates for files', () => {
     expect(getT('ar', demo).isolate('@parkinatruck')).toBe(`${F}@parkinatruck${P}`);

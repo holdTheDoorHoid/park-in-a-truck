@@ -1,7 +1,7 @@
 // Far shade (2026-10-04): taller buildings farther away whose shadow can reach the lot are
 // loaded with one extra query, counted by every sun calculation, drawn in 3D, and the 3D
 // sun light stands beyond them.
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { makeProjector } from '../../philly/geo';
 import { setFetch } from '../../philly/http';
 import {
@@ -14,7 +14,7 @@ import {
 } from '../../philly/surroundings';
 import type { SurroundingBuilding } from '../../philly/types';
 import type { LngLat, LotRecord } from '../../types';
-import { farShadeFailedNote, SURROUNDINGS_RADIUS_FT, loadSiteContext, type SiteContext } from '../site';
+import { FAR_QUERY_TIMEOUT_MS, FAR_WAIT_AFTER_NEAR_MS, farShadeFailedNote, SURROUNDINGS_RADIUS_FT, loadSiteContext, type SiteContext } from '../site';
 import { buildLocalSite } from '../localsite';
 import { buildingsChanged, buildingsKey, litFractionAt, shadeBuildings, spotMonthlyFor } from '../sunstudy';
 import { computeSunHours, type GridSpec, type Prism, type SunGrid } from '../sunhours';
@@ -143,6 +143,47 @@ describe('the far query', () => {
     expect(ctx2.farBuildings).toBeUndefined();
     expect(ctx2.note).toBe(farShadeFailedNote());
     expect(ctx2.note).toMatch(/^Couldn't load the taller buildings farther from your lot/);
+  });
+
+  it('a slow far query (past the 20 s other lookups get) does not hold the lot up: its buildings come later', async () => {
+    vi.useFakeTimers();
+    try {
+      const p3 = makeProjector([CENTER[0] - 0.01, CENTER[1]]);
+      const lot = { address: '3 TEST ST', opa: '3', pwdParcelId: 990003, lat: LOT.lat, lng: CENTER[0] - 0.01, polygon: LOT.polygon.map((p) => p3.toLngLat(pr.toXY(p))) } as unknown as LotRecord;
+      const feature = (ring: LngLat[], props: object) => ({ type: 'Feature', geometry: { type: 'Polygon', coordinates: [[...ring, ring[0]]] }, properties: props });
+      const box = (x0: number, y0: number, x1: number, y1: number) => [p3.toLngLat([x0, y0]), p3.toLngLat([x1, y0]), p3.toLngLat([x1, y1]), p3.toLngLat([x0, y1])] as LngLat[];
+      setFetch(async (url, init) => {
+        const q = new URL(url).searchParams;
+        let body: unknown = { type: 'FeatureCollection', features: [] };
+        if (url.includes('LI_BUILDING_FOOTPRINTS') && q.get('where')?.startsWith('approx_hgt')) {
+          // the City takes 30 s to answer (unless the planner gives up first)
+          await new Promise<void>((ok, fail) => {
+            const t = setTimeout(ok, 30_000);
+            init?.signal?.addEventListener('abort', () => (clearTimeout(t), fail(new Error('aborted'))));
+          });
+          body = { type: 'FeatureCollection', features: [feature(box(-20, -360, 20, -320), { approx_hgt: 64, base_elevation: 100 })] };
+        } else if (url.includes('LI_BUILDING_FOOTPRINTS')) {
+          body = { type: 'FeatureCollection', features: [feature(box(10, -20, 26, 20), { address: '5 TEST ST', approx_hgt: 30, max_hgt: 34, base_elevation: 100 })] };
+        }
+        const text = JSON.stringify(body);
+        return { ok: true, status: 200, json: async () => JSON.parse(text), text: async () => text };
+      });
+      const late: SiteContext[] = [];
+      const loading = loadSiteContext(lot, (c) => late.push(c));
+      await vi.advanceTimersByTimeAsync(FAR_WAIT_AFTER_NEAR_MS + 50);
+      const ctx = await loading;
+      expect(ctx.buildings).toHaveLength(1);
+      expect(ctx.farBuildings).toBeUndefined();
+      expect(ctx.note).toBeUndefined();
+      expect(late).toHaveLength(0);
+      await vi.advanceTimersByTimeAsync(30_000);
+      expect(late).toHaveLength(1);
+      expect(late[0]!.farBuildings?.map((b) => b.heightFt)).toEqual([64]);
+      expect(late[0]!.note).toBeUndefined();
+      expect(FAR_QUERY_TIMEOUT_MS).toBeGreaterThanOrEqual(45_000);
+    } finally {
+      vi.useRealTimers();
+    }
   });
 });
 

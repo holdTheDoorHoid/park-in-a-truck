@@ -140,6 +140,11 @@ export function SunPanel({ store }: { store: PlannerStore }) {
   }, [play.mode, play.speed, lat, lng]);
 
   // ---- the spot whose year is charted: a click on the ground, or the picked thing ----
+  // (in this order: a thing picked on another step is named when the step opens, not "the middle")
+  useEffect(() => {
+    if (!spot) setSpotName(w('spot.middle'));
+    else if (!sel) setSpotName(w('spot.picked'));
+  }, [spot]);
   useEffect(() => {
     const p = selectionPoint(store);
     if (p) {
@@ -147,10 +152,6 @@ export function SunPanel({ store }: { store: PlannerStore }) {
       setSpotName(thingText('spot.thing', p.thing, p.name, w));
     }
   }, [sel?.id]);
-  useEffect(() => {
-    if (!spot) setSpotName(w('spot.middle'));
-    else if (!sel) setSpotName(w('spot.picked'));
-  }, [spot]);
   const [spotData, setSpotData] = useState<MonthSun[] | null>(null);
   useEffect(() => {
     if (!site || !spotAt) return;

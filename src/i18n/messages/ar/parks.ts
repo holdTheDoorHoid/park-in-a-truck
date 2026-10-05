@@ -22,6 +22,7 @@ export default {
   'source.unconfirmedElsewhere': 'غير مؤكَّد في مصادر أخرى',
   'source.unconfirmedBeyond': 'غير مؤكَّد في غير ذلك',
   'source.jeffersonNews': 'أخبار Jefferson',
+  'source.sep': '؛ ',
   'photo.via': '{name}، من دليل Park in a Truck',
   'photo.toolkit': 'دليل Park in a Truck',
 

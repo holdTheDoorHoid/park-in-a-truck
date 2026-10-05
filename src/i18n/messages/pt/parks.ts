@@ -21,6 +21,7 @@ export default {
   'source.unconfirmedElsewhere': 'sem confirmação em outras fontes',
   'source.unconfirmedBeyond': 'sem outra confirmação',
   'source.jeffersonNews': 'notícias da Jefferson',
+  'source.sep': '; ',
   'photo.via': '{name}, via guia Park in a Truck',
   'photo.toolkit': 'guia Park in a Truck',
 

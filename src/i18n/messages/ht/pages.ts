@@ -112,4 +112,9 @@ export default {
   'resources.contact.phone': 'Telefòn:',
   'resources.contact.instagram': 'Instagram:',
   'resources.contact.facebook': 'Facebook:',
+  'notFound.title': 'Nou pa jwenn paj la',
+  'notFound.lede': 'Pa gen okenn paj nan adrès sa a. Petèt lyen an twò vye, oswa li gen yon fòt lè yo te tape l.',
+  'notFound.home': 'Ale nan paj akèy la',
+  'notFound.steps': 'Gade sis etap yo',
+  'notFound.saved': 'Tout sa ou te anrejistre toujou nan navigatè sa a, nan <a href="{href}">Pak mwen</a>.',
 } satisfies Translation<typeof en>;

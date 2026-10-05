@@ -3,6 +3,7 @@
 import type { GuideCutListItem } from '../../data/guides';
 import guidesMsgs from '../../i18n/messages/en/guides.ts';
 import { getT } from '../../i18n/astro.ts';
+import { partName } from './partNames';
 
 interface Props {
   items: GuideCutListItem[];
@@ -26,7 +27,7 @@ const head = { part: t('cut.part'), qty: t('cut.qty'), stock: t('cut.stock'), le
   <tbody>
     {items.map((it) => (
       <tr>
-        <td data-label={head.part}><span class="part">{it.part}</span></td>
+        <td data-label={head.part}><span class="part">{partName(t, it.part)}</span></td>
         <td data-label={head.qty}>{it.qty}</td>
         <td data-label={head.stock}>{it.stock}</td>
         {/* a length reads left to right in every language (45", not "45 on Arabic pages) */}

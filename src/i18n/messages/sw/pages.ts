@@ -113,4 +113,9 @@ export default {
   'resources.contact.phone': 'Simu:',
   'resources.contact.instagram': 'Instagram:',
   'resources.contact.facebook': 'Facebook:',
+  'notFound.title': 'Ukurasa haukupatikana',
+  'notFound.lede': 'Hakuna ukurasa kwenye anwani hii. Huenda kiungo ni cha zamani, au kina kosa la kuandika.',
+  'notFound.home': 'Nenda kwenye ukurasa wa mwanzo',
+  'notFound.steps': 'Tazama hatua sita',
+  'notFound.saved': 'Kila ulichohifadhi bado kipo kwenye kivinjari hiki, katika <a href="{href}">Bustani yangu</a>.',
 } satisfies Translation<typeof en>;

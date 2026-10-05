@@ -48,6 +48,11 @@ export function existingRenders(site: LocalSite, items: ExistingItem[] | undefin
   return out;
 }
 
+/** Whether a step draws the markers for things already on the lot (rings, and trees marked to come down). */
+export function showsMarkers(mode: PlannerMode, step: string): boolean {
+  return mode === 'site' || step === 'existing' || step === 'lot';
+}
+
 export function bindScene(scene: PlannerScene, store: PlannerStore, mode: PlannerMode): () => void {
   const last: Record<string, unknown> = {};
   let queued = false;
@@ -97,7 +102,7 @@ export function bindScene(scene: PlannerScene, store: PlannerStore, mode: Planne
       } else scene.setPark(null);
     }
 
-    const showMarkers = mode === 'site' || step === 'existing' || step === 'lot';
+    const showMarkers = showsMarkers(mode, step);
     if (changed('existing', design?.existing, showMarkers)) scene.setExisting(existingRenders(site, design?.existing), showMarkers);
 
     const sel = store.$selection.get();

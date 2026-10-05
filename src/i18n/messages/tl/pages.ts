@@ -114,4 +114,9 @@ export default {
   'resources.contact.phone': 'Telepono:',
   'resources.contact.instagram': 'Instagram:',
   'resources.contact.facebook': 'Facebook:',
+  'notFound.title': 'Hindi makita ang pahina',
+  'notFound.lede': 'Walang pahina sa address na ito. Maaaring luma na ang link, o may mali sa pagkaka-type nito.',
+  'notFound.home': 'Pumunta sa home page',
+  'notFound.steps': 'Tingnan ang anim na hakbang',
+  'notFound.saved': 'Nasa browser na ito pa rin ang lahat ng inyong na-save, sa <a href="{href}">Aking parke</a>.',
 } satisfies Translation<typeof en>;

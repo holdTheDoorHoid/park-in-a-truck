@@ -22,6 +22,7 @@ export default {
   'source.unconfirmedElsewhere': '다른 곳에서는 확인되지 않음',
   'source.unconfirmedBeyond': '그 밖에는 확인되지 않음',
   'source.jeffersonNews': 'Jefferson 뉴스',
+  'source.sep': '; ',
   'photo.via': '{name} 촬영, Park in a Truck 툴킷 수록',
   'photo.toolkit': 'Park in a Truck 툴킷',
 

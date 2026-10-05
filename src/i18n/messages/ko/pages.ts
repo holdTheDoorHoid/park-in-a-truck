@@ -112,4 +112,9 @@ export default {
   'resources.contact.phone': '전화:',
   'resources.contact.instagram': 'Instagram:',
   'resources.contact.facebook': 'Facebook:',
+  'notFound.title': '페이지를 찾을 수 없어요',
+  'notFound.lede': '이 주소에는 페이지가 없어요. 오래된 링크이거나 주소에 오타가 있을 수 있어요.',
+  'notFound.home': '홈으로 가기',
+  'notFound.steps': '여섯 단계 보기',
+  'notFound.saved': '저장한 내용은 모두 이 브라우저의 <a href="{href}">내 공원</a>에 그대로 있어요.',
 } satisfies Translation<typeof en>;

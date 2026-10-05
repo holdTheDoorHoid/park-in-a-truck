@@ -34,6 +34,7 @@ export default {
   'cut.stock': 'Bwa',
   'cut.length': 'Longè',
   'cut.notes': 'Nòt',
+  'cut.partInBox': '{part} (bwat {size})',
   'siteNote': 'Nòt sit sa a, se pa nòt Park in a Truck:',
   'steps': 'Etap yo',
   'step': 'Etap {n}',
@@ -79,6 +80,13 @@ export default {
   'g3d.kind.fastener': 'Pyès pou tache',
   'g3d.kind.fabric': 'Twal',
   'g3d.kind.other': 'Pyès',
+  'g3d.detail': '{what}, {size}',
+  'g3d.part.gabionFill': 'Materyèl pou plen gabyon an',
+  'g3d.part.bracingMesh': 'Materyèl pou ranfòse (rès griyaj fil fè 2x2)',
+  'g3d.part.geotextile': 'Twal jeyotekstil',
+  'g3d.part.lBrackets': 'Ekè metal an L',
+  'g3d.part.jHooks': 'Kwochè an J',
+  'g3d.part.backrestBrackets': 'Sipò metal pou do ban an',
 
   'index.description':
     'Enstriksyon etap pa etap, tankou pou mèb Ikea, pou ban, tab, bwat plant, ban gabyon, yon abri lonbraj ak yon sèn Park in a Truck.',

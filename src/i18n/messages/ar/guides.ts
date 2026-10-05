@@ -34,6 +34,7 @@ export default {
   'cut.stock': 'المادة',
   'cut.length': 'الطول',
   'cut.notes': 'ملاحظات',
+  'cut.partInBox': '{part} (حوض مقاس {size})',
   'siteNote': 'ملاحظة من هذا الموقع، وليست من Park in a Truck:',
   'steps': 'الخطوات',
   'step': 'الخطوة {n}',
@@ -79,6 +80,13 @@ export default {
   'g3d.kind.fastener': 'قطعة تثبيت',
   'g3d.kind.fabric': 'قماش',
   'g3d.kind.other': 'قطعة',
+  'g3d.detail': '{what}، {size}',
+  'g3d.part.gabionFill': 'مواد حشو الجابيون',
+  'g3d.part.bracingMesh': 'مواد التدعيم (ما تبقّى من شبك 2x2)',
+  'g3d.part.geotextile': 'قماش جيوتكستايل',
+  'g3d.part.lBrackets': 'زوايا معدنية على شكل L',
+  'g3d.part.jHooks': 'خطافات على شكل J',
+  'g3d.part.backrestBrackets': 'دعامات الظهر',
 
   'index.description':
     'تعليمات تركيب خطوة بخطوة، على طريقة Ikea، للمقاعد والطاولات وأحواض الزرع ومقاعد الأقفاص الحجرية (الجابيون) والمظلة والمسرح في برنامج Park in a Truck.',

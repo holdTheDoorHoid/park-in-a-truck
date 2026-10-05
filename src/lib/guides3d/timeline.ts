@@ -219,11 +219,26 @@ export function trackProgress(t: Track, ms: number): number {
   return ease(t.motion, (ms - t.delay) / t.duration);
 }
 
-/** Human summary of the parts added in a step, e.g. "2 × B-3, 8 × B-6". */
-export function stepPartsSummary(m: PreparedModel, n: number): string {
-  const counts = new Map<string, number>();
-  for (const p of m.parts) if (p.step === n) counts.set(p.ref ?? p.kind, (counts.get(p.ref ?? p.kind) ?? 0) + 1);
-  const list = [...counts];
-  if (list.length === 1 && list[0]![1] === 1) return list[0]![0];
-  return list.map(([ref, c]) => `${c} × ${ref}`).join(', ');
+/**
+ * Human summary of the parts added in a step, e.g. "2 × B-3, 8 × B-6". `words` puts it in the
+ * page's language: each part's name, and the list with the language's comma.
+ */
+export function stepPartsSummary(
+  m: PreparedModel,
+  n: number,
+  words: { name?: (p: ModelPart) => string; join?: (items: string[]) => string } = {},
+): string {
+  const name = words.name ?? ((p: ModelPart) => p.ref ?? p.kind);
+  const counts = new Map<string, { label: string; c: number }>();
+  for (const p of m.parts) {
+    if (p.step !== n) continue;
+    const k = p.ref ?? p.kind;
+    const e = counts.get(k);
+    if (e) e.c++;
+    else counts.set(k, { label: name(p), c: 1 });
+  }
+  const list = [...counts.values()];
+  if (list.length === 1 && list[0]!.c === 1) return list[0]!.label;
+  const items = list.map(({ label, c }) => `${c} × ${label}`);
+  return words.join ? words.join(items) : items.join(', ');
 }

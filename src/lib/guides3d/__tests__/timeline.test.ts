@@ -156,6 +156,13 @@ describe('labels and framing', () => {
     expect(partLabel(p, guide.cutList).note).toBe('Bench side');
     expect(partTooltip({ id: 'x', kind: 'lumber', size: [1.5, 3.5, 25], position: [0, 0, 0], step: 1 })).toBe('Board · 2x4 × 25″');
   });
+  it('names parts and sizes in the page\'s words (labels like B-3 stay)', () => {
+    const fr = { kind: () => 'Grillage', ref: (r: string) => (r === 'B-3' ? r : `«${r}»`), pair: (a: string, b: string) => `${a}\u00a0; ${b}` };
+    const mesh = { id: 'm', ref: 'Bracing material (spare 2x2 mesh)', kind: 'mesh' as const, size: [18, 1, 12] as [number, number, number], position: [0, 0, 0] as [number, number, number], step: 3 };
+    expect(partTooltip(mesh, [], fr)).toBe('«Bracing material (spare 2x2 mesh)» · Grillage\u00a0; 18 × 1 × 12″');
+    expect(partTooltip(bench.parts.find((x) => x.ref === 'B-3')!, guide.cutList, fr)).toBe('B-3 · 2x4 × 18.5″');
+    expect(stepPartsSummary(m, 3, { name: (p) => `<${p.ref}>`, join: (xs) => xs.join(' | ') })).toBe('2 × <B-3> | 8 × <B-6>');
+  });
   it('fits a box: every corner on screen, and a wider view needs less distance', () => {
     const dir = viewDirection(-35, 26);
     const narrow = fitBox([-24, 0, -9], [24, 17, 9], dir, 30, 0.8);

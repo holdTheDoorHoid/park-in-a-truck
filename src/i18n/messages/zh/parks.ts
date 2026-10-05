@@ -21,6 +21,7 @@ export default {
   'source.unconfirmedElsewhere': '其他来源尚未证实',
   'source.unconfirmedBeyond': '除此之外尚未证实',
   'source.jeffersonNews': 'Jefferson 新闻',
+  'source.sep': '；',
   'photo.via': '{name} 摄，载于 Park in a Truck 工具包',
   'photo.toolkit': 'Park in a Truck 工具包',
 

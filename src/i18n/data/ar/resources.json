@@ -106,11 +106,11 @@
       "items": [
         {
           "title": "Fairmount Park Organic Recycling Center",
-          "note": "\u20663850 W Ford Rd\u2069 — سماد عضوي ورقائق خشب وغطاء للتربة (مالتش) وسماد حيواني بتكلفة قليلة."
+          "note": "3850 W Ford Rd — سماد عضوي ورقائق خشب وغطاء للتربة (مالتش) وسماد حيواني بتكلفة قليلة."
         },
         {
           "title": "\u2066Richard S. Burns & Co.\u2069 (مواد معاد تدويرها)",
-          "note": "\u20664300 Rising Sun Ave\u2069 — مكب للنفايات + منتجات معاد تدويرها للبيع."
+          "note": "4300 Rising Sun Ave — مكب للنفايات + منتجات معاد تدويرها للبيع."
         }
       ]
     },
@@ -168,22 +168,22 @@
       "items": [
         {
           "title": "D&S Supply",
-          "note": "\u20664260 Macalester St\u2069 — مستلزمات تنسيق الحدائق وغطاء التربة (مالتش) والأدوات."
+          "note": "4260 Macalester St — مستلزمات تنسيق الحدائق وغطاء التربة (مالتش) والأدوات."
         },
         {
           "title": "Underdog Landscape Supply",
-          "note": "\u2066701 Washington St, Conshohocken\u2069 — تربة سطحية وغطاء للتربة (مالتش) وسماد عضوي."
+          "note": "701 Washington St, Conshohocken — تربة سطحية وغطاء للتربة (مالتش) وسماد عضوي."
         },
         {
           "title": "Mid Atlantic Pine Straw"
         },
         {
           "title": "Woodland Building Supply",
-          "note": "\u20664701 Woodland Ave, Phila\u2069."
+          "note": "4701 Woodland Ave, Phila."
         },
         {
           "title": "C&R Building Supply",
-          "note": "\u20661601 S 49th St, Phila\u2069."
+          "note": "1601 S 49th St, Phila."
         },
         {
           "title": "A&A Lumber",
@@ -194,7 +194,7 @@
         },
         {
           "title": "Castor Materials",
-          "note": "\u20663301 S 61st St\u2069 — حجارة مكسّرة وتربة سطحية، والتوصيل متاح."
+          "note": "3301 S 61st St — حجارة مكسّرة وتربة سطحية، والتوصيل متاح."
         },
         {
           "title": "Rockler — اختيار أفضل طلاء للمشاريع الخارجية"
@@ -458,15 +458,15 @@
           },
           {
             "title": "C&R Building Supply",
-            "description": "\u20661601 S 49th St, Phila\u2069"
+            "description": "1601 S 49th St, Phila"
           },
           {
             "title": "A&A Lumber",
-            "description": "\u2066109 Old Limestone Rd, Avondale PA\u2069"
+            "description": "109 Old Limestone Rd, Avondale PA"
           },
           {
             "title": "Philly Reclaim",
-            "description": "\u2066150 W Butler St, Phila\u2069 — مستودع لمواد البناء المستعملة؛ انظر أيضًا PowerCorpsPHL"
+            "description": "150 W Butler St, Phila — مستودع لمواد البناء المستعملة؛ انظر أيضًا PowerCorpsPHL"
           },
           {
             "title": "PowerCorpsPHL"
@@ -485,7 +485,7 @@
           },
           {
             "title": "Good Host Plants",
-            "description": "\u2066150 W Butler St, Phila\u2069 — متخصص محلي في النباتات التي تجذب المُلقِّحات"
+            "description": "150 W Butler St, Phila — متخصص محلي في النباتات التي تجذب المُلقِّحات"
           },
           {
             "title": "LandHealth Institute Nursery (Philaflora)",
@@ -509,7 +509,7 @@
           },
           {
             "title": "Castor Materials",
-            "description": "\u20663301 S 61st St, Phila\u2069"
+            "description": "3301 S 61st St, Phila"
           },
           {
             "title": "D&S Supply",
@@ -521,11 +521,11 @@
           },
           {
             "title": "West Philadelphia Tool Library",
-            "description": "\u20661314 S 47th St, Phila\u2069"
+            "description": "1314 S 47th St, Phila"
           },
           {
             "title": "Diamond Tool",
-            "description": "\u20662800 Grays Ferry Ave, Phila\u2069"
+            "description": "2800 Grays Ferry Ave, Phila"
           },
           {
             "title": "Fairmount Park Organic Recycling Center",

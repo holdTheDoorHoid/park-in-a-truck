@@ -34,6 +34,7 @@ export default {
   'cut.stock': 'Kahoy',
   'cut.length': 'Haba',
   'cut.notes': 'Tala',
+  'cut.partInBox': '{part} (kahong {size})',
   'siteNote': 'Paalala mula sa site na ito, hindi mula sa Park in a Truck:',
   'steps': 'Mga hakbang',
   'step': 'Hakbang {n}',
@@ -79,6 +80,13 @@ export default {
   'g3d.kind.fastener': 'Pangkabit',
   'g3d.kind.fabric': 'Tela',
   'g3d.kind.other': 'Piraso',
+  'g3d.detail': '{what}, {size}',
+  'g3d.part.gabionFill': 'Pampuno ng gabion',
+  'g3d.part.bracingMesh': 'Pang-brace (natirang 2x2 na wire mesh)',
+  'g3d.part.geotextile': 'Telang geotextile',
+  'g3d.part.lBrackets': 'L-bracket',
+  'g3d.part.jHooks': 'J hook',
+  'g3d.part.backrestBrackets': 'Bracket ng sandalan',
 
   'index.description':
     'Sunod-sunod na tagubilin sa pagbuo, gaya ng sa Ikea, para sa mga upuan, mesa, taniman, upuang gabion, isang silungan at isang entablado ng Park in a Truck.',

@@ -1,7 +1,8 @@
 // Area "guides": the build-guide pages (src/pages/build/, src/components/guides/,
 // src/components/guides3d/). The guides' own text (steps, materials, tools…) is DATA,
 // translated in src/i18n/data/<locale>/guides/<slug>.json — not here. Part labels
-// (BB-1) and lumber sizes (2x4) stay English everywhere, including in the 3D viewer.
+// (BB-1) and lumber sizes (2x4) stay English everywhere, including in the 3D viewer; the few
+// part names with words are below (cut.partInBox, g3d.part.*; src/components/guides/partNames.ts).
 import { defineMessages } from '../../define.ts';
 
 export default defineMessages('guides', {
@@ -37,6 +38,8 @@ export default defineMessages('guides', {
   'cut.stock': 'Stock',
   'cut.length': 'Length',
   'cut.notes': 'Notes',
+  /** A cut-list label of the planter guides, one per box size: "P-1 (18"x18" box)". {part}: the label (P-1), {size}: the box (18"x18") */
+  'cut.partInBox': '{part} ({size} box)',
   'siteNote': 'Note from this site, not Park in a Truck:',
   'steps': 'Steps',
   'step': 'Step {n}',
@@ -85,6 +88,16 @@ export default defineMessages('guides', {
   'g3d.kind.fabric': 'Fabric',
   /** Any other part */
   'g3d.kind.other': 'Part',
+  /** The tooltip's second half: what the part is made of and its size, "Wire mesh, 18 × 12 × 36″" (the language's comma) */
+  'g3d.detail': '{what}, {size}',
+  // Parts the 3D models name after a line of the guide's materials or hardware list (same words as that list)
+  'g3d.part.gabionFill': 'Gabion fill material',
+  /** Gabion benches: the center support, cut from leftover 2x2 welded-wire mesh */
+  'g3d.part.bracingMesh': 'Bracing material (spare 2x2 mesh)',
+  'g3d.part.geotextile': 'Geotextile fabric',
+  'g3d.part.lBrackets': 'L brackets',
+  'g3d.part.jHooks': 'J hooks',
+  'g3d.part.backrestBrackets': 'Backrest brackets',
 
   'index.description':
     "Step-by-step, Ikea-style assembly instructions for Park in a Truck's benches, tables, planters, gabion seating, a shade structure and a stage.",

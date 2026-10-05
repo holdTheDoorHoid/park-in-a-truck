@@ -113,4 +113,9 @@ export default {
   'resources.contact.phone': 'Telefone:',
   'resources.contact.instagram': 'Instagram:',
   'resources.contact.facebook': 'Facebook:',
+  'notFound.title': 'Página não encontrada',
+  'notFound.lede': 'Não há nenhuma página neste endereço. O link pode ser antigo ou ter um erro de digitação.',
+  'notFound.home': 'Ir para a página inicial',
+  'notFound.steps': 'Ver as seis etapas',
+  'notFound.saved': 'Tudo o que você salvou continua neste navegador, em <a href="{href}">Meu parque</a>.',
 } satisfies Translation<typeof en>;

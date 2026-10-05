@@ -17,6 +17,7 @@ import type { CutLike } from '../../lib/guides3d/labels';
 import type { View } from '../../lib/guides3d/timeline';
 import guidesMsgs from '../../i18n/messages/en/guides.ts';
 import { getT } from '../../i18n/t.ts';
+import { partName } from '../guides/partNames';
 
 type ViewerModule = typeof import('../../lib/guides3d/viewer');
 type Viewer = InstanceType<ViewerModule['AssemblyViewer']>;
@@ -78,6 +79,8 @@ const viewOf = (s: ScrollStep): View => (s.kind === 'step' ? { kind: 'step', n: 
 
 export default function GuideViewerIsland({ slug, title, steps, cutList, locale }: Props) {
   const t = getT(locale, guidesMsgs);
+  const kindName = (kind: string) => t(KIND_KEYS[kind] ?? 'g3d.kind.other');
+  const refName = (ref: string) => partName(t, ref);
   const root = useRef<HTMLDivElement>(null);
   const stage = useRef<HTMLDivElement>(null);
   const viewer = useRef<Viewer | null>(null);
@@ -174,7 +177,7 @@ export default function GuideViewerIsland({ slug, title, steps, cutList, locale 
             model,
             steps,
             cutList,
-            kindName: (kind) => t(KIND_KEYS[kind] ?? 'g3d.kind.other'),
+            words: { kind: kindName, ref: refName, pair: (what, size) => t('g3d.detail', { what, size }) },
             reducedMotion: reduce.matches,
             view: viewOf(s),
             onError: turnOff,
@@ -290,7 +293,7 @@ export default function GuideViewerIsland({ slug, title, steps, cutList, locale 
   const v = viewer.current;
   let state = '';
   if (v && active.kind === 'step') {
-    const adds = mod.current?.stepPartsSummary(v.prepared, active.n);
+    const adds = mod.current?.stepPartsSummary(v.prepared, active.n, { name: (p) => (p.ref ? refName(p.ref) : kindName(p.kind)), join: t.join });
     state = active.n === v.prepared.pileStep ? t('g3d.stateFlat') : adds ? t('g3d.stateAdds', { n: active.n, adds }) : t('g3d.stateWhole');
   } else if (active.kind === 'complete') state = t('g3d.stateWhole');
   const describe = t('g3d.describe', { model: t('model', { title }), state });

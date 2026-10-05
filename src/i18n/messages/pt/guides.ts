@@ -33,6 +33,7 @@ export default {
   'cut.stock': 'Madeira',
   'cut.length': 'Comprimento',
   'cut.notes': 'Observações',
+  'cut.partInBox': '{part} (caixa de {size})',
   'siteNote': 'Nota deste site, não do Park in a Truck:',
   'steps': 'Etapas',
   'step': 'Etapa {n}',
@@ -78,6 +79,13 @@ export default {
   'g3d.kind.fastener': 'Fixador',
   'g3d.kind.fabric': 'Manta',
   'g3d.kind.other': 'Peça',
+  'g3d.detail': '{what}, {size}',
+  'g3d.part.gabionFill': 'Material de enchimento do gabião',
+  'g3d.part.bracingMesh': 'Material de travamento (sobra de tela de arame 2x2)',
+  'g3d.part.geotextile': 'Manta geotêxtil',
+  'g3d.part.lBrackets': 'Cantoneiras em L',
+  'g3d.part.jHooks': 'Ganchos em J',
+  'g3d.part.backrestBrackets': 'Suportes do encosto',
 
   'index.description':
     'Instruções de montagem passo a passo, no estilo Ikea, para os bancos, mesas, jardineiras, assentos de gabião, uma estrutura de sombra e um palco do Park in a Truck.',

@@ -34,6 +34,7 @@ export default {
   'cut.stock': 'Madera',
   'cut.length': 'Largo',
   'cut.notes': 'Notas',
+  'cut.partInBox': '{part} (jardinera de {size})',
   'siteNote': 'Nota de este sitio, no de Park in a Truck:',
   'steps': 'Pasos',
   'step': 'Paso {n}',
@@ -80,6 +81,13 @@ export default {
   'g3d.kind.fastener': 'Fijación',
   'g3d.kind.fabric': 'Tela',
   'g3d.kind.other': 'Pieza',
+  'g3d.detail': '{what}, {size}',
+  'g3d.part.gabionFill': 'Material de relleno para el gavión',
+  'g3d.part.bracingMesh': 'Material para refuerzo (malla de 2x2 sobrante)',
+  'g3d.part.geotextile': 'Tela geotextil',
+  'g3d.part.lBrackets': 'Escuadras en L',
+  'g3d.part.jHooks': 'Ganchos en J',
+  'g3d.part.backrestBrackets': 'Soportes de respaldo',
 
   'index.description':
     'Instrucciones de armado paso a paso, al estilo de Ikea, para las bancas, mesas, jardineras, asientos de gavión, una estructura de sombra y un escenario de Park in a Truck.',

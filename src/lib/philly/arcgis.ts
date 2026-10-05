@@ -28,7 +28,7 @@ interface JsonCollection<P> {
 export async function queryGeo<P = Record<string, unknown>>(
   layer: LayerName,
   q: ArcQuery,
-  opts: { signal?: AbortSignal } = {},
+  opts: { signal?: AbortSignal; timeoutMs?: number } = {},
 ): Promise<{ features: GeoFeature<P>[]; truncated: boolean }> {
   const r = await getJSON<GeoCollection<P>>(arcgisUrl(layer, { ...q, returnGeometry: true, format: 'geojson' }), opts);
   return {
