@@ -54,7 +54,7 @@ export default {
   'picker.clear': 'Borrar',
   'picker.mature': 'De adulto: {size}',
   'picker.atPurchase': 'Al comprarla: {size}',
-  'pot.quart': 'Cuarto de galón',
+  'pot.quart': 'cuarto de galón',
   'pot.oneQuart': '1 cuarto de galón',
   'picker.each': '{price} cada una',
   'picker.howMany': '¿Cuántas plantas de {name}?',

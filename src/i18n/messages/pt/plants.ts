@@ -53,7 +53,7 @@ export default {
   'picker.clear': 'Limpar',
   'picker.mature': 'Adulta: {size}',
   'picker.atPurchase': 'Na compra: {size}',
-  'pot.quart': 'Quarto de galão',
+  'pot.quart': 'quarto de galão',
   'pot.oneQuart': '1 quarto de galão',
   'picker.each': '{price} cada',
   'picker.howMany': 'Quantidade de {name}',

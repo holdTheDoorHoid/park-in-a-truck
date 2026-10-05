@@ -21,7 +21,7 @@ export default {
   'source.unconfirmedElsewhere': 'sem confirmação em outras fontes',
   'source.unconfirmedBeyond': 'sem outra confirmação',
   'source.jeffersonNews': 'notícias da Jefferson',
-  'photo.via': '{name}, publicada no guia Park in a Truck',
+  'photo.via': '{name}, via guia Park in a Truck',
   'photo.toolkit': 'guia Park in a Truck',
 
   'map.label': 'Mapa dos parques construídos com o Park in a Truck',

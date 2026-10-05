@@ -53,7 +53,7 @@ export default {
   'picker.clear': 'Effacer',
   'picker.mature': 'Adulte : {size}',
   'picker.atPurchase': 'À l’achat : {size}',
-  'pot.quart': 'Quart de gallon',
+  'pot.quart': 'quart de gallon',
   'pot.oneQuart': '1 quart de gallon',
   'picker.each': '{price} pièce',
   'picker.howMany': '{name} : combien ?',
