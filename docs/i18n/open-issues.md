@@ -128,6 +128,10 @@ Phase B (polish, 2026-10-04): what translators still have to do for the items ab
 ### Chinese (zh) — second pass
 - `cost.ts` fix.* / kept.* and guide.note.short* / guide.reason.* (assembled from pieces); `philly.ts` zoning.* and
   landBank.*; `planner.ts` slope.falls / slope.dip and sun.assume*; `shade.ts` sum.* (joined by code).
+- Sweep (Oct 2026): as-built notes in `src/i18n/data/zh/models/*.json` ("sit proud" as 底板垫在壁板下方; 18"指的是占地尺寸;
+  顶部支撑卡在两根横梁之间); `guides.ts` g3d.kind.* (板材 for Sheet, 布料 for Fabric); `plants.ts` 夸脱盆; `parks.ts` source.*
+  (尚未证实, 仅见于…的 Linktree) and photo.via ("{name} 摄，载于…"); `resources.json` press notes 3 and 6; `workbook.ts`
+  list.*.fillFirst ("…至少写点什么"); `planner.ts` corners now 左前角 / 右前角 / 左后角 / 右后角.
 
 ### Vietnamese (vi)
 - Step names "Có được đất" (Acquire), "Khảo sát" (Assess); theme names "Vườn ăn được", "Chốn an yên";
@@ -137,6 +141,11 @@ Phase B (polish, 2026-10-04): what translators still have to do for the items ab
 ### Vietnamese (vi) — second pass
 - `cost.ts` `fix.*` and `guide.reason.*` sentences; `philly.ts` zoning meanings and `landBank.*` statuses;
   `planner.ts` "Nắng & bóng" and the `slope.*` sentences; `shade.ts` summary sentences.
+- Sweep (Oct 2026): as-built notes in `src/i18n/data/vi/models/*.json` ("sit proud" as thanh đáy lót bên dưới thành bồn;
+  footprint = mặt đáy); `guides.ts` g3d.kind.* (Tấm for Sheet, Đồ ngũ kim for Fastener, Chi tiết for Part); `plants.ts`
+  "chậu quart"; `parks.ts` source.* and photo.via; `resources.json` press notes 3 and 6 and the publication titles
+  with a Vietnamese meaning (người vận động vì công viên, 500 mẫu Anh); `workbook.ts` list.*.fillFirst; `planner.ts`
+  spot.thing.* (ở chỗ đặt / ở chỗ trồng / ở dưới dây điện).
 
 ### Haitian Creole (ht)
 - Build-guide tool and hardware words (machin vis a enpak, bag metal, sèjan, konpaktè a men, mas); `start.mdx`
@@ -180,6 +189,10 @@ Phase B (polish, 2026-10-04): what translators still have to do for the items ab
   꾸지나무) and safety notes; legal notice (resources legal.text, start.mdx 법적 고지); guide hardware words (호그링, U자 못,
   래그 스크루, 각도 절단기, 적삼목/미송); code-assembled sentences (cost.ts fix.* / guide.reason.*, planner.ts slope.*,
   shade.ts sum.*).
+- Sweep (Oct 2026): as-built notes in `src/i18n/data/ko/models/*.json` ("sit proud" as 바닥 판재가 벽 아래를 받치고;
+  18"는 바닥 크기); `guides.ts` g3d.kind.* (판 for Sheet, 고정 철물 for Fastener, 천 for Fabric); `plants.ts` 쿼트 화분;
+  `parks.ts` source.* (감사의 글, Linktree에만 있음) and photo.via ("… 촬영, Park in a Truck 툴킷 수록"); `resources.json`
+  press notes 3 and 6 and toolkit descriptions (공동체 텃밭 법률 지원, 재사용 자재 창고); slope corners now 왼쪽 앞 모서리…
 
 ### Swahili (sw)
 - `start.mdx` "Kwa nini bustani?" proverb ("Bustani kila siku, daktari mbali"), fruit loanwords (pichi, pea, plamu,
