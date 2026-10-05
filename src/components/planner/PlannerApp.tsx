@@ -19,6 +19,7 @@ import { ExistingPanel } from './ExistingPanel';
 import { SunPanel } from './SunPanel';
 import { CountsPanel } from './CountsPanel';
 import { keyHandler } from './keyboard';
+import { showsMarkers } from './binding';
 import './planner.css';
 
 export type StepId = 'lot' | 'size' | 'arrange' | 'existing' | 'sun' | 'counts';
@@ -166,7 +167,14 @@ function PlannerInner({ mode = 'design', demo, page = false }: Props) {
   useEffect(() => {
     // what's shown (markers for things already on the lot) depends on the step
     store.$step.set(step);
-    store.$selection.set(null);
+    // The picked thing stays picked from step to step, so the sun step can chart where it is
+    // (keyboard users pick from the list on Arrange). Not a tree marked to come down: only the
+    // steps with markers draw it.
+    const sel = store.$selection.get();
+    if (sel?.kind === 'existing' && !showsMarkers(mode, step)) {
+      const e = store.$design.get()?.existing?.find((x) => x.id === sel.id);
+      if (!e || (e.element === 'existing-tree' && e.keep === false)) store.$selection.set(null);
+    }
   }, [step]);
 
   if (status === 'no-lot') {
