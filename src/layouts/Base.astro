@@ -8,16 +8,22 @@ import { u } from '../lib/url';
 import site from '../i18n/messages/en/site.ts';
 import workbook from '../i18n/messages/en/workbook.ts';
 import { getT, alternates, samePageIn, localeInfo, localizeLinks, OFFERABLE, LOCALES, bundleVersion } from '../i18n/astro.ts';
+import { SEARCH_INDEXING } from '../config.ts';
 
 interface Props {
   title: string;
   description?: string;
   /** full-bleed pages (planner, maps) skip the footer margin */
   bare?: boolean;
+  /**
+   * The page the language box, the hreflang links and the first-visit offer point at in each
+   * language (default: this page). The 404 page passes the home page: it has no /<lang>/ twins.
+   */
+  langPath?: string;
 }
 const t = getT(Astro, site);
 const tw = getT(Astro, workbook);
-const { title, description = t('meta.description'), bare = false } = Astro.props;
+const { title, description = t('meta.description'), bare = false, langPath = Astro.url.pathname } = Astro.props;
 const outline = Object.fromEntries(Object.entries(await getOutline()).map(([k, v]) => [k, v.map((s) => s.id)]));
 const fullTitle = title === 'Park in a Truck' ? title : `${title} · Park in a Truck`;
 
@@ -27,8 +33,10 @@ const locale = t.locale;
 const ready = locale === 'en' || OFFERABLE.includes(locale);
 const htmlLang = ready ? t.lang : 'en';
 const dir = ready ? t.dir : 'ltr';
-const alts = alternates(Astro.url.pathname);
-const englishHref = samePageIn(Astro.url.pathname, 'en');
+const alts = alternates(langPath);
+const englishHref = samePageIn(langPath, 'en');
+// hreflang links must be full URLs for search engines (astro.config `site`).
+const absolute = (href: string) => (Astro.site ? new URL(href, Astro.site).href : href);
 const doneBadge = `--done-badge: ${JSON.stringify(tw('done.badge'))}`;
 
 // First-visit offer (English pages only): one line in the visitor's browser language, never a switch.
@@ -37,7 +45,7 @@ const offers = locale === 'en'
       OFFERABLE.map((code) => {
         const ot = getT(code, site);
         const info = localeInfo(code);
-        return [code, { q: ot('offer.question'), yes: ot('offer.yes'), no: ot('offer.no'), lang: info.lang, dir: info.dir, href: samePageIn(Astro.url.pathname, code) }];
+        return [code, { q: ot('offer.question'), yes: ot('offer.yes'), no: ot('offer.no'), lang: info.lang, dir: info.dir, href: samePageIn(langPath, code) }];
       }),
     )
   : {};
@@ -53,10 +61,10 @@ const body = locale === 'en' ? null : localizeLinks(await Astro.slots.render('de
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content="noindex" />
+    {!SEARCH_INDEXING && <meta name="robots" content="noindex, nofollow" />}
     <link rel="icon" type="image/svg+xml" href={u('favicon.svg')} />
-    {alts.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
-    <link rel="alternate" hreflang="x-default" href={englishHref} />
+    {alts.map((a) => <link rel="alternate" hreflang={a.lang} href={absolute(a.href)} />)}
+    <link rel="alternate" hreflang="x-default" href={absolute(englishHref)} />
     <script is:inline define:vars={{ outline }}>window.__PIAT_OUTLINE__ = outline;</script>
     {locale !== 'en' && <script is:inline src={u(`i18n/${locale}.js?v=${bundleVersion(locale)}`)}></script>}
   </head>
@@ -106,7 +114,7 @@ const body = locale === 'en' ? null : localizeLinks(await Astro.slots.render('de
         })();
       </script>
     )}
-    <Header />
+    <Header path={langPath} />
     {locale !== 'en' && (
       <div class="lang-notice no-print">
         <p class="wrap">

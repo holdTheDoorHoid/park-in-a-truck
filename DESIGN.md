@@ -28,7 +28,7 @@ The owner has permission from PiaT to use all of their content.
 
 | Question | Decision |
 |---|---|
-| Hosting | **Private repo, local preview only** for now. Must stay deployable to GitHub Pages later (`SITE_BASE`). |
+| Hosting | Private repo, local preview only, until 2026-10-04. **Then (owner, 2026-10-04): public repo + GitHub Pages at https://holdthedoorhoid.github.io/park-in-a-truck/, unlisted** — live and shareable, search engines asked not to list it, one switch to change later (`SEARCH_INDEXING` in `src/config.ts`). Deployed from `main` (§3 "Hosting and deploys"). |
 | Saving | **Browser only** (localStorage) + export/import a project file + print. No accounts, no server. |
 | Wording | **PiaT's own words, made web-friendly**: split into steps, blanks → fields, typos fixed, each step links to the original PDF page. Not a rewrite. No new advice. |
 | Tech | **TypeScript + Astro + Three.js** (chosen over Rust/WASM for ecosystem and maintainability by Jefferson). |
@@ -150,6 +150,29 @@ How-to for extraction and translation agents: `docs/i18n/HOW-TO-TRANSLATE.md`; t
   `extra.flyer = { langs, purpose2 }`), whatever language the page is read in.
 - **Checker:** `npm run i18n:check` (also a test): keys/placeholders/HTML/plurals, chapter structure and ids, overlay
   fields, page twins, browser imports; prints words left per language.
+
+### Hosting and deploys (2026-10-04)
+
+- **Where:** GitHub Pages, https://holdthedoorhoid.github.io/park-in-a-truck/. `.github/workflows/pages.yml` runs on
+  every push to `main` (and by hand): `npm ci`, `npm run i18n:check`, `npm test` (with `PIAT_SKIP_TIMING=1`: speed
+  ceilings off, results still checked, 60 s per test — `src/lib/__tests__/timing.ts`), `npm run build` with
+  `SITE_BASE=/park-in-a-truck/`, then `upload-pages-artifact` + `deploy-pages`. **Anything merged to `main` goes live.**
+- **Base path:** the site lives under `/park-in-a-truck/`. Every page link goes through `urlFor(locale)` and every file
+  through `u()` (`src/lib/url.ts`); markdown/MDX root links are prefixed by `rehype-base`; data that stores
+  root-absolute paths (`/img/plants/…` in plants.json, park photos) is passed through `u()` where it is drawn. Vite
+  handles `_astro/` assets, fonts, workers and lazy chunks. Never write `"/img/…"`, `fetch('/…')` or `url(/…)` by hand.
+  Checked 2026-10-04 by serving a `SITE_BASE` build under `/park-in-a-truck/` and walking the site in a browser: no
+  request left the prefix.
+- **Unlisted switch:** `src/config.ts` `SEARCH_INDEXING_DEFAULT` (false) → `Base.astro` writes
+  `<meta name="robots" content="noindex, nofollow">` on every page; true → no robots tag. A `SEARCH_INDEXING`
+  build-time env var (the workflow passes the repository variable of that name) wins over the file. No sitemap.
+  `astro.config` `site` is `https://holdthedoorhoid.github.io` (hreflang links are full URLs).
+- **404:** `src/pages/404.astro` → `dist/404.html`, which GitHub Pages serves for any missing address, keeping the
+  address. One page for all languages (exempt from the twin rule): it shows the section for the address's language
+  (`/park-in-a-truck/<code>/…`) with that language's links; words in area `pages`, keys `notFound.*`. Its language
+  box points at each language's home (`Base` prop `langPath`).
+- **Dev pages** (`src/pages/dev/`) exist in `astro dev` only; an integration in `astro.config.mjs` removes `dist/dev/`
+  after every build (`PIAT_DEV_PAGES=1` keeps it).
 
 ### Widgets
 
@@ -387,5 +410,7 @@ branch `agent/<name>`; the orchestrator merges to `main`. Tests: `npm test` (vit
 - Findings for the PiaT team (broken links, mislabeled piece files, guide typos, spreadsheet issues):
   `docs/notes-for-piat-team.md` and `docs/piat-spreadsheet-issues.md`. Owner decides whether/how to send.
 - Ask PiaT: logo files, photo permissions, current prices, gabion wall height (site assumes one course).
-- Hosting: still private / local. To publish on GitHub Pages later: make the repo public (owner's call), build with
-  `SITE_BASE=/park-in-a-truck/`, deploy `dist/`.
+- Hosting: private / local until 2026-10-04; then (owner's decision) public repo + GitHub Pages, **unlisted**, at
+  https://holdthedoorhoid.github.io/park-in-a-truck/ (§2, §3 "Hosting and deploys"). Open: when to let search engines
+  list it (flip `SEARCH_INDEXING`; consider a sitemap and canonical links then); the PDFs under `downloads/` can't carry
+  a robots tag (GitHub Pages sets no headers), so they stay findable if someone else links to them.

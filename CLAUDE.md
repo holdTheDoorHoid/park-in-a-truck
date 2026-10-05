@@ -17,4 +17,6 @@ Read `DESIGN.md` first. It is authoritative (decisions, contracts, ownership).
   through `urlFor(locale)`, saved ids/values never get translated. Read `docs/i18n/HOW-TO-TRANSLATE.md` before
   adding text; run `npm run i18n:check`.
 - Don't commit binaries over ~10 MB; compress PDFs with ghostscript (`-dPDFSETTINGS=/ebook`) and check legibility.
-- The repo is PRIVATE and stays that way until the owner says otherwise. Never push to any other remote.
+- Published (unlisted) on GitHub Pages from `main` since 2026-10-04: **anything merged to `main` goes live**
+  (`.github/workflows/pages.yml`, DESIGN §3 "Hosting and deploys"). The site lives under `/park-in-a-truck/`: links and
+  files through `urlFor()` / `u()`, never a hand-written root path. Never push to any other remote.
