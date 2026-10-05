@@ -71,6 +71,14 @@ export default {
   'g3d.controls': 'Kontwòl modèl 3D a',
   'g3d.helpMouse': 'Trennen l pou vire l. Klike sou li, apre sa woule sourit la pou fè l grandi. Mete sourit la sou yon planch pou w wè gwosè l.',
   'g3d.helpTouch': 'Trennen l pou vire l. Touche l, apre sa pense ak de dwèt pou fè l grandi. Touche yon planch pou w wè gwosè l.',
+  'g3d.kind.lumber': 'Planch',
+  'g3d.kind.sheet': 'Fèy',
+  'g3d.kind.mesh': 'Griyaj fil fè',
+  'g3d.kind.stoneFill': 'Wòch pou ranpli',
+  'g3d.kind.bracket': 'Sipò metal',
+  'g3d.kind.fastener': 'Pyès pou tache',
+  'g3d.kind.fabric': 'Twal',
+  'g3d.kind.other': 'Pyès',
 
   'index.description':
     'Enstriksyon etap pa etap, tankou pou mèb Ikea, pou ban, tab, bwat plant, ban gabyon, yon abri lonbraj ak yon sèn Park in a Truck.',

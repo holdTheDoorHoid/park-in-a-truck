@@ -70,6 +70,14 @@ export default {
   'g3d.controls': 'Commandes du modèle 3D',
   'g3d.helpMouse': 'Faites glisser pour le tourner. Cliquez dessus, puis utilisez la molette pour zoomer. Pointez une planche pour voir sa taille.',
   'g3d.helpTouch': 'Faites glisser pour le tourner. Touchez-le, puis pincez pour zoomer. Touchez une planche pour voir sa taille.',
+  'g3d.kind.lumber': 'Planche',
+  'g3d.kind.sheet': 'Panneau',
+  'g3d.kind.mesh': 'Grillage',
+  'g3d.kind.stoneFill': 'Remplissage de pierres',
+  'g3d.kind.bracket': 'Support',
+  'g3d.kind.fastener': 'Fixation',
+  'g3d.kind.fabric': 'Toile',
+  'g3d.kind.other': 'Pièce',
 
   'index.description':
     'Des instructions de montage étape par étape, comme celles d’Ikea, pour les bancs, les tables, les bacs à plantes, les sièges en gabions, une structure d’ombrage et une scène de Park in a Truck.',

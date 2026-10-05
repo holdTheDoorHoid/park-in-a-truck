@@ -4,7 +4,8 @@
   "materials": [
     {
       "item": "Griyaj fil fè soude 2x2 (metal)",
-      "notes": "Kote ki ka fabrike l: Darby and Sons (darbywiremesh.com) oswa Gabion1.com. Lè w ap kòmande moso koupe sou mezi, mande pou yo koupe moso yo nan bon gwosè, moso fèmen, epi galvanize apre."
+      "notes": "Kote ki ka fabrike l: Darby and Sons (darbywiremesh.com) oswa Gabion1.com. Lè w ap kòmande moso koupe sou mezi, mande pou yo koupe moso yo nan bon gwosè, moso fèmen, epi galvanize apre.",
+      "size": "gwosè 8 (3/16\" dyamèt), galvanize, twou 2\""
     },
     {
       "item": "Bwa 2x4 (dimensional lumber) — sèd wouj (western red cedar), sapen Douglas (Douglas fir), oswa bwa pen trete anba presyon (pressure-treated)",
@@ -39,13 +40,16 @@
       "notes": "Tèt + kad ban gabyon an"
     },
     {
-      "notes": "Panno anba gabyon an, 48\" x 18\""
+      "notes": "Panno anba gabyon an, 48\" x 18\"",
+      "stock": "griyaj fil fè soude 2x2"
     },
     {
-      "notes": "Bò gabyon an (long), 48\" x 18\" chak"
+      "notes": "Bò gabyon an (long), 48\" x 18\" chak",
+      "stock": "griyaj fil fè soude 2x2"
     },
     {
-      "notes": "Bò gabyon an (kout), 18\" x 18\" chak"
+      "notes": "Bò gabyon an (kout), 18\" x 18\" chak",
+      "stock": "griyaj fil fè soude 2x2"
     }
   ],
   "tools": [

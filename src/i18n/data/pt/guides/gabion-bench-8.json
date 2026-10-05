@@ -6,7 +6,8 @@
   "materials": [
     {
       "item": "Tela de arame soldada de metal, malha 2x2",
-      "notes": "Sugestões de quem fabrica: Darby and Sons (darbywiremesh.com) ou Gabion1.com. Ao encomendar peças cortadas sob medida, peça que as peças venham cortadas no tamanho, com as pontas fechadas e galvanizadas depois do corte."
+      "notes": "Sugestões de quem fabrica: Darby and Sons (darbywiremesh.com) ou Gabion1.com. Ao encomendar peças cortadas sob medida, peça que as peças venham cortadas no tamanho, com as pontas fechadas e galvanizadas depois do corte.",
+      "size": "bitola 8 (3/16\" de diâmetro), galvanizada, aberturas de 2\""
     },
     {
       "item": "Madeira serrada 2x4 — cedro-vermelho (western red cedar), pinho Douglas (Douglas fir) ou pinus tratado em autoclave",
@@ -40,13 +41,16 @@
       "notes": "Estrutura do banco de gabião — tampas das pontas e travessas"
     },
     {
-      "notes": "Painel do fundo do gabião, 96\" x 18\""
+      "notes": "Painel do fundo do gabião, 96\" x 18\"",
+      "stock": "tela de arame soldada 2x2"
     },
     {
-      "notes": "Lateral do gabião (comprida), 96\" x 18\" cada"
+      "notes": "Lateral do gabião (comprida), 96\" x 18\" cada",
+      "stock": "tela de arame soldada 2x2"
     },
     {
-      "notes": "Lateral do gabião (curta), 18\" x 18\" cada"
+      "notes": "Lateral do gabião (curta), 18\" x 18\" cada",
+      "stock": "tela de arame soldada 2x2"
     }
   ],
   "tools": [

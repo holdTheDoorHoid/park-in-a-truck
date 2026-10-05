@@ -183,6 +183,11 @@ Extra terms used in the chapters, guides and data (es only; they may belong in t
 | build schedule / stewardship calendar | calendario de construcción / calendario de cuidado del parque | |
 | trash can | bote de basura (zafacón) | |
 | clock times, percents | 8:30 a.m., 20% | As the site formats them for es (es-US): no space before %, "a.m."/"p.m.". |
+| 3D part kinds (guide tooltip): Board · Sheet · Wire mesh · Stone fill · Bracket · Fastener · Fabric · Part | Tabla · Lámina · Malla de alambre · Relleno de piedra · Soporte · Fijación · Tela · Pieza | Sweep 2026-10. |
+| quart (pot size) | cuarto de galón | "Al comprarla: cuarto de galón"; nursery numbers (#2) stay. |
+| toolkit pages (parks sources) | guía Park in a Truck, pág. 69 / págs. 7-13 | Same abbreviations as the guides' sourcePages. |
+| picked thing / answer lists | "Banca con respaldo (elegida)", "donde están los asientos movibles"; "+ Agregar una institución", "Se quitó la institución." | Article and participle agree with the noun (one phrase per kind). |
+| about (a height in the slope sentences) | alrededor de {amount} | Not "unos": {amount} can be "9 pulgadas" (feminine). |
 
 ### zh — 中文 (Simplified)
 
@@ -554,6 +559,10 @@ Added in the second pass (planner, City-data widgets, cost estimator, shade cale
 | Undo / Redo | Defèt / Refè | Planner. |
 | zoom in / zoom out | fè l grandi / fè l piti | |
 | lumber / boards | bwa / planch | |
+| 3D part kinds (guide tooltip): Board · Sheet · Wire mesh · Stone fill · Bracket · Fastener · Fabric · Part | Planch · Fèy · Griyaj fil fè · Wòch pou ranpli · Sipò metal · Pyès pou tache · Twal · Pyès | Sweep 2026-10. |
+| quart (pot size) | ka galon | "Lè w achte l: ka galon". |
+| toolkit pages (parks sources) | gid Park in a Truck la, paj 69 | |
+| picked thing / answer lists | "kote tabourè a ye", "kote chèz ou ka deplase yo ye"; "+ Ajoute yon teren", "Teren an retire." | The determiner follows the last sound (la / a / an / nan), yo for plural things. |
 
 ### fr — Français
 
@@ -644,6 +653,11 @@ Extra terms used in the chapters, guides and data (fr only):
 | geotextile fabric | toile géotextile | |
 | pressure-treated / cedar / Douglas fir | traité sous pression / cèdre / douglas (sapin de Douglas) | |
 | flush / square (adj.) | à ras / d'équerre | |
+| 3D part kinds (guide tooltip): Board · Sheet · Wire mesh · Stone fill · Bracket · Fastener · Fabric · Part | Planche · Panneau · Grillage · Remplissage de pierres · Support · Fixation · Toile · Pièce | Sweep 2026-10. |
+| quart (pot size) | quart de gallon | « À l’achat : quart de gallon ». |
+| toolkit pages (parks sources) | boîte à outils Park in a Truck, p. 69 / p. 7-13 | « p. » for one or several pages, as in the guides. |
+| slope places | du coin avant gauche … au bord du fond · près du côté gauche · vers le milieu du terrain | The contracted preposition sits in the place (slope.from / to / near), not in the sentence. |
+| picked thing | « là où se trouve le tabouret », « Table de 2' (choisie) », « Sièges mobiles (choisis) » | One phrase per kind, agreeing in gender and number. |
 
 ### pt — Português (Brasil)
 
@@ -731,6 +745,12 @@ Extra terms used in the chapters, guides and data (pt only):
 | geotextile fabric | manta geotêxtil | |
 | pressure-treated / cedar / Douglas fir | tratada em autoclave / cedro / pinho Douglas (Douglas fir) | |
 | flush / square (adj.) | rente / no esquadro | |
+| 3D part kinds (guide tooltip): Board · Sheet · Wire mesh · Stone fill · Bracket · Fastener · Fabric · Part | Tábua · Chapa · Tela de arame · Enchimento de pedra · Suporte · Fixador · Manta · Peça | Sweep 2026-10. |
+| quart (pot size) | quarto de galão | "Na compra: quarto de galão". |
+| toolkit pages (parks sources) | guia Park in a Truck, p. 69 / pp. 7-13 | As in the guides' sourcePages. |
+| slope places | do canto esquerdo da frente … ao canto direito do fundo / à borda da frente · perto do lado esquerdo · no meio do terreno | The contracted preposition sits in the place (slope.from / to / near). |
+| picked thing / answer lists | "Mesa de 2' (escolhida)", "onde estão os assentos móveis"; "+ Adicionar uma instituição", "Instituição removida." | Article and participle agree with the noun. |
+| feet (plural forms) | 1 pé, 2 pés, pés² | Brazilian plural rule: 0 and 1.x take the singular ("1,5 pé"). |
 
 ### sw — Kiswahili
 

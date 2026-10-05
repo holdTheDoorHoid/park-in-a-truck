@@ -57,7 +57,7 @@ export default {
   'done.badge': '✓ terminé',
   'progress.of': '{done} sur {total}',
   'progress.done': '{done} sur {total} terminées',
-  'progress.total': '{done} sur {total} étapes terminées',
+  'progress.total': '{done} sur {total} sous-étapes terminées',
 
   'pdf.label': 'Page du cahier original',
   'pdf.page': '(page {page} du PDF)',
