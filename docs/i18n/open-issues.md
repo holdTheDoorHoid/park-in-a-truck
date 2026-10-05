@@ -102,15 +102,28 @@ Phase B (polish, 2026-10-04): what translators still have to do for the items ab
 `docs/i18n/SWEEP.md`. Plant-list mismatches went to `docs/notes-for-piat-team.md`.
 
 ## After the sweep (final small fixes)
-- [ ] 3D tooltip: parts named by an English label show English in every language ("Gabion fill material", "Bracing
+- [x] 3D tooltip: parts named by an English label show English in every language ("Gabion fill material", "Bracing
       material (spare 2x2 mesh)", "Geotextile fabric", "L brackets", "J hooks", "Backrest brackets", "P-1 (18"x18"
       box)") — `src/lib/guides3d/labels.ts:41` uses the label as the name; the models overlay only allows
       `asBuilt.reason`. Make part labels translatable (overlay or catalog keys) and translate in all 11 languages.
-- [ ] /parks/ source line joins parts with a hard-coded `'; '` (`src/pages/parks/index.astro:31`) — French needs a
+      *Done (final-fixes):* catalog keys `guides` `g3d.part.*` and `cut.partInBox` ("P-1 (bac de 18"x18")"), named
+      in `src/components/guides/partNames.ts` and used by the tooltip, cut pile, board labels, step summary and the cut
+      list table; the tooltip's "kind, size" uses `g3d.detail` (zh "，", ar "،"). A model test fails when a new
+      labelled part has no name.
+- [x] /parks/ source line joins parts with a hard-coded `'; '` (`src/pages/parks/index.astro:31`) — French needs a
       non-breaking space before ";" (and Chinese writes "；") — use a catalog separator or list format.
-- [ ] Planner: the selection clears when you change steps, so on Sun & shade "Where the picked thing is" (spot chart /
+      *Done:* `parks` `source.sep` (fr "\u00a0; ", zh "；", ar "؛ ").
+- [x] Planner: the selection clears when you change steps, so on Sun & shade "Where the picked thing is" (spot chart /
       shade calendar) may be unreachable by clicking — check; if so, keep the selection across steps or let people
-      pick an item on the Sun step.
+      pick an item on the Sun step. *Checked:* clicking a thing on the Sun step did pick it, but a thing picked on
+      Arrange (the list is the keyboard way) was dropped on the way. The selection now stays across steps (not a
+      tree marked to come down, on steps that hide it), and the Sun step names it ("where the stool is").
+- [x] Arabic addresses in data: translated data now gets the same automatic address isolation as messages
+      (`src/i18n/data.ts`), so the hand-made marks around plain addresses in `data/ar/resources.json` are gone
+      (kept where they also hold a phone number, a ZIP code or a company name).
+- [x] 404 page: `pages` `notFound.*` translated into all 11 languages.
+- [x] Planner: the far-buildings City query (taller buildings farther out) gets 60 s instead of 20 s, and the lot no
+      longer waits for it — the far buildings are added when they arrive (`src/lib/planner/site.ts`).
 
 ## For native-speaker review (per language)
 
