@@ -107,7 +107,10 @@ Phase B (polish, 2026-10-04): what translators still have to do for the items ab
       box)") — `src/lib/guides3d/labels.ts:41` uses the label as the name; the models overlay only allows
       `asBuilt.reason`. Make part labels translatable (overlay or catalog keys) and translate in all 11 languages.
 - [ ] /parks/ source line joins parts with a hard-coded `'; '` (`src/pages/parks/index.astro:31`) — French needs a
-      non-breaking space before ";" — use a catalog separator or list format.
+      non-breaking space before ";" (and Chinese writes "；") — use a catalog separator or list format.
+- [ ] Planner: the selection clears when you change steps, so on Sun & shade "Where the picked thing is" (spot chart /
+      shade calendar) may be unreachable by clicking — check; if so, keep the selection across steps or let people
+      pick an item on the Sun step.
 
 ## For native-speaker review (per language)
 
