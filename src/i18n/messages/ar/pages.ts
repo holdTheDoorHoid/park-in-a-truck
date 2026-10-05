@@ -117,4 +117,9 @@ export default {
   'resources.contact.phone': 'الهاتف:',
   'resources.contact.instagram': 'Instagram:',
   'resources.contact.facebook': 'Facebook:',
+  'notFound.title': 'الصفحة غير موجودة',
+  'notFound.lede': 'لا توجد صفحة على هذا العنوان. ربما يكون الرابط قديمًا، أو فيه خطأ في الكتابة.',
+  'notFound.home': 'اذهب إلى الصفحة الرئيسية',
+  'notFound.steps': 'اعرض الخطوات الست',
+  'notFound.saved': 'كل ما حفظته لا يزال في هذا المتصفح، في <a href="{href}">حديقتي</a>.',
 } satisfies Translation<typeof en>;

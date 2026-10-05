@@ -112,4 +112,9 @@ export default {
   'resources.contact.phone': 'Điện thoại:',
   'resources.contact.instagram': 'Instagram:',
   'resources.contact.facebook': 'Facebook:',
+  'notFound.title': 'Không tìm thấy trang',
+  'notFound.lede': 'Không có trang nào ở địa chỉ này. Có thể đường liên kết đã cũ, hoặc bị gõ sai.',
+  'notFound.home': 'Về trang chủ',
+  'notFound.steps': 'Xem sáu bước',
+  'notFound.saved': 'Mọi thứ bạn đã lưu vẫn còn trong trình duyệt này, ở <a href="{href}">Công viên của tôi</a>.',
 } satisfies Translation<typeof en>;

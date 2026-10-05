@@ -109,4 +109,9 @@ export default {
   'resources.contact.phone': '电话：',
   'resources.contact.instagram': 'Instagram：',
   'resources.contact.facebook': 'Facebook：',
+  'notFound.title': '找不到页面',
+  'notFound.lede': '这个网址没有页面。链接可能已经过时，也可能有输入错误。',
+  'notFound.home': '前往首页',
+  'notFound.steps': '查看六个步骤',
+  'notFound.saved': '您保存的内容都还在这个浏览器里，在<a href="{href}">我的公园</a>中。',
 } satisfies Translation<typeof en>;

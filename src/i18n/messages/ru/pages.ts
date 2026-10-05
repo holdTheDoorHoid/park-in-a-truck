@@ -115,4 +115,9 @@ export default {
   'resources.contact.phone': 'Телефон:',
   'resources.contact.instagram': 'Instagram:',
   'resources.contact.facebook': 'Facebook:',
+  'notFound.title': 'Страница не найдена',
+  'notFound.lede': 'По этому адресу нет страницы. Возможно, ссылка устарела или в ней опечатка.',
+  'notFound.home': 'На главную страницу',
+  'notFound.steps': 'Посмотреть шесть шагов',
+  'notFound.saved': 'Всё, что вы сохранили, по-прежнему хранится в этом браузере, в разделе <a href="{href}">Мой парк</a>.',
 } satisfies Translation<typeof en>;

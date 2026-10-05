@@ -113,4 +113,9 @@ export default {
   'resources.contact.phone': 'Téléphone :',
   'resources.contact.instagram': 'Instagram :',
   'resources.contact.facebook': 'Facebook :',
+  'notFound.title': 'Page introuvable',
+  'notFound.lede': 'Il n’y a pas de page à cette adresse. Le lien est peut-être ancien, ou il contient une faute de frappe.',
+  'notFound.home': 'Aller à la page d’accueil',
+  'notFound.steps': 'Voir les six étapes',
+  'notFound.saved': 'Tout ce que vous avez enregistré est toujours dans ce navigateur, dans <a href="{href}">Mon parc</a>.',
 } satisfies Translation<typeof en>;
