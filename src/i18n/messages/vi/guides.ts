@@ -73,6 +73,15 @@ export default {
   'g3d.controls': 'Nút điều khiển mô hình 3D',
   'g3d.helpMouse': 'Kéo để xoay. Bấm vào mô hình, rồi cuộn chuột để phóng to. Trỏ vào một thanh gỗ để xem kích thước.',
   'g3d.helpTouch': 'Kéo để xoay. Chạm vào mô hình, rồi chụm hai ngón để phóng to. Chạm vào một thanh gỗ để xem kích thước.',
+  // loại chi tiết trong ô chú thích của mô hình 3D, khi chi tiết không có nhãn riêng: "Thanh gỗ · 2x4 × 25″"
+  'g3d.kind.lumber': 'Thanh gỗ',
+  'g3d.kind.sheet': 'Tấm',
+  'g3d.kind.mesh': 'Lưới thép',
+  'g3d.kind.stoneFill': 'Đá nhồi rọ',
+  'g3d.kind.bracket': 'Giá đỡ',
+  'g3d.kind.fastener': 'Đồ ngũ kim',
+  'g3d.kind.fabric': 'Vải',
+  'g3d.kind.other': 'Chi tiết',
 
   'index.description':
     'Hướng dẫn lắp ráp từng bước, kiểu Ikea, cho ghế dài, bàn, bồn trồng cây, ghế rọ đá (gabion), mái che nắng và sân khấu của Park in a Truck.',

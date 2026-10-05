@@ -51,6 +51,8 @@ export default {
   'picker.clear': '清除',
   'picker.mature': '成株：{size}',
   'picker.atPurchase': '购买时：{size}',
+  'pot.quart': '夸脱盆',
+  'pot.oneQuart': '1夸脱盆',
   'picker.each': '每株 {price}',
   'picker.howMany': '{name}要多少？',
   'picker.picked': '已选 <strong>{chosen}</strong> 株，共需 <strong>{count}</strong> 株',

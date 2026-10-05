@@ -70,6 +70,15 @@ export default {
   'g3d.controls': '3D 模型控制',
   'g3d.helpMouse': '拖动来旋转。点击模型后，滚动鼠标滚轮来缩放。把鼠标指向一块木板，就能看到它的尺寸。',
   'g3d.helpTouch': '拖动来旋转。点一下模型，再用两指捏合来缩放。点一块木板，就能看到它的尺寸。',
+  /** 3D 模型提示框里部件的种类（部件没有自己的标签时）："木板 · 2x4 × 25″" */
+  'g3d.kind.lumber': '木板',
+  'g3d.kind.sheet': '板材',
+  'g3d.kind.mesh': '钢丝网',
+  'g3d.kind.stoneFill': '填充石料',
+  'g3d.kind.bracket': '支架',
+  'g3d.kind.fastener': '紧固件',
+  'g3d.kind.fabric': '布料',
+  'g3d.kind.other': '部件',
 
   'index.description':
     'Park in a Truck 长椅、桌子、种植箱、石笼座椅、遮阳棚和舞台的分步组装说明，像宜家说明书一样。',

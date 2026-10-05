@@ -53,6 +53,8 @@ export default {
   'picker.clear': '지우기',
   'picker.mature': '다 자라면: {size}',
   'picker.atPurchase': '살 때 크기: {size}',
+  'pot.quart': '쿼트 화분',
+  'pot.oneQuart': '1쿼트 화분',
   'picker.each': '하나에 {price}',
   'picker.howMany': '{name} 몇 개?',
   'picker.picked': '식물 <strong>{count}</strong>개 중 <strong>{chosen}</strong>개 고름',

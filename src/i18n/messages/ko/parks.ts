@@ -13,6 +13,17 @@ export default {
   'video.alt': '영상: {title}',
   'link.english': '(영어)',
   'park.source': '출처: {source}',
+  // "출처:" 줄과 사진 출처의 낱말 (신문 이름과 사람 이름은 그대로)
+  'source.toolkitPage': 'Park in a Truck 툴킷 {page}쪽',
+  'source.toolkitPages': 'Park in a Truck 툴킷 {pages}쪽',
+  'source.toolkitAck': 'Park in a Truck 툴킷 {page}쪽 감사의 글',
+  'source.linktree': 'Park in a Truck의 Linktree',
+  'source.linktreeOnly': 'Park in a Truck의 Linktree에만 있음',
+  'source.unconfirmedElsewhere': '다른 곳에서는 확인되지 않음',
+  'source.unconfirmedBeyond': '그 밖에는 확인되지 않음',
+  'source.jeffersonNews': 'Jefferson 뉴스',
+  'photo.via': '{name} 촬영, Park in a Truck 툴킷 수록',
+  'photo.toolkit': 'Park in a Truck 툴킷',
 
   'map.label': 'Park in a Truck으로 만든 공원 지도',
   'map.details': '자세히 보기',
