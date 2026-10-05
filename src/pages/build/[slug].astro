@@ -1,7 +1,7 @@
 ---
 // /build/<slug>/ — one assembly guide: hero, at-a-glance, materials + tools
-// checklists, cut list, numbered steps with enlargeable diagrams, finishing &
-// safety notes, supplier links, PDF download, prev/next. Owner: guides workstream
+// checklists, "before you begin" (safety), cut list, numbered steps with enlargeable
+// diagrams, finishing notes, supplier links, PDF download, prev/next. Owner: guides workstream
 // (content); the page layout and the 3D viewer beside the steps: guide3d-viewer.
 //
 // When src/data/guides/models/<slug>.json exists, the steps get a 3D model beside
@@ -137,6 +137,18 @@ if (guide.cost) glance.push({ label: t('glance.cost'), value: guide.cost });
     </div>
   </section>
 
+  {/* Read before anything is cut (the PDFs put this up front too). */}
+  {guide.safety && guide.safety.length > 0 && (
+    <section class="wrap section" {...contentLang}>
+      <h2 class="ruled">{t('safety')}</h2>
+      <div class="callout callout-warning before-begin">
+        <ul>
+          {guide.safety.map((s) => <li>{s}</li>)}
+        </ul>
+      </div>
+    </section>
+  )}
+
   <section class="wrap section" {...contentLang}>
     <h2 class="ruled">{t('cut')}</h2>
     <CutListTable items={guide.cutList} />
@@ -170,23 +182,12 @@ if (guide.cost) glance.push({ label: t('glance.cost'), value: guide.cost });
     </script>
   )}
 
-  {(guide.finishing || (guide.safety && guide.safety.length > 0)) && (
-    <section class="wrap section finishing-safety" {...contentLang}>
-      {guide.finishing && (
-        <div>
-          <h2 class="ruled">{t('finishing')}</h2>
-          <div class="prose">
-            {guide.finishing.split('\n\n').map((p) => <p>{p}</p>)}
-          </div>
-        </div>
-      )}
-      {guide.safety && guide.safety.length > 0 && (
-        <Callout kind="warning" title={t('safety')}>
-          <ul>
-            {guide.safety.map((s) => <li>{s}</li>)}
-          </ul>
-        </Callout>
-      )}
+  {guide.finishing && (
+    <section class="wrap section" {...contentLang}>
+      <h2 class="ruled">{t('finishing')}</h2>
+      <div class="prose">
+        {guide.finishing.split('\n\n').map((p) => <p>{p}</p>)}
+      </div>
     </section>
   )}
 
@@ -369,11 +370,13 @@ if (guide.cost) glance.push({ label: t('glance.cost'), value: guide.cost });
       display: block !important;
     }
   }
-  .finishing-safety {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 32px;
-    align-items: start;
+  .before-begin {
+    margin: 0;
+    max-width: 72ch;
+  }
+  .before-begin ul {
+    margin: 0;
+    padding-inline-start: 1.2em;
   }
   .links {
     list-style: none;
@@ -428,8 +431,7 @@ if (guide.cost) glance.push({ label: t('glance.cost'), value: guide.cost });
   }
   @media (max-width: 860px) {
     .hero-grid,
-    .need-grid,
-    .finishing-safety {
+    .need-grid {
       grid-template-columns: 1fr;
     }
   }
