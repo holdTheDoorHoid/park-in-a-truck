@@ -57,7 +57,8 @@
       "title": "Park in a Truck yapewa tuzo ya Groundbreaker ya 2020 ya Green Building United"
     },
     {
-      "title": "'Park in a Truck' ni kama Ikea, lakini kwa kujenga bustani za mtaa"
+      "title": "'Park in a Truck' ni kama Ikea, lakini kwa kujenga bustani za mtaa",
+      "note": "Haikuwezekana kuthibitisha kama kiungo kinafunguka (tovuti inazuia maombi ya kiotomatiki); kiungo ni cha PiaT yenyewe, na kinathibitishwa na makala ya Jefferson ya Septemba 2020 kuhusu tuzo hiyo hiyo."
     },
     {
       "title": "Viwanja vitupu vinageuka kuwa bustani nzuri katika mitaa ya Philadelphia"
@@ -66,7 +67,8 @@
       "title": "Programu ya Park in a Truck inabadilisha maeneo ya kijani ya mjini huko Philadelphia kwa msaada wa vijana wa mtaa"
     },
     {
-      "title": "ASLA Spotlight — majira ya kuchipua 2025"
+      "title": "ASLA Spotlight — majira ya kuchipua 2025",
+      "note": "Chapisho la kidijitali la kurasa za kugeuza (flip-book); imethibitishwa kuwa kiungo kinafanya kazi na ni toleo la majira ya kuchipua 2025, lakini maandishi ya kurasa zake hayawezi kutolewa kiotomatiki — lifungue mwenyewe upate makala kuhusu Park in a Truck."
     },
     {
       "title": "Park in a Truck"
@@ -394,7 +396,8 @@
             "title": "Green2015: An Action Plan for the First 500 Acres (mpango wa ekari 500 za kwanza)"
           },
           {
-            "title": "Grounded in Philly"
+            "title": "Grounded in Philly",
+            "description": "Public Interest Law Center (kituo cha sheria cha maslahi ya umma) — Garden Justice Legal Initiative, simu 215-627-7100, namba ya ndani 236"
           },
           {
             "title": "Neighborhood Gardens Trust"
@@ -450,16 +453,20 @@
         "title": "05 Jenga",
         "entries": [
           {
-            "title": "Woodland Building Supply"
+            "title": "Woodland Building Supply",
+            "description": "4701 Woodland Ave, Phila · 215-727-5333"
           },
           {
-            "title": "C&R Building Supply"
+            "title": "C&R Building Supply",
+            "description": "1601 S 49th St, Phila"
           },
           {
-            "title": "A&A Lumber"
+            "title": "A&A Lumber",
+            "description": "109 Old Limestone Rd, Avondale PA"
           },
           {
-            "title": "Philly Reclaim"
+            "title": "Philly Reclaim",
+            "description": "150 W Butler St, Phila — ghala la vifaa vya ujenzi vilivyotumika; tazama pia PowerCorpsPHL"
           },
           {
             "title": "PowerCorpsPHL"
@@ -477,40 +484,52 @@
             "title": "Willis Orchards — miti ya matunda"
           },
           {
-            "title": "Good Host Plants"
+            "title": "Good Host Plants",
+            "description": "150 W Butler St, Phila — wataalamu wa eneo hili wa mimea ya wachavushaji"
           },
           {
-            "title": "LandHealth Institute Nursery (Philaflora)"
+            "title": "LandHealth Institute Nursery (Philaflora)",
+            "description": "West Philadelphia, 267-571-5750"
           },
           {
-            "title": "Pleasant Run Nursery"
+            "title": "Pleasant Run Nursery",
+            "description": "93 Ellisdale Rd, Allentown NJ 08501 · 609-259-8585 — wanaleta kwa oda ya angalau $1,250"
           },
           {
-            "title": "Pinelands Nursery"
+            "title": "Pinelands Nursery",
+            "description": "323 Island Rd, Columbus NJ 08022 · 609-291-9486"
           },
           {
-            "title": "Archewild"
+            "title": "Archewild",
+            "description": "2191 Hillcrest Rd, Quakertown PA 18951"
           },
           {
-            "title": "Underdog Landscape Supply"
+            "title": "Underdog Landscape Supply",
+            "description": "701 Washington St, Conshohocken PA · 610-260-9747"
           },
           {
-            "title": "Castor Materials"
+            "title": "Castor Materials",
+            "description": "3301 S 61st St, Phila"
           },
           {
-            "title": "D&S Supply"
+            "title": "D&S Supply",
+            "description": "4260 Macalester St, Phila · 215-457-1177"
           },
           {
-            "title": "Richard S. Burns & Co."
+            "title": "Richard S. Burns & Co.",
+            "description": "4300 Rising Sun Ave, Phila · 215-324-6377 — vifaa vilivyorejelezwa vinauzwa"
           },
           {
-            "title": "West Philadelphia Tool Library"
+            "title": "West Philadelphia Tool Library",
+            "description": "1314 S 47th St, Phila"
           },
           {
-            "title": "Diamond Tool"
+            "title": "Diamond Tool",
+            "description": "2800 Grays Ferry Ave, Phila"
           },
           {
-            "title": "Fairmount Park Organic Recycling Center"
+            "title": "Fairmount Park Organic Recycling Center",
+            "description": "3850 W Ford Rd, Phila · 215-685-0108"
           }
         ]
       },

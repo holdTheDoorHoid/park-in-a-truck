@@ -6,6 +6,7 @@
   "materials": [
     {
       "item": "Metal na 2x2 na welded-wire mesh",
+      "size": "8 gauge (3/16\" ang diyametro), galvanized, 2\" ang butas",
       "notes": "Mungkahing gagawa nito: Darby and Sons (darbywiremesh.com) o Gabion1.com. Kapag umoorder ng mga pirasong pinutol ayon sa sukat, hilinging putulin ang mga piraso sa tamang laki, saradong piraso, at i-galvanize pagkatapos (galvanized after)."
     },
     {
@@ -41,12 +42,15 @@
       "notes": "Ibabaw + frame ng upuang gabion"
     },
     {
+      "stock": "2x2 na welded-wire mesh",
       "notes": "Panel sa ilalim ng gabion, 48\" x 18\""
     },
     {
+      "stock": "2x2 na welded-wire mesh",
       "notes": "Gilid ng gabion (mahaba), 48\" x 18\" bawat isa"
     },
     {
+      "stock": "2x2 na welded-wire mesh",
       "notes": "Gilid ng gabion (maikli), 18\" x 18\" bawat isa"
     }
   ],

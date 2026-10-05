@@ -4,6 +4,7 @@
   "materials": [
     {
       "item": "Wavu wa waya wa chuma ulioungwa wa 2x2",
+      "size": "waya wa gauge 8 (kipenyo cha 3/16\"), wa mabati, matundu ya 2\"",
       "notes": "Mapendekezo ya utengenezaji: Darby and Sons (darbywiremesh.com) au Gabion1.com. Unapoagiza vipande vilivyokatwa maalum, omba vipande vikatwe kwa ukubwa unaotakiwa, vifungwe, na vipakwe mabati baada ya kukatwa (galvanized after)."
     },
     {
@@ -39,12 +40,15 @@
       "notes": "Juu ya benchi ya gabioni + fremu"
     },
     {
+      "stock": "wavu wa waya ulioungwa wa 2x2",
       "notes": "Kibao cha chini cha gabioni, 48\" x 18\""
     },
     {
+      "stock": "wavu wa waya ulioungwa wa 2x2",
       "notes": "Upande wa gabioni (mrefu), 48\" x 18\" kila kimoja"
     },
     {
+      "stock": "wavu wa waya ulioungwa wa 2x2",
       "notes": "Upande wa gabioni (mfupi), 18\" x 18\" kila kimoja"
     }
   ],

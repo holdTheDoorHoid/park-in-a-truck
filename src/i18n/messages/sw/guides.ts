@@ -71,6 +71,14 @@ export default {
   'g3d.controls': 'Vidhibiti vya mfano wa 3D',
   'g3d.helpMouse': 'Buruta ili kukigeuza. Kibofye, kisha sogeza gurudumu la kipanya kukuza. Elekeza kwenye ubao uone ukubwa wake.',
   'g3d.helpTouch': 'Buruta ili kukigeuza. Kiguse, kisha bana kwa vidole kukuza. Gusa ubao uone ukubwa wake.',
+  'g3d.kind.lumber': 'Ubao',
+  'g3d.kind.sheet': 'Bamba',
+  'g3d.kind.mesh': 'Wavu wa waya',
+  'g3d.kind.stoneFill': 'Mawe ya kujazia',
+  'g3d.kind.bracket': 'Bano',
+  'g3d.kind.fastener': 'Kifungio',
+  'g3d.kind.fabric': 'Kitambaa',
+  'g3d.kind.other': 'Kipande',
 
   'index.description':
     'Maelekezo ya kuunganisha hatua kwa hatua, kama ya Ikea, ya mabenchi, meza, masanduku ya mimea, viti vya gabioni, paa la kivuli na jukwaa vya Park in a Truck.',

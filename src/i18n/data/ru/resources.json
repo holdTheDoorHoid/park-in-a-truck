@@ -57,7 +57,8 @@
       "title": "Park in a Truck получил премию Groundbreaker 2020 от Green Building United"
     },
     {
-      "title": "«Park in a Truck» — это как Ikea, только для строительства парков в районах"
+      "title": "«Park in a Truck» — это как Ikea, только для строительства парков в районах",
+      "note": "Не удалось проверить, открывается ли ссылка (сайт блокирует автоматические запросы); это ссылка самого PiaT, и её подтверждает статья Jefferson от сентября 2020 года об этой же награде."
     },
     {
       "title": "Пустыри превращаются в красивые парки в районах Филадельфии"
@@ -66,7 +67,8 @@
       "title": "Программа Park in a Truck с помощью молодёжи района преображает зелёные места Филадельфии"
     },
     {
-      "title": "ASLA Spotlight — весна 2025"
+      "title": "ASLA Spotlight — весна 2025",
+      "note": "Цифровой журнал-флипбук; ссылка работает, и это выпуск весны 2025 года, но текст его страниц нельзя извлечь автоматически — откройте его сами, чтобы найти материал о Park in a Truck."
     },
     {
       "title": "Park in a Truck"
@@ -394,7 +396,8 @@
             "title": "Green2015: An Action Plan for the First 500 Acres (план действий для первых 500 акров)"
           },
           {
-            "title": "Grounded in Philly"
+            "title": "Grounded in Philly",
+            "description": "Public Interest Law Center (юридический центр) — Garden Justice Legal Initiative, 215-627-7100, доб. 236"
           },
           {
             "title": "Neighborhood Gardens Trust"
@@ -450,16 +453,20 @@
         "title": "05 Создать",
         "entries": [
           {
-            "title": "Woodland Building Supply"
+            "title": "Woodland Building Supply",
+            "description": "4701 Woodland Ave, Phila · 215-727-5333"
           },
           {
-            "title": "C&R Building Supply"
+            "title": "C&R Building Supply",
+            "description": "1601 S 49th St, Phila"
           },
           {
-            "title": "A&A Lumber"
+            "title": "A&A Lumber",
+            "description": "109 Old Limestone Rd, Avondale PA"
           },
           {
-            "title": "Philly Reclaim"
+            "title": "Philly Reclaim",
+            "description": "150 W Butler St, Phila — склад бывших в употреблении строительных материалов; см. также PowerCorpsPHL"
           },
           {
             "title": "PowerCorpsPHL"
@@ -477,40 +484,52 @@
             "title": "Willis Orchards — плодовые деревья"
           },
           {
-            "title": "Good Host Plants"
+            "title": "Good Host Plants",
+            "description": "150 W Butler St, Phila — местные специалисты по растениям для опылителей"
           },
           {
-            "title": "LandHealth Institute Nursery (Philaflora)"
+            "title": "LandHealth Institute Nursery (Philaflora)",
+            "description": "West Philadelphia, 267-571-5750"
           },
           {
-            "title": "Pleasant Run Nursery"
+            "title": "Pleasant Run Nursery",
+            "description": "93 Ellisdale Rd, Allentown NJ 08501 · 609-259-8585 — доставка при заказе от $1,250"
           },
           {
-            "title": "Pinelands Nursery"
+            "title": "Pinelands Nursery",
+            "description": "323 Island Rd, Columbus NJ 08022 · 609-291-9486"
           },
           {
-            "title": "Archewild"
+            "title": "Archewild",
+            "description": "2191 Hillcrest Rd, Quakertown PA 18951"
           },
           {
-            "title": "Underdog Landscape Supply"
+            "title": "Underdog Landscape Supply",
+            "description": "701 Washington St, Conshohocken PA · 610-260-9747"
           },
           {
-            "title": "Castor Materials"
+            "title": "Castor Materials",
+            "description": "3301 S 61st St, Phila"
           },
           {
-            "title": "D&S Supply"
+            "title": "D&S Supply",
+            "description": "4260 Macalester St, Phila · 215-457-1177"
           },
           {
-            "title": "Richard S. Burns & Co."
+            "title": "Richard S. Burns & Co.",
+            "description": "4300 Rising Sun Ave, Phila · 215-324-6377 — продажа вторичных материалов"
           },
           {
-            "title": "West Philadelphia Tool Library"
+            "title": "West Philadelphia Tool Library",
+            "description": "1314 S 47th St, Phila"
           },
           {
-            "title": "Diamond Tool"
+            "title": "Diamond Tool",
+            "description": "2800 Grays Ferry Ave, Phila"
           },
           {
-            "title": "Fairmount Park Organic Recycling Center"
+            "title": "Fairmount Park Organic Recycling Center",
+            "description": "3850 W Ford Rd, Phila · 215-685-0108"
           }
         ]
       },

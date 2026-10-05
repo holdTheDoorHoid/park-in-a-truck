@@ -431,6 +431,7 @@ The City as a government is «город» / «городские власти»
 | *(ru only)* side-yard eligible · on hold (Land Bank) | можно как боковой двор · зарезервирован | |
 | *(ru only)* flood zone · Council district · planning district | зона затопления · округ городского совета · район планирования | |
 | *(ru only)* time of day | 12-hour «до полудня / после полудня» in the planner | Russian uses 24 h; the checker rejects {hour24} (reported) |
+| *(ru only)* 3D part kinds (tooltip) · pot size "Quart" | Доска · Лист · Сетка · Каменная засыпка · Кронштейн · Крепёж · Ткань · Деталь · кварта | picked things agree in gender: «Табурет (выбран)», «Сцена (выбрана)», «Провода (выбраны)» |
 
 ### ar — العربية
 
@@ -482,7 +483,7 @@ Tone: Modern Standard Arabic kept simple. Address one reader with the masculine-
 | in English | بالإنجليزية | Added as "(بالإنجليزية)" after English-only links. |
 | ft, in, sq ft, $ | قدم، بوصة، قدم مربع، $ / دولار | Write the unit as a word after the number, never the ' and " marks (they flip around in right-to-left text): 6 أقدام، 2.5 بوصة، 12 قدمًا. Plural: 1 قدم، قدمان، 3–10 أقدام، 11+ قدمًا (same for بوصة/بوصات). Dimensions with ×: 18 × 48 بوصة. |
 
-Extra terms used consistently (not in the English table): mulch = غطاء التربة (المالتش) · topsoil = التربة السطحية · gravel = الحصى · weeds = الأعشاب الضارة · pre-emergent = مبيد وقائي قبل الإنبات · impact driver = المفك الصدمي · self-driving exterior wood screws = براغي خشب خارجية ذاتية الحفر · carpenter's square = زاوية النجار القائمة · miter saw = منشار الزوايا · pre-drill = يحفر مسبقًا · hog rings = حلقات التثبيت · geotextile fabric = قماش جيوتكستايل · Park Ambassador = سفير الحديقة (Park Ambassador) · Park Patch = رقعة الحديقة (Park Patch) · street tree = شجرة الشارع · fire hydrant = صنبور إطفاء الحرائق · downspout = مزراب · volunteer waiver = نموذج التنازل وإخلاء المسؤولية للمتطوعين · build day = يوم البناء. Planner and cost: the spreadsheet (PiaT's cost sheet) = الجدول · contingency = احتياطي للطوارئ · tool rental = تأجير الأدوات · price needed = يحتاج إلى سعر · order list = قائمة الطلب · hardscape / softscape = أرض صلبة / أرض لينة · block (of a street, "the 2200 block") = مقطع (مقطع 2200) · dappled shade = ظل متقطع · compass points with the article (الشمال، الجنوب الغربي) · degrees as words (90 درجة; the ° sign flips) · counts that need a plural use "label: {count}" (عدد البنود: 3) so every Arabic plural form is grammatical.
+Extra terms used consistently (not in the English table): mulch = غطاء التربة (المالتش) · topsoil = التربة السطحية · gravel = الحصى · weeds = الأعشاب الضارة · pre-emergent = مبيد وقائي قبل الإنبات · impact driver = المفك الصدمي · self-driving exterior wood screws = براغي خشب خارجية ذاتية الحفر · carpenter's square = زاوية النجار القائمة · miter saw = منشار الزوايا · pre-drill = يحفر مسبقًا · hog rings = حلقات التثبيت · geotextile fabric = قماش جيوتكستايل · Park Ambassador = سفير الحديقة (Park Ambassador) · Park Patch = رقعة الحديقة (Park Patch) · street tree = شجرة الشارع · fire hydrant = صنبور إطفاء الحرائق · downspout = مزراب · volunteer waiver = نموذج التنازل وإخلاء المسؤولية للمتطوعين · build day = يوم البناء. Planner and cost: the spreadsheet (PiaT's cost sheet) = الجدول · contingency = احتياطي للطوارئ · tool rental = تأجير الأدوات · price needed = يحتاج إلى سعر · order list = قائمة الطلب · hardscape / softscape = أرض صلبة / أرض لينة · block (of a street, "the 2200 block") = مقطع (مقطع 2200) · dappled shade = ظل متقطع · compass points with the article (الشمال، الجنوب الغربي) · degrees as words (90 درجة; the ° sign flips) · counts that need a plural use "label: {count}" (عدد البنود: 3) so every Arabic plural form is grammatical. Lengths with all six forms (sweep, Oct 2026): in sentences one and two as words (قدم واحدة، على بُعد قدمين), in labels قدمان; 3–10 أقدام, 11–99 قدمًا, 100+ and decimals قدم (same for قدم مربع، ميل). 3D part kinds: لوح خشب · صفيحة · شبك معدني · حشو حجري · دعامة معدنية · قطعة تثبيت · قماش · قطعة; pot size Quart = كوارت. Picked things agree in gender: (مختار) / (مختارة). In `data/ar/resources.json` an address or phone number next to Arabic words is wrapped in \u2066…\u2069 so it stays in one piece.
 
 ### ht — Kreyòl ayisyen
 
@@ -842,6 +843,7 @@ Swahili explanation and the English in brackets the first time on a page: *matan
 | *(sw only)* block (the 2200 block of a street) | sehemu ya mtaa ("Sehemu ya 2200") | |
 | *(sw only)* fern · sedge | kangaga · nyasi (sedge) | Plant names: Swahili description + English name in brackets for the nursery ("Kangaga (lady fern)"). Needs a native check. |
 | *(sw only)* clock times | 12-hour "3:30 PM" in the planner (as on US clocks); the shade calendar gets Intl's 24-hour "15:30" | Never "saa 3" with a 12-hour clock: East African readers would read it as Swahili time (= 9 o'clock). |
+| *(sw only)* 3D part kinds (tooltip) · pot size "Quart" | Ubao · Bamba · Wavu wa waya · Mawe ya kujazia · Bano · Kifungio · Kitambaa · Kipande · kwati (quart) | "removed" messages are passive and agree by noun class: *Kiwanja kimeondolewa*, *Mwanakamati ameondolewa*, *Tukio limeondolewa*. |
 
 ### ko — 한국어
 
@@ -1057,3 +1059,4 @@ Conventions chosen (keep to them):
 | (added) Park Ambassador | Park Ambassador (sugo ng parke) | Program name kept; explain once. |
 | (added) neighborhood assets | mga yaman ng kapitbahayan | |
 | (added) meeting / community meeting | pulong / pulong ng komunidad | |
+| (added) 3D part kinds (tooltip) · pot size "Quart" | Tabla · Sheet · Wire mesh · Pampunong bato · Bracket · Pangkabit · Tela · Piraso · quart | Phone extension "x236" = "local 236". |

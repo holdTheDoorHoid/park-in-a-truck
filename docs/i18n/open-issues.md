@@ -180,6 +180,11 @@ Phase B (polish, 2026-10-04): what translators still have to do for the items ab
 ### Russian (ru)
 - Legal notice (`resources.json` legal.text, `start.mdx` «Правовая информация»); `create.mdx` Этап 2 «Гербициды»;
   lumber and site notes in `guides/*.json` (кольца-скобы, глухари); plant common names in `plants.json`.
+- Sweep after the polish pass (Oct 2026): 3D part kinds in `guides.ts` (Доска, Сетка, Каменная засыпка, Кронштейн,
+  Крепёж); «кварта» as a pot size; the as-built notes in `data/ru/models/*.json` («доски дна… выступают снизу под
+  стенками» for "sit proud under the walls"); the /parks/ source words («с. 69, благодарности», «больше ничем не
+  подтверждено»); picked-thing verbs in `planner.ts` spot.thing.* (растёт / лежит / проходят / висят) and gender in
+  view.picked.* («Табурет (выбран)», «Сцена (выбрана)»).
 
 ### Arabic (ar)
 - `plants.json` common names (many descriptive/transliterated: أملانشير, كاربينوس أمريكي, فوذرجيلا); `start.mdx`
@@ -188,6 +193,15 @@ Phase B (polish, 2026-10-04): what translators still have to do for the items ab
   مسامير ملولبة مستديرة الرأس); the 6C names in `playful.ts`; style: و attached to Latin names (وPhiladelphia Land Bank).
 - Decision to confirm: sizes like 2.5" and 4'x4' are written with Arabic unit words (2.5 بوصة, 4 × 4 أقدام) because
   ″/′ marks land on the wrong side in right-to-left text; lumber sizes and part labels unchanged.
+- Sweep after the polish pass (Oct 2026): the lengths as six-form plurals (`planner.ts` common.ft / where.from* /
+  existing.* / slope.feet / slope.lowFeet / slope.legendFeet, `philly.ts` unit.*, `workbook.ts` auto.*): one and two
+  in sentences as words (قدم واحدة، قدمين بعد حرف الجر، قدمان in labels, without the digit), 3–10 أقدام, 11–99 قدمًا,
+  100+ and decimals قدم; answer lists in `workbook.ts` (أضف عضوًا / تواصلًا, حُذفت المجموعة, «املأ صف … الذي في
+  الأعلى»); picked things made definite and gendered (في مكان الشجرة الموجودة، «طاولة … (مختارة)»); 3D part kinds
+  (صفيحة، دعامة معدنية، قطعة تثبيت); «كوارت» as a pot size; the as-built notes in `data/ar/models/*.json`.
+- Decision to confirm: in `data/ar/resources.json` addresses and phone numbers next to Arabic words are wrapped in
+  left-to-right isolate marks (written `\u2066…\u2069` in the file) so "4300 Rising Sun Ave" no longer shows as
+  "Rising Sun Ave 4300"; the same for the supplier notes and the "Richard S. Burns & Co." titles.
 
 ### French (fr)
 - `plants.json` names written "French (English)" (Sporobole (prairie dropseed), Oxydendron (sourwood)); hardware words
@@ -233,6 +247,11 @@ Phase B (polish, 2026-10-04): what translators still have to do for the items ab
   skwea ya seremala); `plants.json` names; legal text (start.mdx, resources legal.text); in-kind = "makubaliano ya
   kutumia bila kodi"; long explanations in cost.ts fix.*/note.*, philly.ts zoning.*/landBank.*, planner.ts slope.*,
   shade.ts summaries.
+- Sweep after the polish pass (Oct 2026): «kwati (quart)» as a pot size; 3D part kinds in `guides.ts` (Bamba for a
+  sheet, Bano, Kifungio, Mawe ya kujazia); answer-list messages in `workbook.ts` now passive with noun-class agreement
+  («Kiwanja kimeondolewa», «Mawasiliano yameondolewa», «Tukio limeondolewa») and «Kwanza jaza mstari wa … ulio juu»;
+  the as-built notes in `data/sw/models/*.json` (mihimili ya juu ya kukingama, vishikizo, «zinatokeza chini ya kuta»);
+  /parks/ source words («ukurasa wa 69, shukrani», «haijathibitishwa zaidi ya hapo»).
 
 ### Tagalog (tl)
 - Step and theme names; Survive/Thrive/Socialize as "Manatiling buhay / Yumabong / Makisalamuha"; `start.mdx`
@@ -242,3 +261,7 @@ Phase B (polish, 2026-10-04): what translators still have to do for the items ab
   sentences (cost.ts fix.*/note.*/warn.*/guide.reason.*, philly.ts zoning.*/landBank.*/http.*, planner.ts slope.*,
   shade.ts sum.* "batik-batik na lilim"); plant names (English + Tagalog hints); 6C names in `playful.ts`; map north
   letter "H" (hilaga) vs "N".
+- Sweep after the polish pass (Oct 2026): 3D part kinds in `guides.ts` (Tabla, Sheet, Pampunong bato, Pangkabit,
+  Tela); the as-built notes in `data/tl/models/*.json` ("nakausli sa ilalim ng mga dingding", "pahalang na biga");
+  /parks/ source words ("mga pasasalamat", "wala nang ibang kumpirmasyon", "hindi kumpirmado sa ibang pinagmulan");
+  "local 236" for a phone extension in `resources.json`.

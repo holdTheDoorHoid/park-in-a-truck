@@ -53,6 +53,8 @@ export default {
   'picker.clear': 'Futa',
   'picker.mature': 'Ikikomaa: {size}',
   'picker.atPurchase': 'Wakati wa kununua: {size}',
+  'pot.quart': 'kwati (quart)',
+  'pot.oneQuart': 'kwati 1 (quart)',
   'picker.each': '{price} kila mmoja',
   'picker.howMany': 'Idadi ya {name}?',
   'picker.picked': 'Umechagua mimea <strong>{chosen}</strong> kati ya <strong>{count}</strong>',

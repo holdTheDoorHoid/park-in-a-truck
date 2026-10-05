@@ -14,6 +14,17 @@ export default {
   'link.english': '(на английском)',
   'park.source': 'Источник: {source}',
 
+  'source.toolkitPage': 'руководство Park in a Truck, с. {page}',
+  'source.toolkitPages': 'руководство Park in a Truck, с. {pages}',
+  'source.toolkitAck': 'руководство Park in a Truck, с. {page}, благодарности',
+  'source.linktree': 'Linktree Park in a Truck',
+  'source.linktreeOnly': 'только Linktree Park in a Truck',
+  'source.unconfirmedElsewhere': 'больше нигде не подтверждено',
+  'source.unconfirmedBeyond': 'больше ничем не подтверждено',
+  'source.jeffersonNews': 'новости Jefferson',
+  'photo.via': '{name}, из руководства Park in a Truck',
+  'photo.toolkit': 'руководство Park in a Truck',
+
   'map.label': 'Карта парков, построенных с Park in a Truck',
   'map.details': 'Подробнее',
   'map.close': 'Закрыть',

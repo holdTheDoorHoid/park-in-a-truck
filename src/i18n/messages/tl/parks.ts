@@ -15,6 +15,17 @@ export default {
   'link.english': '(sa Ingles)',
   'park.source': 'Pinagmulan: {source}',
 
+  'source.toolkitPage': 'Toolkit ng Park in a Truck, pahina {page}',
+  'source.toolkitPages': 'Toolkit ng Park in a Truck, mga pahina {pages}',
+  'source.toolkitAck': 'Toolkit ng Park in a Truck, pahina {page}, mga pasasalamat',
+  'source.linktree': 'Linktree ng Park in a Truck',
+  'source.linktreeOnly': 'Linktree lang ng Park in a Truck',
+  'source.unconfirmedElsewhere': 'hindi kumpirmado sa ibang pinagmulan',
+  'source.unconfirmedBeyond': 'wala nang ibang kumpirmasyon',
+  'source.jeffersonNews': 'balita ng Jefferson',
+  'photo.via': '{name}, mula sa Toolkit ng Park in a Truck',
+  'photo.toolkit': 'Toolkit ng Park in a Truck',
+
   'map.label': 'Mapa ng mga parkeng itinayo gamit ang Park in a Truck',
   'map.details': 'Tingnan ang detalye',
   'map.close': 'Isara',
