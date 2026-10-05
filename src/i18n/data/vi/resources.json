@@ -57,7 +57,8 @@
       "title": "Park in a Truck nhận giải Groundbreaker 2020 của Green Building United"
     },
     {
-      "title": "'Park in a Truck' giống như Ikea, nhưng để làm công viên khu phố"
+      "title": "'Park in a Truck' giống như Ikea, nhưng để làm công viên khu phố",
+      "note": "Không kiểm tra trực tiếp được (trang chặn truy cập tự động); đường dẫn này là của chính PiaT, và bài viết tháng 9 năm 2020 của Jefferson về cùng sự vinh danh này cũng xác nhận điều đó."
     },
     {
       "title": "Những lô đất trống biến thành công viên đẹp ở các khu phố Philly"
@@ -66,7 +67,8 @@
       "title": "Chương trình Park in a Truck thay đổi không gian xanh đô thị ở Philadelphia với sự giúp sức của giới trẻ trong khu phố"
     },
     {
-      "title": "ASLA Spotlight — mùa xuân 2025"
+      "title": "ASLA Spotlight — mùa xuân 2025",
+      "note": "Một ấn phẩm điện tử dạng lật trang; đã xác nhận vẫn mở được và đúng là số mùa xuân 2025, nhưng không thể tự động lấy nội dung các trang — hãy mở trực tiếp để tìm bài viết về Park in a Truck."
     },
     null,
     {
@@ -260,10 +262,17 @@
         {
           "note": "Liên minh do người Da đen & người da màu dẫn dắt, vì quyền tự quản của cộng đồng đối với đất đai và thực phẩm."
         },
-        null,
-        null,
-        null,
         {
+          "title": "Park Advocate Handbook — sổ tay cho người vận động vì công viên (NRPA)"
+        },
+        {
+          "title": "The PHS City Parks Handbook — sổ tay về công viên thành phố của PHS (Temple University Press)"
+        },
+        {
+          "title": "Vacant Lot Activation Toolkit — cẩm nang đưa lô đất trống vào sử dụng (Trust South LA)"
+        },
+        {
+          "title": "Green2015: An Action Plan for the First 500 Acres (kế hoạch hành động cho 500 mẫu Anh đầu tiên)",
           "note": "Kế hoạch của PennPraxis cho Philadelphia Parks & Recreation."
         },
         {
@@ -333,8 +342,12 @@
           },
           null,
           null,
-          null,
-          null,
+          {
+            "title": "Green2015: An Action Plan for the First 500 Acres (kế hoạch hành động cho 500 mẫu Anh đầu tiên)"
+          },
+          {
+            "description": "Public Interest Law Center — Garden Justice Legal Initiative (trợ giúp pháp lý cho vườn cộng đồng), 215-627-7100, máy lẻ 236"
+          },
           null,
           null
         ]
@@ -342,7 +355,9 @@
       {
         "title": "02 Tổ chức",
         "entries": [
-          null,
+          {
+            "title": "The PHS City Parks Handbook — sổ tay về công viên thành phố của PHS"
+          },
           {
             "title": "Vacant Lot Activation Toolkit — cẩm nang đưa lô đất trống vào sử dụng (Free Lots Angeles)"
           }
@@ -379,7 +394,9 @@
           null,
           null,
           null,
-          null,
+          {
+            "description": "150 W Butler St, Phila — kho vật liệu tái sử dụng; xem thêm PowerCorpsPHL"
+          },
           null,
           {
             "title": "Burpee — cây ăn trái"
@@ -393,15 +410,21 @@
           {
             "title": "Willis Orchards — cây ăn trái"
           },
+          {
+            "description": "150 W Butler St, Phila — chuyên cây cho loài thụ phấn ở địa phương"
+          },
+          null,
+          {
+            "description": "93 Ellisdale Rd, Allentown NJ 08501 · 609-259-8585 — giao hàng với đơn tối thiểu $1.250"
+          },
           null,
           null,
           null,
           null,
           null,
-          null,
-          null,
-          null,
-          null,
+          {
+            "description": "4300 Rising Sun Ave, Phila · 215-324-6377 — có bán vật liệu tái chế"
+          },
           null,
           null,
           null

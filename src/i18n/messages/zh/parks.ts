@@ -12,6 +12,17 @@ export default {
   'video.alt': '视频：{title}',
   'link.english': '（英文）',
   'park.source': '来源：{source}',
+  // “来源：”一行和照片署名里的词（报刊名和人名不变）
+  'source.toolkitPage': 'Park in a Truck 工具包第{page}页',
+  'source.toolkitPages': 'Park in a Truck 工具包第{pages}页',
+  'source.toolkitAck': 'Park in a Truck 工具包第{page}页致谢',
+  'source.linktree': 'Park in a Truck 的 Linktree',
+  'source.linktreeOnly': '仅见于 Park in a Truck 的 Linktree',
+  'source.unconfirmedElsewhere': '其他来源尚未证实',
+  'source.unconfirmedBeyond': '除此之外尚未证实',
+  'source.jeffersonNews': 'Jefferson 新闻',
+  'photo.via': '{name} 摄，载于 Park in a Truck 工具包',
+  'photo.toolkit': 'Park in a Truck 工具包',
 
   'map.label': '用 Park in a Truck 建成的公园地图',
   'map.details': '查看详情',

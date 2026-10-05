@@ -54,6 +54,8 @@ export default {
   'picker.clear': 'Xóa hết',
   'picker.mature': 'Khi lớn: {size}',
   'picker.atPurchase': 'Lúc mua: {size}',
+  'pot.quart': 'chậu quart',
+  'pot.oneQuart': 'chậu 1 quart',
   'picker.each': '{price} mỗi cây',
   'picker.howMany': 'Bao nhiêu cây {name}?',
   'picker.picked': 'Đã chọn <strong>{chosen}</strong> / <strong>{count}</strong> cây',

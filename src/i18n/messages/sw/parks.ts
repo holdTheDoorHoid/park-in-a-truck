@@ -14,6 +14,17 @@ export default {
   'link.english': '(kwa Kiingereza)',
   'park.source': 'Chanzo: {source}',
 
+  'source.toolkitPage': 'mwongozo wa Park in a Truck, ukurasa wa {page}',
+  'source.toolkitPages': 'mwongozo wa Park in a Truck, kurasa {pages}',
+  'source.toolkitAck': 'mwongozo wa Park in a Truck, ukurasa wa {page}, shukrani',
+  'source.linktree': 'Linktree ya Park in a Truck',
+  'source.linktreeOnly': 'Linktree ya Park in a Truck pekee',
+  'source.unconfirmedElsewhere': 'haijathibitishwa kwingineko',
+  'source.unconfirmedBeyond': 'haijathibitishwa zaidi ya hapo',
+  'source.jeffersonNews': 'habari za Jefferson',
+  'photo.via': '{name}, kupitia mwongozo wa Park in a Truck',
+  'photo.toolkit': 'mwongozo wa Park in a Truck',
+
   'map.label': 'Ramani ya bustani zilizojengwa kwa Park in a Truck',
   'map.details': 'Tazama maelezo',
   'map.close': 'Funga',

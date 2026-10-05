@@ -183,6 +183,11 @@ Extra terms used in the chapters, guides and data (es only; they may belong in t
 | build schedule / stewardship calendar | calendario de construcción / calendario de cuidado del parque | |
 | trash can | bote de basura (zafacón) | |
 | clock times, percents | 8:30 a.m., 20% | As the site formats them for es (es-US): no space before %, "a.m."/"p.m.". |
+| 3D part kinds (guide tooltip): Board · Sheet · Wire mesh · Stone fill · Bracket · Fastener · Fabric · Part | Tabla · Lámina · Malla de alambre · Relleno de piedra · Soporte · Fijación · Tela · Pieza | Sweep 2026-10. |
+| quart (pot size) | cuarto de galón | "Al comprarla: cuarto de galón"; nursery numbers (#2) stay. |
+| toolkit pages (parks sources) | guía Park in a Truck, pág. 69 / págs. 7-13 | Same abbreviations as the guides' sourcePages. |
+| picked thing / answer lists | "Banca con respaldo (elegida)", "donde están los asientos movibles"; "+ Agregar una institución", "Se quitó la institución." | Article and participle agree with the noun (one phrase per kind). |
+| about (a height in the slope sentences) | alrededor de {amount} | Not "unos": {amount} can be "9 pulgadas" (feminine). |
 
 ### zh — 中文 (Simplified)
 
@@ -252,6 +257,12 @@ number and its Chinese unit (4英尺). Buttons and menu items: 2–6 characters 
 | agency names (PHA, PIDC…) | English name（中文说明） | e.g. Philadelphia Housing Authority（PHA，费城住房管理局）. |
 | Councilmember / council district | 市议员 / 市议会选区 | |
 | clock times | 上午／下午 + 12-hour clock in the planner | The shade calendar uses the locale's 24-hour format (see report). |
+| *Sweep (Oct 2026):* 3D viewer part kinds | 木板 · 板材 · 钢丝网 · 填充石料 · 支架 · 紧固件 · 布料 · 部件 | Tooltip "木板 · 2x4 × 25″". |
+| pot sizes Quart / 1 quart | 夸脱盆 / 1夸脱盆 | Nursery numbers (#2) unchanged. |
+| sub-steps done (Steps page counter) | 已完成 {done}/{total} 个小步骤 | Counts the 53 小步骤, not the six steps. |
+| corners of the lot (slope summary) | 左前角 · 右前角 · 左后角 · 右后角 | Left/right first, as Chinese says it. |
+| toolkit page in a source line / acknowledgments | 工具包第69页 / 致谢 | Photo credit: "{name} 摄，载于 Park in a Truck 工具包"; unconfirmed = 尚未证实. |
+| wire gauge / mesh opening | 8号 / 网孔2" | Phone extension = 转. |
 
 ### vi — Tiếng Việt
 
@@ -342,6 +353,12 @@ Conventions chosen (keep to them):
 | (added) Land Bank "side-yard eligible" | có thể mua làm sân bên | |
 | (added) RCO, Councilmember, council district | RCO, nghị viên, quận hội đồng thành phố | |
 | (added) Survive / Thrive / Socialize (stewardship) | Sống sót / Phát triển tốt / Gặp gỡ | same as the Sustain chapter |
+| (sweep, Oct 2026) 3D viewer part kinds | Thanh gỗ · Tấm · Lưới thép · Đá nhồi rọ · Giá đỡ · Đồ ngũ kim · Vải · Chi tiết | tooltip "Thanh gỗ · 2x4 × 25″"; "thanh gỗ" as in the viewer's help text |
+| (sweep) pot sizes Quart / 1 quart | chậu quart / chậu 1 quart | nursery numbers (#2) unchanged |
+| (sweep) where a picked thing is (sun chart) | "ở chỗ đặt …" for furniture you place; "ở chỗ trồng …" for plants; "ở chỗ …" for things already on the lot; "ở dưới dây điện trên cao" | never "đặt" for a hydrant, a wet area or an existing tree |
+| (sweep) toolkit page in a source line | cẩm nang Park in a Truck, trang 69 / phần cảm ơn ở trang 69 | photo credit: "ảnh của {name}, từ cẩm nang Park in a Truck" |
+| (sweep) English publication titles | English title + Vietnamese meaning: "Vacant Lot Activation Toolkit — cẩm nang …"; without a publisher in brackets, the meaning goes in brackets | business and organisation names stay English only |
+| (sweep) wire gauge / mesh opening / acre | cỡ 8 / ô lưới 2" / mẫu Anh | phone extension = máy lẻ |
 
 ### ru — Русский
 
@@ -414,6 +431,7 @@ The City as a government is «город» / «городские власти»
 | *(ru only)* side-yard eligible · on hold (Land Bank) | можно как боковой двор · зарезервирован | |
 | *(ru only)* flood zone · Council district · planning district | зона затопления · округ городского совета · район планирования | |
 | *(ru only)* time of day | 12-hour «до полудня / после полудня» in the planner | Russian uses 24 h; the checker rejects {hour24} (reported) |
+| *(ru only)* 3D part kinds (tooltip) · pot size "Quart" | Доска · Лист · Сетка · Каменная засыпка · Кронштейн · Крепёж · Ткань · Деталь · кварта | picked things agree in gender: «Табурет (выбран)», «Сцена (выбрана)», «Провода (выбраны)» |
 
 ### ar — العربية
 
@@ -465,7 +483,7 @@ Tone: Modern Standard Arabic kept simple. Address one reader with the masculine-
 | in English | بالإنجليزية | Added as "(بالإنجليزية)" after English-only links. |
 | ft, in, sq ft, $ | قدم، بوصة، قدم مربع، $ / دولار | Write the unit as a word after the number, never the ' and " marks (they flip around in right-to-left text): 6 أقدام، 2.5 بوصة، 12 قدمًا. Plural: 1 قدم، قدمان، 3–10 أقدام، 11+ قدمًا (same for بوصة/بوصات). Dimensions with ×: 18 × 48 بوصة. |
 
-Extra terms used consistently (not in the English table): mulch = غطاء التربة (المالتش) · topsoil = التربة السطحية · gravel = الحصى · weeds = الأعشاب الضارة · pre-emergent = مبيد وقائي قبل الإنبات · impact driver = المفك الصدمي · self-driving exterior wood screws = براغي خشب خارجية ذاتية الحفر · carpenter's square = زاوية النجار القائمة · miter saw = منشار الزوايا · pre-drill = يحفر مسبقًا · hog rings = حلقات التثبيت · geotextile fabric = قماش جيوتكستايل · Park Ambassador = سفير الحديقة (Park Ambassador) · Park Patch = رقعة الحديقة (Park Patch) · street tree = شجرة الشارع · fire hydrant = صنبور إطفاء الحرائق · downspout = مزراب · volunteer waiver = نموذج التنازل وإخلاء المسؤولية للمتطوعين · build day = يوم البناء. Planner and cost: the spreadsheet (PiaT's cost sheet) = الجدول · contingency = احتياطي للطوارئ · tool rental = تأجير الأدوات · price needed = يحتاج إلى سعر · order list = قائمة الطلب · hardscape / softscape = أرض صلبة / أرض لينة · block (of a street, "the 2200 block") = مقطع (مقطع 2200) · dappled shade = ظل متقطع · compass points with the article (الشمال، الجنوب الغربي) · degrees as words (90 درجة; the ° sign flips) · counts that need a plural use "label: {count}" (عدد البنود: 3) so every Arabic plural form is grammatical.
+Extra terms used consistently (not in the English table): mulch = غطاء التربة (المالتش) · topsoil = التربة السطحية · gravel = الحصى · weeds = الأعشاب الضارة · pre-emergent = مبيد وقائي قبل الإنبات · impact driver = المفك الصدمي · self-driving exterior wood screws = براغي خشب خارجية ذاتية الحفر · carpenter's square = زاوية النجار القائمة · miter saw = منشار الزوايا · pre-drill = يحفر مسبقًا · hog rings = حلقات التثبيت · geotextile fabric = قماش جيوتكستايل · Park Ambassador = سفير الحديقة (Park Ambassador) · Park Patch = رقعة الحديقة (Park Patch) · street tree = شجرة الشارع · fire hydrant = صنبور إطفاء الحرائق · downspout = مزراب · volunteer waiver = نموذج التنازل وإخلاء المسؤولية للمتطوعين · build day = يوم البناء. Planner and cost: the spreadsheet (PiaT's cost sheet) = الجدول · contingency = احتياطي للطوارئ · tool rental = تأجير الأدوات · price needed = يحتاج إلى سعر · order list = قائمة الطلب · hardscape / softscape = أرض صلبة / أرض لينة · block (of a street, "the 2200 block") = مقطع (مقطع 2200) · dappled shade = ظل متقطع · compass points with the article (الشمال، الجنوب الغربي) · degrees as words (90 درجة; the ° sign flips) · counts that need a plural use "label: {count}" (عدد البنود: 3) so every Arabic plural form is grammatical. Lengths with all six forms (sweep, Oct 2026): in sentences one and two as words (قدم واحدة، على بُعد قدمين), in labels قدمان; 3–10 أقدام, 11–99 قدمًا, 100+ and decimals قدم (same for قدم مربع، ميل). 3D part kinds: لوح خشب · صفيحة · شبك معدني · حشو حجري · دعامة معدنية · قطعة تثبيت · قماش · قطعة; pot size Quart = كوارت. Picked things agree in gender: (مختار) / (مختارة). In `data/ar/resources.json` an address or phone number next to Arabic words is wrapped in \u2066…\u2069 so it stays in one piece.
 
 ### ht — Kreyòl ayisyen
 
@@ -542,6 +560,10 @@ Added in the second pass (planner, City-data widgets, cost estimator, shade cale
 | Undo / Redo | Defèt / Refè | Planner. |
 | zoom in / zoom out | fè l grandi / fè l piti | |
 | lumber / boards | bwa / planch | |
+| 3D part kinds (guide tooltip): Board · Sheet · Wire mesh · Stone fill · Bracket · Fastener · Fabric · Part | Planch · Fèy · Griyaj fil fè · Wòch pou ranpli · Sipò metal · Pyès pou tache · Twal · Pyès | Sweep 2026-10. |
+| quart (pot size) | ka galon | "Lè w achte l: ka galon". |
+| toolkit pages (parks sources) | gid Park in a Truck la, paj 69 | |
+| picked thing / answer lists | "kote tabourè a ye", "kote chèz ou ka deplase yo ye"; "+ Ajoute yon teren", "Teren an retire." | The determiner follows the last sound (la / a / an / nan), yo for plural things. |
 
 ### fr — Français
 
@@ -632,6 +654,11 @@ Extra terms used in the chapters, guides and data (fr only):
 | geotextile fabric | toile géotextile | |
 | pressure-treated / cedar / Douglas fir | traité sous pression / cèdre / douglas (sapin de Douglas) | |
 | flush / square (adj.) | à ras / d'équerre | |
+| 3D part kinds (guide tooltip): Board · Sheet · Wire mesh · Stone fill · Bracket · Fastener · Fabric · Part | Planche · Panneau · Grillage · Remplissage de pierres · Support · Fixation · Toile · Pièce | Sweep 2026-10. |
+| quart (pot size) | quart de gallon | « À l’achat : quart de gallon ». |
+| toolkit pages (parks sources) | boîte à outils Park in a Truck, p. 69 / p. 7-13 | « p. » for one or several pages, as in the guides. |
+| slope places | du coin avant gauche … au bord du fond · près du côté gauche · vers le milieu du terrain | The contracted preposition sits in the place (slope.from / to / near), not in the sentence. |
+| picked thing | « là où se trouve le tabouret », « Table de 2' (choisie) », « Sièges mobiles (choisis) » | One phrase per kind, agreeing in gender and number. |
 
 ### pt — Português (Brasil)
 
@@ -719,6 +746,12 @@ Extra terms used in the chapters, guides and data (pt only):
 | geotextile fabric | manta geotêxtil | |
 | pressure-treated / cedar / Douglas fir | tratada em autoclave / cedro / pinho Douglas (Douglas fir) | |
 | flush / square (adj.) | rente / no esquadro | |
+| 3D part kinds (guide tooltip): Board · Sheet · Wire mesh · Stone fill · Bracket · Fastener · Fabric · Part | Tábua · Chapa · Tela de arame · Enchimento de pedra · Suporte · Fixador · Manta · Peça | Sweep 2026-10. |
+| quart (pot size) | quarto de galão | "Na compra: quarto de galão". |
+| toolkit pages (parks sources) | guia Park in a Truck, p. 69 / pp. 7-13 | As in the guides' sourcePages. |
+| slope places | do canto esquerdo da frente … ao canto direito do fundo / à borda da frente · perto do lado esquerdo · no meio do terreno | The contracted preposition sits in the place (slope.from / to / near). |
+| picked thing / answer lists | "Mesa de 2' (escolhida)", "onde estão os assentos móveis"; "+ Adicionar uma instituição", "Instituição removida." | Article and participle agree with the noun. |
+| feet (plural forms) | 1 pé, 2 pés, pés² | Brazilian plural rule: 0 and 1.x take the singular ("1,5 pé"). |
 
 ### sw — Kiswahili
 
@@ -810,6 +843,7 @@ Swahili explanation and the English in brackets the first time on a page: *matan
 | *(sw only)* block (the 2200 block of a street) | sehemu ya mtaa ("Sehemu ya 2200") | |
 | *(sw only)* fern · sedge | kangaga · nyasi (sedge) | Plant names: Swahili description + English name in brackets for the nursery ("Kangaga (lady fern)"). Needs a native check. |
 | *(sw only)* clock times | 12-hour "3:30 PM" in the planner (as on US clocks); the shade calendar gets Intl's 24-hour "15:30" | Never "saa 3" with a 12-hour clock: East African readers would read it as Swahili time (= 9 o'clock). |
+| *(sw only)* 3D part kinds (tooltip) · pot size "Quart" | Ubao · Bamba · Wavu wa waya · Mawe ya kujazia · Bano · Kifungio · Kitambaa · Kipande · kwati (quart) | "removed" messages are passive and agree by noun class: *Kiwanja kimeondolewa*, *Mwanakamati ameondolewa*, *Tukio limeondolewa*. |
 
 ### ko — 한국어
 
@@ -922,6 +956,12 @@ Extra terms used in the chapters, guides, planner and data (ko only; they may be
 | pressure-treated / cedar / Douglas fir | 방부 처리 목재 / 적삼목(웨스턴 레드 시더) / 미송(더글러스 퍼) | |
 | hardscape / softscape | 단단한 바닥 / 무른 바닥 | cost estimator questions |
 | plant common names | Korean name + (English common name) | e.g. "채진목(serviceberry)", so the plant can be found at a US nursery; common fruit trees (사과나무, 배나무) without brackets |
+| *Sweep (Oct 2026):* 3D viewer part kinds | 판재 · 판 · 철망 · 채움 돌 · 브래킷 · 고정 철물 · 천 · 부품 | tooltip "판재 · 2x4 × 25″"; 판재 as in the viewer's help text |
+| pot sizes Quart / 1 quart | 쿼트 화분 / 1쿼트 화분 | nursery numbers (#2) unchanged |
+| corners of the lot (slope summary) | 왼쪽 앞 모서리 · 오른쪽 앞 모서리 · 왼쪽 뒤 모서리 · 오른쪽 뒤 모서리 | left/right first, as Korean says it (왼쪽 앞) |
+| toolkit page in a source line / acknowledgments | 툴킷 69쪽 / 감사의 글 | photo credit: "{name} 촬영, Park in a Truck 툴킷 수록" |
+| contact log row (Acquire) | 연락 기록 | "+ 연락 기록 추가"; the list is 연락 기록 too |
+| wire gauge / mesh opening | 8게이지 / 구멍 크기 2" | |
 
 ### tl — Tagalog
 
@@ -1019,3 +1059,4 @@ Conventions chosen (keep to them):
 | (added) Park Ambassador | Park Ambassador (sugo ng parke) | Program name kept; explain once. |
 | (added) neighborhood assets | mga yaman ng kapitbahayan | |
 | (added) meeting / community meeting | pulong / pulong ng komunidad | |
+| (added) 3D part kinds (tooltip) · pot size "Quart" | Tabla · Sheet · Wire mesh · Pampunong bato · Bracket · Pangkabit · Tela · Piraso · quart | Phone extension "x236" = "local 236". |

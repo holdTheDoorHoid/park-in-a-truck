@@ -265,7 +265,10 @@ export default {
   'slope.legend': 'Mistari ya kahawia inaunganisha ardhi yenye kimo sawa; mishale inaelekeza kwenye mteremko wa kushuka, njia ambayo maji ya mvua hutiririka. ▲ na ▼ zinaonyesha ardhi ya juu kabisa na ya chini kabisa kwenye kiwanja.',
   'slope.legendInches':
     'Mistari ya kahawia inaunganisha ardhi yenye kimo sawa, kila inchi {inches} za kimo; mishale inaelekeza kwenye mteremko wa kushuka, njia ambayo maji ya mvua hutiririka. ▲ na ▼ zinaonyesha ardhi ya juu kabisa na ya chini kabisa kwenye kiwanja.',
-  'slope.legendFeet': { other: 'Mistari ya kahawia inaunganisha ardhi yenye kimo sawa, kila futi {ft} za kimo; mishale inaelekeza kwenye mteremko wa kushuka, njia ambayo maji ya mvua hutiririka. ▲ na ▼ zinaonyesha ardhi ya juu kabisa na ya chini kabisa kwenye kiwanja.' },
+  'slope.legendFeet': {
+    one: 'Mistari ya kahawia inaunganisha ardhi yenye kimo sawa, kila futi {ft} ya kimo; mishale inaelekeza kwenye mteremko wa kushuka, njia ambayo maji ya mvua hutiririka. ▲ na ▼ zinaonyesha ardhi ya juu kabisa na ya chini kabisa kwenye kiwanja.',
+    other: 'Mistari ya kahawia inaunganisha ardhi yenye kimo sawa, kila futi {ft} za kimo; mishale inaelekeza kwenye mteremko wa kushuka, njia ambayo maji ya mvua hutiririka. ▲ na ▼ zinaonyesha ardhi ya juu kabisa na ya chini kabisa kwenye kiwanja.',
+  },
   'slope.directions': 'Mbele ni ukingo wa mlango wa kuingilia ulio barabarani; kushoto na kulia ni kama unavyosimama hapo ukitazama ndani.',
   'slope.accuracy':
     'Vimo vya ardhi kutoka {source} vilivyopimwa mwaka {year} kwenye gridi ya mita {cell} — kwa kawaida ni sahihi ndani ya takriban inchi 4 kwenye ardhi wazi. Marundo, usawazishaji mpya au chochote kilichojengwa tangu hapo hakitaonekana.',

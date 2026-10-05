@@ -57,7 +57,8 @@
       "title": "Park in a Truck 获得 Green Building United 2020年 Groundbreaker 奖（英文）"
     },
     {
-      "title": "“Park in a Truck”就像宜家，只不过是用来建社区公园的（英文）"
+      "title": "“Park in a Truck”就像宜家，只不过是用来建社区公园的（英文）",
+      "note": "无法在线核实（该网站拦截自动访问）；这个链接是 PiaT 自己提供的，Jefferson 2020年9月关于同一项表彰的文章也印证了这一点。"
     },
     {
       "title": "费城各社区的空地变成了美丽的公园（英文）"
@@ -66,7 +67,8 @@
       "title": "Park in a Truck 项目在社区年轻人的帮助下，改变费城的城市绿地（英文）"
     },
     {
-      "title": "ASLA 焦点——2025年春季（英文）"
+      "title": "ASLA 焦点——2025年春季（英文）",
+      "note": "这是一份可以翻页的电子刊物；已确认可以打开，而且是2025年春季刊，但页面内容无法自动提取——请直接打开它，找到介绍 Park in a Truck 的文章。"
     },
     null,
     {
@@ -348,7 +350,9 @@
           {
             "title": "Green2015：最初500英亩的行动计划（英文）"
           },
-          null,
+          {
+            "description": "Public Interest Law Center（公益法律中心）——Garden Justice Legal Initiative（社区花园法律援助项目），215-627-7100 转 236"
+          },
           null,
           null
         ]
@@ -392,10 +396,18 @@
       {
         "title": "05 建造",
         "entries": [
-          null,
-          null,
-          null,
-          null,
+          {
+            "description": "4701 Woodland Ave, Phila · 215-727-5333"
+          },
+          {
+            "description": "1601 S 49th St, Phila"
+          },
+          {
+            "description": "109 Old Limestone Rd, Avondale PA"
+          },
+          {
+            "description": "150 W Butler St, Phila——回收建材仓库；另见 PowerCorpsPHL"
+          },
           null,
           {
             "title": "Burpee——果树"
@@ -409,18 +421,42 @@
           {
             "title": "Willis Orchards——果树"
           },
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
+          {
+            "description": "150 W Butler St, Phila——本地传粉植物专家"
+          },
+          {
+            "description": "West Philadelphia, 267-571-5750"
+          },
+          {
+            "description": "93 Ellisdale Rd, Allentown NJ 08501 · 609-259-8585——送货最低消费 $1,250"
+          },
+          {
+            "description": "323 Island Rd, Columbus NJ 08022 · 609-291-9486"
+          },
+          {
+            "description": "2191 Hillcrest Rd, Quakertown PA 18951"
+          },
+          {
+            "description": "701 Washington St, Conshohocken PA · 610-260-9747"
+          },
+          {
+            "description": "3301 S 61st St, Phila"
+          },
+          {
+            "description": "4260 Macalester St, Phila · 215-457-1177"
+          },
+          {
+            "description": "4300 Rising Sun Ave, Phila · 215-324-6377——出售回收材料"
+          },
+          {
+            "description": "1314 S 47th St, Phila"
+          },
+          {
+            "description": "2800 Grays Ferry Ave, Phila"
+          },
+          {
+            "description": "3850 W Ford Rd, Phila · 215-685-0108"
+          }
         ]
       },
       {

@@ -4,6 +4,7 @@
   "materials": [
     {
       "item": "Lưới thép hàn 2x2",
+      "size": "cỡ 8 (đường kính 3/16\"), mạ kẽm, ô lưới 2\"",
       "notes": "Gợi ý nơi gia công: Darby and Sons (darbywiremesh.com) hoặc Gabion1.com. Khi đặt các tấm cắt theo yêu cầu, hãy yêu cầu cắt đúng kích thước, tấm kín mép, mạ kẽm sau khi cắt."
     },
     {
@@ -39,12 +40,15 @@
       "notes": "Mặt + khung ghế rọ đá"
     },
     {
+      "stock": "Lưới thép hàn 2x2",
       "notes": "Tấm đáy rọ, 48\" x 18\""
     },
     {
+      "stock": "Lưới thép hàn 2x2",
       "notes": "Thành rọ (dài), mỗi tấm 48\" x 18\""
     },
     {
+      "stock": "Lưới thép hàn 2x2",
       "notes": "Thành rọ (ngắn), mỗi tấm 18\" x 18\""
     }
   ],

@@ -72,6 +72,14 @@ export default {
   'g3d.controls': 'Controles del modelo 3D',
   'g3d.helpMouse': 'Arrástrelo para girarlo. Haga clic en él y use la rueda del mouse para acercar. Ponga el cursor sobre una tabla para ver su medida.',
   'g3d.helpTouch': 'Arrástrelo para girarlo. Tóquelo y junte o separe dos dedos para acercar. Toque una tabla para ver su medida.',
+  'g3d.kind.lumber': 'Tabla',
+  'g3d.kind.sheet': 'Lámina',
+  'g3d.kind.mesh': 'Malla de alambre',
+  'g3d.kind.stoneFill': 'Relleno de piedra',
+  'g3d.kind.bracket': 'Soporte',
+  'g3d.kind.fastener': 'Fijación',
+  'g3d.kind.fabric': 'Tela',
+  'g3d.kind.other': 'Pieza',
 
   'index.description':
     'Instrucciones de armado paso a paso, al estilo de Ikea, para las bancas, mesas, jardineras, asientos de gavión, una estructura de sombra y un escenario de Park in a Truck.',

@@ -101,6 +101,17 @@ after the extraction round. Tick them off here.
 Phase B (polish, 2026-10-04): what translators still have to do for the items above is listed in
 `docs/i18n/SWEEP.md`. Plant-list mismatches went to `docs/notes-for-piat-team.md`.
 
+## After the sweep (final small fixes)
+- [ ] 3D tooltip: parts named by an English label show English in every language ("Gabion fill material", "Bracing
+      material (spare 2x2 mesh)", "Geotextile fabric", "L brackets", "J hooks", "Backrest brackets", "P-1 (18"x18"
+      box)") — `src/lib/guides3d/labels.ts:41` uses the label as the name; the models overlay only allows
+      `asBuilt.reason`. Make part labels translatable (overlay or catalog keys) and translate in all 11 languages.
+- [ ] /parks/ source line joins parts with a hard-coded `'; '` (`src/pages/parks/index.astro:31`) — French needs a
+      non-breaking space before ";" (and Chinese writes "；") — use a catalog separator or list format.
+- [ ] Planner: the selection clears when you change steps, so on Sun & shade "Where the picked thing is" (spot chart /
+      shade calendar) may be unreachable by clicking — check; if so, keep the selection across steps or let people
+      pick an item on the Sun step.
+
 ## For native-speaker review (per language)
 
 ### Spanish (es)
@@ -114,6 +125,11 @@ Phase B (polish, 2026-10-04): what translators still have to do for the items ab
 - `cost.ts` fix.* and note.* explanations; "Tipple rojo (red tipple)"; "Minicargadora (skid steer)"; `philly.ts`
   zoning descriptions ("casas unifamiliares pegadas") and Land Bank statuses; `planner.ts` slope sentences and the
   step name "Ubicar"; `shade.ts` summary sentences.
+- Sweep (2026-10): `planner.ts` picked-thing phrases ("donde está la banca…", "(elegida)") and slope sentences now
+  saying "alrededor de {amount}"; `workbook.ts` answer lists ("Primero complete los datos del lote de arriba, o
+  escriba algo en esa fila."); `models/*.json` as-built notes (travesaños, "quedan por debajo de las paredes");
+  `parks.ts` source.* ("sin otra confirmación", "vía la guía"); `resources.json` press notes 3 and 6; pot size "cuarto
+  de galón"; 3D part kinds (Lámina, Fijación).
 
 ### Chinese, Simplified (zh)
 - `start.mdx` "Why a park?" proverb line (每天去一次公园，医生远离我); `acquire.mdx` 实物使用协议;
@@ -128,6 +144,10 @@ Phase B (polish, 2026-10-04): what translators still have to do for the items ab
 ### Chinese (zh) — second pass
 - `cost.ts` fix.* / kept.* and guide.note.short* / guide.reason.* (assembled from pieces); `philly.ts` zoning.* and
   landBank.*; `planner.ts` slope.falls / slope.dip and sun.assume*; `shade.ts` sum.* (joined by code).
+- Sweep (Oct 2026): as-built notes in `src/i18n/data/zh/models/*.json` ("sit proud" as 底板垫在壁板下方; 18"指的是占地尺寸;
+  顶部支撑卡在两根横梁之间); `guides.ts` g3d.kind.* (板材 for Sheet, 布料 for Fabric); `plants.ts` 夸脱盆; `parks.ts` source.*
+  (尚未证实, 仅见于…的 Linktree) and photo.via ("{name} 摄，载于…"); `resources.json` press notes 3 and 6; `workbook.ts`
+  list.*.fillFirst ("…至少写点什么"); `planner.ts` corners now 左前角 / 右前角 / 左后角 / 右后角.
 
 ### Vietnamese (vi)
 - Step names "Có được đất" (Acquire), "Khảo sát" (Assess); theme names "Vườn ăn được", "Chốn an yên";
@@ -137,6 +157,11 @@ Phase B (polish, 2026-10-04): what translators still have to do for the items ab
 ### Vietnamese (vi) — second pass
 - `cost.ts` `fix.*` and `guide.reason.*` sentences; `philly.ts` zoning meanings and `landBank.*` statuses;
   `planner.ts` "Nắng & bóng" and the `slope.*` sentences; `shade.ts` summary sentences.
+- Sweep (Oct 2026): as-built notes in `src/i18n/data/vi/models/*.json` ("sit proud" as thanh đáy lót bên dưới thành bồn;
+  footprint = mặt đáy); `guides.ts` g3d.kind.* (Tấm for Sheet, Đồ ngũ kim for Fastener, Chi tiết for Part); `plants.ts`
+  "chậu quart"; `parks.ts` source.* and photo.via; `resources.json` press notes 3 and 6 and the publication titles
+  with a Vietnamese meaning (người vận động vì công viên, 500 mẫu Anh); `workbook.ts` list.*.fillFirst; `planner.ts`
+  spot.thing.* (ở chỗ đặt / ở chỗ trồng / ở dưới dây điện).
 
 ### Haitian Creole (ht)
 - Build-guide tool and hardware words (machin vis a enpak, bag metal, sèjan, konpaktè a men, mas); `start.mdx`
@@ -147,10 +172,19 @@ Phase B (polish, 2026-10-04): what translators still have to do for the items ab
 - `cost.ts` fix.* / note.* / warn.* sentences and hardware names (ekè metal an L, rale angrenaj, chajè konpak);
   `philly.ts` zoning.* meanings and Land Bank statuses; `planner.ts` slope.* and sun.assume* small print; `shade.ts`
   summaries ("bilding ki {dir} yo"); `schedule.ts` task lines.
+- Sweep (2026-10): `planner.ts` spot.thing.* with their determiners ("kote tabourè a ye", "kote tab 2 pye a ye", "kote
+  fil anlè yo ye"); `workbook.ts` answer lists ("Teren an retire.", "Manm nan retire."); `models/*.json` as-built
+  notes (travès, ranfò, "depase anba bò yo"); `parks.ts` source.* ("pa gen lòt konfimasyon"); `resources.json` press
+  notes 3 and 6; pot size "ka galon"; 3D part kinds (Fèy, Pyès pou tache).
 
 ### Russian (ru)
 - Legal notice (`resources.json` legal.text, `start.mdx` «Правовая информация»); `create.mdx` Этап 2 «Гербициды»;
   lumber and site notes in `guides/*.json` (кольца-скобы, глухари); plant common names in `plants.json`.
+- Sweep after the polish pass (Oct 2026): 3D part kinds in `guides.ts` (Доска, Сетка, Каменная засыпка, Кронштейн,
+  Крепёж); «кварта» as a pot size; the as-built notes in `data/ru/models/*.json` («доски дна… выступают снизу под
+  стенками» for "sit proud under the walls"); the /parks/ source words («с. 69, благодарности», «больше ничем не
+  подтверждено»); picked-thing verbs in `planner.ts` spot.thing.* (растёт / лежит / проходят / висят) and gender in
+  view.picked.* («Табурет (выбран)», «Сцена (выбрана)»).
 
 ### Arabic (ar)
 - `plants.json` common names (many descriptive/transliterated: أملانشير, كاربينوس أمريكي, فوذرجيلا); `start.mdx`
@@ -159,6 +193,15 @@ Phase B (polish, 2026-10-04): what translators still have to do for the items ab
   مسامير ملولبة مستديرة الرأس); the 6C names in `playful.ts`; style: و attached to Latin names (وPhiladelphia Land Bank).
 - Decision to confirm: sizes like 2.5" and 4'x4' are written with Arabic unit words (2.5 بوصة, 4 × 4 أقدام) because
   ″/′ marks land on the wrong side in right-to-left text; lumber sizes and part labels unchanged.
+- Sweep after the polish pass (Oct 2026): the lengths as six-form plurals (`planner.ts` common.ft / where.from* /
+  existing.* / slope.feet / slope.lowFeet / slope.legendFeet, `philly.ts` unit.*, `workbook.ts` auto.*): one and two
+  in sentences as words (قدم واحدة، قدمين بعد حرف الجر، قدمان in labels, without the digit), 3–10 أقدام, 11–99 قدمًا,
+  100+ and decimals قدم; answer lists in `workbook.ts` (أضف عضوًا / تواصلًا, حُذفت المجموعة, «املأ صف … الذي في
+  الأعلى»); picked things made definite and gendered (في مكان الشجرة الموجودة، «طاولة … (مختارة)»); 3D part kinds
+  (صفيحة، دعامة معدنية، قطعة تثبيت); «كوارت» as a pot size; the as-built notes in `data/ar/models/*.json`.
+- Decision to confirm: in `data/ar/resources.json` addresses and phone numbers next to Arabic words are wrapped in
+  left-to-right isolate marks (written `\u2066…\u2069` in the file) so "4300 Rising Sun Ave" no longer shows as
+  "Rising Sun Ave 4300"; the same for the supplier notes and the "Richard S. Burns & Co." titles.
 
 ### French (fr)
 - `plants.json` names written "French (English)" (Sporobole (prairie dropseed), Oxydendron (sourwood)); hardware words
@@ -166,6 +209,11 @@ Phase B (polish, 2026-10-04): what translators still have to do for the items ab
   à percussion); `create.mdx` Phase 2 herbicide/weed names and safety notes; `sustain.mdx` Survivre / S'épanouir /
   Se retrouver; `start.mdx` barn-raising line and "Un parc par jour…"; `acquire.mdx` "accord d'usage en nature";
   resources legal text; principle and 6C names in `playful.ts`.
+- Sweep (2026-10): `planner.ts` slope sentences rebuilt with the places carrying du / au / près du (« Le sol descend
+  d’environ 2 pi du coin avant gauche au bord du fond »); picked-thing phrases (« là où se trouve… », « (choisie) »);
+  `models/*.json` as-built notes (traverses, entretoises, « dépassent sous les parois »); `parks.ts` source.*
+  (« aucune autre confirmation »); `resources.json` press notes 3 and 6; pot size « quart de gallon »; 3D part kinds
+  (Panneau, Fixation, Toile).
 
 ### Portuguese (pt)
 - `cost.ts`: hardscape/softscape as "pavimento/terra", "reserva para imprevistos", "brita vermelha (red tipple)";
@@ -173,6 +221,12 @@ Phase B (polish, 2026-10-04): what translators still have to do for the items ab
   alicate corta-vergalhão), "com nós", "tratada em autoclave"; `plants.json` descriptive names with English in
   brackets; `create.mdx` Phase 2 herbicide/weed names and safety notes; `start.mdx` "Why a park?" closing line,
   "Aviso legal" + resources legal text; `playful.ts` "Aprender Brincando" and the 6Cs ("Pensamento crítico").
+- Sweep (2026-10): `planner.ts` slope sentences with the places carrying do / ao / à / perto do ("O chão desce cerca
+  de 2 pés do canto esquerdo da frente à borda do fundo"); picked-thing phrases ("onde está…", "(escolhida)");
+  `workbook.ts` answer lists ("Preencha primeiro os dados do terreno acima…"); lengths use the Brazilian plural rule,
+  so 0 and 1.x take the singular ("1,1 pé"); `models/*.json` as-built notes ("pés" = legs beside "pés" = feet in the
+  shade note); `resources.json` press notes 3 and 6; pot size "quarto de galão"; 3D part kinds (Chapa, Fixador,
+  Manta).
 
 ### Korean (ko)
 - Step names (확보하기, 조사하기, 가꾸기), 자투리 공원 (Park Patch), phase = 차 작업; made-up plant names (큰도토리참나무,
@@ -180,6 +234,10 @@ Phase B (polish, 2026-10-04): what translators still have to do for the items ab
   꾸지나무) and safety notes; legal notice (resources legal.text, start.mdx 법적 고지); guide hardware words (호그링, U자 못,
   래그 스크루, 각도 절단기, 적삼목/미송); code-assembled sentences (cost.ts fix.* / guide.reason.*, planner.ts slope.*,
   shade.ts sum.*).
+- Sweep (Oct 2026): as-built notes in `src/i18n/data/ko/models/*.json` ("sit proud" as 바닥 판재가 벽 아래를 받치고;
+  18"는 바닥 크기); `guides.ts` g3d.kind.* (판 for Sheet, 고정 철물 for Fastener, 천 for Fabric); `plants.ts` 쿼트 화분;
+  `parks.ts` source.* (감사의 글, Linktree에만 있음) and photo.via ("… 촬영, Park in a Truck 툴킷 수록"); `resources.json`
+  press notes 3 and 6 and toolkit descriptions (공동체 텃밭 법률 지원, 재사용 자재 창고); slope corners now 왼쪽 앞 모서리…
 
 ### Swahili (sw)
 - `start.mdx` "Kwa nini bustani?" proverb ("Bustani kila siku, daktari mbali"), fruit loanwords (pichi, pea, plamu,
@@ -189,6 +247,11 @@ Phase B (polish, 2026-10-04): what translators still have to do for the items ab
   skwea ya seremala); `plants.json` names; legal text (start.mdx, resources legal.text); in-kind = "makubaliano ya
   kutumia bila kodi"; long explanations in cost.ts fix.*/note.*, philly.ts zoning.*/landBank.*, planner.ts slope.*,
   shade.ts summaries.
+- Sweep after the polish pass (Oct 2026): «kwati (quart)» as a pot size; 3D part kinds in `guides.ts` (Bamba for a
+  sheet, Bano, Kifungio, Mawe ya kujazia); answer-list messages in `workbook.ts` now passive with noun-class agreement
+  («Kiwanja kimeondolewa», «Mawasiliano yameondolewa», «Tukio limeondolewa») and «Kwanza jaza mstari wa … ulio juu»;
+  the as-built notes in `data/sw/models/*.json` (mihimili ya juu ya kukingama, vishikizo, «zinatokeza chini ya kuta»);
+  /parks/ source words («ukurasa wa 69, shukrani», «haijathibitishwa zaidi ya hapo»).
 
 ### Tagalog (tl)
 - Step and theme names; Survive/Thrive/Socialize as "Manatiling buhay / Yumabong / Makisalamuha"; `start.mdx`
@@ -198,3 +261,7 @@ Phase B (polish, 2026-10-04): what translators still have to do for the items ab
   sentences (cost.ts fix.*/note.*/warn.*/guide.reason.*, philly.ts zoning.*/landBank.*/http.*, planner.ts slope.*,
   shade.ts sum.* "batik-batik na lilim"); plant names (English + Tagalog hints); 6C names in `playful.ts`; map north
   letter "H" (hilaga) vs "N".
+- Sweep after the polish pass (Oct 2026): 3D part kinds in `guides.ts` (Tabla, Sheet, Pampunong bato, Pangkabit,
+  Tela); the as-built notes in `data/tl/models/*.json` ("nakausli sa ilalim ng mga dingding", "pahalang na biga");
+  /parks/ source words ("mga pasasalamat", "wala nang ibang kumpirmasyon", "hindi kumpirmado sa ibang pinagmulan");
+  "local 236" for a phone extension in `resources.json`.
