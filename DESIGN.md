@@ -309,6 +309,29 @@ number ("ASSESS ——— 03"); section heads in heavy uppercase Work Sans ("FIN
     up with the site frame, that fits INSIDE the parcel (not the rectangle round it), and the park is placed in it;
     a size whose printed pieces can't fit says so and offers the size that does. Slide buttons with no room are
     greyed; "Slide it to fit the lot as well as it can" searches for the least overhang.
+  - **Part of the lot (2026-10-04)** (`area.ts`, `PartPicker.tsx`, `scene/areatool.ts`): for lots where a building is
+    in use but a side yard or the open ground beside it can become the park. Size step, first thing: "How much of the
+    lot will the park use?" — the whole lot, or just part of it. `DesignState.area` (site-frame feet, `FitArea`'s
+    shape) + `useArea` (absent = whole lot); switching back keeps `area`; `adaptToSite` drops both on another lot. The
+    store splits `$lotFit` (the inscribed rectangle, per lot) from `$fit` (the part when `useArea`, else `$lotFit`;
+    same object while unchanged), so stretch, placement and the Lot step's slide/overhang logic work on the part;
+    `withDims` works it out from the design it is given. The part starts on the **open ground**: the largest
+    frame-aligned rectangle inside the parcel and not under a building (`inscribedRect` takes obstacle outlines; a
+    grid corner more than 0.5 ft inside one is out), whole feet — using the City footprints that stand ON the lot,
+    which the 3D view leaves out as "since come down" (kept as `LocalSite.lotBuildings` for this only). In a part
+    the automatic size comes from the part (never `facts.sizeId`). A part whose long side runs across the lot turns
+    the park a quarter to run along it (turn 3 toward a corner-left side street, else 1; the panel says so), and in
+    a part a quarter-turned park stretches along the part's sides swapped (`stretchTo`; the whole lot keeps its old
+    behaviour); "Put it back" returns to that turn. Any part edit resets the slide. On the Size step only, the part
+    is drawn in cyan (white-edged, apart from the lot line) with handles one size on screen: side middles move a
+    side, corners two sides, a round four-way middle handle moves it all; whole feet, at least 4 × 4 ft, inside the
+    site frame (past the lot line allowed: the overhang warning reports it); the hint line shows the live size; one
+    undo step on release, Esc puts it back. A press anywhere else still picks and drags the park's things. The rest
+    of the lot is lightly dimmed; handles and dimming are left out of pictures and the printed plan. Keyboard and
+    screen readers: number boxes (along / across the lot) and four slide arrows (left to right in every language,
+    like the Lot step's). Warnings, not blocks: a part smaller than size A's pieces (link to Park Patch), a park
+    bigger than its part (with "Use size X" or "Turn the park to run along this part"). Screens:
+    `docs/planner/part-of-lot-*.webp`.
   - **Camera** (`camera.ts`, `scene/xray.ts`): the 3D camera never goes inside a building (it rides over roofs) or
     below eye height, tilts no lower than ~14° above the horizon, turns round a point near the lot and can't pull
     back past the aerial. Any part of a building between the camera and the lot (a box round the lot's rectangle,

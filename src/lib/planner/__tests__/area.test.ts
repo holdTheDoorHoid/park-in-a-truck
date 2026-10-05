@@ -98,7 +98,6 @@ describe('the default part: the open ground', () => {
   // a 60 × 30 ft lot (site frame = local axes, entrance at x = 0)
   const parcel: Vec2[] = [[0, 0], [60, 0], [60, 30], [0, 30]];
   const f = computeSiteFrame({ parcel });
-  const toSite = (a: FitArea) => a; // (the frame of an axis-aligned lot is the local axes, maybe turned)
   it('on a vacant lot it is the whole lot (whole feet)', () => {
     const a = openGround(f, parcel, []);
     expect(a.lengthFt * a.widthFt).toBeCloseTo(60 * 30, 0);

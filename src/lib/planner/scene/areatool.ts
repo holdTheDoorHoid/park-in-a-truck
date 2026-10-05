@@ -16,11 +16,11 @@ import { ON_GROUND, drapedRibbon, drapedShape } from '../furniture/drape';
 
 const CYAN = 0x00a8e8;
 /** the dimming over the rest of the lot: light, so the photo still reads */
-const DIM = { color: 0x0b2233, opacity: 0.32 };
+const DIM = { color: 0x0b2233, opacity: 0.36 };
 
 type Kind = 'corner' | 'side' | 'move';
 /** drawn size on screen, px */
-const PX: Record<Kind, number> = { corner: 15, side: 13, move: 30 };
+const PX: Record<Kind, number> = { corner: 17, side: 15, move: 30 };
 
 function handleTexture(kind: Kind): THREE.CanvasTexture {
   const S = 96;
@@ -227,12 +227,15 @@ export class AreaTool {
     const x1 = a.x0 + a.lengthFt;
     const y1 = a.y0 + a.widthFt;
     const ring: Vec2[] = [L([a.x0, a.y0]), L([x1, a.y0]), L([x1, y1]), L([a.x0, y1])];
-    const line = drapedRibbon(ring, this.drag ? 0.6 : 0.5, 0.4, g, CYAN, true);
-    const lm = line.material as THREE.MeshBasicMaterial;
-    lm.depthTest = false;
-    lm.depthWrite = false;
-    line.renderOrder = 19;
-    this.parts.add(line);
+    // (cyan with a white edge each side, so it reads apart from the plain cyan lot line)
+    for (const [w, color, order] of [[this.drag ? 1.1 : 0.95, 0xffffff, 18], [this.drag ? 0.6 : 0.5, CYAN, 19]] as const) {
+      const line = drapedRibbon(ring, w, 0.4, g, color, true);
+      const lm = line.material as THREE.MeshBasicMaterial;
+      lm.depthTest = false;
+      lm.depthWrite = false;
+      line.renderOrder = order;
+      this.parts.add(line);
+    }
     this.tex ??= { corner: handleTexture('corner'), side: handleTexture('side'), move: handleTexture('move') };
     for (const h of this.handlePoints()) {
       const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: this.tex[h.kind], depthTest: false, depthWrite: false, transparent: true }));
