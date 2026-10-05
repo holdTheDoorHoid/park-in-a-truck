@@ -240,7 +240,17 @@ export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = nu
     const terrainP = loadTerrain(slug ? null : lot, slug);
     $terrain.set({ status: terrainP ? 'loading' : 'none' });
     try {
-      const ctx: SiteContext = slug ? await loadDemo(slug) : await loadSiteContext(lot!);
+      // the taller buildings farther out may come a little later (a slow City query): added then
+      let farWaiting: SiteContext | null = null;
+      const lateFar = (late: SiteContext) => {
+        if (token !== loadToken) return;
+        const cur = $site.get();
+        // (before the lot is on screen: kept until it is)
+        if (!cur || cur.ctx.lot !== late.lot) return void (farWaiting = late);
+        if (late.note) $note.set($note.get() ?? late.note);
+        else $site.set(buildLocalSite({ ...cur.ctx, farBuildings: late.farBuildings }, getExtra<SiteFacts>('site')));
+      };
+      const ctx: SiteContext = slug ? await loadDemo(slug) : await loadSiteContext(lot!, lateFar);
       if (token !== loadToken) return;
       // a cached answer is instant: give it a moment before showing the lot without it
       const early = terrainP ? await within(terrainP, slug ? 4000 : 500) : null;
@@ -265,13 +275,16 @@ export function createPlannerStore(mode: PlannerMode, demo: DemoSlug | null = nu
       const g = slug ? null : getExtra<SunGrid>('sunGrid');
       $sunGrid.set(g && g.v === 1 && (!g.lotRef || g.lotRef === lotRef(lot)) ? g : null);
       $status.set('ready');
+      if (farWaiting) lateFar(farWaiting);
       if (!saved && persist()) scheduleSave();
       if (early) terrainReady(site);
       else if (terrainP) {
         terrainP
           .then((t) => {
-            if (token !== loadToken || $site.get()?.ctx.lot !== ctx.lot) return;
-            const next = buildLocalSite({ ...ctx, terrain: t }, facts);
+            const cur = $site.get();
+            if (token !== loadToken || !cur || cur.ctx.lot !== ctx.lot) return;
+            // (from the site as it is now: the far buildings may have arrived meanwhile)
+            const next = buildLocalSite({ ...cur.ctx, terrain: t }, facts);
             $site.set(next);
             terrainReady(next);
           })

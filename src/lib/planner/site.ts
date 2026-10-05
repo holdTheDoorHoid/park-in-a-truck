@@ -95,37 +95,70 @@ export function fixtureFor(lot: LotRecord): DemoSlug | null {
 // ---- the lot's surroundings ------------------------------------------------------
 
 const cache = new Map<string, Promise<Surroundings>>();
+const farCache = new Map<string, Promise<SiteBuilding[] | null>>();
 
 /**
- * Neighbouring buildings (with City heights), trees, parcels and streets around a lot, plus
- * the taller buildings farther out whose shadow can reach it (one more request, run
- * alongside; if only that one fails, `farBuildings` is absent and the next load tries again).
+ * How long the far query may take. The City's building layer can be slow over 1,500 ft
+ * (20–26 s for one lot on 2026-10-04, past the 20 s every other lookup gets).
  */
+export const FAR_QUERY_TIMEOUT_MS = 60_000;
+/**
+ * How long the planner waits for the far buildings once the lot's own surroundings are in.
+ * After that the lot shows without them, and they are added when they arrive.
+ */
+export const FAR_WAIT_AFTER_NEAR_MS = 3_000;
+
+const surroundingsKey = (lot: LotRecord, radiusFt: number) => `${lot.pwdParcelId ?? lot.address}@${radiusFt}`;
+
+/** Neighbouring buildings (with City heights), trees, parcels and streets around a lot. */
 export async function fetchSurroundings(lot: LotRecord, radiusFt = SURROUNDINGS_RADIUS_FT): Promise<Surroundings> {
-  const key = `${lot.pwdParcelId ?? lot.address}@${radiusFt}`;
+  const key = surroundingsKey(lot, radiusFt);
   if (!cache.has(key)) {
-    const far = fetchTallBuildings(lot, { minHeightFt: farQueryMinHeight(lot, radiusFt), maxFt: FAR_SHADE_MAX_FT }).catch(() => null);
-    const p = Promise.all([phillySurroundings(lot, radiusFt), far]).then(([s, f]): Surroundings => {
-      if (!f) cache.delete(key);
-      return {
+    const p = phillySurroundings(lot, radiusFt).then(
+      (s): Surroundings => ({
         buildings: s.buildings,
         trees: s.trees,
         streets: s.streets,
         // the lot's own parcel is not a neighbour (entrance detection looks at neighbours)
         parcels: s.parcels.filter((x) => (lot.opa ? x.opa !== lot.opa : true) && x.address !== lot.address),
-        ...(f ? { farBuildings: selectFarShade(lot, s.buildings, f.buildings) } : {}),
-      };
-    });
+      }),
+    );
     p.catch(() => cache.delete(key));
     cache.set(key, p);
   }
   return cache.get(key)!;
 }
 
+/**
+ * The taller buildings farther out whose shadow can reach the lot (one more request, started
+ * alongside the near ones, with a longer time limit). null when it failed: the next load tries again.
+ */
+export function fetchFarShade(lot: LotRecord, radiusFt = SURROUNDINGS_RADIUS_FT): Promise<SiteBuilding[] | null> {
+  const key = surroundingsKey(lot, radiusFt);
+  if (!farCache.has(key)) {
+    const tall = fetchTallBuildings(lot, { minHeightFt: farQueryMinHeight(lot, radiusFt), maxFt: FAR_SHADE_MAX_FT }, { timeoutMs: FAR_QUERY_TIMEOUT_MS });
+    const p = Promise.all([fetchSurroundings(lot, radiusFt), tall])
+      .then(([s, f]) => selectFarShade(lot, s.buildings, f.buildings))
+      .catch(() => {
+        farCache.delete(key);
+        return null;
+      });
+    farCache.set(key, p);
+  }
+  return farCache.get(key)!;
+}
+
 /** Said when the far buildings could not be loaded (the rest of the lot still works). */
 export const farShadeFailedNote = (): string => pt()('note.farFailed');
 
-export async function loadSiteContext(lot: LotRecord): Promise<SiteContext> {
+const PENDING = Symbol('pending');
+
+/**
+ * The lot and what's around it. The far buildings come with it when they arrive in time;
+ * otherwise the lot comes without them and `onLateFar` gets the context again once they are
+ * in (or with the note, if they could not be loaded).
+ */
+export async function loadSiteContext(lot: LotRecord, onLateFar?: (ctx: SiteContext) => void): Promise<SiteContext> {
   const demo = fixtureFor(lot);
   if (demo) {
     const f = await fixture(demo);
@@ -136,8 +169,14 @@ export async function loadSiteContext(lot: LotRecord): Promise<SiteContext> {
     return { lot, buildings: [], trees: [], parcels: [], streets: [], source: 'none', note: pt()('note.noOutline') };
   }
   try {
+    const far = fetchFarShade(lot);
     const s = await fetchSurroundings(lot);
-    return { lot, ...s, source: 'city', ...(s.farBuildings ? {} : { note: farShadeFailedNote() }) };
+    const ctx: SiteContext = { lot, ...s, source: 'city' };
+    const withFar = (f: SiteBuilding[] | null): SiteContext => (f ? { ...ctx, farBuildings: f } : { ...ctx, note: farShadeFailedNote() });
+    const f = await Promise.race([far, new Promise<typeof PENDING>((r) => setTimeout(() => r(PENDING), FAR_WAIT_AFTER_NEAR_MS))]);
+    if (f !== PENDING) return withFar(f);
+    void far.then((late) => onLateFar?.(withFar(late)));
+    return ctx;
   } catch {
     return {
       lot,

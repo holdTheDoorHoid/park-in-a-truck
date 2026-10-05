@@ -198,11 +198,12 @@ export function farQueryMinHeight(lot: LotLike, nearFt: number, minSunDeg = FAR_
  * Buildings at least `minHeightFt` tall (City approx_hgt) within `maxFt` of the lot: one
  * request, two attributes, outlines generalised to about 1.5 ft (plenty for shade hundreds
  * of feet away). Throws when the City can't be reached (the caller decides what that means).
+ * `timeoutMs`: how long to wait for the City's answer (default: getJSON's).
  */
 export async function fetchTallBuildings(
   lot: LotLike,
   q: { minHeightFt: number; maxFt?: number },
-  opts: { signal?: AbortSignal } = {},
+  opts: { signal?: AbortSignal; timeoutMs?: number } = {},
 ): Promise<{ buildings: SurroundingBuilding[]; truncated: boolean }> {
   const r = await queryGeo<{ approx_hgt: number | null; base_elevation: number | null }>(
     LAYERS.buildings,
