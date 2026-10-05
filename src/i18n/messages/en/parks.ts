@@ -37,6 +37,8 @@ export default defineMessages('parks', {
   'source.unconfirmedBeyond': 'unconfirmed beyond that',
   /** News articles on Jefferson University's site */
   'source.jeffersonNews': 'Jefferson news',
+  /** Between the pieces of a "Source:" line ("toolkit p.69; Grid Magazine"): the language's semicolon, with its own spacing */
+  'source.sep': '; ',
   /** Photo credit: {name} took the photo, which was published in PiaT's toolkit */
   'photo.via': '{name}, via the Park in a Truck toolkit',
   /** Photo credit for a photo from PiaT's toolkit */

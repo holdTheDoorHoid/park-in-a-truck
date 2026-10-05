@@ -22,6 +22,7 @@ export default {
   'source.unconfirmedElsewhere': 'больше нигде не подтверждено',
   'source.unconfirmedBeyond': 'больше ничем не подтверждено',
   'source.jeffersonNews': 'новости Jefferson',
+  'source.sep': '; ',
   'photo.via': '{name}, из руководства Park in a Truck',
   'photo.toolkit': 'руководство Park in a Truck',
 

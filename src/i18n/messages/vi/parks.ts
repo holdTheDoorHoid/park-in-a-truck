@@ -22,6 +22,7 @@ export default {
   'source.unconfirmedElsewhere': 'chưa được nguồn nào khác xác nhận',
   'source.unconfirmedBeyond': 'ngoài ra chưa được xác nhận',
   'source.jeffersonNews': 'tin tức của Jefferson',
+  'source.sep': '; ',
   'photo.via': 'ảnh của {name}, từ cẩm nang Park in a Truck',
   'photo.toolkit': 'cẩm nang Park in a Truck',
 

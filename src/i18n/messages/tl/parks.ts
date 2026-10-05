@@ -23,6 +23,7 @@ export default {
   'source.unconfirmedElsewhere': 'hindi kumpirmado sa ibang pinagmulan',
   'source.unconfirmedBeyond': 'wala nang ibang kumpirmasyon',
   'source.jeffersonNews': 'balita ng Jefferson',
+  'source.sep': '; ',
   'photo.via': '{name}, mula sa Toolkit ng Park in a Truck',
   'photo.toolkit': 'Toolkit ng Park in a Truck',
 

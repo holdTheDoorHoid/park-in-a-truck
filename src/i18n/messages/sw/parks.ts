@@ -22,6 +22,7 @@ export default {
   'source.unconfirmedElsewhere': 'haijathibitishwa kwingineko',
   'source.unconfirmedBeyond': 'haijathibitishwa zaidi ya hapo',
   'source.jeffersonNews': 'habari za Jefferson',
+  'source.sep': '; ',
   'photo.via': '{name}, kupitia mwongozo wa Park in a Truck',
   'photo.toolkit': 'mwongozo wa Park in a Truck',
 

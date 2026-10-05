@@ -21,6 +21,7 @@ export default {
   'source.unconfirmedElsewhere': 'pa konfime lòt kote',
   'source.unconfirmedBeyond': 'pa gen lòt konfimasyon',
   'source.jeffersonNews': 'nouvèl Jefferson',
+  'source.sep': '; ',
   'photo.via': '{name}, nan gid Park in a Truck la',
   'photo.toolkit': 'gid Park in a Truck la',
 

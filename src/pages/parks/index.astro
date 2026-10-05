@@ -28,7 +28,7 @@ function sourceText(source: string): string {
       if (part === 'Jefferson news') return t('source.jeffersonNews');
       return t.isolate(part);
     })
-    .join('; ');
+    .join(t('source.sep'));
 }
 function creditText(credit: string): string {
   if (credit === 'Park in a Truck toolkit') return t('photo.toolkit');
