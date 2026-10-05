@@ -101,6 +101,14 @@ after the extraction round. Tick them off here.
 Phase B (polish, 2026-10-04): what translators still have to do for the items above is listed in
 `docs/i18n/SWEEP.md`. Plant-list mismatches went to `docs/notes-for-piat-team.md`.
 
+## After the sweep (final small fixes)
+- [ ] 3D tooltip: parts named by an English label show English in every language ("Gabion fill material", "Bracing
+      material (spare 2x2 mesh)", "Geotextile fabric", "L brackets", "J hooks", "Backrest brackets", "P-1 (18"x18"
+      box)") — `src/lib/guides3d/labels.ts:41` uses the label as the name; the models overlay only allows
+      `asBuilt.reason`. Make part labels translatable (overlay or catalog keys) and translate in all 11 languages.
+- [ ] /parks/ source line joins parts with a hard-coded `'; '` (`src/pages/parks/index.astro:31`) — French needs a
+      non-breaking space before ";" — use a catalog separator or list format.
+
 ## For native-speaker review (per language)
 
 ### Spanish (es)
@@ -114,6 +122,11 @@ Phase B (polish, 2026-10-04): what translators still have to do for the items ab
 - `cost.ts` fix.* and note.* explanations; "Tipple rojo (red tipple)"; "Minicargadora (skid steer)"; `philly.ts`
   zoning descriptions ("casas unifamiliares pegadas") and Land Bank statuses; `planner.ts` slope sentences and the
   step name "Ubicar"; `shade.ts` summary sentences.
+- Sweep (2026-10): `planner.ts` picked-thing phrases ("donde está la banca…", "(elegida)") and slope sentences now
+  saying "alrededor de {amount}"; `workbook.ts` answer lists ("Primero complete los datos del lote de arriba, o
+  escriba algo en esa fila."); `models/*.json` as-built notes (travesaños, "quedan por debajo de las paredes");
+  `parks.ts` source.* ("sin otra confirmación", "vía la guía"); `resources.json` press notes 3 and 6; pot size "cuarto
+  de galón"; 3D part kinds (Lámina, Fijación).
 
 ### Chinese, Simplified (zh)
 - `start.mdx` "Why a park?" proverb line (每天去一次公园，医生远离我); `acquire.mdx` 实物使用协议;
@@ -147,6 +160,10 @@ Phase B (polish, 2026-10-04): what translators still have to do for the items ab
 - `cost.ts` fix.* / note.* / warn.* sentences and hardware names (ekè metal an L, rale angrenaj, chajè konpak);
   `philly.ts` zoning.* meanings and Land Bank statuses; `planner.ts` slope.* and sun.assume* small print; `shade.ts`
   summaries ("bilding ki {dir} yo"); `schedule.ts` task lines.
+- Sweep (2026-10): `planner.ts` spot.thing.* with their determiners ("kote tabourè a ye", "kote tab 2 pye a ye", "kote
+  fil anlè yo ye"); `workbook.ts` answer lists ("Teren an retire.", "Manm nan retire."); `models/*.json` as-built
+  notes (travès, ranfò, "depase anba bò yo"); `parks.ts` source.* ("pa gen lòt konfimasyon"); `resources.json` press
+  notes 3 and 6; pot size "ka galon"; 3D part kinds (Fèy, Pyès pou tache).
 
 ### Russian (ru)
 - Legal notice (`resources.json` legal.text, `start.mdx` «Правовая информация»); `create.mdx` Этап 2 «Гербициды»;
@@ -180,6 +197,11 @@ Phase B (polish, 2026-10-04): what translators still have to do for the items ab
   à percussion); `create.mdx` Phase 2 herbicide/weed names and safety notes; `sustain.mdx` Survivre / S'épanouir /
   Se retrouver; `start.mdx` barn-raising line and "Un parc par jour…"; `acquire.mdx` "accord d'usage en nature";
   resources legal text; principle and 6C names in `playful.ts`.
+- Sweep (2026-10): `planner.ts` slope sentences rebuilt with the places carrying du / au / près du (« Le sol descend
+  d’environ 2 pi du coin avant gauche au bord du fond »); picked-thing phrases (« là où se trouve… », « (choisie) »);
+  `models/*.json` as-built notes (traverses, entretoises, « dépassent sous les parois »); `parks.ts` source.*
+  (« aucune autre confirmation »); `resources.json` press notes 3 and 6; pot size « quart de gallon »; 3D part kinds
+  (Panneau, Fixation, Toile).
 
 ### Portuguese (pt)
 - `cost.ts`: hardscape/softscape as "pavimento/terra", "reserva para imprevistos", "brita vermelha (red tipple)";
@@ -187,6 +209,12 @@ Phase B (polish, 2026-10-04): what translators still have to do for the items ab
   alicate corta-vergalhão), "com nós", "tratada em autoclave"; `plants.json` descriptive names with English in
   brackets; `create.mdx` Phase 2 herbicide/weed names and safety notes; `start.mdx` "Why a park?" closing line,
   "Aviso legal" + resources legal text; `playful.ts` "Aprender Brincando" and the 6Cs ("Pensamento crítico").
+- Sweep (2026-10): `planner.ts` slope sentences with the places carrying do / ao / à / perto do ("O chão desce cerca
+  de 2 pés do canto esquerdo da frente à borda do fundo"); picked-thing phrases ("onde está…", "(escolhida)");
+  `workbook.ts` answer lists ("Preencha primeiro os dados do terreno acima…"); lengths use the Brazilian plural rule,
+  so 0 and 1.x take the singular ("1,1 pé"); `models/*.json` as-built notes ("pés" = legs beside "pés" = feet in the
+  shade note); `resources.json` press notes 3 and 6; pot size "quarto de galão"; 3D part kinds (Chapa, Fixador,
+  Manta).
 
 ### Korean (ko)
 - Step names (확보하기, 조사하기, 가꾸기), 자투리 공원 (Park Patch), phase = 차 작업; made-up plant names (큰도토리참나무,

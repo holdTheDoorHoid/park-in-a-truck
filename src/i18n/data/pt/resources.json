@@ -57,7 +57,8 @@
       "title": "Park in a Truck recebe o prêmio Groundbreaker 2020 da Green Building United"
     },
     {
-      "title": "\"Park in a Truck\" é como a Ikea, mas para construir parques de bairro"
+      "title": "\"Park in a Truck\" é como a Ikea, mas para construir parques de bairro",
+      "note": "Não foi possível verificar se a página está no ar (o site bloqueia acessos automáticos); o link é o que o próprio PiaT divulga, e a matéria da Jefferson de setembro de 2020 sobre esse mesmo reconhecimento confirma."
     },
     {
       "title": "Terrenos baldios viram parques bonitos em bairros da Filadélfia"
@@ -66,7 +67,8 @@
       "title": "Programa Park in a Truck transforma áreas verdes urbanas na Filadélfia com a ajuda dos jovens do bairro"
     },
     {
-      "title": "ASLA Spotlight — primavera de 2025"
+      "title": "ASLA Spotlight — primavera de 2025",
+      "note": "Uma revista digital para folhear na tela; foi confirmado que está no ar e que é a edição da primavera de 2025, mas o conteúdo das páginas não pode ser extraído automaticamente — abra direto para encontrar a matéria sobre o Park in a Truck."
     },
     {
       "title": "Park in a Truck"
@@ -394,7 +396,8 @@
             "title": "Green2015: um plano de ação para os primeiros 500 acres"
           },
           {
-            "title": "Grounded in Philly"
+            "title": "Grounded in Philly",
+            "description": "Public Interest Law Center — Garden Justice Legal Initiative, 215-627-7100, ramal 236"
           },
           {
             "title": "Neighborhood Gardens Trust"
@@ -450,16 +453,20 @@
         "title": "05 Criar",
         "entries": [
           {
-            "title": "Woodland Building Supply"
+            "title": "Woodland Building Supply",
+            "description": "4701 Woodland Ave, Filadélfia · 215-727-5333"
           },
           {
-            "title": "C&R Building Supply"
+            "title": "C&R Building Supply",
+            "description": "1601 S 49th St, Filadélfia"
           },
           {
-            "title": "A&A Lumber"
+            "title": "A&A Lumber",
+            "description": "109 Old Limestone Rd, Avondale PA"
           },
           {
-            "title": "Philly Reclaim"
+            "title": "Philly Reclaim",
+            "description": "150 W Butler St, Filadélfia — depósito de materiais reaproveitados; veja também PowerCorpsPHL"
           },
           {
             "title": "PowerCorpsPHL"
@@ -477,40 +484,52 @@
             "title": "Willis Orchards — árvores frutíferas"
           },
           {
-            "title": "Good Host Plants"
+            "title": "Good Host Plants",
+            "description": "150 W Butler St, Filadélfia — especialista local em plantas para polinizadores"
           },
           {
-            "title": "LandHealth Institute Nursery (Philaflora)"
+            "title": "LandHealth Institute Nursery (Philaflora)",
+            "description": "West Philadelphia, 267-571-5750"
           },
           {
-            "title": "Pleasant Run Nursery"
+            "title": "Pleasant Run Nursery",
+            "description": "93 Ellisdale Rd, Allentown NJ 08501 · 609-259-8585 — entrega com pedido mínimo de US$ 1.250"
           },
           {
-            "title": "Pinelands Nursery"
+            "title": "Pinelands Nursery",
+            "description": "323 Island Rd, Columbus NJ 08022 · 609-291-9486"
           },
           {
-            "title": "Archewild"
+            "title": "Archewild",
+            "description": "2191 Hillcrest Rd, Quakertown PA 18951"
           },
           {
-            "title": "Underdog Landscape Supply"
+            "title": "Underdog Landscape Supply",
+            "description": "701 Washington St, Conshohocken PA · 610-260-9747"
           },
           {
-            "title": "Castor Materials"
+            "title": "Castor Materials",
+            "description": "3301 S 61st St, Filadélfia"
           },
           {
-            "title": "D&S Supply"
+            "title": "D&S Supply",
+            "description": "4260 Macalester St, Filadélfia · 215-457-1177"
           },
           {
-            "title": "Richard S. Burns & Co."
+            "title": "Richard S. Burns & Co.",
+            "description": "4300 Rising Sun Ave, Filadélfia · 215-324-6377 — materiais reciclados à venda"
           },
           {
-            "title": "West Philadelphia Tool Library"
+            "title": "West Philadelphia Tool Library",
+            "description": "1314 S 47th St, Filadélfia"
           },
           {
-            "title": "Diamond Tool"
+            "title": "Diamond Tool",
+            "description": "2800 Grays Ferry Ave, Filadélfia"
           },
           {
-            "title": "Fairmount Park Organic Recycling Center"
+            "title": "Fairmount Park Organic Recycling Center",
+            "description": "3850 W Ford Rd, Filadélfia · 215-685-0108"
           }
         ]
       },
