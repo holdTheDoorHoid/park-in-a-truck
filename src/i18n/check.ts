@@ -339,7 +339,9 @@ function checkPages(root: string, issues: Issue[]) {
   const pages = join(root, 'src/pages');
   for (const f of walkFiles(pages, '.astro')) {
     const rel = relative(pages, f).split('\\').join('/');
-    if (rel.startsWith('[lang]/') || rel.startsWith('dev/')) continue;
+    // dev/: left out of production builds. 404.astro: GitHub Pages serves one 404.html for the
+    // whole site; it shows the visitor's language itself (src/pages/404.astro).
+    if (rel.startsWith('[lang]/') || rel.startsWith('dev/') || rel === '404.astro') continue;
     if (!existsSync(join(pages, '[lang]', rel))) {
       issues.push({ level: 'error', locale: '*', file: `src/pages/${rel}`, message: `has no twin at src/pages/[lang]/${rel}, so it exists in English only (copy any twin in src/pages/[lang]/ and fix the import path)` });
     }

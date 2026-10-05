@@ -2,6 +2,13 @@
   "name": "park-in-a-truck",
   "type": "module",
   "version": "0.0.1",
+  "private": true,
+  "description": "Interactive Park in a Truck toolkit: guided workbooks, City of Philadelphia lookups and a 3D park planner.",
+  "homepage": "https://holdthedoorhoid.github.io/park-in-a-truck/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/holdTheDoorHoid/park-in-a-truck.git"
+  },
   "engines": {
     "node": ">=22.12.0"
   },

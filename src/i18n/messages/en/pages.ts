@@ -123,6 +123,18 @@ export default defineMessages(
     'resources.contact.phone': 'Phone:',
     'resources.contact.instagram': 'Instagram:',
     'resources.contact.facebook': 'Facebook:',
+    // The 404 page (src/pages/404.astro): GitHub Pages shows it for any address that doesn't exist.
+    // There is one 404 page for the whole site; when the address was in your language (/es/…),
+    // it shows these words in your language, with links to your language's pages.
+    /** Page title and heading */
+    'notFound.title': 'Page not found',
+    'notFound.lede': "There's no page at this address. The link may be old, or it may have a typo.",
+    /** Button to the home page */
+    'notFound.home': 'Go to the home page',
+    /** Button to the list of the six steps */
+    'notFound.steps': 'See the six steps',
+    /** "My park" is the page with the person's saved project (same name as in the menu) */
+    'notFound.saved': 'Anything you saved is still in this browser, in <a href="{href}">My park</a>.',
   },
   { client: false },
 );

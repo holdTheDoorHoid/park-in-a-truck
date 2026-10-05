@@ -1,0 +1,71 @@
+# Builds the site and publishes it on GitHub Pages:
+#   https://holdthedoorhoid.github.io/park-in-a-truck/
+# Runs on every push to main, and by hand (Actions -> "Deploy to GitHub Pages" -> Run workflow).
+# One-time setup: Settings -> Pages -> Build and deployment -> Source: "GitHub Actions".
+#
+# Search engines: the site is UNLISTED while src/config.ts says SEARCH_INDEXING = false. The
+# repository variable SEARCH_INDEXING (Settings -> Secrets and variables -> Actions -> Variables),
+# when set to true or false, wins over that line. See README "Hosting".
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# One deploy at a time; a newer push waits for the one in progress instead of cancelling it.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Check translations
+        run: npm run i18n:check
+
+      - name: Test
+        run: npm test
+        env:
+          # Shared runners are slow and noisy: skip the speed ceilings (the work and its results
+          # are still checked) so a slow minute can't block a deploy. See src/lib/__tests__/timing.ts.
+          PIAT_SKIP_TIMING: '1'
+
+      - name: Build
+        run: npm run build
+        env:
+          SITE_BASE: /park-in-a-truck/
+          SEARCH_INDEXING: ${{ vars.SEARCH_INDEXING }}
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5
