@@ -26,6 +26,44 @@ export default defineMessages('workbook', {
   'list.removeRow': 'Remove row {n}',
   /** Read out by screen readers after a row is removed: "lot removed." */
   'list.removed': '{row} removed.',
+  // One whole sentence per list (agreement with the row's noun: "+ Add member", "member removed.").
+  // Each list: add = the button, removed = read out after a row is deleted, fillFirst = shown when the last row is still empty.
+  /** acquire.candidate-notes — rows are each a "lot" */
+  'list.candidateNotes.add': '+ Add lot',
+  'list.candidateNotes.removed': 'lot removed.',
+  'list.candidateNotes.fillFirst': 'Fill in the lot above first, or add something to it.',
+  /** acquire.owner-contacts — rows are each a "contact" */
+  'list.ownerContacts.add': '+ Add contact',
+  'list.ownerContacts.removed': 'contact removed.',
+  'list.ownerContacts.fillFirst': 'Fill in the contact above first, or add something to it.',
+  /** organize.committee-members — rows are each a "member" */
+  'list.committeeMembers.add': '+ Add member',
+  'list.committeeMembers.removed': 'member removed.',
+  'list.committeeMembers.fillFirst': 'Fill in the member above first, or add something to it.',
+  /** organize.citizens-associations — rows are each a "group" */
+  'list.citizensAssociations.add': '+ Add group',
+  'list.citizensAssociations.removed': 'group removed.',
+  'list.citizensAssociations.fillFirst': 'Fill in the group above first, or add something to it.',
+  /** organize.physical-assets — rows are each a "asset" */
+  'list.physicalAssets.add': '+ Add asset',
+  'list.physicalAssets.removed': 'asset removed.',
+  'list.physicalAssets.fillFirst': 'Fill in the asset above first, or add something to it.',
+  /** organize.local-institutions — rows are each a "institution" */
+  'list.localInstitutions.add': '+ Add institution',
+  'list.localInstitutions.removed': 'institution removed.',
+  'list.localInstitutions.fillFirst': 'Fill in the institution above first, or add something to it.',
+  /** assess.objects — rows are each a "object" */
+  'list.objects.add': '+ Add object',
+  'list.objects.removed': 'object removed.',
+  'list.objects.fillFirst': 'Fill in the object above first, or add something to it.',
+  /** create.org-chart — rows are each a "person" */
+  'list.orgChart.add': '+ Add person',
+  'list.orgChart.removed': 'person removed.',
+  'list.orgChart.fillFirst': 'Fill in the person above first, or add something to it.',
+  /** sustain.events — rows are each a "event" */
+  'list.events.add': '+ Add event',
+  'list.events.removed': 'event removed.',
+  'list.events.fillFirst': 'Fill in the event above first, or add something to it.',
   /** Screen-reader name of one cell: "Address, row 2" */
   'list.cell': '{label}, row {n}',
 
@@ -35,7 +73,8 @@ export default defineMessages('workbook', {
   'done.badge': '✓ done',
   'progress.of': '{done} of {total}',
   'progress.done': '{done} of {total} done',
-  'progress.total': '{done} of {total} steps done',
+  /** Overall progress on the Steps page: it counts the SUB-steps of all six steps (53 of them), so say sub-steps */
+  'progress.total': '{done} of {total} sub-steps done',
 
   'pdf.label': 'Original workbook page',
   'pdf.page': '(PDF page {page})',
@@ -83,7 +122,9 @@ export default defineMessages('workbook', {
   'auto.trees.several': 'Several trees',
   'auto.yes': 'Yes',
   'auto.no': 'No',
-  'auto.sqft': '{n} sq ft',
-  'auto.ft': '{n} ft',
+  /** Plural forms: the form follows the number of square feet in {n} ("1 ft", "2 ft"); give the forms your language needs */
+  'auto.sqft': { one: '{n} sq ft', other: '{n} sq ft' },
+  /** Plural forms: the form follows the number of feet in {n} ("1 ft", "2 ft"); give the forms your language needs */
+  'auto.ft': { one: '{n} ft', other: '{n} ft' },
   'auto.size': 'Size {size}',
 });

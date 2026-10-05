@@ -71,7 +71,8 @@ export default defineMessages('planner', {
   /** A length × width in feet, e.g. "4 × 1.5 ft" */
   'common.dims': '{length} × {width} ft',
   /** A length in feet, e.g. "24 ft" */
-  'common.ft': '{ft} ft',
+  /** Plural forms: the form follows the number of feet in {ft} ("1 ft", "2 ft"); give the forms your language needs */
+  'common.ft': { one: '{ft} ft', other: '{ft} ft' },
   /** On buttons that add a thing to the park or the map: "+ Stool" */
   'common.add': '+ {name}',
   'common.cancel': 'Cancel',
@@ -136,7 +137,7 @@ export default defineMessages('planner', {
   'lot.bestSlide': 'Slide it to fit the lot as well as it can',
   'lot.overhang': 'About {area} sq ft of the park hangs over the lot line (shown in red).',
   'lot.overhangItems': {
-    one: 'About {area} sq ft of the park hangs over the lot line (shown in red), and {count} thing stick out.',
+    one: 'About {area} sq ft of the park hangs over the lot line (shown in red), and {count} thing sticks out.',
     other: 'About {area} sq ft of the park hangs over the lot line (shown in red), and {count} things stick out.',
   },
   'lot.overhangTurned': 'Turned this way the park does not fit — turn it back, or pick a smaller size.',
@@ -246,12 +247,15 @@ export default defineMessages('planner', {
   /** "{along}, {across}" e.g. "29 ft from the entrance, 4 ft from the left side" */
   'where.both': '{along}, {across}',
   'where.atEntrance': 'at the entrance',
-  'where.fromEntrance': '{ft} ft from the entrance',
+  /** Plural forms: the form follows the number of feet in {ft} ("1 ft", "2 ft"); give the forms your language needs */
+  'where.fromEntrance': { one: '{ft} ft from the entrance', other: '{ft} ft from the entrance' },
   'where.middle': 'in the middle across',
   'where.againstLeft': 'against the left side',
   'where.againstRight': 'against the right side',
-  'where.fromLeft': '{ft} ft from the left side',
-  'where.fromRight': '{ft} ft from the right side',
+  /** Plural forms: the form follows the number of feet in {ft} ("1 ft", "2 ft"); give the forms your language needs */
+  'where.fromLeft': { one: '{ft} ft from the left side', other: '{ft} ft from the left side' },
+  /** Plural forms: the form follows the number of feet in {ft} ("1 ft", "2 ft"); give the forms your language needs */
+  'where.fromRight': { one: '{ft} ft from the right side', other: '{ft} ft from the right side' },
   /** Two items in a list that would read the same get numbered: "Stool — at the entrance, … (#2)" */
   'where.numbered': '{label} (#{n})',
 
@@ -260,7 +264,7 @@ export default defineMessages('planner', {
   'existing.titleCompact': 'Already on the lot',
   'existing.intro': "Mark what's already there: trees, a neighbor's downspout, spots that get wet, hydrants, poles and wires, old pavement.",
   'existing.cityTrees': {
-    one: "The {count} street tree nearby come from the City's tree inventory.",
+    one: "The {count} street tree nearby comes from the City's tree inventory.",
     other: "The {count} street trees nearby come from the City's tree inventory.",
   },
   'existing.intro2': 'Add a thing, then drag it to where it really is; an area that gets wet you draw around on the map.',
@@ -285,13 +289,17 @@ export default defineMessages('planner', {
   'existing.redrawTitle': 'Redraw the wet area',
   'existing.drawHelp':
     'Click (or tap) on the map around the spot that gets wet, point by point. To finish, click the first point again, double-click, or press Enter — or use “Finish” on the map. Esc cancels.',
-  'existing.spread': 'Branches spread {ft} ft across',
+  /** Plural forms: the form follows the number of feet in {ft} ("1 ft", "2 ft"); give the forms your language needs */
+  'existing.spread': { one: 'Branches spread {ft} ft across', other: 'Branches spread {ft} ft across' },
   'existing.wetSize': 'About {area} sq ft. Drag the area to move it; drag a corner to reshape it, or the small + between two corners to add one.',
   'existing.redraw': 'Redraw its outline',
-  'existing.across': 'About {ft} ft across',
+  /** Plural forms: the form follows the number of feet in {ft} ("1 ft", "2 ft"); give the forms your language needs */
+  'existing.across': { one: 'About {ft} ft across', other: 'About {ft} ft across' },
   'existing.drawInstead': 'Draw its outline instead',
-  'existing.long': '{ft} ft long',
-  'existing.wide': '{ft} ft wide',
+  /** Plural forms: the form follows the number of feet in {ft} ("1 ft", "2 ft"); give the forms your language needs */
+  'existing.long': { one: '{ft} ft long', other: '{ft} ft long' },
+  /** Plural forms: the form follows the number of feet in {ft} ("1 ft", "2 ft"); give the forms your language needs */
+  'existing.wide': { one: '{ft} ft wide', other: '{ft} ft wide' },
   'existing.turn15': '↻ Turn 15°',
   'existing.turn90': '↻ 90°',
   'existing.takeOff': 'Take off the map',
@@ -319,8 +327,8 @@ export default defineMessages('planner', {
   'slope.legend': 'Brown lines join ground of equal height; arrows point downhill, the way rain runs off. ▲ and ▼ mark the highest and lowest ground on the lot.',
   'slope.legendInches':
     'Brown lines join ground of equal height, every {inches} inches of height; arrows point downhill, the way rain runs off. ▲ and ▼ mark the highest and lowest ground on the lot.',
-  'slope.legendFeet':
-    'Brown lines join ground of equal height, every {ft} ft of height; arrows point downhill, the way rain runs off. ▲ and ▼ mark the highest and lowest ground on the lot.',
+  /** Plural forms: the form follows the number of feet in {ft} ("1 ft", "2 ft"); give the forms your language needs */
+  'slope.legendFeet': { one: 'Brown lines join ground of equal height, every {ft} ft of height; arrows point downhill, the way rain runs off. ▲ and ▼ mark the highest and lowest ground on the lot.', other: 'Brown lines join ground of equal height, every {ft} ft of height; arrows point downhill, the way rain runs off. ▲ and ▼ mark the highest and lowest ground on the lot.' },
   'slope.directions': 'Front is the entrance edge on the street; left and right are as you stand there looking in.',
   /** {source} is the survey's name (e.g. "USGS 3DEP lidar"), {year} the year it was flown, {cell} the grid size in metres */
   'slope.accuracy':
@@ -330,7 +338,8 @@ export default defineMessages('planner', {
   /** Small heights: "4 inches" */
   'slope.inches': { one: '{count} inch', other: '{count} inches' },
   /** Larger heights: "2.3 ft" */
-  'slope.feet': '{ft} ft',
+  /** Plural forms: the form follows the number of feet in {ft} ("1 ft", "2 ft"); give the forms your language needs */
+  'slope.feet': { one: '{ft} ft', other: '{ft} ft' },
   /** A slope: "0.5%" */
   'slope.pct': '{pct}%',
   /** A slope with its rise over run: "3% (about 1 ft in 33 ft)" */
@@ -339,7 +348,7 @@ export default defineMessages('planner', {
   'slope.flat': 'The lot is practically flat: its ground varies by less than {amount}.',
   /** {amount}: "1.8 ft" or "5 inches"; {slope}: "3% (about 1 ft in 33 ft)" */
   'slope.varies': 'The ground on the lot varies by about {amount} — an average slope of {slope}.',
-  /** {from} and {to} are places on the lot (slope.place*), e.g. "the back left corner", "the front edge" */
+  /** {from} and {to} are places on the lot (slope.from.* and slope.to.*), e.g. "the back left corner", "the front edge" */
   'slope.falls': 'The ground falls about {amount} from {from} to {to} — an average slope of {slope}.',
   /** {where}: slope.toward*; {compass}: a compass direction */
   'slope.rain': 'Rain runs toward {where}, to the {compass}.',
@@ -357,20 +366,41 @@ export default defineMessages('planner', {
   'slope.towardFrontRight': 'the front right corner',
   'slope.towardBackLeft': 'the back left corner',
   'slope.towardBackRight': 'the back right corner',
-  /** Places on the lot, used after "from", "to" and "near" in the sentences above */
-  'slope.placeFrontLeft': 'the front left corner',
-  'slope.placeFrontRight': 'the front right corner',
-  'slope.placeBackLeft': 'the back left corner',
-  'slope.placeBackRight': 'the back right corner',
-  'slope.placeFront': 'the front edge',
-  'slope.placeBack': 'the back edge',
-  'slope.placeLeft': 'the left side',
-  'slope.placeRight': 'the right side',
-  'slope.placeMiddle': 'the middle of the lot',
+  // Places on the lot, one set per sentence slot, so a language can put its own preposition and article
+  // ("du coin avant gauche", "au bord avant") into the place and out of the sentence:
+  //   slope.from.* = {from} in slope.falls, slope.to.* = {to} in slope.falls, slope.near.* = {where} in slope.steepest and slope.dip
+  'slope.from.frontLeft': 'the front left corner',
+  'slope.from.frontRight': 'the front right corner',
+  'slope.from.backLeft': 'the back left corner',
+  'slope.from.backRight': 'the back right corner',
+  'slope.from.front': 'the front edge',
+  'slope.from.back': 'the back edge',
+  'slope.from.left': 'the left side',
+  'slope.from.right': 'the right side',
+  'slope.from.middle': 'the middle of the lot',
+  'slope.to.frontLeft': 'the front left corner',
+  'slope.to.frontRight': 'the front right corner',
+  'slope.to.backLeft': 'the back left corner',
+  'slope.to.backRight': 'the back right corner',
+  'slope.to.front': 'the front edge',
+  'slope.to.back': 'the back edge',
+  'slope.to.left': 'the left side',
+  'slope.to.right': 'the right side',
+  'slope.to.middle': 'the middle of the lot',
+  'slope.near.frontLeft': 'the front left corner',
+  'slope.near.frontRight': 'the front right corner',
+  'slope.near.backLeft': 'the back left corner',
+  'slope.near.backRight': 'the back right corner',
+  'slope.near.front': 'the front edge',
+  'slope.near.back': 'the back edge',
+  'slope.near.left': 'the left side',
+  'slope.near.right': 'the right side',
+  'slope.near.middle': 'the middle of the lot',
   /** Labels drawn on the map at the highest and lowest ground. Short. */
   'slope.high': '▲ High',
   'slope.lowInches': '▼ Low · {inches} in lower',
-  'slope.lowFeet': '▼ Low · {ft} ft lower',
+  /** Plural forms: the form follows the number of feet in {ft} ("1 ft", "2 ft"); give the forms your language needs */
+  'slope.lowFeet': { one: '▼ Low · {ft} ft lower', other: '▼ Low · {ft} ft lower' },
 
   // ---- Sun & shade (SunPanel) ----
   'sun.title': 'Sun and shade',
@@ -564,6 +594,85 @@ export default defineMessages('planner', {
   'view.northLetter': 'N',
   /** Name of the picked thing in the bar over the 3D view (screen readers) */
   'view.picked': '{name} (picked)',
+  // The picked thing, one whole phrase per kind of thing, so a language can use the noun's own article and
+  // gender ("là où se trouve le tabouret", "Tabouret (choisi)" / "Table (choisie)"). Things without their own
+  // phrase (a tree named by its species) use spot.thing / view.picked with {name}.
+  'spot.thing.gabionWall': 'where the gabion wall is',
+  'spot.thing.gabionBench': 'where the wood-topped gabion bench is',
+  'spot.thing.gabionBench8': 'where the 8\' wood-topped gabion bench is',
+  'spot.thing.benchBack': 'where the bench with back is',
+  'spot.thing.bench4': 'where the 4\' bench (no back) is',
+  'spot.thing.stool': 'where the stool is',
+  'spot.thing.flexibleSeating': 'where the flexible seating is',
+  'spot.thing.table2': 'where the 2\' table is',
+  'spot.thing.table4': 'where the 4\' table is',
+  'spot.thing.table6': 'where the 6\' table is',
+  'spot.thing.communalTable': 'where the communal table is',
+  'spot.thing.workbench': 'where the workbench / standing table is',
+  'spot.thing.planter18': 'where the 18" planter box (small) is',
+  'spot.thing.planter24': 'where the 24" planter box (large) is',
+  'spot.thing.raisedBed': 'where the raised bed is',
+  'spot.thing.coldFrame': 'where the cold frame is',
+  'spot.thing.plantingSquare': 'where the planting square (4×4 ft) is',
+  'spot.thing.naturePlay': 'where the nature play is',
+  'spot.thing.outdoorClassroom': 'where the outdoor classroom is',
+  'spot.thing.shadeCanopy': 'where the shade canopy is',
+  'spot.thing.eventTent': 'where the event tent is',
+  'spot.thing.stage': 'where the stage is',
+  'spot.thing.shed': 'where the shed is',
+  'spot.thing.compostBin': 'where the compost bin is',
+  'spot.thing.rainBarrel': 'where the rain barrel is',
+  'spot.thing.birdbath': 'where the birdbath is',
+  'spot.thing.birdAccessories': 'where the bird houses & feeders is',
+  'spot.thing.perennial': 'where the perennial is',
+  'spot.thing.shrub': 'where the shrub is',
+  'spot.thing.smallTree': 'where the small tree is',
+  'spot.thing.largeTree': 'where the large tree is',
+  'spot.thing.existingTree': 'where the tree already there is',
+  'spot.thing.downspout': 'where the neighbor\'s downspout is',
+  'spot.thing.wetArea': 'where the area that gets wet is',
+  'spot.thing.hydrant': 'where the fire hydrant is',
+  'spot.thing.utilityPole': 'where the utility pole is',
+  'spot.thing.utilityLine': 'where the overhead wires is',
+  'spot.thing.oldPavement': 'where the old pavement is',
+  'view.picked.gabionWall': 'Gabion wall (picked)',
+  'view.picked.gabionBench': 'Wood-topped gabion bench (picked)',
+  'view.picked.gabionBench8': '8\' wood-topped gabion bench (picked)',
+  'view.picked.benchBack': 'Bench with back (picked)',
+  'view.picked.bench4': '4\' bench (no back) (picked)',
+  'view.picked.stool': 'Stool (picked)',
+  'view.picked.flexibleSeating': 'Flexible seating (picked)',
+  'view.picked.table2': '2\' table (picked)',
+  'view.picked.table4': '4\' table (picked)',
+  'view.picked.table6': '6\' table (picked)',
+  'view.picked.communalTable': 'Communal table (picked)',
+  'view.picked.workbench': 'Workbench / standing table (picked)',
+  'view.picked.planter18': '18" planter box (small) (picked)',
+  'view.picked.planter24': '24" planter box (large) (picked)',
+  'view.picked.raisedBed': 'Raised bed (picked)',
+  'view.picked.coldFrame': 'Cold frame (picked)',
+  'view.picked.plantingSquare': 'Planting square (4×4 ft) (picked)',
+  'view.picked.naturePlay': 'Nature play (picked)',
+  'view.picked.outdoorClassroom': 'Outdoor classroom (picked)',
+  'view.picked.shadeCanopy': 'Shade canopy (picked)',
+  'view.picked.eventTent': 'Event tent (picked)',
+  'view.picked.stage': 'Stage (picked)',
+  'view.picked.shed': 'Shed (picked)',
+  'view.picked.compostBin': 'Compost bin (picked)',
+  'view.picked.rainBarrel': 'Rain barrel (picked)',
+  'view.picked.birdbath': 'Birdbath (picked)',
+  'view.picked.birdAccessories': 'Bird houses & feeders (picked)',
+  'view.picked.perennial': 'Perennial (picked)',
+  'view.picked.shrub': 'Shrub (picked)',
+  'view.picked.smallTree': 'Small tree (picked)',
+  'view.picked.largeTree': 'Large tree (picked)',
+  'view.picked.existingTree': 'Tree already there (picked)',
+  'view.picked.downspout': 'Neighbor\'s downspout (picked)',
+  'view.picked.wetArea': 'Area that gets wet (picked)',
+  'view.picked.hydrant': 'Fire hydrant (picked)',
+  'view.picked.utilityPole': 'Utility pole (picked)',
+  'view.picked.utilityLine': 'Overhead wires (picked)',
+  'view.picked.oldPavement': 'Old pavement (picked)',
   'view.gabionInfo': 'Gabion wall: one row of 12″ × 12″ × 48″ stone baskets along the street edge.',
   'view.gabionInfoFt': 'Gabion wall: one row of 12″ × 12″ × 48″ stone baskets along the street edge — {ft} ft in all (see Counts).',
   /** The hint line under the 3D view: what the mouse or finger does right now */

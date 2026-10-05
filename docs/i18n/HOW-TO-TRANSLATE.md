@@ -220,6 +220,13 @@ language. Then translate in place:
 - Select options: turn `options={['Purchase', 'Lease']}` into
   `options={[{ value: 'Purchase', label: '<yours>' }, { value: 'Lease', label: '<yours>' }]}`.
 - Units: `unit="ft"` may become your word for feet (still feet).
+- Names that come from data (themes, elements…) are translated once, in your data overlays — don't repeat them in
+  the chapter. A chapter may import the data helpers (the scaffold does this when the chapter shows theme or
+  element names):
+  `import { localizeRecord } from '../../../../i18n/data.ts';` then
+  `export const THEME_TEXT = localizeRecord(THEMES, 'themes', '<code>');` (and `ELEMENT_TEXT` for ELEMENTS) and
+  use `THEME_TEXT[id].name` / `Object.values(ELEMENT_TEXT)`. Allowed extra imports: `urlFor`, `localizeRecord`,
+  `localizeKeyed`, `localizedSteps`, `localizedStep`.
 - A chapter that doesn't exist in your language shows the English one with a notice; that's fine.
 
 ### Data overlays
@@ -236,6 +243,25 @@ Same shape as the English data, **only** the fields `src/i18n/datasets.ts` allow
 ```
 
 Never copy numbers, ids, URLs, prices, sizes or part labels into an overlay — the checker rejects them.
+Fields that are mostly codes (`materials[].size`, `hardware[].size`, `cutList[].stock`) are allowed so you can
+translate the few with words ("2x2 welded-wire mesh", "8' long, cut to size"); leave plain sizes like `2x4x8'` out
+(`null`). The 3D models' note on their built size has its own overlay: `src/i18n/data/<code>/models/<slug>.json`
+= `{ "asBuilt": { "reason": "…" } }`.
+
+### Sentences built for you (no slotted nouns)
+
+Where a word would have to agree with a noun the code slots in, the catalog has one whole phrase per case instead:
+
+- Answer lists: `workbook` `list.<list>.add` / `.removed` / `.fillFirst` ("+ Add member", "member removed.") — one
+  set per list, so the verb or article can agree with the row's noun. `list.add {row}` is only the fallback.
+- Planner: `slope.from.*`, `slope.to.*`, `slope.near.*` — the same nine places, once per sentence slot ({from} and
+  {to} in `slope.falls`, {where} in `slope.steepest` / `slope.dip`). Move your preposition and article into the
+  place if your language contracts them ("du coin avant gauche", "au bord avant") and out of the sentence.
+- Planner: `spot.thing.<thing>` ("where the stool is") and `view.picked.<thing>` ("Stool (picked)") per kind of
+  thing; `spot.thing {name}` / `view.picked {name}` stay for a tree named by its species.
+- Lengths are plurals: `common.ft`, `where.from*`, `existing.*` sizes, `slope.feet` / `lowFeet` / `legendFeet`,
+  philly `unit.ft` / `unit.mi` / `unit.sqft`, workbook `auto.ft` / `auto.sqft` — the number of feet picks the form
+  ("1 pie", "2 pies"), even though the message shows it as {ft} or {n}.
 
 ---
 

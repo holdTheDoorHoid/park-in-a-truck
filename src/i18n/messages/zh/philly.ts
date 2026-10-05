@@ -11,9 +11,9 @@ export default {
   'loading.assets': '正在加载社区资源…（需要 JavaScript）',
   'loading.basemap': '正在绘制您的底图…（需要 JavaScript）',
 
-  'unit.ft': '{n}英尺',
-  'unit.sqft': '{n}平方英尺',
-  'unit.mi': '{n}英里',
+  'unit.ft': { other: '{n}英尺' },
+  'unit.sqft': { other: '{n}平方英尺' },
+  'unit.mi': { other: '{n}英里' },
   'distance.nextDoor': '紧邻',
   'map.north': '北',
   'map.ui.zoomIn': '放大',

@@ -61,5 +61,5 @@ export function SlopeCard({ store, compact = false }: { store: PlannerStore; com
 function slopeLegend(fallFt: number, w: PlannerT): string {
   const i = contourInterval(fallFt);
   if (!i) return w('slope.legend');
-  return i < 1 ? w('slope.legendInches', { inches: Math.round(i * 12) }) : w('slope.legendFeet', { ft: i });
+  return i < 1 ? w('slope.legendInches', { inches: Math.round(i * 12) }) : w('slope.legendFeet', { ft: i, count: i });
 }

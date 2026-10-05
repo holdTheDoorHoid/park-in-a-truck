@@ -56,8 +56,8 @@ export function printPlan(scene: PlannerScene, store: PlannerStore) {
       table.appendChild(tr);
     };
     const sunShade = (v: { sun: number; shade: number }) => t('print.sunShade', { sun: v.sun, shade: v.shade });
-    row(t('print.length'), t('common.ft', { ft: tally.lengthFt }));
-    row(t('print.width'), t('common.ft', { ft: tally.widthFt }));
+    row(t('print.length'), t('common.ft', { ft: tally.lengthFt, count: tally.lengthFt }));
+    row(t('print.width'), t('common.ft', { ft: tally.widthFt, count: tally.widthFt }));
     row(t('print.squares'), sunShade(tally.plantingSquares));
     row(t('counts.shrubs'), sunShade(tally.shrubs));
     row(t('counts.smallTrees'), t.num(tally.smallTrees));

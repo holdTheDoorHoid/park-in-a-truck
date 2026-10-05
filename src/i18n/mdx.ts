@@ -236,23 +236,20 @@ export function markHeadings(source: string): string {
   return lines.join('\n');
 }
 
-const FIELD_COMPONENTS = new Set(['Field', 'ListField', 'Choice', 'Checklist']);
-
 /**
  * The label of every field in a chapter, by field id ({ "organize.individual-skills":
- * "Individual skill list" }), for the My park answers summary. Only plain-string labels.
+ * "Individual skill list" }), for the My park answers summary. Only plain-string labels
+ * (`label="…"`). A quick scan of the source rather than a full MDX parse: the My park page runs it
+ * for every language at build time.
  */
 export function chapterFieldLabels(body: string): Record<string, string> {
   const out: Record<string, string> = {};
-  const walk = (node: Node) => {
-    if ((node.type === 'mdxJsxFlowElement' || node.type === 'mdxJsxTextElement') && node.name && FIELD_COMPONENTS.has(node.name)) {
-      const attr = (name: string) => node.attributes?.find((a) => a.type === 'mdxJsxAttribute' && a.name === name)?.value;
-      const id = attr('id');
-      const label = attr('label');
-      if (typeof id === 'string' && typeof label === 'string' && label.trim() && !(id in out)) out[id] = label.trim();
-    }
-    for (const c of node.children ?? []) walk(c);
-  };
-  walk(parseMdx(body));
+  const src = body.replace(/\{\/\*[\s\S]*?\*\/\}/g, '');
+  for (const m of src.matchAll(/<(?:Field|ListField|Choice|Checklist)\b([\s\S]*?)\/>/g)) {
+    const attrs = m[1]!;
+    const id = /\bid="([^"]+)"/.exec(attrs)?.[1];
+    const label = /\blabel="([^"]*)"/.exec(attrs)?.[1]?.trim();
+    if (id && label && !(id in out)) out[id] = label;
+  }
   return out;
 }

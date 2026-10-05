@@ -70,6 +70,9 @@ export default defineMessages('plants', {
   'picker.mature': 'Mature: {size}',
   /** The plant's pot size when you buy it ("#2") */
   'picker.atPurchase': 'At purchase: {size}',
+  /** Pot sizes from PiaT's plant lists (the others are nursery numbers like "#2", the same everywhere) */
+  'pot.quart': 'Quart',
+  'pot.oneQuart': '1 quart',
   'picker.each': '{price} each',
   /** Read by screen readers on each quantity box */
   'picker.howMany': 'How many {name}?',

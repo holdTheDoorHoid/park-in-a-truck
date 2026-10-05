@@ -77,6 +77,13 @@ function buildBuckets(t: PlantsT, themes: ThemeId[], counts: PlantTargets): Buck
   return defs.filter((b) => b.plants.length > 0);
 }
 
+/** A pot size in the page's language: "Quart" has words; nursery numbers ("#2") stay as they are. */
+function potSize(size: string, t: PlantsT): string {
+  if (size === 'Quart') return t('pot.quart');
+  if (size === '1 quart') return t('pot.oneQuart');
+  return size;
+}
+
 function csvEscape(s: string | number): string {
   // right-to-left isolate marks are for the page, not for spreadsheets (src/i18n/format.ts)
   const v = stripIsolates(String(s));
@@ -307,7 +314,7 @@ export default function PlantPickerIsland({ theme, locale }: Props) {
                         <p class="pp-botanical">{p.botanical}</p>
                         <p class="pp-meta">
                           {p.matureSize && t('picker.mature', { size: p.matureSize })}
-                          {p.containerSize && ` · ${t('picker.atPurchase', { size: p.containerSize })}`}
+                          {p.containerSize && ` · ${t('picker.atPurchase', { size: potSize(p.containerSize, t) })}`}
                         </p>
                         {p.notes && <p class="pp-notes">{p.notes}</p>}
                         <p class="pp-cost">{t('picker.each', { price: usd(p.unitCost ?? 0) })}</p>

@@ -162,6 +162,25 @@ Penn State environmental soil testing (agsci.psu.edu/aasl/soil-testing/environme
 (phila.gov/departments/philadelphia-parks-recreation/street-tree-frequently-asked-questions/), EPA pesticide labels and
 restricted-use products, and the National Pesticide Information Center on vinegar (npic.orst.edu/faq/vinegar.html).
 
+## Plant lists (Dream workbook p.20 spreadsheets)
+
+Found while translating the plant lists (October 2026). *Site* says what the website shows.
+
+| Where | What the sheet says | Why it looks wrong | Site |
+|---|---|---|---|
+| Edible and Nature lists | "Jacobs Ladder" | Jacob's ladder | Writes "Jacob's Ladder" |
+| Edible and Nature lists | *Huechera americana* | *Heuchera americana* | Writes *Heuchera* |
+| Sanctuary list | "Celadine Poppy" | Celandine poppy (*Stylophorum diphyllum*) | Writes "Celandine Poppy" |
+| Sanctuary list | *Aquilegia candensis* | *Aquilegia canadensis* | Writes *canadensis* |
+| Sanctuary list | "Washington Hawthorne" | Washington hawthorn | Writes "Hawthorn" |
+| Sanctuary and Event lists | "Shorts Aster" | Short's aster | Writes "Short's Aster" |
+| Event list | "Plains Coreopsis" — *Coreopsis verticillata* 'Moonbeam' | Plains coreopsis is *C. tinctoria*; 'Moonbeam' is a threadleaf coreopsis (the Sanctuary list calls the same plant "Moonbeam Tickseed") | Kept as the sheet has it — which plant did you mean? |
+| Event list | "Shorts Aster" — *Symphyotrichum cordifolium* | *S. cordifolium* is heart-leaved (blue wood) aster; Short's aster is *S. shortii* (as the Sanctuary list has it) | Kept as the sheet has it |
+| Event list | "Prairie Onion" — *Allium cernuum* | *A. cernuum* is usually called nodding onion; "prairie onion" is more often *A. stellatum* | Kept as the sheet has it |
+
+The toolkit's "Fight climate change" list (p.11) on the site had picked up "increase property" from the column next
+to it (a copying slip on our side); the site now follows the PDF.
+
 ## Parks list
 
 - Press spells the Southwest Philly park "Glenda **Ann Christopher**"; Linktree says "Glenda Anne Memorial Park".

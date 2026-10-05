@@ -11,9 +11,9 @@ export default {
   'loading.assets': 'Binubuksan ang mga yaman ng kapitbahayan… (kailangan nito ang JavaScript)',
   'loading.basemap': 'Iginuguhit ang inyong base map… (kailangan nito ang JavaScript)',
 
-  'unit.ft': '{n} ft',
-  'unit.sqft': '{n} sq ft',
-  'unit.mi': '{n} mi',
+  'unit.ft': { other: '{n} ft' },
+  'unit.sqft': { other: '{n} sq ft' },
+  'unit.mi': { other: '{n} mi' },
   'distance.nextDoor': 'katabi',
   'map.north': 'H',
   'map.ui.zoomIn': 'Palakihin',

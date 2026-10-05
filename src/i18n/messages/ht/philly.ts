@@ -11,9 +11,9 @@ export default {
   'loading.assets': 'Richès katye a ap chaje… (li bezwen JavaScript)',
   'loading.basemap': 'N ap desinen kat debaz ou a… (li bezwen JavaScript)',
 
-  'unit.ft': '{n} pye',
-  'unit.sqft': '{n} pye kare',
-  'unit.mi': '{n} mil',
+  'unit.ft': { other: '{n} pye' },
+  'unit.sqft': { other: '{n} pye kare' },
+  'unit.mi': { other: '{n} mil' },
   'distance.nextDoor': 'kole ak teren an',
   'map.north': 'N',
   'map.ui.zoomIn': 'Fè l grandi',

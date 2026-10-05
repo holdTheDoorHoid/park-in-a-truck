@@ -196,7 +196,7 @@ export default function BaseMap() {
               font-weight="700"
               fill="#111"
             >
-              {t('unit.ft', { n: oneDecimal(e.lengthFt) })}
+              {t('unit.ft', { n: oneDecimal(e.lengthFt), count: Math.round(e.lengthFt * 10) / 10 })}
             </text>
             {e.street && (
               <text

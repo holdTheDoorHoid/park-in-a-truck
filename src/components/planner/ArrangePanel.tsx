@@ -121,10 +121,10 @@ export function ArrangePanel({ store }: { store: PlannerStore }) {
         <div class="pl-seg pl-seg-small" role="group" aria-label={t('arrange.snapGroup')}>
           <span class="pl-small">{t('arrange.snap')}</span>
           <button type="button" aria-pressed={snap === 1} onClick={() => store.$snap.set(1)}>
-            {t('common.ft', { ft: 1 })}
+            {t('common.ft', { ft: 1, count: 1 })}
           </button>
           <button type="button" aria-pressed={snap === 4} onClick={() => store.$snap.set(4)}>
-            {t('common.ft', { ft: 4 })}
+            {t('common.ft', { ft: 4, count: 4 })}
           </button>
           <button type="button" aria-pressed={snap === 0} onClick={() => store.$snap.set(0)} title={t('arrange.snapOffTitle')}>
             {t('arrange.snapOff')}

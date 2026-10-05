@@ -16,7 +16,7 @@ beforeAll(() => {
   registerBundle('es', {
     msgs: {
       philly: {
-        'unit.ft': '{n} pies',
+        'unit.ft': { one: '{n} pie', other: '{n} pies' },
         'flood.high': 'Zona {zone}: riesgo alto',
         'warn.flood': 'No se pudieron cargar las zonas de inundación.',
         'source.atlas': 'Esta propiedad en atlas.phila.gov (en inglés)',
@@ -82,6 +82,9 @@ describe('shown in the reader’s language', () => {
     expect(sourceLabel(EN('source.atlas'), 'es')).toBe('Esta propiedad en atlas.phila.gov (en inglés)');
     expect(zoningPlain('RSA5', 'es')).toBe('RSA-5 · Residencial — casas adosadas');
     expect(feet(13.96, 1, 'es')).toBe('14.0 pies');
+    // lengths in feet are plurals now: the number picks the form
+    expect(feet(1, 0, 'es')).toBe('1 pie');
+    expect(feet(1, 0, 'en')).toBe('1 ft');
     expect(feet(13.96, 1, 'fr')).toBe('14,0 ft');
   });
   it('works the lot-type reason out again with local street lists', () => {

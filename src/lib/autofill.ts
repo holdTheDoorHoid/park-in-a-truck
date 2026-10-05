@@ -37,9 +37,9 @@ export function formatAuto(v: unknown, fmt?: string, locale: Locale | string = '
     case 'owners':
       return Array.isArray(v) ? ownerNames(v as string[]) || null : String(v);
     case 'sqft':
-      return t('auto.sqft', { n: Math.round(Number(v)) });
+      return t('auto.sqft', { n: Math.round(Number(v)), count: Math.round(Number(v)) });
     case 'ft':
-      return t('auto.ft', { n: Math.round(Number(v) * 10) / 10 });
+      return t('auto.ft', { n: Math.round(Number(v) * 10) / 10, count: Math.round(Number(v) * 10) / 10 });
     case 'money':
       return t.money(Number(v));
     case 'date':

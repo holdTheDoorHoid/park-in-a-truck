@@ -21,6 +21,9 @@ import { THEMES, THEME_ORDER } from '../../../../data/themes';
 import { SIZES } from '../../../../lib/sizing';
 import { urlFor } from '../../../../i18n/url.ts';
 export const u = urlFor('sw');
+import { localizeRecord } from '../../../../i18n/data.ts';
+export const THEME_TEXT = localizeRecord(THEMES, 'themes', 'sw');
+export const ELEMENT_TEXT = localizeRecord(ELEMENTS, 'elements', 'sw');
 import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
 
 export const THEME_REQUIREMENTS = {
@@ -30,41 +33,6 @@ export const THEME_REQUIREMENTS = {
   event: { trees: 'Mti mmoja au miwili, au miti kadhaa', sun: 'Kiasi chochote cha jua', lot: 'Inafaa sana kiwanja cha kona', volunteers: 'Ushiriki wa wastani wa watu wa kujitolea' },
 };
 
-{/* Translated chapters can't import the localized data helpers, so the Swahili theme and element names are repeated here (same text as src/i18n/data/sw/themes.json and elements.json). */}
-export const THEME_SW = {
-  edible: { name: 'Chakula', blurb: 'Kugawana chakula na kujenga urafiki na majirani: matunda, mboga na meza ya pamoja.' },
-  sanctuary: { name: 'Utulivu', blurb: 'Mahali patulivu pa kupumzika peke yako, kusoma na kukutana watu wachache.' },
-  nature: { name: 'Mazingira asilia', blurb: 'Mimea asilia, makazi ya viumbe, na michezo kwa watoto na kwa wachavushaji.' },
-  event: { name: 'Matukio', blurb: 'Nafasi kwa maonyesho, masoko na sherehe za mtaa.' },
-};
-export const ELEMENT_SW = {
-  'gabion-wall': 'Ukuta wa gabioni',
-  'gabion-bench': 'Benchi ya gabioni yenye kiti cha mbao',
-  'gabion-bench-8': "Benchi ya gabioni ya 8' yenye kiti cha mbao",
-  'bench-back': 'Benchi yenye egemeo',
-  'bench-4': "Benchi ya 4' (bila egemeo)",
-  stool: 'Kigoda',
-  'table-2': "Meza ya 2'",
-  'table-4': "Meza ya 4'",
-  'table-6': "Meza ya 6'",
-  'planter-18': 'Sanduku la mimea la 18" (dogo)',
-  'planter-24': 'Sanduku la mimea la 24" (kubwa)',
-  'shade-canopy': 'Paa la kivuli',
-  stage: 'Jukwaa',
-  workbench: 'Meza ya kazi / meza ya kusimama',
-  'rain-barrel': 'Pipa la maji ya mvua',
-  'compost-bin': 'Chombo cha mboji',
-  'raised-bed': 'Tuta lililoinuliwa',
-  'cold-frame': 'Kisanduku cha kukuzia miche (cold frame)',
-  'communal-table': 'Meza ya pamoja',
-  'event-tent': 'Hema la matukio',
-  'flexible-seating': 'Viti vinavyohamishika',
-  'outdoor-classroom': 'Darasa la nje',
-  'nature-play': 'Eneo la kuchezea la asili',
-  birdbath: 'Chombo cha maji cha ndege',
-  'bird-accessories': 'Nyumba na vyombo vya chakula vya ndege',
-  shed: 'Kibanda cha vifaa',
-};
 
 {/* The Assemble grid below skips surfaces, plants and existing-conditions markers — only built/bought elements get an assembly link. */}
 export const NOT_BUILT = new Set(['planting-square', 'perennial', 'shrub', 'small-tree', 'large-tree', 'gravel', 'existing-tree', 'downspout', 'wet-area', 'hydrant', 'utility-line']);
@@ -113,12 +81,12 @@ Vitu vichache muhimu vinaonekana katika mitindo yote minne:
 - **Mimea.** Mimea asilia inayovutia wanyamapori, inayoongeza bioanuwai na inayosaidia uhifadhi wa mazingira.
 
 {THEME_ORDER.map((id) => (
-  <div style={`margin:2.5em 0; border-left: 8px solid ${THEMES[id].frame}; padding-left: 1.2em;`}>
-    <h3 style={`color:${THEMES[id].frame}`}>{THEME_SW[id].name}</h3>
-    <p>{THEME_SW[id].blurb}</p>
+  <div style={`margin:2.5em 0; border-inline-start: 8px solid ${THEMES[id].frame}; padding-inline-start: 1.2em;`}>
+    <h3 style={`color:${THEMES[id].frame}`}>{THEME_TEXT[id].name}</h3>
+    <p>{THEME_TEXT[id].blurb}</p>
     <Figure
       src={`img/dream/theme-${id}.webp`}
-      alt={`Mtindo wa ${THEME_SW[id].name}: michoro ya bustani kwa 3D na kwa mwonekano wa juu, ikionyesha vipande vya fremu, cha mbele na cha nyuma kwa rangi ya mtindo huo`}
+      alt={`Mtindo wa ${THEME_TEXT[id].name}: michoro ya bustani kwa 3D na kwa mwonekano wa juu, ikionyesha vipande vya fremu, cha mbele na cha nyuma kwa rangi ya mtindo huo`}
     />
     <ul class="theme-reqs">
       <li><strong>Miti:</strong> {THEME_REQUIREMENTS[id].trees}</li>
@@ -379,7 +347,7 @@ yaliyokwisha jaribiwa; na vingine ni bidhaa za kununua tu zikiwa tayari. Bofya k
 kwenye bustani yako, hivi ndivyo unavyokijenga (au kukinunua).
 
 <div class="elements-grid">
-  {Object.values(ELEMENTS)
+  {Object.values(ELEMENT_TEXT)
     .filter((el) => !NOT_BUILT.has(el.id) && ASSEMBLE_ICONS.has(ICON_FALLBACK[el.id] ?? el.id))
     .map((el) => {
       const icon = ICON_FALLBACK[el.id] ?? el.id;
@@ -388,7 +356,7 @@ kwenye bustani yako, hivi ndivyo unavyokijenga (au kukinunua).
       return (
         <a class="element-card" href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
           <img src={u(`img/dream/elements/${icon}.webp`)} alt="" width="96" height="72" loading="lazy" />
-          <span>{ELEMENT_SW[el.id] ?? el.name}</span>
+          <span>{el.name}</span>
         </a>
       );
     })}
@@ -418,7 +386,7 @@ Jenga.
   {`
   .theme-reqs { list-style: none; padding: 0; margin: 0.8em 0 0; font-size: 0.92rem; color: var(--ink-2); display: grid; gap: 0.2em; }
   .size-table, .pieces-table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.95rem; }
-  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: left; }
+  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: start; }
   .elements-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; margin: 1.2em 0; }
   .element-card { display: flex; flex-direction: column; align-items: center; gap: 0.4em; text-align: center; padding: 10px; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); font-size: 0.85rem; background: #fff; }
   .element-card:hover { border-color: var(--cyan); box-shadow: var(--shadow); }

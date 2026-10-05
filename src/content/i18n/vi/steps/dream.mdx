@@ -21,6 +21,9 @@ import { THEMES, THEME_ORDER } from '../../../../data/themes';
 import { SIZES } from '../../../../lib/sizing';
 import { urlFor } from '../../../../i18n/url.ts';
 export const u = urlFor('vi');
+import { localizeRecord } from '../../../../i18n/data.ts';
+export const THEME_TEXT = localizeRecord(THEMES, 'themes', 'vi');
+export const ELEMENT_TEXT = localizeRecord(ELEMENTS, 'elements', 'vi');
 import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
 
 export const THEME_REQUIREMENTS = {
@@ -30,25 +33,6 @@ export const THEME_REQUIREMENTS = {
   event: { trees: 'Một/hai cây hoặc nhiều cây', sun: 'Nắng nhiều hay ít cũng được', lot: 'Rất hợp với lô đất góc đường', volunteers: 'Tình nguyện viên tham gia vừa phải' },
 };
 
-{/* Vietnamese names for THEMES / ELEMENTS (same words as src/i18n/data/vi/themes.json and elements.json): this chapter reads the English data directly, and a chapter may not import the overlay helpers. */}
-export const VI_THEMES = {
-  edible: { name: 'Vườn ăn được', blurb: 'Chia sẻ thức ăn và gắn bó với hàng xóm — trái cây, rau và một chiếc bàn chung.' },
-  sanctuary: { name: 'Chốn an yên', blurb: 'Một nơi trú yên tĩnh để ngồi một mình, đọc sách và họp mặt nhỏ.' },
-  nature: { name: 'Thiên nhiên', blurb: 'Cây bản địa, nơi sống cho sinh vật, và chỗ chơi cho trẻ em và các loài thụ phấn.' },
-  event: { name: 'Sự kiện', blurb: 'Không gian cho biểu diễn, chợ phiên và lễ hội của khu phố.' },
-};
-export const VI_ELEMENTS = {
-  'gabion-wall': 'Tường rọ đá', 'gabion-bench': 'Ghế rọ đá mặt gỗ', 'gabion-bench-8': "Ghế rọ đá mặt gỗ 8'",
-  'gabion-table': 'Bàn rọ đá mặt gỗ', 'bench-back': 'Ghế dài có tựa lưng', 'bench-4': "Ghế dài 4' (không tựa lưng)",
-  stool: 'Ghế đẩu', 'table-2': "Bàn 2'", 'table-4': "Bàn 4'", 'table-6': "Bàn 6'",
-  'planter-18': 'Bồn trồng cây 18" (nhỏ)', 'planter-24': 'Bồn trồng cây 24" (lớn)', 'shade-canopy': 'Mái che nắng',
-  stage: 'Sân khấu', workbench: 'Bàn làm việc / bàn đứng', 'rain-barrel': 'Thùng hứng nước mưa', 'compost-bin': 'Thùng ủ phân',
-  'raised-bed': 'Luống trồng nâng cao', 'keyhole-garden': 'Vườn lỗ khóa (luống tròn nâng cao)', 'cold-frame': 'Khung ươm cây (cold frame)',
-  'communal-table': 'Bàn chung', 'cafe-table': 'Bàn cà phê + ghế', 'event-tent': 'Lều sự kiện', 'flexible-seating': 'Chỗ ngồi di động',
-  'outdoor-classroom': 'Lớp học ngoài trời', 'nature-play': 'Khu chơi thiên nhiên', birdbath: 'Chậu tắm cho chim',
-  'bird-accessories': 'Nhà chim & máng ăn cho chim', shed: 'Nhà kho nhỏ', hammock: 'Võng có khung đứng',
-  'porch-swing': 'Xích đu có khung đứng', 'solar-fountain': 'Đài phun nước năng lượng mặt trời',
-};
 
 {/* The Assemble grid below skips surfaces, plants and existing-conditions markers — only built/bought elements get an assembly link. */}
 export const NOT_BUILT = new Set(['planting-square', 'perennial', 'shrub', 'small-tree', 'large-tree', 'gravel', 'existing-tree', 'downspout', 'wet-area', 'hydrant', 'utility-line']);
@@ -95,12 +79,12 @@ Một vài món chính có mặt trong cả bốn chủ đề:
 - **Cây trồng.** Cây bản địa thu hút động vật hoang dã, tăng đa dạng sinh học và góp phần bảo tồn.
 
 {THEME_ORDER.map((id) => (
-  <div style={`margin:2.5em 0; border-left: 8px solid ${THEMES[id].frame}; padding-left: 1.2em;`}>
-    <h3 style={`color:${THEMES[id].frame}`}>{VI_THEMES[id].name}</h3>
-    <p>{VI_THEMES[id].blurb}</p>
+  <div style={`margin:2.5em 0; border-inline-start: 8px solid ${THEMES[id].frame}; padding-inline-start: 1.2em;`}>
+    <h3 style={`color:${THEMES[id].frame}`}>{THEME_TEXT[id].name}</h3>
+    <p>{THEME_TEXT[id].blurb}</p>
     <Figure
       src={`img/dream/theme-${id}.webp`}
-      alt={`Chủ đề ${VI_THEMES[id].name}: hình minh họa ba chiều và mặt bằng của công viên, với các mảnh khung/trước/sau tô màu của chủ đề`}
+      alt={`Chủ đề ${THEME_TEXT[id].name}: hình minh họa ba chiều và mặt bằng của công viên, với các mảnh khung/trước/sau tô màu của chủ đề`}
     />
     <ul class="theme-reqs">
       <li><strong>Cây:</strong> {THEME_REQUIREMENTS[id].trees}</li>
@@ -352,7 +336,7 @@ hướng dẫn của Ikea; một số món đi kèm một thiết kế gợi ý 
 là hàng mua sẵn. Bấm vào bất kỳ món nào bên dưới — nếu công viên của bạn có món đó, đây là cách bạn làm (hoặc mua) nó.
 
 <div class="elements-grid">
-  {Object.values(ELEMENTS)
+  {Object.values(ELEMENT_TEXT)
     .filter((el) => !NOT_BUILT.has(el.id) && ASSEMBLE_ICONS.has(ICON_FALLBACK[el.id] ?? el.id))
     .map((el) => {
       const icon = ICON_FALLBACK[el.id] ?? el.id;
@@ -361,7 +345,7 @@ là hàng mua sẵn. Bấm vào bất kỳ món nào bên dưới — nếu côn
       return (
         <a class="element-card" href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
           <img src={u(`img/dream/elements/${icon}.webp`)} alt="" width="96" height="72" loading="lazy" />
-          <span>{VI_ELEMENTS[el.id] ?? el.name}</span>
+          <span>{el.name}</span>
         </a>
       );
     })}
@@ -390,7 +374,7 @@ Chúc mừng bạn đã hoàn thành sổ tay thực hành Mơ ước! Hãy đá
   {`
   .theme-reqs { list-style: none; padding: 0; margin: 0.8em 0 0; font-size: 0.92rem; color: var(--ink-2); display: grid; gap: 0.2em; }
   .size-table, .pieces-table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.95rem; }
-  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: left; }
+  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: start; }
   .elements-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; margin: 1.2em 0; }
   .element-card { display: flex; flex-direction: column; align-items: center; gap: 0.4em; text-align: center; padding: 10px; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); font-size: 0.85rem; background: #fff; }
   .element-card:hover { border-color: var(--cyan); box-shadow: var(--shadow); }

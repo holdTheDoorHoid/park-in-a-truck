@@ -21,7 +21,7 @@ import { u as fileUrl } from '../../lib/url';
 import type { GuideModel } from '../../lib/guides3d/schema';
 import guidesMsgs from '../../i18n/messages/en/guides.ts';
 import parksMsgs from '../../i18n/messages/en/parks.ts';
-import { getT, urlFor, localizeGuide } from '../../i18n/astro.ts';
+import { getT, urlFor, localizeGuide, localizedModelReason } from '../../i18n/astro.ts';
 
 const models = import.meta.glob<GuideModel>('../../data/guides/models/*.json', { eager: true, import: 'default' });
 
@@ -68,7 +68,11 @@ const materialNotes = [...guide.materials, ...guide.hardware]
 const model = Object.values(models).find((m) => m.slug === guide.slug);
 // site-added: where PiaT's stated size is nominal, say what the parts actually build
 const asBuilt = model?.asBuilt ? asBuiltText(guide.dimensionsIn, model.asBuilt, t) : '';
-const asBuiltReason = model?.asBuilt?.reason?.trim().replace(/([^.!?])$/, '$1.') ?? '';
+// the model's own note, in the language when its models overlay has it (English, marked so, otherwise)
+const reason = model?.asBuilt?.reason ? localizedModelReason(guide.slug, model.asBuilt.reason.trim(), t.locale) : null;
+// English notes may lack a final full stop; a translation ends however its language does
+const asBuiltReason = reason ? (reason.translated && t.locale !== 'en' ? reason.text : reason.text.replace(/([^.!?])$/, '$1.')) : '';
+const reasonLang = reason && !reason.translated ? ({ lang: 'en', dir: 'ltr' } as const) : {};
 
 const glance: { label: string; value: string }[] = [{ label: t('glance.size'), value: dims(guide.dimensionsIn) }];
 if (guide.time) glance.push({ label: t('glance.time'), value: guide.time });
@@ -100,9 +104,9 @@ if (guide.cost) glance.push({ label: t('glance.cost'), value: guide.cost });
         {asBuilt && (
           <p class="as-built">
             {t('asBuilt', { size: asBuilt })}
-            {/* site-added: the reason comes from the 3D model's own note (English only for
-                now: the model files are data for modellers), so it's marked English on its own. */}
-            {asBuiltReason && <span lang="en" dir="ltr">{' '}{asBuiltReason}</span>}
+            {/* site-added: the reason comes from the 3D model's own note (translated through the
+                `models/<slug>` overlay; marked English on its own until it is). */}
+            {asBuiltReason && <>{t.space}<span {...reasonLang}>{asBuiltReason}</span></>}
           </p>
         )}
         <div class="hero-actions no-print">

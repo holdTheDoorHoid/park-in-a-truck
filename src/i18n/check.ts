@@ -136,6 +136,13 @@ async function checkCatalogs(root: string, issues: Issue[], reports: Map<string,
 // ---------------------------------------------------------------------------
 // Chapters
 
+/** Imports a translated chapter may add: `{ urlFor }` and the data helpers. */
+export const CHAPTER_HELPERS = new Set(['urlFor', 'localizeRecord', 'localizeKeyed', 'localizedSteps', 'localizedStep']);
+function isHelperImport(clause: string): boolean {
+  const m = /^\{([^}]*)\}$/.exec(clause.trim());
+  return Boolean(m && m[1]!.split(',').map((s) => s.trim()).filter(Boolean).every((n) => CHAPTER_HELPERS.has(n)));
+}
+
 export function compareChapters(en: ChapterShape, tr: ChapterShape, locale: string, rel: string, issues: Issue[]) {
   const err = (message: string) => issues.push({ level: 'error', locale, file: rel, message });
   if (!tr.front.title) err('the frontmatter needs a translated `title:`');
@@ -155,8 +162,9 @@ export function compareChapters(en: ChapterShape, tr: ChapterShape, locale: stri
   }
   const enImports = new Set(en.imports);
   for (const imp of tr.imports) {
-    // the scaffold swaps `{ u }` from lib/url for `{ urlFor }`
-    if (!enImports.has(imp) && imp !== '{ urlFor }') err(`imports ${imp}, which the English chapter doesn't`);
+    // the scaffold swaps `{ u }` from lib/url for `{ urlFor }`; translated chapters may also use the
+    // language-aware data helpers (src/i18n/data.ts) for theme, element, plant and step names
+    if (!enImports.has(imp) && !isHelperImport(imp)) err(`imports ${imp}, which the English chapter doesn't`);
   }
   for (const [sub, links] of en.links) {
     const mine = tr.links.get(sub) ?? [];
@@ -269,33 +277,41 @@ export function checkOverlay(en: Json, overlay: Json, spec: DatasetSpec, locale:
     err(`${path.join('.')}: overlays carry only text (strings), not ${typeof o}`);
   };
   walk(overlay, base, []);
-  const all = leaves(base).filter(([p]) => fields.some((f) => matchesField(p, f)));
+  // Only text with words needs translating: plain sizes and codes (2x4x8', 1/4" x 2-1/2", #2) don't count
+  const all = leaves(base).filter(([p, text]) => fields.some((f) => matchesField(p, f)) && /\p{L}{2,}/u.test(text));
   const mine = new Set(leaves(overlay).map(([p]) => p.join('.')));
   const done = all.filter(([p]) => mine.has(p.join('.')));
   const wordsLeft = all.filter(([p]) => !mine.has(p.join('.'))).reduce((s, [, t]) => s + countWords(t), 0);
   return { strings: all.length, translated: done.length, wordsLeft };
 }
 
+/** For a "<dir>/*" dataset: the slugs of its English files (src/data/guides/<slug>.json, …). */
+function slugsOf(root: string, spec: DatasetSpec): string[] {
+  const dir = join(root, dirname(spec.source));
+  return walkFiles(dir, '.json')
+    .filter((f) => dirname(f) === dir)
+    .map((f) => basename(f, '.json'));
+}
+
 async function checkData(root: string, issues: Issue[], reports: Map<string, LocaleReport>) {
   const dataDir = join(root, 'src/i18n/data');
-  const guideSlugs = walkFiles(join(root, 'src/data/guides'), '.json')
-    .filter((f) => dirname(f) === join(root, 'src/data/guides'))
-    .map((f) => basename(f, '.json'));
+  const perFile = new Map(DATASETS.filter((d) => d.name.endsWith('/*')).map((d) => [d.name.slice(0, -1), slugsOf(root, d)]));
   for (const locale of OTHER_LOCALES) {
     const rep = reports.get(locale)!;
     const ldir = join(dataDir, locale);
     const files = walkFiles(ldir, '.json').map((f) => relative(ldir, f).replace(/\.json$/, '').split('\\').join('/'));
     for (const name of files) {
-      const known = DATASETS.some((d) => d.name === name) || (name.startsWith('guides/') && guideSlugs.includes(name.slice(7)));
-      if (!known) issues.push({ level: 'error', locale, file: `src/i18n/data/${locale}/${name}.json`, message: 'not a known dataset (see src/i18n/datasets.ts) or no English guide with this slug' });
+      const known = DATASETS.some((d) => d.name === name) || [...perFile].some(([prefix, slugs]) => name.startsWith(prefix) && slugs.includes(name.slice(prefix.length)));
+      if (!known) issues.push({ level: 'error', locale, file: `src/i18n/data/${locale}/${name}.json`, message: 'not a known dataset (see src/i18n/datasets.ts) or no English file with this slug' });
     }
     for (const spec of DATASETS) {
-      const names = spec.name === 'guides/*' ? guideSlugs.map((s) => `guides/${s}`) : [spec.name];
+      const prefix = spec.name.endsWith('/*') ? spec.name.slice(0, -1) : null;
+      const names = prefix ? perFile.get(prefix)!.map((s) => `${prefix}${s}`) : [spec.name];
       let strings = 0;
       let translated = 0;
       let wordsLeft = 0;
       for (const name of names) {
-        const en = await englishData(root, spec, name.startsWith('guides/') ? name.slice(7) : undefined);
+        const en = await englishData(root, spec, prefix ? name.slice(prefix.length) : undefined);
         const file = join(ldir, `${name}.json`);
         const rel = relative(root, file);
         let overlay: Json = {};

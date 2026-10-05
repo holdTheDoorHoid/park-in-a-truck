@@ -17,7 +17,7 @@ import { ELEMENTS } from '../../data/elements';
 import { deleteSelected, duplicateSelected, rotateSelected } from './keyboard';
 import { downloadDataUrl, printPlan } from './exporting';
 import { PlayChip } from './PlayChip';
-import { isolate, pt } from '../../lib/planner/words';
+import { isolate, pt, thingText } from '../../lib/planner/words';
 
 interface Props {
   store: PlannerStore;
@@ -27,16 +27,17 @@ interface Props {
 type Vec2 = [number, number];
 
 /** What the picked thing is called and what can be done to it. */
-function describe(store: PlannerStore, sel: Picked | null): { name: string; kind: PickKind; turn: boolean; copy: boolean } | null {
+function describe(store: PlannerStore, sel: Picked | null): { name: string; thing: string | null; kind: PickKind; turn: boolean; copy: boolean } | null {
   if (!sel) return null;
   if (sel.kind === 'item') {
     const it = store.$layout.get()?.items.find((x) => x.id === sel.id);
-    return it ? { name: catalogEntry(it.element).name, kind: 'item', turn: true, copy: true } : null;
+    return it ? { name: catalogEntry(it.element).name, thing: it.element, kind: 'item', turn: true, copy: true } : null;
   }
   const e = store.$design.get()?.existing?.find((x) => x.id === sel.id);
   if (!e) return null;
-  const name = e.element === 'existing-tree' && e.species ? isolate(e.species) : existingMeta(e.element).name;
-  return { name, kind: 'existing', turn: isTurnable('existing', e.element), copy: false };
+  const named = e.element === 'existing-tree' && e.species;
+  const name = named ? isolate(e.species!) : existingMeta(e.element).name;
+  return { name, thing: named ? null : e.element, kind: 'existing', turn: isTurnable('existing', e.element), copy: false };
 }
 
 export function Viewport({ store, mode }: Props) {
@@ -374,7 +375,7 @@ export function Viewport({ store, mode }: Props) {
               </div>
             )}
             {picked && !gesture && drawCount === null && (
-              <div class="pl-selbar" role="toolbar" aria-label={t('view.picked', { name: picked.name })}>
+              <div class="pl-selbar" role="toolbar" aria-label={thingText('view.picked', picked.thing, picked.name, t)}>
                 <span class="pl-selbar-name">{picked.name}</span>
                 {picked.turn && (
                   <button type="button" onClick={() => rotateSelected(store, 90)} title={t('action.turnTitle')}>

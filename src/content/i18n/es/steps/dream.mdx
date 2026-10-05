@@ -21,6 +21,9 @@ import { THEMES, THEME_ORDER } from '../../../../data/themes';
 import { SIZES } from '../../../../lib/sizing';
 import { urlFor } from '../../../../i18n/url.ts';
 export const u = urlFor('es');
+import { localizeRecord } from '../../../../i18n/data.ts';
+export const THEME_TEXT = localizeRecord(THEMES, 'themes', 'es');
+export const ELEMENT_TEXT = localizeRecord(ELEMENTS, 'elements', 'es');
 import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
 
 export const THEME_REQUIREMENTS = {
@@ -30,41 +33,6 @@ export const THEME_REQUIREMENTS = {
   event: { trees: 'Uno o dos árboles, o varios árboles', sun: 'Cualquier cantidad de sol', lot: 'Ideal para un lote de esquina', volunteers: 'Participación moderada de voluntarios' },
 };
 
-{/* Translated chapters can't import the localized data helpers, so the Spanish theme and element names are repeated here (same text as src/i18n/data/es/themes.json and elements.json). */}
-export const THEME_ES = {
-  edible: { name: 'Comestible', blurb: 'Compartir comida y conectar con los vecinos: frutas, verduras y una mesa comunitaria.' },
-  sanctuary: { name: 'Santuario', blurb: 'Un refugio tranquilo para estar a solas, leer y hacer reuniones pequeñas.' },
-  nature: { name: 'Naturaleza', blurb: 'Plantas nativas, hábitat y juego para los niños y los polinizadores.' },
-  event: { name: 'Eventos', blurb: 'Espacio para presentaciones, mercados y celebraciones del barrio.' },
-};
-export const ELEMENT_ES = {
-  'gabion-wall': 'Muro de gavión',
-  'gabion-bench': 'Banca de gavión con asiento de madera',
-  'gabion-bench-8': "Banca de gavión de 8' con asiento de madera",
-  'bench-back': 'Banca con respaldo',
-  'bench-4': "Banca de 4' (sin respaldo)",
-  stool: 'Banquito',
-  'table-2': "Mesa de 2'",
-  'table-4': "Mesa de 4'",
-  'table-6': "Mesa de 6'",
-  'planter-18': 'Jardinera de 18" (pequeña)',
-  'planter-24': 'Jardinera de 24" (grande)',
-  'shade-canopy': 'Techo de sombra',
-  stage: 'Escenario',
-  workbench: 'Mesa de trabajo / mesa alta',
-  'rain-barrel': 'Barril de lluvia',
-  'compost-bin': 'Compostera',
-  'raised-bed': 'Cantero elevado',
-  'cold-frame': 'Cajonera fría (mini invernadero)',
-  'communal-table': 'Mesa comunitaria',
-  'event-tent': 'Carpa para eventos',
-  'flexible-seating': 'Asientos movibles',
-  'outdoor-classroom': 'Salón de clases al aire libre',
-  'nature-play': 'Área de juego natural',
-  birdbath: 'Bebedero para pájaros',
-  'bird-accessories': 'Casitas y comederos para pájaros',
-  shed: 'Cobertizo',
-};
 
 {/* The Assemble grid below skips surfaces, plants and existing-conditions markers — only built/bought elements get an assembly link. */}
 export const NOT_BUILT = new Set(['planting-square', 'perennial', 'shrub', 'small-tree', 'large-tree', 'gravel', 'existing-tree', 'downspout', 'wet-area', 'hydrant', 'utility-line']);
@@ -115,12 +83,12 @@ Algunos elementos clave aparecen en los cuatro temas:
 - **Plantas.** Plantas nativas que atraen a la fauna, aumentan la biodiversidad y ayudan a la conservación.
 
 {THEME_ORDER.map((id) => (
-  <div style={`margin:2.5em 0; border-left: 8px solid ${THEMES[id].frame}; padding-left: 1.2em;`}>
-    <h3 style={`color:${THEMES[id].frame}`}>{THEME_ES[id].name}</h3>
-    <p>{THEME_ES[id].blurb}</p>
+  <div style={`margin:2.5em 0; border-inline-start: 8px solid ${THEMES[id].frame}; padding-inline-start: 1.2em;`}>
+    <h3 style={`color:${THEMES[id].frame}`}>{THEME_TEXT[id].name}</h3>
+    <p>{THEME_TEXT[id].blurb}</p>
     <Figure
       src={`img/dream/theme-${id}.webp`}
-      alt={`Tema ${THEME_ES[id].name}: ilustraciones del parque en 3D y en vista de planta, con las piezas de marco, delantera y trasera en el color del tema`}
+      alt={`Tema ${THEME_TEXT[id].name}: ilustraciones del parque en 3D y en vista de planta, con las piezas de marco, delantera y trasera en el color del tema`}
     />
     <ul class="theme-reqs">
       <li><strong>Árboles:</strong> {THEME_REQUIREMENTS[id].trees}</li>
@@ -378,7 +346,7 @@ y otros son simplemente productos que se compran hechos. Haga clic en cualquier 
 parque, así es como se construye (o se compra).
 
 <div class="elements-grid">
-  {Object.values(ELEMENTS)
+  {Object.values(ELEMENT_TEXT)
     .filter((el) => !NOT_BUILT.has(el.id) && ASSEMBLE_ICONS.has(ICON_FALLBACK[el.id] ?? el.id))
     .map((el) => {
       const icon = ICON_FALLBACK[el.id] ?? el.id;
@@ -387,7 +355,7 @@ parque, así es como se construye (o se compra).
       return (
         <a class="element-card" href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
           <img src={u(`img/dream/elements/${icon}.webp`)} alt="" width="96" height="72" loading="lazy" />
-          <span>{ELEMENT_ES[el.id] ?? el.name}</span>
+          <span>{el.name}</span>
         </a>
       );
     })}
@@ -416,7 +384,7 @@ parque, así es como se construye (o se compra).
   {`
   .theme-reqs { list-style: none; padding: 0; margin: 0.8em 0 0; font-size: 0.92rem; color: var(--ink-2); display: grid; gap: 0.2em; }
   .size-table, .pieces-table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.95rem; }
-  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: left; }
+  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: start; }
   .elements-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; margin: 1.2em 0; }
   .element-card { display: flex; flex-direction: column; align-items: center; gap: 0.4em; text-align: center; padding: 10px; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); font-size: 0.85rem; background: #fff; }
   .element-card:hover { border-color: var(--cyan); box-shadow: var(--shadow); }

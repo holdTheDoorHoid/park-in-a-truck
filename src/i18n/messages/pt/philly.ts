@@ -11,9 +11,7 @@ export default {
   'loading.assets': 'Carregando os recursos do bairro… (precisa de JavaScript)',
   'loading.basemap': 'Desenhando o seu mapa base… (precisa de JavaScript)',
 
-  'unit.ft': '{n} pés',
-  'unit.sqft': '{n} pés²',
-  'unit.mi': '{n} mi',
+  'unit.mi': { other: '{n} mi' },
   'distance.nextDoor': 'ao lado',
   'map.north': 'N',
   'map.ui.zoomIn': 'Aproximar',

@@ -98,20 +98,29 @@ export function edgesOf(t: Toward): Edge[] {
   return t.split('-').map((k) => map[k]!);
 }
 
-const PLACE: Record<string, PlannerKey> = {
-  'front-left': 'slope.placeFrontLeft',
-  'front-right': 'slope.placeFrontRight',
-  'back-left': 'slope.placeBackLeft',
-  'back-right': 'slope.placeBackRight',
-  front: 'slope.placeFront',
-  back: 'slope.placeBack',
-  left: 'slope.placeLeft',
-  right: 'slope.placeRight',
-  '': 'slope.placeMiddle',
+const PLACE: Record<string, string> = {
+  'front-left': 'frontLeft',
+  'front-right': 'frontRight',
+  'back-left': 'backLeft',
+  'back-right': 'backRight',
+  front: 'front',
+  back: 'back',
+  left: 'left',
+  right: 'right',
+  '': 'middle',
 };
 
-/** "the back right corner", "the front edge", "the left side", "the middle of the lot". */
-export function whereOnLot(p: Vec2, frame: SiteFrame, t: PlannerT = pt()): string {
+/**
+ * "the back right corner", "the front edge", "the left side", "the middle of the lot" — in the
+ * words for the slot it goes in (`role`: {from} / {to} in slope.falls, {where} after "near"), so a
+ * language can put its preposition and article into the place ("du coin avant gauche").
+ */
+export function whereOnLot(p: Vec2, frame: SiteFrame, t: PlannerT = pt(), role: 'from' | 'to' | 'near' = 'near'): string {
+  return t(`slope.${role}.${placeOnLot(p, frame)}` as PlannerKey);
+}
+
+/** Which part of the lot a point is in: "backLeft", "front", "middle"… */
+export function placeOnLot(p: Vec2, frame: SiteFrame): string {
   const [s, u] = localToSite(frame, p);
   const fs = s / Math.max(1, frame.lengthFt);
   const ft = u / Math.max(1, frame.widthFt);
@@ -119,7 +128,7 @@ export function whereOnLot(p: Vec2, frame: SiteFrame, t: PlannerT = pt()): strin
   // narrow lots: left/right only near the very edges
   const edge = frame.widthFt < 24 ? 0.2 : 0.25;
   const lr = ft > 1 - edge ? 'left' : ft < edge ? 'right' : '';
-  return t(PLACE[[fb, lr].filter(Boolean).join('-')]!);
+  return PLACE[[fb, lr].filter(Boolean).join('-')]!;
 }
 
 export function slopeSummary(ground: GroundFn, parcel: Vec2[], frame: SiteFrame): SlopeSummary {
@@ -198,7 +207,8 @@ export function slopeSummary(ground: GroundFn, parcel: Vec2[], frame: SiteFrame)
 /** "4 inches", "2.3 ft", "14 ft" */
 export function lengthWords(ft: number, t: PlannerT = pt()): string {
   if (ft < 0.96) return t('slope.inches', { count: Math.max(1, Math.round(ft * 12)) });
-  return t('slope.feet', { ft: ft < 9.95 ? oneDecimal(ft, t) : Math.round(ft) });
+  const n = ft < 9.95 ? Math.round(ft * 10) / 10 : Math.round(ft);
+  return t('slope.feet', { ft: ft < 9.95 ? oneDecimal(ft, t) : n, count: n });
 }
 
 /** "3% (about 1 ft in 33 ft)" */
@@ -235,18 +245,19 @@ export function describeSlope(s: SlopeSummary, frame: SiteFrame, streets: Partia
   if (s.flat) {
     return { headline: t('slope.flat', { amount: t('slope.inches', { count: s.fallFt < 0.3 ? 4 : 6 }) }), more };
   }
-  const from = whereOnLot(s.high.p, frame, t);
-  const to = whereOnLot(s.low.p, frame, t);
+  const from = whereOnLot(s.high.p, frame, t, 'from');
+  const to = whereOnLot(s.low.p, frame, t, 'to');
   const amount = lengthWords(s.fallFt, t);
   const slope = slopeWords(s.avgPct, t);
-  let headline = from === to ? t('slope.varies', { amount, slope }) : t('slope.falls', { amount, from, to, slope });
+  const samePlace = placeOnLot(s.high.p, frame) === placeOnLot(s.low.p, frame);
+  let headline = samePlace ? t('slope.varies', { amount, slope }) : t('slope.falls', { amount, from, to, slope });
   if (s.downhill && s.toward) {
     const edges = edgesOf(s.toward);
     const street = edges.map((e) => streets[e]).find(Boolean);
     const onStreet = edges.some((e) => frame.streetEdges.includes(e));
     const where = t(TOWARD_WORDS[s.toward]);
     const compass = compassWord(bearingOf(s.downhill), t);
-    headline += ' ' + (street ? t('slope.rainStreet', { where, street, compass }) : onStreet ? t('slope.rainTheStreet', { where, compass }) : t('slope.rain', { where, compass }));
+    headline = t.sentences([headline, street ? t('slope.rainStreet', { where, street, compass }) : onStreet ? t('slope.rainTheStreet', { where, compass }) : t('slope.rain', { where, compass })]);
   }
   if (s.steepest) more.push(t('slope.steepest', { where: whereOnLot(s.steepest.p, frame, t), slope: slopeWords(s.steepest.pct, t) }));
   if (s.dip) more.push(t('slope.dip', { where: whereOnLot(s.dip.p, frame, t), amount: lengthWords(s.dip.depthFt, t) }));

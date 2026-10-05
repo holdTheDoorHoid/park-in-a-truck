@@ -42,11 +42,11 @@ export function itemWhere(it: WhereItem, parkW: number, leftIsY1 = true, t: Plan
       : left < right
         ? left === 0
           ? t('where.againstLeft')
-          : t('where.fromLeft', { ft: left })
+          : t('where.fromLeft', { ft: left, count: left })
         : right === 0
           ? t('where.againstRight')
-          : t('where.fromRight', { ft: right });
-  const along = fromEntrance === 0 ? t('where.atEntrance') : t('where.fromEntrance', { ft: fromEntrance });
+          : t('where.fromRight', { ft: right, count: right });
+  const along = fromEntrance === 0 ? t('where.atEntrance') : t('where.fromEntrance', { ft: fromEntrance, count: fromEntrance });
   return t('where.both', { along, across });
 }
 

@@ -11,9 +11,6 @@ export default {
   'loading.assets': 'جارٍ تحميل موارد الحي… (يحتاج إلى JavaScript)',
   'loading.basemap': 'جارٍ رسم خريطتك الأساسية… (تحتاج إلى JavaScript)',
 
-  'unit.ft': '{n} قدم',
-  'unit.sqft': '{n} قدم مربع',
-  'unit.mi': '{n} ميل',
   'distance.nextDoor': 'ملاصق',
   'map.north': 'ش',
   'map.ui.zoomIn': 'تكبير',

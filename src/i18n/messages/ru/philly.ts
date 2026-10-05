@@ -13,9 +13,9 @@ export default {
   'loading.assets': 'Загружаем сильные стороны района… (нужен JavaScript)',
   'loading.basemap': 'Рисуем базовую карту… (нужен JavaScript)',
 
-  'unit.ft': '{n} фт',
-  'unit.sqft': '{n} кв. фт',
-  'unit.mi': '{n} мил.',
+  'unit.ft': { other: '{n} фт' },
+  'unit.sqft': { other: '{n} кв. фт' },
+  'unit.mi': { other: '{n} мил.' },
   'distance.nextDoor': 'по соседству',
   'map.north': 'С',
   'map.ui.zoomIn': 'Приблизить',

@@ -21,6 +21,9 @@ import { THEMES, THEME_ORDER } from '../../../../data/themes';
 import { SIZES } from '../../../../lib/sizing';
 import { urlFor } from '../../../../i18n/url.ts';
 export const u = urlFor('pt');
+import { localizeRecord } from '../../../../i18n/data.ts';
+export const THEME_TEXT = localizeRecord(THEMES, 'themes', 'pt');
+export const ELEMENT_TEXT = localizeRecord(ELEMENTS, 'elements', 'pt');
 import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
 
 export const THEME_REQUIREMENTS = {
@@ -30,58 +33,6 @@ export const THEME_REQUIREMENTS = {
   event: { trees: 'Uma ou duas árvores, ou várias árvores', sun: 'Qualquer quantidade de sol', lot: 'Combina bem com um terreno de esquina', volunteers: 'Participação média de voluntários' },
 };
 
-{/* Translated chapters can't import the localized data helpers, so the Portuguese theme and element names are repeated here (same text as src/i18n/data/pt/themes.json and elements.json). */}
-export const THEME_TEXT = {
-  edible: { name: 'Comestível', blurb: 'Dividir comida e se aproximar dos vizinhos — frutas, verduras e uma mesa comunitária.' },
-  sanctuary: { name: 'Refúgio', blurb: 'Um lugar calmo para ficar sozinho, ler e fazer pequenos encontros.' },
-  nature: { name: 'Natureza', blurb: 'Plantas nativas, abrigo para os bichos e brincadeira para as crianças e os polinizadores.' },
-  event: { name: 'Eventos', blurb: 'Espaço para apresentações, feirinhas e festas do bairro.' },
-};
-export const ELEMENT_NAMES = {
-  "gabion-wall": "Muro de gabião",
-  "gabion-bench": "Banco de gabião com assento de madeira",
-  "gabion-bench-8": "Banco de gabião de 8' com assento de madeira",
-  "gabion-table": "Mesa de gabião com tampo de madeira",
-  "bench-back": "Banco com encosto",
-  "bench-4": "Banco de 4' (sem encosto)",
-  stool: "Banquinho",
-  "table-2": "Mesa de 2'",
-  "table-4": "Mesa de 4'",
-  "table-6": "Mesa de 6'",
-  "planter-18": "Jardineira de 18\" (pequena)",
-  "planter-24": "Jardineira de 24\" (grande)",
-  "shade-canopy": "Cobertura de sombra",
-  stage: "Palco",
-  workbench: "Bancada / mesa alta",
-  "rain-barrel": "Barril de chuva",
-  "compost-bin": "Composteira",
-  "raised-bed": "Canteiro elevado",
-  "keyhole-garden": "Horta buraco de fechadura (canteiro elevado redondo)",
-  "cold-frame": "Estufinha (caixa de cultivo com tampa)",
-  "communal-table": "Mesa comunitária",
-  "cafe-table": "Mesinha com cadeiras",
-  "event-tent": "Tenda para eventos",
-  "flexible-seating": "Assentos móveis",
-  "outdoor-classroom": "Sala de aula ao ar livre",
-  "nature-play": "Área de brincar na natureza",
-  birdbath: "Bebedouro para pássaros",
-  "bird-accessories": "Casinhas e comedouros para pássaros",
-  shed: "Depósito de ferramentas",
-  hammock: "Rede com suporte próprio",
-  "porch-swing": "Balanço de varanda com suporte próprio",
-  "solar-fountain": "Fonte solar",
-  "planting-square": "Quadrado de plantio (4×4 pés)",
-  perennial: "Perene",
-  shrub: "Arbusto",
-  "small-tree": "Árvore pequena",
-  "large-tree": "Árvore grande",
-  gravel: "Piso de brita",
-  "existing-tree": "Árvore que já existe",
-  downspout: "Calha do vizinho",
-  "wet-area": "Área que às vezes fica encharcada",
-  hydrant: "Hidrante",
-  "utility-line": "Fios elétricos no alto",
-};
 
 {/* The Assemble grid below skips surfaces, plants and existing-conditions markers — only built/bought elements get an assembly link. */}
 export const NOT_BUILT = new Set(['planting-square', 'perennial', 'shrub', 'small-tree', 'large-tree', 'gravel', 'existing-tree', 'downspout', 'wet-area', 'hydrant', 'utility-line']);
@@ -130,7 +81,7 @@ Alguns elementos principais aparecem nos quatro temas:
 - **Plantas.** Plantas nativas que atraem os bichos, aumentam a biodiversidade e ajudam a conservar a natureza.
 
 {THEME_ORDER.map((id) => (
-  <div style={`margin:2.5em 0; border-left: 8px solid ${THEMES[id].frame}; padding-left: 1.2em;`}>
+  <div style={`margin:2.5em 0; border-inline-start: 8px solid ${THEMES[id].frame}; padding-inline-start: 1.2em;`}>
     <h3 style={`color:${THEMES[id].frame}`}>{THEME_TEXT[id].name}</h3>
     <p>{THEME_TEXT[id].blurb}</p>
     <Figure
@@ -393,7 +344,7 @@ testadas; e alguns são simplesmente produtos prontos, de loja. Clique em qualqu
 seu parque, é assim que você o constrói (ou compra).
 
 <div class="elements-grid">
-  {Object.values(ELEMENTS)
+  {Object.values(ELEMENT_TEXT)
     .filter((el) => !NOT_BUILT.has(el.id) && ASSEMBLE_ICONS.has(ICON_FALLBACK[el.id] ?? el.id))
     .map((el) => {
       const icon = ICON_FALLBACK[el.id] ?? el.id;
@@ -402,7 +353,7 @@ seu parque, é assim que você o constrói (ou compra).
       return (
         <a class="element-card" href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
           <img src={u(`img/dream/elements/${icon}.webp`)} alt="" width="96" height="72" loading="lazy" />
-          <span>{ELEMENT_NAMES[el.id] ?? el.name}</span>
+          <span>{el.name}</span>
         </a>
       );
     })}
@@ -431,7 +382,7 @@ Parabéns por terminar o caderno de trabalho Sonhar! Marque cada item abaixo ant
   {`
   .theme-reqs { list-style: none; padding: 0; margin: 0.8em 0 0; font-size: 0.92rem; color: var(--ink-2); display: grid; gap: 0.2em; }
   .size-table, .pieces-table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.95rem; }
-  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: left; }
+  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: start; }
   .elements-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; margin: 1.2em 0; }
   .element-card { display: flex; flex-direction: column; align-items: center; gap: 0.4em; text-align: center; padding: 10px; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); font-size: 0.85rem; background: #fff; }
   .element-card:hover { border-color: var(--cyan); box-shadow: var(--shadow); }

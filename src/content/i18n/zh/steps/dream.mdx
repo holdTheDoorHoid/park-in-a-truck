@@ -21,6 +21,9 @@ import { THEMES, THEME_ORDER } from '../../../../data/themes';
 import { SIZES } from '../../../../lib/sizing';
 import { urlFor } from '../../../../i18n/url.ts';
 export const u = urlFor('zh');
+import { localizeRecord } from '../../../../i18n/data.ts';
+export const THEME_TEXT = localizeRecord(THEMES, 'themes', 'zh');
+export const ELEMENT_TEXT = localizeRecord(ELEMENTS, 'elements', 'zh');
 import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
 
 export const THEME_REQUIREMENTS = {
@@ -30,22 +33,6 @@ export const THEME_REQUIREMENTS = {
   event: { trees: '一两棵树或好几棵树', sun: '日照多少都可以', lot: '很适合街角地块', volunteers: '需要志愿者适度参与' },
 };
 
-{/* zh: theme names/blurbs and element names, kept the same as src/i18n/data/zh/themes.json and elements.json (a chapter cannot import the overlays). */}
-export const THEME_TEXT = {
-  edible: { name: '可食', blurb: '分享食物，与邻居多交流——种水果、种蔬菜，再摆一张大家共用的长桌。' },
-  sanctuary: { name: '宁静', blurb: '一处安静的小天地，适合独处、读书和小型聚会。' },
-  nature: { name: '自然', blurb: '本土植物、栖息地，还有给孩子和传粉者玩耍的地方。' },
-  event: { name: '活动', blurb: '可以表演、摆集市、举办社区庆祝活动的空间。' },
-};
-export const ELEMENT_NAMES = {
-  'gabion-wall': '石笼墙', 'gabion-bench': '木面石笼长椅', 'gabion-bench-8': "8' 木面石笼长椅", 'gabion-table': '木面石笼桌',
-  'bench-back': '带靠背长椅', 'bench-4': "4' 长椅（无靠背）", stool: '凳子', 'table-2': "2' 桌子", 'table-4': "4' 桌子", 'table-6': "6' 桌子",
-  'planter-18': '18" 种植箱（小）', 'planter-24': '24" 种植箱（大）', 'shade-canopy': '遮阳棚', stage: '舞台', workbench: '工作台 / 站立式桌子',
-  'rain-barrel': '雨水桶', 'compost-bin': '堆肥箱', 'raised-bed': '高架种植床', 'keyhole-garden': '钥匙孔花园（圆形高架种植床）', 'cold-frame': '冷床',
-  'communal-table': '公共长桌', 'cafe-table': '咖啡桌 + 椅子', 'event-tent': '活动帐篷', 'flexible-seating': '可移动座椅', 'outdoor-classroom': '户外教室',
-  'nature-play': '自然游乐区', birdbath: '鸟浴盆', 'bird-accessories': '鸟屋和喂鸟器', shed: '工具棚', hammock: '独立式吊床', 'porch-swing': '独立式秋千椅',
-  'solar-fountain': '太阳能喷泉',
-};
 
 {/* The Assemble grid below skips surfaces, plants and existing-conditions markers — only built/bought elements get an assembly link. */}
 export const NOT_BUILT = new Set(['planting-square', 'perennial', 'shrub', 'small-tree', 'large-tree', 'gravel', 'existing-tree', 'downspout', 'wet-area', 'hydrant', 'utility-line']);
@@ -80,7 +67,7 @@ export const ASSEMBLE_ICONS = new Set(['bench-back','bird-accessories','birdbath
 - **植物**。能吸引野生动物、增加生物多样性、促进自然保护的本土植物。
 
 {THEME_ORDER.map((id) => (
-  <div style={`margin:2.5em 0; border-left: 8px solid ${THEMES[id].frame}; padding-left: 1.2em;`}>
+  <div style={`margin:2.5em 0; border-inline-start: 8px solid ${THEMES[id].frame}; padding-inline-start: 1.2em;`}>
     <h3 style={`color:${THEMES[id].frame}`}>{THEME_TEXT[id].name}</h3>
     <p>{THEME_TEXT[id].blurb}</p>
     <Figure
@@ -297,7 +284,7 @@ export const ASSEMBLE_ICONS = new Set(['bench-back','bird-accessories','birdbath
 现在来看看公园里的各种设施是怎么做出来的。有些设施有专门的分步组装说明，就像宜家的说明书；有些提供一个根据已验证过的说明制定的建议设计；还有一些直接买现成的产品就行。点击下面任何一种设施——如果您的公园里有它，这里会告诉您怎么做（或怎么买）。
 
 <div class="elements-grid">
-  {Object.values(ELEMENTS)
+  {Object.values(ELEMENT_TEXT)
     .filter((el) => !NOT_BUILT.has(el.id) && ASSEMBLE_ICONS.has(ICON_FALLBACK[el.id] ?? el.id))
     .map((el) => {
       const icon = ICON_FALLBACK[el.id] ?? el.id;
@@ -306,7 +293,7 @@ export const ASSEMBLE_ICONS = new Set(['bench-back','bird-accessories','birdbath
       return (
         <a class="element-card" href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
           <img src={u(`img/dream/elements/${icon}.webp`)} alt="" width="96" height="72" loading="lazy" />
-          <span>{ELEMENT_NAMES[el.id] ?? el.name}</span>
+          <span>{el.name}</span>
         </a>
       );
     })}
@@ -335,7 +322,7 @@ export const ASSEMBLE_ICONS = new Set(['bench-back','bird-accessories','birdbath
   {`
   .theme-reqs { list-style: none; padding: 0; margin: 0.8em 0 0; font-size: 0.92rem; color: var(--ink-2); display: grid; gap: 0.2em; }
   .size-table, .pieces-table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.95rem; }
-  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: left; }
+  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: start; }
   .elements-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; margin: 1.2em 0; }
   .element-card { display: flex; flex-direction: column; align-items: center; gap: 0.4em; text-align: center; padding: 10px; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); font-size: 0.85rem; background: #fff; }
   .element-card:hover { border-color: var(--cyan); box-shadow: var(--shadow); }

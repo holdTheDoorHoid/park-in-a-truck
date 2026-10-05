@@ -21,6 +21,9 @@ import { THEMES, THEME_ORDER } from '../../../../data/themes';
 import { SIZES } from '../../../../lib/sizing';
 import { urlFor } from '../../../../i18n/url.ts';
 export const u = urlFor('ht');
+import { localizeRecord } from '../../../../i18n/data.ts';
+export const THEME_TEXT = localizeRecord(THEMES, 'themes', 'ht');
+export const ELEMENT_TEXT = localizeRecord(ELEMENTS, 'elements', 'ht');
 import LotAgreementNotice from '../../../../components/workbook/LotAgreementNotice.astro';
 
 export const THEME_REQUIREMENTS = {
@@ -30,22 +33,6 @@ export const THEME_REQUIREMENTS = {
   event: { trees: 'Youn/de pyebwa oswa plizyè pyebwa', sun: 'Nenpòt kantite solèy', lot: 'Bon pou yon teren nan kwen', volunteers: 'Yon kantite volontè mwayen' },
 };
 
-{/* Translation only: the English chapter reads theme and element names from the English data; these are the same words as src/i18n/data/ht/themes.json and elements.json, with the English as fallback. */}
-export const THEME_TEXT = {
-  edible: { name: 'Manje', blurb: 'Pataje manje epi fè lyen ak vwazen — fwi, legim ak yon gwo tab pou tout moun.' },
-  sanctuary: { name: 'Refij', blurb: 'Yon kote ki kalm pou w poze poukont ou, li liv epi fè ti rankont.' },
-  nature: { name: 'Lanati', blurb: 'Plant natif, kote pou bèt viv, ak jwèt pou timoun ak polinizatè.' },
-  event: { name: 'Evènman', blurb: 'Espas pou spektak, mache ak fèt nan katye a.' },
-};
-export const ELEMENT_NAMES = {
-  'gabion-wall': 'Mi gabyon', 'gabion-bench': 'Ban gabyon ak tèt an bwa', 'gabion-bench-8': "Ban gabyon 8' ak tèt an bwa",
-  'bench-back': 'Ban ak do', 'bench-4': "Ban 4' (san do)", stool: 'Tabourè', 'table-2': "Tab 2'", 'table-4': "Tab 4'", 'table-6': "Tab 6'",
-  'planter-18': 'Bwat plant 18" (piti)', 'planter-24': 'Bwat plant 24" (gwo)', 'shade-canopy': 'Abri lonbraj', stage: 'Sèn',
-  workbench: 'Tab travay / tab pou kanpe', 'rain-barrel': 'Barik dlo lapli', 'compost-bin': 'Bwat konpòs', 'raised-bed': 'Kabann jaden wo',
-  'cold-frame': 'Bwat vit pou plant (cold frame)', 'communal-table': 'Gwo tab pou tout moun', 'event-tent': 'Tant pou evènman',
-  'flexible-seating': 'Chèz ou ka deplase', 'outdoor-classroom': 'Klas deyò', 'nature-play': 'Jwèt nan lanati', birdbath: 'Basen dlo pou zwazo',
-  'bird-accessories': 'Kay zwazo ak manjwa zwazo', shed: 'Ti depo zouti',
-};
 
 {/* The Assemble grid below skips surfaces, plants and existing-conditions markers — only built/bought elements get an assembly link. */}
 export const NOT_BUILT = new Set(['planting-square', 'perennial', 'shrub', 'small-tree', 'large-tree', 'gravel', 'existing-tree', 'downspout', 'wet-area', 'hydrant', 'utility-line']);
@@ -91,12 +78,12 @@ Kèk eleman kle parèt nan tout kat tèm yo:
 - **Plant.** Plant natif ki atire bèt sovaj, ki ogmante kantite kalite plant ak bèt, epi ki ede konsève lanati.
 
 {THEME_ORDER.map((id) => (
-  <div style={`margin:2.5em 0; border-left: 8px solid ${THEMES[id].frame}; padding-left: 1.2em;`}>
-    <h3 style={`color:${THEMES[id].frame}`}>{THEME_TEXT[id]?.name ?? THEMES[id].name}</h3>
-    <p>{THEME_TEXT[id]?.blurb ?? THEMES[id].blurb}</p>
+  <div style={`margin:2.5em 0; border-inline-start: 8px solid ${THEMES[id].frame}; padding-inline-start: 1.2em;`}>
+    <h3 style={`color:${THEMES[id].frame}`}>{THEME_TEXT[id].name}</h3>
+    <p>{THEME_TEXT[id].blurb}</p>
     <Figure
       src={`img/dream/theme-${id}.webp`}
-      alt={`Tèm ${THEME_TEXT[id]?.name ?? THEMES[id].name}: desen pak la an 3D ak an vi anlè, ak moso kad/devan/dèyè yo nan koulè tèm nan`}
+      alt={`Tèm ${THEME_TEXT[id].name}: desen pak la an 3D ak an vi anlè, ak moso kad/devan/dèyè yo nan koulè tèm nan`}
     />
     <ul class="theme-reqs">
       <li><strong>Pyebwa:</strong> {THEME_REQUIREMENTS[id].trees}</li>
@@ -350,7 +337,7 @@ kèk ki se jis pwodui ou achte tou fèt. Klike sou nenpòt eleman anba a — si 
 bati l (oswa achte l).
 
 <div class="elements-grid">
-  {Object.values(ELEMENTS)
+  {Object.values(ELEMENT_TEXT)
     .filter((el) => !NOT_BUILT.has(el.id) && ASSEMBLE_ICONS.has(ICON_FALLBACK[el.id] ?? el.id))
     .map((el) => {
       const icon = ICON_FALLBACK[el.id] ?? el.id;
@@ -359,7 +346,7 @@ bati l (oswa achte l).
       return (
         <a class="element-card" href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
           <img src={u(`img/dream/elements/${icon}.webp`)} alt="" width="96" height="72" loading="lazy" />
-          <span>{ELEMENT_NAMES[el.id] ?? el.name}</span>
+          <span>{el.name}</span>
         </a>
       );
     })}
@@ -388,7 +375,7 @@ Konpliman paske ou fini kaye travay Reve a! Make chak etap ki anba a anvan ou pa
   {`
   .theme-reqs { list-style: none; padding: 0; margin: 0.8em 0 0; font-size: 0.92rem; color: var(--ink-2); display: grid; gap: 0.2em; }
   .size-table, .pieces-table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.95rem; }
-  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: left; }
+  .size-table th, .size-table td, .pieces-table th, .pieces-table td { border: 1px solid var(--line); padding: 0.5em 0.7em; text-align: start; }
   .elements-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; margin: 1.2em 0; }
   .element-card { display: flex; flex-direction: column; align-items: center; gap: 0.4em; text-align: center; padding: 10px; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); font-size: 0.85rem; background: #fff; }
   .element-card:hover { border-color: var(--cyan); box-shadow: var(--shadow); }
