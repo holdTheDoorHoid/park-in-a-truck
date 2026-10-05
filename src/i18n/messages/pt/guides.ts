@@ -70,6 +70,14 @@ export default {
   'g3d.controls': 'Controles do modelo 3D',
   'g3d.helpMouse': 'Arraste para girar. Clique no modelo e role para dar zoom. Aponte para uma tábua para ver o tamanho.',
   'g3d.helpTouch': 'Arraste para girar. Toque no modelo e faça o movimento de pinça para dar zoom. Toque em uma tábua para ver o tamanho.',
+  'g3d.kind.lumber': 'Tábua',
+  'g3d.kind.sheet': 'Chapa',
+  'g3d.kind.mesh': 'Tela de arame',
+  'g3d.kind.stoneFill': 'Enchimento de pedra',
+  'g3d.kind.bracket': 'Suporte',
+  'g3d.kind.fastener': 'Fixador',
+  'g3d.kind.fabric': 'Manta',
+  'g3d.kind.other': 'Peça',
 
   'index.description':
     'Instruções de montagem passo a passo, no estilo Ikea, para os bancos, mesas, jardineiras, assentos de gabião, uma estrutura de sombra e um palco do Park in a Truck.',

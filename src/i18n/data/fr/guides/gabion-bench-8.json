@@ -4,7 +4,8 @@
   "materials": [
     {
       "item": "Grillage métallique soudé à mailles de 2x2",
-      "notes": "Fournisseurs suggérés : Darby and Sons (darbywiremesh.com) ou Gabion1.com. Si vous commandez des pièces coupées sur mesure, demandez qu’elles soient coupées à la bonne taille, avec des pièces fermées, et galvanisées après la coupe."
+      "notes": "Fournisseurs suggérés : Darby and Sons (darbywiremesh.com) ou Gabion1.com. Si vous commandez des pièces coupées sur mesure, demandez qu’elles soient coupées à la bonne taille, avec des pièces fermées, et galvanisées après la coupe.",
+      "size": "calibre 8 (3/16\" de diamètre), galvanisé, ouvertures de 2\""
     },
     {
       "item": "Bois de dimension 2x4 — cèdre rouge de l’Ouest, douglas ou pin traité sous pression",
@@ -38,13 +39,16 @@
       "notes": "Cadre du banc en gabions — bouts et traverses"
     },
     {
-      "notes": "Panneau du fond du gabion, 96\" x 18\""
+      "notes": "Panneau du fond du gabion, 96\" x 18\"",
+      "stock": "grillage soudé 2x2"
     },
     {
-      "notes": "Côté du gabion (long), 96\" x 18\" chacun"
+      "notes": "Côté du gabion (long), 96\" x 18\" chacun",
+      "stock": "grillage soudé 2x2"
     },
     {
-      "notes": "Côté du gabion (court), 18\" x 18\" chacun"
+      "notes": "Côté du gabion (court), 18\" x 18\" chacun",
+      "stock": "grillage soudé 2x2"
     }
   ],
   "tools": [
