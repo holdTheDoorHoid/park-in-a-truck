@@ -71,6 +71,14 @@ export default {
   'g3d.controls': 'Mga kontrol ng 3D model',
   'g3d.helpMouse': 'I-drag para paikutin. I-click ito, saka mag-scroll para mag-zoom. Ituro ang isang kahoy para makita ang laki nito.',
   'g3d.helpTouch': 'I-drag para paikutin. I-tap ito, saka i-pinch para mag-zoom. I-tap ang isang kahoy para makita ang laki nito.',
+  'g3d.kind.lumber': 'Tabla',
+  'g3d.kind.sheet': 'Sheet',
+  'g3d.kind.mesh': 'Wire mesh',
+  'g3d.kind.stoneFill': 'Pampunong bato',
+  'g3d.kind.bracket': 'Bracket',
+  'g3d.kind.fastener': 'Pangkabit',
+  'g3d.kind.fabric': 'Tela',
+  'g3d.kind.other': 'Piraso',
 
   'index.description':
     'Sunod-sunod na tagubilin sa pagbuo, gaya ng sa Ikea, para sa mga upuan, mesa, taniman, upuang gabion, isang silungan at isang entablado ng Park in a Truck.',
