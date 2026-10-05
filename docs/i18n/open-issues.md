@@ -101,6 +101,14 @@ after the extraction round. Tick them off here.
 Phase B (polish, 2026-10-04): what translators still have to do for the items above is listed in
 `docs/i18n/SWEEP.md`. Plant-list mismatches went to `docs/notes-for-piat-team.md`.
 
+## After the sweep (final small fixes)
+- [ ] 3D tooltip: parts named by an English label show English in every language ("Gabion fill material", "Bracing
+      material (spare 2x2 mesh)", "Geotextile fabric", "L brackets", "J hooks", "Backrest brackets", "P-1 (18"x18"
+      box)") — `src/lib/guides3d/labels.ts:41` uses the label as the name; the models overlay only allows
+      `asBuilt.reason`. Make part labels translatable (overlay or catalog keys) and translate in all 11 languages.
+- [ ] /parks/ source line joins parts with a hard-coded `'; '` (`src/pages/parks/index.astro:31`) — French needs a
+      non-breaking space before ";" — use a catalog separator or list format.
+
 ## For native-speaker review (per language)
 
 ### Spanish (es)
