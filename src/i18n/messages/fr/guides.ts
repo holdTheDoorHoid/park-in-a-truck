@@ -33,6 +33,7 @@ export default {
   'cut.stock': 'Bois',
   'cut.length': 'Longueur',
   'cut.notes': 'Remarques',
+  'cut.partInBox': '{part} (bac de {size})',
   'siteNote': 'Note de ce site, et non de Park in a Truck :',
   'steps': 'Étapes',
   'step': 'Étape {n}',
@@ -78,6 +79,13 @@ export default {
   'g3d.kind.fastener': 'Fixation',
   'g3d.kind.fabric': 'Toile',
   'g3d.kind.other': 'Pièce',
+  'g3d.detail': '{what}, {size}',
+  'g3d.part.gabionFill': 'Matériau de remplissage du gabion',
+  'g3d.part.bracingMesh': 'Matériau de renfort (chutes de grillage 2x2)',
+  'g3d.part.geotextile': 'Toile géotextile',
+  'g3d.part.lBrackets': 'Équerres en L',
+  'g3d.part.jHooks': 'Crochets en J',
+  'g3d.part.backrestBrackets': 'Supports de dossier',
 
   'index.description':
     'Des instructions de montage étape par étape, comme celles d’Ikea, pour les bancs, les tables, les bacs à plantes, les sièges en gabions, une structure d’ombrage et une scène de Park in a Truck.',

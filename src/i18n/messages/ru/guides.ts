@@ -35,6 +35,7 @@ export default {
   'cut.stock': 'Пиломатериал',
   'cut.length': 'Длина',
   'cut.notes': 'Примечания',
+  'cut.partInBox': '{part} (ящик {size})',
   'siteNote': 'Примечание этого сайта, а не Park in a Truck:',
   'steps': 'Шаги',
   'step': 'Шаг {n}',
@@ -80,6 +81,13 @@ export default {
   'g3d.kind.fastener': 'Крепёж',
   'g3d.kind.fabric': 'Ткань',
   'g3d.kind.other': 'Деталь',
+  'g3d.detail': '{what}, {size}',
+  'g3d.part.gabionFill': 'Камень для заполнения габиона',
+  'g3d.part.bracingMesh': 'Материал для распорки (остаток сварной сетки 2x2)',
+  'g3d.part.geotextile': 'Геотекстиль',
+  'g3d.part.lBrackets': 'L-образные уголки',
+  'g3d.part.jHooks': 'J-образные крюки',
+  'g3d.part.backrestBrackets': 'Кронштейны спинки',
 
   'index.description':
     'Пошаговые инструкции по сборке в стиле Ikea для скамеек, столов, ящиков для растений, сидений из габионов, навеса от солнца и сцены Park in a Truck.',

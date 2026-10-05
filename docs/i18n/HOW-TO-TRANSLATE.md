@@ -159,7 +159,7 @@ Overlays marked `client: true` in datasets.ts are shipped to browsers in `/i18n/
 - **Values inserted into messages are isolated for you.** On right-to-left pages `t()` / `t.html()` wrap every
   `{placeholder}` value in Unicode isolates (FSI…PDI), so `1'-6.5"`, `@parkinatruck` or an address keeps its own
   order inside the Arabic sentence; addresses written into the message itself ("2233 N Uber St", "22nd & Diamond")
-  are kept in one piece too. A left-to-right value shown *outside* a message: `t.isolate(value)` in code, or
+  are kept in one piece too, and so are addresses in translated data (overlays). A left-to-right value shown *outside* a message: `t.isolate(value)` in code, or
   `<span dir="ltr">` / `<bdi>` in markup. Files people open elsewhere (CSV, .ics) drop the marks again
   (`stripIsolates` in `src/i18n/format.ts`). Money is "$" in every language and kept in one piece.
 - **In a translated chapter**, mark a phone number, an address or a size written in the text with `<bdi>…</bdi>`

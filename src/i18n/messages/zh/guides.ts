@@ -33,6 +33,7 @@ export default {
   'cut.stock': '木料',
   'cut.length': '长度',
   'cut.notes': '备注',
+  'cut.partInBox': '{part}（{size} 箱子）',
   'siteNote': '本网站的说明，并非来自 Park in a Truck：',
   'steps': '步骤',
   'step': '第{n}步',
@@ -79,6 +80,13 @@ export default {
   'g3d.kind.fastener': '紧固件',
   'g3d.kind.fabric': '布料',
   'g3d.kind.other': '部件',
+  'g3d.detail': '{what}，{size}',
+  'g3d.part.gabionFill': '石笼填充材料',
+  'g3d.part.bracingMesh': '加固材料（剩余的 2x2 焊接钢丝网）',
+  'g3d.part.geotextile': '土工布',
+  'g3d.part.lBrackets': 'L形支架',
+  'g3d.part.jHooks': 'J形钩',
+  'g3d.part.backrestBrackets': '靠背支架',
 
   'index.description':
     'Park in a Truck 长椅、桌子、种植箱、石笼座椅、遮阳棚和舞台的分步组装说明，像宜家说明书一样。',

@@ -35,6 +35,7 @@ export default {
   'cut.stock': 'Gỗ',
   'cut.length': 'Chiều dài',
   'cut.notes': 'Ghi chú',
+  'cut.partInBox': '{part} (bồn {size})',
   'siteNote': 'Ghi chú của trang web này, không phải của Park in a Truck:',
   'steps': 'Các bước',
   'step': 'Bước {n}',
@@ -82,6 +83,13 @@ export default {
   'g3d.kind.fastener': 'Đồ ngũ kim',
   'g3d.kind.fabric': 'Vải',
   'g3d.kind.other': 'Chi tiết',
+  'g3d.detail': '{what}, {size}',
+  'g3d.part.gabionFill': 'Đá nhồi rọ',
+  'g3d.part.bracingMesh': 'Vật liệu giằng (lưới thép hàn 2x2 còn thừa)',
+  'g3d.part.geotextile': 'Vải địa kỹ thuật',
+  'g3d.part.lBrackets': 'Ke chữ L',
+  'g3d.part.jHooks': 'Móc chữ J',
+  'g3d.part.backrestBrackets': 'Giá đỡ tựa lưng',
 
   'index.description':
     'Hướng dẫn lắp ráp từng bước, kiểu Ikea, cho ghế dài, bàn, bồn trồng cây, ghế rọ đá (gabion), mái che nắng và sân khấu của Park in a Truck.',

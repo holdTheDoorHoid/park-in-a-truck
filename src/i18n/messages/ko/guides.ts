@@ -33,6 +33,7 @@ export default {
   'cut.stock': '목재',
   'cut.length': '길이',
   'cut.notes': '메모',
+  'cut.partInBox': '{part} ({size} 상자)',
   'siteNote': '이 사이트의 안내 (Park in a Truck의 내용이 아님):',
   'steps': '조립 순서',
   'step': '{n}단계',
@@ -79,6 +80,13 @@ export default {
   'g3d.kind.fastener': '고정 철물',
   'g3d.kind.fabric': '천',
   'g3d.kind.other': '부품',
+  'g3d.detail': '{what}, {size}',
+  'g3d.part.gabionFill': '돌망태 채움재',
+  'g3d.part.bracingMesh': '보강재 (남은 2x2 철망)',
+  'g3d.part.geotextile': '부직포 (지오텍스타일)',
+  'g3d.part.lBrackets': 'L자 브래킷',
+  'g3d.part.jHooks': 'J자 고리',
+  'g3d.part.backrestBrackets': '등받이 브래킷',
 
   'index.description':
     'Park in a Truck의 벤치, 테이블, 화분 상자, 돌망태(개비온) 의자, 그늘막 구조물, 무대를 만드는 이케아식 단계별 조립 설명서예요.',

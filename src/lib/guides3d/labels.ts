@@ -24,6 +24,18 @@ const KIND_NAMES: Record<string, string> = {
 export type KindName = (kind: string) => string;
 const englishKind: KindName = (kind) => KIND_NAMES[kind] ?? KIND_NAMES.other!;
 
+/** How the page says part names and sizes (src/components/guides/partNames.ts); English by default. */
+export interface PartWords {
+  /** a part kind's name: "Board", "Wire mesh"… */
+  kind: KindName;
+  /** a part's label in the page's language ("BB-1" stays "BB-1") */
+  ref: (ref: string) => string;
+  /** what a part is and its size side by side, with the language's comma: "Wire mesh, 18 × 12″" */
+  pair: (what: string, size: string) => string;
+}
+const ENGLISH: PartWords = { kind: englishKind, ref: (r) => r, pair: (what, size) => `${what}, ${size}` };
+export const partWords = (words: Partial<PartWords> = {}): PartWords => ({ ...ENGLISH, ...words });
+
 /** 18.5 -> "18.5″", 96 -> "96″" (inches, trimmed). */
 export function inches(n: number): string {
   return `${parseFloat(n.toFixed(2))}″`;
@@ -36,12 +48,13 @@ function stockFor(p: ModelPart): { stock: string; length: number } | null {
   return null;
 }
 
-export function partLabel(p: ModelPart, cutList: CutLike[] = [], kindName: KindName = englishKind): { name: string; detail: string; note?: string } {
+export function partLabel(p: ModelPart, cutList: CutLike[] = [], words: Partial<PartWords> = {}): { name: string; detail: string; note?: string } {
+  const w = partWords(words);
   const cut = p.ref ? cutList.find((c) => c.part === p.ref) : undefined;
-  const name = p.ref ?? kindName(p.kind);
+  const name = p.ref ? w.ref(p.ref) : w.kind(p.kind);
   if (cut) {
     const isLumber = /^\s*\d+\s*[x×]\s*\d+\s*$/i.test(cut.stock);
-    const detail = isLumber ? `${cut.stock} × ${inches(cut.lengthIn)}` : `${cut.stock}, ${inches(cut.lengthIn)}`;
+    const detail = isLumber ? `${cut.stock} × ${inches(cut.lengthIn)}` : w.pair(cut.stock, inches(cut.lengthIn));
     return { name, detail, note: cut.notes };
   }
   if (p.kind === 'lumber') {
@@ -49,10 +62,10 @@ export function partLabel(p: ModelPart, cutList: CutLike[] = [], kindName: KindN
     if (st) return { name, detail: `${st.stock} × ${inches(st.length)}` };
   }
   const dims = p.shape === 'cylinder' ? `${inches(p.size[0])} ⌀ × ${inches(p.size[1])}` : p.size.map((v) => parseFloat(v.toFixed(2))).join(' × ') + '″';
-  return { name, detail: p.ref ? `${kindName(p.kind)}, ${dims}` : dims };
+  return { name, detail: p.ref ? w.pair(w.kind(p.kind), dims) : dims };
 }
 
-export function partTooltip(p: ModelPart, cutList: CutLike[] = [], kindName: KindName = englishKind): string {
-  const l = partLabel(p, cutList, kindName);
+export function partTooltip(p: ModelPart, cutList: CutLike[] = [], words: Partial<PartWords> = {}): string {
+  const l = partLabel(p, cutList, words);
   return `${l.name} · ${l.detail}`;
 }

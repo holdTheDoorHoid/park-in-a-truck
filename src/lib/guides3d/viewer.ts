@@ -50,7 +50,7 @@ import type { GuideModel, ModelPart, PartKind } from './schema';
 import { partBounds } from './validate';
 import { layFlat, type Pose, type V3 } from './layout';
 import { fitPoints, viewDirection, DEFAULT_VIEW } from './framing';
-import { partLabel, inches, type CutLike, type KindName } from './labels';
+import { partLabel, partWords, inches, type CutLike, type PartWords } from './labels';
 import {
   prepare,
   targetsFor,
@@ -230,6 +230,9 @@ function labelTexture(text: string): { tex: CanvasTexture; aspect: number } | nu
   c.width = w;
   c.height = 72;
   g.font = font;
+  // a label in Arabic ("P-1 (حوض…)") reads right to left, like the page around it
+  g.direction = document.documentElement.dir === 'rtl' ? 'rtl' : 'ltr';
+  g.textAlign = 'left';
   g.fillStyle = '#2f2b27';
   g.textBaseline = 'middle';
   g.fillText(text, 8, 38);
@@ -266,6 +269,8 @@ export interface BuildOptions {
   uniqueMaterials?: boolean;
   /** pencil labels on boards (shown only by the viewer's cut pile) */
   decals?: boolean;
+  /** what the label on a board says, in the page's language (default: the part's own label) */
+  decalText?: (ref: string) => string;
 }
 
 const sharedMats = new Map<string, Material>();
@@ -339,7 +344,7 @@ export function buildPart(p: ModelPart, opts: BuildOptions = {}): PartHandle {
   let decal: Mesh | null = null;
   let decalMat: MeshBasicMaterial | null = null;
   if (opts.decals && p.ref && p.shape !== 'cylinder' && (p.kind === 'lumber' || p.kind === 'sheet')) {
-    const lt = labelTexture(p.ref);
+    const lt = labelTexture(opts.decalText ? opts.decalText(p.ref) : p.ref);
     if (lt) {
       const flat = layFlat(p);
       const [L, T, W] = flat.dims;
@@ -401,8 +406,8 @@ export interface ViewerInit {
   model: GuideModel;
   steps: GuideStepLike[];
   cutList?: CutLike[];
-  /** part kinds in the page's language for the tooltip ("Board"); English without it */
-  kindName?: KindName;
+  /** part names, kinds and sizes in the page's language (tooltip, cut pile); English without it */
+  words?: Partial<PartWords>;
   reducedMotion?: boolean;
   /** the first view, shown without animation */
   view?: View;
@@ -423,7 +428,7 @@ export class AssemblyViewer {
   private readonly handles: PartHandle[];
   private readonly display: Display[];
   private readonly cutList: CutLike[];
-  private readonly kindName?: KindName;
+  private readonly words: PartWords;
   private readonly sun: DirectionalLight;
   private readonly labelLayer: HTMLDivElement;
   private readonly pileLabels: { el: HTMLElement; at: Vector3 }[] = [];
@@ -452,7 +457,7 @@ export class AssemblyViewer {
   constructor(init: ViewerInit) {
     this.container = init.container;
     this.cutList = init.cutList ?? [];
-    this.kindName = init.kindName;
+    this.words = partWords(init.words);
     this.reducedMotion = !!init.reducedMotion;
     this.onError = init.onError;
     this.prepared = prepare(init.model, init.steps, this.cutList.map((c) => c.part));
@@ -494,7 +499,7 @@ export class AssemblyViewer {
     this.addFloor();
 
     // parts
-    this.handles = this.prepared.parts.map((p) => buildPart(p, { uniqueMaterials: true, decals: !!this.prepared.pile }));
+    this.handles = this.prepared.parts.map((p) => buildPart(p, { uniqueMaterials: true, decals: !!this.prepared.pile, decalText: this.words.ref }));
     for (const h of this.handles) this.scene.add(h.node);
     this.view = init.view ?? { kind: 'complete' };
     this.targets = targetsFor(this.prepared, this.view);
@@ -935,7 +940,7 @@ export class AssemblyViewer {
       const el = document.createElement('span');
       el.className = 'g3d-pile-label';
       const b = document.createElement('b');
-      b.textContent = g.ref;
+      b.textContent = this.words.ref(g.ref);
       el.append(b, ` ×${g.count} · ${inches(g.dims[0])}`);
       this.labelLayer.appendChild(el);
       this.pileLabels.push({ el, at: new Vector3(...g.anchor) });
@@ -1094,7 +1099,7 @@ export class AssemblyViewer {
       this.canvas.style.cursor = '';
       return;
     }
-    const l = partLabel(this.handles[i]!.part, this.cutList, this.kindName);
+    const l = partLabel(this.handles[i]!.part, this.cutList, this.words);
     this.tip.textContent = '';
     const b = document.createElement('b');
     b.textContent = l.name;

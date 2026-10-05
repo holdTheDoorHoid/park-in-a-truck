@@ -34,6 +34,7 @@ export default {
   'cut.stock': 'Ubao',
   'cut.length': 'Urefu',
   'cut.notes': 'Maelezo',
+  'cut.partInBox': '{part} (sanduku la {size})',
   'siteNote': 'Dokezo kutoka tovuti hii, si kutoka Park in a Truck:',
   'steps': 'Hatua',
   'step': 'Hatua ya {n}',
@@ -79,6 +80,13 @@ export default {
   'g3d.kind.fastener': 'Kifungio',
   'g3d.kind.fabric': 'Kitambaa',
   'g3d.kind.other': 'Kipande',
+  'g3d.detail': '{what}, {size}',
+  'g3d.part.gabionFill': 'Vifaa vya kujazia gabioni',
+  'g3d.part.bracingMesh': 'Vifaa vya kukingamisha (mabaki ya wavu wa waya wa 2x2)',
+  'g3d.part.geotextile': 'Kitambaa cha geotextile',
+  'g3d.part.lBrackets': 'Mabano ya L',
+  'g3d.part.jHooks': 'Ndoano za J',
+  'g3d.part.backrestBrackets': 'Mabano ya egemeo',
 
   'index.description':
     'Maelekezo ya kuunganisha hatua kwa hatua, kama ya Ikea, ya mabenchi, meza, masanduku ya mimea, viti vya gabioni, paa la kivuli na jukwaa vya Park in a Truck.',
