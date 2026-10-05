@@ -1197,3 +1197,43 @@
   border-color: var(--cyan);
   color: var(--ink); /* dark ink on cyan passes contrast (DESIGN §4) */
 }
+
+/* part of the lot (2026-10-04): the part's box at the top of Size & themes */
+.pl-area {
+  border-inline-start: 4px solid var(--cyan);
+  background: var(--cyan-wash);
+  padding: 4px 10px 2px;
+  margin: 0 0 12px;
+}
+.pl-area .pl-small {
+  margin: 0.35em 0;
+}
+.pl-area-nums {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin: 6px 0;
+}
+.pl-area-num {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+.pl-area-num input {
+  width: 4.6em;
+  min-height: 32px;
+  padding: 2px 6px;
+  font: inherit;
+  font-weight: 400;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  background: #fff;
+}
+.pl-area .pl-nudge {
+  margin: 6px 0;
+}
+.pl-area .pl-warn {
+  background: #fff;
+}

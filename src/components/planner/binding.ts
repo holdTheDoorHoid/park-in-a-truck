@@ -10,6 +10,7 @@ import type { Vec2 } from '../../lib/planner/geo';
 import type { LocalSite } from '../../lib/planner/localsite';
 import type { ExistingItem } from '../../lib/types';
 import { existingTreeLook } from '../../lib/planner/treemodel';
+import { partOf } from '../../lib/planner/area';
 
 /** Snapping lives with the other drag helpers (src/lib/planner/interact.ts). */
 export { snapItem } from '../../lib/planner/interact';
@@ -120,6 +121,10 @@ export function bindScene(scene: PlannerScene, store: PlannerStore, mode: Planne
     if (changed('spot', spot?.[0], spot?.[1])) scene.setSpot(spot);
     // terrain: the slope overlay, and drawing a wet area's outline
     if (changed('slope', show.slope)) scene.setSlope(show.slope);
+    // part of the lot: the part and its handles, on the Size step only (not other steps, pictures or the printed plan)
+    const fit = store.$fit.get();
+    const area = store.editable && step === 'size' && partOf(design) && fit ? fit : null;
+    if (changed('area', area, site)) scene.setArea(area ? { frame: site.frame, parcel: site.parcel, area } : null);
     const drawing = store.$drawing.get();
     if (changed('drawing', drawing)) {
       if (drawing) scene.startDrawing();
@@ -132,7 +137,7 @@ export function bindScene(scene: PlannerScene, store: PlannerStore, mode: Planne
     queued = true;
     queueMicrotask(update);
   };
-  const atoms = [store.$site, store.$step, store.$view, store.$show, store.$design, store.$layout, store.$placement, store.$overhang, store.$selection, store.$sunTime, store.$sunData, store.sun.$heat, store.sun.$spotAt, store.$drawing];
+  const atoms = [store.$site, store.$step, store.$view, store.$show, store.$design, store.$layout, store.$placement, store.$overhang, store.$fit, store.$selection, store.$sunTime, store.$sunData, store.sun.$heat, store.sun.$spotAt, store.$drawing];
   const unsubs = atoms.map((a) => (a as { subscribe: (cb: () => void) => () => void }).subscribe(schedule));
   return () => unsubs.forEach((u) => u());
 }

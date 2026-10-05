@@ -115,6 +115,15 @@ export interface DesignState {
   flipped?: boolean;
   /** Small nudge of the park on the lot, feet, along the lot's length and width */
   shiftFt?: [number, number];
+  /**
+   * (part of the lot, 2026-10-04) The part of the lot the park uses — a side yard, the open
+   * ground beside a building — as a rectangle in site-frame feet, lined up with the lot (x along
+   * it from the entrance edge, y across it; same shape as lotfit.ts FitArea). Kept when
+   * `useArea` is switched off, so switching back doesn't lose it. Belongs to `lotRef`'s lot.
+   */
+  area?: { x0: number; y0: number; lengthFt: number; widthFt: number };
+  /** true = the park goes in `area`; false/absent = the whole lot */
+  useArea?: boolean;
 }
 
 /**

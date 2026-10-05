@@ -15,6 +15,7 @@ import type { SiteFacts, SizeId } from '../../lib/types';
 import { midBlockWords, sideNeighbours } from '../../lib/planner/neighbours';
 import type { Vec2 } from '../../lib/planner/geo';
 import { isolate, pt, type PlannerKey } from '../../lib/planner/words';
+import { homeTurn, partOf, stretchTo, turnedAgainst } from '../../lib/planner/area';
 
 // (mid-block: worded from the buildings actually there — veteran S6)
 const KIND_LABEL: Record<'corner-left' | 'corner-right', PlannerKey> = {
@@ -56,9 +57,14 @@ export function LotPanel({ store }: { store: PlannerStore }) {
   const blocked = (k: SlideDir) => Boolean(room?.blocked[k]);
   const full = room && Object.values(room.blocked).every(Boolean);
   const noRoom = t('lot.noRoom');
-  // what fits inside the lot lines (the largest rectangle) vs this size's printed pieces
-  const fitL = fitFeet(fit?.lengthFt ?? f.lengthFt);
-  const fitW = fitFeet(fit?.widthFt ?? f.widthFt);
+  // what fits inside the lot lines (the largest rectangle) — or the part of the lot the park
+  // uses, along the park's own length and width — vs this size's printed pieces
+  const part = partOf(d);
+  const room0 = stretchTo(d, fit ?? f);
+  const fitL = fitFeet(room0.lengthFt);
+  const fitW = fitFeet(room0.widthFt);
+  const against = turnedAgainst(d);
+  const home = homeTurn(d);
   const tooBig = Boolean(layout && (layout.lengthFt > fitL + 0.01 || layout.widthFt > fitW + 0.01));
   const order = SIZES.map((s) => s.id);
   const printed = SIZES.find((s) => s.id === d.size)!;
@@ -67,11 +73,13 @@ export function LotPanel({ store }: { store: PlannerStore }) {
   const useSize = (s: SizeId) => store.commit(setSize(d, s, site, store.$demo.get() ? undefined : getExtra<SiteFacts>('site')));
   const otherStreet = Boolean(streetKey(site.ctx.lot.address) && streetKey(entranceStreet) !== streetKey(site.ctx.lot.address));
   const overhangReason = () =>
-    turn % 2 === 1
+    against
       ? t('lot.overhangTurned')
       : d.fitToLot === false
         ? t('lot.overhangPrinted')
-        : tooBig && layout
+        : tooBig && layout && part
+          ? t('lot.overhangPart')
+          : tooBig && layout
           ? d.size === 'A'
             ? t('lot.overhangSizeA')
             : t('lot.overhangTooBig', { length: fitL, width: fitW, size: d.size, minLength: printed.long[0], minWidth: printed.short[0] }) +
@@ -101,6 +109,11 @@ export function LotPanel({ store }: { store: PlannerStore }) {
 
       <h4 class="pl-h4">{t('lot.fitTitle')}</h4>
       <p class="pl-small">{t('lot.fitHelp')}</p>
+      {part && (
+        <p class="pl-small">
+          {t('lot.partNote', { length: Math.round(Math.max(part.lengthFt, part.widthFt)), width: Math.round(Math.min(part.lengthFt, part.widthFt)) })}
+        </p>
+      )}
       <div class="pl-row">
         <button type="button" class="btn btn-small" onClick={() => set({ turn: ((turn + 2) % 4) as 0 | 1 | 2 | 3 })}>
           {t('lot.otherEnd')}
@@ -129,8 +142,8 @@ export function LotPanel({ store }: { store: PlannerStore }) {
             ↓
           </button>
         </span>
-        {(shift[0] !== 0 || shift[1] !== 0 || turn !== 0 || d.flipped) && (
-          <button type="button" class="btn btn-small" onClick={() => set({ shiftFt: [0, 0], turn: 0, flipped: false })}>
+        {(shift[0] !== 0 || shift[1] !== 0 || turn !== home || d.flipped) && (
+          <button type="button" class="btn btn-small" onClick={() => set({ shiftFt: [0, 0], turn: home, flipped: false })}>
             {t('lot.putBack')}
           </button>
         )}
@@ -151,7 +164,7 @@ export function LotPanel({ store }: { store: PlannerStore }) {
           {overhangReason()}
         </p>
       )}
-      {overhang && overhang.outsideSqFt > 0 && turn % 2 === 0 && d.fitToLot !== false && tooBig && fitsSize && (
+      {overhang && overhang.outsideSqFt > 0 && !against && !part && d.fitToLot !== false && tooBig && fitsSize && (
         <p class="pl-row">
           <button type="button" class="btn btn-small btn-primary" onClick={() => useSize(fitsSize)}>
             {t('lot.useSize', { size: fitsSize })}
