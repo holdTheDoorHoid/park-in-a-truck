@@ -68,6 +68,8 @@ export default {
   'picker.clear': 'امسح',
   'picker.mature': 'عند النضج: {size}',
   'picker.atPurchase': 'عند الشراء: {size}',
+  'pot.quart': 'كوارت',
+  'pot.oneQuart': 'كوارت واحد',
   'picker.each': '{price} للواحد',
   'picker.howMany': 'كم تريد من {name}؟',
   'picker.picked': 'النباتات المختارة: <strong>{chosen}</strong> من <strong>{count}</strong>',

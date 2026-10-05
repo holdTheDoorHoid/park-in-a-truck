@@ -57,7 +57,8 @@
       "title": "Park in a Truck تفوز بجائزة Groundbreaker لعام 2020 من Green Building United (بالإنجليزية)"
     },
     {
-      "title": "«Park in a Truck» يشبه Ikea لكن لبناء حدائق الأحياء (بالإنجليزية)"
+      "title": "«Park in a Truck» يشبه Ikea لكن لبناء حدائق الأحياء (بالإنجليزية)",
+      "note": "تعذّر التحقق من أن الرابط يعمل (الموقع يحجب الطلبات الآلية)؛ الرابط من PiaT نفسه، ويؤكده مقال Jefferson المنشور في سبتمبر 2020 عن هذا التكريم نفسه."
     },
     {
       "title": "قطع أرض فارغة تتحول إلى حدائق جميلة في أحياء فيلادلفيا (بالإنجليزية)"
@@ -66,7 +67,8 @@
       "title": "برنامج Park in a Truck يغيّر المساحات الخضراء في مدينة فيلادلفيا بمساعدة شباب الأحياء (بالإنجليزية)"
     },
     {
-      "title": "ASLA Spotlight — ربيع 2025 (بالإنجليزية)"
+      "title": "ASLA Spotlight — ربيع 2025 (بالإنجليزية)",
+      "note": "منشور رقمي على شكل كتاب تُقلَّب صفحاته؛ تأكدنا أن الرابط يعمل وأنه عدد ربيع 2025، لكن لا يمكن استخراج محتوى صفحاته آليًا — افتحه بنفسك لتجد المقال عن Park in a Truck."
     },
     {
       "title": "Park in a Truck (بالإنجليزية)"
@@ -104,11 +106,11 @@
       "items": [
         {
           "title": "Fairmount Park Organic Recycling Center",
-          "note": "3850 W Ford Rd — سماد عضوي ورقائق خشب وغطاء للتربة (مالتش) وسماد حيواني بتكلفة قليلة."
+          "note": "\u20663850 W Ford Rd\u2069 — سماد عضوي ورقائق خشب وغطاء للتربة (مالتش) وسماد حيواني بتكلفة قليلة."
         },
         {
-          "title": "Richard S. Burns & Co. (مواد معاد تدويرها)",
-          "note": "4300 Rising Sun Ave — مكب للنفايات + منتجات معاد تدويرها للبيع."
+          "title": "\u2066Richard S. Burns & Co.\u2069 (مواد معاد تدويرها)",
+          "note": "\u20664300 Rising Sun Ave\u2069 — مكب للنفايات + منتجات معاد تدويرها للبيع."
         }
       ]
     },
@@ -166,22 +168,22 @@
       "items": [
         {
           "title": "D&S Supply",
-          "note": "4260 Macalester St — مستلزمات تنسيق الحدائق وغطاء التربة (مالتش) والأدوات."
+          "note": "\u20664260 Macalester St\u2069 — مستلزمات تنسيق الحدائق وغطاء التربة (مالتش) والأدوات."
         },
         {
           "title": "Underdog Landscape Supply",
-          "note": "701 Washington St, Conshohocken — تربة سطحية وغطاء للتربة (مالتش) وسماد عضوي."
+          "note": "\u2066701 Washington St, Conshohocken\u2069 — تربة سطحية وغطاء للتربة (مالتش) وسماد عضوي."
         },
         {
           "title": "Mid Atlantic Pine Straw"
         },
         {
           "title": "Woodland Building Supply",
-          "note": "4701 Woodland Ave, Phila."
+          "note": "\u20664701 Woodland Ave, Phila\u2069."
         },
         {
           "title": "C&R Building Supply",
-          "note": "1601 S 49th St, Phila."
+          "note": "\u20661601 S 49th St, Phila\u2069."
         },
         {
           "title": "A&A Lumber",
@@ -192,7 +194,7 @@
         },
         {
           "title": "Castor Materials",
-          "note": "3301 S 61st St — حجارة مكسّرة وتربة سطحية، والتوصيل متاح."
+          "note": "\u20663301 S 61st St\u2069 — حجارة مكسّرة وتربة سطحية، والتوصيل متاح."
         },
         {
           "title": "Rockler — اختيار أفضل طلاء للمشاريع الخارجية"
@@ -394,7 +396,8 @@
             "title": "Green2015: An Action Plan for the First 500 Acres"
           },
           {
-            "title": "Grounded in Philly"
+            "title": "Grounded in Philly",
+            "description": "\u2066Public Interest Law Center\u2069 (مركز قانوني للمصلحة العامة) — \u2066Garden Justice Legal Initiative\u2069، هاتف \u2066215-627-7100\u2069 تحويلة 236"
           },
           {
             "title": "Neighborhood Gardens Trust"
@@ -450,16 +453,20 @@
         "title": "05 البناء",
         "entries": [
           {
-            "title": "Woodland Building Supply"
+            "title": "Woodland Building Supply",
+            "description": "\u20664701 Woodland Ave, Phila · 215-727-5333\u2069"
           },
           {
-            "title": "C&R Building Supply"
+            "title": "C&R Building Supply",
+            "description": "\u20661601 S 49th St, Phila\u2069"
           },
           {
-            "title": "A&A Lumber"
+            "title": "A&A Lumber",
+            "description": "\u2066109 Old Limestone Rd, Avondale PA\u2069"
           },
           {
-            "title": "Philly Reclaim"
+            "title": "Philly Reclaim",
+            "description": "\u2066150 W Butler St, Phila\u2069 — مستودع لمواد البناء المستعملة؛ انظر أيضًا PowerCorpsPHL"
           },
           {
             "title": "PowerCorpsPHL"
@@ -477,40 +484,52 @@
             "title": "Willis Orchards — أشجار الفاكهة"
           },
           {
-            "title": "Good Host Plants"
+            "title": "Good Host Plants",
+            "description": "\u2066150 W Butler St, Phila\u2069 — متخصص محلي في النباتات التي تجذب المُلقِّحات"
           },
           {
-            "title": "LandHealth Institute Nursery (Philaflora)"
+            "title": "LandHealth Institute Nursery (Philaflora)",
+            "description": "\u2066West Philadelphia, 267-571-5750\u2069"
           },
           {
-            "title": "Pleasant Run Nursery"
+            "title": "Pleasant Run Nursery",
+            "description": "\u206693 Ellisdale Rd, Allentown NJ 08501 · 609-259-8585\u2069 — التوصيل لطلبات لا تقل عن 1,250 دولارًا"
           },
           {
-            "title": "Pinelands Nursery"
+            "title": "Pinelands Nursery",
+            "description": "\u2066323 Island Rd, Columbus NJ 08022 · 609-291-9486\u2069"
           },
           {
-            "title": "Archewild"
+            "title": "Archewild",
+            "description": "\u20662191 Hillcrest Rd, Quakertown PA 18951\u2069"
           },
           {
-            "title": "Underdog Landscape Supply"
+            "title": "Underdog Landscape Supply",
+            "description": "\u2066701 Washington St, Conshohocken PA · 610-260-9747\u2069"
           },
           {
-            "title": "Castor Materials"
+            "title": "Castor Materials",
+            "description": "\u20663301 S 61st St, Phila\u2069"
           },
           {
-            "title": "D&S Supply"
+            "title": "D&S Supply",
+            "description": "\u20664260 Macalester St, Phila · 215-457-1177\u2069"
           },
           {
-            "title": "Richard S. Burns & Co."
+            "title": "Richard S. Burns & Co.",
+            "description": "\u20664300 Rising Sun Ave, Phila · 215-324-6377\u2069 — مواد معاد تدويرها للبيع"
           },
           {
-            "title": "West Philadelphia Tool Library"
+            "title": "West Philadelphia Tool Library",
+            "description": "\u20661314 S 47th St, Phila\u2069"
           },
           {
-            "title": "Diamond Tool"
+            "title": "Diamond Tool",
+            "description": "\u20662800 Grays Ferry Ave, Phila\u2069"
           },
           {
-            "title": "Fairmount Park Organic Recycling Center"
+            "title": "Fairmount Park Organic Recycling Center",
+            "description": "\u20663850 W Ford Rd, Phila · 215-685-0108\u2069"
           }
         ]
       },

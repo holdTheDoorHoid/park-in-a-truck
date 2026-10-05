@@ -14,6 +14,17 @@ export default {
   'link.english': '(بالإنجليزية)',
   'park.source': 'المصدر: {source}',
 
+  'source.toolkitPage': 'دليل Park in a Truck، صفحة {page}',
+  'source.toolkitPages': 'دليل Park in a Truck، الصفحات {pages}',
+  'source.toolkitAck': 'دليل Park in a Truck، صفحة {page}، قسم الشكر',
+  'source.linktree': 'صفحة Park in a Truck على Linktree',
+  'source.linktreeOnly': 'صفحة Park in a Truck على Linktree فقط',
+  'source.unconfirmedElsewhere': 'غير مؤكَّد في مصادر أخرى',
+  'source.unconfirmedBeyond': 'غير مؤكَّد في غير ذلك',
+  'source.jeffersonNews': 'أخبار Jefferson',
+  'photo.via': '{name}، من دليل Park in a Truck',
+  'photo.toolkit': 'دليل Park in a Truck',
+
   'map.label': 'خريطة الحدائق التي بُنيت مع Park in a Truck',
   'map.details': 'اعرض التفاصيل',
   'map.close': 'إغلاق',
